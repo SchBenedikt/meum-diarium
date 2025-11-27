@@ -46,7 +46,7 @@ export function MainContent({ author, posts, isLoading }: MainContentProps) {
       <main className="flex-1 overflow-auto p-4 md:p-6">
         <Tabs defaultValue="diary" className="w-full">
           <TabsList className="mb-4 grid w-full grid-cols-2 md:w-[400px]">
-            <TabsTrigger value="diary">Ich-Perspektive (Tagebuch)</TabsTrigger>
+            <TabsTrigger value="diary">Tagebuch</TabsTrigger>
             <TabsTrigger value="scientific">Wissenschaftlich</TabsTrigger>
           </TabsList>
           <TabsContent value="diary">
@@ -57,7 +57,7 @@ export function MainContent({ author, posts, isLoading }: MainContentProps) {
             </div>
              {diaryPosts.length === 0 && (
               <div className="flex h-64 items-center justify-center rounded-lg border border-dashed">
-                <p className="text-muted-foreground">No diary entries from {author.name}.</p>
+                <p className="text-muted-foreground">Keine Tagebucheinträge von {author.name}.</p>
               </div>
             )}
           </TabsContent>
@@ -69,7 +69,7 @@ export function MainContent({ author, posts, isLoading }: MainContentProps) {
             </div>
             {scientificPosts.length === 0 && (
               <div className="flex h-64 items-center justify-center rounded-lg border border-dashed">
-                <p className="text-muted-foreground">No scientific articles from {author.name}.</p>
+                <p className="text-muted-foreground">Keine wissenschaftlichen Artikel von {author.name}.</p>
               </div>
             )}
           </TabsContent>

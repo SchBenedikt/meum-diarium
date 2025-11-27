@@ -38,7 +38,7 @@ export function SidebarContent({
       <SidebarSeparator />
       <SidebarMenu className="p-4">
         <span className="px-2 text-xs font-medium uppercase text-sidebar-foreground/70">
-          Authors
+          Autoren
         </span>
         {authors.map((author) => (
           <SidebarMenuItem key={author.id}>
