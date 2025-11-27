@@ -1,3 +1,4 @@
+
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
@@ -367,7 +368,7 @@ function AuthorAboutPage() {
                 viewport={{ once: true }}
               >
                 <h2 className="font-display text-xl font-medium mb-6">Lebenslauf</h2>
-                <div className="relative pl-4 border-l border-dashed border-border">
+                <div className="relative pl-4">
                   {details.timeline.map((item, i) => (
                     <div key={i} className="relative mb-8 last:mb-0">
                       <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-background border-2 border-primary" />
