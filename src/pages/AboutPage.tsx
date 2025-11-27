@@ -367,14 +367,14 @@ function AuthorAboutPage() {
                 viewport={{ once: true }}
               >
                 <h2 className="font-display text-xl font-medium mb-6">Lebenslauf</h2>
-                <div className="relative pl-6 border-l-2 border-primary/20">
+                <div className="relative pl-4 border-l border-dashed border-border">
                   {details.timeline.map((item, i) => (
-                    <div key={i} className="relative mb-6 last:mb-0">
-                      <div className="absolute -left-[25px] h-3 w-3 rounded-full bg-primary" />
-                      <p className="text-sm font-semibold mb-1 text-primary">
+                    <div key={i} className="relative mb-8 last:mb-0">
+                      <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-background border-2 border-primary" />
+                      <p className="text-sm font-semibold mb-1 ml-6 text-primary">
                         {item.year}
                       </p>
-                      <p className="text-sm text-muted-foreground">{item.event}</p>
+                      <p className="text-sm text-muted-foreground ml-6">{item.event}</p>
                     </div>
                   ))}
                 </div>
