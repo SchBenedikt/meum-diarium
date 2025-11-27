@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "caesar-bust",
+      "imageUrl": "https://images.unsplash.com/photo-1567522874215-d5e2f1bee83d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9tYW4lMjBzdGF0dWV8ZW58MHx8fHwxNzY0MjMwNjYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "roman statue",
+      "description": "A marble bust of Gaius Julius Caesar."
+    },
+    {
+      "id": "roman-forum",
+      "imageUrl": "https://images.unsplash.com/photo-1656073228190-e50f031f71ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyb21hbiUyMHJ1aW5zfGVufDB8fHx8MTc2NDIzNDc4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "roman ruins",
+      "description": "The ruins of the Roman Forum at sunset."
+    },
+    {
+      "id": "crossing-rubicon",
+      "imageUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyaXZlciUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjQyMzQ3ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "river landscape",
+      "description": "A scenic view of a river, reminiscent of the Rubicon."
+    },
+    {
+      "id": "cicero-bust",
+      "imageUrl": "https://images.unsplash.com/photo-1570482960841-8b75c1a9f410?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyb21hbiUyMHN0YXR1ZXxlbnwwfHx8fDE3NjQyMzA2NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "roman statue",
+      "description": "A marble bust of Marcus Tullius Cicero."
+    },
+    {
+      "id": "roman-senate",
+      "imageUrl": "https://images.unsplash.com/photo-1562834395-8b769fa87ba1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbmNpZW50JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY0MjM0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ancient interior",
+      "description": "An artist's rendition of the Roman Senate in session."
+    },
+    {
+      "id": "library-of-alexandria",
+      "imageUrl": "https://images.unsplash.com/photo-1610213629088-04983a3252c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhbmNpZW50JTIwbGlicmFyeXxlbnwwfHx8fDE3NjQxNjgyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ancient library",
+      "description": "An imaginative depiction of the great Library of Alexandria."
+    },
+    {
+      "id": "gaul-battle",
+      "imageUrl": "https://images.unsplash.com/photo-1560452361-0511aeded376?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwYmF0dGxlfGVufDB8fHx8MTc2NDIzNDc4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ancient battle",
+      "description": "A depiction of a battle during the Gallic Wars."
+    },
+    {
+      "id": "roman-aqueduct",
+      "imageUrl": "https://images.unsplash.com/photo-1587557780011-5f0812a3c4f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyb21hbiUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3NjQyMzQ3ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "roman architecture",
+      "description": "A magnificent Roman aqueduct stretching across the landscape."
+    }
+  ]
 }
