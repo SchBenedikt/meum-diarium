@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root, .theme-default {
+    /* Modern Light Theme - Antique Red */
+    --background: 40 20% 98%;
+    --foreground: 30 10% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 12%;
+
+    /* Default accent - Antique Wine Red */
+    --primary: 0 50% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 15% 93%;
+    --secondary-foreground: 30 15% 25%;
+
+    --muted: 40 10% 94%;
+    --muted-foreground: 30 10% 45%;
+
+    --accent: 0 50% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 0 50% 45%;
+
+    --radius: 0.75rem;
+
+    /* Author Colors - Unique Contrast */
+    --author-caesar: 25 95% 53%;
+    --author-cicero: 220 85% 55%;
+    --author-augustus: 280 75% 55%;
+    --author-seneca: 160 70% 40%;
+
+    /* Sidebar */
+    --sidebar-background: 40 15% 96%;
+    --sidebar-foreground: 30 10% 20%;
+    --sidebar-primary: 0 50% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 20% 93%;
+    --sidebar-accent-foreground: 30 15% 15%;
+    --sidebar-border: 40 15% 90%;
+    --sidebar-ring: 0 50% 45%;
+  }
+
+  .dark {
+    /* Modern Dark Theme - Deep Cinematic */
+    --background: 240 10% 6%;
+    --foreground: 40 15% 95%;
+
+    --card: 240 10% 10%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 240 10% 10%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 0 60% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 10% 15%;
+    --secondary-foreground: 40 15% 85%;
+
+    --muted: 240 10% 18%;
+    --muted-foreground: 40 10% 55%;
+
+    --accent: 0 60% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 0 60% 55%;
+
+    /* Dark theme author colors - Brighter for contrast */
+    --author-caesar: 30 100% 60%;
+    --author-cicero: 220 100% 65%;
+    --author-augustus: 280 90% 65%;
+    --author-seneca: 160 80% 50%;
+
+    --sidebar-background: 240 10% 8%;
+    --sidebar-foreground: 40 15% 90%;
+    --sidebar-primary: 0 60% 55%;
+    --sidebar-border: 240 10% 15%;
+  }
+
+  /* Author Theme Overrides */
+  .theme-caesar {
+    --primary: var(--author-caesar);
+    --accent: var(--author-caesar);
+    --ring: var(--author-caesar);
+  }
+
+  .theme-cicero {
+    --primary: var(--author-cicero);
+    --accent: var(--author-cicero);
+    --ring: var(--author-cicero);
+  }
+
+  .theme-augustus {
+    --primary: var(--author-augustus);
+    --accent: var(--author-augustus);
+    --ring: var(--author-augustus);
+  }
+
+  .theme-seneca {
+    --primary: var(--author-seneca);
+    --accent: var(--author-seneca);
+    --ring: var(--author-seneca);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .surface-elevated {
+    @apply bg-card rounded-xl shadow-lg shadow-foreground/5 border border-border/50;
+  }
+
+  .surface-tonal {
+    @apply bg-secondary/50 rounded-xl;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all;
+  }
+
+  .chip-filled {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .chip-tonal {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .chip-outlined {
+    @apply border border-border hover:border-primary hover:text-primary;
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-xl p-6 shadow-sm border border-border/50 transition-all hover:shadow-lg hover:border-border;
+  }
+
+  .sidebar-card {
+    @apply bg-secondary/40 rounded-lg p-5 border border-border/30;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:opacity-90 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium transition-all hover:bg-secondary/80 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-muted-foreground rounded-lg font-medium transition-all hover:bg-secondary hover:text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: animateIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .stagger-1 { animation-delay: 50ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 200ms; }
+  .stagger-5 { animation-delay: 250ms; }
+
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+  }
+
+  .gradient-bg {
+    background: linear-gradient(180deg, hsl(var(--secondary) / 0.5), transparent);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.1), transparent);
+  }
+}
+
+/* Author color utilities */
+.text-author-caesar { color: hsl(var(--author-caesar)); }
+.text-author-cicero { color: hsl(var(--author-cicero)); }
+.text-author-augustus { color: hsl(var(--author-augustus)); }
+.text-author-seneca { color: hsl(var(--author-seneca)); }
+
+.bg-author-caesar { background-color: hsl(var(--author-caesar)); }
+.bg-author-cicero { background-color: hsl(var(--author-cicero)); }
+.bg-author-augustus { background-color: hsl(var(--author-augustus)); }
+.bg-author-seneca { background-color: hsl(var(--author-seneca)); }
+
+.border-author-caesar { border-color: hsl(var(--author-caesar)); }
+.border-author-cicero { border-color: hsl(var(--author-cicero)); }
+.border-author-augustus { border-color: hsl(var(--author-augustus)); }
+.border-author-seneca { border-color: hsl(var(--author-seneca)); }
+
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.25);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full hover:bg-muted-foreground/30;
+}
+
+/* Prose styling for blog content */
+.prose-blog {
+  @apply text-foreground/80 leading-relaxed;
+}
+
+.prose-blog h2 {
+  @apply font-display text-2xl font-medium mt-10 mb-6 text-foreground;
+}
+
+.prose-blog h3 {
+  @apply font-display text-xl font-medium mt-8 mb-4 text-foreground;
+}
+
+.prose-blog p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose-blog strong {
+  @apply font-semibold text-primary;
+}
+
+.prose-blog em {
+  @apply italic;
+}
+
+.prose-blog blockquote {
+  @apply border-l-4 border-primary/40 pl-4 my-6 italic text-muted-foreground;
+}
+
+.prose-blog ul, .prose-blog ol {
+  @apply my-4 ml-6;
+}
+
+.prose-blog li {
+  @apply mb-2;
+}
