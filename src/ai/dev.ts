@@ -1,4 +1,4 @@
 import { config } from 'dotenv';
 config();
 
-import '@/ai/flows/dynamic-theme-adjustment.ts';
+// The dynamic-theme-adjustment flow has been removed as part of the redesign.

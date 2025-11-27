@@ -1,7 +1,6 @@
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from "@/components/ui/avatar";
 import {
   SidebarContent as SidebarContentArea,
@@ -26,18 +25,20 @@ export function SidebarContent({
   onAuthorChange,
 }: SidebarContentProps) {
   return (
-    <SidebarContentArea className="p-0">
+    <SidebarContentArea>
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-3">
-          <LaurelWreathIcon className="h-8 w-8 text-sidebar-primary" />
-          <h1 className="font-headline text-2xl font-bold text-sidebar-foreground">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <LaurelWreathIcon className="h-6 w-6" />
+          </div>
+          <h1 className="text-xl font-semibold text-sidebar-foreground">
             Meum Diarium
           </h1>
         </div>
       </SidebarHeader>
       <SidebarSeparator />
-      <SidebarMenu className="p-4">
-        <span className="px-2 text-xs font-medium uppercase text-sidebar-foreground/70">
+      <SidebarMenu className="flex-1 p-4">
+        <span className="mb-2 block px-2 text-xs font-semibold uppercase tracking-wider text-sidebar-foreground/60">
           Autoren
         </span>
         {authors.map((author) => (
@@ -45,9 +46,9 @@ export function SidebarContent({
             <SidebarMenuButton
               onClick={() => onAuthorChange(author)}
               isActive={selectedAuthor.id === author.id}
-              className="h-auto p-2"
+              className="h-auto justify-start p-2"
             >
-              <Avatar className="h-9 w-9">
+              <Avatar className="h-8 w-8">
                 <AvatarFallback>{author.initials}</AvatarFallback>
               </Avatar>
               <div className="flex flex-col items-start">
