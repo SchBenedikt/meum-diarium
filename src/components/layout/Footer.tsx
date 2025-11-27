@@ -26,12 +26,17 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Startseite
+                  Autoren
                 </Link>
               </li>
               <li>
                 <Link to="/timeline" className="text-muted-foreground hover:text-foreground transition-colors">
                   Zeitstrahl
+                </Link>
+              </li>
+              <li>
+                <Link to="/lexicon" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Lexikon
                 </Link>
               </li>
               <li>

@@ -1,22 +1,30 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { useAuthor } from '@/context/AuthorContext';
 import { AuthorSwitcher } from '@/components/AuthorSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SearchDialog } from '@/components/SearchDialog';
 import { cn } from '@/lib/utils';
 import { X, Search } from 'lucide-react';
+import { useAuthor } from '@/context/AuthorContext';
 
 export function Header() {
-  const { currentAuthor, authorInfo, setCurrentAuthor } = useAuthor();
+  const { setCurrentAuthor } = useAuthor();
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navItems = [
-    { href: '/', label: 'Start' },
+    { href: '/', label: 'Autoren' },
     { href: '/timeline', label: 'Zeitstrahl' },
+    { href: '/lexicon', label: 'Lexikon' },
     { href: '/about', label: 'Über' },
   ];
+
+  const handleLogoClick = () => {
+    // Only reset author if we are not on the homepage
+    if (location.pathname !== '/') {
+      setCurrentAuthor(null);
+    }
+  }
 
   return (
     <>
@@ -24,7 +32,7 @@ export function Header() {
         <div className="container mx-auto">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link to="/" onClick={() => setCurrentAuthor(null)} className="flex items-center gap-3 group">
+            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
               <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
                 <span className="text-primary-foreground font-display text-base font-semibold">M</span>
               </div>
@@ -39,6 +47,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   to={item.href}
+                  onClick={() => item.href === '/' && setCurrentAuthor(null)}
                   className={cn(
                     "px-4 py-2 text-sm font-medium rounded-lg transition-all",
                     location.pathname === item.href
@@ -56,7 +65,7 @@ export function Header() {
               {/* Search Button */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="h-9 px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                className="h-10 px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden sm:inline text-sm">Suchen</span>

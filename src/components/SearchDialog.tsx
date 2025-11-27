@@ -30,13 +30,13 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       if (e.key === 'Escape') onClose();
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        if (isOpen) onClose();
+        onClose(); // Always close, never open
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -69,12 +69,12 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
           />
 
           {/* Dialog Wrapper for centering */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[10vh] sm:pt-[15vh]">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
               className="w-full max-w-xl"
             >
               <div className="overflow-hidden rounded-2xl bg-card border border-border shadow-2xl">
@@ -130,18 +130,18 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     </div>
                   ) : (
                     <div className="p-2">
-                      {results.map((post, index) => (
+                      {results.map((post) => (
                         <Link
                           key={post.id}
                           to={`/post/${post.slug}`}
                           onClick={onClose}
-                          className="flex items-start gap-4 p-3 rounded-xl hover:bg-secondary/50 transition-colors group"
+                          className="flex items-start gap-4 p-3 rounded-xl hover:bg-secondary transition-colors group"
                         >
-                          <div className={`h-10 w-10 rounded-xl ${authorColorClasses[post.author]} flex items-center justify-center flex-shrink-0`}>
-                            <span className="text-white font-semibold text-sm">
-                              {authors[post.author].name.charAt(0)}
-                            </span>
-                          </div>
+                          <img 
+                            src={post.coverImage} 
+                            alt={post.title} 
+                            className="h-16 w-16 rounded-lg object-cover flex-shrink-0"
+                          />
                           <div className="flex-1 min-w-0">
                             <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
                               {post.title}
@@ -165,24 +165,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                       ))}
                     </div>
                   )}
-                </div>
-
-                {/* Footer */}
-                <div className="p-3 border-t border-border bg-secondary/30">
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{results.length} Ergebnisse</span>
-                    <div className="flex items-center gap-4">
-                      <span className="flex items-center gap-1">
-                        <kbd className="h-5 px-1.5 rounded bg-secondary">↑</kbd>
-                        <kbd className="h-5 px-1.5 rounded bg-secondary">↓</kbd>
-                        navigieren
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <kbd className="h-5 px-1.5 rounded bg-secondary">↵</kbd>
-                        öffnen
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>

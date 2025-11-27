@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
@@ -6,10 +7,66 @@ import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
+import { lexicon } from '@/data/lexicon';
 import { Perspective } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowLeft, Clock, Calendar, Share2 } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, Share2, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ShareButton } from '@/components/ShareButton';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+
+function LexiconTerm({ term, definition }: { term: string, definition: string }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <strong className="text-primary border-b border-primary/50 border-dashed cursor-pointer">
+          {term}
+        </strong>
+      </TooltipTrigger>
+      <TooltipContent className="max-w-xs">
+        <div className="p-2">
+          <h4 className="font-bold mb-2 flex items-center gap-2">
+            <BookOpen className="h-4 w-4" />
+            Lexikon
+          </h4>
+          <p>{definition}</p>
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+function formatContent(content: string): React.ReactNode[] {
+  // Basic markdown replacements
+  let formattedContent = content
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+
+  const lexiconTerms = lexicon.map(entry => entry.term).join('|');
+  const regex = new RegExp(`\\b(${lexiconTerms})\\b`, 'gi');
+  
+  const parts = formattedContent.split(regex);
+
+  return parts.map((part, index) => {
+    const lowerPart = part.toLowerCase();
+    const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === lowerPart);
+
+    if (lexiconEntry) {
+      return <LexiconTerm key={index} term={part} definition={lexiconEntry.definition} />;
+    }
+    
+    // Split by newlines to create paragraphs
+    const paragraphs = part.split(/\n\n/).map((p, i) => (
+      <p key={`${index}-${i}`} dangerouslySetInnerHTML={{ __html: p.replace(/\n/g, '<br />') }} />
+    ));
+    
+    return <React.Fragment key={index}>{paragraphs}</React.Fragment>;
+  });
+}
+
 
 export default function PostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -26,11 +83,18 @@ export default function PostPage() {
     if (post) {
       setCurrentAuthor(post.author);
     }
-  }, [post, setCurrentAuthor]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug]); // Only re-run when slug changes
 
   useEffect(() => {
     setSearchParams({ perspective });
   }, [perspective, setSearchParams]);
+
+  const formattedContent = useMemo(() => {
+    if (!post) return [];
+    const contentToFormat = perspective === 'diary' ? post.content.diary : post.content.scientific;
+    return formatContent(contentToFormat);
+  }, [post, perspective]);
 
   if (!post || !author) {
     return (
@@ -49,8 +113,6 @@ export default function PostPage() {
       </div>
     );
   }
-
-  const content = perspective === 'diary' ? post.content.diary : post.content.scientific;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -73,11 +135,7 @@ export default function PostPage() {
               {/* Header */}
               <header className="mb-12">
                 <div className="flex items-center gap-3 mb-6 animate-in">
-                  <div 
-                    className="h-12 w-12 rounded-xl flex items-center justify-center text-primary-foreground font-semibold shadow-lg bg-primary"
-                  >
-                    {author.name.charAt(0)}
-                  </div>
+                  <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
                   <div>
                     <p className="font-medium">{author.name}</p>
                     <p className="text-sm text-muted-foreground">{author.title}</p>
@@ -105,31 +163,23 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                   <ShareButton 
+                    title={post.title}
+                    text={post.excerpt}
+                    variant="compact"
+                  />
                 </div>
               </header>
 
               {/* Content */}
               <div className="animate-in stagger-5">
-                <div 
-                  className="prose-blog"
-                  dangerouslySetInnerHTML={{ __html: formatContent(content) }}
-                />
-              </div>
-
-              {/* Share section */}
-              <div className="mt-12 pt-8 border-t border-border">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">
-                    Gefällt dir dieser Eintrag? Teile ihn!
-                  </p>
-                  <Button variant="outline" size="sm" className="gap-2 rounded-xl">
-                    <Share2 className="h-4 w-4" />
-                    Teilen
-                  </Button>
+                <div className="prose-blog leading-relaxed space-y-4">
+                  {formattedContent}
                 </div>
               </div>
+
             </article>
 
             {/* Sidebar */}
@@ -145,19 +195,4 @@ export default function PostPage() {
       <Footer />
     </div>
   );
-}
-
-function formatContent(content: string): string {
-  let html = content
-    .replace(/^### (.+)$/gm, `<h3>$1</h3>`)
-    .replace(/^## (.+)$/gm, `<h2>$1</h2>`)
-    .replace(/\*\*(.+?)\*\*/g, `<strong>$1</strong>`)
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/^> (.+)$/gm, `<blockquote>$1</blockquote>`);
-
-  html = `<p>${html}</p>`;
-
-  return html;
 }

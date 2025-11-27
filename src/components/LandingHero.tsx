@@ -1,6 +1,6 @@
 import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowRight, Scroll, Clock, BookOpen } from 'lucide-react';
+import { ArrowRight, Scroll, Clock, BookOpen, BookMarked } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { QuoteOfDay } from './QuoteOfDay';
@@ -64,11 +64,11 @@ export function LandingHero() {
                 Zeitstrahl erkunden
               </Link>
               <Link 
-                to="/about" 
+                to="/lexicon" 
                 className="btn-secondary"
               >
-                <BookOpen className="h-4 w-4" />
-                Mehr erfahren
+                <BookMarked className="h-4 w-4" />
+                Lexikon öffnen
               </Link>
             </div>
           </motion.div>
