@@ -4,8 +4,9 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
-import { ArrowLeft, BookOpen, Newspaper } from 'lucide-react';
+import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
+import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 
@@ -17,9 +18,11 @@ export default function LexiconEntryPage() {
     if (!entry) return [];
     const searchTerm = entry.term.toLowerCase();
     return posts.filter(post => 
+      post.title.toLowerCase().includes(searchTerm) ||
+      post.excerpt.toLowerCase().includes(searchTerm) ||
       post.content.diary.toLowerCase().includes(searchTerm) ||
       post.content.scientific.toLowerCase().includes(searchTerm)
-    );
+    ).slice(0, 5);
   }, [entry]);
 
   if (!entry) {
@@ -31,27 +34,27 @@ export default function LexiconEntryPage() {
       <Header />
       <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <Link
-              to="/lexicon"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Zurück zum Lexikon
-            </Link>
+          <Link
+            to="/lexicon"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Zurück zum Lexikon
+          </Link>
 
-            <article className="mb-16">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-8"
-              >
-                <div className="flex items-center gap-3 mb-4 text-primary">
-                  <BookOpen className="h-5 w-5" />
-                  <span className="text-sm font-medium uppercase tracking-wider">Lexikoneintrag</span>
-                </div>
-                <h1 className="font-display text-4xl md:text-5xl">{entry.term}</h1>
-              </motion.div>
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+            <article>
+              <header className="mb-12">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block">
+                    {entry.category}
+                  </span>
+                  <h1 className="font-display text-4xl md:text-5xl">{entry.term}</h1>
+                </motion.div>
+              </header>
 
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -61,31 +64,35 @@ export default function LexiconEntryPage() {
               >
                 <p>{entry.definition}</p>
               </motion.div>
-            </article>
-          </div>
 
-          {relatedPosts.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Newspaper className="h-5 w-5 text-primary" />
-                <h2 className="font-display text-2xl font-medium">Relevante Einträge</h2>
-              </div>
-              <div className="relative">
-                <div className="flex gap-6 overflow-x-auto pb-4 -mx-6 px-6">
-                  {relatedPosts.map((post, index) => (
-                    <div key={post.id} className="w-[340px] flex-shrink-0">
-                      <BlogCard post={post} perspective="diary" index={index} />
+              {relatedPosts.length > 0 && (
+                <motion.section
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-16"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <Newspaper className="h-5 w-5 text-primary" />
+                    <h2 className="font-display text-2xl font-medium">Relevante Einträge</h2>
+                  </div>
+                  <div className="relative">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {relatedPosts.slice(0,2).map((post, index) => (
+                        <BlogCard post={post} perspective="diary" index={index} />
+                      ))}
                     </div>
-                  ))}
-                </div>
-                <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-background pointer-events-none md:hidden" />
+                  </div>
+                </motion.section>
+              )}
+            </article>
+            
+            <aside className="hidden lg:block">
+              <div className="sticky top-28">
+                <LexiconSidebar entry={entry} />
               </div>
-            </motion.section>
-          )}
+            </aside>
+          </div>
         </div>
       </main>
       <Footer />
