@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AuthorSwitcher } from '@/components/AuthorSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SearchDialog } from '@/components/SearchDialog';
 import { cn } from '@/lib/utils';
-import { Menu, X, Search, Scroll } from 'lucide-react';
+import { Menu, Search, Scroll } from 'lucide-react';
 import { useAuthor } from '@/context/AuthorContext';
 import {
   Sheet,
@@ -31,6 +31,18 @@ export function Header() {
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
 
   return (
     <>

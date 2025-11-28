@@ -9,6 +9,7 @@ import AboutPage from "./pages/AboutPage";
 import TimelinePage from "./pages/TimelinePage";
 import LexiconPage from "./pages/LexiconPage";
 import LexiconEntryPage from "./pages/LexiconEntryPage";
+import SearchPage from "./pages/SearchPage";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
@@ -49,6 +50,7 @@ const AppContent = () => {
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/lexicon" element={<LexiconPage />} />
         <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
