@@ -44,9 +44,12 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           <Tags className="h-4 w-4 text-primary" />
           Kategorie
         </h3>
-        <span className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+        <Link 
+          to={`/lexicon?category=${entry.category}`}
+          className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
+        >
           {entry.category}
-        </span>
+        </Link>
       </motion.div>
 
       {/* Related Terms */}

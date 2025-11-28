@@ -1,27 +1,48 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
-import { lexicon } from '@/data/lexicon';
-import { BookMarked, Search, ArrowRight } from 'lucide-react';
+import { lexicon, LexiconEntry } from '@/data/lexicon';
+import { BookMarked, Search, ArrowRight, Tags } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+
+const categories = [...new Set(lexicon.map(e => e.category))];
 
 export default function LexiconPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState<string | null>(searchParams.get('category'));
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
+
+  useEffect(() => {
+    const category = searchParams.get('category');
+    setActiveCategory(category);
+  }, [searchParams]);
+
+  const handleCategoryChange = (category: string | null) => {
+    setActiveCategory(category);
+    if (category) {
+      setSearchParams({ category });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   const filteredLexicon = useMemo(() => {
     return lexicon
-      .filter(entry => 
-        entry.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        entry.definition.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      .filter(entry => {
+        const categoryMatch = !activeCategory || entry.category === activeCategory;
+        const searchMatch = 
+          entry.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          entry.definition.toLowerCase().includes(searchTerm.toLowerCase());
+        return categoryMatch && searchMatch;
+      })
       .sort((a, b) => a.term.localeCompare(b.term));
-  }, [searchTerm]);
+  }, [searchTerm, activeCategory]);
 
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {
@@ -31,7 +52,7 @@ export default function LexiconPage() {
       }
       acc[firstLetter].push(entry);
       return acc;
-    }, {} as Record<string, typeof filteredLexicon>);
+    }, {} as Record<string, LexiconEntry[]>);
   }, [filteredLexicon]);
 
   const handleLetterClick = (letter: string) => {
@@ -77,7 +98,7 @@ export default function LexiconPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative mb-10"
+              className="relative mb-6"
             >
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
@@ -89,11 +110,52 @@ export default function LexiconPage() {
               />
             </motion.div>
 
+            {/* Category Filter */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mb-10"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Tags className="h-4 w-4 text-muted-foreground" />
+                <h3 className="text-sm font-medium text-muted-foreground">Kategorien filtern</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleCategoryChange(null)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                    !activeCategory
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  )}
+                >
+                  Alle
+                </button>
+                {categories.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryChange(category)}
+                    className={cn(
+                      "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                      activeCategory === category
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    )}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+
+
             {/* Alphabet Navigation */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-10"
             >
               {alphabet.map(letter => (
@@ -146,7 +208,7 @@ export default function LexiconPage() {
             ) : (
               <div className="text-center py-16">
                 <p className="text-muted-foreground">
-                  Kein Eintrag für "{searchTerm}" gefunden.
+                  Keine Einträge für diese Auswahl gefunden.
                 </p>
               </div>
             )}
