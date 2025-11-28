@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
@@ -189,7 +189,7 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-20">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                    <ShareButton 
                     title={post.title}

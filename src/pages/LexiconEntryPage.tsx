@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
@@ -11,7 +11,19 @@ import NotFound from './NotFound';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const navigate = useNavigate();
   const entry = lexicon.find(e => e.slug === slug);
+  const fromPost = location.state?.from as string;
+
+  const handleBackClick = () => {
+    if (fromPost) {
+      navigate(fromPost);
+    } else {
+      navigate('/lexikon');
+    }
+  };
+
 
   const relatedPosts = useMemo(() => {
     if (!entry) return [];
@@ -32,13 +44,13 @@ export default function LexiconEntryPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto">
-          <Link
-            to="/lexicon"
+          <button
+            onClick={handleBackClick}
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zum Lexikon
-          </Link>
+            {fromPost ? 'Zurück zum Artikel' : 'Zurück zum Lexikon'}
+          </button>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             <article>
