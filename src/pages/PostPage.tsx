@@ -21,13 +21,15 @@ function calculateReadingTime(text: string): number {
   return Math.ceil(wordCount / wordsPerMinute);
 }
 
-function LexiconTerm({ term, definition }: { term: string, definition: string }) {
+function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <strong className="text-primary border-b border-primary/50 border-dashed cursor-pointer">
-          {term}
-        </strong>
+        <Link to={`/lexicon/${slug}`} className="inline">
+          <strong className="text-primary border-b border-primary/50 border-dashed cursor-pointer">
+            {term}
+          </strong>
+        </Link>
       </TooltipTrigger>
       <TooltipContent className="max-w-xs">
         <div className="p-2">
@@ -42,35 +44,63 @@ function LexiconTerm({ term, definition }: { term: string, definition: string })
   );
 }
 
+
 function formatContent(content: string): React.ReactNode[] {
-  // Basic markdown replacements
-  let formattedContent = content
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+    const lexiconTerms = lexicon.map(entry => entry.term).sort((a, b) => b.length - a.length);
+    const regex = new RegExp(`(${lexiconTerms.join('|')})`, 'g');
 
-  const lexiconTerms = lexicon.map(entry => entry.term).join('|');
-  const regex = new RegExp(`\\b(${lexiconTerms})\\b`, 'gi');
-  
-  const parts = formattedContent.split(regex);
+    return content.split(/(\n)/).map((line, lineIndex) => {
+        if (line === '\n') {
+            return <br key={lineIndex} />;
+        }
 
-  return parts.map((part, index) => {
-    const lowerPart = part.toLowerCase();
-    const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === lowerPart);
+        let lastIndex = 0;
+        const parts = [];
+        
+        // Basic markdown replacements for the line
+        let processedLine = line
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/^### (.+)/, '<h3>$1</h3>')
+            .replace(/^## (.+)/, '<h2>$1</h2>')
+            .replace(/^> (.+)/, '<blockquote>$1</blockquote>');
+            
+        let match;
+        while ((match = regex.exec(processedLine)) !== null) {
+            if (match.index > lastIndex) {
+                parts.push(<span key={`${lineIndex}-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex, match.index) }} />);
+            }
 
-    if (lexiconEntry) {
-      return <LexiconTerm key={index} term={part} definition={lexiconEntry.definition} />;
-    }
-    
-    // Split by newlines to create paragraphs
-    const paragraphs = part.split(/\n\n/).map((p, i) => (
-      <p key={`${index}-${i}`} dangerouslySetInnerHTML={{ __html: p.replace(/\n/g, '<br />') }} />
-    ));
-    
-    return <React.Fragment key={index}>{paragraphs}</React.Fragment>;
-  });
+            const term = match[0];
+            const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
+
+            if (lexiconEntry) {
+                parts.push(
+                    <LexiconTerm
+                        key={`${lineIndex}-${match.index}`}
+                        term={term}
+                        definition={lexiconEntry.definition}
+                        slug={lexiconEntry.slug}
+                    />
+                );
+            } else {
+                parts.push(term);
+            }
+
+            lastIndex = match.index + term.length;
+        }
+
+        if (lastIndex < processedLine.length) {
+            parts.push(<span key={`${lineIndex}-end`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex) }} />);
+        }
+
+        // Wrap non-empty lines in paragraphs
+        if (line.trim() !== '') {
+            return React.createElement('p', { key: lineIndex }, ...parts);
+        }
+
+        return null; // Return null for empty lines to avoid creating empty paragraphs
+    }).filter(Boolean); // Filter out null values
 }
 
 
@@ -171,7 +201,7 @@ export default function PostPage() {
 
               {/* Content */}
               <div className="animate-in stagger-5">
-                <div className="prose-blog leading-relaxed space-y-4">
+                <div className="prose-blog leading-relaxed">
                   {formattedContent}
                 </div>
               </div>
