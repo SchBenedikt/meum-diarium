@@ -1,15 +1,22 @@
-import { Link } from 'react-router-dom';
-import { BlogPost, Perspective } from '@/types/blog';
+import { Link, useNavigate } from 'react-router-dom';
+import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface BlogCardProps {
   post: BlogPost;
-  perspective: Perspective;
   index?: number;
 }
 
-export function BlogCard({ post, perspective, index = 0 }: BlogCardProps) {
+export function BlogCard({ post, index = 0 }: BlogCardProps) {
+  const navigate = useNavigate();
+
+  const handleTagClick = (e: React.MouseEvent, tag: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/search?q=${encodeURIComponent(tag)}`);
+  };
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -33,11 +40,18 @@ export function BlogCard({ post, perspective, index = 0 }: BlogCardProps) {
         <div className="p-5">
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                {post.tags[0]}
-              </span>
+              {post.tags.map((tag, i) => (
+                <a
+                  key={i}
+                  href={`/search?q=${encodeURIComponent(tag)}`}
+                  onClick={(e) => handleTagClick(e, tag)}
+                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors z-10 relative"
+                >
+                  {tag}
+                </a>
+              ))}
               {post.latinTitle && (
-                <span className="text-xs text-muted-foreground italic">
+                <span className="text-xs text-muted-foreground italic truncate">
                   {post.latinTitle}
                 </span>
               )}

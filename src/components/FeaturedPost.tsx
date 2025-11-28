@@ -44,7 +44,7 @@ export function FeaturedPost() {
           </p>
         </motion.div>
         <div className="max-w-xl mx-auto">
-          <BlogCard post={featuredPost} perspective="diary" />
+          <BlogCard post={featuredPost} />
         </div>
       </div>
     </section>

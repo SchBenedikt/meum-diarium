@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { timelineEvents } from '@/data/timeline';
+import { Link } from 'react-router-dom';
 
 export function ReadingStats() {
   const totalReadingTime = posts.reduce((acc, post) => acc + post.readingTime, 0);
@@ -83,12 +84,13 @@ export function ReadingStats() {
           <p className="text-sm text-muted-foreground mb-4">Beliebte Themen</p>
           <div className="flex flex-wrap justify-center gap-2">
             {uniqueTags.slice(0, 12).map(tag => (
-              <span 
+              <Link 
                 key={tag}
-                className="px-4 py-2 rounded-full bg-secondary text-sm font-medium hover:bg-secondary/80 transition-colors cursor-default"
+                to={`/search?q=${encodeURIComponent(tag)}`}
+                className="px-4 py-2 rounded-full bg-secondary text-sm font-medium hover:bg-secondary/80 transition-colors"
               >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
         </motion.div>

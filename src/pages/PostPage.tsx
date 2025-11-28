@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useSearchParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
@@ -10,7 +10,6 @@ import { lexicon } from '@/data/lexicon';
 import { Perspective, Author } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { ShareButton } from '@/components/ShareButton';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import NotFound from './NotFound';
@@ -22,13 +21,17 @@ function calculateReadingTime(text: string): number {
 }
 
 function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
+  const location = useLocation();
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Link to={`/lexicon/${slug}`} className="inline">
-          <strong className="text-primary border-b border-primary/50 border-dashed cursor-pointer">
-            {term}
-          </strong>
+        <Link 
+          to={`/lexicon/${slug}`} 
+          state={{ from: location.pathname + location.search }}
+          className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer"
+        >
+          {term}
         </Link>
       </TooltipTrigger>
       <TooltipContent className="max-w-xs">
@@ -37,7 +40,7 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
             <BookOpen className="h-4 w-4" />
             Lexikon
           </h4>
-          <p>{definition}</p>
+          <p className="text-sm">{definition}</p>
         </div>
       </TooltipContent>
     </Tooltip>
@@ -47,25 +50,24 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
 
 function formatContent(content: string): React.ReactNode[] {
     const lexiconTerms = lexicon.map(entry => entry.term).sort((a, b) => b.length - a.length);
-    const regex = new RegExp(`(${lexiconTerms.join('|')})`, 'g');
+    const regex = new RegExp(`\\b(${lexiconTerms.join('|')})\\b`, 'gi');
 
     return content.split(/(\n)/).map((line, lineIndex) => {
         if (line === '\n') {
             return <br key={lineIndex} />;
         }
-
-        let lastIndex = 0;
-        const parts = [];
         
-        // Basic markdown replacements for the line
         let processedLine = line
             .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.+?)\*/g, '<em>$1</em>')
             .replace(/^### (.+)/, '<h3>$1</h3>')
             .replace(/^## (.+)/, '<h2>$1</h2>')
             .replace(/^> (.+)/, '<blockquote>$1</blockquote>');
-            
+
+        const parts: (string | React.ReactNode)[] = [];
+        let lastIndex = 0;
         let match;
+
         while ((match = regex.exec(processedLine)) !== null) {
             if (match.index > lastIndex) {
                 parts.push(<span key={`${lineIndex}-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex, match.index) }} />);
@@ -94,13 +96,15 @@ function formatContent(content: string): React.ReactNode[] {
             parts.push(<span key={`${lineIndex}-end`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex) }} />);
         }
 
-        // Wrap non-empty lines in paragraphs
         if (line.trim() !== '') {
+            if (line.startsWith('<h2>') || line.startsWith('<h3>') || line.startsWith('<blockquote>')) {
+                 return <div key={lineIndex} dangerouslySetInnerHTML={{ __html: processedLine.replace(/<p>|<\/p>/g, '') }} />;
+            }
             return React.createElement('p', { key: lineIndex }, ...parts);
         }
 
-        return null; // Return null for empty lines to avoid creating empty paragraphs
-    }).filter(Boolean); // Filter out null values
+        return null;
+    }).filter(Boolean);
 }
 
 
@@ -190,7 +194,9 @@ export default function PostPage() {
                 </div>
 
                 <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between">
-                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                  <div className="relative z-10">
+                    <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                  </div>
                    <ShareButton 
                     title={post.title}
                     text={post.excerpt}

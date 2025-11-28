@@ -43,7 +43,9 @@ export function BlogList() {
               {filteredPosts.length} Einträge von {authorInfo.name.split(' ').pop()}
             </p>
           </motion.div>
-          <PerspectiveToggle value={perspective} onChange={setPerspective} />
+          <div className="relative z-10">
+            <PerspectiveToggle value={perspective} onChange={setPerspective} />
+          </div>
         </div>
 
         {/* Posts grid */}
@@ -52,8 +54,7 @@ export function BlogList() {
             {filteredPosts.map((post, index) => (
               <BlogCard 
                 key={post.id} 
-                post={post} 
-                perspective={perspective}
+                post={post}
                 index={index}
               />
             ))}

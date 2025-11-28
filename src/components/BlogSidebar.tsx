@@ -2,7 +2,7 @@ import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { posts } from '@/data/posts';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Users, Scroll, BookOpen, Quote, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Users, Scroll, BookOpen, Quote, ArrowRight, Tags } from 'lucide-react';
 
 interface BlogSidebarProps {
   post: BlogPost;
@@ -79,17 +79,18 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       {/* Tags */}
       <div className="sidebar-card animate-in stagger-3">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-primary" />
+          <Tags className="h-4 w-4 text-primary" />
           Themen
         </h3>
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span 
+            <Link 
               key={tag} 
-              className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium"
+              to={`/search?q=${encodeURIComponent(tag)}`}
+              className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
             >
               {tag}
-            </span>
+            </Link>
           ))}
         </div>
       </div>
