@@ -1,14 +1,102 @@
+
+import React, { useMemo, useEffect } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
-import { useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
-import { ArrowLeft, Newspaper } from 'lucide-react';
+import { ArrowLeft, Newspaper, BookOpen } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+
+function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
+  const location = useLocation();
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Link 
+          to={`/lexicon/${slug}`} 
+          state={{ from: location.pathname + location.search }}
+          className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer"
+        >
+          {term}
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent className="max-w-xs">
+        <div className="p-2">
+          <h4 className="font-bold mb-2 flex items-center gap-2">
+            <BookOpen className="h-4 w-4" />
+            Lexikon
+          </h4>
+          <p className="text-sm">{definition}</p>
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+function formatContent(content: string, currentSlug?: string): React.ReactNode[] {
+    const lexiconTerms = lexicon
+      .filter(entry => entry.slug !== currentSlug) // Exclude the current term to prevent self-linking
+      .map(entry => entry.term)
+      .sort((a, b) => b.length - a.length);
+      
+    if (lexiconTerms.length === 0) {
+      return [<p key="line-0">{content}</p>];
+    }
+      
+    const regex = new RegExp(`\\b(${lexiconTerms.join('|')})\\b`, 'gi');
+
+    return content.split(/(\n)/).map((line, lineIndex) => {
+        if (line === '\n') {
+            return <br key={lineIndex} />;
+        }
+        
+        let processedLine = line;
+
+        const parts: (string | React.ReactNode)[] = [];
+        let lastIndex = 0;
+        let match;
+
+        while ((match = regex.exec(processedLine)) !== null) {
+            if (match.index > lastIndex) {
+                parts.push(processedLine.substring(lastIndex, match.index));
+            }
+
+            const term = match[0];
+            const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
+
+            if (lexiconEntry) {
+                parts.push(
+                    <LexiconTerm
+                        key={`${lineIndex}-${match.index}`}
+                        term={term}
+                        definition={lexiconEntry.definition}
+                        slug={lexiconEntry.slug}
+                    />
+                );
+            } else {
+                parts.push(term);
+            }
+
+            lastIndex = match.index + term.length;
+        }
+
+        if (lastIndex < processedLine.length) {
+            parts.push(processedLine.substring(lastIndex));
+        }
+
+        if (line.trim() !== '') {
+            return React.createElement('p', { key: lineIndex }, ...parts);
+        }
+
+        return null;
+    }).filter(Boolean);
+}
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -18,6 +106,8 @@ export default function LexiconEntryPage() {
 
   useEffect(() => {
     setCurrentAuthor(null);
+    document.documentElement.classList.remove('theme-caesar', 'theme-cicero', 'theme-augustus', 'theme-seneca');
+    document.documentElement.classList.add('theme-default');
   }, [setCurrentAuthor]);
 
   const entry = lexicon.find(e => e.slug === slug);
@@ -43,6 +133,11 @@ export default function LexiconEntryPage() {
     ).slice(0, 5);
   }, [entry]);
 
+  const formattedContent = useMemo(() => {
+    if (!entry) return [];
+    return formatContent(entry.definition, entry.slug);
+  }, [entry]);
+
   if (!entry) {
     return <NotFound />;
   }
@@ -66,7 +161,7 @@ export default function LexiconEntryPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <Link to={`/lexicon?category=${entry.category}`}>
+                  <Link to={`/search?q=${encodeURIComponent(entry.category)}`}>
                     <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block hover:bg-primary/20 transition-colors">
                       {entry.category}
                     </span>
@@ -81,7 +176,7 @@ export default function LexiconEntryPage() {
                 transition={{ delay: 0.1 }}
                 className="prose-blog text-lg"
               >
-                <p>{entry.definition}</p>
+                {formattedContent}
               </motion.div>
 
               {relatedPosts.length > 0 && (

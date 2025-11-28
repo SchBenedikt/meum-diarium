@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { BookCopy, Link as LinkIcon, BookMarked, Tags } from 'lucide-react';
@@ -45,7 +46,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           Kategorie
         </h3>
         <Link 
-          to={`/lexicon?category=${entry.category}`}
+          to={`/search?q=${encodeURIComponent(entry.category)}`}
           className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
         >
           {entry.category}
