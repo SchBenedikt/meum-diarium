@@ -147,8 +147,6 @@ export default function PostPage() {
   if (!post || !author) {
     return <NotFound />;
   }
-  
-  const authorLastName = author.name.split(' ').pop();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -188,12 +186,11 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-10">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-20">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                    <ShareButton 
                     title={post.title}
                     text={`Hey, schaut, was ich hier gefunden habe: ${window.location.href}`}
-                    variant="compact"
                   />
                 </div>
               </header>
@@ -209,7 +206,7 @@ export default function PostPage() {
 
             {/* Sidebar */}
             <aside className="hidden lg:block">
-              <div className="sticky top-40">
+              <div className="sticky top-28">
                 <BlogSidebar post={post} />
               </div>
             </aside>

@@ -1,16 +1,24 @@
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { cn } from '@/lib/utils';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import {
+  Command,
+  CommandInput,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 type SearchResult = 
   | { type: 'post', data: BlogPost }
@@ -65,11 +73,15 @@ const categoryIcons: { [key: string]: React.ElementType } = {
   'Ethik': BrainCircuit
 };
 
+const popularCategories = ['Politik', 'Philosophie', 'Bürgerkrieg', 'Gallischer Krieg', 'Rede'];
+
+
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [activeCategory, setActiveCategory] = useState(searchParams.get('category') || null);
+  const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
 
   const { setCurrentAuthor } = useAuthor();
 
@@ -92,7 +104,7 @@ export default function SearchPage() {
     } else {
         newParams.delete('q');
     }
-    // Use timeout to avoid updating URL on every keystroke
+    // Debounce updating URL
     const handler = setTimeout(() => {
         setSearchParams(newParams, { replace: true });
     }, 300);
@@ -102,19 +114,14 @@ export default function SearchPage() {
   const handleCategoryChange = (newCategory: string | null) => {
     const newParams = new URLSearchParams(searchParams);
     if (newCategory) {
-      if (activeCategory === newCategory) {
-        // Deselect if clicked again
-        newParams.delete('category');
-        setActiveCategory(null);
-      } else {
         newParams.set('category', newCategory);
         setActiveCategory(newCategory);
-      }
     } else {
-      newParams.delete('category');
-      setActiveCategory(null);
+        newParams.delete('category');
+        setActiveCategory(null);
     }
     setSearchParams(newParams, { replace: true });
+    setCategoryPopoverOpen(false);
   }
 
   const results: SearchResult[] = useMemo(() => {
@@ -191,49 +198,56 @@ export default function SearchPage() {
         {/* Filters and Results */}
         <section className="py-12">
           <div className="container mx-auto max-w-4xl">
-             {/* Category Filter */}
              <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-10"
+              className="mb-10 flex flex-col sm:flex-row items-center gap-4"
             >
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-2 self-start">
                 <Tags className="h-4 w-4 text-muted-foreground" />
-                <h3 className="text-sm font-medium text-muted-foreground">Nach Kategorie filtern</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Kategorie:</h3>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                 <button
-                    onClick={() => handleCategoryChange(null)}
-                    className={cn(
-                        "flex items-center gap-3 text-left p-3 rounded-lg transition-colors border",
-                        !activeCategory
-                        ? "bg-primary text-primary-foreground border-transparent"
-                        : "bg-transparent border-border hover:bg-secondary"
-                    )}
-                    >
-                    Alle Kategorien
-                </button>
-                {allCategories.map(cat => {
-                    const Icon = categoryIcons[cat] || Tags;
-                    return (
-                    <button
-                        key={cat}
-                        onClick={() => handleCategoryChange(cat)}
-                        className={cn(
-                            "flex items-center gap-3 text-left p-3 rounded-lg transition-colors border",
-                            activeCategory === cat
-                            ? "bg-primary text-primary-foreground border-transparent"
-                            : "bg-transparent border-border hover:bg-secondary"
-                        )}
-                    >
-                        <Icon className="h-4 w-4 flex-shrink-0" />
-                        <span className="text-sm font-medium truncate">{cat}</span>
+              
+              {activeCategory ? (
+                <div className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground">
+                  <span className="font-medium text-sm">{activeCategory}</span>
+                  <button onClick={() => handleCategoryChange(null)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
+                <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <button className="w-full sm:w-auto text-left justify-start flex-1 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
+                      Kategorie auswählen...
                     </button>
-                )})}
-              </div>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[300px] p-0">
+                    <Command>
+                      <CommandInput placeholder="Kategorie suchen..." />
+                      <CommandList>
+                        <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
+                        <CommandGroup heading="Beliebte Kategorien">
+                          {popularCategories.map((cat) => (
+                            <CommandItem key={cat} onSelect={() => handleCategoryChange(cat)}>
+                              {cat}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                        <CommandGroup heading="Alle Kategorien">
+                          {allCategories.map((cat) => (
+                             <CommandItem key={cat} onSelect={() => handleCategoryChange(cat)}>
+                              {cat}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              )}
             </motion.div>
-
 
             {/* Results */}
             <div className='max-w-2xl mx-auto'>
@@ -281,14 +295,14 @@ export default function SearchPage() {
                 ) : (
                     <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                        Keine Ergebnisse für "{displayQuery}" gefunden.
+                        Keine Ergebnisse für Ihre Auswahl gefunden.
                     </p>
                     </div>
                 )
                 ) : (
                 <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                    Bitte gib einen Suchbegriff ein oder wähle eine Kategorie.
+                    Bitte geben Sie einen Suchbegriff ein oder wählen Sie eine Kategorie.
                     </p>
                 </div>
                 )}
