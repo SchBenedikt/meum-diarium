@@ -33,7 +33,7 @@ export interface BlogPost {
   historicalYear: number;
   author: Author;
   tags: string[];
-  readingTime: number; // Will be kept for now for other components, but recalculated in PostPage
+  readingTime: number; 
   coverImage?: string;
   content: {
     diary: string;
@@ -75,3 +75,5 @@ export interface Work {
   takeaway: string;
   structure: { title: string; content: string }[];
 }
+
+export type Language = 'de' | 'en' | 'la' | 'la-de' | 'la-en';
