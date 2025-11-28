@@ -1,10 +1,11 @@
+
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
@@ -104,7 +105,7 @@ export default function SearchPage() {
 
     if (categoryQuery.length > 0) {
         filteredPosts = filteredPosts.filter(post => 
-            categoryQuery.every(cat => post.tags.some(tag => tag.toLowerCase() === cat))
+            categoryQuery.some(cat => post.tags.some(tag => tag.toLowerCase() === cat))
         );
         filteredLexicon = filteredLexicon.filter(entry =>
             categoryQuery.includes(entry.category.toLowerCase())
@@ -297,3 +298,5 @@ export default function SearchPage() {
     </div>
   );
 }
+
+    
