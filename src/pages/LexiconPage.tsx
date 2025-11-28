@@ -67,7 +67,7 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <main className="flex-1 pt-20">
+      <main className="flex-1 pt-16">
         {/* Hero */}
         <section className="py-16 hero-gradient">
           <div className="container mx-auto text-center">
