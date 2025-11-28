@@ -58,7 +58,7 @@ export default function LexiconPage() {
   const handleLetterClick = (letter: string) => {
     const element = document.getElementById(`letter-${letter}`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setActiveLetter(letter);
       setTimeout(() => setActiveLetter(null), 1000);
     }
@@ -67,9 +67,9 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         {/* Hero */}
-        <section className="py-16 hero-gradient">
+        <section className="py-16 pt-32 hero-gradient">
           <div className="container mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

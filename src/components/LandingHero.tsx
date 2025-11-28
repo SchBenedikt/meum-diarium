@@ -1,92 +1,78 @@
 import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowRight, Scroll, Clock, BookOpen, BookMarked } from 'lucide-react';
+import { ArrowRight, Scroll, Clock, BookMarked, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { QuoteOfDay } from './QuoteOfDay';
-import { FeaturedPost } from './FeaturedPost';
-import { ReadingStats } from './ReadingStats';
 
 export function LandingHero() {
   const { setCurrentAuthor } = useAuthor();
 
-  const authorColors: Record<string, string> = {
-    caesar: 'bg-author-caesar',
-    cicero: 'bg-author-cicero',
-    augustus: 'bg-author-augustus',
-    seneca: 'bg-author-seneca',
-  };
-
-  const authorTextColors: Record<string, string> = {
-    caesar: 'text-author-caesar',
-    cicero: 'text-author-cicero',
-    augustus: 'text-author-augustus',
-    seneca: 'text-author-seneca',
-  };
-
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center py-20 hero-gradient overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute bottom-20 right-10 h-48 w-48 rounded-full bg-primary/5 blur-3xl" />
-        </div>
-
-        <div className="container mx-auto text-center relative">
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center overflow-hidden hero-gradient py-20">
+        <div className="container mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-8">
-              <Scroll className="h-4 w-4" />
-              <span>Tagebücher der Antike</span>
-            </div>
-            
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 leading-[1.1]">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl mb-6 leading-tight">
               Meum Diarium
             </h1>
-            
-            <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
               Erlebe die Geschichte durch die persönlichen Aufzeichnungen der größten 
               Persönlichkeiten Roms. Von Caesars Eroberungen bis zu Senecas Weisheiten.
             </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link 
-                to="/timeline" 
-                className="btn-primary"
-              >
-                <Clock className="h-4 w-4" />
-                Zeitstrahl erkunden
-              </Link>
-              <Link 
-                to="/lexicon" 
-                className="btn-secondary"
-              >
-                <BookMarked className="h-4 w-4" />
-                Lexikon öffnen
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              <Link to="#authors" className="btn-primary px-8 py-3 text-base">
+                Autoren entdecken
+                <ArrowRight />
               </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Main Links */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            {[
+              { to: "/timeline", icon: Clock, title: "Interaktiver Zeitstrahl", desc: "Verfolge die wichtigsten Ereignisse." },
+              { to: "#authors", icon: Users, title: "Stimmen der Antike", desc: "Wähle einen Autor und tauche ein." },
+              { to: "/lexicon", icon: BookMarked, title: "Umfassendes Lexikon", desc: "Nachschlagewerk für Begriffe." },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link to={item.to} className="group block p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 h-full">
+                  <div className="inline-block p-3 rounded-xl bg-primary/10 mb-4">
+                    <item.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* Quote of the Day */}
-      <section className="py-12">
-        <div className="container mx-auto max-w-3xl">
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto max-w-4xl">
           <QuoteOfDay />
         </div>
       </section>
 
-      {/* Featured Post */}
-      <FeaturedPost />
-
       {/* Author Selection */}
-      <section className="py-20">
+      <section id="authors" className="py-24 bg-background">
         <div className="container mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -95,11 +81,14 @@ export function LandingHero() {
             transition={{ duration: 0.6 }}
             className="text-center mb-14"
           >
+            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Stimmen der Antike
+            </span>
             <h2 className="font-display text-3xl sm:text-4xl mb-4">
               Wähle einen Autor
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">
-              Jeder Autor bietet eine einzigartige Perspektive auf das antike Rom
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Jeder Autor bietet eine einzigartige Perspektive auf die turbulenten Zeiten des antiken Roms.
             </p>
           </motion.div>
 
@@ -109,41 +98,27 @@ export function LandingHero() {
                 key={author.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 onClick={() => setCurrentAuthor(author.id)}
-                className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-border/80 transition-all duration-300 hover:shadow-xl"
+                className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
               >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <img 
                     src={author.heroImage}
                     alt={author.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-                  
-                  {/* Color accent bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${authorColors[author.id]}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 </div>
-
-                {/* Content */}
-                <div className="relative p-5 -mt-12">
-                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-3 ${authorColors[author.id]} text-white`}>
-                    {author.title}
-                  </div>
-                  
+                <div className="p-5">
                   <h3 className="font-display text-xl font-medium mb-1">
                     {author.name}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {author.years}
+                    {author.title}
                   </p>
-                  <p className="text-sm text-muted-foreground/80 line-clamp-2 mb-4">
-                    {author.description}
-                  </p>
-                  
-                  <div className={`flex items-center gap-2 text-sm font-medium ${authorTextColors[author.id]}`}>
+                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
                     <span>Tagebücher entdecken</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -153,9 +128,6 @@ export function LandingHero() {
           </div>
         </div>
       </section>
-
-      {/* Reading Stats */}
-      <ReadingStats />
     </div>
   );
 }

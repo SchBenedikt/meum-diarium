@@ -10,10 +10,11 @@ import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
 import { Perspective } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowLeft, Clock, Calendar, Share2, BookOpen } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ShareButton } from '@/components/ShareButton';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import NotFound from './NotFound';
 
 function LexiconTerm({ term, definition }: { term: string, definition: string }) {
   return (
@@ -97,21 +98,7 @@ export default function PostPage() {
   }, [post, perspective]);
 
   if (!post || !author) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <main className="flex-1 flex items-center justify-center pt-16">
-          <div className="text-center">
-            <h1 className="font-display text-4xl mb-4">Nicht gefunden</h1>
-            <p className="text-muted-foreground mb-8">Dieser Eintrag existiert nicht.</p>
-            <Link to="/">
-              <Button>Zurück zur Startseite</Button>
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+    return <NotFound />;
   }
 
   return (
@@ -183,11 +170,11 @@ export default function PostPage() {
             </article>
 
             {/* Sidebar */}
-            <div className="hidden lg:block">
+            <aside className="hidden lg:block">
               <div className="sticky top-28">
                 <BlogSidebar post={post} />
               </div>
-            </div>
+            </aside>
           </div>
         </div>
       </main>

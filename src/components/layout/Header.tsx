@@ -4,13 +4,19 @@ import { AuthorSwitcher } from '@/components/AuthorSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SearchDialog } from '@/components/SearchDialog';
 import { cn } from '@/lib/utils';
-import { X, Search, Scroll } from 'lucide-react';
+import { Menu, X, Search, Scroll } from 'lucide-react';
 import { useAuthor } from '@/context/AuthorContext';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 export function Header() {
   const { setCurrentAuthor } = useAuthor();
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { href: '/', label: 'Autoren' },
@@ -24,6 +30,11 @@ export function Header() {
     if (location.pathname !== '/') {
       setCurrentAuthor(null);
     }
+  }
+
+  const handleLinkClick = (href: string) => {
+    if (href === '/') setCurrentAuthor(null);
+    setMobileMenuOpen(false);
   }
 
   return (
@@ -41,7 +52,7 @@ export function Header() {
               </div>
             </Link>
 
-            {/* Navigation */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <Link
@@ -69,13 +80,74 @@ export function Header() {
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden sm:inline text-sm">Suchen</span>
-                <kbd className="hidden md:inline-flex h-5 items-center gap-1 rounded bg-background/50 px-1.5 text-[10px]">
+                <kbd className="hidden lg:inline-flex h-5 items-center gap-1 rounded bg-background/50 px-1.5 text-[10px]">
                   ⌘K
                 </kbd>
               </button>
               
-              <AuthorSwitcher />
-              <ThemeToggle />
+              <div className="hidden md:flex items-center gap-2">
+                <AuthorSwitcher />
+                <ThemeToggle />
+              </div>
+
+              {/* Mobile Menu Trigger */}
+              <div className="md:hidden">
+                <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                  <SheetTrigger asChild>
+                    <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-secondary">
+                      <Menu className="h-5 w-5" />
+                      <span className="sr-only">Menü öffnen</span>
+                    </button>
+                  </SheetTrigger>
+                  <SheetContent side="right" className="w-[80vw] max-w-sm">
+                    <div className="flex flex-col h-full">
+                       <div className="flex items-center justify-between pb-6 border-b">
+                         <Link to="/" onClick={() => handleLinkClick('/')} className="flex items-center gap-3 group">
+                           <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
+                              <Scroll className="h-4 w-4 text-primary-foreground" />
+                            </div>
+                           <span className="font-display text-lg">Meum Diarium</span>
+                         </Link>
+                         <SheetTrigger asChild>
+                           <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-secondary">
+                             <X className="h-5 w-5" />
+                             <span className="sr-only">Menü schließen</span>
+                           </button>
+                         </SheetTrigger>
+                       </div>
+                      
+                       <nav className="flex flex-col gap-2 my-8">
+                         {navItems.map((item) => (
+                           <Link
+                             key={item.href}
+                             to={item.href}
+                             onClick={() => handleLinkClick(item.href)}
+                             className={cn(
+                               "px-4 py-3 text-base font-medium rounded-lg transition-all",
+                               location.pathname === item.href
+                                 ? "bg-secondary text-foreground"
+                                 : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                             )}
+                           >
+                             {item.label}
+                           </Link>
+                         ))}
+                       </nav>
+
+                       <div className="mt-auto pt-6 border-t space-y-4">
+                         <div className="flex justify-between items-center">
+                           <span className="text-sm font-medium">Autor</span>
+                           <AuthorSwitcher />
+                         </div>
+                         <div className="flex justify-between items-center">
+                           <span className="text-sm font-medium">Theme</span>
+                           <ThemeToggle />
+                         </div>
+                       </div>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
             </div>
           </div>
         </div>

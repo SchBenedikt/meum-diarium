@@ -1,4 +1,3 @@
-
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
@@ -87,9 +86,9 @@ function GeneralAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <main className="flex-1 pt-24">
+      <main className="flex-1">
         {/* Hero */}
-        <section className="py-16 hero-gradient">
+        <section className="py-16 pt-32 hero-gradient">
           <div className="container mx-auto text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
@@ -235,17 +234,16 @@ function AuthorAboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
+              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-w-4 aspect-h-5"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
-                <img 
-                  src={authorInfo.heroImage}
-                  alt={authorInfo.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-sm text-foreground/70">{authorInfo.latinName}</p>
-                </div>
+              <img 
+                src={authorInfo.heroImage}
+                alt={authorInfo.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="text-sm text-foreground/70">{authorInfo.latinName}</p>
               </div>
             </motion.div>
           </div>
@@ -361,26 +359,28 @@ function AuthorAboutPage() {
             </div>
 
             {/* Timeline */}
-            {details?.timeline && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="font-display text-xl font-medium mb-6">Lebenslauf</h2>
-                <div className="relative pl-4">
-                  {details.timeline.map((item, i) => (
-                    <div key={i} className="relative mb-8 last:mb-0">
-                      <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-background border-2 border-primary" />
-                      <p className="text-sm font-semibold mb-1 ml-6 text-primary">
-                        {item.year}
-                      </p>
-                      <p className="text-sm text-muted-foreground ml-6">{item.event}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+            <div className="lg:col-span-1">
+              {details?.timeline && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="font-display text-xl font-medium mb-6">Lebenslauf</h2>
+                  <div className="relative pl-4 border-l border-dashed border-border">
+                    {details.timeline.map((item, i) => (
+                      <div key={i} className="relative mb-8 last:mb-0">
+                        <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-background border-2 border-primary" />
+                        <p className="text-sm font-semibold mb-1 ml-6 text-primary">
+                          {item.year}
+                        </p>
+                        <p className="text-sm text-muted-foreground ml-6">{item.event}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </main>

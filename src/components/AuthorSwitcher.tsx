@@ -6,17 +6,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
-const authorColorClasses: Record<string, string> = {
-  caesar: 'bg-author-caesar',
-  cicero: 'bg-author-cicero',
-  augustus: 'bg-author-augustus',
-  seneca: 'bg-author-seneca',
-};
 
 export function AuthorSwitcher() {
   const { currentAuthor, setCurrentAuthor, authorInfo } = useAuthor();
