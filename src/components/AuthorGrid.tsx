@@ -1,6 +1,5 @@
 import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +39,7 @@ export function AuthorGrid() {
                 <Link
                   to={`/${author.id}`}
                   onClick={() => setCurrentAuthor(author.id)}
-                  className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 block"
+                  className="group flex flex-col text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <img 
@@ -50,7 +49,7 @@ export function AuthorGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   </div>
-                  <div className="p-5">
+                  <div className="p-5 flex-1">
                     <h3 className="font-display text-xl font-medium mb-1">
                       {author.name}
                     </h3>
