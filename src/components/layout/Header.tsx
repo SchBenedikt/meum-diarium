@@ -93,24 +93,18 @@ export function Header() {
                       <span className="sr-only">Menü öffnen</span>
                     </button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[80vw] max-w-sm">
+                  <SheetContent side="left" className="w-[80vw] max-w-sm p-0">
                     <div className="flex flex-col h-full">
-                       <div className="flex items-center justify-between pb-6 border-b">
+                       <div className="flex items-center justify-between p-6 pb-6 border-b">
                          <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
                            <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
                               <Scroll className="h-4 w-4 text-primary-foreground" />
                             </div>
                            <span className="font-display text-lg">Meum Diarium</span>
                          </Link>
-                         <SheetTrigger asChild>
-                           <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-secondary">
-                             <X className="h-5 w-5" />
-                             <span className="sr-only">Menü schließen</span>
-                           </button>
-                         </SheetTrigger>
                        </div>
                       
-                       <nav className="flex flex-col gap-2 my-8">
+                       <nav className="flex flex-col gap-2 my-8 px-6">
                          {navItems.map((item) => (
                            <Link
                              key={item.href}
@@ -128,7 +122,7 @@ export function Header() {
                          ))}
                        </nav>
 
-                       <div className="mt-auto pt-6 border-t space-y-4">
+                       <div className="mt-auto p-6 pt-6 border-t space-y-4">
                          <div className="flex justify-between items-center">
                            <span className="text-sm font-medium">Autor</span>
                            <AuthorSwitcher />
