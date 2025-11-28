@@ -23,7 +23,9 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/post/:slug" element={<PostPage />} />
+              <Route path="/:authorId" element={<Index />} />
+              <Route path="/:authorId/about" element={<AboutPage />} />
+              <Route path="/:authorId/:slug" element={<PostPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/timeline" element={<TimelinePage />} />
               <Route path="/lexicon" element={<LexiconPage />} />

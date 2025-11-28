@@ -37,7 +37,7 @@ export function AuthorSwitcher() {
             onClick={() => setCurrentAuthor(author.id)}
             asChild
           >
-            <Link to="/" className="flex items-center gap-3 py-2.5">
+            <Link to={`/${author.id}`} className="flex items-center gap-3 py-2.5">
               <img src={author.heroImage} alt={author.name} className="h-8 w-8 rounded-lg object-cover" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{author.name}</p>

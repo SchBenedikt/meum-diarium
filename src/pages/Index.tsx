@@ -6,22 +6,26 @@ import { BlogList } from '@/components/BlogList';
 import { LandingHero } from '@/components/LandingHero';
 import { useAuthor } from '@/context/AuthorContext';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Author } from '@/types/blog';
+import { authors } from '@/data/authors';
+import NotFound from './NotFound';
 
 const Index = () => {
-  const { currentAuthor, setCurrentAuthor } = useAuthor();
-  const location = useLocation();
+  const { setCurrentAuthor, currentAuthor } = useAuthor();
+  const { authorId } = useParams<{ authorId?: string }>();
 
   useEffect(() => {
-    // If we navigate to the root path, we want to show the author selection (landing page)
-    // unless an author is explicitly selected via interaction.
-    // A simple way to handle this is to reset the author when the path is exactly "/"
-    // and there's no state indicating a selection was just made.
-    // However, the current logic in Header and AuthorSwitcher handles setting the author.
-    // To show the landing page on root, we might need to clear the author.
-    // A click on the logo already clears the author.
-  }, [location, setCurrentAuthor]);
+    if (authorId && authors[authorId as Author]) {
+      setCurrentAuthor(authorId as Author);
+    } else if (!authorId) {
+      setCurrentAuthor(null);
+    }
+  }, [authorId, setCurrentAuthor]);
 
+  if (authorId && !authors[authorId as Author]) {
+    return <NotFound />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

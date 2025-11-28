@@ -98,7 +98,7 @@ export function FeaturedPost() {
               </div>
 
               <Link 
-                to={`/post/${featuredPost.slug}`}
+                to={`/${featuredPost.author}/${featuredPost.slug}`}
                 className="btn-primary w-fit"
               >
                 Jetzt lesen

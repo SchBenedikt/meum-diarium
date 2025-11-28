@@ -51,7 +51,7 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex items-center gap-4 pt-2"
             >
-              <Link to="/about" className="btn-primary">
+              <Link to={`/${authorInfo.id}/about`} className="btn-primary">
                 Mehr erfahren
               </Link>
               <span className="text-sm text-muted-foreground font-medium">

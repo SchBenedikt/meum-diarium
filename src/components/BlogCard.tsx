@@ -18,7 +18,7 @@ export function BlogCard({ post, perspective, index = 0 }: BlogCardProps) {
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
       <Link
-        to={`/post/${post.slug}`}
+        to={`/${post.author}/${post.slug}`}
         className="group block card-elevated h-full !p-0 overflow-hidden"
       >
         <div className="relative h-48 overflow-hidden">

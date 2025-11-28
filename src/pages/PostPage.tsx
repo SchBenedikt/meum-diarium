@@ -8,7 +8,7 @@ import { BlogSidebar } from '@/components/BlogSidebar';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
-import { Perspective } from '@/types/blog';
+import { Perspective, Author } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -70,22 +70,22 @@ function formatContent(content: string): React.ReactNode[] {
 
 
 export default function PostPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const { setCurrentAuthor } = useAuthor();
 
   const perspectiveParam = searchParams.get('perspective') as Perspective | null;
   const [perspective, setPerspective] = useState<Perspective>(perspectiveParam || 'diary');
 
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p) => p.slug === slug && p.author === authorId);
   const author = post ? authors[post.author] : null;
 
   useEffect(() => {
-    if (post) {
-      setCurrentAuthor(post.author);
+    if (authorId && authors[authorId as Author]) {
+      setCurrentAuthor(authorId as Author);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]); // Only re-run when slug changes
+    
+  }, [authorId, setCurrentAuthor]);
 
   useEffect(() => {
     setSearchParams({ perspective });
@@ -109,11 +109,11 @@ export default function PostPage() {
         <div className="container mx-auto">
           {/* Back link */}
           <Link 
-            to="/" 
+            to={`/${authorId}`} 
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zum Diarium
+            Zurück zum Diarium von {author.name.split(' ').pop()}
           </Link>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">

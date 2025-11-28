@@ -26,10 +26,7 @@ export function Header() {
   ];
 
   const handleLogoClick = () => {
-    // Only reset author if we are not on the homepage
-    if (location.pathname !== '/') {
-      setCurrentAuthor(null);
-    }
+    setCurrentAuthor(null);
   }
 
   const handleLinkClick = (href: string) => {

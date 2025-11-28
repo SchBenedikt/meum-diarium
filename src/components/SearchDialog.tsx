@@ -68,7 +68,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       return (
         <Link
           key={post.id}
-          to={`/post/${post.slug}`}
+          to={`/${post.author}/${post.slug}`}
           onClick={onClose}
           className="flex items-start gap-4 p-3 rounded-xl hover:bg-secondary transition-colors group"
         >

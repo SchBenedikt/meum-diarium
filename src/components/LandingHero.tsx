@@ -26,10 +26,10 @@ export function LandingHero() {
               Persönlichkeiten Roms. Von Caesars Eroberungen bis zu Senecas Weisheiten.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4">
-              <Link to="#authors" className="btn-primary px-8 py-3 text-base">
+              <a href="#authors" className="btn-primary px-8 py-3 text-base">
                 Autoren entdecken
                 <ArrowRight />
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -94,36 +94,40 @@ export function LandingHero() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {Object.values(authors).map((author, index) => (
-              <motion.button
+              <motion.div
                 key={author.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => setCurrentAuthor(author.id)}
-                className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={author.heroImage}
-                    alt={author.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-xl font-medium mb-1">
-                    {author.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {author.title}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    <span>Tagebücher entdecken</span>
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Link
+                  to={`/${author.id}`}
+                  onClick={() => setCurrentAuthor(author.id)}
+                  className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 block"
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={author.heroImage}
+                      alt={author.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   </div>
-                </div>
-              </motion.button>
+                  <div className="p-5">
+                    <h3 className="font-display text-xl font-medium mb-1">
+                      {author.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {author.title}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                      <span>Tagebücher entdecken</span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

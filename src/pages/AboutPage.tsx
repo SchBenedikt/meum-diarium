@@ -2,10 +2,12 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, MapPin, BookOpen, Award, ArrowRight, Users, Scroll, Clock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { Author } from '@/types/blog';
 
 const authorDetails: Record<string, {
   birthPlace: string;
@@ -83,6 +85,8 @@ const authorDetails: Record<string, {
 
 // General About Page when no author is selected
 function GeneralAboutPage() {
+  const { setCurrentAuthor } = useAuthor();
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -170,7 +174,8 @@ function GeneralAboutPage() {
               {Object.values(authors).map((author) => (
                 <Link 
                   key={author.id}
-                  to="/"
+                  to={`/${author.id}`}
+                  onClick={() => setCurrentAuthor(author.id)}
                   className="card-elevated flex items-center gap-4 hover:border-primary/50 transition-colors"
                 >
                   <div className="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0">
@@ -197,12 +202,26 @@ function GeneralAboutPage() {
 
 // Author-specific About Page
 function AuthorAboutPage() {
-  const { currentAuthor, authorInfo } = useAuthor();
+  const { setCurrentAuthor } = useAuthor();
+  const { authorId } = useParams<{ authorId: string }>();
+
+  const author = authorId ? authors[authorId as Author] : null;
+  const authorInfo = author;
+
+  useEffect(() => {
+    if (author) {
+      setCurrentAuthor(author.id);
+    } else {
+      setCurrentAuthor(null);
+    }
+  }, [author, setCurrentAuthor]);
   
-  if (!currentAuthor || !authorInfo) return null;
+  if (!authorId || !authorInfo) {
+      return <GeneralAboutPage />;
+  }
   
-  const details = authorDetails[currentAuthor];
-  const authorPosts = posts.filter(p => p.author === currentAuthor);
+  const details = authorDetails[authorId];
+  const authorPosts = posts.filter(p => p.author === authorId);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -343,7 +362,7 @@ function AuthorAboutPage() {
                     {authorPosts.slice(0, 3).map((post) => (
                       <Link 
                         key={post.id}
-                        to={`/post/${post.slug}`}
+                        to={`/${post.author}/${post.slug}`}
                         className="flex items-center justify-between p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                       >
                         <div>
@@ -391,11 +410,11 @@ function AuthorAboutPage() {
 }
 
 export default function AboutPage() {
-  const { currentAuthor } = useAuthor();
-  
-  if (!currentAuthor) {
-    return <GeneralAboutPage />;
+  const { authorId } = useParams<{ authorId: string }>();
+
+  if (authorId && authors[authorId as Author]) {
+    return <AuthorAboutPage />;
   }
-  
-  return <AuthorAboutPage />;
+
+  return <GeneralAboutPage />;
 }

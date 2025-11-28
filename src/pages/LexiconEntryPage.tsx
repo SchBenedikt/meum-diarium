@@ -49,9 +49,11 @@ export default function LexiconEntryPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block">
-                    {entry.category}
-                  </span>
+                  <Link to={`/lexicon?category=${entry.category}`}>
+                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block hover:bg-primary/20 transition-colors">
+                      {entry.category}
+                    </span>
+                  </Link>
                   <h1 className="font-display text-4xl md:text-5xl">{entry.term}</h1>
                 </motion.div>
               </header>

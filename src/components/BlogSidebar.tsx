@@ -104,7 +104,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             {relatedPosts.map((relatedPost) => (
               <Link
                 key={relatedPost.id}
-                to={`/post/${relatedPost.slug}`}
+                to={`/${relatedPost.author}/${relatedPost.slug}`}
                 className="block group"
               >
                 <div className="flex items-start gap-3">
