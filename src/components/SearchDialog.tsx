@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -39,6 +40,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     const lexiconResults: SearchResult[] = lexicon.filter(entry =>
       entry.term.toLowerCase().includes(searchTerm) ||
       entry.definition.toLowerCase().includes(searchTerm) ||
+      entry.category.toLowerCase().includes(searchTerm) ||
       (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(entry => ({ type: 'lexicon', data: entry }));
     
@@ -159,6 +161,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2 }}
               className="w-full max-w-xl"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="overflow-hidden rounded-2xl bg-card border border-border shadow-2xl">
                 <div className="flex items-center gap-3 p-4 border-b border-border">
