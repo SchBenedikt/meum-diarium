@@ -106,8 +106,6 @@ export default function LexiconEntryPage() {
 
   useEffect(() => {
     setCurrentAuthor(null);
-    document.documentElement.classList.remove('theme-caesar', 'theme-cicero', 'theme-augustus', 'theme-seneca');
-    document.documentElement.classList.add('theme-default');
   }, [setCurrentAuthor]);
 
   const entry = lexicon.find(e => e.slug === slug);
@@ -161,7 +159,7 @@ export default function LexiconEntryPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <Link to={`/search?q=${encodeURIComponent(entry.category)}`}>
+                  <Link to={`/search?category=${encodeURIComponent(entry.category)}`}>
                     <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block hover:bg-primary/20 transition-colors">
                       {entry.category}
                     </span>

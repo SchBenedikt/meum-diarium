@@ -46,7 +46,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           Kategorie
         </h3>
         <Link 
-          to={`/search?q=${encodeURIComponent(entry.category)}`}
+          to={`/search?category=${encodeURIComponent(entry.category)}`}
           className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
         >
           {entry.category}

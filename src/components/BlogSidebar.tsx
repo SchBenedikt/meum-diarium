@@ -86,7 +86,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           {post.tags.map((tag) => (
             <Link 
               key={tag} 
-              to={`/search?q=${encodeURIComponent(tag)}`}
+              to={`/search?category=${encodeURIComponent(tag)}`}
               className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
             >
               {tag}

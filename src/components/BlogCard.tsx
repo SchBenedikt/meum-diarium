@@ -14,7 +14,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate(`/search?q=${encodeURIComponent(tag)}`);
+    navigate(`/search?category=${encodeURIComponent(tag)}`);
   };
 
   return (
@@ -43,7 +43,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
               {post.tags.map((tag, i) => (
                 <a
                   key={i}
-                  href={`/search?q=${encodeURIComponent(tag)}`}
+                  href={`/search?category=${encodeURIComponent(tag)}`}
                   onClick={(e) => handleTagClick(e, tag)}
                   className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors z-10 relative"
                 >

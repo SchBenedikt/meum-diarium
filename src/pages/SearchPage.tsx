@@ -20,7 +20,9 @@ const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'le
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const q = searchParams.get('q') || '';
+  const category = searchParams.get('category') || '';
+  const [query, setQuery] = useState(q || category);
   const { setCurrentAuthor } = useAuthor();
 
   useEffect(() => {
@@ -28,53 +30,80 @@ export default function SearchPage() {
   }, [setCurrentAuthor]);
 
   useEffect(() => {
+    setQuery(q || category)
+  }, [q, category])
+
+  useEffect(() => {
     // This effect keeps the URL query parameter in sync with the input field
     const handler = setTimeout(() => {
-      if (query) {
-        setSearchParams({ q: query }, { replace: true });
-      } else {
-        setSearchParams({}, { replace: true });
+      // Only update 'q' param, clear category if user is typing
+      if (query !== category) {
+        if (query) {
+          setSearchParams({ q: query }, { replace: true });
+        } else {
+          setSearchParams({}, { replace: true });
+        }
       }
-    }, 300); // Debounce requests to avoid too many re-renders
+    }, 300);
 
     return () => clearTimeout(handler);
-  }, [query, setSearchParams]);
+  }, [query, category, setSearchParams]);
 
 
   const results: SearchResult[] = useMemo(() => {
-    const q = searchParams.get('q');
-    if (!q || !q.trim()) return [];
+    const searchQuery = searchParams.get('q');
+    const categoryQuery = searchParams.get('category');
     
-    const searchTerm = q.toLowerCase();
+    if (!searchQuery && !categoryQuery) return [];
 
-    const postResults = posts.filter(post => 
-      post.title.toLowerCase().includes(searchTerm) ||
-      post.excerpt.toLowerCase().includes(searchTerm) ||
-      post.content.diary.toLowerCase().includes(searchTerm) ||
-      post.content.scientific.toLowerCase().includes(searchTerm) ||
-      authors[post.author].name.toLowerCase().includes(searchTerm) ||
-      post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-    ).map(postToSearchResult);
+    let postResults: SearchResult[] = [];
+    let lexiconResults: SearchResult[] = [];
 
-    const lexiconResults = lexicon.filter(entry =>
-      entry.term.toLowerCase().includes(searchTerm) ||
-      entry.definition.toLowerCase().includes(searchTerm) ||
-      (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
-    ).map(lexiconToSearchResult);
+    if (categoryQuery) {
+        const categoryTerm = categoryQuery.toLowerCase();
+        postResults = posts.filter(post => 
+            post.tags.some(tag => tag.toLowerCase() === categoryTerm)
+        ).map(postToSearchResult);
+        
+        lexiconResults = lexicon.filter(entry =>
+            entry.category.toLowerCase() === categoryTerm
+        ).map(lexiconToSearchResult);
 
-    const authorResultsPosts = Object.values(authors).filter(author =>
-      author.name.toLowerCase().includes(searchTerm) ||
-      author.description.toLowerCase().includes(searchTerm) ||
-      author.title.toLowerCase().includes(searchTerm)
-    ).flatMap(author => posts.filter(p => p.author === author.id)).map(postToSearchResult);
+    } else if (searchQuery) {
+        const searchTerm = searchQuery.toLowerCase();
+
+        const postResultsByTerm = posts.filter(post => 
+          post.title.toLowerCase().includes(searchTerm) ||
+          post.excerpt.toLowerCase().includes(searchTerm) ||
+          post.content.diary.toLowerCase().includes(searchTerm) ||
+          post.content.scientific.toLowerCase().includes(searchTerm) ||
+          authors[post.author].name.toLowerCase().includes(searchTerm) ||
+          post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        ).map(postToSearchResult);
+
+        const lexiconResultsByTerm = lexicon.filter(entry =>
+          entry.term.toLowerCase().includes(searchTerm) ||
+          entry.definition.toLowerCase().includes(searchTerm) ||
+          (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
+        ).map(lexiconToSearchResult);
+
+        const authorResultsPosts = Object.values(authors).filter(author =>
+          author.name.toLowerCase().includes(searchTerm) ||
+          author.description.toLowerCase().includes(searchTerm) ||
+          author.title.toLowerCase().includes(searchTerm)
+        ).flatMap(author => posts.filter(p => p.author === author.id)).map(postToSearchResult);
+        
+        const allPostIds = new Set([...postResultsByTerm, ...authorResultsPosts].map(p => p.data.id));
+
+        postResults = Array.from(allPostIds).map(id => posts.find(p => p.id === id)).map(p => postToSearchResult(p!));
+        lexiconResults = lexiconResultsByTerm;
+    }
     
-    const allPostIds = new Set([...postResults, ...authorResultsPosts].map(p => p.data.id));
+    return [...postResults, ...lexiconResults];
 
-    return [
-        ...Array.from(allPostIds).map(id => posts.find(p => p.id === id)).map(p => postToSearchResult(p!)),
-        ...lexiconResults
-    ];
   }, [searchParams]);
+
+  const displayQuery = searchParams.get('q') || searchParams.get('category') || '';
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -108,11 +137,11 @@ export default function SearchPage() {
         {/* Results */}
         <section className="py-12">
           <div className="container mx-auto max-w-2xl">
-            {query.trim() ? (
+            {displayQuery ? (
               results.length > 0 ? (
                 <div>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {results.length} Ergebnis(se) für "{query}"
+                    {results.length} Ergebnis(se) für "{displayQuery}"
                   </p>
                   <div className="space-y-4">
                     {results.map((result, index) => (
@@ -152,7 +181,7 @@ export default function SearchPage() {
               ) : (
                 <div className="text-center py-16">
                   <p className="text-muted-foreground">
-                    Keine Ergebnisse für "{query}" gefunden.
+                    Keine Ergebnisse für "{displayQuery}" gefunden.
                   </p>
                 </div>
               )

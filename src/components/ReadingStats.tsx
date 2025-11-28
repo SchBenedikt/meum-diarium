@@ -86,7 +86,7 @@ export function ReadingStats() {
             {uniqueTags.slice(0, 12).map(tag => (
               <Link 
                 key={tag}
-                to={`/search?q=${encodeURIComponent(tag)}`}
+                to={`/search?category=${encodeURIComponent(tag)}`}
                 className="px-4 py-2 rounded-full bg-secondary text-sm font-medium hover:bg-secondary/80 transition-colors"
               >
                 {tag}
