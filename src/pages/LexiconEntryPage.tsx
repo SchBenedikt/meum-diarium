@@ -1,5 +1,5 @@
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
@@ -8,11 +8,18 @@ import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
+import { useAuthor } from '@/context/AuthorContext';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const location = useLocation();
   const navigate = useNavigate();
+  const { setCurrentAuthor } = useAuthor();
+
+  useEffect(() => {
+    setCurrentAuthor(null);
+  }, [setCurrentAuthor]);
+
   const entry = lexicon.find(e => e.slug === slug);
   const fromPost = location.state?.from as string;
 
@@ -91,7 +98,7 @@ export default function LexiconEntryPage() {
                   <div className="relative">
                     <div className="grid md:grid-cols-2 gap-6">
                       {relatedPosts.slice(0,2).map((post, index) => (
-                        <BlogCard post={post} perspective="diary" index={index} />
+                        <BlogCard post={post} index={index} />
                       ))}
                     </div>
                   </div>
