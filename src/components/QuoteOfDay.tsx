@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Quote, RefreshCw } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
