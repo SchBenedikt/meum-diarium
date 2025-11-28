@@ -6,9 +6,9 @@ import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { BookMarked, Search, ArrowRight, BookText } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
+import { Author } from '@/types/blog';
 
 type SearchResult = 
   | { type: 'post', data: BlogPost }
@@ -28,27 +28,53 @@ export default function SearchPage() {
   }, [setCurrentAuthor]);
 
   useEffect(() => {
-    setSearchParams({ q: query }, { replace: true });
+    // This effect keeps the URL query parameter in sync with the input field
+    const handler = setTimeout(() => {
+      if (query) {
+        setSearchParams({ q: query }, { replace: true });
+      } else {
+        setSearchParams({}, { replace: true });
+      }
+    }, 300); // Debounce requests to avoid too many re-renders
+
+    return () => clearTimeout(handler);
   }, [query, setSearchParams]);
 
+
   const results: SearchResult[] = useMemo(() => {
-    if (!query.trim()) return [];
+    const q = searchParams.get('q');
+    if (!q || !q.trim()) return [];
     
-    const searchTerm = query.toLowerCase();
+    const searchTerm = q.toLowerCase();
 
     const postResults = posts.filter(post => 
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
-      authors[post.author].name.toLowerCase().includes(searchTerm)
+      post.content.diary.toLowerCase().includes(searchTerm) ||
+      post.content.scientific.toLowerCase().includes(searchTerm) ||
+      authors[post.author].name.toLowerCase().includes(searchTerm) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(postToSearchResult);
 
     const lexiconResults = lexicon.filter(entry =>
       entry.term.toLowerCase().includes(searchTerm) ||
-      entry.definition.toLowerCase().includes(searchTerm)
+      entry.definition.toLowerCase().includes(searchTerm) ||
+      (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(lexiconToSearchResult);
 
-    return [...postResults, ...lexiconResults];
-  }, [query]);
+    const authorResultsPosts = Object.values(authors).filter(author =>
+      author.name.toLowerCase().includes(searchTerm) ||
+      author.description.toLowerCase().includes(searchTerm) ||
+      author.title.toLowerCase().includes(searchTerm)
+    ).flatMap(author => posts.filter(p => p.author === author.id)).map(postToSearchResult);
+    
+    const allPostIds = new Set([...postResults, ...authorResultsPosts].map(p => p.data.id));
+
+    return [
+        ...Array.from(allPostIds).map(id => posts.find(p => p.id === id)).map(p => postToSearchResult(p!)),
+        ...lexiconResults
+    ];
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -68,7 +94,7 @@ export default function SearchPage() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Begriff suchen..."
+                  placeholder="Durchsuche die gesamten Annalen..."
                   className="w-full pl-12 pr-4 py-6 text-base rounded-xl"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}

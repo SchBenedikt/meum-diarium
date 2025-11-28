@@ -30,16 +30,22 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     const postResults: SearchResult[] = posts.filter(post => 
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
-      authors[post.author].name.toLowerCase().includes(searchTerm)
+      post.content.diary.toLowerCase().includes(searchTerm) ||
+      post.content.scientific.toLowerCase().includes(searchTerm) ||
+      authors[post.author].name.toLowerCase().includes(searchTerm) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
 
     const lexiconResults: SearchResult[] = lexicon.filter(entry =>
       entry.term.toLowerCase().includes(searchTerm) ||
-      entry.definition.toLowerCase().includes(searchTerm)
+      entry.definition.toLowerCase().includes(searchTerm) ||
+      (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(entry => ({ type: 'lexicon', data: entry }));
     
     const authorResults: SearchResult[] = Object.values(authors).filter(author =>
-        author.name.toLowerCase().includes(searchTerm)
+        author.name.toLowerCase().includes(searchTerm) ||
+        author.description.toLowerCase().includes(searchTerm) ||
+        author.title.toLowerCase().includes(searchTerm)
     ).map(author => ({type: 'author', data: author}));
 
     return [...postResults, ...lexiconResults, ...authorResults].slice(0, 7);
@@ -104,7 +110,13 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       setQuery('');
     }
     setActiveIndex(0);
-  }, [isOpen, query]);
+  }, [isOpen]);
+  
+  // This resets the active index when the query changes
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [query]);
+
 
   const groupedResults = useMemo(() => {
     return results.reduce((acc, result) => {
@@ -248,8 +260,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                         <Link 
                             to={`/search?q=${encodeURIComponent(query)}`}
                             onClick={onClose}
-                            className={`flex w-full items-center justify-between p-3 rounded-lg text-sm text-muted-foreground hover:bg-secondary hover:text-foreground ${-1 === activeIndex ? 'bg-secondary' : ''}`}
-                            onMouseMove={() => setActiveIndex(-1)}
+                            className={`flex w-full items-center justify-between p-3 rounded-lg text-sm text-muted-foreground hover:bg-secondary hover:text-foreground`}
                         >
                             <span className="flex items-center gap-2">
                                 <Search className="h-4 w-4"/>
