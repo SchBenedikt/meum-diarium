@@ -1,3 +1,4 @@
+
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, MapPin, BookOpen, Award, ArrowRight, Users, Scroll, Clock } from 'lucide-react';
@@ -227,7 +228,7 @@ function AuthorAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 py-12">
+      <main className="flex-1 py-12 pt-28">
         <div className="container mx-auto">
           {/* Hero */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
