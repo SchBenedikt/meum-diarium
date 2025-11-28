@@ -1,14 +1,13 @@
 
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams, Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
-import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
-import { Perspective, Author } from '@/types/blog';
+import { Author } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, Clock, BookOpen } from 'lucide-react';
 import { ShareButton } from '@/components/ShareButton';
@@ -113,20 +112,16 @@ function formatContent(content: string): React.ReactNode[] {
 
 export default function PostPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
-  const [searchParams, setSearchParams] = useSearchParams();
   const { setCurrentAuthor } = useAuthor();
-
-  const perspectiveParam = searchParams.get('perspective') as Perspective | null;
-  const [perspective, setPerspective] = useState<Perspective>(perspectiveParam || 'diary');
 
   const post = posts.find((p) => p.slug === slug && p.author === authorId);
   const author = post ? authors[post.author] : null;
 
   const readingTime = useMemo(() => {
     if (!post) return 0;
-    const content = perspective === 'diary' ? post.content.diary : post.content.scientific;
+    const content = post.content.diary;
     return calculateReadingTime(content);
-  }, [post, perspective]);
+  }, [post]);
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {
@@ -135,15 +130,11 @@ export default function PostPage() {
     
   }, [authorId, setCurrentAuthor]);
 
-  useEffect(() => {
-    setSearchParams({ perspective }, { replace: true });
-  }, [perspective, setSearchParams]);
-
   const formattedContent = useMemo(() => {
     if (!post) return [];
-    const contentToFormat = perspective === 'diary' ? post.content.diary : post.content.scientific;
+    const contentToFormat = post.content.diary;
     return formatContent(contentToFormat);
-  }, [post, perspective]);
+  }, [post]);
 
   if (!post || !author) {
     return <NotFound />;
@@ -158,11 +149,19 @@ export default function PostPage() {
             <article>
               {/* Header */}
               <header className="mb-12">
-                <div className="flex items-center gap-3 mb-6 animate-in">
-                  <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
-                  <div>
-                    <p className="font-medium">{author.name}</p>
-                    <p className="text-sm text-muted-foreground">{author.title}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3 mb-6 animate-in">
+                    <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
+                    <div>
+                      <p className="font-medium">{author.name}</p>
+                      <p className="text-sm text-muted-foreground">{author.title}</p>
+                    </div>
+                  </div>
+                  <div className="animate-in stagger-1">
+                    <ShareButton 
+                      title={post.title}
+                      text={`Hey, schaut, was ich hier gefunden habe: ${window.location.href}`}
+                    />
                   </div>
                 </div>
 
@@ -185,14 +184,6 @@ export default function PostPage() {
                     <Clock className="h-4 w-4" />
                     <span>{readingTime} Min. Lesezeit</span>
                   </div>
-                </div>
-
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-20">
-                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
-                   <ShareButton 
-                    title={post.title}
-                    text={`Hey, schaut, was ich hier gefunden habe: ${window.location.href}`}
-                  />
                 </div>
               </header>
 

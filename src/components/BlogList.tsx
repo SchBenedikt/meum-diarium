@@ -1,10 +1,8 @@
-import { useState } from 'react';
+
 import { useAuthor } from '@/context/AuthorContext';
 import { posts } from '@/data/posts';
-import { Perspective } from '@/types/blog';
 import { BlogCard } from './BlogCard';
-import { PerspectiveToggle } from './PerspectiveToggle';
-import { BookOpen, GraduationCap } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const containerVariants = {
@@ -19,7 +17,6 @@ const containerVariants = {
 
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
-  const [perspective, setPerspective] = useState<Perspective>('diary');
 
   if (!currentAuthor || !authorInfo) return null;
 
@@ -37,25 +34,18 @@ export function BlogList() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-2 mb-3">
-              {perspective === 'diary' ? (
-                <BookOpen className="h-4 w-4 text-primary" />
-              ) : (
-                <GraduationCap className="h-4 w-4 text-primary" />
-              )}
+              <BookOpen className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary uppercase tracking-wider">
-                {perspective === 'diary' ? 'Tagebücher' : 'Wissenschaftlich'}
+                Tagebücher
               </span>
             </div>
             <h2 className="font-display text-3xl md:text-4xl mb-2">
-              {perspective === 'diary' ? 'Meine Aufzeichnungen' : 'Historische Analysen'}
+              Meine Aufzeichnungen
             </h2>
             <p className="text-muted-foreground">
               {filteredPosts.length} Einträge von {authorInfo.name.split(' ').pop()}
             </p>
           </motion.div>
-          <div className="relative z-10">
-            <PerspectiveToggle value={perspective} onChange={setPerspective} />
-          </div>
         </div>
 
         {/* Posts grid */}
