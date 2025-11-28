@@ -1,3 +1,4 @@
+
 import { Book, Users, FileText, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { posts } from '@/data/posts';
@@ -13,26 +14,26 @@ export function ReadingStats() {
     { 
       icon: FileText, 
       value: posts.length, 
-      label: 'Tagebucheinträge',
-      description: 'Persönliche Aufzeichnungen'
+      label: 'Inscriptiones Diarii',
+      description: 'Commentarii personales'
     },
     { 
       icon: Users, 
       value: Object.keys(authors).length, 
-      label: 'Historische Autoren',
-      description: 'Persönlichkeiten Roms'
+      label: 'Auctores Historici',
+      description: 'Personae Romae'
     },
     { 
       icon: Book, 
       value: `${totalReadingTime} Min.`, 
-      label: 'Lesezeit gesamt',
-      description: 'Stunden der Geschichte'
+      label: 'Tempus Lectionis Totale',
+      description: 'Horae historiae'
     },
     { 
       icon: Calendar, 
       value: timelineEvents.length, 
-      label: 'Historische Ereignisse',
-      description: 'Im interaktiven Zeitstrahl'
+      label: 'Eventus Historici',
+      description: 'In linea temporis interactiva'
     },
   ];
 
@@ -46,10 +47,10 @@ export function ReadingStats() {
           className="text-center mb-10"
         >
           <h2 className="font-display text-2xl md:text-3xl mb-2">
-            Entdecke die Sammlung
+            Collectionem Explora
           </h2>
           <p className="text-muted-foreground">
-            Zahlen und Fakten zu unseren Inhalten
+            Numeri et facta de contentis nostris
           </p>
         </motion.div>
 
@@ -81,7 +82,7 @@ export function ReadingStats() {
           transition={{ delay: 0.4 }}
           className="mt-10 text-center"
         >
-          <p className="text-sm text-muted-foreground mb-4">Beliebte Themen</p>
+          <p className="text-sm text-muted-foreground mb-4">Argumenta Gratiosa</p>
           <div className="flex flex-wrap justify-center gap-2">
             {uniqueTags.slice(0, 12).map(tag => (
               <Link 

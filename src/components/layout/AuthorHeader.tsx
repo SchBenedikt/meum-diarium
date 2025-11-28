@@ -1,3 +1,4 @@
+
 import { useAuthor } from "@/context/AuthorContext";
 import { cn } from "@/lib/utils";
 import { BookCopy, User } from "lucide-react";
@@ -10,8 +11,8 @@ export function AuthorHeader() {
   if (!authorInfo) return null;
 
   const navItems = [
-    { href: `/${authorInfo.id}`, label: "Tagebuch", icon: BookCopy },
-    { href: `/${authorInfo.id}/about`, label: "Über", icon: User },
+    { href: `/${authorInfo.id}`, label: "Diarium", icon: BookCopy },
+    { href: `/${authorInfo.id}/about`, label: "De Auctore", icon: User },
   ];
 
   return (

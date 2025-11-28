@@ -17,67 +17,67 @@ const authorDetails: Record<string, {
   timeline: { year: string; event: string }[];
 }> = {
   caesar: {
-    birthPlace: 'Rom, Römische Republik',
+    birthPlace: 'Roma, Res Publica Romana',
     achievements: [
-      'Eroberung Galliens (58-50 v. Chr.)',
-      'Sieg im Bürgerkrieg gegen Pompeius',
-      'Kalendenreform (Julianischer Kalender)',
+      'Galliae expugnatio (58-50 a.C.n.)',
+      'Victoria in bello civili contra Pompeium',
+      'Kalendarii reformatio (Kalendarium Iulianum)',
       'Dictator perpetuo',
     ],
     timeline: [
-      { year: '100 v. Chr.', event: 'Geburt in Rom' },
-      { year: '63 v. Chr.', event: 'Pontifex Maximus' },
-      { year: '58-50 v. Chr.', event: 'Gallischer Krieg' },
-      { year: '49 v. Chr.', event: 'Rubikon' },
-      { year: '44 v. Chr.', event: 'Ermordung' },
+        { year: '100 a.C.n.', event: 'Natus Romae' },
+        { year: '63 a.C.n.', event: 'Pontifex Maximus' },
+        { year: '58-50 a.C.n.', event: 'Bellum Gallicum' },
+        { year: '49 a.C.n.', event: 'Rubiconem transit' },
+        { year: '44 a.C.n.', event: 'Interfectus' },
     ],
   },
   cicero: {
-    birthPlace: 'Arpinum, Römische Republik',
+    birthPlace: 'Arpinum, Res Publica Romana',
     achievements: [
-      'Aufdeckung der Catilinarischen Verschwörung',
-      'Konsul im Jahr 63 v. Chr.',
-      'Meister der lateinischen Rhetorik',
-      'Begründer der lateinischen Philosophie',
+      'Detectio coniurationis Catilinae',
+      'Consul anno 63 a.C.n.',
+      'Magister rhetoricae Latinae',
+      'Fundator philosophiae Latinae',
     ],
     timeline: [
-      { year: '106 v. Chr.', event: 'Geburt in Arpinum' },
-      { year: '63 v. Chr.', event: 'Konsulat' },
-      { year: '58 v. Chr.', event: 'Exil' },
-      { year: '43 v. Chr.', event: 'Tod' },
+      { year: '106 a.C.n.', event: 'Natus Arpini' },
+      { year: '63 a.C.n.', event: 'Consulatus' },
+      { year: '58 a.C.n.', event: 'Exsilium' },
+      { year: '43 a.C.n.', event: 'Interfectus' },
     ],
   },
   augustus: {
-    birthPlace: 'Rom, Römische Republik',
+    birthPlace: 'Roma, Res Publica Romana',
     achievements: [
-      'Erster römischer Kaiser (Princeps)',
-      'Begründer des Prinzipats und der Pax Romana',
-      'Sieg über Antonius & Kleopatra bei Actium (31 v. Chr.)',
-      'Umfangreiche Bauprogramme in Rom ("Fand sie aus Ziegeln, hinterließ sie aus Marmor")',
+      'Primus imperator Romanus (Princeps)',
+      'Creator Principatus et Pacis Romanae',
+      'Victoria de Antonio et Cleopatra ad Actium (31 a.C.n.)',
+      'Ampla opera aedificandi Romae ("Marmoream se relinquere, quam latericiam accepisset")',
     ],
     timeline: [
-      { year: '63 v. Chr.', event: 'Geburt in Rom' },
-      { year: '44 v. Chr.', event: 'Adoption durch Caesar' },
-      { year: '43 v. Chr.', event: 'Bildung des Zweiten Triumvirats' },
-      { year: '31 v. Chr.', event: 'Schlacht bei Actium' },
-      { year: '27 v. Chr.', event: 'Erhält den Ehrentitel Augustus' },
-      { year: '14 n. Chr.', event: 'Tod in Nola' },
+      { year: '63 a.C.n.', event: 'Natus Romae' },
+      { year: '44 a.C.n.', event: 'A Caesare adoptatus' },
+      { year: '43 a.C.n.', event: 'Creatio Secundi Triumviratus' },
+      { year: '31 a.C.n.', event: 'Proelium ad Actium' },
+      { year: '27 a.C.n.', event: 'Accipit titulum "Augustus"' },
+      { year: '14 p.C.n.', event: 'Mortuus Nolae' },
     ],
   },
   seneca: {
-    birthPlace: 'Córdoba, Hispanien',
+    birthPlace: 'Corduba, Hispania',
     achievements: [
-      'Führender Vertreter der jüngeren Stoa',
-      'Einflussreicher Berater Kaiser Neros',
-      'Verfasser bedeutender philosophischer Schriften (z.B. "Epistulae morales")',
-      'Autor mehrerer Tragödien',
+      'Praecipuus repraesentans Stoae Minoris',
+      'Potens consiliarius Neronis imperatoris',
+      'Auctor magnorum operum philosophicorum (e.g. "Epistulae morales")',
+      'Scriptor plurium tragoediarum',
     ],
     timeline: [
-      { year: 'ca. 4 v. Chr.', event: 'Geburt in Córdoba' },
-      { year: '41 n. Chr.', event: 'Verbannung nach Korsika' },
-      { year: '49 n. Chr.', event: 'Rückkehr nach Rom und Erzieher Neros' },
-      { year: '54-62 n. Chr.', event: 'Leitender Minister unter Nero' },
-      { year: '65 n. Chr.', event: 'Erzwungener Selbstmord' },
+      { year: 'c. 4 a.C.n.', event: 'Natus Cordubae' },
+      { year: '41 p.C.n.', event: 'Relegatus in Corsicam' },
+      { year: '49 p.C.n.', event: 'Redit Romam et fit Neronis praeceptor' },
+      { year: '54-62 p.C.n.', event: 'Praecipuus minister sub Nerone' },
+      { year: '65 p.C.n.', event: 'Coactus ad mortem voluntariam' },
     ],
   },
 };
@@ -101,7 +101,7 @@ function GeneralAboutPage() {
               animate={{ opacity: 1, y: 0 }}
               className="font-display text-4xl md:text-5xl mb-4"
             >
-              Über Meum Diarium
+              De Meum Diarium
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -109,8 +109,7 @@ function GeneralAboutPage() {
               transition={{ delay: 0.1 }}
               className="text-muted-foreground text-lg max-w-2xl mx-auto"
             >
-              Ein interaktives Bildungsprojekt, das die Geschichte 
-              des antiken Roms lebendig macht.
+              Propositum interactivum ad discendum, quod historiam Romae antiquae vivam facit.
             </motion.p>
           </div>
         </section>
@@ -120,10 +119,10 @@ function GeneralAboutPage() {
           <div className="container mx-auto">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {[
-                { icon: BookOpen, title: 'Zwei Perspektiven', desc: 'Tagebuch und wissenschaftlich' },
-                { icon: Users, title: 'Vier Autoren', desc: 'Caesar, Cicero, Augustus, Seneca' },
-                { icon: Clock, title: '170+ Jahre', desc: 'Geschichte zum Erleben' },
-                { icon: Scroll, title: 'Authentisch', desc: 'Historisch fundiert' },
+                { icon: BookOpen, title: 'Duae Prospectivae', desc: 'Diarium et scientifica' },
+                { icon: Users, title: 'Quattuor Auctores', desc: 'Caesar, Cicero, Augustus, Seneca' },
+                { icon: Clock, title: '170+ Anni', desc: 'Historia ad vivendum' },
+                { icon: Scroll, title: 'Authenticum', desc: 'Historice fundatum' },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -148,26 +147,23 @@ function GeneralAboutPage() {
         <section className="py-16 border-t border-border">
           <div className="container mx-auto max-w-3xl">
             <div className="prose-blog">
-              <h2>Das Projekt</h2>
+              <h2>Propositum</h2>
               <p>
-                Meum Diarium bietet einen einzigartigen Zugang zur römischen Geschichte. 
-                Durch persönliche Tagebucheinträge und wissenschaftliche Analysen 
-                werden historische Ereignisse lebendig.
+                Meum Diarium singularem aditum ad historiam Romanam praebet. 
+                Per diaria personalia et analysin scientificam, eventus historici vivificantur.
               </p>
 
-              <h2>Die Perspektiven</h2>
+              <h2>Prospectivae</h2>
               <p>
-                <strong>Tagebuch-Perspektive:</strong> Erlebe Geschichte aus der Ich-Perspektive 
-                der antiken Persönlichkeiten – authentisch, persönlich und manchmal humorvoll.
+                <strong>Prospectiva Diarii:</strong> Experire historiam ex prospectu personarum antiquarum – authentice, personaliter, et interdum cum humore.
               </p>
               <p>
-                <strong>Wissenschaftliche Perspektive:</strong> Neutrale, sachliche Darstellungen 
-                mit historischen Quellen und akademischen Belegen.
+                <strong>Prospectiva Scientifica:</strong> Narrationes neutrales et obiectivae cum fontibus historicis et testimoniis academicis.
               </p>
 
-              <h2>Die Autoren</h2>
+              <h2>Auctores</h2>
               <p>
-                Entdecke die Tagebücher von vier bedeutenden Persönlichkeiten des antiken Roms:
+                Explora diaria quattuor magnarum personarum Romae antiquae:
               </p>
             </div>
 
@@ -283,7 +279,7 @@ function AuthorAboutPage() {
                     <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Calendar className="h-5 w-5 text-primary" />
                     </div>
-                    <span className="font-medium">Lebensdaten</span>
+                    <span className="font-medium">Vita</span>
                   </div>
                   <p className="text-muted-foreground">{authorInfo.years}</p>
                 </motion.div>
@@ -299,7 +295,7 @@ function AuthorAboutPage() {
                     <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
                       <MapPin className="h-5 w-5 text-primary" />
                     </div>
-                    <span className="font-medium">Geburtsort</span>
+                    <span className="font-medium">Locus Nativitatis</span>
                   </div>
                   <p className="text-muted-foreground">{details?.birthPlace}</p>
                 </motion.div>
@@ -314,7 +310,7 @@ function AuthorAboutPage() {
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <Award className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-xl font-medium">Errungenschaften</h2>
+                    <h2 className="font-display text-xl font-medium">Res Gestae</h2>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {details.achievements.map((item, i) => (
@@ -336,7 +332,7 @@ function AuthorAboutPage() {
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <BookOpen className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-xl font-medium">Werke</h2>
+                    <h2 className="font-display text-xl font-medium">Opera</h2>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {authorWorks.map((work, i) => (
@@ -359,7 +355,7 @@ function AuthorAboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
-                  <h2 className="font-display text-xl font-medium mb-4">Tagebucheinträge</h2>
+                  <h2 className="font-display text-xl font-medium mb-4">Inscriptiones Diarii</h2>
                   <div className="space-y-3">
                     {authorPosts.slice(0, 3).map((post) => (
                       <Link 
@@ -387,7 +383,7 @@ function AuthorAboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
-                  <h2 className="font-display text-xl font-medium mb-6">Lebenslauf</h2>
+                  <h2 className="font-display text-xl font-medium mb-6">Linea Vitae</h2>
                   <div className="relative pl-4 border-l border-dashed border-border">
                     {details.timeline.map((item, i) => (
                       <div key={i} className="relative mb-8 last:mb-0">

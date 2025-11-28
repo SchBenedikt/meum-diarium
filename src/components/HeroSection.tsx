@@ -1,3 +1,4 @@
+
 import { useAuthor } from '@/context/AuthorContext';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -51,7 +52,7 @@ export function HeroSection() {
               className="flex items-center gap-4 pt-2"
             >
               <Link to={`/${authorInfo.id}/about`} className="btn-primary">
-                Mehr erfahren
+                Plura disce
               </Link>
               <span className="text-sm text-muted-foreground font-medium">
                 {authorInfo.years}

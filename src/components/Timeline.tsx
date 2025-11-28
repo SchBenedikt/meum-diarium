@@ -1,3 +1,4 @@
+
 import { useState, useMemo } from 'react';
 import { timelineEvents } from '@/data/timeline';
 import { authors } from '@/data/authors';
@@ -16,11 +17,11 @@ const typeIcons = {
   work: BookOpen,
 };
 
-const typeLabels = {
-  birth: 'Geburt',
-  death: 'Tod',
-  event: 'Ereignis',
-  work: 'Werk',
+const typeLabels: Record<string, string> = {
+  birth: 'Natus',
+  death: 'Mortuus',
+  event: 'Eventum',
+  work: 'Opus',
 };
 
 const authorColorClasses: Record<string, string> = {
@@ -86,7 +87,7 @@ export function Timeline() {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">Filter</span>
+              <span className="text-sm font-medium">Filtra</span>
             </div>
             
             {hasFilters && (
@@ -95,7 +96,7 @@ export function Timeline() {
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <X className="h-3.5 w-3.5" />
-                Filter zurücksetzen
+                Filtra reset
               </button>
             )}
           </div>
@@ -143,7 +144,7 @@ export function Timeline() {
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />
-                  {type === 'all' ? 'Alle' : typeLabels[type as keyof typeof typeLabels]}
+                  {type === 'all' ? 'Omnia' : typeLabels[type as keyof typeof typeLabels]}
                 </button>
               );
             })}
@@ -174,8 +175,8 @@ export function Timeline() {
             })}
           </div>
           <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-            <span>{Math.abs(minYear)} v. Chr.</span>
-            <span>{maxYear > 0 ? `${maxYear} n. Chr.` : `${Math.abs(maxYear)} v. Chr.`}</span>
+            <span>{Math.abs(minYear)} a.C.n.</span>
+            <span>{maxYear > 0 ? `${maxYear} p.C.n.` : `${Math.abs(maxYear)} a.C.n.`}</span>
           </div>
         </div>
 
@@ -194,7 +195,7 @@ export function Timeline() {
               >
                 <Calendar className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Keine Ereignisse für diese Filter gefunden
+                  Nulla eventa his filtris inventa sunt
                 </p>
               </motion.div>
             ) : (
@@ -242,7 +243,7 @@ export function Timeline() {
                             className="text-sm font-bold"
                             style={{ color: author?.color }}
                           >
-                            {event.year > 0 ? `${event.year} n. Chr.` : `${Math.abs(event.year)} v. Chr.`}
+                            {event.year > 0 ? `${event.year} p.C.n.` : `${Math.abs(event.year)} a.C.n.`}
                           </span>
                           <span className={cn(
                             "px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider",
@@ -325,10 +326,10 @@ export function Timeline() {
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
-            { value: filteredEvents.length, label: 'Ereignisse' },
-            { value: filteredEvents.filter(e => e.type === 'birth').length, label: 'Geburten' },
-            { value: filteredEvents.filter(e => e.type === 'work').length, label: 'Werke' },
-            { value: `${Math.abs(minYear)}-${maxYear > 0 ? maxYear : Math.abs(maxYear)}`, label: 'Zeitspanne' },
+            { value: filteredEvents.length, label: 'Eventus' },
+            { value: filteredEvents.filter(e => e.type === 'birth').length, label: 'Nati' },
+            { value: filteredEvents.filter(e => e.type === 'work').length, label: 'Opera' },
+            { value: `${Math.abs(minYear)}-${maxYear > 0 ? maxYear : Math.abs(maxYear)}`, label: 'Aetas' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}

@@ -1,3 +1,4 @@
+
 import { useAuthor } from '@/context/AuthorContext';
 import { authors } from '@/data/authors';
 import { Check, ChevronDown } from 'lucide-react';
@@ -25,7 +26,7 @@ export function AuthorSwitcher() {
               </span>
             </>
           ) : (
-            <span className="hidden sm:inline text-sm">Autor wählen</span>
+            <span className="hidden sm:inline text-sm">Auctorem elige</span>
           )}
           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
         </Button>

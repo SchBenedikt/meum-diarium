@@ -117,7 +117,6 @@ export default function SearchPage() {
           post.title.toLowerCase().includes(searchQuery) ||
           post.excerpt.toLowerCase().includes(searchQuery) ||
           post.content.diary.toLowerCase().includes(searchQuery) ||
-          post.content.scientific.toLowerCase().includes(searchQuery) ||
           authors[post.author].name.toLowerCase().includes(searchQuery)
         );
 
@@ -148,13 +147,13 @@ export default function SearchPage() {
               transition={{ duration: 0.5 }}
             >
               <h1 className="font-display text-4xl md:text-5xl mb-4 text-center">
-                Suche
+                Quaerere
               </h1>
               <div className="relative max-w-xl mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Durchsuche die gesamten Annalen..."
+                  placeholder="Per annales totos quaerere..."
                   className="w-full pl-12 pr-4 py-6 text-base rounded-xl"
                   value={query}
                   onChange={handleQueryChange}
@@ -209,13 +208,13 @@ export default function SearchPage() {
                 </div>
                 <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                   <PopoverTrigger asChild>
-                     <Button variant="outline" size="sm">Alle Kategorien</Button>
+                     <Button variant="outline" size="sm">Omnes Categoriae</Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-[300px] p-0">
                     <Command>
-                      <CommandInput placeholder="Kategorie suchen..." />
+                      <CommandInput placeholder="Categoriam quaerere..." />
                       <CommandList>
-                        <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
+                        <CommandEmpty>Nulla categoria inventa.</CommandEmpty>
                         <CommandGroup>
                           {allCategories.map((cat) => (
                              <CommandItem key={cat} onSelect={() => toggleCategory(cat)}>
@@ -239,7 +238,7 @@ export default function SearchPage() {
                 results.length > 0 ? (
                     <div>
                     <p className="text-sm text-muted-foreground mb-4">
-                        {results.length} Ergebnis(se) gefunden
+                        {results.length} eventus inventi
                     </p>
                     <div className="space-y-4">
                         {results.map((result, index) => (
@@ -279,14 +278,14 @@ export default function SearchPage() {
                 ) : (
                     <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                        Keine Ergebnisse für Ihre Auswahl gefunden.
+                        Nihil inventum est pro lectione tua.
                     </p>
                     </div>
                 )
                 ) : (
                 <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                    Bitte geben Sie einen Suchbegriff ein oder wählen Sie eine Kategorie.
+                    Quaere aliquid aut categoriam elige.
                     </p>
                 </div>
                 )}
@@ -298,5 +297,3 @@ export default function SearchPage() {
     </div>
   );
 }
-
-    

@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -15,12 +16,12 @@ const NotFound = () => {
             Pagina non inventa
           </h1>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            Diese Seite existiert nicht in unseren Annalen.
+            Haec pagina in annalibus nostris non exstat.
           </p>
           <Link to="/">
             <Button className="gap-2">
               <ArrowLeft className="h-4 w-4" />
-              Zurück zur Startseite
+              Ad paginam primam redire
             </Button>
           </Link>
         </div>

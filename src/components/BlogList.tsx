@@ -36,14 +36,14 @@ export function BlogList() {
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary uppercase tracking-wider">
-                Tagebücher
+                Diarium
               </span>
             </div>
             <h2 className="font-display text-3xl md:text-4xl mb-2">
-              Meine Aufzeichnungen
+              Commentarii Mei
             </h2>
             <p className="text-muted-foreground">
-              {filteredPosts.length} Einträge von {authorInfo.name.split(' ').pop()}
+              {filteredPosts.length} inscriptiones a {authorInfo.name.split(' ').pop()}
             </p>
           </motion.div>
         </div>
@@ -67,7 +67,7 @@ export function BlogList() {
         ) : (
           <div className="text-center py-16 rounded-xl border border-dashed border-border">
             <p className="text-muted-foreground">
-              Noch keine Einträge für diesen Autor.
+              Nullae adhuc inscriptiones huius auctoris.
             </p>
           </div>
         )}

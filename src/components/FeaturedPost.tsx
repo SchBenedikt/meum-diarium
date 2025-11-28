@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Calendar, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -34,13 +35,13 @@ export function FeaturedPost() {
         >
            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               <Sparkles className="h-4 w-4 inline mr-1" />
-              Empfohlener Beitrag
+              Inscriptio Commendata
             </span>
           <h2 className="font-display text-3xl md:text-4xl mb-3">
-            Ein Blick in die Annalen
+            Aspectus in Annales
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Jeden Tag ein neuer, zufällig ausgewählter Eintrag aus den Tiefen der Geschichte.
+            Quotidie nova inscriptio, fortuito e profundis historiae selecta.
           </p>
         </motion.div>
         <div className="max-w-xl mx-auto">

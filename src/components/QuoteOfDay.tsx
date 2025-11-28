@@ -1,3 +1,4 @@
+
 import { useMemo } from 'react';
 import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -54,7 +55,7 @@ export function QuoteOfDay() {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider mb-3 opacity-70">
-            Zitat des Tages
+            Sententia Diei
           </p>
           <blockquote className="font-display text-lg sm:text-xl leading-relaxed mb-2">
             „{quote.text}"

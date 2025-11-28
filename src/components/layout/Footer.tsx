@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Scroll, Github, Twitter } from 'lucide-react';
 
@@ -15,33 +16,32 @@ export function Footer() {
               <span className="font-display text-lg">Meum Diarium</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm">
-              Erlebe die Geschichte durch die Augen der größten Persönlichkeiten 
-              des antiken Roms. Tagebücher und wissenschaftliche Perspektiven.
+              Vive historiam per oculos maximorum virorum Romae antiquae. Diaria et commentationes scientificae.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="font-medium mb-4 text-sm">Navigation</h4>
+            <h4 className="font-medium mb-4 text-sm">Navigatio</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Autoren
+                  Auctores
                 </Link>
               </li>
               <li>
                 <Link to="/timeline" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Zeitstrahl
+                  Linea Temporis
                 </Link>
               </li>
               <li>
                 <Link to="/lexicon" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Lexikon
+                  Lexicon
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Über das Projekt
+                  De Proposito
                 </Link>
               </li>
             </ul>
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="font-medium mb-4 text-sm">Folge uns</h4>
+            <h4 className="font-medium mb-4 text-sm">Sequere nos</h4>
             <div className="flex gap-2">
               <a 
                 href="#" 
@@ -70,7 +70,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground text-center sm:text-left">
-            © {new Date().getFullYear()} Meum Diarium. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} Meum Diarium. Omnia iura reservata.
           </p>
           <p className="text-sm text-muted-foreground text-center sm:text-right">
             SPQR · Senatus Populusque Romanus

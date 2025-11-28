@@ -25,7 +25,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         >
           <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
             <BookCopy className="h-4 w-4 text-primary" />
-            Etymologie
+            Etymologia
           </h3>
           <p className="text-sm italic text-muted-foreground">
             {entry.etymology}
@@ -43,7 +43,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       >
         <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
-          Kategorie
+          Categoria
         </h3>
         <Link 
           to={`/search?category=${encodeURIComponent(entry.category)}`}
@@ -64,7 +64,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         >
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <LinkIcon className="h-4 w-4 text-primary" />
-            Verwandte Begriffe
+            Vocabula Cognata
           </h3>
           <div className="space-y-2">
             {relatedTerms.map(term => (
@@ -91,10 +91,10 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         <Link to="/lexicon" className="group">
           <h3 className="font-display text-lg font-medium mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
             <BookMarked className="h-4 w-4 text-primary" />
-            Gesamtes Lexikon
+            Lexicon Integrum
           </h3>
           <p className="text-sm text-muted-foreground">
-            Durchsuche alle Begriffe des antiken Roms.
+            Omnia vocabula Romae antiquae percurrere.
           </p>
         </Link>
       </motion.div>

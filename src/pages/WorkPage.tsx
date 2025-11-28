@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
@@ -39,7 +40,7 @@ export default function WorkPage() {
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Zurück zur Autorenübersicht
+                Ad conspectum auctoris redire
               </Link>
 
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-3">
@@ -74,7 +75,7 @@ export default function WorkPage() {
                    <div className="flex items-start gap-4">
                      <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                      <div>
-                       <h3 className="font-display text-lg font-medium text-primary !mt-0 !mb-1">Kernaussage</h3>
+                       <h3 className="font-display text-lg font-medium text-primary !mt-0 !mb-1">Summa</h3>
                        <p className="!mb-0 text-primary/80">{work.takeaway}</p>
                      </div>
                    </div>
@@ -82,7 +83,7 @@ export default function WorkPage() {
 
                 <div className="flex items-center gap-3 mb-6">
                   <ListTree className="h-5 w-5 text-primary" />
-                  <h2 className="!mt-0 !mb-0">Struktur des Werkes</h2>
+                  <h2 className="!mt-0 !mb-0">Structura Operis</h2>
                 </div>
 
                 <div className="space-y-4">
@@ -114,7 +115,7 @@ export default function WorkPage() {
                   </div>
                   <Link to={`/${author.id}/about`} className="w-full">
                     <div className="btn-secondary w-full text-sm py-2">
-                        Mehr über {author.name.split(' ').pop()}
+                        Plura de {author.name.split(' ').pop()}
                     </div>
                   </Link>
                 </motion.div>
@@ -126,7 +127,7 @@ export default function WorkPage() {
                     className="sidebar-card"
                   >
                   <h3 className="font-display text-lg font-medium mb-4">
-                    Weitere Werke
+                    Alia Opera
                   </h3>
                    <div className="space-y-2">
                     {Object.values(works)

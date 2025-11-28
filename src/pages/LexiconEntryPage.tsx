@@ -30,7 +30,7 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
         <div className="p-2">
           <h4 className="font-bold mb-2 flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
-            Lexikon
+            Lexicon
           </h4>
           <p className="text-sm">{definition}</p>
         </div>
@@ -154,7 +154,7 @@ export default function LexiconEntryPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            {fromPost ? 'Zurück zum Artikel' : 'Zurück zum Lexikon'}
+            {fromPost ? 'Ad articulum redire' : 'Ad lexicon redire'}
           </button>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
@@ -191,7 +191,7 @@ export default function LexiconEntryPage() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <Newspaper className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-2xl font-medium">Relevante Einträge</h2>
+                    <h2 className="font-display text-2xl font-medium">Inscriptiones Cognatae</h2>
                   </div>
                   <div className="relative">
                     <div className="grid md:grid-cols-2 gap-6">

@@ -1,5 +1,4 @@
 
-
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,7 +32,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
       post.content.diary.toLowerCase().includes(searchTerm) ||
-      post.content.scientific.toLowerCase().includes(searchTerm) ||
       authors[post.author].name.toLowerCase().includes(searchTerm) ||
       post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
@@ -123,7 +121,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
 
   const groupedResults = useMemo(() => {
     return results.reduce((acc, result) => {
-      const key = result.type === 'post' ? 'Tagebucheinträge' : result.type === 'lexicon' ? 'Lexikoneinträge' : 'Autoren';
+      const key = result.type === 'post' ? 'Diaria' : result.type === 'lexicon' ? 'Lexicon' : 'Auctores';
       if (!acc[key]) acc[key] = [];
       acc[key].push(result);
       return acc;
@@ -132,7 +130,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   
   const getGlobalIndex = (groupKey: string, localIndex: number) => {
     let globalIndex = 0;
-    for (const key of ['Tagebucheinträge', 'Lexikoneinträge', 'Autoren']) {
+    for (const key of ['Diaria', 'Lexicon', 'Auctores']) {
       if (key === groupKey) {
         globalIndex += localIndex;
         break;
@@ -169,7 +167,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   <Search className="h-5 w-5 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Suche nach Einträgen, Autoren, Lexikon..."
+                    placeholder="Quaere in inscriptionibus, auctoribus, lexico..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     autoFocus
@@ -184,13 +182,13 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   {query.trim() === '' ? (
                     <div className="p-8 text-center">
                       <p className="text-muted-foreground">
-                        Beginne mit der Eingabe, um zu suchen.
+                        Incipe scribere ad quaerendum.
                       </p>
                     </div>
                   ) : results.length === 0 ? (
                     <div className="p-8 text-center">
                       <p className="text-muted-foreground">
-                        Keine Ergebnisse für "{query}"
+                        Nihil inventum est pro "{query}"
                       </p>
                     </div>
                   ) : (
@@ -268,7 +266,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                         >
                             <span className="flex items-center gap-2">
                                 <Search className="h-4 w-4"/>
-                                Suche nach "{query}"
+                                Quaerere pro "{query}"
                             </span>
                             <CornerDownLeft className="h-4 w-4"/>
                         </Link>
