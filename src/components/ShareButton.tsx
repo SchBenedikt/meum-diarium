@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { Share2, Copy, Check, Twitter, Facebook, Linkedin, Mail, Link2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
+
+
+// Custom Icons for WhatsApp and Telegram
+const WhatsAppIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+);
+
+const TelegramIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"></path></svg>
+);
+
 
 interface ShareButtonProps {
   title: string;
@@ -15,19 +27,19 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
   const [copied, setCopied] = useState(false);
   
   const shareUrl = url || window.location.href;
-  const shareText = text || title;
+  const defaultShareText = `Hey, schaut, was ich hier gefunden habe: ${shareUrl}`;
 
   const shareLinks = [
     {
       name: 'Twitter',
       icon: Twitter,
-      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(defaultShareText)}`,
       color: 'hover:bg-[#1DA1F2]/10 hover:text-[#1DA1F2]'
     },
     {
       name: 'Facebook',
       icon: Facebook,
-      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(defaultShareText)}`,
       color: 'hover:bg-[#4267B2]/10 hover:text-[#4267B2]'
     },
     {
@@ -37,9 +49,21 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       color: 'hover:bg-[#0077B5]/10 hover:text-[#0077B5]'
     },
     {
+      name: 'WhatsApp',
+      icon: WhatsAppIcon,
+      url: `https://api.whatsapp.com/send?text=${encodeURIComponent(defaultShareText)}`,
+      color: 'hover:bg-[#25D366]/10 hover:text-[#25D366]'
+    },
+    {
+      name: 'Telegram',
+      icon: TelegramIcon,
+      url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(defaultShareText)}`,
+      color: 'hover:bg-[#0088cc]/10 hover:text-[#0088cc]'
+    },
+    {
       name: 'Email',
       icon: Mail,
-      url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`,
+      url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(defaultShareText)}`,
       color: 'hover:bg-primary/10 hover:text-primary'
     }
   ];
@@ -48,17 +72,10 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      toast({
-        title: "Link kopiert!",
-        description: "Der Link wurde in die Zwischenablage kopiert.",
-      });
+      toast.success("Link in die Zwischenablage kopiert!");
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      toast({
-        title: "Fehler",
-        description: "Der Link konnte nicht kopiert werden.",
-        variant: "destructive"
-      });
+      toast.error("Der Link konnte nicht kopiert werden.");
     }
   };
 
@@ -67,15 +84,17 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       try {
         await navigator.share({
           title,
-          text: shareText,
+          text: defaultShareText,
           url: shareUrl,
         });
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {
+          // If native share fails for other reasons, open the custom menu
           setIsOpen(true);
         }
       }
     } else {
+      // Fallback to custom menu if native share is not supported
       setIsOpen(true);
     }
   };
@@ -84,11 +103,13 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
     <div className="relative">
       <button
         onClick={handleNativeShare}
-        className={`${
+        aria-label="Inhalt teilen"
+        className={cn(
+          'inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200',
           variant === 'compact' 
             ? 'h-9 w-9 rounded-lg' 
             : 'h-10 px-4 rounded-xl gap-2'
-        } inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200`}
+        )}
       >
         <Share2 className="h-4 w-4" />
         {variant !== 'compact' && <span className="text-sm font-medium">Teilen</span>}
@@ -103,7 +124,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-40 bg-transparent"
             />
             
             {/* Share Menu */}
@@ -129,9 +150,12 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
-                      className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${link.color}`}
+                      className={cn(
+                        'flex flex-col items-center gap-1 p-2 rounded-lg transition-colors text-muted-foreground',
+                        link.color
+                      )}
                     >
-                      <link.icon className="h-5 w-5" />
+                      <link.icon />
                       <span className="text-[10px]">{link.name}</span>
                     </a>
                   ))}
@@ -146,7 +170,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
                     {copied ? (
                       <Check className="h-4 w-4 text-green-500" />
                     ) : (
-                      <Link2 className="h-4 w-4" />
+                      <Link2 className="h-4 w-4 text-muted-foreground" />
                     )}
                   </div>
                   <div className="text-left">
