@@ -22,11 +22,11 @@ export function LandingHero() {
               Meum Diarium
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Vive historiam per commentarios personales maximarum personarum Romae. A Caesaris victoriis usque ad Senecae sapientiam.
+              Erleben Sie Geschichte durch die persönlichen Kommentare der größten Persönlichkeiten Roms. Von Caesars Siegen bis zu Senecas Weisheit.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4">
               <a href="#authors" className="btn-primary px-8 py-3 text-base">
-                Auctores explora
+                Autoren entdecken
               </a>
             </div>
           </motion.div>
@@ -38,8 +38,8 @@ export function LandingHero() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             {[
-              { to: "/timeline", icon: Clock, title: "Linea Temporis Interactiva", desc: "Praecipuos eventus sequere." },
-              { to: "/lexicon", icon: BookMarked, title: "Lexicon Comprehensivum", desc: "Vademecum vocabulorum." },
+              { to: "/timeline", icon: Clock, title: "Interaktiver Zeitstrahl", desc: "Verfolgen Sie die wichtigsten Ereignisse." },
+              { to: "/lexicon", icon: BookMarked, title: "Umfassendes Lexikon", desc: "Ein Nachschlagewerk für Begriffe." },
             ].map((item, index) => (
               <motion.div
                 key={item.title}

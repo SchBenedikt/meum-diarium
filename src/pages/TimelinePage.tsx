@@ -39,7 +39,7 @@ export default function TimelinePage() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
                 >
                   <Calendar className="h-4 w-4" />
-                  <span>Chronologia Interactiva</span>
+                  <span>Interaktive Chronologie</span>
                 </motion.div>
                 
                 <motion.h1 
@@ -48,7 +48,7 @@ export default function TimelinePage() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="font-display text-4xl md:text-5xl lg:text-6xl mb-4"
                 >
-                  Linea Temporis Antiquitatis
+                  Zeitstrahl der Antike
                 </motion.h1>
                 
                 <motion.p 
@@ -57,7 +57,7 @@ export default function TimelinePage() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="text-muted-foreground text-lg max-w-2xl"
                 >
-                  Explora eventus maximi momenti in vitis Caesaris, Ciceronis, Augusti et Senecae – interactive et percolabilis per auctorem et genus eventus.
+                  Entdecken Sie die wichtigsten Ereignisse im Leben von Caesar, Cicero, Augustus und Seneca – interaktiv und filterbar nach Autor und Art des Ereignisses.
                 </motion.p>
               </div>
 
@@ -67,8 +67,8 @@ export default function TimelinePage() {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <ShareButton 
-                  title="Linea Temporis Antiquitatis - Meum Diarium"
-                  text="Explora eventus maximi momenti Romae antiquae in linea temporis interactiva."
+                  title="Zeitstrahl der Antike - Meum Diarium"
+                  text="Entdecken Sie die wichtigsten Ereignisse des antiken Roms auf einem interaktiven Zeitstrahl."
                 />
               </motion.div>
             </div>
@@ -81,10 +81,10 @@ export default function TimelinePage() {
               className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {[
-                { icon: BookMarked, value: totalEvents, label: 'Eventus' },
-                { icon: Users, value: '4', label: 'Personae' },
-                { icon: Clock, value: `${Math.abs(minYear)} a.C.n.`, label: 'Initium' },
-                { icon: Calendar, value: `${maxYear} p.C.n.`, label: 'Finis' },
+                { icon: BookMarked, value: totalEvents, label: 'Ereignisse' },
+                { icon: Users, value: '4', label: 'Persönlichkeiten' },
+                { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: 'Beginn' },
+                { icon: Calendar, value: `${maxYear} n. Chr.`, label: 'Ende' },
               ].map((stat) => (
                 <div 
                   key={stat.label}

@@ -83,13 +83,13 @@ export default function LexiconPage() {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
                 <BookMarked className="h-4 w-4" />
-                <span>Glossarium Antiquitatis</span>
+                <span>Glossar der Antike</span>
               </div>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-4">
-                Lexicon
+                Lexikon
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Vademecum vocabulorum, personarum, et notionum magni momenti Romae antiquae.
+                Ein Nachschlagewerk für die wichtigsten Begriffe, Personen und Konzepte des antiken Roms.
               </p>
             </motion.div>
           </div>
@@ -108,7 +108,7 @@ export default function LexiconPage() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Quaerere verbum..."
+                placeholder="Begriff suchen..."
                 className="w-full pl-12 pr-4 py-6 text-base rounded-xl"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -124,7 +124,7 @@ export default function LexiconPage() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <Tags className="h-4 w-4 text-muted-foreground" />
-                <h3 className="text-sm font-medium text-muted-foreground">Categorias eliquare</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">Nach Kategorie filtern</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -136,7 +136,7 @@ export default function LexiconPage() {
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                   )}
                 >
-                  Omnes
+                  Alle
                 </button>
                 {categories.map(category => (
                   <button
@@ -213,7 +213,7 @@ export default function LexiconPage() {
             ) : (
               <div className="text-center py-16">
                 <p className="text-muted-foreground">
-                  Nullae inscriptiones huic lectioni inventae sunt.
+                  Für diese Auswahl wurden keine Einträge gefunden.
                 </p>
               </div>
             )}

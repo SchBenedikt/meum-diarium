@@ -147,13 +147,13 @@ export default function SearchPage() {
               transition={{ duration: 0.5 }}
             >
               <h1 className="font-display text-4xl md:text-5xl mb-4 text-center">
-                Quaerere
+                Suche
               </h1>
               <div className="relative max-w-xl mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Per annales totos quaerere..."
+                  placeholder="Die gesamten Annalen durchsuchen..."
                   className="w-full pl-12 pr-4 py-6 text-base rounded-xl"
                   value={query}
                   onChange={handleQueryChange}
@@ -208,13 +208,13 @@ export default function SearchPage() {
                 </div>
                 <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                   <PopoverTrigger asChild>
-                     <Button variant="outline" size="sm">Omnes Categoriae</Button>
+                     <Button variant="outline" size="sm">Alle Kategorien</Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-[300px] p-0">
                     <Command>
-                      <CommandInput placeholder="Categoriam quaerere..." />
+                      <CommandInput placeholder="Kategorie suchen..." />
                       <CommandList>
-                        <CommandEmpty>Nulla categoria inventa.</CommandEmpty>
+                        <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
                         <CommandGroup>
                           {allCategories.map((cat) => (
                              <CommandItem key={cat} onSelect={() => toggleCategory(cat)}>
@@ -238,7 +238,7 @@ export default function SearchPage() {
                 results.length > 0 ? (
                     <div>
                     <p className="text-sm text-muted-foreground mb-4">
-                        {results.length} eventus inventi
+                        {results.length} Ergebnisse gefunden
                     </p>
                     <div className="space-y-4">
                         {results.map((result, index) => (
@@ -278,14 +278,14 @@ export default function SearchPage() {
                 ) : (
                     <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                        Nihil inventum est pro lectione tua.
+                        Für Ihre Auswahl wurden keine Ergebnisse gefunden.
                     </p>
                     </div>
                 )
                 ) : (
                 <div className="text-center py-16">
                     <p className="text-muted-foreground">
-                    Quaere aliquid aut categoriam elige.
+                    Suchen Sie etwas oder wählen Sie eine Kategorie.
                     </p>
                 </div>
                 )}

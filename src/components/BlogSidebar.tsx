@@ -24,7 +24,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         <div className="sidebar-card animate-in">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <Scroll className="h-4 w-4 text-primary" />
-            Facta
+            Fakten
           </h3>
           <dl className="space-y-3">
             {post.sidebar.facts.map((fact, index) => (
@@ -43,20 +43,20 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       <div className="sidebar-card animate-in stagger-1">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
-          Contextus Historicus
+          Historischer Kontext
         </h3>
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
             <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
             <div>
-              <p className="font-medium">Tempus</p>
+              <p className="font-medium">Zeit</p>
               <p className="text-muted-foreground">{post.historicalDate}</p>
             </div>
           </div>
           <Link to={`/${author.id}/about`} className="flex items-start gap-3 group">
             <Users className="h-4 w-4 text-muted-foreground mt-0.5 group-hover:text-primary transition-colors" />
             <div>
-              <p className="font-medium group-hover:text-primary transition-colors">Auctor</p>
+              <p className="font-medium group-hover:text-primary transition-colors">Autor</p>
               <p className="text-muted-foreground">{author.name}</p>
               <p className="text-xs text-muted-foreground">{author.years}</p>
             </div>
@@ -81,7 +81,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       <div className="sidebar-card animate-in stagger-3">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
-          Argumenta
+          Themen
         </h3>
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
@@ -100,7 +100,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       {relatedPosts.length > 0 && (
         <div className="sidebar-card animate-in stagger-4">
           <h3 className="font-display text-lg font-medium mb-4">
-            Plures Inscriptiones
+            Weitere Einträge
           </h3>
           <div className="space-y-3">
             {relatedPosts.map((relatedPost) => (

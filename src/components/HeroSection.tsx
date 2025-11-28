@@ -52,7 +52,7 @@ export function HeroSection() {
               className="flex items-center gap-4 pt-2"
             >
               <Link to={`/${authorInfo.id}/about`} className="btn-primary">
-                Plura disce
+                Mehr erfahren
               </Link>
               <span className="text-sm text-muted-foreground font-medium">
                 {authorInfo.years}

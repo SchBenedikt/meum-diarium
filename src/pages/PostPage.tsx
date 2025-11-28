@@ -39,7 +39,7 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
         <div className="p-2">
           <h4 className="font-bold mb-2 flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
-            Lexicon
+            Lexikon
           </h4>
           <p className="text-sm">{definition}</p>
         </div>
@@ -144,7 +144,7 @@ export default function PostPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pt-28 pb-12">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+          <div className="grid md:grid-cols-[1fr_320px] gap-12">
             {/* Main Content */}
             <article>
               {/* Header */}
@@ -160,7 +160,7 @@ export default function PostPage() {
                   <div className="animate-in stagger-1">
                     <ShareButton 
                       title={post.title}
-                      text={`Heu, vide quid invenerim: ${window.location.href}`}
+                      text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
                     />
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export default function PostPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
-                    <span>{readingTime} Min. lectionis</span>
+                    <span>{readingTime} Min. Lesezeit</span>
                   </div>
                 </div>
               </header>
@@ -197,7 +197,7 @@ export default function PostPage() {
             </article>
 
             {/* Sidebar */}
-            <aside className="hidden lg:block">
+            <aside className="hidden md:block">
               <div className="sticky top-28">
                 <BlogSidebar post={post} />
               </div>

@@ -20,9 +20,9 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '/timeline', label: 'Linea Temporis' },
-    { href: '/lexicon', label: 'Lexicon' },
-    { href: '/about', label: 'De Nobis' },
+    { href: '/timeline', label: 'Zeitstrahl' },
+    { href: '/lexicon', label: 'Lexikon' },
+    { href: '/about', label: 'Über' },
   ];
 
   const handleLogoClick = () => {
@@ -86,7 +86,7 @@ export function Header() {
                 className="h-10 px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <Search className="h-4 w-4" />
-                <span className="hidden sm:inline text-sm">Quaerere</span>
+                <span className="hidden sm:inline text-sm">Suche</span>
                 <kbd className="hidden lg:inline-flex h-5 items-center gap-1 rounded bg-background/50 px-1.5 text-[10px]">
                   ⌘K
                 </kbd>
@@ -137,7 +137,7 @@ export function Header() {
 
                        <div className="mt-auto p-6 pt-6 border-t space-y-4">
                          <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">Auctor</span>
+                           <span className="text-sm font-medium">Autor</span>
                            <AuthorSwitcher />
                          </div>
                          <div className="flex justify-between items-center">

@@ -7,13 +7,6 @@ import { authors } from '@/data/authors';
 import { useMemo } from 'react';
 import { BlogCard } from './BlogCard';
 
-const authorColorClasses: Record<string, string> = {
-  caesar: 'bg-author-caesar',
-  cicero: 'bg-author-cicero',
-  augustus: 'bg-author-augustus',
-  seneca: 'bg-author-seneca',
-};
-
 export function FeaturedPost() {
   // Get a "featured" post - for now, rotate based on date
   const featuredPost = useMemo(() => {
@@ -21,8 +14,6 @@ export function FeaturedPost() {
     const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
     return posts[dayOfYear % posts.length];
   }, []);
-
-  const author = authors[featuredPost.author];
 
   return (
     <section className="py-16">
@@ -35,13 +26,13 @@ export function FeaturedPost() {
         >
            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               <Sparkles className="h-4 w-4 inline mr-1" />
-              Inscriptio Commendata
+              Empfohlener Beitrag
             </span>
           <h2 className="font-display text-3xl md:text-4xl mb-3">
-            Aspectus in Annales
+            Ein Blick in die Annalen
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Quotidie nova inscriptio, fortuito e profundis historiae selecta.
+            Jeden Tag ein neuer Beitrag, zufällig aus den Tiefen der Geschichte ausgewählt.
           </p>
         </motion.div>
         <div className="max-w-xl mx-auto">

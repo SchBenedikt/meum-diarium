@@ -16,32 +16,32 @@ export function Footer() {
               <span className="font-display text-lg">Meum Diarium</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm">
-              Vive historiam per oculos maximorum virorum Romae antiquae. Diaria et commentationes scientificae.
+              Erleben Sie Geschichte durch die Augen der größten Persönlichkeiten des antiken Roms. Tagebücher und wissenschaftliche Kommentare.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="font-medium mb-4 text-sm">Navigatio</h4>
+            <h4 className="font-medium mb-4 text-sm">Navigation</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Auctores
+                  Autoren
                 </Link>
               </li>
               <li>
                 <Link to="/timeline" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Linea Temporis
+                  Zeitstrahl
                 </Link>
               </li>
               <li>
                 <Link to="/lexicon" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Lexicon
+                  Lexikon
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  De Proposito
+                  Über das Projekt
                 </Link>
               </li>
             </ul>
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="font-medium mb-4 text-sm">Sequere nos</h4>
+            <h4 className="font-medium mb-4 text-sm">Folgen Sie uns</h4>
             <div className="flex gap-2">
               <a 
                 href="#" 
@@ -70,7 +70,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground text-center sm:text-left">
-            © {new Date().getFullYear()} Meum Diarium. Omnia iura reservata.
+            © {new Date().getFullYear()} Meum Diarium. Alle Rechte vorbehalten.
           </p>
           <p className="text-sm text-muted-foreground text-center sm:text-right">
             SPQR · Senatus Populusque Romanus

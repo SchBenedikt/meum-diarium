@@ -34,7 +34,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
   const [copied, setCopied] = useState(false);
   
   const shareUrl = url || window.location.href;
-  const defaultShareText = text || `Heu, vide quid invenerim: ${shareUrl}`;
+  const defaultShareText = text || `Schau mal, was ich gefunden habe: ${shareUrl}`;
 
   const shareLinks = [
     {
@@ -79,10 +79,10 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      toast.success("Nectere in tabulam exceptum est!");
+      toast.success("Link in die Zwischenablage kopiert!");
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      toast.error("Nectere non potuit effingi.");
+      toast.error("Konnte den Link nicht kopieren.");
     }
   };
 
@@ -110,7 +110,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
     <div className="relative">
       <button
         onClick={handleNativeShare}
-        aria-label="Partire contentum"
+        aria-label="Inhalt teilen"
         className={cn(
           'inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200',
           variant === 'compact' 
@@ -119,7 +119,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
         )}
       >
         <Share2 className="h-4 w-4" />
-        {variant !== 'compact' && <span className="text-sm font-medium">Partire</span>}
+        {variant !== 'compact' && <span className="text-sm font-medium">Teilen</span>}
       </button>
 
       <AnimatePresence>
@@ -143,7 +143,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               className="absolute right-0 top-full mt-2 z-50 w-64 rounded-xl bg-card border border-border shadow-xl overflow-hidden"
             >
               <div className="p-3 border-b border-border">
-                <p className="text-sm font-medium">Partire</p>
+                <p className="text-sm font-medium">Teilen</p>
                 <p className="text-xs text-muted-foreground truncate">{title}</p>
               </div>
 
@@ -182,7 +182,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
                   </div>
                   <div className="text-left">
                     <p className="text-sm font-medium">
-                      {copied ? 'Effectum!' : 'Nectere effinge'}
+                      {copied ? 'Kopiert!' : 'Link kopieren'}
                     </p>
                     <p className="text-xs text-muted-foreground truncate max-w-[160px]">
                       {shareUrl}

@@ -121,7 +121,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
 
   const groupedResults = useMemo(() => {
     return results.reduce((acc, result) => {
-      const key = result.type === 'post' ? 'Diaria' : result.type === 'lexicon' ? 'Lexicon' : 'Auctores';
+      const key = result.type === 'post' ? 'Tagebücher' : result.type === 'lexicon' ? 'Lexikon' : 'Autoren';
       if (!acc[key]) acc[key] = [];
       acc[key].push(result);
       return acc;
@@ -130,7 +130,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   
   const getGlobalIndex = (groupKey: string, localIndex: number) => {
     let globalIndex = 0;
-    for (const key of ['Diaria', 'Lexicon', 'Auctores']) {
+    for (const key of ['Tagebücher', 'Lexikon', 'Autoren']) {
       if (key === groupKey) {
         globalIndex += localIndex;
         break;
@@ -167,7 +167,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   <Search className="h-5 w-5 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Quaere in inscriptionibus, auctoribus, lexico..."
+                    placeholder="Suche in Einträgen, Autoren, Lexikon..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     autoFocus
@@ -182,13 +182,13 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   {query.trim() === '' ? (
                     <div className="p-8 text-center">
                       <p className="text-muted-foreground">
-                        Incipe scribere ad quaerendum.
+                        Beginnen Sie zu tippen, um zu suchen.
                       </p>
                     </div>
                   ) : results.length === 0 ? (
                     <div className="p-8 text-center">
                       <p className="text-muted-foreground">
-                        Nihil inventum est pro "{query}"
+                        Keine Ergebnisse für "{query}"
                       </p>
                     </div>
                   ) : (
@@ -266,7 +266,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                         >
                             <span className="flex items-center gap-2">
                                 <Search className="h-4 w-4"/>
-                                Quaerere pro "{query}"
+                                Suche nach "{query}"
                             </span>
                             <CornerDownLeft className="h-4 w-4"/>
                         </Link>

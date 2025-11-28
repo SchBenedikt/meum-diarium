@@ -18,13 +18,13 @@ export function AuthorGrid() {
             className="text-center mb-14"
           >
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Voces Antiquitatis
+              Stimmen der Antike
             </span>
             <h2 className="font-display text-3xl sm:text-4xl mb-4">
-              Auctorem Elige
+              Wähle einen Autor
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Quisque auctor singularem prospectum praebet in tempora turbulenta Romae antiquae.
+              Jeder Autor bietet eine einzigartige Perspektive auf die turbulenten Zeiten des alten Roms.
             </p>
           </motion.div>
 

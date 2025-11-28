@@ -26,7 +26,7 @@ export function AuthorSwitcher() {
               </span>
             </>
           ) : (
-            <span className="hidden sm:inline text-sm">Auctorem elige</span>
+            <span className="hidden sm:inline text-sm">Autor wählen</span>
           )}
           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
         </Button>

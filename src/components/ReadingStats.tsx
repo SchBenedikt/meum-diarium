@@ -14,26 +14,26 @@ export function ReadingStats() {
     { 
       icon: FileText, 
       value: posts.length, 
-      label: 'Inscriptiones Diarii',
-      description: 'Commentarii personales'
+      label: 'Tagebucheinträge',
+      description: 'Persönliche Kommentare'
     },
     { 
       icon: Users, 
       value: Object.keys(authors).length, 
-      label: 'Auctores Historici',
-      description: 'Personae Romae'
+      label: 'Historische Autoren',
+      description: 'Persönlichkeiten Roms'
     },
     { 
       icon: Book, 
       value: `${totalReadingTime} Min.`, 
-      label: 'Tempus Lectionis Totale',
-      description: 'Horae historiae'
+      label: 'Gesamte Lesezeit',
+      description: 'Stunden der Geschichte'
     },
     { 
       icon: Calendar, 
       value: timelineEvents.length, 
-      label: 'Eventus Historici',
-      description: 'In linea temporis interactiva'
+      label: 'Historische Ereignisse',
+      description: 'Im interaktiven Zeitstrahl'
     },
   ];
 
@@ -47,10 +47,10 @@ export function ReadingStats() {
           className="text-center mb-10"
         >
           <h2 className="font-display text-2xl md:text-3xl mb-2">
-            Collectionem Explora
+            Entdecken Sie die Sammlung
           </h2>
           <p className="text-muted-foreground">
-            Numeri et facta de contentis nostris
+            Zahlen und Fakten zu unseren Inhalten
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ export function ReadingStats() {
           transition={{ delay: 0.4 }}
           className="mt-10 text-center"
         >
-          <p className="text-sm text-muted-foreground mb-4">Argumenta Gratiosa</p>
+          <p className="text-sm text-muted-foreground mb-4">Beliebte Themen</p>
           <div className="flex flex-wrap justify-center gap-2">
             {uniqueTags.slice(0, 12).map(tag => (
               <Link 

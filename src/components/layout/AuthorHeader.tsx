@@ -11,8 +11,8 @@ export function AuthorHeader() {
   if (!authorInfo) return null;
 
   const navItems = [
-    { href: `/${authorInfo.id}`, label: "Diarium", icon: BookCopy },
-    { href: `/${authorInfo.id}/about`, label: "De Auctore", icon: User },
+    { href: `/${authorInfo.id}`, label: "Tagebuch", icon: BookCopy },
+    { href: `/${authorInfo.id}/about`, label: "Über den Autor", icon: User },
   ];
 
   return (
