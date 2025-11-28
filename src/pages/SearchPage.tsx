@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { cn } from '@/lib/utils';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 type SearchResult = 
   | { type: 'post', data: BlogPost }
@@ -21,11 +22,9 @@ const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const q = searchParams.get('q') || '';
-  const category = searchParams.get('category') || '';
   
-  const [query, setQuery] = useState(q);
-  const [activeCategory, setActiveCategory] = useState(category);
+  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const [activeCategory, setActiveCategory] = useState(searchParams.get('category') || null);
 
   const { setCurrentAuthor } = useAuthor();
 
@@ -34,37 +33,48 @@ export default function SearchPage() {
   }, [setCurrentAuthor]);
 
   useEffect(() => {
-    setQuery(q);
-    setActiveCategory(category);
-  }, [q, category]);
+    setQuery(searchParams.get('q') || '');
+    setActiveCategory(searchParams.get('category') || null);
+  }, [searchParams]);
 
-  useEffect(() => {
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    
+    const newParams = new URLSearchParams(searchParams);
+    if (newQuery) {
+        newParams.set('q', newQuery);
+    } else {
+        newParams.delete('q');
+    }
+    // Use timeout to avoid updating URL on every keystroke
     const handler = setTimeout(() => {
-        const newParams = new URLSearchParams(searchParams);
-        if (query) {
-            newParams.set('q', query);
-        } else {
-            newParams.delete('q');
-        }
         setSearchParams(newParams, { replace: true });
     }, 300);
-
     return () => clearTimeout(handler);
-  }, [query, setSearchParams]);
+  };
 
   const handleCategoryChange = (newCategory: string | null) => {
     const newParams = new URLSearchParams(searchParams);
     if (newCategory) {
-        newParams.set('category', newCategory);
-    } else {
+      if (activeCategory === newCategory) {
+        // Deselect if clicked again
         newParams.delete('category');
+        setActiveCategory(null);
+      } else {
+        newParams.set('category', newCategory);
+        setActiveCategory(newCategory);
+      }
+    } else {
+      newParams.delete('category');
+      setActiveCategory(null);
     }
     setSearchParams(newParams, { replace: true });
   }
 
   const results: SearchResult[] = useMemo(() => {
-    const searchQuery = searchParams.get('q')?.toLowerCase();
-    const categoryQuery = searchParams.get('category')?.toLowerCase();
+    const searchQuery = (searchParams.get('q') || '').toLowerCase();
+    const categoryQuery = (searchParams.get('category') || '').toLowerCase();
     
     let filteredPosts: BlogPost[] = posts;
     let filteredLexicon: LexiconEntry[] = lexicon;
@@ -125,7 +135,7 @@ export default function SearchPage() {
                   placeholder="Durchsuche die gesamten Annalen..."
                   className="w-full pl-12 pr-4 py-6 text-base rounded-xl"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={handleQueryChange}
                   autoFocus
                 />
               </div>
@@ -143,37 +153,40 @@ export default function SearchPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-10"
             >
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-4">
                 <Tags className="h-4 w-4 text-muted-foreground" />
                 <h3 className="text-sm font-medium text-muted-foreground">Nach Kategorie filtern</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => handleCategoryChange(null)}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                    !activeCategory
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                  )}
-                >
-                  Alle
-                </button>
-                {allCategories.map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => handleCategoryChange(cat)}
-                    className={cn(
-                      "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                      activeCategory === cat
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                    )}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
+              <ScrollArea className="w-full whitespace-nowrap">
+                <div className="flex w-max space-x-2 pb-4">
+                    <button
+                        onClick={() => handleCategoryChange(null)}
+                        className={cn(
+                            "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
+                            !activeCategory
+                            ? "bg-primary text-primary-foreground border-transparent"
+                            : "bg-transparent border-border hover:bg-secondary"
+                        )}
+                        >
+                        Alle
+                    </button>
+                    {allCategories.map(cat => (
+                        <button
+                            key={cat}
+                            onClick={() => handleCategoryChange(cat)}
+                            className={cn(
+                                "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
+                                activeCategory === cat
+                                ? "bg-primary text-primary-foreground border-transparent"
+                                : "bg-transparent border-border hover:bg-secondary"
+                            )}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
             </motion.div>
 
 

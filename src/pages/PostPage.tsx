@@ -146,21 +146,12 @@ export default function PostPage() {
     return <NotFound />;
   }
   
-  const authorLastName = author.name.includes(' ') ? author.name.split(' ').pop() : author.name;
+  const authorLastName = author.name.split(' ').pop();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 py-12">
         <div className="container mx-auto">
-          {/* Back link */}
-          <Link 
-            to={`/${authorId}`} 
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Zurück zum Diarium von {authorLastName}
-          </Link>
-
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             {/* Main Content */}
             <article>
