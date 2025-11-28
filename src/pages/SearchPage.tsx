@@ -1,10 +1,11 @@
+
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
@@ -19,6 +20,50 @@ const postToSearchResult = (post: BlogPost): SearchResult => ({type: 'post', dat
 const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'lexicon', data: entry});
 
 const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort();
+
+const categoryIcons: { [key: string]: React.ElementType } = {
+  'Politik': Landmark,
+  'Militär': Shield,
+  'Gesellschaft': Users,
+  'Recht': Scale,
+  'Philosophie': MessageSquare,
+  'Bürgerkrieg': Shield,
+  'Entscheidung': BrainCircuit,
+  'Gallischer Krieg': Mountain,
+  'Belagerung': Mountain,
+  'Attentat': Skull,
+  'Tod': Skull,
+  'Rede': VenetianMask,
+  'Verschwörung': Drama,
+  'Marcus Antonius': Users,
+  'Seeschlacht': Shield,
+  'Autobiografie': BookOpen,
+  'Vermächtnis': Star,
+  'Frieden': Star,
+  'Prinzipat': Landmark,
+  'Zeit': BookOpen,
+  'Nero': Users,
+  'Geburt': Star,
+  'Rhetorik': VenetianMask,
+  'Abenteuer': Mountain,
+  'Piraten': Skull,
+  'Aufstand': Shield,
+  'Sklaven': Users,
+  'Korruption': Scale,
+  'Bündnis': Users,
+  'Krieg': Shield,
+  'Ingenieurskunst': BrainCircuit,
+  'Britannien': Mountain,
+  'Sieg': Star,
+  'Spruch': MessageSquare,
+  'Pompeius': Users,
+  'Rache': Drama,
+  'Kunst': BookOpen,
+  'Germanien': Mountain,
+  'Niederlage': Skull,
+  'Exil': Mountain,
+  'Ethik': BrainCircuit
+};
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -157,36 +202,36 @@ export default function SearchPage() {
                 <Tags className="h-4 w-4 text-muted-foreground" />
                 <h3 className="text-sm font-medium text-muted-foreground">Nach Kategorie filtern</h3>
               </div>
-              <ScrollArea className="w-full whitespace-nowrap">
-                <div className="flex w-max space-x-2 pb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                 <button
+                    onClick={() => handleCategoryChange(null)}
+                    className={cn(
+                        "flex items-center gap-3 text-left p-3 rounded-lg transition-colors border",
+                        !activeCategory
+                        ? "bg-primary text-primary-foreground border-transparent"
+                        : "bg-transparent border-border hover:bg-secondary"
+                    )}
+                    >
+                    Alle Kategorien
+                </button>
+                {allCategories.map(cat => {
+                    const Icon = categoryIcons[cat] || Tags;
+                    return (
                     <button
-                        onClick={() => handleCategoryChange(null)}
+                        key={cat}
+                        onClick={() => handleCategoryChange(cat)}
                         className={cn(
-                            "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
-                            !activeCategory
+                            "flex items-center gap-3 text-left p-3 rounded-lg transition-colors border",
+                            activeCategory === cat
                             ? "bg-primary text-primary-foreground border-transparent"
                             : "bg-transparent border-border hover:bg-secondary"
                         )}
-                        >
-                        Alle
+                    >
+                        <Icon className="h-4 w-4 flex-shrink-0" />
+                        <span className="text-sm font-medium truncate">{cat}</span>
                     </button>
-                    {allCategories.map(cat => (
-                        <button
-                            key={cat}
-                            onClick={() => handleCategoryChange(cat)}
-                            className={cn(
-                                "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
-                                activeCategory === cat
-                                ? "bg-primary text-primary-foreground border-transparent"
-                                : "bg-transparent border-border hover:bg-secondary"
-                            )}
-                        >
-                            {cat}
-                        </button>
-                    ))}
-                </div>
-                <ScrollBar orientation="horizontal" />
-              </ScrollArea>
+                )})}
+              </div>
             </motion.div>
 
 
