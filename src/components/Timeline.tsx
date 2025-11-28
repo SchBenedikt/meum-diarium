@@ -5,7 +5,9 @@ import { cn } from '@/lib/utils';
 import { Calendar, Star, BookOpen, Skull, Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Author } from '@/types/blog';
-import { ShareButton } from './ShareButton';
+import { Link } from 'react-router-dom';
+import { posts } from '@/data/posts';
+import slugify from 'slugify';
 
 const typeIcons = {
   birth: Star,
@@ -36,6 +38,11 @@ const authorBorderClasses: Record<string, string> = {
 };
 
 type FilterType = 'all' | 'birth' | 'death' | 'event' | 'work';
+
+const findPostByEvent = (event: typeof timelineEvents[0]) => {
+  const eventSlug = slugify(event.title, { lower: true, strict: true });
+  return posts.find(p => p.slug === eventSlug);
+}
 
 export function Timeline() {
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
@@ -196,25 +203,12 @@ export function Timeline() {
                 const Icon = typeIcons[event.type];
                 const isLeft = index % 2 === 0;
                 const isHovered = hoveredEvent === `${event.year}-${event.title}`;
+                const post = findPostByEvent(event);
 
-                return (
-                  <motion.div
-                    key={`${event.year}-${event.title}`}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={cn(
-                      "relative flex items-start gap-4 mb-6",
-                      "md:items-center",
-                      isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                    )}
-                    onMouseEnter={() => setHoveredEvent(`${event.year}-${event.title}`)}
-                    onMouseLeave={() => setHoveredEvent(null)}
-                  >
-                    {/* Content Card */}
-                    <div className={cn(
+                const EventContent = () => (
+                  <>
+                     {/* Content Card */}
+                     <div className={cn(
                       "flex-1 ml-16 md:ml-0",
                       isLeft ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
                     )}>
@@ -222,7 +216,8 @@ export function Timeline() {
                         whileHover={{ scale: 1.02 }}
                         className={cn(
                           "inline-block bg-card rounded-2xl p-5 shadow-sm border-2 transition-all duration-300 text-left",
-                          isHovered 
+                          post ? 'group' : '',
+                          isHovered && post
                             ? `${authorBorderClasses[event.author || 'caesar']} shadow-lg` 
                             : "border-border",
                           isLeft ? "md:ml-auto" : ""
@@ -258,7 +253,7 @@ export function Timeline() {
                         </div>
 
                         {/* Content */}
-                        <h3 className="font-display text-lg font-semibold mb-1">
+                        <h3 className={cn("font-display text-lg font-semibold mb-1", post && 'group-hover:text-primary')}>
                           {event.title}
                         </h3>
                         <p className="text-sm text-muted-foreground">
@@ -292,6 +287,34 @@ export function Timeline() {
 
                     {/* Spacer */}
                     <div className="hidden md:block flex-1" />
+                  </>
+                );
+
+                return (
+                  <motion.div
+                    key={`${event.year}-${event.title}`}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={cn(
+                      "relative flex items-start gap-4 mb-6",
+                      "md:items-center",
+                      isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                    )}
+                    onMouseEnter={() => setHoveredEvent(`${event.year}-${event.title}`)}
+                    onMouseLeave={() => setHoveredEvent(null)}
+                  >
+                   {post ? (
+                      <Link to={`/${post.author}/${post.slug}`} className="contents">
+                        <EventContent />
+                      </Link>
+                    ) : (
+                      <div className="contents">
+                        <EventContent />
+                      </div>
+                    )}
                   </motion.div>
                 );
               })

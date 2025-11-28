@@ -13,8 +13,20 @@ import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 
 const AppContent = () => {
   const location = useLocation();
@@ -25,6 +37,7 @@ const AppContent = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       {isAuthorRoute && <AuthorHeader />}
       <Routes>

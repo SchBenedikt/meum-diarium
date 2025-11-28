@@ -159,7 +159,7 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-20">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                    <ShareButton 
                     title={post.title}
