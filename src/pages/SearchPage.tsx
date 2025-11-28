@@ -4,11 +4,11 @@ import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
-import { Author } from '@/types/blog';
+import { cn } from '@/lib/utils';
 
 type SearchResult = 
   | { type: 'post', data: BlogPost }
@@ -17,12 +17,16 @@ type SearchResult =
 const postToSearchResult = (post: BlogPost): SearchResult => ({type: 'post', data: post});
 const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'lexicon', data: entry});
 
+const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort();
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q') || '';
   const category = searchParams.get('category') || '';
-  const [query, setQuery] = useState(q || category);
+  
+  const [query, setQuery] = useState(q);
+  const [activeCategory, setActiveCategory] = useState(category);
+
   const { setCurrentAuthor } = useAuthor();
 
   useEffect(() => {
@@ -30,76 +34,71 @@ export default function SearchPage() {
   }, [setCurrentAuthor]);
 
   useEffect(() => {
-    setQuery(q || category)
-  }, [q, category])
+    setQuery(q);
+    setActiveCategory(category);
+  }, [q, category]);
 
   useEffect(() => {
-    // This effect keeps the URL query parameter in sync with the input field
     const handler = setTimeout(() => {
-      // Only update 'q' param, clear category if user is typing
-      if (query !== category) {
+        const newParams = new URLSearchParams(searchParams);
         if (query) {
-          setSearchParams({ q: query }, { replace: true });
+            newParams.set('q', query);
         } else {
-          setSearchParams({}, { replace: true });
+            newParams.delete('q');
         }
-      }
+        setSearchParams(newParams, { replace: true });
     }, 300);
 
     return () => clearTimeout(handler);
-  }, [query, category, setSearchParams]);
+  }, [query, setSearchParams]);
 
+  const handleCategoryChange = (newCategory: string | null) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (newCategory) {
+        newParams.set('category', newCategory);
+    } else {
+        newParams.delete('category');
+    }
+    setSearchParams(newParams, { replace: true });
+  }
 
   const results: SearchResult[] = useMemo(() => {
-    const searchQuery = searchParams.get('q');
-    const categoryQuery = searchParams.get('category');
+    const searchQuery = searchParams.get('q')?.toLowerCase();
+    const categoryQuery = searchParams.get('category')?.toLowerCase();
+    
+    let filteredPosts: BlogPost[] = posts;
+    let filteredLexicon: LexiconEntry[] = lexicon;
+
+    // Filter by category first
+    if (categoryQuery) {
+        filteredPosts = filteredPosts.filter(post => 
+            post.tags.some(tag => tag.toLowerCase() === categoryQuery)
+        );
+        filteredLexicon = filteredLexicon.filter(entry =>
+            entry.category.toLowerCase() === categoryQuery
+        );
+    }
+
+    // Then filter by search query
+    if (searchQuery) {
+        filteredPosts = filteredPosts.filter(post => 
+          post.title.toLowerCase().includes(searchQuery) ||
+          post.excerpt.toLowerCase().includes(searchQuery) ||
+          post.content.diary.toLowerCase().includes(searchQuery) ||
+          post.content.scientific.toLowerCase().includes(searchQuery) ||
+          authors[post.author].name.toLowerCase().includes(searchQuery)
+        );
+
+        filteredLexicon = filteredLexicon.filter(entry =>
+          entry.term.toLowerCase().includes(searchQuery) ||
+          entry.definition.toLowerCase().includes(searchQuery) ||
+          (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery))
+        );
+    }
     
     if (!searchQuery && !categoryQuery) return [];
 
-    let postResults: SearchResult[] = [];
-    let lexiconResults: SearchResult[] = [];
-
-    if (categoryQuery) {
-        const categoryTerm = categoryQuery.toLowerCase();
-        postResults = posts.filter(post => 
-            post.tags.some(tag => tag.toLowerCase() === categoryTerm)
-        ).map(postToSearchResult);
-        
-        lexiconResults = lexicon.filter(entry =>
-            entry.category.toLowerCase() === categoryTerm
-        ).map(lexiconToSearchResult);
-
-    } else if (searchQuery) {
-        const searchTerm = searchQuery.toLowerCase();
-
-        const postResultsByTerm = posts.filter(post => 
-          post.title.toLowerCase().includes(searchTerm) ||
-          post.excerpt.toLowerCase().includes(searchTerm) ||
-          post.content.diary.toLowerCase().includes(searchTerm) ||
-          post.content.scientific.toLowerCase().includes(searchTerm) ||
-          authors[post.author].name.toLowerCase().includes(searchTerm) ||
-          post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-        ).map(postToSearchResult);
-
-        const lexiconResultsByTerm = lexicon.filter(entry =>
-          entry.term.toLowerCase().includes(searchTerm) ||
-          entry.definition.toLowerCase().includes(searchTerm) ||
-          (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
-        ).map(lexiconToSearchResult);
-
-        const authorResultsPosts = Object.values(authors).filter(author =>
-          author.name.toLowerCase().includes(searchTerm) ||
-          author.description.toLowerCase().includes(searchTerm) ||
-          author.title.toLowerCase().includes(searchTerm)
-        ).flatMap(author => posts.filter(p => p.author === author.id)).map(postToSearchResult);
-        
-        const allPostIds = new Set([...postResultsByTerm, ...authorResultsPosts].map(p => p.data.id));
-
-        postResults = Array.from(allPostIds).map(id => posts.find(p => p.id === id)).map(p => postToSearchResult(p!));
-        lexiconResults = lexiconResultsByTerm;
-    }
-    
-    return [...postResults, ...lexiconResults];
+    return [...filteredPosts.map(postToSearchResult), ...filteredLexicon.map(lexiconToSearchResult)];
 
   }, [searchParams]);
 
@@ -134,64 +133,108 @@ export default function SearchPage() {
           </div>
         </section>
 
-        {/* Results */}
+        {/* Filters and Results */}
         <section className="py-12">
-          <div className="container mx-auto max-w-2xl">
-            {displayQuery ? (
-              results.length > 0 ? (
-                <div>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {results.length} Ergebnis(se) für "{displayQuery}"
-                  </p>
-                  <div className="space-y-4">
-                    {results.map((result, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                      >
-                         {result.type === 'post' ? (
-                          <Link to={`/${result.data.author}/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
-                            <div className="flex items-center gap-4">
-                              <BookText className="h-5 w-5 text-primary flex-shrink-0" />
-                              <div className="flex-1 min-w-0">
-                                <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.title}</p>
-                                <p className="text-sm text-muted-foreground truncate">{authors[result.data.author].name} • {result.data.historicalDate}</p>
-                              </div>
-                              <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-                            </div>
-                          </Link>
-                        ) : (
-                          <Link to={`/lexicon/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
-                             <div className="flex items-center gap-4">
-                              <BookMarked className="h-5 w-5 text-primary flex-shrink-0" />
-                              <div className="flex-1 min-w-0">
-                                <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.term}</p>
-                                <p className="text-sm text-muted-foreground truncate">{result.data.category}</p>
-                              </div>
-                              <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-                            </div>
-                          </Link>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center py-16">
-                  <p className="text-muted-foreground">
-                    Keine Ergebnisse für "{displayQuery}" gefunden.
-                  </p>
-                </div>
-              )
-            ) : (
-              <div className="text-center py-16">
-                <p className="text-muted-foreground">
-                  Bitte gib einen Suchbegriff ein.
-                </p>
+          <div className="container mx-auto max-w-4xl">
+             {/* Category Filter */}
+             <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-10"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Tags className="h-4 w-4 text-muted-foreground" />
+                <h3 className="text-sm font-medium text-muted-foreground">Nach Kategorie filtern</h3>
               </div>
-            )}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleCategoryChange(null)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                    !activeCategory
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  )}
+                >
+                  Alle
+                </button>
+                {allCategories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={cn(
+                      "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                      activeCategory === cat
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    )}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+
+
+            {/* Results */}
+            <div className='max-w-2xl mx-auto'>
+                {displayQuery ? (
+                results.length > 0 ? (
+                    <div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                        {results.length} Ergebnis(se) gefunden
+                    </p>
+                    <div className="space-y-4">
+                        {results.map((result, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.05 }}
+                        >
+                            {result.type === 'post' ? (
+                            <Link to={`/${result.data.author}/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
+                                <div className="flex items-center gap-4">
+                                <BookText className="h-5 w-5 text-primary flex-shrink-0" />
+                                <div className="flex-1 min-w-0">
+                                    <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.title}</p>
+                                    <p className="text-sm text-muted-foreground truncate">{authors[result.data.author].name} • {result.data.historicalDate}</p>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </Link>
+                            ) : (
+                            <Link to={`/lexicon/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
+                                <div className="flex items-center gap-4">
+                                <BookMarked className="h-5 w-5 text-primary flex-shrink-0" />
+                                <div className="flex-1 min-w-0">
+                                    <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.term}</p>
+                                    <p className="text-sm text-muted-foreground truncate">{result.data.category}</p>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </Link>
+                            )}
+                        </motion.div>
+                        ))}
+                    </div>
+                    </div>
+                ) : (
+                    <div className="text-center py-16">
+                    <p className="text-muted-foreground">
+                        Keine Ergebnisse für "{displayQuery}" gefunden.
+                    </p>
+                    </div>
+                )
+                ) : (
+                <div className="text-center py-16">
+                    <p className="text-muted-foreground">
+                    Bitte gib einen Suchbegriff ein oder wähle eine Kategorie.
+                    </p>
+                </div>
+                )}
+            </div>
           </div>
         </section>
       </main>
