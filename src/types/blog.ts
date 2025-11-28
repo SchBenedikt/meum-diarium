@@ -32,7 +32,7 @@ export interface BlogPost {
   historicalYear: number;
   author: Author;
   tags: string[];
-  readingTime: number;
+  readingTime: number; // Will be kept for now for other components, but recalculated in PostPage
   coverImage?: string;
   content: {
     diary: string;

@@ -16,6 +16,12 @@ import { ShareButton } from '@/components/ShareButton';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import NotFound from './NotFound';
 
+function calculateReadingTime(text: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = text.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+}
+
 function LexiconTerm({ term, definition }: { term: string, definition: string }) {
   return (
     <Tooltip>
@@ -79,6 +85,12 @@ export default function PostPage() {
 
   const post = posts.find((p) => p.slug === slug && p.author === authorId);
   const author = post ? authors[post.author] : null;
+
+  const readingTime = useMemo(() => {
+    if (!post) return 0;
+    const content = perspective === 'diary' ? post.content.diary : post.content.scientific;
+    return calculateReadingTime(content);
+  }, [post, perspective]);
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {
@@ -146,7 +158,7 @@ export default function PostPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
-                    <span>{post.readingTime} Min. Lesezeit</span>
+                    <span>{readingTime} Min. Lesezeit</span>
                   </div>
                 </div>
 
