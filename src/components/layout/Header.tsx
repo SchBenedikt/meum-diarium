@@ -4,7 +4,7 @@ import { AuthorSwitcher } from '@/components/AuthorSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SearchDialog } from '@/components/SearchDialog';
 import { cn } from '@/lib/utils';
-import { X, Search } from 'lucide-react';
+import { X, Search, Scroll } from 'lucide-react';
 import { useAuthor } from '@/context/AuthorContext';
 
 export function Header() {
@@ -34,7 +34,7 @@ export function Header() {
             {/* Logo */}
             <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
               <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-                <span className="text-primary-foreground font-display text-base font-semibold">M</span>
+                <Scroll className="h-4 w-4 text-primary-foreground" />
               </div>
               <div className="hidden sm:block">
                 <span className="font-display text-lg">Meum Diarium</span>
@@ -74,8 +74,8 @@ export function Header() {
                 </kbd>
               </button>
               
-              <ThemeToggle />
               <AuthorSwitcher />
+              <ThemeToggle />
             </div>
           </div>
         </div>
