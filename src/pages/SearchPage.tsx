@@ -1,20 +1,20 @@
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
+
+import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama, X } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama, X, MoreHorizontal } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
-import { cn } from '@/lib/utils';
 import {
   Command,
-  CommandInput,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
@@ -30,47 +30,7 @@ const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'le
 const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort();
 
 const categoryIcons: { [key: string]: React.ElementType } = {
-  'Politik': Landmark,
-  'Militär': Shield,
-  'Gesellschaft': Users,
-  'Recht': Scale,
-  'Philosophie': MessageSquare,
-  'Bürgerkrieg': Shield,
-  'Entscheidung': BrainCircuit,
-  'Gallischer Krieg': Mountain,
-  'Belagerung': Mountain,
-  'Attentat': Skull,
-  'Tod': Skull,
-  'Rede': VenetianMask,
-  'Verschwörung': Drama,
-  'Marcus Antonius': Users,
-  'Seeschlacht': Shield,
-  'Autobiografie': BookOpen,
-  'Vermächtnis': Star,
-  'Frieden': Star,
-  'Prinzipat': Landmark,
-  'Zeit': BookOpen,
-  'Nero': Users,
-  'Geburt': Star,
-  'Rhetorik': VenetianMask,
-  'Abenteuer': Mountain,
-  'Piraten': Skull,
-  'Aufstand': Shield,
-  'Sklaven': Users,
-  'Korruption': Scale,
-  'Bündnis': Users,
-  'Krieg': Shield,
-  'Ingenieurskunst': BrainCircuit,
-  'Britannien': Mountain,
-  'Sieg': Star,
-  'Spruch': MessageSquare,
-  'Pompeius': Users,
-  'Rache': Drama,
-  'Kunst': BookOpen,
-  'Germanien': Mountain,
-  'Niederlage': Skull,
-  'Exil': Mountain,
-  'Ethik': BrainCircuit
+  'Politik': Landmark, 'Militär': Shield, 'Gesellschaft': Users, 'Recht': Scale, 'Philosophie': MessageSquare, 'Bürgerkrieg': Shield, 'Entscheidung': BrainCircuit, 'Gallischer Krieg': Mountain, 'Belagerung': Mountain, 'Attentat': Skull, 'Tod': Skull, 'Rede': VenetianMask, 'Verschwörung': Drama, 'Marcus Antonius': Users, 'Seeschlacht': Shield, 'Autobiografie': BookOpen, 'Vermächtnis': Star, 'Frieden': Star, 'Prinzipat': Landmark, 'Zeit': BookOpen, 'Nero': Users, 'Geburt': Star, 'Rhetorik': VenetianMask, 'Abenteuer': Mountain, 'Piraten': Skull, 'Aufstand': Shield, 'Sklaven': Users, 'Korruption': Scale, 'Bündnis': Users, 'Krieg': Shield, 'Ingenieurskunst': BrainCircuit, 'Britannien': Mountain, 'Sieg': Star, 'Spruch': MessageSquare, 'Pompeius': Users, 'Rache': Drama, 'Kunst': BookOpen, 'Germanien': Mountain, 'Niederlage': Skull, 'Exil': Mountain, 'Ethik': BrainCircuit
 };
 
 const popularCategories = ['Politik', 'Philosophie', 'Bürgerkrieg', 'Gallischer Krieg', 'Rede'];
@@ -104,7 +64,6 @@ export default function SearchPage() {
     } else {
         newParams.delete('q');
     }
-    // Debounce updating URL
     const handler = setTimeout(() => {
         setSearchParams(newParams, { replace: true });
     }, 300);
@@ -131,7 +90,6 @@ export default function SearchPage() {
     let filteredPosts: BlogPost[] = posts;
     let filteredLexicon: LexiconEntry[] = lexicon;
 
-    // Filter by category first
     if (categoryQuery) {
         filteredPosts = filteredPosts.filter(post => 
             post.tags.some(tag => tag.toLowerCase() === categoryQuery)
@@ -141,7 +99,6 @@ export default function SearchPage() {
         );
     }
 
-    // Then filter by search query
     if (searchQuery) {
         filteredPosts = filteredPosts.filter(post => 
           post.title.toLowerCase().includes(searchQuery) ||
@@ -202,25 +159,37 @@ export default function SearchPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-10 flex flex-col sm:flex-row items-center gap-4"
+              className="mb-10"
             >
-              <div className="flex items-center gap-2 self-start">
-                <Tags className="h-4 w-4 text-muted-foreground" />
-                <h3 className="text-sm font-medium text-muted-foreground">Kategorie:</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <Tags className="h-5 w-5 text-muted-foreground" />
+                <h3 className="text-base font-medium text-muted-foreground">Kategorien</h3>
               </div>
               
-              {activeCategory ? (
-                <div className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground">
-                  <span className="font-medium text-sm">{activeCategory}</span>
-                  <button onClick={() => handleCategoryChange(null)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
-                    <X className="h-4 w-4" />
-                  </button>
+              {activeCategory && (
+                 <div className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground mb-4 w-fit">
+                    <span className="font-medium text-sm">{activeCategory}</span>
+                    <button onClick={() => handleCategoryChange(null)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
+                        <X className="h-4 w-4" />
+                    </button>
                 </div>
-              ) : (
-                <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
+              )}
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {popularCategories.map(cat => {
+                    const Icon = categoryIcons[cat] || BookMarked;
+                    return (
+                        <button key={cat} onClick={() => handleCategoryChange(cat)} className="group flex flex-col items-start justify-between p-4 rounded-xl bg-card border border-border/50 hover:border-primary transition-all text-left h-24">
+                           <Icon className="h-6 w-6 text-primary" />
+                           <span className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">{cat}</span>
+                        </button>
+                    )
+                })}
+                 <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                   <PopoverTrigger asChild>
-                    <button className="w-full sm:w-auto text-left justify-start flex-1 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
-                      Kategorie auswählen...
+                     <button className="group flex flex-col items-start justify-between p-4 rounded-xl bg-card border border-border/50 hover:border-primary transition-all text-left h-24">
+                       <MoreHorizontal className="h-6 w-6 text-primary" />
+                       <span className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">Alle Kategorien</span>
                     </button>
                   </PopoverTrigger>
                   <PopoverContent className="w-[300px] p-0">
@@ -228,14 +197,7 @@ export default function SearchPage() {
                       <CommandInput placeholder="Kategorie suchen..." />
                       <CommandList>
                         <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
-                        <CommandGroup heading="Beliebte Kategorien">
-                          {popularCategories.map((cat) => (
-                            <CommandItem key={cat} onSelect={() => handleCategoryChange(cat)}>
-                              {cat}
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                        <CommandGroup heading="Alle Kategorien">
+                        <CommandGroup>
                           {allCategories.map((cat) => (
                              <CommandItem key={cat} onSelect={() => handleCategoryChange(cat)}>
                               {cat}
@@ -246,7 +208,8 @@ export default function SearchPage() {
                     </Command>
                   </PopoverContent>
                 </Popover>
-              )}
+              </div>
+
             </motion.div>
 
             {/* Results */}
