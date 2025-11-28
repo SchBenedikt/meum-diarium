@@ -1,17 +1,23 @@
 import { useState } from 'react';
-import { Share2, Copy, Check, Twitter, Facebook, Linkedin, Mail, Link2 } from 'lucide-react';
+import { Share2, Copy, Check, Facebook, Linkedin, Mail, Link2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 
-// Custom Icons for WhatsApp and Telegram
+// Custom Icons for WhatsApp, Telegram and X
 const WhatsAppIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
 );
 
 const TelegramIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"></path></svg>
+);
+
+const XIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
 );
 
 
@@ -31,10 +37,10 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
 
   const shareLinks = [
     {
-      name: 'Twitter',
-      icon: Twitter,
-      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(defaultShareText)}`,
-      color: 'hover:bg-[#1DA1F2]/10 hover:text-[#1DA1F2]'
+      name: 'X',
+      icon: XIcon,
+      url: `https://x.com/intent/tweet?text=${encodeURIComponent(defaultShareText)}`,
+      color: 'hover:bg-foreground/10 hover:text-foreground'
     },
     {
       name: 'Facebook',

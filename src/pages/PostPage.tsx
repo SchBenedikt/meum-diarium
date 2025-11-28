@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams, useSearchParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useSearchParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
@@ -133,7 +133,7 @@ export default function PostPage() {
   }, [authorId, setCurrentAuthor]);
 
   useEffect(() => {
-    setSearchParams({ perspective });
+    setSearchParams({ perspective }, { replace: true });
   }, [perspective, setSearchParams]);
 
   const formattedContent = useMemo(() => {
@@ -145,6 +145,8 @@ export default function PostPage() {
   if (!post || !author) {
     return <NotFound />;
   }
+  
+  const authorLastName = author.name.includes(' ') ? author.name.split(' ').pop() : author.name;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -156,7 +158,7 @@ export default function PostPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zum Diarium von {author.name.split(' ').pop()}
+            Zurück zum Diarium von {authorLastName}
           </Link>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
@@ -193,7 +195,7 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-20">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-30">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                    <ShareButton 
                     title={post.title}
