@@ -1,6 +1,35 @@
 import { Work } from '@/types/blog';
 
 export const works: Record<string, Work> = {
+  'de-bello-gallico': {
+    title: 'De Bello Gallico',
+    author: 'caesar',
+    year: 'ca. 58-49 v. Chr.',
+    summary: 'Caesars berühmter Bericht über seine neun Jahre dauernden Feldzüge zur Eroberung Galliens. Es ist nicht nur eine militärische Chronik, sondern auch ein Meisterwerk politischer Selbstdarstellung, das Caesars Erfolge dem römischen Volk präsentieren sollte. Das Werk bietet detaillierte ethnografische Einblicke in die gallischen und germanischen Stämme.',
+    takeaway: 'Römische Disziplin und strategisches Genie können jede Barbarenarmee besiegen. Gallien ist befriedet und nun Teil des Römischen Reiches.',
+    structure: [
+      { title: 'Buch 1', content: 'Krieg gegen die Helvetier und den Germanenfürsten Ariovist.' },
+      { title: 'Buch 2', content: 'Unterwerfung der belgischen Stämme.' },
+      { title: 'Buch 3', content: 'Kämpfe gegen die Veneter und andere Küstenvölker.' },
+      { title: 'Buch 4', content: 'Erste Rheinüberquerung und erste Expedition nach Britannien.' },
+      { title: 'Buch 5', content: 'Zweite Britannien-Expedition und Aufstände in Gallien.' },
+      { title: 'Buch 6', content: 'Zweite Rheinüberquerung und Beschreibung der Sitten der Gallier und Germanen.' },
+      { title: 'Buch 7', content: 'Der große gallische Aufstand unter Vercingetorix und die Belagerung von Alesia.' },
+      { title: 'Buch 8', content: 'Letzte Operationen und die vollständige Befriedung Galliens (vermutlich von Aulus Hirtius geschrieben).' },
+    ],
+  },
+  'de-bello-civili': {
+    title: 'De Bello Civili',
+    author: 'caesar',
+    year: 'ca. 48-44 v. Chr.',
+    summary: 'Caesars Rechtfertigungsschrift über den Bürgerkrieg gegen Gnaeus Pompeius Magnus und die Senatsmehrheit. Das Werk beginnt mit den Ereignissen, die zur Überschreitung des Rubikons führten, und schildert die Feldzüge in Italien, Spanien, und Griechenland bis zur Schlacht von Pharsalos und Pompeius\' Flucht nach Ägypten.',
+    takeaway: 'Ich wurde vom Senat und von Pompeius verraten und war gezwungen, zu den Waffen zu greifen, um meine Würde (dignitas) zu verteidigen.',
+    structure: [
+      { title: 'Buch 1', content: 'Verhandlungen vor dem Krieg, Überschreitung des Rubikons und Feldzug in Italien und Spanien.' },
+      { title: 'Buch 2', content: 'Belagerung von Massilia (Marseille) und Kämpfe in Afrika.' },
+      { title: 'Buch 3', content: 'Feldzug in Griechenland, die Niederlage bei Dyrrhachium und der entscheidende Sieg bei Pharsalos.' },
+    ],
+  },
   'de-re-publica': {
     title: 'De Re Publica',
     author: 'cicero',

@@ -1,11 +1,10 @@
-
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags, X } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
@@ -30,6 +29,19 @@ const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'le
 
 const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort();
 
+const categoryIcons: Record<string, React.ElementType> = {
+  'Politik': Landmark,
+  'Recht': Scale,
+  'Militär': Sword,
+  'Philosophie': Brain,
+  'Gesellschaft': Users,
+  'Rede': BookHeart,
+  'Drama': Drama,
+  'Bürgerkrieg': ChevronsRight,
+  // Add more mappings here
+};
+
+const topCategories = ['Politik', 'Philosophie', 'Militär', 'Bürgerkrieg', 'Gesellschaft'];
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -161,11 +173,39 @@ export default function SearchPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-10"
             >
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <h3 className="text-base font-medium text-muted-foreground flex items-center gap-2">
-                  <Tags className="h-5 w-5" />
-                  Nach Kategorie filtern
-                </h3>
+               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-6">
+                {topCategories.map(cat => {
+                  const Icon = categoryIcons[cat] || BookMarked;
+                  const isActive = activeCategories.includes(cat);
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => toggleCategory(cat)}
+                      className={cn(
+                        'group flex flex-col items-center justify-center p-4 rounded-xl border-2 text-center transition-all',
+                        isActive
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border bg-card hover:border-border hover:bg-secondary/50'
+                      )}
+                    >
+                      <Icon className={cn('h-6 w-6 mb-2', isActive ? 'text-primary' : 'text-muted-foreground')} />
+                      <span className={cn('text-sm font-medium', isActive ? 'text-primary' : 'text-foreground')}>{cat}</span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center gap-2">
+                  {activeCategories.map(cat => (
+                    <div key={cat} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-primary/20 text-primary w-fit">
+                      <span className="font-medium text-sm">{cat}</span>
+                      <button onClick={() => toggleCategory(cat)} className="h-5 w-5 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center text-primary/80 hover:text-primary">
+                          <X className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
                 <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                   <PopoverTrigger asChild>
                      <Button variant="outline" size="sm">Alle Kategorien</Button>
@@ -189,17 +229,6 @@ export default function SearchPage() {
                     </Command>
                   </PopoverContent>
                 </Popover>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {activeCategories.map(cat => (
-                  <div key={cat} className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground w-fit">
-                    <span className="font-medium text-sm">{cat}</span>
-                    <button onClick={() => toggleCategory(cat)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
-                        <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
               </div>
             </motion.div>
 
