@@ -6,7 +6,7 @@
 
 @layer base {
   :root, .theme-default {
-    /* Modern Light Theme - Antique Red */
+    /* Modern Light Theme - Default */
     --background: 40 20% 98%;
     --foreground: 30 10% 12%;
 
@@ -16,7 +16,6 @@
     --popover: 0 0% 100%;
     --popover-foreground: 30 10% 12%;
 
-    /* Default accent - Antique Wine Red */
     --primary: 0 50% 45%;
     --primary-foreground: 0 0% 100%;
 
@@ -38,25 +37,15 @@
 
     --radius: 0.75rem;
 
-    /* Author Colors - Unique Contrast */
+    /* Author Colors */
     --author-caesar: 25 95% 53%;
     --author-cicero: 220 85% 55%;
     --author-augustus: 280 75% 55%;
     --author-seneca: 160 70% 40%;
-
-    /* Sidebar */
-    --sidebar-background: 40 15% 96%;
-    --sidebar-foreground: 30 10% 20%;
-    --sidebar-primary: 0 50% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 40 20% 93%;
-    --sidebar-accent-foreground: 30 15% 15%;
-    --sidebar-border: 40 15% 90%;
-    --sidebar-ring: 0 50% 45%;
   }
 
   .dark {
-    /* Modern Dark Theme - Deep Cinematic */
+    /* Modern Dark Theme - Default */
     --background: 240 10% 6%;
     --foreground: 40 15% 95%;
 
@@ -82,16 +71,11 @@
     --input: 240 10% 18%;
     --ring: 0 60% 55%;
 
-    /* Dark theme author colors - Brighter for contrast */
+    /* Dark theme author colors */
     --author-caesar: 30 100% 60%;
     --author-cicero: 220 100% 65%;
     --author-augustus: 280 90% 65%;
     --author-seneca: 160 80% 50%;
-
-    --sidebar-background: 240 10% 8%;
-    --sidebar-foreground: 40 15% 90%;
-    --sidebar-primary: 0 60% 55%;
-    --sidebar-border: 240 10% 15%;
   }
 
   /* Author Theme Overrides */
@@ -99,24 +83,68 @@
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
+    --background: 39 82% 96%;
+    --card: 38 100% 98%;
+    --secondary: 39 70% 92%;
+  }
+  .dark.theme-caesar {
+    --primary: var(--author-caesar);
+    --accent: var(--author-caesar);
+    --ring: var(--author-caesar);
+    --background: 30 20% 8%;
+    --card: 30 20% 12%;
+    --secondary: 30 20% 16%;
   }
 
   .theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
+    --background: 221 83% 96%;
+    --card: 220 100% 98%;
+    --secondary: 221 70% 92%;
+  }
+  .dark.theme-cicero {
+    --primary: var(--author-cicero);
+    --accent: var(--author-cicero);
+    --ring: var(--author-cicero);
+    --background: 220 20% 8%;
+    --card: 220 20% 12%;
+    --secondary: 220 20% 16%;
   }
 
   .theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
+    --background: 281 83% 96%;
+    --card: 280 100% 98%;
+    --secondary: 281 70% 92%;
+  }
+  .dark.theme-augustus {
+    --primary: var(--author-augustus);
+    --accent: var(--author-augustus);
+    --ring: var(--author-augustus);
+    --background: 280 15% 8%;
+    --card: 280 15% 12%;
+    --secondary: 280 15% 16%;
   }
 
   .theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
+    --background: 159 43% 96%;
+    --card: 160 60% 98%;
+    --secondary: 159 50% 92%;
+  }
+  .dark.theme-seneca {
+    --primary: var(--author-seneca);
+    --accent: var(--author-seneca);
+    --ring: var(--author-seneca);
+    --background: 160 15% 8%;
+    --card: 160 15% 12%;
+    --secondary: 160 15% 16%;
   }
 }
 
@@ -130,7 +158,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
   }
 
   h1, h2, h3, h4, h5, h6 {

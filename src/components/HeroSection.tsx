@@ -1,5 +1,4 @@
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -82,17 +81,6 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs text-muted-foreground">Mehr entdecken</span>
-        <ArrowDown className="h-4 w-4 text-muted-foreground animate-bounce" />
-      </motion.div>
     </section>
   );
 }
