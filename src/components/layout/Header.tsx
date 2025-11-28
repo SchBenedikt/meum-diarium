@@ -19,7 +19,6 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '/', label: 'Autoren' },
     { href: '/timeline', label: 'Zeitstrahl' },
     { href: '/lexicon', label: 'Lexikon' },
     { href: '/about', label: 'Über' },
@@ -29,8 +28,7 @@ export function Header() {
     setCurrentAuthor(null);
   }
 
-  const handleLinkClick = (href: string) => {
-    if (href === '/') setCurrentAuthor(null);
+  const handleLinkClick = () => {
     setMobileMenuOpen(false);
   }
 
@@ -55,7 +53,6 @@ export function Header() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => item.href === '/' && setCurrentAuthor(null)}
                   className={cn(
                     "px-4 py-2 text-sm font-medium rounded-lg transition-all",
                     location.pathname === item.href
@@ -99,7 +96,7 @@ export function Header() {
                   <SheetContent side="right" className="w-[80vw] max-w-sm">
                     <div className="flex flex-col h-full">
                        <div className="flex items-center justify-between pb-6 border-b">
-                         <Link to="/" onClick={() => handleLinkClick('/')} className="flex items-center gap-3 group">
+                         <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
                            <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
                               <Scroll className="h-4 w-4 text-primary-foreground" />
                             </div>
@@ -118,7 +115,7 @@ export function Header() {
                            <Link
                              key={item.href}
                              to={item.href}
-                             onClick={() => handleLinkClick(item.href)}
+                             onClick={() => handleLinkClick()}
                              className={cn(
                                "px-4 py-3 text-base font-medium rounded-lg transition-all",
                                location.pathname === item.href

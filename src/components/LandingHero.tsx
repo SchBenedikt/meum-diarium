@@ -36,10 +36,9 @@ export function LandingHero() {
       {/* Main Links */}
       <section className="py-16 bg-background">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             {[
               { to: "/timeline", icon: Clock, title: "Interaktiver Zeitstrahl", desc: "Verfolge die wichtigsten Ereignisse." },
-              { to: "#authors", icon: Users, title: "Stimmen der Antike", desc: "Wähle einen Autor und tauche ein." },
               { to: "/lexicon", icon: BookMarked, title: "Umfassendes Lexikon", desc: "Nachschlagewerk für Begriffe." },
             ].map((item, index) => (
               <motion.div
@@ -62,6 +61,10 @@ export function LandingHero() {
         </div>
       </section>
       
+      <div id="authors">
+        <AuthorGrid />
+      </div>
+      
       <FeaturedPost />
 
       {/* Quote of the Day */}
@@ -72,10 +75,6 @@ export function LandingHero() {
       </section>
 
       <ReadingStats />
-      
-      <div id="authors">
-        <AuthorGrid />
-      </div>
     </div>
   );
 }
