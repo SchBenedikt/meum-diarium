@@ -57,6 +57,16 @@ export interface TimelineEvent {
   type: 'birth' | 'death' | 'event' | 'work';
 }
 
+export interface LexiconEntry {
+  term: string;
+  slug: string;
+  definition: string;
+  category: string;
+  etymology?: string;
+  relatedTerms?: string[];
+  variants?: string[];
+}
+
 export interface Work {
   title: string;
   author: Author;

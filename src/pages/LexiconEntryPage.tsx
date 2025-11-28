@@ -40,16 +40,16 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
 }
 
 function formatContent(content: string, currentSlug?: string): React.ReactNode[] {
-    const lexiconTerms = lexicon
-      .filter(entry => entry.slug !== currentSlug) // Exclude the current term to prevent self-linking
-      .map(entry => entry.term)
-      .sort((a, b) => b.length - a.length);
-      
-    if (lexiconTerms.length === 0) {
+    const allLinkableTerms = lexicon
+        .filter(entry => entry.slug !== currentSlug)
+        .flatMap(entry => [entry.term, ...(entry.variants || [])])
+        .sort((a, b) => b.length - a.length);
+
+    if (allLinkableTerms.length === 0) {
       return [<p key="line-0">{content}</p>];
     }
       
-    const regex = new RegExp(`\\b(${lexiconTerms.join('|')})\\b`, 'gi');
+    const regex = new RegExp(`\\b(${allLinkableTerms.join('|')})\\b`, 'gi');
 
     return content.split(/(\n)/).map((line, lineIndex) => {
         if (line === '\n') {
@@ -68,7 +68,10 @@ function formatContent(content: string, currentSlug?: string): React.ReactNode[]
             }
 
             const term = match[0];
-            const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
+            const lexiconEntry = lexicon.find(entry => 
+                entry.term.toLowerCase() === term.toLowerCase() ||
+                (entry.variants && entry.variants.map(v => v.toLowerCase()).includes(term.toLowerCase()))
+            );
 
             if (lexiconEntry) {
                 parts.push(
@@ -122,12 +125,14 @@ export default function LexiconEntryPage() {
 
   const relatedPosts = useMemo(() => {
     if (!entry) return [];
-    const searchTerm = entry.term.toLowerCase();
+    const searchTerms = [entry.term.toLowerCase(), ...(entry.variants?.map(v => v.toLowerCase()) || [])];
     return posts.filter(post => 
-      post.title.toLowerCase().includes(searchTerm) ||
-      post.excerpt.toLowerCase().includes(searchTerm) ||
-      post.content.diary.toLowerCase().includes(searchTerm) ||
-      post.content.scientific.toLowerCase().includes(searchTerm)
+      searchTerms.some(term => 
+        post.title.toLowerCase().includes(term) ||
+        post.excerpt.toLowerCase().includes(term) ||
+        post.content.diary.toLowerCase().includes(term) ||
+        post.content.scientific.toLowerCase().includes(term)
+      )
     ).slice(0, 5);
   }, [entry]);
 

@@ -51,8 +51,11 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
 
 
 function formatContent(content: string): React.ReactNode[] {
-    const lexiconTerms = lexicon.map(entry => entry.term).sort((a, b) => b.length - a.length);
-    const regex = new RegExp(`\\b(${lexiconTerms.join('|')})\\b`, 'gi');
+    const allLinkableTerms = lexicon
+        .flatMap(entry => [entry.term, ...(entry.variants || [])])
+        .sort((a, b) => b.length - a.length);
+
+    const regex = new RegExp(`\\b(${allLinkableTerms.join('|')})\\b`, 'gi');
 
     return content.split(/(\n\n)/).map((paragraph, pIndex) => {
       const parts: (string | React.ReactNode)[] = [];
@@ -85,7 +88,10 @@ function formatContent(content: string): React.ReactNode[] {
         }
 
         const term = result[0];
-        const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
+        const lexiconEntry = lexicon.find(entry => 
+            entry.term.toLowerCase() === term.toLowerCase() ||
+            (entry.variants && entry.variants.map(v => v.toLowerCase()).includes(term.toLowerCase()))
+        );
         
         if (lexiconEntry) {
           parts.push(<LexiconTerm key={result.index} term={term} definition={lexiconEntry.definition} slug={lexiconEntry.slug} />);
