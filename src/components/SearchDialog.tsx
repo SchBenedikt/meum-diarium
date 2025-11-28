@@ -1,28 +1,42 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Search, X, Clock, User, Tag, ArrowRight } from 'lucide-react';
+import { Search, X, Clock, User, BookMarked, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
+import { lexicon, LexiconEntry } from '@/data/lexicon';
+import { BlogPost } from '@/types/blog';
 
 interface SearchDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+type SearchResult = 
+  | { type: 'post', data: BlogPost }
+  | { type: 'lexicon', data: LexiconEntry };
+
 export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [query, setQuery] = useState('');
 
-  const results = useMemo(() => {
+  const results: SearchResult[] = useMemo(() => {
     if (!query.trim()) return [];
     
     const searchTerm = query.toLowerCase();
-    return posts.filter(post => 
+
+    const postResults: SearchResult[] = posts.filter(post => 
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
       post.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
       authors[post.author].name.toLowerCase().includes(searchTerm)
-    ).slice(0, 6);
+    ).map(post => ({ type: 'post', data: post }));
+
+    const lexiconResults: SearchResult[] = lexicon.filter(entry =>
+      entry.term.toLowerCase().includes(searchTerm) ||
+      entry.definition.toLowerCase().includes(searchTerm)
+    ).map(entry => ({ type: 'lexicon', data: entry }));
+
+    return [...postResults, ...lexiconResults].slice(0, 8);
   }, [query]);
 
   useEffect(() => {
@@ -48,11 +62,69 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  const authorColorClasses: Record<string, string> = {
-    caesar: 'bg-author-caesar',
-    cicero: 'bg-author-cicero',
-    augustus: 'bg-author-augustus',
-    seneca: 'bg-author-seneca',
+  const renderResultItem = (result: SearchResult) => {
+    if (result.type === 'post') {
+      const post = result.data as BlogPost;
+      return (
+        <Link
+          key={post.id}
+          to={`/post/${post.slug}`}
+          onClick={onClose}
+          className="flex items-start gap-4 p-3 rounded-xl hover:bg-secondary transition-colors group"
+        >
+          <img 
+            src={post.coverImage} 
+            alt={post.title} 
+            className="h-16 w-16 rounded-lg object-cover flex-shrink-0"
+          />
+          <div className="flex-1 min-w-0">
+            <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
+              {post.title}
+            </h4>
+            <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
+              {post.excerpt}
+            </p>
+            <div className="flex items-center gap-3 mt-2">
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                <User className="h-3 w-3" />
+                {authors[post.author].name}
+              </span>
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Clock className="h-3 w-3" />
+                {post.readingTime} Min.
+              </span>
+            </div>
+          </div>
+          <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-3" />
+        </Link>
+      );
+    }
+
+    if (result.type === 'lexicon') {
+      const entry = result.data as LexiconEntry;
+      return (
+        <Link
+          key={entry.slug}
+          to={`/lexicon/${entry.slug}`}
+          onClick={onClose}
+          className="flex items-center gap-4 p-3 rounded-xl hover:bg-secondary transition-colors group"
+        >
+          <div className="h-16 w-16 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <BookMarked className="h-6 w-6 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
+              {entry.term}
+            </h4>
+            <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+              {entry.definition}
+            </p>
+          </div>
+          <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        </Link>
+      );
+    }
+    return null;
   };
 
   return (
@@ -83,7 +155,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   <Search className="h-5 w-5 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Suche nach Einträgen, Autoren, Tags..."
+                    placeholder="Suche nach Einträgen, Autoren, Lexikon..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     autoFocus
@@ -108,10 +180,10 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     <div className="p-8 text-center">
                       <Search className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
                       <p className="text-muted-foreground">
-                        Beginne mit der Eingabe, um Tagebucheinträge zu finden
+                        Beginne mit der Eingabe, um Beiträge und Lexikon-Einträge zu finden
                       </p>
                       <div className="flex flex-wrap justify-center gap-2 mt-4">
-                        {['Caesar', 'Gallien', 'Philosophie', 'Senat'].map(term => (
+                        {['Caesar', 'Republik', 'Philosophie', 'Senat'].map(term => (
                           <button
                             key={term}
                             onClick={() => setQuery(term)}
@@ -130,39 +202,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     </div>
                   ) : (
                     <div className="p-2">
-                      {results.map((post) => (
-                        <Link
-                          key={post.id}
-                          to={`/post/${post.slug}`}
-                          onClick={onClose}
-                          className="flex items-start gap-4 p-3 rounded-xl hover:bg-secondary transition-colors group"
-                        >
-                          <img 
-                            src={post.coverImage} 
-                            alt={post.title} 
-                            className="h-16 w-16 rounded-lg object-cover flex-shrink-0"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h4>
-                            <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
-                              {post.excerpt}
-                            </p>
-                            <div className="flex items-center gap-3 mt-2">
-                              <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <User className="h-3 w-3" />
-                                {authors[post.author].name}
-                              </span>
-                              <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <Clock className="h-3 w-3" />
-                                {post.readingTime} Min.
-                              </span>
-                            </div>
-                          </div>
-                          <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-3" />
-                        </Link>
-                      ))}
+                      {results.map((result) => renderResultItem(result))}
                     </div>
                   )}
                 </div>
