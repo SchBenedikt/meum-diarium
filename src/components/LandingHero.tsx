@@ -1,5 +1,3 @@
-import { authors } from '@/data/authors';
-import { useAuthor } from '@/context/AuthorContext';
 import { BookMarked, Clock, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -9,8 +7,6 @@ import { ReadingStats } from './ReadingStats';
 import { AuthorGrid } from './AuthorGrid';
 
 export function LandingHero() {
-  const { setCurrentAuthor } = useAuthor();
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -76,64 +72,10 @@ export function LandingHero() {
       </section>
 
       <ReadingStats />
-
-      {/* Author Selection */}
-      <section id="authors" className="py-24 bg-background">
-        <div className="container mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-14"
-          >
-            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Stimmen der Antike
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl mb-4">
-              Wähle einen Autor
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Jeder Autor bietet eine einzigartige Perspektive auf die turbulenten Zeiten des antiken Roms.
-            </p>
-          </motion.div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {Object.values(authors).map((author, index) => (
-              <motion.div
-                key={author.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Link
-                  to={`/${author.id}`}
-                  onClick={() => setCurrentAuthor(author.id)}
-                  className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 block"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={author.heroImage}
-                      alt={author.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display text-xl font-medium mb-1">
-                      {author.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {author.title}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
+      <div id="authors">
+        <AuthorGrid />
+      </div>
     </div>
   );
 }
