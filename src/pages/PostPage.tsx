@@ -1,114 +1,16 @@
-
 import React, { useMemo } from 'react';
-import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { lexicon } from '@/data/lexicon';
 import { Author } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, Clock, BookOpen } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { ShareButton } from '@/components/ShareButton';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import NotFound from './NotFound';
-
-function calculateReadingTime(text: string): number {
-  const wordsPerMinute = 200;
-  const wordCount = text.split(/\s+/).length;
-  const time = Math.ceil(wordCount / wordsPerMinute);
-  return time > 0 ? time : 1;
-}
-
-function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
-  const location = useLocation();
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Link 
-          to={`/lexicon/${slug}`} 
-          state={{ from: location.pathname + location.search }}
-          className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer"
-        >
-          {term}
-        </Link>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-xs">
-        <div className="p-2">
-          <h4 className="font-bold mb-2 flex items-center gap-2">
-            <BookOpen className="h-4 w-4" />
-            Lexikon
-          </h4>
-          <p className="text-sm">{definition}</p>
-        </div>
-      </TooltipContent>
-    </Tooltip>
-  );
-}
-
-
-function formatContent(content: string): React.ReactNode[] {
-    const allLinkableTerms = lexicon
-        .flatMap(entry => [entry.term, ...(entry.variants || [])])
-        .sort((a, b) => b.length - a.length);
-
-    const regex = new RegExp(`\\b(${allLinkableTerms.join('|')})\\b`, 'gi');
-
-    return content.split(/(\n\n)/).map((paragraph, pIndex) => {
-      const parts: (string | React.ReactNode)[] = [];
-      let lastIndex = 0;
-
-      if (paragraph.trim() === '') return null;
-
-      // Basic markdown for bold and italic
-      let htmlParagraph = paragraph
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
-      
-      // Handle headings and blockquotes that should take up the whole paragraph
-      if (htmlParagraph.match(/^#{2,3}\s/)) {
-        const level = htmlParagraph.startsWith('###') ? 3 : 2;
-        const text = htmlParagraph.replace(/^#{2,3}\s/, '');
-        return React.createElement(`h${level}`, { key: pIndex, dangerouslySetInnerHTML: { __html: text } });
-      }
-      if (htmlParagraph.match(/^>\s/)) {
-        const text = htmlParagraph.replace(/^>\s/, '');
-        return <blockquote key={pIndex}><p dangerouslySetInnerHTML={{ __html: text }} /></blockquote>;
-      }
-      
-
-      let tempParagraph = htmlParagraph;
-      let result;
-      while ((result = regex.exec(tempParagraph)) !== null) {
-        if (result.index > lastIndex) {
-          parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex, result.index) }}/>);
-        }
-
-        const term = result[0];
-        const lexiconEntry = lexicon.find(entry => 
-            entry.term.toLowerCase() === term.toLowerCase() ||
-            (entry.variants && entry.variants.map(v => v.toLowerCase()).includes(term.toLowerCase()))
-        );
-        
-        if (lexiconEntry) {
-          parts.push(<LexiconTerm key={result.index} term={term} definition={lexiconEntry.definition} slug={lexiconEntry.slug} />);
-        } else {
-          parts.push(<span key={result.index} dangerouslySetInnerHTML={{ __html: term }} />);
-        }
-        
-        lastIndex = result.index + term.length;
-      }
-
-      if (lastIndex < tempParagraph.length) {
-        parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex) }}/>);
-      }
-
-      return <p key={pIndex}>{parts}</p>;
-    }).filter(Boolean);
-}
-
+import { formatContent } from '@/lib/content-formatter';
 
 export default function PostPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
@@ -117,11 +19,7 @@ export default function PostPage() {
   const post = posts.find((p) => p.slug === slug && p.author === authorId);
   const author = post ? authors[post.author] : null;
 
-  const readingTime = useMemo(() => {
-    if (!post) return 0;
-    const content = post.content.diary;
-    return calculateReadingTime(content);
-  }, [post]);
+  const readingTime = post ? post.readingTime : 0;
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {
@@ -144,7 +42,7 @@ export default function PostPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pt-28 pb-12">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-[1fr_320px] gap-12">
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             {/* Main Content */}
             <article>
               {/* Header */}
@@ -197,7 +95,7 @@ export default function PostPage() {
             </article>
 
             {/* Sidebar */}
-            <aside className="hidden md:block">
+            <aside className="hidden lg:block">
               <div className="sticky top-28">
                 <BlogSidebar post={post} />
               </div>

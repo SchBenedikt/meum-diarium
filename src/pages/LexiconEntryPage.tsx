@@ -1,109 +1,18 @@
-
 import React, { useMemo, useEffect } from 'react';
-import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
-import { ArrowLeft, Newspaper, BookOpen } from 'lucide-react';
+import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-
-function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
-  const location = useLocation();
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Link 
-          to={`/lexicon/${slug}`} 
-          state={{ from: location.pathname + location.search }}
-          className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer"
-        >
-          {term}
-        </Link>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-xs">
-        <div className="p-2">
-          <h4 className="font-bold mb-2 flex items-center gap-2">
-            <BookOpen className="h-4 w-4" />
-            Lexikon
-          </h4>
-          <p className="text-sm">{definition}</p>
-        </div>
-      </TooltipContent>
-    </Tooltip>
-  );
-}
-
-function formatContent(content: string, currentSlug?: string): React.ReactNode[] {
-    const allLinkableTerms = lexicon
-        .filter(entry => entry.slug !== currentSlug)
-        .flatMap(entry => [entry.term, ...(entry.variants || [])])
-        .sort((a, b) => b.length - a.length);
-
-    if (allLinkableTerms.length === 0) {
-      return [<p key="line-0">{content}</p>];
-    }
-      
-    const regex = new RegExp(`\\b(${allLinkableTerms.join('|')})\\b`, 'gi');
-
-    return content.split(/(\n)/).map((line, lineIndex) => {
-        if (line === '\n') {
-            return <br key={lineIndex} />;
-        }
-        
-        let processedLine = line;
-
-        const parts: (string | React.ReactNode)[] = [];
-        let lastIndex = 0;
-        let match;
-
-        while ((match = regex.exec(processedLine)) !== null) {
-            if (match.index > lastIndex) {
-                parts.push(processedLine.substring(lastIndex, match.index));
-            }
-
-            const term = match[0];
-            const lexiconEntry = lexicon.find(entry => 
-                entry.term.toLowerCase() === term.toLowerCase() ||
-                (entry.variants && entry.variants.map(v => v.toLowerCase()).includes(term.toLowerCase()))
-            );
-
-            if (lexiconEntry) {
-                parts.push(
-                    <LexiconTerm
-                        key={`${lineIndex}-${match.index}`}
-                        term={term}
-                        definition={lexiconEntry.definition}
-                        slug={lexiconEntry.slug}
-                    />
-                );
-            } else {
-                parts.push(term);
-            }
-
-            lastIndex = match.index + term.length;
-        }
-
-        if (lastIndex < processedLine.length) {
-            parts.push(processedLine.substring(lastIndex));
-        }
-
-        if (line.trim() !== '') {
-            return React.createElement('p', { key: lineIndex }, ...parts);
-        }
-
-        return null;
-    }).filter(Boolean);
-}
+import { formatContent } from '@/lib/content-formatter';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
-  const location = useLocation();
   const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
 
@@ -112,14 +21,9 @@ export default function LexiconEntryPage() {
   }, [setCurrentAuthor]);
 
   const entry = lexicon.find(e => e.slug === slug);
-  const fromPost = location.state?.from as string;
-
+  
   const handleBackClick = () => {
-    if (fromPost) {
-      navigate(fromPost);
-    } else {
-      navigate('/lexicon');
-    }
+    navigate('/lexicon');
   };
 
 
@@ -154,7 +58,7 @@ export default function LexiconEntryPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            {fromPost ? 'Zurück zum Artikel' : 'Zurück zum Lexikon'}
+            Zurück zum Lexikon
           </button>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
