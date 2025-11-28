@@ -8,6 +8,7 @@ import PostPage from "./pages/PostPage";
 import AboutPage from "./pages/AboutPage";
 import TimelinePage from "./pages/TimelinePage";
 import LexiconPage from "./pages/LexiconPage";
+import LexiconEntryPage from "./pages/LexiconEntryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/timeline" element={<TimelinePage />} />
             <Route path="/lexicon" element={<LexiconPage />} />
+            <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -5,36 +5,40 @@ export function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check initial theme
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDark(e.matches);
+      if (e.matches) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    };
     
-    if (newIsDark) {
+    // Set initial theme
+    setIsDark(mediaQuery.matches);
+    if (mediaQuery.matches) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
     }
-  };
 
+    mediaQuery.addEventListener('change', handleChange);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  // The button is no longer needed for manual toggling, but we can keep it as a visual indicator or for future use.
+  // For now, let's just show an icon representing the current theme without toggle functionality.
   return (
-    <button
-      onClick={toggleTheme}
-      className="h-10 w-10 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-      aria-label={isDark ? 'Helles Design aktivieren' : 'Dunkles Design aktivieren'}
+    <div
+      className="h-10 w-10 rounded-lg flex items-center justify-center text-muted-foreground bg-secondary/50"
+      aria-label={isDark ? 'Dunkles Design aktiv' : 'Helles Design aktiv'}
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-    </button>
+      {isDark ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+    </div>
   );
 }

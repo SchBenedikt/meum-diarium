@@ -3,10 +3,10 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon } from '@/data/lexicon';
-import { BookMarked, Search } from 'lucide-react';
+import { BookMarked, Search, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 export default function LexiconPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -116,34 +116,33 @@ export default function LexiconPage() {
 
             {/* Lexicon List */}
             {Object.keys(groupedLexicon).length > 0 ? (
-              Object.keys(groupedLexicon).map((letter, index) => (
-                <motion.div
-                  key={letter}
-                  id={`letter-${letter}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="mb-8"
-                >
-                  <h2 className="font-display text-2xl font-bold text-primary mb-4 pb-2 border-b-2 border-primary/20">
-                    {letter}
-                  </h2>
-                  <Accordion type="multiple" className="space-y-2">
-                    {groupedLexicon[letter].map(entry => (
-                       <AccordionItem value={entry.slug} key={entry.slug} className="bg-card border-none rounded-xl card-elevated !p-0">
-                        <AccordionTrigger className="p-4 sm:p-5 font-display text-lg hover:no-underline">
-                          {entry.term}
-                        </AccordionTrigger>
-                        <AccordionContent className="px-4 sm:px-5 pb-5">
-                          <p className="text-muted-foreground leading-relaxed">
-                            {entry.definition}
-                          </p>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </motion.div>
-              ))
+              <div className="space-y-8">
+                {Object.keys(groupedLexicon).map((letter, index) => (
+                  <motion.div
+                    key={letter}
+                    id={`letter-${letter}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                  >
+                    <h2 className="font-display text-2xl font-bold text-primary mb-4 pb-2 border-b-2 border-primary/20">
+                      {letter}
+                    </h2>
+                    <div className="grid gap-2">
+                      {groupedLexicon[letter].map(entry => (
+                        <Link
+                          key={entry.slug}
+                          to={`/lexicon/${entry.slug}`}
+                          className="flex items-center justify-between p-4 rounded-lg bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group"
+                        >
+                          <span className="font-medium text-base group-hover:text-primary transition-colors">{entry.term}</span>
+                          <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             ) : (
               <div className="text-center py-16">
                 <p className="text-muted-foreground">
