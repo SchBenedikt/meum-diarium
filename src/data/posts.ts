@@ -394,4 +394,549 @@ Die ersten fünf Jahre von Neros Herrschaft gelten als vorbildlich.
 **Quellen:** Tacitus, *Annales*; Cassius Dio`,
     },
   },
+  // --- Auto-generated posts from timeline events ---
+  {
+    id: '13',
+    slug: 'geburt-ciceros',
+    author: 'cicero',
+    title: 'Geburt Ciceros',
+    excerpt: 'Marcus Tullius Cicero wird in Arpinum geboren',
+    historicalDate: '106 v. Chr.',
+    historicalYear: -106,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Geburt', 'Cicero'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Ein neuer Anfang. Heute, im Jahr 106 v. Chr. vor unserer Zeitrechnung, wurde ich, Marcus Tullius Cicero, in Arpinum geboren. Die Welt erwartet meine Worte.`,
+      scientific: `Die Geburt von Marcus Tullius Cicero im Jahr 106 v. Chr. in Arpinum markiert den Beginn eines Lebens, das die römische Republik und die lateinische Sprache nachhaltig prägen sollte.`
+    }
+  },
+  {
+    id: '14',
+    slug: 'geburt-caesars',
+    author: 'caesar',
+    title: 'Geburt Caesars',
+    excerpt: 'Gaius Iulius Caesar wird in Rom geboren',
+    historicalDate: '100 v. Chr.',
+    historicalYear: -100,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Geburt', 'Caesar'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Rom hat einen neuen Sohn. Im Jahr 100 v. Chr. wurde ich, Gaius Iulius Caesar, geboren. Das Schicksal ruft.`,
+      scientific: `Gaius Iulius Caesar wurde im Juli des Jahres 100 v. Chr. in Rom geboren. Seine Geburt in die gens Iulia, eine der ältesten Patrizierfamilien Roms, legte den Grundstein für seine außergewöhnliche Laufbahn.`
+    }
+  },
+  {
+    id: '15',
+    slug: 'geburt-des-augustus',
+    author: 'augustus',
+    title: 'Geburt des Augustus',
+    excerpt: 'Als Gaius Octavius in Rom geboren',
+    historicalDate: '63 v. Chr.',
+    historicalYear: -63,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Geburt', 'Augustus'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Mein Leben begann bescheiden. Geboren als Gaius Octavius in Rom im Jahr 63 v. Chr., konnte niemand ahnen, welchen Weg die Götter für mich vorsehen würden.`,
+      scientific: `Augustus wurde am 23. September 63 v. Chr. als Gaius Octavius in Rom geboren. Seine spätere Adoption durch seinen Großonkel Gaius Iulius Caesar sollte den Lauf der Geschichte verändern.`
+    }
+  },
+  {
+    id: '16',
+    slug: 'geburt-senecas',
+    author: 'seneca',
+    title: 'Geburt Senecas',
+    excerpt: 'Lucius Annaeus Seneca wird in Córdoba geboren',
+    historicalDate: '4 v. Chr.',
+    historicalYear: -4,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Geburt', 'Seneca'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `In der Ferne, in Hispania, begann meine Reise. Um das Jahr 4 v. Chr. wurde ich, Lucius Annaeus Seneca, in Córdoba geboren, um die Lehren der Stoa nach Rom zu tragen.`,
+      scientific: `Lucius Annaeus Seneca, bekannt als Seneca der Jüngere, wurde um das Jahr 4 v. Chr. in Córdoba, Hispania, geboren. Er wurde zu einem der führenden Intellektuellen seiner Zeit.`
+    }
+  },
+  {
+    id: '17',
+    slug: 'ciceros-erste-rede',
+    author: 'cicero',
+    title: 'Ciceros erste Rede',
+    excerpt: 'Pro Quinctio – Ciceros erste erhaltene Rede',
+    historicalDate: '81 v. Chr.',
+    historicalYear: -81,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Rhetorik', 'Recht'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Heute habe ich zum ersten Mal meine Stimme für das Recht erhoben. Die Verteidigung von Publius Quinctius war eine Herausforderung, aber mein Plädoyer stand fest. Die Macht des Wortes ist eine Waffe, die ich zu führen lerne.`,
+      scientific: `Ciceros Rede 'Pro Quinctio' aus dem Jahr 81 v. Chr. ist seine früheste erhaltene Gerichtsrede. Sie zeigt bereits das rhetorische Talent, das ihn zu Roms größtem Redner machen sollte.`
+    }
+  },
+  {
+    id: '18',
+    slug: 'caesar-wird-gefangen',
+    author: 'caesar',
+    title: 'Caesar wird gefangen',
+    excerpt: 'Von Piraten entführt und freigekauft',
+    historicalDate: '75 v. Chr.',
+    historicalYear: -75,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Abenteuer', 'Piraten'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Eine unerwartete Wendung auf meiner Reise. Piraten! Sie dachten, sie hätten einen einfachen Fang gemacht. Sie forderten 20 Talente, ich lachte und sagte ihnen, ich sei mindestens 50 wert. Während der Gefangenschaft schrieb ich Reden und Gedichte, die ich ihnen vortrug. Sie werden für ihre Frechheit bezahlen.`,
+      scientific: `Auf seiner Reise nach Rhodos wurde der junge Caesar 75 v. Chr. von kilikischen Piraten gefangen genommen. Er behielt während seiner Gefangenschaft eine bemerkenswerte Haltung bei und ließ sich nach seiner Freilassung gegen ein Lösegeld von 50 Talenten umgehend an den Piraten kreuzigen.`
+    }
+  },
+  {
+    id: '19',
+    slug: 'spartacus-aufstand',
+    author: 'caesar',
+    title: 'Spartacus-Aufstand',
+    excerpt: 'Der größte Sklavenaufstand beginnt',
+    historicalDate: '73 v. Chr.',
+    historicalYear: -73,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Aufstand', 'Sklaven'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Unruhen im Süden. Ein Gladiator namens Spartacus hat eine Revolte angezettelt. Die Republik unterschätzt diese Gefahr. Ein Funke kann ein Feuer entfachen, das ganz Italien erfasst. Ich beobachte die Situation mit Argusaugen.`,
+      scientific: `Der von Spartacus angeführte Sklavenaufstand (73–71 v. Chr.) war der größte und gefährlichste seiner Art in der römischen Geschichte. Er erschütterte die Republik in ihren Grundfesten und wurde erst nach Jahren unter enormem militärischen Aufwand niedergeschlagen.`
+    }
+  },
+  {
+    id: '20',
+    slug: 'cicero-gegen-verres',
+    author: 'cicero',
+    title: 'Cicero gegen Verres',
+    excerpt: 'Die berühmten Reden gegen Verres',
+    historicalDate: '70 v. Chr.',
+    historicalYear: -70,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Korruption', 'Recht'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Die Sache gegen Verres ist mehr als nur ein Prozess. Es ist ein Kampf für die Gerechtigkeit und die Ehre Roms. Die Beweise seiner Plünderungen in Sizilien sind erdrückend. Meine Reden werden ihn entlarven und das Volk wird die Wahrheit erfahren.`,
+      scientific: `Die Anklagereden gegen Gaius Verres im Jahr 70 v. Chr. etablierten Cicero als führenden Anwalt Roms. Obwohl Verres nach der ersten Rede freiwillig ins Exil ging, veröffentlichte Cicero die gesamte Anklageschrift ('In Verrem'), um die grassierende Korruption der Senatsaristokratie aufzudecken.`
+    }
+  },
+  {
+    id: '21',
+    slug: 'catilinarische-verschworung',
+    author: 'cicero',
+    title: 'Catilinarische Verschwörung',
+    excerpt: 'Cicero deckt die Verschwörung auf und rettet die Republik',
+    historicalDate: '63 v. Chr.',
+    historicalYear: -63,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Verschwörung', 'Republik'],
+    coverImage: '/images/post-catiline.jpg',
+    content: {
+      diary: `Rom stand am Abgrund. Catilina und seine Verschwörer planten, die Stadt in Brand zu stecken und die Macht an sich zu reißen. Als Konsul war es meine Pflicht, zu handeln. Mit meiner Rede 'Quo usque tandem...' habe ich ihn im Senat entlarvt. Die Republik ist vorerst gerettet.`,
+      scientific: `Als Konsul im Jahr 63 v. Chr. deckte Cicero die Verschwörung des Lucius Sergius Catilina auf. Seine entschiedenen Maßnahmen, einschließlich der Hinrichtung der Verschwörer ohne ordentliches Verfahren, brachten ihm den Ehrentitel 'Pater Patriae' (Vater des Vaterlandes) ein, führten aber später zu seinem eigenen Exil.`
+    }
+  },
+  {
+    id: '22',
+    slug: 'erstes-triumvirat',
+    author: 'caesar',
+    title: 'Erstes Triumvirat',
+    excerpt: 'Caesar, Pompeius und Crassus bilden ein Bündnis',
+    historicalDate: '60 v. Chr.',
+    historicalYear: -60,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Politik', 'Bündnis'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Die Politik in Rom ist ein Minenfeld. Allein kommt man nicht voran. Mit Pompeius und Crassus habe ich eine Übereinkunft getroffen. Ein informelles Bündnis, um die verkrusteten Strukturen des Senats zu umgehen. Gemeinsam sind wir stärker. Dies ist der Weg zur Macht.`,
+      scientific: `Das sogenannte Erste Triumvirat war ein informelles politisches Bündnis zwischen Gaius Iulius Caesar, Gnaeus Pompeius Magnus und Marcus Licinius Crassus um 60 v. Chr. Es war kein offizielles Gremium, sondern eine private Absprache, um gegenseitig ihre politischen Ziele gegen den Widerstand der Optimaten im Senat durchzusetzen.`
+    }
+  },
+  {
+    id: '23',
+    slug: 'beginn-des-gallischen-krieges',
+    author: 'caesar',
+    title: 'Beginn des Gallischen Krieges',
+    excerpt: 'Caesar beginnt die Eroberung Galliens',
+    historicalDate: '58 v. Chr.',
+    historicalYear: -58,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Krieg', 'Gallien'],
+    coverImage: '/images/post-alesia.jpg',
+    content: {
+      diary: `Die Helvetier sind unruhig. Ihre Wanderung bedroht unsere Provinz. Ich habe die Brücke bei Genf abreißen lassen. Dies ist die Gelegenheit, auf die ich gewartet habe. Gallien ist ein reiches, aber zerstrittenes Land. Es ist an der Zeit, es unter die Herrschaft Roms zu bringen.`,
+      scientific: `Im Jahr 58 v. Chr. nutzte Caesar die Migration der Helvetier als Vorwand, um in Gallien militärisch zu intervenieren. Dies markierte den Beginn des acht Jahre dauernden Gallischen Krieges, der mit der Unterwerfung ganz Galliens endete und Caesars Macht und Reichtum enorm vergrößerte.`
+    }
+  },
+  {
+    id: '24',
+    slug: 'caesar-uberquert-den-rhein',
+    author: 'caesar',
+    title: 'Caesar überquert den Rhein',
+    excerpt: 'Erste römische Rheinüberquerung',
+    historicalDate: '55 v. Chr.',
+    historicalYear: -55,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Militär', 'Ingenieurskunst'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Die Germanen denken, der Rhein schütze sie. Eine Fehleinschätzung. In nur zehn Tagen haben meine Legionäre eine Brücke über den mächtigen Fluss geschlagen. Eine Demonstration römischer Macht und Ingenieurskunst. Wir betreten germanischen Boden nicht als Eindringlinge, sondern als Herren.`,
+      scientific: `Im Jahr 55 v. Chr. ließ Caesar eine Holzbrücke über den Rhein bauen, um germanische Stämme, die die Gallier unterstützten, abzuschrecken. Die Brücke, ein Meisterwerk der römischen Militärtechnik, wurde in nur zehn Tagen errichtet. Nach einer kurzen Machtdemonstration auf der anderen Rheinseite zog sich Caesar zurück und ließ die Brücke wieder abreißen.`
+    }
+  },
+  {
+    id: '25',
+    slug: 'invasion-britanniens',
+    author: 'caesar',
+    title: 'Invasion Britanniens',
+    excerpt: 'Caesar landet in Britannien',
+    historicalDate: '54 v. Chr.',
+    historicalYear: -54,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Entdeckung', 'Britannien'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Eine neue Welt am Rande der bekannten Karte. Heute haben wir den Ozean überquert und sind in Britannien gelandet. Die Einheimischen kämpfen wild, aber unsere Disziplin wird siegen. Dies ist mehr als eine Eroberung, es ist eine Erweiterung des römischen Horizonts.`,
+      scientific: `Caesar unternahm zwei Expeditionen nach Britannien (55 und 54 v. Chr.). Obwohl sie keine dauerhafte Eroberung zur Folge hatten, waren sie aus römischer Sicht ein großer Prestigegewinn. Er war der erste Römer, der den Ärmelkanal überquerte und militärische Operationen auf der Insel durchführte, was in Rom für großes Aufsehen sorgte.`
+    }
+  },
+  {
+    id: '26',
+    slug: 'schlacht-bei-alesia',
+    author: 'caesar',
+    title: 'Schlacht bei Alesia',
+    excerpt: 'Vercingetorix kapituliert – Ende des gallischen Widerstands',
+    historicalDate: '52 v. Chr.',
+    historicalYear: -52,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Belagerung', 'Sieg'],
+    coverImage: '/images/post-alesia.jpg',
+    content: {
+      diary: `Die Falle ist zugeschnappt. Vercingetorix und seine Hauptstreitmacht sind in Alesia eingeschlossen. Wir haben einen doppelten Belagerungsring errichtet - einen nach innen, einen nach außen. Die gallische Entsatzarmee ist riesig, aber sie wird an unseren Befestigungen zerschellen. Geduld und Disziplin werden uns den Sieg bringen.`,
+      scientific: `Die Belagerung von Alesia im Jahr 52 v. Chr. war die entscheidende Schlacht des Gallischen Krieges. Caesars geniale Taktik, einen doppelten Belagerungsring zu bauen, ermöglichte es ihm, die eingeschlossenen Gallier unter Vercingetorix und eine zahlenmäßig weit überlegene gallische Entsatzarmee gleichzeitig zu besiegen. Vercingetorix' Kapitulation besiegelte das Schicksal Galliens.`
+    }
+  },
+  {
+    id: '27',
+    slug: 'schlacht-bei-pharsalos',
+    author: 'caesar',
+    title: 'Schlacht bei Pharsalos',
+    excerpt: 'Caesar besiegt Pompeius entscheidend',
+    historicalDate: '48 v. Chr.',
+    historicalYear: -48,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Bürgerkrieg', 'Pompeius'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Heute hat sich das Schicksal Roms entschieden. Pompeius' Armee war zahlenmäßig überlegen, doch meine Veteranen sind unbesiegbar. Mit einer versteckten vierten Reihe Infanterie habe ich seine Kavallerie zerschlagen. Der große Pompeius floh vom Schlachtfeld. Der Sieg ist mein.`,
+      scientific: `Die Schlacht bei Pharsalos am 9. August 48 v. Chr. in Thessalien war die entscheidende Auseinandersetzung im Bürgerkrieg zwischen Caesar und Pompeius. Trotz numerischer Unterlegenheit errang Caesar aufgrund seiner überlegenen Taktik und der Erfahrung seiner Legionen einen vernichtenden Sieg. Pompeius floh nach Ägypten, wo er ermordet wurde.`
+    }
+  },
+  {
+    id: '28',
+    slug: 'veni-vidi-vici',
+    author: 'caesar',
+    title: 'Veni, vidi, vici',
+    excerpt: 'Caesars Sieg über Pharnakes II.',
+    historicalDate: '47 v. Chr.',
+    historicalYear: -47,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Sieg', 'Spruch'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Der Feldzug gegen Pharnakes war kurz und entscheidend. Fünf Tage, eine Schlacht. Meinem Bericht an den Senat habe ich nur drei Worte hinzugefügt: VENI, VIDI, VICI. Ich kam, sah und siegte. Das sagt alles.`,
+      scientific: `Nach seinem schnellen Sieg über Pharnakes II. von Pontos in der Schlacht bei Zela im Jahr 47 v. Chr. soll Caesar den berühmten Satz "Veni, vidi, vici" an einen Freund in Rom geschrieben haben. Diese lakonische Siegesbotschaft unterstrich die Effizienz und Geschwindigkeit seiner Kriegsführung.`
+    }
+  },
+  {
+    id: '29',
+    slug: 'schlacht-bei-munda',
+    author: 'caesar',
+    title: 'Schlacht bei Munda',
+    excerpt: 'Caesars letzter militärischer Sieg',
+    historicalDate: '45 v. Chr.',
+    historicalYear: -45,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Bürgerkrieg', 'Sieg'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Dies war der härteste Kampf meines Lebens. Die Söhne des Pompeius kämpften verbissen. Einen Moment lang dachte ich, alles sei verloren. Ich musste selbst in vorderster Reihe kämpfen, um meine Männer anzuspornen. Am Ende haben wir gesiegt, aber der Preis war hoch. Der Bürgerkrieg ist nun endgültig vorbei.`,
+      scientific: `Die Schlacht bei Munda am 17. März 45 v. Chr. in Südspanien war die letzte Schlacht in Caesars Bürgerkrieg. Caesar besiegte die Legionen der Söhne des Pompeius. Der Sieg beendete den Bürgerkrieg und ermöglichte Caesar die Rückkehr nach Rom, wo er seine Macht als Diktator festigte.`
+    }
+  },
+  {
+    id: '30',
+    slug: 'tod-ciceros',
+    author: 'cicero',
+    title: 'Tod Ciceros',
+    excerpt: 'Proskribiert und auf Befehl des Antonius getötet',
+    historicalDate: '43 v. Chr.',
+    historicalYear: -43,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Tod', 'Antonius'],
+    coverImage: '/images/post-philippic.jpg',
+    content: {
+      diary: `[Posthum rekonstruiert] Meine Reden gegen Antonius waren mein Todesurteil. Ich habe es gewusst. Als die Häscher kamen, habe ich mein Schicksal akzeptiert. Ich habe für die Republik gelebt, und ich sterbe für sie. Möge Rom eines Tages wieder frei sein. O tempora, o mores!`,
+      scientific: `Nach der Bildung des Zweiten Triumvirats wurde Cicero auf Betreiben von Marcus Antonius proskribiert. Er wurde am 7. Dezember 43 v. Chr. auf der Flucht gefasst und getötet. Sein Kopf und seine Hände wurden auf der Rednerbühne in Rom ausgestellt – eine grausame Warnung an alle Feinde des Antonius.`
+    }
+  },
+  {
+    id: '31',
+    slug: 'schlacht-bei-philippi',
+    author: 'augustus',
+    title: 'Schlacht bei Philippi',
+    excerpt: 'Octavian und Antonius besiegen die Caesarmörder',
+    historicalDate: '42 v. Chr.',
+    historicalYear: -42,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Rache', 'Bürgerkrieg'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Brutus und Cassius sind besiegt. Der Geist meines Vaters ist gerächt. Die Schlacht war hart, und Antonius hat den größeren Anteil am Sieg. Aber das Ergebnis zählt. Die Mörder Caesars haben ihre gerechte Strafe erhalten. Nun beginnt der Kampf um sein Erbe.`,
+      scientific: `Die Schlacht bei Philippi im Oktober 42 v. Chr. war eine entscheidende Auseinandersetzung zwischen den Streitkräften des Zweiten Triumvirats (Octavian und Antonius) und den Caesarmördern (Brutus und Cassius). Der Sieg der Triumvirn festigte ihre Macht über Rom.`
+    }
+  },
+  {
+    id: '32',
+    slug: 'beginn-des-prinzipats',
+    author: 'augustus',
+    title: 'Beginn des Prinzipats',
+    excerpt: 'Octavian erhält den Titel Augustus',
+    historicalDate: '27 v. Chr.',
+    historicalYear: -27,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Prinzipat', 'Frieden'],
+    coverImage: '/images/post-pax-romana.jpg',
+    content: {
+      diary: `Heute hat mir der Senat den Ehrentitel 'Augustus', der Erhabene, verliehen. Ich habe die Republik offiziell wiederhergestellt, aber die Macht liegt in meinen Händen. Ich bin der 'Princeps', der Erste Bürger. Dies ist ein neuer Weg für Rom. Kein Königtum, sondern eine Herrschaft, die auf Ansehen und Gesetz beruht.`,
+      scientific: `Am 16. Januar 27 v. Chr. verlieh der Senat Octavian den neuen Ehrennamen Augustus. Dieses Datum markiert formal den Beginn des Prinzipats, der römischen Kaiserzeit. Augustus schuf eine neue Staatsordnung, die die Fassade der Republik aufrechterhielt, während die wahre Macht beim Princeps lag.`
+    }
+  },
+  {
+    id: '33',
+    slug: 'ara-pacis',
+    author: 'augustus',
+    title: 'Ara Pacis',
+    excerpt: 'Der Friedensaltar wird geweiht',
+    historicalDate: '19 v. Chr.',
+    historicalYear: -19,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Frieden', 'Kunst'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Der Senat hat die Weihung des 'Ara Pacis Augustae', des Altars des Augusteischen Friedens, beschlossen. Er soll ein Denkmal für den Frieden sein, den ich Rom nach Jahrzehnten des Bürgerkriegs gebracht habe. Möge er für immer an die Segnungen der Stabilität und des Wohlstands erinnern.`,
+      scientific: `Der Ara Pacis Augustae ist ein Altar, der dem Frieden geweiht und zwischen 13 und 9 v. Chr. auf dem Marsfeld in Rom errichtet wurde. Er ist ein Meisterwerk der augusteischen Kunst und ein zentrales Propagandainstrument, das den von Augustus hergestellten Frieden (Pax Augusta) feiert.`
+    }
+  },
+  {
+    id: '34',
+    slug: 'varusschlacht',
+    author: 'augustus',
+    title: 'Varusschlacht',
+    excerpt: 'Vernichtende Niederlage der Römer in Germanien',
+    historicalDate: '9 n. Chr.',
+    historicalYear: 9,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Niederlage', 'Germanien'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Eine schreckliche Nachricht aus Germanien. Drei Legionen, vernichtet. Varus, tot. Ein Verrat durch Arminius, dem ich vertraute. Man sagt, ich schlage meinen Kopf gegen die Wand und rufe: 'Quintilius Varus, gib mir meine Legionen zurück!'. Germanien ist verloren.`,
+      scientific: `Die Schlacht im Teutoburger Wald im Jahr 9 n. Chr. war eine vernichtende Niederlage der Römer gegen ein Bündnis germanischer Stämme unter Führung von Arminius. Drei römische Legionen unter Publius Quinctilius Varus wurden vollständig aufgerieben. Diese Niederlage beendete die römischen Expansionsbestrebungen östlich des Rheins.`
+    }
+  },
+  {
+    id: '35',
+    slug: 'tod-des-augustus',
+    author: 'augustus',
+    title: 'Tod des Augustus',
+    excerpt: 'Augustus stirbt in Nola',
+    historicalDate: '14 n. Chr.',
+    historicalYear: 14,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Tod', 'Vermächtnis'],
+    coverImage: '/images/post-res-gestae.jpg',
+    content: {
+      diary: `[Posthum rekonstruiert] Meine Zeit ist gekommen. Ich habe die Rolle meines Lebens gut gespielt. "Acta est fabula, plaudite!" - Das Stück ist aus, applaudiert! Ich hinterlasse ein stabiles Reich. Tiberius wird mein Werk fortsetzen. Ich habe Rom als Stadt aus Ziegeln vorgefunden und hinterlasse sie aus Marmor.`,
+      scientific: `Augustus starb am 19. August 14 n. Chr. in Nola. Seine Herrschaft dauerte über 40 Jahre und legte den Grundstein für die nächsten zwei Jahrhunderte des Römischen Reiches. Er wurde zum Gott erhoben und im Augustusmausoleum in Rom beigesetzt.`
+    }
+  },
+  {
+    id: '36',
+    slug: 'senecas-verbannung',
+    author: 'seneca',
+    title: 'Senecas Verbannung',
+    excerpt: 'Nach Korsika verbannt durch Claudius',
+    historicalDate: '41 n. Chr.',
+    historicalYear: 41,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Exil', 'Philosophie'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `Rom hat mich verstoßen. Auf dieser rauen Insel Korsika habe ich nur noch meine Gedanken. Aber ist nicht der Weise autark? Ist nicht das innere Exil schlimmer als das äußere? Ich werde diese Zeit nutzen, um zu schreiben und zu reflektieren. Die Philosophie ist mein einziges Vaterland.`,
+      scientific: `Im Jahr 41 n. Chr. wurde Seneca auf Betreiben von Messalina, der Frau des Kaisers Claudius, der Mittäterschaft am Ehebruch mit Iulia Livilla, der Schwester Caligulas, beschuldigt und nach Korsika verbannt. Während seines achtjährigen Exils verfasste er mehrere philosophische Schriften, darunter 'De Consolatione ad Helviam'.`
+    }
+  },
+  {
+    id: '37',
+    slug: 'ruckkehr-nach-rom',
+    author: 'seneca',
+    title: 'Rückkehr nach Rom',
+    excerpt: 'Seneca wird aus der Verbannung zurückgerufen',
+    historicalDate: '49 n. Chr.',
+    historicalYear: 49,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Politik', 'Nero'],
+    coverImage: '/images/post-nero.jpg',
+    content: {
+      diary: `Die Verbannung ist zu Ende. Agrippina, die neue Frau des Claudius, hat meine Rückkehr erwirkt. Ich soll Erzieher ihres Sohnes werden, des jungen Nero. Eine heikle Aufgabe. Kann ich einen zukünftigen Herrscher nach den Prinzipien der Stoa formen? Es ist eine Pflicht, die ich nicht ablehnen kann.`,
+      scientific: `Auf Betreiben von Agrippina der Jüngeren wurde Seneca 49 n. Chr. aus der Verbannung zurückgerufen, um als Erzieher des jungen Nero zu fungieren. Nach Neros Thronbesteigung im Jahr 54 wurde Seneca zu einem seiner wichtigsten Berater und prägte die ersten, als positiv bewerteten Jahre von Neros Herrschaft.`
+    }
+  },
+  {
+    id: '38',
+    slug: 'mord-an-agrippina',
+    author: 'seneca',
+    title: 'Mord an Agrippina',
+    excerpt: 'Nero lässt seine Mutter töten',
+    historicalDate: '59 n. Chr.',
+    historicalYear: 59,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Nero', 'Verbrechen'],
+    coverImage: '/images/post-nero.jpg',
+    content: {
+      diary: `Eine dunkle Stunde für Rom. Der Kaiser hat seine eigene Mutter ermorden lassen. Ich musste eine Rede verfassen, die diese ungeheuerliche Tat vor dem Senat rechtfertigt. Ein schmutziges Geschäft. Der Abgrund, der sich vor Nero auftut, zieht uns alle mit sich.`,
+      scientific: `Im Jahr 59 n. Chr. ließ Nero seine Mutter Agrippina die Jüngere ermorden, die er als Bedrohung für seine Macht ansah. Seneca wurde gezwungen, die Tat nachträglich zu rechtfertigen, was seinen eigenen moralischen Kompromiss und seinen schwindenden Einfluss auf den Kaiser offenbarte.`
+    }
+  },
+  {
+    id: '39',
+    slug: 'senecas-ruckzug',
+    author: 'seneca',
+    title: 'Senecas Rückzug',
+    excerpt: 'Seneca zieht sich aus der Politik zurück',
+    historicalDate: '62 n. Chr.',
+    historicalYear: 62,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Rückzug', 'Philosophie'],
+    coverImage: '/images/post-lucilius.jpg',
+    content: {
+      diary: `Es ist genug. Ich kann und will nicht länger Teil dieses Wahnsinns sein. Ich habe Nero um die Erlaubnis gebeten, mich ins Privatleben zurückzuziehen. Er hat widerwillig zugestimmt. Endlich kann ich mich ganz der Philosophie widmen, meinen Briefen an Lucilius, meinen Studien. Das ist der einzige wahre Reichtum.`,
+      scientific: `Nachdem sein Einfluss auf Nero stark abgenommen hatte, zog sich Seneca im Jahr 62 n. Chr. aus dem politischen Leben zurück. Er widmete seine letzten Lebensjahre dem Schreiben und der Philosophie und verfasste in dieser Zeit einige seiner bedeutendsten Werke, darunter die 'Epistulae morales ad Lucilium'.`
+    }
+  },
+  {
+    id: '40',
+    slug: 'tod-senecas',
+    author: 'seneca',
+    title: 'Tod Senecas',
+    excerpt: 'Erzwungener Selbstmord nach der Pisonischen Verschwörung',
+    historicalDate: '65 n. Chr.',
+    historicalYear: 65,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Tod', 'Stoa'],
+    coverImage: '/images/post-default.jpg',
+    content: {
+      diary: `[Posthum rekonstruiert] Der Bote des Kaisers ist eingetroffen. Das Urteil ist der Tod. Ich nehme ihn an wie einen alten Freund. Der Weise fürchtet den Tod nicht, denn er ist Teil der Natur. Ich öffne mir die Pulsadern und diskutiere mit meinen Freunden über die Unsterblichkeit der Seele. Ein passendes Ende für einen Philosophen.`,
+      scientific: `Im Jahr 65 n. Chr. wurde Seneca der Beteiligung an der Pisonischen Verschwörung gegen Nero bezichtigt und zum Selbstmord gezwungen. Sein Tod, den Tacitus in seinen 'Annalen' ausführlich beschreibt, wurde als stoisches Ideal eines würdevollen und furchtlosen Sterbens inszeniert.`
+    }
+  },
+  {
+    id: '41',
+    slug: 'de-legibus',
+    author: 'cicero',
+    title: 'De Legibus',
+    excerpt: 'Ciceros Werk über die Gesetze',
+    historicalDate: '51 v. Chr.',
+    historicalYear: -51,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Recht', 'Philosophie'],
+    coverImage: '/images/post-republica.jpg',
+    content: {
+      diary: `Nach dem Staat ('De Re Publica') müssen die Gesetze ('De Legibus') folgen. Ein gerechter Staat braucht gerechte Gesetze, die im Naturrecht und in der göttlichen Vernunft gründen. Ich versuche, die Prinzipien der griechischen Philosophie auf das römische Recht anzuwenden.`,
+      scientific: `'De Legibus' ('Über die Gesetze') ist ein philosophischer Dialog von Cicero, der als Ergänzung zu 'De Re Publica' konzipiert wurde. Darin entwickelt er die Idee eines Naturrechts, das allem positiven Recht übergeordnet ist und auf der universellen Vernunft basiert.`
+    }
+  },
+  {
+    id: '42',
+    slug: 'tusculanae-disputationes',
+    author: 'cicero',
+    title: 'Tusculanae Disputationes',
+    excerpt: 'Philosophische Gespräche in Tusculum',
+    historicalDate: '45 v. Chr.',
+    historicalYear: -45,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Philosophie', 'Glück'],
+    coverImage: '/images/post-republica.jpg',
+    content: {
+      diary: `Nach dem Tod meiner geliebten Tochter Tullia finde ich nur in der Philosophie Trost. In meinem Landhaus in Tusculum führe ich Gespräche über die großen Fragen des Lebens: Wie überwindet man Schmerz? Ist der Tod ein Übel? Ist Tugend allein ausreichend für ein glückliches Leben?`,
+      scientific: `Die 'Tusculanae Disputationes' ('Gespräche in Tusculum') sind eine fünfbändige philosophische Schrift Ciceros, verfasst 45 v. Chr. Sie behandeln in Dialogform die Bedingungen für ein glückliches Leben und wie man mit Schmerz, Furcht und dem Tod umgeht. Das Werk ist ein zentraler Text zur Vermittlung griechischer Philosophie in Rom.`
+    }
+  },
+  {
+    id: '43',
+    slug: 'de-officiis',
+    author: 'cicero',
+    title: 'De Officiis',
+    excerpt: 'Ciceros Werk über die Pflichten',
+    historicalDate: '44 v. Chr.',
+    historicalYear: -44,
+    date: '2024-07-26',
+    readingTime: 3,
+    tags: ['Ethik', 'Philosophie'],
+    coverImage: '/images/post-republica.jpg',
+    content: {
+      diary: `In diesen unsicheren Zeiten nach Caesars Tod schreibe ich für meinen Sohn Marcus über die Pflichten. Was ist ehrenhaft? Was ist nützlich? Und was, wenn beides im Konflikt steht? Es ist mein philosophisches Testament, ein Leitfaden für ein moralisch richtiges Leben als römischer Bürger.`,
+      scientific: `'De Officiis' ('Über die Pflichten') ist Ciceros letztes großes philosophisches Werk, verfasst 44 v. Chr. als Brief an seinen Sohn. Es behandelt die praktische Ethik und den vermeintlichen Konflikt zwischen moralisch Richtigem (honestum) und Nützlichem (utile). Es war eines der einflussreichsten philosophischen Werke in der westlichen Geschichte.`
+    }
+  },
+  {
+    id: '44',
+    slug: 'de-clementia',
+    author: 'seneca',
+    title: 'De Clementia',
+    excerpt: 'Senecas Werk über die Milde für Nero',
+    historicalDate: '55 n. Chr.',
+    historicalYear: 55,
+    date: '2024-07-26',
+    readingTime: 2,
+    tags: ['Politik', 'Philosophie'],
+    coverImage: '/images/post-nero.jpg',
+    content: {
+      diary: `Ich habe für den jungen Kaiser eine Schrift über die Milde ('De Clementia') verfasst. Ein Herrscher gewinnt mehr durch Vergebung als durch Grausamkeit. Milde ist das wahre Zeichen von Stärke, nicht von Schwäche. Ich hoffe, er nimmt sich meine Worte zu Herzen.`,
+      scientific: `Die Schrift 'De Clementia' ('Über die Milde') verfasste Seneca in den ersten Jahren von Neros Herrschaft (ca. 55/56 n. Chr.). Sie ist als Fürstenspiegel konzipiert und sollte den jungen Kaiser zu einer milden und gerechten Regierung anleiten, die auf der Zustimmung der Untertanen beruht.`
+    }
+  }
 ];
