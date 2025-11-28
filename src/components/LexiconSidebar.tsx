@@ -81,7 +81,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
 
        {/* Go to Lexicon */}
        <motion.div 
-        className="sidebar-card animate-in stagger-3 gradient-bg"
+        className="sidebar-card animate-in stagger-3"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
