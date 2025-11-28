@@ -40,7 +40,7 @@ export function AuthorGrid() {
                 <Link
                   to={`/${author.id}`}
                   onClick={() => setCurrentAuthor(author.id)}
-                  className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 block"
+                  className="group text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 block"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <img 

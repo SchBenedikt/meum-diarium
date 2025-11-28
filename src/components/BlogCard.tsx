@@ -19,7 +19,7 @@ export function BlogCard({ post, perspective, index = 0 }: BlogCardProps) {
     >
       <Link
         to={`/${post.author}/${post.slug}`}
-        className="group block card-elevated h-full !p-0 overflow-hidden"
+        className="group block bg-card rounded-2xl h-full p-0 overflow-hidden border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
       >
         <div className="relative h-48 overflow-hidden">
             <img 

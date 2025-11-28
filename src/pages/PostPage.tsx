@@ -114,7 +114,7 @@ export default function PostPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-12 pb-20">
+      <main className="flex-1 py-12">
         <div className="container mx-auto">
           {/* Back link */}
           <Link 

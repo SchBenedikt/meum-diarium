@@ -49,7 +49,7 @@ export function LandingHero() {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link to={item.to} className="group block p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 h-full">
+                <Link to={item.to} className="group block p-8 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
                   <div className="inline-block p-3 rounded-xl bg-primary/10 mb-4">
                     <item.icon className="h-6 w-6 text-primary" />
                   </div>

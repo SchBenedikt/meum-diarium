@@ -174,7 +174,7 @@ function GeneralAboutPage() {
                   key={author.id}
                   to={`/${author.id}`}
                   onClick={() => setCurrentAuthor(author.id)}
-                  className="card-elevated flex items-center gap-4 hover:border-primary/50 transition-colors"
+                  className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0">
                     <img 
@@ -223,7 +223,7 @@ function AuthorAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-12 pb-20">
+      <main className="flex-1 py-12">
         <div className="container mx-auto">
           {/* Hero */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -272,7 +272,7 @@ function AuthorAboutPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="card-elevated !p-5"
+                  className="p-5 rounded-2xl bg-card border border-border"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -288,7 +288,7 @@ function AuthorAboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="card-elevated !p-5"
+                  className="p-5 rounded-2xl bg-card border border-border"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">

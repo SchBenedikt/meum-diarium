@@ -31,12 +31,12 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         {currentAuthor ? (
-          <>
+          <div className="pt-14">
             <HeroSection />
             <AuthorIntro />
             <BlogList />
             <AuthorGrid />
-          </>
+          </div>
         ) : (
           <LandingHero />
         )}
