@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
@@ -66,10 +65,9 @@ export default function LexiconPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       <main className="flex-1">
         {/* Hero */}
-        <section className="py-16 pt-32 hero-gradient">
+        <section className="pt-32 pb-16 hero-gradient">
           <div className="container mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

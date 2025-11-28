@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, MapPin, BookOpen, Award, ArrowRight, Users, Scroll, Clock } from 'lucide-react';
@@ -89,7 +88,6 @@ function GeneralAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
       <main className="flex-1">
         {/* Hero */}
         <section className="py-16 pt-32 hero-gradient">
@@ -225,9 +223,7 @@ function AuthorAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-
-      <main className="flex-1 pt-24 pb-20">
+      <main className="flex-1 pt-12 pb-20">
         <div className="container mx-auto">
           {/* Hero */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">

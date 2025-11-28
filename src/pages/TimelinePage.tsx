@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Timeline } from '@/components/Timeline';
 import { ShareButton } from '@/components/ShareButton';
@@ -13,10 +12,9 @@ export default function TimelinePage() {
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 pt-20">
+      <main className="flex-1">
         {/* Hero */}
-        <section className="py-16 hero-gradient relative overflow-hidden">
+        <section className="py-16 pt-32 hero-gradient relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl" />

@@ -52,14 +52,14 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
               <p className="text-muted-foreground">{post.historicalDate}</p>
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <Users className="h-4 w-4 text-muted-foreground mt-0.5" />
+          <Link to={`/${author.id}/about`} className="flex items-start gap-3 group">
+            <Users className="h-4 w-4 text-muted-foreground mt-0.5 group-hover:text-primary transition-colors" />
             <div>
-              <p className="font-medium">Autor</p>
+              <p className="font-medium group-hover:text-primary transition-colors">Autor</p>
               <p className="text-muted-foreground">{author.name}</p>
               <p className="text-xs text-muted-foreground">{author.years}</p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 

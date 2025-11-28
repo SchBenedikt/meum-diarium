@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { BlogSidebar } from '@/components/BlogSidebar';
@@ -115,9 +114,7 @@ export default function PostPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1 pt-24 pb-20">
+      <main className="flex-1 pt-12 pb-20">
         <div className="container mx-auto">
           {/* Back link */}
           <Link 
@@ -183,7 +180,7 @@ export default function PostPage() {
 
             {/* Sidebar */}
             <aside className="hidden lg:block">
-              <div className="sticky top-28">
+              <div className="sticky top-40">
                 <BlogSidebar post={post} />
               </div>
             </aside>

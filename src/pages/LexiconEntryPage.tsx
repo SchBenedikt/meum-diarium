@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
@@ -31,8 +30,7 @@ export default function LexiconEntryPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 pt-24 pb-20">
+      <main className="flex-1 pt-12 pb-20">
         <div className="container mx-auto">
           <Link
             to="/lexicon"
