@@ -12,6 +12,14 @@ import { ShareButton } from '@/components/ShareButton';
 import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
 
+const calculateReadingTime = (text: string | undefined): number => {
+  if (!text) return 0;
+  const wordsPerMinute = 200;
+  const wordCount = text.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+};
+
+
 export default function PostPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
   const { setCurrentAuthor } = useAuthor();
@@ -19,7 +27,10 @@ export default function PostPage() {
   const post = posts.find((p) => p.slug === slug && p.author === authorId);
   const author = post ? authors[post.author] : null;
 
-  const readingTime = post ? post.readingTime : 0;
+  const readingTime = useMemo(() => {
+    return calculateReadingTime(post?.content.diary);
+  }, [post]);
+
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {

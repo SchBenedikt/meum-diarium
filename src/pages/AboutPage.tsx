@@ -250,7 +250,7 @@ function AuthorAboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-w-4 aspect-h-5"
+              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]"
             >
               <img 
                 src={authorInfo.heroImage}
