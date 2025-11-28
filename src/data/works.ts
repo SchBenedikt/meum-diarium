@@ -1,0 +1,103 @@
+import { Work } from '@/types/blog';
+
+export const works: Record<string, Work> = {
+  'de-re-publica': {
+    title: 'De Re Publica',
+    author: 'cicero',
+    year: 'ca. 54-51 v. Chr.',
+    summary: 'Ein philosophischer Dialog in sechs Büchern über die beste Staatsform und die Pflichten des idealen Staatsmannes. Cicero argumentiert, dass die römische Republik in ihrer idealen Form eine perfekte Mischverfassung darstellt, die monarchische, aristokratische und demokratische Elemente vereint.',
+    takeaway: 'Die beste Staatsform ist eine Mischung aus Monarchie, Aristokratie und Demokratie, die Stabilität und Freiheit gewährleistet.',
+    structure: [
+      { title: 'Buch 1', content: 'Definition des Staates und Diskussion der drei Grundtypen von Verfassungen.' },
+      { title: 'Buch 2', content: 'Historische Entwicklung der römischen Verfassung als Beispiel für die ideale Mischverfassung.' },
+      { title: 'Buch 3-5', content: 'Diskussion über Gerechtigkeit und die Rolle des idealen Staatsmannes (Rector Rei Publicae). (Größtenteils verloren)' },
+      { title: 'Buch 6', content: 'Somnium Scipionis (Scipios Traum), eine Vision über die kosmische Ordnung und die Belohnung des Staatsmannes im Jenseits.' },
+    ],
+  },
+  'de-legibus': {
+    title: 'De Legibus',
+    author: 'cicero',
+    year: 'ca. 52 v. Chr.',
+    summary: 'Als Fortsetzung zu "De Re Publica" gedacht, behandelt dieses Werk die Gesetze, die den idealen Staat regieren sollten. Cicero argumentiert, dass wahres Recht im Naturrecht (lex naturae) wurzelt, das auf der universellen Vernunft basiert und allen Menschen angeboren ist.',
+    takeaway: 'Wahre Gesetze leiten sich aus der Natur und der universellen Vernunft ab, nicht aus bloßer menschlicher Willkür.',
+    structure: [
+      { title: 'Buch 1', content: 'Grundlegung des Naturrechts als Basis aller Gesetzgebung.' },
+      { title: 'Buch 2', content: 'Diskussion der Religionsgesetze des idealen Staates.' },
+      { title: 'Buch 3', content: 'Diskussion der Magistratsgesetze und der Machtverteilung.' },
+    ],
+  },
+  'tusculanae-disputationes': {
+    title: 'Tusculanae Disputationes',
+    author: 'cicero',
+    year: '45 v. Chr.',
+    summary: 'Eine Reihe von fünf philosophischen Dialogen, die Cicero in seinem Landgut in Tusculum führt. Das Werk befasst sich mit den Voraussetzungen für ein glückliches Leben und wie man mit den großen Übeln der menschlichen Existenz umgeht: der Furcht vor dem Tod, dem Schmerz, der Trauer und den Leidenschaften.',
+    takeaway: 'Tugend allein ist ausreichend für ein glückliches Leben. Die Philosophie ist die beste Medizin für die Seele.',
+    structure: [
+      { title: 'Buch 1', content: 'Über die Verachtung des Todes.' },
+      { title: 'Buch 2', content: 'Über die Erträglichkeit des Schmerzes.' },
+      { title: 'Buch 3', content: 'Über die Linderung der Trauer.' },
+      { title: 'Buch 4', content: 'Über die übrigen seelischen Affekte.' },
+      { title: 'Buch 5', content: 'Über die Tugend als Garantin des glücklichen Lebens.' },
+    ],
+  },
+  'de-officiis': {
+    title: 'De Officiis',
+    author: 'cicero',
+    year: '44 v. Chr.',
+    summary: 'Ciceros letztes großes philosophisches Werk, verfasst als Brief an seinen Sohn Marcus. Es ist ein praktischer Leitfaden zur Moralphilosophie und behandelt die Pflichten (officia) eines römischen Bürgers. Cicero diskutiert, was moralisch ehrenhaft (honestum) ist und was nützlich (utile) ist und wie man Konflikte zwischen beiden löst.',
+    takeaway: 'Das moralisch Richtige ist immer auch das wahrhaft Nützliche. Es gibt keinen echten Konflikt zwischen Moral und Nutzen.',
+    structure: [
+      { title: 'Buch 1', content: 'Über das Ehrenhafte (honestum) und seine vier Quellen: Weisheit, Gerechtigkeit, Tapferkeit, Mäßigung.' },
+      { title: 'Buch 2', content: 'Über das Nützliche (utile) und wie man Ansehen und Vertrauen gewinnt.' },
+      { title: 'Buch 3', content: 'Über den Konflikt zwischen dem Ehrenhaften und dem scheinbar Nützlichen.' },
+    ],
+  },
+  'de-brevitate-vitae': {
+    title: 'De Brevitate Vitae',
+    author: 'seneca',
+    year: 'ca. 49 n. Chr.',
+    summary: 'In diesem Essay argumentiert Seneca, dass das Leben nicht zu kurz ist, sondern dass die meisten Menschen ihre Zeit verschwenden. Er kritisiert jene, die ihr Leben aufschieben, sich mit sinnlosen Beschäftigungen abgeben oder für andere leben, anstatt sich auf das Wesentliche zu konzentrieren: die Weisheit und die Selbstverwirklichung.',
+    takeaway: 'Das Leben ist lang genug, wenn man weiß, wie man es richtig nutzt. Konzentriere dich auf das Hier und Jetzt.',
+    structure: [
+      { title: 'Kapitel 1-9', content: 'Kritik an den "Beschäftigten" (occupati), die ihre Zeit mit Nichtigkeiten verschwenden.' },
+      { title: 'Kapitel 10-15', content: 'Nur das Studium der Philosophie und die Auseinandersetzung mit der Vergangenheit ermöglichen ein wirklich langes Leben.' },
+      { title: 'Kapitel 16-20', content: 'Aufforderung, die Gegenwart zu leben und sich von der Knechtschaft der Zukunft und der Vergangenheit zu befreien.' },
+    ],
+  },
+  'de-clementia': {
+    title: 'De Clementia',
+    author: 'seneca',
+    year: 'ca. 55-56 n. Chr.',
+    summary: 'Ein "Fürstenspiegel", den Seneca für den jungen Kaiser Nero schrieb. Seneca argumentiert, dass Milde (clementia) die wichtigste Tugend eines Herrschers ist. Im Gegensatz zur Grausamkeit, die Angst und Hass erzeugt, sichert Milde die Loyalität und Zuneigung der Untertanen und ist das wahre Zeichen von Stärke.',
+    takeaway: 'Ein guter Herrscher regiert durch Milde, nicht durch Furcht, denn sie ist die humanste und effektivste Form der Machtausübung.',
+    structure: [
+      { title: 'Buch 1', content: 'Definition von Milde und ihre Unterscheidung von Nachsicht und Mitleid. Argumente, warum ein Herrscher milde sein sollte.' },
+      { title: 'Buch 2', content: 'Beispiele und weitere Vertiefung der Argumente. (Nur fragmentarisch erhalten)' },
+    ],
+  },
+  'epistulae-morales': {
+    title: 'Epistulae Morales ad Lucilium',
+    author: 'seneca',
+    year: 'ca. 62-65 n. Chr.',
+    summary: 'Eine Sammlung von 124 Briefen, die Seneca in seinen letzten Lebensjahren an seinen Freund Lucilius Iunior schrieb. Die Briefe sind keine private Korrespondenz, sondern philosophische Essays in Briefform. Sie behandeln ein breites Spektrum stoischer Themen, von der Freundschaft über den Tod bis hin zur richtigen Nutzung der Zeit, und dienen als praktischer Leitfaden für ein tugendhaftes Leben.',
+    takeaway: 'Der Weg zur Weisheit ist ein tägliches Üben. Die Philosophie ist keine Theorie, sondern eine Lebenskunst.',
+    structure: [
+      { title: 'Briefe 1-29', content: 'Grundlagen der stoischen Ethik: Umgang mit Zeit, Furcht und Begierden.' },
+      { title: 'Briefe 30-80', content: 'Vertiefung philosophischer Konzepte wie Tugend, Seele und die Natur des Guten.' },
+      { title: 'Briefe 81-124', content: 'Spezifischere philosophische Fragen und Reflexionen über das Alter und den Tod.' },
+    ],
+  },
+  'res-gestae': {
+    title: 'Res Gestae Divi Augusti',
+    author: 'augustus',
+    year: '14 n. Chr.',
+    summary: 'Der "Tatenbericht des vergöttlichten Augustus" ist ein einzigartiger Rechenschaftsbericht des ersten römischen Kaisers. Augustus verfasste ihn kurz vor seinem Tod. Darin listet er in nüchterner, sachlicher Sprache seine politischen Ämter, militärischen Erfolge, öffentlichen Bauten und Geschenke an das römische Volk auf. Das Werk ist eine meisterhafte Selbstdarstellung und politische Propaganda.',
+    takeaway: 'Ich habe die Republik wiederhergestellt und dem römischen Volk Frieden, Sicherheit und Wohlstand gebracht.',
+    structure: [
+      { title: 'Kapitel 1-14', content: 'Politische Laufbahn (cursus honorum) und verliehene Ehrungen.' },
+      { title: 'Kapitel 15-24', content: 'Aufwendungen für das Volk (Spiele, Getreidespenden, Geldgeschenke).' },
+      { title: 'Kapitel 25-33', content: 'Militärische Taten (res gestae) und Außenpolitik.' },
+      { title: 'Kapitel 34-35', content: 'Zusammenfassende Darstellung seiner einzigartigen Stellung im Staat.' },
+    ],
+  },
+};

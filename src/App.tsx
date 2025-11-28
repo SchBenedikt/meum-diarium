@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthorProvider } from "@/context/AuthorContext";
 import Index from "./pages/Index";
 import PostPage from "./pages/PostPage";
+import WorkPage from "./pages/WorkPage";
 import AboutPage from "./pages/AboutPage";
 import TimelinePage from "./pages/TimelinePage";
 import LexiconPage from "./pages/LexiconPage";
@@ -45,6 +46,7 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/:authorId" element={<Index />} />
         <Route path="/:authorId/about" element={<AboutPage />} />
+        <Route path="/:authorId/works/:slug" element={<WorkPage />} />
         <Route path="/:authorId/:slug" element={<PostPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/timeline" element={<TimelinePage />} />

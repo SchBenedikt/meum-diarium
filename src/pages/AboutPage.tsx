@@ -5,6 +5,8 @@ import { Calendar, MapPin, BookOpen, Award, ArrowRight, Users, Scroll, Clock } f
 import { Link, useParams } from 'react-router-dom';
 import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
+import { works } from '@/data/works';
+import slugify from 'slugify';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { Author } from '@/types/blog';
@@ -12,7 +14,6 @@ import { Author } from '@/types/blog';
 const authorDetails: Record<string, {
   birthPlace: string;
   achievements: string[];
-  works: string[];
   timeline: { year: string; event: string }[];
 }> = {
   caesar: {
@@ -23,7 +24,6 @@ const authorDetails: Record<string, {
       'Kalendenreform (Julianischer Kalender)',
       'Dictator perpetuo',
     ],
-    works: ['De Bello Gallico', 'De Bello Civili'],
     timeline: [
       { year: '100 v. Chr.', event: 'Geburt in Rom' },
       { year: '63 v. Chr.', event: 'Pontifex Maximus' },
@@ -40,7 +40,6 @@ const authorDetails: Record<string, {
       'Meister der lateinischen Rhetorik',
       'Begründer der lateinischen Philosophie',
     ],
-    works: ['De Oratore', 'De Re Publica', 'De Officiis', 'Philippicae'],
     timeline: [
       { year: '106 v. Chr.', event: 'Geburt in Arpinum' },
       { year: '63 v. Chr.', event: 'Konsulat' },
@@ -56,7 +55,6 @@ const authorDetails: Record<string, {
       'Pax Romana',
       'Monumentale Bauprogramme',
     ],
-    works: ['Res Gestae Divi Augusti'],
     timeline: [
       { year: '63 v. Chr.', event: 'Geburt' },
       { year: '44 v. Chr.', event: 'Adoption durch Caesar' },
@@ -73,7 +71,6 @@ const authorDetails: Record<string, {
       'Einflussreicher Dramatiker',
       'Meister des philosophischen Essays',
     ],
-    works: ['Epistulae Morales', 'De Brevitate Vitae', 'De Clementia', 'Medea'],
     timeline: [
       { year: '4 v. Chr.', event: 'Geburt' },
       { year: '41 n. Chr.', event: 'Exil nach Korsika' },
@@ -225,10 +222,11 @@ function AuthorAboutPage() {
   
   const details = authorDetails[authorId];
   const authorPosts = posts.filter(p => p.author === authorId);
+  const authorWorks = Object.values(works).filter(w => w.author === authorId);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 py-12 pt-28">
+      <main className="flex-1 pt-28 pb-12">
         <div className="container mx-auto">
           {/* Hero */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -328,7 +326,7 @@ function AuthorAboutPage() {
               )}
 
               {/* Works */}
-              {details?.works && (
+              {authorWorks.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -339,13 +337,14 @@ function AuthorAboutPage() {
                     <h2 className="font-display text-xl font-medium">Werke</h2>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {details.works.map((work, i) => (
-                      <span 
+                    {authorWorks.map((work, i) => (
+                      <Link 
                         key={i} 
-                        className="px-4 py-2 rounded-full font-display italic text-sm bg-primary/10 text-primary"
+                        to={`/${work.author}/works/${slugify(work.title, { lower: true, strict: true })}`}
+                        className="px-4 py-2 rounded-full font-display italic text-sm bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                       >
-                        {work}
-                      </span>
+                        {work.title}
+                      </Link>
                     ))}
                   </div>
                 </motion.div>

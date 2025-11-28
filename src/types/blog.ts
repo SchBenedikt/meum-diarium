@@ -55,3 +55,12 @@ export interface TimelineEvent {
   author?: Author;
   type: 'birth' | 'death' | 'event' | 'work';
 }
+
+export interface Work {
+  title: string;
+  author: Author;
+  year: string;
+  summary: string;
+  takeaway: string;
+  structure: { title: string; content: string }[];
+}

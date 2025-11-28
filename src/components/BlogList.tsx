@@ -7,6 +7,16 @@ import { PerspectiveToggle } from './PerspectiveToggle';
 import { BookOpen, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.07
+    }
+  }
+};
+
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
   const [perspective, setPerspective] = useState<Perspective>('diary');
@@ -50,15 +60,20 @@ export function BlogList() {
 
         {/* Posts grid */}
         {filteredPosts.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredPosts.map((post, index) => (
+          <motion.div 
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {filteredPosts.map((post) => (
               <BlogCard 
                 key={post.id} 
                 post={post}
-                index={index}
               />
             ))}
-          </div>
+          </motion.div>
         ) : (
           <div className="text-center py-16 rounded-xl border border-dashed border-border">
             <p className="text-muted-foreground">

@@ -5,10 +5,15 @@ import { motion } from 'framer-motion';
 
 interface BlogCardProps {
   post: BlogPost;
-  index?: number;
 }
 
-export function BlogCard({ post, index = 0 }: BlogCardProps) {
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+};
+
+
+export function BlogCard({ post }: BlogCardProps) {
   const navigate = useNavigate();
 
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
@@ -19,10 +24,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      variants={cardVariants}
     >
       <Link
         to={`/${post.author}/${post.slug}`}
