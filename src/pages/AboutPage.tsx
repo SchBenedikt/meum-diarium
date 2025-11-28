@@ -86,6 +86,10 @@ const authorDetails: Record<string, {
 function GeneralAboutPage() {
   const { setCurrentAuthor } = useAuthor();
 
+  useEffect(() => {
+    setCurrentAuthor(null);
+  }, [setCurrentAuthor]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
@@ -172,7 +176,7 @@ function GeneralAboutPage() {
               {Object.values(authors).map((author) => (
                 <Link 
                   key={author.id}
-                  to={`/${author.id}`}
+                  to={`/${author.id}/about`}
                   onClick={() => setCurrentAuthor(author.id)}
                   className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >

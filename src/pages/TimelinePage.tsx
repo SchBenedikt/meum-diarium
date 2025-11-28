@@ -4,12 +4,19 @@ import { ShareButton } from '@/components/ShareButton';
 import { Calendar, Clock, Users, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { timelineEvents } from '@/data/timeline';
+import { useEffect } from 'react';
+import { useAuthor } from '@/context/AuthorContext';
 
 export default function TimelinePage() {
+  const { setCurrentAuthor } = useAuthor();
   const totalEvents = timelineEvents.length;
   const minYear = Math.min(...timelineEvents.map(e => e.year));
   const maxYear = Math.max(...timelineEvents.map(e => e.year));
   
+  useEffect(() => {
+    setCurrentAuthor(null);
+  }, [setCurrentAuthor]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">

@@ -6,6 +6,7 @@ import { BookMarked, Search, ArrowRight, Tags } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Link, useSearchParams } from 'react-router-dom';
+import { useAuthor } from '@/context/AuthorContext';
 
 const categories = [...new Set(lexicon.map(e => e.category))];
 
@@ -14,6 +15,11 @@ export default function LexiconPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(searchParams.get('category'));
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const { setCurrentAuthor } = useAuthor();
+
+  useEffect(() => {
+    setCurrentAuthor(null);
+  }, [setCurrentAuthor]);
 
   useEffect(() => {
     const category = searchParams.get('category');
