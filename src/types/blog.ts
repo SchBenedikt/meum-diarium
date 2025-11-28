@@ -1,3 +1,4 @@
+
 export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca';
 
 export type Perspective = 'diary' | 'scientific';

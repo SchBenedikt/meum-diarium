@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from 'react-router-dom';
 import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
@@ -13,6 +14,13 @@ const cardVariants = {
 };
 
 
+function calculateReadingTime(text: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = text.split(/\s+/).length;
+  const time = Math.ceil(wordCount / wordsPerMinute);
+  return time > 0 ? time : 1;
+}
+
 export function BlogCard({ post }: BlogCardProps) {
   const navigate = useNavigate();
 
@@ -21,6 +29,8 @@ export function BlogCard({ post }: BlogCardProps) {
     e.stopPropagation();
     navigate(`/search?category=${encodeURIComponent(tag)}`);
   };
+
+  const readingTime = calculateReadingTime(post.content.diary);
 
   return (
     <motion.article
@@ -77,7 +87,7 @@ export function BlogCard({ post }: BlogCardProps) {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" />
-                  {post.readingTime} Min.
+                  {readingTime} Min.
                 </span>
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />

@@ -1,20 +1,21 @@
 
-
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { posts, BlogPost } from '@/data/posts';
 import { authors } from '@/data/authors';
-import { BookMarked, Search, ArrowRight, BookText, Tags, Landmark, Scale, Shield, Users, VenetianMask, MessageSquare, BrainCircuit, Mountain, Star, Skull, BookOpen, Drama, X, MoreHorizontal } from 'lucide-react';
+import { BookMarked, Search, ArrowRight, BookText, Tags, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
-  CommandGroup,
   CommandInput,
+  CommandGroup,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
@@ -29,18 +30,12 @@ const lexiconToSearchResult = (entry: LexiconEntry): SearchResult => ({type: 'le
 
 const allCategories = [...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort();
 
-const categoryIcons: { [key: string]: React.ElementType } = {
-  'Politik': Landmark, 'Militär': Shield, 'Gesellschaft': Users, 'Recht': Scale, 'Philosophie': MessageSquare, 'Bürgerkrieg': Shield, 'Entscheidung': BrainCircuit, 'Gallischer Krieg': Mountain, 'Belagerung': Mountain, 'Attentat': Skull, 'Tod': Skull, 'Rede': VenetianMask, 'Verschwörung': Drama, 'Marcus Antonius': Users, 'Seeschlacht': Shield, 'Autobiografie': BookOpen, 'Vermächtnis': Star, 'Frieden': Star, 'Prinzipat': Landmark, 'Zeit': BookOpen, 'Nero': Users, 'Geburt': Star, 'Rhetorik': VenetianMask, 'Abenteuer': Mountain, 'Piraten': Skull, 'Aufstand': Shield, 'Sklaven': Users, 'Korruption': Scale, 'Bündnis': Users, 'Krieg': Shield, 'Ingenieurskunst': BrainCircuit, 'Britannien': Mountain, 'Sieg': Star, 'Spruch': MessageSquare, 'Pompeius': Users, 'Rache': Drama, 'Kunst': BookOpen, 'Germanien': Mountain, 'Niederlage': Skull, 'Exil': Mountain, 'Ethik': BrainCircuit
-};
-
-const popularCategories = ['Politik', 'Philosophie', 'Bürgerkrieg', 'Gallischer Krieg', 'Rede'];
-
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   
   const [query, setQuery] = useState(searchParams.get('q') || '');
-  const [activeCategory, setActiveCategory] = useState(searchParams.get('category') || null);
+  const [activeCategories, setActiveCategories] = useState<string[]>(searchParams.getAll('category') || []);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
 
   const { setCurrentAuthor } = useAuthor();
@@ -51,7 +46,7 @@ export default function SearchPage() {
 
   useEffect(() => {
     setQuery(searchParams.get('q') || '');
-    setActiveCategory(searchParams.get('category') || null);
+    setActiveCategories(searchParams.getAll('category') || []);
   }, [searchParams]);
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,32 +65,37 @@ export default function SearchPage() {
     return () => clearTimeout(handler);
   };
 
-  const handleCategoryChange = (newCategory: string | null) => {
-    const newParams = new URLSearchParams(searchParams);
-    if (newCategory) {
-        newParams.set('category', newCategory);
-        setActiveCategory(newCategory);
+  const toggleCategory = (category: string) => {
+    const newActiveCategories = [...activeCategories];
+    const index = newActiveCategories.indexOf(category);
+
+    if (index > -1) {
+      newActiveCategories.splice(index, 1);
     } else {
-        newParams.delete('category');
-        setActiveCategory(null);
+      newActiveCategories.push(category);
     }
+
+    setActiveCategories(newActiveCategories);
+
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('category');
+    newActiveCategories.forEach(cat => newParams.append('category', cat));
     setSearchParams(newParams, { replace: true });
-    setCategoryPopoverOpen(false);
   }
 
   const results: SearchResult[] = useMemo(() => {
     const searchQuery = (searchParams.get('q') || '').toLowerCase();
-    const categoryQuery = (searchParams.get('category') || '').toLowerCase();
+    const categoryQuery = searchParams.getAll('category').map(c => c.toLowerCase());
     
     let filteredPosts: BlogPost[] = posts;
     let filteredLexicon: LexiconEntry[] = lexicon;
 
-    if (categoryQuery) {
+    if (categoryQuery.length > 0) {
         filteredPosts = filteredPosts.filter(post => 
-            post.tags.some(tag => tag.toLowerCase() === categoryQuery)
+            categoryQuery.every(cat => post.tags.some(tag => tag.toLowerCase() === cat))
         );
         filteredLexicon = filteredLexicon.filter(entry =>
-            entry.category.toLowerCase() === categoryQuery
+            categoryQuery.includes(entry.category.toLowerCase())
         );
     }
 
@@ -115,13 +115,13 @@ export default function SearchPage() {
         );
     }
     
-    if (!searchQuery && !categoryQuery) return [];
+    if (!searchQuery && categoryQuery.length === 0) return [];
 
     return [...filteredPosts.map(postToSearchResult), ...filteredLexicon.map(lexiconToSearchResult)];
 
   }, [searchParams]);
 
-  const displayQuery = searchParams.get('q') || searchParams.get('category') || '';
+  const displayQuery = query || activeCategories.join(', ');
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -161,36 +161,14 @@ export default function SearchPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-10"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <Tags className="h-5 w-5 text-muted-foreground" />
-                <h3 className="text-base font-medium text-muted-foreground">Kategorien</h3>
-              </div>
-              
-              {activeCategory && (
-                 <div className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground mb-4 w-fit">
-                    <span className="font-medium text-sm">{activeCategory}</span>
-                    <button onClick={() => handleCategoryChange(null)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
-                        <X className="h-4 w-4" />
-                    </button>
-                </div>
-              )}
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {popularCategories.map(cat => {
-                    const Icon = categoryIcons[cat] || BookMarked;
-                    return (
-                        <button key={cat} onClick={() => handleCategoryChange(cat)} className="group flex flex-col items-start justify-between p-4 rounded-xl bg-card border border-border/50 hover:border-primary transition-all text-left h-24">
-                           <Icon className="h-6 w-6 text-primary" />
-                           <span className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">{cat}</span>
-                        </button>
-                    )
-                })}
-                 <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <h3 className="text-base font-medium text-muted-foreground flex items-center gap-2">
+                  <Tags className="h-5 w-5" />
+                  Nach Kategorie filtern
+                </h3>
+                <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                   <PopoverTrigger asChild>
-                     <button className="group flex flex-col items-start justify-between p-4 rounded-xl bg-card border border-border/50 hover:border-primary transition-all text-left h-24">
-                       <MoreHorizontal className="h-6 w-6 text-primary" />
-                       <span className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">Alle Kategorien</span>
-                    </button>
+                     <Button variant="outline" size="sm">Alle Kategorien</Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-[300px] p-0">
                     <Command>
@@ -199,7 +177,10 @@ export default function SearchPage() {
                         <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
                         <CommandGroup>
                           {allCategories.map((cat) => (
-                             <CommandItem key={cat} onSelect={() => handleCategoryChange(cat)}>
+                             <CommandItem key={cat} onSelect={() => toggleCategory(cat)}>
+                              <div className={cn("mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary", activeCategories.includes(cat) ? "bg-primary text-primary-foreground" : "opacity-50 [&_svg]:invisible")}>
+                                <Check className={cn("h-4 w-4")} />
+                              </div>
                               {cat}
                             </CommandItem>
                           ))}
@@ -209,7 +190,17 @@ export default function SearchPage() {
                   </PopoverContent>
                 </Popover>
               </div>
-
+              
+              <div className="flex flex-wrap gap-2">
+                {activeCategories.map(cat => (
+                  <div key={cat} className="flex items-center gap-2 p-2 pl-3 rounded-lg bg-primary text-primary-foreground w-fit">
+                    <span className="font-medium text-sm">{cat}</span>
+                    <button onClick={() => toggleCategory(cat)} className="h-6 w-6 rounded-md bg-black/10 hover:bg-black/20 flex items-center justify-center">
+                        <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             {/* Results */}

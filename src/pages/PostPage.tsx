@@ -54,58 +54,53 @@ function formatContent(content: string): React.ReactNode[] {
     const lexiconTerms = lexicon.map(entry => entry.term).sort((a, b) => b.length - a.length);
     const regex = new RegExp(`\\b(${lexiconTerms.join('|')})\\b`, 'gi');
 
-    return content.split(/(\n)/).map((line, lineIndex) => {
-        if (line === '\n') {
-            return <br key={lineIndex} />;
+    return content.split(/(\n\n)/).map((paragraph, pIndex) => {
+      const parts: (string | React.ReactNode)[] = [];
+      let lastIndex = 0;
+
+      if (paragraph.trim() === '') return null;
+
+      // Basic markdown for bold and italic
+      let htmlParagraph = paragraph
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+      
+      // Handle headings and blockquotes that should take up the whole paragraph
+      if (htmlParagraph.match(/^#{2,3}\s/)) {
+        const level = htmlParagraph.startsWith('###') ? 3 : 2;
+        const text = htmlParagraph.replace(/^#{2,3}\s/, '');
+        return React.createElement(`h${level}`, { key: pIndex, dangerouslySetInnerHTML: { __html: text } });
+      }
+      if (htmlParagraph.match(/^>\s/)) {
+        const text = htmlParagraph.replace(/^>\s/, '');
+        return <blockquote key={pIndex}><p dangerouslySetInnerHTML={{ __html: text }} /></blockquote>;
+      }
+      
+
+      let tempParagraph = htmlParagraph;
+      let result;
+      while ((result = regex.exec(tempParagraph)) !== null) {
+        if (result.index > lastIndex) {
+          parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex, result.index) }}/>);
+        }
+
+        const term = result[0];
+        const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
+        
+        if (lexiconEntry) {
+          parts.push(<LexiconTerm key={result.index} term={term} definition={lexiconEntry.definition} slug={lexiconEntry.slug} />);
+        } else {
+          parts.push(<span key={result.index} dangerouslySetInnerHTML={{ __html: term }} />);
         }
         
-        let processedLine = line
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g, '<em>$1</em>')
-            .replace(/^### (.+)/, '<h3>$1</h3>')
-            .replace(/^## (.+)/, '<h2>$1</h2>')
-            .replace(/^> (.+)/, '<blockquote>$1</blockquote>');
+        lastIndex = result.index + term.length;
+      }
 
-        const parts: (string | React.ReactNode)[] = [];
-        let lastIndex = 0;
-        let match;
+      if (lastIndex < tempParagraph.length) {
+        parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex) }}/>);
+      }
 
-        while ((match = regex.exec(processedLine)) !== null) {
-            if (match.index > lastIndex) {
-                parts.push(<span key={`${lineIndex}-${lastIndex}`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex, match.index) }} />);
-            }
-
-            const term = match[0];
-            const lexiconEntry = lexicon.find(entry => entry.term.toLowerCase() === term.toLowerCase());
-
-            if (lexiconEntry) {
-                parts.push(
-                    <LexiconTerm
-                        key={`${lineIndex}-${match.index}`}
-                        term={term}
-                        definition={lexiconEntry.definition}
-                        slug={lexiconEntry.slug}
-                    />
-                );
-            } else {
-                parts.push(term);
-            }
-
-            lastIndex = match.index + term.length;
-        }
-
-        if (lastIndex < processedLine.length) {
-            parts.push(<span key={`${lineIndex}-end`} dangerouslySetInnerHTML={{ __html: processedLine.substring(lastIndex) }} />);
-        }
-
-        if (line.trim() !== '') {
-            if (line.startsWith('<h2>') || line.startsWith('<h3>') || line.startsWith('<blockquote>')) {
-                 return <div key={lineIndex} dangerouslySetInnerHTML={{ __html: processedLine.replace(/<p>|<\/p>/g, '') }} />;
-            }
-            return React.createElement('p', { key: lineIndex }, ...parts);
-        }
-
-        return null;
+      return <p key={pIndex}>{parts}</p>;
     }).filter(Boolean);
 }
 

@@ -190,8 +190,8 @@ export default function LexiconEntryPage() {
                   </div>
                   <div className="relative">
                     <div className="grid md:grid-cols-2 gap-6">
-                      {relatedPosts.slice(0,2).map((post, index) => (
-                        <BlogCard post={post} index={index} />
+                      {relatedPosts.slice(0,2).map((post) => (
+                        <BlogCard post={post} key={post.id} />
                       ))}
                     </div>
                   </div>
