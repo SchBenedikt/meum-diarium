@@ -20,7 +20,7 @@ export default function LexiconEntryPage() {
     if (fromPost) {
       navigate(fromPost);
     } else {
-      navigate('/lexikon');
+      navigate('/lexicon');
     }
   };
 
