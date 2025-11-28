@@ -1,9 +1,12 @@
 import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowRight, Scroll, Clock, BookMarked, Users } from 'lucide-react';
+import { BookMarked, Clock, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { QuoteOfDay } from './QuoteOfDay';
+import { FeaturedPost } from './FeaturedPost';
+import { ReadingStats } from './ReadingStats';
+import { AuthorGrid } from './AuthorGrid';
 
 export function LandingHero() {
   const { setCurrentAuthor } = useAuthor();
@@ -28,7 +31,6 @@ export function LandingHero() {
             <div className="flex flex-wrap justify-center items-center gap-4">
               <a href="#authors" className="btn-primary px-8 py-3 text-base">
                 Autoren entdecken
-                <ArrowRight />
               </a>
             </div>
           </motion.div>
@@ -64,12 +66,16 @@ export function LandingHero() {
         </div>
       </section>
       
+      <FeaturedPost />
+
       {/* Quote of the Day */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto max-w-4xl">
           <QuoteOfDay />
         </div>
       </section>
+
+      <ReadingStats />
 
       {/* Author Selection */}
       <section id="authors" className="py-24 bg-background">
@@ -121,10 +127,6 @@ export function LandingHero() {
                     <p className="text-sm text-muted-foreground mb-4">
                       {author.title}
                     </p>
-                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                      <span>Tagebücher entdecken</span>
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
                   </div>
                 </Link>
               </motion.div>

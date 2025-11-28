@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
+import { AuthorGrid } from '@/components/AuthorGrid';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
@@ -36,6 +37,7 @@ const Index = () => {
             <HeroSection />
             <AuthorIntro />
             <BlogList />
+            <AuthorGrid />
           </>
         ) : (
           <LandingHero />

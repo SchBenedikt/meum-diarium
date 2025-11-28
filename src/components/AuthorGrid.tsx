@@ -2,6 +2,7 @@ import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const authorColorClasses: Record<string, string> = {
   caesar: 'bg-author-caesar',
@@ -46,42 +47,46 @@ export function AuthorGrid() {
             const isActive = author.id === currentAuthor;
             
             return (
-              <motion.button
+              <motion.div
                 key={author.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                onClick={() => setCurrentAuthor(author.id)}
-                className={`group text-left card-elevated !p-0 overflow-hidden ${
-                  isActive ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
-                }`}
               >
-                {/* Image */}
-                <div className="relative h-40 overflow-hidden">
-                  <img 
-                    src={author.heroImage}
-                    alt={author.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${authorColorClasses[author.id]}`} />
-                </div>
-
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="font-display text-base font-medium mb-1 group-hover:text-primary transition-colors">
-                    {author.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mb-3">
-                    {author.years}
-                  </p>
-                  <div className={`flex items-center gap-1.5 text-xs font-medium ${authorTextColors[author.id]}`}>
-                    <span>Tagebücher lesen</span>
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                <Link
+                  to={`/${author.id}`}
+                  onClick={() => setCurrentAuthor(author.id)}
+                  className={`group text-left card-elevated !p-0 overflow-hidden block h-full ${
+                    isActive ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
+                  }`}
+                >
+                  {/* Image */}
+                  <div className="relative h-40 overflow-hidden">
+                    <img 
+                      src={author.heroImage}
+                      alt={author.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    <div className={`absolute top-0 left-0 right-0 h-1 ${authorColorClasses[author.id]}`} />
                   </div>
-                </div>
-              </motion.button>
+
+                  {/* Content */}
+                  <div className="p-4">
+                    <h3 className="font-display text-base font-medium mb-1 group-hover:text-primary transition-colors">
+                      {author.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      {author.years}
+                    </p>
+                    <div className={`flex items-center gap-1.5 text-xs font-medium ${authorTextColors[author.id]}`}>
+                      <span>Tagebücher lesen</span>
+                      <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
