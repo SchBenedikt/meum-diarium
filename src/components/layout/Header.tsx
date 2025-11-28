@@ -93,7 +93,7 @@ export function Header() {
                       <span className="sr-only">Menü öffnen</span>
                     </button>
                   </SheetTrigger>
-                  <SheetContent side="right" className="w-[80vw] max-w-sm">
+                  <SheetContent side="left" className="w-[80vw] max-w-sm">
                     <div className="flex flex-col h-full">
                        <div className="flex items-center justify-between pb-6 border-b">
                          <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
