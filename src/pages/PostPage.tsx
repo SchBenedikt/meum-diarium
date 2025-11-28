@@ -1,3 +1,4 @@
+
 import React, { useMemo } from 'react';
 import { useParams, useSearchParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -9,7 +10,7 @@ import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
 import { Perspective, Author } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
+import { Calendar, Clock, BookOpen } from 'lucide-react';
 import { ShareButton } from '@/components/ShareButton';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import NotFound from './NotFound';
@@ -17,7 +18,8 @@ import NotFound from './NotFound';
 function calculateReadingTime(text: string): number {
   const wordsPerMinute = 200;
   const wordCount = text.split(/\s+/).length;
-  return Math.ceil(wordCount / wordsPerMinute);
+  const time = Math.ceil(wordCount / wordsPerMinute);
+  return time > 0 ? time : 1;
 }
 
 function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
@@ -150,7 +152,7 @@ export default function PostPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 py-12">
+      <main className="flex-1 pt-28 pb-12">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             {/* Main Content */}
@@ -186,11 +188,11 @@ export default function PostPage() {
                   </div>
                 </div>
 
-                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-30">
+                <div className="animate-in stagger-4 flex flex-wrap gap-4 items-center justify-between relative z-10">
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                    <ShareButton 
                     title={post.title}
-                    text={post.excerpt}
+                    text={`Hey, schaut, was ich hier gefunden habe: ${window.location.href}`}
                     variant="compact"
                   />
                 </div>
