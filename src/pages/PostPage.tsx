@@ -30,7 +30,7 @@ function PostContent({ post }: { post: BlogPost }) {
     target: targetRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   const contentToDisplay = post?.content[perspective];
 
@@ -46,10 +46,10 @@ function PostContent({ post }: { post: BlogPost }) {
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         
-        <div className="relative pt-16">
-          <div className="relative h-[50vh] overflow-hidden">
+        <div className="relative">
+          <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
             <motion.img
               src={post.coverImage}
               alt={post.title}
@@ -59,9 +59,9 @@ function PostContent({ post }: { post: BlogPost }) {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           </div>
 
-          <div className="container mx-auto pb-12 -mt-32 relative z-10">
+          <div className="container mx-auto pb-12">
             <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-              <article>
+              <article className="-mt-24 md:-mt-32 relative bg-card p-6 md:p-10 rounded-2xl shadow-xl">
                 <header className="mb-10">
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{delay: 0.1}}>
                     {post.latinTitle && (
@@ -74,10 +74,13 @@ function PostContent({ post }: { post: BlogPost }) {
                       <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
                         {post.title}
                       </h1>
-                      <ShareButton
-                        title={post.title}
-                        text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-                      />
+                      <div className="pt-2">
+                        <ShareButton
+                          title={post.title}
+                          text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+                          variant="compact"
+                        />
+                      </div>
                     </div>
                     
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
@@ -135,8 +138,6 @@ export default function PostPage() {
     translatePost();
   }, [language, authorId, slug]);
 
-  const author = post ? authorData[post.author] : null;
-
   useEffect(() => {
     if (authorId && authorData[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
@@ -148,7 +149,7 @@ export default function PostPage() {
     return <div className="min-h-screen bg-background" />;
   }
 
-  if (!post || !author) {
+  if (!post) {
     return <NotFound />;
   }
 
