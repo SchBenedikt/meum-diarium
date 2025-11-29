@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -11,9 +12,10 @@ const cardVariants = {
 
 interface BlogCardProps {
   post: BlogPost;
+  className?: string;
 }
 
-export function BlogCard({ post }: BlogCardProps) {
+export function BlogCard({ post, className }: BlogCardProps) {
   const navigate = useNavigate();
 
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
@@ -27,10 +29,12 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <motion.article
       variants={cardVariants}
+      whileHover={{ y: -5, scale: 1.02 }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
     >
       <Link
         to={`/${post.author}/${post.slug}`}
-        className="group block bg-card rounded-2xl h-full p-0 overflow-hidden border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+        className={cn("group block bg-card rounded-2xl h-full p-0 overflow-hidden border border-border hover:border-primary/20 transition-shadow duration-300 shadow-sm hover:shadow-lg", className)}
       >
         <div className="relative h-48 overflow-hidden">
             <img 

@@ -61,9 +61,14 @@ function PostContent({ post }: { post: BlogPost }) {
 
           <div className="container mx-auto pb-12">
             <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-              <article className="-mt-24 md:-mt-32 relative bg-card p-6 md:p-10 rounded-2xl shadow-xl">
+              <motion.article 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="-mt-24 md:-mt-32 relative bg-card p-6 md:p-10 rounded-2xl shadow-xl"
+              >
                 <header className="mb-10">
-                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{delay: 0.1}}>
+                  <div>
                     {post.latinTitle && (
                       <p className="font-display italic text-lg mb-3 text-primary">
                         „{post.latinTitle}"
@@ -95,23 +100,23 @@ function PostContent({ post }: { post: BlogPost }) {
                     </div>
 
                     <PerspectiveToggle value={perspective} onChange={setPerspective} />
-                  </motion.div>
+                  </div>
                 </header>
 
+                <div className="prose-blog">
+                  {formattedContent}
+                </div>
+              </motion.article>
+
+              <aside className="hidden lg:block">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{delay: 0.2}}
-                  className="prose-blog"
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="sticky top-28"
                 >
-                  {formattedContent}
-                </motion.div>
-              </article>
-
-              <aside className="hidden lg:block">
-                <div className="sticky top-28">
                   <BlogSidebar post={post} />
-                </div>
+                </motion.div>
               </aside>
             </div>
           </div>
