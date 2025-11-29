@@ -30,7 +30,7 @@ function PostContent({ post }: { post: BlogPost }) {
     target: targetRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
 
   const contentToDisplay = post?.content[perspective];
 
