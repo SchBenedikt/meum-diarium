@@ -12,17 +12,20 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { LanguageSwitcher } from '../LanguageSwitcher';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function Header() {
   const { setCurrentAuthor } = useAuthor();
   const location = useLocation();
+  const { t } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '/timeline', label: 'Zeitstrahl' },
-    { href: '/lexicon', label: 'Lexikon' },
-    { href: '/about', label: 'Über' },
+    { href: '/timeline', label: t('navTimeline') },
+    { href: '/lexicon', label: t('navLexicon') },
+    { href: '/about', label: t('navAbout') },
   ];
 
   const handleLogoClick = () => {
@@ -56,7 +59,7 @@ export function Header() {
                 <Scroll className="h-4 w-4 text-primary-foreground" />
               </div>
               <div className="hidden sm:block">
-                <span className="font-display text-lg">Meum Diarium</span>
+                <span className="font-display text-lg">{t('appName')}</span>
               </div>
             </Link>
 
@@ -86,13 +89,14 @@ export function Header() {
                 className="h-10 px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <Search className="h-4 w-4" />
-                <span className="hidden sm:inline text-sm">Suche</span>
+                <span className="hidden sm:inline text-sm">{t('search')}</span>
                 <kbd className="hidden lg:inline-flex h-5 items-center gap-1 rounded bg-background/50 px-1.5 text-[10px]">
                   ⌘K
                 </kbd>
               </button>
               
               <div className="hidden md:flex items-center gap-2">
+                <LanguageSwitcher />
                 <AuthorSwitcher />
                 <ThemeToggle />
               </div>
@@ -103,7 +107,7 @@ export function Header() {
                   <SheetTrigger asChild>
                     <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-secondary">
                       <Menu className="h-5 w-5" />
-                      <span className="sr-only">Menü öffnen</span>
+                      <span className="sr-only">{t('openMenu')}</span>
                     </button>
                   </SheetTrigger>
                   <SheetContent side="left" className="w-[80vw] max-w-sm p-0">
@@ -113,7 +117,7 @@ export function Header() {
                            <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
                               <Scroll className="h-4 w-4 text-primary-foreground" />
                             </div>
-                           <span className="font-display text-lg">Meum Diarium</span>
+                           <span className="font-display text-lg">{t('appName')}</span>
                          </Link>
                        </div>
                       
@@ -136,12 +140,16 @@ export function Header() {
                        </nav>
 
                        <div className="mt-auto p-6 pt-6 border-t space-y-4">
+                        <div className="flex justify-between items-center">
+                           <span className="text-sm font-medium">{t('language')}</span>
+                           <LanguageSwitcher />
+                         </div>
                          <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">Autor</span>
+                           <span className="text-sm font-medium">{t('author')}</span>
                            <AuthorSwitcher />
                          </div>
                          <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">Thema</span>
+                           <span className="text-sm font-medium">{t('theme')}</span>
                            <ThemeToggle />
                          </div>
                        </div>

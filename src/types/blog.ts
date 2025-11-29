@@ -1,4 +1,5 @@
 
+
 export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca';
 
 export type Perspective = 'diary' | 'scientific';
@@ -76,4 +77,4 @@ export interface Work {
   structure: { title: string; content: string }[];
 }
 
-export type Language = 'de' | 'en' | 'la' | 'la-de' | 'la-en';
+export type Language = 'de' | 'de-la' | 'en' | 'en-la';

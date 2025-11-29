@@ -17,6 +17,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
 import { useEffect } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const queryClient = new QueryClient();
 
@@ -74,12 +75,14 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-        <AuthorProvider>
-          <Toaster richColors />
-          <BrowserRouter>
-            <AppContent />
-          </BrowserRouter>
-        </AuthorProvider>
+        <LanguageProvider>
+          <AuthorProvider>
+            <Toaster richColors />
+            <BrowserRouter>
+              <AppContent />
+            </BrowserRouter>
+          </AuthorProvider>
+        </LanguageProvider>
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
