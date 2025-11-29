@@ -23,7 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   
   const t = (key: TranslationKey, replacements?: Record<string, string>): string => {
     const langKey = language as keyof typeof translations;
-    let translation = translations[langKey][key] || translations.de[key];
+    let translation = translations[langKey]?.[key] || translations.de[key];
     
     if (replacements) {
         Object.keys(replacements).forEach(rKey => {
@@ -37,7 +37,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
-    </Language-Context.Provider>
+    </LanguageContext.Provider>
   );
 }
 
