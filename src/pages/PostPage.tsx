@@ -21,12 +21,9 @@ const calculateReadingTime = (text: string): number => {
   return Math.ceil(wordCount / wordsPerMinute);
 };
 
-export default function PostPage() {
-  const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
-  const { setCurrentAuthor } = useAuthor();
+function PostContent({ post }: { post: BlogPost }) {
+  const { t } = useLanguage();
   const [perspective, setPerspective] = useState<Perspective>('diary');
-  const { language, t } = useLanguage();
-  const [post, setPost] = useState<BlogPost | null | undefined>(undefined);
   
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -35,16 +32,6 @@ export default function PostPage() {
   });
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
-  useEffect(() => {
-    async function translatePost() {
-      const translated = await getTranslatedPost(language, authorId as Author, slug as string);
-      setPost(translated);
-    }
-    translatePost();
-  }, [language, authorId, slug]);
-
-  const author = post ? authorData[post.author] : null;
-
   const contentToDisplay = post?.content[perspective];
 
   const readingTime = useMemo(() => {
@@ -52,25 +39,10 @@ export default function PostPage() {
     return calculateReadingTime(contentToDisplay);
   }, [contentToDisplay]);
 
-  useEffect(() => {
-    if (authorId && authorData[authorId as Author]) {
-      setCurrentAuthor(authorId as Author);
-    }
-  }, [authorId, setCurrentAuthor]);
-
   const formattedContent = useMemo(() => {
     if (!contentToDisplay) return [];
     return formatContent(contentToDisplay, t);
   }, [contentToDisplay, t]);
-
-  if (post === undefined) {
-    // Still loading
-    return <div className="min-h-screen bg-background" />;
-  }
-
-  if (!post || !author) {
-    return <NotFound />;
-  }
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
@@ -147,4 +119,39 @@ export default function PostPage() {
       <Footer />
     </div>
   );
+}
+
+
+export default function PostPage() {
+  const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
+  const { setCurrentAuthor } = useAuthor();
+  const { language } = useLanguage();
+  const [post, setPost] = useState<BlogPost | null | undefined>(undefined);
+  
+  useEffect(() => {
+    async function translatePost() {
+      const translated = await getTranslatedPost(language, authorId as Author, slug as string);
+      setPost(translated);
+    }
+    translatePost();
+  }, [language, authorId, slug]);
+
+  const author = post ? authorData[post.author] : null;
+
+  useEffect(() => {
+    if (authorId && authorData[authorId as Author]) {
+      setCurrentAuthor(authorId as Author);
+    }
+  }, [authorId, setCurrentAuthor]);
+
+  if (post === undefined) {
+    // Still loading
+    return <div className="min-h-screen bg-background" />;
+  }
+
+  if (!post || !author) {
+    return <NotFound />;
+  }
+
+  return <PostContent post={post} />;
 }
