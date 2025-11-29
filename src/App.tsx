@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -36,12 +37,21 @@ const AppContent = () => {
                         location.pathname.startsWith('/cicero') || 
                         location.pathname.startsWith('/augustus') || 
                         location.pathname.startsWith('/seneca');
+  
+  const isPostPage = isAuthorRoute && (
+    !location.pathname.endsWith('/about') &&
+    !location.pathname.includes('/works/') &&
+    location.pathname.split('/').length > 2
+  );
 
   return (
     <>
       <ScrollToTop />
-      <Header />
-      {isAuthorRoute && <AuthorHeader />}
+      {/* The z-index here ensures the header is above the PostPage hero image */}
+      <div className="relative z-50">
+        <Header />
+        {isAuthorRoute && !isPostPage && <AuthorHeader />}
+      </div>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/:authorId" element={<Index />} />

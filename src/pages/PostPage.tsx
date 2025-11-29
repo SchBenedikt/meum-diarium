@@ -58,20 +58,22 @@ export default function PostPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
 
-        {/* Hero Image Section */}
-        <section className="relative h-[60vh] min-h-[400px] w-full pt-16">
-          <div className="absolute inset-0">
+        {/* Hero Image Section - uses absolute positioning so it doesn't affect document flow */}
+        <div className="absolute top-0 left-0 right-0 h-[60vh] min-h-[400px] w-full">
             <img 
               src={post.coverImage} 
               alt={post.title}
               className="w-full h-full object-cover" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-          </div>
-        </section>
+        </div>
         
-        <div className="container mx-auto pb-12 -mt-24 md:-mt-32">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+        {/* Container for content, starts below the header and hero */}
+        <div className="container mx-auto pb-12 pt-20 relative z-10">
+           {/* This div creates the space for the hero image */}
+          <div className="h-[calc(60vh-80px)] min-h-[320px] w-full"></div>
+          
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12 -mt-16 md:-mt-24">
             {/* Main Content */}
             <article>
               {/* Header */}
