@@ -1,3 +1,4 @@
+
 import React, { useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -7,7 +8,7 @@ import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { Author, Perspective } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { ShareButton } from '@/components/ShareButton';
 import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
@@ -15,7 +16,7 @@ import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { motion } from 'framer-motion';
 
 
-const calculateReadingTime = (text: string | undefined): number => {
+const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
   const wordsPerMinute = 200;
   const wordCount = text.split(/\s+/).length;
@@ -34,7 +35,7 @@ export default function PostPage() {
   const contentToDisplay = post?.content[perspective];
 
   const readingTime = useMemo(() => {
-    return calculateReadingTime(contentToDisplay);
+    return calculateReadingTime(contentToDisplay || '');
   }, [contentToDisplay]);
 
 
@@ -67,20 +68,9 @@ export default function PostPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           </div>
-          <div className="container mx-auto relative h-full flex flex-col justify-end pb-12">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <Link
-                to={`/${author.id}`}
-                className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors mb-8"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Zurück zum Diarium
-              </Link>
-            </motion.div>
-          </div>
         </section>
         
-        <div className="container mx-auto pb-12 -mt-16">
+        <div className="container mx-auto pb-12 -mt-24 md:-mt-32">
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             {/* Main Content */}
             <article>

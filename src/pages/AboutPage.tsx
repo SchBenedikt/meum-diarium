@@ -226,42 +226,38 @@ function AuthorAboutPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pt-28 pb-12">
         <div className="container mx-auto">
-          {/* Hero */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          {/* Header */}
+          <div className="mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-            >
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-4">
-                {authorInfo.name}
-              </h1>
-              <p className="text-xl text-muted-foreground mb-2">
-                {authorInfo.title}
-              </p>
-              <p className="text-muted-foreground mb-6">
-                {authorInfo.years}
-              </p>
-              <p className="text-lg text-muted-foreground/80 leading-relaxed">
-                {authorInfo.description}
-              </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]"
+              className="flex flex-col sm:flex-row items-start gap-6"
             >
               <img 
-                src={authorInfo.heroImage}
+                src={authorInfo.heroImage} 
                 alt={authorInfo.name}
-                className="w-full h-full object-cover"
+                className="h-24 w-24 rounded-full object-cover border-4 border-background shadow-lg"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-sm text-foreground/70">{authorInfo.latinName}</p>
+              <div className="flex-1">
+                <h1 className="font-display text-4xl md:text-5xl mb-2">
+                  {authorInfo.name}
+                </h1>
+                <p className="text-xl text-muted-foreground mb-2">
+                  {authorInfo.title}
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  {authorInfo.years}
+                </p>
               </div>
             </motion.div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{delay: 0.1}}
+              className="text-lg text-muted-foreground/80 leading-relaxed max-w-3xl mt-4"
+            >
+              {authorInfo.description}
+            </motion.p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
