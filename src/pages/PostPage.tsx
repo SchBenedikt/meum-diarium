@@ -12,6 +12,7 @@ import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { motion } from 'framer-motion';
+import { ShareButton } from '@/components/ShareButton';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -93,6 +94,11 @@ export default function PostPage() {
                     <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
                       {post.title}
                     </h1>
+                    <ShareButton 
+                        title={post.title}
+                        text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+                        variant="compact"
+                      />
                   </div>
                   
                   <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">

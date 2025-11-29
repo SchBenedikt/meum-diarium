@@ -22,19 +22,12 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
   return (
     <aside className="space-y-6">
       <div className="sidebar-card animate-in">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
-            <div>
-              <p className="font-medium">{author.name}</p>
-              <p className="text-sm text-muted-foreground">{author.title}</p>
-            </div>
+        <div className="flex items-center gap-3">
+          <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
+          <div>
+            <p className="font-medium">{author.name}</p>
+            <p className="text-sm text-muted-foreground">{author.title}</p>
           </div>
-          <ShareButton 
-            title={post.title}
-            text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-            variant="compact"
-          />
         </div>
       </div>
 
