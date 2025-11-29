@@ -37,9 +37,7 @@ export default function PostPage() {
   const readingTime = useMemo(() => {
     if (!post) return 0;
     const text = post.content[perspective] || '';
-    const wordsPerMinute = 200;
-    const wordCount = text.split(/\s+/).length;
-    return Math.ceil(wordCount / wordsPerMinute);
+    return calculateReadingTime(text);
   }, [post, perspective]);
 
 
@@ -94,7 +92,7 @@ export default function PostPage() {
                       {post.title}
                     </h1>
                     <div className="hidden sm:block mt-2">
-                        <ShareButton title={post.title} />
+                        
                     </div>
                   </div>
                   
