@@ -89,9 +89,14 @@ export default function PostPage() {
                     </p>
                   )}
 
-                  <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-6">
-                    {post.title}
-                  </h1>
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
+                      {post.title}
+                    </h1>
+                    <div className="hidden sm:block mt-2">
+                        <ShareButton title={post.title} />
+                    </div>
+                  </div>
                   
                   <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
                     <div className="flex items-center gap-2">
