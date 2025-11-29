@@ -1,10 +1,10 @@
-
 import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { posts } from '@/data/posts';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Users, Scroll, BookOpen, Quote, ArrowRight, Tags } from 'lucide-react';
+import { Calendar, MapPin, Users, Tags, ArrowRight, Quote } from 'lucide-react';
 import { ShareButton } from './ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface BlogSidebarProps {
   post: BlogPost;
@@ -12,6 +12,7 @@ interface BlogSidebarProps {
 
 export function BlogSidebar({ post }: BlogSidebarProps) {
   const author = authors[post.author];
+  const { t } = useLanguage();
   
   // Get related posts (same author, different post)
   const relatedPosts = posts
@@ -20,7 +21,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
   return (
     <aside className="space-y-6">
-      {/* Author Card */}
       <div className="sidebar-card animate-in">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -38,27 +38,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       </div>
 
-      {/* Quick Facts */}
-      {post.sidebar?.facts && post.sidebar.facts.length > 0 && (
-        <div className="sidebar-card animate-in stagger-1">
-          <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-            <Scroll className="h-4 w-4 text-primary" />
-            Fakten
-          </h3>
-          <dl className="space-y-3">
-            {post.sidebar.facts.map((fact, index) => (
-              <div key={index} className="flex flex-col">
-                <dt className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
-                  {fact.label}
-                </dt>
-                <dd className="text-sm font-medium">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      )}
-
-      {/* Historical Context */}
       <div className="sidebar-card animate-in stagger-2">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
@@ -83,7 +62,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       </div>
 
-      {/* Featured Quote */}
       {post.sidebar?.quote && (
         <div className="sidebar-card animate-in stagger-3 gradient-bg">
           <Quote className="h-5 w-5 text-primary mb-3" />
@@ -96,7 +74,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      {/* Tags */}
       <div className="sidebar-card animate-in stagger-4">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
@@ -115,11 +92,10 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       </div>
 
-      {/* Related Posts */}
       {relatedPosts.length > 0 && (
         <div className="sidebar-card animate-in stagger-5">
           <h3 className="font-display text-lg font-medium mb-4">
-            Weitere Einträge
+            {t('otherWorks')}
           </h3>
           <div className="space-y-3">
             {relatedPosts.map((relatedPost) => (

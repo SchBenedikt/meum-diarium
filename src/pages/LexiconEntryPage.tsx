@@ -1,7 +1,6 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { lexicon } from '@/data/lexicon';
 import { posts } from '@/data/posts';
 import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
@@ -10,40 +9,64 @@ import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
 import { formatContent } from '@/lib/content-formatter';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslatedLexiconEntry, getTranslatedPost } from '@/lib/translator';
+import { LexiconEntry, BlogPost } from '@/types/blog';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
+  const { language, t } = useLanguage();
+
+  const [entry, setEntry] = useState<LexiconEntry | null | undefined>(undefined);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
 
-  const entry = lexicon.find(e => e.slug === slug);
-  
+  useEffect(() => {
+    async function translateContent() {
+      const translatedEntry = await getTranslatedLexiconEntry(language, slug as string);
+      setEntry(translatedEntry);
+
+      if (translatedEntry) {
+        const searchTerms = [translatedEntry.term.toLowerCase(), ...(translatedEntry.variants?.map(v => v.toLowerCase()) || [])];
+        const allRelatedPosts = [];
+        for (const post of posts) {
+          const translatedPost = await getTranslatedPost(language, post.author, post.slug);
+          if (translatedPost) {
+            const isRelated = searchTerms.some(term => 
+              translatedPost.title.toLowerCase().includes(term) ||
+              translatedPost.excerpt.toLowerCase().includes(term) ||
+              translatedPost.content.diary.toLowerCase().includes(term) ||
+              translatedPost.content.scientific.toLowerCase().includes(term)
+            );
+            if (isRelated) {
+              allRelatedPosts.push(translatedPost);
+            }
+          }
+        }
+        setRelatedPosts(allRelatedPosts.slice(0, 5));
+      }
+    }
+    translateContent();
+  }, [language, slug]);
+
+
   const handleBackClick = () => {
     navigate('/lexicon');
   };
 
-
-  const relatedPosts = useMemo(() => {
-    if (!entry) return [];
-    const searchTerms = [entry.term.toLowerCase(), ...(entry.variants?.map(v => v.toLowerCase()) || [])];
-    return posts.filter(post => 
-      searchTerms.some(term => 
-        post.title.toLowerCase().includes(term) ||
-        post.excerpt.toLowerCase().includes(term) ||
-        post.content.diary.toLowerCase().includes(term) ||
-        post.content.scientific.toLowerCase().includes(term)
-      )
-    ).slice(0, 5);
-  }, [entry]);
-
   const formattedContent = useMemo(() => {
     if (!entry) return [];
-    return formatContent(entry.definition, entry.slug);
-  }, [entry]);
+    return formatContent(entry.definition, t, entry.slug);
+  }, [entry, t]);
+
+  if (entry === undefined) {
+    return <div className="min-h-screen bg-background" />;
+  }
 
   if (!entry) {
     return <NotFound />;
@@ -58,7 +81,7 @@ export default function LexiconEntryPage() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zum Lexikon
+            {t('backToLexicon')}
           </button>
 
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
@@ -95,7 +118,7 @@ export default function LexiconEntryPage() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <Newspaper className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-2xl font-medium">Verwandte Einträge</h2>
+                    <h2 className="font-display text-2xl font-medium">{t('relatedEntries')}</h2>
                   </div>
                   <div className="relative">
                     <div className="grid md:grid-cols-2 gap-6">

@@ -77,4 +77,4 @@ export interface Work {
   structure: { title: string; content: string }[];
 }
 
-export type Language = 'de' | 'de-la' | 'en' | 'en-la';
+export type Language = 'de' | 'de-la' | 'en' | 'en-la' | 'la';

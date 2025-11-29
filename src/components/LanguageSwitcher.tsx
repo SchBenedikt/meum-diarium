@@ -15,6 +15,7 @@ const languages: { code: Language, name: string, flag: string }[] = [
     { code: 'de-la', name: 'Deutsch (Latein)', flag: '🇩🇪' },
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'en-la', name: 'English (Latin)', flag: '🇬🇧' },
+    { code: 'la', name: 'Latina', flag: '🏛️' },
 ];
 
 export function LanguageSwitcher() {

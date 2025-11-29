@@ -4,6 +4,7 @@ import { Share2, Copy, Check, Facebook, Linkedin, Mail, Link2 } from 'lucide-rea
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 
 // Custom Icons for WhatsApp, Telegram and X
@@ -30,6 +31,7 @@ interface ShareButtonProps {
 }
 
 export function ShareButton({ title, text, url, variant = 'default' }: ShareButtonProps) {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   
@@ -119,7 +121,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
         )}
       >
         <Share2 className="h-4 w-4" />
-        {variant !== 'compact' && <span className="text-sm font-medium">Teilen</span>}
+        {variant !== 'compact' && <span className="text-sm font-medium">{t('share')}</span>}
       </button>
 
       <AnimatePresence>
@@ -143,7 +145,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               className="absolute right-0 top-full mt-2 z-50 w-64 rounded-xl bg-card border border-border shadow-xl overflow-hidden"
             >
               <div className="p-3 border-b border-border">
-                <p className="text-sm font-medium">Teilen</p>
+                <p className="text-sm font-medium">{t('share')}</p>
                 <p className="text-xs text-muted-foreground truncate">{title}</p>
               </div>
 

@@ -3,16 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { BookOpen } from 'lucide-react';
 import { lexicon } from '@/data/lexicon';
+import { TranslationKey } from '@/locales/translations';
 
 const allLinkableTerms = lexicon
   .flatMap(entry => [entry.term, ...(entry.variants || [])])
   .sort((a, b) => b.length - a.length);
 
-const allLinkableTermsRegex = allLinkableTerms.length > 0 
-  ? new RegExp(`\\b(${allLinkableTerms.join('|')})\\b`, 'gi')
-  : null;
-
-function LexiconTerm({ term, definition, slug }: { term: string, definition: string, slug: string }) {
+function LexiconTerm({ term, definition, slug, t }: { term: string, definition: string, slug: string, t: (key: TranslationKey) => string }) {
   const location = useLocation();
 
   return (
@@ -30,7 +27,7 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
         <div className="p-2">
           <h4 className="font-bold mb-2 flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
-            Lexikon
+            {t('navLexicon')}
           </h4>
           <p className="text-sm">{definition}</p>
         </div>
@@ -39,7 +36,7 @@ function LexiconTerm({ term, definition, slug }: { term: string, definition: str
   );
 }
 
-export function formatContent(content: string, currentSlug?: string): React.ReactNode[] {
+export function formatContent(content: string, t: (key: TranslationKey) => string, currentSlug?: string): React.ReactNode[] {
     const linkableTerms = allLinkableTerms.filter(term => {
       const entry = lexicon.find(e => e.term.toLowerCase() === term.toLowerCase() || e.variants?.map(v => v.toLowerCase()).includes(term.toLowerCase()));
       return entry?.slug !== currentSlug;
@@ -57,12 +54,10 @@ export function formatContent(content: string, currentSlug?: string): React.Reac
 
       if (paragraph.trim() === '') return null;
 
-      // Basic markdown for bold and italic
       let htmlParagraph = paragraph
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
       
-      // Handle headings and blockquotes that should take up the whole paragraph
       if (htmlParagraph.match(/^#{2,3}\s/)) {
         const level = htmlParagraph.startsWith('###') ? 3 : 2;
         const text = htmlParagraph.replace(/^#{2,3}\s/, '');
@@ -73,7 +68,6 @@ export function formatContent(content: string, currentSlug?: string): React.Reac
         return <blockquote key={pIndex}><p dangerouslySetInnerHTML={{ __html: text }} /></blockquote>;
       }
       
-
       let tempParagraph = htmlParagraph;
       let result;
       while ((result = regex.exec(tempParagraph)) !== null) {
@@ -88,7 +82,7 @@ export function formatContent(content: string, currentSlug?: string): React.Reac
         );
         
         if (lexiconEntry) {
-          parts.push(<LexiconTerm key={result.index} term={term} definition={lexiconEntry.definition} slug={lexiconEntry.slug} />);
+          parts.push(<LexiconTerm key={result.index} term={term} definition={lexiconEntry.definition} slug={lexiconEntry.slug} t={t} />);
         } else {
           parts.push(<span key={result.index} dangerouslySetInnerHTML={{ __html: term }} />);
         }

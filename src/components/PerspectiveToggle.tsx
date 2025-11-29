@@ -1,6 +1,8 @@
+
 import { Perspective } from '@/types/blog';
 import { BookOpen, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface PerspectiveToggleProps {
   value: Perspective;
@@ -8,6 +10,7 @@ interface PerspectiveToggleProps {
 }
 
 export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
+  const { t } = useLanguage();
   return (
     <div className="inline-flex p-1 rounded-lg bg-secondary/50 border border-border/50">
       <button
@@ -20,7 +23,7 @@ export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
         )}
       >
         <BookOpen className="h-4 w-4" />
-        <span className="hidden sm:inline">Tagebuch</span>
+        <span className="hidden sm:inline">{t('diary')}</span>
       </button>
       <button
         onClick={() => onChange('scientific')}
@@ -32,7 +35,7 @@ export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
         )}
       >
         <GraduationCap className="h-4 w-4" />
-        <span className="hidden sm:inline">Wissenschaftlich</span>
+        <span className="hidden sm:inline">{t('scientific')}</span>
       </button>
     </div>
   );

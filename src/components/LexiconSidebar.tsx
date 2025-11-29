@@ -1,14 +1,29 @@
 
 import { Link } from 'react-router-dom';
-import { lexicon, LexiconEntry } from '@/data/lexicon';
+import { lexicon as baseLexicon, LexiconEntry } from '@/data/lexicon';
 import { BookCopy, Link as LinkIcon, BookMarked, Tags } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import { useEffect, useState } from 'react';
+import { getTranslatedLexicon } from '@/lib/translator';
 
 interface LexiconSidebarProps {
   entry: LexiconEntry;
 }
 
 export function LexiconSidebar({ entry }: LexiconSidebarProps) {
+  const { language, t } = useLanguage();
+  const [lexicon, setLexicon] = useState(baseLexicon);
+
+  useEffect(() => {
+    async function translate() {
+      const translated = await getTranslatedLexicon(language);
+      setLexicon(translated);
+    }
+    translate();
+  }, [language]);
+
+
   const relatedTerms = entry.relatedTerms
     ? lexicon.filter(e => entry.relatedTerms?.includes(e.slug))
     : [];
@@ -64,7 +79,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         >
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <LinkIcon className="h-4 w-4 text-primary" />
-            Verwandte Begriffe
+            {t('relatedEntries')}
           </h3>
           <div className="space-y-2">
             {relatedTerms.map(term => (
@@ -91,7 +106,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         <Link to="/lexicon" className="group">
           <h3 className="font-display text-lg font-medium mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
             <BookMarked className="h-4 w-4 text-primary" />
-            Ganzes Lexikon
+            {t('navLexicon')}
           </h3>
           <p className="text-sm text-muted-foreground">
             Alle Begriffe des antiken Roms durchstöbern.

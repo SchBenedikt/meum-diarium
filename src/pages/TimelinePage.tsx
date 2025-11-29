@@ -1,15 +1,19 @@
-
 import { Footer } from '@/components/layout/Footer';
 import { Timeline } from '@/components/Timeline';
 import { ShareButton } from '@/components/ShareButton';
 import { Calendar, Clock, Users, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { timelineEvents } from '@/data/timeline';
-import { useEffect } from 'react';
+import { timelineEvents as baseTimelineEvents } from '@/data/timeline';
+import { useEffect, useState } from 'react';
 import { useAuthor } from '@/context/AuthorContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslatedTimeline } from '@/lib/translator';
 
 export default function TimelinePage() {
   const { setCurrentAuthor } = useAuthor();
+  const { language, t } = useLanguage();
+  const [timelineEvents, setTimelineEvents] = useState(baseTimelineEvents);
+
   const totalEvents = timelineEvents.length;
   const minYear = Math.min(...timelineEvents.map(e => e.year));
   const maxYear = Math.max(...timelineEvents.map(e => e.year));
@@ -18,12 +22,19 @@ export default function TimelinePage() {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
 
+  useEffect(() => {
+    async function translate() {
+        const translated = await getTranslatedTimeline(language);
+        setTimelineEvents(translated);
+    }
+    translate();
+  }, [language]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         {/* Hero */}
         <section className="py-16 pt-32 hero-gradient relative overflow-hidden">
-          {/* Background decoration */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl" />
             <div className="absolute bottom-10 right-10 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
@@ -48,7 +59,7 @@ export default function TimelinePage() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="font-display text-4xl md:text-5xl lg:text-6xl mb-4"
                 >
-                  Zeitstrahl der Antike
+                  {t('navTimeline')}
                 </motion.h1>
                 
                 <motion.p 
@@ -73,7 +84,6 @@ export default function TimelinePage() {
               </motion.div>
             </div>
 
-            {/* Quick Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
