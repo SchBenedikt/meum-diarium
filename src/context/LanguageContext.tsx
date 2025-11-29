@@ -27,7 +27,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     
     if (replacements) {
         Object.keys(replacements).forEach(rKey => {
-            translation = translation.replace(`{{${rKey}}}`, replacements[rKey]);
+            translation = translation.replace(`{${rKey}}`, replacements[rKey]);
         });
     }
 
@@ -37,7 +37,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
-    </LanguageContext.Provider>
+    </Language-Context.Provider>
   );
 }
 

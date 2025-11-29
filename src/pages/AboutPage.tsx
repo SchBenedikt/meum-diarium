@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, MapPin, BookOpen, Award, ArrowRight, Users, Scroll, Clock } from 'lucide-react';
+import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { posts as basePosts } from '@/data/posts';
 import { authors as baseAuthors } from '@/data/authors';
@@ -149,7 +149,7 @@ function GeneralAboutPage() {
 
             <div className="grid gap-4 sm:grid-cols-2 mt-8">
               {Object.values(authors).map((author) => (
-                <Link key={author.id} to={`/${author.id}/about`} onClick={() => setCurrentAuthor(author.id)} className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <Link key={author.id} to={`/${author.id}/about`} onClick={() => setCurrentAuthor(author.id as Author)} className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                   <div className="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0">
                     <img src={author.heroImage} alt={author.name} className="w-full h-full object-cover" />
                   </div>
@@ -281,7 +281,7 @@ function AuthorAboutPage() {
                           <p className="font-medium group-hover:text-primary transition-colors">{post.title}</p>
                           <p className="text-sm text-muted-foreground">{post.historicalDate}</p>
                         </div>
-                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                        <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors rotate-180" />
                       </Link>
                     ))}
                   </div>

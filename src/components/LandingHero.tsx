@@ -6,8 +6,11 @@ import { QuoteOfDay } from './QuoteOfDay';
 import { FeaturedPost } from './FeaturedPost';
 import { ReadingStats } from './ReadingStats';
 import { AuthorGrid } from './AuthorGrid';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function LandingHero() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -38,8 +41,8 @@ export function LandingHero() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             {[
-              { to: "/timeline", icon: Clock, title: "Interaktiver Zeitstrahl", desc: "Verfolgen Sie die wichtigsten Ereignisse." },
-              { to: "/lexicon", icon: BookMarked, title: "Umfassendes Lexikon", desc: "Ein Nachschlagewerk für Begriffe." },
+              { to: "/timeline", icon: Clock, title: t('navTimeline'), desc: "Verfolgen Sie die wichtigsten Ereignisse." },
+              { to: "/lexicon", icon: BookMarked, title: t('navLexicon'), desc: "Ein Nachschlagewerk für Begriffe." },
             ].map((item, index) => (
               <motion.div
                 key={item.title}

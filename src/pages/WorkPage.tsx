@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
 import { Author, Work } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, User, CheckCircle, ListTree } from 'lucide-react';
+import { Calendar, User, CheckCircle, ListTree, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import slugify from 'slugify';
@@ -115,7 +115,7 @@ export default function WorkPage() {
                     </div>
                   </div>
                   <Link to={`/${author.id}/about`} className="w-full">
-                    <div className="btn-secondary w-full text-sm py-2">{t('moreAbout', { name: author.name.split(' ').pop() || ''})}</div>
+                    <Button variant="secondary" className="w-full">{t('moreAbout', { name: author.name.split(' ').pop() || ''})}</Button>
                   </Link>
                 </motion.div>
 
