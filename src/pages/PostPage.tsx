@@ -35,8 +35,12 @@ export default function PostPage() {
   const contentToDisplay = post?.content[perspective];
 
   const readingTime = useMemo(() => {
-    return calculateReadingTime(contentToDisplay || '');
-  }, [contentToDisplay]);
+    if (!post) return 0;
+    const text = post.content[perspective] || '';
+    const wordsPerMinute = 200;
+    const wordCount = text.split(/\s+/).length;
+    return Math.ceil(wordCount / wordsPerMinute);
+  }, [post, perspective]);
 
 
   useEffect(() => {
@@ -79,20 +83,6 @@ export default function PostPage() {
               {/* Header */}
               <header className="mb-10">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{delay: 0.1}}>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 mb-6">
-                      <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
-                      <div>
-                        <p className="font-medium">{author.name}</p>
-                        <p className="text-sm text-muted-foreground">{author.title}</p>
-                      </div>
-                    </div>
-                    <ShareButton 
-                      title={post.title}
-                      text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-                    />
-                  </div>
-
                   {post.latinTitle && (
                     <p className="font-display italic text-lg mb-3 text-primary">
                       „{post.latinTitle}"

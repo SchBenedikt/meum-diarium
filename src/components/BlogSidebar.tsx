@@ -4,6 +4,7 @@ import { authors } from '@/data/authors';
 import { posts } from '@/data/posts';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Users, Scroll, BookOpen, Quote, ArrowRight, Tags } from 'lucide-react';
+import { ShareButton } from './ShareButton';
 
 interface BlogSidebarProps {
   post: BlogPost;
@@ -19,9 +20,27 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
   return (
     <aside className="space-y-6">
+      {/* Author Card */}
+      <div className="sidebar-card animate-in">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
+            <div>
+              <p className="font-medium">{author.name}</p>
+              <p className="text-sm text-muted-foreground">{author.title}</p>
+            </div>
+          </div>
+          <ShareButton 
+            title={post.title}
+            text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+            variant="compact"
+          />
+        </div>
+      </div>
+
       {/* Quick Facts */}
       {post.sidebar?.facts && post.sidebar.facts.length > 0 && (
-        <div className="sidebar-card animate-in">
+        <div className="sidebar-card animate-in stagger-1">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <Scroll className="h-4 w-4 text-primary" />
             Fakten
@@ -40,7 +59,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       )}
 
       {/* Historical Context */}
-      <div className="sidebar-card animate-in stagger-1">
+      <div className="sidebar-card animate-in stagger-2">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
           Historischer Kontext
@@ -66,7 +85,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
       {/* Featured Quote */}
       {post.sidebar?.quote && (
-        <div className="sidebar-card animate-in stagger-2 gradient-bg">
+        <div className="sidebar-card animate-in stagger-3 gradient-bg">
           <Quote className="h-5 w-5 text-primary mb-3" />
           <blockquote className="font-display text-base italic mb-2">
             „{post.sidebar.quote.text}"
@@ -78,7 +97,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       )}
 
       {/* Tags */}
-      <div className="sidebar-card animate-in stagger-3">
+      <div className="sidebar-card animate-in stagger-4">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Themen
@@ -98,7 +117,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <div className="sidebar-card animate-in stagger-4">
+        <div className="sidebar-card animate-in stagger-5">
           <h3 className="font-display text-lg font-medium mb-4">
             Weitere Einträge
           </h3>
