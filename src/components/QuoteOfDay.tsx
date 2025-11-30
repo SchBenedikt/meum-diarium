@@ -4,6 +4,7 @@ import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface QuoteData {
   text: string;
@@ -28,6 +29,7 @@ const quotes: QuoteData[] = [
 ];
 
 export function QuoteOfDay() {
+  const { t } = useLanguage();
   const quote = useMemo(() => {
     const today = new Date();
     const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
@@ -55,7 +57,7 @@ export function QuoteOfDay() {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider mb-3 opacity-70">
-            Sententia Diei
+            {t('quoteOfTheDay')}
           </p>
           <blockquote className="font-display text-lg sm:text-xl leading-relaxed mb-2">
             „{quote.text}"

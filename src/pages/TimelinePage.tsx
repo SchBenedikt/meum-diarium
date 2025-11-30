@@ -50,7 +50,7 @@ export default function TimelinePage() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
                 >
                   <Calendar className="h-4 w-4" />
-                  <span>Interaktive Chronologie</span>
+                  <span>{t('interactiveChronology')}</span>
                 </motion.div>
                 
                 <motion.h1 
@@ -68,7 +68,7 @@ export default function TimelinePage() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="text-muted-foreground text-lg max-w-2xl"
                 >
-                  Entdecken Sie die wichtigsten Ereignisse im Leben von Caesar, Cicero, Augustus und Seneca – interaktiv und filterbar nach Autor und Art des Ereignisses.
+                  {t('timelinePageDesc')}
                 </motion.p>
               </div>
 
@@ -91,10 +91,10 @@ export default function TimelinePage() {
               className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {[
-                { icon: BookMarked, value: totalEvents, label: 'Ereignisse' },
-                { icon: Users, value: '4', label: 'Persönlichkeiten' },
-                { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: 'Beginn' },
-                { icon: Calendar, value: `${maxYear} n. Chr.`, label: 'Ende' },
+                { icon: BookMarked, value: totalEvents, label: t('events') },
+                { icon: Users, value: '4', label: t('personalities') },
+                { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: t('start') },
+                { icon: Calendar, value: `${maxYear} n. Chr.`, label: t('end') },
               ].map((stat) => (
                 <div 
                   key={stat.label}

@@ -1,5 +1,5 @@
 
-import { BookMarked, Clock, Users } from 'lucide-react';
+import { BookMarked, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { QuoteOfDay } from './QuoteOfDay';
@@ -22,14 +22,14 @@ export function LandingHero() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl mb-6 leading-tight">
-              Meum Diarium
+              {t('appName')}
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Erleben Sie Geschichte durch die persönlichen Kommentare der größten Persönlichkeiten Roms. Von Caesars Siegen bis zu Senecas Weisheit.
+              {t('heroSubtitle')}
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4">
               <a href="#authors" className="btn-primary px-8 py-3 text-base">
-                Autoren entdecken
+                {t('discoverAuthorsBtn')}
               </a>
             </div>
           </motion.div>
@@ -41,8 +41,8 @@ export function LandingHero() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             {[
-              { to: "/timeline", icon: Clock, title: t('navTimeline'), desc: "Verfolgen Sie die wichtigsten Ereignisse." },
-              { to: "/lexicon", icon: BookMarked, title: t('navLexicon'), desc: "Ein Nachschlagewerk für Begriffe." },
+              { to: "/timeline", icon: Clock, title: t('navTimeline'), desc: t('timelineDesc') },
+              { to: "/lexicon", icon: BookMarked, title: t('navLexicon'), desc: t('lexiconDesc') },
             ].map((item, index) => (
               <motion.div
                 key={item.title}

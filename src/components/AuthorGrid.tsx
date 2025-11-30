@@ -3,9 +3,11 @@ import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
+  const { t } = useLanguage();
 
   return (
     <section className="py-24 bg-background">
@@ -18,13 +20,13 @@ export function AuthorGrid() {
             className="text-center mb-14"
           >
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Stimmen der Antike
+              {t('voicesOfAntiquity')}
             </span>
             <h2 className="font-display text-3xl sm:text-4xl mb-4">
-              Wähle einen Autor
+              {t('chooseAnAuthor')}
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Jeder Autor bietet eine einzigartige Perspektive auf die turbulenten Zeiten des alten Roms.
+              {t('authorSelectionDesc')}
             </p>
           </motion.div>
 

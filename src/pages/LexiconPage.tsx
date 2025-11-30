@@ -115,11 +115,11 @@ export default function LexiconPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
                 <BookMarked className="h-4 w-4" />
-                <span>Glossar der Antike</span>
+                <span>{t('lexiconGlossary')}</span>
               </div>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-4">{t('navLexicon')}</h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Ein Nachschlagewerk für die wichtigsten Begriffe, Personen und Konzepte des antiken Roms.
+                {t('lexiconDescription')}
               </p>
             </motion.div>
           </div>

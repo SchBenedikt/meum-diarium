@@ -1,18 +1,22 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedPost } from '@/lib/translator';
 import { authors as authorData } from '@/data/authors';
+import { posts as allPosts } from '@/data/posts';
 import { Author, Perspective, BlogPost } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, BookText } from 'lucide-react';
 import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShareButton } from '@/components/ShareButton';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { BlogCard } from '@/components/BlogCard';
+import slugify from 'slugify';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -31,8 +35,10 @@ function PostContent({ post }: { post: BlogPost }) {
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+
 
   const contentToDisplay = post?.content[perspective];
 
@@ -45,13 +51,17 @@ function PostContent({ post }: { post: BlogPost }) {
     if (!contentToDisplay) return [];
     return formatContent(contentToDisplay, t);
   }, [contentToDisplay, t]);
+  
+  const relatedPosts = allPosts
+    .filter(p => p.author === post.author && p.id !== post.id)
+    .slice(0, 6);
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pt-16">
         
         <div className="relative">
-          <div className="relative h-[50vh] overflow-hidden">
+          <motion.div style={{ opacity: imageOpacity }} className="h-[60vh] overflow-hidden">
             <motion.img
               src={post.coverImage}
               alt={post.title}
@@ -62,69 +72,90 @@ function PostContent({ post }: { post: BlogPost }) {
               }}
               className="w-full h-full absolute top-0 left-0 object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-          </div>
+          </motion.div>
 
           <div className="container mx-auto pb-12">
-            <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-              <motion.article 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-xl"
+            <div className="relative">
+              <article 
+                className="bg-card p-6 md:p-10 rounded-2xl shadow-lg"
               >
-                <header className="mb-10 text-center">
-                  <div>
-                    {post.latinTitle && (
-                      <p className="font-display italic text-lg mb-3 text-primary">
-                        „{post.latinTitle}"
-                      </p>
-                    )}
+                <header className="mb-10 text-left">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      {post.latinTitle && (
+                        <p className="font-display italic text-lg mb-3 text-primary">
+                          „{post.latinTitle}"
+                        </p>
+                      )}
 
-                    <div className="flex items-start justify-center gap-4 mb-6">
-                      <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
+                      <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-4">
                         {post.title}
                       </h1>
-                      <div className="pt-2 hidden sm:block">
-                        <ShareButton
-                          title={post.title}
-                          text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-                          variant="compact"
-                        />
+                      
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>{post.historicalDate}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          <span>{t('readingTime', { minutes: String(readingTime) })}</span>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-8">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{post.historicalDate}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        <span>{t('readingTime', { minutes: String(readingTime) })}</span>
-                      </div>
+                    <div className="pt-2 hidden sm:block flex-shrink-0">
+                      <ShareButton
+                        title={post.title}
+                        text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+                        variant="compact"
+                      />
                     </div>
-
-                    <PerspectiveToggle value={perspective} onChange={setPerspective} />
                   </div>
+
+                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
                 </header>
 
-                <div className="prose-blog">
-                  {formattedContent}
+                <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+                    <div className="prose-blog">
+                        {formattedContent}
+                    </div>
+                    <aside className="hidden lg:block">
+                        <div className="sticky top-28">
+                        <BlogSidebar post={post} />
+                        </div>
+                    </aside>
                 </div>
-              </motion.article>
-
-              <aside className="hidden lg:block">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="sticky top-28"
-                >
-                  <BlogSidebar post={post} />
-                </motion.div>
-              </aside>
+              </article>
             </div>
+            
+            {relatedPosts.length > 0 && (
+              <section className="mt-20">
+                <div className="flex items-center gap-3 mb-6">
+                    <BookText className="h-5 w-5 text-primary" />
+                    <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
+                </div>
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent>
+                    {relatedPosts.map((relatedPost, index) => (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                           <BlogCard post={relatedPost} />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4" />
+                  <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4" />
+                </Carousel>
+              </section>
+            )}
+
           </div>
         </div>
       </main>

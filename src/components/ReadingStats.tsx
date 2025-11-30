@@ -5,8 +5,10 @@ import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { timelineEvents } from '@/data/timeline';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function ReadingStats() {
+  const { t } = useLanguage();
   const totalReadingTime = posts.reduce((acc, post) => acc + post.readingTime, 0);
   const uniqueTags = [...new Set(posts.flatMap(post => post.tags))];
 
@@ -14,26 +16,26 @@ export function ReadingStats() {
     { 
       icon: FileText, 
       value: posts.length, 
-      label: 'Tagebucheinträge',
-      description: 'Persönliche Kommentare'
+      label: t('diaryEntriesStat'),
+      description: t('diaryEntriesStatDesc')
     },
     { 
       icon: Users, 
       value: Object.keys(authors).length, 
-      label: 'Historische Autoren',
-      description: 'Persönlichkeiten Roms'
+      label: t('historicalAuthorsStat'),
+      description: t('historicalAuthorsStatDesc')
     },
     { 
       icon: Book, 
       value: `${totalReadingTime} Min.`, 
-      label: 'Gesamte Lesezeit',
-      description: 'Stunden der Geschichte'
+      label: t('totalReadingTimeStat'),
+      description: t('totalReadingTimeStatDesc')
     },
     { 
       icon: Calendar, 
       value: timelineEvents.length, 
-      label: 'Historische Ereignisse',
-      description: 'Im interaktiven Zeitstrahl'
+      label: t('historicalEventsStat'),
+      description: t('historicalEventsStatDesc')
     },
   ];
 
@@ -47,10 +49,10 @@ export function ReadingStats() {
           className="text-center mb-10"
         >
           <h2 className="font-display text-2xl md:text-3xl mb-2">
-            Entdecken Sie die Sammlung
+            {t('collectionInsights')}
           </h2>
           <p className="text-muted-foreground">
-            Zahlen und Fakten zu unseren Inhalten
+            {t('collectionStats')}
           </p>
         </motion.div>
 
@@ -82,7 +84,7 @@ export function ReadingStats() {
           transition={{ delay: 0.4 }}
           className="mt-10 text-center"
         >
-          <p className="text-sm text-muted-foreground mb-4">Beliebte Themen</p>
+          <p className="text-sm text-muted-foreground mb-4">{t('popularTopics')}</p>
           <div className="flex flex-wrap justify-center gap-2">
             {uniqueTags.slice(0, 12).map(tag => (
               <Link 
