@@ -1,3 +1,4 @@
+
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
@@ -73,12 +74,12 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-start -mt-48 md:-mt-32">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-start">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
@@ -121,7 +122,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
 
               </motion.article>
-              <aside className="hidden lg:block">
+              <aside className="hidden lg:block pt-12">
                 <div className="sticky top-28">
                     <BlogSidebar post={post} />
                 </div>
