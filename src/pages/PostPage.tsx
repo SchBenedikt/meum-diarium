@@ -74,7 +74,7 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-start">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
