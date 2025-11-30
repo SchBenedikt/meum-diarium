@@ -75,7 +75,7 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -131,7 +131,7 @@ function PostContent({ post }: { post: BlogPost }) {
             </div>
           </div>
             
-          <section className="container mx-auto mt-20 px-10">
+          <section className="container mx-auto mt-20 px-4">
               <div className="flex items-center gap-3 mb-6">
                   <BookText className="h-5 w-5 text-primary" />
                   <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
@@ -142,9 +142,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 }}
                 className="w-full"
               >
-                <CarouselContent>
+                <CarouselContent className="-ml-2">
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2">
                          <BlogCard post={relatedPost} />
                     </CarouselItem>
                   ))}
