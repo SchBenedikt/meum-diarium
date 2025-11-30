@@ -52,7 +52,7 @@ function PostContent({ post }: { post: BlogPost }) {
       <main className="flex-1 pt-16">
         
         <div className="relative">
-          <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+          <div className="relative h-[60vh] overflow-hidden">
             <motion.img
               src={post.coverImage}
               alt={post.title}
@@ -64,6 +64,7 @@ function PostContent({ post }: { post: BlogPost }) {
               }}
               className="w-full h-full absolute top-0 left-0 object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           </div>
 
           <div className="container mx-auto pb-12">
@@ -72,7 +73,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-24 md:-mt-32"
+                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32"
               >
                 <header className="mb-10 text-center">
                   <div>
