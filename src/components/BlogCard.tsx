@@ -29,8 +29,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
   return (
     <motion.article
       variants={cardVariants}
-      whileHover={{ y: -5, scale: 1.02 }}
-      transition={{ duration: 0.2, ease: "easeInOut" }}
+      whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeInOut" } }}
     >
       <Link
         to={`/${post.author}/${post.slug}`}
