@@ -30,10 +30,14 @@ export function BlogCard({ post, className }: BlogCardProps) {
     <motion.article
       variants={cardVariants}
       whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeInOut" } }}
+      className="h-full"
     >
       <Link
         to={`/${post.author}/${post.slug}`}
-        className={cn("group block bg-card rounded-2xl h-full p-0 overflow-hidden border border-border hover:border-primary/20 transition-shadow duration-300 shadow-sm hover:shadow-lg", className)}
+        className={cn(
+          "group flex flex-col bg-card rounded-2xl h-full p-0 overflow-hidden border border-border hover:border-primary/20 transition-shadow duration-300 shadow-sm hover:shadow-lg",
+          className
+        )}
       >
         <div className="relative h-48 overflow-hidden">
             <img 
@@ -44,7 +48,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
         </div>
         
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-grow">
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
               {post.tags.map((tag, i) => (
@@ -56,24 +60,22 @@ export function BlogCard({ post, className }: BlogCardProps) {
                   {tag}
                 </button>
               ))}
-              {post.latinTitle && (
-                <span className="text-xs text-muted-foreground italic truncate">
-                  {post.latinTitle}
-                </span>
-              )}
             </div>
 
             {/* Content */}
-            <h3 className="font-display text-xl font-medium mb-3 group-hover:text-primary transition-colors">
-              {post.title}
-            </h3>
-            
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
-              {post.excerpt}
-            </p>
+            <div className="flex-grow">
+              <h3 className="font-display text-xl font-medium mb-3 group-hover:text-primary transition-colors">
+                {post.title}
+              </h3>
+              
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
+                {post.excerpt}
+              </p>
+            </div>
+
 
             {/* Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-border/50">
+            <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-auto">
               <div className="flex items-center gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="h-3.5 w-3.5" />

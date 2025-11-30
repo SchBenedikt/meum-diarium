@@ -74,12 +74,12 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-start">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16 h-full"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
@@ -139,21 +139,18 @@ function PostContent({ post }: { post: BlogPost }) {
               <Carousel
                 opts={{
                   align: "start",
-                  loop: true,
                 }}
                 className="w-full"
               >
-                <CarouselContent>
+                <CarouselContent className="-ml-2">
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                      <div className="p-1">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2">
                          <BlogCard post={relatedPost} />
-                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4" />
-                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4" />
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
               </Carousel>
             </section>
           )}
