@@ -64,10 +64,11 @@ function PostContent({ post }: { post: BlogPost }) {
               style={{ 
                 y: imageY,
                 scale: imageScale,
+                opacity: imageOpacity,
               }}
               className="w-full h-full absolute top-0 left-0 object-cover"
           />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent" />
         </div>
         
         <div className="bg-background pb-12">
