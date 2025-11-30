@@ -35,10 +35,9 @@ function PostContent({ post }: { post: BlogPost }) {
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-
 
   const contentToDisplay = post?.content[perspective];
 
@@ -71,10 +70,10 @@ function PostContent({ post }: { post: BlogPost }) {
                 }}
                 className="w-full h-full absolute top-0 left-0 object-cover"
             />
+             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         </div>
         
-        <div className="relative bg-card pb-12">
-            <div className="absolute bottom-full left-0 right-0 h-32 bg-gradient-to-t from-card to-transparent" />
+        <div className="bg-background pb-12">
             <div className="container mx-auto">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
@@ -82,7 +81,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-lg"
               >
-                <header className="mb-10">
+                <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
                     <div className='flex-1'>
                       {post.latinTitle && (
@@ -124,7 +123,7 @@ function PostContent({ post }: { post: BlogPost }) {
                     </div>
                     <aside className="hidden lg:block">
                         <div className="sticky top-28">
-                        <BlogSidebar post={post} />
+                            <BlogSidebar post={post} />
                         </div>
                     </aside>
                 </div>
