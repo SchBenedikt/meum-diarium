@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { posts } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { BlogPost, Author } from '@/types/blog';
@@ -22,9 +22,10 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const { posts, isLoading } = usePosts();
 
   const results: SearchResult[] = useMemo(() => {
-    if (!query.trim()) return [];
+    if (isLoading || !query.trim()) return [];
     
     const searchTerm = query.toLowerCase();
 
@@ -50,7 +51,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     ).map(author => ({type: 'author', data: author}));
 
     return [...postResults, ...lexiconResults, ...authorResults].slice(0, 7);
-  }, [query]);
+  }, [query, posts, isLoading]);
 
   const handleNavigation = (index: number) => {
     if (index < 0 || index >= results.length) return;

@@ -2,7 +2,6 @@ import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { posts as basePosts } from '@/data/posts';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
@@ -11,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { Author, AuthorInfo, BlogPost, Work } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthors, getTranslatedAuthor, getTranslatedPost, getTranslatedWork } from '@/lib/translator';
+import { usePosts } from '@/hooks/use-posts';
 
 const authorDetails: Record<string, {
   birthPlace: string;
@@ -172,6 +172,7 @@ function AuthorAboutPage() {
   const { setCurrentAuthor } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
+  const { posts: allPosts, isLoading: postsLoading } = usePosts();
   
   const [authorInfo, setAuthorInfo] = useState<AuthorInfo | null>(null);
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
@@ -184,10 +185,12 @@ function AuthorAboutPage() {
             const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
             setAuthorInfo(translatedAuthor);
 
-            const translatedPosts = await Promise.all(
-                basePosts.filter(p => p.author === authorId).slice(0, 3).map(p => getTranslatedPost(language, p.author, p.slug))
-            );
-            setAuthorPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
+            if (!postsLoading) {
+              const translatedPosts = await Promise.all(
+                  allPosts.filter(p => p.author === authorId).slice(0, 3).map(p => getTranslatedPost(language, p.author, p.slug))
+              );
+              setAuthorPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
+            }
 
             const translatedWorks = await Promise.all(
                 Object.values(baseWorks).filter(w => w.author === authorId).map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
@@ -198,7 +201,7 @@ function AuthorAboutPage() {
     } else {
         setCurrentAuthor(null);
     }
-  }, [authorId, setCurrentAuthor, language]);
+  }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
   
   if (!authorId || !authorInfo) {
       return <GeneralAboutPage />;

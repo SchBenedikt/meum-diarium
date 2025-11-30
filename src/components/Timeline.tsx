@@ -7,10 +7,11 @@ import { Calendar, Star, BookOpen, Skull, Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Author, TimelineEvent, AuthorInfo } from '@/types/blog';
 import { Link } from 'react-router-dom';
-import { posts } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
 import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline, getTranslatedAuthors } from '@/lib/translator';
+import { BlogPost } from '@/types/blog';
 
 const typeIcons = {
   birth: Star,
@@ -20,13 +21,14 @@ const typeIcons = {
 };
 
 
-const findPostByEvent = (event: typeof baseTimelineEvents[0]) => {
+const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
   const eventSlug = slugify(event.title, { lower: true, strict: true });
   return posts.find(p => p.slug === eventSlug);
 }
 
 export function Timeline() {
   const { language, t } = useLanguage();
+  const { posts, isLoading: postsLoading } = usePosts();
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(baseTimelineEvents);
   const [authors, setAuthors] = useState<Record<string, AuthorInfo>>(baseAuthors);
 
@@ -157,7 +159,6 @@ export function Timeline() {
           <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
             {filteredEvents.map((event) => {
               const position = ((event.year - minYear) / totalRange) * 100;
-              const author = event.author ? authors[event.author] : null;
               return (
                 <motion.div
                   key={`bar-${event.year}-${event.title}`}
@@ -205,7 +206,7 @@ export function Timeline() {
                 const Icon = typeIcons[event.type];
                 const isLeft = index % 2 === 0;
                 const isHovered = hoveredEvent === `${event.year}-${event.title}`;
-                const post = findPostByEvent(event);
+                const post = findPostByEvent(event, posts);
 
                 const EventContent = () => (
                   <>

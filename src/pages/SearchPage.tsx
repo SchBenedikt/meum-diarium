@@ -2,7 +2,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { lexicon as baseLexicon, LexiconEntry } from '@/data/lexicon';
-import { posts as basePosts, BlogPost } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
+import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -35,13 +36,14 @@ const topCategories = ['Politik', 'Philosophie', 'Militär', 'Bürgerkrieg', 'Ge
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { language, t } = useLanguage();
+  const { posts: basePosts, isLoading } = usePosts();
   
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [activeCategories, setActiveCategories] = useState<string[]>(searchParams.getAll('category') || []);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
   const { setCurrentAuthor } = useAuthor();
 
-  const [posts, setPosts] = useState<BlogPost[]>(basePosts);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [lexicon, setLexicon] = useState<LexiconEntry[]>(baseLexicon);
   const [allCategories, setAllCategories] = useState<string[]>([]);
 
@@ -53,11 +55,13 @@ export default function SearchPage() {
     async function translateContent() {
       const translatedLexicon = await getTranslatedLexicon(language);
       setLexicon(translatedLexicon);
-      const translatedPosts = await Promise.all(basePosts.map(p => getTranslatedPost(language, p.author, p.slug)));
-      setPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
+      if (!isLoading) {
+        const translatedPosts = await Promise.all(basePosts.map(p => getTranslatedPost(language, p.author, p.slug)));
+        setPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
+      }
     }
     translateContent();
-  }, [language]);
+  }, [language, basePosts, isLoading]);
 
   useEffect(() => {
       setAllCategories([...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort());

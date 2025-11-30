@@ -1,6 +1,6 @@
 
 import { useAuthor } from '@/context/AuthorContext';
-import { posts } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,8 +17,13 @@ const containerVariants = {
 
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
+  const { posts, isLoading } = usePosts();
 
   if (!currentAuthor || !authorInfo) return null;
+  if (isLoading) {
+    // Optional: Add a loading skeleton here
+    return <div>Loading...</div>;
+  }
 
   const filteredPosts = posts.filter((post) => post.author === currentAuthor);
 

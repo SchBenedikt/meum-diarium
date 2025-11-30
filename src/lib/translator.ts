@@ -1,9 +1,9 @@
 import { Language, Author, BlogPost, LexiconEntry, Work, AuthorInfo, TimelineEvent } from '@/types/blog';
-import { posts } from '@/data/posts';
 import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
 import { timelineEvents } from '@/data/timeline';
+import { getAllPosts } from '@/data/posts';
 
 // This is a mock translation function. In a real application, this would
 // call a translation service API. For now, it returns German for 'de' and
@@ -27,7 +27,8 @@ async function translateArray(arr: string[], to: Language): Promise<string[]> {
 }
 
 export async function getTranslatedPost(lang: Language, authorId: Author, slug: string): Promise<BlogPost | null> {
-    const post = posts.find(p => p.author === authorId && p.slug === slug);
+    const allPosts = await getAllPosts();
+    const post = allPosts.find(p => p.author === authorId && p.slug === slug);
     if (!post) return null;
     if (lang.startsWith('de')) return post;
 

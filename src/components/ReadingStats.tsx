@@ -1,21 +1,24 @@
 
 import { Book, Users, FileText, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { posts } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
 import { timelineEvents } from '@/data/timeline';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import { useMemo } from 'react';
 
 export function ReadingStats() {
   const { t } = useLanguage();
-  const totalReadingTime = posts.reduce((acc, post) => acc + post.readingTime, 0);
-  const uniqueTags = [...new Set(posts.flatMap(post => post.tags))];
+  const { posts, isLoading } = usePosts();
+
+  const totalReadingTime = useMemo(() => posts.reduce((acc, post) => acc + post.readingTime, 0), [posts]);
+  const uniqueTags = useMemo(() => [...new Set(posts.flatMap(post => post.tags))], [posts]);
 
   const stats = [
     { 
       icon: FileText, 
-      value: posts.length, 
+      value: isLoading ? '...' : posts.length, 
       label: t('diaryEntriesStat'),
       description: t('diaryEntriesStatDesc')
     },
@@ -27,7 +30,7 @@ export function ReadingStats() {
     },
     { 
       icon: Book, 
-      value: `${totalReadingTime} Min.`, 
+      value: isLoading ? '...' : `${totalReadingTime} Min.`, 
       label: t('totalReadingTimeStat'),
       description: t('totalReadingTimeStatDesc')
     },

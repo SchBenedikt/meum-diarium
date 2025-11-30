@@ -1,7 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { posts } from '@/data/posts';
 import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
@@ -12,12 +11,14 @@ import { formatContent } from '@/lib/content-formatter';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexiconEntry, getTranslatedPost } from '@/lib/translator';
 import { LexiconEntry, BlogPost } from '@/types/blog';
+import { usePosts } from '@/hooks/use-posts';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
+  const { posts: allPosts, isLoading: postsLoading } = usePosts();
 
   const [entry, setEntry] = useState<LexiconEntry | null | undefined>(undefined);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
@@ -31,10 +32,11 @@ export default function LexiconEntryPage() {
       const translatedEntry = await getTranslatedLexiconEntry(language, slug as string);
       setEntry(translatedEntry);
 
-      if (translatedEntry) {
+      if (translatedEntry && !postsLoading) {
         const searchTerms = [translatedEntry.term.toLowerCase(), ...(translatedEntry.variants?.map(v => v.toLowerCase()) || [])];
-        const allRelatedPosts = [];
-        for (const post of posts) {
+        const postsToSearch = allPosts;
+        const foundPosts = [];
+        for (const post of postsToSearch) {
           const translatedPost = await getTranslatedPost(language, post.author, post.slug);
           if (translatedPost) {
             const isRelated = searchTerms.some(term => 
@@ -44,15 +46,15 @@ export default function LexiconEntryPage() {
               translatedPost.content.scientific.toLowerCase().includes(term)
             );
             if (isRelated) {
-              allRelatedPosts.push(translatedPost);
+              foundPosts.push(translatedPost);
             }
           }
         }
-        setRelatedPosts(allRelatedPosts.slice(0, 5));
+        setRelatedPosts(foundPosts.slice(0, 5));
       }
     }
     translateContent();
-  }, [language, slug]);
+  }, [language, slug, allPosts, postsLoading]);
 
 
   const handleBackClick = () => {

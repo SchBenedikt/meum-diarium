@@ -7,7 +7,7 @@ import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedPost } from '@/lib/translator';
 import { authors as authorData } from '@/data/authors';
-import { posts as allPosts } from '@/data/posts';
+import { usePosts } from '@/hooks/use-posts';
 import { Author, Perspective, BlogPost } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, Clock, BookText } from 'lucide-react';
@@ -28,6 +28,7 @@ const calculateReadingTime = (text: string): number => {
 
 function PostContent({ post }: { post: BlogPost }) {
   const { t } = useLanguage();
+  const { posts: allPosts } = usePosts();
   const [perspective, setPerspective] = useState<Perspective>('diary');
   
   const targetRef = useRef<HTMLDivElement>(null);
@@ -131,7 +132,7 @@ function PostContent({ post }: { post: BlogPost }) {
             </div>
           </div>
             
-          <section className="container mx-auto mt-20 px-4">
+          <section className="container mx-auto mt-20">
               <div className="flex items-center gap-3 mb-6">
                   <BookText className="h-5 w-5 text-primary" />
                   <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
@@ -144,7 +145,7 @@ function PostContent({ post }: { post: BlogPost }) {
               >
                 <CarouselContent className="-ml-2">
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2 py-4">
                          <BlogCard post={relatedPost} />
                     </CarouselItem>
                   ))}
