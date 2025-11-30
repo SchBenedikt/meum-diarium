@@ -31,9 +31,8 @@ function PostContent({ post }: { post: BlogPost }) {
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
 
   const contentToDisplay = post?.content[perspective];
 
@@ -52,14 +51,13 @@ function PostContent({ post }: { post: BlogPost }) {
       <main className="flex-1 pt-16">
         
         <div className="relative">
-          <div className="relative h-[60vh] overflow-hidden">
+          <div className="relative h-[50vh] overflow-hidden">
             <motion.img
               src={post.coverImage}
               alt={post.title}
               style={{ 
                 y: imageY,
                 scale: imageScale,
-                opacity: imageOpacity,
                 transformOrigin: 'center',
               }}
               className="w-full h-full absolute top-0 left-0 object-cover"
@@ -73,7 +71,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32"
+                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-xl"
               >
                 <header className="mb-10 text-center">
                   <div>
