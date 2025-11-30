@@ -79,7 +79,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 h-full"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
