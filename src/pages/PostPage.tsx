@@ -58,30 +58,33 @@ function PostContent({ post }: { post: BlogPost }) {
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-16">
-        
-        <div className="relative">
-          <motion.div style={{ opacity: imageOpacity }} className="h-[60vh] overflow-hidden">
+      <main className="flex-1">
+        <div className="relative h-[60vh] overflow-hidden">
             <motion.img
-              src={post.coverImage}
-              alt={post.title}
-              style={{ 
+                src={post.coverImage}
+                alt={post.title}
+                style={{ 
                 y: imageY,
                 scale: imageScale,
+                opacity: imageOpacity,
                 transformOrigin: 'center',
-              }}
-              className="w-full h-full absolute top-0 left-0 object-cover"
+                }}
+                className="w-full h-full absolute top-0 left-0 object-cover"
             />
-          </motion.div>
-
-          <div className="container mx-auto pb-12">
-            <div className="relative">
-              <article 
-                className="bg-card p-6 md:p-10 rounded-2xl shadow-lg"
+        </div>
+        
+        <div className="relative bg-card pb-12">
+            <div className="absolute bottom-full left-0 right-0 h-32 bg-gradient-to-t from-card to-transparent" />
+            <div className="container mx-auto">
+              <motion.article 
+                initial={{ y: -40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-lg"
               >
-                <header className="mb-10 text-left">
+                <header className="mb-10">
                   <div className="flex justify-between items-start">
-                    <div>
+                    <div className='flex-1'>
                       {post.latinTitle && (
                         <p className="font-display italic text-lg mb-3 text-primary">
                           „{post.latinTitle}"
@@ -125,11 +128,11 @@ function PostContent({ post }: { post: BlogPost }) {
                         </div>
                     </aside>
                 </div>
-              </article>
+              </motion.article>
             </div>
             
             {relatedPosts.length > 0 && (
-              <section className="mt-20">
+              <section className="container mx-auto mt-20">
                 <div className="flex items-center gap-3 mb-6">
                     <BookText className="h-5 w-5 text-primary" />
                     <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
