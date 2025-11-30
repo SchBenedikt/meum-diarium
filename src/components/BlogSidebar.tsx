@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Users, Tags, ArrowRight, Quote } from 'lucide-react';
 import { ShareButton } from './ShareButton';
 import { useLanguage } from '@/context/LanguageContext';
+import { motion } from 'framer-motion';
 
 interface BlogSidebarProps {
   post: BlogPost;
@@ -20,8 +21,13 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
     .slice(0, 3);
 
   return (
-    <aside className="space-y-6">
-      <Link to={`/${author.id}/about`} className="sidebar-card animate-in block transition-all hover:bg-secondary/60">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="bg-card p-6 rounded-2xl shadow-lg border border-border space-y-6"
+    >
+      <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">
         <div className="flex items-center gap-3">
           <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
           <div>
@@ -31,7 +37,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       </Link>
 
-      <div className="sidebar-card animate-in stagger-2">
+      <div>
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
           Historischer Kontext
@@ -56,7 +62,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {post.sidebar?.quote && (
-        <div className="sidebar-card animate-in stagger-3 gradient-bg">
+        <div className="gradient-bg p-4 rounded-lg">
           <Quote className="h-5 w-5 text-primary mb-3" />
           <blockquote className="font-display text-base italic mb-2">
             „{post.sidebar.quote.text}"
@@ -67,7 +73,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      <div className="sidebar-card animate-in stagger-4">
+      <div>
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Themen
@@ -86,7 +92,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {relatedPosts.length > 0 && (
-        <div className="sidebar-card animate-in stagger-5">
+        <div>
           <h3 className="font-display text-lg font-medium mb-4">
             {t('otherWorks')}
           </h3>
@@ -113,6 +119,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </div>
         </div>
       )}
-    </aside>
+    </motion.div>
   );
 }
