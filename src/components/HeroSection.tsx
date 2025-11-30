@@ -2,6 +2,7 @@
 import { useAuthor } from '@/context/AuthorContext';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { BlogList } from './BlogList';
 
 export function HeroSection() {
   const { authorInfo, currentAuthor } = useAuthor();
@@ -67,12 +68,14 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
-              <img 
-                src={authorInfo.heroImage}
-                alt={authorInfo.name}
-                className="w-full h-full object-cover"
-              />
+            <div className="relative rounded-2xl shadow-2xl aspect-[4/5]">
+              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                <img 
+                  src={authorInfo.heroImage}
+                  alt={authorInfo.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-foreground/70 text-sm mb-1 font-medium">{authorInfo.latinName}</p>
