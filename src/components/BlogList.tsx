@@ -29,7 +29,7 @@ export function BlogList() {
 
   return (
     <section className="py-20">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <motion.div
@@ -56,7 +56,7 @@ export function BlogList() {
         {/* Posts grid */}
         {filteredPosts.length > 0 ? (
           <motion.div 
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

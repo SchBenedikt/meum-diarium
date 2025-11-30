@@ -15,7 +15,7 @@ export function LandingHero() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center overflow-hidden hero-gradient py-20">
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto relative z-10 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export function LandingHero() {
 
       {/* Main Links */}
       <section className="py-16 bg-background">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             {[
               { to: "/timeline", icon: Clock, title: t('navTimeline'), desc: t('timelineDesc') },
@@ -72,7 +72,7 @@ export function LandingHero() {
 
       {/* Quote of the Day */}
       <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-4xl px-4">
           <QuoteOfDay />
         </div>
       </section>
