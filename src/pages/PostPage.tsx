@@ -75,7 +75,7 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -123,7 +123,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
 
               </motion.article>
-              <aside className="hidden lg:block pt-12">
+              <aside className="hidden lg:block pt-16">
                 <div className="sticky top-28">
                     <BlogSidebar post={post} />
                 </div>
@@ -131,8 +131,7 @@ function PostContent({ post }: { post: BlogPost }) {
             </div>
           </div>
             
-          {relatedPosts.length > 0 && (
-            <section className="container mx-auto mt-20 px-10">
+          <section className="container mx-auto mt-20 px-10">
               <div className="flex items-center gap-3 mb-6">
                   <BookText className="h-5 w-5 text-primary" />
                   <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
@@ -154,7 +153,6 @@ function PostContent({ post }: { post: BlogPost }) {
                 <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
               </Carousel>
             </section>
-          )}
 
         </div>
       </main>
