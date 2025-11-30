@@ -132,7 +132,7 @@ function PostContent({ post }: { post: BlogPost }) {
           </div>
             
           {relatedPosts.length > 0 && (
-            <section className="container mx-auto mt-20">
+            <section className="container mx-auto mt-20 px-10">
               <div className="flex items-center gap-3 mb-6">
                   <BookText className="h-5 w-5 text-primary" />
                   <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
@@ -143,9 +143,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 }}
                 className="w-full"
               >
-                <CarouselContent className="-ml-4">
+                <CarouselContent>
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                          <BlogCard post={relatedPost} />
                     </CarouselItem>
                   ))}
