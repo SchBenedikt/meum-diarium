@@ -9,7 +9,7 @@ export function HeroSection() {
   if (!authorInfo || !currentAuthor) return null;
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative flex items-center overflow-hidden" style={{ minHeight: 'calc(100vh - 4rem)'}}>
       {/* Background gradient */}
       <div className="absolute inset-0 hero-gradient" />
 
