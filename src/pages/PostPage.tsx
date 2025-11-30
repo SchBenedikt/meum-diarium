@@ -1,4 +1,5 @@
 
+
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
@@ -79,7 +80,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16 h-full"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 h-full pb-16"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
@@ -142,9 +143,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 }}
                 className="w-full"
               >
-                <CarouselContent className="-ml-2">
+                <CarouselContent className="-ml-4">
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
                          <BlogCard post={relatedPost} />
                     </CarouselItem>
                   ))}
