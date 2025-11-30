@@ -30,8 +30,8 @@ async function translateText(text: string, to: Language): Promise<string> {
             });
 
             if (!res.ok) {
-                console.error("Translation API error:", res.statusText);
-                return `[Translation Error] ${text}`;
+                console.error("Translation API error:", res.status, res.statusText);
+                return `[Translation Error: ${res.status}] ${text}`;
             }
 
             const data = await res.json();
