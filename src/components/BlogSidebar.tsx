@@ -21,7 +21,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
   return (
     <aside className="space-y-6">
-      <div className="sidebar-card animate-in">
+      <Link to={`/${author.id}/about`} className="sidebar-card animate-in block transition-all hover:bg-secondary/60">
         <div className="flex items-center gap-3">
           <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
           <div>
@@ -29,7 +29,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             <p className="text-sm text-muted-foreground">{author.title}</p>
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="sidebar-card animate-in stagger-2">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
