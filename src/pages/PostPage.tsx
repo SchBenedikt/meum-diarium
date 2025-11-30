@@ -58,16 +58,16 @@ function PostContent({ post }: { post: BlogPost }) {
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         <div className="relative h-[60vh] overflow-hidden">
-            <motion.img
-                src={post.coverImage}
-                alt={post.title}
-                style={{ 
-                  y: imageY,
-                  scale: imageScale,
-                  opacity: imageOpacity,
-                }}
-                className="w-full h-full absolute top-0 left-0 object-cover"
-            />
+          <motion.img
+              src={post.coverImage}
+              alt={post.title}
+              style={{ 
+                y: imageY,
+                scale: imageScale,
+              }}
+              className="w-full h-full absolute top-0 left-0 object-cover"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </div>
         
         <div className="bg-background pb-12">
@@ -76,7 +76,7 @@ function PostContent({ post }: { post: BlogPost }) {
               initial={{ y: -40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-lg"
+              className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-xl"
             >
               <header className="mb-10 text-left">
                 <div className="flex justify-between items-start">
@@ -87,11 +87,11 @@ function PostContent({ post }: { post: BlogPost }) {
                       </p>
                     )}
 
-                    <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-4">
+                    <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
                       {post.title}
                     </h1>
                     
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-4 mb-8">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <span>{post.historicalDate}</span>
