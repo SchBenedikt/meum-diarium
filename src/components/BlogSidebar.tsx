@@ -3,7 +3,6 @@ import { authors } from '@/data/authors';
 import { posts } from '@/data/posts';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Users, Tags, ArrowRight, Quote } from 'lucide-react';
-import { ShareButton } from './ShareButton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -25,19 +24,21 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       initial={{ opacity: 0, y: 20 }} 
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="bg-card p-6 rounded-2xl shadow-lg border border-border space-y-6"
+      className="bg-card p-4 rounded-2xl shadow-lg border border-border space-y-4"
     >
-      <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">
-        <div className="flex items-center gap-3">
-          <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
-          <div>
-            <p className="font-medium">{author.name}</p>
-            <p className="text-sm text-muted-foreground">{author.title}</p>
+      <div className="sidebar-card">
+        <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">
+          <div className="flex items-center gap-3">
+            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
+            <div>
+              <p className="font-medium">{author.name}</p>
+              <p className="text-sm text-muted-foreground">{author.title}</p>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
 
-      <div>
+      <div className="sidebar-card">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
           Historischer Kontext
@@ -62,7 +63,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {post.sidebar?.quote && (
-        <div className="gradient-bg p-4 rounded-lg">
+        <div className="sidebar-card gradient-bg">
           <Quote className="h-5 w-5 text-primary mb-3" />
           <blockquote className="font-display text-base italic mb-2">
             „{post.sidebar.quote.text}"
@@ -73,7 +74,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      <div>
+      <div className="sidebar-card">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Themen
@@ -92,7 +93,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {relatedPosts.length > 0 && (
-        <div>
+        <div className="sidebar-card">
           <h3 className="font-display text-lg font-medium mb-4">
             {t('otherWorks')}
           </h3>
