@@ -60,7 +60,7 @@ function PostContent({ post }: { post: BlogPost }) {
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        <div className="relative h-[60vh] overflow-hidden">
+        <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
           <motion.img
               src={post.coverImage}
               alt={post.title}
@@ -76,7 +76,7 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
+             <div className="relative grid lg:grid-cols-[70%_30%] gap-12 items-stretch">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
