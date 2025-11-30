@@ -1,3 +1,4 @@
+
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { AuthorIntro } from '@/components/AuthorIntro';
@@ -30,7 +31,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         {currentAuthor ? (
-          <div className="pt-14">
+          <div>
             <HeroSection />
             <AuthorIntro />
             <BlogList />

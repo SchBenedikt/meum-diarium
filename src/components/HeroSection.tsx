@@ -9,11 +9,11 @@ export function HeroSection() {
   if (!authorInfo || !currentAuthor) return null;
 
   return (
-    <section className="relative min-h-[85vh] flex items-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 hero-gradient" />
 
-      <div className="container mx-auto relative">
+      <div className="container mx-auto relative pt-16 sm:pt-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
           <div className="space-y-6">
