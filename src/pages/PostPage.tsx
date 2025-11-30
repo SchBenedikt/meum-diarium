@@ -8,7 +8,7 @@ import { authors as authorData } from '@/data/authors';
 import { posts as allPosts } from '@/data/posts';
 import { Author, Perspective, BlogPost } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, Clock, ArrowRight, BookText } from 'lucide-react';
+import { Calendar, Clock, BookText } from 'lucide-react';
 import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
@@ -16,7 +16,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { BlogCard } from '@/components/BlogCard';
-import slugify from 'slugify';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -70,98 +69,95 @@ function PostContent({ post }: { post: BlogPost }) {
                 }}
                 className="w-full h-full absolute top-0 left-0 object-cover"
             />
-             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         </div>
         
         <div className="bg-background pb-12">
-            <div className="container mx-auto">
-              <motion.article 
-                initial={{ y: -40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-lg"
-              >
-                <header className="mb-10 text-left">
-                  <div className="flex justify-between items-start">
-                    <div className='flex-1'>
-                      {post.latinTitle && (
-                        <p className="font-display italic text-lg mb-3 text-primary">
-                          „{post.latinTitle}"
-                        </p>
-                      )}
+          <div className="container mx-auto">
+            <motion.article 
+              initial={{ y: -40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-lg"
+            >
+              <header className="mb-10 text-left">
+                <div className="flex justify-between items-start">
+                  <div className='flex-1'>
+                    {post.latinTitle && (
+                      <p className="font-display italic text-lg mb-3 text-primary">
+                        „{post.latinTitle}"
+                      </p>
+                    )}
 
-                      <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-4">
-                        {post.title}
-                      </h1>
-                      
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span>{post.historicalDate}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
-                          <span>{t('readingTime', { minutes: String(readingTime) })}</span>
-                        </div>
+                    <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-4">
+                      {post.title}
+                    </h1>
+                    
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{post.historicalDate}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span>{t('readingTime', { minutes: String(readingTime) })}</span>
                       </div>
                     </div>
-                    <div className="pt-2 hidden sm:block flex-shrink-0">
-                      <ShareButton
-                        title={post.title}
-                        text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-                        variant="compact"
-                      />
-                    </div>
                   </div>
-
-                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
-                </header>
-
-                <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-                    <div className="prose-blog">
-                        {formattedContent}
-                    </div>
-                    <aside className="hidden lg:block">
-                        <div className="sticky top-28">
-                            <BlogSidebar post={post} />
-                        </div>
-                    </aside>
+                  <div className="pt-2 hidden sm:block flex-shrink-0">
+                    <ShareButton
+                      title={post.title}
+                      text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+                      variant="compact"
+                    />
+                  </div>
                 </div>
-              </motion.article>
-            </div>
-            
-            {relatedPosts.length > 0 && (
-              <section className="container mx-auto mt-20">
-                <div className="flex items-center gap-3 mb-6">
-                    <BookText className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
-                </div>
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  className="w-full"
-                >
-                  <CarouselContent>
-                    {relatedPosts.map((relatedPost, index) => (
-                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                           <BlogCard post={relatedPost} />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4" />
-                  <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4" />
-                </Carousel>
-              </section>
-            )}
 
+                <PerspectiveToggle value={perspective} onChange={setPerspective} />
+              </header>
+
+              <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+                  <div className="prose-blog">
+                      {formattedContent}
+                  </div>
+                  <aside className="hidden lg:block">
+                      <div className="sticky top-28">
+                          <BlogSidebar post={post} />
+                      </div>
+                  </aside>
+              </div>
+            </motion.article>
           </div>
+            
+          {relatedPosts.length > 0 && (
+            <section className="container mx-auto mt-20">
+              <div className="flex items-center gap-3 mb-6">
+                  <BookText className="h-5 w-5 text-primary" />
+                  <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
+              </div>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {relatedPosts.map((relatedPost, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <div className="p-1">
+                         <BlogCard post={relatedPost} />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4" />
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4" />
+              </Carousel>
+            </section>
+          )}
+
         </div>
       </main>
-
       <Footer />
     </div>
   );
