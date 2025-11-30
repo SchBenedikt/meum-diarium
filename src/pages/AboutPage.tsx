@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock } from 'lucide-react';
+import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
@@ -11,6 +11,7 @@ import { Author, AuthorInfo, BlogPost, Work } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthors, getTranslatedAuthor, getTranslatedPost, getTranslatedWork } from '@/lib/translator';
 import { usePosts } from '@/hooks/use-posts';
+import { Button } from '@/components/ui/button';
 
 const authorDetails: Record<string, {
   birthPlace: string;
@@ -276,7 +277,15 @@ function AuthorAboutPage() {
 
               {authorPosts.length > 0 && (
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                  <h2 className="font-display text-xl font-medium mb-4">{t('diaryEntries')}</h2>
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="font-display text-xl font-medium">{t('diaryEntries')}</h2>
+                    <Button asChild variant="ghost" size="sm">
+                      <Link to={`/${authorId}`}>
+                        Alle Einträge anzeigen
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
                   <div className="space-y-3">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="flex items-center justify-between p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group">
