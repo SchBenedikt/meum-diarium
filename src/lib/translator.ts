@@ -5,17 +5,46 @@ import { works } from '@/data/works';
 import { timelineEvents } from '@/data/timeline';
 import { getAllPosts } from '@/data/posts';
 
-// This is a mock translation function. In a real application, this would
-// call a translation service API. For now, it returns German for 'de' and
-// a placeholder for other languages.
+// Simple in-memory cache to avoid re-translating the same text within a session.
+const translationCache = new Map<string, string>();
+
 async function translateText(text: string, to: Language): Promise<string> {
     if (to.startsWith('de') || !text) return text;
-    
-    // In a real app, you would use a translation API here.
-    // For this example, we'll return a simple placeholder.
-    if (to.startsWith('en')) {
-        return `[EN] ${text}`;
+
+    const cacheKey = `${to}:${text}`;
+    if (translationCache.has(cacheKey)) {
+        return translationCache.get(cacheKey)!;
     }
+
+    if (to.startsWith('en')) {
+        try {
+            const res = await fetch("https://libretranslate.com/translate", {
+                method: "POST",
+                body: JSON.stringify({
+                    q: text,
+                    source: "de",
+                    target: "en",
+                    format: "text",
+                }),
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (!res.ok) {
+                console.error("Translation API error:", res.statusText);
+                return `[Translation Error] ${text}`;
+            }
+
+            const data = await res.json();
+            const translated = data.translatedText;
+            
+            translationCache.set(cacheKey, translated);
+            return translated;
+        } catch (error) {
+            console.error("Failed to fetch translation:", error);
+            return `[Network Error] ${text}`;
+        }
+    }
+    
     if (to === 'la') {
         return `[LA] ${text}`;
     }
