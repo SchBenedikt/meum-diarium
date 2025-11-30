@@ -4,20 +4,17 @@ import { ShareButton } from '@/components/ShareButton';
 import { Calendar, Clock, Users, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { timelineEvents as baseTimelineEvents } from '@/data/timeline';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline } from '@/lib/translator';
+import { TimelineEvent } from '@/types/blog';
 
 export default function TimelinePage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
-  const [timelineEvents, setTimelineEvents] = useState(baseTimelineEvents);
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(baseTimelineEvents);
 
-  const totalEvents = timelineEvents.length;
-  const minYear = Math.min(...timelineEvents.map(e => e.year));
-  const maxYear = Math.max(...timelineEvents.map(e => e.year));
-  
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
@@ -29,6 +26,20 @@ export default function TimelinePage() {
     }
     translate();
   }, [language]);
+
+  const stats = useMemo(() => {
+    const totalEvents = timelineEvents.length;
+    const minYear = timelineEvents.length > 0 ? Math.min(...timelineEvents.map(e => e.year)) : 0;
+    const maxYear = timelineEvents.length > 0 ? Math.max(...timelineEvents.map(e => e.year)) : 0;
+    
+    return [
+      { icon: BookMarked, value: totalEvents, label: t('events') },
+      { icon: Users, value: '4', label: t('personalities') },
+      { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: t('start') },
+      { icon: Calendar, value: `${maxYear} n. Chr.`, label: t('end') },
+    ];
+  }, [timelineEvents, t]);
+
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -90,12 +101,7 @@ export default function TimelinePage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"
             >
-              {[
-                { icon: BookMarked, value: totalEvents, label: t('events') },
-                { icon: Users, value: '4', label: t('personalities') },
-                { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: t('start') },
-                { icon: Calendar, value: `${maxYear} n. Chr.`, label: t('end') },
-              ].map((stat) => (
+              {stats.map((stat) => (
                 <div 
                   key={stat.label}
                   className="flex items-center gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50"
@@ -119,3 +125,5 @@ export default function TimelinePage() {
     </div>
   );
 }
+
+    

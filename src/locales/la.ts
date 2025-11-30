@@ -87,4 +87,15 @@ export const la = {
     lexiconGlossary: 'Glossarium Antiquitatis',
     lexiconDescription: 'Vademecum terminorum, personarum et conceptuum maximorum Romae antiquae.',
     morePostsFrom: 'Plures commentarii ab {name}',
+    filter: 'Filtra',
+    clearFilters: 'Filtra purga',
+    birth: 'Natus',
+    death: 'Mors',
+    event: 'Eventus',
+    work: 'Opus',
+    noEventsFound: 'Nulli eventus his filtris inventi sunt',
+    births: 'Nati',
+    timePeriod: 'Aetas',
 };
+
+    

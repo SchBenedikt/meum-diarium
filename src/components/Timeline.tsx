@@ -1,14 +1,16 @@
 
-import { useState, useMemo } from 'react';
-import { timelineEvents } from '@/data/timeline';
-import { authors } from '@/data/authors';
+import { useState, useMemo, useEffect } from 'react';
+import { timelineEvents as baseTimelineEvents } from '@/data/timeline';
+import { authors as baseAuthors } from '@/data/authors';
 import { cn } from '@/lib/utils';
 import { Calendar, Star, BookOpen, Skull, Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Author } from '@/types/blog';
+import { Author, TimelineEvent, AuthorInfo } from '@/types/blog';
 import { Link } from 'react-router-dom';
 import { posts } from '@/data/posts';
 import slugify from 'slugify';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslatedTimeline, getTranslatedAuthors } from '@/lib/translator';
 
 const typeIcons = {
   birth: Star,
@@ -17,38 +19,37 @@ const typeIcons = {
   work: BookOpen,
 };
 
-const typeLabels: Record<string, string> = {
-  birth: 'Geburt',
-  death: 'Tod',
-  event: 'Ereignis',
-  work: 'Werk',
-};
 
-const authorColorClasses: Record<string, string> = {
-  caesar: 'bg-author-caesar',
-  cicero: 'bg-author-cicero',
-  augustus: 'bg-author-augustus',
-  seneca: 'bg-author-seneca',
-};
-
-const authorBorderClasses: Record<string, string> = {
-  caesar: 'border-author-caesar',
-  cicero: 'border-author-cicero',
-  augustus: 'border-author-augustus',
-  seneca: 'border-author-seneca',
-};
-
-type FilterType = 'all' | 'birth' | 'death' | 'event' | 'work';
-
-const findPostByEvent = (event: typeof timelineEvents[0]) => {
+const findPostByEvent = (event: typeof baseTimelineEvents[0]) => {
   const eventSlug = slugify(event.title, { lower: true, strict: true });
   return posts.find(p => p.slug === eventSlug);
 }
 
 export function Timeline() {
+  const { language, t } = useLanguage();
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(baseTimelineEvents);
+  const [authors, setAuthors] = useState<Record<string, AuthorInfo>>(baseAuthors);
+
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>('all');
   const [hoveredEvent, setHoveredEvent] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function translateContent() {
+      const translatedEvents = await getTranslatedTimeline(language);
+      setTimelineEvents(translatedEvents);
+      const translatedAuthors = await getTranslatedAuthors(language);
+      setAuthors(translatedAuthors);
+    }
+    translateContent();
+  }, [language]);
+  
+  const typeLabels: Record<string, string> = {
+    birth: t('birth'),
+    death: t('death'),
+    event: t('event'),
+    work: t('work'),
+  };
 
   const filteredEvents = useMemo(() => {
     return timelineEvents.filter(event => {
@@ -57,7 +58,7 @@ export function Timeline() {
       const typeMatch = selectedType === 'all' || event.type === selectedType;
       return authorMatch && typeMatch;
     });
-  }, [selectedAuthors, selectedType]);
+  }, [selectedAuthors, selectedType, timelineEvents]);
 
   const toggleAuthor = (authorId: Author) => {
     setSelectedAuthors(prev => 
@@ -87,7 +88,7 @@ export function Timeline() {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">Filter</span>
+              <span className="text-sm font-medium">{t('filter')}</span>
             </div>
             
             {hasFilters && (
@@ -96,7 +97,7 @@ export function Timeline() {
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
               >
                 <X className="h-3.5 w-3.5" />
-                Filter zurücksetzen
+                {t('clearFilters')}
               </button>
             )}
           </div>
@@ -104,22 +105,22 @@ export function Timeline() {
           {/* Author Filter */}
           <div className="flex flex-wrap gap-2">
             {Object.values(authors).map((author) => {
-              const isSelected = selectedAuthors.includes(author.id);
+              const isSelected = selectedAuthors.includes(author.id as Author);
               return (
                 <button
                   key={author.id}
-                  onClick={() => toggleAuthor(author.id)}
+                  onClick={() => toggleAuthor(author.id as Author)}
                   className={cn(
                     "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200",
                     isSelected 
-                      ? `${authorColorClasses[author.id]} text-white shadow-lg` 
+                      ? `bg-author-${author.id} text-white shadow-lg` 
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                   )}
                 >
                   <div 
                     className={cn(
                       "h-2 w-2 rounded-full",
-                      isSelected ? "bg-white" : authorColorClasses[author.id]
+                      isSelected ? "bg-white" : `bg-author-${author.id}`
                     )}
                   />
                   {author.name}
@@ -144,7 +145,7 @@ export function Timeline() {
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />
-                  {type === 'all' ? 'Alle' : typeLabels[type as keyof typeof typeLabels]}
+                  {type === 'all' ? t('all') : typeLabels[type as keyof typeof typeLabels]}
                 </button>
               );
             })}
@@ -164,7 +165,7 @@ export function Timeline() {
                   animate={{ scale: 1 }}
                   className={cn(
                     "absolute top-0 h-full w-1.5 rounded-full cursor-pointer transition-all duration-200",
-                    authorColorClasses[event.author || 'caesar'],
+                    `bg-author-${event.author || 'caesar'}`,
                     hoveredEvent === `${event.year}-${event.title}` && "w-3 z-10"
                   )}
                   style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
@@ -195,7 +196,7 @@ export function Timeline() {
               >
                 <Calendar className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Keine Ereignisse für diese Filter gefunden
+                  {t('noEventsFound')}
                 </p>
               </motion.div>
             ) : (
@@ -219,7 +220,7 @@ export function Timeline() {
                           "inline-block bg-card rounded-2xl p-5 shadow-sm border-2 transition-all duration-300 text-left",
                           post ? 'group' : '',
                           isHovered && post
-                            ? `${authorBorderClasses[event.author || 'caesar']} shadow-lg` 
+                            ? `border-author-${event.author || 'caesar'} shadow-lg` 
                             : "border-border",
                           isLeft ? "md:ml-auto" : ""
                         )}
@@ -233,7 +234,7 @@ export function Timeline() {
                             <div 
                               className={cn(
                                 "h-7 w-7 rounded-lg flex items-center justify-center text-white text-xs font-bold",
-                                authorColorClasses[event.author || 'caesar']
+                                `bg-author-${event.author || 'caesar'}`
                               )}
                             >
                               {author.name.charAt(0)}
@@ -279,7 +280,7 @@ export function Timeline() {
                       className={cn(
                         "absolute left-8 md:left-1/2 md:-translate-x-1/2",
                         "h-10 w-10 rounded-xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
-                        authorColorClasses[event.author || 'caesar'],
+                        `bg-author-${event.author || 'caesar'}`,
                         isHovered && "ring-4 ring-background"
                       )}
                     >
@@ -326,10 +327,10 @@ export function Timeline() {
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
-            { value: filteredEvents.length, label: 'Ereignisse' },
-            { value: filteredEvents.filter(e => e.type === 'birth').length, label: 'Geburten' },
-            { value: filteredEvents.filter(e => e.type === 'work').length, label: 'Werke' },
-            { value: `${Math.abs(minYear)}-${maxYear > 0 ? maxYear : Math.abs(maxYear)}`, label: 'Zeitraum' },
+            { value: filteredEvents.length, label: t('events') },
+            { value: filteredEvents.filter(e => e.type === 'birth').length, label: t('births') },
+            { value: filteredEvents.filter(e => e.type === 'work').length, label: t('works') },
+            { value: `${Math.abs(minYear)}-${maxYear > 0 ? maxYear : Math.abs(maxYear)}`, label: t('timePeriod') },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -348,3 +349,6 @@ export function Timeline() {
     </section>
   );
 }
+
+type FilterType = 'all' | 'birth' | 'death' | 'event' | 'work';
+    

@@ -87,4 +87,15 @@ export const en = {
     lexiconGlossary: 'Glossary of Antiquity',
     lexiconDescription: 'A reference work for the most important terms, people, and concepts of ancient Rome.',
     morePostsFrom: 'More posts from {name}',
+    filter: 'Filter',
+    clearFilters: 'Clear filters',
+    birth: 'Birth',
+    death: 'Death',
+    event: 'Event',
+    work: 'Work',
+    noEventsFound: 'No events found for these filters',
+    births: 'Births',
+    timePeriod: 'Time Period',
 };
+
+    

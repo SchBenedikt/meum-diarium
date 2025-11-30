@@ -87,4 +87,15 @@ export const de = {
     lexiconGlossary: 'Glossar der Antike',
     lexiconDescription: 'Ein Nachschlagewerk für die wichtigsten Begriffe, Personen und Konzepte des antiken Roms.',
     morePostsFrom: 'Weitere Beiträge von {name}',
+    filter: 'Filter',
+    clearFilters: 'Filter zurücksetzen',
+    birth: 'Geburt',
+    death: 'Tod',
+    event: 'Ereignis',
+    work: 'Werk',
+    noEventsFound: 'Keine Ereignisse für diese Filter gefunden',
+    births: 'Geburten',
+    timePeriod: 'Zeitraum',
 };
+
+    
