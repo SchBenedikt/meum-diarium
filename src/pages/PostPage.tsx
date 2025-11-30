@@ -62,10 +62,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 src={post.coverImage}
                 alt={post.title}
                 style={{ 
-                y: imageY,
-                scale: imageScale,
-                opacity: imageOpacity,
-                transformOrigin: 'center',
+                  y: imageY,
+                  scale: imageScale,
+                  opacity: imageOpacity,
                 }}
                 className="w-full h-full absolute top-0 left-0 object-cover"
             />
