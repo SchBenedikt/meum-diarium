@@ -1,7 +1,5 @@
-
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
-import { AuthorIntro } from '@/components/AuthorIntro';
 import { BlogList } from '@/components/BlogList';
 import { LandingHero } from '@/components/LandingHero';
 import { useAuthor } from '@/context/AuthorContext';
@@ -33,7 +31,6 @@ const Index = () => {
         {currentAuthor ? (
           <div>
             <HeroSection />
-            <AuthorIntro />
             <BlogList />
           </div>
         ) : (
