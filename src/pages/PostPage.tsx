@@ -74,12 +74,12 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-stretch">
+             <div className="relative grid lg:grid-cols-[1fr_320px] gap-12 items-start">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 h-full"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
