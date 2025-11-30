@@ -31,8 +31,9 @@ function PostContent({ post }: { post: BlogPost }) {
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   const contentToDisplay = post?.content[perspective];
 
@@ -58,11 +59,11 @@ function PostContent({ post }: { post: BlogPost }) {
               style={{ 
                 y: imageY,
                 scale: imageScale,
+                opacity: imageOpacity,
                 transformOrigin: 'center',
               }}
-              className="w-full h-[150%] absolute top-0 left-0 object-cover"
+              className="w-full h-full absolute top-0 left-0 object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           </div>
 
           <div className="container mx-auto pb-12">
@@ -71,9 +72,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="-mt-24 md:-mt-32 relative bg-card p-6 md:p-10 rounded-2xl shadow-lg"
+                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-24 md:-mt-32"
               >
-                <header className="mb-10">
+                <header className="mb-10 text-center">
                   <div>
                     {post.latinTitle && (
                       <p className="font-display italic text-lg mb-3 text-primary">
@@ -81,11 +82,11 @@ function PostContent({ post }: { post: BlogPost }) {
                       </p>
                     )}
 
-                    <div className="flex items-start justify-between gap-4 mb-6">
+                    <div className="flex items-start justify-center gap-4 mb-6">
                       <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
                         {post.title}
                       </h1>
-                      <div className="pt-2">
+                      <div className="pt-2 hidden sm:block">
                         <ShareButton
                           title={post.title}
                           text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
@@ -94,7 +95,7 @@ function PostContent({ post }: { post: BlogPost }) {
                       </div>
                     </div>
                     
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+                    <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-8">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4" />
                         <span>{post.historicalDate}</span>
