@@ -1,10 +1,10 @@
 import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
-import { posts } from '@/data/posts';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Users, Tags, ArrowRight, Quote } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { usePosts } from '@/hooks/use-posts';
 
 interface BlogSidebarProps {
   post: BlogPost;
@@ -13,6 +13,7 @@ interface BlogSidebarProps {
 export function BlogSidebar({ post }: BlogSidebarProps) {
   const author = authors[post.author];
   const { t } = useLanguage();
+  const { posts } = usePosts();
   
   // Get related posts (same author, different post)
   const relatedPosts = posts
@@ -24,7 +25,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       initial={{ opacity: 0, y: 20 }} 
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="bg-card p-4 rounded-2xl shadow-lg border border-border space-y-4"
+      className="bg-card p-6 rounded-2xl shadow-lg border border-border space-y-6"
     >
       <div className="sidebar-card">
         <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">

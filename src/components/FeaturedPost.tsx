@@ -6,6 +6,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { useLanguage } from '@/context/LanguageContext';
 import { Skeleton } from './ui/skeleton';
+import { useEffect, useState } from 'react';
 
 export function FeaturedPost() {
   const { t } = useLanguage();

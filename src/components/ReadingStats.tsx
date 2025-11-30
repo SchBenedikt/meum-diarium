@@ -12,8 +12,15 @@ export function ReadingStats() {
   const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
 
-  const totalReadingTime = useMemo(() => posts.reduce((acc, post) => acc + post.readingTime, 0), [posts]);
-  const uniqueTags = useMemo(() => [...new Set(posts.flatMap(post => post.tags))], [posts]);
+  const totalReadingTime = useMemo(() => {
+    if (!posts) return 0;
+    return posts.reduce((acc, post) => acc + post.readingTime, 0)
+  }, [posts]);
+  
+  const uniqueTags = useMemo(() => {
+    if (!posts) return [];
+    return [...new Set(posts.flatMap(post => post.tags))]
+  }, [posts]);
 
   const stats = [
     { 
