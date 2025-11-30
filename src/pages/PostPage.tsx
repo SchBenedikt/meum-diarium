@@ -73,59 +73,60 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-            <motion.article 
-              initial={{ y: -40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-xl"
-            >
-              <header className="mb-10 text-left">
-                <div className="flex justify-between items-start">
-                  <div className='flex-1'>
-                    {post.latinTitle && (
-                      <p className="font-display italic text-lg mb-3 text-primary">
-                        „{post.latinTitle}"
-                      </p>
-                    )}
+             <div className="grid lg:grid-cols-[1fr_320px] gap-12 items-start">
+              <motion.article 
+                initial={{ y: -40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="relative bg-card p-6 md:p-10 rounded-2xl -mt-48 md:-mt-32 shadow-xl"
+              >
+                <header className="mb-10 text-left">
+                  <div className="flex justify-between items-start">
+                    <div className='flex-1'>
+                      {post.latinTitle && (
+                        <p className="font-display italic text-lg mb-3 text-primary">
+                          „{post.latinTitle}"
+                        </p>
+                      )}
 
-                    <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
-                      {post.title}
-                    </h1>
-                    
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-4 mb-8">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{post.historicalDate}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        <span>{t('readingTime', { minutes: String(readingTime) })}</span>
+                      <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
+                        {post.title}
+                      </h1>
+                      
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-4 mb-8">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>{post.historicalDate}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          <span>{t('readingTime', { minutes: String(readingTime) })}</span>
+                        </div>
                       </div>
                     </div>
+                    <div className="pt-2 hidden sm:block flex-shrink-0">
+                      <ShareButton
+                        title={post.title}
+                        text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
+                        variant="compact"
+                      />
+                    </div>
                   </div>
-                  <div className="pt-2 hidden sm:block flex-shrink-0">
-                    <ShareButton
-                      title={post.title}
-                      text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
-                      variant="compact"
-                    />
-                  </div>
+
+                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                </header>
+
+                <div className="prose-blog">
+                    {formattedContent}
                 </div>
 
-                <PerspectiveToggle value={perspective} onChange={setPerspective} />
-              </header>
-
-              <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-                  <div className="prose-blog">
-                      {formattedContent}
-                  </div>
-                  <aside className="hidden lg:block">
-                      <div className="sticky top-28">
-                          <BlogSidebar post={post} />
-                      </div>
-                  </aside>
-              </div>
-            </motion.article>
+              </motion.article>
+              <aside className="hidden lg:block -mt-48 md:-mt-32">
+                <div className="sticky top-28">
+                    <BlogSidebar post={post} />
+                </div>
+              </aside>
+            </div>
           </div>
             
           {relatedPosts.length > 0 && (
