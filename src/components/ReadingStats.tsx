@@ -37,7 +37,7 @@ export function ReadingStats() {
     },
     { 
       icon: Book, 
-      value: isLoading ? '...' : `${totalReadingTime} Min.`, 
+      value: isLoading ? '...' : `${totalReadingTime} ${t('minutes')}`, 
       label: t('totalReadingTimeStat'),
       description: t('totalReadingTimeStatDesc')
     },

@@ -4,6 +4,7 @@ import { useAuthor } from '@/context/AuthorContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import { getTranslatedAuthorInfo } from '@/lib/author-translator';
 
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
@@ -31,38 +32,42 @@ export function AuthorGrid() {
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {Object.values(authors).map((author, index) => (
-              <motion.div
-                key={author.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Link
-                  to={`/${author.id}`}
-                  onClick={() => setCurrentAuthor(author.id)}
-                  className="group flex flex-col text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            {Object.values(authors).map((author, index) => {
+              const translatedInfo = getTranslatedAuthorInfo(author.id, t);
+              
+              return (
+                <motion.div
+                  key={author.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={author.heroImage}
-                      alt={author.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                  </div>
-                  <div className="p-5 flex-1">
-                    <h3 className="font-display text-xl font-medium mb-1">
-                      {author.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {author.title}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    to={`/${author.id}`}
+                    onClick={() => setCurrentAuthor(author.id)}
+                    className="group flex flex-col text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <img 
+                        src={author.heroImage}
+                        alt={translatedInfo.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    </div>
+                    <div className="p-5 flex-1">
+                      <h3 className="font-display text-xl font-medium mb-1">
+                        {translatedInfo.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {translatedInfo.title}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

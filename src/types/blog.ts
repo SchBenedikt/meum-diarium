@@ -16,11 +16,41 @@ export interface AuthorInfo {
   heroImage: string;
   theme: string;
   color: string;
+  translations?: {
+    de?: {
+      name?: string;
+      title?: string;
+      years?: string;
+      description?: string;
+    };
+    en?: {
+      name?: string;
+      title?: string;
+      years?: string;
+      description?: string;
+    };
+    la?: {
+      name?: string;
+      title?: string;
+      years?: string;
+      description?: string;
+    };
+  };
 }
 
 export interface SidebarFact {
   label: string;
   value: string;
+}
+
+export interface BlogPostTranslations {
+  title: string;
+  excerpt: string;
+  content: {
+    diary: string;
+    scientific: string;
+  };
+  tags?: string[];
 }
 
 export interface BlogPost {
@@ -40,6 +70,11 @@ export interface BlogPost {
     diary: string;
     scientific: string;
   };
+  translations?: {
+    de?: BlogPostTranslations;
+    en?: BlogPostTranslations;
+    la?: BlogPostTranslations;
+  };
   sidebar?: {
     facts: SidebarFact[];
     relatedPosts?: string[];
@@ -50,12 +85,30 @@ export interface BlogPost {
   };
 }
 
+export interface TimelineEventTranslations {
+  title: string;
+  description: string;
+}
+
 export interface TimelineEvent {
   year: number;
   title: string;
   description: string;
   author?: Author;
   type: 'birth' | 'death' | 'event' | 'work';
+  translations?: {
+    de?: TimelineEventTranslations;
+    en?: TimelineEventTranslations;
+    la?: TimelineEventTranslations;
+  };
+}
+
+export interface LexiconEntryTranslations {
+  term: string;
+  definition: string;
+  category: string;
+  etymology?: string;
+  variants?: string[];
 }
 
 export interface LexiconEntry {
@@ -66,6 +119,18 @@ export interface LexiconEntry {
   etymology?: string;
   relatedTerms?: string[];
   variants?: string[];
+  translations?: {
+    de?: LexiconEntryTranslations;
+    en?: LexiconEntryTranslations;
+    la?: LexiconEntryTranslations;
+  };
+}
+
+export interface WorkTranslations {
+  title: string;
+  summary: string;
+  takeaway: string;
+  structure: { title: string; content: string }[];
 }
 
 export interface Work {
@@ -75,6 +140,11 @@ export interface Work {
   summary: string;
   takeaway: string;
   structure: { title: string; content: string }[];
+  translations?: {
+    de?: WorkTranslations;
+    en?: WorkTranslations;
+    la?: WorkTranslations;
+  };
 }
 
 export type Language = 'de' | 'de-la' | 'en' | 'en-la' | 'la';

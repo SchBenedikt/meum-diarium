@@ -1,6 +1,6 @@
 
 import { useState, useMemo, useEffect } from 'react';
-import { timelineEvents as baseTimelineEvents } from '@/data/timeline';
+import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { authors as baseAuthors } from '@/data/authors';
 import { cn } from '@/lib/utils';
 import { Calendar, Star, BookOpen, Skull, Filter, X } from 'lucide-react';
@@ -11,6 +11,7 @@ import { usePosts } from '@/hooks/use-posts';
 import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline, getTranslatedAuthors } from '@/lib/translator';
+import { buildTimelineEvents } from '@/lib/timeline-builder';
 import { BlogPost } from '@/types/blog';
 
 const typeIcons = {
@@ -23,13 +24,17 @@ const typeIcons = {
 
 const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
   const eventSlug = slugify(event.title, { lower: true, strict: true });
-  return posts.find(p => p.slug === eventSlug);
+  return posts.find(p => 
+    p.slug === eventSlug ||
+    p.title === event.title ||
+    (p.historicalYear === event.year && p.author === event.author)
+  );
 }
 
 export function Timeline() {
   const { language, t } = useLanguage();
-  const { posts, isLoading: postsLoading } = usePosts();
-  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(baseTimelineEvents);
+  const { posts } = usePosts();
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(staticTimelineEvents);
   const [authors, setAuthors] = useState<Record<string, AuthorInfo>>(baseAuthors);
 
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
@@ -37,14 +42,15 @@ export function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState<string | null>(null);
 
   useEffect(() => {
-    async function translateContent() {
-      const translatedEvents = await getTranslatedTimeline(language);
-      setTimelineEvents(translatedEvents);
+    async function updateTimeline() {
+      const translatedStatic = await getTranslatedTimeline(language);
       const translatedAuthors = await getTranslatedAuthors(language);
       setAuthors(translatedAuthors);
+      const merged = buildTimelineEvents(language, posts, translatedStatic, { deduplicate: true });
+      setTimelineEvents(merged);
     }
-    translateContent();
-  }, [language]);
+    updateTimeline();
+  }, [language, posts]);
   
   const typeLabels: Record<string, string> = {
     birth: t('birth'),

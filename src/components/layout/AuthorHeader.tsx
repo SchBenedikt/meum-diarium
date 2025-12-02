@@ -1,18 +1,23 @@
 
 import { useAuthor } from "@/context/AuthorContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslatedAuthorInfo } from "@/lib/author-translator";
 import { cn } from "@/lib/utils";
 import { BookCopy, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export function AuthorHeader() {
   const { authorInfo } = useAuthor();
+  const { t } = useLanguage();
   const location = useLocation();
 
   if (!authorInfo) return null;
 
+  const translatedInfo = getTranslatedAuthorInfo(authorInfo.id, t);
+
   const navItems = [
-    { href: `/${authorInfo.id}`, label: "Tagebuch", icon: BookCopy },
-    { href: `/${authorInfo.id}/about`, label: "Über den Autor", icon: User },
+    { href: `/${authorInfo.id}`, label: t('diary'), icon: BookCopy },
+    { href: `/${authorInfo.id}/about`, label: t('moreAbout', { name: translatedInfo.name.split(' ').pop() || '' }), icon: User },
   ];
 
   return (

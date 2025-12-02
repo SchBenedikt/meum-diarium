@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meum Diarium – Autoren Admin</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --primary:#208090; --primary-dark:#1a6475; --bg:#f8f9fa; --surface:#fff; --text:#2c3e50; --text-secondary:#7f8c8d; --border:#ecf0f1; --danger:#e74c3c;
+    }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:#fff; padding:1.5rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+    .logo { font-size:1.5rem; font-weight:700; color:white; text-decoration:none; }
+    header .nav { display:flex; gap:1rem; }
+    header .nav a { padding:0.5rem 1rem; background:rgba(255,255,255,0.1); border-radius:0.5rem; text-decoration:none; color:white; font-weight:500; transition:background 0.2s; }
+    header .nav a:hover { background:rgba(255,255,255,0.2); }
+    header .nav a.active { background:rgba(255,255,255,0.3); }
+    .header-actions { display:flex; gap:1rem; align-items:center; }
+    .container { display:grid; grid-template-columns: 280px 1fr; min-height:calc(100vh - 70px); }
+    aside { background:var(--surface); border-right:2px solid var(--border); padding:2rem 0; overflow-y:auto; max-height:calc(100vh - 70px); }
+    .nav-group { margin-bottom:2rem; }
+    .nav-group-title { padding:0.75rem 1.5rem; font-size:0.7rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; }
+    .nav-item { display:block; padding:0.75rem 1.5rem; color:var(--text); text-decoration:none; transition:all 0.2s; border-left:4px solid transparent; }
+    .nav-item:hover { background:var(--bg); color:var(--primary); border-left-color:var(--primary); }
+    .nav-item.active { background:var(--bg); color:var(--primary); border-left-color:var(--primary); font-weight:600; }
+    main { padding:2rem; overflow-y:auto; max-height:calc(100vh - 70px); }
+    .page-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; }
+    .page-title { font-size:2rem; font-weight:700; color:var(--text); }
+    .btn { display:inline-block; padding:0.75rem 1.5rem; border:none; border-radius:6px; font-size:1rem; cursor:pointer; transition:all 0.2s; text-decoration:none; font-weight:500; }
+    .btn-primary { background:var(--primary); color:white; }
+    .btn-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 4px 12px rgba(32,128,144,0.3); }
+    .btn-secondary { background:var(--bg); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .btn-danger { background:var(--danger); color:white; }
+    .authors-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.5rem; }
+    .author-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; transition:all 0.3s; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+    .author-card:hover { box-shadow:0 12px 32px rgba(0,0,0,0.15); transform:translateY(-6px); border-color:var(--primary); }
+    .author-header { padding:1rem 1.5rem; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:white; }
+    .author-name { font-size:1.1rem; font-weight:600; }
+    .author-meta { font-size:0.875rem; opacity:0.9; display:flex; gap:1rem; flex-wrap:wrap; }
+    .author-body { padding:1.5rem; }
+    .author-desc { color:var(--text-secondary); margin-bottom:1rem; font-size:0.95rem; }
+    .translation-badges { display:flex; gap:0.5rem; margin-bottom:1rem; }
+    .badge { display:inline-block; background:rgba(32,128,144,0.15); border:1px solid rgba(32,128,144,0.3); color:var(--primary); padding:0.35rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
+    .card-actions { display:flex; gap:0.5rem; margin-top:0.5rem; }
+    .card-actions .btn { flex:1; text-align:center; margin:0; }
+    .search-bar { display:flex; gap:1rem; margin-bottom:2rem; }
+    .search-input { flex:1; padding:0.85rem 1rem; border:2px solid var(--border); border-radius:8px; font-size:1rem; transition:all 0.2s; }
+    .search-input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(32,128,144,0.1); }
+    .modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center; overflow-y:auto; padding:2rem 0; }
+    .modal.active { display:flex; }
+    .modal-content { background:var(--surface); border-radius:12px; width:90%; max-width:800px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+    .modal-header { padding:1.5rem; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:white; border-radius:12px 12px 0 0; }
+    .modal-title { font-size:1.5rem; font-weight:600; }
+    .modal-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:white; opacity:0.8; transition:opacity 0.2s; }
+    .modal-close:hover { opacity:1; }
+    .modal-body { padding:1.5rem; max-height:70vh; overflow-y:auto; }
+    .modal-footer { padding:1.5rem; border-top:1px solid var(--border); display:flex; gap:1rem; justify-content:flex-end; }
+    .form-group { margin-bottom:1.5rem; }
+    .form-label { display:block; margin-bottom:0.5rem; font-weight:600; color:var(--text); font-size:0.95rem; }
+    .form-input,.form-textarea,.form-select { width:100%; padding:0.85rem; border:1px solid var(--border); border-radius:6px; font-size:1rem; font-family:inherit; transition:all 0.2s; background:white; }
+    .form-input:focus,.form-textarea:focus,.form-select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(32,128,144,0.1); }
+    .form-textarea { resize:vertical; min-height:100px; }
+    .language-section { background:var(--bg); padding:1.5rem; border-radius:8px; margin-top:1rem; border-left:4px solid var(--primary); }
+    .subsection-title { font-size:1rem; font-weight:600; margin-bottom:1rem; color:var(--primary); }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">📜 Meum Diarium</a>
+    <h1 style="font-size:1rem;margin:0;flex:1;text-align:center;">Autoren Admin</h1>
+    <div class="nav">
+      <a href="index.html">Beiträge</a>
+      <a href="lexicon.html">Lexikon</a>
+      <a href="authors.html" class="active">Autoren</a>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="openAuthorModal()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;">➕ Neuer Autor</button>
+    </div>
+  </header>
+  <div class="container">
+    <aside>
+      <div class="nav-group">
+        <div class="nav-group-title">📋 Navigation</div>
+        <a href="#" class="nav-item active" onclick="viewAuthors();return false;">Alle Autoren</a>
+      </div>
+    </aside>
+    <main>
+      <div class="page-header"><h2 class="page-title">Autoren</h2></div>
+      <div class="search-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Nach Name, Titel, Jahren suchen..." onkeyup="renderAuthors()">
+      </div>
+      <div id="authorsGrid" class="authors-grid"></div>
+    </main>
+  </div>
+
+  <div class="modal" id="authorModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="authorModalTitle">Neuer Autor</h2>
+        <button class="modal-close" onclick="closeAuthorModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="authorForm" onsubmit="saveAuthor(event)">
+          <div class="form-group">
+            <label class="form-label">ID (Schlüssel)</label>
+            <input type="text" class="form-input" id="authorId" placeholder="z.B. caesar, cicero" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Name (DE Basis)</label>
+            <input type="text" class="form-input" id="authorName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Lateinischer Name</label>
+            <input type="text" class="form-input" id="authorLatinName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Titel (DE Basis)</label>
+            <input type="text" class="form-input" id="authorTitle" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jahre (DE Basis)</label>
+            <input type="text" class="form-input" id="authorYears" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Geburtsjahr</label>
+            <input type="number" class="form-input" id="authorBirthYear" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sterbejahr</label>
+            <input type="number" class="form-input" id="authorDeathYear" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Beschreibung (DE Basis)</label>
+            <textarea class="form-textarea" id="authorDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hero Image URL</label>
+            <input type="text" class="form-input" id="authorHeroImage" placeholder="/images/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Theme Key</label>
+            <input type="text" class="form-input" id="authorTheme" placeholder="z.B. theme-caesar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Farbe</label>
+            <input type="text" class="form-input" id="authorColor" placeholder="z.B. hsl(25, 95%, 53%)">
+          </div>
+
+          <div class="language-section">
+            <h4 class="subsection-title">🇬🇧 Englisch (Optional)</h4>
+            <div class="form-group"><label class="form-label">Name (EN)</label><input type="text" class="form-input" id="name_en"></div>
+            <div class="form-group"><label class="form-label">Titel (EN)</label><input type="text" class="form-input" id="title_en"></div>
+            <div class="form-group"><label class="form-label">Jahre (EN)</label><input type="text" class="form-input" id="years_en"></div>
+            <div class="form-group"><label class="form-label">Beschreibung (EN)</label><textarea class="form-textarea" id="description_en"></textarea></div>
+          </div>
+
+          <div class="language-section">
+            <h4 class="subsection-title">🏛️ Latein (Optional)</h4>
+            <div class="form-group"><label class="form-label">Name (LA)</label><input type="text" class="form-input" id="name_la"></div>
+            <div class="form-group"><label class="form-label">Titel (LA)</label><input type="text" class="form-input" id="title_la"></div>
+            <div class="form-group"><label class="form-label">Jahre (LA)</label><input type="text" class="form-input" id="years_la"></div>
+            <div class="form-group"><label class="form-label">Beschreibung (LA)</label><textarea class="form-textarea" id="description_la"></textarea></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeAuthorModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="document.getElementById('authorForm').dispatchEvent(new Event('submit'))">✅ Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8000';
+    let authors = [];
+    let currentEditingId = null;
+
+    document.addEventListener('DOMContentLoaded', loadAuthors);
+
+    async function loadAuthors() {
+      try {
+        const res = await fetch(`${API_URL}/api/authors`);
+        authors = await res.json();
+        renderAuthors();
+      } catch (e) { console.error(e); }
+    }
+
+    function renderAuthors() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = authors.filter(a =>
+        (a.name||'').toLowerCase().includes(q) ||
+        (a.title||'').toLowerCase().includes(q) ||
+        (a.years||'').toLowerCase().includes(q)
+      );
+      const grid = document.getElementById('authorsGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-secondary);">
+            <div style="font-size:3rem; margin-bottom:1rem;">🧑‍🎓</div>
+            <h3>Keine Autoren gefunden</h3>
+            <p>Lege deinen ersten Autor an</p>
+          </div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(a => {
+        const langs = [];
+        if (a.name_en || a.title_en || a.description_en) langs.push('EN');
+        if (a.name_la || a.title_la || a.description_la) langs.push('LA');
+        return `
+          <div class="author-card">
+            <div class="author-header">
+              <div class="author-name">${a.name || a.id}</div>
+              <div class="author-meta">
+                <span>🏛️ ${a.latinName || ''}</span>
+                <span>📅 ${a.years || ''}</span>
+              </div>
+            </div>
+            <div class="author-body">
+              <div class="author-desc">${a.description || ''}</div>
+              ${langs.length ? `<div class="translation-badges">${langs.map(l => `<span class="badge">🌍 ${l}</span>`).join('')}</div>` : ''}
+              <div class="card-actions">
+                <button class="btn btn-secondary" onclick="editAuthor('${a.id}')">✏️ Bearbeiten</button>
+                <button class="btn btn-danger" onclick="deleteAuthor('${a.id}')">🗑️ Löschen</button>
+              </div>
+            </div>
+          </div>`
+      }).join('');
+    }
+
+    function openAuthorModal() {
+      currentEditingId = null;
+      document.getElementById('authorForm').reset();
+      document.getElementById('authorId').disabled = false;
+      document.getElementById('authorModalTitle').textContent = 'Neuer Autor';
+      document.getElementById('authorModal').classList.add('active');
+    }
+
+    function closeAuthorModal() {
+      document.getElementById('authorModal').classList.remove('active');
+      currentEditingId = null;
+    }
+
+    function editAuthor(id) {
+      const a = authors.find(x => x.id === id);
+      if (!a) return;
+      currentEditingId = id;
+      document.getElementById('authorId').value = a.id || '';
+      document.getElementById('authorId').disabled = true;
+      document.getElementById('authorName').value = a.name || '';
+      document.getElementById('authorLatinName').value = a.latinName || '';
+      document.getElementById('authorTitle').value = a.title || '';
+      document.getElementById('authorYears').value = a.years || '';
+      document.getElementById('authorBirthYear').value = a.birthYear || '';
+      document.getElementById('authorDeathYear').value = a.deathYear || '';
+      document.getElementById('authorDescription').value = a.description || '';
+      document.getElementById('authorHeroImage').value = a.heroImage || '';
+      document.getElementById('authorTheme').value = a.theme || '';
+      document.getElementById('authorColor').value = a.color || '';
+      document.getElementById('name_en').value = a.name_en || '';
+      document.getElementById('title_en').value = a.title_en || '';
+      document.getElementById('years_en').value = a.years_en || '';
+      document.getElementById('description_en').value = a.description_en || '';
+      document.getElementById('name_la').value = a.name_la || '';
+      document.getElementById('title_la').value = a.title_la || '';
+      document.getElementById('years_la').value = a.years_la || '';
+      document.getElementById('description_la').value = a.description_la || '';
+      document.getElementById('authorModalTitle').textContent = 'Autor bearbeiten';
+      document.getElementById('authorModal').classList.add('active');
+    }
+
+    async function saveAuthor(e) {
+      e.preventDefault();
+      const data = {
+        id: document.getElementById('authorId').value,
+        name: document.getElementById('authorName').value,
+        latinName: document.getElementById('authorLatinName').value,
+        title: document.getElementById('authorTitle').value,
+        years: document.getElementById('authorYears').value,
+        birthYear: parseInt(document.getElementById('authorBirthYear').value),
+        deathYear: parseInt(document.getElementById('authorDeathYear').value),
+        description: document.getElementById('authorDescription').value,
+        heroImage: document.getElementById('authorHeroImage').value,
+        theme: document.getElementById('authorTheme').value,
+        color: document.getElementById('authorColor').value,
+      };
+      // translations
+      if (document.getElementById('name_en').value || document.getElementById('title_en').value || document.getElementById('description_en').value) {
+        data.name_en = document.getElementById('name_en').value;
+        data.title_en = document.getElementById('title_en').value;
+        data.years_en = document.getElementById('years_en').value;
+        data.description_en = document.getElementById('description_en').value;
+      }
+      if (document.getElementById('name_la').value || document.getElementById('title_la').value || document.getElementById('description_la').value) {
+        data.name_la = document.getElementById('name_la').value;
+        data.title_la = document.getElementById('title_la').value;
+        data.years_la = document.getElementById('years_la').value;
+        data.description_la = document.getElementById('description_la').value;
+      }
+
+      try {
+        const url = currentEditingId ? `${API_URL}/api/authors/${currentEditingId}` : `${API_URL}/api/authors`;
+        const method = currentEditingId ? 'PUT' : 'POST';
+        const res = await fetch(url, { method, headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        if (res.ok) {
+          closeAuthorModal();
+          loadAuthors();
+        } else {
+          alert('❌ Fehler beim Speichern');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Fehler beim Speichern');
+      }
+    }
+
+    async function deleteAuthor(id) {
+      if (!confirm('⚠️ Wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.')) return;
+      try {
+        const res = await fetch(`${API_URL}/api/authors/${id}`, { method:'DELETE' });
+        if (res.ok) { loadAuthors(); } else { alert('❌ Fehler beim Löschen'); }
+      } catch (err) { console.error(err); alert('❌ Fehler beim Löschen'); }
+    }
+
+    function viewAuthors() { renderAuthors(); }
+  </script>
+</body>
+</html>

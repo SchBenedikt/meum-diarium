@@ -4,6 +4,13 @@ import { lexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
 import { timelineEvents } from '@/data/timeline';
 import { getAllPosts } from '@/data/posts';
+import { getTranslatedPost as getManuallyTranslatedPost } from '@/lib/post-translator';
+import { 
+  getTranslatedTimelineEvents as getManuallyTranslatedTimelineEvents,
+  getTranslatedLexiconEntries as getManuallyTranslatedLexiconEntries,
+  getTranslatedLexiconEntry as getManuallyTranslatedLexiconEntry,
+  getTranslatedWork as getManuallyTranslatedWork
+} from '@/lib/content-translator';
 
 // Simple in-memory cache to avoid re-translating the same text within a session.
 const translationCache = new Map<string, string>();
@@ -61,6 +68,18 @@ export async function getTranslatedPost(lang: Language, authorId: Author, slug: 
     if (!post) return null;
     if (lang.startsWith('de')) return post;
 
+    // Verwende zuerst manuelle Übersetzungen, wenn vorhanden
+    const manuallyTranslated = getManuallyTranslatedPost(post, lang);
+    
+    // Wenn manuelle Übersetzungen existieren, verwende diese
+    if (post.translations) {
+        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        if (post.translations[baseLang]) {
+            return manuallyTranslated;
+        }
+    }
+
+    // Fallback auf API-Übersetzung für Posts ohne manuelle Übersetzungen
     return {
         ...post,
         title: await translateText(post.title, lang),
@@ -75,6 +94,39 @@ export async function getTranslatedPost(lang: Language, authorId: Author, slug: 
 
 export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry[]> {
     if (lang.startsWith('de')) return lexicon;
+    
+    // Verwende zuerst manuelle Übersetzungen
+    const manuallyTranslated = getManuallyTranslatedLexiconEntries(lexicon, lang);
+    
+    // Prüfe ob manuelle Übersetzungen vorhanden sind
+    const hasManualTranslations = lexicon.some(entry => {
+        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        return entry.translations && entry.translations[baseLang];
+    });
+    
+    // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
+    if (hasManualTranslations) {
+        return Promise.all(
+            manuallyTranslated.map(async (entry, index) => {
+                const original = lexicon[index];
+                const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+                
+                // Wenn dieser Eintrag manuelle Übersetzungen hat, verwende sie
+                if (original.translations && original.translations[baseLang]) {
+                    return entry;
+                }
+                
+                // Sonst verwende API-Übersetzung
+                return {
+                    ...original,
+                    definition: await translateText(original.definition, lang),
+                    category: await translateText(original.category, lang),
+                };
+            })
+        );
+    }
+    
+    // Fallback auf API-Übersetzung für alle Einträge
     return Promise.all(
         lexicon.map(async (entry) => ({
             ...entry,
@@ -89,6 +141,16 @@ export async function getTranslatedLexiconEntry(lang: Language, slug: string): P
     if (!entry) return null;
     if (lang.startsWith('de')) return entry;
     
+    // Verwende zuerst manuelle Übersetzung
+    const manuallyTranslated = getManuallyTranslatedLexiconEntry(entry, lang);
+    
+    // Wenn manuelle Übersetzung existiert, verwende sie
+    const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+    if (entry.translations && entry.translations[baseLang]) {
+        return manuallyTranslated;
+    }
+    
+    // Fallback auf API-Übersetzung
     return {
         ...entry,
         definition: await translateText(entry.definition, lang),
@@ -103,28 +165,15 @@ export async function getTranslatedAuthor(lang: Language, authorId: Author): Pro
     if (!author) return null;
     if (lang.startsWith('de')) return author;
 
-    return {
-        ...author,
-        name: await translateText(author.name, lang),
-        title: await translateText(author.title, lang),
-        description: await translateText(author.description, lang),
-    };
+    // Autoren-Übersetzungen werden jetzt über die zentrale Übersetzungsfunktion t() abgerufen
+    // Diese Funktion ist hauptsächlich für Kompatibilität vorhanden
+    return author;
 }
 
 export async function getTranslatedAuthors(lang: Language): Promise<Record<string, AuthorInfo>> {
-    if (lang.startsWith('de')) return authors;
-
-    const translated: Record<string, AuthorInfo> = {};
-    for (const key in authors) {
-        const author = authors[key];
-        translated[key] = {
-            ...author,
-            name: await translateText(author.name, lang),
-            title: await translateText(author.title, lang),
-            description: await translateText(author.description, lang),
-        };
-    }
-    return translated;
+    // Autoren-Übersetzungen werden jetzt über die zentrale Übersetzungsfunktion t() abgerufen
+    // Diese Funktion ist hauptsächlich für Kompatibilität vorhanden
+    return authors;
 }
 
 
@@ -133,6 +182,16 @@ export async function getTranslatedWork(lang: Language, slug: string): Promise<W
     if (!work) return null;
     if (lang.startsWith('de')) return work;
 
+    // Verwende zuerst manuelle Übersetzung
+    const manuallyTranslated = getManuallyTranslatedWork(work, lang);
+    
+    // Wenn manuelle Übersetzung existiert, verwende sie
+    const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+    if (work.translations && work.translations[baseLang]) {
+        return manuallyTranslated;
+    }
+
+    // Fallback auf API-Übersetzung
     return {
         ...work,
         summary: await translateText(work.summary, lang),
@@ -148,6 +207,38 @@ export async function getTranslatedWork(lang: Language, slug: string): Promise<W
 export async function getTranslatedTimeline(lang: Language): Promise<TimelineEvent[]> {
     if (lang.startsWith('de')) return timelineEvents;
 
+    // Verwende zuerst manuelle Übersetzungen
+    const manuallyTranslated = getManuallyTranslatedTimelineEvents(timelineEvents, lang);
+    
+    // Prüfe ob manuelle Übersetzungen vorhanden sind
+    const hasManualTranslations = timelineEvents.some(event => {
+        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        return event.translations && event.translations[baseLang];
+    });
+    
+    // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
+    if (hasManualTranslations) {
+        return Promise.all(
+            manuallyTranslated.map(async (event, index) => {
+                const original = timelineEvents[index];
+                const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+                
+                // Wenn dieses Event manuelle Übersetzungen hat, verwende sie
+                if (original.translations && original.translations[baseLang]) {
+                    return event;
+                }
+                
+                // Sonst verwende API-Übersetzung
+                return {
+                    ...original,
+                    title: await translateText(original.title, lang),
+                    description: await translateText(original.description, lang),
+                };
+            })
+        );
+    }
+
+    // Fallback auf API-Übersetzung für alle Events
     return Promise.all(
         timelineEvents.map(async (event) => ({
             ...event,

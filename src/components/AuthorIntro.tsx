@@ -1,20 +1,44 @@
 import { useAuthor } from '@/context/AuthorContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const quotes: Record<string, { latin: string; german: string }> = {
-  caesar: { latin: "Veni, vidi, vici.", german: "Ich kam, sah und siegte." },
-  cicero: { latin: "Dum spiro, spero.", german: "Solange ich atme, hoffe ich." },
-  augustus: { latin: "Festina lente.", german: "Eile mit Weile." },
-  seneca: { latin: "Non est vivere sed valere vita est.", german: "Leben heißt nicht nur zu atmen, sondern zu handeln." },
+const quotes: Record<string, { latin: string; de: string; en: string; la: string }> = {
+  caesar: { 
+    latin: "Veni, vidi, vici.",
+    de: "Ich kam, sah und siegte.",
+    en: "I came, I saw, I conquered.",
+    la: "Veni, vidi, vici."
+  },
+  cicero: { 
+    latin: "Dum spiro, spero.",
+    de: "Solange ich atme, hoffe ich.",
+    en: "While I breathe, I hope.",
+    la: "Dum spiro, spero."
+  },
+  augustus: { 
+    latin: "Festina lente.",
+    de: "Eile mit Weile.",
+    en: "Make haste slowly.",
+    la: "Festina lente."
+  },
+  seneca: { 
+    latin: "Non est vivere sed valere vita est.",
+    de: "Leben heißt nicht nur zu atmen, sondern zu handeln.",
+    en: "Life is not merely being alive, but being well.",
+    la: "Non est vivere sed valere vita est."
+  },
 };
 
 export function AuthorIntro() {
   const { authorInfo, currentAuthor } = useAuthor();
+  const { language } = useLanguage();
 
   if (!currentAuthor || !authorInfo) return null;
 
   const quote = quotes[currentAuthor];
+  const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
+  const translation = quote[baseLang] || quote.de;
 
   return (
     <section className="py-16 border-t border-border">
@@ -35,7 +59,7 @@ export function AuthorIntro() {
                 „{quote.latin}"
               </p>
               <p className="text-muted-foreground">
-                — {quote.german}
+                — {translation}
               </p>
             </blockquote>
           </div>

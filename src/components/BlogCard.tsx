@@ -3,6 +3,7 @@ import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -17,6 +18,7 @@ interface BlogCardProps {
 
 export function BlogCard({ post, className }: BlogCardProps) {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
@@ -83,7 +85,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" />
-                  {readingTime} Min.
+                  {t('readingTime', { minutes: readingTime.toString() })}
                 </span>
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />

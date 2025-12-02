@@ -3,8 +3,10 @@ import { Timeline } from '@/components/Timeline';
 import { ShareButton } from '@/components/ShareButton';
 import { Calendar, Clock, Users, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { timelineEvents as baseTimelineEvents } from '@/data/timeline';
+import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { useEffect, useState, useMemo } from 'react';
+import { usePosts } from '@/hooks/use-posts';
+import { buildTimelineEvents } from '@/lib/timeline-builder';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline } from '@/lib/translator';
@@ -13,19 +15,21 @@ import { TimelineEvent } from '@/types/blog';
 export default function TimelinePage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
-  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(baseTimelineEvents);
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(staticTimelineEvents);
+  const { posts } = usePosts();
 
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
 
   useEffect(() => {
-    async function translate() {
-        const translated = await getTranslatedTimeline(language);
-        setTimelineEvents(translated);
+    async function translateAndMerge() {
+      const translatedStatic = await getTranslatedTimeline(language);
+      const merged = buildTimelineEvents(language, posts, translatedStatic, { deduplicate: true });
+      setTimelineEvents(merged);
     }
-    translate();
-  }, [language]);
+    translateAndMerge();
+  }, [language, posts]);
 
   const stats = useMemo(() => {
     const totalEvents = timelineEvents.length;
