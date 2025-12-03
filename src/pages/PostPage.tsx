@@ -37,8 +37,8 @@ function PostContent({ post }: { post: BlogPost }) {
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   const contentToDisplay = post?.content[perspective];
@@ -76,12 +76,12 @@ function PostContent({ post }: { post: BlogPost }) {
         
         <div className="bg-background pb-12">
           <div className="container mx-auto">
-             <div className="relative grid lg:grid-cols-[70%_30%] gap-12 items-stretch">
+             <div className="relative lg:grid lg:grid-cols-[70%_30%] gap-12">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 h-full pb-16"
+                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16"
               >
                 <header className="mb-10 text-left">
                   <div className="flex justify-between items-start">
@@ -124,8 +124,8 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
 
               </motion.article>
-              <aside className="hidden lg:block pt-16">
-                <div className="sticky top-28">
+              <aside className="hidden lg:block lg:mt-0 mt-8">
+                <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
                     <BlogSidebar post={post} />
                 </div>
               </aside>

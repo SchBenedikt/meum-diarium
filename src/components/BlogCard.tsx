@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 
 const cardVariants = {
@@ -27,6 +27,9 @@ export function BlogCard({ post, className }: BlogCardProps) {
   };
 
   const readingTime = post.readingTime;
+  
+  // Generate excerpt from diary content if excerpt is empty
+  const displayExcerpt = post.excerpt || generateExcerpt(post.content.diary || post.content.scientific, 150);
 
   return (
     <motion.article
@@ -71,7 +74,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
               </h3>
               
               <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
-                {post.excerpt}
+                {displayExcerpt}
               </p>
             </div>
 

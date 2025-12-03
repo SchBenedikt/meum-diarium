@@ -162,27 +162,56 @@ export function Timeline() {
 
         {/* Horizontal Timeline Bar */}
         <div className="mb-12 px-4">
-          <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
-            {filteredEvents.map((event) => {
+          <div className="relative h-3 bg-secondary/50 rounded-full">
+            {filteredEvents.map((event, idx) => {
               const position = ((event.year - minYear) / totalRange) * 100;
+              const isBarHovered = hoveredEvent === `${event.year}-${event.title}`;
+              const eventId = `event-${event.year}-${event.title.replace(/\s+/g, '-')}`;
+              
+              const handleBarClick = () => {
+                const element = document.getElementById(eventId);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  setHoveredEvent(`${event.year}-${event.title}`);
+                  setTimeout(() => setHoveredEvent(null), 2000);
+                }
+              };
+              
               return (
-                <motion.div
+                <motion.button
                   key={`bar-${event.year}-${event.title}`}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  whileHover={{ scale: 1.5 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleBarClick}
                   className={cn(
-                    "absolute top-0 h-full w-1.5 rounded-full cursor-pointer transition-all duration-200",
+                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 shadow-sm",
                     `bg-author-${event.author || 'caesar'}`,
-                    hoveredEvent === `${event.year}-${event.title}` && "w-3 z-10"
+                    isBarHovered ? "h-5 w-5 z-10 shadow-lg ring-2 ring-background" : "h-3 w-3"
                   )}
-                  style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
+                  style={{ 
+                    left: `${position}%`, 
+                    transform: 'translate(-50%, -50%)'
+                  }}
                   onMouseEnter={() => setHoveredEvent(`${event.year}-${event.title}`)}
                   onMouseLeave={() => setHoveredEvent(null)}
-                />
+                  aria-label={`Springe zu ${event.title}`}
+                >
+                  {isBarHovered && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 bg-card border border-border rounded-lg shadow-lg text-xs font-medium pointer-events-none z-20"
+                    >
+                      {event.title}
+                    </motion.div>
+                  )}
+                </motion.button>
               );
             })}
           </div>
-          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+          <div className="flex justify-between mt-4 text-xs font-medium text-muted-foreground">
             <span>{Math.abs(minYear)} v. Chr.</span>
             <span>{maxYear > 0 ? `${maxYear} n. Chr.` : `${Math.abs(maxYear)} v. Chr.`}</span>
           </div>
@@ -222,13 +251,13 @@ export function Timeline() {
                       isLeft ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
                     )}>
                       <motion.div
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ scale: 1.02, y: -2 }}
                         className={cn(
-                          "inline-block bg-card rounded-2xl p-5 shadow-sm border-2 transition-all duration-300 text-left",
-                          post ? 'group' : '',
+                          "inline-block bg-card rounded-2xl p-6 shadow-md border-2 transition-all duration-300 text-left",
+                          post ? 'cursor-pointer hover:shadow-xl' : '',
                           isHovered && post
-                            ? `border-author-${event.author || 'caesar'} shadow-lg` 
-                            : "border-border",
+                            ? `border-author-${event.author || 'caesar'} shadow-xl` 
+                            : "border-border hover:border-border/80",
                           isLeft ? "md:ml-auto" : ""
                         )}
                       >
@@ -262,36 +291,49 @@ export function Timeline() {
                         </div>
 
                         {/* Content */}
-                        <h3 className={cn("font-display text-lg font-semibold mb-1", post && 'group-hover:text-primary')}>
+                        <h3 className={cn(
+                          "font-display text-lg font-semibold mb-2 transition-colors duration-200", 
+                          post && 'hover:text-primary',
+                          isHovered && post && 'text-primary'
+                        )}>
                           {event.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                           {event.description}
                         </p>
 
-                        {/* Author Name */}
-                        {author && (
-                          <p className={cn(
-                            "text-xs mt-3 font-medium",
-                            "text-muted-foreground"
-                          )}>
-                            {author.name}
-                          </p>
-                        )}
+                        {/* Author Name & Read More */}
+                        <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/50">
+                          {author && (
+                            <p className="text-xs font-medium text-muted-foreground">
+                              {author.name}
+                            </p>
+                          )}
+                          {post && (
+                            <span className={cn(
+                              "text-xs font-medium transition-colors duration-200",
+                              isHovered ? 'text-primary' : 'text-muted-foreground'
+                            )}>
+                              {t('readMore')} →
+                            </span>
+                          )}
+                        </div>
                       </motion.div>
                     </div>
 
                     {/* Center Icon */}
                     <motion.div
-                      whileHover={{ scale: 1.2 }}
+                      whileHover={{ scale: 1.25, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
                       className={cn(
                         "absolute left-8 md:left-1/2 md:-translate-x-1/2",
-                        "h-10 w-10 rounded-xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
+                        "h-12 w-12 rounded-2xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
                         `bg-author-${event.author || 'caesar'}`,
-                        isHovered && "ring-4 ring-background"
+                        post && "cursor-pointer hover:shadow-2xl",
+                        isHovered && "ring-4 ring-background scale-110"
                       )}
                     >
-                      <Icon className="h-5 w-5 text-white" />
+                      <Icon className="h-6 w-6 text-white" />
                     </motion.div>
 
                     {/* Spacer */}
@@ -299,8 +341,11 @@ export function Timeline() {
                   </>
                 );
 
-                return (
+                const eventId = `event-${event.year}-${event.title.replace(/\s+/g, '-')}`;
+                
+                const TimelineItem = (
                   <motion.div
+                    id={eventId}
                     key={`${event.year}-${event.title}`}
                     layout
                     initial={{ opacity: 0, y: 20 }}
@@ -308,23 +353,23 @@ export function Timeline() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className={cn(
-                      "relative flex items-start gap-4 mb-6",
+                      "relative flex items-start gap-4 mb-6 scroll-mt-24",
                       "md:items-center",
                       isLeft ? "md:flex-row" : "md:flex-row-reverse"
                     )}
                     onMouseEnter={() => setHoveredEvent(`${event.year}-${event.title}`)}
                     onMouseLeave={() => setHoveredEvent(null)}
                   >
-                   {post ? (
-                      <Link to={`/${post.author}/${post.slug}`} className="contents">
-                        <EventContent />
-                      </Link>
-                    ) : (
-                      <div className="contents">
-                        <EventContent />
-                      </div>
-                    )}
+                    <EventContent />
                   </motion.div>
+                );
+
+                return post ? (
+                  <Link key={`${event.year}-${event.title}`} to={`/${post.author}/${post.slug}`} className="block">
+                    {TimelineItem}
+                  </Link>
+                ) : (
+                  TimelineItem
                 );
               })
             )}
