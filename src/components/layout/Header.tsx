@@ -83,10 +83,10 @@ export function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-2">
-              {/* Search Button */}
+              {/* Search Button - optimized for touch */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="h-10 px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                className="h-11 min-w-[44px] px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors active:scale-95"
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden sm:inline text-sm">{t('search')}</span>
@@ -101,11 +101,11 @@ export function Header() {
                 <ThemeToggle />
               </div>
 
-              {/* Mobile Menu Trigger */}
+              {/* Mobile Menu Trigger - optimized touch target */}
               <div className="md:hidden">
                 <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                   <SheetTrigger asChild>
-                    <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-secondary">
+                    <button className="h-11 w-11 flex items-center justify-center rounded-lg hover:bg-secondary active:scale-95 transition-transform">
                       <Menu className="h-5 w-5" />
                       <span className="sr-only">{t('openMenu')}</span>
                     </button>

@@ -89,11 +89,11 @@ export function Timeline() {
   const totalRange = maxYear - minYear;
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto">
-        {/* Filters */}
-        <div className="mb-10 p-4 rounded-2xl border border-border bg-card space-y-4">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+    <section className="py-8 sm:py-12">
+      <div className="container mx-auto px-4">
+        {/* Filters - mobile optimized */}
+        <div className="mb-8 sm:mb-10 p-3 sm:p-4 rounded-2xl border border-border bg-card space-y-3 sm:space-y-4">
+          <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-medium">{t('filter')}</span>
@@ -110,7 +110,7 @@ export function Timeline() {
             )}
           </div>
 
-          {/* Author Filter */}
+          {/* Author Filter - mobile optimized */}
           <div className="flex flex-wrap gap-2">
             {Object.values(authors).map((author) => {
               const isSelected = selectedAuthors.includes(author.id as Author);
@@ -119,25 +119,25 @@ export function Timeline() {
                   key={author.id}
                   onClick={() => toggleAuthor(author.id as Author)}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[40px] rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation active:scale-95",
                     isSelected 
                       ? `bg-author-${author.id} text-white shadow-lg` 
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70"
                   )}
                 >
                   <div 
                     className={cn(
-                      "h-2 w-2 rounded-full",
+                      "h-2 w-2 rounded-full flex-shrink-0",
                       isSelected ? "bg-white" : `bg-author-${author.id}`
                     )}
                   />
-                  {author.name}
+                  <span className="whitespace-nowrap">{author.name}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Type Filter */}
+          {/* Type Filter - mobile optimized */}
           <div className="flex flex-wrap gap-2">
             {(['all', 'birth', 'event', 'work', 'death'] as FilterType[]).map((type) => {
               const Icon = type === 'all' ? Calendar : typeIcons[type as keyof typeof typeIcons];
@@ -146,14 +146,14 @@ export function Timeline() {
                   key={type}
                   onClick={() => setSelectedType(type)}
                   className={cn(
-                    "flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all duration-200",
+                    "flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95",
                     selectedType === type
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary/50 text-muted-foreground hover:bg-secondary"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary"
                   )}
                 >
-                  <Icon className="h-3.5 w-3.5" />
-                  {type === 'all' ? t('all') : typeLabels[type as keyof typeof typeLabels]}
+                  <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+                  <span className="whitespace-nowrap">{type === 'all' ? t('all') : typeLabels[type as keyof typeof typeLabels]}</span>
                 </button>
               );
             })}
@@ -217,10 +217,10 @@ export function Timeline() {
           </div>
         </div>
 
-        {/* Timeline Events */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* Timeline Events - mobile optimized */}
+        <div className="relative max-w-4xl mx-auto px-2 sm:px-0">
           {/* Center Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent md:-translate-x-px" />
+          <div className="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent md:-translate-x-px" />
 
           <AnimatePresence mode="popLayout">
             {filteredEvents.length === 0 ? (
@@ -245,31 +245,32 @@ export function Timeline() {
 
                 const EventContent = () => (
                   <>
-                     {/* Content Card */}
+                     {/* Content Card - mobile optimized */}
                      <div className={cn(
-                      "flex-1 ml-16 md:ml-0",
+                      "flex-1 ml-12 sm:ml-16 md:ml-0",
                       isLeft ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
                     )}>
                       <motion.div
                         whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                         className={cn(
-                          "inline-block bg-card rounded-2xl p-6 shadow-md border-2 transition-all duration-300 text-left",
-                          post ? 'cursor-pointer hover:shadow-xl' : '',
+                          "inline-block bg-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-md border-2 transition-all duration-300 text-left touch-manipulation",
+                          post ? 'cursor-pointer hover:shadow-xl active:shadow-lg' : '',
                           isHovered && post
                             ? `border-author-${event.author || 'caesar'} shadow-xl` 
                             : "border-border hover:border-border/80",
                           isLeft ? "md:ml-auto" : ""
                         )}
                       >
-                        {/* Header */}
+                        {/* Header - mobile optimized */}
                         <div className={cn(
-                          "flex items-center gap-2 mb-3",
+                          "flex flex-wrap items-center gap-2 mb-2 sm:mb-3",
                           isLeft ? "md:justify-end" : ""
                         )}>
                           {author && (
                             <div 
                               className={cn(
-                                "h-7 w-7 rounded-lg flex items-center justify-center text-white text-xs font-bold",
+                                "h-6 w-6 sm:h-7 sm:w-7 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0",
                                 `bg-author-${event.author || 'caesar'}`
                               )}
                             >
@@ -277,7 +278,7 @@ export function Timeline() {
                             </div>
                           )}
                           <span 
-                            className="text-sm font-bold"
+                            className="text-xs sm:text-sm font-bold"
                             style={{ color: author?.color }}
                           >
                             {event.year > 0 ? `${event.year} n. Chr.` : `${Math.abs(event.year)} v. Chr.`}
@@ -290,15 +291,15 @@ export function Timeline() {
                           </span>
                         </div>
 
-                        {/* Content */}
+                        {/* Content - mobile optimized */}
                         <h3 className={cn(
-                          "font-display text-lg font-semibold mb-2 transition-colors duration-200", 
+                          "font-display text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 transition-colors duration-200 line-clamp-2", 
                           post && 'hover:text-primary',
                           isHovered && post && 'text-primary'
                         )}>
                           {event.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-3">
                           {event.description}
                         </p>
 
@@ -321,19 +322,19 @@ export function Timeline() {
                       </motion.div>
                     </div>
 
-                    {/* Center Icon */}
+                    {/* Center Icon - mobile optimized */}
                     <motion.div
                       whileHover={{ scale: 1.25, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
                       className={cn(
-                        "absolute left-8 md:left-1/2 md:-translate-x-1/2",
-                        "h-12 w-12 rounded-2xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
+                        "absolute left-6 sm:left-8 md:left-1/2 md:-translate-x-1/2",
+                        "h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
                         `bg-author-${event.author || 'caesar'}`,
-                        post && "cursor-pointer hover:shadow-2xl",
+                        post && "cursor-pointer hover:shadow-2xl touch-manipulation",
                         isHovered && "ring-4 ring-background scale-110"
                       )}
                     >
-                      <Icon className="h-6 w-6 text-white" />
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </motion.div>
 
                     {/* Spacer */}

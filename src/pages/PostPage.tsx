@@ -39,7 +39,7 @@ function PostContent({ post }: { post: BlogPost }) {
 
   const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const contentToDisplay = post?.content[perspective];
 
@@ -62,52 +62,53 @@ function PostContent({ post }: { post: BlogPost }) {
       <main className="flex-1">
         <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
           <motion.img
-              src={post.coverImage}
-              alt={post.title}
-              style={{ 
-                y: imageY,
-                scale: imageScale,
-                opacity: imageOpacity,
-              }}
-              className="w-full h-full absolute top-0 left-0 object-cover"
+            src={post.coverImage}
+            alt={post.title}
+            style={{ 
+              y: imageY,
+              scale: imageScale,
+              opacity: imageOpacity,
+            }}
+            className="w-full h-full absolute top-0 left-0 object-cover object-top"
           />
+
           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent" />
         </div>
         
         <div className="bg-background pb-12">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-4">
              <div className="relative lg:grid lg:grid-cols-[70%_30%] gap-12">
               <motion.article 
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative bg-card p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-16"
+                className="relative bg-card p-4 sm:p-6 md:p-10 rounded-2xl shadow-xl lg:-mt-32 pb-12 md:pb-16"
               >
-                <header className="mb-10 text-left">
-                  <div className="flex justify-between items-start">
+                <header className="mb-8 md:mb-10 text-left">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                     <div className='flex-1'>
                       {post.latinTitle && (
-                        <p className="font-display italic text-lg mb-3 text-primary">
+                        <p className="font-display italic text-base sm:text-lg mb-2 sm:mb-3 text-primary">
                           „{post.latinTitle}"
                         </p>
                       )}
 
-                      <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
+                      <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
                         {post.title}
                       </h1>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-4 mb-8">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4 mb-6 sm:mb-8">
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                           <span>{post.historicalDate}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                           <span>{t('readingTime', { minutes: String(readingTime) })}</span>
                         </div>
                       </div>
                     </div>
-                    <div className="pt-2 hidden sm:block flex-shrink-0">
+                    <div className="pt-0 sm:pt-2 flex sm:block justify-end flex-shrink-0">
                       <ShareButton
                         title={post.title}
                         text={`Schau mal, was ich gefunden habe: ${window.location.href}`}
@@ -116,7 +117,9 @@ function PostContent({ post }: { post: BlogPost }) {
                     </div>
                   </div>
 
-                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                  <div className="mt-6">
+                    <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                  </div>
                 </header>
 
                 <div className="prose-blog">
@@ -124,34 +127,36 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
 
               </motion.article>
-              <aside className="hidden lg:block lg:mt-0 mt-8">
-                <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              
+              {/* Sidebar - below content on mobile, sticky on desktop */}
+              <aside className="lg:mt-0 mt-8">
+                <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
                     <BlogSidebar post={post} />
                 </div>
               </aside>
             </div>
           </div>
             
-          <section className="container mx-auto mt-20">
-              <div className="flex items-center gap-3 mb-6">
-                  <BookText className="h-5 w-5 text-primary" />
-                  <h2 className="font-display text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
+          <section className="container mx-auto mt-12 sm:mt-16 md:mt-20 px-4">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <BookText className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
+                  <h2 className="font-display text-lg sm:text-xl md:text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>
               </div>
               <Carousel
                 opts={{
                   align: "start",
                 }}
-                className="w-full"
+                className="w-full -mx-2 sm:mx-0"
               >
-                <CarouselContent className="-ml-2">
+                <CarouselContent className="ml-2 sm:-ml-2">
                   {relatedPosts.map((relatedPost, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2 py-4">
+                    <CarouselItem key={index} className="basis-[85%] sm:basis-1/2 md:basis-1/2 lg:basis-1/3 pl-2 sm:pl-2 py-4">
                          <BlogCard post={relatedPost} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
-                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
+                <CarouselPrevious className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
+                <CarouselNext className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
               </Carousel>
             </section>
 
