@@ -40,7 +40,7 @@ const Index = () => {
               <div className="grid gap-6 md:grid-cols-3 mb-16">
 
                 {/* Chat Feature (Mock) */}
-                <div className="md:col-span-3 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 border border-primary/20 relative overflow-hidden group shadow-lg shadow-primary/5">
+                <div className="md:col-span-3 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-5 sm:p-8 border border-primary/20 relative overflow-hidden group shadow-lg shadow-primary/5">
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                     <MessageCircle className="w-32 h-32 text-primary" />
                   </div>
@@ -50,17 +50,17 @@ const Index = () => {
                         <div className="p-2 bg-primary/20 rounded-lg">
                           <MessageCircle className="w-6 h-6 text-primary" />
                         </div>
-                        <h3 className="text-2xl font-display font-medium text-foreground">
+                        <h3 className="text-xl sm:text-2xl font-display font-medium text-foreground">
                           Mit {authors[currentAuthor].name} sprechen
                         </h3>
                       </div>
-                      <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl">
                         Stellen Sie Fragen an den berühmten Feldherrn persönlich. Eine KI-gestützte Konversation basierend auf seinen authentischen Schriften.
                       </p>
                     </div>
 
                     <div className="space-y-4 w-full">
-                      <div className="w-full bg-background/50 backdrop-blur-sm p-1 rounded-xl border border-primary/10 shadow-sm transition-all hover:bg-background/80 hover:shadow-md focus-within:ring-2 focus-within:ring-primary/20">
+                      <div className="w-full bg-background/50 backdrop-blur-sm p-1 rounded-lg border border-primary/10 shadow-sm transition-all hover:bg-background/80 hover:shadow-md focus-within:ring-2 focus-within:ring-primary/20">
                         <div className="relative flex items-center">
                           <input
                             type="text"
@@ -89,7 +89,7 @@ const Index = () => {
 
                 {/* Biography Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/50 hover:border-primary/20 transition-all rounded-xl p-6 flex flex-col items-start shadow-sm hover:shadow-md">
+                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/50 hover:border-primary/20 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start shadow-sm hover:shadow-md">
                     <div className="p-3 bg-secondary/50 rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
                       <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -107,7 +107,7 @@ const Index = () => {
 
                 {/* Works Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/50 hover:border-primary/20 transition-all rounded-xl p-6 flex flex-col items-start shadow-sm hover:shadow-md">
+                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/50 hover:border-primary/20 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start shadow-sm hover:shadow-md">
                     <div className="p-3 bg-secondary/50 rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
                       <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -125,7 +125,7 @@ const Index = () => {
 
                 {/* Simulation Mode */}
                 <Link to={`/${currentAuthor}/simulation`} className="group md:col-span-1">
-                  <div className="h-full bg-gradient-to-br from-amber-900/10 to-orange-900/10 hover:from-amber-900/20 hover:to-orange-900/20 border border-amber-500/20 hover:border-amber-500/40 transition-all rounded-xl p-6 flex flex-col items-start shadow-sm hover:shadow-md relative overflow-hidden">
+                  <div className="h-full bg-gradient-to-br from-amber-900/10 to-orange-900/10 hover:from-amber-900/20 hover:to-orange-900/20 border border-amber-500/20 hover:border-amber-500/40 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start shadow-sm hover:shadow-md relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
                       <Crown className="w-24 h-24 text-amber-500 rotate-12" />
                     </div>
@@ -133,11 +133,11 @@ const Index = () => {
                       <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                     </div>
                     <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors z-10">
-                      Historische Spiele
+                      Textbased Game
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4 flex-1 z-10">
                       Erlebe Geschichte aus meiner Sicht.
-                      <span className="block mt-1 text-xs font-semibold text-amber-500/80">3 Szeanrien verfügbar</span>
+                      <span className="block mt-1 text-xs font-semibold text-amber-500/80">3 Szenarien verfügbar</span>
                     </p>
                     <div className="flex items-center text-sm font-medium text-primary mt-auto z-10">
                       Spielen <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />

@@ -211,7 +211,7 @@ function AuthorAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans">
       <main className="flex-1 pt-24 pb-16">
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
 
           {/* Header Profile Section */}
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 mb-16 items-start">
@@ -237,15 +237,15 @@ function AuthorAboutPage() {
               className="flex-1 space-y-4"
             >
               <div>
-                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-2 text-foreground">
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-2 text-foreground">
                   {authorInfo.name}
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground font-display italic">
+                <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-display italic">
                   {authorInfo.title}
                 </p>
               </div>
 
-              <p className="text-lg leading-relaxed text-foreground/80 max-w-2xl">
+              <p className="text-base sm:text-lg leading-relaxed text-foreground/80 max-w-2xl">
                 {authorInfo.description}
               </p>
 

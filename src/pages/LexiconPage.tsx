@@ -110,16 +110,16 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        <section className="pt-32 pb-16 hero-gradient relative overflow-hidden">
+        <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 hero-gradient relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
-          <div className="container mx-auto text-center relative z-10">
+          <div className="container mx-auto px-4 text-center relative z-10">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 backdrop-blur-sm border border-primary/20">
-                <BookMarked className="h-4 w-4" />
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-sm border border-primary/20">
+                <BookMarked className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>{t('lexiconGlossary')}</span>
               </div>
-              <h1 className="font-display text-4xl md:text-6xl mb-6 tracking-tight">{t('navLexicon')}</h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 tracking-tight">{t('navLexicon')}</h1>
+              <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
                 {t('lexiconDescription')}
               </p>
             </motion.div>
@@ -177,7 +177,7 @@ export default function LexiconPage() {
             )}
 
             {/* Alphabet Filter */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-12 sticky top-20 z-10 py-4 bg-background/80 backdrop-blur-md border-b border-border/50">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-12 sticky top-20 z-30 py-4 bg-background/80 backdrop-blur-md border-b border-border/50">
               <button
                 onClick={() => handleCategoryChange(null)}
                 className={cn(
@@ -224,7 +224,7 @@ export default function LexiconPage() {
                         return (
                           <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-5 rounded-xl bg-card border border-border/50 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all group relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                              <Icon className="h-16 w-16 -mr-4 -mt-4 text-primary" />
+                              <Icon className="h-14 w-14 text-primary" />
                             </div>
                             <div className="relative z-10">
                               <h3 className="font-display text-lg font-medium mb-2 group-hover:text-primary transition-colors">{entry.term}</h3>

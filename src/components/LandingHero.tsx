@@ -37,7 +37,7 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="font-display text-5xl sm:text-7xl lg:text-8xl mb-8 leading-[1.1] tracking-tight font-[450] text-foreground"
+              className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 leading-[1.1] tracking-tight font-[450] text-foreground"
             >
               {t('appName')}
             </motion.h1>
@@ -46,7 +46,7 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
             >
               {t('heroSubtitle')}
             </motion.p>
@@ -57,10 +57,10 @@ export function LandingHero() {
               transition={{ duration: 0.5, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className="flex flex-wrap justify-center items-center gap-4"
             >
-              <Button size="lg" className="h-14 px-8 text-lg rounded-lg" asChild>
+              <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-lg" asChild>
                 <a href="#authors">
                   {t('discoverAuthorsBtn')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
               </Button>
             </motion.div>
