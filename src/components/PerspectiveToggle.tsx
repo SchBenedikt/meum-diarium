@@ -18,7 +18,7 @@ export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
         className={cn(
           "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
           value === 'diary'
-            ? "bg-background text-foreground shadow-sm"
+            ? "bg-background text-foreground "
             : "text-muted-foreground hover:text-foreground"
         )}
       >
@@ -30,7 +30,7 @@ export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
         className={cn(
           "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
           value === 'scientific'
-            ? "bg-background text-foreground shadow-sm"
+            ? "bg-background text-foreground "
             : "text-muted-foreground hover:text-foreground"
         )}
       >

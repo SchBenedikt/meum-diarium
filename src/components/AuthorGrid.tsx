@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthorInfo } from '@/lib/author-translator';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
@@ -12,64 +13,66 @@ export function AuthorGrid() {
 
   return (
     <section className="py-24 bg-background">
-        <div className="container mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-14"
-          >
-            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              {t('voicesOfAntiquity')}
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl mb-4">
-              {t('chooseAnAuthor')}
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              {t('authorSelectionDesc')}
-            </p>
-          </motion.div>
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
+            {t('voicesOfAntiquity')}
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mb-5 tracking-tight">
+            {t('chooseAnAuthor')}
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
+            {t('authorSelectionDesc')}
+          </p>
+        </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {Object.values(authors).map((author, index) => {
-              const translatedInfo = getTranslatedAuthorInfo(author.id, t);
-              
-              return (
-                <motion.div
-                  key={author.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+          {Object.values(authors).map((author, index) => {
+            const translatedInfo = getTranslatedAuthorInfo(author.id, t);
+
+            return (
+              <motion.div
+                key={author.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.4, delay: index * 0.08, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <Link
+                  to={`/${author.id}`}
+                  onClick={() => setCurrentAuthor(author.id)}
+                  className="block h-full group outline-none"
                 >
-                  <Link
-                    to={`/${author.id}`}
-                    onClick={() => setCurrentAuthor(author.id)}
-                    className="group flex flex-col text-left relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                  >
-                    <div className="relative h-64 overflow-hidden">
-                      <img 
+                  <Card className="h-full overflow-hidden border-border/50 transition-all duration-300 group-hover:border-primary/30 group-hover:-translate-y-1">
+                    <div className="relative h-56 overflow-hidden">
+                      <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
                     </div>
-                    <div className="p-5 flex-1">
-                      <h3 className="font-display text-xl font-medium mb-1">
+                    <CardContent className="p-6">
+                      <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors">
                         {translatedInfo.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {translatedInfo.title}
                       </p>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
   );
 }

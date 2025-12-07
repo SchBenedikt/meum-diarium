@@ -28,8 +28,8 @@ export function BlogList() {
   const filteredPosts = posts.filter((post) => post.author === currentAuthor);
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
+    <section className="">
+      <div className="">
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <motion.div
@@ -55,7 +55,7 @@ export function BlogList() {
 
         {/* Posts grid */}
         {filteredPosts.length > 0 ? (
-          <motion.div 
+          <motion.div
             className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
             variants={containerVariants}
             initial="hidden"
@@ -63,14 +63,14 @@ export function BlogList() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {filteredPosts.map((post) => (
-              <BlogCard 
-                key={post.id} 
+              <BlogCard
+                key={post.id}
                 post={post}
               />
             ))}
           </motion.div>
         ) : (
-          <div className="text-center py-16 rounded-xl border border-dashed border-border">
+          <div className="text-center py-16 rounded-lg border border-dashed border-border">
             <p className="text-muted-foreground">
               Noch keine Einträge von diesem Autor.
             </p>

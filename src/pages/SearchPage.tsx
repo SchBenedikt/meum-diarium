@@ -149,7 +149,7 @@ export default function SearchPage() {
               <h1 className="font-display text-4xl md:text-5xl mb-4 text-center">{t('search')}</h1>
               <div className="relative max-w-xl mx-auto">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input type="text" placeholder={t('searchPlaceholder')} className="w-full pl-12 pr-4 py-6 text-base rounded-xl" value={query} onChange={handleQueryChange} autoFocus />
+                <Input type="text" placeholder={t('searchPlaceholder')} className="w-full pl-12 pr-4 py-6 text-base rounded-lg" value={query} onChange={handleQueryChange} autoFocus />
               </div>
             </motion.div>
           </div>
@@ -163,7 +163,7 @@ export default function SearchPage() {
                   const Icon = categoryIcons[cat] || BookMarked;
                   const isActive = activeCategories.includes(cat);
                   return (
-                    <button key={cat} onClick={() => toggleCategory(cat)} className={cn('group flex flex-col items-center justify-center p-4 rounded-xl border-2 text-center transition-all', isActive ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-border hover:bg-secondary/50')}>
+                    <button key={cat} onClick={() => toggleCategory(cat)} className={cn('group flex flex-col items-center justify-center p-4 rounded-lg border-2 text-center transition-all', isActive ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-border hover:bg-secondary/50')}>
                       <Icon className={cn('h-6 w-6 mb-2', isActive ? 'text-primary' : 'text-muted-foreground')} />
                       <span className={cn('text-sm font-medium', isActive ? 'text-primary' : 'text-foreground')}>{cat}</span>
                     </button>
@@ -211,7 +211,7 @@ export default function SearchPage() {
                         {results.map((result, index) => (
                         <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.05 }}>
                             {result.type === 'post' ? (
-                            <Link to={`/${result.data.author}/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
+                            <Link to={`/${result.data.author}/${result.data.slug}`} className="block p-4 rounded-lg bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
                                 <div className="flex items-center gap-4">
                                 <BookText className="h-5 w-5 text-primary flex-shrink-0" />
                                 <div className="flex-1 min-w-0">
@@ -222,7 +222,7 @@ export default function SearchPage() {
                                 </div>
                             </Link>
                             ) : (
-                            <Link to={`/lexicon/${result.data.slug}`} className="block p-4 rounded-xl bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
+                            <Link to={`/lexicon/${result.data.slug}`} className="block p-4 rounded-lg bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
                                 <div className="flex items-center gap-4">
                                 <BookMarked className="h-5 w-5 text-primary flex-shrink-0" />
                                 <div className="flex-1 min-w-0">

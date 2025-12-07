@@ -25,12 +25,12 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       initial={{ opacity: 0, y: 20 }} 
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="bg-card p-6 rounded-2xl shadow-lg border border-border space-y-6"
+      className="bg-card p-6 rounded-lg  border border-border space-y-6"
     >
       <div className="sidebar-card">
         <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">
           <div className="flex items-center gap-3">
-            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-xl object-cover" />
+            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover" />
             <div>
               <p className="font-medium">{author.name}</p>
               <p className="text-sm text-muted-foreground">{author.title}</p>

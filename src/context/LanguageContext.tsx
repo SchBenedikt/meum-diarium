@@ -1,41 +1,36 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Language } from '@/types/blog';
-import { translations, TranslationKey } from '@/locales/translations';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: TranslationKey, replacements?: Record<string, string>) => string;
+  t: (key: string, replacements?: Record<string, string | number>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    const savedLang = localStorage.getItem('meum-diarium-language');
-    return (savedLang as Language) || 'de';
-  });
+  const { t: i18nT, i18n } = useTranslation();
 
+  const setLanguage = (lang: Language) => {
+    i18n.changeLanguage(lang);
+    // localStorage and document.lang are handled by i18next detection now, 
+    // but for safety/redundancy or specific logic we can keep effects if needed.
+    // i18next-browser-languagedetector handles localStorage.
+  };
+
+  // Sync document lang
   useEffect(() => {
-    localStorage.setItem('meum-diarium-language', language);
-    document.documentElement.lang = language.split('-')[0];
-  }, [language]);
-  
-  const t = (key: TranslationKey, replacements?: Record<string, string>): string => {
-    const langKey = language as keyof typeof translations;
-    let translation = translations[langKey]?.[key] || translations.de[key];
-    
-    if (replacements) {
-        Object.keys(replacements).forEach(rKey => {
-            translation = translation.replace(`{${rKey}}`, replacements[rKey]);
-        });
-    }
+    document.documentElement.lang = i18n.language.split('-')[0];
+  }, [i18n.language]);
 
-    return translation;
+  const t = (key: string, replacements?: Record<string, string | number>): string => {
+    return i18nT(key, replacements);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language: i18n.language as Language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -163,7 +163,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
               className="w-full max-w-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="overflow-hidden rounded-2xl bg-card border border-border shadow-2xl">
+              <div className="overflow-hidden rounded-lg bg-card border border-border ">
                 <div className="flex items-center gap-3 p-4 border-b border-border">
                   <Search className="h-5 w-5 text-muted-foreground" />
                   <input

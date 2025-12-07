@@ -48,7 +48,7 @@ export function AuthorIntro() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="surface-tonal p-8 md:p-12 rounded-xl"
+          className="surface-tonal p-8 md:p-12 rounded-lg"
         >
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-6">

@@ -108,7 +108,7 @@ export default function TimelinePage() {
               {stats.map((stat) => (
                 <div 
                   key={stat.label}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50"
                 >
                   <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <stat.icon className="h-5 w-5 text-primary" />

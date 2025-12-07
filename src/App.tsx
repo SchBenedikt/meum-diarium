@@ -1,23 +1,26 @@
-
+import { useEffect, lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthorProvider } from "@/context/AuthorContext";
-import Index from "./pages/Index";
-import PostPage from "./pages/PostPage";
-import WorkPage from "./pages/WorkPage";
-import AboutPage from "./pages/AboutPage";
-import TimelinePage from "./pages/TimelinePage";
-import LexiconPage from "./pages/LexiconPage";
-import LexiconEntryPage from "./pages/LexiconEntryPage";
-import SearchPage from "./pages/SearchPage";
-import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
-import { useEffect } from "react";
 import { LanguageProvider } from "./context/LanguageContext";
+
+const Index = lazy(() => import("./pages/Index"));
+const PostPage = lazy(() => import("./pages/PostPage"));
+const WorkPage = lazy(() => import("./pages/WorkPage"));
+const ChatPage = lazy(() => import("./pages/ChatPage"));
+const SimulationPage = lazy(() => import("./pages/SimulationPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const TimelinePage = lazy(() => import("./pages/TimelinePage"));
+const LexiconPage = lazy(() => import("./pages/LexiconPage"));
+const LexiconEntryPage = lazy(() => import("./pages/LexiconEntryPage"));
+const SearchPage = lazy(() => import("./pages/SearchPage"));
+const AdminPage = lazy(() => import("./pages/AdminPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -34,11 +37,11 @@ const ScrollToTop = () => {
 
 const AppContent = () => {
   const location = useLocation();
-  const isAuthorRoute = location.pathname.startsWith('/caesar') || 
-                        location.pathname.startsWith('/cicero') || 
-                        location.pathname.startsWith('/augustus') || 
-                        location.pathname.startsWith('/seneca');
-  
+  const isAuthorRoute = location.pathname.startsWith('/caesar') ||
+    location.pathname.startsWith('/cicero') ||
+    location.pathname.startsWith('/augustus') ||
+    location.pathname.startsWith('/seneca');
+
   const isPostPage = isAuthorRoute && (
     !location.pathname.endsWith('/about') &&
     !location.pathname.includes('/works/') &&
@@ -53,19 +56,32 @@ const AppContent = () => {
         <Header />
         {isAuthorRoute && !isPostPage && <AuthorHeader />}
       </div>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/:authorId" element={<Index />} />
-        <Route path="/:authorId/about" element={<AboutPage />} />
-        <Route path="/:authorId/works/:slug" element={<WorkPage />} />
-        <Route path="/:authorId/:slug" element={<PostPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/timeline" element={<TimelinePage />} />
-        <Route path="/lexicon" element={<LexiconPage />} />
-        <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/:authorId" element={<Index />} />
+          <Route path="/:authorId/about" element={<AboutPage />} />
+          <Route path="/:authorId/works/:slug" element={<WorkPage />} />
+          <Route path="/:authorId/chat" element={
+            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Laden...</div>}>
+              <ChatPage />
+            </Suspense>
+          } />
+          <Route path="/:authorId/simulation" element={
+            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Laden...</div>}>
+              <SimulationPage />
+            </Suspense>
+          } />
+          <Route path="/:authorId/:slug" element={<PostPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
+          <Route path="/lexicon" element={<LexiconPage />} />
+          <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };

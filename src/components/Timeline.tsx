@@ -92,7 +92,7 @@ export function Timeline() {
     <section className="py-8 sm:py-12">
       <div className="container mx-auto px-4">
         {/* Filters - mobile optimized */}
-        <div className="mb-8 sm:mb-10 p-3 sm:p-4 rounded-2xl border border-border bg-card space-y-3 sm:space-y-4">
+        <div className="mb-8 sm:mb-10 p-3 sm:p-4 rounded-lg border border-border bg-card space-y-3 sm:space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
@@ -119,9 +119,9 @@ export function Timeline() {
                   key={author.id}
                   onClick={() => toggleAuthor(author.id as Author)}
                   className={cn(
-                    "flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[40px] rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation active:scale-95",
+                    "flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[40px] rounded-lg text-sm font-medium transition-all duration-200 touch-manipulation active:scale-95",
                     isSelected 
-                      ? `bg-author-${author.id} text-white shadow-lg` 
+                      ? `bg-author-${author.id} text-white ` 
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70"
                   )}
                 >
@@ -148,7 +148,7 @@ export function Timeline() {
                   className={cn(
                     "flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95",
                     selectedType === type
-                      ? "bg-primary text-primary-foreground shadow-sm"
+                      ? "bg-primary text-primary-foreground "
                       : "bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary"
                   )}
                 >
@@ -186,9 +186,9 @@ export function Timeline() {
                   whileTap={{ scale: 0.9 }}
                   onClick={handleBarClick}
                   className={cn(
-                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 shadow-sm",
+                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 ",
                     `bg-author-${event.author || 'caesar'}`,
-                    isBarHovered ? "h-5 w-5 z-10 shadow-lg ring-2 ring-background" : "h-3 w-3"
+                    isBarHovered ? "h-5 w-5 z-10  ring-2 ring-background" : "h-3 w-3"
                   )}
                   style={{ 
                     left: `${position}%`, 
@@ -202,7 +202,7 @@ export function Timeline() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 bg-card border border-border rounded-lg shadow-lg text-xs font-medium pointer-events-none z-20"
+                      className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 bg-card border border-border rounded-lg  text-xs font-medium pointer-events-none z-20"
                     >
                       {event.title}
                     </motion.div>
@@ -254,10 +254,10 @@ export function Timeline() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
                         className={cn(
-                          "inline-block bg-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-md border-2 transition-all duration-300 text-left touch-manipulation",
-                          post ? 'cursor-pointer hover:shadow-xl active:shadow-lg' : '',
+                          "inline-block bg-card rounded-lg sm:rounded-lg p-4 sm:p-5 md:p-6  border-2 transition-all duration-300 text-left touch-manipulation",
+                          post ? 'cursor-pointer hover: active:' : '',
                           isHovered && post
-                            ? `border-author-${event.author || 'caesar'} shadow-xl` 
+                            ? `border-author-${event.author || 'caesar'} ` 
                             : "border-border hover:border-border/80",
                           isLeft ? "md:ml-auto" : ""
                         )}
@@ -328,9 +328,9 @@ export function Timeline() {
                       whileTap={{ scale: 0.95 }}
                       className={cn(
                         "absolute left-6 sm:left-8 md:left-1/2 md:-translate-x-1/2",
-                        "h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg z-10 transition-all duration-300",
+                        "h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-lg flex items-center justify-center  z-10 transition-all duration-300",
                         `bg-author-${event.author || 'caesar'}`,
-                        post && "cursor-pointer hover:shadow-2xl touch-manipulation",
+                        post && "cursor-pointer hover: touch-manipulation",
                         isHovered && "ring-4 ring-background scale-110"
                       )}
                     >
@@ -391,7 +391,7 @@ export function Timeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-4 rounded-xl bg-secondary/30"
+              className="p-4 rounded-lg bg-secondary/30"
             >
               <p className="font-display text-2xl font-bold text-primary">{stat.value}</p>
               <p className="text-xs text-muted-foreground">{stat.label}</p>

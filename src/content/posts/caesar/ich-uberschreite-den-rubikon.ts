@@ -1,20 +1,20 @@
 import { BlogPost } from '@/types/blog';
 
 
-    const post: BlogPost = {
-        id: '4',
-        slug: 'ich-uberschreite-den-rubikon',
-        author: 'caesar',
-        title: 'Ich überschreite den Rubikon',
-        excerpt: '',
-        historicalDate: '49 v. Chr.',
-        historicalYear: -49,
-        date: '2025-12-02',
-        readingTime: 2,
-        tags: ['Armee', 'Bürgerkrieg', 'Feind', 'Pompeius', 'Rom', 'Rubikon', 'Senat'],
-        coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_image_of_gaius_julius_caesar_crossing_the_rubi_3316f166-9765-493e-a244-108688cce9301.png',
-        content: {
-          diary: `Ich habe schon wieder einen Krieg angefangen! Dieses Mal direkt in der Nähe von Rom, als ich den Fluss Rubicone (Rubikon) 🛶überschreiten wollte. Diese blöden Senatsbeschlüsse halt immer. Ich wollte gerade meine erneute Kandidatur als Konsul anmelden (ja ja, ich sollte auch angeklagt werden….), als ich erfahren hab, dass ich nicht mit meinem fünf Kohorten, also 480*5=2400 Mann über den Rubikon, also den Grenzfluss zwischen meiner Provinz und dem zentralen römischen Staatsgebiet überschreiten darf. Wer hat sich so einen Schmarrn überlegt? Warum sollte ich nicht auf meine Reisen meine Armee mitnehmen dürfen?
+const post: BlogPost = {
+  id: '4',
+  slug: 'ich-uberschreite-den-rubikon',
+  author: 'caesar',
+  title: 'Ich überschreite den Rubikon',
+  excerpt: '',
+  historicalDate: '49 v. Chr.',
+  historicalYear: -49,
+  date: '2025-12-02',
+  readingTime: 2,
+  tags: ['Armee', 'Bürgerkrieg', 'Feind', 'Pompeius', 'Rom', 'Rubikon', 'Senat'],
+  coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_image_of_gaius_julius_caesar_crossing_the_rubi_3316f166-9765-493e-a244-108688cce9301.png',
+  content: {
+    diary: `Ich habe schon wieder einen Krieg angefangen! Dieses Mal direkt in der Nähe von Rom, als ich den Fluss Rubicone (Rubikon) 🛶überschreiten wollte. Diese blöden Senatsbeschlüsse halt immer. Ich wollte gerade meine erneute Kandidatur als Konsul anmelden (ja ja, ich sollte auch angeklagt werden….), als ich erfahren hab, dass ich nicht mit meinem fünf Kohorten, also 480*5=2400 Mann über den Rubikon, also den Grenzfluss zwischen meiner Provinz und dem zentralen römischen Staatsgebiet überschreiten darf. Wer hat sich so einen Schmarrn überlegt? Warum sollte ich nicht auf meine Reisen meine Armee mitnehmen dürfen?
 
 Aber was soll man da machen? Soll ich die einfach so stehen lassen, damit sie jeden Bürger in Angst und Schrecken versetzten? Nein. Definitiv nicht. Das habe ich auch so mit meinem berühmten Spruch „Aneriftho ho kybos“ -> „Der Würfel soll geworfen sein“ gesagt und bin einfach rüber marschiert. Jetzt fragt ihr euch bestimmt, warum ich das auf Griechisch gesagt habe? Tja, ganz einfach: Jeder römische Gelehrte in der Oberschicht kann Griechisch. Obwohl, manch andere Politiker haben ihr Studium abgebrochen. Ich nicht. Also kann ich es auch. Irgendwann hat sich das dann mal in „Alea iacta est“ -> „Der Würfel ist gefallen“ (oder auch „Die Würfel sind gefallen“) umgewandelt. 🎲
 
@@ -35,9 +35,65 @@ Alea iacta est!
 Der Würfel ist geworfen worden! (Die Würfel sind gefallen!)
 
 Gaius Julius Caesar`,
-          scientific: ``
-        }
-      };
+    scientific: ``
+  },
+  translations: {
+    en: {
+      title: 'I Cross the Rubicon',
+      excerpt: '',
+      content: {
+        diary: `I have started a war again! This time right near Rome, when I wanted to cross the river Rubicone (Rubicon) 🛶. These stupid senate decrees all the time. I just wanted to announce my candidacy for consul again (yes yes, I should also be prosecuted...), when I learned that I am not allowed to cross the Rubicon, i.e., the border river between my province and the central Roman state territory, with my five cohorts, i.e., 480*5=2400 men. Who came up with such nonsense? Why shouldn't I be allowed to take my army with me on my travels?
+
+But what can you do? Should I just leave them standing there so they can terrify every citizen? No. Definitely not. I also said that with my famous saying "Aneriftho ho kybos" -> "Let the die be cast" and simply marched over. Now you are probably asking yourself why I said that in Greek? Well, quite simply: Every Roman scholar in the upper class knows Greek. Although, some other politicians dropped out of their studies. Not me. So I can do it too. Eventually, this turned into "Alea iacta est" -> "The die is cast" (or also "The dice are cast"). 🎲
+
+But back to the topic. This senate has now declared me an enemy of the state. And now there is also a civil war that I have to win. But I also have so much to do! They can't just put away politicians loved by the people... .
+
+I want to spare you the details now, but I ran after Pompey, my enemy, again and again. I wanted to find a peaceful solution. Pompey didn't. But now the important part: I proved once again how good I am by successfully beating Pompey on August 9, 48 BC! That was the most important and best general in all of Rome! It must also be noted that I was actually inferior. I had about 22,000 legionaries - the Optimates had 44,000 with 7,000 horsemen; I only had 1,000 horsemen.
+
+In addition, one must not forget that only a very small part (about 100) died on my side, while there were a whole 15,000 people on the Optimates side. Through my good warfare, I also won this one!
+
+Pompey has escaped me again! How could that happen! He was no longer in his camp, and now he is in Egypt! I will show him that one cannot flee from me - he will feel that with his death!
+
+So all that remains to be said is:
+
+A better time will come!
+
+Alea iacta est!
+
+The die has been cast! (The dice are cast!)
+
+Gaius Julius Caesar`,
+        scientific: ``
+      }
+    },
+    la: {
+      title: 'Rubiconem Transeo',
+      excerpt: '',
+      content: {
+        diary: `Bellum iterum incepi! Hoc tempore prope Romam, cum flumen Rubiconem 🛶 transire vellem. Haec stulta senatus consulta semper. Volebam modo iterum consulatum petere (ita ita, etiam accusari debebam...), cum audivi me non licere cum quinque cohortibus meis, id est 480*5=2400 viris, Rubiconem, flumen finitimam inter provinciam meam et agrum Romanum centralem, transire. Quis hoc ineptias excogitavit? Cur non licet mihi exercitum meum in itineribus meis mecum ducere?
+
+Sed quid faciendum est? Relinquamne eos illic, ut omnem civem terreant? Non. Prorsus non. Hoc etiam dixi famoso dicto meo "Aneriftho ho kybos" -> "Iacta est alea" et simpliciter transii. Nunc fortasse quaeritis cur Graece dixerim? Eia, simpliciter: Omnis doctus Romanus in nobilitate Graece scit. Quamquam, alii politici studia sua intermiserunt. Ego non. Ergo possum. Tandem hoc in "Alea iacta est" mutatum est. 🎲
+
+Sed ad rem. Hic senatus me nunc hostem publicum declaravit. Et nunc est etiam bellum civile, quod vincere debeo. Sed habeo etiam tantum facere! Non possunt politicos a populo amatos simpliciter tollere... .
+
+Singula vobis nunc parcere volo, sed Pompeium, inimicum meum, iterum atque iterum persecutus sum. Volebam solutionem pacatam invenire. Pompeius noluit. Sed nunc illud magnum: Iterum probavi quam bonus sim, Pompeium die 9 Augusti 48 a.C.n. feliciter vincendo! Ille erat imperator maximus et optimus totius Romae! Notandum est me re vera inferiorem fuisse. Habui circiter 22000 legionarios - Optimates habebant 44000 cum 7000 equitibus; apud me erant tantum 1000 equites.
+
+Praeterea non obliviscendum est apud me partem minimam (circiter 100) mortuam esse, dum apud Optimates omnino 15000 homines fuerunt. Per bonam rem militarem meam hoc etiam vici!
+
+Pompeius mihi iterum effugit! Quomodo hoc accidere potuit! In castris suis non iam erat, et nunc est in Aegypto! Ostendam ei non posse a me fugere - hoc morte sua sentiet!
+
+Ergo tantum dicendum restat:
+
+Tempus melius veniet!
+
+Alea iacta est!
+
+Gaius Iulius Caesar`,
+        scientific: ``
+      }
+    }
+  }
+};
 
 
-    export default post;
+export default post;

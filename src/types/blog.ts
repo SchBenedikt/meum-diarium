@@ -64,7 +64,7 @@ export interface BlogPost {
   historicalYear: number;
   author: Author;
   tags: string[];
-  readingTime: number; 
+  readingTime: number;
   coverImage?: string;
   content: {
     diary: string;

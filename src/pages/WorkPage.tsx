@@ -5,6 +5,7 @@ import { authors as baseAuthors } from '@/data/authors';
 import { Author, Work } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, User, CheckCircle, ListTree, ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import slugify from 'slugify';
@@ -25,7 +26,7 @@ export default function WorkPage() {
       setCurrentAuthor(authorId as Author);
     }
   }, [authorId, setCurrentAuthor]);
-  
+
   useEffect(() => {
     async function translateContent() {
       if (slug) {
@@ -33,14 +34,14 @@ export default function WorkPage() {
         setWork(translatedWork);
 
         if (translatedWork) {
-            const translatedAuthor = await getTranslatedAuthor(language, translatedWork.author);
-            setAuthor(translatedAuthor);
+          const translatedAuthor = await getTranslatedAuthor(language, translatedWork.author);
+          setAuthor(translatedAuthor);
 
-            const allAuthorWorks = Object.values(baseWorks).filter(w => w.author === translatedWork.author && w.title !== translatedWork.title);
-            const translatedOtherWorks = await Promise.all(
-                allAuthorWorks.slice(0, 4).map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
-            );
-            setOtherWorks(translatedOtherWorks.filter((w): w is Work => w !== null));
+          const allAuthorWorks = Object.values(baseWorks).filter(w => w.author === translatedWork.author && w.title !== translatedWork.title);
+          const translatedOtherWorks = await Promise.all(
+            allAuthorWorks.slice(0, 4).map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
+          );
+          setOtherWorks(translatedOtherWorks.filter((w): w is Work => w !== null));
         }
       }
     }
@@ -77,20 +78,20 @@ export default function WorkPage() {
             <article>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="prose-blog text-lg max-w-none">
                 <p className="lead text-xl !text-foreground !mb-8">{work.summary}</p>
-                
-                <div className="p-6 rounded-2xl bg-primary/10 mb-10">
-                   <div className="flex items-start gap-4">
-                     <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                     <div>
-                       <h3 className="font-display text-lg font-medium text-primary !mt-0 !mb-1">Zentrale Aussage</h3>
-                       <p className="!mb-0 text-primary/80">{work.takeaway}</p>
-                     </div>
-                   </div>
+
+                <div className="p-6 rounded-lg bg-primary/10 mb-10">
+                  <div className="flex items-start gap-4">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-display text-lg font-medium text-primary !mt-0 !mb-1">{t('work_key_takeaway')}</h3>
+                      <p className="!mb-0 text-primary/80">{work.takeaway}</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3 mb-6">
                   <ListTree className="h-5 w-5 text-primary" />
-                  <h2 className="!mt-0 !mb-0">Struktur des Werkes</h2>
+                  <h2 className="!mt-0 !mb-0">{t('structure')}</h2>
                 </div>
 
                 <div className="space-y-4">
@@ -106,8 +107,8 @@ export default function WorkPage() {
 
             <aside className="hidden lg:block">
               <div className="sticky top-28 space-y-6">
-                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="sidebar-card">
-                   <div className="flex items-center gap-3 mb-4">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="sidebar-card">
+                  <div className="flex items-center gap-3 mb-4">
                     <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover" />
                     <div>
                       <p className="font-medium">{author.name}</p>
@@ -115,20 +116,20 @@ export default function WorkPage() {
                     </div>
                   </div>
                   <Link to={`/${author.id}/about`} className="w-full">
-                    <Button variant="secondary" className="w-full">{t('moreAbout', { name: author.name.split(' ').pop() || ''})}</Button>
+                    <Button variant="tonal" className="w-full">{t('moreAbout', { name: author.name.split(' ').pop() || '' })}</Button>
                   </Link>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="sidebar-card">
                   <h3 className="font-display text-lg font-medium mb-4">{t('otherWorks')}</h3>
-                   <div className="space-y-2">
+                  <div className="space-y-2">
                     {otherWorks.map((relatedWork) => (
-                        <Link key={relatedWork.title} to={`/${relatedWork.author}/works/${slugify(relatedWork.title, { lower: true, strict: true })}`} className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                         - {relatedWork.title}
-                        </Link>
-                      ))}
+                      <Link key={relatedWork.title} to={`/${relatedWork.author}/works/${slugify(relatedWork.title, { lower: true, strict: true })}`} className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                        - {relatedWork.title}
+                      </Link>
+                    ))}
                   </div>
-                 </motion.div>
+                </motion.div>
               </div>
             </aside>
           </div>

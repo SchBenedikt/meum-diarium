@@ -9,13 +9,12 @@ import { BlogPost } from '@/types/blog';
         excerpt: '',
         historicalDate: '100 v. Chr',
         historicalYear: -100,
-        date: '2025-12-02',
+        date: '2025-12-04',
         readingTime: 2,
         tags: ['Abstammung', 'Disclaimer', 'Geburt', 'Spenden'],
         coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Trimuvirat_von_Gaius_Julius_Casar_mit_Bezos_un_8094af79-7bf1-41d1-90f5-4e04f76403921.png',
         content: {
-          diary: ``,
-          scientific: `Disclaimer: Meine gesamten Werke (z.B. „De Bello Gallico“) habe ich in der 3. Person geschrieben, damit es sachlich wirkt. (Das stimmt sogar fast. Lügendes Gesicht) Diesen Blog hier schreibe ich, im Gegensatz dazu, aber aus meiner persönlichen Sicht, so wie ich es erlebt habe. Sollte sich also eine ethnische Minderheit angegriffen fühlen, entschuldige ich mich. Gendern unterlasse ich nur aus Gründen der Lesbarkeit. Und noch eine andere Sache: Mit dem modernen Zeug kenn ich mich nicht aus, aber multi picturae wurden von einem sogenannten Ka I oder so erstellt.
+          diary: `Disclaimer: Meine gesamten Werke (z.B. „De Bello Gallico“) habe ich in der 3. Person geschrieben, damit es sachlich wirkt. (Das stimmt sogar fast. Lügendes Gesicht) Diesen Blog hier schreibe ich, im Gegensatz dazu, aber aus meiner persönlichen Sicht, so wie ich es erlebt habe. Sollte sich also eine ethnische Minderheit angegriffen fühlen, entschuldige ich mich. Gendern unterlasse ich nur aus Gründen der Lesbarkeit. Und noch eine andere Sache: Mit dem modernen Zeug kenn ich mich nicht aus, aber multi picturae wurden von einem sogenannten Ka I oder so erstellt.
 
 Aber jetzt kann es losgehen:
 
@@ -40,7 +39,8 @@ Im Krieg haben wichtige Ereignisse unscheinbare Ursachen.
 Gaius Julius Caesar
 Über diese Ursachen und wie sie wirklich passiert sind (nicht wie sie von meinen vielen Feinde fälschlich dargestellt werden), werde ich in diesem Blog schreiben.
 
-Igitur lege cum voluptate!`
+Igitur lege cum voluptate!`,
+          scientific: ``
         }
       };
 

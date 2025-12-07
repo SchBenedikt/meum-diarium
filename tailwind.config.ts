@@ -62,6 +62,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "surface-container": {
+          lowest: "hsl(var(--surface-container-lowest))",
+          low: "hsl(var(--surface-container-low))",
+          DEFAULT: "hsl(var(--surface-container))",
+          high: "hsl(var(--surface-container-high))",
+          highest: "hsl(var(--surface-container-highest))",
+        },
         author: {
           caesar: "hsl(var(--author-caesar))",
           cicero: "hsl(var(--author-cicero))",
@@ -70,10 +77,10 @@ export default {
         },
       },
       borderRadius: {
-        "4xl": "2rem",
+        "4xl": "3rem", /* Extra large for M3 */
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
       },
       keyframes: {
         "accordion-down": {

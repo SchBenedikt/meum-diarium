@@ -68,8 +68,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative rounded-2xl shadow-2xl aspect-[4/5]">
-              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+            <div className="relative rounded-lg  aspect-[4/5]">
+              <div className="absolute inset-0 overflow-hidden rounded-lg">
                 <img 
                   src={authorInfo.heroImage}
                   alt={authorInfo.name}

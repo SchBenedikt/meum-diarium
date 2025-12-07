@@ -1,80 +1,99 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root, .theme-default {
-    /* Modern Light Theme - Default */
-    --background: 40 20% 98%;
+
+  :root,
+  .theme-default {
+    /* M3 Expressive Light Theme */
+    --background: 40 20% 99%;
     --foreground: 30 10% 12%;
 
-    --card: 0 0% 100%;
+    /* Surface Colors (Tonal) */
+    --card: 40 20% 99%;
     --card-foreground: 30 10% 12%;
-
-    --popover: 0 0% 100%;
+    --popover: 40 20% 99%;
     --popover-foreground: 30 10% 12%;
 
-    --primary: 0 50% 45%;
+    /* Surface Containers for elevation approximation without shadow */
+    --surface-container-lowest: 0 0% 100%;
+    --surface-container-low: 40 20% 96%;
+    --surface-container: 40 20% 94%;
+    --surface-container-high: 40 20% 92%;
+    --surface-container-highest: 40 20% 90%;
+
+    --primary: 345 60% 35%;
+    /* Wine Red */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 15% 93%;
-    --secondary-foreground: 30 15% 25%;
+    --secondary: 345 15% 92%;
+    --secondary-foreground: 345 30% 25%;
 
     --muted: 40 10% 94%;
-    --muted-foreground: 30 10% 45%;
+    --muted-foreground: 30 10% 40%;
 
-    --accent: 0 50% 45%;
+    --accent: 345 60% 35%;
+    /* Wine Red - same as primary */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 85% 55%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 15% 90%;
-    --input: 40 15% 90%;
-    --ring: 0 50% 45%;
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
+    --ring: 345 60% 35%;
 
-    --radius: 0.75rem;
+    /* Refined border radius */
+    --radius: 1.5rem;
+    /* 8px */
 
-    /* Author Colors */
-    --author-caesar: 25 95% 53%;
-    --author-cicero: 220 85% 55%;
-    --author-augustus: 280 75% 55%;
-    --author-seneca: 160 70% 40%;
+    /* Author Colors - More Vibrant */
+    --author-caesar: 30 100% 55%;
+    --author-cicero: 210 90% 60%;
+    --author-augustus: 280 80% 60%;
+    --author-seneca: 150 85% 40%;
   }
 
   .dark {
-    /* Modern Dark Theme - Default */
-    --background: 240 10% 6%;
-    --foreground: 40 15% 95%;
+    /* M3 Expressive Dark Theme */
+    --background: 260 10% 6%;
+    --foreground: 40 10% 95%;
 
-    --card: 240 10% 10%;
-    --card-foreground: 40 15% 95%;
+    --card: 260 10% 8%;
+    --card-foreground: 40 10% 95%;
 
-    --popover: 240 10% 10%;
-    --popover-foreground: 40 15% 95%;
+    --popover: 260 10% 8%;
+    --popover-foreground: 40 10% 95%;
 
-    --primary: 0 60% 55%;
+    --surface-container-lowest: 260 10% 4%;
+    --surface-container-low: 260 10% 8%;
+    --surface-container: 260 10% 10%;
+    --surface-container-high: 260 10% 14%;
+    --surface-container-highest: 260 10% 18%;
+
+    --primary: 345 55% 55%;
+    /* Wine Red - lighter for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 10% 15%;
-    --secondary-foreground: 40 15% 85%;
+    --secondary: 345 20% 18%;
+    --secondary-foreground: 345 20% 85%;
 
-    --muted: 240 10% 18%;
-    --muted-foreground: 40 10% 55%;
+    --muted: 260 10% 16%;
+    --muted-foreground: 260 10% 70%;
 
-    --accent: 0 60% 55%;
+    --accent: 345 55% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 240 10% 18%;
-    --input: 240 10% 18%;
-    --ring: 0 60% 55%;
+    --border: 260 10% 16%;
+    --input: 260 10% 16%;
+    --ring: 345 55% 55%;
 
     /* Dark theme author colors */
-    --author-caesar: 30 100% 60%;
-    --author-cicero: 220 100% 65%;
-    --author-augustus: 280 90% 65%;
-    --author-seneca: 160 80% 50%;
+    --author-caesar: 30 100% 65%;
+    --author-cicero: 210 100% 70%;
+    --author-augustus: 280 90% 70%;
+    --author-seneca: 150 90% 50%;
   }
 
   /* Author Theme Overrides */
@@ -83,6 +102,7 @@
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
   }
+
   .dark.theme-caesar {
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
@@ -94,6 +114,7 @@
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
   }
+
   .dark.theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
@@ -105,6 +126,7 @@
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
   }
+
   .dark.theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
@@ -116,14 +138,13 @@
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
   }
+
   .dark.theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -136,18 +157,24 @@
     @apply bg-background text-foreground font-sans antialiased transition-colors duration-300 relative;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight font-[450];
+    /* Lighter weight for expressive headers */
   }
 }
 
 @layer components {
   .surface-elevated {
-    @apply bg-card rounded-xl shadow-lg shadow-foreground/5 border border-border/50;
+    @apply bg-card rounded-lg shadow-sm shadow-foreground/5 border border-border/50;
   }
 
   .surface-tonal {
-    @apply bg-secondary/50 rounded-xl;
+    @apply bg-secondary/50 rounded-lg;
   }
 
   .chip {
@@ -167,7 +194,7 @@
   }
 
   .card-elevated {
-    @apply bg-card rounded-xl p-6 shadow-sm border border-border/50 transition-all hover:shadow-lg hover:border-border;
+    @apply bg-card rounded-lg p-6 shadow-sm border border-border/50 transition-all hover:shadow-sm hover:border-border;
   }
 
   .sidebar-card {
@@ -192,30 +219,79 @@
     animation: animateIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
-  .stagger-1 { animation-delay: 50ms; }
-  .stagger-2 { animation-delay: 100ms; }
-  .stagger-3 { animation-delay: 150ms; }
-  .stagger-4 { animation-delay: 200ms; }
-  .stagger-5 { animation-delay: 250ms; }
+
+  .stagger-1 {
+    animation-delay: 50ms;
+  }
+
+  .stagger-2 {
+    animation-delay: 100ms;
+  }
+
+  .stagger-3 {
+    animation-delay: 150ms;
+  }
+
+  .stagger-4 {
+    animation-delay: 200ms;
+  }
+
+  .stagger-5 {
+    animation-delay: 250ms;
+  }
 
   @keyframes animateIn {
     from {
       opacity: 0;
       transform: translateY(16px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* M3 Elevation Levels - Flattened */
+  .elevation-1 {
+    /* box-shadow removed */
+  }
+
+  .elevation-2 {
+    /* box-shadow removed */
+  }
+
+  .elevation-3 {
+    /* box-shadow removed */
+  }
+
+  .dark .elevation-1 {
+    /* box-shadow removed */
+  }
+
+  .dark .elevation-2 {
+    /* box-shadow removed */
+  }
+
+  .dark .elevation-3 {
+    /* box-shadow removed */
+  }
+
+  /* Container for centered content with max-width */
+  .container-centered {
+    @apply max-w-4xl mx-auto;
   }
 
   .gradient-text {
@@ -224,25 +300,58 @@
   }
 
   .hero-gradient {
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.1), transparent);
+    background: linear-gradient(180deg, hsl(var(--secondary) / 0.5) 0%, transparent 100%);
   }
 }
 
 /* Author color utilities */
-.text-author-caesar { color: hsl(var(--author-caesar)); }
-.text-author-cicero { color: hsl(var(--author-cicero)); }
-.text-author-augustus { color: hsl(var(--author-augustus)); }
-.text-author-seneca { color: hsl(var(--author-seneca)); }
+.text-author-caesar {
+  color: hsl(var(--author-caesar));
+}
 
-.bg-author-caesar { background-color: hsl(var(--author-caesar)); }
-.bg-author-cicero { background-color: hsl(var(--author-cicero)); }
-.bg-author-augustus { background-color: hsl(var(--author-augustus)); }
-.bg-author-seneca { background-color: hsl(var(--author-seneca)); }
+.text-author-cicero {
+  color: hsl(var(--author-cicero));
+}
 
-.border-author-caesar { border-color: hsl(var(--author-caesar)); }
-.border-author-cicero { border-color: hsl(var(--author-cicero)); }
-.border-author-augustus { border-color: hsl(var(--author-augustus)); }
-.border-author-seneca { border-color: hsl(var(--author-seneca)); }
+.text-author-augustus {
+  color: hsl(var(--author-augustus));
+}
+
+.text-author-seneca {
+  color: hsl(var(--author-seneca));
+}
+
+.bg-author-caesar {
+  background-color: hsl(var(--author-caesar));
+}
+
+.bg-author-cicero {
+  background-color: hsl(var(--author-cicero));
+}
+
+.bg-author-augustus {
+  background-color: hsl(var(--author-augustus));
+}
+
+.bg-author-seneca {
+  background-color: hsl(var(--author-seneca));
+}
+
+.border-author-caesar {
+  border-color: hsl(var(--author-caesar));
+}
+
+.border-author-cicero {
+  border-color: hsl(var(--author-cicero));
+}
+
+.border-author-augustus {
+  border-color: hsl(var(--author-augustus));
+}
+
+.border-author-seneca {
+  border-color: hsl(var(--author-seneca));
+}
 
 
 /* Selection */
@@ -254,9 +363,11 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-muted;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-border rounded-full hover:bg-muted-foreground/30;
 }
@@ -290,7 +401,8 @@
   @apply border-l-4 border-primary/40 pl-4 my-6 italic text-muted-foreground;
 }
 
-.prose-blog ul, .prose-blog ol {
+.prose-blog ul,
+.prose-blog ol {
   @apply my-4 ml-6;
 }
 

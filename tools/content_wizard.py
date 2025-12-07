@@ -18,11 +18,13 @@ import threading
 import webbrowser
 
 
-REPO_ROOT = Path(__file__).resolve().parents[0]
+REPO_ROOT = Path(__file__).resolve().parents[1]  # Go up to repository root
 POSTS_DIR = REPO_ROOT / 'src' / 'content' / 'posts'
 LEXICON_DIR = REPO_ROOT / 'src' / 'content' / 'lexicon'
 LEXICON_INDEX = REPO_ROOT / 'src' / 'data' / 'lexicon.ts'
 AUTHORS_FILE = REPO_ROOT / 'src' / 'data' / 'authors.ts'
+WORKS_DIR = REPO_ROOT / 'src' / 'content' / 'works'
+WORKS_INDEX = REPO_ROOT / 'src' / 'data' / 'works.ts'
 STATIC_DIR = REPO_ROOT / 'tools' / 'blog_admin'
 
 AUTHORS = ['caesar', 'cicero', 'augustus', 'seneca']
@@ -444,8 +446,9 @@ def read_authors() -> list:
     content = AUTHORS_FILE.read_text(encoding='utf-8')
     # sehr einfaches Parsing: trennt Blöcke pro Autor
     authors = []
-    # Match author blocks like: caesar: { ... }
-    for m in re.finditer(r"(\w+):\s*\{([\s\S]*?)\},", content):
+    # Match author blocks like: caesar: { ... }, or seneca: { ... },
+    # The regex needs to handle both trailing commas and closing braces
+    for m in re.finditer(r"(\w+):\s*\{([\s\S]*?)\}[,]?", content):
         key = m.group(1)
         block = m.group(2)
         a = {'id': key}
@@ -521,6 +524,112 @@ def write_authors(authors: list):
     AUTHORS_FILE.write_text("\n".join(lines), encoding='utf-8')
 
 
+def get_all_works() -> list:
+    """Liest alle Works aus content/works."""
+    works = []
+    if not WORKS_DIR.exists():
+        return works
+    for ts_file in WORKS_DIR.glob('*.ts'):
+        try:
+            content = ts_file.read_text(encoding='utf-8')
+            work = {
+                'id': ts_file.stem,
+                'slug': ts_file.stem,
+                'file_path': str(ts_file),
+            }
+            
+            # Parse title, author, year, summary, takeaway
+            def grab(name, pattern):
+                m = re.search(pattern, content)
+                if m:
+                    work[name] = m.group(1)
+            
+            grab('title', r"title:\s*'([^']*)'")
+            grab('author', r"author:\s*'([^']*)'")
+            grab('year', r"year:\s*'([^']*)'")
+            grab('summary', r"summary:\s*`([^`]*)`")
+            grab('takeaway', r"takeaway:\s*`([^`]*)`")
+            
+            works.append(work)
+        except Exception:
+            pass
+    return sorted(works, key=lambda x: x.get('id', ''))
+
+
+def build_work_ts(work: dict) -> str:
+    """Baut TypeScript-Datei für ein Work."""
+    def esc(s):
+        return (str(s) if s is not None else '').replace('`', '\\`')
+    
+    structure = work.get('structure', [])
+    structure_code = ', '.join([f"{{ title: '{esc(s.get('title', ''))}', content: `{esc(s.get('content', ''))}` }}" for s in structure])
+    
+    translations_blocks = []
+    if any([work.get('title_en'), work.get('summary_en'), work.get('takeaway_en')]):
+        structure_en = ', '.join([f"{{ title: '{esc(s.get('title_en', ''))}', content: `{esc(s.get('content_en', ''))}` }}" for s in structure if s.get('title_en')])
+        translations_blocks.append(textwrap.dedent(f"""
+          en: {{
+            title: '{esc(work.get('title_en', ''))}',
+            summary: `{esc(work.get('summary_en', ''))}`,
+            takeaway: `{esc(work.get('takeaway_en', ''))}`,
+            structure: [{structure_en}]
+          }}
+        """).strip())
+    
+    if any([work.get('title_la'), work.get('summary_la'), work.get('takeaway_la')]):
+        structure_la = ', '.join([f"{{ title: '{esc(s.get('title_la', ''))}', content: `{esc(s.get('content_la', ''))}` }}" for s in structure if s.get('title_la')])
+        translations_blocks.append(textwrap.dedent(f"""
+          la: {{
+            title: '{esc(work.get('title_la', ''))}',
+            summary: `{esc(work.get('summary_la', ''))}`,
+            takeaway: `{esc(work.get('takeaway_la', ''))}`,
+            structure: [{structure_la}]
+          }}
+        """).strip())
+    
+    translations_section = ""
+    if translations_blocks:
+        translations_section = f",\n    translations: {{\n{','.join(translations_blocks)}\n    }}"
+    
+    return textwrap.dedent(f"""
+    import {{ Work }} from '@/types/blog';
+
+    const work: Work = {{
+      title: '{esc(work.get('title', ''))}',
+      author: '{work.get('author', '')}',
+      year: '{esc(work.get('year', ''))}',
+      summary: `{esc(work.get('summary', ''))}`,
+      takeaway: `{esc(work.get('takeaway', ''))}`,
+      structure: [{structure_code}]{translations_section}
+    }};
+
+    export default work;
+    """).strip()
+
+
+def update_works_index():
+    """Aktualisiert src/data/works.ts nach Änderungen."""
+    works = get_all_works()
+    lines = ["import { Work } from '@/types/blog';", ""]
+    
+    # Imports
+    for work in works:
+        slug = simple_slugify(work.get('id', ''))
+        camel = ''.join(w.capitalize() for w in slug.split('-'))
+        lines.append(f"import {camel} from '@/content/works/{slug}';")
+    
+    lines.extend(["", "export const works: Record<string, Work> = {"])
+    
+    # Map
+    for work in works:
+        slug = simple_slugify(work.get('id', ''))
+        camel = ''.join(w.capitalize() for w in slug.split('-'))
+        lines.append(f"  '{slug}': {camel},")
+    
+    lines.append("};")
+    WORKS_INDEX.write_text("\n".join(lines), encoding='utf-8')
+
+
 class BlogAdminHandler(SimpleHTTPRequestHandler):
     """Handler für Blog-Admin API."""
 
@@ -562,6 +671,36 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps(authors).encode())
+        
+        elif parsed_path.path.startswith('/api/authors/'):
+            author_id = parsed_path.path.split('/')[-1]
+            authors = read_authors()
+            author = next((a for a in authors if a.get('id') == author_id), None)
+            
+            self.send_response(200 if author else 404)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(author or {}).encode())
+        
+        elif parsed_path.path == '/api/works':
+            works = get_all_works()
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(works).encode())
+        
+        elif parsed_path.path.startswith('/api/works/'):
+            work_id = parsed_path.path.split('/')[-1]
+            works = get_all_works()
+            work = next((w for w in works if w.get('id') == work_id), None)
+            
+            self.send_response(200 if work else 404)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(work or {}).encode())
         
         elif parsed_path.path.startswith('/api/lexicon/'):
             slug = parsed_path.path.split('/')[-1]
@@ -680,6 +819,68 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps({'success': True, 'id': data['id']}).encode())
+
+        elif parsed_path.path == '/api/works':
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length)
+            data = json.loads(body.decode())
+
+            # Validierung
+            if not data.get('title') or not data.get('author') or not data.get('year'):
+                self.send_response(400)
+                self.end_headers()
+                return
+            
+            slug = simple_slugify(data.get('slug') or data.get('title', 'work'))
+            
+            # Überprüfe ob bereits vorhanden
+            try:
+                existing = (WORKS_DIR / f"{slug}.ts").read_text(encoding='utf-8')
+                self.send_response(409)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': 'Work already exists'}).encode())
+                return
+            except FileNotFoundError:
+                pass
+            
+            # Work speichern
+            work = {
+                'id': slug,
+                'title': data.get('title', ''),
+                'author': data.get('author', ''),
+                'year': data.get('year', ''),
+                'summary': data.get('summary', ''),
+                'takeaway': data.get('takeaway', ''),
+                'structure': data.get('structure', []),
+            }
+            
+            # Optional: EN/LA
+            if data.get('title_en'):
+                work['title_en'] = data.get('title_en', '')
+                work['summary_en'] = data.get('summary_en', '')
+                work['takeaway_en'] = data.get('takeaway_en', '')
+            
+            if data.get('title_la'):
+                work['title_la'] = data.get('title_la', '')
+                work['summary_la'] = data.get('summary_la', '')
+                work['takeaway_la'] = data.get('takeaway_la', '')
+            
+            # Datei speichern
+            WORKS_DIR.mkdir(parents=True, exist_ok=True)
+            work_path = WORKS_DIR / f"{slug}.ts"
+            ts = build_work_ts(work)
+            work_path.write_text(ts, encoding='utf-8')
+            
+            # Index aktualisieren
+            update_works_index()
+            
+            self.send_response(201)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps({'success': True, 'slug': slug}).encode())
 
         elif parsed_path.path == '/api/posts':
             content_length = int(self.headers.get('Content-Length', 0))
@@ -838,6 +1039,65 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({'success': True}).encode())
 
+        elif parsed_path.path.startswith('/api/works/'):
+            slug = parsed_path.path.split('/')[-1]
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length)
+            data = json.loads(body.decode())
+
+            # Finde bestehende Datei
+            work_path = WORKS_DIR / f"{slug}.ts"
+            if not work_path.exists():
+                self.send_response(404)
+                self.end_headers()
+                return
+            
+            # Aktualisiere Work
+            work = {
+                'title': data.get('title', ''),
+                'author': data.get('author', ''),
+                'year': data.get('year', ''),
+                'summary': data.get('summary', ''),
+                'takeaway': data.get('takeaway', ''),
+                'structure': data.get('structure', []),
+            }
+            
+            # Optional: EN/LA
+            if data.get('title_en'):
+                work['title_en'] = data.get('title_en', '')
+                work['summary_en'] = data.get('summary_en', '')
+                work['takeaway_en'] = data.get('takeaway_en', '')
+            
+            if data.get('title_la'):
+                work['title_la'] = data.get('title_la', '')
+                work['summary_la'] = data.get('summary_la', '')
+                work['takeaway_la'] = data.get('takeaway_la', '')
+            
+            # Neue Slug falls geändert
+            new_slug = simple_slugify(data.get('slug') or data.get('title', slug))
+            work['id'] = new_slug
+            new_path = WORKS_DIR / f"{new_slug}.ts"
+            
+            try:
+                ts = build_work_ts(work)
+                
+                # Falls Slug geändert, alte Datei löschen
+                if work_path.resolve() != new_path.resolve():
+                    if work_path.exists():
+                        work_path.unlink()
+                
+                new_path.write_text(ts, encoding='utf-8')
+                update_works_index()
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'success': True, 'slug': new_slug}).encode())
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
+
         elif parsed_path.path.startswith('/api/posts/'):
             # Post ID aus URL
             post_id = parsed_path.path.split('/')[-1]
@@ -961,6 +1221,27 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps({'success': True}).encode())
+
+        elif parsed_path.path.startswith('/api/works/'):
+            slug = parsed_path.path.split('/')[-1]
+            work_path = WORKS_DIR / f"{slug}.ts"
+            
+            if not work_path.exists():
+                self.send_response(404)
+                self.end_headers()
+                return
+            
+            try:
+                work_path.unlink()
+                update_works_index()
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'success': True}).encode())
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
 
         elif parsed_path.path.startswith('/api/posts/'):
             post_id = parsed_path.path.split('/')[-1]

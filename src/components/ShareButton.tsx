@@ -117,7 +117,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
           'inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200',
           variant === 'compact' 
             ? 'h-9 w-9 rounded-lg' 
-            : 'h-10 px-4 rounded-xl gap-2'
+            : 'h-10 px-4 rounded-lg gap-2'
         )}
       >
         <Share2 className="h-4 w-4" />
@@ -142,7 +142,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-50 w-64 rounded-xl bg-card border border-border shadow-xl overflow-hidden"
+              className="absolute right-0 top-full mt-2 z-50 w-64 rounded-lg bg-card border border-border  overflow-hidden"
             >
               <div className="p-3 border-b border-border">
                 <p className="text-sm font-medium">{t('share')}</p>

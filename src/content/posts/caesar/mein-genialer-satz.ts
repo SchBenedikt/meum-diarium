@@ -1,20 +1,20 @@
 import { BlogPost } from '@/types/blog';
 
 
-    const post: BlogPost = {
-        id: '10',
-        slug: 'mein-genialer-satz',
-        author: 'caesar',
-        title: 'Mein genialer Satz',
-        excerpt: '',
-        historicalDate: '58 v. Chr.',
-        historicalYear: -58,
-        date: '2025-12-02',
-        readingTime: 2,
-        tags: ['Gallien'],
-        coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_romische_Schriftrollen_mit_Gesetzen_5849504c-6029-491e-91f3-da42b0893bf4.png',
-        content: {
-          diary: `Wer kennt meinen berühmten Anfang nicht?
+const post: BlogPost = {
+  id: '10',
+  slug: 'mein-genialer-satz',
+  author: 'caesar',
+  title: 'Mein genialer Satz',
+  excerpt: '',
+  historicalDate: '58 v. Chr.',
+  historicalYear: -58,
+  date: '2025-12-02',
+  readingTime: 2,
+  tags: ['Gallien'],
+  coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_romische_Schriftrollen_mit_Gesetzen_5849504c-6029-491e-91f3-da42b0893bf4.png',
+  content: {
+    diary: `Wer kennt meinen berühmten Anfang nicht?
 
 Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
 
@@ -35,9 +35,65 @@ Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquit
 Ganz Gallien ist in drei Teile geteilt, einen davon bewohnen die Belgier, den anderen die Aquitaner, den dritten, die in eigener Sprache Kelten, in unserer Gallier genannt werden.
 
 Gaius Julius Caesar`,
-          scientific: ``
-        }
-      };
+    scientific: ``
+  },
+  translations: {
+    en: {
+      title: 'My Genius Sentence',
+      excerpt: 'Who doesn\'t know my famous opening?',
+      content: {
+        diary: `Who doesn't know my famous opening?
+
+Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
+
+Have you ever heard such a genius idea? Yes, yes... I know you don't understand it 😦. Why should you? You probably didn't pay attention in Latin class.... I was looking forward to learning something about Rome's history back then. Every student has to learn this sentence by heart in Latin class. Sometimes they are even quizzed on it... You see here how much influence I have. I even influence the curriculum. I am simply someone who writes history. And when even children learn my quotes, then you see again how I am admired by everyone. But we are straying from the subject. My genius sentence translates as follows:
+
+All Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third.
+
+I thought that through well, didn't I? Feel free to write in the comments what you think about it (But only positive things!). No one has ever come up with that before: And of course I conquered the whole area too. Just like that. Because I'm so good.
+
+And so the Rhine served as a natural border between the Gauls and the Germans. All in all, my conquests separated three areas in all of Gaul, each differing in language and culture. I created that! Isn't that great?
+
+But there are still a few people who are quite jealous and now claim that everything I thought of is wrong again...
+
+But do you really think anyone could cast doubt on my words, my deeds, my achievements? I not only described Gaul but also conquered it.
+
+Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
+
+All Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third.
+
+Gaius Julius Caesar`,
+        scientific: ``
+      }
+    },
+    la: {
+      title: 'Sententia Mea Ingeniosa',
+      excerpt: 'Quis initium meum clarissimum nescit?',
+      content: {
+        diary: `Quis initium meum clarissimum nescit?
+
+Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
+
+Audivistisne umquam talem sententiam ingeniosam? Ita, ita... Scio vos non intellegere 😦. Cur intellegeretis? Fortasse in schola Latina non attenti eratis.... Ego tunc gaudebam aliquid de historia Romana discere. In schola Latina omnis discipulus hanc sententiam ediscere debet. Interdum etiam interrogantur... Videtis hic quantum valeam. Etiam cursum studiorum flecto. Sum simpliciter aliquis qui historiam scribit. Et cum etiam pueri dicta mea discunt, tum rursus videtis quomodo ab omnibus admirer. Sed a re aberramus. Sententia mea ingeniosa sic vertitur:
+
+Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
+
+Hoc bene excogitavi, nonne? Scribite libenter in commentariis quid de hoc sentiatis (Sed tantum positiva!). Nemo antea hoc invenit: Et totam regionem naturaliter etiam vici. Simpliciter. Quia tam bonus sum.
+
+Et sic Rhenus finis naturalis inter Gallos et Germanos fuit. Omnino per victorias meas tres partes in tota Gallia divisae sunt, quae lingua et cultura differunt. Hoc ego creavi! Nonne mirabile est?
+
+Sed sunt tamen pauci qui valde invidi sunt et nunc affirmant omnia rursus falsa esse quae excogitavi...
+
+Sed vere creditis quemquam verba mea, facta mea, res gestas meas in dubium vocare posse? Galliam non solum descripsi sed etiam vici.
+
+Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
+
+Gaius Iulius Caesar`,
+        scientific: ``
+      }
+    }
+  }
+};
 
 
-    export default post;
+export default post;

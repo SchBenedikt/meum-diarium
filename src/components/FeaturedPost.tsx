@@ -6,7 +6,6 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { useLanguage } from '@/context/LanguageContext';
 import { Skeleton } from './ui/skeleton';
-import { useEffect, useState } from 'react';
 
 export function FeaturedPost() {
   const { t } = useLanguage();
@@ -20,30 +19,32 @@ export function FeaturedPost() {
   }, [posts, isLoading]);
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto">
+    <section className="py-20">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="text-center mb-14"
         >
-           <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              <Sparkles className="h-4 w-4 inline mr-1" />
-              {t('featuredPost')}
-            </span>
-          <h2 className="font-display text-3xl md:text-4xl mb-3">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
+            <Sparkles className="h-4 w-4" />
+            {t('featuredPost')}
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl mb-4 tracking-tight">
             {t('glimpseIntoAnnals')}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
             {t('featuredPostDesc')}
           </p>
         </motion.div>
+
         <div className="max-w-xl mx-auto">
           {isLoading || !featuredPost ? (
-            <div className="bg-card rounded-2xl p-0 overflow-hidden border border-border shadow-sm">
-              <Skeleton className="h-48 w-full" />
-              <div className="p-5">
+            <div className="bg-card rounded-lg p-0 overflow-hidden border border-border/50">
+              <Skeleton className="h-52 w-full" />
+              <div className="p-6">
                 <Skeleton className="h-4 w-24 mb-4" />
                 <Skeleton className="h-6 w-full mb-3" />
                 <Skeleton className="h-4 w-4/5 mb-4" />

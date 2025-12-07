@@ -43,7 +43,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
       <Link
         to={`/${post.author}/${post.slug}`}
         className={cn(
-          'group flex flex-col bg-card rounded-2xl h-full overflow-hidden border border-border/60 hover:border-primary/40 active:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-lg touch-manipulation',
+          'group flex flex-col bg-card rounded-lg h-full overflow-hidden border border-border/60 hover:border-primary/40 active:border-primary/50 transition-all duration-300  hover: touch-manipulation',
           className
         )}
       >

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meum Diarium – Werke Admin</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --primary:#208090; --primary-dark:#1a6475; --bg:#f8f9fa; --surface:#fff; --text:#2c3e50; --text-secondary:#7f8c8d; --border:#ecf0f1; --danger:#e74c3c;
+    }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:#fff; padding:1.5rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+    .logo { font-size:1.5rem; font-weight:700; color:white; text-decoration:none; }
+    header .nav { display:flex; gap:1rem; }
+    header .nav a { padding:0.5rem 1rem; background:rgba(255,255,255,0.1); border-radius:0.5rem; text-decoration:none; color:white; font-weight:500; transition:background 0.2s; }
+    header .nav a:hover { background:rgba(255,255,255,0.2); }
+    header .nav a.active { background:rgba(255,255,255,0.3); }
+    .header-actions { display:flex; gap:1rem; align-items:center; }
+    .container { display:grid; grid-template-columns: 280px 1fr; min-height:calc(100vh - 70px); }
+    aside { background:var(--surface); border-right:2px solid var(--border); padding:2rem 0; overflow-y:auto; max-height:calc(100vh - 70px); }
+    .nav-group { margin-bottom:2rem; }
+    .nav-group-title { padding:0.75rem 1.5rem; font-size:0.7rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; }
+    .nav-item { display:block; padding:0.75rem 1.5rem; color:var(--text); text-decoration:none; transition:all 0.2s; border-left:4px solid transparent; }
+    .nav-item:hover { background:var(--bg); color:var(--primary); border-left-color:var(--primary); }
+    .nav-item.active { background:var(--bg); color:var(--primary); border-left-color:var(--primary); font-weight:600; }
+    main { padding:2rem; overflow-y:auto; max-height:calc(100vh - 70px); }
+    .page-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; }
+    .page-title { font-size:2rem; font-weight:700; color:var(--text); }
+    .btn { display:inline-block; padding:0.75rem 1.5rem; border:none; border-radius:6px; font-size:1rem; cursor:pointer; transition:all 0.2s; text-decoration:none; font-weight:500; }
+    .btn-primary { background:var(--primary); color:white; }
+    .btn-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 4px 12px rgba(32,128,144,0.3); }
+    .btn-secondary { background:var(--bg); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .btn-danger { background:var(--danger); color:white; }
+    .works-table { width:100%; border-collapse:collapse; background:var(--surface); box-shadow:0 2px 8px rgba(0,0,0,0.08); border-radius:10px; overflow:hidden; }
+    .works-table thead { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:white; }
+    .works-table th { padding:1rem 1.5rem; text-align:left; font-weight:600; }
+    .works-table tbody tr { border-bottom:1px solid var(--border); transition:background 0.2s; }
+    .works-table tbody tr:hover { background:var(--bg); }
+    .works-table td { padding:1rem 1.5rem; }
+    .work-title { font-weight:600; color:var(--primary); }
+    .work-author { color:var(--text-secondary); font-size:0.9rem; }
+    .badge { display:inline-block; background:rgba(32,128,144,0.15); border:1px solid rgba(32,128,144,0.3); color:var(--primary); padding:0.35rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
+    .actions { display:flex; gap:0.5rem; }
+    .actions .btn { padding:0.5rem 1rem; font-size:0.9rem; }
+    .search-bar { display:flex; gap:1rem; margin-bottom:2rem; }
+    .search-input { flex:1; padding:0.85rem 1rem; border:2px solid var(--border); border-radius:8px; font-size:1rem; transition:all 0.2s; }
+    .search-input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(32,128,144,0.1); }
+    .modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center; overflow-y:auto; padding:2rem 0; }
+    .modal.active { display:flex; }
+    .modal-content { background:var(--surface); border-radius:12px; width:90%; max-width:900px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+    .modal-header { padding:1.5rem; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:white; border-radius:12px 12px 0 0; }
+    .modal-title { font-size:1.5rem; font-weight:600; }
+    .modal-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:white; opacity:0.8; transition:opacity 0.2s; }
+    .modal-close:hover { opacity:1; }
+    .modal-body { padding:1.5rem; max-height:70vh; overflow-y:auto; }
+    .modal-footer { padding:1.5rem; border-top:1px solid var(--border); display:flex; gap:1rem; justify-content:flex-end; }
+    .form-group { margin-bottom:1.5rem; }
+    .form-label { display:block; margin-bottom:0.5rem; font-weight:600; color:var(--text); font-size:0.95rem; }
+    .form-input,.form-textarea,.form-select { width:100%; padding:0.85rem; border:1px solid var(--border); border-radius:6px; font-size:1rem; font-family:inherit; transition:all 0.2s; background:white; }
+    .form-input:focus,.form-textarea:focus,.form-select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(32,128,144,0.1); }
+    .form-textarea { resize:vertical; min-height:100px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .language-section { background:var(--bg); padding:1.5rem; border-radius:8px; margin-top:1rem; border-left:4px solid var(--primary); }
+    .subsection-title { font-size:1rem; font-weight:600; margin-bottom:1rem; color:var(--primary); }
+    .structure-item { background:var(--border); padding:1rem; border-radius:6px; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center; }
+    .structure-content { flex:1; }
+    .structure-controls { display:flex; gap:0.5rem; }
+    .btn-small { padding:0.4rem 0.8rem; font-size:0.8rem; }
+    .empty-state { text-align:center; padding:3rem; color:var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">📜 Meum Diarium</a>
+    <h1 style="font-size:1rem;margin:0;flex:1;text-align:center;">Werke Admin</h1>
+    <div class="nav">
+      <a href="index.html">Beiträge</a>
+      <a href="lexicon.html">Lexikon</a>
+      <a href="authors.html">Autoren</a>
+      <a href="works.html" class="active">Werke</a>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="openWorkModal()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;">➕ Neues Werk</button>
+    </div>
+  </header>
+  <div class="container">
+    <aside>
+      <div class="nav-group">
+        <div class="nav-group-title">📋 Navigation</div>
+        <a href="#" class="nav-item active" onclick="viewWorks();return false;">Alle Werke</a>
+      </div>
+    </aside>
+    <main>
+      <div class="page-header"><h2 class="page-title">Werke</h2></div>
+      <div class="search-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Nach Titel, Autor, Jahr suchen..." onkeyup="renderWorks()">
+      </div>
+      <div id="worksContainer"></div>
+    </main>
+  </div>
+
+  <div class="modal" id="workModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="workModalTitle">Neues Werk</h2>
+        <button class="modal-close" onclick="closeWorkModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="workForm" onsubmit="saveWork(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Titel (DE Basis) *</label>
+              <input type="text" class="form-input" id="workTitle" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Slug</label>
+              <input type="text" class="form-input" id="workSlug" placeholder="auto-generiert">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Autor *</label>
+              <input type="text" class="form-input" id="workAuthor" placeholder="z.B. caesar" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Jahr *</label>
+              <input type="number" class="form-input" id="workYear" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Zusammenfassung (DE Basis) *</label>
+            <textarea class="form-textarea" id="workSummary" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Kerngedanke/Takeaway (DE Basis) *</label>
+            <textarea class="form-textarea" id="workTakeaway" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Struktur (Kapitel/Abschnitte)</label>
+            <div id="structureList"></div>
+            <button type="button" class="btn btn-secondary" onclick="addStructureItem()" style="margin-top:1rem;">➕ Abschnitt hinzufügen</button>
+          </div>
+
+          <div class="language-section">
+            <h4 class="subsection-title">🇬🇧 Englisch (Optional)</h4>
+            <div class="form-group"><label class="form-label">Titel (EN)</label><input type="text" class="form-input" id="title_en"></div>
+            <div class="form-group"><label class="form-label">Zusammenfassung (EN)</label><textarea class="form-textarea" id="summary_en"></textarea></div>
+            <div class="form-group"><label class="form-label">Takeaway (EN)</label><textarea class="form-textarea" id="takeaway_en"></textarea></div>
+          </div>
+
+          <div class="language-section">
+            <h4 class="subsection-title">🏛️ Latein (Optional)</h4>
+            <div class="form-group"><label class="form-label">Titel (LA)</label><input type="text" class="form-input" id="title_la"></div>
+            <div class="form-group"><label class="form-label">Zusammenfassung (LA)</label><textarea class="form-textarea" id="summary_la"></textarea></div>
+            <div class="form-group"><label class="form-label">Takeaway (LA)</label><textarea class="form-textarea" id="takeaway_la"></textarea></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeWorkModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="document.getElementById('workForm').dispatchEvent(new Event('submit'))">✅ Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8001';
+    let works = [];
+    let currentEditingSlug = null;
+    let structureItems = [];
+
+    document.addEventListener('DOMContentLoaded', loadWorks);
+
+    async function loadWorks() {
+      try {
+        const res = await fetch(`${API_URL}/api/works`);
+        works = await res.json();
+        renderWorks();
+      } catch (e) { console.error(e); }
+    }
+
+    function renderWorks() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = works.filter(w =>
+        (w.title||'').toLowerCase().includes(q) ||
+        (w.author||'').toLowerCase().includes(q) ||
+        (w.year||'').toString().includes(q)
+      );
+      const container = document.getElementById('worksContainer');
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="empty-state"><div style="font-size:3rem; margin-bottom:1rem;">📚</div><h3>Keine Werke gefunden</h3><p>Lege dein erstes Werk an</p></div>`;
+        return;
+      }
+      container.innerHTML = `
+        <table class="works-table">
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Autor</th>
+              <th>Jahr</th>
+              <th>Sprachen</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtered.map(w => {
+              const langs = [];
+              if (w.title_en || w.summary_en || w.takeaway_en) langs.push('EN');
+              if (w.title_la || w.summary_la || w.takeaway_la) langs.push('LA');
+              return `
+                <tr>
+                  <td><div class="work-title">${w.title || 'Unbekannt'}</div><div class="work-author">${w.summary ? w.summary.substring(0, 60) + '...' : ''}</div></td>
+                  <td>${w.author || ''}</td>
+                  <td>${w.year || ''}</td>
+                  <td>${langs.length ? langs.map(l => `<span class="badge">🌍 ${l}</span>`).join('') : '<span style="color:var(--text-secondary);">nur DE</span>'}</td>
+                  <td class="actions">
+                    <button class="btn btn-secondary" onclick="editWork('${w.slug||w.id||w.title}')">✏️ Bearbeiten</button>
+                    <button class="btn btn-danger" onclick="deleteWork('${w.slug||w.id||w.title}')">🗑️ Löschen</button>
+                  </td>
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    function openWorkModal() {
+      currentEditingSlug = null;
+      structureItems = [];
+      document.getElementById('workForm').reset();
+      document.getElementById('workTitle').disabled = false;
+      document.getElementById('workModalTitle').textContent = 'Neues Werk';
+      renderStructureList();
+      document.getElementById('workModal').classList.add('active');
+    }
+
+    function closeWorkModal() {
+      document.getElementById('workModal').classList.remove('active');
+      currentEditingSlug = null;
+      structureItems = [];
+    }
+
+    function editWork(slug) {
+      const w = works.find(x => (x.slug||x.id||x.title) === slug);
+      if (!w) return;
+      currentEditingSlug = w.slug || w.id || w.title;
+      structureItems = (w.structure||[]).slice();
+      document.getElementById('workTitle').value = w.title || '';
+      document.getElementById('workSlug').value = w.slug || '';
+      document.getElementById('workAuthor').value = w.author || '';
+      document.getElementById('workYear').value = w.year || '';
+      document.getElementById('workSummary').value = w.summary || '';
+      document.getElementById('workTakeaway').value = w.takeaway || '';
+      document.getElementById('title_en').value = w.title_en || '';
+      document.getElementById('summary_en').value = w.summary_en || '';
+      document.getElementById('takeaway_en').value = w.takeaway_en || '';
+      document.getElementById('title_la').value = w.title_la || '';
+      document.getElementById('summary_la').value = w.summary_la || '';
+      document.getElementById('takeaway_la').value = w.takeaway_la || '';
+      renderStructureList();
+      document.getElementById('workModalTitle').textContent = 'Werk bearbeiten';
+      document.getElementById('workModal').classList.add('active');
+    }
+
+    function addStructureItem() {
+      structureItems.push({ title: '', content: '' });
+      renderStructureList();
+    }
+
+    function removeStructureItem(idx) {
+      structureItems.splice(idx, 1);
+      renderStructureList();
+    }
+
+    function updateStructureItem(idx, field, value) {
+      structureItems[idx][field] = value;
+    }
+
+    function renderStructureList() {
+      const list = document.getElementById('structureList');
+      if (structureItems.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-secondary); margin:1rem 0;">Keine Abschnitte hinzugefügt</p>';
+        return;
+      }
+      list.innerHTML = structureItems.map((item, idx) => `
+        <div class="structure-item">
+          <div class="structure-content">
+            <input type="text" class="form-input" value="${item.title||''}" placeholder="Abschnittstitel" onchange="updateStructureItem(${idx}, 'title', this.value)" style="margin-bottom:0.5rem;">
+            <textarea class="form-textarea" placeholder="Abschnittsinhalt" onchange="updateStructureItem(${idx}, 'content', this.value)" style="min-height:80px;">${item.content||''}</textarea>
+          </div>
+          <div class="structure-controls">
+            <button type="button" class="btn btn-small btn-danger" onclick="removeStructureItem(${idx})">🗑️</button>
+          </div>
+        </div>`).join('');
+    }
+
+    async function saveWork(e) {
+      e.preventDefault();
+      const data = {
+        slug: document.getElementById('workSlug').value || null,
+        title: document.getElementById('workTitle').value,
+        author: document.getElementById('workAuthor').value,
+        year: parseInt(document.getElementById('workYear').value),
+        summary: document.getElementById('workSummary').value,
+        takeaway: document.getElementById('workTakeaway').value,
+        structure: structureItems,
+      };
+      if (document.getElementById('title_en').value || document.getElementById('summary_en').value || document.getElementById('takeaway_en').value) {
+        data.title_en = document.getElementById('title_en').value;
+        data.summary_en = document.getElementById('summary_en').value;
+        data.takeaway_en = document.getElementById('takeaway_en').value;
+      }
+      if (document.getElementById('title_la').value || document.getElementById('summary_la').value || document.getElementById('takeaway_la').value) {
+        data.title_la = document.getElementById('title_la').value;
+        data.summary_la = document.getElementById('summary_la').value;
+        data.takeaway_la = document.getElementById('takeaway_la').value;
+      }
+
+      try {
+        const url = currentEditingSlug ? `${API_URL}/api/works/${currentEditingSlug}` : `${API_URL}/api/works`;
+        const method = currentEditingSlug ? 'PUT' : 'POST';
+        const res = await fetch(url, { method, headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        if (res.ok) {
+          closeWorkModal();
+          loadWorks();
+        } else {
+          alert('❌ Fehler beim Speichern');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Fehler beim Speichern');
+      }
+    }
+
+    async function deleteWork(slug) {
+      if (!confirm('⚠️ Wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.')) return;
+      try {
+        const res = await fetch(`${API_URL}/api/works/${slug}`, { method:'DELETE' });
+        if (res.ok) { loadWorks(); } else { alert('❌ Fehler beim Löschen'); }
+      } catch (err) { console.error(err); alert('❌ Fehler beim Löschen'); }
+    }
+
+    function viewWorks() { renderWorks(); }
+  </script>
+</body>
+</html>

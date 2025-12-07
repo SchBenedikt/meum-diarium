@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
+import './index.css';
+import './i18n';
 
 // Register service worker for offline support
 if ('serviceWorker' in navigator) {
