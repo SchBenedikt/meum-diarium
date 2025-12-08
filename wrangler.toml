@@ -1,6 +1,16 @@
 name = "meum-diarium"
-main = "functions/[[path]].ts"
 compatibility_date = "2024-12-08"
+
+type = "javascript"
+
+account_id = "e3f2a96e2bd892a49bc3c1b4f0a7ea6f"
+
+workers_dev = false
+
+route = ""
+zone_id = ""
+
+# Hier nur das Build-Ausgabe-Verzeichnis (ohne main)
 pages_build_output_dir = "dist"
 
 [site]
