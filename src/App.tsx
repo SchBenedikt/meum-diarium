@@ -20,6 +20,9 @@ const LexiconPage = lazy(() => import("./pages/LexiconPage"));
 const LexiconEntryPage = lazy(() => import("./pages/LexiconEntryPage"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
+const PostEditorPage = lazy(() => import("./pages/PostEditorPage"));
+const AuthorEditorPage = lazy(() => import("./pages/AuthorEditorPage"));
+const LexiconEditorPage = lazy(() => import("./pages/LexiconEditorPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -79,6 +82,12 @@ const AppContent = () => {
           <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/post/new" element={<PostEditorPage />} />
+          <Route path="/admin/post/:author/:slug" element={<PostEditorPage />} />
+          <Route path="/admin/author/new" element={<AuthorEditorPage />} />
+          <Route path="/admin/author/:authorId" element={<AuthorEditorPage />} />
+          <Route path="/admin/lexicon/new" element={<LexiconEditorPage />} />
+          <Route path="/admin/lexicon/:slug" element={<LexiconEditorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

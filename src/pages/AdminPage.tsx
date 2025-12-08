@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { usePosts } from '@/hooks/use-posts';
 import { lexicon } from '@/data/lexicon';
 import { authors } from '@/data/authors';
+import { Link } from 'react-router-dom';
 import {
     Table,
     TableBody,
@@ -15,137 +15,166 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Save } from 'lucide-react';
+import { Edit, Trash2, Plus } from 'lucide-react';
 import { toast } from 'sonner';
-import { PostEditor } from '@/components/admin/PostEditor';
 
 export default function AdminPage() {
     const { t } = useLanguage();
     const { posts } = usePosts();
-    const [theme, setTheme] = useState('light');
-    const [editorOpen, setEditorOpen] = useState(false);
-    const [editingPost, setEditingPost] = useState<any>(null);
 
-    // Mocks for edit actions - since we don't have a backend
-    const handleEdit = (id: string, type: 'post' | 'author' | 'lexicon') => {
-        toast.info(`Edit feature coming in next step for ${type}`);
-    };
+    const handleDeletePost = async (id: string) => {
+        if (!window.confirm('Beitrag wirklich löschen?')) return;
+        const post = posts.find(p => p.id === id);
+        if (!post) return;
 
-    const handleDelete = async (id: string, type: 'post' | 'author' | 'lexicon') => {
-        if (!window.confirm('Are you sure you want to delete this?')) return;
-
-        if (type === 'post') {
-            // Find post to get author and slug
-            const post = posts.find(p => p.id === id);
-            if (!post) return;
-
-            try {
-                const res = await fetch(`/api/posts/${post.author}/${post.slug}`, {
-                    method: 'DELETE'
-                });
-                if (res.ok) {
-                    toast.success('Post deleted successfully');
-                    // Reload window to reflect changes (simple refresh since usePosts is static)
-                    window.location.reload();
-                } else {
-                    toast.error('Failed to delete post');
-                }
-            } catch (e) {
-                toast.error('Error deleting post');
+        try {
+            const res = await fetch(`/api/posts/${post.author}/${post.slug}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Beitrag gelöscht');
+                window.location.reload();
+            } else {
+                toast.error('Fehler beim Löschen');
             }
-        } else {
-            toast.info(`Delete ${type} - Backend implementation required for this type`);
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
         }
     };
 
-    const handleCreate = (type: 'post' | 'author' | 'lexicon') => {
-        if (type === 'post') {
-            setEditingPost(undefined);
-            setEditorOpen(true);
-        } else {
-            toast.info(`Create ${type} coming soon`);
+    const handleDeleteAuthor = async (authorId: string) => {
+        if (!window.confirm('Autor wirklich löschen? Alle Beiträge bleiben erhalten.')) return;
+
+        try {
+            const res = await fetch(`/api/authors/${authorId}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Autor gelöscht');
+                window.location.reload();
+            } else {
+                toast.error('Fehler beim Löschen');
+            }
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
         }
-    }
+    };
+
+    const handleDeleteLexicon = async (slug: string) => {
+        if (!window.confirm('Lexikon-Eintrag wirklich löschen?')) return;
+
+        try {
+            const res = await fetch(`/api/lexicon/${slug}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Eintrag gelöscht');
+                window.location.reload();
+            } else {
+                toast.error('Fehler beim Löschen');
+            }
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
+        }
+    };
 
     return (
-        <div className="container mx-auto py-24 min-h-screen">
-            <div className="flex justify-between items-center mb-8">
+        <div className="container mx-auto py-24 min-h-screen px-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <div>
-                    <h1 className="text-4xl font-display font-bold mb-2">Admin Dashboard</h1>
-                    <p className="text-muted-foreground">Manage content across all languages.</p>
+                    <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Admin Dashboard</h1>
+                    <p className="text-muted-foreground">Inhalte in allen Sprachen verwalten.</p>
                 </div>
             </div>
 
             <Tabs defaultValue="posts" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 mb-8">
-                    <TabsTrigger value="posts">Blog Posts</TabsTrigger>
-                    <TabsTrigger value="authors">Authors</TabsTrigger>
-                    <TabsTrigger value="lexicon">Lexicon</TabsTrigger>
+                    <TabsTrigger value="posts">Beiträge</TabsTrigger>
+                    <TabsTrigger value="authors">Autoren</TabsTrigger>
+                    <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
                 </TabsList>
 
+                {/* Posts Tab */}
                 <TabsContent value="posts">
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
-                                <CardTitle>Blog Posts</CardTitle>
-                                <CardDescription>Manage your blog articles.</CardDescription>
+                                <CardTitle>Blog-Beiträge</CardTitle>
+                                <CardDescription>{posts.length} Beiträge verfügbar</CardDescription>
                             </div>
-                            <Button onClick={() => handleCreate('post')}><Plus className="mr-2 h-4 w-4" /> New Post</Button>
+                            <Button asChild>
+                                <Link to="/admin/post/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
+                                </Link>
+                            </Button>
                         </CardHeader>
                         <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Title</TableHead>
-                                        <TableHead>Author</TableHead>
-                                        <TableHead>History Date</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {posts.map((post) => (
-                                        <TableRow key={post.id}>
-                                            <TableCell className="font-medium">{post.title}</TableCell>
-                                            <TableCell className="capitalize">{post.author}</TableCell>
-                                            <TableCell>{post.historicalDate}</TableCell>
-                                            <TableCell className="text-right">
-                                                <Button variant="ghost" size="icon" onClick={() => handleEdit(post.id, 'post')}>
-                                                    <Edit className="h-4 w-4" />
-                                                </Button>
-                                                <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(post.id, 'post')}>
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </TableCell>
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Titel</TableHead>
+                                            <TableHead>Autor</TableHead>
+                                            <TableHead>Datum</TableHead>
+                                            <TableHead className="text-right">Aktionen</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {posts.map((post) => (
+                                            <TableRow key={post.id}>
+                                                <TableCell className="font-medium">{post.title}</TableCell>
+                                                <TableCell className="capitalize">{post.author}</TableCell>
+                                                <TableCell>{post.historicalDate}</TableCell>
+                                                <TableCell className="text-right">
+                                                    <Button variant="ghost" size="icon" asChild>
+                                                        <Link to={`/admin/post/${post.author}/${post.slug}`}>
+                                                            <Edit className="h-4 w-4" />
+                                                        </Link>
+                                                    </Button>
+                                                    <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDeletePost(post.id)}>
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
 
+                {/* Authors Tab */}
                 <TabsContent value="authors">
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
-                                <CardTitle>Authors</CardTitle>
-                                <CardDescription>Manage authors and their styling.</CardDescription>
+                                <CardTitle>Autoren</CardTitle>
+                                <CardDescription>{Object.keys(authors).length} Autoren verfügbar</CardDescription>
                             </div>
-                            <Button onClick={() => handleCreate('author')}><Plus className="mr-2 h-4 w-4" /> New Author</Button>
+                            <Button asChild>
+                                <Link to="/admin/author/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neuer Autor
+                                </Link>
+                            </Button>
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {Object.entries(authors).map(([key, author]) => (
                                     <Card key={key} className="overflow-hidden">
-                                        <div className={`h-2 w-full bg-${author.color}-500`} style={{ backgroundColor: `var(--${author.color})` }} />
+                                        <div className="h-2 w-full" style={{ backgroundColor: author.color }} />
                                         <CardHeader>
                                             <CardTitle>{author.name}</CardTitle>
                                             <CardDescription>{author.title}</CardDescription>
                                         </CardHeader>
                                         <CardContent>
                                             <div className="flex gap-2">
-                                                <Button variant="outline" size="sm" onClick={() => handleEdit(key, 'author')} className="w-full">
-                                                    <Edit className="mr-2 h-4 w-4" /> Edit
+                                                <Button variant="outline" size="sm" className="flex-1" asChild>
+                                                    <Link to={`/admin/author/${key}`}>
+                                                        <Edit className="mr-2 h-4 w-4" /> Bearbeiten
+                                                    </Link>
+                                                </Button>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="text-destructive"
+                                                    onClick={() => handleDeleteAuthor(key)}
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
                                                 </Button>
                                             </div>
                                         </CardContent>
@@ -156,57 +185,65 @@ export default function AdminPage() {
                     </Card>
                 </TabsContent>
 
+                {/* Lexicon Tab */}
                 <TabsContent value="lexicon">
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
-                                <CardTitle>Lexicon</CardTitle>
-                                <CardDescription>Manage definitions and multilingual terms.</CardDescription>
+                                <CardTitle>Lexikon</CardTitle>
+                                <CardDescription>{lexicon.length} Einträge verfügbar</CardDescription>
                             </div>
-                            <Button onClick={() => handleCreate('lexicon')}><Plus className="mr-2 h-4 w-4" /> New Entry</Button>
+                            <Button asChild>
+                                <Link to="/admin/lexicon/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neuer Eintrag
+                                </Link>
+                            </Button>
                         </CardHeader>
                         <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Term</TableHead>
-                                        <TableHead>Category</TableHead>
-                                        <TableHead>Variants</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {lexicon.map((entry) => (
-                                        <TableRow key={entry.slug}>
-                                            <TableCell className="font-medium">{entry.term}</TableCell>
-                                            <TableCell>{entry.category}</TableCell>
-                                            <TableCell className="text-xs text-muted-foreground">{entry.variants?.join(', ')}</TableCell>
-                                            <TableCell className="text-right">
-                                                <Button variant="ghost" size="icon" onClick={() => handleEdit(entry.slug, 'lexicon')}>
-                                                    <Edit className="h-4 w-4" />
-                                                </Button>
-                                                <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(entry.slug, 'lexicon')}>
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </TableCell>
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Begriff</TableHead>
+                                            <TableHead>Kategorie</TableHead>
+                                            <TableHead>Varianten</TableHead>
+                                            <TableHead className="text-right">Aktionen</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {lexicon.map((entry) => (
+                                            <TableRow key={entry.slug}>
+                                                <TableCell className="font-medium">{entry.term}</TableCell>
+                                                <TableCell>{entry.category}</TableCell>
+                                                <TableCell className="text-xs text-muted-foreground max-w-[150px] truncate">
+                                                    {entry.variants?.join(', ')}
+                                                </TableCell>
+                                                <TableCell className="text-right">
+                                                    <Button variant="ghost" size="icon" asChild>
+                                                        <Link to={`/admin/lexicon/${entry.slug}`}>
+                                                            <Edit className="h-4 w-4" />
+                                                        </Link>
+                                                    </Button>
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
+                                                        className="text-destructive"
+                                                        onClick={() => handleDeleteLexicon(entry.slug)}
+                                                    >
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
             </Tabs>
-
-            <PostEditor
-                open={editorOpen}
-                onOpenChange={setEditorOpen}
-                post={editingPost}
-                onSuccess={() => {
-                    window.location.reload();
-                }}
-            />
         </div>
     );
 }
+
 

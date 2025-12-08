@@ -88,7 +88,7 @@ export default function ChatPage() {
                                     animate={{ opacity: 1, x: 0 }}
                                     key={i}
                                 >
-                                    <Link to={res.link} className="block p-3 rounded-xl bg-card border border-border/50 hover:border-primary/40 hover:bg-secondary/40 hover:shadow-md transition-all group">
+                                    <Link to={res.link} className="block p-3 rounded-xl bg-card border border-border/50 hover:border-primary/40 hover:bg-secondary/40 transition-all group">
                                         <div className="flex items-center gap-2 mb-1.5">
                                             {res.type === 'map' ? <Map className="h-3.5 w-3.5 text-primary" /> : <BookOpen className="h-3.5 w-3.5 text-primary" />}
                                             <span className="text-xs font-medium group-hover:text-primary transition-colors">{res.title}</span>

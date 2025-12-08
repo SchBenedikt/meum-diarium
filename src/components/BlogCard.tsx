@@ -32,12 +32,6 @@ export function BlogCard({ post, className }: BlogCardProps) {
   return (
     <motion.article
       variants={cardVariants}
-      whileHover={{
-        y: -4,
-        scale: 1.01,
-        transition: { duration: 0.2, ease: 'easeInOut' },
-      }}
-      whileTap={{ scale: 0.98 }}
       className="h-full"
     >
       <Link

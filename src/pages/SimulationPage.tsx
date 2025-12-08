@@ -208,7 +208,7 @@ export default function SimulationPage() {
                                 key={scenario.id}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all hover:bg-secondary/40 hover:shadow-lg hover:border-primary/20 cursor-pointer min-h-[220px] flex flex-col"
+                                className="group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all hover:bg-secondary/40 hover:border-primary/20 cursor-pointer min-h-[220px] flex flex-col"
                                 onClick={() => startGame(scenario)}
                             >
                                 <div className="flex justify-between items-start mb-4">

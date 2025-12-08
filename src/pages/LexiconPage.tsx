@@ -222,7 +222,7 @@ export default function LexiconPage() {
                       {groupedLexicon[letter].map(entry => {
                         const Icon = categoryIcons[entry.category] || Tags;
                         return (
-                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-5 rounded-xl bg-card border border-border/50 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all group relative overflow-hidden">
+                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-5 rounded-xl bg-card border border-border/50 hover:border-primary/40 transition-all group relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
                               <Icon className="h-14 w-14 text-primary" />
                             </div>

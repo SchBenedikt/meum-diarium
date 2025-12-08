@@ -26,7 +26,7 @@ Das hab ich mir gut überlegt, oder? Schreibt gerne in die Kommentare, was ihr d
 
 Und so diente der Rhein als natürliche Grenze zwischen den Gallieren und den Germanen. Insgesamt sind durch meine Eroberungen drei Gebiete in ganz Gallien abgetrennt, die sich jeweils in der Sprache und Kultur unterscheiden. Das hab ich erschaffen! Ist das nicht toll?
 
-Da gibt’s aber trotzdem wieder ein paar Leute, die ziemlich neidisch sind und jetzt behaupten, dass alles wieder falsch ist was ich mir überlegt habe…
+Da gibt's aber trotzdem wieder ein paar Leute, die ziemlich neidisch sind und jetzt behaupten, dass alles wieder falsch ist was ich mir überlegt habe…
 
 Aber glaubt ihr wirklich, jemand könnte meine Worte, meine Taten, meine Errungenschaften in Zweifel ziehen? Ich habe Gallien nicht nur beschrieben, sondern auch erobert.
 
@@ -35,7 +35,27 @@ Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquit
 Ganz Gallien ist in drei Teile geteilt, einen davon bewohnen die Belgier, den anderen die Aquitaner, den dritten, die in eigener Sprache Kelten, in unserer Gallier genannt werden.
 
 Gaius Julius Caesar`,
-    scientific: ``
+    scientific: `## Historischer Kontext
+
+Der berühmte Eröffnungssatz von Caesars *De Bello Gallico* ist nicht nur literarisch brillant, sondern auch ethnographisch bedeutsam. Caesar präsentiert hier eine vereinfachte, aber zweckdienliche Dreiteilung Galliens.
+
+### Die drei Völkergruppen
+
+**Die Belgae** (Belgier) bewohnten den nördlichen Teil Galliens zwischen Seine, Marne und Rhein. Sie galten als besonders kriegerisch, da sie am weitesten von der römischen Zivilisation entfernt lebten.
+
+**Die Aquitani** (Aquitanier) siedelten im Südwesten zwischen Pyrenäen und Garonne. Kulturell waren sie den Iberern näher verwandt als den Kelten.
+
+**Die Celtae/Galli** (Kelten/Gallier) bewohnten das Kernland zwischen Loire und Seine. Diese Gruppe bildete den größten Teil der gallischen Bevölkerung.
+
+### Wissenschaftliche Einordnung
+
+Moderne Archäologen und Historiker sehen Caesars Dreiteilung als stark vereinfacht an. Die kulturellen und ethnischen Grenzen waren in Wirklichkeit fließender als dargestellt. Caesars Darstellung diente auch propagandistischen Zwecken: Sie rechtfertigte die Eroberung als Ordnung eines chaotischen Gebiets.
+
+### Literarische Bedeutung
+
+Der Satz ist stilistisch meisterhaft. Die symmetrische Struktur und die klare Gliederung zeigen Caesars rhetorische Ausbildung. Er etabliert sofort den sachlich-dokumentarischen Ton, der das gesamte Werk prägt.
+
+**Quellen:** Rüpke, J. (2005) *Die Religion der Römer*; Woolf, G. (1998) *Becoming Roman*`
   },
   translations: {
     en: {
@@ -63,7 +83,27 @@ Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquit
 All Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third.
 
 Gaius Julius Caesar`,
-        scientific: ``
+        scientific: `## Historical Context
+
+The famous opening sentence of Caesar's *De Bello Gallico* is not only literarily brilliant but also ethnographically significant. Caesar presents a simplified but purposeful tripartite division of Gaul.
+
+### The Three Peoples
+
+**The Belgae** inhabited northern Gaul between the Seine, Marne, and Rhine. They were considered particularly warlike because they lived farthest from Roman civilization.
+
+**The Aquitani** settled in the southwest between the Pyrenees and Garonne. Culturally, they were more closely related to the Iberians than to the Celts.
+
+**The Celtae/Galli** inhabited the heartland between Loire and Seine. This group formed the largest part of the Gallic population.
+
+### Scholarly Assessment
+
+Modern archaeologists and historians view Caesar's tripartite division as highly simplified. The cultural and ethnic boundaries were in reality more fluid than presented. Caesar's description also served propagandistic purposes: it justified the conquest as bringing order to a chaotic region.
+
+### Literary Significance
+
+The sentence is stylistically masterful. The symmetrical structure and clear organization demonstrate Caesar's rhetorical training. It immediately establishes the factual-documentary tone that characterizes the entire work.
+
+**Sources:** Rüpke, J. (2005) *The Religion of the Romans*; Woolf, G. (1998) *Becoming Roman*`
       }
     },
     la: {
@@ -89,7 +129,27 @@ Sed vere creditis quemquam verba mea, facta mea, res gestas meas in dubium vocar
 Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.
 
 Gaius Iulius Caesar`,
-        scientific: ``
+        scientific: `## Contextus Historicus
+
+Sententia prima celebris operis Caesaris *De Bello Gallico* non solum litterarie praeclara est, sed etiam ethnographice significans. Caesar hic divisionem tripartitam Galliae simplicem sed utilem praebet.
+
+### Tres Gentes
+
+**Belgae** partem septentrionalem Galliae inter Sequanam, Matronam et Rhenum incolebant. Bellicossissimi habebantur, quod a cultu Romano longissime aberant.
+
+**Aquitani** inter Pyrenaeos et Garumnam in parte meridionali occidentali habitabant. Cultura Hiberis propinquiores erant quam Celtis.
+
+**Celtae/Galli** mediam regionem inter Ligerim et Sequanam tenebant. Haec gens maximam partem populi Gallici constituebat.
+
+### Iudicium Doctorum
+
+Archaeologi et historici hodierni divisionem Caesaris nimis simplicem esse putant. Fines culturales et ethnici re vera incertiores erant quam Caesar describit. Descriptio Caesaris etiam propagandae serviebat: conquestionem quasi ordinationem regionis confusae iustificabat.
+
+### Significatio Litteraria
+
+Sententia modo stilistico praeclara est. Structura symmetrica et dispositio clara artem rhetoricam Caesaris ostendunt. Statim tonum documentarium stabilit, qui totum opus characterizat.
+
+**Fontes:** Rüpke, J. (2005) *De Religione Romanorum*; Woolf, G. (1998) *Becoming Roman*`
       }
     }
   }
