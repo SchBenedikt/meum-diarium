@@ -7,6 +7,7 @@
     "dev": "concurrently \"vite --host\" \"npm run server\"",
     "debug": "vite --host",
     "server": "tsx watch server/index.ts",
+    "start": "tsx server/index.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
