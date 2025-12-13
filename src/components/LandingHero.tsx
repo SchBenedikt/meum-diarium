@@ -16,8 +16,8 @@ export function LandingHero() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - M3 Style with generous whitespace */}
-      <section className="relative min-h-[85vh] flex items-center justify-center text-center overflow-hidden hero-gradient py-24 md:py-32">
-        <div className="container mx-auto relative z-10 px-6">
+      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center text-center overflow-hidden hero-gradient py-20 sm:py-24 md:py-32 px-4">
+        <div className="container mx-auto relative z-10 px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-              className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant text-primary text-sm font-medium mb-8"
+              className="inline-flex items-center justify-center px-3 sm:px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8"
             >
               {t('discoverAntiquity') || 'Entdecke die Antike'}
             </motion.div>
@@ -37,7 +37,7 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 leading-[1.1] tracking-tight font-[450] text-foreground"
+              className="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 md:mb-8 leading-[1.1] tracking-tight font-[450] text-foreground"
             >
               {t('appName')}
             </motion.h1>
@@ -46,7 +46,7 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed px-2"
             >
               {t('heroSubtitle')}
             </motion.p>
@@ -55,9 +55,9 @@ export function LandingHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              className="flex flex-wrap justify-center items-center gap-4"
+              className="flex flex-wrap justify-center items-center gap-3 sm:gap-4"
             >
-              <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-lg" asChild>
+              <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-xl touch-manipulation" asChild>
                 <a href="#authors">
                   {t('discoverAuthorsBtn')}
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
@@ -69,9 +69,9 @@ export function LandingHero() {
       </section>
 
       {/* Main Links - Clean M3 Cards */}
-      <section className="py-20 bg-background">
-        <div className="container-centered px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="py-12 sm:py-16 md:py-20 bg-background">
+        <div className="container-centered px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {[
               { to: "/timeline", icon: Clock, title: t('navTimeline'), desc: t('timelineDesc') },
               { to: "/lexicon", icon: BookMarked, title: t('navLexicon'), desc: t('lexiconDesc') },
@@ -83,15 +83,15 @@ export function LandingHero() {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.4, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
               >
-                <Link to={item.to}>
-                  <Card variant="elevated" className="h-full p-8 flex flex-col items-start hover:bg-surface-container-low transition-colors group">
-                    <div className="h-14 w-14 rounded-lg bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="h-7 w-7 text-secondary-foreground" />
+                <Link to={item.to} className="block touch-manipulation">
+                  <Card variant="elevated" className="h-full p-6 sm:p-8 flex flex-col items-start hover:bg-surface-container-low active:scale-[0.98] transition-all group">
+                    <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-secondary flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <item.icon className="h-6 w-6 sm:h-7 sm:w-7 text-secondary-foreground" />
                     </div>
-                    <h3 className="font-display text-2xl font-medium mb-3 text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                       {item.desc}
                     </p>
                   </Card>
@@ -109,8 +109,8 @@ export function LandingHero() {
       <FeaturedPost />
 
       {/* Quote of the Day */}
-      <section className="py-20 bg-surface-container-low">
-        <div className="container mx-auto max-w-4xl px-6">
+      <section className="py-12 sm:py-16 md:py-20 bg-surface-container-low">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6">
           <QuoteOfDay />
         </div>
       </section>

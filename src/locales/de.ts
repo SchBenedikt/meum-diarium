@@ -214,5 +214,21 @@ export const de = {
     tag_navalBattle: 'Seeschlacht',
     tag_civilWar: 'Bürgerkrieg',
     tag_birth: 'Geburt',
+    
+    // PWA Installation
+    installApp: 'App installieren',
+    installAppDescription: 'Installiere Meum Diarium für schnellen Zugriff und ein besseres Erlebnis.',
+    install: 'Installieren',
+    notNow: 'Nicht jetzt',
+    pwaFeature1: 'Funktioniert auch offline',
+    pwaFeature2: 'Schneller Start vom Homescreen',
+    pwaFeature3: 'Keine Store-Installation nötig',
+    addToHomeScreen: 'Zum Home-Bildschirm hinzufügen',
+    iosStep1: 'Tippe auf das',
+    iosStep1b: 'Symbol unten',
+    iosStep2: 'Scrolle nach unten und wähle "Zum Home-Bildschirm"',
+    iosStep3: 'Tippe auf "Hinzufügen"',
+    gotIt: 'Verstanden',
+    discoverAntiquity: 'Entdecke die Antike',
 };
 

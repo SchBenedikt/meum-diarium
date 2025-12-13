@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
+import { PWAInstallPrompt } from "./components/PWAInstallPrompt";
 
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -103,6 +104,7 @@ const App = () => (
         <LanguageProvider>
           <AuthorProvider>
             <Toaster richColors />
+            <PWAInstallPrompt />
             <BrowserRouter>
               <AppContent />
             </BrowserRouter>

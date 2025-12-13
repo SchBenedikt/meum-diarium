@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  /* Mobile safe areas & viewport */
+  :root {
+    --sat: env(safe-area-inset-top);
+    --sar: env(safe-area-inset-right);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+  }
 
   :root,
   .theme-default {
@@ -151,10 +158,18 @@
 
   html {
     scroll-behavior: smooth;
+    /* Prevent iOS zoom on input focus */
+    -webkit-text-size-adjust: 100%;
+    /* Better touch scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased transition-colors duration-300 relative;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-y: contain;
+    /* Improve tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1,
@@ -264,6 +279,34 @@
     }
   }
 
+  /* Mobile-specific utilities */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Touch-friendly */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Prevent text selection on UI elements */
+  button, .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   /* M3 Elevation Levels - Flattened */
   .elevation-1 {
     /* box-shadow removed */
@@ -361,15 +404,48 @@
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-border rounded-full hover:bg-muted-foreground/30;
+  @apply bg-border/60 rounded-full hover:bg-muted-foreground/30;
+}
+
+/* Mobile input zoom prevention */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: inherit;
+  }
 }
 
 /* Prose styling for blog content */

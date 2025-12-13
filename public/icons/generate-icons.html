@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator - Meum Diarium</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .canvas-container {
+            display: none;
+        }
+        button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .preview {
+            margin: 30px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .preview-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .preview-item canvas {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .preview-item p {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Meum Diarium</h1>
+        <p>PWA Icon Generator</p>
+        
+        <button onclick="generateIcons()">Icons Generieren</button>
+        <button onclick="downloadAll()">Alle Herunterladen</button>
+        
+        <div class="preview" id="preview"></div>
+        
+        <div class="canvas-container">
+            <canvas id="canvas192" width="192" height="192"></canvas>
+            <canvas id="canvas512" width="512" height="512"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let icons = [];
+
+        function generateIcons() {
+            icons = [];
+            const sizes = [
+                { size: 192, id: 'canvas192' },
+                { size: 512, id: 'canvas512' }
+            ];
+
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+
+            sizes.forEach(({ size, id }) => {
+                const canvas = document.getElementById(id);
+                const ctx = canvas.getContext('2d');
+                
+                // Hintergrund - Goldener/Roter Farbverlauf
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#B8860B'); // Goldbraun
+                gradient.addColorStop(1, '#8B4513'); // Rotbraun
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
+                
+                // Scroll/Papyrus Icon zeichnen
+                ctx.save();
+                ctx.translate(size / 2, size / 2);
+                
+                const scale = size / 192;
+                ctx.scale(scale, scale);
+                
+                // Äußere Rolle links
+                ctx.fillStyle = '#D4AF37'; // Gold
+                ctx.beginPath();
+                ctx.ellipse(-60, 0, 8, 70, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Äußere Rolle rechts
+                ctx.beginPath();
+                ctx.ellipse(60, 0, 8, 70, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Papyrus Hauptteil
+                ctx.fillStyle = '#FFF8DC'; // Cornsilk
+                ctx.fillRect(-50, -70, 100, 140);
+                
+                // Schatten/Textur
+                ctx.fillStyle = 'rgba(139, 69, 19, 0.1)';
+                for (let i = -60; i < 60; i += 20) {
+                    ctx.fillRect(-48, i, 96, 2);
+                }
+                
+                // Linien wie auf altem Papier
+                ctx.strokeStyle = 'rgba(139, 69, 19, 0.3)';
+                ctx.lineWidth = 1;
+                for (let y = -50; y < 50; y += 15) {
+                    ctx.beginPath();
+                    ctx.moveTo(-40, y);
+                    ctx.lineTo(40, y);
+                    ctx.stroke();
+                }
+                
+                // SPQR Text
+                ctx.fillStyle = '#8B4513';
+                ctx.font = 'bold 28px Georgia, serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('SPQR', 0, 0);
+                
+                ctx.restore();
+                
+                // Für Download vorbereiten
+                canvas.toBlob(blob => {
+                    icons.push({
+                        blob,
+                        name: `icon-${size}x${size}.png`,
+                        size
+                    });
+                });
+                
+                // Preview erstellen
+                const previewCanvas = document.createElement('canvas');
+                previewCanvas.width = 120;
+                previewCanvas.height = 120;
+                const previewCtx = previewCanvas.getContext('2d');
+                previewCtx.drawImage(canvas, 0, 0, 120, 120);
+                
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                previewItem.appendChild(previewCanvas);
+                
+                const label = document.createElement('p');
+                label.textContent = `${size}x${size}`;
+                previewItem.appendChild(label);
+                
+                preview.appendChild(previewItem);
+            });
+        }
+
+        function downloadAll() {
+            if (icons.length === 0) {
+                alert('Bitte zuerst Icons generieren!');
+                return;
+            }
+
+            icons.forEach(({ blob, name }) => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = name;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        // Automatisch beim Laden generieren
+        window.addEventListener('load', generateIcons);
+    </script>
+</body>
+</html>

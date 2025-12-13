@@ -12,27 +12,27 @@ export function AuthorGrid() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-6">
+    <section className="py-16 sm:py-20 md:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
+          <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-medium mb-4 sm:mb-6">
             {t('voicesOfAntiquity')}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mb-5 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-5 tracking-tight px-4">
             {t('chooseAnAuthor')}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
+          <p className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed px-4">
             {t('authorSelectionDesc')}
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+        <div className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
           {Object.values(authors).map((author, index) => {
             const translatedInfo = getTranslatedAuthorInfo(author.id, t);
 
@@ -47,10 +47,10 @@ export function AuthorGrid() {
                 <Link
                   to={`/${author.id}`}
                   onClick={() => setCurrentAuthor(author.id)}
-                  className="block h-full group outline-none"
+                  className="block h-full group outline-none touch-manipulation"
                 >
-                  <Card className="h-full overflow-hidden border-border/50 transition-all duration-300 group-hover:border-primary/30 group-hover:-translate-y-1">
-                    <div className="relative h-56 overflow-hidden">
+                  <Card className="h-full overflow-hidden border-border/50 transition-all duration-300 group-hover:border-primary/30 group-hover:-translate-y-1 active:scale-[0.98]">
+                    <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
                       <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
@@ -58,8 +58,8 @@ export function AuthorGrid() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
                     </div>
-                    <CardContent className="p-6">
-                      <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                    <CardContent className="p-5 sm:p-6">
+                      <h3 className="font-display text-lg sm:text-xl font-medium mb-2 group-hover:text-primary transition-colors">
                         {translatedInfo.name}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
