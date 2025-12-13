@@ -9,6 +9,7 @@ import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { PWAInstallPrompt } from "./components/PWAInstallPrompt";
+import { SWUpdateToast } from "./components/SWUpdateToast";
 
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -24,6 +25,7 @@ const AdminPage = lazy(() => import("./pages/AdminPage"));
 const PostEditorPage = lazy(() => import("./pages/PostEditorPage"));
 const AuthorEditorPage = lazy(() => import("./pages/AuthorEditorPage"));
 const LexiconEditorPage = lazy(() => import("./pages/LexiconEditorPage"));
+const PageEditorPage = lazy(() => import("./pages/PageEditorPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -89,6 +91,7 @@ const AppContent = () => {
           <Route path="/admin/author/:authorId" element={<AuthorEditorPage />} />
           <Route path="/admin/lexicon/new" element={<LexiconEditorPage />} />
           <Route path="/admin/lexicon/:slug" element={<LexiconEditorPage />} />
+          <Route path="/admin/pages/:slug" element={<PageEditorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
@@ -105,6 +108,7 @@ const App = () => (
           <AuthorProvider>
             <Toaster richColors />
             <PWAInstallPrompt />
+            <SWUpdateToast />
             <BrowserRouter>
               <AppContent />
             </BrowserRouter>

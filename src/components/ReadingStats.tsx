@@ -7,6 +7,7 @@ import { timelineEvents } from '@/data/timeline';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { useMemo } from 'react';
+import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 
 export function ReadingStats() {
   const { t } = useLanguage();
@@ -53,10 +54,11 @@ export function ReadingStats() {
     <section className="py-20 border-t border-border">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp()}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={defaultTransition}
           className="text-center mb-14"
         >
           <h2 className="font-display text-2xl md:text-3xl mb-3 tracking-tight">
@@ -67,14 +69,17 @@ export function ReadingStats() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto"
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              variants={fadeUp(index * 0.08, 20)}
               className="group p-6 rounded-lg bg-card border border-border/50 transition-all duration-300 hover:elevation-1 hover:border-border"
             >
               <div className="h-12 w-12 rounded-lg bg-secondary flex items-center justify-center mb-5 transition-colors group-hover:bg-primary/10">
@@ -85,14 +90,15 @@ export function ReadingStats() {
               <p className="text-xs text-muted-foreground leading-relaxed">{stat.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Tags Cloud */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeUp(0.3)}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={defaultTransition}
           className="mt-14 text-center"
         >
           <p className="text-sm text-muted-foreground mb-5">{t('popularTopics')}</p>

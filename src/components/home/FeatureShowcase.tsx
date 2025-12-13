@@ -9,6 +9,7 @@ import {
     Quote
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 
 interface Feature {
     icon: React.ElementType;
@@ -70,10 +71,11 @@ export function FeatureShowcase() {
         <section className="py-24 bg-surface-container-low">
             <div className="container mx-auto px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    variants={fadeUp()}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={defaultTransition}
                     className="text-center mb-16"
                 >
                     <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mb-5 tracking-tight text-foreground">
@@ -84,14 +86,17 @@ export function FeatureShowcase() {
                     </p>
                 </motion.div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                <motion.div
+                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+                    variants={staggerContainer(0.08)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     {features.map((feature, index) => (
                         <motion.div
                             key={feature.titleKey}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.4, delay: index * 0.08, ease: [0.4, 0, 0.2, 1] }}
+                            variants={fadeUp(index * 0.08, 24)}
                         >
                             <Card className="h-full border-border/50 hover:border-primary/30 transition-colors group">
                                 <CardHeader>
@@ -110,7 +115,7 @@ export function FeatureShowcase() {
                             </Card>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

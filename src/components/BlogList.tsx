@@ -4,16 +4,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.07
-    }
-  }
-};
+import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
@@ -33,10 +24,11 @@ export function BlogList() {
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp()}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={defaultTransition}
           >
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-4 w-4 text-primary" />
@@ -57,7 +49,7 @@ export function BlogList() {
         {filteredPosts.length > 0 ? (
           <motion.div
             className="grid gap-5 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            variants={containerVariants}
+            variants={staggerContainer(0.07)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.05 }}

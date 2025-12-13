@@ -3,6 +3,7 @@ import { useAuthor } from '@/context/AuthorContext';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BlogList } from './BlogList';
+import { fadeUp, scaleIn, defaultTransition } from '@/lib/motion';
 
 export function HeroSection() {
   const { authorInfo, currentAuthor } = useAuthor();
@@ -19,37 +20,41 @@ export function HeroSection() {
           {/* Text content */}
           <div className="space-y-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={fadeUp()}
+              initial="hidden"
+              animate="visible"
+              transition={defaultTransition}
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
                 {authorInfo.title}
               </span>
             </motion.div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            <motion.h1
+              variants={fadeUp(0.1)}
+              initial="hidden"
+              animate="visible"
+              transition={defaultTransition}
               className="text-4xl sm:text-5xl lg:text-6xl font-display leading-[1.1]"
             >
               {authorInfo.name}
             </motion.h1>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            <motion.p
+              variants={fadeUp(0.2)}
+              initial="hidden"
+              animate="visible"
+              transition={defaultTransition}
               className="text-lg text-muted-foreground max-w-lg leading-relaxed"
             >
               {authorInfo.description}
             </motion.p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            <motion.div
+              variants={fadeUp(0.3)}
+              initial="hidden"
+              animate="visible"
+              transition={defaultTransition}
               className="flex items-center gap-4 pt-2"
             >
               <Link to={`/${authorInfo.id}/about`} className="btn-primary">
@@ -62,10 +67,11 @@ export function HeroSection() {
           </div>
 
           {/* Hero Image */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <motion.div
+            variants={scaleIn(0.2)}
+            initial="hidden"
+            animate="visible"
+            transition={defaultTransition}
             className="relative hidden lg:block"
           >
             <div className="relative rounded-lg  aspect-[4/5]">

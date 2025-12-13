@@ -4,11 +4,9 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { fadeUp, quickTransition } from '@/lib/motion';
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
+const cardVariants = fadeUp(0.05, 20);
 
 interface BlogCardProps {
   post: BlogPost;
@@ -30,10 +28,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
     post.excerpt || generateExcerpt(post.content.diary || post.content.scientific, 150);
 
   return (
-    <motion.article
-      variants={cardVariants}
-      className="h-full"
-    >
+    <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
         to={`/${post.author}/${post.slug}`}
         className={cn(
