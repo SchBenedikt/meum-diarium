@@ -22,9 +22,10 @@ export function PWAInstallPrompt() {
   const [showIOSPrompt, setShowIOSPrompt] = useState(false);
   const [showAndroidPrompt, setShowAndroidPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [hasShownThisSession, setHasShownThisSession] = useState(false);
 
   useEffect(() => {
-    // Check if app is already installed
+    // Check if app is already installed (Android/Desktop)
     if (window.matchMedia('(display-mode: standalone)').matches) {
       setIsInstalled(true);
       return;
@@ -43,22 +44,43 @@ export function PWAInstallPrompt() {
     // Detect iOS Safari
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator as any).standalone;
-    
-    if (isIOS && !isInStandaloneMode) {
-      // Show iOS-specific prompt after a delay
-      setTimeout(() => {
-        setShowIOSPrompt(true);
-      }, 3000);
+    // Do not show multiple times per session
+    if (!hasShownThisSession) {
+      if (isIOS && !isInStandaloneMode) {
+        // Show iOS-specific prompt after a delay and only if user interacted
+        const showIOS = () => setTimeout(() => {
+          setShowIOSPrompt(true);
+          setHasShownThisSession(true);
+        }, 2500);
+        // Wait for first user interaction to avoid intrusive prompt
+        window.addEventListener('click', showIOS, { once: true });
+      }
     }
 
     // Handle Android/Desktop PWA install prompt
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      // Show prompt after a delay
-      setTimeout(() => {
-        setShowAndroidPrompt(true);
-      }, 3000);
+      if (!hasShownThisSession) {
+        // Wait for visibility and user interaction before showing
+        const maybeShow = () => {
+          if (document.visibilityState === 'visible') {
+            setTimeout(() => {
+              setShowAndroidPrompt(true);
+              setHasShownThisSession(true);
+            }, 2000);
+            document.removeEventListener('visibilitychange', maybeShow);
+          }
+        };
+        document.addEventListener('visibilitychange', maybeShow);
+        // Fallback if visibilitychange doesn't fire
+        setTimeout(() => {
+          if (!hasShownThisSession) {
+            setShowAndroidPrompt(true);
+            setHasShownThisSession(true);
+          }
+        }, 5000);
+      }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -84,6 +106,7 @@ export function PWAInstallPrompt() {
     
     if (outcome === 'accepted') {
       console.log('User accepted the install prompt');
+      localStorage.removeItem('pwa-prompt-dismissed');
     } else {
       console.log('User dismissed the install prompt');
       localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
@@ -105,7 +128,7 @@ export function PWAInstallPrompt() {
     <>
       {/* Android/Desktop Install Prompt */}
       <Sheet open={showAndroidPrompt} onOpenChange={setShowAndroidPrompt}>
-        <SheetContent side="bottom" className="rounded-t-3xl">
+        <SheetContent side="bottom" className="rounded-t-3xl safe-bottom">
           <SheetHeader className="text-left">
             <SheetTitle className="flex items-center gap-3 text-2xl">
               <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center">
@@ -165,8 +188,7 @@ export function PWAInstallPrompt() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border rounded-t-3xl shadow-2xl"
-            style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+            className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border rounded-t-3xl shadow-2xl safe-bottom"
           >
             <div className="p-6">
               <div className="flex items-start justify-between mb-4">
