@@ -19,23 +19,23 @@ export function FeaturedPost() {
   }, [posts, isLoading]);
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 md:py-20">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-center mb-14"
+          className="text-center mb-10 sm:mb-14"
         >
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
-            <Sparkles className="h-4 w-4" />
+          <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+            <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             {t('featuredPost')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl mb-4 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 tracking-tight px-4">
             {t('glimpseIntoAnnals')}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
+          <p className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed px-4">
             {t('featuredPostDesc')}
           </p>
         </motion.div>

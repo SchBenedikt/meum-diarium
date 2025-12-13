@@ -28,10 +28,10 @@ export function BlogList() {
   const filteredPosts = posts.filter((post) => post.author === currentAuthor);
 
   return (
-    <section className="">
+    <section className="px-4 sm:px-6">
       <div className="">
         {/* Section header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -40,14 +40,14 @@ export function BlogList() {
           >
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
                 Tagebuch
               </span>
             </div>
-            <h2 className="font-display text-3xl md:text-4xl mb-2">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-2">
               Meine Kommentare
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               {filteredPosts.length} Einträge von {authorInfo.name.split(' ').pop()}
             </p>
           </motion.div>
@@ -56,7 +56,7 @@ export function BlogList() {
         {/* Posts grid */}
         {filteredPosts.length > 0 ? (
           <motion.div
-            className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-5 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

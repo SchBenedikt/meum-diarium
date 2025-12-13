@@ -2,19 +2,31 @@
 {
   "name": "Meum Diarium - Antike Tagebücher",
   "short_name": "Meum Diarium",
-  "description": "Erlebe die Geschichte durch die Augen von Caesar, Cicero und anderen Persönlichkeiten der Antike.",
+  "description": "Erlebe die Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Tagebücher und wissenschaftliche Kommentare aus dem alten Rom.",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "theme_color": "#B8860B",
@@ -25,18 +37,33 @@
   "orientation": "portrait-primary",
   "categories": ["education", "books", "history"],
   "prefer_related_applications": false,
-  "screenshots": [
+  "dir": "ltr",
+  "lang": "de-DE",
+  "id": "/",
+  "shortcuts": [
     {
-      "src": "/images/screenshot-mobile.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "name": "Zeitstrahl",
+      "short_name": "Timeline",
+      "description": "Interaktive Chronologie der Antike",
+      "url": "/timeline",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
-      "src": "/images/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
+      "name": "Lexikon",
+      "short_name": "Lexikon",
+      "description": "Glossar der Antike",
+      "url": "/lexicon",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

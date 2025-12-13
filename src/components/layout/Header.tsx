@@ -50,16 +50,16 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="container mx-auto">
-          <div className="flex h-16 items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 safe-top">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex h-14 sm:h-16 items-center justify-between gap-3">
             {/* Logo */}
-            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
-              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-                <Scroll className="h-4 w-4 text-primary-foreground" />
+            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 sm:gap-3 group min-w-0">
+              <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105 flex-shrink-0">
+                <Scroll className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
               </div>
-              <div className="hidden sm:block">
-                <span className="font-display text-lg">{t('appName')}</span>
+              <div className="hidden xs:block min-w-0">
+                <span className="font-display text-base sm:text-lg truncate">{t('appName')}</span>
               </div>
             </Link>
 
@@ -82,11 +82,11 @@ export function Header() {
             </nav>
 
             {/* Right side */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button - optimized for touch */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="h-11 min-w-[44px] px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors active:scale-95"
+                className="h-10 sm:h-11 min-w-[40px] sm:min-w-[44px] px-2 sm:px-3 flex items-center gap-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors active:scale-95 touch-manipulation"
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden sm:inline text-sm">{t('search')}</span>
@@ -105,12 +105,12 @@ export function Header() {
               <div className="md:hidden">
                 <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                   <SheetTrigger asChild>
-                    <button className="h-11 w-11 flex items-center justify-center rounded-lg hover:bg-secondary active:scale-95 transition-transform">
+                    <button className="h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-lg hover:bg-secondary active:scale-95 transition-transform touch-manipulation">
                       <Menu className="h-5 w-5" />
                       <span className="sr-only">{t('openMenu')}</span>
                     </button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[80vw] max-w-xs p-0">
+                  <SheetContent side="left" className="w-[85vw] sm:w-[80vw] max-w-sm p-0">
                     <div className="flex flex-col h-full">
                        <div className="flex items-center justify-between p-6 pb-6 border-b">
                          <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
