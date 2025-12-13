@@ -9,6 +9,7 @@ import { AuthorGrid } from './AuthorGrid';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 
 export function LandingHero() {
   const { t } = useLanguage();
@@ -19,42 +20,34 @@ export function LandingHero() {
       <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center text-center overflow-hidden hero-gradient py-20 sm:py-24 md:py-32 px-4">
         <div className="container mx-auto relative z-10 px-4 sm:px-6">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            variants={staggerContainer(0.08)}
+            initial="hidden"
+            animate="visible"
             className="max-w-3xl mx-auto"
           >
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+              variants={fadeUp(0.05)}
               className="inline-flex items-center justify-center px-3 sm:px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8"
             >
               {t('discoverAntiquity') || 'Entdecke die Antike'}
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              variants={fadeUp(0.15)}
               className="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 md:mb-8 leading-[1.1] tracking-tight font-[450] text-foreground"
             >
               {t('appName')}
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              variants={fadeUp(0.25)}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed px-2"
             >
               {t('heroSubtitle')}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              variants={fadeUp(0.35)}
               className="flex flex-wrap justify-center items-center gap-3 sm:gap-4"
             >
               <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-xl touch-manipulation" asChild>
@@ -81,7 +74,7 @@ export function LandingHero() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.4, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ ...defaultTransition, duration: 0.4, delay: index * 0.1 }}
               >
                 <Link to={item.to} className="block touch-manipulation">
                   <Card variant="elevated" className="h-full p-6 sm:p-8 flex flex-col items-start hover:bg-surface-container-low active:scale-[0.98] transition-all group">

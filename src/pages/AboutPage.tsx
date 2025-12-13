@@ -6,12 +6,13 @@ import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Author, AuthorInfo, BlogPost, Work } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthors, getTranslatedAuthor, getTranslatedPost, getTranslatedWork } from '@/lib/translator';
 import { usePosts } from '@/hooks/use-posts';
 import { Button } from '@/components/ui/button';
+import { PageContent, PageLanguage } from '@/types/page';
 
 const useAuthorDetails = (t: (key: string) => string) => ({
   caesar: {
@@ -84,6 +85,32 @@ function GeneralAboutPage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const [authors, setAuthors] = useState(baseAuthors);
+  const [pageContent, setPageContent] = useState<PageContent | null>(null);
+
+  const pageTranslation = useMemo(() => {
+    const lang = language as PageLanguage;
+    return pageContent?.translations?.[lang];
+  }, [language, pageContent]);
+
+  const heroTitle = pageTranslation?.heroTitle || pageContent?.heroTitle || t('aboutProject');
+  const heroSubtitle = pageTranslation?.heroSubtitle || pageContent?.heroSubtitle || t('interactiveLearning');
+  const projectDescription = pageTranslation?.projectDescription || pageContent?.projectDescription || t('projectDescription');
+
+  const defaultHighlights = useMemo(() => ([
+    { icon: BookOpen, title: t('twoPerspectives'), desc: t('diaryAndScientific') },
+    { icon: Users, title: t('fourAuthors'), desc: t('caesarCiceroAugustusSeneca') },
+    { icon: Clock, title: t('yearsOfHistory'), desc: t('historyToExperience') },
+    { icon: Scroll, title: t('authentic'), desc: t('historicallySound') },
+  ]), [t]);
+
+  const customHighlights = pageTranslation?.highlights || pageContent?.highlights;
+  const highlights = customHighlights && customHighlights.length > 0
+    ? customHighlights.map((item, index) => ({
+        icon: defaultHighlights[index]?.icon || BookOpen,
+        title: item.title,
+        desc: item.description,
+      }))
+    : defaultHighlights;
 
   useEffect(() => {
     setCurrentAuthor(null);
@@ -97,16 +124,31 @@ function GeneralAboutPage() {
     translate();
   }, [language]);
 
+  useEffect(() => {
+    async function fetchPageContent() {
+      try {
+        const res = await fetch('/api/pages/about');
+        if (res.ok) {
+          const data: PageContent = await res.json();
+          setPageContent(data);
+        }
+      } catch (error) {
+        console.error('Failed to load page content', error);
+      }
+    }
+    fetchPageContent();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         <section className="py-16 pt-32 hero-gradient">
           <div className="container mx-auto text-center">
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-display text-4xl md:text-5xl mb-4">
-              {t('aboutProject')}
+              {heroTitle}
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {t('interactiveLearning')}
+              {heroSubtitle}
             </motion.p>
           </div>
         </section>
@@ -114,12 +156,7 @@ function GeneralAboutPage() {
         <section className="py-20">
           <div className="container mx-auto">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                { icon: BookOpen, title: t('twoPerspectives'), desc: t('diaryAndScientific') },
-                { icon: Users, title: t('fourAuthors'), desc: t('caesarCiceroAugustusSeneca') },
-                { icon: Clock, title: t('yearsOfHistory'), desc: t('historyToExperience') },
-                { icon: Scroll, title: t('authentic'), desc: t('historicallySound') },
-              ].map((item, i) => (
+              {highlights.map((item, i) => (
                 <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center p-6">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4">
                     <item.icon className="h-5 w-5 text-primary" />
@@ -136,7 +173,7 @@ function GeneralAboutPage() {
           <div className="container mx-auto max-w-3xl">
             <div className="prose-blog">
               <h2>{t('theProject')}</h2>
-              <p dangerouslySetInnerHTML={{ __html: t('projectDescription') }} />
+              <p dangerouslySetInnerHTML={{ __html: projectDescription }} />
               <h2>{t('thePerspectives')}</h2>
               <p dangerouslySetInnerHTML={{ __html: t('diaryPerspective') }} />
               <p dangerouslySetInnerHTML={{ __html: t('scientificPerspective') }} />

@@ -21,25 +21,25 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
     .slice(0, 3);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }} 
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      className="bg-card p-6 rounded-lg  border border-border space-y-6"
+    <motion.aside 
+      initial={{ opacity: 0, x: 16 }} 
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.12, duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+      className="space-y-5 lg:space-y-6"
     >
-      <div className="sidebar-card">
-        <Link to={`/${author.id}/about`} className="group block transition-all p-4 -m-4 rounded-lg hover:bg-secondary/60">
+      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6">
+        <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
           <div className="flex items-center gap-3">
-            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover" />
-            <div>
-              <p className="font-medium">{author.name}</p>
-              <p className="text-sm text-muted-foreground">{author.title}</p>
+            <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
+            <div className="min-w-0">
+              <p className="font-medium truncate">{author.name}</p>
+              <p className="text-sm text-muted-foreground truncate">{author.title}</p>
             </div>
           </div>
         </Link>
       </div>
 
-      <div className="sidebar-card">
+      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
           Historischer Kontext
@@ -64,7 +64,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {post.sidebar?.quote && (
-        <div className="sidebar-card gradient-bg">
+        <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/70 via-secondary/40 to-card shadow-sm shadow-foreground/5 p-5 lg:p-6">
           <Quote className="h-5 w-5 text-primary mb-3" />
           <blockquote className="font-display text-base italic mb-2">
             „{post.sidebar.quote.text}"
@@ -75,7 +75,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      <div className="sidebar-card">
+      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Themen
@@ -85,7 +85,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             <Link 
               key={tag} 
               to={`/search?category=${encodeURIComponent(tag)}`}
-              className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
+              className="px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors shadow-[0_1px_2px_0_rgba(0,0,0,0.05)]"
             >
               {tag}
             </Link>
@@ -94,7 +94,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {relatedPosts.length > 0 && (
-        <div className="sidebar-card">
+        <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4">
             {t('otherWorks')}
           </h3>
@@ -103,7 +103,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
               <Link
                 key={relatedPost.id}
                 to={`/${relatedPost.author}/${relatedPost.slug}`}
-                className="block group"
+                className="block group rounded-lg -m-2 p-2 hover:bg-secondary/60 active:scale-[0.99] transition-all"
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-1 min-w-0">
@@ -121,6 +121,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </div>
         </div>
       )}
-    </motion.div>
+    </motion.aside>
   );
 }

@@ -230,5 +230,9 @@ export const de = {
     iosStep3: 'Tippe auf "Hinzufügen"',
     gotIt: 'Verstanden',
     discoverAntiquity: 'Entdecke die Antike',
+    updateAvailable: 'Update verfügbar',
+    updateAvailableDesc: 'Eine neue Version ist bereit. Jetzt aktualisieren?',
+    updateNow: 'Aktualisieren',
+    updating: 'Aktualisiere...',
 };
 
