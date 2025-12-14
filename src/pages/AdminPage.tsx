@@ -16,7 +16,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
@@ -51,15 +51,46 @@ export default function AdminPage() {
             label: 'Lexikon',
             value: lexiconEntries.length,
         },
-    ]), [authorEntries, lexiconEntries.length, postRows.length]);
-
-    const pages = useMemo(() => ([
         {
-            slug: 'about',
-            title: 'About / Projektvorstellung',
-            path: '/about',
+            icon: FileText,
+            label: 'Seiten',
+            value: pages.length,
+        },
+    ]), [authorEntries, lexiconEntries.length, postRows.length, pages.length]);
+
+    const [pages, setPages] = useState<Array<{ slug: string; title: string; path: string }>>([]);
+
+    useEffect(() => {
+        async function fetchPages() {
+            try {
+                const res = await fetch('/api/pages');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPages(data);
+                } else {
+                    // Fallback to default if API fails
+                    setPages([
+                        {
+                            slug: 'about',
+                            title: 'About / Projektvorstellung',
+                            path: '/about',
+                        }
+                    ]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch pages', error);
+                // Fallback to default
+                setPages([
+                    {
+                        slug: 'about',
+                        title: 'About / Projektvorstellung',
+                        path: '/about',
+                    }
+                ]);
+            }
         }
-    ]), []);
+        fetchPages();
+    }, []);
 
     const handleDeletePost = async (id: string) => {
         if (!window.confirm('Beitrag wirklich löschen?')) return;
@@ -160,7 +191,7 @@ export default function AdminPage() {
             </motion.div>
 
             <Tabs defaultValue="posts" className="w-full">
-                <TabsList className="grid w-full grid-cols-4 mb-8">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
                     <TabsTrigger value="posts">Beiträge</TabsTrigger>
                     <TabsTrigger value="authors">Autoren</TabsTrigger>
                     <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
@@ -336,6 +367,11 @@ export default function AdminPage() {
                                 <CardTitle>Seiten</CardTitle>
                                 <CardDescription>Statische Seiten wie /about bearbeiten</CardDescription>
                             </div>
+                            <Button asChild>
+                                <Link to="/admin/pages/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neue Seite
+                                </Link>
+                            </Button>
                         </CardHeader>
                         <CardContent>
                             <div className="overflow-x-auto">
@@ -348,19 +384,32 @@ export default function AdminPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {pages.map((page) => (
-                                            <TableRow key={page.slug}>
-                                                <TableCell className="font-medium">{page.title}</TableCell>
-                                                <TableCell>{page.path}</TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button variant="ghost" size="icon" asChild>
-                                                        <Link to={`/admin/pages/${page.slug}`} aria-label="Seite bearbeiten">
-                                                            <Edit className="h-4 w-4" />
-                                                        </Link>
-                                                    </Button>
+                                        {pages.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={3} className="text-center text-muted-foreground py-8">
+                                                    Noch keine Seiten vorhanden. Erstelle deine erste Seite!
                                                 </TableCell>
                                             </TableRow>
-                                        ))}
+                                        ) : (
+                                            pages.map((page) => (
+                                                <TableRow key={page.slug}>
+                                                    <TableCell className="font-medium">{page.title}</TableCell>
+                                                    <TableCell>{page.path}</TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={page.path} target="_blank" aria-label="Seite ansehen">
+                                                                <Eye className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={`/admin/pages/${page.slug}`} aria-label="Seite bearbeiten">
+                                                                <Edit className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
                                     </TableBody>
                                 </Table>
                             </div>
