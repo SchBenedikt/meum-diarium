@@ -16,24 +16,64 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 import { BlogPost } from '@/types/blog';
+import { QuickStats } from '@/components/QuickStats';
+import { SearchFilter } from '@/components/SearchFilter';
 
 export default function AdminPage() {
     const { t } = useLanguage();
     const { posts } = usePosts();
     const [postRows, setPostRows] = useState<BlogPost[]>([]);
+    const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [authorEntries, setAuthorEntries] = useState(() => ({ ...authors }));
     const [lexiconEntries, setLexiconEntries] = useState(() => [...lexicon]);
+    const [filteredLexicon, setFilteredLexicon] = useState(lexicon);
 
     useEffect(() => {
         if (posts && posts.length) {
             setPostRows(posts);
+            setFilteredPosts(posts);
         }
     }, [posts]);
+
+    const handlePostSearch = (query: string) => {
+        if (!query) {
+            setFilteredPosts(postRows);
+            return;
+        }
+        const filtered = postRows.filter(post =>
+            post.title.toLowerCase().includes(query.toLowerCase()) ||
+            post.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+            post.author.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredPosts(filtered);
+    };
+
+    const handlePostFilter = (filter: string) => {
+        if (filter === 'all') {
+            setFilteredPosts(postRows);
+            return;
+        }
+        const filtered = postRows.filter(post => post.author === filter);
+        setFilteredPosts(filtered);
+    };
+
+    const handleLexiconSearch = (query: string) => {
+        if (!query) {
+            setFilteredLexicon(lexiconEntries);
+            return;
+        }
+        const filtered = lexiconEntries.filter(entry =>
+            entry.term.toLowerCase().includes(query.toLowerCase()) ||
+            entry.category.toLowerCase().includes(query.toLowerCase()) ||
+            entry.definition.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredLexicon(filtered);
+    };
 
     const stats = useMemo(() => ([
         {
@@ -51,15 +91,46 @@ export default function AdminPage() {
             label: 'Lexikon',
             value: lexiconEntries.length,
         },
-    ]), [authorEntries, lexiconEntries.length, postRows.length]);
-
-    const pages = useMemo(() => ([
         {
-            slug: 'about',
-            title: 'About / Projektvorstellung',
-            path: '/about',
+            icon: FileText,
+            label: 'Seiten',
+            value: pages.length,
+        },
+    ]), [authorEntries, lexiconEntries.length, postRows.length, pages.length]);
+
+    const [pages, setPages] = useState<Array<{ slug: string; title: string; path: string }>>([]);
+
+    useEffect(() => {
+        async function fetchPages() {
+            try {
+                const res = await fetch('/api/pages');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPages(data);
+                } else {
+                    // Fallback to default if API fails
+                    setPages([
+                        {
+                            slug: 'about',
+                            title: 'About / Projektvorstellung',
+                            path: '/about',
+                        }
+                    ]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch pages', error);
+                // Fallback to default
+                setPages([
+                    {
+                        slug: 'about',
+                        title: 'About / Projektvorstellung',
+                        path: '/about',
+                    }
+                ]);
+            }
         }
-    ]), []);
+        fetchPages();
+    }, []);
 
     const handleDeletePost = async (id: string) => {
         if (!window.confirm('Beitrag wirklich löschen?')) return;
@@ -122,7 +193,12 @@ export default function AdminPage() {
                     <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Admin Dashboard</h1>
                     <p className="text-muted-foreground">Inhalte in allen Sprachen verwalten.</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                        <Link to="/admin/settings">
+                            <Settings className="mr-2 h-4 w-4" /> Einstellungen
+                        </Link>
+                    </Button>
                     <Button variant="outline" asChild>
                         <Link to="/admin/post/new">
                             <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
@@ -136,31 +212,10 @@ export default function AdminPage() {
                 </div>
             </div>
 
-            <motion.div
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
-                variants={staggerContainer(0.08)}
-                initial="hidden"
-                animate="visible"
-                transition={defaultTransition}
-            >
-                {stats.map(stat => (
-                    <motion.div key={stat.label} variants={fadeUp()}>
-                        <Card className="h-full">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">{stat.label}</CardTitle>
-                                <stat.icon className="h-4 w-4 text-muted-foreground" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-3xl font-bold">{stat.value}</div>
-                                <p className="text-xs text-muted-foreground">Aktuelle Inhalte im System</p>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                ))}
-            </motion.div>
+            <QuickStats stats={stats} />
 
             <Tabs defaultValue="posts" className="w-full">
-                <TabsList className="grid w-full grid-cols-4 mb-8">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
                     <TabsTrigger value="posts">Beiträge</TabsTrigger>
                     <TabsTrigger value="authors">Autoren</TabsTrigger>
                     <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
@@ -173,7 +228,7 @@ export default function AdminPage() {
                         <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
                                 <CardTitle>Blog-Beiträge</CardTitle>
-                                <CardDescription>{postRows.length} Beiträge verfügbar</CardDescription>
+                                <CardDescription>{filteredPosts.length} von {postRows.length} Beiträgen</CardDescription>
                             </div>
                             <Button asChild>
                                 <Link to="/admin/post/new">
@@ -182,6 +237,18 @@ export default function AdminPage() {
                             </Button>
                         </CardHeader>
                         <CardContent>
+                            <SearchFilter
+                                onSearch={handlePostSearch}
+                                onFilter={handlePostFilter}
+                                placeholder="Beiträge durchsuchen..."
+                                filters={[
+                                    { value: 'all', label: 'Alle Autoren' },
+                                    { value: 'caesar', label: 'Caesar' },
+                                    { value: 'cicero', label: 'Cicero' },
+                                    { value: 'augustus', label: 'Augustus' },
+                                    { value: 'seneca', label: 'Seneca' },
+                                ]}
+                            />
                             <div className="overflow-x-auto">
                                 <Table>
                                     <TableHeader>
@@ -193,7 +260,14 @@ export default function AdminPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {postRows.map((post) => (
+                                        {filteredPosts.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                                                    Keine Beiträge gefunden
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : (
+                                            filteredPosts.map((post) => (
                                             <TableRow key={post.id}>
                                                 <TableCell className="font-medium">{post.title}</TableCell>
                                                 <TableCell className="capitalize">{post.author}</TableCell>
@@ -215,7 +289,8 @@ export default function AdminPage() {
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>
-                                        ))}
+                                            ))
+                                        )}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -277,7 +352,7 @@ export default function AdminPage() {
                         <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
                                 <CardTitle>Lexikon</CardTitle>
-                                <CardDescription>{lexiconEntries.length} Einträge verfügbar</CardDescription>
+                                <CardDescription>{filteredLexicon.length} von {lexiconEntries.length} Einträgen</CardDescription>
                             </div>
                             <Button asChild>
                                 <Link to="/admin/lexicon/new">
@@ -286,6 +361,10 @@ export default function AdminPage() {
                             </Button>
                         </CardHeader>
                         <CardContent>
+                            <SearchFilter
+                                onSearch={handleLexiconSearch}
+                                placeholder="Lexikon durchsuchen..."
+                            />
                             <div className="overflow-x-auto">
                                 <Table>
                                     <TableHeader>
@@ -297,7 +376,14 @@ export default function AdminPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {lexiconEntries.map((entry) => (
+                                        {filteredLexicon.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                                                    Keine Einträge gefunden
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : (
+                                            filteredLexicon.map((entry) => (
                                             <TableRow key={entry.slug}>
                                                 <TableCell className="font-medium">{entry.term}</TableCell>
                                                 <TableCell>{entry.category}</TableCell>
@@ -321,7 +407,8 @@ export default function AdminPage() {
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>
-                                        ))}
+                                            ))
+                                        )}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -336,6 +423,11 @@ export default function AdminPage() {
                                 <CardTitle>Seiten</CardTitle>
                                 <CardDescription>Statische Seiten wie /about bearbeiten</CardDescription>
                             </div>
+                            <Button asChild>
+                                <Link to="/admin/pages/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neue Seite
+                                </Link>
+                            </Button>
                         </CardHeader>
                         <CardContent>
                             <div className="overflow-x-auto">
@@ -348,19 +440,32 @@ export default function AdminPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {pages.map((page) => (
-                                            <TableRow key={page.slug}>
-                                                <TableCell className="font-medium">{page.title}</TableCell>
-                                                <TableCell>{page.path}</TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button variant="ghost" size="icon" asChild>
-                                                        <Link to={`/admin/pages/${page.slug}`} aria-label="Seite bearbeiten">
-                                                            <Edit className="h-4 w-4" />
-                                                        </Link>
-                                                    </Button>
+                                        {pages.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={3} className="text-center text-muted-foreground py-8">
+                                                    Noch keine Seiten vorhanden. Erstelle deine erste Seite!
                                                 </TableCell>
                                             </TableRow>
-                                        ))}
+                                        ) : (
+                                            pages.map((page) => (
+                                                <TableRow key={page.slug}>
+                                                    <TableCell className="font-medium">{page.title}</TableCell>
+                                                    <TableCell>{page.path}</TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={page.path} target="_blank" aria-label="Seite ansehen">
+                                                                <Eye className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={`/admin/pages/${page.slug}`} aria-label="Seite bearbeiten">
+                                                                <Edit className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
                                     </TableBody>
                                 </Table>
                             </div>
