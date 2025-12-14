@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { ArrowLeft, Newspaper } from 'lucide-react';
+import { ArrowLeft, Newspaper, Tag, BookMarked } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
@@ -92,12 +92,22 @@ export default function LexiconEntryPage() {
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  className="space-y-4"
                 >
-                  <Link to={`/search?category=${encodeURIComponent(entry.category)}`}>
-                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 inline-block hover:bg-primary/20 transition-colors">
-                      {entry.category}
-                    </span>
-                  </Link>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Link to={`/search?category=${encodeURIComponent(entry.category)}`} className="group">
+                      <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/15 transition-colors border border-primary/20 leading-tight">
+                        {entry.category}
+                      </span>
+                    </Link>
+                    {entry.variants?.slice(0, 4).map((v, i) => (
+                      <Link key={i} to={`/search?q=${encodeURIComponent(v)}`} className="group">
+                        <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors border border-border/60 leading-tight">
+                          {v}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
                   <h1 className="font-display text-4xl md:text-5xl">{entry.term}</h1>
                 </motion.div>
               </header>

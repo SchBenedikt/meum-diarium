@@ -26,11 +26,17 @@ export function SWUpdateToast() {
       // Once the new SW controls the page, reload to pick new assets
       window.location.reload();
     };
-    navigator.serviceWorker.addEventListener('controllerchange', onControllerChange);
+    // Guard: service workers may be unavailable in dev/non-HTTPS
+    const hasSW = typeof navigator !== 'undefined' && 'serviceWorker' in navigator && !!navigator.serviceWorker;
+    if (hasSW) {
+      navigator.serviceWorker.addEventListener('controllerchange', onControllerChange);
+    }
 
     return () => {
       window.removeEventListener('sw:update-available', onUpdateAvailable as EventListener);
-      navigator.serviceWorker.removeEventListener('controllerchange', onControllerChange);
+      if (hasSW) {
+        navigator.serviceWorker.removeEventListener('controllerchange', onControllerChange);
+      }
     };
   }, []);
 
