@@ -6,10 +6,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, Save, Plus, X } from 'lucide-react';
+import { ArrowLeft, Save, Plus, X, Eye } from 'lucide-react';
 import { PageContent, PageHighlight, PageLanguage, PageTranslation } from '@/types/page';
 import { toast } from 'sonner';
 import { useLanguage } from '@/context/LanguageContext';
+import { MediaLibrary } from '@/components/MediaLibrary';
+import { sanitizeSlug } from '@/lib/slug-utils';
+import { getFallbackImageUrl } from '@/lib/image-utils';
 
 const emptyHighlight: PageHighlight = { title: '', description: '' };
 
@@ -18,6 +21,7 @@ const buildEmptyPage = (slug: string): PageContent => ({
   heroTitle: '',
   heroSubtitle: '',
   projectDescription: '',
+  heroImage: '',
   highlights: [emptyHighlight],
   translations: {
     en: { heroTitle: '', heroSubtitle: '', projectDescription: '', highlights: [emptyHighlight] },
@@ -26,27 +30,34 @@ const buildEmptyPage = (slug: string): PageContent => ({
 });
 
 export default function PageEditorPage() {
-  const { slug = 'about' } = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState<PageContent>(() => buildEmptyPage(slug));
+  const isNewPage = slug === 'new';
+  const [pageSlug, setPageSlug] = useState(isNewPage ? '' : slug || 'about');
+  const [page, setPage] = useState<PageContent>(() => buildEmptyPage(pageSlug));
   const [activeLang, setActiveLang] = useState<PageLanguage>('de');
 
   useEffect(() => {
+    if (isNewPage) {
+      return; // Don't fetch for new pages
+    }
+    
     async function fetchPage() {
       try {
         const res = await fetch(`/api/pages/${slug}`);
         if (res.ok) {
           const data: PageContent = await res.json();
           setPage(prev => ({ ...prev, ...data, translations: data.translations || prev.translations }));
+          setPageSlug(data.slug);
         }
       } catch (error) {
         console.error('Failed to load page content', error);
       }
     }
     fetchPage();
-  }, [slug]);
+  }, [slug, isNewPage]);
 
   const updateBase = (field: keyof PageContent, value: any) => {
     setPage(prev => ({ ...prev, [field]: value }));
@@ -99,12 +110,18 @@ export default function PageEditorPage() {
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
+    
+    if (!pageSlug) {
+      toast.error('Bitte gib einen Slug für die Seite ein');
+      return;
+    }
+    
     setLoading(true);
 
     try {
       const payload: PageContent = {
         ...page,
-        slug,
+        slug: pageSlug,
       };
 
       const res = await fetch('/api/pages', {
@@ -115,7 +132,12 @@ export default function PageEditorPage() {
 
       if (res.ok) {
         toast.success(t('saved') || 'Gespeichert');
-        navigate('/admin');
+        if (isNewPage) {
+          // Redirect to edit page after creating
+          navigate(`/admin/pages/${pageSlug}`);
+        } else {
+          navigate('/admin');
+        }
       } else {
         toast.error(t('saveError') || 'Fehler beim Speichern');
       }
@@ -139,17 +161,52 @@ export default function PageEditorPage() {
               <span className="hidden sm:inline">Zurück</span>
             </Link>
             <div className="h-6 w-px bg-border hidden sm:block" />
-            <h1 className="font-display text-lg sm:text-xl font-medium">Seite bearbeiten: {slug}</h1>
+            <h1 className="font-display text-lg sm:text-xl font-medium">
+              {isNewPage ? 'Neue Seite erstellen' : `Seite bearbeiten: ${pageSlug}`}
+            </h1>
           </div>
-          <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
-            <Save className="h-4 w-4 sm:mr-2" />
-            <span className="hidden sm:inline">{loading ? 'Speichern...' : 'Speichern'}</span>
-          </Button>
+          <div className="flex gap-2">
+            {!isNewPage && (
+              <Button variant="outline" size="sm" asChild>
+                <Link to={`/${pageSlug}`} target="_blank">
+                  <Eye className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Vorschau</span>
+                </Link>
+              </Button>
+            )}
+            <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
+              <Save className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">{loading ? 'Speichern...' : 'Speichern'}</span>
+            </Button>
+          </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-6 max-w-5xl">
         <form onSubmit={handleSubmit} className="space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Seiteneinstellungen</CardTitle>
+              <CardDescription>Grundlegende Informationen zur Seite</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Slug (URL-Pfad)</Label>
+                <Input 
+                  value={pageSlug} 
+                  onChange={e => setPageSlug(sanitizeSlug(e.target.value))} 
+                  placeholder="about" 
+                  required
+                  disabled={!isNewPage}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Die Seite wird unter /{pageSlug} erreichbar sein
+                  {!isNewPage && ' (Slug kann nach Erstellung nicht geändert werden)'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Hero</CardTitle>
@@ -163,6 +220,30 @@ export default function PageEditorPage() {
               <div className="space-y-2">
                 <Label>Hero Untertitel (DE)</Label>
                 <Textarea value={page.heroSubtitle} onChange={e => updateBase('heroSubtitle', e.target.value)} placeholder="Interaktive Inhalte..." rows={3} />
+              </div>
+              <div className="space-y-2">
+                <Label>Hero Bild (optional)</Label>
+                <div className="flex gap-2">
+                  <Input 
+                    value={page.heroImage || ''} 
+                    onChange={e => updateBase('heroImage', e.target.value)} 
+                    placeholder="Bild-URL oder wähle aus der Bibliothek" 
+                    className="flex-1"
+                  />
+                  <MediaLibrary onSelect={(url) => updateBase('heroImage', url)} />
+                </div>
+                {page.heroImage && (
+                  <div className="mt-2 border rounded-lg overflow-hidden">
+                    <img 
+                      src={page.heroImage} 
+                      alt="Hero preview" 
+                      className="w-full h-32 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = getFallbackImageUrl(400, 200);
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
