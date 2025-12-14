@@ -16,7 +16,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
@@ -153,7 +153,12 @@ export default function AdminPage() {
                     <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Admin Dashboard</h1>
                     <p className="text-muted-foreground">Inhalte in allen Sprachen verwalten.</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                        <Link to="/admin/settings">
+                            <Settings className="mr-2 h-4 w-4" /> Einstellungen
+                        </Link>
+                    </Button>
                     <Button variant="outline" asChild>
                         <Link to="/admin/post/new">
                             <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag

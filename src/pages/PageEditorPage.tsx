@@ -6,10 +6,11 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, Save, Plus, X } from 'lucide-react';
+import { ArrowLeft, Save, Plus, X, Eye } from 'lucide-react';
 import { PageContent, PageHighlight, PageLanguage, PageTranslation } from '@/types/page';
 import { toast } from 'sonner';
 import { useLanguage } from '@/context/LanguageContext';
+import { MediaLibrary } from '@/components/MediaLibrary';
 
 const emptyHighlight: PageHighlight = { title: '', description: '' };
 
@@ -18,6 +19,7 @@ const buildEmptyPage = (slug: string): PageContent => ({
   heroTitle: '',
   heroSubtitle: '',
   projectDescription: '',
+  heroImage: '',
   highlights: [emptyHighlight],
   translations: {
     en: { heroTitle: '', heroSubtitle: '', projectDescription: '', highlights: [emptyHighlight] },
@@ -161,10 +163,20 @@ export default function PageEditorPage() {
               {isNewPage ? 'Neue Seite erstellen' : `Seite bearbeiten: ${pageSlug}`}
             </h1>
           </div>
-          <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
-            <Save className="h-4 w-4 sm:mr-2" />
-            <span className="hidden sm:inline">{loading ? 'Speichern...' : 'Speichern'}</span>
-          </Button>
+          <div className="flex gap-2">
+            {!isNewPage && (
+              <Button variant="outline" size="sm" asChild>
+                <Link to={`/${pageSlug}`} target="_blank">
+                  <Eye className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Vorschau</span>
+                </Link>
+              </Button>
+            )}
+            <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
+              <Save className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">{loading ? 'Speichern...' : 'Speichern'}</span>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -206,6 +218,30 @@ export default function PageEditorPage() {
               <div className="space-y-2">
                 <Label>Hero Untertitel (DE)</Label>
                 <Textarea value={page.heroSubtitle} onChange={e => updateBase('heroSubtitle', e.target.value)} placeholder="Interaktive Inhalte..." rows={3} />
+              </div>
+              <div className="space-y-2">
+                <Label>Hero Bild (optional)</Label>
+                <div className="flex gap-2">
+                  <Input 
+                    value={page.heroImage || ''} 
+                    onChange={e => updateBase('heroImage', e.target.value)} 
+                    placeholder="Bild-URL oder wähle aus der Bibliothek" 
+                    className="flex-1"
+                  />
+                  <MediaLibrary onSelect={(url) => updateBase('heroImage', url)} />
+                </div>
+                {page.heroImage && (
+                  <div className="mt-2 border rounded-lg overflow-hidden">
+                    <img 
+                      src={page.heroImage} 
+                      alt="Hero preview" 
+                      className="w-full h-32 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200"%3E%3Crect fill="%23ddd" width="400" height="200"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle"%3EBild nicht verfügbar%3C/text%3E%3C/svg%3E';
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
