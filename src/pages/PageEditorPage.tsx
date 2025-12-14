@@ -26,27 +26,34 @@ const buildEmptyPage = (slug: string): PageContent => ({
 });
 
 export default function PageEditorPage() {
-  const { slug = 'about' } = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState<PageContent>(() => buildEmptyPage(slug));
+  const isNewPage = slug === 'new';
+  const [pageSlug, setPageSlug] = useState(isNewPage ? '' : slug || 'about');
+  const [page, setPage] = useState<PageContent>(() => buildEmptyPage(pageSlug));
   const [activeLang, setActiveLang] = useState<PageLanguage>('de');
 
   useEffect(() => {
+    if (isNewPage) {
+      return; // Don't fetch for new pages
+    }
+    
     async function fetchPage() {
       try {
         const res = await fetch(`/api/pages/${slug}`);
         if (res.ok) {
           const data: PageContent = await res.json();
           setPage(prev => ({ ...prev, ...data, translations: data.translations || prev.translations }));
+          setPageSlug(data.slug);
         }
       } catch (error) {
         console.error('Failed to load page content', error);
       }
     }
     fetchPage();
-  }, [slug]);
+  }, [slug, isNewPage]);
 
   const updateBase = (field: keyof PageContent, value: any) => {
     setPage(prev => ({ ...prev, [field]: value }));
@@ -99,12 +106,18 @@ export default function PageEditorPage() {
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
+    
+    if (!pageSlug) {
+      toast.error('Bitte gib einen Slug für die Seite ein');
+      return;
+    }
+    
     setLoading(true);
 
     try {
       const payload: PageContent = {
         ...page,
-        slug,
+        slug: pageSlug,
       };
 
       const res = await fetch('/api/pages', {
@@ -115,7 +128,12 @@ export default function PageEditorPage() {
 
       if (res.ok) {
         toast.success(t('saved') || 'Gespeichert');
-        navigate('/admin');
+        if (isNewPage) {
+          // Redirect to edit page after creating
+          navigate(`/admin/pages/${pageSlug}`);
+        } else {
+          navigate('/admin');
+        }
       } else {
         toast.error(t('saveError') || 'Fehler beim Speichern');
       }
@@ -139,7 +157,9 @@ export default function PageEditorPage() {
               <span className="hidden sm:inline">Zurück</span>
             </Link>
             <div className="h-6 w-px bg-border hidden sm:block" />
-            <h1 className="font-display text-lg sm:text-xl font-medium">Seite bearbeiten: {slug}</h1>
+            <h1 className="font-display text-lg sm:text-xl font-medium">
+              {isNewPage ? 'Neue Seite erstellen' : `Seite bearbeiten: ${pageSlug}`}
+            </h1>
           </div>
           <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
             <Save className="h-4 w-4 sm:mr-2" />
@@ -150,6 +170,29 @@ export default function PageEditorPage() {
 
       <div className="container mx-auto px-4 py-6 max-w-5xl">
         <form onSubmit={handleSubmit} className="space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Seiteneinstellungen</CardTitle>
+              <CardDescription>Grundlegende Informationen zur Seite</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Slug (URL-Pfad)</Label>
+                <Input 
+                  value={pageSlug} 
+                  onChange={e => setPageSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-'))} 
+                  placeholder="about" 
+                  required
+                  disabled={!isNewPage}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Die Seite wird unter /{pageSlug} erreichbar sein
+                  {!isNewPage && ' (Slug kann nach Erstellung nicht geändert werden)'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Hero</CardTitle>

@@ -293,6 +293,93 @@ app.delete('/api/lexicon/:slug', async (req, res) => {
     }
 });
 
+// ============ PAGES API ============
+const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
+
+// GET page content
+app.get('/api/pages/:slug', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        const filePath = path.join(PAGES_DIR, `${slug}.json`);
+        
+        try {
+            const content = await fs.readFile(filePath, 'utf-8');
+            const pageData = JSON.parse(content);
+            res.json(pageData);
+        } catch (error) {
+            // Page doesn't exist yet, return empty
+            res.status(404).json({ error: 'Page not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch page' });
+    }
+});
+
+// POST creates/updates page
+app.post('/api/pages', async (req, res) => {
+    try {
+        const pageData = req.body;
+        const { slug } = pageData;
+
+        if (!slug) {
+            return res.status(400).json({ error: 'Missing slug' });
+        }
+
+        await fs.mkdir(PAGES_DIR, { recursive: true });
+        const filePath = path.join(PAGES_DIR, `${slug}.json`);
+        
+        await fs.writeFile(filePath, JSON.stringify(pageData, null, 2), 'utf-8');
+        console.log(`Saved page: ${filePath}`);
+
+        res.status(201).json({ success: true, path: filePath });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to save page' });
+    }
+});
+
+// DELETE page
+app.delete('/api/pages/:slug', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        const filePath = path.join(PAGES_DIR, `${slug}.json`);
+
+        await fs.unlink(filePath);
+        res.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete page' });
+    }
+});
+
+// GET all pages list
+app.get('/api/pages', async (req, res) => {
+    try {
+        await fs.mkdir(PAGES_DIR, { recursive: true });
+        const files = await fs.readdir(PAGES_DIR);
+        
+        const pages = [];
+        for (const file of files) {
+            if (file.endsWith('.json')) {
+                const filePath = path.join(PAGES_DIR, file);
+                const content = await fs.readFile(filePath, 'utf-8');
+                const pageData = JSON.parse(content);
+                pages.push({
+                    slug: file.replace('.json', ''),
+                    title: pageData.heroTitle || pageData.slug,
+                    path: `/${file.replace('.json', '')}`
+                });
+            }
+        }
+        
+        res.json(pages);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch pages' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Backend server running on http://localhost:${PORT}`);
 });
