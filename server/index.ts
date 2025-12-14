@@ -14,6 +14,10 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
+// Note: Rate limiting should be added for production use
+// Consider using express-rate-limit for API endpoints
+// Example: app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))
+
 const CONTENT_DIR = path.resolve(__dirname, '../src/content');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
 
