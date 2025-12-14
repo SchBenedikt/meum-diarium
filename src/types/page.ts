@@ -17,6 +17,7 @@ export interface PageContent {
   heroTitle: string;
   heroSubtitle: string;
   projectDescription: string;
+  heroImage?: string;
   highlights: PageHighlight[];
   translations?: Partial<Record<PageLanguage, PageTranslation>>;
 }
