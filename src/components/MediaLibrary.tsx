@@ -13,6 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image, Link as LinkIcon, Upload, Check } from 'lucide-react';
 import { toast } from 'sonner';
+import { getFallbackImageUrl } from '@/lib/image-utils';
 
 interface MediaLibraryProps {
   onSelect: (url: string) => void;
@@ -147,7 +148,7 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
                   alt="Preview"
                   className="w-full max-h-48 object-contain rounded"
                   onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23ddd" width="200" height="200"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle"%3EBild nicht verfügbar%3C/text%3E%3C/svg%3E';
+                    e.currentTarget.src = getFallbackImageUrl(200, 200);
                   }}
                 />
               </div>

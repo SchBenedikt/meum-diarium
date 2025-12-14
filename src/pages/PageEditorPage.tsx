@@ -11,6 +11,8 @@ import { PageContent, PageHighlight, PageLanguage, PageTranslation } from '@/typ
 import { toast } from 'sonner';
 import { useLanguage } from '@/context/LanguageContext';
 import { MediaLibrary } from '@/components/MediaLibrary';
+import { sanitizeSlug } from '@/lib/slug-utils';
+import { getFallbackImageUrl } from '@/lib/image-utils';
 
 const emptyHighlight: PageHighlight = { title: '', description: '' };
 
@@ -192,7 +194,7 @@ export default function PageEditorPage() {
                 <Label>Slug (URL-Pfad)</Label>
                 <Input 
                   value={pageSlug} 
-                  onChange={e => setPageSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-'))} 
+                  onChange={e => setPageSlug(sanitizeSlug(e.target.value))} 
                   placeholder="about" 
                   required
                   disabled={!isNewPage}
@@ -237,7 +239,7 @@ export default function PageEditorPage() {
                       alt="Hero preview" 
                       className="w-full h-32 object-cover"
                       onError={(e) => {
-                        e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200"%3E%3Crect fill="%23ddd" width="400" height="200"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle"%3EBild nicht verfügbar%3C/text%3E%3C/svg%3E';
+                        e.currentTarget.src = getFallbackImageUrl(400, 200);
                       }}
                     />
                   </div>
