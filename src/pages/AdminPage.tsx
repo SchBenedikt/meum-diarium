@@ -5,8 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { usePosts } from '@/hooks/use-posts';
-import { lexicon } from '@/data/lexicon';
-import { authors } from '@/data/authors';
+import { useAuthors } from '@/hooks/use-authors';
+import { useLexicon } from '@/hooks/use-lexicon';
+import { usePages } from '@/hooks/use-pages';
+import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry } from '@/lib/api';
 import { Link } from 'react-router-dom';
 import {
     Table,
@@ -16,29 +18,75 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings, LayoutDashboard, ArrowUpRight, Image as ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
-import { motion } from 'framer-motion';
-import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
-import { BlogPost } from '@/types/blog';
+import { BlogPost, LexiconEntry } from '@/types/blog';
 import { QuickStats } from '@/components/QuickStats';
 import { SearchFilter } from '@/components/SearchFilter';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function AdminPage() {
     const { t } = useLanguage();
+    const queryClient = useQueryClient();
     const { posts } = usePosts();
-    const [postRows, setPostRows] = useState<BlogPost[]>([]);
+    const { authors: authorEntries } = useAuthors();
+    const { lexicon: lexiconEntries } = useLexicon();
+    const { pages } = usePages();
+
+    // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
-    const [authorEntries, setAuthorEntries] = useState(() => ({ ...authors }));
-    const [lexiconEntries, setLexiconEntries] = useState(() => [...lexicon]);
-    const [filteredLexicon, setFilteredLexicon] = useState(lexicon);
+    const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);
+
+    // Initialize filtered lists when data loads
+    useEffect(() => {
+        if (posts) setFilteredPosts(posts);
+    }, [posts]);
 
     useEffect(() => {
-        if (posts && posts.length) {
-            setPostRows(posts);
-            setFilteredPosts(posts);
-        }
-    }, [posts]);
+        if (lexiconEntries) setFilteredLexicon(lexiconEntries);
+    }, [lexiconEntries]);
+
+    // Used for table display - derived from posts directly now
+    const postRows = posts || [];
+
+    const quickLinks = [
+        {
+            title: 'Beiträge',
+            description: 'Artikel verfassen, editieren und veröffentlichen',
+            href: '/admin/post/new',
+            icon: BookOpenText,
+        },
+        {
+            title: 'Lexikon',
+            description: 'Begriffe pflegen, Varianten und Übersetzungen',
+            href: '/admin/lexicon/new',
+            icon: LibraryBig,
+        },
+        {
+            title: 'Seiten',
+            description: 'Statische Seiten wie /about gestalten',
+            href: '/admin/pages/new',
+            icon: FileText,
+        },
+        {
+            title: 'Autoren',
+            description: 'Profile, Farben und Biografien verwalten',
+            href: '/admin/author/new',
+            icon: Users,
+        },
+        {
+            title: 'Medien',
+            description: 'Bilderbibliothek öffnen und Assets wiederverwenden',
+            href: '/admin/post/new',
+            icon: ImageIcon,
+        },
+        {
+            title: 'Einstellungen',
+            description: 'Branding, Sprache und PWA konfigurieren',
+            href: '/admin/settings',
+            icon: Settings,
+        },
+    ];
 
     const handlePostSearch = (query: string) => {
         if (!query) {
@@ -98,39 +146,29 @@ export default function AdminPage() {
         },
     ]), [authorEntries, lexiconEntries.length, postRows.length, pages.length]);
 
-    const [pages, setPages] = useState<Array<{ slug: string; title: string; path: string }>>([]);
+    const recentContent = useMemo(() => {
+        const postItems = (postRows || []).map(post => ({
+            id: post.id,
+            title: post.title,
+            type: 'Beitrag',
+            meta: post.author,
+            viewPath: `/${post.author}/post/${post.slug}`,
+            editPath: `/admin/post/${post.author}/${post.slug}`,
+            date: post.historicalDate || '—',
+        }));
 
-    useEffect(() => {
-        async function fetchPages() {
-            try {
-                const res = await fetch('/api/pages');
-                if (res.ok) {
-                    const data = await res.json();
-                    setPages(data);
-                } else {
-                    // Fallback to default if API fails
-                    setPages([
-                        {
-                            slug: 'about',
-                            title: 'About / Projektvorstellung',
-                            path: '/about',
-                        }
-                    ]);
-                }
-            } catch (error) {
-                console.error('Failed to fetch pages', error);
-                // Fallback to default
-                setPages([
-                    {
-                        slug: 'about',
-                        title: 'About / Projektvorstellung',
-                        path: '/about',
-                    }
-                ]);
-            }
-        }
-        fetchPages();
-    }, []);
+        const pageItems = (pages || []).map(page => ({
+            id: page.slug,
+            title: page.title,
+            type: 'Seite',
+            meta: page.path,
+            viewPath: page.path,
+            editPath: `/admin/pages/${page.slug}`,
+            date: 'Statisch',
+        }));
+
+        return [...postItems, ...pageItems].slice(0, 6);
+    }, [pages, postRows]);
 
     const handleDeletePost = async (id: string) => {
         if (!window.confirm('Beitrag wirklich löschen?')) return;
@@ -138,13 +176,9 @@ export default function AdminPage() {
         if (!post) return;
 
         try {
-            const res = await fetch(`/api/posts/${post.author}/${post.slug}`, { method: 'DELETE' });
-            if (res.ok) {
-                toast.success('Beitrag gelöscht');
-                setPostRows(prev => prev.filter(p => p.id !== id));
-            } else {
-                toast.error('Fehler beim Löschen');
-            }
+            await removePost(post.author, post.slug);
+            toast.success('Beitrag gelöscht');
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
         } catch (e) {
             toast.error('Fehler beim Löschen');
         }
@@ -154,17 +188,9 @@ export default function AdminPage() {
         if (!window.confirm('Autor wirklich löschen? Alle Beiträge bleiben erhalten.')) return;
 
         try {
-            const res = await fetch(`/api/authors/${authorId}`, { method: 'DELETE' });
-            if (res.ok) {
-                toast.success('Autor gelöscht');
-                setAuthorEntries(prev => {
-                    const updated = { ...prev };
-                    delete updated[authorId];
-                    return updated;
-                });
-            } else {
-                toast.error('Fehler beim Löschen');
-            }
+            await removeAuthor(authorId);
+            toast.success('Autor gelöscht');
+            queryClient.invalidateQueries({ queryKey: ['authors'] });
         } catch (e) {
             toast.error('Fehler beim Löschen');
         }
@@ -174,13 +200,9 @@ export default function AdminPage() {
         if (!window.confirm('Lexikon-Eintrag wirklich löschen?')) return;
 
         try {
-            const res = await fetch(`/api/lexicon/${slug}`, { method: 'DELETE' });
-            if (res.ok) {
-                toast.success('Eintrag gelöscht');
-                setLexiconEntries(prev => prev.filter(entry => entry.slug !== slug));
-            } else {
-                toast.error('Fehler beim Löschen');
-            }
+            await removeLexiconEntry(slug);
+            toast.success('Eintrag gelöscht');
+            queryClient.invalidateQueries({ queryKey: ['lexicon'] });
         } catch (e) {
             toast.error('Fehler beim Löschen');
         }
@@ -188,31 +210,116 @@ export default function AdminPage() {
 
     return (
         <div className="container mx-auto py-24 min-h-screen px-4">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                <div>
-                    <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Admin Dashboard</h1>
-                    <p className="text-muted-foreground">Inhalte in allen Sprachen verwalten.</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                    <Button variant="outline" size="sm" asChild>
-                        <Link to="/admin/settings">
-                            <Settings className="mr-2 h-4 w-4" /> Einstellungen
-                        </Link>
-                    </Button>
-                    <Button variant="outline" asChild>
-                        <Link to="/admin/post/new">
-                            <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
-                        </Link>
-                    </Button>
-                    <Button variant="secondary" asChild>
-                        <Link to="/admin/lexicon/new">
-                            <Plus className="mr-2 h-4 w-4" /> Lexikon-Eintrag
-                        </Link>
-                    </Button>
-                </div>
-            </div>
+            <div className="grid gap-6 mb-8">
+                <Card className="border-border/70 bg-gradient-to-r from-background to-background/40">
+                    <CardHeader className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                        <div className="space-y-1">
+                            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                                <LayoutDashboard className="h-4 w-4" />
+                                CMS Control Center
+                            </div>
+                            <CardTitle className="text-3xl font-display">Alle Inhalte an einem Ort steuern</CardTitle>
+                            <CardDescription>Beiträge, Seiten, Lexikon, Autoren und System-Settings – zentral verwalten.</CardDescription>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            <Button variant="outline" size="sm" asChild>
+                                <Link to="/admin/settings">
+                                    <Settings className="mr-2 h-4 w-4" /> Einstellungen
+                                </Link>
+                            </Button>
+                            <Button variant="outline" size="sm" asChild>
+                                <Link to="/admin/post/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" size="sm" asChild>
+                                <Link to="/admin/lexicon/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Lexikon-Eintrag
+                                </Link>
+                            </Button>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <QuickStats stats={stats} />
+                    </CardContent>
+                </Card>
 
-            <QuickStats stats={stats} />
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {quickLinks.map(link => (
+                        <Card key={link.title} className="hover:border-primary/40 transition-colors">
+                            <CardHeader className="flex flex-row items-start justify-between gap-4">
+                                <div className="space-y-1">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <link.icon className="h-4 w-4 text-primary" />
+                                        {link.title}
+                                    </CardTitle>
+                                    <CardDescription>{link.description}</CardDescription>
+                                </div>
+                                <Button variant="ghost" size="icon" asChild aria-label={`${link.title} öffnen`}>
+                                    <Link to={link.href}>
+                                        <ArrowUpRight className="h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            </CardHeader>
+                        </Card>
+                    ))}
+                </div>
+
+                <Card>
+                    <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div>
+                            <CardTitle>Zuletzt bearbeitet</CardTitle>
+                            <CardDescription>Schnell zurück in Beiträge, Seiten oder Lexikon-Einträge.</CardDescription>
+                        </div>
+                        <Button variant="outline" size="sm" asChild>
+                            <Link to="/admin/post/new">
+                                <Plus className="mr-2 h-4 w-4" /> Neuer Inhalt
+                            </Link>
+                        </Button>
+                    </CardHeader>
+                    <CardContent className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Titel</TableHead>
+                                    <TableHead>Typ</TableHead>
+                                    <TableHead>Info</TableHead>
+                                    <TableHead className="text-right">Aktionen</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {recentContent.length === 0 ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center text-muted-foreground py-6">
+                                            Noch keine Inhalte vorhanden.
+                                        </TableCell>
+                                    </TableRow>
+                                ) : (
+                                    recentContent.map(item => (
+                                        <TableRow key={item.id}>
+                                            <TableCell className="font-medium">{item.title}</TableCell>
+                                            <TableCell>{item.type}</TableCell>
+                                            <TableCell className="text-muted-foreground text-sm">{item.meta}</TableCell>
+                                            <TableCell className="text-right space-x-1">
+                                                <Button variant="ghost" size="icon" asChild>
+                                                    <Link to={item.viewPath} target="_blank" aria-label="Ansehen">
+                                                        <Eye className="h-4 w-4" />
+                                                    </Link>
+                                                </Button>
+                                                <Button variant="ghost" size="icon" asChild>
+                                                    <Link to={item.editPath} aria-label="Bearbeiten">
+                                                        <Edit className="h-4 w-4" />
+                                                    </Link>
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+            </div>
 
             <Tabs defaultValue="posts" className="w-full">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
@@ -268,27 +375,27 @@ export default function AdminPage() {
                                             </TableRow>
                                         ) : (
                                             filteredPosts.map((post) => (
-                                            <TableRow key={post.id}>
-                                                <TableCell className="font-medium">{post.title}</TableCell>
-                                                <TableCell className="capitalize">{post.author}</TableCell>
-                                                <TableCell>{post.historicalDate}</TableCell>
-                                                <TableCell className="text-right space-x-1">
-                                                    <Button variant="ghost" size="icon" asChild>
-                                                        <Link to={`/admin/post/${post.author}/${post.slug}`}>
-                                                            <Edit className="h-4 w-4" />
-                                                        </Link>
-                                                    </Button>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="text-destructive"
-                                                        onClick={() => handleDeletePost(post.id)}
-                                                        aria-label="Beitrag löschen"
-                                                    >
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
+                                                <TableRow key={post.id}>
+                                                    <TableCell className="font-medium">{post.title}</TableCell>
+                                                    <TableCell className="capitalize">{post.author}</TableCell>
+                                                    <TableCell>{post.historicalDate}</TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={`/admin/post/${post.author}/${post.slug}`}>
+                                                                <Edit className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="text-destructive"
+                                                            onClick={() => handleDeletePost(post.id)}
+                                                            aria-label="Beitrag löschen"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
                                             ))
                                         )}
                                     </TableBody>
@@ -314,33 +421,36 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {Object.entries(authorEntries).map(([key, author]) => (
-                                    <Card key={key} className="overflow-hidden border-border/60">
-                                        <div className="h-2 w-full" style={{ backgroundColor: author.color }} />
-                                        <CardHeader>
-                                            <CardTitle>{author.name}</CardTitle>
-                                            <CardDescription>{author.title}</CardDescription>
-                                        </CardHeader>
-                                        <CardContent>
-                                            <div className="flex gap-2">
-                                                <Button variant="outline" size="sm" className="flex-1" asChild>
-                                                    <Link to={`/admin/author/${key}`}>
-                                                        <Edit className="mr-2 h-4 w-4" /> Bearbeiten
-                                                    </Link>
-                                                </Button>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon"
-                                                    className="text-destructive"
-                                                    onClick={() => handleDeleteAuthor(key)}
-                                                    aria-label="Autor löschen"
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
+                                {Object.entries(authorEntries).map(([key, authorValue]) => {
+                                    const author = authorValue as import('@/types/blog').AuthorInfo;
+                                    return (
+                                        <Card key={key} className="overflow-hidden border-border/60">
+                                            <div className="h-2 w-full" style={{ backgroundColor: author.color }} />
+                                            <CardHeader>
+                                                <CardTitle>{author.name}</CardTitle>
+                                                <CardDescription>{author.title}</CardDescription>
+                                            </CardHeader>
+                                            <CardContent>
+                                                <div className="flex gap-2">
+                                                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                                                        <Link to={`/admin/author/${key}`}>
+                                                            <Edit className="mr-2 h-4 w-4" /> Bearbeiten
+                                                        </Link>
+                                                    </Button>
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
+                                                        className="text-destructive"
+                                                        onClick={() => handleDeleteAuthor(key)}
+                                                        aria-label="Autor löschen"
+                                                    >
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    )
+                                })}
                             </div>
                         </CardContent>
                     </Card>
@@ -384,29 +494,29 @@ export default function AdminPage() {
                                             </TableRow>
                                         ) : (
                                             filteredLexicon.map((entry) => (
-                                            <TableRow key={entry.slug}>
-                                                <TableCell className="font-medium">{entry.term}</TableCell>
-                                                <TableCell>{entry.category}</TableCell>
-                                                <TableCell className="text-xs text-muted-foreground max-w-[150px] truncate">
-                                                    {entry.variants?.join(', ')}
-                                                </TableCell>
-                                                <TableCell className="text-right space-x-1">
-                                                    <Button variant="ghost" size="icon" asChild>
-                                                        <Link to={`/admin/lexicon/${entry.slug}`}>
-                                                            <Edit className="h-4 w-4" />
-                                                        </Link>
-                                                    </Button>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="text-destructive"
-                                                        onClick={() => handleDeleteLexicon(entry.slug)}
-                                                        aria-label="Lexikon-Eintrag löschen"
-                                                    >
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
+                                                <TableRow key={entry.slug}>
+                                                    <TableCell className="font-medium">{entry.term}</TableCell>
+                                                    <TableCell>{entry.category}</TableCell>
+                                                    <TableCell className="text-xs text-muted-foreground max-w-[150px] truncate">
+                                                        {entry.variants?.join(', ')}
+                                                    </TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={`/admin/lexicon/${entry.slug}`}>
+                                                                <Edit className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="text-destructive"
+                                                            onClick={() => handleDeleteLexicon(entry.slug)}
+                                                            aria-label="Lexikon-Eintrag löschen"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
                                             ))
                                         )}
                                     </TableBody>
@@ -476,5 +586,3 @@ export default function AdminPage() {
         </div>
     );
 }
-
-

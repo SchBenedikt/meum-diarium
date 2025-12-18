@@ -1,22 +1,33 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Globe } from 'lucide-react';
-import { authors } from '@/data/authors';
+import { ArrowLeft, Save } from 'lucide-react';
+import { upsertAuthor } from '@/lib/cms-store';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { fetchAuthors } from '@/lib/api';
 
 export default function AuthorEditorPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const navigate = useNavigate();
-    const isEditMode = !!authorId;
+    const queryClient = useQueryClient();
+    const isEditMode = !!authorId && authorId !== 'new';
 
     const [loading, setLoading] = useState(false);
-    const existingAuthor = isEditMode ? authors[authorId] : null;
+
+    // Fetch authors from API
+    const { data: authorsMap, isLoading } = useQuery({
+        queryKey: ['authors'],
+        queryFn: fetchAuthors
+    });
+
+    const existingAuthor = (isEditMode && authorsMap) ? authorsMap[authorId!] : null;
 
     const [formData, setFormData] = useState({
         id: '',
@@ -90,18 +101,10 @@ export default function AuthorEditorPage() {
                 }
             };
 
-            const res = await fetch('/api/authors', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (res.ok) {
-                toast.success(isEditMode ? 'Autor aktualisiert' : 'Autor erstellt');
-                navigate('/admin');
-            } else {
-                toast.error('Fehler beim Speichern');
-            }
+            await upsertAuthor(payload);
+            queryClient.invalidateQueries({ queryKey: ['authors'] });
+            toast.success(isEditMode ? 'Autor aktualisiert' : 'Autor erstellt');
+            navigate('/admin');
         } catch (error) {
             console.error(error);
             toast.error('Fehler beim Speichern');
@@ -113,6 +116,17 @@ export default function AuthorEditorPage() {
     const updateField = (field: string, value: any) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
+
+    const updateTranslation = (lang: 'en' | 'la', field: string, value: string) => {
+        setFormData(prev => ({
+            ...prev,
+            [lang]: { ...prev[lang], [field]: value }
+        }));
+    };
+
+    if (isLoading && isEditMode) {
+        return <div className="min-h-screen pt-20 text-center">Lade Autor...</div>;
+    }
 
     return (
         <div className="min-h-screen bg-background pt-16">
@@ -147,12 +161,20 @@ export default function AuthorEditorPage() {
                         <CardContent className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label>Name (Deutsch)</Label>
+                                    <Label>Name (ID)</Label>
+                                    <Input
+                                        value={formData.id}
+                                        onChange={e => updateField('id', e.target.value)}
+                                        placeholder="caesar"
+                                        disabled={isEditMode}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Anzeigename</Label>
                                     <Input
                                         value={formData.name}
                                         onChange={e => updateField('name', e.target.value)}
                                         placeholder="Gaius Julius Caesar"
-                                        required
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -163,35 +185,23 @@ export default function AuthorEditorPage() {
                                         placeholder="Gaius Iulius Caesar"
                                     />
                                 </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label>ID (URL)</Label>
-                                    <Input
-                                        value={formData.id}
-                                        onChange={e => updateField('id', e.target.value)}
-                                        placeholder="Auto-generiert"
-                                        disabled={isEditMode}
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>Titel</Label>
+                                    <Label>Titel / Rolle</Label>
                                     <Input
                                         value={formData.title}
                                         onChange={e => updateField('title', e.target.value)}
-                                        placeholder="Dictator Perpetuo"
+                                        placeholder="Staatsmann & Feldherr"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div className="space-y-2">
-                                    <Label>Lebensjahre (Text)</Label>
+                                    <Label>Zeitraum (Text)</Label>
                                     <Input
                                         value={formData.years}
                                         onChange={e => updateField('years', e.target.value)}
-                                        placeholder="100 – 44 v. Chr."
+                                        placeholder="100 v. Chr. - 44 v. Chr."
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -199,8 +209,7 @@ export default function AuthorEditorPage() {
                                     <Input
                                         type="number"
                                         value={formData.birthYear}
-                                        onChange={e => updateField('birthYear', parseInt(e.target.value) || 0)}
-                                        placeholder="-100"
+                                        onChange={e => updateField('birthYear', parseInt(e.target.value))}
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -208,61 +217,61 @@ export default function AuthorEditorPage() {
                                     <Input
                                         type="number"
                                         value={formData.deathYear}
-                                        onChange={e => updateField('deathYear', parseInt(e.target.value) || 0)}
-                                        placeholder="-44"
+                                        onChange={e => updateField('deathYear', parseInt(e.target.value))}
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <Label>Beschreibung (Deutsch)</Label>
+                                <Label>Kurzbeschreibung (DE)</Label>
                                 <Textarea
                                     value={formData.description}
                                     onChange={e => updateField('description', e.target.value)}
-                                    placeholder="Kurze Biografie des Autors..."
-                                    rows={3}
+                                    placeholder="Kurze Biografie..."
                                 />
                             </div>
                         </CardContent>
                     </Card>
 
-                    {/* Appearance */}
+                    {/* Styling */}
                     <Card>
                         <CardHeader>
                             <CardTitle>Erscheinungsbild</CardTitle>
-                            <CardDescription>Farben und Bilder für die Autorenseite</CardDescription>
+                            <CardDescription>Farbschema und Bilder</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label>Theme-Klasse</Label>
-                                    <Input
-                                        value={formData.theme}
-                                        onChange={e => updateField('theme', e.target.value)}
-                                        placeholder="theme-caesar"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>Akzentfarbe (HSL)</Label>
+                                    <Label>Farbe (HSL od. Hex)</Label>
                                     <div className="flex gap-2">
+                                        <div className="w-8 h-8 rounded border" style={{ backgroundColor: formData.color }} />
                                         <Input
                                             value={formData.color}
                                             onChange={e => updateField('color', e.target.value)}
-                                            placeholder="hsl(25, 95%, 53%)"
-                                        />
-                                        <div
-                                            className="w-10 h-10 rounded-lg border"
-                                            style={{ backgroundColor: formData.color }}
                                         />
                                     </div>
                                 </div>
+                                <div className="space-y-2">
+                                    <Label>Theme Class</Label>
+                                    <Select value={formData.theme} onValueChange={(val) => updateField('theme', val)}>
+                                        <SelectTrigger>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="theme-caesar">Caesar (Orange)</SelectItem>
+                                            <SelectItem value="theme-cicero">Cicero (Blau)</SelectItem>
+                                            <SelectItem value="theme-augustus">Augustus (Lila)</SelectItem>
+                                            <SelectItem value="theme-seneca">Seneca (Rot)</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
                             <div className="space-y-2">
-                                <Label>Hero-Bild URL</Label>
+                                <Label>Hero Image URL</Label>
                                 <Input
                                     value={formData.heroImage}
                                     onChange={e => updateField('heroImage', e.target.value)}
-                                    placeholder="/images/caesar-hero.jpg"
+                                    placeholder="/authors/caesar.jpg"
                                 />
                             </div>
                         </CardContent>
@@ -271,58 +280,49 @@ export default function AuthorEditorPage() {
                     {/* Translations */}
                     <Card>
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <Globe className="h-5 w-5" />
-                                Übersetzungen
-                            </CardTitle>
+                            <CardTitle>Übersetzungen</CardTitle>
+                            <CardDescription>Titel und Beschreibung in anderen Sprachen</CardDescription>
                         </CardHeader>
-                        <CardContent>
-                            <Tabs defaultValue="en">
-                                <TabsList className="grid w-full grid-cols-2 mb-4">
-                                    <TabsTrigger value="en">🇬🇧 English</TabsTrigger>
-                                    <TabsTrigger value="la">🏛️ Latinum</TabsTrigger>
-                                </TabsList>
-
-                                <TabsContent value="en" className="space-y-4">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-4">
+                                <h3 className="font-medium text-sm text-muted-foreground border-b pb-1">English</h3>
+                                <div className="grid grid-cols-1 gap-4">
                                     <div className="space-y-2">
-                                        <Label>Title (English)</Label>
+                                        <Label>Title (EN)</Label>
                                         <Input
                                             value={formData.en.title}
-                                            onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, title: e.target.value } }))}
-                                            placeholder="Dictator for Life"
+                                            onChange={e => updateTranslation('en', 'title', e.target.value)}
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label>Description (English)</Label>
+                                        <Label>Description (EN)</Label>
                                         <Textarea
                                             value={formData.en.description}
-                                            onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, description: e.target.value } }))}
-                                            placeholder="Short biography in English..."
-                                            rows={3}
+                                            onChange={e => updateTranslation('en', 'description', e.target.value)}
                                         />
                                     </div>
-                                </TabsContent>
+                                </div>
+                            </div>
 
-                                <TabsContent value="la" className="space-y-4">
+                            <div className="space-y-4">
+                                <h3 className="font-medium text-sm text-muted-foreground border-b pb-1">Latinum</h3>
+                                <div className="grid grid-cols-1 gap-4">
                                     <div className="space-y-2">
-                                        <Label>Titulus (Latine)</Label>
+                                        <Label>Titulus (LA)</Label>
                                         <Input
                                             value={formData.la.title}
-                                            onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, title: e.target.value } }))}
-                                            placeholder="Dictator Perpetuus"
+                                            onChange={e => updateTranslation('la', 'title', e.target.value)}
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label>Descriptio (Latine)</Label>
+                                        <Label>Descriptio (LA)</Label>
                                         <Textarea
                                             value={formData.la.description}
-                                            onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, description: e.target.value } }))}
-                                            placeholder="Brevis vita Latine..."
-                                            rows={3}
+                                            onChange={e => updateTranslation('la', 'description', e.target.value)}
                                         />
                                     </div>
-                                </TabsContent>
-                            </Tabs>
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
                 </form>

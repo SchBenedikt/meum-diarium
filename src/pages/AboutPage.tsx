@@ -106,10 +106,10 @@ function GeneralAboutPage() {
   const customHighlights = pageTranslation?.highlights || pageContent?.highlights;
   const highlights = customHighlights && customHighlights.length > 0
     ? customHighlights.map((item, index) => ({
-        icon: defaultHighlights[index]?.icon || BookOpen,
-        title: item.title,
-        desc: item.description,
-      }))
+      icon: defaultHighlights[index]?.icon || BookOpen,
+      title: item.title,
+      desc: item.description,
+    }))
     : defaultHighlights;
 
   useEffect(() => {
@@ -257,7 +257,7 @@ function AuthorAboutPage() {
               animate={{ opacity: 1, scale: 1 }}
               className="relative shrink-0"
             >
-              <div className="h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 border-background shadow-none ring-2 ring-border/50">
+              <div className="h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 border-background ring-2 ring-border/50">
                 <img src={authorInfo.heroImage} alt={authorInfo.name} className="h-full w-full object-cover" />
               </div>
               <div className="absolute bottom-0 right-0 bg-background rounded-full p-1.5 border border-border">

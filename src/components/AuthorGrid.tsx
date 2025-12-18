@@ -6,14 +6,16 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthorInfo } from '@/lib/author-translator';
 import { Card, CardContent } from '@/components/ui/card';
+import { ModernBackground } from './ui/ModernBackground';
 
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-16 sm:py-20 md:py-24 bg-background relative overflow-hidden">
+      <ModernBackground />
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,16 +51,17 @@ export function AuthorGrid() {
                   onClick={() => setCurrentAuthor(author.id)}
                   className="block h-full group outline-none touch-manipulation"
                 >
-                  <Card className="h-full overflow-hidden border-border/50 transition-all duration-300 group-hover:border-primary/30 group-hover:-translate-y-1 active:scale-[0.98]">
+                  <Card className="h-full overflow-hidden bg-surface-container-low/30 backdrop-blur-md border border-white/5 transition-all duration-500 group-hover:border-primary/40 group-hover:-translate-y-2 group-hover:scale-[1.01] relative">
+                    <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
                     <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
                       <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
                     </div>
-                    <CardContent className="p-5 sm:p-6">
+                    <CardContent className="p-5 sm:p-6 relative">
                       <h3 className="font-display text-lg sm:text-xl font-medium mb-2 group-hover:text-primary transition-colors">
                         {translatedInfo.name}
                       </h3>

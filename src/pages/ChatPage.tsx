@@ -56,7 +56,7 @@ export default function ChatPage() {
             {/* Sidebar for context/history - Hidden on mobile */}
             <div className="hidden md:flex w-80 border-r border-border bg-background/60 backdrop-blur-xl flex-col p-6 z-20">
                 <div className="flex items-center gap-4 mb-10">
-                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center shadow-inner">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
                         <MessageCircle className="h-6 w-6 text-primary" />
                     </div>
                     <div>
@@ -71,7 +71,7 @@ export default function ChatPage() {
                 <div className="space-y-8">
                     <div className="space-y-2">
                         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">Info</h3>
-                        <div className="p-4 rounded-xl bg-secondary/30 border border-white/5 shadow-sm backdrop-blur-sm">
+                        <div className="p-4 rounded-xl bg-secondary/30 border border-white/5 backdrop-blur-sm">
                             <p className="text-xs text-muted-foreground leading-relaxed">
                                 Du sprichst mit einer KI, die auf den Werken von <span className="text-foreground font-medium">{author.name}</span> trainiert wurde. Stelle präzise historische Fragen.
                             </p>
@@ -143,7 +143,7 @@ export default function ChatPage() {
                                 <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-foreground'}`}>
                                     {msg.role === 'user' ? <User className="h-4 w-4" /> : <img src={author.heroImage} className="h-full w-full object-cover rounded-full" />}
                                 </div>
-                                <div className={`rounded-2xl p-4 max-w-[80%] ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card border border-border/50 shadow-sm'}`}>
+                                <div className={`rounded-2xl p-4 max-w-[80%] ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card border border-border/50'}`}>
                                     <p className="text-sm md:text-base leading-relaxed">{msg.content}</p>
                                 </div>
                             </motion.div>

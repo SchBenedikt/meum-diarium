@@ -3,7 +3,8 @@ import { useAuthor } from '@/context/AuthorContext';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BlogList } from './BlogList';
-import { fadeUp, scaleIn, defaultTransition } from '@/lib/motion';
+import { fadeUp, scaleIn, defaultTransition, float } from '@/lib/motion';
+import { ModernBackground } from './ui/ModernBackground';
 
 export function HeroSection() {
   const { authorInfo, currentAuthor } = useAuthor();
@@ -11,11 +12,14 @@ export function HeroSection() {
   if (!authorInfo || !currentAuthor) return null;
 
   return (
-    <section className="relative flex items-center overflow-hidden" style={{ minHeight: 'calc(100vh - 4rem)'}}>
-      {/* Background gradient */}
-      <div className="absolute inset-0 hero-gradient" />
+    <section className="relative flex items-center overflow-hidden bg-background" style={{ minHeight: 'calc(100vh - 4rem)' }}>
+      {/* Dynamic Background */}
+      <ModernBackground />
 
-      <div className="container mx-auto relative pt-16 sm:pt-20">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-[1]" />
+
+      <div className="container mx-auto relative pt-16 sm:pt-20 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
           <div className="space-y-6">
@@ -74,20 +78,24 @@ export function HeroSection() {
             transition={defaultTransition}
             className="relative hidden lg:block"
           >
-            <div className="relative rounded-lg  aspect-[4/5]">
-              <div className="absolute inset-0 overflow-hidden rounded-lg">
-                <img 
+            <motion.div
+              variants={float}
+              animate="animate"
+              className="relative rounded-3xl aspect-[4/5] overflow-hidden border border-white/10 backdrop-blur-sm bg-white/5"
+            >
+              <div className="absolute inset-0 overflow-hidden">
+                <img
                   src={authorInfo.heroImage}
                   alt={authorInfo.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-foreground/70 text-sm mb-1 font-medium">{authorInfo.latinName}</p>
-                <p className="text-foreground text-lg font-display">{authorInfo.years}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8">
+                <p className="text-primary font-medium tracking-wider text-xs uppercase mb-2 opacity-80">{authorInfo.latinName}</p>
+                <p className="text-foreground text-2xl font-display font-semibold">{authorInfo.years}</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

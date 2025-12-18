@@ -29,7 +29,7 @@ export function QuickStats({ stats }: QuickStatsProps) {
           animate="visible"
           transition={{ delay: index * 0.1 }}
         >
-          <Card className="h-full hover:shadow-lg transition-shadow">
+          <Card className="h-full border-border/50 hover:border-primary/40 hover:bg-surface-container-low/50 transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{stat.label}</CardTitle>
               <stat.icon className="h-4 w-4 text-muted-foreground" />

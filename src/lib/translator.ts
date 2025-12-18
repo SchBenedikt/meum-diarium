@@ -1,9 +1,10 @@
 import { Language, Author, BlogPost, LexiconEntry, Work, AuthorInfo, TimelineEvent } from '@/types/blog';
 import { authors } from '@/data/authors';
-import { lexicon } from '@/data/lexicon';
+import { lexicon as baseLexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
 import { timelineEvents } from '@/data/timeline';
 import { getAllPosts } from '@/data/posts';
+import { getPostsWithOverrides } from '@/lib/cms-store';
 import { getTranslatedPost as getManuallyTranslatedPost } from '@/lib/post-translator';
 import { 
   getTranslatedTimelineEvents as getManuallyTranslatedTimelineEvents,
@@ -11,6 +12,7 @@ import {
   getTranslatedLexiconEntry as getManuallyTranslatedLexiconEntry,
   getTranslatedWork as getManuallyTranslatedWork
 } from '@/lib/content-translator';
+import { getLexiconWithOverrides, getAuthorsWithOverrides } from '@/lib/cms-store';
 
 // Simple in-memory cache to avoid re-translating the same text within a session.
 const translationCache = new Map<string, string>();
@@ -63,7 +65,7 @@ async function translateArray(arr: string[], to: Language): Promise<string[]> {
 }
 
 export async function getTranslatedPost(lang: Language, authorId: Author, slug: string): Promise<BlogPost | null> {
-    const allPosts = await getAllPosts();
+    const allPosts = getPostsWithOverrides(await getAllPosts());
     const post = allPosts.find(p => p.author === authorId && p.slug === slug);
     if (!post) return null;
     if (lang.startsWith('de')) return post;
@@ -93,6 +95,7 @@ export async function getTranslatedPost(lang: Language, authorId: Author, slug: 
 }
 
 export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry[]> {
+    const lexicon = getLexiconWithOverrides(baseLexicon);
     if (lang.startsWith('de')) return lexicon;
     
     // Verwende zuerst manuelle Übersetzungen
@@ -137,6 +140,7 @@ export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry
 }
 
 export async function getTranslatedLexiconEntry(lang: Language, slug: string): Promise<LexiconEntry | null> {
+    const lexicon = getLexiconWithOverrides(baseLexicon);
     const entry = lexicon.find(e => e.slug === slug);
     if (!entry) return null;
     if (lang.startsWith('de')) return entry;
@@ -161,7 +165,8 @@ export async function getTranslatedLexiconEntry(lang: Language, slug: string): P
 
 
 export async function getTranslatedAuthor(lang: Language, authorId: Author): Promise<AuthorInfo | null> {
-    const author = authors[authorId];
+    const authorMap = getAuthorsWithOverrides(authors);
+    const author = authorMap[authorId];
     if (!author) return null;
     if (lang.startsWith('de')) return author;
 
@@ -173,7 +178,7 @@ export async function getTranslatedAuthor(lang: Language, authorId: Author): Pro
 export async function getTranslatedAuthors(lang: Language): Promise<Record<string, AuthorInfo>> {
     // Autoren-Übersetzungen werden jetzt über die zentrale Übersetzungsfunktion t() abgerufen
     // Diese Funktion ist hauptsächlich für Kompatibilität vorhanden
-    return authors;
+    return getAuthorsWithOverrides(authors);
 }
 
 

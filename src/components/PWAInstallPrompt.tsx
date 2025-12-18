@@ -103,7 +103,7 @@ export function PWAInstallPrompt() {
 
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     if (outcome === 'accepted') {
       console.log('User accepted the install prompt');
       localStorage.removeItem('pwa-prompt-dismissed');
@@ -111,7 +111,7 @@ export function PWAInstallPrompt() {
       console.log('User dismissed the install prompt');
       localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
     }
-    
+
     setDeferredPrompt(null);
     setShowAndroidPrompt(false);
   };
@@ -140,20 +140,20 @@ export function PWAInstallPrompt() {
               {t('installAppDescription') || 'Installiere Meum Diarium für schnellen Zugriff und ein besseres Erlebnis.'}
             </SheetDescription>
           </SheetHeader>
-          
+
           <div className="mt-6 space-y-3">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="w-full h-14 text-lg rounded-xl"
               onClick={handleInstallClick}
             >
               <Download className="mr-2 h-5 w-5" />
               {t('install') || 'Installieren'}
             </Button>
-            
-            <Button 
-              size="lg" 
-              variant="ghost" 
+
+            <Button
+              size="lg"
+              variant="ghost"
               className="w-full h-14 text-lg rounded-xl"
               onClick={handleDismiss}
             >
@@ -188,7 +188,7 @@ export function PWAInstallPrompt() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border rounded-t-3xl shadow-2xl safe-bottom"
+            className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border rounded-t-3xl safe-bottom"
           >
             <div className="p-6">
               <div className="flex items-start justify-between mb-4">

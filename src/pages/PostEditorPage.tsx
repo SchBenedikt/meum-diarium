@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -10,21 +11,30 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { BlogPost, Author } from '@/types/blog';
 import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye, Globe } from 'lucide-react';
-import { usePosts } from '@/hooks/use-posts';
+import { upsertPost } from '@/lib/cms-store';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { fetchPost } from '@/lib/api';
 
 export default function PostEditorPage() {
     const { author, slug } = useParams<{ author: string; slug: string }>();
     const navigate = useNavigate();
-    const { posts } = usePosts();
+    const queryClient = useQueryClient();
     const isEditMode = !!slug;
 
     const [loading, setLoading] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState<'de' | 'en' | 'la'>('de');
 
-    // Find existing post if editing
-    const existingPost = isEditMode ? posts.find(p => p.author === author && p.slug === slug) : null;
+    // Fetch post data if editing
+    const { data: postData, isLoading: isFetching } = useQuery({
+        queryKey: ['post', author, slug],
+        queryFn: () => {
+            if (!isEditMode || !author || !slug) return null;
+            return fetchPost(author, slug);
+        },
+        enabled: isEditMode
+    });
 
-    // Form state for all languages
+    // Form state definition
     const [formData, setFormData] = useState({
         // Basic info
         title: '',
@@ -58,47 +68,47 @@ export default function PostEditorPage() {
         }
     });
 
-    // Load existing post data
+    // Populate form when data arrives
     useEffect(() => {
-        if (existingPost) {
+        if (postData) {
             setFormData({
-                title: existingPost.title,
-                latinTitle: existingPost.latinTitle || '',
-                slug: existingPost.slug,
-                author: existingPost.author,
-                excerpt: existingPost.excerpt,
-                historicalDate: existingPost.historicalDate,
-                historicalYear: existingPost.historicalYear,
-                tags: existingPost.tags,
-                coverImage: existingPost.coverImage || '',
-                readingTime: existingPost.readingTime,
+                title: postData.title,
+                latinTitle: postData.latinTitle || '',
+                slug: postData.slug,
+                author: postData.author,
+                excerpt: postData.excerpt,
+                historicalDate: postData.historicalDate,
+                historicalYear: postData.historicalYear,
+                tags: postData.tags || [],
+                coverImage: postData.coverImage || '',
+                readingTime: postData.readingTime || 5,
                 de: {
-                    diary: existingPost.content.diary,
-                    scientific: existingPost.content.scientific
+                    diary: postData.content?.diary || '',
+                    scientific: postData.content?.scientific || ''
                 },
                 en: {
-                    title: existingPost.translations?.en?.title || '',
-                    excerpt: existingPost.translations?.en?.excerpt || '',
-                    diary: existingPost.translations?.en?.content?.diary || '',
-                    scientific: existingPost.translations?.en?.content?.scientific || ''
+                    title: postData.translations?.en?.title || '',
+                    excerpt: postData.translations?.en?.excerpt || '',
+                    diary: postData.translations?.en?.content?.diary || '',
+                    scientific: postData.translations?.en?.content?.scientific || ''
                 },
                 la: {
-                    title: existingPost.translations?.la?.title || '',
-                    excerpt: existingPost.translations?.la?.excerpt || '',
-                    diary: existingPost.translations?.la?.content?.diary || '',
-                    scientific: existingPost.translations?.la?.content?.scientific || ''
+                    title: postData.translations?.la?.title || '',
+                    excerpt: postData.translations?.la?.excerpt || '',
+                    diary: postData.translations?.la?.content?.diary || '',
+                    scientific: postData.translations?.la?.content?.scientific || ''
                 }
             });
         }
-    }, [existingPost]);
+    }, [postData]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const payload = {
-                id: existingPost?.id || Date.now().toString(),
+            const payload: BlogPost = {
+                id: postData?.id || Date.now().toString(),
                 slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
                 author: formData.author,
                 title: formData.title,
@@ -109,6 +119,7 @@ export default function PostEditorPage() {
                 tags: formData.tags,
                 coverImage: formData.coverImage,
                 readingTime: formData.readingTime,
+                date: new Date().toISOString().split('T')[0], // Add current date
                 content: {
                     diary: formData.de.diary,
                     scientific: formData.de.scientific
@@ -133,18 +144,13 @@ export default function PostEditorPage() {
                 }
             };
 
-            const res = await fetch('/api/posts', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (res.ok) {
-                toast.success(isEditMode ? 'Beitrag aktualisiert' : 'Beitrag erstellt');
-                navigate('/admin');
-            } else {
-                toast.error('Fehler beim Speichern');
+            await upsertPost(payload);
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
+            if (isEditMode) {
+                queryClient.invalidateQueries({ queryKey: ['post', payload.author, payload.slug] });
             }
+            toast.success(isEditMode ? 'Beitrag aktualisiert' : 'Beitrag erstellt');
+            navigate('/admin');
         } catch (error) {
             console.error(error);
             toast.error('Fehler beim Speichern');
@@ -164,6 +170,10 @@ export default function PostEditorPage() {
         }));
     };
 
+    if (isFetching && isEditMode) {
+        return <div className="min-h-screen pt-20 text-center">Lade Beitrag...</div>;
+    }
+
     return (
         <div className="min-h-screen bg-background pt-16">
             {/* Header */}
@@ -180,9 +190,9 @@ export default function PostEditorPage() {
                         </h1>
                     </div>
                     <div className="flex items-center gap-2 sm:gap-3">
-                        {isEditMode && existingPost && (
+                        {isEditMode && postData && (
                             <Button variant="outline" size="sm" asChild>
-                                <Link to={`/${existingPost.author}/post/${existingPost.slug}`} target="_blank">
+                                <Link to={`/${postData.author}/post/${postData.slug}`} target="_blank">
                                     <Eye className="h-4 w-4 sm:mr-2" />
                                     <span className="hidden sm:inline">Vorschau</span>
                                 </Link>

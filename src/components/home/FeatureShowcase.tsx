@@ -1,117 +1,111 @@
-import { useLanguage } from '@/context/LanguageContext';
+
 import { motion } from 'framer-motion';
-import {
-    Clock,
-    BookMarked,
-    Users,
-    FileText,
-    Languages,
-    Quote
-} from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
-
-interface Feature {
-    icon: React.ElementType;
-    titleKey: string;
-    titleFallback: string;
-    descKey: string;
-    descFallback: string;
-}
-
-const features: Feature[] = [
-    {
-        icon: Clock,
-        titleKey: 'featureTimelineTitle',
-        titleFallback: 'Interaktive Zeitleiste',
-        descKey: 'featureTimelineDesc',
-        descFallback: 'Erkunde die antike Geschichte chronologisch - von der Gründung Roms bis zum Fall des Imperiums.'
-    },
-    {
-        icon: BookMarked,
-        titleKey: 'featureLexiconTitle',
-        titleFallback: 'Latein-Lexikon',
-        descKey: 'featureLexiconDesc',
-        descFallback: 'Umfassendes Vokabular mit Definitionen, Beispielen und grammatischen Erklärungen.'
-    },
-    {
-        icon: Users,
-        titleKey: 'featureAuthorsTitle',
-        titleFallback: 'Römische Autoren',
-        descKey: 'featureAuthorsDesc',
-        descFallback: 'Lese Werke von Caesar, Cicero, Augustus und Seneca aus verschiedenen Perspektiven.'
-    },
-    {
-        icon: FileText,
-        titleKey: 'featureStudyNotesTitle',
-        titleFallback: 'Lernzettel',
-        descKey: 'featureStudyNotesDesc',
-        descFallback: 'Strukturierte Zusammenfassungen und Lernhilfen für jedes Werk.'
-    },
-    {
-        icon: Languages,
-        titleKey: 'featureBilingualTitle',
-        titleFallback: 'Zweisprachiges Lesen',
-        descKey: 'featureBilingualDesc',
-        descFallback: 'Lateinische Originaltexte mit deutschen Übersetzungen nebeneinander.'
-    },
-    {
-        icon: Quote,
-        titleKey: 'featureQuoteTitle',
-        titleFallback: 'Zitat des Tages',
-        descKey: 'featureQuoteDesc',
-        descFallback: 'Tägliche Inspiration aus der antiken Weisheit römischer Denker.'
-    }
-];
+import { useLanguage } from '@/context/LanguageContext';
+import { BookOpen, Languages, Quote, History, Database, Users } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { fadeUp, staggerContainer } from '@/lib/motion';
+import { ModernBackground } from '../ui/ModernBackground';
 
 export function FeatureShowcase() {
     const { t } = useLanguage();
 
+    const features = [
+        {
+            icon: BookOpen,
+            titleKey: 'featureStudyNotesTitle',
+            descKey: 'featureStudyNotesDesc',
+            color: 'text-blue-500',
+            bg: 'bg-blue-500/10'
+        },
+        {
+            icon: Languages,
+            titleKey: 'featureBilingualTitle',
+            descKey: 'featureBilingualDesc',
+            color: 'text-purple-500',
+            bg: 'bg-purple-500/10'
+        },
+        {
+            icon: Quote,
+            titleKey: 'featureQuoteTitle',
+            descKey: 'featureQuoteDesc',
+            color: 'text-amber-500',
+            bg: 'bg-amber-500/10'
+        },
+        {
+            icon: History,
+            titleKey: 'featureTimelineTitle',
+            descKey: 'featureTimelineDesc',
+            color: 'text-rose-500',
+            bg: 'bg-rose-500/10'
+        },
+        {
+            icon: Database,
+            titleKey: 'featureLexiconTitle',
+            descKey: 'featureLexiconDesc',
+            color: 'text-emerald-500',
+            bg: 'bg-emerald-500/10'
+        },
+        {
+            icon: Users,
+            titleKey: 'featureAuthorsTitle',
+            descKey: 'featureAuthorsDesc',
+            color: 'text-indigo-500',
+            bg: 'bg-indigo-500/10'
+        }
+    ];
+
     return (
-        <section className="py-24 bg-surface-container-low">
-            <div className="container mx-auto px-6">
+        <section className="py-20 sm:py-32 bg-background relative overflow-hidden">
+            {/* Background decorations - keep these as additional accents */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-3xl animate-blob" />
+                <div className="absolute top-[30%] right-[10%] w-[40%] h-[40%] rounded-full bg-secondary/10 blur-3xl animate-blob animation-delay-2000" />
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <motion.div
-                    variants={fadeUp()}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
-                    transition={defaultTransition}
-                    className="text-center mb-16"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer(0.1)}
+                    className="max-w-4xl mx-auto text-center mb-16"
                 >
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mb-5 tracking-tight text-foreground">
-                        {t('featuresSectionTitle') || 'Was dich erwartet'}
-                    </h2>
-                    <p className="text-muted-foreground max-w-xl mx-auto text-lg leading-relaxed">
-                        {t('featuresSectionSubtitle') || 'Alles was du brauchst, um die antike Welt zu entdecken'}
-                    </p>
+                    <motion.h2
+                        variants={fadeUp(0.1)}
+                        className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-foreground"
+                    >
+                        {t('featuresSectionTitle') || 'Funktionen entdecken'}
+                    </motion.h2>
+                    <motion.p
+                        variants={fadeUp(0.2)}
+                        className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
+                    >
+                        {t('featuresSectionSubtitle') || 'Mehr als nur ein Blog – ein umfassendes Lerntool.'}
+                    </motion.p>
                 </motion.div>
 
                 <motion.div
-                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
-                    variants={staggerContainer(0.08)}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={staggerContainer(0.05)}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
                 >
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={feature.titleKey}
-                            variants={fadeUp(index * 0.08, 24)}
-                        >
-                            <Card className="h-full border-border/50 hover:border-primary/30 transition-colors group">
-                                <CardHeader>
-                                    <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/15 transition-colors">
-                                        <feature.icon className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <CardTitle className="font-display text-xl font-medium text-foreground">
-                                        {t(feature.titleKey) || feature.titleFallback}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground leading-relaxed">
-                                        {t(feature.descKey) || feature.descFallback}
-                                    </p>
-                                </CardContent>
+                    {features.map((feature, i) => (
+                        <motion.div key={i} variants={fadeUp(0.3 + i * 0.05)}>
+                            <Card className="h-full p-6 sm:p-8 bg-surface-container-low/30 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:-translate-y-2 hover:bg-surface-container-low/50 transition-all duration-300 group relative overflow-hidden">
+                                {/* Subtle background glow on hover */}
+                                <div className={`absolute -right-8 -bottom-8 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${feature.bg}`} />
+
+                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${feature.bg}`}>
+                                    <feature.icon className={`w-7 h-7 ${feature.color}`} />
+                                </div>
+                                <h3 className="font-display text-xl font-medium mb-3 group-hover:text-primary transition-colors">
+                                    {t(feature.titleKey)}
+                                </h3>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    {t(feature.descKey)}
+                                </p>
                             </Card>
                         </motion.div>
                     ))}

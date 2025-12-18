@@ -44,3 +44,22 @@ export const staggerContainer = (stagger = 0.08): Variants => ({
     },
   },
 });
+
+export const float: Variants = {
+  animate: {
+    y: [0, -10, 0],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+export const parallax = (multiplier = 1): Variants => ({
+  initial: { y: 0 },
+  animate: (custom: number) => ({
+    y: custom * multiplier,
+    transition: { type: "spring", stiffness: 100, damping: 30 }
+  })
+});

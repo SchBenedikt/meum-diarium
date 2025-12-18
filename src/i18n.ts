@@ -22,8 +22,11 @@ i18n
             escapeValue: false, // not needed for react as it escapes by default
         },
         detection: {
-            order: ['navigator'],
-            caches: [],
+            // Disable native storage lookups to prevent "Access to storage denied" errors
+            order: ['navigator', 'htmlTag'],
+            caches: [], // No caching to storage
+            lookupLocalStorage: undefined,
+            lookupSessionStorage: undefined,
         }
     });
 

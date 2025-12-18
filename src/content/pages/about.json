@@ -1,0 +1,35 @@
+{
+  "slug": "about",
+  "heroTitle": "",
+  "heroSubtitle": "",
+  "heroImage": "",
+  "introText": "",
+  "sections": [],
+  "highlights": [
+    {
+      "title": "",
+      "description": "",
+      "icon": "BookOpen"
+    }
+  ],
+  "translations": {
+    "en": {
+      "highlights": [
+        {
+          "title": "",
+          "description": "",
+          "icon": "BookOpen"
+        }
+      ]
+    },
+    "la": {
+      "highlights": [
+        {
+          "title": "",
+          "description": "",
+          "icon": "BookOpen"
+        }
+      ]
+    }
+  }
+}
