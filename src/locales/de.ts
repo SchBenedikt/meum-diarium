@@ -47,7 +47,7 @@ export const de = {
     timeline: 'Lebenslauf',
     moreAbout: 'Mehr über {{name}}',
     otherWorks: 'Andere Werke',
-    heroSubtitle: 'Erleben Sie Geschichte durch die persönlichen Kommentare der größten Persönlichkeiten Roms. Von Caesars Siegen bis zu Senecas Weisheit.',
+    heroSubtitle: 'Geschichte erleben: Caesars Siege, Senecas Weisheit.',
     discoverAuthorsBtn: 'Autoren entdecken',
     timelineDesc: 'Verfolgen Sie die wichtigsten Ereignisse.',
     lexiconDesc: 'Ein Nachschlagewerk für Begriffe.',

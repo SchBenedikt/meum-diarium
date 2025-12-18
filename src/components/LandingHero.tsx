@@ -69,7 +69,7 @@ export function LandingHero() {
 
             <motion.h1
               variants={fadeUp(0.2)}
-              className="font-display text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] mb-6 md:mb-8 leading-[0.85] tracking-tighter font-bold text-foreground"
+              className="font-display text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl mb-6 md:mb-8 leading-[0.85] tracking-tighter font-bold text-foreground whitespace-nowrap"
             >
               Meum <span className="text-transparent bg-clip-text bg-gradient-to-b from-primary via-primary/80 to-primary/40">Diarium</span>
             </motion.h1>
@@ -82,7 +82,7 @@ export function LandingHero() {
             </motion.p>
 
             <motion.div
-              variants={fadeUp(0.4)}
+              variants={fadeUp(0.5)}
               className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16"
             >
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}>
@@ -102,27 +102,32 @@ export function LandingHero() {
                 </Button>
               </motion.div>
             </motion.div>
-
-            {/* Stats Bar - Centered in hero flow */}
-            <motion.div
-              variants={fadeUp(0.6)}
-              className="w-full max-w-4xl mt-16"
-            >
-              <div className="bg-card/30 backdrop-blur-xl border border-border/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4 hover:border-primary/50 transition-all duration-500 group/stats">
-                {stats.map((stat, i) => (
-                  <div key={i} className="flex flex-col items-center text-center gap-2 group transition-transform hover:-translate-y-1">
-                    <div className="flex items-center gap-3">
-                      <stat.icon className="w-6 h-6 text-primary group-hover/stats:scale-110 group-hover/stats:rotate-3 transition-transform duration-500" />
-                      <span className="text-3xl sm:text-4xl font-display font-bold text-foreground">{stat.value}</span>
-                    </div>
-                    <span className="text-xs sm:text-sm text-muted-foreground uppercase tracking-[0.2em] font-bold">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {/* Overlapping Stats Card connecting sections */}
+      <motion.div
+        variants={fadeUp(0.2)}
+        initial={false}
+        className="relative z-30 -mt-20 sm:-mt-28 mb-[-3rem]"
+      >
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="mx-auto w-full max-w-4xl">
+            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4 shadow-2xl">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col items-center text-center gap-2">
+                  <div className="flex items-center gap-3">
+                    <stat.icon className="w-6 h-6 text-primary" />
+                    <span className="text-3xl sm:text-4xl font-display font-bold text-foreground">{stat.value}</span>
+                  </div>
+                  <span className="text-sm sm:text-base text-foreground tracking-wide font-medium">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Storytelling Section: History Alive */}
       <section className="py-32 relative z-10 overflow-hidden bg-background">
