@@ -24,25 +24,25 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-medium mb-4 text-sm sm:text-base">{t('navigation')}</h4>
+            <h4 className="font-display font-medium mb-4 text-sm sm:text-base uppercase tracking-wider">{t('navigation')}</h4>
             <ul className="space-y-3 text-sm sm:text-base">
               <li>
-                <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
+                <Link to="/" className="font-display text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
                   {t('authors')}
                 </Link>
               </li>
               <li>
-                <Link to="/timeline" className="text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
+                <Link to="/timeline" className="font-display text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
                   {t('navTimeline')}
                 </Link>
               </li>
               <li>
-                <Link to="/lexicon" className="text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
+                <Link to="/lexicon" className="font-display text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
                   {t('navLexicon')}
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
+                <Link to="/about" className="font-display text-muted-foreground hover:text-foreground transition-colors inline-block py-1 touch-manipulation">
                   {t('navAbout')}
                 </Link>
               </li>
@@ -51,17 +51,17 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="font-medium mb-4 text-sm sm:text-base">{t('followUs')}</h4>
+            <h4 className="font-display font-medium mb-4 text-sm sm:text-base uppercase tracking-wider">{t('followUs')}</h4>
             <div className="flex gap-3">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors active:scale-95 touch-manipulation"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors active:scale-95 touch-manipulation"
                 aria-label="Twitter"
               >

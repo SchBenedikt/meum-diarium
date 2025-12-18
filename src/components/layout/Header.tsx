@@ -55,11 +55,11 @@ export function Header() {
           <div className="flex h-14 sm:h-16 items-center justify-between gap-3">
             {/* Logo */}
             <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 sm:gap-3 group min-w-0">
-              <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105 flex-shrink-0">
+              <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105 flex-shrink-0">
                 <Scroll className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
               </div>
               <div className="hidden xs:block min-w-0">
-                <span className="font-display text-base sm:text-lg truncate">{t('appName')}</span>
+                <span className="font-display text-base sm:text-lg truncate italic">{t('appName')}</span>
               </div>
             </Link>
 
@@ -70,7 +70,7 @@ export function Header() {
                   key={item.href}
                   to={item.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-lg transition-all",
+                    "px-4 py-2 text-sm font-display font-medium rounded-lg transition-all",
                     location.pathname === item.href
                       ? "bg-secondary text-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
@@ -94,7 +94,7 @@ export function Header() {
                   ⌘K
                 </kbd>
               </button>
-              
+
               <div className="hidden md:flex items-center gap-2">
                 <LanguageSwitcher />
                 <AuthorSwitcher />
@@ -112,47 +112,47 @@ export function Header() {
                   </SheetTrigger>
                   <SheetContent side="left" className="w-[85vw] sm:w-[80vw] max-w-sm p-0">
                     <div className="flex flex-col h-full">
-                       <div className="flex items-center justify-between p-6 pb-6 border-b">
-                         <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
-                           <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
-                              <Scroll className="h-4 w-4 text-primary-foreground" />
-                            </div>
-                           <span className="font-display text-lg">{t('appName')}</span>
-                         </Link>
-                       </div>
-                      
-                       <nav className="flex flex-col gap-2 my-8 px-6">
-                         {navItems.map((item) => (
-                           <Link
-                             key={item.href}
-                             to={item.href}
-                             onClick={() => handleLinkClick()}
-                             className={cn(
-                               "px-4 py-3 text-base font-medium rounded-lg transition-all",
-                               location.pathname === item.href
-                                 ? "bg-secondary text-foreground"
-                                 : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                             )}
-                           >
-                             {item.label}
-                           </Link>
-                         ))}
-                       </nav>
+                      <div className="flex items-center justify-between p-6 pb-6 border-b">
+                        <Link to="/" onClick={() => handleLinkClick()} className="flex items-center gap-3 group">
+                          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
+                            <Scroll className="h-4 w-4 text-primary-foreground" />
+                          </div>
+                          <span className="font-display text-lg">{t('appName')}</span>
+                        </Link>
+                      </div>
 
-                       <div className="mt-auto p-6 pt-6 border-t space-y-4">
+                      <nav className="flex flex-col gap-2 my-8 px-6">
+                        {navItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            onClick={() => handleLinkClick()}
+                            className={cn(
+                              "px-4 py-3 text-base font-medium rounded-lg transition-all",
+                              location.pathname === item.href
+                                ? "bg-secondary text-foreground"
+                                : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                            )}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </nav>
+
+                      <div className="mt-auto p-6 pt-6 border-t space-y-4">
                         <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">{t('language')}</span>
-                           <LanguageSwitcher />
-                         </div>
-                         <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">{t('author')}</span>
-                           <AuthorSwitcher />
-                         </div>
-                         <div className="flex justify-between items-center">
-                           <span className="text-sm font-medium">{t('theme')}</span>
-                           <ThemeToggle />
-                         </div>
-                       </div>
+                          <span className="text-sm font-medium">{t('language')}</span>
+                          <LanguageSwitcher />
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium">{t('author')}</span>
+                          <AuthorSwitcher />
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium">{t('theme')}</span>
+                          <ThemeToggle />
+                        </div>
+                      </div>
                     </div>
                   </SheetContent>
                 </Sheet>

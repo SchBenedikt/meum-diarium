@@ -45,46 +45,46 @@ const Index = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="md:col-span-3 bg-card/60 backdrop-blur-md rounded-2xl p-6 sm:p-10 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-500"
+                  className="md:col-span-3 bg-card/60 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-700"
                 >
-                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity hidden sm:block">
-                    <MessageCircle className="w-32 h-32 text-primary" />
+                  <div className="absolute -top-10 -right-10 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
+                    <MessageCircle className="w-48 h-48 text-primary" />
                   </div>
-                  <div className="relative z-10 flex flex-col gap-6">
-                    <div className="flex-1 space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-primary/10 rounded-lg">
-                          <MessageCircle className="w-6 h-6 text-primary" />
+                  <div className="relative z-10 flex flex-col gap-8">
+                    <div className="flex-1 space-y-6">
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-primary/10 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/20">
+                          <MessageCircle className="w-8 h-8 text-primary" />
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-display font-medium text-foreground">
-                          Mit {authors[currentAuthor].name} sprechen
+                        <h3 className="text-xl sm:text-3xl font-display font-bold text-foreground">
+                          Mit <span className="text-primary italic">{authors[currentAuthor].name}</span> sprechen
                         </h3>
                       </div>
-                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl">
+                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl font-light">
                         Stellen Sie Fragen an {authors[currentAuthor].name.split(' ')[0]} persönlich. Eine KI-gestützte Konversation basierend auf authentischen Schriften.
                       </p>
                     </div>
 
-                    <div className="space-y-4 w-full">
-                      <div className="w-full bg-secondary/30 p-1 rounded-lg border border-border transition-all hover:bg-secondary/50 focus-within:ring-2 focus-within:ring-primary/20">
+                    <div className="space-y-6 w-full max-w-4xl">
+                      <div className="w-full bg-secondary/30 p-1.5 rounded-2xl border border-border/60 transition-all hover:bg-secondary/50 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
                         <div className="relative flex items-center">
                           <input
                             type="text"
                             placeholder={`Frage ${authors[currentAuthor].name.split(' ').pop()} etwas...`}
-                            className="w-full pl-4 pr-12 py-2.5 rounded-lg bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/50"
+                            className="w-full pl-6 pr-14 py-4 rounded-xl bg-transparent border-none outline-none text-lg placeholder:text-muted-foreground/40 font-light"
                           />
-                          <Link to={`/${currentAuthor}/chat`} className="absolute right-1">
-                            <Button size="icon" className="h-8 w-8 rounded-lg">
-                              <ArrowRight className="h-4 w-4" />
+                          <Link to={`/${currentAuthor}/chat`} className="absolute right-1.5 focus:outline-none">
+                            <Button size="icon" className="h-12 w-12 rounded-xl group-hover:scale-105 transition-transform shadow-none">
+                              <ArrowRight className="h-6 w-6" />
                             </Button>
                           </Link>
                         </div>
                       </div>
 
                       {/* Suggestion Chips */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3">
                         {['Erzähl mir von deinem Leben', 'Was waren deine größten Erfolge?', 'Wie war das Römische Reich?'].map((suggestion, i) => (
-                          <Link key={i} to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`} className="px-3 py-1 rounded-full bg-secondary border border-border text-xs font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 hover:border-primary/20 transition-all">
+                          <Link key={i} to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`} className="px-5 py-2 rounded-full bg-secondary/50 border border-border/40 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all">
                             {suggestion}
                           </Link>
                         ))}
@@ -93,43 +93,41 @@ const Index = () => {
                   </div>
                 </motion.div>
 
-                {/* Biography Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/40 hover:border-primary/50 transition-all rounded-2xl p-4 sm:p-6 flex flex-col items-start">
-                    <div className="p-3 bg-secondary rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
+                  <div className="h-full bg-card hover:bg-secondary/20 border border-border/40 hover:border-primary/50 transition-all duration-500 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden group-hover:-translate-y-1">
+                    <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
                       <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                       Biografie & Lebenslauf
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    <p className="text-sm text-muted-foreground mb-6 flex-1 leading-relaxed font-light">
                       Erfahren Sie mehr über das Leben, die Errungenschaften und den historischen Kontext.
                     </p>
-                    <div className="flex items-center text-sm font-medium text-primary mt-auto">
-                      Zum Profil <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                    <div className="flex items-center text-sm font-bold text-primary mt-auto group-hover:translate-x-1 transition-transform">
+                      Zum Profil <ArrowRight className="w-4 h-4 ml-2" />
                     </div>
                   </div>
                 </Link>
 
                 {/* Works Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/40 hover:border-primary/50 transition-all rounded-2xl p-4 sm:p-6 flex flex-col items-start">
-                    <div className="p-3 bg-secondary rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
+                  <div className="h-full bg-card hover:bg-secondary/20 border border-border/40 hover:border-primary/50 transition-all duration-500 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden group-hover:-translate-y-1">
+                    <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
                       <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="font-display text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                       Werke & Schriften
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    <p className="text-sm text-muted-foreground mb-6 flex-1 leading-relaxed font-light">
                       Entdecken Sie die literarischen Meisterwerke und politischen Schriften.
                     </p>
-                    <div className="flex items-center text-sm font-medium text-primary mt-auto">
-                      Zu den Werken <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                    <div className="flex items-center text-sm font-bold text-primary mt-auto group-hover:translate-x-1 transition-transform">
+                      Zu den Werken <ArrowRight className="w-4 h-4 ml-2" />
                     </div>
                   </div>
                 </Link>
 
-                {/* Simulation Mode - Brighter, no gradient */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -138,22 +136,22 @@ const Index = () => {
                   className="md:col-span-1"
                 >
                   <Link to={`/${currentAuthor}/simulation`} className="group h-full block">
-                    <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/10 dark:hover:bg-amber-950/20 border border-border/40 hover:border-amber-400/50 transition-all duration-500 rounded-2xl p-6 flex flex-col items-start relative overflow-hidden group-hover:-translate-y-2">
-                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-20 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12">
+                    <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/5 dark:hover:bg-amber-950/10 border border-border/40 hover:border-amber-400/50 transition-all duration-700 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden group-hover:-translate-y-1">
+                      <div className="absolute -top-6 -right-6 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
                         <Crown className="w-32 h-32 text-amber-500" />
                       </div>
-                      <div className="p-4 bg-amber-100/10 dark:bg-amber-900/30 rounded-2xl mb-6 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-colors z-10 group-hover:scale-110 group-hover:rotate-3">
-                        <Gamepad2 className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+                      <div className="p-3 bg-amber-100/10 dark:bg-amber-900/30 rounded-xl mb-4 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-all duration-500 z-10 group-hover:scale-105">
+                        <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                       </div>
-                      <h3 className="font-display text-2xl font-medium mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">
+                      <h3 className="font-display text-xl font-bold mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">
                         Textbased Game
                       </h3>
-                      <p className="text-base text-muted-foreground mb-6 flex-1 z-10 leading-relaxed">
+                      <p className="text-sm text-muted-foreground mb-6 flex-1 z-10 leading-relaxed font-light">
                         Erlebe Geschichte aus der Sicht von {authors[currentAuthor].name.split(' ')[0]}.
-                        <span className="block mt-2 text-sm font-semibold text-amber-600 dark:text-amber-400">5 Szenarien verfügbar</span>
+                        <span className="block mt-2 text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">5 Szenarien</span>
                       </p>
-                      <div className="flex items-center text-sm font-semibold text-amber-600 dark:text-amber-400 mt-auto z-10">
-                        Spielen <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" />
+                      <div className="flex items-center text-sm font-bold text-amber-600 dark:text-amber-400 mt-auto z-10 group-hover:translate-x-1 transition-transform">
+                        Spielen <ArrowRight className="w-4 h-4 ml-2" />
                       </div>
                     </div>
                   </Link>

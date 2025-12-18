@@ -32,7 +32,7 @@ export function ModernBackground() {
                     translateX: '-50%',
                     translateY: '-50%',
                 }}
-                className="absolute top-0 left-0 w-[40vw] h-[40vw] min-w-[400px] min-h-[400px] rounded-full bg-primary/15 blur-[120px] opacity-60 mix-blend-screen"
+                className="absolute top-0 left-0 w-[40vw] h-[40vw] min-w-[400px] min-h-[400px] rounded-full bg-primary/10 blur-[120px] backdrop-blur-3xl opacity-60 mix-blend-screen"
             />
 
             {/* Subtle Grid Pattern for structure */}

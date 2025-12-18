@@ -86,7 +86,7 @@ export const en = {
     spqr: 'SPQR · The Senate and People of Rome',
     lexiconGlossary: 'Glossary of Antiquity',
     lexiconDescription: 'A reference work for the most important terms, people, and concepts of ancient Rome.',
-    morePostsFrom: 'More posts from {name}',
+    morePostsFrom: 'More posts from {{name}}',
     filter: 'Filter',
     clearFilters: 'Clear filters',
     birth: 'Birth',

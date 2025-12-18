@@ -110,37 +110,41 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 hero-gradient relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-sm border border-primary/20">
-                <BookMarked className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                <span>{t('lexiconGlossary')}</span>
+        <section className="pt-24 sm:pt-40 pb-20 hero-gradient relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-[0.03] mix-blend-overlay scale-110"></div>
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+
+          <div className="container mx-auto px-4 text-center relative z-20">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold mb-8 backdrop-blur-md border border-primary/20 hover:bg-primary/20 transition-all cursor-default">
+                <BookMarked className="h-4 w-4" />
+                <span className="uppercase tracking-widest">{t('lexiconGlossary')}</span>
               </div>
-              <h1 className="font-display text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 tracking-tight">{t('navLexicon')}</h1>
-              <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                {t('lexiconDescription')}
+              <h1 className="font-display text-5xl sm:text-6xl md:text-8xl mb-8 tracking-tighter font-bold">
+                Das <span className="text-primary italic">Lexikon</span>
+              </h1>
+              <p className="text-muted-foreground text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                {t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
               </p>
             </motion.div>
           </div>
         </section>
 
-        <section className="py-8 -mt-8 relative z-20">
-          <div className="container mx-auto max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl blur-xl opacity-50"></div>
-              <div className="relative bg-card/80 backdrop-blur-xl border border-primary/20 rounded-xl flex items-center p-2">
-                <Search className="h-6 w-6 text-muted-foreground ml-3" />
+        <section className="py-12 -mt-16 relative z-30">
+          <div className="container mx-auto max-w-3xl px-4">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative">
+              <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-2xl opacity-50 -z-10"></div>
+              <div className="relative bg-card/60 backdrop-blur-2xl border border-border/40 rounded-2xl flex items-center p-2 sm:p-3 hover:border-primary/40 focus-within:border-primary/60 transition-all duration-500 group">
+                <Search className="h-5 w-5 text-muted-foreground ml-3 group-hover:text-primary transition-colors" />
                 <Input
                   type="text"
                   placeholder={t('searchPlaceholder')}
-                  className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/50"
+                  className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/30 font-light px-4"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 {searchTerm && (
-                  <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-full transition-colors">
+                  <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors mr-2">
                     <X className="h-4 w-4 text-muted-foreground" />
                   </button>
                 )}
@@ -154,21 +158,22 @@ export default function LexiconPage() {
 
             {/* Categories Grid */}
             {!searchTerm && !activeCategory && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mb-16">
-                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-6 text-center">{t('allCategories')}</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mb-20">
+                <h2 className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-8 text-center">{t('allCategories') || 'KATEGORIEN'}</h2>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto px-4">
                   {topCategories.map((cat, i) => {
                     const Icon = categoryIcons[cat] || Tags;
                     return (
                       <button
                         key={cat}
                         onClick={() => handleCategoryChange(cat)}
-                        className="flex flex-col items-center justify-center p-6 rounded-xl bg-card border border-border/50 hover:border-primary/50 hover:bg-secondary/30 transition-all group"
+                        className="flex flex-col items-center justify-center p-6 rounded-2xl sm:rounded-3xl bg-card/30 backdrop-blur-xl border border-border/40 hover:border-primary/50 hover:bg-primary/5 transition-all duration-500 group relative overflow-hidden"
                       >
-                        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 relative z-10">
                           <Icon className="h-5 w-5 text-primary" />
                         </div>
-                        <span className="font-display font-medium text-lg">{cat}</span>
+                        <span className="font-display font-bold text-base group-hover:text-primary transition-colors relative z-10 italic">{cat}</span>
                       </button>
                     )
                   })}
@@ -176,34 +181,39 @@ export default function LexiconPage() {
               </motion.div>
             )}
 
-            {/* Alphabet Filter */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-12 sticky top-20 z-30 py-4 bg-background/80 backdrop-blur-md border-b border-border/50">
-              <button
-                onClick={() => handleCategoryChange(null)}
-                className={cn(
-                  "px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
-                  !activeCategory ? "bg-primary/10 text-primary" : "hover:bg-secondary text-muted-foreground"
-                )}
-              >
-                {t('all')}
-              </button>
-              <div className="w-px h-6 bg-border mx-2"></div>
-              {alphabet.map(letter => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex justify-center mb-16 sticky top-24 z-40 px-4"
+            >
+              <div className="flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-2xl bg-card/80 backdrop-blur-2xl border border-border/40 shadow-lg max-w-fit mx-auto overflow-hidden">
                 <button
-                  key={letter}
-                  onClick={() => handleLetterClick(letter)}
-                  disabled={!groupedLexicon[letter]}
+                  onClick={() => handleCategoryChange(null)}
                   className={cn(
-                    "w-8 h-8 rounded-full text-sm font-medium transition-all",
-                    "disabled:opacity-20 disabled:cursor-not-allowed",
-                    activeLetter === letter
-                      ? "bg-primary text-primary-foreground scale-110 border border-primary/50"
-                      : "hover:bg-secondary text-foreground/70"
+                    "px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all uppercase tracking-widest",
+                    !activeCategory && !searchTerm ? "bg-primary text-primary-foreground" : "hover:bg-primary/10 text-muted-foreground hover:text-primary"
                   )}
                 >
-                  {letter}
+                  {t('all') || 'ALLES'}
                 </button>
-              ))}
+                <div className="w-px h-5 bg-border/40 mx-1 hidden sm:block"></div>
+                {alphabet.map(letter => (
+                  <button
+                    key={letter}
+                    onClick={() => handleLetterClick(letter)}
+                    disabled={!groupedLexicon[letter]}
+                    className={cn(
+                      "w-8 h-8 rounded-lg text-xs font-bold transition-all flex items-center justify-center",
+                      "disabled:opacity-10 disabled:cursor-not-allowed",
+                      activeLetter === letter
+                        ? "bg-primary text-primary-foreground scale-105 shadow-md shadow-primary/20"
+                        : "hover:bg-primary/10 text-foreground/60 hover:text-primary hover:scale-110 active:scale-95"
+                    )}
+                  >
+                    {letter}
+                  </button>
+                ))}
+              </div>
             </motion.div>
 
             {/* Results Grid */}
@@ -211,27 +221,31 @@ export default function LexiconPage() {
               <div className="max-w-4xl mx-auto space-y-12">
                 {Object.keys(groupedLexicon).map((letter, index) => (
                   <motion.div key={letter} id={`letter-${letter}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} className="scroll-mt-48">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary font-display text-2xl font-bold border border-primary/20">
+                    <div className="flex items-center gap-4 mb-6 group/header">
+                      <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary font-display text-xl font-bold border border-primary/10 group-hover/header:scale-110 transition-transform duration-500">
                         {letter}
                       </span>
-                      <div className="h-px flex-1 bg-border/50"></div>
+                      <div className="h-px flex-1 bg-gradient-to-r from-border/40 to-transparent"></div>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-2">
                       {groupedLexicon[letter].map(entry => {
                         const Icon = categoryIcons[entry.category] || Tags;
                         return (
-                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-5 rounded-xl bg-card border border-border/50 hover:border-primary/40 transition-all group relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                              <Icon className="h-14 w-14 text-primary" />
+                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-6 rounded-2xl sm:rounded-3xl bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover:-translate-y-1">
+                            <div className="absolute -top-4 -right-4 p-3 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105">
+                              <Icon className="h-16 w-16 text-primary" />
                             </div>
                             <div className="relative z-10">
-                              <h3 className="font-display text-lg font-medium mb-2 group-hover:text-primary transition-colors">{entry.term}</h3>
-                              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
-                                <span className="px-2 py-0.5 rounded-full bg-secondary border border-border">{entry.category}</span>
+                              <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors italic">{entry.term}</h3>
+                              <div className="flex items-center gap-2 mb-3">
+                                <span className="px-2 py-0.5 rounded-full bg-primary/5 border border-primary/10 text-[9px] font-bold text-primary uppercase tracking-widest">{entry.category}</span>
                               </div>
-                              <p className="text-sm text-muted-foreground line-clamp-2">{entry.definition}</p>
+                              <p className="text-sm text-muted-foreground line-clamp-3 font-light leading-relaxed">{entry.definition}</p>
+
+                              <div className="mt-4 flex items-center text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 uppercase tracking-widest">
+                                Mehr erfahren <ArrowRight className="ml-1.5 h-3 w-3" />
+                              </div>
                             </div>
                           </Link>
                         );

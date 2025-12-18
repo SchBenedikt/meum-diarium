@@ -86,7 +86,7 @@ export const la = {
     spqr: 'SPQR · Senatus Populusque Romanus',
     lexiconGlossary: 'Glossarium Antiquitatis',
     lexiconDescription: 'Vademecum terminorum, personarum et conceptuum maximorum Romae antiquae.',
-    morePostsFrom: 'Plures commentarii ab {name}',
+    morePostsFrom: 'Plures commentarii ab {{name}}',
     filter: 'Filtra',
     clearFilters: 'Filtra purga',
     birth: 'Natus',

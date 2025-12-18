@@ -107,10 +107,37 @@ export async function savePage(data: any) {
     return res.json();
 }
 
+
 export async function deletePage(slug: string) {
     const res = await fetch(`${API_BASE}/pages/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete page');
+    return res.json();
+}
+
+// ============ TAGS API ============
+
+export async function fetchTags() {
+    const res = await fetch(`${API_BASE}/tags`);
+    if (!res.ok) throw new Error('Failed to fetch tags');
+    return res.json();
+}
+
+export async function renameTag(oldTag: string, newTag: string) {
+    const res = await fetch(`${API_BASE}/tags`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ oldTag, newTag })
+    });
+    if (!res.ok) throw new Error('Failed to rename tag');
+    return res.json();
+}
+
+export async function deleteTag(tag: string) {
+    const res = await fetch(`${API_BASE}/tags/${tag}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error('Failed to delete tag');
     return res.json();
 }

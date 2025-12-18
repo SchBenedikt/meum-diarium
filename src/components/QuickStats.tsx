@@ -31,11 +31,11 @@ export function QuickStats({ stats }: QuickStatsProps) {
         >
           <Card className="h-full border-border/50 hover:border-primary/40 hover:bg-surface-container-low/50 transition-all duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.label}</CardTitle>
+              <CardTitle className="text-sm font-display font-medium uppercase tracking-wider">{stat.label}</CardTitle>
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stat.value}</div>
+              <div className="text-3xl font-display font-bold">{stat.value}</div>
               {stat.change && (
                 <p className="text-xs text-muted-foreground mt-1">
                   <span
