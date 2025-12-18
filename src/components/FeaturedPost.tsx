@@ -19,23 +19,27 @@ export function FeaturedPost() {
   }, [posts, isLoading]);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20">
+    <section className="py-16 sm:py-24">
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-center mb-10 sm:mb-14"
+          className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-            <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            {t('featuredPost')}
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 tracking-tight px-4">
-            Der <span className="text-primary italic">Blick</span> in die Annalen
+          <div className="flex items-center justify-center gap-2 text-primary font-bold tracking-widest uppercase text-sm mb-4">
+            <Sparkles className="w-4 h-4" />
+            <span>{t('featuredPost')}</span>
+          </div>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+            {t('glimpseIntoAnnals') || (
+              <>
+                Der <span className="text-primary italic">Blick</span> in die Annalen
+              </>
+            )}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed px-4">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
             {t('featuredPostDesc')}
           </p>
         </motion.div>
