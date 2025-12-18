@@ -25,25 +25,27 @@ export function BlogCard({ post, className }: BlogCardProps) {
 
   const readingTime = post.readingTime;
   const displayExcerpt =
-    post.excerpt || generateExcerpt(post.content.diary || post.content.scientific, 150);
+    post.excerpt || generateExcerpt(post.content?.diary || post.content?.scientific || '', 150);
 
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
         to={`/${post.author}/${post.slug}`}
         className={cn(
-          'group flex flex-col bg-card rounded-xl sm:rounded-2xl h-full overflow-hidden border border-border/60 hover:border-primary/40 active:border-primary/50 transition-all duration-300 hover:shadow-lg active:shadow-sm touch-manipulation',
+          'group flex flex-col bg-surface-container-low/30 backdrop-blur-md rounded-2xl sm:rounded-3xl h-full overflow-hidden border border-white/5 hover:border-primary/40 active:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] touch-manipulation relative',
           className
         )}
       >
+        <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
         {/* Image */}
         <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
           <img
             src={post.coverImage}
             alt={post.title}
             loading="lazy"
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
         </div>
 
         <div className="p-5 sm:p-6 flex flex-col flex-grow gap-3 sm:gap-4">
@@ -52,14 +54,19 @@ export function BlogCard({ post, className }: BlogCardProps) {
             <div className="relative -mx-1">
               <div className="flex gap-2 overflow-x-auto no-scrollbar px-1 pb-1">
                 {post.tags.slice(0, 4).map((tag, i) => (
-                  <button
+                  <motion.button
                     key={i}
                     onClick={(e) => handleTagClick(e, tag)}
-                    className="whitespace-nowrap px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium hover:bg-primary/20 active:bg-primary/30 transition-colors flex-shrink-0 touch-manipulation"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative whitespace-nowrap px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-surface-container-low/30 backdrop-blur-md border border-white/5 text-primary text-xs sm:text-sm font-medium overflow-hidden transition-all duration-500 hover:border-primary/30 active:border-primary/40 flex-shrink-0 touch-manipulation"
                     aria-label={`Filter nach ${tag}`}
                   >
+                    <div className="absolute -right-4 -top-4 w-16 h-16 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors duration-700" />
                     {tag}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -85,7 +92,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
               </span>
               <span className="flex items-center gap-2">
                 <Clock className="h-4 w-4 flex-shrink-0" />
-                {t('readingTime', { minutes: readingTime.toString() })}
+                {t('readingTime', { minutes: (readingTime || 5).toString() })}
               </span>
             </div>
             <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" />

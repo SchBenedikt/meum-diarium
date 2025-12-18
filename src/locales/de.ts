@@ -105,6 +105,7 @@ export const de = {
     caesar_title: 'Dictator Perpetuo',
     caesar_description: 'Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.',
     caesar_birthplace: 'Rom',
+    caesar_achievements: 'Haupterrungenschaften',
     caesar_achievement_0: 'Eroberung Galliens & Erweiterung des Reiches',
     caesar_achievement_1: 'Sieg im Bürgerkrieg & Sicherung der Macht',
     caesar_achievement_2: 'Umfassende Reformen des Staates & Kalenders',
@@ -214,7 +215,7 @@ export const de = {
     tag_navalBattle: 'Seeschlacht',
     tag_civilWar: 'Bürgerkrieg',
     tag_birth: 'Geburt',
-    
+
     // PWA Installation
     installApp: 'App installieren',
     installAppDescription: 'Installiere Meum Diarium für schnellen Zugriff und ein besseres Erlebnis.',
@@ -234,5 +235,21 @@ export const de = {
     updateAvailableDesc: 'Eine neue Version ist bereit. Jetzt aktualisieren?',
     updateNow: 'Aktualisieren',
     updating: 'Aktualisiere...',
+
+    // Feature Section (Landing Page)
+    featuresSectionTitle: 'Funktionen entdecken',
+    featuresSectionSubtitle: 'Mehr als nur ein Blog – ein umfassendes Lerntool.',
+    featureStudyNotesTitle: 'Lernzettel',
+    featureStudyNotesDesc: 'Zusammenfassungen und Analysen für Schüler und Studenten.',
+    featureBilingualTitle: 'Zweisprachig',
+    featureBilingualDesc: 'Texte auf Latein und Deutsch/Englisch im direkten Vergleich.',
+    featureQuoteTitle: 'Zitate',
+    featureQuoteDesc: 'Tägliche Weisheiten der antiken Philosophen.',
+    featureTimelineTitle: 'Zeitstrahl',
+    featureTimelineDesc: 'Interaktive Chronologie der römischen Geschichte.',
+    featureLexiconTitle: 'Lexikon',
+    featureLexiconDesc: 'Umfangreiches Nachschlagewerk für Begriffe und Personen.',
+    featureAuthorsTitle: 'Autoren',
+    featureAuthorsDesc: 'Vier einzigartige Perspektiven auf die Geschichte.',
 };
 

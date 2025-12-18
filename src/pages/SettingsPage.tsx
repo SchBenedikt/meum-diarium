@@ -9,30 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowLeft, Save, Settings as SettingsIcon, Globe, Palette, Bell } from 'lucide-react';
 import { toast } from 'sonner';
 import { Switch } from '@/components/ui/switch';
-
-interface SiteSettings {
-  siteName: string;
-  siteDescription: string;
-  siteUrl: string;
-  defaultLanguage: string;
-  enableTranslations: boolean;
-  enableNotifications: boolean;
-  theme: string;
-  accentColor: string;
-  footerText: string;
-}
-
-const defaultSettings: SiteSettings = {
-  siteName: 'Meum Diarium',
-  siteDescription: 'Eine Reise durch die römische Geschichte',
-  siteUrl: 'https://example.com',
-  defaultLanguage: 'de',
-  enableTranslations: true,
-  enableNotifications: true,
-  theme: 'system',
-  accentColor: '#ea580c',
-  footerText: '© 2024 Meum Diarium. Alle Rechte vorbehalten.',
-};
+import { SiteSettings, defaultSettings } from '@/types/settings';
+import { getSettings, saveSettings } from '@/lib/cms-store';
 
 export default function SettingsPage() {
   const navigate = useNavigate();
@@ -40,14 +18,11 @@ export default function SettingsPage() {
   const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
 
   useEffect(() => {
-    // Load settings from localStorage or API
-    const savedSettings = localStorage.getItem('cms-settings');
-    if (savedSettings) {
-      try {
-        setSettings({ ...defaultSettings, ...JSON.parse(savedSettings) });
-      } catch (error) {
-        console.error('Failed to parse settings', error);
-      }
+    try {
+      const loaded = getSettings();
+      setSettings({ ...defaultSettings, ...loaded });
+    } catch (error) {
+      console.error('Failed to load settings', error);
     }
   }, []);
 
@@ -60,8 +35,7 @@ export default function SettingsPage() {
     setLoading(true);
 
     try {
-      // Save to localStorage (in a real app, this would be an API call)
-      localStorage.setItem('cms-settings', JSON.stringify(settings));
+      await saveSettings(settings);
       toast.success('Einstellungen gespeichert');
       
       // In a real implementation, you would send to API:

@@ -24,8 +24,21 @@ export function ThemeProvider({
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<"system" | "light" | "dark"> (
-    () => (localStorage.getItem(storageKey) as "system" | "light" | "dark") || defaultTheme
+  const getStoredTheme = () => {
+    try {
+      return (typeof window !== "undefined" ? localStorage.getItem(storageKey) : null) as
+        | "system"
+        | "light"
+        | "dark"
+        | null
+    } catch (_error) {
+      // Some contexts disallow storage (e.g., sandboxed iframes); fall back gracefully.
+      return null
+    }
+  }
+
+  const [theme, setTheme] = useState<"system" | "light" | "dark">(
+    () => getStoredTheme() || defaultTheme
   )
 
   useEffect(() => {
@@ -49,7 +62,11 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (theme: "system" | "light" | "dark") => {
-      localStorage.setItem(storageKey, theme)
+      try {
+        localStorage.setItem(storageKey, theme)
+      } catch (_error) {
+        // Ignore storage failures; theme will remain in state for this session.
+      }
       setTheme(theme)
     },
   }

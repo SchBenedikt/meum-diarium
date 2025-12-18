@@ -1,0 +1,116 @@
+
+const API_BASE = 'http://localhost:3001/api';
+
+export async function fetchPosts() {
+    const res = await fetch(`${API_BASE}/posts`);
+    if (!res.ok) throw new Error('Failed to fetch posts');
+    return res.json();
+}
+
+export async function fetchPost(author: string, slug: string) {
+    const res = await fetch(`${API_BASE}/posts/${author}/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch post');
+    return res.json();
+}
+
+export async function createPost(data: any) {
+    const res = await fetch(`${API_BASE}/posts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to create post');
+    return res.json();
+}
+
+export async function deletePost(author: string, slug: string) {
+    const res = await fetch(`${API_BASE}/posts/${author}/${slug}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error('Failed to delete post');
+    return res.json();
+}
+
+export async function fetchAuthors() {
+    const res = await fetch(`${API_BASE}/authors`);
+    if (!res.ok) throw new Error('Failed to fetch authors');
+    return res.json();
+}
+
+export async function saveAuthor(data: any) {
+    const res = await fetch(`${API_BASE}/authors`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to save author');
+    return res.json();
+}
+
+export async function deleteAuthor(id: string) {
+    const res = await fetch(`${API_BASE}/authors/${id}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error('Failed to delete author');
+    return res.json();
+}
+
+export async function fetchLexicon() {
+    const res = await fetch(`${API_BASE}/lexicon`);
+    if (!res.ok) throw new Error('Failed to fetch lexicon');
+    return res.json();
+}
+
+export async function fetchLexiconEntry(slug: string) {
+    const res = await fetch(`${API_BASE}/lexicon/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch lexicon entry');
+    return res.json();
+}
+
+export async function saveLexiconEntry(data: any) {
+    const res = await fetch(`${API_BASE}/lexicon`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to save lexicon entry');
+    return res.json();
+}
+
+export async function deleteLexiconEntry(slug: string) {
+    const res = await fetch(`${API_BASE}/lexicon/${slug}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error('Failed to delete lexicon entry');
+    return res.json();
+}
+
+export async function fetchPages() {
+    const res = await fetch(`${API_BASE}/pages`);
+    if (!res.ok) throw new Error('Failed to fetch pages');
+    return res.json();
+}
+
+export async function fetchPage(slug: string) {
+    const res = await fetch(`${API_BASE}/pages/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch page');
+    return res.json();
+}
+
+export async function savePage(data: any) {
+    const res = await fetch(`${API_BASE}/pages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to save page');
+    return res.json();
+}
+
+export async function deletePage(slug: string) {
+    const res = await fetch(`${API_BASE}/pages/${slug}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error('Failed to delete page');
+    return res.json();
+}

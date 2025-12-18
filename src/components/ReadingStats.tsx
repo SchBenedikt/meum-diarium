@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { useMemo } from 'react';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
+import { ModernBackground } from './ui/ModernBackground';
 
 export function ReadingStats() {
   const { t } = useLanguage();
@@ -51,8 +52,9 @@ export function ReadingStats() {
   ];
 
   return (
-    <section className="py-20 border-t border-border">
-      <div className="container mx-auto px-6">
+    <section className="py-24 relative overflow-hidden">
+      <ModernBackground />
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           variants={fadeUp()}
           initial="hidden"
@@ -80,12 +82,13 @@ export function ReadingStats() {
             <motion.div
               key={stat.label}
               variants={fadeUp(index * 0.08, 20)}
-              className="group p-6 rounded-lg bg-card border border-border/50 transition-all duration-300 hover:elevation-1 hover:border-border"
+              className="group p-6 rounded-2xl bg-surface-container-low/30 backdrop-blur-md border border-white/5 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 relative overflow-hidden"
             >
-              <div className="h-12 w-12 rounded-lg bg-secondary flex items-center justify-center mb-5 transition-colors group-hover:bg-primary/10">
+              <div className="absolute -right-4 -top-4 w-20 h-20 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+              <div className="h-12 w-12 rounded-xl bg-secondary/50 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                 <stat.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-              <p className="font-display text-3xl font-semibold mb-1 tracking-tight">{stat.value}</p>
+              <p className="font-display text-3xl font-semibold mb-1 tracking-tight group-hover:text-primary transition-colors">{stat.value}</p>
               <p className="font-medium text-sm mb-1">{stat.label}</p>
               <p className="text-xs text-muted-foreground leading-relaxed">{stat.description}</p>
             </motion.div>
@@ -107,7 +110,7 @@ export function ReadingStats() {
               <Link
                 key={tag}
                 to={`/search?category=${encodeURIComponent(tag)}`}
-                className="px-4 py-2 rounded-full bg-secondary text-sm font-medium hover:bg-secondary/80 transition-colors"
+                className="px-5 py-2.5 rounded-full bg-surface-container-low/40 backdrop-blur-sm border border-white/5 text-sm font-medium hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 active:scale-95 shadow-none"
               >
                 {tag}
               </Link>

@@ -284,7 +284,7 @@ export default function SimulationPage() {
                                     <img src={author.heroImage} alt={author.name} className="h-full w-full object-cover rounded-full" />
                                 )}
                             </div>
-                            <div className={`rounded-2xl p-4 max-w-[80%] ${item.type === 'choice' ? 'bg-primary text-primary-foreground' : 'bg-card border border-border/50 shadow-sm'}`}>
+                            <div className={`rounded-2xl p-4 max-w-[80%] ${item.type === 'choice' ? 'bg-primary text-primary-foreground' : 'bg-card border border-border/50'}`}>
                                 {item.type === 'narrative' && <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1">Situation</h4>}
                                 {item.type === 'feedback' && <h4 className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Konsequenz</h4>}
                                 <p className="text-sm md:text-base leading-relaxed">{item.text}</p>
@@ -293,7 +293,7 @@ export default function SimulationPage() {
                     ))}
 
                     {gameEnded && (
-                        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="p-8 rounded-lg bg-card border border-border/50 text-center space-y-4 shadow-lg max-w-xl mx-auto mt-8">
+                        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="p-8 rounded-lg bg-card border border-border/50 text-center space-y-4 max-w-xl mx-auto mt-8 relative overflow-hidden">
                             <Crown className="h-12 w-12 text-primary mx-auto" />
                             <h2 className="font-display text-3xl">Tagesabschluss</h2>
                             <p className="text-lg text-muted-foreground">Der Tag ist vorüber. Hier ist deine Bilanz:</p>

@@ -1,24 +1,36 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Globe, Plus, X } from 'lucide-react';
-import { lexicon } from '@/data/lexicon';
-import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, Save, Plus, X } from 'lucide-react';
+import { upsertLexiconEntry } from '@/lib/cms-store';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { fetchLexiconEntry } from '@/lib/api';
 
 export default function LexiconEditorPage() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
-    const isEditMode = !!slug;
+    const queryClient = useQueryClient();
+    const isEditMode = !!slug && slug !== 'new';
 
     const [loading, setLoading] = useState(false);
-    const existingEntry = isEditMode ? lexicon.find(e => e.slug === slug) : null;
+
+    // Fetch entry
+    const { data: existingEntry, isLoading } = useQuery({
+        queryKey: ['lexicon', slug],
+        queryFn: () => {
+            if (!isEditMode || !slug) return null;
+            return fetchLexiconEntry(slug);
+        },
+        enabled: isEditMode
+    });
 
     const [formData, setFormData] = useState({
         term: '',
@@ -96,18 +108,13 @@ export default function LexiconEditorPage() {
                 }
             };
 
-            const res = await fetch('/api/lexicon', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (res.ok) {
-                toast.success(isEditMode ? 'Eintrag aktualisiert' : 'Eintrag erstellt');
-                navigate('/admin');
-            } else {
-                toast.error('Fehler beim Speichern');
+            await upsertLexiconEntry(payload);
+            queryClient.invalidateQueries({ queryKey: ['lexicon'] }); // List view
+            if (isEditMode) {
+                queryClient.invalidateQueries({ queryKey: ['lexicon', payload.slug] }); // Detail view
             }
+            toast.success(isEditMode ? 'Eintrag aktualisiert' : 'Eintrag erstellt');
+            navigate('/admin');
         } catch (error) {
             console.error(error);
             toast.error('Fehler beim Speichern');
@@ -144,6 +151,10 @@ export default function LexiconEditorPage() {
 
     const categories = ['Politik', 'Militär', 'Religion', 'Gesellschaft', 'Philosophie', 'Recht'];
 
+    if (isLoading && isEditMode) {
+        return <div className="min-h-screen pt-20 text-center">Lade Eintrag...</div>;
+    }
+
     return (
         <div className="min-h-screen bg-background pt-16">
             {/* Header */}
@@ -156,7 +167,7 @@ export default function LexiconEditorPage() {
                         </Link>
                         <div className="h-6 w-px bg-border hidden sm:block" />
                         <h1 className="font-display text-lg sm:text-xl font-medium">
-                            {isEditMode ? 'Lexikon-Eintrag bearbeiten' : 'Neuer Lexikon-Eintrag'}
+                            {isEditMode ? 'Lexikon-Eintrag bearbeiten' : 'Neuer Eintrag'}
                         </h1>
                     </div>
                     <Button onClick={() => handleSubmit()} disabled={loading} size="sm">
@@ -168,224 +179,125 @@ export default function LexiconEditorPage() {
 
             <div className="container mx-auto px-4 py-6 max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Basic Info */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Grundinformationen</CardTitle>
-                            <CardDescription>Begriff, Definition und Kategorie</CardDescription>
+                            <CardTitle>Basisdaten</CardTitle>
+                            <CardDescription>Hauptbegriff und Definition</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label>Begriff (Deutsch)</Label>
+                                    <Label>Begriff</Label>
                                     <Input
                                         value={formData.term}
                                         onChange={e => updateField('term', e.target.value)}
-                                        placeholder="Cursus honorum"
-                                        required
+                                        placeholder="Konsul"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label>Slug (URL)</Label>
-                                    <Input
-                                        value={formData.slug}
-                                        onChange={e => updateField('slug', e.target.value)}
-                                        placeholder="Auto-generiert"
-                                        disabled={isEditMode}
-                                    />
+                                    <Label>Kategorie</Label>
+                                    <Select value={formData.category} onValueChange={(val) => updateField('category', val)}>
+                                        <SelectTrigger>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {categories.map(c => (
+                                                <SelectItem key={c} value={c}>{c}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <Label>Kategorie</Label>
-                                <Select value={formData.category} onValueChange={v => updateField('category', v)}>
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {categories.map(cat => (
-                                            <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label>Definition (Deutsch)</Label>
-                                <Textarea
-                                    value={formData.definition}
-                                    onChange={e => updateField('definition', e.target.value)}
-                                    placeholder="Ausführliche Definition des Begriffs..."
-                                    rows={5}
-                                    required
+                                <Label>Slug (URL)</Label>
+                                <Input
+                                    value={formData.slug}
+                                    onChange={e => updateField('slug', e.target.value)}
+                                    placeholder="auto-generated"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <Label>Etymologie</Label>
+                                <Label>Definition</Label>
+                                <Textarea
+                                    value={formData.definition}
+                                    onChange={e => updateField('definition', e.target.value)}
+                                    className="min-h-[100px]"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label>Etymologie & Hintergrund</Label>
                                 <Textarea
                                     value={formData.etymology}
                                     onChange={e => updateField('etymology', e.target.value)}
-                                    placeholder="Herkunft und Bedeutung des Wortes..."
-                                    rows={2}
+                                    placeholder="Herkunft des Wortes..."
                                 />
                             </div>
                         </CardContent>
                     </Card>
 
-                    {/* Variants & Related */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Varianten & Verknüpfungen</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="space-y-2">
-                                <Label>Varianten / Synonyme</Label>
+                    {/* Variants & Relations */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Varianten</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
                                 <div className="flex gap-2">
                                     <Input
                                         value={newVariant}
                                         onChange={e => setNewVariant(e.target.value)}
-                                        placeholder="Neue Variante hinzufügen..."
+                                        placeholder="Neue Variante..."
                                         onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addVariant())}
                                     />
-                                    <Button type="button" variant="outline" onClick={addVariant}>
+                                    <Button type="button" onClick={addVariant} size="icon" variant="secondary">
                                         <Plus className="h-4 w-4" />
                                     </Button>
                                 </div>
-                                <div className="flex flex-wrap gap-2 mt-2">
-                                    {formData.variants.map((v, i) => (
-                                        <Badge key={i} variant="secondary" className="gap-1">
-                                            {v}
-                                            <button type="button" onClick={() => removeVariant(i)} className="ml-1 hover:text-destructive">
+                                <div className="flex flex-wrap gap-2">
+                                    {formData.variants.map((variant, i) => (
+                                        <div key={i} className="bg-secondary px-2 py-1 rounded text-sm flex items-center gap-2">
+                                            {variant}
+                                            <button type="button" onClick={() => removeVariant(i)} className="text-muted-foreground hover:text-destructive">
                                                 <X className="h-3 w-3" />
                                             </button>
-                                        </Badge>
+                                        </div>
                                     ))}
                                 </div>
-                            </div>
+                            </CardContent>
+                        </Card>
 
-                            <div className="space-y-2">
-                                <Label>Verwandte Begriffe (Slugs)</Label>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Verwandte Begriffe</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
                                 <div className="flex gap-2">
                                     <Input
                                         value={newRelated}
                                         onChange={e => setNewRelated(e.target.value)}
-                                        placeholder="z.B. konsul, senat"
+                                        placeholder="Begriff..."
                                         onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addRelatedTerm())}
                                     />
-                                    <Button type="button" variant="outline" onClick={addRelatedTerm}>
+                                    <Button type="button" onClick={addRelatedTerm} size="icon" variant="secondary">
                                         <Plus className="h-4 w-4" />
                                     </Button>
                                 </div>
-                                <div className="flex flex-wrap gap-2 mt-2">
-                                    {formData.relatedTerms.map((t, i) => (
-                                        <Badge key={i} variant="outline" className="gap-1">
-                                            {t}
-                                            <button type="button" onClick={() => removeRelatedTerm(i)} className="ml-1 hover:text-destructive">
+                                <div className="flex flex-wrap gap-2">
+                                    {formData.relatedTerms.map((term, i) => (
+                                        <div key={i} className="bg-secondary px-2 py-1 rounded text-sm flex items-center gap-2">
+                                            {term}
+                                            <button type="button" onClick={() => removeRelatedTerm(i)} className="text-muted-foreground hover:text-destructive">
                                                 <X className="h-3 w-3" />
                                             </button>
-                                        </Badge>
+                                        </div>
                                     ))}
                                 </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Translations */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <Globe className="h-5 w-5" />
-                                Übersetzungen
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <Tabs defaultValue="en">
-                                <TabsList className="grid w-full grid-cols-2 mb-4">
-                                    <TabsTrigger value="en">🇬🇧 English</TabsTrigger>
-                                    <TabsTrigger value="la">🏛️ Latinum</TabsTrigger>
-                                </TabsList>
-
-                                <TabsContent value="en" className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label>Term (English)</Label>
-                                            <Input
-                                                value={formData.en.term}
-                                                onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, term: e.target.value } }))}
-                                                placeholder="Cursus honorum"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label>Category (English)</Label>
-                                            <Input
-                                                value={formData.en.category}
-                                                onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, category: e.target.value } }))}
-                                                placeholder="Politics"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Definition (English)</Label>
-                                        <Textarea
-                                            value={formData.en.definition}
-                                            onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, definition: e.target.value } }))}
-                                            placeholder="Full definition in English..."
-                                            rows={5}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Etymology (English)</Label>
-                                        <Textarea
-                                            value={formData.en.etymology}
-                                            onChange={e => setFormData(prev => ({ ...prev, en: { ...prev.en, etymology: e.target.value } }))}
-                                            placeholder="Word origin..."
-                                            rows={2}
-                                        />
-                                    </div>
-                                </TabsContent>
-
-                                <TabsContent value="la" className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label>Vocabulum (Latine)</Label>
-                                            <Input
-                                                value={formData.la.term}
-                                                onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, term: e.target.value } }))}
-                                                placeholder="Cursus honorum"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label>Categoria (Latine)</Label>
-                                            <Input
-                                                value={formData.la.category}
-                                                onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, category: e.target.value } }))}
-                                                placeholder="Res Publica"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Definitio (Latine)</Label>
-                                        <Textarea
-                                            value={formData.la.definition}
-                                            onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, definition: e.target.value } }))}
-                                            placeholder="Definitio plena Latine..."
-                                            rows={5}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Etymologia (Latine)</Label>
-                                        <Textarea
-                                            value={formData.la.etymology}
-                                            onChange={e => setFormData(prev => ({ ...prev, la: { ...prev.la, etymology: e.target.value } }))}
-                                            placeholder="Origo vocabuli..."
-                                            rows={2}
-                                        />
-                                    </div>
-                                </TabsContent>
-                            </Tabs>
-                        </CardContent>
-                    </Card>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </form>
             </div>
         </div>

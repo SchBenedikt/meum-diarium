@@ -30,9 +30,10 @@ export function QuoteOfDay() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-      className="relative rounded-lg bg-card border border-border/50 p-8 md:p-10"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="relative rounded-2xl bg-surface-container-low/30 backdrop-blur-md border border-white/5 p-8 md:p-12 group overflow-hidden transition-all duration-500 hover:border-primary/30"
     >
+      <div className="absolute -right-8 -top-8 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700" />
       {/* Decorative Quote Mark */}
       <div className="absolute top-6 left-8 opacity-10">
         <Quote className="h-16 w-16 text-primary" />

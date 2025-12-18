@@ -63,7 +63,7 @@ export function SWUpdateToast() {
           transition={{ type: 'spring', stiffness: 260, damping: 24 }}
           className="fixed bottom-4 left-0 right-0 z-50 px-4 safe-bottom"
         >
-          <div className="mx-auto max-w-xl rounded-2xl border border-border bg-card shadow-xl shadow-black/10 p-4 sm:p-5 flex flex-col sm:flex-row gap-3 sm:items-center">
+          <div className="mx-auto max-w-xl rounded-2xl border border-border bg-card p-4 sm:p-5 flex flex-col sm:flex-row gap-3 sm:items-center">
             <div className="flex items-start gap-3">
               <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                 <RefreshCw className="h-5 w-5" />

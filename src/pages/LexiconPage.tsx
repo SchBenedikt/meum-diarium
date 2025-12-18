@@ -128,14 +128,14 @@ export default function LexiconPage() {
 
         <section className="py-8 -mt-8 relative z-20">
           <div className="container mx-auto max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative shadow-2xl rounded-xl">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl blur-xl opacity-50"></div>
               <div className="relative bg-card/80 backdrop-blur-xl border border-primary/20 rounded-xl flex items-center p-2">
                 <Search className="h-6 w-6 text-muted-foreground ml-3" />
                 <Input
                   type="text"
                   placeholder={t('searchPlaceholder')}
-                  className="border-none bg-transparent shadow-none text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/50"
+                  className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -197,7 +197,7 @@ export default function LexiconPage() {
                     "w-8 h-8 rounded-full text-sm font-medium transition-all",
                     "disabled:opacity-20 disabled:cursor-not-allowed",
                     activeLetter === letter
-                      ? "bg-primary text-primary-foreground scale-110 shadow-md"
+                      ? "bg-primary text-primary-foreground scale-110 border border-primary/50"
                       : "hover:bg-secondary text-foreground/70"
                   )}
                 >

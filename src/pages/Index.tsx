@@ -11,6 +11,7 @@ import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, User, BookOpen, ArrowRight, Scroll, Crown, Gamepad2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
@@ -39,8 +40,13 @@ const Index = () => {
               {/* Dashboard Grid */}
               <div className="grid gap-6 md:grid-cols-3 mb-16">
 
-                {/* Chat Feature - No gradient */}
-                <div className="md:col-span-3 bg-card rounded-lg p-5 sm:p-8 border border-border relative overflow-hidden group">
+                {/* Chat Feature - No gradient, modern glassmorphism */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="md:col-span-3 bg-card/60 backdrop-blur-md rounded-2xl p-6 sm:p-10 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-500"
+                >
                   <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity hidden sm:block">
                     <MessageCircle className="w-32 h-32 text-primary" />
                   </div>
@@ -85,11 +91,11 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Biography Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border hover:border-primary/30 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start">
+                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/40 hover:border-primary/50 transition-all rounded-2xl p-4 sm:p-6 flex flex-col items-start">
                     <div className="p-3 bg-secondary rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
                       <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -107,7 +113,7 @@ const Index = () => {
 
                 {/* Works Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/40 border border-border hover:border-primary/30 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start">
+                  <div className="h-full bg-card hover:bg-secondary/40 border border-border/40 hover:border-primary/50 transition-all rounded-2xl p-4 sm:p-6 flex flex-col items-start">
                     <div className="p-3 bg-secondary rounded-lg mb-4 group-hover:bg-primary/10 transition-colors">
                       <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -124,26 +130,34 @@ const Index = () => {
                 </Link>
 
                 {/* Simulation Mode - Brighter, no gradient */}
-                <Link to={`/${currentAuthor}/simulation`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-amber-50 dark:hover:bg-amber-950/20 border border-border hover:border-amber-400/50 transition-all rounded-lg p-4 sm:p-6 flex flex-col items-start relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Crown className="w-24 h-24 text-amber-500 rotate-12" />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="md:col-span-1"
+                >
+                  <Link to={`/${currentAuthor}/simulation`} className="group h-full block">
+                    <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/10 dark:hover:bg-amber-950/20 border border-border/40 hover:border-amber-400/50 transition-all duration-500 rounded-2xl p-6 flex flex-col items-start relative overflow-hidden group-hover:-translate-y-2">
+                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-20 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12">
+                        <Crown className="w-32 h-32 text-amber-500" />
+                      </div>
+                      <div className="p-4 bg-amber-100/10 dark:bg-amber-900/30 rounded-2xl mb-6 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-colors z-10 group-hover:scale-110 group-hover:rotate-3">
+                        <Gamepad2 className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+                      </div>
+                      <h3 className="font-display text-2xl font-medium mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">
+                        Textbased Game
+                      </h3>
+                      <p className="text-base text-muted-foreground mb-6 flex-1 z-10 leading-relaxed">
+                        Erlebe Geschichte aus der Sicht von {authors[currentAuthor].name.split(' ')[0]}.
+                        <span className="block mt-2 text-sm font-semibold text-amber-600 dark:text-amber-400">5 Szenarien verfügbar</span>
+                      </p>
+                      <div className="flex items-center text-sm font-semibold text-amber-600 dark:text-amber-400 mt-auto z-10">
+                        Spielen <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" />
+                      </div>
                     </div>
-                    <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg mb-4 group-hover:bg-amber-200 dark:group-hover:bg-amber-800/40 transition-colors z-10">
-                      <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <h3 className="font-display text-xl font-medium mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">
-                      Textbased Game
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1 z-10">
-                      Erlebe Geschichte aus der Sicht von {authors[currentAuthor].name.split(' ')[0]}.
-                      <span className="block mt-1 text-xs font-semibold text-amber-600 dark:text-amber-400">5 Szenarien verfügbar</span>
-                    </p>
-                    <div className="flex items-center text-sm font-medium text-amber-600 dark:text-amber-400 mt-auto z-10">
-                      Spielen <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               </div>
 
               <div className="border-t border-border/50 pt-12">
@@ -152,14 +166,11 @@ const Index = () => {
             </div>
           </div>
         ) : (
-          <>
-            <LandingHero />
-            <FeatureShowcase />
-          </>
+          <LandingHero />
         )}
-      </main>
+      </main >
       <Footer />
-    </div>
+    </div >
   );
 };
 

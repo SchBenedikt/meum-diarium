@@ -33,8 +33,8 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
     <aside className="space-y-5 lg:space-y-6">
       {/* Etymology */}
       {entry.etymology && (
-        <motion.div 
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6 animate-in"
+        <motion.div
+          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in"
           initial={{ opacity: 0, x: 12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -50,8 +50,8 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       )}
 
       {/* Category */}
-      <motion.div 
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6 animate-in stagger-1"
+      <motion.div
+        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-1"
         initial={{ opacity: 0, x: 12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -61,9 +61,9 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           <Tags className="h-4 w-4 text-primary" />
           Kategorie
         </h3>
-        <Link 
+        <Link
           to={`/search?category=${encodeURIComponent(entry.category)}`}
-          className="inline-block px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors shadow-[0_1px_2px_0_rgba(0,0,0,0.05)]"
+          className="inline-block px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
         >
           {entry.category}
         </Link>
@@ -71,8 +71,8 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
 
       {/* Related Terms */}
       {relatedTerms.length > 0 && (
-        <motion.div 
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6 animate-in stagger-2"
+        <motion.div
+          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-2"
           initial={{ opacity: 0, x: 12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -96,9 +96,9 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         </motion.div>
       )}
 
-       {/* Go to Lexicon */}
-       <motion.div 
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 shadow-sm shadow-foreground/5 p-5 lg:p-6 animate-in stagger-3"
+      {/* Go to Lexicon */}
+      <motion.div
+        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-3"
         initial={{ opacity: 0, x: 12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
