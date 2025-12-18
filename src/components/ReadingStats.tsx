@@ -52,8 +52,9 @@ export function ReadingStats() {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <ModernBackground />
+    <section className="py-32 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-full -translate-y-1/2" />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           variants={fadeUp()}
@@ -61,18 +62,18 @@ export function ReadingStats() {
           whileInView="visible"
           viewport={{ once: true }}
           transition={defaultTransition}
-          className="text-center mb-14"
+          className="max-w-4xl mb-20"
         >
-          <h2 className="font-display text-2xl md:text-3xl mb-3 tracking-tight">
-            {t('collectionInsights')}
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Entdecke die <span className="text-primary italic">Sammlung.</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            {t('collectionStats')}
+          <p className="text-xl text-muted-foreground leading-relaxed font-light max-w-2xl">
+            {t('collectionStats') || 'Ein wachsendes Archiv der Antike. Jede Zahl repräsentiert eine Brücke in eine vergangene Welt, bereit für deine Erkundung.'}
           </p>
         </motion.div>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto"
           variants={staggerContainer(0.08)}
           initial="hidden"
           whileInView="visible"
@@ -82,35 +83,52 @@ export function ReadingStats() {
             <motion.div
               key={stat.label}
               variants={fadeUp(index * 0.08, 20)}
-              className="group p-6 rounded-2xl bg-surface-container-low/30 backdrop-blur-md border border-white/5 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 relative overflow-hidden"
+              className="group relative p-8 rounded-3xl bg-card/40 backdrop-blur-2xl border border-border/40 transition-all duration-700 hover:border-primary/40 hover:-translate-y-2 overflow-hidden"
             >
-              <div className="absolute -right-4 -top-4 w-20 h-20 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
-              <div className="h-12 w-12 rounded-xl bg-secondary/50 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <stat.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/15 transition-colors duration-700" />
+
+              <div className="relative z-10">
+                <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                  <stat.icon className="h-7 w-7 text-primary" />
+                </div>
+
+                <div className="space-y-4">
+                  <p className="font-display text-4xl font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
+                    {stat.value}
+                  </p>
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-[0.2em] text-foreground/80 mb-2">
+                      {stat.label}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed italic opacity-80">
+                      {stat.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="font-display text-3xl font-semibold mb-1 tracking-tight group-hover:text-primary transition-colors">{stat.value}</p>
-              <p className="font-medium text-sm mb-1">{stat.label}</p>
-              <p className="text-xs text-muted-foreground leading-relaxed">{stat.description}</p>
+
+              {/* Decorative line */}
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-primary group-hover:w-full transition-all duration-700" />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Tags Cloud */}
+        {/* Tags Cloud - Refined */}
         <motion.div
           variants={fadeUp(0.3)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           transition={defaultTransition}
-          className="mt-14 text-center"
+          className="mt-24 pt-16 border-t border-white/5"
         >
-          <p className="text-sm text-muted-foreground mb-5">{t('popularTopics')}</p>
-          <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
-            {uniqueTags.slice(0, 12).map(tag => (
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-8 text-center">{t('popularTopics')}</p>
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {uniqueTags.slice(0, 15).map(tag => (
               <Link
                 key={tag}
                 to={`/search?category=${encodeURIComponent(tag)}`}
-                className="px-5 py-2.5 rounded-full bg-surface-container-low/40 backdrop-blur-sm border border-white/5 text-sm font-medium hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 active:scale-95 shadow-none"
+                className="px-8 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/5 text-sm font-display font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-500 hover:scale-110 active:scale-95"
               >
                 {tag}
               </Link>

@@ -573,6 +573,106 @@ app.get('/api/pages', async (req, res) => {
     }
 });
 
+
+// ============ TAGS API ============
+
+// GET all unique tags
+app.get('/api/tags', async (req, res) => {
+    try {
+        const authors = ['caesar', 'cicero', 'augustus', 'seneca'];
+        const tagsSet = new Set<string>();
+
+        for (const author of authors) {
+            const authorDir = path.join(POSTS_DIR, author);
+            try {
+                await fs.access(authorDir);
+                const files = await fs.readdir(authorDir);
+                for (const file of files) {
+                    if (file.endsWith('.ts')) {
+                        const content = await fs.readFile(path.join(authorDir, file), 'utf-8');
+                        const tags = extractStringArray(content, 'tags');
+                        tags.forEach(t => tagsSet.add(t));
+                    }
+                }
+            } catch (e) { }
+        }
+        res.json(Array.from(tagsSet).sort());
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch tags' });
+    }
+});
+
+// PATCH rename tag
+app.patch('/api/tags', async (req, res) => {
+    try {
+        const { oldTag, newTag } = req.body;
+        if (!oldTag || !newTag) return res.status(400).json({ error: 'Missing oldTag or newTag' });
+
+        const authors = ['caesar', 'cicero', 'augustus', 'seneca'];
+        let count = 0;
+
+        for (const author of authors) {
+            const authorDir = path.join(POSTS_DIR, author);
+            try {
+                await fs.access(authorDir);
+                const files = await fs.readdir(authorDir);
+                for (const file of files) {
+                    if (file.endsWith('.ts')) {
+                        const filePath = path.join(authorDir, file);
+                        let content = await fs.readFile(filePath, 'utf-8');
+                        const tags = extractStringArray(content, 'tags');
+
+                        if (tags.includes(oldTag)) {
+                            const newTags = tags.map(t => t === oldTag ? newTag : t);
+                            // Simple replacement of the tags array line
+                            content = content.replace(/tags:\s*\[.*?\]/, `tags: ${JSON.stringify(newTags)}`);
+                            await fs.writeFile(filePath, content, 'utf-8');
+                            count++;
+                        }
+                    }
+                }
+            } catch (e) { }
+        }
+        res.json({ success: true, updatedCount: count });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to rename tag' });
+    }
+});
+
+// DELETE tag
+app.delete('/api/tags/:tag', async (req, res) => {
+    try {
+        const tagToDelete = req.params.tag;
+        const authors = ['caesar', 'cicero', 'augustus', 'seneca'];
+        let count = 0;
+
+        for (const author of authors) {
+            const authorDir = path.join(POSTS_DIR, author);
+            try {
+                await fs.access(authorDir);
+                const files = await fs.readdir(authorDir);
+                for (const file of files) {
+                    if (file.endsWith('.ts')) {
+                        const filePath = path.join(authorDir, file);
+                        let content = await fs.readFile(filePath, 'utf-8');
+                        const tags = extractStringArray(content, 'tags');
+
+                        if (tags.includes(tagToDelete)) {
+                            const newTags = tags.filter(t => t !== tagToDelete);
+                            content = content.replace(/tags:\s*\[.*?\]/, `tags: ${JSON.stringify(newTags)}`);
+                            await fs.writeFile(filePath, content, 'utf-8');
+                            count++;
+                        }
+                    }
+                }
+            } catch (e) { }
+        }
+        res.json({ success: true, updatedCount: count });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete tag' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Backend server running on http://localhost:${PORT}`);
 });

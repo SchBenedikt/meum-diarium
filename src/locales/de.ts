@@ -86,7 +86,7 @@ export const de = {
     spqr: 'SPQR · Senatus Populusque Romanus',
     lexiconGlossary: 'Glossar der Antike',
     lexiconDescription: 'Ein Nachschlagewerk für die wichtigsten Begriffe, Personen und Konzepte des antiken Roms.',
-    morePostsFrom: 'Weitere Beiträge von {name}',
+    morePostsFrom: 'Weitere Beiträge von {{name}}',
     filter: 'Filter',
     clearFilters: 'Filter zurücksetzen',
     birth: 'Geburt',

@@ -24,7 +24,7 @@ const typeIcons = {
 
 const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
   const eventSlug = slugify(event.title, { lower: true, strict: true });
-  return posts.find(p => 
+  return posts.find(p =>
     p.slug === eventSlug ||
     p.title === event.title ||
     (p.historicalYear === event.year && p.author === event.author)
@@ -51,7 +51,7 @@ export function Timeline() {
     }
     updateTimeline();
   }, [language, posts]);
-  
+
   const typeLabels: Record<string, string> = {
     birth: t('birth'),
     death: t('death'),
@@ -61,7 +61,7 @@ export function Timeline() {
 
   const filteredEvents = useMemo(() => {
     return timelineEvents.filter(event => {
-      const authorMatch = selectedAuthors.length === 0 || 
+      const authorMatch = selectedAuthors.length === 0 ||
         (event.author && selectedAuthors.includes(event.author));
       const typeMatch = selectedType === 'all' || event.type === selectedType;
       return authorMatch && typeMatch;
@@ -69,8 +69,8 @@ export function Timeline() {
   }, [selectedAuthors, selectedType, timelineEvents]);
 
   const toggleAuthor = (authorId: Author) => {
-    setSelectedAuthors(prev => 
-      prev.includes(authorId) 
+    setSelectedAuthors(prev =>
+      prev.includes(authorId)
         ? prev.filter(a => a !== authorId)
         : [...prev, authorId]
     );
@@ -92,13 +92,13 @@ export function Timeline() {
     <section className="py-8 sm:py-12">
       <div className="container mx-auto px-4">
         {/* Filters - mobile optimized */}
-        <div className="mb-8 sm:mb-10 p-3 sm:p-4 rounded-lg border border-border bg-card space-y-3 sm:space-y-4">
+        <div className="mb-8 sm:mb-10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-border/40 bg-card/60 backdrop-blur-xl space-y-4 sm:space-y-6">
           <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-medium">{t('filter')}</span>
             </div>
-            
+
             {hasFilters && (
               <button
                 onClick={clearFilters}
@@ -120,12 +120,12 @@ export function Timeline() {
                   onClick={() => toggleAuthor(author.id as Author)}
                   className={cn(
                     "flex items-center gap-2 px-3 sm:px-4 py-2 min-h-[40px] rounded-lg text-sm font-medium transition-all duration-200 touch-manipulation active:scale-95",
-                    isSelected 
-                      ? `bg-author-${author.id} text-white ` 
+                    isSelected
+                      ? `bg-author-${author.id} text-white `
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70"
                   )}
                 >
-                  <div 
+                  <div
                     className={cn(
                       "h-2 w-2 rounded-full flex-shrink-0",
                       isSelected ? "bg-white" : `bg-author-${author.id}`
@@ -167,7 +167,7 @@ export function Timeline() {
               const position = ((event.year - minYear) / totalRange) * 100;
               const isBarHovered = hoveredEvent === `${event.year}-${event.title}`;
               const eventId = `event-${event.year}-${event.title.replace(/\s+/g, '-')}`;
-              
+
               const handleBarClick = () => {
                 const element = document.getElementById(eventId);
                 if (element) {
@@ -176,7 +176,7 @@ export function Timeline() {
                   setTimeout(() => setHoveredEvent(null), 2000);
                 }
               };
-              
+
               return (
                 <motion.button
                   key={`bar-${event.year}-${event.title}`}
@@ -190,8 +190,8 @@ export function Timeline() {
                     `bg-author-${event.author || 'caesar'}`,
                     isBarHovered ? "h-5 w-5 z-10  ring-2 ring-background" : "h-3 w-3"
                   )}
-                  style={{ 
-                    left: `${position}%`, 
+                  style={{
+                    left: `${position}%`,
                     transform: 'translate(-50%, -50%)'
                   }}
                   onMouseEnter={() => setHoveredEvent(`${event.year}-${event.title}`)}
@@ -245,8 +245,8 @@ export function Timeline() {
 
                 const EventContent = () => (
                   <>
-                     {/* Content Card - mobile optimized */}
-                     <div className={cn(
+                    {/* Content Card - mobile optimized */}
+                    <div className={cn(
                       "flex-1 ml-12 sm:ml-16 md:ml-0",
                       isLeft ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
                     )}>
@@ -254,11 +254,11 @@ export function Timeline() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
                         className={cn(
-                          "inline-block bg-card rounded-lg sm:rounded-lg p-4 sm:p-5 md:p-6  border-2 transition-all duration-300 text-left touch-manipulation",
+                          "inline-block bg-card/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border transition-all duration-300 text-left touch-manipulation",
                           post ? 'cursor-pointer hover: active:' : '',
                           isHovered && post
-                            ? `border-author-${event.author || 'caesar'} ` 
-                            : "border-border hover:border-border/80",
+                            ? `border-author-${event.author || 'caesar'} `
+                            : "border-border/40 hover:border-border/60",
                           isLeft ? "md:ml-auto" : ""
                         )}
                       >
@@ -268,7 +268,7 @@ export function Timeline() {
                           isLeft ? "md:justify-end" : ""
                         )}>
                           {author && (
-                            <div 
+                            <div
                               className={cn(
                                 "h-6 w-6 sm:h-7 sm:w-7 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0",
                                 `bg-author-${event.author || 'caesar'}`
@@ -277,7 +277,7 @@ export function Timeline() {
                               {author.name.charAt(0)}
                             </div>
                           )}
-                          <span 
+                          <span
                             className="text-xs sm:text-sm font-bold"
                             style={{ color: author?.color }}
                           >
@@ -293,7 +293,7 @@ export function Timeline() {
 
                         {/* Content - mobile optimized */}
                         <h3 className={cn(
-                          "font-display text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 transition-colors duration-200 line-clamp-2", 
+                          "font-display text-base sm:text-lg font-bold mb-1.5 sm:mb-2 transition-colors duration-200 line-clamp-2 italic",
                           post && 'hover:text-primary',
                           isHovered && post && 'text-primary'
                         )}>
@@ -343,7 +343,7 @@ export function Timeline() {
                 );
 
                 const eventId = `event-${event.year}-${event.title.replace(/\s+/g, '-')}`;
-                
+
                 const TimelineItem = (
                   <motion.div
                     id={eventId}
@@ -391,7 +391,7 @@ export function Timeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-4 rounded-lg bg-secondary/30"
+              className="p-6 rounded-2xl bg-secondary/20 border border-border/40 backdrop-blur-sm"
             >
               <p className="font-display text-2xl font-bold text-primary">{stat.value}</p>
               <p className="text-xs text-muted-foreground">{stat.label}</p>
@@ -404,4 +404,4 @@ export function Timeline() {
 }
 
 type FilterType = 'all' | 'birth' | 'death' | 'event' | 'work';
-    
+

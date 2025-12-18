@@ -27,19 +27,20 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       transition={{ delay: 0.12, duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
       className="space-y-5 lg:space-y-6"
     >
-      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6">
+      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 overflow-hidden relative group">
+        <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl transition-colors" />
         <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
           <div className="flex items-center gap-3">
             <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
             <div className="min-w-0">
-              <p className="font-medium truncate">{author.name}</p>
+              <p className="font-display text-lg font-bold truncate italic group-hover:text-primary transition-colors">{author.name}</p>
               <p className="text-sm text-muted-foreground truncate">{author.title}</p>
             </div>
           </div>
         </Link>
       </div>
 
-      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6">
+      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
           Historischer Kontext
@@ -64,7 +65,8 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {post.sidebar?.quote && (
-        <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/70 via-secondary/40 to-card p-5 lg:p-6">
+        <div className="rounded-2xl border border-border/40 bg-gradient-to-br from-secondary/30 via-secondary/10 to-card/40 backdrop-blur-md p-5 lg:p-6 relative overflow-hidden">
+          <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
           <Quote className="h-5 w-5 text-primary mb-3" />
           <blockquote className="font-display text-base italic mb-2">
             „{post.sidebar.quote.text}"
@@ -75,7 +77,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6">
+      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Themen
@@ -94,7 +96,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {relatedPosts.length > 0 && (
-        <div className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6">
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4">
             {t('otherWorks')}
           </h3>

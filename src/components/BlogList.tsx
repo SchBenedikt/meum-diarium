@@ -36,11 +36,11 @@ export function BlogList() {
                 Tagebuch
               </span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-2">
-              Meine Kommentare
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-2 text-foreground">
+              Meine <span className="text-primary italic">Kommentare</span>
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground">
-              {filteredPosts.length} Einträge von {authorInfo.name.split(' ').pop()}
+            <p className="text-sm sm:text-base text-muted-foreground font-light">
+              {filteredPosts.length} Einträge von <span className="italic">{authorInfo.name.split(' ').pop()}</span>
             </p>
           </motion.div>
         </div>

@@ -8,7 +8,8 @@ import { usePosts } from '@/hooks/use-posts';
 import { useAuthors } from '@/hooks/use-authors';
 import { useLexicon } from '@/hooks/use-lexicon';
 import { usePages } from '@/hooks/use-pages';
-import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry } from '@/lib/api';
+import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry, renameTag, deleteTag } from '@/lib/api';
+import { useTags } from '@/hooks/use-tags';
 import { Link } from 'react-router-dom';
 import {
     Table,
@@ -18,7 +19,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings, LayoutDashboard, ArrowUpRight, Image as ImageIcon } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, FileText, Eye, Settings, LayoutDashboard, ArrowUpRight, Image as ImageIcon, Tags, Hash } from 'lucide-react';
 import { toast } from 'sonner';
 import { BlogPost, LexiconEntry } from '@/types/blog';
 import { QuickStats } from '@/components/QuickStats';
@@ -32,10 +33,12 @@ export default function AdminPage() {
     const { authors: authorEntries } = useAuthors();
     const { lexicon: lexiconEntries } = useLexicon();
     const { pages } = usePages();
+    const { tags } = useTags();
 
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);
+    const [filteredTags, setFilteredTags] = useState<string[]>([]);
 
     // Initialize filtered lists when data loads
     useEffect(() => {
@@ -45,6 +48,10 @@ export default function AdminPage() {
     useEffect(() => {
         if (lexiconEntries) setFilteredLexicon(lexiconEntries);
     }, [lexiconEntries]);
+
+    useEffect(() => {
+        if (tags) setFilteredTags(tags);
+    }, [tags]);
 
     // Used for table display - derived from posts directly now
     const postRows = posts || [];
@@ -144,7 +151,12 @@ export default function AdminPage() {
             label: 'Seiten',
             value: pages.length,
         },
-    ]), [authorEntries, lexiconEntries.length, postRows.length, pages.length]);
+        {
+            icon: Tags,
+            label: 'Tags',
+            value: tags.length,
+        },
+    ]), [authorEntries, lexiconEntries.length, postRows.length, pages.length, tags.length]);
 
     const recentContent = useMemo(() => {
         const postItems = (postRows || []).map(post => ({
@@ -203,6 +215,43 @@ export default function AdminPage() {
             await removeLexiconEntry(slug);
             toast.success('Eintrag gelöscht');
             queryClient.invalidateQueries({ queryKey: ['lexicon'] });
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
+        }
+    };
+    const handleTagSearch = (query: string) => {
+        if (!query) {
+            setFilteredTags(tags);
+            return;
+        }
+        const filtered = tags.filter(tag =>
+            tag.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredTags(filtered);
+    };
+
+    const handleRenameTag = async (oldTag: string) => {
+        const newTag = window.prompt(`Tag "${oldTag}" umbenennen in:`, oldTag);
+        if (!newTag || newTag === oldTag) return;
+
+        try {
+            await renameTag(oldTag, newTag);
+            toast.success(`Tag umbenannt: ${oldTag} -> ${newTag}`);
+            queryClient.invalidateQueries({ queryKey: ['tags'] });
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
+        } catch (e) {
+            toast.error('Fehler beim Umbenennen');
+        }
+    };
+
+    const handleDeleteTag = async (tag: string) => {
+        if (!window.confirm(`Tag "${tag}" wirklich aus allen Beiträgen löschen?`)) return;
+
+        try {
+            await deleteTag(tag);
+            toast.success(`Tag "${tag}" gelöscht`);
+            queryClient.invalidateQueries({ queryKey: ['tags'] });
+            queryClient.invalidateQueries({ queryKey: ['posts'] });
         } catch (e) {
             toast.error('Fehler beim Löschen');
         }
@@ -326,6 +375,7 @@ export default function AdminPage() {
                     <TabsTrigger value="posts">Beiträge</TabsTrigger>
                     <TabsTrigger value="authors">Autoren</TabsTrigger>
                     <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
+                    <TabsTrigger value="tags">Tags</TabsTrigger>
                     <TabsTrigger value="pages">Seiten</TabsTrigger>
                 </TabsList>
 
@@ -512,6 +562,70 @@ export default function AdminPage() {
                                                             className="text-destructive"
                                                             onClick={() => handleDeleteLexicon(entry.slug)}
                                                             aria-label="Lexikon-Eintrag löschen"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                {/* Tags Tab */}
+                <TabsContent value="tags">
+                    <Card>
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <CardTitle>Tags verwalten</CardTitle>
+                                <CardDescription>{filteredTags.length} von {tags.length} Tags</CardDescription>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <SearchFilter
+                                onSearch={handleTagSearch}
+                                placeholder="Tags durchsuchen..."
+                            />
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Tag</TableHead>
+                                            <TableHead className="text-right">Aktionen</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {filteredTags.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={2} className="text-center text-muted-foreground py-8">
+                                                    Keine Tags gefunden
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : (
+                                            filteredTags.map((tag) => (
+                                                <TableRow key={tag}>
+                                                    <TableCell className="font-medium flex items-center gap-2">
+                                                        <Hash className="h-4 w-4 text-muted-foreground" />
+                                                        {tag}
+                                                    </TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() => handleRenameTag(tag)}
+                                                            aria-label="Tag umbenennen"
+                                                        >
+                                                            <Edit className="h-4 w-4" />
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="text-destructive"
+                                                            onClick={() => handleDeleteTag(tag)}
+                                                            aria-label="Tag löschen"
                                                         >
                                                             <Trash2 className="h-4 w-4" />
                                                         </Button>

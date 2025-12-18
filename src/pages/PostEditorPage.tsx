@@ -10,7 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BlogPost, Author } from '@/types/blog';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Eye, Globe } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Globe, X, Hash } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { upsertPost } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
@@ -67,6 +68,8 @@ export default function PostEditorPage() {
             scientific: ''
         }
     });
+
+    const [tagInput, setTagInput] = useState('');
 
     // Populate form when data arrives
     useEffect(() => {
@@ -168,6 +171,21 @@ export default function PostEditorPage() {
             ...prev,
             [lang]: { ...prev[lang], [field]: value }
         }));
+    };
+
+    const handleAddTag = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const tag = tagInput.trim();
+            if (tag && !formData.tags.includes(tag)) {
+                updateField('tags', [...formData.tags, tag]);
+            }
+            setTagInput('');
+        }
+    };
+
+    const removeTag = (tagToRemove: string) => {
+        updateField('tags', formData.tags.filter(t => t !== tagToRemove));
     };
 
     if (isFetching && isEditMode) {
@@ -287,6 +305,30 @@ export default function PostEditorPage() {
                                     value={formData.coverImage}
                                     onChange={e => updateField('coverImage', e.target.value)}
                                     placeholder="https://..."
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Tags</Label>
+                                <div className="flex flex-wrap gap-2 mb-2">
+                                    {formData.tags.map(tag => (
+                                        <Badge key={tag} variant="secondary" className="gap-1 px-2 py-1">
+                                            <Hash className="h-3 w-3" />
+                                            {tag}
+                                            <button
+                                                type="button"
+                                                onClick={() => removeTag(tag)}
+                                                className="ml-1 hover:text-destructive transition-colors"
+                                            >
+                                                <X className="h-3 w-3" />
+                                            </button>
+                                        </Badge>
+                                    ))}
+                                </div>
+                                <Input
+                                    value={tagInput}
+                                    onChange={e => setTagInput(e.target.value)}
+                                    onKeyDown={handleAddTag}
+                                    placeholder="Tag eingeben und Enter drücken..."
                                 />
                             </div>
                         </CardContent>

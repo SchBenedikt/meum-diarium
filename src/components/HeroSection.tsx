@@ -3,6 +3,7 @@ import { useAuthor } from '@/context/AuthorContext';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BlogList } from './BlogList';
+import { ArrowRight } from 'lucide-react';
 import { fadeUp, scaleIn, defaultTransition, float } from '@/lib/motion';
 import { ModernBackground } from './ui/ModernBackground';
 
@@ -22,14 +23,14 @@ export function HeroSection() {
       <div className="container mx-auto relative pt-16 sm:pt-20 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <motion.div
               variants={fadeUp()}
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold uppercase tracking-[0.2em] border border-primary/20 backdrop-blur-md">
                 {authorInfo.title}
               </span>
             </motion.div>
@@ -39,9 +40,10 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display leading-[1.1]"
+              className="text-4xl sm:text-5xl lg:text-7xl font-display leading-[1] font-bold tracking-tighter"
             >
-              {authorInfo.name}
+              <span className="text-foreground">{authorInfo.name.split(' ')[0]}</span>
+              <span className="text-primary block italic">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
             </motion.h1>
 
             <motion.p
@@ -49,7 +51,7 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
-              className="text-lg text-muted-foreground max-w-lg leading-relaxed"
+              className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed font-light"
             >
               {authorInfo.description}
             </motion.p>
@@ -59,14 +61,17 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
-              className="flex items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-6 pt-4"
             >
-              <Link to={`/${authorInfo.id}/about`} className="btn-primary">
-                Mehr erfahren
+              <Link to={`/${authorInfo.id}/about`} className="px-8 py-4 rounded-3xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 flex items-center gap-2">
+                Biografie entdecken <ArrowRight className="w-5 h-5" />
               </Link>
-              <span className="text-sm text-muted-foreground font-medium">
-                {authorInfo.years}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">Lebenszeit</span>
+                <span className="text-lg text-foreground font-display font-medium">
+                  {authorInfo.years}
+                </span>
+              </div>
             </motion.div>
           </div>
 
@@ -81,19 +86,21 @@ export function HeroSection() {
             <motion.div
               variants={float}
               animate="animate"
-              className="relative rounded-3xl aspect-[4/5] overflow-hidden border border-white/10 backdrop-blur-sm bg-white/5"
+              className="relative rounded-3xl overflow-hidden border border-border/40 backdrop-blur-xl bg-card/30 group shadow-xl shadow-primary/5"
             >
-              <div className="absolute inset-0 overflow-hidden">
+              <div className="aspect-[4/5] relative overflow-hidden">
                 <img
                   src={authorInfo.heroImage}
                   alt={authorInfo.name}
-                  className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8">
-                <p className="text-primary font-medium tracking-wider text-xs uppercase mb-2 opacity-80">{authorInfo.latinName}</p>
-                <p className="text-foreground text-2xl font-display font-semibold">{authorInfo.years}</p>
+                <div className="p-5 rounded-2xl bg-card/60 backdrop-blur-xl border border-white/10 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                  <p className="text-primary font-bold tracking-[0.3em] text-[9px] uppercase mb-1">{authorInfo.latinName}</p>
+                  <p className="text-foreground text-2xl font-display font-bold">{authorInfo.name.split(' ').pop()}</p>
+                </div>
               </div>
             </motion.div>
           </motion.div>

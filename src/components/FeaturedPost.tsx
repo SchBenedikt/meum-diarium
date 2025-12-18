@@ -33,7 +33,7 @@ export function FeaturedPost() {
             {t('featuredPost')}
           </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 tracking-tight px-4">
-            {t('glimpseIntoAnnals')}
+            Der <span className="text-primary italic">Blick</span> in die Annalen
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed px-4">
             {t('featuredPostDesc')}
@@ -42,7 +42,7 @@ export function FeaturedPost() {
 
         <div className="max-w-xl mx-auto">
           {isLoading || !featuredPost ? (
-            <div className="bg-card rounded-lg p-0 overflow-hidden border border-border/50">
+            <div className="bg-card/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-0 overflow-hidden border border-border/40">
               <Skeleton className="h-52 w-full" />
               <div className="p-6">
                 <Skeleton className="h-4 w-24 mb-4" />
