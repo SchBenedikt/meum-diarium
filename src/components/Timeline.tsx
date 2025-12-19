@@ -83,10 +83,16 @@ export function Timeline() {
 
   const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all';
 
-  // Calculate timeline range
-  const minYear = Math.min(...timelineEvents.map(e => e.year));
-  const maxYear = Math.max(...timelineEvents.map(e => e.year));
-  const totalRange = maxYear - minYear;
+  // Calculate timeline range safely
+  const safeYears = timelineEvents.filter(e => Number.isFinite(e.year)).map(e => e.year);
+  const minYear = safeYears.length ? Math.min(...safeYears) : -100;
+  const maxYear = safeYears.length ? Math.max(...safeYears) : 100;
+  const totalRange = maxYear - minYear || 1;
+
+  const formatYear = (year: number) => {
+    if (!Number.isFinite(year)) return '—';
+    return year > 0 ? `${year} n. Chr.` : `${Math.abs(year)} v. Chr.`;
+  };
 
   return (
     <section className="py-8 sm:py-12">
@@ -164,7 +170,9 @@ export function Timeline() {
         <div className="mb-12 px-4">
           <div className="relative h-3 bg-secondary/50 rounded-full">
             {filteredEvents.map((event, idx) => {
-              const position = ((event.year - minYear) / totalRange) * 100;
+              const position = Number.isFinite(event.year)
+                ? ((event.year - minYear) / totalRange) * 100
+                : 50;
               const isBarHovered = hoveredEvent === `${event.year}-${event.title}`;
               const eventId = `event-${event.year}-${event.title.replace(/\s+/g, '-')}`;
 
@@ -212,8 +220,8 @@ export function Timeline() {
             })}
           </div>
           <div className="flex justify-between mt-4 text-xs font-medium text-muted-foreground">
-            <span>{Math.abs(minYear)} v. Chr.</span>
-            <span>{maxYear > 0 ? `${maxYear} n. Chr.` : `${Math.abs(maxYear)} v. Chr.`}</span>
+            <span>{formatYear(minYear)}</span>
+            <span>{formatYear(maxYear)}</span>
           </div>
         </div>
 
@@ -251,8 +259,6 @@ export function Timeline() {
                       isLeft ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
                     )}>
                       <motion.div
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
                         className={cn(
                           "inline-block bg-card/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border transition-all duration-300 text-left touch-manipulation",
                           post ? 'cursor-pointer hover: active:' : '',
@@ -277,11 +283,8 @@ export function Timeline() {
                               {author.name.charAt(0)}
                             </div>
                           )}
-                          <span
-                            className="text-xs sm:text-sm font-bold"
-                            style={{ color: author?.color }}
-                          >
-                            {event.year > 0 ? `${event.year} n. Chr.` : `${Math.abs(event.year)} v. Chr.`}
+                          <span className="text-xs sm:text-sm font-bold" style={{ color: author?.color }}>
+                            {formatYear(event.year)}
                           </span>
                           <span className={cn(
                             "px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider",
@@ -324,8 +327,8 @@ export function Timeline() {
 
                     {/* Center Icon - mobile optimized */}
                     <motion.div
-                      whileHover={{ scale: 1.25, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileTap={{ scale: 0.98 }}
                       className={cn(
                         "absolute left-6 sm:left-8 md:left-1/2 md:-translate-x-1/2",
                         "h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-lg flex items-center justify-center  z-10 transition-all duration-300",
