@@ -114,7 +114,7 @@ export function LandingHero() {
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto w-full max-w-4xl">
-            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4 shadow-2xl">
+            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4">
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
                   <div className="flex items-center gap-3">

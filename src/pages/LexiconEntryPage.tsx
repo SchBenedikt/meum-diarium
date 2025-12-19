@@ -81,8 +81,10 @@ export default function LexiconEntryPage() {
         <PageHero
           eyebrow={entry.category}
           title={entry.term}
-          description={t('lexiconDescription') || 'Eindeutig definiert und mit Kontext versehen.'}
-          backgroundImage="https://images.unsplash.com/photo-1466354424719-343280fe118b?q=80&w=2400&auto=format&fit=crop"
+          description={undefined}
+          backgroundImage={undefined}
+          showBackground={false}
+          interactiveBackground={false}
           kicker={
             <button
               onClick={handleBackClick}
@@ -99,7 +101,7 @@ export default function LexiconEntryPage() {
               <motion.div 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card space-y-6"
+                className="bg-card/70 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 space-y-6 border border-border/50"
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <Link to={`/search?category=${encodeURIComponent(entry.category)}`} className="group">
@@ -136,9 +138,11 @@ export default function LexiconEntryPage() {
               </motion.div>
             </article>
             
-            <aside className="hidden lg:block">
-              <div className="sticky top-28">
-                <LexiconSidebar entry={entry} />
+            <aside className="hidden lg:block mt-8 lg:mt-0">
+              <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+                <div className="bg-card/70 backdrop-blur-2xl rounded-3xl border border-border/50 p-5">
+                  <LexiconSidebar entry={entry} />
+                </div>
               </div>
             </aside>
           </div>

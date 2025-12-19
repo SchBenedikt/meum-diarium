@@ -122,12 +122,12 @@ export default function LexiconPage() {
 
         <section className="relative -mt-12 sm:-mt-16 z-10">
           <div className="section-shell max-w-3xl">
-            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3">
+            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3 py-2.5">
               <Search className="h-5 w-5 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder={t('searchPlaceholder')}
-                className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
+                className="border-none bg-transparent text-base h-10 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -173,7 +173,7 @@ export default function LexiconPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex justify-center mb-16 sticky top-24 z-40 px-4"
             >
-              <div className="flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-2xl bg-card/80 backdrop-blur-2xl border border-border/40 shadow-lg max-w-fit mx-auto overflow-hidden">
+              <div className="flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-2xl bg-card/80 backdrop-blur-2xl border border-border/40 max-w-fit mx-auto overflow-hidden">
                 <button
                   onClick={() => handleCategoryChange(null)}
                   className={cn(
@@ -193,7 +193,7 @@ export default function LexiconPage() {
                       "w-8 h-8 rounded-lg text-xs font-bold transition-all flex items-center justify-center",
                       "disabled:opacity-10 disabled:cursor-not-allowed",
                       activeLetter === letter
-                        ? "bg-primary text-primary-foreground scale-105 shadow-md shadow-primary/20"
+                        ? "bg-primary text-primary-foreground scale-105"
                         : "hover:bg-primary/10 text-foreground/60 hover:text-primary hover:scale-110 active:scale-95"
                     )}
                   >
@@ -220,8 +220,8 @@ export default function LexiconPage() {
                         const Icon = categoryIcons[entry.category] || Tags;
                         return (
                           <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-6 rounded-2xl sm:rounded-3xl bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover:-translate-y-1">
-                            <div className="absolute -top-4 -right-4 p-3 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105">
-                              <Icon className="h-16 w-16 text-primary" />
+                            <div className="absolute top-3 right-3 p-2 opacity-30 group-hover:opacity-80 transition-all duration-500 group-hover:-translate-y-1 group-hover:rotate-3 group-hover:scale-110">
+                              <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-primary/70" />
                             </div>
                             <div className="relative z-10">
                               <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors italic">{entry.term}</h3>

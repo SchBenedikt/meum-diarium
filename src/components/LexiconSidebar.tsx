@@ -34,7 +34,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       {/* Etymology */}
       {entry.etymology && (
         <motion.div
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in"
+          className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 animate-in"
           initial={{ opacity: 0, x: 12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -51,7 +51,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
 
       {/* Category */}
       <motion.div
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-1"
+        className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 animate-in stagger-1"
         initial={{ opacity: 0, x: 12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -72,7 +72,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       {/* Related Terms */}
       {relatedTerms.length > 0 && (
         <motion.div
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-2"
+          className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 animate-in stagger-2"
           initial={{ opacity: 0, x: 12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -98,7 +98,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
 
       {/* Go to Lexicon */}
       <motion.div
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-3"
+        className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 animate-in stagger-3"
         initial={{ opacity: 0, x: 12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}

@@ -63,8 +63,8 @@ export function HeroSection() {
               transition={defaultTransition}
               className="flex flex-wrap items-center gap-6 pt-4"
             >
-              <Link to={`/${authorInfo.id}/about`} className="px-8 py-4 rounded-3xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 flex items-center gap-2">
-                Biografie entdecken <ArrowRight className="w-5 h-5" />
+              <Link to={`/${authorInfo.id}/about`} className="px-8 py-4 rounded-3xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all duration-500 hover:scale-105 active:scale-95 flex items-center gap-2 group">
+                Biografie entdecken <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <div className="flex flex-col">
                 <span className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">Lebenszeit</span>
@@ -86,7 +86,7 @@ export function HeroSection() {
             <motion.div
               variants={float}
               animate="animate"
-              className="relative rounded-3xl overflow-hidden border border-border/40 backdrop-blur-xl bg-card/30 group shadow-xl shadow-primary/5"
+              className="relative rounded-3xl overflow-hidden border border-border/40 backdrop-blur-xl bg-card/30 group"
             >
               <div className="aspect-[4/5] relative overflow-hidden">
                 <img
