@@ -13,6 +13,9 @@ export type PageHeroProps = {
   kicker?: ReactNode;
   children?: ReactNode;
   align?: "left" | "center";
+  noBackground?: boolean;
+  tall?: boolean;
+  bgScale?: number;
 };
 
 export function PageHero({
@@ -25,22 +28,26 @@ export function PageHero({
   kicker,
   children,
   align = "left",
+  noBackground = false,
+  tall = false,
+  bgScale = 1.1,
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-background pt-24 sm:pt-32 pb-14 sm:pb-20">{/* Hero wrapper matches Landing page spacing */}
-      {backgroundImage && (
+    <section className={cn("relative overflow-hidden pt-24 sm:pt-32 pb-14 sm:pb-20", tall && !noBackground ? "min-h-[60vh] sm:min-h-[70vh]" : "", noBackground ? "bg-transparent" : "bg-background")}>{/* Hero wrapper matches Landing page spacing */}
+      {!noBackground && backgroundImage && (
         <div className="absolute inset-0">
           <img
             src={backgroundImage}
             alt="Background"
-            className="w-full h-full object-cover opacity-30 blur-[4px] scale-110"
+            className="w-full h-full object-cover opacity-35 blur-[3px]"
+            style={{ transform: `scale(${bgScale})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/60" />
         </div>
       )}
 
-      <ModernBackground />
+      {!noBackground && <ModernBackground />}
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div

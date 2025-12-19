@@ -118,6 +118,8 @@ export default function LexiconPage() {
           description={t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
           backgroundImage="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop"
           align="center"
+          tall
+          bgScale={1.4}
         />
 
         <section className="relative -mt-12 sm:-mt-16 z-10">
@@ -219,9 +221,9 @@ export default function LexiconPage() {
                       {groupedLexicon[letter].map(entry => {
                         const Icon = categoryIcons[entry.category] || Tags;
                         return (
-                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-6 rounded-2xl sm:rounded-3xl bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover:-translate-y-1">
-                            <div className="absolute -top-4 -right-4 p-3 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105">
-                              <Icon className="h-16 w-16 text-primary" />
+                          <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-6 rounded-2xl sm:rounded-3xl bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-colors duration-300 group relative overflow-hidden">
+                            <div className="absolute top-2 right-2 p-2 opacity-10 group-hover:opacity-100 transition-transform duration-500">
+                              <Icon className="h-12 w-12 text-primary icon-hover" />
                             </div>
                             <div className="relative z-10">
                               <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors italic">{entry.term}</h3>
@@ -230,8 +232,8 @@ export default function LexiconPage() {
                               </div>
                               <p className="text-sm text-muted-foreground line-clamp-3 font-light leading-relaxed">{entry.definition}</p>
 
-                              <div className="mt-4 flex items-center text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 uppercase tracking-widest">
-                                Mehr erfahren <ArrowRight className="ml-1.5 h-3 w-3" />
+                              <div className="mt-4 flex items-center text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                                Mehr erfahren <ArrowRight className="ml-1.5 h-3 w-3 icon-hover" />
                               </div>
                             </div>
                           </Link>

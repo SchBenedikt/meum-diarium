@@ -183,7 +183,7 @@ function GeneralAboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className="group p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-all duration-500 hover:-translate-y-1"
+                  className="group p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300"
                 >
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                     <item.icon className="h-8 w-8 text-primary" />
@@ -192,6 +192,39 @@ function GeneralAboutPage() {
                   <p className="text-muted-foreground leading-relaxed italic opacity-80">{item.desc}</p>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Methodology & Sources */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('methodology') || 'Methodik & Quellen'}</h2>
+              <p className="text-lg text-muted-foreground">{t('methodologyDesc') || 'Wie wir rekonstruieren: Originaltexte, semantische Analyse und sorgfältige Validierung.'}</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                  <BookOpen className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-2">{t('sources') || 'Primärquellen'}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t('sourcesDesc') || 'Originaltexte in Latein und Übersetzungen bilden die Grundlage jeder Rekonstruktion.'}</p>
+              </div>
+              <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                  <Scroll className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-2">{t('analysis') || 'Semantische Analyse'}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t('analysisDesc') || 'Rhetorische Muster, Stil und historische Kontexte werden systematisch modelliert.'}</p>
+              </div>
+              <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                  <Award className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-2">{t('validation') || 'Validierung'}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t('validationDesc') || 'Fachliche Plausibilitätsprüfungen minimieren Fehler und sichern Qualität.'}</p>
+              </div>
             </div>
           </div>
         </section>
@@ -237,7 +270,7 @@ function GeneralAboutPage() {
                           <Link
                             to={`/${author.id}/about`}
                             onClick={() => setCurrentAuthor(author.id as Author)}
-                            className="group flex items-center gap-6 p-6 rounded-3xl bg-background border border-border/40 hover:border-primary/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+                            className="group flex items-center gap-6 p-6 rounded-3xl bg-background border border-border/40 hover:border-primary/40 transition-colors duration-300"
                           >
                             <div className="h-20 w-20 rounded-2xl overflow-hidden flex-shrink-0 border border-border/40 group-hover:border-primary/50 transition-colors">
                               <img src={author.heroImage} alt={author.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
@@ -305,50 +338,94 @@ function AuthorAboutPage() {
   }
 
   const details = authorDetails[authorId as keyof typeof authorDetails];
+  const isCaesar = authorId === 'caesar';
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        {/* Cinematic Author Hero */}
-        <section className="relative h-[60vh] min-h-[500px] flex items-end overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
-            <img
-              src={authorInfo.heroImage}
-              alt={authorInfo.name}
-              className="w-full h-full object-cover scale-105 blur-[2px]"
-            />
-          </div>
-
-          <div className="container mx-auto relative z-20 px-4 sm:px-6 pb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-4xl"
-            >
-              <span className="inline-block px-4 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                {authorInfo.years}
-              </span>
-              <h1 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tighter text-foreground">
-                {authorInfo.name}
-              </h1>
-              <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
-                {authorInfo.title}
-              </p>
-
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
-                  <MapPin className="h-4 w-4 text-primary" />
-                  <span>{details?.birthPlace}</span>
-                </div>
-                <div className="h-1 w-12 bg-primary/30 rounded-full" />
-                <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
-                  {authorInfo.description}
-                </p>
+        {/* Author Hero */}
+        {isCaesar ? (
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6">
+              <div className="grid lg:grid-cols-12 gap-10 items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="lg:col-span-7"
+                >
+                  <span className="inline-block px-4 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
+                    {authorInfo.years}
+                  </span>
+                  <h1 className="font-display text-6xl sm:text-7xl font-bold mb-4 tracking-tighter text-foreground">
+                    {authorInfo.name}
+                  </h1>
+                  <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
+                    {authorInfo.title}
+                  </p>
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
+                      <MapPin className="h-4 w-4 text-primary" />
+                      <span>{details?.birthPlace}</span>
+                    </div>
+                    <div className="h-1 w-12 bg-primary/30 rounded-full" />
+                    <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
+                      {authorInfo.description}
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="lg:col-span-5"
+                >
+                  <div className="rounded-3xl overflow-hidden border border-border/40 bg-card/30">
+                    <img src={authorInfo.heroImage} alt={authorInfo.name} className="w-full h-full object-cover" />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
-        </section>
+            </div>
+          </section>
+        ) : (
+          <section className="relative h-[60vh] min-h-[500px] flex items-end overflow-hidden">
+            <div className="absolute inset-0 z-0">
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
+              <img
+                src={authorInfo.heroImage}
+                alt={authorInfo.name}
+                className="w-full h-full object-cover scale-105 blur-[2px]"
+              />
+            </div>
+
+            <div className="container mx-auto relative z-20 px-4 sm:px-6 pb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-4xl"
+              >
+                <span className="inline-block px-4 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
+                  {authorInfo.years}
+                </span>
+                <h1 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tighter text-foreground">
+                  {authorInfo.name}
+                </h1>
+                <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
+                  {authorInfo.title}
+                </p>
+
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    <span>{details?.birthPlace}</span>
+                  </div>
+                  <div className="h-1 w-12 bg-primary/30 rounded-full" />
+                  <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
+                    {authorInfo.description}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        )}
 
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
@@ -367,7 +444,7 @@ function AuthorAboutPage() {
                       <Link
                         key={i}
                         to={`/${authorId}/works/${slugify(work.title, { lower: true, strict: true })}`}
-                        className="group relative bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 transition-all duration-500 hover:border-primary/40 hover:-translate-y-1 overflow-hidden block"
+                        className="group relative bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 transition-colors duration-300 hover:border-primary/40 overflow-hidden block"
                       >
                         <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
 
@@ -431,8 +508,8 @@ function AuthorAboutPage() {
                   <div className="space-y-6">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="block group">
-                        <article className="relative bg-card/30 hover:bg-card/60 rounded-3xl p-8 border border-border/40 hover:border-primary/20 transition-all duration-500 overflow-hidden">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <article className="relative bg-card/30 hover:bg-card/60 rounded-3xl p-8 border border-border/40 hover:border-primary/20 transition-colors duration-300 overflow-hidden">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
                             <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors">
                               {post.title}
                             </h3>
@@ -440,7 +517,18 @@ function AuthorAboutPage() {
                               {post.historicalDate}
                             </span>
                           </div>
-                          <p className="text-lg text-muted-foreground line-clamp-2 font-light italic opacity-80">{post.excerpt}</p>
+                          <p className="text-base text-muted-foreground leading-relaxed line-clamp-3 italic opacity-80 mb-4">
+                            {post.excerpt}
+                          </p>
+                          <div className="flex items-center justify-between text-sm text-muted-foreground">
+                            <span>
+                              {post.readingTime ? `${post.readingTime} min` : '5 min'}
+                            </span>
+                            <span className="inline-flex items-center text-primary font-semibold">
+                              Weiterlesen
+                              <ArrowRight className="ml-2 h-4 w-4 icon-hover" />
+                            </span>
+                          </div>
                         </article>
                       </Link>
                     ))}

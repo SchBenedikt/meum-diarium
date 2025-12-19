@@ -32,7 +32,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
       <Link
         to={`/${post.author}/${post.slug}`}
         className={cn(
-          'group flex flex-col bg-surface-container-low/30 backdrop-blur-md rounded-2xl sm:rounded-3xl h-full overflow-hidden border border-border/40 hover:border-primary/50 active:border-primary/60 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] touch-manipulation relative',
+          'group flex flex-col bg-surface-container-low/30 backdrop-blur-md rounded-2xl sm:rounded-3xl h-full overflow-hidden border border-border/40 active:border-primary/60 hover-card touch-manipulation relative',
           className
         )}
       >
@@ -95,7 +95,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
                 {t('readingTime', { minutes: (readingTime || 5).toString() })}
               </span>
             </div>
-            <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" />
+            <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary icon-hover flex-shrink-0" />
           </div>
         </div>
       </Link>

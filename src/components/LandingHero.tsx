@@ -86,16 +86,16 @@ export function LandingHero() {
               className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16"
             >
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button size="lg" className="h-16 px-12 text-xl rounded-2xl bg-primary text-primary-foreground border border-primary/20 hover:bg-primary/90 transition-all group font-display font-bold shadow-none" asChild>
+                <Button size="lg" className="h-16 px-12 text-xl rounded-2xl bg-primary text-primary-foreground border border-primary/20 hover:bg-primary/90 transition-all group font-display font-bold hover-uniform" asChild>
                   <a href="#authors">
                     {t('discoverAuthorsBtn') || 'Autoren entdecken'}
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-3 h-6 w-6 icon-hover" />
                   </a>
                 </Button>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button variant="outline" size="lg" className="h-16 px-12 text-xl rounded-2xl backdrop-blur-md bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all font-display font-bold shadow-none" asChild>
+                <Button variant="outline" size="lg" className="h-16 px-12 text-xl rounded-2xl backdrop-blur-md bg-surface-container-low/20 border-border/30 hover:bg-surface-container-low/30 hover:border-primary/30 transition-all font-display font-bold hover-uniform" asChild>
                   <Link to="/about">
                     Unsere Mission
                   </Link>
@@ -114,7 +114,7 @@ export function LandingHero() {
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto w-full max-w-4xl">
-            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4 shadow-2xl">
+            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4">
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
                   <div className="flex items-center gap-3">
@@ -345,7 +345,7 @@ export function LandingHero() {
               >
                 <Link to={item.to} className="group relative block h-full">
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-2xl`} />
-                  <Card className="h-full p-8 sm:p-10 border border-border/40 bg-card/60 backdrop-blur-xl group-hover:border-primary/40 group-hover:-translate-y-1 transition-all duration-500 rounded-3xl overflow-hidden relative">
+                  <Card className="h-full p-8 sm:p-10 border border-border/40 bg-card/60 backdrop-blur-xl group-hover:border-primary/40 transition-colors duration-300 rounded-3xl overflow-hidden relative">
                     <div className="h-14 w-14 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                       <item.icon className="h-7 w-7 text-foreground" />
                     </div>

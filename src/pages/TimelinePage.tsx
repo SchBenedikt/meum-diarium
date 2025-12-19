@@ -34,14 +34,17 @@ export default function TimelinePage() {
 
   const stats = useMemo(() => {
     const totalEvents = timelineEvents.length;
-    const minYear = timelineEvents.length > 0 ? Math.min(...timelineEvents.map(e => e.year)) : 0;
-    const maxYear = timelineEvents.length > 0 ? Math.max(...timelineEvents.map(e => e.year)) : 0;
+    const safeYears = timelineEvents.filter(e => Number.isFinite(e.year)).map(e => e.year);
+    const minYear = safeYears.length ? Math.min(...safeYears) : -100;
+    const maxYear = safeYears.length ? Math.max(...safeYears) : 100;
+
+    const formatYear = (year: number) => year > 0 ? `${year} n. Chr.` : `${Math.abs(year)} v. Chr.`;
     
     return [
       { icon: BookMarked, value: totalEvents, label: t('events') },
       { icon: Users, value: '4', label: t('personalities') },
-      { icon: Clock, value: `${Math.abs(minYear)} v. Chr.`, label: t('start') },
-      { icon: Calendar, value: `${maxYear} n. Chr.`, label: t('end') },
+      { icon: Clock, value: formatYear(minYear), label: t('start') },
+      { icon: Calendar, value: formatYear(maxYear), label: t('end') },
     ];
   }, [timelineEvents, t]);
 

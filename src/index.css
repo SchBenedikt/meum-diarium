@@ -219,11 +219,11 @@
 
   /* Shared glassmorphism panels to mirror landing style */
   .glass-panel {
-    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500;
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl transition-all duration-500;
   }
 
   .glass-card {
-    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500 p-6 sm:p-8 hover:border-primary/50 hover:-translate-y-1;
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl transition-colors duration-300 p-6 sm:p-8 hover:border-primary/50;
   }
 
   .section-shell {
@@ -244,6 +244,24 @@
 }
 
 @layer utilities {
+  /* Uniform hover interactions */
+  .hover-uniform {
+    @apply transition-colors transition-transform duration-300 hover:-translate-y-1 hover:text-primary;
+  }
+
+  .hover-card {
+    @apply transition-colors duration-300 hover:border-primary/50;
+  }
+
+  .icon-hover {
+    @apply transition-transform;
+  }
+
+  /* Icon movement on parent hover via group */
+  .group:hover .icon-hover {
+    transform: translateX(0.25rem);
+  }
+
   .animate-in {
     animation: animateIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
@@ -415,6 +433,11 @@
 /* Selection */
 ::selection {
   background: hsl(var(--primary) / 0.25);
+}
+
+/* Global removal of shadows across the app */
+[class*="shadow"] {
+  box-shadow: none !important;
 }
 
 /* Scrollbar */
