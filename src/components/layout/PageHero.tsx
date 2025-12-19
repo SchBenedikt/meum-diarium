@@ -13,6 +13,8 @@ export type PageHeroProps = {
   kicker?: ReactNode;
   children?: ReactNode;
   align?: "left" | "center";
+  interactiveBackground?: boolean;
+  showBackground?: boolean;
 };
 
 export function PageHero({
@@ -25,6 +27,8 @@ export function PageHero({
   kicker,
   children,
   align = "left",
+  interactiveBackground = true,
+  showBackground = true,
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-background pt-24 sm:pt-32 pb-14 sm:pb-20">{/* Hero wrapper matches Landing page spacing */}
@@ -40,7 +44,7 @@ export function PageHero({
         </div>
       )}
 
-      <ModernBackground />
+      {showBackground && <ModernBackground interactive={interactiveBackground} />}
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div
