@@ -80,7 +80,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.45, ease: 'easeOut' }}
-                className="bg-card rounded-3xl border border-border/50 pt-8 sm:pt-10 pb-12 md:pb-14 px-6 sm:px-8 shadow-none"
+                className="bg-card/70 backdrop-blur-2xl rounded-3xl border border-border/50 pt-8 sm:pt-10 pb-12 md:pb-14 px-6 sm:px-8"
               >
                 <header className="mb-8 md:mb-10 text-left">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
@@ -129,7 +129,7 @@ function PostContent({ post }: { post: BlogPost }) {
               {/* Sidebar - below content on mobile, sticky on desktop */}
               <aside className="mt-8 lg:mt-0 lg:pt-32">
                 <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
-                  <div className="bg-card rounded-3xl border border-border/50 p-5 shadow-none">
+                  <div className="bg-card/70 backdrop-blur-2xl rounded-3xl border border-border/50 p-5">
                     <BlogSidebar post={post} />
                   </div>
                 </div>
