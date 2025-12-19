@@ -148,7 +148,7 @@ export default function ChatPage() {
                                         <div className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-foreground overflow-hidden'}`}>
                                             {msg.role === 'user' ? <User className="h-5 w-5" /> : <img src={author.heroImage} className="h-full w-full object-cover" />}
                                         </div>
-                                        <div className={`rounded-3xl p-4 max-w-[80%] text-sm sm:text-base leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card/70 border border-border/60'}`}>
+                                        <div className={`rounded-3xl p-4 max-w-[80%] text-sm sm:text-base leading-relaxed ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card/70 border border-border/60'}`}>
                                             {msg.content}
                                         </div>
                                     </motion.div>

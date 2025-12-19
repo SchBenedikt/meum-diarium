@@ -210,20 +210,45 @@
   }
 
   .card-elevated {
-    @apply bg-card rounded-lg p-6 border border-border/30 transition-all hover:border-primary/40 hover:bg-surface-container-low/50;
+    @apply bg-card rounded-lg p-6 border border-border/30 transition-all duration-500 hover:border-primary/40 hover:bg-surface-container-low/50;
   }
 
   .sidebar-card {
-    @apply bg-secondary/40 rounded-lg p-5 border border-border/30;
+    @apply bg-card/40 backdrop-blur-md rounded-2xl p-5 border border-border/40;
+  }
+  
+  /* Unified hover effects for icons */
+  .icon-hover-scale {
+    @apply transition-transform duration-500;
+  }
+  
+  .icon-hover-scale:hover {
+    @apply scale-110;
+  }
+  
+  .icon-hover-rotate {
+    @apply transition-all duration-500;
+  }
+  
+  .icon-hover-rotate:hover {
+    @apply scale-110 rotate-3;
+  }
+  
+  .icon-hover-translate {
+    @apply transition-transform duration-300;
+  }
+  
+  .icon-hover-translate:hover {
+    @apply translate-x-1;
   }
 
   /* Shared glassmorphism panels to mirror landing style */
   .glass-panel {
-    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500;
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl transition-all duration-500;
   }
 
   .glass-card {
-    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500 p-6 sm:p-8 hover:border-primary/50 hover:-translate-y-1;
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl transition-all duration-500 p-6 sm:p-8 hover:border-primary/50 hover:-translate-y-1;
   }
 
   .section-shell {

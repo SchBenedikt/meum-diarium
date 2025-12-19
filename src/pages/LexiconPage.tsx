@@ -173,7 +173,7 @@ export default function LexiconPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex justify-center mb-16 sticky top-24 z-40 px-4"
             >
-              <div className="flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-2xl bg-card/80 backdrop-blur-2xl border border-border/40 shadow-lg max-w-fit mx-auto overflow-hidden">
+              <div className="flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-2xl bg-card/80 backdrop-blur-2xl border border-border/40 max-w-fit mx-auto overflow-hidden">
                 <button
                   onClick={() => handleCategoryChange(null)}
                   className={cn(
@@ -193,7 +193,7 @@ export default function LexiconPage() {
                       "w-8 h-8 rounded-lg text-xs font-bold transition-all flex items-center justify-center",
                       "disabled:opacity-10 disabled:cursor-not-allowed",
                       activeLetter === letter
-                        ? "bg-primary text-primary-foreground scale-105 shadow-md shadow-primary/20"
+                        ? "bg-primary text-primary-foreground scale-105"
                         : "hover:bg-primary/10 text-foreground/60 hover:text-primary hover:scale-110 active:scale-95"
                     )}
                   >

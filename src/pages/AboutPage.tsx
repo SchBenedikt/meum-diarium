@@ -237,7 +237,7 @@ function GeneralAboutPage() {
                           <Link
                             to={`/${author.id}/about`}
                             onClick={() => setCurrentAuthor(author.id as Author)}
-                            className="group flex items-center gap-6 p-6 rounded-3xl bg-background border border-border/40 hover:border-primary/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+                            className="group flex items-center gap-6 p-6 rounded-3xl bg-background border border-border/40 hover:border-primary/40 transition-all duration-500 hover:-translate-y-1"
                           >
                             <div className="h-20 w-20 rounded-2xl overflow-hidden flex-shrink-0 border border-border/40 group-hover:border-primary/50 transition-colors">
                               <img src={author.heroImage} alt={author.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
@@ -462,7 +462,7 @@ function AuthorAboutPage() {
                       <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
                       {details.timeline.map((item, i) => (
                         <div key={i} className="relative">
-                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
+                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-primary" />
                           <div className="flex flex-col">
                             <span className="text-primary font-bold text-lg mb-1 tracking-tighter">{item.year}</span>
                             <span className="text-foreground/70 font-light leading-relaxed italic">{item.event}</span>
