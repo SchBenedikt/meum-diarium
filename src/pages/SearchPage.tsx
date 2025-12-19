@@ -15,6 +15,7 @@ import { Command, CommandEmpty, CommandInput, CommandGroup, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexicon, getTranslatedPost } from '@/lib/translator';
+import { PageHero } from '@/components/layout/PageHero';
 
 type SearchResult = 
   | { type: 'post', data: BlogPost }
@@ -143,19 +144,39 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        <section className="pt-32 pb-16 hero-gradient">
-          <div className="container mx-auto">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="font-display text-4xl md:text-5xl mb-4 text-center">{t('search')}</h1>
-              <div className="relative max-w-xl mx-auto">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input type="text" placeholder={t('searchPlaceholder')} className="w-full pl-12 pr-4 py-6 text-base rounded-lg" value={query} onChange={handleQueryChange} autoFocus />
-              </div>
+        <PageHero
+          eyebrow={t('search') as string}
+          title="Finde"
+          highlight="Wissen"
+          description={t('lexiconDescription') || 'Durchsuche Lexikon, Beiträge und Themen in einem einheitlichen Flow.'}
+          align="center"
+          backgroundImage="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2400&auto=format&fit=crop"
+          kicker={<span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Lexikon, Beiträge, Themen</span>}
+        />
+
+        <section className="relative -mt-12 sm:-mt-16 z-10">
+          <div className="section-shell max-w-3xl">
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="glass-card flex items-center gap-3">
+              <Search className="h-5 w-5 text-muted-foreground" />
+              <Input type="text" placeholder={t('searchPlaceholder')} className="w-full bg-transparent border-none text-lg h-12 focus-visible:ring-0" value={query} onChange={handleQueryChange} autoFocus />
+              {query && (
+                <button
+                  onClick={() => {
+                    setQuery('');
+                    const newParams = new URLSearchParams(searchParams);
+                    newParams.delete('q');
+                    setSearchParams(newParams, { replace: true });
+                  }}
+                  className="p-2 rounded-lg hover:bg-secondary text-muted-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </motion.div>
           </div>
         </section>
 
-        <section className="py-12">
+        <section className="py-14 sm:py-20">
           <div className="container mx-auto max-w-4xl">
              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-10">
                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-6">

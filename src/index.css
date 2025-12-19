@@ -217,6 +217,19 @@
     @apply bg-secondary/40 rounded-lg p-5 border border-border/30;
   }
 
+  /* Shared glassmorphism panels to mirror landing style */
+  .glass-panel {
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500;
+  }
+
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-2xl border border-border/50 rounded-3xl shadow-lg shadow-primary/5 transition-all duration-500 p-6 sm:p-8 hover:border-primary/50 hover:-translate-y-1;
+  }
+
+  .section-shell {
+    @apply container mx-auto px-4 sm:px-6;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:opacity-90 active:scale-[0.98];
   }
