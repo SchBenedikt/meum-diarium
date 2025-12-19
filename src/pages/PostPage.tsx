@@ -138,7 +138,7 @@ function PostContent({ post }: { post: BlogPost }) {
           </div>
 
           <section className="section-shell mt-12 sm:mt-16 md:mt-20">
-            <div className="glass-panel p-6 sm:p-7 mb-4 shadow-none">
+            <div className="glass-panel p-6 sm:p-7 mb-4">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <BookText className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
                 <h2 className="font-display text-lg sm:text-xl md:text-2xl font-medium">{t('morePostsFrom', { name: authorData[post.author].name.split(' ').pop() || '' })}</h2>

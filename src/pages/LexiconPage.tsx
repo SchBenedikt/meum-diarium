@@ -220,7 +220,7 @@ export default function LexiconPage() {
                         const Icon = categoryIcons[entry.category] || Tags;
                         return (
                           <Link key={entry.slug} to={`/lexicon/${entry.slug}`} className="block p-6 rounded-2xl sm:rounded-3xl bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover:-translate-y-1">
-                            <div className="absolute top-3 right-3 p-2 opacity-30 group-hover:opacity-80 transition-all duration-600 group-hover:-translate-y-1 group-hover:rotate-3 group-hover:scale-110">
+                            <div className="absolute top-3 right-3 p-2 opacity-30 group-hover:opacity-80 transition-all duration-500 group-hover:-translate-y-1 group-hover:rotate-3 group-hover:scale-110">
                               <Icon className="h-10 w-10 sm:h-12 sm:w-12 text-primary/70" />
                             </div>
                             <div className="relative z-10">
