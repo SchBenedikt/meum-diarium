@@ -12,6 +12,7 @@ import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedWork, getTranslatedAuthor } from '@/lib/translator';
 import { works as baseWorks } from '@/data/works';
+import { PageHero } from '@/components/layout/PageHero';
 
 export default function WorkPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
@@ -56,30 +57,27 @@ export default function WorkPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-28 pb-12">
-        <div className="container mx-auto">
-          <header className="mb-12">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <Link to={`/${author.id}/about`} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
-                <ArrowLeft className="h-4 w-4" />
-                {t('backToAuthorOverview')}
-              </Link>
+      <main className="flex-1 pb-12">
+        <PageHero
+          eyebrow={author.title}
+          title={work.title}
+          description={work.summary}
+          backgroundImage={author.heroImage}
+          kicker={
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"><Calendar className="h-3.5 w-3.5" />{work.year}</span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground border border-border/50"><User className="h-3.5 w-3.5" />{author.name}</span>
+            </div>
+          }
+        />
 
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl mb-3">{work.title}</h1>
-
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-muted-foreground">
-                <div className="flex items-center gap-2"><User className="h-4 w-4" /><span>{author.name}</span></div>
-                <div className="flex items-center gap-2"><Calendar className="h-4 w-4" /><span>{work.year}</span></div>
-              </div>
-            </motion.div>
-          </header>
-
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+        <section className="section-shell -mt-10 sm:-mt-14">
+          <div className="grid lg:grid-cols-[1fr_320px] gap-10">
             <article>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="prose-blog text-lg max-w-none">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card prose-blog text-lg max-w-none">
                 <p className="lead text-xl !text-foreground !mb-8">{work.summary}</p>
 
-                <div className="p-6 rounded-lg bg-primary/10 mb-10">
+                <div className="p-6 rounded-2xl bg-primary/10 border border-primary/20 mb-10">
                   <div className="flex items-start gap-4">
                     <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <div>
@@ -96,7 +94,7 @@ export default function WorkPage() {
 
                 <div className="space-y-4">
                   {work.structure.map((part, index) => (
-                    <div key={index} className="p-4 border-l-2 border-border/70">
+                    <div key={index} className="p-4 rounded-2xl bg-secondary/30 border border-border/50">
                       <h4 className="font-semibold !mt-0 !mb-1">{part.title}</h4>
                       <p className="!mb-0 text-sm text-muted-foreground">{part.content}</p>
                     </div>
@@ -107,7 +105,7 @@ export default function WorkPage() {
 
             <aside className="hidden lg:block">
               <div className="sticky top-28 space-y-6">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="sidebar-card">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="glass-card">
                   <div className="flex items-center gap-3 mb-4">
                     <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover" />
                     <div>
@@ -120,7 +118,7 @@ export default function WorkPage() {
                   </Link>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="sidebar-card">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card">
                   <h3 className="font-display text-lg font-medium mb-4">{t('otherWorks')}</h3>
                   <div className="space-y-2">
                     {otherWorks.map((relatedWork) => (
@@ -133,7 +131,7 @@ export default function WorkPage() {
               </div>
             </aside>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </div>

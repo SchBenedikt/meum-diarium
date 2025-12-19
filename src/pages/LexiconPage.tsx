@@ -11,6 +11,7 @@ import { getTranslatedLexicon } from '@/lib/translator';
 import { lexicon as baseLexicon } from '@/data/lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { Button } from '@/components/ui/button';
+import { PageHero } from '@/components/layout/PageHero';
 import {
   Command,
   CommandEmpty,
@@ -110,50 +111,36 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        <section className="pt-24 sm:pt-40 pb-20 hero-gradient relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-[0.03] mix-blend-overlay scale-110"></div>
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+        <PageHero
+          eyebrow={t('lexiconGlossary') as string}
+          title="Das"
+          highlight="Lexikon"
+          description={t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
+          backgroundImage="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop"
+          align="center"
+        />
 
-          <div className="container mx-auto px-4 text-center relative z-20">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold mb-8 backdrop-blur-md border border-primary/20 hover:bg-primary/20 transition-all cursor-default">
-                <BookMarked className="h-4 w-4" />
-                <span className="uppercase tracking-widest">{t('lexiconGlossary')}</span>
-              </div>
-              <h1 className="font-display text-5xl sm:text-6xl md:text-8xl mb-8 tracking-tighter font-bold">
-                Das <span className="text-primary italic">Lexikon</span>
-              </h1>
-              <p className="text-muted-foreground text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                {t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
-              </p>
+        <section className="relative -mt-12 sm:-mt-16 z-10">
+          <div className="section-shell max-w-3xl">
+            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3">
+              <Search className="h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={t('searchPlaceholder')}
+                className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {searchTerm && (
+                <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors ml-auto">
+                  <X className="h-4 w-4 text-muted-foreground" />
+                </button>
+              )}
             </motion.div>
           </div>
         </section>
 
-        <section className="py-12 -mt-16 relative z-30">
-          <div className="container mx-auto max-w-3xl px-4">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative">
-              <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-2xl opacity-50 -z-10"></div>
-              <div className="relative bg-card/60 backdrop-blur-2xl border border-border/40 rounded-2xl flex items-center p-2 sm:p-3 hover:border-primary/40 focus-within:border-primary/60 transition-all duration-500 group">
-                <Search className="h-5 w-5 text-muted-foreground ml-3 group-hover:text-primary transition-colors" />
-                <Input
-                  type="text"
-                  placeholder={t('searchPlaceholder')}
-                  className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/30 font-light px-4"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                {searchTerm && (
-                  <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors mr-2">
-                    <X className="h-4 w-4 text-muted-foreground" />
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section className="py-12">
+        <section className="py-14 sm:py-20">
           <div className="container mx-auto">
 
             {/* Categories Grid */}

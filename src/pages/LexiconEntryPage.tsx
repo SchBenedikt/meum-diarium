@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { ArrowLeft, Newspaper, Tag, BookMarked } from 'lucide-react';
+import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { motion } from 'framer-motion';
@@ -12,6 +12,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexiconEntry, getTranslatedPost } from '@/lib/translator';
 import { LexiconEntry, BlogPost } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
+import { PageHero } from '@/components/layout/PageHero';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -76,71 +77,63 @@ export default function LexiconEntryPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-24 pb-20">
-        <div className="container mx-auto">
-          <button
-            onClick={handleBackClick}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('backToLexicon')}
-          </button>
+      <main className="flex-1 pb-16">
+        <PageHero
+          eyebrow={entry.category}
+          title={entry.term}
+          description={t('lexiconDescription') || 'Eindeutig definiert und mit Kontext versehen.'}
+          backgroundImage="https://images.unsplash.com/photo-1466354424719-343280fe118b?q=80&w=2400&auto=format&fit=crop"
+          kicker={
+            <button
+              onClick={handleBackClick}
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> {t('backToLexicon')}
+            </button>
+          }
+        />
 
+        <section className="section-shell -mt-10">
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
             <article>
-              <header className="mb-12">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="space-y-4"
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Link to={`/search?category=${encodeURIComponent(entry.category)}`} className="group">
-                      <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/15 transition-colors border border-primary/20 leading-tight">
-                        {entry.category}
+              <motion.div 
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass-card space-y-6"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <Link to={`/search?category=${encodeURIComponent(entry.category)}`} className="group">
+                    <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/15 transition-colors border border-primary/20 leading-tight">
+                      {entry.category}
+                    </span>
+                  </Link>
+                  {entry.variants?.slice(0, 4).map((v, i) => (
+                    <Link key={i} to={`/search?q=${encodeURIComponent(v)}`} className="group">
+                      <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors border border-border/60 leading-tight">
+                        {v}
                       </span>
                     </Link>
-                    {entry.variants?.slice(0, 4).map((v, i) => (
-                      <Link key={i} to={`/search?q=${encodeURIComponent(v)}`} className="group">
-                        <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors border border-border/60 leading-tight">
-                          {v}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                  <h1 className="font-display text-4xl md:text-5xl">{entry.term}</h1>
-                </motion.div>
-              </header>
+                  ))}
+                </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="prose-blog text-lg"
-              >
-                {formattedContent}
-              </motion.div>
+                <div className="prose-blog text-lg">
+                  {formattedContent}
+                </div>
 
-              {relatedPosts.length > 0 && (
-                <motion.section
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="mt-16"
-                >
-                  <div className="flex items-center gap-3 mb-6">
-                    <Newspaper className="h-5 w-5 text-primary" />
-                    <h2 className="font-display text-2xl font-medium">{t('relatedEntries')}</h2>
-                  </div>
-                  <div className="relative">
+                {relatedPosts.length > 0 && (
+                  <div className="pt-4 border-t border-border/50">
+                    <div className="flex items-center gap-3 mb-6">
+                      <Newspaper className="h-5 w-5 text-primary" />
+                      <h2 className="font-display text-2xl font-medium">{t('relatedEntries')}</h2>
+                    </div>
                     <div className="grid md:grid-cols-2 gap-6">
                       {relatedPosts.slice(0,2).map((post) => (
                         <BlogCard post={post} key={post.id} />
                       ))}
                     </div>
                   </div>
-                </motion.section>
-              )}
+                )}
+              </motion.div>
             </article>
             
             <aside className="hidden lg:block">
@@ -149,7 +142,7 @@ export default function LexiconEntryPage() {
               </div>
             </aside>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </div>
