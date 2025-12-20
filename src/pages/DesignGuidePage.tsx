@@ -29,7 +29,7 @@ export default function DesignGuidePage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section mit Caesar-inspiriertem Design */}
       <section className="py-20 border-b border-border/40 bg-gradient-to-b from-secondary/5 to-background relative overflow-hidden">
-        <div className="absolute -top-10 -right-10 p-4 opacity-[0.03]">
+        <div className="absolute top-0 right-0 p-4 opacity-[0.03]">
           <Crown className="w-96 h-96 text-primary" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
@@ -219,6 +219,7 @@ export default function DesignGuidePage() {
                   <strong>Klassen:</strong>
                   <br />
                   <code className="font-mono">
+                    
                     bg-card/60 backdrop-blur-xl rounded-3xl border
                     border-border/40
                   </code>
@@ -231,7 +232,7 @@ export default function DesignGuidePage() {
                   Interactive Chat Card
                 </h3>
                 <div className="bg-card/60 backdrop-blur-md rounded-3xl p-8 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-700">
-                  <div className="absolute -top-6 -right-6 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6">
+                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6">
                     <MessageCircle className="w-32 h-32 text-primary" />
                   </div>
                   <div className="relative z-10 space-y-6">

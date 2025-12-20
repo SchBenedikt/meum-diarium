@@ -30,15 +30,15 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
     : [];
 
   return (
-    <aside className="space-y-5 lg:space-y-6">
+    <motion.aside
+      initial={{ opacity: 0, x: 16 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.12, duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+      className="space-y-5 lg:space-y-6"
+    >
       {/* Etymology */}
       {entry.etymology && (
-        <motion.div
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in"
-          initial={{ opacity: 0, x: 12 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-        >
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
             <BookCopy className="h-4 w-4 text-primary" />
             Etymologie
@@ -46,17 +46,11 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           <p className="text-sm italic text-muted-foreground">
             {entry.etymology}
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Category */}
-      <motion.div
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-1"
-        initial={{ opacity: 0, x: 12 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
-      >
+      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Kategorie
@@ -67,43 +61,31 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
         >
           {entry.category}
         </Link>
-      </motion.div>
+      </div>
 
       {/* Related Terms */}
       {relatedTerms.length > 0 && (
-        <motion.div
-          className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-2"
-          initial={{ opacity: 0, x: 12 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <LinkIcon className="h-4 w-4 text-primary" />
             {t('relatedEntries')}
           </h3>
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 -mr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
             {relatedTerms.map(term => (
               <Link
                 key={term.slug}
                 to={`/lexicon/${term.slug}`}
-                className="block text-sm text-muted-foreground hover:text-primary hover:underline"
+                className="block text-sm text-muted-foreground hover:text-primary hover:underline py-1"
               >
                 {term.term}
               </Link>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Go to Lexicon */}
-      <motion.div
-        className="rounded-2xl border border-border/70 bg-surface-container-high/70 p-5 lg:p-6 animate-in stagger-3"
-        initial={{ opacity: 0, x: 12 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-      >
+      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
         <Link to="/lexicon" className="group">
           <h3 className="font-display text-lg font-medium mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
             <BookMarked className="h-4 w-4 text-primary" />
@@ -113,7 +95,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
             Alle Begriffe des antiken Roms durchstöbern.
           </p>
         </Link>
-      </motion.div>
-    </aside>
+      </div>
+    </motion.aside>
   );
 }

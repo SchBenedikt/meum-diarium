@@ -1,5 +1,5 @@
 
-import { BookMarked, Clock, ArrowRight, Sparkles, Quote, Library, Mic2 } from 'lucide-react';
+import { BookMarked, Clock, ArrowRight, Sparkles, Quote, Library, Mic2, Users, Crown, Send, MoreVertical, Languages, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -25,9 +25,9 @@ export function LandingHero() {
   const textScale = useTransform(scrollY, [0, 900], [1, 0.98]);
 
   const stats = [
-    { label: 'Jahrtausende alte Weisheit', value: '2000+', icon: Library },
-    { label: 'Echtzeit-Rekonstruktion', value: 'AI', icon: Sparkles },
-    { label: 'Zeitlose Philosophie', value: '∞', icon: Mic2 },
+    { label: 'Antike Autoren', value: '4', icon: Library },
+    { label: 'Jahre Geschichte', value: '170+', icon: Clock },
+    { label: 'Perspektiven', value: '2', icon: Quote },
   ];
 
   return (
@@ -108,21 +108,31 @@ export function LandingHero() {
 
       {/* Overlapping Stats Card connecting sections */}
       <motion.div
-        variants={fadeUp(0.2)}
-        initial={false}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         className="relative z-30 -mt-20 sm:-mt-28 mb-[-3rem]"
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="mx-auto w-full max-w-4xl">
-            <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-around items-center gap-6 sm:gap-4">
+          <div className="mx-auto w-full max-w-5xl">
+            <div className="bg-card/95 backdrop-blur-xl border border-border/40 rounded-3xl p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
               {stats.map((stat, i) => (
-                <div key={i} className="flex flex-col items-center text-center gap-2">
-                  <div className="flex items-center gap-3">
-                    <stat.icon className="w-6 h-6 text-primary" />
-                    <span className="text-3xl sm:text-4xl font-display font-bold text-foreground">{stat.value}</span>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col items-center text-center gap-3"
+                >
+                  <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
+                    <stat.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <span className="text-sm sm:text-base text-foreground tracking-wide font-medium">{stat.label}</span>
-                </div>
+                  <div>
+                    <span className="block text-4xl sm:text-5xl font-display font-bold text-foreground mb-1">{stat.value}</span>
+                    <span className="block text-sm sm:text-base text-muted-foreground tracking-wide font-medium">{stat.label}</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -139,46 +149,56 @@ export function LandingHero() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+                <Sparkles className="w-3.5 h-3.5" />
+                KI-GESTÜTZTE REKONSTRUKTION
+              </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                Geschichte wird <span className="text-primary text-5xl sm:text-6xl md:text-7xl block mt-2 italic">lebendig.</span>
+                Geschichte wird <span className="text-primary block mt-2 italic">lebendig.</span>
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-light">
-                Stellen Sie sich vor, Sie könnten die Vergangenheit nicht nur lesen, sondern mit ihr in den Dialog treten.
-                <span className="block mt-4 text-foreground font-medium">Meum Diarium</span> nutzt fortschrittlichste KI, um die Gedankenwelten von Caesar, Cicero und anderen Giganten der Geschichte auf Basis ihrer authentischen Schriften zu rekonstruieren.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 font-light">
+                Erlebe die Vergangenheit nicht nur als stilles Archiv, sondern als lebendigen Dialog. 
+                <span className="block mt-4 text-foreground font-medium">Meum Diarium</span> nutzt KI, um die Gedankenwelten von Caesar, Cicero, Augustus und Seneca auf Basis ihrer authentischen Schriften zu rekonstruieren.
               </p>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  'Authentische Rekonstruktionen',
-                  'Interaktive Dialoge mit dem Altertum',
-                  'Lateinisch-Deutsche Quellenstudien'
+                  { icon: Quote, label: 'Authentische Quellen' },
+                  { icon: Sparkles, label: 'KI-Rekonstruktion' },
+                  { icon: Library, label: 'Lateinisch & Deutsch' },
+                  { icon: Mic2, label: 'Interaktive Dialoge' }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                    <span className="text-lg font-medium">{item}</span>
+                  <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-card/40 border border-border/40 hover:border-primary/40 transition-colors">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <item.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium">{item.label}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full" />
-              <div className="relative rounded-3xl overflow-hidden border border-border/40 aspect-square lg:aspect-[4/3]">
+              <div className="absolute inset-0 bg-primary/10 blur-[120px] rounded-full" />
+              <div className="relative rounded-3xl overflow-hidden border border-border/40 aspect-square lg:aspect-[4/3] group">
                 <img
-                  src="https://images.unsplash.com/photo-1549490339-bca904392ac9?q=80&w=2070&auto=format&fit=crop"
-                  alt="Ancient Roman Architecture with modern digital flow"
-                  className="w-full h-full object-cover"
+                  src="https://videos.openai.com/az/vg-assets/task_01kcs7pbnze61tyb0qdy1teb90%2F1766078554_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-20T02%3A21%3A13Z&ske=2025-12-27T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=aqaune3RBVFcczzZvSPU47xwEeAiVRWNNCq/m2pl6VE%3D&ac=oaivgprodscus2"
+                  alt="Ancient Rome meets modern AI"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="bg-white/5 backdrop-blur-xl border border-border/40 rounded-2xl p-6 hover:border-primary/50 transition-all group/demo overflow-hidden">
-                    <p className="text-sm font-medium text-primary uppercase tracking-widest mb-2 group-hover/demo:translate-x-1 transition-transform">Live Demonstration</p>
-                    <p className="text-xl font-display font-semibold transition-colors group-hover/demo:text-primary">"Alea iacta est" – Sprich mit <span className="italic">Caesar</span> über den Rubikon.</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-card/90 backdrop-blur-xl border border-border/40 rounded-2xl p-5 transition-all group-hover:border-primary/50">
+                    <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2 flex items-center gap-2">
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                      Live Demo
+                    </p>
+                    <p className="text-lg font-display font-semibold">"Alea iacta est" – Sprich mit Caesar über den Rubikon</p>
                   </div>
                 </div>
               </div>
@@ -188,58 +208,64 @@ export function LandingHero() {
       </section>
 
       {/* New Section: Giganten der Antike */}
-      <section className="py-40 relative z-10 overflow-hidden bg-background">
+      <section className="py-32 relative z-10 overflow-hidden bg-background">
         <div className="absolute inset-0 bg-secondary/5 blur-[120px] rounded-full -translate-x-1/2" />
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-col items-center text-center mb-24">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tighter"
-            >
-              Vier <span className="text-primary italic">Stimmen</span> der Antike.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-xl sm:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed italic opacity-80"
-            >
-              Erlebe die Geschichte Roms durch zwei Perspektiven: persönliche Tagebucheinträge und wissenschaftliche Analysen. Jede Stimme erzählt ihre eigene Wahrheit.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+              <Users className="w-3.5 h-3.5" />
+              DIE PROTAGONISTEN
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+              Vier <span className="text-primary italic">Stimmen</span> der Antike
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed">
+              Erlebe die Geschichte Roms durch zwei Perspektiven: persönliche Tagebucheinträge und wissenschaftliche Analysen.
+            </p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 title: 'Caesar',
                 subtitle: 'Der Feldherr',
-                desc: 'Eroberer Galliens, Meister der Strategie und Überraschung. Seine Feldzüge veränderten die Grenzen der Welt.',
-                icon: '⚔️',
-                color: 'from-red-500/20 to-transparent'
+                desc: 'Eroberer Galliens, Meister der Strategie. Seine Feldzüge veränderten die Grenzen der Welt.',
+                icon: Crown,
+                color: 'text-red-500',
+                borderColor: 'border-red-500/40',
+                bgAccent: 'bg-red-500/5'
               },
               {
                 title: 'Cicero',
                 subtitle: 'Der Redner',
                 desc: 'Verteidiger der Republik, Meister der Rhetorik. Seine Worte waren schärfer als jedes Schwert.',
-                icon: '📜',
-                color: 'from-amber-500/20 to-transparent'
+                icon: Mic2,
+                color: 'text-amber-500',
+                borderColor: 'border-amber-500/40',
+                bgAccent: 'bg-amber-500/5'
               },
               {
                 title: 'Augustus',
                 subtitle: 'Der Gründer',
                 desc: 'Schöpfer des Imperiums, Bringer des Friedens. Aus dem Chaos entstand ein neues Rom.',
-                icon: '👑',
-                color: 'from-yellow-500/20 to-transparent'
+                icon: Users,
+                color: 'text-yellow-500',
+                borderColor: 'border-yellow-500/40',
+                bgAccent: 'bg-yellow-500/5'
               },
               {
                 title: 'Seneca',
                 subtitle: 'Der Philosoph',
                 desc: 'Stoiker, Berater der Kaiser, Sucher der Wahrheit. Weisheit über Macht und Schicksal.',
-                icon: '🏛️',
-                color: 'from-blue-500/20 to-transparent'
+                icon: Sparkles,
+                color: 'text-blue-500',
+                borderColor: 'border-blue-500/40',
+                bgAccent: 'bg-blue-500/5'
               }
             ].map((feature, i) => (
               <motion.div
@@ -247,16 +273,15 @@ export function LandingHero() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="relative bg-white/[0.02] backdrop-blur-3xl p-8 rounded-2xl border border-border/40 hover:border-primary/50 transition-all duration-700 group overflow-hidden"
+                transition={{ delay: i * 0.1 }}
+                className={`relative bg-card/40 backdrop-blur-md rounded-2xl border border-border/40 p-6 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 group ${feature.bgAccent}`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-700 block">{feature.icon}</div>
-                  <h3 className="font-display text-2xl font-bold mb-1">{feature.title}</h3>
-                  <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-4">{feature.subtitle}</p>
-                  <p className="text-base text-muted-foreground leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{feature.desc}</p>
+                <div className={`p-3 rounded-xl border ${feature.borderColor} ${feature.bgAccent} ${feature.color} inline-flex mb-4 group-hover:scale-110 transition-transform`}>
+                  <feature.icon className="h-6 w-6" />
                 </div>
+                <h3 className="font-display text-2xl font-bold mb-1 group-hover:text-primary transition-colors">{feature.title}</h3>
+                <p className="text-xs text-primary font-bold uppercase tracking-widest mb-4">{feature.subtitle}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -264,21 +289,79 @@ export function LandingHero() {
       </section>
 
       {/* AI Demo Section */}
-      <section className="py-32 relative z-10 overflow-hidden">
+      <section className="py-32 relative z-10 overflow-hidden bg-muted/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="order-2 lg:order-1"
             >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+                <Sparkles className="w-3.5 h-3.5" />
+                KI-CHAT SIMULATION
+              </div>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                Stelle deine Fragen direkt an <span className="text-primary italic block mt-2">Caesar</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 font-light">
+                Tauche ein in authentische Gespräche mit den größten Figuren der Geschichte. Unsere KI-Rekonstruktion basiert auf historischen Quellen und erfasst den Charakter, das Denken und die Sprechmuster der Antike.
+              </p>
+              <div className="space-y-3">
+                {[
+                  { icon: BookOpen, text: 'Authentische historische Quellen als Basis' },
+                  { icon: Sparkles, text: 'KI-gestützte Persönlichkeitsmodellierung' },
+                  { icon: Languages, text: 'Lateinische und deutsche Antworten' }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-card/40 border border-border/30"
+                  >
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <item.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium">{item.text}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2"
+            >
               <div className="relative">
-                <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30" />
+                <div className="absolute -inset-4 bg-primary/10 blur-[100px] rounded-full" />
                 {/* Demo Chat Interface */}
-                <div className="relative bg-card/60 backdrop-blur-2xl border border-border/40 rounded-3xl overflow-hidden">
+                <div className="relative bg-card/70 backdrop-blur-2xl border border-border/40 rounded-3xl overflow-hidden shadow-2xl">
                   {/* Chat Header */}
-                  <div className="flex items-center justify-between border-b border-border/50 px-6 py-4 bg-background/70 backdrop-blur-xl">
+                  <div className="flex items-center justify-between border-b border-border/50 px-6 py-4 bg-background/50 backdrop-blur-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white font-bold text-lg">
+                          C
+                        </div>
+                        <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-background rounded-full" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-sm">Gaius Julius Caesar</h3>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                          Aktiv
+                        </p>
+                      </div>
+                    </div>
+                    <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                      <MoreVertical className="h-5 w-5 text-muted-foreground" />
+                    </button>
+                  </div>
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">C</div>
                       <div>
@@ -294,69 +377,67 @@ export function LandingHero() {
                   </div>
 
                   {/* Chat Messages */}
-                  <div className="space-y-4 p-6 h-[320px] overflow-hidden">
-                    <div className="flex gap-3">
-                      <div className="h-10 w-10 rounded-full bg-secondary text-foreground flex items-center justify-center shrink-0 text-sm font-bold">C</div>
-                      <div className="rounded-3xl bg-card/70 border border-border/60 p-4 max-w-[75%] text-sm leading-relaxed">
-                        "Veni, vidi, vici – aber was sah ich wirklich in Gallien?"
+                  <div className="space-y-5 p-6 h-[400px] overflow-y-auto">
+                    {/* User Message */}
+                    <div className="flex gap-3 justify-end">
+                      <div className="rounded-2xl bg-primary/10 border border-primary/30 px-5 py-3 max-w-[80%]">
+                        <p className="text-sm leading-relaxed">Was war der entscheidende Moment am Rubikon?</p>
                       </div>
-                    </div>
-                    
-                    <div className="flex gap-3 flex-row-reverse">
-                      <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 text-xs font-bold">Du</div>
-                      <div className="rounded-3xl bg-primary text-primary-foreground p-4 max-w-[75%] text-sm leading-relaxed">
-                        Was war die größte Herausforderung bei der Eroberung Galliens?
+                      <div className="h-9 w-9 rounded-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center shrink-0 text-xs font-bold border border-border/40">
+                        Du
                       </div>
                     </div>
 
+                    {/* Caesar Typing Indicator */}
                     <div className="flex gap-3">
-                      <div className="h-10 w-10 rounded-full bg-secondary text-foreground flex items-center justify-center shrink-0 text-sm font-bold">C</div>
-                      <div className="rounded-3xl bg-card/70 border border-border/60 p-4 max-w-[75%] text-sm leading-relaxed">
-                        Nicht die Gallier selbst – sondern ihre Einheit unter Vercingetorix. Ein einzelner Gegner, der seine Leute einigte...
+                      <div className="h-9 w-9 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shrink-0 text-white font-bold text-sm">
+                        C
+                      </div>
+                      <div className="rounded-2xl bg-card/70 border border-border/60 px-5 py-3 max-w-[85%]">
+                        <div className="flex items-center gap-2 text-muted-foreground text-xs mb-2">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                          Caesar tippt...
+                        </div>
+                        <p className="text-sm leading-relaxed font-medium">
+                          "Der Rubikon war mehr als ein Fluss – er war eine unsichtbare Grenze zwischen Legalität und Revolution."
+                        </p>
+                        <p className="text-sm leading-relaxed mt-3 text-muted-foreground">
+                          Ich stand an jenem kalten Januarmorgen 49 v. Chr. mit meiner XIII. Legion am Ufer. Das Gesetz verbot mir, bewaffnet die Grenze Italiens zu überschreiten. Doch in Rom warteten meine Feinde.
+                        </p>
+                        <p className="text-sm leading-relaxed mt-3 italic text-foreground/90">
+                          "Alea iacta est" – Der Würfel ist gefallen, sagte ich. Nicht aus Übermut, sondern aus Notwendigkeit.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* User Follow-up */}
+                    <div className="flex gap-3 justify-end">
+                      <div className="rounded-2xl bg-primary/10 border border-primary/30 px-5 py-3 max-w-[80%]">
+                        <p className="text-sm leading-relaxed">Hattest du keine Angst?</p>
+                      </div>
+                      <div className="h-9 w-9 rounded-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center shrink-0 text-xs font-bold border border-border/40">
+                        Du
                       </div>
                     </div>
                   </div>
 
                   {/* Chat Input */}
-                  <div className="border-t border-border/50 bg-background/80 backdrop-blur-xl px-6 py-4">
-                    <div className="relative flex items-center gap-2">
+                  <div className="border-t border-border/50 px-6 py-4 bg-background/30 backdrop-blur-xl">
+                    <div className="flex items-center gap-3">
                       <input
                         type="text"
-                        placeholder="Stelle eine Frage an Caesar..."
-                        className="flex-1 pr-12 py-2 text-sm bg-secondary/40 border border-primary/10 focus-visible:ring-primary/30 rounded-xl px-4 outline-none transition-all"
+                        placeholder="Stelle Caesar eine Frage..."
+                        disabled
+                        className="flex-1 bg-muted/40 border border-border/60 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/50"
                       />
-                      <button className="absolute right-2 h-8 w-8 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center transition-colors">
-                        <span className="text-white text-sm">→</span>
+                      <button disabled className="p-3 bg-primary/20 text-primary rounded-xl hover:bg-primary/30 transition-colors disabled:opacity-50">
+                        <Send className="h-5 w-5" />
                       </button>
                     </div>
-                    <p className="text-center text-[11px] text-muted-foreground mt-3">
-                      ✨ KI-generierte Antworten können historisch ungenau sein.
+                    <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
+                      <Sparkles className="h-3 w-3" />
+                      KI-Demo • Basiert auf historischen Quellen
                     </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="order-1 lg:order-2"
-            >
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                Intelligenz trifft <span className="text-primary text-5xl sm:text-6xl md:text-7xl block mt-2 italic">Geschichte.</span>
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-light">
-                Stelle Fragen an historische Persönlichkeiten und erhalte Antworten, die auf ihren echten Werken basieren. Unsere KI rekonstruiert ihre Stimmen, ihre Überzeugungen, ihre Weltsicht.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40 hover:border-primary/40 transition-all group overflow-hidden">
-                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">4</p>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Historische Stimmen</p>
-                </div>
-                <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40 hover:border-primary/40 transition-all group overflow-hidden">
-                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">2</p>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Perspektiven</p>
                 </div>
               </div>
             </motion.div>

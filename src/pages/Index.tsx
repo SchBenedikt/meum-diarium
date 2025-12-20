@@ -47,9 +47,10 @@ const Index = () => {
                   viewport={{ once: true }}
                   className="md:col-span-3 bg-card/60 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-700"
                 >
-                  <div className="absolute -top-10 -right-10 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
-                    <MessageCircle className="w-48 h-48 text-primary" />
+                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
+                    <MessageCircle className="w-40 h-40 text-primary" />
                   </div>
+
                   <div className="relative z-10 flex flex-col gap-8">
                     <div className="flex-1 space-y-6">
                       <div className="flex items-center gap-4">
@@ -71,7 +72,7 @@ const Index = () => {
                           <input
                             type="text"
                             placeholder={`Frage ${authors[currentAuthor].name.split(' ').pop()} etwas...`}
-                            className="w-full pl-6 pr-14 py-4 rounded-xl bg-transparent border-none outline-none text-lg placeholder:text-muted-foreground/40 font-light"
+                            className="w-full pl-6 pr-14 py-3 rounded-xl bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/40 font-light"
                           />
                           <Link to={`/${currentAuthor}/chat`} className="absolute right-1.5 focus:outline-none">
                             <Button size="icon" className="h-12 w-12 rounded-xl group-hover:scale-105 transition-transform shadow-none">
@@ -94,7 +95,7 @@ const Index = () => {
                 </motion.div>
 
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/20 border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
+                  <div className="h-full bg-card border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
                     <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
                       <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -112,7 +113,7 @@ const Index = () => {
 
                 {/* Works Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card hover:bg-secondary/20 border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
+                  <div className="h-full bg-card border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
                     <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
                       <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
@@ -137,9 +138,10 @@ const Index = () => {
                 >
                   <Link to={`/${currentAuthor}/simulation`} className="group h-full block">
                     <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/5 dark:hover:bg-amber-950/10 border border-border/40 hover:border-amber-400/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
-                      <div className="absolute -top-6 -right-6 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
-                        <Crown className="w-32 h-32 text-amber-500" />
-                      </div>
+                    <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
+                      <Crown className="w-24 h-24 text-amber-500" />
+                    </div>
+
                       <div className="p-3 bg-amber-100/10 dark:bg-amber-900/30 rounded-xl mb-4 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-all duration-500 z-10 group-hover:scale-105">
                         <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                       </div>

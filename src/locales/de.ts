@@ -1,5 +1,8 @@
 export const de = {
     appName: 'Meum Diarium',
+    navigation: {
+        home: 'Startseite',
+    },
     navTimeline: 'Zeitstrahl',
     navLexicon: 'Lexikon',
     navAbout: 'Über',
@@ -43,6 +46,8 @@ export const de = {
     birthplace: 'Geburtsort',
     achievements: 'Errungenschaften',
     works: 'Werke',
+    worksTitle: 'Werke',
+    navHome: 'Startseite',
     diaryEntries: 'Tagebucheinträge',
     timeline: 'Lebenslauf',
     moreAbout: 'Mehr über {{name}}',

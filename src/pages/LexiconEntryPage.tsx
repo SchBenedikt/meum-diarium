@@ -82,7 +82,6 @@ export default function LexiconEntryPage() {
           eyebrow={entry.category}
           title={entry.term}
           description={t('lexiconDescription') || 'Eindeutig definiert und mit Kontext versehen.'}
-          backgroundImage="https://images.unsplash.com/photo-1466354424719-343280fe118b?q=80&w=2400&auto=format&fit=crop"
           kicker={
             <button
               onClick={handleBackClick}
