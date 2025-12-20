@@ -6,8 +6,8 @@ export const works: Record<string, Work> = {
         title: 'De Bello Gallico',
         author: 'caesar',
         year: '58 – 50 v. Chr.',
-        summary: 'Caesars eigener Bericht über seine Feldzüge in Gallien. Ein Meisterwerk der politischen Propaganda und nüchternen Berichterstattung.',
-        takeaway: 'Gallien ist ganz in drei Teile geteilt...',
+        summary: 'Caesars eigener Bericht über seine Feldzüge in Gallien: nüchtern im Ton, strategisch in der Auswahl, propagandistisch in der Wirkung. Der Text legitimiert seine Expansion, erklärt römische Gewalt als Prävention und lässt den Feldherrn als rationalen, beinahe objektiven Beobachter erscheinen.',
+        takeaway: 'Caesars Feldzug legitimiert seine Machtambition: Gallien als Rohstoffquelle, Bühne für Ruhm und Sprungbrett zur Alleinherrschaft.',
         structure: [
             { title: 'Buch I (58 v. Chr.)', content: 'Der Helvetierkrieg und der Krieg gegen Ariovist.' },
             { title: 'Buch II (57 v. Chr.)', content: 'Unterwerfung der belgischen Stämme im Nordosten.' },
