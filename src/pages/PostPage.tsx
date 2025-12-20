@@ -29,7 +29,10 @@ const calculateReadingTime = (text: string): number => {
 function PostContent({ post }: { post: BlogPost }) {
   const { t, language } = useLanguage();
   const { posts: allPosts } = usePosts();
-  const [perspective, setPerspective] = useState<Perspective>('diary');
+  const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
+  const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
+  const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
+  const [perspective, setPerspective] = useState<Perspective>(defaultPerspective);
 
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

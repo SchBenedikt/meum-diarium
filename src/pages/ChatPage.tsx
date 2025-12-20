@@ -167,7 +167,7 @@ export default function ChatPage() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder={`Schreibe eine Nachricht an ${author.name.split(' ').pop()}...`}
-                                    className="pr-12 py-5 text-base bg-secondary/40 border-primary/10 focus-visible:ring-primary/30 rounded-xl"
+                                    className="pr-12 py-2 text-base bg-secondary/40 border-primary/10 focus-visible:ring-primary/30 rounded-xl"
                                 />
                                 <Button
                                     size="icon"

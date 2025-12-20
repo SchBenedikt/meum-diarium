@@ -1,8 +1,8 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { BookMarked, Search, ArrowRight, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
@@ -42,6 +42,9 @@ export default function LexiconPage() {
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   const [lexicon, setLexicon] = useState<LexiconEntry[]>(baseLexicon);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
@@ -109,7 +112,7 @@ export default function LexiconPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div ref={heroRef} className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
         <PageHero
           eyebrow={t('lexiconGlossary') as string}
@@ -120,6 +123,7 @@ export default function LexiconPage() {
           align="center"
           tall
           bgScale={1.4}
+          parallaxY={bgY}
         />
 
         <section className="relative -mt-12 sm:-mt-16 z-10">

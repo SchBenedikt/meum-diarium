@@ -112,29 +112,6 @@ export function ReadingStats() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Tags Cloud - Refined */}
-        <motion.div
-          variants={fadeUp(0.3)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={defaultTransition}
-          className="mt-24 pt-16 border-t border-white/5"
-        >
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-8 text-center">{t('popularTopics')}</p>
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            {uniqueTags.slice(0, 15).map(tag => (
-              <Link
-                key={tag}
-                to={`/search?category=${encodeURIComponent(tag)}`}
-                className="px-8 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/5 text-sm font-display font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-500 hover:scale-110 active:scale-95"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

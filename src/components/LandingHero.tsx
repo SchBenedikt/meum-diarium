@@ -198,7 +198,7 @@ export function LandingHero() {
               viewport={{ once: true }}
               className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tighter"
             >
-              Die <span className="text-primary italic">Giganten</span> der Antike.
+              Vier <span className="text-primary italic">Stimmen</span> der Antike.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -207,29 +207,39 @@ export function LandingHero() {
               transition={{ delay: 0.1 }}
               className="text-xl sm:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed italic opacity-80"
             >
-              Von den Hallen des Senats bis zu den Fernen des Imperiums – begegne den Menschen, die unsere Welt geformt haben. In einer Tiefe, die kein Geschichtsbuch erreicht.
+              Erlebe die Geschichte Roms durch zwei Perspektiven: persönliche Tagebucheinträge und wissenschaftliche Analysen. Jede Stimme erzählt ihre eigene Wahrheit.
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: 'Strategie & Macht',
-                desc: 'Erfahre von Caesar die Geheimnisse seiner Feldzüge und den Preis des Triumphs.',
-                icon: '🦅',
-                color: 'from-primary/20 to-transparent'
+                title: 'Caesar',
+                subtitle: 'Der Feldherr',
+                desc: 'Eroberer Galliens, Meister der Strategie und Überraschung. Seine Feldzüge veränderten die Grenzen der Welt.',
+                icon: '⚔️',
+                color: 'from-red-500/20 to-transparent'
               },
               {
-                title: 'Rhetorik & Recht',
-                desc: 'Cicero führt dich in die Kunst der Überzeugung und die Verteidigung der Republik ein.',
-                icon: '⚖️',
-                color: 'from-secondary/20 to-transparent'
+                title: 'Cicero',
+                subtitle: 'Der Redner',
+                desc: 'Verteidiger der Republik, Meister der Rhetorik. Seine Worte waren schärfer als jedes Schwert.',
+                icon: '📜',
+                color: 'from-amber-500/20 to-transparent'
               },
               {
-                title: 'Weisheit & Seelenruhe',
-                desc: 'Seneca lehrt dich die stoische Gelassenheit in einer Welt voller Unruhe.',
-                icon: '🌿',
-                color: 'from-accent/20 to-transparent'
+                title: 'Augustus',
+                subtitle: 'Der Gründer',
+                desc: 'Schöpfer des Imperiums, Bringer des Friedens. Aus dem Chaos entstand ein neues Rom.',
+                icon: '👑',
+                color: 'from-yellow-500/20 to-transparent'
+              },
+              {
+                title: 'Seneca',
+                subtitle: 'Der Philosoph',
+                desc: 'Stoiker, Berater der Kaiser, Sucher der Wahrheit. Weisheit über Macht und Schicksal.',
+                icon: '🏛️',
+                color: 'from-blue-500/20 to-transparent'
               }
             ].map((feature, i) => (
               <motion.div
@@ -237,14 +247,15 @@ export function LandingHero() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative bg-white/[0.02] backdrop-blur-3xl p-10 rounded-3xl border border-border/40 hover:border-primary/50 transition-all duration-700 group overflow-hidden"
+                transition={{ delay: i * 0.15 }}
+                className="relative bg-white/[0.02] backdrop-blur-3xl p-8 rounded-2xl border border-border/40 hover:border-primary/50 transition-all duration-700 group overflow-hidden"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
                 <div className="relative z-10">
-                  <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-700 block">{feature.icon}</div>
-                  <h3 className="font-display text-3xl font-bold mb-6">{feature.title}</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{feature.desc}</p>
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-700 block">{feature.icon}</div>
+                  <h3 className="font-display text-2xl font-bold mb-1">{feature.title}</h3>
+                  <p className="text-sm text-primary font-semibold uppercase tracking-wider mb-4">{feature.subtitle}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{feature.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -252,7 +263,7 @@ export function LandingHero() {
         </div>
       </section>
 
-      {/* New Section: Wissen in Echtzeit */}
+      {/* AI Demo Section */}
       <section className="py-32 relative z-10 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -264,22 +275,63 @@ export function LandingHero() {
             >
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30" />
-                <div className="relative bg-card/60 backdrop-blur-2xl border border-border/40 rounded-3xl p-8">
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-border/40 hover:border-primary/40 transition-all">
-                      <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">C</div>
+                {/* Demo Chat Interface */}
+                <div className="relative bg-card/60 backdrop-blur-2xl border border-border/40 rounded-3xl overflow-hidden">
+                  {/* Chat Header */}
+                  <div className="flex items-center justify-between border-b border-border/50 px-6 py-4 bg-background/70 backdrop-blur-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">C</div>
                       <div>
-                        <p className="text-sm font-bold text-primary mb-1">CAESAR</p>
-                        <p className="text-lg font-display">"Veni, vidi, vici. Doch was sah ich wirklich in den Augen der Gallier?"</p>
+                        <p className="font-display font-semibold text-lg">Caesar</p>
+                        <span className="flex items-center gap-1.5 text-xs text-primary animate-pulse">
+                          <span className="block h-1.5 w-1.5 rounded-full bg-primary" /> Online
+                        </span>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-primary/10 border border-primary/20 ml-8">
-                      <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-white">AI</div>
-                      <div>
-                        <p className="text-sm font-bold text-primary mb-1">SYSTEM</p>
-                        <p className="text-lg">Analysiere 'Commentarii de Bello Gallico'... Rekonstruiere emotionale Kontext-Ebenen...</p>
+                    <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
+                      <span>🤖 KI-gestützt</span>
+                    </div>
+                  </div>
+
+                  {/* Chat Messages */}
+                  <div className="space-y-4 p-6 h-[320px] overflow-hidden">
+                    <div className="flex gap-3">
+                      <div className="h-10 w-10 rounded-full bg-secondary text-foreground flex items-center justify-center shrink-0 text-sm font-bold">C</div>
+                      <div className="rounded-3xl bg-card/70 border border-border/60 p-4 max-w-[75%] text-sm leading-relaxed">
+                        "Veni, vidi, vici – aber was sah ich wirklich in Gallien?"
                       </div>
                     </div>
+                    
+                    <div className="flex gap-3 flex-row-reverse">
+                      <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 text-xs font-bold">Du</div>
+                      <div className="rounded-3xl bg-primary text-primary-foreground p-4 max-w-[75%] text-sm leading-relaxed">
+                        Was war die größte Herausforderung bei der Eroberung Galliens?
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <div className="h-10 w-10 rounded-full bg-secondary text-foreground flex items-center justify-center shrink-0 text-sm font-bold">C</div>
+                      <div className="rounded-3xl bg-card/70 border border-border/60 p-4 max-w-[75%] text-sm leading-relaxed">
+                        Nicht die Gallier selbst – sondern ihre Einheit unter Vercingetorix. Ein einzelner Gegner, der seine Leute einigte...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Chat Input */}
+                  <div className="border-t border-border/50 bg-background/80 backdrop-blur-xl px-6 py-4">
+                    <div className="relative flex items-center gap-2">
+                      <input
+                        type="text"
+                        placeholder="Stelle eine Frage an Caesar..."
+                        className="flex-1 pr-12 py-2 text-sm bg-secondary/40 border border-primary/10 focus-visible:ring-primary/30 rounded-xl px-4 outline-none transition-all"
+                      />
+                      <button className="absolute right-2 h-8 w-8 bg-primary hover:bg-primary/90 rounded-lg flex items-center justify-center transition-colors">
+                        <span className="text-white text-sm">→</span>
+                      </button>
+                    </div>
+                    <p className="text-center text-[11px] text-muted-foreground mt-3">
+                      ✨ KI-generierte Antworten können historisch ungenau sein.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -292,20 +344,19 @@ export function LandingHero() {
               className="order-1 lg:order-2"
             >
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                Intelligenz trifft <span className="text-primary text-5xl sm:text-6xl md:text-7xl block mt-2 italic">Unendlichkeit.</span>
+                Intelligenz trifft <span className="text-primary text-5xl sm:text-6xl md:text-7xl block mt-2 italic">Geschichte.</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-light">
-                Wir nutzen nicht einfach nur Text-Modelle. Wir erschaffen <span className="text-foreground font-medium">digitale Consciousness-Proxies</span>.
-                Jedes Wort, das unsere KI wählt, ist verankert in den rhetorischen Mustern und philosophischen Überzeugungen des jeweiligen Autors.
+                Stelle Fragen an historische Persönlichkeiten und erhalte Antworten, die auf ihren echten Werken basieren. Unsere KI rekonstruiert ihre Stimmen, ihre Überzeugungen, ihre Weltsicht.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40 hover:border-primary/40 transition-all group overflow-hidden">
-                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">99%</p>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Texttreue</p>
+                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">4</p>
+                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Historische Stimmen</p>
                 </div>
                 <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40 hover:border-primary/40 transition-all group overflow-hidden">
-                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">&lt; 1s</p>
-                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Antwortzeit</p>
+                  <p className="text-3xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform origin-left">2</p>
+                  <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Perspektiven</p>
                 </div>
               </div>
             </motion.div>
@@ -316,71 +367,26 @@ export function LandingHero() {
       {/* Feature Showcase */}
       <FeatureShowcase />
 
-      {/* Main Links - Enhanced Grid */}
-      <section className="py-24 sm:py-32 bg-background relative z-10">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                to: "/timeline",
-                icon: Clock,
-                title: t('navTimeline'),
-                desc: t('timelineDesc'),
-                color: 'from-blue-500/20 to-cyan-500/20'
-              },
-              {
-                to: "/lexicon",
-                icon: BookMarked,
-                title: t('navLexicon'),
-                desc: t('lexiconDesc'),
-                color: 'from-emerald-500/20 to-teal-500/20'
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-              >
-                <Link to={item.to} className="group relative block h-full">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-2xl`} />
-                  <Card className="h-full p-8 sm:p-10 border border-border/40 bg-card/60 backdrop-blur-xl group-hover:border-primary/40 transition-colors duration-300 rounded-3xl overflow-hidden relative">
-                    <div className="h-14 w-14 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                      <item.icon className="h-7 w-7 text-foreground" />
-                    </div>
-                    <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-base text-muted-foreground leading-relaxed mb-6 italic opacity-70">
-                      {item.desc}
-                    </p>
-                    <div className="flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
-                      Entdecken <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <div id="authors">
         <AuthorGrid />
       </div>
 
       <FeaturedPost />
 
-      {/* Quote Section with enhanced design */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5 -skew-y-3 transform origin-left" />
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6 relative z-10">
-          <div className="text-center mb-16">
-            <Quote className="w-12 h-12 text-primary/40 mx-auto mb-6" />
-            <h2 className="text-3xl sm:text-4xl font-display font-bold">Worte der Ewigkeit</h2>
+      {/* Quote of the Day Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-b from-background via-background to-secondary/5">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/60 mb-6">Sententia Diei</p>
+              <QuoteOfDay />
+            </motion.div>
           </div>
-          <QuoteOfDay />
         </div>
       </section>
 
