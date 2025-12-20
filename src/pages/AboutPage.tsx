@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight, Sword, Map, Trophy, Landmark, Crown } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
@@ -229,64 +229,110 @@ function GeneralAboutPage() {
           </div>
         </section>
 
-        {/* Story & Authors Split Section */}
-        <section className="py-32 bg-secondary/10">
+        {/* Features Section - Deep Dive */}
+        <section className="py-24 bg-surface-container-low/20">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-12 gap-20 items-start">
-              <div className="lg:col-span-7">
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="prose-blog max-w-none"
-                >
-                  <h2 className="font-display text-5xl font-bold mb-10">{t('theProject')}</h2>
-                  <div className="space-y-8 text-xl text-muted-foreground leading-relaxed font-light">
-                    <p dangerouslySetInnerHTML={{ __html: projectDescription }} className="text-foreground/90 font-medium" />
-                    <div>
-                      <h3 className="text-primary font-display text-3xl font-bold mb-4">{t('thePerspectives')}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: t('diaryPerspective') }} className="mb-4" />
-                      <p dangerouslySetInnerHTML={{ __html: t('scientificPerspective') }} />
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="lg:col-span-5">
-                <div className="sticky top-32 space-y-12">
-                  <div>
-                    <h2 className="font-display text-4xl font-bold mb-8 italic text-primary">{t('theAuthors')}</h2>
-                    <p className="text-lg text-muted-foreground mb-10">{t('discoverAuthors')}</p>
-
-                    <div className="space-y-6">
-                      {Object.values(authors).map((author, i) => (
-                        <motion.div
-                          key={author.id}
-                          initial={{ opacity: 0, x: 30 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: i * 0.1 }}
-                        >
-                          <Link
-                            to={`/${author.id}/about`}
-                            onClick={() => setCurrentAuthor(author.id as Author)}
-                            className="group flex items-center gap-6 p-6 rounded-3xl bg-background border border-border/40 hover:border-primary/40 transition-colors duration-300"
-                          >
-                            <div className="h-20 w-20 rounded-2xl overflow-hidden flex-shrink-0 border border-border/40 group-hover:border-primary/50 transition-colors">
-                              <img src={author.heroImage} alt={author.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                            </div>
-                            <div>
-                              <h4 className="font-display text-2xl font-bold group-hover:text-primary transition-colors italic">{author.name}</h4>
-                              <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold opacity-60">{author.years}</p>
-                            </div>
-                            <ArrowRight className="ml-auto h-6 w-6 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
-                          </Link>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="font-display text-4xl font-bold mb-4">Wie es funktioniert</h2>
+              <p className="text-lg text-muted-foreground">Ein einzigartiger Zugang zur antiken Geschichte durch doppelte Perspektiven und authentische Rekonstruktion.</p>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+              <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Scroll className="h-6 w-6 text-primary" />
                 </div>
+                <h3 className="font-display text-2xl font-bold mb-3">Tagebuch-Perspektive</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">Erleben Sie die Geschichte aus persönlicher Sicht. Caesars Siege, Senecas philosophische Zweifel, Ciceros politische Kämpfe – alles aus erster Hand und oft mit einem Augenzwinkern geschrieben.</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>✓ Persönliche Reflexionen & Gefühle</li>
+                  <li>✓ Alltägliche Begebenheiten</li>
+                  <li>✓ Intime Gedanken & Zweifel</li>
+                </ul>
               </div>
+              <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-display text-2xl font-bold mb-3">Wissenschaftliche Perspektive</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">Die gleichen Ereignisse, aber wissenschaftlich analysiert. Quellen, Kontexte, Widersprüche – hier erhalten Sie die akademische Wahrheit hinter den Geschichten.</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>✓ Historische Quellenangaben</li>
+                  <li>✓ Akademische Einordnung</li>
+                  <li>✓ Kritische Analyse</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Authors Showcase - More Details */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="font-display text-4xl font-bold mb-4">Vier Stimmen der Antike</h2>
+              <p className="text-lg text-muted-foreground">Lernen Sie die Männer kennen, deren Worte und Taten die Zivilisation formten.</p>
+            </div>
+            <div className="grid lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {Object.values(authors).map((author, i) => (
+                <motion.div
+                  key={author.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group"
+                >
+                  <Link
+                    to={`/${author.id}/about`}
+                    onClick={() => setCurrentAuthor(author.id as Author)}
+                    className="flex flex-col h-full"
+                  >
+                    <div className="relative overflow-hidden rounded-3xl mb-6 aspect-square">
+                      <img
+                        src={author.heroImage}
+                        alt={author.name}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h3 className="font-display text-2xl font-bold mb-1 group-hover:text-primary transition-colors">{author.name}</h3>
+                    <p className="text-sm text-primary font-semibold mb-2">{author.years}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-3 group-hover:line-clamp-none">{author.description}</p>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Statistics Section */}
+        <section className="py-24 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              <div className="text-center">
+                <div className="text-5xl font-display font-bold text-primary mb-2">4</div>
+                <p className="text-muted-foreground font-semibold">Antike Autoren</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-display font-bold text-primary mb-2">170+</div>
+                <p className="text-muted-foreground font-semibold">Jahre Geschichte</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-display font-bold text-primary mb-2">2</div>
+                <p className="text-muted-foreground font-semibold">Perspektiven pro Post</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-display font-bold text-primary mb-2">100%</div>
+                <p className="text-muted-foreground font-semibold">Authentisch recherchiert</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="py-24 bg-muted/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('ourTeam') || 'Unser Team'}</h2>
+              <p className="text-lg text-muted-foreground">{t('teamDesc') || 'Leidenschaftliche Historiker, Sprachwissenschaftler und Entwickler arbeiten zusammen, um die Vergangenheit lebendig werden zu lassen.'}</p>
             </div>
           </div>
         </section>
@@ -373,15 +419,11 @@ function AuthorAboutPage() {
                     </p>
                   </div>
                 </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="lg:col-span-5"
-                >
+                <div className="lg:col-span-5">
                   <div className="rounded-3xl overflow-hidden border border-border/40 bg-card/30">
                     <img src={authorInfo.heroImage} alt={authorInfo.name} className="w-full h-full object-cover" />
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </section>
@@ -446,7 +488,6 @@ function AuthorAboutPage() {
                         to={`/${authorId}/works/${slugify(work.title, { lower: true, strict: true })}`}
                         className="group relative bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 transition-colors duration-300 hover:border-primary/40 overflow-hidden block"
                       >
-                        <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
 
                         <div className="relative z-10">
                           <BookOpen className="h-8 w-8 text-primary mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -537,9 +578,40 @@ function AuthorAboutPage() {
               )}
             </div>
 
-            {/* Sidebar Timeline */}
+            {/* Sidebar Timeline & Quick Facts */}
             <div className="lg:col-span-4">
-              <div className="sticky top-32">
+              <div className="sticky top-32 space-y-8">
+                {authorId === 'caesar' && (
+                  <div className="rounded-3xl border border-border/40 bg-card/20 backdrop-blur-3xl p-8">
+                    <h3 className="font-display text-2xl font-bold mb-6 text-primary">Kurzfakten</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start py-2 border-b border-border/30">
+                        <span className="text-sm font-medium text-muted-foreground">Geburt</span>
+                        <span className="text-sm font-semibold">13. Juli 100 v. Chr.</span>
+                      </div>
+                      <div className="flex justify-between items-start py-2 border-b border-border/30">
+                        <span className="text-sm font-medium text-muted-foreground">Tod</span>
+                        <span className="text-sm font-semibold">15. März 44 v. Chr.</span>
+                      </div>
+                      <div className="flex justify-between items-start py-2 border-b border-border/30">
+                        <span className="text-sm font-medium text-muted-foreground">Amtszeit</span>
+                        <span className="text-sm font-semibold">59 v. Chr. (Konsul)</span>
+                      </div>
+                      <div className="flex justify-between items-start py-2 border-b border-border/30">
+                        <span className="text-sm font-medium text-muted-foreground">Diktatur</span>
+                        <span className="text-sm font-semibold">49–44 v. Chr.</span>
+                      </div>
+                      <div className="flex justify-between items-start py-2 border-b border-border/30">
+                        <span className="text-sm font-medium text-muted-foreground">Feldzüge</span>
+                        <span className="text-sm font-semibold">Gallien, Britannien</span>
+                      </div>
+                      <div className="flex justify-between items-start py-2">
+                        <span className="text-sm font-medium text-muted-foreground">Bekannt für</span>
+                        <span className="text-sm font-semibold text-right">Gallischer Krieg, Rubikon</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {details?.timeline && (
                   <div className="rounded-3xl border border-border/40 bg-card/20 backdrop-blur-3xl p-8 md:p-10">
                     <h3 className="font-display text-3xl font-bold mb-10 flex items-center gap-4">
@@ -550,7 +622,7 @@ function AuthorAboutPage() {
                       <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
                       {details.timeline.map((item, i) => (
                         <div key={i} className="relative">
-                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
+                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background" />
                           <div className="flex flex-col">
                             <span className="text-primary font-bold text-lg mb-1 tracking-tighter">{item.year}</span>
                             <span className="text-foreground/70 font-light leading-relaxed italic">{item.event}</span>
@@ -564,7 +636,125 @@ function AuthorAboutPage() {
             </div>
           </div>
         </div>
-      </main>
+        {/* Caesar-specific: Militärische Leistungen */}
+        {isCaesar && (
+          <section className="py-24 bg-surface-container-low/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Militärische Meisterleistungen</h2>
+                <p className="text-lg text-muted-foreground">Die Feldzüge, die das Römische Reich nachhaltig prägten und Caesars strategisches Genie offenbarten.</p>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                    <Sword className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">Gallischer Krieg</h3>
+                  <p className="text-sm text-primary font-semibold mb-3">58–50 v. Chr.</p>
+                  <p className="text-muted-foreground leading-relaxed">Eroberung Galliens mit über 50 gewonnenen Schlachten, darunter Alesia (52 v. Chr.), wo Caesar eine Übermacht durch Belagerungstechnik besiegte.</p>
+                </div>
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                    <Map className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">Britannien & Germanien</h3>
+                  <p className="text-sm text-primary font-semibold mb-3">55–54 v. Chr.</p>
+                  <p className="text-muted-foreground leading-relaxed">Erste römische Expeditionen über den Rhein und nach Britannien, die Roms militärische Reichweite neu definierten.</p>
+                </div>
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                    <Trophy className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">Bürgerkrieg</h3>
+                  <p className="text-sm text-primary font-semibold mb-3">49–45 v. Chr.</p>
+                  <p className="text-muted-foreground leading-relaxed">Triumphale Siege bei Pharsalos (48 v. Chr.), Thapsus (46 v. Chr.) und Munda (45 v. Chr.), die die Republik in die Alleinherrschaft überführten.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Caesar-specific: Politische Meilensteine */}
+        {isCaesar && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Politische Meilensteine</h2>
+                <p className="text-lg text-muted-foreground">Von der Popularen-Politik bis zur Diktatur: Caesars Weg zur absoluten Macht in Rom.</p>
+              </div>
+              <div className="max-w-4xl mx-auto space-y-6">
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="flex items-start gap-6">
+                    <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-display text-xl font-bold">Erstes Triumvirat</h3>
+                        <span className="text-sm text-primary font-semibold">60 v. Chr.</span>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">Geheimes Bündnis mit Pompeius und Crassus, das die römische Politik dominierte und Caesar zum Konsulat verhalf.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="flex items-start gap-6">
+                    <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <Landmark className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-display text-xl font-bold">Rubikon-Überquerung</h3>
+                        <span className="text-sm text-primary font-semibold">10. Januar 49 v. Chr.</span>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">»Alea iacta est« – Der Würfel ist gefallen. Caesar überschritt mit seinen Legionen den Rubikon und löste damit den Bürgerkrieg aus.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <div className="flex items-start gap-6">
+                    <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <Crown className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-display text-xl font-bold">Diktator auf Lebenszeit</h3>
+                        <span className="text-sm text-primary font-semibold">44 v. Chr.</span>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">Der Senat ernannte Caesar zum »dictator perpetuo«, was faktisch das Ende der römischen Republik bedeutete und zu seiner Ermordung führte.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Caesar-specific: Zitate */}
+        {isCaesar && (
+          <section className="py-24 bg-surface-container-low/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+                <p className="text-lg text-muted-foreground">Worte, die die Geschichte prägten und Caesars Entschlossenheit zeigen.</p>
+              </div>
+              <div className="max-w-3xl mx-auto space-y-6">
+                <blockquote className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <p className="text-2xl font-display italic text-foreground/90 mb-4">»Veni, vidi, vici.«</p>
+                  <p className="text-sm text-muted-foreground">Ich kam, ich sah, ich siegte – nach dem Sieg bei Zela (47 v. Chr.)</p>
+                </blockquote>
+                <blockquote className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <p className="text-2xl font-display italic text-foreground/90 mb-4">»Alea iacta est.«</p>
+                  <p className="text-sm text-muted-foreground">Der Würfel ist gefallen – beim Überschreiten des Rubikon (49 v. Chr.)</p>
+                </blockquote>
+                <blockquote className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300">
+                  <p className="text-2xl font-display italic text-foreground/90 mb-4">»Et tu, Brute?«</p>
+                  <p className="text-sm text-muted-foreground">Auch du, Brutus? – Caesars letzte Worte bei seiner Ermordung (15. März 44 v. Chr.)</p>
+                </blockquote>
+              </div>
+            </div>
+          </section>
+        )}      </main>
       <Footer />
     </div>
   );

@@ -28,7 +28,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       className="space-y-5 lg:space-y-6"
     >
       <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 overflow-hidden relative group">
-        <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl transition-colors" />
         <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
           <div className="flex items-center gap-3">
             <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />

@@ -16,6 +16,7 @@ export type PageHeroProps = {
   noBackground?: boolean;
   tall?: boolean;
   bgScale?: number;
+  parallaxY?: any;
 };
 
 export function PageHero({
@@ -31,11 +32,12 @@ export function PageHero({
   noBackground = false,
   tall = false,
   bgScale = 1.1,
+  parallaxY,
 }: PageHeroProps) {
   return (
     <section className={cn("relative overflow-hidden pt-24 sm:pt-32 pb-14 sm:pb-20", tall && !noBackground ? "min-h-[60vh] sm:min-h-[70vh]" : "", noBackground ? "bg-transparent" : "bg-background")}>{/* Hero wrapper matches Landing page spacing */}
       {!noBackground && backgroundImage && (
-        <div className="absolute inset-0">
+        <motion.div className="absolute inset-0" style={parallaxY ? { y: parallaxY } : {}}>
           <img
             src={backgroundImage}
             alt="Background"
@@ -44,7 +46,7 @@ export function PageHero({
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/60" />
-        </div>
+        </motion.div>
       )}
 
       {!noBackground && <ModernBackground />}

@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
 import { Author, Work } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, User, CheckCircle, ListTree, ArrowLeft } from 'lucide-react';
+import { Calendar, User, CheckCircle, ListTree, ArrowLeft, BookOpen, Award, Lightbulb, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
@@ -100,6 +100,156 @@ export default function WorkPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Historical Context */}
+                {work.slug === 'de-bello-gallico' && (
+                  <>
+                    <div className="mt-12 p-8 rounded-3xl bg-primary/5 border border-primary/20">
+                      <div className="flex items-center gap-3 mb-4">
+                        <BookOpen className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Historischer Kontext</h3>
+                      </div>
+                      <p className="text-base leading-relaxed !mb-4">Das Werk entstand während und nach Caesars achtjährigem Feldzug in Gallien (58–50 v. Chr.). Es diente nicht nur als militärischer Bericht, sondern vor allem als politisches Instrument, um seine Taten in Rom zu rechtfertigen und seine Position zu stärken.</p>
+                      <p className="text-base leading-relaxed !mb-0">Die Commentarii wurden jährlich als Rechenschaftsberichte an den Senat geschickt und sollten zeigen, dass Caesar im Interesse Roms handelte – auch wenn seine Kritiker ihm imperiale Ambitionen vorwarfen.</p>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-secondary/20 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Award className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Literarische Bedeutung</h3>
+                      </div>
+                      <ul className="space-y-3 !mb-0">
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Sprachliche Klarheit:</strong> Das Werk gilt als Musterbeispiel für klares, präzises Latein und wird bis heute im Lateinunterricht verwendet.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Dritte Person:</strong> Caesar schreibt über sich selbst in der dritten Person ("Caesar"), was objektive Distanz suggeriert – eine raffinierte rhetorische Strategie.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Ethnographische Details:</strong> Neben militärischen Berichten enthält das Werk wertvolle Beschreibungen der gallischen und germanischen Völker, Sitten und Geographie.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Politische Propaganda:</strong> Jedes Detail ist sorgfältig gewählt, um Caesars Führungsqualitäten, Tapferkeit und strategisches Genie zu unterstreichen.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-card/40 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Quote className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Berühmte Zitate</h3>
+                      </div>
+                      <blockquote className="border-l-4 border-primary pl-6 py-2 mb-4">
+                        <p className="text-lg italic !mb-2">»Gallia est omnis divisa in partes tres...«</p>
+                        <p className="text-sm text-muted-foreground !mb-0">Ganz Gallien ist in drei Teile geteilt – der berühmte Eröffnungssatz des Werkes.</p>
+                      </blockquote>
+                      <blockquote className="border-l-4 border-primary pl-6 py-2">
+                        <p className="text-lg italic !mb-2">»Fere libenter homines id quod volunt credunt.«</p>
+                        <p className="text-sm text-muted-foreground !mb-0">Die Menschen glauben gerne das, was sie wollen – aus Buch III.</p>
+                      </blockquote>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-primary/5 border border-primary/20">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Lightbulb className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Wirkung & Vermächtnis</h3>
+                      </div>
+                      <p className="text-base leading-relaxed !mb-4">De Bello Gallico hatte weitreichende Konsequenzen: Es stärkte Caesars Position in Rom, machte ihn zum Volkshelden und legitimierte seine territorialen Eroberungen. Die Unterwerfung Galliens brachte Rom immense Reichtümer – Gold, Sklaven und strategische Kontrolle über weite Teile Europas.</p>
+                      <p className="text-base leading-relaxed !mb-0">Das Werk beeinflusste nicht nur die römische Politik, sondern auch die europäische Geschichtsschreibung für Jahrhunderte. Es ist eine der wichtigsten Quellen für die keltische und germanische Frühgeschichte und prägte das Bild der "barbarischen" Völker im römischen Bewusstsein.</p>
+                    </div>
+                  </>
+                )}
+
+                {work.slug === 'de-bello-civili' && (
+                  <>
+                    <div className="mt-12 p-8 rounded-3xl bg-primary/5 border border-primary/20">
+                      <div className="flex items-center gap-3 mb-4">
+                        <BookOpen className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Historischer Kontext</h3>
+                      </div>
+                      <p className="text-base leading-relaxed !mb-4">Nach seiner Rückkehr aus Gallien 50 v. Chr. forderte der römische Senat Caesar auf, seine Legionen aufzulösen und als Privatmann nach Rom zurückzukehren. Caesar weigerte sich – er fürchtete politische Verfolgung – und überschritt stattdessen am 10. Januar 49 v. Chr. mit seinen Truppen den Rubikon, die Grenze zwischen seiner Provinz und Italien.</p>
+                      <p className="text-base leading-relaxed !mb-0">Dieser Akt der Rebellion löste den Bürgerkrieg zwischen Caesar und den Optimaten unter Führung von Pompeius aus. De Bello Civili ist Caesars eigene Rechtfertigungsschrift für diesen Krieg.</p>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-card/40 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Quote className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Zentrale Themen</h3>
+                      </div>
+                      <ul className="space-y-3 !mb-0">
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Dignitas:</strong> Caesar betont wiederholt, dass er für seine Ehre (dignitas) kämpft, nicht aus Machthunger.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Clementia:</strong> Seine Milde gegenüber besiegten Feinden wird als Zeichen moralischer Überlegenheit dargestellt.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Pompeius als Verräter:</strong> Der einstige Verbündete wird als unfähig und von den Optimaten manipuliert gezeigt.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-secondary/20 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Award className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Wirkung</h3>
+                      </div>
+                      <p className="text-base leading-relaxed !mb-0">De Bello Civili ist unvollendet – es endet abrupt nach Caesars Sieg in Ägypten 48 v. Chr. Dennoch zeigt es Caesars meisterhafte Kontrolle über die Erzählung: Jedes Ereignis wird so präsentiert, dass seine Handlungen gerechtfertigt und unvermeidlich erscheinen. Der Bürgerkrieg wird nicht als sein Fehler, sondern als Resultat der Sturheit und Inkompetenz seiner Gegner dargestellt.</p>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-primary/5 border border-primary/20">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Lightbulb className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Literarische Besonderheiten</h3>
+                      </div>
+                      <ul className="space-y-3 !mb-0">
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Unfertig:</strong> Das Werk bricht plötzlich ab, vermutlich weil Caesar zu beschäftigt war oder Aulus Hirtius es nicht fortsetzen konnte.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Direkter Ton:</strong> Im Vergleich zu De Bello Gallico ist De Bello Civili persönlicher und emotionaler – der Leser spürt Caesars Frustration.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span><strong>Rechtfertigungswerk:</strong> Das gesamte Werk ist eine Apologie – Caesars Versuch, die Nachwelt von seiner Unschuld zu überzeugen.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-card/40 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Quote className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Schlüsselmommente</h3>
+                      </div>
+                      <blockquote className="border-l-4 border-primary pl-6 py-2 mb-4">
+                        <p className="text-lg italic !mb-2">»Pompeius iniquissimis condicionibus non accepit.«</p>
+                        <p className="text-sm text-muted-foreground !mb-0">Pompeius akzeptierte die unfairest möglichen Bedingungen nicht – Caesars Sicht auf die Verhandlungen.</p>
+                      </blockquote>
+                      <blockquote className="border-l-4 border-primary pl-6 py-2">
+                        <p className="text-lg italic !mb-2">»Unum Pompeius ab legione negarat.«</p>
+                        <p className="text-sm text-muted-foreground !mb-0">Pompeius verweigerte sich einer einzigen Legion – Caesars Argument für die Notwendigkeit des Krieges.</p>
+                      </blockquote>
+                    </div>
+
+                    <div className="mt-8 p-8 rounded-3xl bg-secondary/20 border border-border/40">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Award className="h-6 w-6 text-primary" />
+                        <h3 className="font-display text-2xl font-bold !mt-0">Historische Bedeutung</h3>
+                      </div>
+                      <p className="text-base leading-relaxed !mb-4">De Bello Civili dokumentiert den Niedergang der römischen Republik. Es zeigt nicht nur militärische Ereignisse, sondern auch die politischen und moralischen Konflikte, die zur Alleinherrschaft Caesars führten.</p>
+                      <p className="text-base leading-relaxed !mb-0">Das Werk ist heute eine Primärquelle für das späte 1. Jahrhundert v. Chr. und bietet Einblicke in römische Militärlogistik, Strategie und die politischen Lager der Zeit. Trotz Caesars offensichtlicher Voreingenommenheit ist es ein unverzichtbares Dokument für das Verständnis der späten Republik.</p>
+                    </div>
+                  </>
+                )}
               </motion.div>
             </article>
 
