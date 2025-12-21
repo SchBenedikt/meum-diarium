@@ -1,0 +1,57 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Nach seiner Rückkehr aus Gallien 50 v. Chr. forderte der römische Senat Caesar auf, seine Legionen aufzulösen und als Privatmann nach Rom zurückzukehren. Caesar weigerte sich – er fürchtete politische Verfolgung – und überschritt stattdessen am 10. Januar 49 v. Chr. mit seinen Truppen den Rubikon, die Grenze zwischen seiner Provinz und Italien.",
+      "Dieser Akt der Rebellion löste den Bürgerkrieg zwischen Caesar und den Optimaten unter Führung von Pompeius aus. De Bello Civili ist Caesars eigene Rechtfertigungsschrift für diesen Krieg."
+    ],
+    "sections": [
+      {
+        "title": "Zentrale Themen",
+        "content": [
+          "Dignitas: Caesar betont wiederholt, dass er für seine Ehre (dignitas) kämpft, nicht aus Machthunger. Für einen römischen Aristokraten war der Verlust von dignitas schlimmer als der Tod.",
+          "Clementia: Seine Milde gegenüber besiegten Feinden wird als Zeichen moralischer Überlegenheit dargestellt. Caesar begnadigte viele Gegner – eine kalkulierte Geste."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Alea iacta est.",
+        "translation": "Der Würfel ist gefallen.",
+        "context": "Caesars legendäre Worte beim Überschreiten des Rubikon. Symbolisiert den Point of No Return – die bewusste Entscheidung für Krieg und Rebellion."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Rubikon-Überquerung",
+        "date": "10. Januar 49 v. Chr.",
+        "description": "»Alea iacta est« – Der Würfel ist gefallen. Caesar überschreitet mit seiner XIII. Legion den Rubikon und marschiert auf Rom.",
+        "significance": "Der Moment, der die Republik beendet. Caesars Entscheidung ist illegal und unverzeihlich – aber kalkuliert. Es gibt keinen Weg zurück."
+      },
+      {
+        "title": "Schlacht bei Pharsalos",
+        "date": "9. August 48 v. Chr.",
+        "description": "Entscheidungsschlacht in Thessalien. Caesar besiegt Pompeius trotz zahlenmäßiger Unterlegenheit durch überlegene Taktik.",
+        "significance": "Das Ende von Pompeius' Macht. Nach Pharsalos ist Caesar faktisch Herrscher Roms."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "After his return from Gaul in 50 BC, the Roman Senate demanded that Caesar disband his legions and return to Rome as a private citizen. Caesar refused and instead crossed the Rubicon on January 10, 49 BC."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "Post reditum ex Gallia anno 50 a.C.n., Senatus Romanus Caesarem iussit legiones suas dissolvere et ut privatus Romam redire. Caesar recusavit et Rubiconem die 10 Ianuarii 49 a.C.n. transiit."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

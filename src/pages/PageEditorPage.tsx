@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye, Plus, Trash2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuthors } from '@/hooks/use-authors';
 import { upsertPage } from '@/lib/cms-store';
 import { PageContent, PageLanguage, PageHighlight, PageTranslation } from '@/types/page';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -47,6 +48,7 @@ export default function PageEditorPage() {
   const [pageSlug, setPageSlug] = useState(isNewPage ? '' : slug || 'about');
   const [page, setPage] = useState<PageContent>(() => buildEmptyPage(pageSlug));
   const [activeLang, setActiveLang] = useState<PageLanguage>('de');
+  const { authors } = useAuthors();
 
   // Fetch page data if editing
   const { data: pageData, isLoading } = useQuery({
@@ -64,6 +66,39 @@ export default function PageEditorPage() {
       setPageSlug(pageData.slug);
     }
   }, [pageData]);
+
+  // Prefill author "Über" pages if no JSON exists yet
+  useEffect(() => {
+    if (!isNewPage && slug && slug.startsWith('author-about-') && !pageData && authors) {
+      const authorId = slug.replace('author-about-', '') as keyof typeof authors;
+      const author = (authors as any)[authorId];
+      if (author) {
+        setPage(prev => ({
+          ...prev,
+          slug,
+          heroTitle: author.name || prev.heroTitle,
+          heroSubtitle: author.title || prev.heroSubtitle,
+          heroImage: author.heroImage || prev.heroImage,
+          introText: author.description || prev.introText,
+          translations: {
+            en: {
+              heroTitle: author.translations?.en?.name || '',
+              heroSubtitle: author.translations?.en?.title || '',
+              introText: author.translations?.en?.description || '',
+              highlights: prev.translations?.en?.highlights || [emptyHighlight],
+            },
+            la: {
+              heroTitle: author.translations?.la?.name || '',
+              heroSubtitle: author.translations?.la?.title || '',
+              introText: author.translations?.la?.description || '',
+              highlights: prev.translations?.la?.highlights || [emptyHighlight],
+            },
+          },
+        }));
+        setPageSlug(slug);
+      }
+    }
+  }, [isNewPage, slug, pageData, authors]);
 
   const updateBase = (field: keyof PageContent, value: any) => {
     setPage(prev => ({ ...prev, [field]: value }));

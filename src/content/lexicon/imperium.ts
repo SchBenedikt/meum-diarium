@@ -3,27 +3,31 @@ import { LexiconEntry } from '@/types/blog';
 const entry: LexiconEntry = {
   term: "Imperium",
   slug: "imperium",
-  variants: [],
-  definition: "Das Imperium bezeichnet die höchste, unbeschränkte Befehlsgewalt im militärischen und zivilen Bereich, die in der Römischen Republik den höchsten Magistraten (Konsuln, Prätoren, Diktatoren) verliehen wurde. Das Imperium umfasste weitreichende Befugnisse: das Recht, Truppen auszuheben und zu befehligen, Recht zu sprechen und Urteile zu vollstrecken sowie die Auspizien (göttliche Vorzeichen) zu beobachten und zu deuten. Träger des Imperiums besaßen die Macht über Leben und Tod (ius vitae necisque) über römische Bürger außerhalb der Stadt Rom. Das Imperium wurde durch bestimmte Insignien symbolisiert, insbesondere durch die fasces (Rutenbündel mit Beil) und den Purpurstreifen am Gewand. In der Kaiserzeit wurde das Imperium zur Grundlage der kaiserlichen Autorität.",
-  category: "Militär",
-  etymology: "Von lat. 'imperare' (befehlen, herrschen, Befehl erteilen), verwandt mit 'in-parare' (vorbereiten, anordnen)",
-  relatedTerms: ["konsul", "prätor", "diktator"],
+  variants: ["Imperator"],
+  definition: `Imperium bezeichnete in der römischen Antike die höchste Befehls- und Amtsgewalt, insbesondere die militärische Kommandogewalt. Ursprünglich war das Imperium das Recht, Truppen zu befehligen und militärische Disziplin durchzusetzen - einschließlich der Macht über Leben und Tod. Konsuln, Praetoren und Diktatoren verfügten über das Imperium während ihrer Amtszeit. Ein Magistrat mit Imperium durfte die Liktoren mit Rutengebündeln (fasces) als Zeichen seiner Autorität vor sich hertragen lassen. Außerhalb Roms einschloss das Imperium auch die zivile Gerichtsbarkeit.
+
+Im Laufe der Geschichte entwickelte sich der Begriff weiter: Das Imperium proconsulare war eine verlängerte oder außerordentliche Kommandogewalt, die auch ehemaligen Magistraten verliehen werden konnte. Während der späten Republik erhielten Feldherren wie Pompeius und Caesar außergewöhnliche imperium-Befugnisse über mehrere Provinzen gleichzeitig. Augustus begründete seine Macht geschickt auf dem imperium proconsulare maius, das ihm Autorität über alle Provinzen mit Legionen gab, ohne dass er formell König oder Diktator sein musste.
+
+Später bezeichnete 'Imperium Romanum' das römische Weltreich selbst - den gesamten Herrschaftsbereich unter römischer Kontrolle. In diesem Sinne umfasste das Imperium auf seinem Höhepunkt im 2. Jahrhundert n. Chr. Gebiete von Britannien bis zum Euphrat und von der Nordsee bis zur Sahara. Der Begriff spiegelte den römischen Anspruch auf universale Herrschaft wider. Aus diesem römischen Konzept entwickelten sich später die Begriffe 'Imperator' (Kaiser) und 'Imperialismus'.`,
+  category: "Politik",
+  etymology: `Von lateinisch 'imperare' (befehlen, herrschen). Der Begriff entwickelte sich später zur Bezeichnung für das römische Weltreich selbst.`,
+  relatedTerms: ["Konsul","Praetor","Fasces"],
   translations: {
-    en: {
-      term: "Imperium",
-      definition: "Imperium designates the highest, unrestricted command authority in military and civil spheres, granted to the highest magistrates (consuls, praetors, dictators) in the Roman Republic. Imperium encompassed extensive powers: the right to raise and command troops, to administer justice and execute judgments, and to observe and interpret the auspices (divine omens). Holders of imperium possessed the power of life and death (ius vitae necisque) over Roman citizens outside the city of Rome. Imperium was symbolized by specific insignia, particularly the fasces (bundles of rods with an axe) and the purple stripe on the garment. In the Imperial period, imperium became the foundation of imperial authority.",
-      category: "Military",
-      etymology: "From Latin 'imperare' (to command)",
-      variants: []
+    "en": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
     },
-    la: {
-      term: "Imperium",
-      definition: "Summa potestas imperandi in rebus militaribus et civilibus. In Republica Romana, summis magistratibus (consulibus, praetoribus, dictatoribus) conferebatur. Imperium ius comprehendebat copias conscribendi et imperandi, iudicandi et puniendi, auspicia observandi. Qui imperium habebant, potestatem vitae necisque super cives Romanos extra urbem Romam possidebant. Imperium insigniis specificis symbolis monstratum est, praecipue fascibus (fasces cum securi) et purpura in veste. Aetate imperatoria, imperium fundamentum auctoritatis imperatoriae factum est.",
-      category: "Res Militaris",
-      etymology: "Ex Latino 'imperare' (imperare, iubere)",
-      variants: ["imperii", "imperio", "imperium Romanum"]
+    "la": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
     }
-  }
+}
 };
 
 export default entry;

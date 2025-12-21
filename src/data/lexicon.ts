@@ -1,35 +1,65 @@
 import { LexiconEntry } from '@/types/blog';
 
-import cursusHonorum from '@/content/lexicon/cursus-honorum';
-import diktator from '@/content/lexicon/diktator';
-import imperium from '@/content/lexicon/imperium';
-import konsul from '@/content/lexicon/konsul';
-import legion from '@/content/lexicon/legion';
-import magistrat from '@/content/lexicon/magistrat';
-import philosophie from '@/content/lexicon/philosophie';
-import pontifexMaximus from '@/content/lexicon/pontifex-maximus';
-import proskription from '@/content/lexicon/proskription';
-import prätor from '@/content/lexicon/prator';
-import republik from '@/content/lexicon/republik';
-import senat from '@/content/lexicon/senat';
-import stoa from '@/content/lexicon/stoa';
-import triumvirat from '@/content/lexicon/triumvirat';
+
 import volkstribun from '@/content/lexicon/volkstribun';
+import legion from '@/content/lexicon/legion';
+import senator from '@/content/lexicon/senator';
+import praetor from '@/content/lexicon/praetor';
+import centurio from '@/content/lexicon/centurio';
+import patricier from '@/content/lexicon/patricier';
+import plebejer from '@/content/lexicon/plebejer';
+import forumRomanum from '@/content/lexicon/forum-romanum';
+import aqudukt from '@/content/lexicon/aqudukt';
+import gladius from '@/content/lexicon/gladius';
+import toga from '@/content/lexicon/toga';
+import triumph from '@/content/lexicon/triumph';
+import amphitheater from '@/content/lexicon/amphitheater';
+import pontifexMaximus from '@/content/lexicon/pontifex-maximus';
+import imperium from '@/content/lexicon/imperium';
+import paxRomana from '@/content/lexicon/pax-romana';
+import gladiator from '@/content/lexicon/gladiator';
+import limes from '@/content/lexicon/limes';
+import aedil from '@/content/lexicon/aedil';
+import villa from '@/content/lexicon/villa';
+import rubikon from '@/content/lexicon/rubikon';
+import triumvirat from '@/content/lexicon/triumvirat';
+import gallischerKrieg from '@/content/lexicon/gallischer-krieg';
+import diktator from '@/content/lexicon/diktator';
+import legio from '@/content/lexicon/legio';
+import triumphzug from '@/content/lexicon/triumphzug';
+import imperator from '@/content/lexicon/imperator';
+import vercingetorix from '@/content/lexicon/vercingetorix';
+import pilum from '@/content/lexicon/pilum';
 
 export const lexicon: LexiconEntry[] = [
-  cursusHonorum,
-  diktator,
-  imperium,
-  konsul,
-  legion,
-  magistrat,
-  philosophie,
-  pontifexMaximus,
-  proskription,
-  prätor,
-  republik,
-  senat,
-  stoa,
-  triumvirat,
+
   volkstribun,
+  legion,
+  senator,
+  praetor,
+  centurio,
+  patricier,
+  plebejer,
+  forumRomanum,
+  aqudukt,
+  gladius,
+  toga,
+  triumph,
+  amphitheater,
+  pontifexMaximus,
+  imperium,
+  paxRomana,
+  gladiator,
+  limes,
+  aedil,
+  villa,
+  rubikon,
+  triumvirat,
+  gallischerKrieg,
+  diktator,
+  legio,
+  triumphzug,
+  imperator,
+  vercingetorix,
+  pilum,
 ];

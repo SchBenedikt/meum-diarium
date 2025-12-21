@@ -40,10 +40,10 @@ const escapeString = (str: string) => {
 
 // Extracts a string property: key: 'value' or "key": "value"
 const extractString = (content: string, key: string): string => {
-    // Matches key or "key" or 'key'
-    const regex = new RegExp(`['"]?${key}['"]?:\\s*['"\`](.*?)['"\`],?`);
+    // Capture the opening quote and match until the same closing quote that is not escaped
+    const regex = new RegExp(`['"]?${key}['"]?:\\s*(["'\`])([\\s\\S]*?)(?<!\\\\)\\1,?`);
     const match = content.match(regex);
-    return match ? match[1] : '';
+    return match ? match[2] : '';
 };
 
 // Extracts a number property: key: 123
@@ -66,8 +66,8 @@ const extractStringArray = (content: string, key: string): string[] => {
 
 // Extracts content inside template literals: key: `content`
 const extractTemplateLiteral = (content: string, key: string): string => {
-    // Matches key: `...` allowing optional comma or whitespace after
-    const regex = new RegExp(`['"]?${key}['"]?:\\s*\`([\\s\\S]*?)\`(?=\\s*,|\\s*})`);
+    // Matches key: `...` allowing optional comma or whitespace after; closing backtick not escaped
+    const regex = new RegExp(`['"]?${key}['"]?:\\s*\`([\\s\\S]*?)(?<!\\\\)\`(?=\\s*,|\\s*})`);
     const match = content.match(regex);
     return match ? match[1] : '';
 };
@@ -462,6 +462,50 @@ app.delete('/api/authors/:id', async (req, res) => {
 // ============ LEXICON API ============
 const LEXICON_DIR = path.join(CONTENT_DIR, 'lexicon');
 
+// Helper: extract either template literal (multi-line) or simple string for a given key
+const extractStringOrTemplate = (content: string, key: string): string => {
+    const tmpl = extractTemplateLiteral(content, key);
+    if (tmpl) return tmpl;
+    return extractString(content, key) || '';
+};
+
+// Helper: robustly extract translations block for lexicon entries
+const extractLexiconTranslationsBlock = (content: string): any => {
+    // Try to capture the translations object block
+    const translationsMatch = content.match(/translations:\s*({[\s\S]*?})\n};/);
+    if (translationsMatch) {
+        const block = translationsMatch[1];
+        try {
+            // Works for JSON-formatted translations (created by Admin API)
+            return JSON.parse(block);
+        } catch {
+            // Fallback: regex-based extraction for legacy JS object syntax
+            const extractLangBlock = (lang: string) => {
+                const rx = new RegExp(`['\"]?${lang}['\"]?:\\s*{([\\s\\S]*?)}`);
+                const m = block.match(rx);
+                return m ? m[1] : '';
+            };
+
+            const parseLang = (langBlock: string) => {
+                if (!langBlock) return {};
+                return {
+                    term: extractString(langBlock, 'term'),
+                    definition: extractStringOrTemplate(langBlock, 'definition'),
+                    etymology: extractStringOrTemplate(langBlock, 'etymology'),
+                    category: extractString(langBlock, 'category'),
+                    variants: extractStringArray(langBlock, 'variants')
+                };
+            };
+
+            return {
+                en: parseLang(extractLangBlock('en')),
+                la: parseLang(extractLangBlock('la')),
+            };
+        }
+    }
+    return {};
+};
+
 // GET all lexicon entries
 app.get('/api/lexicon', async (req, res) => {
     try {
@@ -476,9 +520,9 @@ app.get('/api/lexicon', async (req, res) => {
                 entries.push({
                     slug: extractString(content, 'slug') || file.replace('.ts', ''),
                     term: extractString(content, 'term'),
-                    definition: extractTemplateLiteral(content, 'definition'),
+                    definition: extractStringOrTemplate(content, 'definition'),
                     category: extractString(content, 'category'),
-                    etymology: extractTemplateLiteral(content, 'etymology'),
+                    etymology: extractStringOrTemplate(content, 'etymology'),
                     variants: extractStringArray(content, 'variants'),
                     relatedTerms: extractStringArray(content, 'relatedTerms')
                     // Not parsing translations for list view to save bandwidth/complexity
@@ -499,30 +543,17 @@ app.get('/api/lexicon/:slug', async (req, res) => {
         const filePath = path.join(LEXICON_DIR, `${slug}.ts`);
         const content = await fs.readFile(filePath, 'utf-8');
 
-        // Helper to extract translation block
-        const extractLexiconTranslation = (lang: string) => {
-            const block = extractObject(content, lang); // expects en: { ... } logic from extractObject
-            return {
-                term: extractString(block, 'term'),
-                definition: extractTemplateLiteral(block, 'definition'),
-                etymology: extractTemplateLiteral(block, 'etymology'),
-                category: extractString(block, 'category'),
-                variants: extractStringArray(block, 'variants')
-            };
-        };
+        const translations = extractLexiconTranslationsBlock(content);
 
         const entry = {
-            slug: extractString(content, 'slug'),
+            slug: extractString(content, 'slug') || slug,
             term: extractString(content, 'term'),
-            definition: extractTemplateLiteral(content, 'definition'),
+            definition: extractStringOrTemplate(content, 'definition'),
             category: extractString(content, 'category'),
-            etymology: extractTemplateLiteral(content, 'etymology'),
+            etymology: extractStringOrTemplate(content, 'etymology'),
             variants: extractStringArray(content, 'variants'),
             relatedTerms: extractStringArray(content, 'relatedTerms'),
-            translations: {
-                en: extractLexiconTranslation('en'),
-                la: extractLexiconTranslation('la')
-            }
+            translations
         };
 
         res.json(entry);

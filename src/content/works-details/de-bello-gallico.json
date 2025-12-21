@@ -1,0 +1,79 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Das Werk entstand während und nach Caesars achtjährigem Feldzug in Gallien (58–50 v. Chr.). Es diente nicht nur als militärischer Bericht, sondern vor allem als politisches Instrument, um seine Taten in Rom zu rechtfertigen und seine Position zu stärken.",
+      "Die Commentarii wurden jährlich als Rechenschaftsberichte an den Senat geschickt und sollten zeigen, dass Caesar im Interesse Roms handelte – auch wenn seine Kritiker ihm imperiale Ambitionen vorwarfen.",
+      "Gallien war für Rom strategisch entscheidend: Es bot Zugang zu reichen Ressourcen, diente als Puffer gegen germanische Stämme und erweiterte das Imperium massiv nach Norden."
+    ],
+    "sections": [
+      {
+        "title": "Literarische Bedeutung",
+        "content": [
+          "Caesars De Bello Gallico ist ein Meisterwerk der lateinischen Prosa. Die klare, präzise Sprache macht es zum idealen Text für Lateinlernende – aber diese Einfachheit ist kalkuliert.",
+          "Die Verwendung der dritten Person (\"Caesar\") erzeugt den Eindruck objektiver Berichterstattung, obwohl es sich um Selbstdarstellung handelt. Diese Technik verstärkt Caesars Autorität.",
+          "Das Werk kombiniert militärische Berichte mit ethnographischen Beobachtungen über gallische und germanische Völker, was es zu einer wertvollen Quelle für die Frühgeschichte Europas macht."
+        ]
+      },
+      {
+        "title": "Strategische Ziele",
+        "content": [
+          "Politische Legitimation: Caesar musste seine kostspieligen und umstrittenen Feldzüge vor dem Senat rechtfertigen.",
+          "Popularität in Rom: Die dramatischen Erzählungen von Siegen über \"barbarische\" Feinde machten Caesar zum Volkshelden.",
+          "Wirtschaftliche Rechtfertigung: Die Eroberung brachte Gold, Sklaven und Land – materielle Beweise für den \"Erfolg\" seiner Mission."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.",
+        "translation": "Ganz Gallien ist in drei Teile geteilt, von denen den einen die Belger bewohnen, den anderen die Aquitanier, den dritten diejenigen, die in ihrer eigenen Sprache Kelten, in unserer Gallier genannt werden.",
+        "context": "Der berühmte Eröffnungssatz – prägnant, informativ und sofort einprägsam. Zeigt Caesars Fähigkeit, komplexe Geographie klar darzustellen."
+      },
+      {
+        "latin": "Fere libenter homines id quod volunt credunt.",
+        "translation": "Die Menschen glauben im Allgemeinen gerne das, was sie wollen.",
+        "context": "Eine psychologische Einsicht aus Buch III – Caesar zeigt Verständnis für menschliche Natur und nutzt es strategisch."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Schlacht gegen die Helvetier",
+        "date": "58 v. Chr.",
+        "description": "Caesars erster großer Feldzug in Gallien beginnt mit der Abwehr der wandernden Helvetier, die römisches Territorium bedrohen.",
+        "significance": "Etabliert Caesar als militärischen Führer und gibt ihm den Vorwand, tiefer in Gallien vorzudringen."
+      },
+      {
+        "title": "Belagerung von Alesia",
+        "date": "52 v. Chr.",
+        "description": "Caesar besiegt Vercingetorix durch eine doppelte Belagerung: Innerer Wall gegen die Stadt, äußerer Wall gegen Entsatztruppen.",
+        "significance": "Wendepunkt des Krieges – nach Alesia ist der gallische Widerstand gebrochen. Gilt als Meisterwerk der Belagerungstechnik."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "The work was created during and after Caesar's eight-year campaign in Gaul (58–50 BC). It served not only as a military report but above all as a political instrument to justify his actions in Rome and strengthen his position."
+    ],
+    "sections": [
+      {
+        "title": "Literary Significance",
+        "content": [
+          "Caesar's De Bello Gallico is a masterpiece of Latin prose. The clear, precise language makes it an ideal text for Latin learners – but this simplicity is calculated."
+        ]
+      }
+    ],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "Opus conditum est durante et post Caesar octo annorum expeditionem in Gallia (58–50 a.C.n.). Non solum ut relatio militaris sed praecipue ut instrumentum politicum serviebat ad facta sua Romae iustificanda et positionem suam confirmandam."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

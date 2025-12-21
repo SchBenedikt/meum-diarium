@@ -7,6 +7,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { useAuthors } from '@/hooks/use-authors';
 import { useLexicon } from '@/hooks/use-lexicon';
 import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry, renameTag, deleteTag } from '@/lib/api';
+import { fetchWorks, deleteWork } from '@/lib/api';
 import { useTags } from '@/hooks/use-tags';
 import { Link } from 'react-router-dom';
 import {
@@ -32,6 +33,7 @@ export default function AdminPage() {
     const { authors: authorEntries } = useAuthors();
     const { lexicon: lexiconEntries } = useLexicon();
     const { tags } = useTags();
+    const [works, setWorks] = useState<any[]>([]);
 
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
@@ -49,6 +51,16 @@ export default function AdminPage() {
     useEffect(() => {
         if (tags) setFilteredTags(tags);
     }, [tags]);
+
+    useEffect(() => {
+        async function loadWorks() {
+            try {
+                const data = await fetchWorks();
+                setWorks(data || []);
+            } catch {}
+        }
+        loadWorks();
+    }, []);
 
     const postRows = posts || [];
 
@@ -95,6 +107,18 @@ export default function AdminPage() {
             post.author.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredPosts(filtered);
+    };
+
+    const handleDeleteWork = async (slug: string) => {
+        if (!window.confirm('Werk wirklich löschen?')) return;
+        try {
+            await deleteWork(slug);
+            toast.success('Werk gelöscht');
+            const data = await fetchWorks();
+            setWorks(data || []);
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
+        }
     };
 
     const handlePostFilter = (author: string) => {
@@ -238,9 +262,10 @@ export default function AdminPage() {
             </div>
 
             <Tabs defaultValue="posts" className="w-full">
-                <TabsList className="grid w-full grid-cols-5 mb-8">
+                <TabsList className="grid w-full grid-cols-6 mb-8">
                     <TabsTrigger value="posts">Beiträge</TabsTrigger>
                     <TabsTrigger value="authors">Autoren</TabsTrigger>
+                    <TabsTrigger value="works">Werke</TabsTrigger>
                     <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
                     <TabsTrigger value="tags">Tags</TabsTrigger>
                     <TabsTrigger value="translations">i18n</TabsTrigger>
@@ -379,6 +404,11 @@ export default function AdminPage() {
                                                             Über
                                                         </Link>
                                                     </Button>
+                                                    <Button variant="outline" size="sm" asChild>
+                                                        <Link to={`/admin/pages/author-about-${key}`}>
+                                                            Über bearbeiten
+                                                        </Link>
+                                                    </Button>
                                                     <Button
                                                         variant="ghost"
                                                         size="icon"
@@ -392,6 +422,69 @@ export default function AdminPage() {
                                         </Card>
                                     );
                                 })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Works Tab */}
+                <TabsContent value="works">
+                    <Card>
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <CardTitle>Werke</CardTitle>
+                                <CardDescription>{works.length} Werke verfügbar</CardDescription>
+                            </div>
+                            <Button asChild>
+                                <Link to="/admin/work/new">
+                                    <Plus className="mr-2 h-4 w-4" /> Neues Werk
+                                </Link>
+                            </Button>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Titel</TableHead>
+                                            <TableHead>Autor</TableHead>
+                                            <TableHead>Jahr(e)</TableHead>
+                                            <TableHead className="text-right">Aktionen</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {works.length === 0 ? (
+                                            <TableRow>
+                                                <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                                                    Keine Werke gefunden
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : (
+                                            works.map((work) => (
+                                                <TableRow key={work.slug}>
+                                                    <TableCell className="font-medium">{work.title}</TableCell>
+                                                    <TableCell className="capitalize">{work.author}</TableCell>
+                                                    <TableCell>{work.year || '—'}</TableCell>
+                                                    <TableCell className="text-right space-x-1">
+                                                        <Button variant="ghost" size="icon" asChild>
+                                                            <Link to={`/admin/work/${work.slug}`}>
+                                                                <Edit className="h-4 w-4" />
+                                                            </Link>
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="text-destructive"
+                                                            onClick={() => handleDeleteWork(work.slug)}
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
+                                    </TableBody>
+                                </Table>
                             </div>
                         </CardContent>
                     </Card>

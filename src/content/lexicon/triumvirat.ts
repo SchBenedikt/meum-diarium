@@ -3,24 +3,27 @@ import { LexiconEntry } from '@/types/blog';
 const entry: LexiconEntry = {
   term: "Triumvirat",
   slug: "triumvirat",
-  definition: "Ein politisches Bündnis von drei einflussreichen Männern (Drei-Männer-Kollegium), die sich die Macht im Staat teilten. Das Erste Triumvirat (ca. 60 v. Chr.) war ein informelles Bündnis zwischen Caesar, Pompeius und Crassus. Das Zweite Triumvirat (43 v. Chr.) zwischen Octavian, Marcus Antonius und Lepidus war hingegen ein staatlich legitimiertes Amt.",
+  variants: [],
+  definition: `Ein Triumvirat war ein inoffizielles politisches Bündnis von drei mächtigen römischen Politikern. Das Erste Triumvirat (60 v. Chr.) bestand aus Caesar, Pompeius und Crassus, die gemeinsam ihre Interessen gegen den Senat durchsetzten. Nach Crassus' Tod (53 v. Chr.) und dem Bruch zwischen Caesar und Pompeius führte dieses Bündnis zum Bürgerkrieg. Das Zweite Triumvirat (43 v. Chr.) aus Oktavian, Marcus Antonius und Lepidus wurde offiziell als Staatsamt eingesetzt und führte Proskriptionen gegen Caesars Mörder durch. Diese Machtvereinigungen waren entscheidend für den Übergang von der Republik zum Prinzipat.`,
   category: "Politik",
-  etymology: "Von lat. 'tres viri' (drei Männer).",
-  relatedTerms: ["caesar", "augustus", "cicero"],
+  etymology: ``,
+  relatedTerms: [],
   translations: {
-    en: {
-      term: "Triumvirate",
-      definition: "A political alliance of three influential men (three-man commission) who shared power in the state. The First Triumvirate (c. 60 BC) was an informal alliance between Caesar, Pompey, and Crassus. The Second Triumvirate (43 BC) between Octavian, Mark Antony, and Lepidus, however, was a legally sanctioned office.",
-      category: "Politics",
-      etymology: "From Latin 'tres viri' (three men)."
+    "en": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
     },
-    la: {
-      term: "Triumviratus",
-      definition: "Foedus politicum trium virorum potentium qui imperium in re publica inter se dividebant. Primum Triumviratus (c. LX a.C.n.) erat foedus privatum inter Caesarem, Pompeium et Crassum. Secundum Triumviratus (XLIII a.C.n.) inter Octavianum, Marcum Antonium et Lepidum autem erat magistratus legitimus.",
-      category: "Res Publica",
-      etymology: "Ex 'tres viri'."
+    "la": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
     }
-  }
+}
 };
 
 export default entry;

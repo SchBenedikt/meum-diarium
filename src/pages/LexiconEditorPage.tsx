@@ -60,6 +60,8 @@ export default function LexiconEditorPage() {
 
     const [newVariant, setNewVariant] = useState('');
     const [newRelated, setNewRelated] = useState('');
+    const [newEnVariant, setNewEnVariant] = useState('');
+    const [newLaVariant, setNewLaVariant] = useState('');
 
     useEffect(() => {
         if (existingEntry) {
@@ -147,6 +149,21 @@ export default function LexiconEditorPage() {
 
     const removeRelatedTerm = (index: number) => {
         setFormData(prev => ({ ...prev, relatedTerms: prev.relatedTerms.filter((_, i) => i !== index) }));
+    };
+
+    const updateLangField = (lang: 'en' | 'la', field: string, value: any) => {
+        setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
+    };
+
+    const addLangVariant = (lang: 'en' | 'la') => {
+        const val = lang === 'en' ? newEnVariant.trim() : newLaVariant.trim();
+        if (!val) return;
+        setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], variants: [...(prev[lang].variants || []), val] } }));
+        if (lang === 'en') setNewEnVariant(''); else setNewLaVariant('');
+    };
+
+    const removeLangVariant = (lang: 'en' | 'la', index: number) => {
+        setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], variants: (prev[lang].variants || []).filter((_, i) => i !== index) } }));
     };
 
     const categories = ['Politik', 'Militär', 'Religion', 'Gesellschaft', 'Philosophie', 'Recht'];
@@ -298,6 +315,141 @@ export default function LexiconEditorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Translations */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Englisch</CardTitle>
+                            <CardDescription>Übersetzung des Begriffs</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label>Term</Label>
+                                    <Input
+                                        value={formData.en.term}
+                                        onChange={e => updateLangField('en', 'term', e.target.value)}
+                                        placeholder="Consul"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Kategorie (optional)</Label>
+                                    <Input
+                                        value={formData.en.category}
+                                        onChange={e => updateLangField('en', 'category', e.target.value)}
+                                        placeholder="Politics"
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Definition</Label>
+                                <Textarea
+                                    value={formData.en.definition}
+                                    onChange={e => updateLangField('en', 'definition', e.target.value)}
+                                    className="min-h-[100px]"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Etymology</Label>
+                                <Textarea
+                                    value={formData.en.etymology}
+                                    onChange={e => updateLangField('en', 'etymology', e.target.value)}
+                                    placeholder="Word origin..."
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Varianten</Label>
+                                <div className="flex gap-2">
+                                    <Input
+                                        value={newEnVariant}
+                                        onChange={e => setNewEnVariant(e.target.value)}
+                                        placeholder="Neue Variante..."
+                                        onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addLangVariant('en'))}
+                                    />
+                                    <Button type="button" onClick={() => addLangVariant('en')} size="icon" variant="secondary">
+                                        <Plus className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {(formData.en.variants || []).map((variant, i) => (
+                                        <div key={`en-${i}`} className="bg-secondary px-2 py-1 rounded text-sm flex items-center gap-2">
+                                            {variant}
+                                            <button type="button" onClick={() => removeLangVariant('en', i)} className="text-muted-foreground hover:text-destructive">
+                                                <X className="h-3 w-3" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Latein</CardTitle>
+                            <CardDescription>Übersetzung (Latein)</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label>Term</Label>
+                                    <Input
+                                        value={formData.la.term}
+                                        onChange={e => updateLangField('la', 'term', e.target.value)}
+                                        placeholder="Consul"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Kategorie (optional)</Label>
+                                    <Input
+                                        value={formData.la.category}
+                                        onChange={e => updateLangField('la', 'category', e.target.value)}
+                                        placeholder="Politica"
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Definition</Label>
+                                <Textarea
+                                    value={formData.la.definition}
+                                    onChange={e => updateLangField('la', 'definition', e.target.value)}
+                                    className="min-h-[100px]"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Etymologia</Label>
+                                <Textarea
+                                    value={formData.la.etymology}
+                                    onChange={e => updateLangField('la', 'etymology', e.target.value)}
+                                    placeholder="Origo verbi..."
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Varianten</Label>
+                                <div className="flex gap-2">
+                                    <Input
+                                        value={newLaVariant}
+                                        onChange={e => setNewLaVariant(e.target.value)}
+                                        placeholder="Neue Variante..."
+                                        onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addLangVariant('la'))}
+                                    />
+                                    <Button type="button" onClick={() => addLangVariant('la')} size="icon" variant="secondary">
+                                        <Plus className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {(formData.la.variants || []).map((variant, i) => (
+                                        <div key={`la-${i}`} className="bg-secondary px-2 py-1 rounded text-sm flex items-center gap-2">
+                                            {variant}
+                                            <button type="button" onClick={() => removeLangVariant('la', i)} className="text-muted-foreground hover:text-destructive">
+                                                <X className="h-3 w-3" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </form>
             </div>
         </div>

@@ -64,12 +64,16 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       </div>
 
       {post.sidebar?.quote && (
-        <div className="rounded-2xl border border-border/40 bg-gradient-to-br from-secondary/30 via-secondary/10 to-card/40 backdrop-blur-md p-5 lg:p-6 relative overflow-hidden">
-          <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <Quote className="h-5 w-5 text-primary mb-3" />
-          <blockquote className="font-display text-base italic mb-2">
-            „{post.sidebar.quote.text}"
+          <blockquote className="font-display text-base italic mb-3">
+            „{post.sidebar.quote.text}“
           </blockquote>
+          {post.sidebar.quote.translation && (
+            <p className="text-sm text-muted-foreground/90 mb-2 italic">
+              {post.sidebar.quote.translation}
+            </p>
+          )}
           <cite className="text-xs text-muted-foreground not-italic">
             — {post.sidebar.quote.source}
           </cite>
