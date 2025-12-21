@@ -15,12 +15,14 @@ import { Badge } from '@/components/ui/badge';
 import { upsertPost } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
+import { useAuthors } from '@/hooks/use-authors';
 
 export default function PostEditorPage() {
     const { author, slug } = useParams<{ author: string; slug: string }>();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const isEditMode = !!slug;
+    const { authors } = useAuthors();
 
     const [loading, setLoading] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState<'de' | 'en' | 'la'>('de');
@@ -272,10 +274,11 @@ export default function PostEditorPage() {
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="caesar">Caesar</SelectItem>
-                                            <SelectItem value="cicero">Cicero</SelectItem>
-                                            <SelectItem value="augustus">Augustus</SelectItem>
-                                            <SelectItem value="seneca">Seneca</SelectItem>
+                                            {Object.entries(authors || {}).map(([id, a]) => (
+                                                <SelectItem key={id} value={id as Author}>
+                                                    {(a as any).name || id}
+                                                </SelectItem>
+                                            ))}
                                         </SelectContent>
                                     </Select>
                                 </div>

@@ -11,24 +11,26 @@ import {
 import { Search, X } from 'lucide-react';
 
 interface SearchFilterProps {
-  onSearch: (query: string) => void;
+  value?: string;
+  onChange: (query: string) => void;
   onFilter?: (filter: string) => void;
   filters?: Array<{ value: string; label: string }>;
   placeholder?: string;
 }
 
 export function SearchFilter({
-  onSearch,
+  value: externalValue,
+  onChange,
   onFilter,
   filters,
   placeholder = 'Suchen...',
 }: SearchFilterProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(externalValue || '');
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
-    onSearch(value);
+    onChange(value);
   };
 
   const handleFilterChange = (value: string) => {
@@ -38,7 +40,7 @@ export function SearchFilter({
 
   const clearSearch = () => {
     setSearchQuery('');
-    onSearch('');
+    onChange('');
   };
 
   return (

@@ -80,6 +80,7 @@ export interface BlogPost {
     relatedPosts?: string[];
     quote?: {
       text: string;
+      translation?: string;
       source: string;
     };
   };

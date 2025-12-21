@@ -352,6 +352,7 @@ function AuthorAboutPage() {
   const [authorInfo, setAuthorInfo] = useState<AuthorInfo | null>(null);
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
+  const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
 
   const authorDetails = useAuthorDetails(t);
 
@@ -373,6 +374,19 @@ function AuthorAboutPage() {
           Object.values(baseWorks).filter(w => w.author === authorId).map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
+
+        // Load author-specific about page content if available
+        try {
+          const res = await fetch(`/api/pages/author-about-${authorId}`);
+          if (res.ok) {
+            const data: PageContent = await res.json();
+            setAuthorPage(data);
+          } else {
+            setAuthorPage(null);
+          }
+        } catch {
+          setAuthorPage(null);
+        }
       }
       translateContent();
     } else {
@@ -386,6 +400,7 @@ function AuthorAboutPage() {
 
   const details = authorDetails[authorId as keyof typeof authorDetails];
   const isCaesar = authorId === 'caesar';
+  
   const caesarSnapshots = isCaesar
     ? [
       { label: 'Lebenszeit', value: '100–44 v. Chr.', hint: '56 Jahre' },
@@ -539,10 +554,10 @@ function AuthorAboutPage() {
                     {authorInfo.years}
                   </span>
                   <h1 className="font-display text-6xl sm:text-7xl font-bold mb-4 tracking-tighter text-foreground">
-                    {authorInfo.name}
+                    {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
                   </h1>
                   <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
-                    {authorInfo.title}
+                    {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
                   </p>
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
@@ -551,7 +566,7 @@ function AuthorAboutPage() {
                     </div>
                     <div className="h-1 w-12 bg-primary/30 rounded-full" />
                     <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
-                      {authorInfo.description}
+                      {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.projectDescription || authorPage?.projectDescription || authorInfo.description}
                     </p>
                   </div>
                 </motion.div>
@@ -584,10 +599,10 @@ function AuthorAboutPage() {
                   {authorInfo.years}
                 </span>
                 <h1 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tighter text-foreground">
-                  {authorInfo.name}
+                  {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
                 </h1>
                 <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
-                  {authorInfo.title}
+                  {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
                 </p>
 
                 <div className="flex items-center gap-6">
@@ -597,7 +612,7 @@ function AuthorAboutPage() {
                   </div>
                   <div className="h-1 w-12 bg-primary/30 rounded-full" />
                   <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
-                    {authorInfo.description}
+                    {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.projectDescription || authorPage?.projectDescription || authorInfo.description}
                   </p>
                 </div>
               </motion.div>
@@ -741,21 +756,46 @@ function AuthorAboutPage() {
                 <p className="text-lg text-muted-foreground">Caesars politische Maßnahmen, die über seine Herrschaft hinaus wirkten.</p>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
-                {caesarReforms.map((reform) => (
-                  <div
-                    key={reform.title}
-                    className="card-modern card-hover-primary card-padding-lg"
-                  >
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{reform.tag}</span>
-                      <span className="inline-flex px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-semibold">
-                        {reform.horizon === 'sofort' ? '⚡ sofort' : reform.horizon === 'mittelfristig' ? '↗ mittelfristig' : '↗ langfristig'}
-                      </span>
+                {caesarReforms.map((reform) => {
+                  const isCalendar = reform.title.includes('Julianischer Kalender');
+                  
+                  const cardContent = (
+                    <>
+                      <div className="mb-3 flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{reform.tag}</span>
+                        <span className="inline-flex px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-semibold">
+                          {reform.horizon === 'sofort' ? '⚡ sofort' : reform.horizon === 'mittelfristig' ? '↗ mittelfristig' : '↗ langfristig'}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-xl font-bold mb-2">{reform.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{reform.summary}</p>
+                      {isCalendar && (
+                        <div className="mt-4 flex items-center gap-2 text-xs text-primary font-semibold">
+                          <BookOpen className="h-3.5 w-3.5" />
+                          <span>Zum ausführlichen Artikel</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
+                      )}
+                    </>
+                  );
+                  
+                  return isCalendar ? (
+                    <Link
+                      key={reform.title}
+                      to="/caesar/julianischer-kalender"
+                      className="card-modern card-hover-primary card-padding-lg block"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div
+                      key={reform.title}
+                      className="card-modern card-hover-primary card-padding-lg"
+                    >
+                      {cardContent}
                     </div>
-                    <h3 className="font-display text-xl font-bold mb-2">{reform.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{reform.summary}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -769,18 +809,43 @@ function AuthorAboutPage() {
                 <p className="text-lg text-muted-foreground">Was er änderte, wie es wirkte – und warum es Rom neu ordnete.</p>
               </div>
               <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-                {caesarReformDeep.map((item) => (
-                  <div
-                    key={item.title}
-                    className="card-modern card-hover-primary card-padding-md"
-                  >
-                    <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
-                    <p className="text-sm text-foreground/85 leading-relaxed mb-3">{item.detail}</p>
-                    <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
-                      <span className="font-semibold text-primary">Folge:</span> {item.impact}
+                {caesarReformDeep.map((item) => {
+                  const isCalendar = item.title === 'Kalenderreform';
+                  
+                  const cardContent = (
+                    <>
+                      <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed mb-3">{item.detail}</p>
+                      <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
+                        <span className="font-semibold text-primary">Folge:</span> {item.impact}
+                      </div>
+                      {isCalendar && (
+                        <div className="mt-4 flex items-center gap-2 text-xs text-primary font-semibold">
+                          <BookOpen className="h-3.5 w-3.5" />
+                          <span>Mehr erfahren</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
+                      )}
+                    </>
+                  );
+                  
+                  return isCalendar ? (
+                    <Link
+                      key={item.title}
+                      to="/caesar/julianischer-kalender"
+                      className="card-modern card-hover-primary card-padding-md block"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div
+                      key={item.title}
+                      className="card-modern card-hover-primary card-padding-md"
+                    >
+                      {cardContent}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -941,19 +1006,26 @@ function AuthorAboutPage() {
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
-                    >
-                      <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
-                        <Users className="h-6 w-6 text-primary" />
-                      </div>
-                      <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">60 v. Chr.</span>
-                      <h3 className="font-display text-2xl font-bold mb-3">Erstes Triumvirat</h3>
-                      <p className="text-sm text-foreground/85 leading-relaxed">Geheimes Dreierbündnis mit Pompeius und Crassus – politischer Pakt, der die Optimaten umgeht und Caesar das Konsulat 59 v. Chr. sichert.</p>
-                    </motion.div>
+                    <Link to="/caesar/das-1-triumvirat">
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group h-full"
+                      >
+                        <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                          <Users className="h-6 w-6 text-primary" />
+                        </div>
+                        <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">60 v. Chr.</span>
+                        <h3 className="font-display text-2xl font-bold mb-3">Erstes Triumvirat</h3>
+                        <p className="text-sm text-foreground/85 leading-relaxed mb-4">Geheimes Dreierbündnis mit Pompeius und Crassus – politischer Pakt, der die Optimaten umgeht und Caesar das Konsulat 59 v. Chr. sichert.</p>
+                        <div className="flex items-center gap-2 text-xs text-primary font-semibold">
+                          <BookOpen className="h-3.5 w-3.5" />
+                          <span>Zum Tagebucheintrag</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
+                      </motion.div>
+                    </Link>
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}

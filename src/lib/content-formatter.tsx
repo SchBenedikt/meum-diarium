@@ -66,7 +66,10 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
   const escapedTerms = linkableTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
 
-  return content.split(/(\n\n)/).map((paragraph, pIndex) => {
+  // Pre-process content to separate lists from text
+  const processedContent = content.replace(/\n([-\d])/g, '\n\n$1');
+
+  return processedContent.split(/(\n\n)/).map((paragraph, pIndex) => {
     let parts: (string | React.ReactNode)[] = [];
     let lastIndex = 0;
 
@@ -96,23 +99,39 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     }
 
     // Handle unordered lists (lines starting with -)
-    if (htmlParagraph.match(/^-\s/)) {
-      const lines = htmlParagraph.split('\n').filter(line => line.trim());
-      const listItems = lines.map((line, idx) => {
-        const itemText = line.replace(/^-\s*/, '');
-        return <li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />;
+    if (htmlParagraph.match(/^-\s/) || htmlParagraph.includes('\n-')) {
+      const lines = htmlParagraph.split('\n');
+      const listItems: React.ReactNode[] = [];
+      
+      lines.forEach((line, idx) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('-')) {
+          const itemText = trimmed.replace(/^-\s*/, '');
+          listItems.push(<li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />);
+        }
       });
-      return <ul key={pIndex} className="list-disc pl-6 space-y-2">{listItems}</ul>;
+      
+      if (listItems.length > 0) {
+        return <ul key={pIndex} className="list-disc pl-6 space-y-2 my-4">{listItems}</ul>;
+      }
     }
 
     // Handle ordered lists (lines starting with numbers)
-    if (htmlParagraph.match(/^\d+\.\s/)) {
-      const lines = htmlParagraph.split('\n').filter(line => line.trim());
-      const listItems = lines.map((line, idx) => {
-        const itemText = line.replace(/^\d+\.\s*/, '');
-        return <li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />;
+    if (htmlParagraph.match(/^\d+\.\s/) || htmlParagraph.includes('\n1.') || htmlParagraph.includes('\n2.')) {
+      const lines = htmlParagraph.split('\n');
+      const listItems: React.ReactNode[] = [];
+      
+      lines.forEach((line, idx) => {
+        const trimmed = line.trim();
+        if (trimmed.match(/^\d+\.\s/)) {
+          const itemText = trimmed.replace(/^\d+\.\s*/, '');
+          listItems.push(<li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />);
+        }
       });
-      return <ol key={pIndex} className="list-decimal pl-6 space-y-2">{listItems}</ol>;
+      
+      if (listItems.length > 0) {
+        return <ol key={pIndex} className="list-decimal pl-6 space-y-2 my-4">{listItems}</ol>;
+      }
     }
 
     // Handle horizontal rule

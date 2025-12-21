@@ -28,8 +28,7 @@ import NotFound from './NotFound';
 import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedWork, getTranslatedAuthor } from '@/lib/translator';
-import { works as baseWorks } from '@/data/works';
-import { workDetails } from '@/data/work-details';
+import { fetchWork, fetchWorkDetails, fetchWorks } from '@/lib/api';
 import { PageHero } from '@/components/layout/PageHero';
 
 export default function WorkPage() {
@@ -41,6 +40,7 @@ export default function WorkPage() {
   const [otherWorks, setOtherWorks] = useState<Work[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['context']));
   const [loading, setLoading] = useState(true);
+  const [details, setDetails] = useState<any | null>(null);
 
   const toggleSection = (sectionTitle: string) => {
     setExpandedSections(prev => {
@@ -86,20 +86,52 @@ export default function WorkPage() {
         setAuthor(translatedAuthor ?? baseAuthor ?? null);
       }
 
-      const translatedWork = await getTranslatedWork(language, slug);
-      if (active) {
-        setWork(translatedWork);
+      // Load work base + translations from API
+      try {
+        const data = await fetchWork(slug);
+        const lang = language.split('-')[0];
+        if (data?.translations && data.translations[lang]) {
+          const tr = data.translations[lang];
+          setWork({
+            ...data,
+            title: tr.title || data.title,
+            summary: tr.summary || data.summary,
+            takeaway: tr.takeaway || data.takeaway,
+            structure: tr.structure || data.structure,
+          });
+        } else {
+          setWork(data);
+        }
+      } catch (e) {
+        setWork(null);
       }
 
-      const relatedPromises = Object.entries(baseWorks)
-        .filter(([key, w]) => w.author === authorId && key !== slug)
-        .map(async ([key]) => await getTranslatedWork(language, key));
-
-      const resolvedRelated = (await Promise.all(relatedPromises)).filter(Boolean) as Work[];
-      if (active) {
-        setOtherWorks(resolvedRelated.slice(0, 3));
-        setLoading(false);
+      // Load details JSON (language-specific if available)
+      try {
+        const det = await fetchWorkDetails(slug);
+        if (det) {
+          const lang = language.split('-')[0];
+          setDetails(det[lang] || det.de || det);
+        } else {
+          setDetails(null);
+        }
+      } catch {
+        setDetails(null);
       }
+
+      // Related works (API list)
+      try {
+        const list = await fetchWorks();
+        const related = (list || [])
+          .filter((w: any) => w.author === authorId && w.slug !== slug)
+          .slice(0, 3)
+          .map((w: any) => ({ title: w.title, year: w.year } as Work));
+        setOtherWorks(related);
+      } catch {
+        setOtherWorks([]);
+      }
+
+      setLoading(false);
     };
 
     load();
@@ -116,7 +148,7 @@ export default function WorkPage() {
     return <NotFound />;
   }
 
-  const detail = slug ? workDetails[slug] : null;
+  const detail = details;
   const translatedAuthor = author;
 
   return (
@@ -124,12 +156,6 @@ export default function WorkPage() {
       <PageHero
         title={work.title}
         description={work.summary}
-        breadcrumbs={[
-          { label: t('navHome') || 'Startseite', href: '/' },
-          { label: translatedAuthor.name, href: `/${authorId}` },
-          { label: t('worksTitle') || t('works') || 'Werke', href: `/${authorId}/works` },
-          { label: work.title }
-        ]}
       />
 
       <div className="container max-w-7xl mx-auto px-4 py-12">
@@ -576,7 +602,7 @@ export default function WorkPage() {
               >
                 <div className="aspect-square rounded-2xl overflow-hidden bg-secondary/20">
                   <img
-                    src={author.heroImage || author.image}
+                    src={author.heroImage}
                     alt={translatedAuthor.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -586,7 +612,7 @@ export default function WorkPage() {
                     {translatedAuthor.name}
                   </h4>
                   <p className="text-sm text-muted-foreground mt-1 line-clamp-3">
-                    {translatedAuthor.bio}
+                    {translatedAuthor.description}
                   </p>
                 </div>
               </Link>

@@ -1,29 +1,33 @@
 import { LexiconEntry } from '@/types/blog';
 
-    const entry: LexiconEntry = {
-        term: "Pontifex Maximus",
-        slug: "pontifex-maximus",
-        variants: [],
-        definition: "Der oberste Priester im alten Rom und das Oberhaupt des Kollegiums der Pontifices, des wichtigsten Priestergremiums. Ein hochangesehenes und einflussreiches Amt auf Lebenszeit, das sowohl religiöse als auch politische Bedeutung hatte. Caesar und Augustus bekleideten dieses Amt.",
-        category: "Gesellschaft",
-        etymology: "Bedeutung umstritten, evtl. 'Brückenbauer' (pons + facere).",
-        relatedTerms: ["caesar", "augustus", "religion"],
-    translations: {
-      en: {
+const entry: LexiconEntry = {
   term: "Pontifex Maximus",
-  definition: "The supreme priest in ancient Rome and head of the College of Pontifices, the most important priestly college. A highly respected and influential office combining religious and political power. During the Republic, the Pontifex Maximus was elected; from Augustus onward, the position was permanently associated with the emperor.",
-  category: "Society",
-  etymology: "Etymology disputed, possibly 'bridge builder' (from Latin 'pons' + 'facere').",
-  variants: []
-},
-      la: {
-  term: "Pontifex Maximus",
-  definition: "Summus sacerdos in Roma antiqua et caput Collegii Pontificum, collegii sacerdotalis maximi momenti. Munus magno honore et influxu praeditum, potestatem religiosam et politicam coniunctam habebat. Dum Respublica florebat, Pontifex Maximus electione creabatur; ab Augusto imperator hunc titulum perpetuo gerebat.",
-  category: "Societas",
-  etymology: "Etymologia controversa, fortasse 'pontifex' (constructor pontium), ex 'pons' (pons) + 'facere' (facere).",
-  variants: []
-}
-    }
-      };
+  slug: "pontifex-maximus",
+  variants: ["Pontifices"],
+  definition: `Der Pontifex Maximus war der oberste Priester der römischen Staatsreligion und Vorsitzender des Priesterkollegiums der Pontifices. Dieses Ämt war eines der höchsten und einflussreichsten religiösen Ämter im antiken Rom. Der Pontifex Maximus beaufsichtigte alle religiösen Angelegenheiten, einschließlich der Festlegung des Kalenders, der Interpretation des göttlichen Willens und der Überwachung anderer Priester wie der Vestalinnen. Er wohnte traditionsgemacht in der Regia auf dem Forum Romanum und hatte die heiligen Flammen und religiösen Archive unter seiner Obhut.
 
-    export default entry;
+Urspratt war der Pontifex Maximus ein auf Lebenszeit gewhltes Amt, das anfangs nur Patriciern vorbehalten war. Die Leges Ogulniae (300 v. Chr.) öffneten das Amt für Plebejer. Während der Republik wurde das Amt zunehmend politisiert - berühmte Inhaber waren Julius Caesar, der es 63 v. Chr. erlangte, und später Augustus. Unter Augustus wurde das Amt dauerhaft mit dem Kaisertum verknüpft. Jeder römische Kaiser trug fortan den Titel Pontifex Maximus, was ihre Position als religiöse und weltliche Oberhäupter des Reiches unterstrich.
+
+Die Autorität des Pontifex Maximus war beträchtlich: Er konnte Adoptionen genehmigen, über Testamente entscheiden und religiöse Gesetze interpretieren. Die Pontifices führten die Annales maximi, jährliche Aufzeichnungen wichtiger Ereignisse. Der Titel wurde bis 382 n. Chr. von römischen Kaisern getragen, als Kaiser Gratian ihn aufgab. Interessanterweise übernahm der Papst später den Titel 'Pontifex Maximus', den er bis heute trägt - ein bemerkenswertes Beispiel römischer Kontinuität im Christentum.`,
+  category: "Religion",
+  etymology: `Von lateinisch 'pons' (Brücke) und 'facere' (machen) - der Brückenbauer. Ursprünglich waren die Pontifices für heilige Brücken verantwortlich.`,
+  relatedTerms: ["Augustus","Vestalinnen"],
+  translations: {
+    "en": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
+    },
+    "la": {
+        "term": "",
+        "definition": "",
+        "etymology": "",
+        "category": "",
+        "variants": []
+    }
+}
+};
+
+export default entry;

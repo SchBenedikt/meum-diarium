@@ -5,10 +5,13 @@ import { BlogCard } from './BlogCard';
 import { BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
+import { SearchFilter } from './SearchFilter';
+import { useState } from 'react';
 
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
   const { posts, isLoading } = usePosts();
+  const [searchQuery, setSearchQuery] = useState('');
 
   if (!currentAuthor || !authorInfo) return null;
   if (isLoading) {
@@ -16,7 +19,17 @@ export function BlogList() {
     return <div>Loading...</div>;
   }
 
-  const filteredPosts = posts.filter((post) => post.author === currentAuthor);
+  const filteredPosts = posts
+    .filter((post) => post.author === currentAuthor)
+    .filter((post) => {
+      if (!searchQuery.trim()) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+    });
 
   return (
     <section className="px-4 sm:px-6">
@@ -43,6 +56,15 @@ export function BlogList() {
               {filteredPosts.length} Einträge von <span className="italic">{authorInfo.name.split(' ').pop()}</span>
             </p>
           </motion.div>
+        </div>
+
+        {/* Search Filter */}
+        <div className="mb-8">
+          <SearchFilter 
+            value={searchQuery} 
+            onChange={setSearchQuery}
+            placeholder="Beiträge durchsuchen..."
+          />
         </div>
 
         {/* Posts grid */}
