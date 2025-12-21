@@ -141,3 +141,57 @@ export async function deleteTag(tag: string) {
     if (!res.ok) throw new Error('Failed to delete tag');
     return res.json();
 }
+
+// ============ WORKS API ============
+
+export async function fetchWorks() {
+    const res = await fetch(`${API_BASE}/works`);
+    if (!res.ok) throw new Error('Failed to fetch works');
+    return res.json();
+}
+
+export async function fetchWork(slug: string) {
+    const res = await fetch(`${API_BASE}/works/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch work');
+    return res.json();
+}
+
+export async function saveWork(data: any) {
+    const res = await fetch(`${API_BASE}/works`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to save work');
+    return res.json();
+}
+
+export async function deleteWork(slug: string) {
+    const res = await fetch(`${API_BASE}/works/${slug}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete work');
+    return res.json();
+}
+
+// Work Details (key moments, quotes, etc.)
+export async function fetchWorkDetails(slug: string) {
+    const res = await fetch(`${API_BASE}/works/${slug}/details`);
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error('Failed to fetch work details');
+    return res.json();
+}
+
+export async function saveWorkDetails(slug: string, details: any) {
+    const res = await fetch(`${API_BASE}/works/${slug}/details`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(details)
+    });
+    if (!res.ok) throw new Error('Failed to save work details');
+    return res.json();
+}
+
+export async function deleteWorkDetails(slug: string) {
+    const res = await fetch(`${API_BASE}/works/${slug}/details`, { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete work details');
+    return res.json();
+}

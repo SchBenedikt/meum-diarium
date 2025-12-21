@@ -54,7 +54,7 @@ const Index = () => {
                   <div className="relative z-10 flex flex-col gap-8">
                     <div className="flex-1 space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="p-3 bg-primary/10 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/20">
+                        <div className="p-3 bg-primary/10 rounded-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/20">
                           <MessageCircle className="w-8 h-8 text-primary" />
                         </div>
                         <h3 className="text-xl sm:text-3xl font-display font-bold text-foreground">
@@ -67,15 +67,15 @@ const Index = () => {
                     </div>
 
                     <div className="space-y-6 w-full max-w-4xl">
-                      <div className="w-full bg-secondary/30 p-1.5 rounded-2xl border border-border/60 transition-all hover:bg-secondary/50 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
+                      <div className="w-full bg-secondary/30 p-1.5 rounded-3xl border border-border/60 transition-all hover:bg-secondary/50 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
                         <div className="relative flex items-center">
                           <input
                             type="text"
                             placeholder={`Frage ${authors[currentAuthor].name.split(' ').pop()} etwas...`}
-                            className="w-full pl-6 pr-14 py-3 rounded-xl bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/40 font-light"
+                            className="w-full pl-6 pr-14 py-3 rounded-3xl bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/40 font-light"
                           />
                           <Link to={`/${currentAuthor}/chat`} className="absolute right-1.5 focus:outline-none">
-                            <Button size="icon" className="h-12 w-12 rounded-xl group-hover:scale-105 transition-transform shadow-none">
+                            <Button size="icon" className="h-12 w-12 rounded-3xl group-hover:scale-105 transition-transform shadow-none">
                               <ArrowRight className="h-6 w-6" />
                             </Button>
                           </Link>
@@ -95,8 +95,8 @@ const Index = () => {
                 </motion.div>
 
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
-                    <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
+                  <div className="card-modern card-hover-primary card-padding-sm h-full flex flex-col items-start relative overflow-hidden">
+                    <div className="card-icon-container mb-4 group-hover:scale-110 transition-all duration-500">
                       <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
                     <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
@@ -113,8 +113,8 @@ const Index = () => {
 
                 {/* Works Quick Link */}
                 <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="h-full bg-card border border-border/40 hover:border-primary/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
-                    <div className="p-3 bg-secondary/50 rounded-xl mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
+                  <div className="card-modern card-hover-primary card-padding-sm h-full flex flex-col items-start relative overflow-hidden">
+                    <div className="card-icon-container mb-4 group-hover:scale-110 transition-all duration-500">
                       <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                     </div>
                     <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
@@ -138,11 +138,11 @@ const Index = () => {
                 >
                   <Link to={`/${currentAuthor}/simulation`} className="group h-full block">
                     <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/5 dark:hover:bg-amber-950/10 border border-border/40 hover:border-amber-400/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
-                      <Crown className="w-24 h-24 text-amber-500" />
-                    </div>
+                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
+                        <Crown className="w-24 h-24 text-amber-500" />
+                      </div>
 
-                      <div className="p-3 bg-amber-100/10 dark:bg-amber-900/30 rounded-xl mb-4 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-all duration-500 z-10 group-hover:scale-105">
+                      <div className="p-3 bg-amber-100/10 dark:bg-amber-900/30 rounded-3xl mb-4 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-all duration-500 z-10 group-hover:scale-105">
                         <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                       </div>
                       <h3 className="font-display text-xl font-bold mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">

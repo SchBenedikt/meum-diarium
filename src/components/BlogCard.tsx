@@ -32,7 +32,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
       <Link
         to={`/${post.author}/${post.slug}`}
         className={cn(
-          'group flex flex-col bg-surface-container-low/30 backdrop-blur-md rounded-2xl sm:rounded-3xl h-full overflow-hidden border border-border/40 active:border-primary/60 hover-card touch-manipulation relative',
+          'card-modern card-hover-primary group flex flex-col h-full overflow-hidden active:border-primary/60 touch-manipulation relative',
           className
         )}
       >
@@ -54,19 +54,14 @@ export function BlogCard({ post, className }: BlogCardProps) {
             <div className="relative -mx-1">
               <div className="flex gap-2 overflow-x-auto no-scrollbar px-1 pb-1">
                 {post.tags.slice(0, 4).map((tag, i) => (
-                  <motion.button
+                  <button
                     key={i}
                     onClick={(e) => handleTagClick(e, tag)}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative whitespace-nowrap px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-surface-container-low/30 backdrop-blur-md border border-white/5 text-primary text-xs sm:text-sm font-medium overflow-hidden transition-all duration-500 hover:border-primary/30 active:border-primary/40 flex-shrink-0 touch-manipulation"
+                    className="relative whitespace-nowrap px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-xs sm:text-sm font-medium overflow-hidden transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 active:border-primary/50 flex-shrink-0 touch-manipulation"
                     aria-label={`Filter nach ${tag}`}
                   >
-                    <div className="absolute -right-4 -top-4 w-16 h-16 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors duration-700" />
                     {tag}
-                  </motion.button>
+                  </button>
                 ))}
               </div>
             </div>

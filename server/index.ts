@@ -20,6 +20,8 @@ app.use(express.json({ limit: '50mb' }));
 
 const CONTENT_DIR = path.resolve(__dirname, '../src/content');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
+const WORKS_DIR = path.join(CONTENT_DIR, 'works');
+const WORKS_DETAILS_DIR = path.join(CONTENT_DIR, 'works-details');
 const DATA_DIR = path.resolve(__dirname, '../src/data');
 
 // Helper to sanitize slug
@@ -322,7 +324,140 @@ app.get('/api/authors', async (req, res) => {
     }
 });
 
-// ... (POST authors code omitted for brevity but remains same) ...
+// POST create new author
+app.post('/api/authors', async (req, res) => {
+    try {
+        const { id, name, latinName, title, years, birthYear, deathYear, description, heroImage, theme, color, translations } = req.body;
+
+        if (!id || !name) {
+            return res.status(400).json({ error: 'ID and name are required' });
+        }
+
+        const safeId = sanitizeSlug(id);
+        let content = await fs.readFile(AUTHORS_FILE, 'utf-8');
+
+        // Check if author already exists
+        if (content.includes(`${safeId}: {`)) {
+            return res.status(400).json({ error: 'Author with this ID already exists' });
+        }
+
+        // Create the author block
+        const authorBlock = `  ${safeId}: {
+    id: '${safeId}',
+    name: '${escapeString(name)}',
+    latinName: '${escapeString(latinName || name)}',
+    title: '${escapeString(title || '')}',
+    years: '${escapeString(years || '')}',
+    birthYear: ${birthYear || 0},
+    deathYear: ${deathYear || 0},
+    description: '${escapeString(description || '')}',
+    heroImage: '${heroImage || ''}',
+    theme: '${theme || `theme-${safeId}`}',
+    color: '${color || 'hsl(25, 95%, 53%)'}',
+    translations: ${JSON.stringify(translations || { en: {}, la: {} }, null, 4).replace(/\n/g, '\n    ')}
+  },\n`;
+
+        // Insert before the closing };
+        content = content.replace(/(\n};?\s*$)/, `\n${authorBlock}$1`);
+
+        await fs.writeFile(AUTHORS_FILE, content, 'utf-8');
+        console.log(`Created author: ${safeId}`);
+
+        res.status(201).json({ success: true, id: safeId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create author' });
+    }
+});
+
+// PUT update existing author
+app.put('/api/authors/:id', async (req, res) => {
+    try {
+        const { id: authorId } = req.params;
+        const { name, latinName, title, years, birthYear, deathYear, description, heroImage, theme, color, translations } = req.body;
+
+        let content = await fs.readFile(AUTHORS_FILE, 'utf-8');
+
+        // Find and replace the author block
+        const blockRegex = new RegExp(`(${authorId}:\\s*{)[\\s\\S]*?(},\\s*\\n)`, 'g');
+
+        if (!blockRegex.test(content)) {
+            return res.status(404).json({ error: 'Author not found' });
+        }
+
+        const updatedBlock = `${authorId}: {
+    id: '${authorId}',
+    name: '${escapeString(name)}',
+    latinName: '${escapeString(latinName || name)}',
+    title: '${escapeString(title || '')}',
+    years: '${escapeString(years || '')}',
+    birthYear: ${birthYear || 0},
+    deathYear: ${deathYear || 0},
+    description: '${escapeString(description || '')}',
+    heroImage: '${heroImage || ''}',
+    theme: '${theme || `theme-${authorId}`}',
+    color: '${color || 'hsl(25, 95%, 53%)'}',
+    translations: ${JSON.stringify(translations || { en: {}, la: {} }, null, 4).replace(/\n/g, '\n    ')}
+  },\n`;
+
+        content = content.replace(new RegExp(`${authorId}:\\s*{[\\s\\S]*?},\\s*\\n`, 'g'), updatedBlock);
+
+        await fs.writeFile(AUTHORS_FILE, content, 'utf-8');
+        console.log(`Updated author: ${authorId}`);
+
+        res.json({ success: true, id: authorId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update author' });
+    }
+});
+
+// DELETE author
+app.delete('/api/authors/:id', async (req, res) => {
+    try {
+        const { id: authorId } = req.params;
+        let content = await fs.readFile(AUTHORS_FILE, 'utf-8');
+
+        // Safer removal using brace matching to avoid corrupting the file
+        const startMarker = `${authorId}: {`;
+        const startIdx = content.indexOf(startMarker);
+
+        if (startIdx === -1) {
+            return res.status(404).json({ error: 'Author not found' });
+        }
+
+        // Find the matching closing brace for this block
+        let i = startIdx + startMarker.length;
+        let depth = 1; // we are inside the first {
+        while (i < content.length && depth > 0) {
+            const ch = content[i];
+            if (ch === '{') depth++;
+            else if (ch === '}') depth--;
+            i++;
+        }
+
+        // Include trailing comma and newline if present
+        let endIdx = i; // position after the closing }
+        // consume optional comma and following newline/spaces
+        while (endIdx < content.length && /[\s,]/.test(content[endIdx])) {
+            endIdx++;
+            // stop after first newline following the comma to keep formatting tidy
+            if (content[endIdx - 1] === '\n') break;
+        }
+
+        const before = content.slice(0, startIdx).replace(/\n{3,}/g, '\n\n');
+        const after = content.slice(endIdx);
+        content = (before + after).replace(/\n{3,}/g, '\n\n');
+
+        await fs.writeFile(AUTHORS_FILE, content, 'utf-8');
+        console.log(`Deleted author: ${authorId}`);
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete author' });
+    }
+});
 
 // ============ LEXICON API ============
 const LEXICON_DIR = path.join(CONTENT_DIR, 'lexicon');
@@ -673,7 +808,323 @@ app.delete('/api/tags/:tag', async (req, res) => {
     }
 });
 
+// ============ TRANSLATIONS API ============
+const LOCALES_DIR = path.resolve(__dirname, '../src/locales');
+
+// Helper to parse translations from TS file
+const parseTranslationsFile = async (lang: string): Promise<Record<string, any>> => {
+    const filePath = path.join(LOCALES_DIR, `${lang}.ts`);
+    const content = await fs.readFile(filePath, 'utf-8');
+
+    // Extract the object content between = { and };
+    const objectMatch = content.match(/export const \w+ = ({[\s\S]*});/);
+    if (!objectMatch) return {};
+
+    // Parse the object (simplified - handles most cases)
+    const objectStr = objectMatch[1];
+    const result: Record<string, any> = {};
+
+    // Match key: 'value' or key: "value" patterns
+    const simpleRegex = /(\w+):\s*['"`]([^'"`]*)['"`]/g;
+    let match;
+    while ((match = simpleRegex.exec(objectStr)) !== null) {
+        result[match[1]] = match[2];
+    }
+
+    return result;
+};
+
+// Helper to update a translation in a TS file
+const updateTranslationInFile = async (lang: string, key: string, value: string): Promise<boolean> => {
+    const filePath = path.join(LOCALES_DIR, `${lang}.ts`);
+    let content = await fs.readFile(filePath, 'utf-8');
+
+    // Escape the value for safe insertion
+    const escapedValue = value.replace(/'/g, "\\'").replace(/\n/g, '\\n');
+
+    // Try to find and replace the key
+    // Match patterns like: key: 'value', or key: "value",
+    const patterns = [
+        new RegExp(`(${key}:\\s*)['"]([^'"]*)['"](,?)`, 'g'),
+        new RegExp(`(${key}:\\s*)'([^']*)'(,?)`, 'g'),
+        new RegExp(`(${key}:\\s*)"([^"]*)"(,?)`, 'g'),
+    ];
+
+    let replaced = false;
+    for (const pattern of patterns) {
+        if (pattern.test(content)) {
+            content = content.replace(pattern, `$1'${escapedValue}'$3`);
+            replaced = true;
+            break;
+        }
+    }
+
+    if (replaced) {
+        await fs.writeFile(filePath, content, 'utf-8');
+        return true;
+    }
+
+    return false;
+};
+
+// GET all translations for a language
+app.get('/api/translations/:lang', async (req, res) => {
+    try {
+        const { lang } = req.params;
+        if (!['de', 'en', 'la'].includes(lang)) {
+            return res.status(400).json({ error: 'Invalid language. Use de, en, or la.' });
+        }
+
+        const translations = await parseTranslationsFile(lang);
+        res.json(translations);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch translations' });
+    }
+});
+
+// GET all translations for all languages (for comparison view)
+app.get('/api/translations', async (req, res) => {
+    try {
+        const [de, en, la] = await Promise.all([
+            parseTranslationsFile('de'),
+            parseTranslationsFile('en'),
+            parseTranslationsFile('la'),
+        ]);
+
+        res.json({ de, en, la });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch translations' });
+    }
+});
+
+// PUT update a single translation key
+app.put('/api/translations/:lang/:key', async (req, res) => {
+    try {
+        const { lang, key } = req.params;
+        const { value } = req.body;
+
+        if (!['de', 'en', 'la'].includes(lang)) {
+            return res.status(400).json({ error: 'Invalid language. Use de, en, or la.' });
+        }
+
+        if (typeof value !== 'string') {
+            return res.status(400).json({ error: 'Value must be a string' });
+        }
+
+        const success = await updateTranslationInFile(lang, key, value);
+
+        if (success) {
+            console.log(`Updated translation: ${lang}.${key} = "${value.substring(0, 50)}..."`);
+            res.json({ success: true, lang, key, value });
+        } else {
+            res.status(404).json({ error: `Key "${key}" not found in ${lang}.ts` });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update translation' });
+    }
+});
+
+// POST add a new translation key to all languages
+app.post('/api/translations', async (req, res) => {
+    try {
+        const { key, de: deValue, en: enValue, la: laValue } = req.body;
+
+        if (!key || !deValue) {
+            return res.status(400).json({ error: 'Key and German value are required' });
+        }
+
+        // Add to each language file
+        const languages = [
+            { lang: 'de', value: deValue },
+            { lang: 'en', value: enValue || deValue },
+            { lang: 'la', value: laValue || deValue },
+        ];
+
+        for (const { lang, value } of languages) {
+            const filePath = path.join(LOCALES_DIR, `${lang}.ts`);
+            let content = await fs.readFile(filePath, 'utf-8');
+
+            // Find the closing }; and add new key before it
+            const escapedValue = value.replace(/'/g, "\\'");
+            const newEntry = `    ${key}: '${escapedValue}',\n`;
+
+            content = content.replace(/\n};(\s*)$/, `\n${newEntry}};$1`);
+            await fs.writeFile(filePath, content, 'utf-8');
+        }
+
+        console.log(`Added new translation key: ${key}`);
+        res.status(201).json({ success: true, key });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to add translation' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Backend server running on http://localhost:${PORT}`);
+});
+
+// ============ WORKS API ============
+
+// Helper: parse a Work TS file
+const extractWorkArray = (content: string, key: string): Array<{ title: string; content: string }> => {
+    const block = extractObject(content, key);
+    // naive parse of array of objects with title/content strings
+    const items: Array<{ title: string; content: string }> = [];
+    const itemRegex = /{\s*title:\s*['"`](.*?)['"`],\s*content:\s*['"`](.*?)['"`]\s*}/gs;
+    let m;
+    while ((m = itemRegex.exec(block)) !== null) {
+        items.push({ title: m[1], content: m[2] });
+    }
+    return items;
+};
+
+// GET all works
+app.get('/api/works', async (_req, res) => {
+    try {
+        await fs.mkdir(WORKS_DIR, { recursive: true });
+        const files = await fs.readdir(WORKS_DIR);
+        const works = [] as any[];
+        for (const file of files) {
+            if (!file.endsWith('.ts')) continue;
+            const content = await fs.readFile(path.join(WORKS_DIR, file), 'utf-8');
+            works.push({
+                slug: file.replace('.ts', ''),
+                title: extractString(content, 'title'),
+                author: extractString(content, 'author'),
+                year: extractString(content, 'year')
+            });
+        }
+        res.json(works);
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Failed to fetch works' });
+    }
+});
+
+// GET single work
+app.get('/api/works/:slug', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        const filePath = path.join(WORKS_DIR, `${slug}.ts`);
+        const content = await fs.readFile(filePath, 'utf-8');
+
+        // Try to parse translations block as JSON
+        let translations: any = {};
+        const translationsMatch = content.match(/translations:\s*({[\s\S]*?})\n};/);
+        if (translationsMatch) {
+            try {
+                translations = JSON.parse(translationsMatch[1]);
+            } catch {
+                translations = {};
+            }
+        }
+
+        const work = {
+            slug,
+            title: extractString(content, 'title'),
+            author: extractString(content, 'author'),
+            year: extractString(content, 'year'),
+            summary: extractString(content, 'summary'),
+            takeaway: extractString(content, 'takeaway'),
+            structure: extractWorkArray(content, 'structure'),
+            translations,
+        };
+        res.json(work);
+    } catch (e) {
+        console.error(e);
+        res.status(404).json({ error: 'Work not found' });
+    }
+});
+
+// POST create/update work
+app.post('/api/works', async (req, res) => {
+    try {
+        const { slug, title, author, year, summary, takeaway, structure, translations } = req.body;
+        if (!slug || !title || !author) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+        await fs.mkdir(WORKS_DIR, { recursive: true });
+        const safeSlug = sanitizeSlug(slug);
+        const filePath = path.join(WORKS_DIR, `${safeSlug}.ts`);
+
+        const structureStr = JSON.stringify(structure || [], null, 2).replace(/"([^("]+)":/g, '$1:').replace(/"/g, '\"');
+        // Build TS file
+        const fileContent = `import { Work } from '@/types/blog';
+
+const work: Work = {
+  title: '${escapeString(title)}',
+  author: '${escapeString(author)}',
+  year: '${escapeString(year || '')}',
+  summary: '${escapeString(summary || '')}',
+  takeaway: '${escapeString(takeaway || '')}',
+  structure: ${JSON.stringify(structure || [], null, 2)},
+  translations: ${JSON.stringify(translations || {}, null, 2)}
+};
+
+export default work;
+`;
+        await fs.writeFile(filePath, fileContent, 'utf-8');
+        res.status(201).json({ success: true, slug: safeSlug });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Failed to save work' });
+    }
+});
+
+// DELETE work
+app.delete('/api/works/:slug', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        const filePath = path.join(WORKS_DIR, `${slug}.ts`);
+        await fs.unlink(filePath);
+        res.json({ success: true });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Failed to delete work' });
+    }
+});
+
+// WORK DETAILS (JSON)
+app.get('/api/works/:slug/details', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        await fs.mkdir(WORKS_DETAILS_DIR, { recursive: true });
+        const filePath = path.join(WORKS_DETAILS_DIR, `${slug}.json`);
+        const content = await fs.readFile(filePath, 'utf-8');
+        res.json(JSON.parse(content));
+    } catch (e: any) {
+        if (e.code === 'ENOENT') return res.status(404).json({ error: 'Not found' });
+        console.error(e);
+        res.status(500).json({ error: 'Failed to fetch work details' });
+    }
+});
+
+app.post('/api/works/:slug/details', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        await fs.mkdir(WORKS_DETAILS_DIR, { recursive: true });
+        const filePath = path.join(WORKS_DETAILS_DIR, `${slug}.json`);
+        await fs.writeFile(filePath, JSON.stringify(req.body, null, 2), 'utf-8');
+        res.status(201).json({ success: true });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Failed to save work details' });
+    }
+});
+
+app.delete('/api/works/:slug/details', async (req, res) => {
+    try {
+        const { slug } = req.params;
+        const filePath = path.join(WORKS_DETAILS_DIR, `${slug}.json`);
+        await fs.unlink(filePath);
+        res.json({ success: true });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Failed to delete work details' });
+    }
 });
 
