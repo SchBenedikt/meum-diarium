@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-    <title>Meum Diarium – Tagebücher der Antike</title>
-    <meta name="description" content="Erlebe die Geschichte durch die Augen von Caesar, Cicero und anderen Persönlichkeiten der Antike. Tagebücher und wissenschaftliche Beiträge über das alte Rom." />
+    <title>Meum Diarium – Caesars Tagebuch | Lerne über das antike Rom</title>
+    <meta name="description" content="Entdecke die Geschichte durch Caesars persönliche Tagebucheinträge. Authentische Kommentare zu seinen Feldzügen, Entscheidungen und dem Leben im antiken Rom." />
     <meta name="author" content="Meum Diarium" />
-    <meta name="keywords" content="Geschichte, Antike, Rom, Caesar, Cicero, Tagebuch, Römisches Reich, SPQR" />
+    <meta name="keywords" content="Caesar, Gaius Julius Caesar, antikes Rom, Geschichte, Tagebuch, Römisches Reich, Gallischer Krieg, SPQR, Latein lernen" />
+    <meta name="robots" content="index, follow" />
 
     <meta name="application-name" content="Meum Diarium" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,36 +15,65 @@
     <meta name="apple-mobile-web-app-title" content="Meum Diarium" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="mobile-web-app-capable" content="yes" />
+    
     <!-- PWA & Mobile -->
     <meta name="theme-color" content="#B8860B" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png" />
     <link rel="manifest" href="/manifest.json" />
+    
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-192x192.png" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#8B4513" />
     <meta name="msapplication-TileColor" content="#B8860B" />
 
-    <!-- Performance -->
-    <link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png" />
-    <link rel="manifest" href="/manifest.json" />
-
-    <meta property="og:title" content="Meum Diarium – Tagebücher der Antike" />
-    <meta property="og:description" content="Erlebe die Geschichte durch die Augen von Caesar, Cicero und anderen Persönlichkeiten der Antike." />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Meum Diarium – Caesars Tagebuch" />
+    <meta property="og:description" content="Entdecke die Geschichte durch Caesars persönliche Tagebucheinträge und Kommentare." />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Meum Diarium" />
+    <meta property="og:locale" content="de_DE" />
     <meta property="og:image" content="https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Kopf_von_Caesar._bfbb8779-5383-4e20-9d37-1c9e88400ab11.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@MeumDiarium" />
+    <meta name="twitter:title" content="Meum Diarium – Caesars Tagebuch" />
+    <meta name="twitter:description" content="Entdecke die Geschichte durch Caesars persönliche Tagebucheinträge." />
     <meta name="twitter:image" content="https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Kopf_von_Caesar._bfbb8779-5383-4e20-9d37-1c9e88400ab11.png" />
-    
-    <link rel="canonical" href="https://meum-diarium.lovable.app" />
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Meum Diarium",
+      "description": "Eine Bildungsplattform über Gaius Julius Caesar mit Tagebucheinträgen und historischen Kommentaren",
+      "url": "https://meum-diarium.lovable.app",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://meum-diarium.lovable.app/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Gaius Julius Caesar",
+      "birthDate": "-100",
+      "deathDate": "-44",
+      "birthPlace": "Rom",
+      "description": "Römischer Staatsmann, Feldherr und Autor",
+      "knowsAbout": ["Gallischer Krieg", "Römische Republik", "Militärstrategie"]
+    }
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">

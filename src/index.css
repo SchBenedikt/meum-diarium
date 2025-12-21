@@ -243,6 +243,35 @@
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-muted-foreground rounded-lg font-medium transition-all hover:bg-secondary hover:text-foreground;
   }
+
+  /* Unified Card System */
+  .card-modern {
+    @apply rounded-3xl bg-card/50 backdrop-blur-xl border border-border/40 transition-all duration-300;
+  }
+
+  .card-hover-primary {
+    @apply hover:border-primary/30 hover:bg-card/60;
+  }
+
+  .card-padding-sm {
+    @apply p-6;
+  }
+
+  .card-padding-md {
+    @apply p-7;
+  }
+
+  .card-padding-lg {
+    @apply p-8;
+  }
+
+  .card-icon-container {
+    @apply rounded-3xl bg-primary/10 p-3;
+  }
+
+  .card-icon-container-lg {
+    @apply rounded-3xl bg-primary/10 inline-flex items-center justify-center;
+  }
 }
 
 @layer utilities {

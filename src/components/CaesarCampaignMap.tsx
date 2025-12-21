@@ -23,22 +23,22 @@ interface CaesarCampaignMapProps {
 }
 
 const markerPoints: MarkerPoint[] = [
-  { title: 'Rhône & Helvetier', note: '58 v. Chr. – Aufhalten der Helvetier, Tor nach Gallien', position: [46.2, 6.1] },
-  { title: 'Gergovia', note: '52 v. Chr. – Rückschlag gegen Vercingetorix', position: [45.77, 3.1] },
-  { title: 'Alesia', note: '52 v. Chr. – Doppelwall-Belagerung, Wendepunkt im Gallischen Krieg', position: [47.52, 4.34] },
-  { title: 'Bibracte', note: '58 v. Chr. – Sieg über die Helvetier', position: [46.95, 4.3] },
-  { title: 'Avaricum', note: '52 v. Chr. – Belagerung, ca. 40k Tote', position: [47.08, 2.4], tone: 'siege' },
-  { title: 'Rheinbrücke', note: '55/53 v. Chr. – Machtdemonstration Richtung Germanien', position: [50.35, 7.6] },
-  { title: 'Dover (Britannien)', note: '55/54 v. Chr. – Erste römische Landung auf der Insel', position: [51.13, 1.3] },
-  { title: 'Massilia', note: '49 v. Chr. – Seeblockade im Bürgerkrieg', position: [43.29, 5.37], tone: 'sea' },
-  { title: 'Brundisium', note: '49 v. Chr. – Übergang nach Epirus', position: [40.64, 17.94], tone: 'sea' },
-  { title: 'Dyrrhachium', note: '48 v. Chr. – Rückschlag gegen Pompeius', position: [41.32, 19.45] },
-  { title: 'Pharsalos', note: '48 v. Chr. – Entscheidungsschlacht gegen Pompeius', position: [39.28, 22.37] },
-  { title: 'Zela', note: '47 v. Chr. – „Veni, vidi, vici“', position: [40.0, 36.1] },
-  { title: 'Ilerda', note: '49 v. Chr. – Bürgerkrieg, Sicherung Hispaniens', position: [41.62, -0.62] },
-  { title: 'Thapsus', note: '46 v. Chr. – Niederlage der Pompeianer in Afrika', position: [36.4, 10.6] },
-  { title: 'Munda', note: '45 v. Chr. – Letzte große Schlacht gegen die Optimaten', position: [37.3, -4.9] },
-  { title: 'Alexandria', note: '48/47 v. Chr. – Bündnis mit Kleopatra, Flottenkampf', position: [31.21, 29.9] },
+  { title: 'Rhône & Helvetier', note: '58 v. Chr. – Aufhalten der Helvetier, Tor nach Gallien | ca. 130.000 Helvetier aufgehalten', position: [46.2, 6.1] },
+  { title: 'Gergovia', note: '52 v. Chr. – Rückschlag gegen Vercingetorix | Caesars seltene Niederlage, ~700 Legionäre gefallen', position: [45.77, 3.1] },
+  { title: 'Alesia', note: '52 v. Chr. – Doppelwall-Belagerung, Wendepunkt im Gallischen Krieg | 11 km Belagerungsring, 80.000 Belagerte, Vercingetorix gefangen', position: [47.52, 4.34], tone: 'siege' },
+  { title: 'Bibracte', note: '58 v. Chr. – Sieg über die Helvetier | ~130.000 Feinde besiegt, Rückzug erzwungen', position: [46.95, 4.3] },
+  { title: 'Avaricum', note: '52 v. Chr. – Belagerung, ca. 40.000 Tote | 25 Tage Belagerung, fast vollständige Vernichtung der Bevölkerung', position: [47.08, 2.4], tone: 'siege' },
+  { title: 'Rheinbrücke', note: '55/53 v. Chr. – Machtdemonstration Richtung Germanien | In 10 Tagen erbaut, 400m lang, technisches Meisterwerk', position: [50.35, 7.6] },
+  { title: 'Dover (Britannien)', note: '55/54 v. Chr. – Erste römische Landung auf der Insel | 2 Expeditionen, symbolischer Wert, keltischer Widerstand', position: [51.13, 1.3] },
+  { title: 'Massilia', note: '49 v. Chr. – Seeblockade im Bürgerkrieg | Pompeianische Flotte besiegt, Stadt erobert', position: [43.29, 5.37], tone: 'sea' },
+  { title: 'Brundisium', note: '49 v. Chr. – Übergang nach Epirus | Pompeius entkommen, aber Italien gesichert', position: [40.64, 17.94], tone: 'sea' },
+  { title: 'Dyrrhachium', note: '48 v. Chr. – Rückschlag gegen Pompeius | Caesars Belagerung scheitert, ~1.000 Verluste', position: [41.32, 19.45] },
+  { title: 'Pharsalos', note: '48 v. Chr. – Entscheidungsschlacht gegen Pompeius | 22.000 vs. 47.000 Soldaten, Pompeius flieht nach Ägypten', position: [39.28, 22.37], tone: 'core' },
+  { title: 'Zela', note: '47 v. Chr. – „Veni, vidi, vici" | 5 Tage Kampagne gegen Pharnakes II., totaler Sieg', position: [40.0, 36.1] },
+  { title: 'Ilerda', note: '49 v. Chr. – Bürgerkrieg, Sicherung Hispaniens | Strategisches Manöver statt Frontalschlacht', position: [41.62, -0.62] },
+  { title: 'Thapsus', note: '46 v. Chr. – Niederlage der Pompeianer in Afrika | 10.000 Feinde gefallen, Caesar verliert <50 Mann', position: [36.4, 10.6], tone: 'core' },
+  { title: 'Munda', note: '45 v. Chr. – Letzte große Schlacht gegen die Optimaten | Härteste Schlacht, ~30.000 Feinde gefallen', position: [37.3, -4.9], tone: 'core' },
+  { title: 'Alexandria', note: '48/47 v. Chr. – Bündnis mit Kleopatra, Flottenkampf | Bibliothek-Brand, ptolemäischer Bürgerkrieg beendet', position: [31.21, 29.9], tone: 'sea' },
 ];
 
 const routeSegments: RouteSegment[] = [
@@ -138,7 +138,7 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
   }
 
   return (
-    <div className={`rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl overflow-hidden ${className}`}>
+    <div className={`card-modern card-hover-primary overflow-hidden ${className}`}>
       <MapContainer
         bounds={mapBounds}
         maxBounds={mapBounds}
@@ -185,8 +185,10 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
             }}
           >
             <Popup>
-              <div className="text-sm font-semibold text-foreground mb-1">{point.title}</div>
-              <div className="text-xs text-foreground/80">{point.note}</div>
+              <div className="text-sm">
+                <div className="font-bold text-foreground mb-2 text-base">{point.title}</div>
+                <div className="text-xs text-foreground/90 leading-relaxed whitespace-pre-line">{point.note}</div>
+              </div>
             </Popup>
             <Tooltip direction="top" offset={[0, -8]} opacity={0.95} permanent={false}>
               <span className="text-[11px] font-bold">{point.title}</span>

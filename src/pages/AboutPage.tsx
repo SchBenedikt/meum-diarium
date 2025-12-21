@@ -388,138 +388,138 @@ function AuthorAboutPage() {
   const isCaesar = authorId === 'caesar';
   const caesarSnapshots = isCaesar
     ? [
-        { label: 'Lebenszeit', value: '100–44 v. Chr.', hint: '56 Jahre' },
-        { label: 'Konsulat', value: '59 v. Chr.', hint: 'Erstes Konsulamt' },
-        { label: 'Diktatur', value: '49–44 v. Chr.', hint: 'perpetuo ab 44' },
-        { label: 'Gallischer Krieg', value: '8 Jahre', hint: '58–50 v. Chr.' },
-        { label: 'Legionen', value: '9 Stammlegionen', hint: 'ca. 40–50k Soldaten' },
-        { label: 'Feldzüge', value: '4 Großräume', hint: 'Gallien, Germania, Britannia, Hispania' },
-      ]
+      { label: 'Lebenszeit', value: '100–44 v. Chr.', hint: '56 Jahre' },
+      { label: 'Konsulat', value: '59 v. Chr.', hint: 'Erstes Konsulamt' },
+      { label: 'Diktatur', value: '49–44 v. Chr.', hint: 'perpetuo ab 44' },
+      { label: 'Gallischer Krieg', value: '8 Jahre', hint: '58–50 v. Chr.' },
+      { label: 'Legionen', value: '9 Stammlegionen', hint: 'ca. 40–50k Soldaten' },
+      { label: 'Feldzüge', value: '4 Großräume', hint: 'Gallien, Germania, Britannia, Hispania' },
+    ]
     : [];
   const caesarReforms = isCaesar
     ? [
-        {
-          title: 'Julianischer Kalender (46 v. Chr.)',
-          summary: '365 Tage plus Schaltjahr – ersetzte den ungenauen Mondkalender und prägte den heutigen Kalender.',
-          tag: 'Zeit & Verwaltung',
-          horizon: 'langfristig',
-        },
-        {
-          title: 'Schuldenerlass & Zinsdeckel (49 v. Chr.)',
-          summary: 'Kurzfristige Entlastung nach dem Bürgerkrieg: Deckelung von Zinsforderungen und Bewertung von Immobilien zu Vorkriegspreisen.',
-          tag: 'Ökonomie',
-          horizon: 'sofort',
-        },
-        {
-          title: 'Ausweitung des Bürgerrechts',
-          summary: 'Verlieh italischen und provinziellen Eliten das römische Bürgerrecht, um Loyalität zu sichern und Rom stärker zu integrieren.',
-          tag: 'Staatsrecht',
-          horizon: 'langfristig',
-        },
-        {
-          title: 'Land- & Veteranengesetze',
-          summary: 'Siedelte Veteranen an, entschärfte Schuldenlast und verteilte Staatsland – sozialpolitische Stabilisierung nach den Bürgerkriegen.',
-          tag: 'Sozialpolitik',
-          horizon: 'mittelfristig',
-        },
-        {
-          title: 'Forum Iulium & Infrastruktur',
-          summary: 'Neues Forum, Straßensanierungen und öffentliche Bauten, um Rom zu entlasten und Prestige aufzubauen.',
-          tag: 'Stadtplanung',
-          horizon: 'mittelfristig',
-        },
-        {
-          title: 'Senatsreform',
-          summary: 'Erweiterte den Senat auf ~900 Mitglieder, holte Provinzvertreter hinein und schwächte alte Patronatsnetzwerke.',
-          tag: 'Institutionen',
-          horizon: 'langfristig',
-        },
-      ]
+      {
+        title: 'Julianischer Kalender (46 v. Chr.)',
+        summary: '365 Tage plus Schaltjahr – ersetzte den ungenauen Mondkalender und prägte den heutigen Kalender.',
+        tag: 'Zeit & Verwaltung',
+        horizon: 'langfristig',
+      },
+      {
+        title: 'Schuldenerlass & Zinsdeckel (49 v. Chr.)',
+        summary: 'Kurzfristige Entlastung nach dem Bürgerkrieg: Deckelung von Zinsforderungen und Bewertung von Immobilien zu Vorkriegspreisen.',
+        tag: 'Ökonomie',
+        horizon: 'sofort',
+      },
+      {
+        title: 'Ausweitung des Bürgerrechts',
+        summary: 'Verlieh italischen und provinziellen Eliten das römische Bürgerrecht, um Loyalität zu sichern und Rom stärker zu integrieren.',
+        tag: 'Staatsrecht',
+        horizon: 'langfristig',
+      },
+      {
+        title: 'Land- & Veteranengesetze',
+        summary: 'Siedelte Veteranen an, entschärfte Schuldenlast und verteilte Staatsland – sozialpolitische Stabilisierung nach den Bürgerkriegen.',
+        tag: 'Sozialpolitik',
+        horizon: 'mittelfristig',
+      },
+      {
+        title: 'Forum Iulium & Infrastruktur',
+        summary: 'Neues Forum, Straßensanierungen und öffentliche Bauten, um Rom zu entlasten und Prestige aufzubauen.',
+        tag: 'Stadtplanung',
+        horizon: 'mittelfristig',
+      },
+      {
+        title: 'Senatsreform',
+        summary: 'Erweiterte den Senat auf ~900 Mitglieder, holte Provinzvertreter hinein und schwächte alte Patronatsnetzwerke.',
+        tag: 'Institutionen',
+        horizon: 'langfristig',
+      },
+    ]
     : [];
 
   const caesarReformDeep = isCaesar
     ? [
-        {
-          title: 'Kalenderreform',
-          detail: 'Vom Mond- zum Sonnenjahr: 365 Tage + Schaltjahr schufen Planungssicherheit für Steuer, Militär und Ernte.',
-          impact: 'Legt die Basis des heutigen Kalenders und reduziert administrative Willkür.',
-        },
-        {
-          title: 'Bürgerrecht & Elitenbindung',
-          detail: 'Ausweitung des Bürgerrechts auf italische und provinzialische Eliten, um Loyalität zu sichern und Verwaltung zu professionalisieren.',
-          impact: 'Schafft neue Machtbasis für Caesar und integriert Provinzen stärker in Rom.',
-        },
-        {
-          title: 'Land- und Veteranenpolitik',
-          detail: 'Ansiedlung von Veteranen und Umverteilung von Staatsland zur Stabilisierung nach Bürgerkrieg und zur Sicherung persönlicher Gefolgschaft.',
-          impact: 'Beruhigt soziale Spannungen, bindet Legionäre an Caesar und belebt die Wirtschaft.',
-        },
-      ]
+      {
+        title: 'Kalenderreform',
+        detail: 'Vom Mond- zum Sonnenjahr: 365 Tage + Schaltjahr schufen Planungssicherheit für Steuer, Militär und Ernte.',
+        impact: 'Legt die Basis des heutigen Kalenders und reduziert administrative Willkür.',
+      },
+      {
+        title: 'Bürgerrecht & Elitenbindung',
+        detail: 'Ausweitung des Bürgerrechts auf italische und provinzialische Eliten, um Loyalität zu sichern und Verwaltung zu professionalisieren.',
+        impact: 'Schafft neue Machtbasis für Caesar und integriert Provinzen stärker in Rom.',
+      },
+      {
+        title: 'Land- und Veteranenpolitik',
+        detail: 'Ansiedlung von Veteranen und Umverteilung von Staatsland zur Stabilisierung nach Bürgerkrieg und zur Sicherung persönlicher Gefolgschaft.',
+        impact: 'Beruhigt soziale Spannungen, bindet Legionäre an Caesar und belebt die Wirtschaft.',
+      },
+    ]
     : [];
 
   const caesarTheaters = isCaesar
     ? [
-        {
-          title: 'Gallien',
-          years: '58–50 v. Chr.',
-          note: 'Hauptfeldzug: Ressourcen, Prestige, Brückenkopf nach Germanien & Britannien.',
-        },
-        {
-          title: 'Germania',
-          years: '55–53 v. Chr.',
-          note: 'Rheinbrücken als Machtdemonstration, Vorstoß ohne dauerhafte Besetzung.',
-        },
-        {
-          title: 'Britannien',
-          years: '55–54 v. Chr.',
-          note: 'Symbolische Expedition: zeigt römische Reichweite, begrenzter territorialer Gewinn.',
-        },
-        {
-          title: 'Hispanien & Afrika',
-          years: '49–45 v. Chr.',
-          note: 'Schlüsselgefechte des Bürgerkriegs: Ilerda, Thapsus, Munda sichern Alleinherrschaft.',
-        },
-      ]
+      {
+        title: 'Gallien',
+        years: '58–50 v. Chr.',
+        note: 'Hauptfeldzug: Ressourcen, Prestige, Brückenkopf nach Germanien & Britannien.',
+      },
+      {
+        title: 'Germania',
+        years: '55–53 v. Chr.',
+        note: 'Rheinbrücken als Machtdemonstration, Vorstoß ohne dauerhafte Besetzung.',
+      },
+      {
+        title: 'Britannien',
+        years: '55–54 v. Chr.',
+        note: 'Symbolische Expedition: zeigt römische Reichweite, begrenzter territorialer Gewinn.',
+      },
+      {
+        title: 'Hispanien & Afrika',
+        years: '49–45 v. Chr.',
+        note: 'Schlüsselgefechte des Bürgerkriegs: Ilerda, Thapsus, Munda sichern Alleinherrschaft.',
+      },
+    ]
     : [];
 
   const caesarOffices = isCaesar
     ? [
-        {
-          title: 'Pontifex Maximus',
-          years: '63 v. Chr.',
-          note: 'Oberpriester – religiöse Autorität als politischer Hebel.',
-        },
-        {
-          title: 'Konsul',
-          years: '59 v. Chr.',
-          note: 'Setzt populare Gesetzespakete durch, trotz Widerstand der Optimaten.',
-        },
-        {
-          title: 'Diktator',
-          years: '49–44 v. Chr.',
-          note: 'Kriegs- und Krisenvollmacht, später auf 10 Jahre und perpetuo ausgedehnt.',
-        },
-      ]
+      {
+        title: 'Pontifex Maximus',
+        years: '63 v. Chr.',
+        note: 'Oberpriester – religiöse Autorität als politischer Hebel.',
+      },
+      {
+        title: 'Konsul',
+        years: '59 v. Chr.',
+        note: 'Setzt populare Gesetzespakete durch, trotz Widerstand der Optimaten.',
+      },
+      {
+        title: 'Diktator',
+        years: '49–44 v. Chr.',
+        note: 'Kriegs- und Krisenvollmacht, später auf 10 Jahre und perpetuo ausgedehnt.',
+      },
+    ]
     : [];
   const caesarDebate = isCaesar
     ? [
-        {
-          heading: 'Warum er bewundert wird',
-          points: [
-            'Brillanter Feldherr mit logistischer Präzision und schneller Entscheidungsfreude.',
-            'Pragmatischer Reformer, der Verwaltung und Kalender modernisierte.',
-            'Meister der Selbstdarstellung: klare Sprache, dritte Person, prägnante Narrative.',
-          ],
-        },
-        {
-          heading: 'Warum er gefürchtet wurde',
-          points: [
-            'Machtkonzentration und Missachtung republikanischer Checks & Balances.',
-            'Senatserweiterung als politisches Werkzeug zur Stimmenmaximierung.',
-            'Heerestreue wichtiger als Senatsautorität – der Rubikon als Präzedenzfall.',
-          ],
-        },
-      ]
+      {
+        heading: 'Warum er bewundert wird',
+        points: [
+          'Brillanter Feldherr mit logistischer Präzision und schneller Entscheidungsfreude.',
+          'Pragmatischer Reformer, der Verwaltung und Kalender modernisierte.',
+          'Meister der Selbstdarstellung: klare Sprache, dritte Person, prägnante Narrative.',
+        ],
+      },
+      {
+        heading: 'Warum er gefürchtet wurde',
+        points: [
+          'Machtkonzentration und Missachtung republikanischer Checks & Balances.',
+          'Senatserweiterung als politisches Werkzeug zur Stimmenmaximierung.',
+          'Heerestreue wichtiger als Senatsautorität – der Rubikon als Präzedenzfall.',
+        ],
+      },
+    ]
     : [];
 
   return (
@@ -622,7 +622,7 @@ function AuthorAboutPage() {
                       <Link
                         key={i}
                         to={`/${authorId}/works/${slugify(work.title, { lower: true, strict: true })}`}
-                        className="group relative bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 transition-colors duration-300 hover:border-primary/40 overflow-hidden block"
+                        className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
                       >
 
                         <div className="relative z-10">
@@ -660,7 +660,7 @@ function AuthorAboutPage() {
                   <div className="grid gap-6 md:grid-cols-2">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
-                        <article className="relative h-full rounded-3xl p-7 border border-border/40 bg-card/35 backdrop-blur-xl hover:border-primary/20 transition-colors duration-300 overflow-hidden">
+                        <article className="card-modern card-hover-primary card-padding-md relative h-full overflow-hidden">
                           <div className="relative flex items-center justify-between gap-3 mb-4">
                             <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
                               {post.title}
@@ -694,7 +694,7 @@ function AuthorAboutPage() {
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
                 {authorId === 'caesar' && (
-                  <div className="rounded-3xl border border-border/40 bg-card/15 backdrop-blur-3xl p-7">
+                  <div className="card-modern card-padding-md">
                     <h3 className="font-display text-2xl font-bold mb-5 text-primary">Kurzfakten</h3>
                     <div className="space-y-3 text-sm text-foreground/80">
                       {caesarSnapshots.map((item) => (
@@ -710,7 +710,7 @@ function AuthorAboutPage() {
                   </div>
                 )}
                 {details?.timeline && (
-                  <div className="rounded-3xl border border-border/40 bg-card/20 backdrop-blur-3xl p-8 md:p-10">
+                  <div className="card-modern card-padding-lg md:p-10">
                     <h3 className="font-display text-3xl font-bold mb-10 flex items-center gap-4">
                       <Clock className="h-8 w-8 text-primary" />
                       {t('timeline')}
@@ -744,7 +744,7 @@ function AuthorAboutPage() {
                 {caesarReforms.map((reform) => (
                   <div
                     key={reform.title}
-                    className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/25 transition-colors duration-300"
+                    className="card-modern card-hover-primary card-padding-lg"
                   >
                     <div className="mb-3 flex items-center justify-between">
                       <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{reform.tag}</span>
@@ -772,7 +772,7 @@ function AuthorAboutPage() {
                 {caesarReformDeep.map((item) => (
                   <div
                     key={item.title}
-                    className="p-7 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/25 transition-colors"
+                    className="card-modern card-hover-primary card-padding-md"
                   >
                     <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
                     <p className="text-sm text-foreground/85 leading-relaxed mb-3">{item.detail}</p>
@@ -797,7 +797,7 @@ function AuthorAboutPage() {
                 {caesarDebate.map((block) => (
                   <div
                     key={block.heading}
-                    className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/20 transition-colors duration-300"
+                    className="card-modern card-hover-primary card-padding-lg"
                   >
                     <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
                     <div className="space-y-3">
@@ -833,7 +833,7 @@ function AuthorAboutPage() {
                     {caesarTheaters.map((item) => (
                       <div
                         key={item.title}
-                        className="p-7 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/25 transition-colors"
+                        className="card-modern card-hover-primary card-padding-md"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Feldzug</span>
@@ -844,7 +844,7 @@ function AuthorAboutPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="p-7 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 flex flex-col gap-4">
+                  <div className="card-modern card-padding-md flex flex-col gap-4">
                     <div className="flex items-center gap-3">
                       <Map className="w-5 h-5 text-primary" />
                       <h3 className="font-display text-xl font-bold">Karte seiner Züge</h3>
@@ -865,7 +865,7 @@ function AuthorAboutPage() {
                     {caesarOffices.map((item) => (
                       <div
                         key={item.title}
-                        className="p-7 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/25 transition-colors"
+                        className="card-modern card-hover-primary card-padding-md"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Amt</span>
@@ -909,7 +909,7 @@ function AuthorAboutPage() {
                 }].map((item) => (
                   <div
                     key={item.title}
-                    className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40 hover:border-primary/25 transition-colors duration-300"
+                    className="card-modern card-hover-primary card-padding-lg"
                   >
                     <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
                       <item.icon className="h-7 w-7 text-primary" />
@@ -925,141 +925,151 @@ function AuthorAboutPage() {
         )}
 
         {/* Caesar-specific: Politische Meilensteine */}
-          {isCaesar && (
-            <section className="py-24">
-              <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto text-center mb-16">
-                  <h2 className="font-display text-4xl font-bold mb-4">Caesars Weg zur Macht</h2>
-                  <p className="text-lg text-muted-foreground">Vom geheimen Bündnis über populare Reformen bis zur tragischen Ermordung – die entscheidenden Stationen seiner politischen Karriere.</p>
-                </div>
-                <div className="max-w-6xl mx-auto">
-                  {/* Phase 1: Aufstieg */}
-                  <div className="mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase I: Aufstieg (60–50 v. Chr.)</span>
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
-                      >
-                        <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
-                          <Users className="h-6 w-6 text-primary" />
-                        </div>
-                        <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">60 v. Chr.</span>
-                        <h3 className="font-display text-2xl font-bold mb-3">Erstes Triumvirat</h3>
-                        <p className="text-sm text-foreground/85 leading-relaxed">Geheimes Dreierbündnis mit Pompeius und Crassus – politischer Pakt, der die Optimaten umgeht und Caesar das Konsulat 59 v. Chr. sichert.</p>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
-                      >
-                        <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
-                          <Landmark className="h-6 w-6 text-primary" />
-                        </div>
-                        <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">59 v. Chr.</span>
-                        <h3 className="font-display text-2xl font-bold mb-3">Konsulat & Reformen</h3>
-                        <p className="text-sm text-foreground/85 leading-relaxed">Landgesetze für Veteranen, Neuordnung der Provinzen – populare Politik zur Stärkung der Hausmacht gegen den konservativen Senat.</p>
-                      </motion.div>
-                    </div>
+        {isCaesar && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-16">
+                <h2 className="font-display text-4xl font-bold mb-4">Caesars Weg zur Macht</h2>
+                <p className="text-lg text-muted-foreground">Vom geheimen Bündnis über populare Reformen bis zur tragischen Ermordung – die entscheidenden Stationen seiner politischen Karriere.</p>
+              </div>
+              <div className="max-w-6xl mx-auto">
+                {/* Phase 1: Aufstieg */}
+                <div className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase I: Aufstieg (60–50 v. Chr.)</span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                   </div>
-
-                  {/* Phase 2: Der Bruch */}
-                  <div className="mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase II: Der Bruch (49 v. Chr.)</span>
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                    </div>
+                  <div className="grid md:grid-cols-2 gap-6">
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="relative p-10 rounded-3xl border-2 border-primary/40 bg-gradient-to-br from-primary/5 via-card/60 to-card/40 backdrop-blur-xl overflow-hidden group"
+                      className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
                     >
-                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50" />
-                      <div className="relative z-10">
-                        <div className="flex items-start justify-between mb-6">
-                          <div>
-                            <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">10. Januar 49 v. Chr.</span>
-                            <h3 className="font-display text-3xl font-bold mb-2">Rubikon-Überquerung</h3>
-                            <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Point of No Return</p>
-                          </div>
-                          <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                            <Landmark className="h-8 w-8 text-primary" />
-                          </div>
+                      <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                        <Users className="h-6 w-6 text-primary" />
+                      </div>
+                      <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">60 v. Chr.</span>
+                      <h3 className="font-display text-2xl font-bold mb-3">Erstes Triumvirat</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed">Geheimes Dreierbündnis mit Pompeius und Crassus – politischer Pakt, der die Optimaten umgeht und Caesar das Konsulat 59 v. Chr. sichert.</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                      className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
+                    >
+                      <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                        <Landmark className="h-6 w-6 text-primary" />
+                      </div>
+                      <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">59 v. Chr.</span>
+                      <h3 className="font-display text-2xl font-bold mb-3">Konsulat & Reformen</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed">Landgesetze für Veteranen, Neuordnung der Provinzen – populare Politik zur Stärkung der Hausmacht gegen den konservativen Senat.</p>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Phase 2: Der Bruch */}
+                <div className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase II: Der Bruch (49 v. Chr.)</span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="relative p-10 rounded-3xl border-2 border-primary/40 bg-gradient-to-br from-primary/5 via-card/60 to-card/40 backdrop-blur-xl overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50" />
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between mb-6">
+                        <div>
+                          <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">10. Januar 49 v. Chr.</span>
+                          <h3 className="font-display text-3xl font-bold mb-2">Rubikon-Überquerung</h3>
+                          <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Point of No Return</p>
                         </div>
-                        <p className="text-base text-foreground/90 leading-relaxed mb-4">»Alea iacta est« – Der Würfel ist gefallen. Caesar überschreitet mit seinen Legionen die Grenze zwischen Provinz und Italien und bricht damit das Gesetz. Der Bürgerkrieg beginnt.</p>
+                        <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                          <Landmark className="h-8 w-8 text-primary" />
+                        </div>
+                      </div>
+                      <p className="text-base text-foreground/90 leading-relaxed mb-4">»Alea iacta est« – Der Würfel ist gefallen. Caesar überschreitet mit seinen Legionen die Grenze zwischen Provinz und Italien und bricht damit das Gesetz. Der Bürgerkrieg beginnt.</p>
+                      <div className="flex items-center justify-between">
                         <div className="inline-flex items-center gap-2 text-xs text-primary/80">
                           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
                           <span className="font-semibold">Wendepunkt der römischen Geschichte</span>
                         </div>
+                        <Link
+                          to="/caesar/ich-uberschreite-den-rubikon"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary text-xs font-bold transition-colors"
+                        >
+                          <BookOpen className="h-3.5 w-3.5" />
+                          Zum Tagebucheintrag
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
                       </div>
-                    </motion.div>
-                  </div>
+                    </div>
+                  </motion.div>
+                </div>
 
-                  {/* Phase 3: Alleinherrschaft & Ende */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase III: Alleinherrschaft (46–44 v. Chr.)</span>
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6">
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="p-7 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:border-primary/30 transition-all"
-                      >
-                        <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                          <Crown className="h-6 w-6 text-primary" />
-                        </div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">46 v. Chr.</span>
-                        <h3 className="font-display text-xl font-bold mt-2 mb-3">Diktatur (10 Jahre)</h3>
-                        <p className="text-sm text-foreground/85 leading-relaxed">Zentralisierung der Macht – Kalenderreform, Infrastruktur, Schuldenerlass. Erste Stufe zur Alleinherrschaft.</p>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="p-7 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:border-primary/30 transition-all"
-                      >
-                        <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                          <Crown className="h-6 w-6 text-primary" />
-                        </div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">44 v. Chr.</span>
-                        <h3 className="font-display text-xl font-bold mt-2 mb-3">Diktator perpetuo</h3>
-                        <p className="text-sm text-foreground/85 leading-relaxed">Lebenslange Diktatur – das Ende der Republik. Auslöser der Verschwörung unter Brutus und Cassius.</p>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="p-7 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:border-primary/30 transition-all"
-                      >
-                        <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                          <Crown className="h-6 w-6 text-primary" />
-                        </div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">15. März 44 v. Chr.</span>
-                        <h3 className="font-display text-xl font-bold mt-2 mb-3">Iden des März</h3>
-                        <p className="text-sm text-foreground/85 leading-relaxed">23 Dolchstiche im Senat – die republikanische Elite schlägt zurück. Caesars Tod wird zum Mythos.</p>
-                      </motion.div>
-                    </div>
+                {/* Phase 3: Alleinherrschaft & Ende */}
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Phase III: Alleinherrschaft (46–44 v. Chr.)</span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      className="card-modern card-hover-primary card-padding-md"
+                    >
+                      <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                        <Crown className="h-6 w-6 text-primary" />
+                      </div>
+                      <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">46 v. Chr.</span>
+                      <h3 className="font-display text-xl font-bold mt-2 mb-3">Diktatur (10 Jahre)</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed">Zentralisierung der Macht – Kalenderreform, Infrastruktur, Schuldenerlass. Erste Stufe zur Alleinherrschaft.</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                      className="card-modern card-hover-primary card-padding-md"
+                    >
+                      <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                        <Crown className="h-6 w-6 text-primary" />
+                      </div>
+                      <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">44 v. Chr.</span>
+                      <h3 className="font-display text-xl font-bold mt-2 mb-3">Diktator perpetuo</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed">Lebenslange Diktatur – das Ende der Republik. Auslöser der Verschwörung unter Brutus und Cassius.</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                      className="card-modern card-hover-primary card-padding-md"
+                    >
+                      <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                        <Crown className="h-6 w-6 text-primary" />
+                      </div>
+                      <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">15. März 44 v. Chr.</span>
+                      <h3 className="font-display text-xl font-bold mt-2 mb-3">Iden des März</h3>
+                      <p className="text-sm text-foreground/85 leading-relaxed">23 Dolchstiche im Senat – die republikanische Elite schlägt zurück. Caesars Tod wird zum Mythos.</p>
+                    </motion.div>
                   </div>
                 </div>
               </div>
-            </section>
-          )}
+            </div>
+          </section>
+        )}
 
         {/* Caesar-specific: Zitate */}
         {isCaesar && (
@@ -1072,20 +1082,23 @@ function AuthorAboutPage() {
               <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
                 {[{
                   quote: 'Veni, vidi, vici.',
+                  translation: 'Ich kam, ich sah, ich siegte.',
                   when: '47 v. Chr., Zela',
                   meaning: 'Telegrammstil an den Senat – Inszenierung von Schnelligkeit und Totalerfolg.'
                 }, {
                   quote: 'Alea iacta est.',
+                  translation: 'Der Würfel ist gefallen.',
                   when: '49 v. Chr., Rubikon',
                   meaning: 'Point of no return – bewusste Grenzüberschreitung gegen das Senatsmandat.'
                 }, {
                   quote: 'Et tu, Brute?',
+                  translation: 'Auch du, Brutus?',
                   when: '44 v. Chr., Senat',
                   meaning: 'Legendarischer Verratsmoment; überliefert von Sueton, vermutlich dramatisiert.'
                 }].map((item) => (
                   <div
                     key={item.quote}
-                    className="relative p-7 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:border-primary/25 transition-colors"
+                    className="card-modern card-hover-primary card-padding-md"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
@@ -1093,8 +1106,9 @@ function AuthorAboutPage() {
                       </span>
                       <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                     </div>
-                    <p className="text-xl font-display text-foreground/90 mb-3">{item.quote}</p>
-                    <p className="text-sm text-foreground/85 leading-relaxed font-medium">{item.meaning}</p>
+                    <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                    <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                   </div>
                 ))}
               </div>

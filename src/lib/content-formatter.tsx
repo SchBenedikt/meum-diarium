@@ -76,14 +76,48 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>');
 
+    // Handle headings
     if (htmlParagraph.match(/^#{2,3}\s/)) {
       const level = htmlParagraph.startsWith('###') ? 3 : 2;
       const text = htmlParagraph.replace(/^#{2,3}\s/, '');
       return React.createElement(`h${level}`, { key: pIndex, dangerouslySetInnerHTML: { __html: text } });
     }
+    
+    // Handle headings with ####
+    if (htmlParagraph.match(/^#{4}\s/)) {
+      const text = htmlParagraph.replace(/^#{4}\s/, '');
+      return <h4 key={pIndex} dangerouslySetInnerHTML={{ __html: text }} />;
+    }
+    
+    // Handle blockquotes
     if (htmlParagraph.match(/^>\s/)) {
       const text = htmlParagraph.replace(/^>\s/, '');
       return <blockquote key={pIndex}><p dangerouslySetInnerHTML={{ __html: text }} /></blockquote>;
+    }
+
+    // Handle unordered lists (lines starting with -)
+    if (htmlParagraph.match(/^-\s/)) {
+      const lines = htmlParagraph.split('\n').filter(line => line.trim());
+      const listItems = lines.map((line, idx) => {
+        const itemText = line.replace(/^-\s*/, '');
+        return <li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />;
+      });
+      return <ul key={pIndex} className="list-disc pl-6 space-y-2">{listItems}</ul>;
+    }
+
+    // Handle ordered lists (lines starting with numbers)
+    if (htmlParagraph.match(/^\d+\.\s/)) {
+      const lines = htmlParagraph.split('\n').filter(line => line.trim());
+      const listItems = lines.map((line, idx) => {
+        const itemText = line.replace(/^\d+\.\s*/, '');
+        return <li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />;
+      });
+      return <ol key={pIndex} className="list-decimal pl-6 space-y-2">{listItems}</ol>;
+    }
+
+    // Handle horizontal rule
+    if (htmlParagraph.match(/^---+$/)) {
+      return <hr key={pIndex} className="my-8 border-border/40" />;
     }
 
     let tempParagraph = htmlParagraph;

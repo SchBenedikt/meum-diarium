@@ -31,7 +31,7 @@ export function QuoteOfDay() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative rounded-2xl sm:rounded-3xl bg-card/30 backdrop-blur-3xl border border-border/40 p-10 md:p-16 group overflow-hidden hover:border-primary/50 transition-all duration-700"
+      className="relative rounded-3xl bg-card/40 backdrop-blur-3xl border border-border/50 p-10 md:p-16 group overflow-hidden hover:border-primary/50 transition-all duration-700"
     >
       <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] group-hover:bg-primary/20 transition-colors duration-1000" />
       <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] group-hover:bg-secondary/20 transition-colors duration-1000" />
@@ -49,12 +49,12 @@ export function QuoteOfDay() {
           transition={{ delay: 0.2 }}
           className="mb-10"
         >
-          <span className="px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-[0.4em] text-primary">
+          <span className="px-6 py-2 rounded-full bg-primary/10 border border-primary/30 text-[10px] font-bold uppercase tracking-[0.35em] text-primary">
             {t('quoteOfTheDay') || 'Worte der Ewigkeit'}
           </span>
         </motion.div>
 
-        <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.2] mb-8 text-foreground max-w-4xl tracking-tight">
+        <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.15] mb-8 text-foreground max-w-4xl tracking-tight">
           „{quote.text}"
         </blockquote>
 
@@ -64,7 +64,7 @@ export function QuoteOfDay() {
             whileInView={{ opacity: 0.6 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-lg sm:text-xl font-display text-muted-foreground mb-10"
+            className="text-lg sm:text-xl font-display text-muted-foreground/90 mb-10"
           >
             {quote.latinText}
           </motion.p>
@@ -94,7 +94,7 @@ export function QuoteOfDay() {
       </div>
 
       {/* Aesthetic frame */}
-      <div className="absolute inset-0 border border-border/40 rounded-2xl sm:rounded-3xl pointer-events-none" />
+      <div className="absolute inset-0 border border-border/40 rounded-3xl pointer-events-none" />
     </motion.div>
   );
 }
