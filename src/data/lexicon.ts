@@ -33,6 +33,9 @@ import pilum from '@/content/lexicon/pilum';
 import kulturelleBlte from '@/content/lexicon/kulturelle-blte';
 import goldenesZeitalter from '@/content/lexicon/goldenes-zeitalter';
 import weltalterLehre from '@/content/lexicon/weltalter-lehre';
+import matrona from '@/content/lexicon/matrona';
+import paterfamilias from '@/content/lexicon/paterfamilias';
+import familia from '@/content/lexicon/familia';
 
 export const lexicon: LexiconEntry[] = [
 
@@ -68,4 +71,7 @@ export const lexicon: LexiconEntry[] = [
   kulturelleBlte,
   goldenesZeitalter,
   weltalterLehre,
+  matrona,
+  paterfamilias,
+  familia,
 ];

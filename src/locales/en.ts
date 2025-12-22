@@ -98,6 +98,7 @@ export const en = {
     timePeriod: 'Time Period',
     viewAllEntries: 'View all entries',
     readMore: 'Read more',
+    tableOfContents: 'Table of Contents',
     // Author-specific translations
     // Caesar
     caesar_name: 'Gaius Julius Caesar',

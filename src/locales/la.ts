@@ -98,6 +98,7 @@ export const la = {
     timePeriod: 'Aetas',
     viewAllEntries: 'Omnes indices videre',
     readMore: 'Legere plura',
+    tableOfContents: 'Index Rerum',
     // Auctorum proprias translationes
     // Caesar
     caesar_name: 'Gaius Iulius Caesar',

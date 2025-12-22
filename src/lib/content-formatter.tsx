@@ -6,6 +6,16 @@ import { lexicon } from '@/data/lexicon';
 import { TranslationKey } from '@/locales/translations';
 import { Language } from '@/types/blog';
 import { getTranslatedLexiconEntry } from '@/lib/content-translator';
+import { extractHeadingIds } from '@/lib/toc-generator';
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+}
 
 function LexiconTerm({ term, definition, slug, t }: { term: string, definition: string, slug: string, t: (key: TranslationKey) => string }) {
   const location = useLocation();
@@ -83,13 +93,19 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     if (htmlParagraph.match(/^#{2,3}\s/)) {
       const level = htmlParagraph.startsWith('###') ? 3 : 2;
       const text = htmlParagraph.replace(/^#{2,3}\s/, '');
-      return React.createElement(`h${level}`, { key: pIndex, dangerouslySetInnerHTML: { __html: text } });
+      const id = slugify(text);
+      return React.createElement(`h${level}`, { 
+        key: pIndex, 
+        'data-heading-id': id,
+        dangerouslySetInnerHTML: { __html: text } 
+      });
     }
     
     // Handle headings with ####
     if (htmlParagraph.match(/^#{4}\s/)) {
       const text = htmlParagraph.replace(/^#{4}\s/, '');
-      return <h4 key={pIndex} dangerouslySetInnerHTML={{ __html: text }} />;
+      const id = slugify(text);
+      return <h4 key={pIndex} data-heading-id={id} dangerouslySetInnerHTML={{ __html: text }} />;
     }
     
     // Handle blockquotes
@@ -137,6 +153,71 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     // Handle horizontal rule
     if (htmlParagraph.match(/^---+$/)) {
       return <hr key={pIndex} className="my-8 border-border/40" />;
+    }
+
+    // Handle markdown tables
+    if (htmlParagraph.includes('|')) {
+      const lines = htmlParagraph.split('\n').map(l => l.trim()).filter(l => l);
+      
+      // Check if this looks like a table (has | separators)
+      if (lines.length >= 2 && lines[0].includes('|') && lines[1].includes('---')) {
+        const rows: string[][] = [];
+        let headerFound = false;
+        
+        lines.forEach((line, idx) => {
+          // Skip separator line
+          if (line.match(/^\|?\s*[-:\s|]+\s*\|?\s*$/)) {
+            return;
+          }
+          
+          const cells = line
+            .split('|')
+            .map(cell => cell.trim())
+            .filter(cell => cell !== '');
+          
+          if (cells.length > 0) {
+            rows.push(cells);
+          }
+        });
+
+        if (rows.length >= 1) {
+          const headerRow = rows[0];
+          const bodyRows = rows.slice(1);
+
+          return (
+            <div key={pIndex} className="overflow-x-auto my-6">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr>
+                    {headerRow.map((cell, idx) => (
+                      <th 
+                        key={idx}
+                        className="px-4 py-3 text-left font-semibold bg-secondary/50 border border-border text-sm"
+                      >
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bodyRows.map((row, rowIdx) => (
+                    <tr key={rowIdx} className="hover:bg-secondary/20 transition-colors">
+                      {row.map((cell, cellIdx) => (
+                        <td 
+                          key={cellIdx}
+                          className="px-4 py-3 border border-border text-sm"
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+      }
     }
 
     let tempParagraph = htmlParagraph;
