@@ -2,6 +2,7 @@ import { Work } from '@/types/blog';
 
 
 export const works: Record<string, Work> = {
+    // Caesar
     'de-bello-gallico': {
         title: 'De Bello Gallico',
         author: 'caesar',
@@ -109,5 +110,75 @@ export const works: Record<string, Work> = {
                 ]
             }
         }
-    }
+    },
+
+    // Cicero
+    'in-catilinam': {
+        title: 'In Catilinam',
+        author: 'cicero',
+        year: '63 v. Chr.',
+        summary: 'Ciceros vier berühmte Reden gegen Catilina, die eine Verschwörung gegen die Republik aufdeckten.',
+        takeaway: 'Quo usque tandem abutere, Catilina, patientia nostra? – Ein Meisterwerk der politischen Rhetorik.',
+        structure: [
+            { title: 'Oratio I', content: 'Im Senat: Direkter Angriff auf den anwesenden Catilina' },
+            { title: 'Oratio II', content: 'Vor dem Volk: Nach Catilinas Flucht' },
+            { title: 'Oratio III', content: 'Verkündung der aufgedeckten Beweise' },
+            { title: 'Oratio IV', content: 'Debatte über das Schicksal der Verschwörer' }
+        ],
+        translations: {}
+    },
+    'de-re-publica': {
+        title: 'De Re Publica',
+        author: 'cicero',
+        year: '54–51 v. Chr.',
+        summary: 'Philosophischer Dialog über den idealen Staat nach römischem Vorbild.',
+        takeaway: 'Verteidigung der römischen Republik als beste Staatsform. Enthält das "Somnium Scipionis".',
+        structure: [
+            { title: 'Buch I–II', content: 'Definition und Entwicklung der römischen Verfassung' },
+            { title: 'Buch III', content: 'Gerechtigkeit als Staatsgrundlage' },
+            { title: 'Buch VI', content: 'Somnium Scipionis – Vision der Unsterblichkeit' }
+        ],
+        translations: {}
+    },
+    'de-officiis': {
+        title: 'De Officiis',
+        author: 'cicero',
+        year: '44 v. Chr.',
+        summary: 'Über moralische Pflichten – ein Brief an seinen Sohn über Tugenden und Ethik.',
+        takeaway: 'Das meistgelesene Werk Ciceros. Eine praktische Anleitung für tugendhaftes Leben.',
+        structure: [
+            { title: 'Buch I', content: 'Das Ehrbare – die vier Kardinaltugenden' },
+            { title: 'Buch II', content: 'Das Nützliche im praktischen Leben' },
+            { title: 'Buch III', content: 'Konflikte zwischen Ehre und Nutzen' }
+        ],
+        translations: {}
+    },
+    'philippicae': {
+        title: 'Philippicae',
+        author: 'cicero',
+        year: '44–43 v. Chr.',
+        summary: 'Vierzehn Reden gegen Marcus Antonius nach Caesars Tod.',
+        takeaway: 'Ciceros letzter Kampf für die Republik – diese Reden kosteten ihn das Leben.',
+        structure: [
+            { title: 'Philippica I–II', content: 'Erste Attacken gegen Antonius' },
+            { title: 'Philippica III–XIV', content: 'Eskalation des Konflikts' }
+        ],
+        translations: {}
+    },
+
+    // Augustus
+    'res-gestae': {
+        title: 'Res Gestae Divi Augusti',
+        author: 'augustus',
+        year: '14 n. Chr.',
+        summary: 'Augustus\' autobiografischer Rechenschaftsbericht, angebracht auf Bronzetafeln vor seinem Mausoleum.',
+        takeaway: 'Meisterwerk der Propaganda: Augustus präsentiert sich als Retter der Republik.',
+        structure: [
+            { title: 'Kap. 1–14', content: 'Politische und militärische Ehrungen' },
+            { title: 'Kap. 15–24', content: 'Finanzielle Zuwendungen an Volk und Soldaten' },
+            { title: 'Kap. 25–33', content: 'Militärische Eroberungen' },
+            { title: 'Kap. 34–35', content: 'Würden und Titel' }
+        ],
+        translations: {}
+    },
 };

@@ -1,0 +1,26 @@
+{
+  "slug": "author-about-catilina",
+  "heroTitle": "Lucius Sergius Catilina",
+  "heroSubtitle": "Conspirator",
+  "heroImage": "/images/catilina-hero.jpg",
+  "introText": "Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik.",
+  "sections": [],
+  "highlights": [],
+  "translations": {
+    "de": {
+      "heroTitle": "Lucius Sergius Catilina",
+      "heroSubtitle": "Verschwörer",
+      "introText": "Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik."
+    },
+    "en": {
+      "heroTitle": "Lucius Sergius Catilina",
+      "heroSubtitle": "Conspirator",
+      "introText": "Patrician, failed consul candidate, and leader of the famous Catilinarian Conspiracy against the Roman Republic."
+    },
+    "la": {
+      "heroTitle": "Lucius Sergius Catilina",
+      "heroSubtitle": "Coniurator",
+      "introText": "Patricius, candidatus consularis repulsus et dux coniurationis Catilinariae contra rem publicam Romanam."
+    }
+  }
+}

@@ -15,6 +15,161 @@ import { usePosts } from '@/hooks/use-posts';
 import { Button } from '@/components/ui/button';
 import { PageContent, PageLanguage } from '@/types/page';
 
+  const augustusLifePhases = isAugustus
+    ? [
+      {
+        phase: 'Frühe Jahre',
+        years: '63–44 v. Chr.',
+        events: [
+          { title: 'Geburt', year: '23. Sept. 63 v. Chr.', desc: 'Geboren als Gaius Octavius in Rom – Großneffe Caesars mütterlicherseits.' },
+          { title: 'Kindheit', year: '63–51 v. Chr.', desc: 'Wächst in bescheidenen Verhältnissen auf, Vater stirbt früh (59 v. Chr.).' },
+          { title: 'Totenrede für Großmutter', year: '51 v. Chr.', desc: 'Erste öffentliche Rede mit 12 Jahren – Caesar wird auf ihn aufmerksam.' },
+          { title: 'Bei Caesar in Spanien', year: '46 v. Chr.', desc: 'Reist zu Caesar nach Hispania – Caesar erkennt sein Potential.' },
+          { title: 'Adoption', year: '45 v. Chr.', desc: 'Caesar adoptiert ihn in seinem Testament – wird zum Haupterben.' },
+          { title: 'Caesars Ermordung', year: '15. März 44 v. Chr.', desc: 'In Apollonia (Griechenland) beim Studium – erfährt von Caesars Tod.' },
+        ]
+      },
+      {
+        phase: 'Der Aufstieg',
+        years: '44–42 v. Chr.',
+        events: [
+          { title: 'Rückkehr nach Italien', year: 'April 44 v. Chr.', desc: 'Nimmt Caesars Namen an: Gaius Julius Caesar Octavianus – 18 Jahre alt.' },
+          { title: 'Konflikt mit Antonius', year: '44 v. Chr.', desc: 'Antonius verweigert Auszahlung des Erbes – Octavian finanziert sich selbst.' },
+          { title: 'Bündnis mit dem Senat', year: '44–43 v. Chr.', desc: 'Cicero unterstützt ihn gegen Antonius – militärische Kommandos.' },
+          { title: 'Schlacht von Mutina', year: 'April 43 v. Chr.', desc: 'Besiegt Antonius gemeinsam mit Konsuln – wird zum Helden des Senats.' },
+          { title: 'Marsch auf Rom', year: 'Aug. 43 v. Chr.', desc: 'Erzwingt Konsulat mit 19 Jahren – Wendung gegen den Senat.' },
+          { title: '2. Triumvirat', year: 'Nov. 43 v. Chr.', desc: 'Pakt mit Antonius und Lepidus – Proskriptionen beginnen, Cicero stirbt.' },
+          { title: 'Philippi', year: 'Okt. 42 v. Chr.', desc: 'Caesars Mörder Brutus und Cassius besiegt – Rache vollendet.' },
+        ]
+      },
+      {
+        phase: 'Machtkampf',
+        years: '41–31 v. Chr.',
+        events: [
+          { title: 'Teilung des Reiches', year: '40 v. Chr.', desc: 'Octavian erhält den Westen, Antonius den Osten – angespannte Koexistenz.' },
+          { title: 'Perusinischer Krieg', year: '41–40 v. Chr.', desc: 'Krieg gegen Antonius\' Bruder Lucius – Octavian setzt sich durch.' },
+          { title: 'Seeschlachten gegen Pompeius', year: '36 v. Chr.', desc: 'Sextus Pompeius (Sohn des Pompeius Magnus) bei Naulochos besiegt – Mittelmeer gesichert.' },
+          { title: 'Lepidus entmachtet', year: '36 v. Chr.', desc: 'Dritter Triumvir wird ausgeschaltet – nur noch Octavian und Antonius übrig.' },
+          { title: 'Propaganda-Krieg', year: '33–32 v. Chr.', desc: 'Octavian mobilisiert Rom gegen Antonius und Kleopatra – Antonius als Verräter dargestellt.' },
+          { title: 'Kriegserklärung an Ägypten', year: '32 v. Chr.', desc: 'Formell Krieg gegen Kleopatra, faktisch gegen Antonius.' },
+          { title: 'Actium', year: '2. Sept. 31 v. Chr.', desc: 'Seeschlacht bei Actium – Antonius und Kleopatra fliehen, Octavian siegt.' },
+        ]
+      },
+      {
+        phase: 'Alleinherrschaft beginnt',
+        years: '30–27 v. Chr.',
+        events: [
+          { title: 'Eroberung Ägyptens', year: '30 v. Chr.', desc: 'Antonius und Kleopatra begehen Selbstmord – Ägypten wird römische Provinz.' },
+          { title: 'Dreifacher Triumph', year: '29 v. Chr.', desc: 'Siegesfeier in Rom – riesige Beute, gigantische Spiele.' },
+          { title: 'Janustempel geschlossen', year: '29 v. Chr.', desc: 'Symbol für Frieden – erstmals seit 200 Jahren.' },
+          { title: 'Verfassungsreform', year: '27 v. Chr.', desc: 'Gibt formal alle Macht zurück, erhält sie akklamierend zurück – "Restitutio rei publicae".' },
+          { title: 'Name "Augustus"', year: '16. Jan. 27 v. Chr.', desc: 'Senat verleiht Ehrennamen Augustus (der Erhabene) – religiöse Konnotation.' },
+        ]
+      },
+      {
+        phase: 'Konsolidierung',
+        years: '27–12 v. Chr.',
+        events: [
+          { title: 'Spanienfeldzüge', year: '26–24 v. Chr.', desc: 'Kämpfe im Norden Spaniens – Augustus selbst im Feld, wird krank.' },
+          { title: 'Verfassungskrise', year: '23 v. Chr.', desc: 'Legt Konsulat nieder, erhält tribunicia potestas – neue Machtgrundlage.' },
+          { title: 'Expansion im Osten', year: '20 v. Chr.', desc: 'Diplomatischer Erfolg gegen Parther – Standards von Crassus zurückgewonnen.' },
+          { title: 'Alpenfeldzüge', year: '16–15 v. Chr.', desc: 'Eroberung Rätiens und Noricums – Nordgrenze gesichert.' },
+          { title: 'Pontifex Maximus', year: '12 v. Chr.', desc: 'Wird Oberpriester nach Lepidus\' Tod – religiöse Autorität.' },
+        ]
+      },
+      {
+        phase: 'Höhepunkt & Krisen',
+        years: '12 v. Chr. – 9 n. Chr.',
+        events: [
+          { title: 'Germanienfeldzüge', year: '12 v. Chr. – 9 n. Chr.', desc: 'Versuche, Germanien bis zur Elbe zu erobern – Drusus, Tiberius führen Feldzüge.' },
+          { title: 'Säkularspiele', year: '17 v. Chr.', desc: 'Große Feier eines neuen Zeitalters – Horaz dichtet Carmen Saeculare.' },
+          { title: 'Nachfolgekrise', year: '23–2 v. Chr.', desc: 'Adoptivsöhne Gaius und Lucius sterben jung – Nachfolge ungeklärt.' },
+          { title: 'Pater Patriae', year: '2 v. Chr.', desc: 'Erhält Titel "Vater des Vaterlandes" – Höhepunkt seiner Anerkennung.' },
+          { title: 'Varusschlacht', year: '9 n. Chr.', desc: 'Katastrophe im Teutoburger Wald – 3 Legionen vernichtet, Germania aufgegeben.' },
+          { title: 'Adoption des Tiberius', year: '4 n. Chr.', desc: 'Tiberius wird Nachfolger – zögerlich, aber alternativlos.' },
+        ]
+      },
+      {
+        phase: 'Letzte Jahre & Vermächtnis',
+        years: '10–14 n. Chr.',
+        events: [
+          { title: 'Rückzug', year: '10–14 n. Chr.', desc: 'Augustus überlässt Tiberius mehr Verantwortung – bereitet Übergabe vor.' },
+          { title: 'Res Gestae', year: '13 n. Chr.', desc: 'Verfasst seine Autobiografie – politisches Testament und Selbstdarstellung.' },
+          { title: 'Tod in Nola', year: '19. Aug. 14 n. Chr.', desc: 'Stirbt im Alter von 75 Jahren – letzte Worte: "Acta est fabula" (Das Stück ist gespielt).' },
+          { title: 'Vergöttlichung', year: 'Sept. 14 n. Chr.', desc: 'Senat erhebt ihn zum Divus Augustus – wird als Gott verehrt.' },
+          { title: 'Mausoleum', year: '14 n. Chr.', desc: 'Beisetzung in seinem monumentalen Mausoleum – die Res Gestae werden davor angebracht.' },
+        ]
+      },
+    ]
+    : [];
+
+  const ciceroLifePhases = isCicero
+    ? [
+      {
+        phase: 'Frühe Jahre',
+        years: '106–81 v. Chr.',
+        events: [
+          { title: 'Geburt in Arpinum', year: '106 v. Chr.', desc: 'Als "homo novus" ohne aristokratische Vorfahren geboren – Außenseiter in der römischen Elite.' },
+          { title: 'Studium in Rom', year: '90–88 v. Chr.', desc: 'Rhetorik und Philosophie bei griechischen Lehrern – Grundlage seiner späteren Karriere.' },
+          { title: 'Militärdienst', year: '89 v. Chr.', desc: 'Im Bundesgenossenkrieg unter Pompeius Strabo – einzige militärische Erfahrung.' },
+          { title: 'Studienreise nach Griechenland', year: '79–77 v. Chr.', desc: 'Vertiefung in Philosophie und Rhetorik in Athen und Rhodos.' },
+        ]
+      },
+      {
+        phase: 'Aufstieg',
+        years: '77–63 v. Chr.',
+        events: [
+          { title: 'Erste Erfolge als Anwalt', year: '77–70 v. Chr.', desc: 'Verteidigung in Zivilprozessen – baut Reputation auf.' },
+          { title: 'Pro Roscio Amerino', year: '80 v. Chr.', desc: 'Erste große Rede – verteidigt einen des Vatermordes Beschuldigten gegen Sullas Günstlinge.' },
+          { title: 'Verres-Prozess', year: '70 v. Chr.', desc: 'Anklagerede gegen den korrupten Statthalter Verres – Durchbruch als Redner.' },
+          { title: 'Ämterlaufbahn', year: '75–63 v. Chr.', desc: 'Quästor (75), Ädil (69), Prätor (66) – alle Ämter im frühestmöglichen Alter erreicht.' },
+          { title: 'Konsulat', year: '63 v. Chr.', desc: 'Als "homo novus" zum Konsul gewählt – höchster Erfolg für einen Nicht-Aristokraten.' },
+        ]
+      },
+      {
+        phase: 'Höhepunkt & Fall',
+        years: '63–58 v. Chr.',
+        events: [
+          { title: 'Catilinarische Verschwörung', year: '63 v. Chr.', desc: 'Deckt Putschversuch auf, lässt Verschwörer ohne Prozess hinrichten – "Pater Patriae".' },
+          { title: 'Clodius als Feind', year: '62–58 v. Chr.', desc: 'Macht sich Volkstribun Clodius zum Todfeind – politische Intrigen beginnen.' },
+          { title: 'Exil', year: '58–57 v. Chr.', desc: 'Wegen der Hinrichtungen verbannt – persönliche und politische Katastrophe.' },
+          { title: 'Rückkehr', year: '57 v. Chr.', desc: 'Triumphale Rückkehr nach Rom – aber politisch geschwächt.' },
+        ]
+      },
+      {
+        phase: 'Politische Ohnmacht',
+        years: '56–50 v. Chr.',
+        events: [
+          { title: 'Konferenz von Luca', year: '56 v. Chr.', desc: 'Triumvirat erneuert – Cicero muss sich fügen, verliert politischen Einfluss.' },
+          { title: 'Statthalterschaft Cilicia', year: '51–50 v. Chr.', desc: 'Provinzverwaltung – erfolgreich, aber fernab vom politischen Zentrum.' },
+          { title: 'Philosophische Schriften', year: '55–51 v. Chr.', desc: 'De Oratore, De Re Publica – wendet sich der Philosophie zu.' },
+        ]
+      },
+      {
+        phase: 'Bürgerkrieg',
+        years: '49–46 v. Chr.',
+        events: [
+          { title: 'Rubikon-Krise', year: '49 v. Chr.', desc: 'Zerrissen zwischen Caesar und Pompeius – entscheidet sich für Pompeius.' },
+          { title: 'Bei Pompeius', year: '49–48 v. Chr.', desc: 'Folgt Pompeius nach Griechenland – aber ohne militärische Rolle.' },
+          { title: 'Nach Pharsalos', year: '48 v. Chr.', desc: 'Kehrt nach Italien zurück, wartet auf Caesars Gnade.' },
+          { title: 'Begnadigung', year: '47 v. Chr.', desc: 'Caesar verzeiht ihm – aber politisch kaltgestellt.' },
+        ]
+      },
+      {
+        phase: 'Letzte Jahre',
+        years: '46–43 v. Chr.',
+        events: [
+          { title: 'Persönliche Tragödien', year: '46–45 v. Chr.', desc: 'Scheidung von Terentia, Tod seiner Tochter Tullia – tiefe Depression.' },
+          { title: 'Philosophische Hochphase', year: '46–44 v. Chr.', desc: 'De Officiis, De Finibus, Tusculanae – sein philosophisches Hauptwerk entsteht.' },
+          { title: 'Nach Caesars Tod', year: '44 v. Chr.', desc: 'Hoffnung auf Republikwiederherstellung – kehrt in die Politik zurück.' },
+          { title: 'Philippicae', year: '44–43 v. Chr.', desc: '14 Reden gegen Antonius – letzter Kampf für die Republik.' },
+          { title: 'Proskription', year: '43 v. Chr.', desc: 'Zweites Triumvirat setzt ihn auf die Todesliste – Antonius will Rache.' },
+          { title: 'Ermordung', year: '7. Dez. 43 v. Chr.', desc: 'Von Antonius\' Soldaten ermordet, Kopf und Hände im Forum ausgestellt.' },
+        ]
+      },
+    ]
+    : [];
+
 const useAuthorDetails = (t: (key: string) => string) => ({
   caesar: {
     birthPlace: t('caesar_birthplace'),
@@ -400,6 +555,8 @@ function AuthorAboutPage() {
 
   const details = authorDetails[authorId as keyof typeof authorDetails];
   const isCaesar = authorId === 'caesar';
+  const isCicero = authorId === 'cicero';
+  const isAugustus = authorId === 'augustus';
   
   const caesarSnapshots = isCaesar
     ? [
@@ -409,6 +566,28 @@ function AuthorAboutPage() {
       { label: 'Gallischer Krieg', value: '8 Jahre', hint: '58–50 v. Chr.' },
       { label: 'Legionen', value: '9 Stammlegionen', hint: 'ca. 40–50k Soldaten' },
       { label: 'Feldzüge', value: '4 Großräume', hint: 'Gallien, Germania, Britannia, Hispania' },
+    ]
+    : [];
+
+  const ciceroSnapshots = isCicero
+    ? [
+      { label: 'Lebenszeit', value: '106–43 v. Chr.', hint: '63 Jahre' },
+      { label: 'Konsulat', value: '63 v. Chr.', hint: 'Niederschlagung der Catilinarischen Verschwörung' },
+      { label: 'Exil', value: '58–57 v. Chr.', hint: 'Wegen Hinrichtung der Verschwörer' },
+      { label: 'Reden', value: '~100 erhalten', hint: 'Von >800 Reden' },
+      { label: 'Briefe', value: '~900 erhalten', hint: 'Wichtigste Quelle für die Epoche' },
+      { label: 'Phil. Werke', value: '13 Schriften', hint: 'Vermittlung griech. Philosophie' },
+    ]
+    : [];
+
+  const augustusSnapshots = isAugustus
+    ? [
+      { label: 'Lebenszeit', value: '63 v. Chr. – 14 n. Chr.', hint: '76 Jahre' },
+      { label: 'Herrschaft', value: '27 v. Chr. – 14 n. Chr.', hint: '41 Jahre als Princeps' },
+      { label: 'Bürgerkriege', value: '3 gewonnen', hint: 'Mutina, Philippi, Actium' },
+      { label: 'Pax Romana', value: '200 Jahre', hint: 'Friedensära nach Augustus' },
+      { label: 'Bauprojekte', value: '82 Tempel', hint: 'Plus Forum, Theater, Aquädukte' },
+      { label: 'Titel', value: 'Pater Patriae', hint: 'Vater des Vaterlandes (2 v. Chr.)' },
     ]
     : [];
   const caesarReforms = isCaesar
@@ -532,6 +711,112 @@ function AuthorAboutPage() {
           'Machtkonzentration und Missachtung republikanischer Checks & Balances.',
           'Senatserweiterung als politisches Werkzeug zur Stimmenmaximierung.',
           'Heerestreue wichtiger als Senatsautorität – der Rubikon als Präzedenzfall.',
+        ],
+      },
+    ]
+    : [];
+
+  // Cicero-spezifische Daten
+  const ciceroAchievements = isCicero
+    ? [
+      {
+        title: 'Rhetorik als Waffe',
+        summary: 'Perfektion der lateinischen Rhetorik – seine Reden gegen Catilina, Verres und Antonius sind zeitlose Meisterwerke der Überzeugungskunst.',
+        tag: 'Rhetorik',
+        icon: 'Users' as const,
+      },
+      {
+        title: 'Philosophie für Rom',
+        summary: 'Vermittlung griechischer Philosophie (Stoizismus, Akademie) in lateinischer Sprache – schuf das Vokabular für abstrakte Begriffe.',
+        tag: 'Philosophie',
+        icon: 'BookOpen' as const,
+      },
+      {
+        title: 'Verteidiger der Republik',
+        summary: 'Kämpfte bis zuletzt gegen die aufkommende Alleinherrschaft – seine Philippicae gegen Antonius kosteten ihn das Leben.',
+        tag: 'Politik',
+        icon: 'Landmark' as const,
+      },
+      {
+        title: 'Briefe als Zeitdokument',
+        summary: 'Über 900 erhaltene Briefe gewähren einzigartige Einblicke in das politische und private Leben der späten Republik.',
+        tag: 'Quellen',
+        icon: 'Scroll' as const,
+      },
+    ]
+    : [];
+
+  const ciceroDebate = isCicero
+    ? [
+      {
+        heading: 'Warum er bewundert wird',
+        points: [
+          'Größter Redner Roms – formte die lateinische Prosa und prägte die westliche Rhetorik.',
+          'Verteidiger der Republik und der Rechtsstaatlichkeit gegen Tyrannen.',
+          'Vermittler griechischer Philosophie und Schöpfer lateinischer Fachterminologie.',
+          'Seine Briefe sind die wichtigste Quelle für die Epoche der Bürgerkriege.',
+        ],
+      },
+      {
+        heading: 'Warum er kritisiert wird',
+        points: [
+          'Ließ Catilina-Verschwörer ohne Gerichtsverfahren hinrichten – verfassungsrechtlich fragwürdig.',
+          'Selbstüberschätzung und Eitelkeit – rühmte sich ständig seiner Taten.',
+          'Taktisch ungeschickt – unterschätzte Caesar und überschätzte seine eigene Macht.',
+          'Opportunismus: Wechselte zwischen politischen Lagern, je nach Vorteil.',
+        ],
+      },
+    ]
+    : [];
+
+  // Augustus-spezifische Daten
+  const augustusAchievements = isAugustus
+    ? [
+      {
+        title: 'Pax Romana',
+        summary: 'Beendete Jahrzehnte des Bürgerkriegs und etablierte 200 Jahre relativen Friedens im Römischen Reich.',
+        tag: 'Frieden',
+        icon: 'Sparkles' as const,
+      },
+      {
+        title: 'Institutionalisierung der Macht',
+        summary: 'Verwandelte die Republik faktisch in eine Monarchie, ohne sie formal abzuschaffen – das Prinzipat als geniale Tarnung.',
+        tag: 'Verfassung',
+        icon: 'Crown' as const,
+      },
+      {
+        title: 'Kulturelle Blüte',
+        summary: 'Förderte Vergil, Horaz, Ovid und Livius – das "Augusteische Zeitalter" wurde zum goldenen Zeitalter der römischen Literatur.',
+        tag: 'Kultur',
+        icon: 'BookOpen' as const,
+      },
+      {
+        title: 'Rom als Marmorstadt',
+        summary: 'Massives Bauprogramm: "Ich fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor" – 82 Tempel restauriert.',
+        tag: 'Architektur',
+        icon: 'Landmark' as const,
+      },
+    ]
+    : [];
+
+  const augustusDebate = isAugustus
+    ? [
+      {
+        heading: 'Warum er bewundert wird',
+        points: [
+          'Beendete die Bürgerkriege und brachte Stabilität nach Jahrzehnten des Chaos.',
+          'Kulturelle und architektonische Blüte – das Augusteische Zeitalter.',
+          'Geschickte Machtkonsolidierung ohne offene Diktatur – behielt republikanische Fassade.',
+          'Effiziente Verwaltung und Expansion des Reiches auf seine größte Ausdehnung.',
+        ],
+      },
+      {
+        heading: 'Warum er kritisiert wird',
+        points: [
+          'Proskriptionen von 43 v. Chr. – Tausende politische Gegner ermordet.',
+          'Zensur und Kontrolle der Literatur – Ovid ins Exil verbannt.',
+          'Ende der republikanischen Freiheit – Senat wurde zum Akklamationsorgan.',
+          'Propaganda und Geschichtsfälschung – stellte sich als Retter dar, nicht als Alleinherrscher.',
         ],
       },
     ]
@@ -731,11 +1016,11 @@ function AuthorAboutPage() {
             {/* Sidebar Timeline & Quick Facts */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
-                {authorId === 'caesar' && (
+                {(authorId === 'caesar' || authorId === 'cicero' || authorId === 'augustus') && (
                   <div className="card-modern card-padding-md">
                     <h3 className="font-display text-2xl font-bold mb-5 text-primary">Kurzfakten</h3>
                     <div className="space-y-3 text-sm text-foreground/80">
-                      {caesarSnapshots.map((item) => (
+                      {(authorId === 'caesar' ? caesarSnapshots : authorId === 'cicero' ? ciceroSnapshots : augustusSnapshots).map((item) => (
                         <div key={item.label} className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 last:border-0 last:pb-0">
                           <span className="font-semibold">{item.label}</span>
                           <div className="text-right space-y-0.5">
@@ -1211,6 +1496,212 @@ function AuthorAboutPage() {
                       <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                     </div>
                     <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                    <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Cicero-spezifische Sections */}
+        {isCicero && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Seine bleibenden Leistungen</h2>
+                <p className="text-lg text-muted-foreground">Rhetorik, Philosophie und Politik – Ciceros Erbe für die westliche Zivilisation.</p>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 max-w-5xl mx-auto">
+                {ciceroAchievements.map((achievement) => {
+                  const IconComponent = achievement.icon === 'Users' ? Users : achievement.icon === 'BookOpen' ? BookOpen : achievement.icon === 'Landmark' ? Landmark : Scroll;
+                  return (
+                    <div
+                      key={achievement.title}
+                      className="card-modern card-hover-primary card-padding-lg"
+                    >
+                      <div className="mb-3 flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{achievement.tag}</span>
+                        <IconComponent className="h-6 w-6 text-primary opacity-60" />
+                      </div>
+                      <h3 className="font-display text-xl font-bold mb-2">{achievement.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{achievement.summary}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isCicero && (
+          <section className="py-24 bg-surface-container-low/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Warum er polarisiert</h2>
+                <p className="text-lg text-muted-foreground">Zwischen brillanter Rhetorik und politischem Opportunismus.</p>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+                {ciceroDebate.map((block) => (
+                  <div
+                    key={block.heading}
+                    className="card-modern card-hover-primary card-padding-lg"
+                  >
+                    <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
+                    <div className="space-y-3">
+                      {block.points.map((point, i) => (
+                        <div key={i} className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed">
+                          <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isCicero && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+                <p className="text-lg text-muted-foreground">Worte, die Jahrtausende überdauerten.</p>
+              </div>
+              <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+                {[{
+                  quote: 'Quo usque tandem abutere, Catilina, patientia nostra?',
+                  translation: 'Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?',
+                  when: '63 v. Chr., 1. Catilinaria',
+                  meaning: 'Der kraftvollste Redeauftakt der Antike – direkte Konfrontation als rhetorische Waffe.'
+                }, {
+                  quote: 'O tempora, o mores!',
+                  translation: 'O Zeiten, o Sitten!',
+                  when: '63 v. Chr., Catilina',
+                  meaning: 'Klage über moralischen Verfall – ein zeitloser Ausruf, bis heute zitiert.'
+                }, {
+                  quote: 'Salus populi suprema lex esto.',
+                  translation: 'Das Wohl des Volkes soll oberstes Gesetz sein.',
+                  when: 'De Legibus',
+                  meaning: 'Grundprinzip republikanischer Politik, das bis in moderne Verfassungen nachwirkt.'
+                }].map((item) => (
+                  <div
+                    key={item.quote}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                        <Sparkles className="h-3.5 w-3.5" /> Impact
+                      </span>
+                      <span className="text-xs font-semibold text-primary/70">{item.when}</span>
+                    </div>
+                    <p className="text-lg font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                    <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Augustus-spezifische Sections */}
+        {isAugustus && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Seine bleibenden Leistungen</h2>
+                <p className="text-lg text-muted-foreground">Wie Augustus Rom transformierte und 200 Jahre Frieden sicherte.</p>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 max-w-5xl mx-auto">
+                {augustusAchievements.map((achievement) => {
+                  const IconComponent = achievement.icon === 'Sparkles' ? Sparkles : achievement.icon === 'Crown' ? Crown : achievement.icon === 'BookOpen' ? BookOpen : Landmark;
+                  return (
+                    <div
+                      key={achievement.title}
+                      className="card-modern card-hover-primary card-padding-lg"
+                    >
+                      <div className="mb-3 flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{achievement.tag}</span>
+                        <IconComponent className="h-6 w-6 text-primary opacity-60" />
+                      </div>
+                      <h3 className="font-display text-xl font-bold mb-2">{achievement.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{achievement.summary}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isAugustus && (
+          <section className="py-24 bg-surface-container-low/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Warum er polarisiert</h2>
+                <p className="text-lg text-muted-foreground">Zwischen Friedensbringer und verschleiertem Autokraten.</p>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+                {augustusDebate.map((block) => (
+                  <div
+                    key={block.heading}
+                    className="card-modern card-hover-primary card-padding-lg"
+                  >
+                    <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
+                    <div className="space-y-3">
+                      {block.points.map((point, i) => (
+                        <div key={i} className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed">
+                          <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isAugustus && (
+          <section className="py-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center mb-12">
+                <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+                <p className="text-lg text-muted-foreground">Seine Worte, die Geschichte schrieben.</p>
+              </div>
+              <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+                {[{
+                  quote: 'Festina lente.',
+                  translation: 'Eile mit Weile.',
+                  when: 'Lebensmotto',
+                  meaning: 'Augustus\' strategische Geduld – langsame, aber sichere Machtkonsolidierung.'
+                }, {
+                  quote: 'Acta est fabula.',
+                  translation: 'Das Stück ist gespielt.',
+                  when: '14 n. Chr., letzte Worte',
+                  meaning: 'Das Leben als Theater – Augustus\' Selbstreflexion kurz vor dem Tod.'
+                }, {
+                  quote: 'Marmoream se relinquere, quam latericiam accepisset.',
+                  translation: 'Ich fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor.',
+                  when: 'Über seine Baupolitik',
+                  meaning: 'Monumentale Transformation Roms – Architektur als Herrschaftsinstrument.'
+                }].map((item) => (
+                  <div
+                    key={item.quote}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                        <Sparkles className="h-3.5 w-3.5" /> Impact
+                      </span>
+                      <span className="text-xs font-semibold text-primary/70">{item.when}</span>
+                    </div>
+                    <p className="text-lg font-display italic text-foreground/90 mb-1">{item.quote}</p>
                     <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
                     <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                   </div>

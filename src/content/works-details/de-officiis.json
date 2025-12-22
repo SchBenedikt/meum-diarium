@@ -1,0 +1,72 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "De Officiis wurde im Herbst 44 v. Chr. geschrieben, nur Monate nach Caesars Ermordung an den Iden des März. Cicero befand sich in einer Phase intensiver philosophischer Produktion, wohl wissend, dass seine politische Karriere ihrem Ende zuging.",
+      "Das Werk ist als Brief an seinen Sohn Marcus konzipiert, der in Athen Philosophie studierte. Es sollte ihm als praktischer Leitfaden für ein tugendhaftes Leben dienen.",
+      "De Officiis wurde zum meistgelesenen Werk Ciceros in der Renaissance und Neuzeit. Erasmus, Thomas Morus, Montaigne und Kant studierten es intensiv. Es prägte die westliche Moralphilosophie nachhaltig."
+    ],
+    "sections": [
+      {
+        "title": "Die vier Kardinaltugenden",
+        "content": [
+          "Cicero übernimmt die vier Kardinaltugenden der stoischen Philosophie: Weisheit (sapientia), Gerechtigkeit (iustitia), Tapferkeit (fortitudo) und Mäßigung (temperantia).",
+          "Jede Tugend wird ausführlich erklärt und mit praktischen Beispielen aus der römischen Geschichte illustriert.",
+          "Das erste Buch behandelt das 'Ehrbare' (honestum) – moralisch richtiges Handeln um seiner selbst willen."
+        ]
+      },
+      {
+        "title": "Ethische Dilemmata",
+        "content": [
+          "Das dritte Buch ist besonders innovativ: Cicero diskutiert Situationen, in denen Pflicht und persönlicher Vorteil scheinbar im Konflikt stehen.",
+          "Durch sorgfältige Analyse zeigt er, dass wahre Tugend und langfristiger Nutzen niemals wirklich im Widerspruch stehen können.",
+          "Diese Diskussion ethischer Dilemmata machte De Officiis zu einem zeitlosen Werk, relevant für Politiker, Juristen und Geschäftsleute bis heute."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Nihil est tam populare quam bonitas.",
+        "translation": "Nichts ist so volkstümlich wie Güte.",
+        "context": "Eine zentrale Einsicht über Leadership und öffentliches Ansehen."
+      },
+      {
+        "latin": "Fundamentum iustitiae est fides.",
+        "translation": "Das Fundament der Gerechtigkeit ist Vertrauen.",
+        "context": "Cicero betont, dass ohne gegenseitiges Vertrauen keine Gesellschaft funktionieren kann."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Der ehrbare Kaufmann",
+        "date": "Buch III",
+        "description": "Cicero diskutiert, ob ein Händler Käufern Mängel seiner Ware offenbaren muss, auch wenn er dadurch Profit verliert.",
+        "significance": "Ein klassisches Beispiel für Wirtschaftsethik, das die Grundlage für Jahrhunderte der Diskussion über ehrliches Geschäftsgebaren legte."
+      },
+      {
+        "title": "Regulus' Opfer",
+        "date": "Buch III",
+        "description": "Die Geschichte des römischen Generals Regulus, der freiwillig in karthagische Gefangenschaft zurückkehrte, obwohl ihn der Tod erwartete, um sein Ehrenwort zu halten.",
+        "significance": "Ein Beispiel extremer Tugendhaftigkeit, das zeigt, dass Ehre wichtiger ist als das eigene Leben."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "De Officiis was written in autumn 44 BC, only months after Caesar's assassination on the Ides of March."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "De Officiis scriptum est autumno anni 44 a.C.n., paucis mensibus post necem Caesaris idibus Martiis."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}
