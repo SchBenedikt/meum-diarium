@@ -14,6 +14,7 @@ import { Calendar, Clock, BookText } from 'lucide-react';
 import NotFound from './NotFound';
 import { formatContent } from '@/lib/content-formatter';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
+import { TableOfContents } from '@/components/TableOfContents';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -131,6 +132,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </header>
 
                 <div className="prose-blog">
+                  <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
                   {formattedContent}
                 </div>
 

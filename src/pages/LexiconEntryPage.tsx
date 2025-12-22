@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
+import { TableOfContents } from '@/components/TableOfContents';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
@@ -116,6 +117,7 @@ export default function LexiconEntryPage() {
                 </div>
 
                 <div className="prose-blog text-lg">
+                  <TableOfContents content={entry.definition} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
                   {formattedContent}
                 </div>
 
