@@ -64,16 +64,6 @@ export default function ChatPage() {
         } finally {
             setIsTyping(false);
         }
-
-        // Keep existing fallback for initial Caesar context if none suggested
-        if (authorId === 'caesar' && resources.length === 0) {
-            setResources(prev => [...prev, {
-                title: 'Gallien Feldzug Karte',
-                type: 'map',
-                description: 'Übersichtskarte der Feldzüge 58 v. Chr.',
-                link: '/caesar/works/de-bello-gallico'
-            }]);
-        }
     };
 
     useEffect(() => {
