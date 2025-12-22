@@ -1,42 +1,59 @@
 import { BlogPost } from '@/types/blog';
 
+const post: BlogPost = {
+  id: '2',
+  slug: 'die-verschworung-gegen-mich',
+  author: 'caesar',
+  title: 'Die Verschwörung gegen mich',
+  
+  excerpt: '',
+  historicalDate: '44 v. Chr',
+  historicalYear: -44,
+  date: new Date().toISOString().split('T')[0],
+  readingTime: 2,
+  tags: ["Brutus","Caesarianer","Dolch","Feind","Mord","Verschwörung"],
+  coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_realistic_face_of_caesar_with_color_9ac25bcb-2a41-4285-9abf-90d67e3cb8ee1.png',
+  content: {
+    diary: `15. März 44 v. Chr. – Die Iden des März.
 
-    const post: BlogPost = {
-        id: '2',
-        slug: 'die-verschworung-gegen-mich',
-        author: 'caesar',
-        title: 'Die Verschwörung gegen mich',
-        excerpt: '',
-        historicalDate: '44 v. Chr',
-        historicalYear: -44,
-        date: '2025-12-02',
-        readingTime: 2,
-        tags: ['Brutus', 'Caesarianer', 'Dolch', 'Feind', 'Mord', 'Verschwörung'],
-        coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_realistic_face_of_caesar_with_color_9ac25bcb-2a41-4285-9abf-90d67e3cb8ee1.png',
-        content: {
-          diary: `Hinterfragt nicht, warum oder wieso ich heute noch schreibe. Seit froh, eine letzte offizielle Tagebuch-Nachricht von mir zu sehen! Denn ich werde (bzw. bin) getötet. An den Iden des März 44 v. Chr. werde ich sterben; und das ist nicht toll!
+Ich schreibe dies in dem Wissen, dass es meine letzten Worte sein könnten. An diesem Tag fand eine Senatssitzung im Pompeius-Theater statt, und obwohl meine Frau Calpurnia mir von schlimmen Träumen berichtete, ließ ich mich von Decimus Brutus überreden, dennoch zu gehen. Ein Fehler, wie sich herausstellen sollte.
 
-Keine tollen Eroberungskriege, keine tollen Kämpfe, keine tollen Redewendungen – nein! Ich werde dann für immer verschwunden sein und nur noch in euren Herzen als bester Führer des römischen Reichs weiterleben!
+Anfang des Jahres 44 v. Chr. hatten republikanisch gesinnte Senatoren unter der Leitung des Gaius Cassius Longinus begonnen, eine Verschwörung gegen mich zu schmieden. Sie sahen in mir eine Bedrohung für die alte Ordnung, für ihre Privilegien, für die Republik, wie sie sie kannten. Dabei übersahen sie, dass diese Republik längst tot war, dass nur ich noch ihre verwesende Hülle am Leben erhielt.
 
-Doch wie ist es so weit gekommen? Eigentlich würde sich jetzt anbieten, eine neue Zeitform zu erfinden. Aber dazu hab ich keine Lust mehr. Stellen wir uns lieber die Frage, wie ich gestorben bin.
+Als ich das Theater betrat, umringten mich die Senatoren. Was folgte, war keine ehrenwerte Schlacht, sondern ein Gemetzel. Dreiundzwanzig Dolchstiche trafen meinen Körper. Sie kamen von allen Seiten, von Männern, denen ich vertraut hatte, denen ich Ämter und Würden verliehen hatte. Ich hatte sie nach Pharsalos begnadigt, ihnen meine Clementia gezeigt, und dies war ihre Antwort.
 
-Anfang 44 v. Chr. – ich hätte es bemerken müssen – haben republikanisch gesinnte Senatoren unter Leitung des Gaius Cassius Longinus angefangen, eine Verschwörung gegen mich zur Ermordung zu bilden.
+Der schmerzhafteste Moment kam, als ich Marcus Iunius Brutus erkannte, der ebenfalls das Messer gegen mich erhob. Brutus, den ich wie einen Sohn behandelt hatte, den ich gefördert und geschützt hatte. Manche Gerüchte behaupten sogar, er sei tatsächlich mein Sohn. Als ich ihn sah, soll ich – so wird man es später berichten – auf Griechisch ausgerufen haben: "Καὶ σύ, τέκνον" – "Auch du, mein Kind?"
 
-An den Iden des März 44 v. Chr. war es dann so weit. Ich wollte eigentlich eh nicht ins Pompeius-Theater gehen, wo die Senatssitzung stattfinden sollte, weil meine Frau so etwas schon geträumt hat. Aber dann ist dieser Decimus Brutus gekommen – auch ein Mittwissender, und hat mich auf meinen Platz gelockt. Da waren dann hunderte von Senatoren gestanden und haben mich mit unzählig vielen Dolchstoßen getötet.
+Ob ich diese Worte wirklich gesprochen habe oder ob dies nur eine dramatische Ausschmückung der Historiker ist, weiß ich nicht mehr. In diesem Moment des Verrats, umgeben von Dolchen und dem Blut meiner Wunden, verschwimmt die Erinnerung. Vielleicht habe ich gar nichts gesagt. Vielleicht habe ich nur ungläubig auf den Mann gestarrt, dem ich so sehr vertraut hatte.
 
-Ja, ich gibs ja zu. Es waren nur ein paar Senatoren und insgesamt 27 Dolchstöße. Nicht 100te. Aber das war alles ganz hinterhältig! Die haben sich von hinten angeschlichen!
+Was ich mit Sicherheit weiß: Dies ist das Ende. Rom wird nie wieder sein, was es war. Die Verschwörer glauben, sie hätten die Republik gerettet. Welch eine Naivität! Sie haben nur das Chaos eingeladen. Antonius wird sich rächen, Octavian wird aufsteigen, und am Ende wird das Kaiserreich entstehen, das ich nur angedeutet, aber nie vollständig errichtet habe.
 
-Doch ich habe anschließend erkannt, was Sache war: Mein eigener Sohn hat mich ermordet! Deswegen habe ich mich noch überwinden können und einen letzten Satz hervor gebracht:
+Ich sterbe nicht als freier Mann der Republik, sondern als letzter Versuch, Rom vor sich selbst zu retten. Die Verschwörer werden für ihren Verrat bezahlen. Innerhalb weniger Jahre werden sie alle tot sein, verfolgt von meinen treuen Anhängern, den Caesarianern. Antonius und Octavian werden sie jagen wie Tiere, und keiner wird entkommen.
 
-Et tu, Brutus?
-
-Auch du, Brutus?
+Dies sind meine letzten Gedanken: Rom, ich habe dich geliebt. Ich habe dich größer gemacht, reicher, mächtiger. Und du hast mich mit Dolchen belohnt.
 
 Gaius Julius Caesar
-Aber ich sage euch: Versucht niemals, ein Mitglied der Caesarianer-Familie zu ermorden! Denn sonst werdet ihr sehen, was mit diesen allen passiert! All die Anhänger der bösartigen Truppe sind innerhalb der nächsten 10 Jahren gestorben!`,
-          scientific: ``
-        }
-      };
+15. März 44 v. Chr. – Die Iden des März`,
+    scientific: ``
+  },
+  translations: {
+  "en": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  },
+  "la": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  }
+}
+};
 
-
-    export default post;
+export default post;

@@ -542,6 +542,7 @@ function AuthorAboutPage() {
       <main className="flex-1">
         {/* Author Hero */}
         {isCaesar ? (
+          <>
           <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6">
               <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -578,6 +579,28 @@ function AuthorAboutPage() {
               </div>
             </div>
           </section>
+          {/* Reading Guide for Caesar */}
+          {authorId === 'caesar' && (
+            <section className="py-10">
+              <div className="container mx-auto px-4 sm:px-6">
+                <div className="grid gap-6 md:grid-cols-3">
+                  <div className="card-modern card-padding-md">
+                    <h3 className="font-display text-xl font-bold mb-2">Wie lese ich diese Seite?</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">Beginne mit der Biografie hier, springe dann in die Chronologie und vertiefe dich in die Einträge. Für Fakten: wissenschaftliche Perspektive. Für Erleben: Tagebuch.</p>
+                  </div>
+                  <Link to="/timeline" className="card-modern card-padding-md group">
+                    <h3 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">Chronologie</h3>
+                    <p className="text-sm text-muted-foreground">Überblick über die wichtigsten Stationen – von Gallien bis zu den Iden des März.</p>
+                  </Link>
+                  <Link to="/caesar" className="card-modern card-padding-md group">
+                    <h3 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">Einträge lesen</h3>
+                    <p className="text-sm text-muted-foreground">Tagebuch und wissenschaftliche Einordnung – pro Artikel umschaltbar.</p>
+                  </Link>
+                </div>
+              </div>
+            </section>
+          )}
+          </>
         ) : (
           <section className="relative h-[60vh] min-h-[500px] flex items-end overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -757,8 +780,15 @@ function AuthorAboutPage() {
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
                 {caesarReforms.map((reform) => {
-                  const isCalendar = reform.title.includes('Julianischer Kalender');
-                  
+                  const reformSlugByTitle: Record<string, string> = {
+                    'Julianischer Kalender (46 v. Chr.)': 'julianischer-kalender',
+                    'Schuldenerlass & Zinsdeckel (49 v. Chr.)': 'schuldenerlass-und-zinsdeckel',
+                    'Ausweitung des Bürgerrechts': 'ausweitung-des-burgerrechts',
+                    'Land- & Veteranengesetze': 'land-und-veteranengesetze',
+                    'Forum Iulium & Infrastruktur': 'forum-iulium-und-infrastruktur',
+                    'Senatsreform': 'senatsreform',
+                  };
+                  const slug = reformSlugByTitle[reform.title];
                   const cardContent = (
                     <>
                       <div className="mb-3 flex items-center justify-between">
@@ -769,7 +799,7 @@ function AuthorAboutPage() {
                       </div>
                       <h3 className="font-display text-xl font-bold mb-2">{reform.title}</h3>
                       <p className="text-muted-foreground leading-relaxed text-sm">{reform.summary}</p>
-                      {isCalendar && (
+                      {slug && (
                         <div className="mt-4 flex items-center gap-2 text-xs text-primary font-semibold">
                           <BookOpen className="h-3.5 w-3.5" />
                           <span>Zum ausführlichen Artikel</span>
@@ -778,11 +808,10 @@ function AuthorAboutPage() {
                       )}
                     </>
                   );
-                  
-                  return isCalendar ? (
+                  return slug ? (
                     <Link
                       key={reform.title}
-                      to="/caesar/julianischer-kalender"
+                      to={`/caesar/${slug}`}
                       className="card-modern card-hover-primary card-padding-lg block"
                     >
                       {cardContent}
@@ -810,8 +839,12 @@ function AuthorAboutPage() {
               </div>
               <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
                 {caesarReformDeep.map((item) => {
-                  const isCalendar = item.title === 'Kalenderreform';
-                  
+                  const deepSlugByTitle: Record<string, string> = {
+                    'Kalenderreform': 'julianischer-kalender',
+                    'Bürgerrecht & Elitenbindung': 'ausweitung-des-burgerrechts',
+                    'Land- und Veteranenpolitik': 'land-und-veteranengesetze',
+                  };
+                  const slug = deepSlugByTitle[item.title];
                   const cardContent = (
                     <>
                       <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
@@ -819,7 +852,7 @@ function AuthorAboutPage() {
                       <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
                         <span className="font-semibold text-primary">Folge:</span> {item.impact}
                       </div>
-                      {isCalendar && (
+                      {slug && (
                         <div className="mt-4 flex items-center gap-2 text-xs text-primary font-semibold">
                           <BookOpen className="h-3.5 w-3.5" />
                           <span>Mehr erfahren</span>
@@ -828,11 +861,10 @@ function AuthorAboutPage() {
                       )}
                     </>
                   );
-                  
-                  return isCalendar ? (
+                  return slug ? (
                     <Link
                       key={item.title}
-                      to="/caesar/julianischer-kalender"
+                      to={`/caesar/${slug}`}
                       className="card-modern card-hover-primary card-padding-md block"
                     >
                       {cardContent}
@@ -1062,7 +1094,7 @@ function AuthorAboutPage() {
                         <div>
                           <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">10. Januar 49 v. Chr.</span>
                           <h3 className="font-display text-3xl font-bold mb-2">Rubikon-Überquerung</h3>
-                          <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Point of No Return</p>
+                          <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Wendepunkt der Republik</p>
                         </div>
                         <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center">
                           <Landmark className="h-8 w-8 text-primary" />
@@ -1161,7 +1193,7 @@ function AuthorAboutPage() {
                   quote: 'Alea iacta est.',
                   translation: 'Der Würfel ist gefallen.',
                   when: '49 v. Chr., Rubikon',
-                  meaning: 'Point of no return – bewusste Grenzüberschreitung gegen das Senatsmandat.'
+                  meaning: 'Unumkehrbarer Schritt – bewusste Grenzüberschreitung gegen das Senatsmandat.'
                 }, {
                   quote: 'Et tu, Brute?',
                   translation: 'Auch du, Brutus?',

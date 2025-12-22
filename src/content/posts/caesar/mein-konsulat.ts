@@ -5,154 +5,40 @@ const post: BlogPost = {
   slug: 'mein-konsulat',
   author: 'caesar',
   title: 'Mein Konsulat',
+  
   excerpt: 'Das Jahr 59 v. Chr. – Ich werde endlich Konsul! Mit etwas "Überredungskunst" von Pompeius, massiver Korruption und einem völlig inkompetenten Kollegen. Spoiler: Es wird chaotisch. Aber glorreich.',
   historicalDate: '59 v. Chr.',
   historicalYear: -59,
-  date: '2025-12-02',
+  date: new Date().toISOString().split('T')[0],
   readingTime: 6,
-  tags: ['Bibulus', 'Crassus', 'Gegner', 'Konsulat', 'Pompeius', 'Triumvirat', 'Reform'],
+  tags: ["Bibulus","Crassus","Gegner","Konsulat","Pompeius","Triumvirat","Reform"],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/18088652-e1710258453455.jpg',
   content: {
-    diary: `**59 v. Chr. – Das Jahr, in dem ich endlich Konsul werde**
+    diary: `Das Jahr 59 v. Chr. – endlich bin ich Konsul! Nach all den Jahren des Wartens, der Intrigen und politischen Manöver stehe ich nun an der Spitze Roms. Lasst die Trompeten erschallen – Gaius Julius Caesar ist Konsul der Römischen Republik!
 
-ENDLICH! Nach all den Jahren des Wartens, der Intrigen, der politischen Manöver – ich bin jetzt Konsul von Rom!
+Ich gebe zu, es lief nicht ganz nach demokratischen Regeln. Aber mal ehrlich: Seit wann interessieren sich diese heuchlerischen Senatoren für Demokratie? Die wollen doch nur ihre eigene Macht sichern.
 
-Lasst die Korken knallen! 🎉 Lasst die Trompeten erschallen! Gaius Julius Caesar – Konsul der Römischen Republik!
+Ich hatte einen ziemlich guten Wahlkampf. Pompeius hat diskret jedem Senator, der nicht für mich stimmen wollte, mit seinem Schwert gedroht. Sehr subtil. Sehr effektiv. Crassus hat derweil jedem Zentunenvorsitzenden einen ordentlichen Geldbeutel in die Hand gedrückt. Nennen wir es Wahlkampffinanzierung.
 
-Okay, ich gebe zu: Es lief nicht GANZ nach demokratischen Regeln. Aber mal ehrlich – seit wann interessieren sich diese heuchlerischen Senatoren für Demokratie? Die wollen doch nur ihre eigene Macht sichern.
+Ach ja, ich habe einen Amtskollegen. Technisch gesehen. Sein Name ist Bibulus – lateinisch für trinkfreudig. Der Mann trägt sein Laster im Namen. Die Optimaten haben ihn aufgestellt, um mich zu blockieren. Ihre Strategie war simpel: Wenn Caesar etwas vorschlägt, sagt Bibulus Nein. Egal was. Einfach Nein. Sehr ausgereift, diese Strategie.
 
-**Wie ich gewonnen habe (mit ein wenig Hilfe von meinen Freunden)**
+Das Lustige ist: Nach zwei Monaten hat er aufgegeben. Einfach komplett aufgehört, zur Arbeit zu erscheinen. Er ist zu Hause geblieben und hat angeblich ungünstige Omina beobachtet. Übersetzung: Die Götter wollen nicht, dass ich arbeite. Die Römer haben angefangen, das Jahr nicht mehr Konsulat von Caesar und Bibulus zu nennen, sondern Konsulat von Julius und Caesar. Ich muss sagen, ich finde das extrem witzig.
 
-Ich hatte einen ziemlich guten Wahlkampf. Pompeius hat "diskret" jedem Senator, der nicht für mich stimmen wollte, mit seinem Schwert gedroht. Sehr subtil. Sehr effektiv.
+Als Konsul habe ich endlich die Macht, Dinge zu ändern. Pompeius' Veteranen brauchen Land. Sie haben jahrelang für Rom gekämpft, und was bekommen sie? Nichts. Diese undankbaren Senatoren wollten ihnen kein Land geben. Also habe ich ein Gesetz durchgebracht: Land für Veteranen, staatlich finanziert. Wie ich es durchgebracht habe? Ich habe die Volksversammlung einberufen, und als die Senatoren protestiert haben, haben ein paar von Pompeius' Soldaten für Ordnung gesorgt. Cato hat versucht, die Abstimmung mit einer endlosen Rede zu blockieren, also habe ich ihn einfach aus dem Forum tragen lassen. Problem gelöst.
 
-Ich finde, ein bisschen übertrieben war das schon – ich hätte auch so gewonnen. Ich bin schließlich der beste Kandidat. Aber Pompeius meinte: "Besser auf Nummer sicher gehen."
+Crassus wollte, dass die Steuerpächter weniger zahlen müssen. Diese Leute sind seine besten Freunde und haben ihm zu seinem Reichtum verholfen. Der Senat war natürlich dagegen. Verfassungsbruch! Korruption! Skandal! Ich habe es durchgewunken. Crassus war zufrieden, die publicani waren zufrieden, und ich hatte einen sehr mächtigen, sehr reichen Freund auf meiner Seite. So läuft Politik, meine Freunde.
 
-Crassus hat derweil jedem Zentunenvorsitzenden einen ordentlichen Geldbeutel in die Hand gedrückt. Nennen wir es... "Wahlkampffinanzierung".
+Ptolemaios XII. wollte von Rom offiziell als König von Ägypten anerkannt werden. Er bot mir eine angemessene Entschädigung – etwa 6.000 Talente. Sollte ich diese Großzügigkeit ablehnen? Definitiv nicht. Cato nannte es Bestechung. Ich nenne es diplomatische Gebühren.
 
-**Mein "geschätzter" Kollege Marcus Calpurnius Bibulus**
+Pompeius brauchte mehr Legitimität, also habe ich ihm meine Tochter Julia zur Frau gegeben. Ja, ich weiß, sie war mit einem anderen Mann verlobt. Aber der war nicht Pompeius Magnus, der mächtigste General Roms. Ich musste Prioritäten setzen. Julia und Pompeius haben sich tatsächlich geliebt, was selten ist in römischen Ehen. Also war es am Ende eine Win-Win-Situation.
 
-Ach ja, ich habe einen Amtskollegen. Technisch gesehen. Sein Name ist Bibulus.
+Meine Feinde haben behauptet, ich sei zu jung für das Konsulat. Nach dem Cursus honorum muss man 43 Jahre alt sein. Ich bin 40. Drei Jahre trennen mich von der Legalität, und diese Pedanten machen daraus einen Skandal. Aber wer hat sich diese bescheuerte Regel überlegt? Bestimmt irgendwelche alten Greise, die Angst vor jungen, talentierten Männern wie mir hatten. Ich ignoriere diese Regel, und niemand hat mich aufgehalten.
 
-**BIBULUS.** Lateinisch für "trinkfreudig".
+Nach meinem Konsulat stehen viele Anklagen auf mich zu: Verfassungsbruch mehrfach, Gewalt gegen Senatoren, Korruption, Amtsmissbrauch. Bin ich besorgt? Nein. Warum? Weil Crassus die besten Anwälte Roms bezahlt. Und weil ich nach meinem Konsulat ein prokonsularisches Kommando in Gallien bekomme. Prokonsul bedeutet Immunität – solange ich im Amt bin, kann mich niemand anklagen. Also werde ich einfach im Amt bleiben. Für eine sehr, sehr lange Zeit.
 
-Der Mann trägt sein Laster im Namen. Das sagt doch schon alles.
+Ich liebe die Macht. Ich hasse die Heuchler, die behaupten, sie wollten das Volk schützen, während sie nur ihre eigenen Interessen verfolgen. Der Senat ist eine korrupte Oligarchie, das Volk wird manipuliert und ausgebeutet, die Republik ist eine Farce. Ich habe nicht vor, dieses System zu respektieren. Ich habe vor, es zu kontrollieren.
 
-Die Optimaten haben ihn aufgestellt, um mich zu blockieren. Ihre Strategie: Wenn Caesar etwas vorschlägt, sagt Bibulus Nein. Egal was. Einfach... Nein.
-
-**Sehr ausgereift, diese Strategie.**
-
-Das Lustige ist: Nach zwei Monaten hat er aufgegeben. Einfach komplett aufgehört, zur Arbeit zu erscheinen. Er ist zu Hause geblieben und hat angeblich "ungünstige Omina" beobachtet.
-
-Übersetzung: "Die Götter wollen nicht, dass ich arbeite."
-
-Die Römer haben angefangen, das Jahr nicht mehr "Konsulat von Caesar und Bibulus" zu nennen, sondern **"Konsulat von Julius und Caesar"**.
-
-Ich muss sagen: Ich finde das extrem witzig.
-
-**Meine ersten Reformen (oder: Wie ich den Senat zur Weißglut bringe)**
-
-Okay, jetzt wird's ernst. Als Konsul habe ich endlich die Macht, Dinge zu ändern. Und es gibt SO VIEL zu ändern.
-
-**Reform Nr. 1: Ackergesetze für Veteranen**
-
-Pompeius' Veteranen brauchen Land. Sie haben jahrelang für Rom gekämpft, und was bekommen sie? Nichts. Diese undankbaren Senatoren wollten ihnen kein Land geben.
-
-Also habe ich ein Gesetz durchgebracht: Land für Veteranen. Staatlich finanziert.
-
-**Wie ich es durchgebracht habe?** Nun ja... ich habe die Volksversammlung einberufen. Und als die Senatoren protestiert haben, habe ich ein paar von Pompeius' Soldaten gebeten, "für Ordnung zu sorgen".
-
-Cato hat versucht, die Abstimmung mit einer endlosen Rede zu blockieren (seine Spezialität). Also habe ich ihn einfach aus dem Forum tragen lassen.
-
-Problem gelöst.
-
-**Reform Nr. 2: Steuerprivilegien für Crassus' Freunde**
-
-Crassus wollte, dass die Steuerpächter (publicani) weniger zahlen müssen. Diese Leute sind Crassus' beste Freunde – sie haben ihm zu seinem Reichtum verholfen.
-
-Der Senat war natürlich dagegen. "Verfassungsbruch! Korruption! Skandal!"
-
-Ich? Ich hab's durchgewunken. Crassus war zufrieden. Die publicani waren zufrieden. Und ich? Ich hatte einen sehr mächtigen, sehr reichen Freund auf meiner Seite.
-
-**So läuft Politik, meine Freunde.**
-
-**Reform Nr. 3: Ägypten und die Anerkennung Ptolemaios'**
-
-Ptolemaios XII. wollte von Rom offiziell als König von Ägypten anerkannt werden. Er bot mir... sagen wir mal, eine "angemessene Entschädigung".
-
-Etwa 6.000 Talente.
-
-Ich frage euch: Sollte ich diese Großzügigkeit ablehnen? Nein. Definitiv nicht.
-
-Cato nannte es "Bestechung". Ich nenne es "diplomatische Gebühren".
-
-**Der Skandal mit meiner Tochter Julia**
-
-Pompeius brauchte mehr Legitimität. Also habe ich ihm meine Tochter Julia zur Frau gegeben.
-
-Ja, ich weiß. Sie war mit einem anderen Mann verlobt (Servilius Caepio). Aber der war nicht Pompeius Magnus, der mächtigste General Roms.
-
-Ich musste Prioritäten setzen.
-
-Julia und Pompeius? Sie haben sich tatsächlich geliebt. Was selten ist in römischen Ehen. Also war es am Ende eine Win-Win-Situation.
-
-(Außer für Servilius Caepio. Der war ziemlich sauer.)
-
-**Die Altersgrenze – "Technisch gesehen bin ich zu jung"**
-
-Meine Feinde – diese kleinlichen, erbärmlichen, neidischen Schwächlinge – haben behauptet, ich sei zu jung für das Konsulat.
-
-Nach dem Cursus honorum muss man 43 Jahre alt sein. Ich bin 40.
-
-**Drei Jahre.** DREI JAHRE trennen mich von der Legalität.
-
-Und diese Pedanten machen daraus einen Skandal.
-
-Aber mal ehrlich: Wer hat sich diese bescheuerte Regel überlegt? Bestimmt irgendwelche alten Greise, die Angst vor jungen, talentierten Männern wie mir hatten.
-
-**Ich ignoriere diese Regel.** Und niemand hat mich aufgehalten.
-
-**Die Anschuldigungen und die drohenden Anklagen**
-
-Nach meinem Konsulat? Oh, da stehen eine MENGE Anklagen auf mich zu.
-
-- Verfassungsbruch (mehrfach)
-- Gewalt gegen Senatoren (Cato raustragen lassen)
-- Korruption (Steuerprivilegien für Crassus' Freunde)
-- Amtsmissbrauch (so ziemlich alles)
-
-Bin ich besorgt? **Nein.**
-
-Warum? Weil Crassus die besten Anwälte Roms bezahlt. Und weil ich nach meinem Konsulat ein prokonsularisches Kommando in Gallien bekomme.
-
-**Prokonsul = Immunität.** Solange ich im Amt bin, kann mich niemand anklagen.
-
-Also werde ich einfach... im Amt bleiben. Für eine sehr, sehr lange Zeit.
-
-**Was denke ich über das alles?**
-
-Ich liebe die Macht. Ich hasse die Heuchler, die behaupten, sie wollten das Volk schützen, während sie nur ihre eigenen Interessen verfolgen.
-
-Der Senat? Eine korrupte Oligarchie. Das Volk? Manipuliert und ausgebeutet. Die Republik? Eine Farce.
-
-**Ich habe nicht vor, dieses System zu respektieren. Ich habe vor, es zu kontrollieren.**
-
-Und wer wird mich aufhalten? Bibulus? Der Trunkenbold, der zu Hause sitzt und "Omina beobachtet"?
-
-Cato? Der Moralapostel, den ich einfach wegtragen lasse?
-
-**Niemand.**
-
-Ich bin jetzt der mächtigste Mann in Rom. Und das ist erst der Anfang.
-
-**Ein letztes Wort:**
-
-"Ich liebe den Verrat, aber hasse die Verräter."
-
-Das bedeutet: Ich schätze strategisches Denken. Aber wer mich hintergeht? Wird es bereuen.
-
-*Gaius Julius Caesar*
-*Konsul von Rom, 59 v. Chr.*
-*P.S.: Cato, falls du das liest – bleib du ruhig in deinem moralischen Elfenbeinturm. Ich baue derweil ein Imperium.*`,
+Ich bin jetzt der mächtigste Mann in Rom. Und das ist erst der Anfang.`,
     scientific: `## Das Konsulat Caesars (59 v. Chr.): Verfassungskrise und Popularen-Politik
 
 ### Historischer Kontext
@@ -407,67 +293,26 @@ Caesars Konsulat hatte tiefgreifende Auswirkungen:
 
 Das Konsulat Caesars 59 v. Chr. war ein Wendepunkt römischer Geschichte. Es demonstrierte die Ohnmacht des Senats, die Macht des Triumvirats und Caesars Bereitschaft, traditionelle Normen zu brechen, um seine Ziele zu erreichen. 
 
-Die Methoden – Gewalt, Korruption, Verfassungsbruch – waren moralisch fragwürdig, aber politisch effektiv. Sie ebneten Caesar den Weg nach Gallien, wo er in den nächsten acht Jahren ein Imperium erobern und eine Armee aufbauen würde, die schließlich die Republik stürzen sollte.`,
-  },
-  sidebar: {
-    facts: [
-      { label: 'Jahr', value: '59 v. Chr.' },
-      { label: 'Caesars Alter', value: '40 Jahre (offiziell zu jung!)' },
-      { label: 'Amtskollege', value: 'Marcus Calpurnius Bibulus' },
-      { label: 'Triumvirat', value: 'Caesar, Pompeius, Crassus' },
-      { label: 'Landverteilung', value: '~20.000 Veteranen' },
-      { label: 'Bestechung aus Ägypten', value: '6.000 Talente' },
-      { label: 'Spitzname des Jahres', value: '"Konsulat von Julius und Caesar"' },
-      { label: 'Nächstes Amt', value: 'Prokonsul in Gallien (58-50 v. Chr.)' },
-    ],
-    quote: {
-      text: 'Proditionem amo, proditores odi.',
-      author: 'Gaius Julius Caesar',
-      translation: 'Ich liebe den Verrat, aber hasse die Verräter. Ein Grundsatz, den Caesar während seines Konsulats lebte: Er schätzte strategisches Denken und politische Flexibilität – aber Loyalitätsbrüche gegenüber ihm selbst wurden nicht toleriert. Ironischerweise wurden viele der Männer, die er während seines Konsulats begnadigte oder förderte (wie Brutus), später zu seinen Mördern.'
-    }
+Die Methoden – Gewalt, Korruption, Verfassungsbruch – waren moralisch fragwürdig, aber politisch effektiv. Sie ebneten Caesar den Weg nach Gallien, wo er in den nächsten acht Jahren ein Imperium erobern und eine Armee aufbauen würde, die schließlich die Republik stürzen sollte.`
   },
   translations: {
-    en: {
-      title: 'My Consulship',
-      excerpt: 'The year 59 BC – I finally become Consul! With some "persuasion" from Pompey, massive corruption, and a completely incompetent colleague. Spoiler: It will be chaotic. But glorious.',
-      content: {
-        diary: `**59 BC – The Year I Finally Become Consul**
-
-FINALLY! After all those years of waiting, intrigues, political maneuvers – I am now Consul of Rome!
-
-Pop the corks! 🎉 Let the trumpets sound! Gaius Julius Caesar – Consul of the Roman Republic!
-
-Okay, I admit: It didn't go ENTIRELY according to democratic rules. But honestly – since when do these hypocritical senators care about democracy? They just want to secure their own power.
-
-**How I Won (with a little help from my friends)**
-
-I had a pretty good campaign. Pompey "discreetly" threatened every senator who didn't want to vote for me with his sword. Very subtle. Very effective.`,
-        scientific: `## Caesar's Consulship (59 BC): Constitutional Crisis and Populist Politics
-
-### Historical Context
-
-The year 59 BC marks a turning point in the crisis of the late Roman Republic. Gaius Julius Caesar assumed his first consulship – an office he used to push through a series of radical reforms that both served his allies in the First Triumvirate and laid the foundation for his later sole rule.`
-      }
-    },
-    la: {
-      title: 'Consulatus Meus',
-      excerpt: 'Annus LIX a.C.n. – Tandem Consul fio! Cum aliqua "persuasione" Pompeii, corruptione magna, et collega omnino incompetente. Spoiler: Chaos erit. Sed gloriosum.',
-      content: {
-        diary: `**LIX a.C.n. – Annus Quo Tandem Consul Fio**
-
-TANDEM! Post omnes illos annos exspectationis, insidiarum, molitorum politicorum – nunc Consul Romae sum!
-
-Gaudete! 🎉 Tubae sonent! Gaius Iulius Caesar – Consul Rei Publicae Romanae!
-
-Bene, fateor: Non OMNINO secundum regulas democraticas processit. Sed sincere – ex quo tempore hi hypocritae senatores de democratia curant? Tantum potestatem suam confirmare volunt.`,
-        scientific: `## Consulatus Caesaris (LIX a.C.n.): Crisis Constitutionis et Politica Popularis
-
-### Contextus Historicus
-
-Annus LIX a.C.n. momentum vertens in crisi Rei Publicae Romanae tardae designat. Gaius Iulius Caesar primum consulatum suscepit – officium quo usus est ad seriem reformarum radicalium promulgandas, quae et sociis suis in Primo Triumviratu serviebant et fundamentum pro dominatu posteriore ponebant.`
-      }
+  "en": {
+    "title": "My Consulship",
+    "excerpt": "The year 59 BC – I finally become Consul! With some \"persuasion\" from Pompey, massive corruption, and a completely incompetent colleague. Spoiler: It will be chaotic. But glorious.",
+    "content": {
+      "diary": "**59 BC – The Year I Finally Become Consul**\n\nFINALLY! After all those years of waiting, intrigues, political maneuvers – I am now Consul of Rome!\n\nPop the corks! 🎉 Let the trumpets sound! Gaius Julius Caesar – Consul of the Roman Republic!\n\nOkay, I admit: It didn't go ENTIRELY according to democratic rules. But honestly – since when do these hypocritical senators care about democracy? They just want to secure their own power.\n\n**How I Won (with a little help from my friends)**\n\nI had a pretty good campaign. Pompey \"discreetly\" threatened every senator who didn't want to vote for me with his sword. Very subtle. Very effective.",
+      "scientific": ""
+    }
+  },
+  "la": {
+    "title": "Consulatus Meus",
+    "excerpt": "Annus LIX a.C.n. – Tandem Consul fio! Cum aliqua \"persuasione\" Pompeii, corruptione magna, et collega omnino incompetente. Spoiler: Chaos erit. Sed gloriosum.",
+    "content": {
+      "diary": "**LIX a.C.n. – Annus Quo Tandem Consul Fio**\n\nTANDEM! Post omnes illos annos exspectationis, insidiarum, molitorum politicorum – nunc Consul Romae sum!\n\nGaudete! 🎉 Tubae sonent! Gaius Iulius Caesar – Consul Rei Publicae Romanae!\n\nBene, fateor: Non OMNINO secundum regulas democraticas processit. Sed sincere – ex quo tempore hi hypocritae senatores de democratia curant? Tantum potestatem suam confirmare volunt.",
+      "scientific": ""
     }
   }
+}
 };
 
 export default post;

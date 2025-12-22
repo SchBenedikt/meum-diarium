@@ -70,6 +70,11 @@ export interface BlogPost {
     diary: string;
     scientific: string;
   };
+  // Optional perspective-specific subtitles to keep both views clear and concise
+  contentTitles?: {
+    diary: string;
+    scientific: string;
+  };
   translations?: {
     de?: BlogPostTranslations;
     en?: BlogPostTranslations;

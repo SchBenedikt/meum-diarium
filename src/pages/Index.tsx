@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
+import { OverviewGuide } from '@/components/OverviewGuide';
 import { LandingHero } from '@/components/LandingHero';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
@@ -161,6 +162,7 @@ const Index = () => {
               </div>
 
               <div className="border-t border-border/50 pt-12">
+                <OverviewGuide />
                 <BlogList />
               </div>
             </div>
