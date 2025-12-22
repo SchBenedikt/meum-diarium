@@ -11,7 +11,7 @@ import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, User, BookOpen, ArrowRight, Scroll, Crown, Gamepad2 } from 'lucide-react';
+import { MessageCircle, User, BookOpen, ArrowRight, Scroll, Crown, Gamepad2, Zap, History } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -38,130 +38,215 @@ const Index = () => {
             <HeroSection />
 
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-8 md:-mt-12 relative z-10 pb-12">
-              {/* Dashboard Grid */}
-              <div className="grid gap-6 md:grid-cols-3 mb-16">
-
-                {/* Chat Feature - No gradient, modern glassmorphism */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="md:col-span-3 bg-card/60 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-700"
-                >
+              {/* Primary Feature - AI Chat */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-16"
+              >
+                <div className="bg-gradient-to-br from-primary/10 via-card/60 to-background backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-primary/20 relative overflow-hidden group hover:border-primary/40 transition-all duration-700">
                   <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
-                    <MessageCircle className="w-40 h-40 text-primary" />
+                    <MessageCircle className="w-48 h-48 text-primary" />
                   </div>
 
-                  <div className="relative z-10 flex flex-col gap-8">
-                    <div className="flex-1 space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-primary/10 rounded-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/20">
-                          <MessageCircle className="w-8 h-8 text-primary" />
-                        </div>
-                        <h3 className="text-xl sm:text-3xl font-display font-bold text-foreground">
-                          Mit <span className="text-primary italic">{authors[currentAuthor].name}</span> sprechen
-                        </h3>
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="p-3 bg-primary/20 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/30">
+                        <Zap className="w-6 h-6 text-primary" />
                       </div>
-                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl font-light">
-                        Stellen Sie Fragen an {authors[currentAuthor].name.split(' ')[0]} persönlich. Eine KI-gestützte Konversation basierend auf authentischen Schriften.
-                      </p>
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">KI-Konversation</p>
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+                          Sprich mit {authors[currentAuthor].name.split(' ')[0]}
+                        </h2>
+                      </div>
                     </div>
 
-                    <div className="space-y-6 w-full max-w-4xl">
-                      <div className="w-full bg-secondary/30 p-1.5 rounded-3xl border border-border/60 transition-all hover:bg-secondary/50 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
-                        <div className="relative flex items-center">
-                          <input
-                            type="text"
-                            placeholder={`Frage ${authors[currentAuthor].name.split(' ').pop()} etwas...`}
-                            className="w-full pl-6 pr-14 py-3 rounded-3xl bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/40 font-light"
-                          />
-                          <Link to={`/${currentAuthor}/chat`} className="absolute right-1.5 focus:outline-none">
-                            <Button size="icon" className="h-12 w-12 rounded-3xl group-hover:scale-105 transition-transform shadow-none">
-                              <ArrowRight className="h-6 w-6" />
-                            </Button>
-                          </Link>
+                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl mb-8 font-light">
+                      Stelle Fragen an {authors[currentAuthor].name} und erlebe ein Gespräch basierend auf authentischen historischen Quellen.
+                    </p>
+
+                    <div className="space-y-4 max-w-3xl">
+                      <div className="relative group/input">
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-transparent rounded-2xl group-hover/input:from-primary/20 transition-all" />
+                        <div className="relative bg-secondary/50 backdrop-blur p-1 rounded-2xl border border-border/60 hover:border-primary/40 transition-all">
+                          <div className="flex items-center gap-3 px-4 py-3">
+                            <input
+                              type="text"
+                              placeholder={`Was möchtest du ${authors[currentAuthor].name.split(' ')[0]} fragen?`}
+                              className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50 font-light"
+                            />
+                            <Link to={`/${currentAuthor}/chat`}>
+                              <Button size="sm" className="rounded-lg gap-2">
+                                <span className="hidden sm:inline">Chat öffnen</span>
+                                <ArrowRight className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Suggestion Chips */}
-                      <div className="flex flex-wrap gap-3">
-                        {['Erzähl mir von deinem Leben', 'Was waren deine größten Erfolge?', 'Wie war das Römische Reich?'].map((suggestion, i) => (
-                          <Link key={i} to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`} className="px-5 py-2 rounded-full bg-secondary/50 border border-border/40 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all">
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          'Erzähle von deinem Leben',
+                          'Deine größten Erfolge',
+                          'Das Römische Reich'
+                        ].map((suggestion, i) => (
+                          <Link 
+                            key={i} 
+                            to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`}
+                            className="px-3 py-2 rounded-lg text-xs bg-secondary/40 border border-border/40 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all font-medium"
+                          >
                             {suggestion}
                           </Link>
                         ))}
                       </div>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+
+              {/* Quick Navigation Grid */}
+              <div className="mb-16">
+                <div className="flex items-center gap-3 mb-6">
+                  <History className="h-5 w-5 text-primary" />
+                  <h2 className="font-display text-xl font-bold">Erkunde {authors[currentAuthor].name}</h2>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  {/* Biografie Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0 }}
+                  >
+                    <Link to={`/${currentAuthor}/about`} className="group block h-full">
+                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
+                        <div className="p-2.5 bg-blue-500/10 rounded-lg mb-4 w-fit group-hover:bg-blue-500/20 transition-all">
+                          <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                          Biografie
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-1">
+                          Leben, Werdegang und historischer Kontext
+                        </p>
+                        <div className="flex items-center text-xs font-semibold text-primary">
+                          Erfahren <ArrowRight className="w-3 h-3 ml-1" />
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+
+                  {/* Werke Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.05 }}
+                  >
+                    <Link to={`/${currentAuthor}/about`} className="group block h-full">
+                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
+                        <div className="p-2.5 bg-purple-500/10 rounded-lg mb-4 w-fit group-hover:bg-purple-500/20 transition-all">
+                          <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                        </div>
+                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                          Werke
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-1">
+                          Literarische Meisterwerke und Schriften
+                        </p>
+                        <div className="flex items-center text-xs font-semibold text-primary">
+                          Entdecken <ArrowRight className="w-3 h-3 ml-1" />
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+
+                  {/* Tagebuch Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <Link to={`/${currentAuthor}`} className="group block h-full">
+                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
+                        <div className="p-2.5 bg-green-500/10 rounded-lg mb-4 w-fit group-hover:bg-green-500/20 transition-all">
+                          <Scroll className="w-5 h-5 text-green-600 dark:text-green-400" />
+                        </div>
+                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                          Tagebuch
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-1">
+                          Einträge mit Tagebuch- und wissenschaftlicher Perspektive
+                        </p>
+                        <div className="flex items-center text-xs font-semibold text-primary">
+                          Lesen <ArrowRight className="w-3 h-3 ml-1" />
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Secondary Features */}
+              <div className="grid gap-4 md:grid-cols-2 mb-16">
+                {/* Timeline Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 }}
+                >
+                  <Link to="/timeline" className="group block h-full">
+                    <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
+                      <div className="p-2.5 bg-amber-500/10 rounded-lg mb-4 w-fit group-hover:bg-amber-500/20 transition-all">
+                        <History className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      </div>
+                      <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                        Chronologie
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 flex-1">
+                        Interaktive Zeitlinie aller Ereignisse
+                      </p>
+                      <div className="flex items-center text-xs font-semibold text-primary">
+                        Erkunden <ArrowRight className="w-3 h-3 ml-1" />
+                      </div>
+                    </div>
+                  </Link>
                 </motion.div>
 
-                <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="card-modern card-hover-primary card-padding-sm h-full flex flex-col items-start relative overflow-hidden">
-                    <div className="card-icon-container mb-4 group-hover:scale-110 transition-all duration-500">
-                      <User className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      Biografie & Lebenslauf
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-6 flex-1 leading-relaxed font-light">
-                      Erfahren Sie mehr über das Leben, die Errungenschaften und den historischen Kontext.
-                    </p>
-                    <div className="flex items-center text-sm font-bold text-primary mt-auto group-hover:translate-x-1 transition-transform">
-                      Zum Profil <ArrowRight className="w-4 h-4 ml-2" />
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Works Quick Link */}
-                <Link to={`/${currentAuthor}/about`} className="group md:col-span-1">
-                  <div className="card-modern card-hover-primary card-padding-sm h-full flex flex-col items-start relative overflow-hidden">
-                    <div className="card-icon-container mb-4 group-hover:scale-110 transition-all duration-500">
-                      <BookOpen className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      Werke & Schriften
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-6 flex-1 leading-relaxed font-light">
-                      Entdecken Sie die literarischen Meisterwerke und politischen Schriften.
-                    </p>
-                    <div className="flex items-center text-sm font-bold text-primary mt-auto group-hover:translate-x-1 transition-transform">
-                      Zu den Werken <ArrowRight className="w-4 h-4 ml-2" />
-                    </div>
-                  </div>
-                </Link>
-
+                {/* Game Card */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="md:col-span-1"
                 >
-                  <Link to={`/${currentAuthor}/simulation`} className="group h-full block">
-                    <div className="h-full bg-card/60 backdrop-blur-md hover:bg-amber-50/5 dark:hover:bg-amber-950/10 border border-border/40 hover:border-amber-400/50 transition-colors duration-300 rounded-3xl p-6 flex flex-col items-start relative overflow-hidden">
-                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-15 transition-all duration-1000 group-hover:scale-105 group-hover:rotate-6">
-                        <Crown className="w-24 h-24 text-amber-500" />
+                  <Link to={`/${currentAuthor}/simulation`} className="group block h-full">
+                    <div className="h-full bg-gradient-to-br from-amber-500/10 via-card/60 to-background backdrop-blur-md rounded-2xl p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
+                      <div className="p-2.5 bg-amber-500/20 rounded-lg mb-4 w-fit group-hover:bg-amber-500/30 transition-all">
+                        <Gamepad2 className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                       </div>
-
-                      <div className="p-3 bg-amber-100/10 dark:bg-amber-900/30 rounded-3xl mb-4 group-hover:bg-amber-200/20 dark:group-hover:bg-amber-800/40 transition-all duration-500 z-10 group-hover:scale-105">
-                        <Gamepad2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                      </div>
-                      <h3 className="font-display text-xl font-bold mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors z-10">
-                        Textbased Game
+                      <h3 className="font-display text-lg font-bold mb-2 text-amber-700 dark:text-amber-300 group-hover:text-amber-600 transition-colors">
+                        Interaktives Spiel
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-6 flex-1 z-10 leading-relaxed font-light">
-                        Erlebe Geschichte aus der Sicht von {authors[currentAuthor].name.split(' ')[0]}.
-                        <span className="block mt-2 text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">5 Szenarien</span>
+                      <p className="text-sm text-muted-foreground mb-4 flex-1">
+                        Erlebe Geschichte durch Entscheidungen
                       </p>
-                      <div className="flex items-center text-sm font-bold text-amber-600 dark:text-amber-400 mt-auto z-10 group-hover:translate-x-1 transition-transform">
-                        Spielen <ArrowRight className="w-4 h-4 ml-2" />
+                      <div className="flex items-center text-xs font-semibold text-amber-600 dark:text-amber-400">
+                        Spielen <ArrowRight className="w-3 h-3 ml-1" />
                       </div>
                     </div>
                   </Link>
                 </motion.div>
               </div>
 
-              <div className="border-t border-border/50 pt-12">
+              {/* Content Sections */}
+              <div className="space-y-16 border-t border-border/30 pt-12">
                 <OverviewGuide />
                 <BlogList />
               </div>

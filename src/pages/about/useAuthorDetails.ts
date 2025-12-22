@@ -30,6 +30,21 @@ export const useAuthorDetails = (t: (key: string) => string) => ({
       { year: t('cicero_timeline_3_year'), event: t('cicero_timeline_3_event') },
     ],
   },
+  catilina: {
+    birthPlace: t('catilina_birthplace'),
+    achievements: [
+      t('catilina_achievement_0'),
+      t('catilina_achievement_1'),
+      t('catilina_achievement_2'),
+      t('catilina_achievement_3'),
+    ],
+    timeline: [
+      { year: t('catilina_timeline_0_year'), event: t('catilina_timeline_0_event') },
+      { year: t('catilina_timeline_1_year'), event: t('catilina_timeline_1_event') },
+      { year: t('catilina_timeline_2_year'), event: t('catilina_timeline_2_event') },
+      { year: t('catilina_timeline_3_year'), event: t('catilina_timeline_3_event') },
+    ],
+  },
   augustus: {
     birthPlace: t('augustus_birthplace'),
     achievements: [

@@ -14,6 +14,7 @@ import { buildTimelineEvents } from '@/lib/timeline-builder';
 import { BlogPost } from '@/types/blog';
 
 type ContentFilter = 'all' | 'diary' | 'scientific';
+type FilterType = 'all' | 'birth' | 'event' | 'work' | 'death';
 
 const typeIcons = {
   birth: Star,
@@ -67,28 +68,22 @@ export function Timeline() {
     work: t('work'),
   };
 
-      // Content filter: check if associated post has the required content
+  const filteredEvents = useMemo(() => {
+    return timelineEvents.filter((event) => {
+      const authorMatch = selectedAuthors.length === 0 || selectedAuthors.includes(event.author);
+      const typeMatch = selectedType === 'all' || event.type === selectedType;
+
       let contentMatch = true;
       if (contentFilter !== 'all') {
         const post = findPostByEvent(event, posts);
         if (post) {
           contentMatch = hasContent(post, contentFilter);
-        } else {
-          // If no post is associated, don't filter out the event
-          contentMatch = true;
         }
       }
-      
+
       return authorMatch && typeMatch && contentMatch;
     });
-    setContentFilter('all');
-  };
-
-  const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all' || contentFilter);
-      const typeMatch = selectedType === 'all' || event.type === selectedType;
-      return authorMatch && typeMatch;
-    });
-  }, [selectedAuthors, selectedType, timelineEvents]);
+  }, [timelineEvents, selectedAuthors, selectedType, contentFilter, posts]);
 
   const toggleAuthor = (authorId: Author) => {
     setSelectedAuthors(prev =>
@@ -172,6 +167,20 @@ export function Timeline() {
               return (
                 <button
                   key={type}
+                  onClick={() => setSelectedType(type)}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95",
+                    selectedType === type
+                      ? "bg-primary text-primary-foreground "
+                      : "bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+                  <span className="whitespace-nowrap">{type === 'all' ? t('all') : typeLabels[type as keyof typeof typeLabels]}</span>
+                </button>
+              );
+            })}
+          </div>
 
           {/* Content Filter - NEW */}
           <div className="pt-4 border-t border-border/40">
@@ -216,20 +225,6 @@ export function Timeline() {
                 <span className="whitespace-nowrap">📚 Wissenschaftlich</span>
               </button>
             </div>
-          </div>
-                  onClick={() => setSelectedType(type)}
-                  className={cn(
-                    "flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95",
-                    selectedType === type
-                      ? "bg-primary text-primary-foreground "
-                      : "bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary"
-                  )}
-                >
-                  <Icon className="h-3.5 w-3.5 flex-shrink-0" />
-                  <span className="whitespace-nowrap">{type === 'all' ? t('all') : typeLabels[type as keyof typeof typeLabels]}</span>
-                </button>
-              );
-            })}
           </div>
         </div>
 

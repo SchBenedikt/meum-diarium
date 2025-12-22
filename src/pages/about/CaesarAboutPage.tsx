@@ -118,6 +118,37 @@ export function CaesarAboutPage() {
     },
   ];
 
+  const formatYear = (year: number) => {
+    if (Number.isNaN(year)) return '—';
+    if (year === 0) return '0';
+    return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
+  };
+
+  const caesarSidebar = {
+    feldzuege: [
+      { year: -58, title: 'Gallischer Krieg beginnt', note: 'Helvetier, Ariovist – Sicherung Galliens' },
+      { year: -55, title: 'Rheinbrücken & Britannien', note: 'Machtdemonstration, erste Landung' },
+      { year: -52, title: 'Alesia', note: 'Doppelwall, Belagerungsringe gegen Vercingetorix' },
+      { year: -49, title: 'Bürgerkrieg', note: 'Rubikon, Ilerda, Dyrrhachium, Pharsalos' },
+      { year: -48, title: 'Alexandrinischer Krieg', note: 'Pharos-Feuer, Nil-Blockade' },
+      { year: -46, title: 'Thapsus', note: 'Sieg gegen die Optimaten in Afrika' },
+      { year: -45, title: 'Munda', note: 'Letzter Sieg in Hispanien' },
+    ],
+    aemter: [
+      { year: -63, title: 'Pontifex Maximus', note: 'Religiöse Autorität als Machtbasis' },
+      { year: -59, title: 'Konsul', note: 'Populare Gesetzespakete' },
+      { year: -49, title: 'Diktator', note: 'Krisenvollmacht im Bürgerkrieg' },
+      { year: -46, title: 'Diktator (10 Jahre)', note: 'Kalenderreform, Infrastruktur' },
+      { year: -44, title: 'Diktator perpetuo', note: 'Lebenslange Vollmacht' },
+    ],
+    reformen: [
+      { year: -46, title: 'Julianischer Kalender', note: '365 Tage + Schaltjahr, Planungssicherheit' },
+      { year: -49, title: 'Schulden- und Zinsreform', note: 'Deckelung von Forderungen nach Bürgerkrieg' },
+      { year: -46, title: 'Senatsreform', note: 'Erweiterung, Provinzeliten integriert' },
+      { year: -45, title: 'Veteranenansiedlungen', note: 'Landvergabe, Loyalität der Legionen' },
+    ],
+  };
+
   const caesarReformDeep = [
     {
       title: 'Kalenderreform',
@@ -238,34 +269,53 @@ export function CaesarAboutPage() {
         </section>
 
         {/* Reading Guide for Caesar */}
-        <section className="py-10">
+        <section className="py-12 sm:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="card-modern card-padding-md">
-                <h3 className="font-display text-xl font-bold mb-2">Wie lese ich diese Seite?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">Beginne mit der Biografie hier, springe dann in die Chronologie und vertiefe dich in die Einträge. Für Fakten: wissenschaftliche Perspektive. Für Erleben: Tagebuch.</p>
+            <div className="max-w-5xl mx-auto">
+              <div className="mb-8">
+                <h2 className="font-display text-2xl font-bold mb-2">Wie nutzt du diese Seite?</h2>
+                <p className="text-muted-foreground">Wähle deinen Einstiegspunkt:</p>
               </div>
-              <Link to="/timeline" className="card-modern card-padding-md group">
-                <h3 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">Chronologie</h3>
-                <p className="text-sm text-muted-foreground">Überblick über die wichtigsten Stationen – von Gallien bis zu den Iden des März.</p>
-              </Link>
-              <Link to="/caesar" className="card-modern card-padding-md group">
-                <h3 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">Einträge lesen</h3>
-                <p className="text-sm text-muted-foreground">Tagebuch und wissenschaftliche Einordnung – pro Artikel umschaltbar.</p>
-              </Link>
+              <div className="grid gap-4 md:grid-cols-3">
+                <Link to="/timeline" className="card-modern card-hover-primary card-padding-md group">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Calendar className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">Chronologie</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Überblick über die wichtigsten Stationen – von Gallien bis zu den Iden des März.</p>
+                </Link>
+                <Link to="/caesar" className="card-modern card-hover-primary card-padding-md group">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Scroll className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">Tagebuch</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Einträge mit persönlicher und wissenschaftlicher Perspektive.</p>
+                </Link>
+                <div className="card-modern card-padding-md bg-card/40">
+                  <div className="flex items-center gap-3 mb-3">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                    <h3 className="font-display text-lg font-bold">Diese Seite</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Biografie, Werke und Lebenslauf.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
             <div className="lg:col-span-8 space-y-24">
               {/* Works Section */}
               {authorWorks.length > 0 && (
                 <section>
-                  <div className="flex items-center gap-6 mb-12">
-                    <h2 className="font-display text-4xl font-bold">{t('works')}</h2>
-                    <div className="h-px flex-1 bg-white/5" />
+                  <div className="flex items-center gap-4 mb-12">
+                    <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
+                    <div>
+                      <h2 className="font-display text-3xl font-bold">{t('works')}</h2>
+                      <p className="text-sm text-muted-foreground mt-1">Literarische Werke und Schriften</p>
+                    </div>
                   </div>
 
                   <div className="grid gap-6 sm:grid-cols-2">
@@ -276,16 +326,18 @@ export function CaesarAboutPage() {
                         className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
                       >
                         <div className="relative z-10">
-                          <BookOpen className="h-8 w-8 text-primary mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
-                          <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                          <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
+                            <BookOpen className="h-5 w-5 text-primary" />
+                          </div>
+                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
                             {work.title}
                           </h3>
-                          <p className="text-muted-foreground line-clamp-3 mb-8 italic">
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
                             {work.summary}
                           </p>
-                          <div className="flex items-center text-sm font-bold uppercase tracking-widest text-primary gap-2">
-                            <span>{t('readMore')}</span>
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+                          <div className="flex items-center text-xs font-semibold text-primary gap-2">
+                            <span>Lesen</span>
+                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>
                       </Link>
@@ -297,37 +349,42 @@ export function CaesarAboutPage() {
               {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
-                  <div className="flex items-center justify-between mb-12">
-                    <h2 className="font-display text-4xl font-bold">{t('diaryEntries')}</h2>
-                    <Button asChild variant="ghost" className="text-primary hover:text-primary/80 uppercase tracking-widest font-bold text-xs">
+                  <div className="flex items-center justify-between gap-4 mb-12 flex-wrap">
+                    <div className="flex items-center gap-4">
+                      <Scroll className="h-6 w-6 text-primary flex-shrink-0" />
+                      <div>
+                        <h2 className="font-display text-3xl font-bold">{t('diaryEntries')}</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Ausgewählte Einträge</p>
+                      </div>
+                    </div>
+                    <Button asChild variant="secondary" className="text-xs uppercase tracking-widest font-bold">
                       <Link to="/caesar">
-                        {t('viewAllEntries')} <ArrowRight className="h-4 w-4 ml-2" />
+                        {t('viewAllEntries')} <ArrowRight className="h-3 w-3 ml-2" />
                       </Link>
                     </Button>
                   </div>
                   <div className="grid gap-6 md:grid-cols-2">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
-                        <article className="card-modern card-hover-primary card-padding-md relative h-full overflow-hidden">
-                          <div className="relative flex items-center justify-between gap-3 mb-4">
-                            <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
-                              {post.title}
-                            </h3>
-                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                        <article className="card-modern card-hover-primary card-padding-lg relative h-full overflow-hidden flex flex-col">
+                          <div className="mb-4">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1 rounded-full">
                               {post.historicalDate}
                             </span>
                           </div>
-                          <p className="relative text-base text-foreground/85 leading-relaxed line-clamp-3 mb-5">
+                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
                             {post.excerpt}
                           </p>
-                          <div className="relative flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="inline-flex items-center gap-2">
-                              <span className="h-2 w-2 rounded-full bg-primary/60" />
-                              {post.readingTime ? `${post.readingTime} min` : '5 min'} Lesedauer
+                              <Clock className="h-3 w-3" />
+                              {post.readingTime ? `${post.readingTime} min` : '5 min'}
                             </span>
-                            <span className="inline-flex items-center text-primary font-semibold text-sm">
-                              Weiterlesen
-                              <ArrowRight className="ml-2 h-4 w-4" />
+                            <span className="inline-flex items-center text-primary font-semibold gap-1 group-hover:gap-2 transition-all">
+                              Lesen <ArrowRight className="h-3 w-3" />
                             </span>
                           </div>
                         </article>
@@ -355,31 +412,148 @@ export function CaesarAboutPage() {
                     ))}
                   </div>
                 </div>
-
-                {details.timeline && (
-                  <div className="card-modern card-padding-lg md:p-10">
-                    <h3 className="font-display text-3xl font-bold mb-10 flex items-center gap-4">
-                      <Clock className="h-8 w-8 text-primary" />
-                      {t('timeline')}
-                    </h3>
-                    <div className="relative pl-4 space-y-12">
-                      <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
-                      {details.timeline.map((item, i) => (
-                        <div key={i} className="relative">
-                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background" />
-                          <div className="flex flex-col">
-                            <span className="text-primary font-bold text-lg mb-1 tracking-tighter">{item.year}</span>
-                            <span className="text-foreground/70 font-light leading-relaxed italic">{item.event}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Lebenslauf & Stationen - Full Width Section */}
+        <section className="py-24 border-t border-border/40">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-4 mb-12">
+                <Clock className="h-8 w-8 text-primary" />
+                <div>
+                  <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
+                  <p className="text-lg text-muted-foreground mt-2">Die wichtigsten Feldzüge, Ämter und Reformen</p>
+                </div>
+              </div>
+
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Feldzüge & Kriege */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Sword className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Feldzüge & Kriege</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {caesarSidebar.feldzuege.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 2 && (
+                          <Link 
+                            to="/caesar/gallia-und-britannia"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 4 && (
+                          <Link 
+                            to="/caesar/bürgerkrieg-und-herrschaft"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Ämter */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Ämter & Titel</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {caesarSidebar.aemter.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 1 && (
+                          <Link 
+                            to="/caesar/konsulat-und-macht"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 4 && (
+                          <Link 
+                            to="/caesar/diktator-perpetuo"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Reformen */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Landmark className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Reformen</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {caesarSidebar.reformen.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 0 && (
+                          <Link 
+                            to="/caesar/julianischer-kalender"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 2 && (
+                          <Link 
+                            to="/caesar/senatsreform"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline visualization below */}
+              <div className="mt-16 pt-12 border-t border-border/40">
+                <p className="text-center text-muted-foreground mb-8">
+                  Für eine detaillierte Chronologie aller Ereignisse:
+                </p>
+                <div className="flex justify-center gap-4">
+                  <Link 
+                    to="/timeline" 
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Zur vollständigen Chronologie
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Reformen, die blieben */}
         <section className="py-24">
