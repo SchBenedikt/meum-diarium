@@ -110,7 +110,17 @@ export function DemoChatWidget() {
                                     }`}>
                                     {msg.role === 'assistant' ? (
                                         <div className="prose prose-sm max-w-none">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                                            <ReactMarkdown
+                                                remarkPlugins={[remarkGfm]}
+                                                components={{
+                                                    h1: ({ children }) => <h1 className="text-xl sm:text-2xl font-bold mb-2">{children}</h1>,
+                                                    h2: ({ children }) => <h2 className="text-lg sm:text-xl font-bold mb-2">{children}</h2>,
+                                                    h3: ({ children }) => <h3 className="text-base sm:text-lg font-semibold mb-2">{children}</h3>,
+                                                    p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+                                                }}
+                                            >
+                                                {msg.content}
+                                            </ReactMarkdown>
                                         </div>
                                     ) : (
                                         <p className="text-sm leading-relaxed whitespace-pre-line">{msg.content}</p>

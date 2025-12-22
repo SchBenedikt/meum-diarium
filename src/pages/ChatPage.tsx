@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
 import { Send, User, Bot, Sparkles, MessageCircle, ArrowLeft, Map, BookOpen, Search } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageHero } from '@/components/layout/PageHero';
 import { askAI } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
@@ -21,6 +21,8 @@ export default function ChatPage() {
         { role: 'assistant', content: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über meine Feldzüge in Gallien oder meine Pläne für Rom.' }
     ]);
     const [input, setInput] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
+    const bottomRef = useRef<HTMLDivElement | null>(null);
 
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
 
@@ -40,6 +42,7 @@ export default function ChatPage() {
         const question = input.trim();
         setMessages(prev => [...prev, { role: 'user', content: question }]);
         setInput('');
+        setIsTyping(true);
 
         try {
             const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
@@ -58,6 +61,8 @@ export default function ChatPage() {
         } catch (err: any) {
             const msg = err?.message || 'Fehler beim Abruf der KI-Antwort.';
             setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
+        } finally {
+            setIsTyping(false);
         }
 
         // Keep existing fallback for initial Caesar context if none suggested
@@ -70,6 +75,10 @@ export default function ChatPage() {
             }]);
         }
     };
+
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages, isTyping]);
 
     
 
@@ -172,13 +181,52 @@ export default function ChatPage() {
                                         </div>
                                         <div className={`rounded-3xl p-4 max-w-[80%] text-sm sm:text-base leading-relaxed ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card/70 border border-border/60'}`}>
                                             {msg.role === 'assistant' ? (
-                                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                                                <ReactMarkdown
+                                                    remarkPlugins={[remarkGfm]}
+                                                    components={{
+                                                        h1: ({ children }) => <h1 className="text-2xl sm:text-3xl font-bold mb-3">{children}</h1>,
+                                                        h2: ({ children }) => <h2 className="text-xl sm:text-2xl font-bold mb-2">{children}</h2>,
+                                                        h3: ({ children }) => <h3 className="text-lg sm:text-xl font-semibold mb-2">{children}</h3>,
+                                                        p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+                                                        ul: ({ children }) => <ul className="list-disc pl-5 space-y-1">{children}</ul>,
+                                                        ol: ({ children }) => <ol className="list-decimal pl-5 space-y-1">{children}</ol>,
+                                                        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                                                        blockquote: ({ children }) => <blockquote className="border-l-2 border-primary/50 pl-3 italic text-muted-foreground">{children}</blockquote>,
+                                                    }}
+                                                >
+                                                    {msg.content}
+                                                </ReactMarkdown>
                                             ) : (
                                                 msg.content
                                             )}
                                         </div>
                                     </motion.div>
                                 ))}
+
+                                <AnimatePresence>
+                                    {isTyping && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0 }}
+                                            className="flex gap-3"
+                                        >
+                                            <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                                                <Bot className="h-5 w-5 text-muted-foreground" />
+                                            </div>
+                                            <div className="rounded-3xl bg-card/70 border border-border/60 px-4 py-3">
+                                                <div className="flex items-center gap-2 text-muted-foreground text-xs">
+                                                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                                                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0.2s' }} />
+                                                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0.4s' }} />
+                                                    <span className="ml-1">KI antwortet…</span>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+
+                                <div ref={bottomRef} />
                             </div>
                         </ScrollArea>
 
