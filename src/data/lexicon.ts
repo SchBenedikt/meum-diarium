@@ -30,6 +30,9 @@ import triumphzug from '@/content/lexicon/triumphzug';
 import imperator from '@/content/lexicon/imperator';
 import vercingetorix from '@/content/lexicon/vercingetorix';
 import pilum from '@/content/lexicon/pilum';
+import kulturelleBlte from '@/content/lexicon/kulturelle-blte';
+import goldenesZeitalter from '@/content/lexicon/goldenes-zeitalter';
+import weltalterLehre from '@/content/lexicon/weltalter-lehre';
 
 export const lexicon: LexiconEntry[] = [
 
@@ -62,4 +65,7 @@ export const lexicon: LexiconEntry[] = [
   imperator,
   vercingetorix,
   pilum,
+  kulturelleBlte,
+  goldenesZeitalter,
+  weltalterLehre,
 ];

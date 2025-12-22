@@ -26,10 +26,10 @@ export function GeneralAboutPage() {
   const projectDescription = pageTranslation?.projectDescription || pageContent?.projectDescription || t('projectDescription');
 
   const defaultHighlights = useMemo(() => ([
-    { icon: BookOpen, title: t('twoPerspectives'), desc: t('diaryAndScientific') },
-    { icon: Users, title: t('fourAuthors'), desc: t('caesarCiceroAugustusSeneca') },
-    { icon: Clock, title: t('yearsOfHistory'), desc: t('historyToExperience') },
-    { icon: Scroll, title: t('authentic'), desc: t('historicallySound') },
+    { icon: BookOpen, title: t('twoPerspectives'), desc: 'Erlebe Geschichte aus zwei radikal unterschiedlichen Blickwinkeln: Die persönliche, oft humorvolle Tagebuchperspektive und die streng wissenschaftliche Analyse mit Quellenangaben und historischer Einordnung.' },
+    { icon: Users, title: t('fourAuthors'), desc: 'Vier der einflussreichsten Persönlichkeiten der Antike: Caesar, der Eroberer und Staatsmann. Cicero, der brillante Rhetoriker. Augustus, der Friedensbringer. Seneca, der philosophische Berater.' },
+    { icon: Clock, title: '170+ Jahre Geschichte', desc: 'Von Caesars Gallischen Kriegen (58 v. Chr.) bis zu Senecas Selbstmord (65 n. Chr.) – eine Epoche, die unsere Zivilisation prägte. Bürgerkriege, Philosophie, Macht und Moral.' },
+    { icon: Scroll, title: t('authentic'), desc: 'Jeder Eintrag basiert auf historischen Quellen: Caesars Commentarii, Ciceros Briefe und Reden, Augustus Res Gestae, Senecas philosophische Schriften. Wissenschaftlich fundiert, literarisch erzählt.' },
   ]), [t]);
 
   const customHighlights = pageTranslation?.highlights || pageContent?.highlights;
@@ -258,12 +258,69 @@ export function GeneralAboutPage() {
           </div>
         </section>
 
+        {/* Vision & Impact Section */}
+        <section className="py-24 bg-gradient-to-b from-background to-muted/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="font-display text-4xl font-bold mb-4">Unsere Vision</h2>
+              <p className="text-lg text-muted-foreground">Geschichte ist mehr als Jahreszahlen und Schlachten. Sie ist voller Leben, Emotionen und Entscheidungen.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40"
+              >
+                <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Users className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-3">Für Studierende</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">Quellennah, kritisch und methodisch fundiert – ein Werkzeug für das Studium der Alten Geschichte und Klassischen Philologie.</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40"
+              >
+                <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                  <BookOpen className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-3">Für Geschichtsinteressierte</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">Unterhaltsam, zugänglich und trotzdem tiefgehend – erlebe die Antike aus erster Hand, ohne auf Qualität zu verzichten.</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/40"
+              >
+                <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Scroll className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-display text-xl font-bold mb-3">Für Lehrende</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">Ein innovativer Zugang zur römischen Geschichte – nutzen Sie die Inhalte für Unterricht, Seminare und Vorlesungen.</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Team Section */}
         <section className="py-24 bg-muted/20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-display text-4xl font-bold mb-4">{t('ourTeam') || 'Unser Team'}</h2>
-              <p className="text-lg text-muted-foreground">{t('teamDesc') || 'Leidenschaftliche Historiker, Sprachwissenschaftler und Entwickler arbeiten zusammen, um die Vergangenheit lebendig werden zu lassen.'}</p>
+              <p className="text-lg text-muted-foreground mb-8">{t('teamDesc') || 'Leidenschaftliche Historiker, Sprachwissenschaftler und Entwickler arbeiten zusammen, um die Vergangenheit lebendig werden zu lassen.'}</p>
+              <div className="inline-flex flex-wrap gap-4 justify-center">
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-sm font-semibold">Alte Geschichte</span>
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-sm font-semibold">Klassische Philologie</span>
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-sm font-semibold">Digital Humanities</span>
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-sm font-semibold">Web Development</span>
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-sm font-semibold">UX Design</span>
+              </div>
             </div>
           </div>
         </section>
