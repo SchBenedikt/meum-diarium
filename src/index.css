@@ -4,7 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimization: Enable GPU acceleration */
 @layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   /* Mobile safe areas & viewport */
   :root {
