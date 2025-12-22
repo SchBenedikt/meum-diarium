@@ -3,48 +3,17 @@ import { Send, Sparkles, MoreVertical, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
+import { askAI } from '@/lib/api';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
 
-const presetResponses: Record<string, string> = {
-    'rubikon': `"Der Rubikon war mehr als ein Fluss – er war eine unsichtbare Grenze zwischen Legalität und Revolution."
-
-Ich stand an jenem kalten Januarmorgen 49 v. Chr. mit meiner XIII. Legion am Ufer. Das Gesetz verbot mir, bewaffnet die Grenze Italiens zu überschreiten. Doch in Rom warteten meine Feinde.
-
-"Alea iacta est" – Der Würfel ist gefallen, sagte ich. Nicht aus Übermut, sondern aus Notwendigkeit.`,
-    'gallien': `Gallien war mein größtes Werk – und mein härtester Kampf. Acht Jahre lang kämpfte ich gegen die keltischen Stämme.
-
-In "De Bello Gallico" habe ich jeden Feldzug dokumentiert. Die Belagerung von Alesia 52 v. Chr. war der Wendepunkt: wir bauten einen 11 km langen Belagerungsring um 80.000 Gallier.
-
-Vercingetorix, ihr Anführer, kapitulierte persönlich vor mir.`,
-    'angst': `Angst? Ein Feldherr darf keine Angst zeigen – aber er wäre ein Narr, sie nicht zu fühlen.
-
-In jener Nacht am Rubikon wusste ich: Entweder Sieg oder Tod. Die Optimaten im Senat wollten mich vernichten. Pompejus hatte sich gegen mich gewandt.
-
-Doch Furcht lähmt nur den, der ihr nachgibt. Ich wählte das Handeln.`,
-    'default': `Eine interessante Frage! Als Staatsmann und Feldherr habe ich viel erlebt.
-
-Meine Erfahrungen in Gallien, der Übergang des Rubikon, die Bürgerkriege – all dies prägte mein Denken. Wenn du mehr erfahren möchtest, besuche meine vollständige Chat-Seite.
-
-Frage mich gerne etwas Konkretes über meine Feldzüge, meine Reformen oder mein Leben.`,
-};
-
-function getResponse(input: string): string {
-    const lower = input.toLowerCase();
-    if (lower.includes('rubikon') || lower.includes('würfel')) {
-        return presetResponses.rubikon;
-    }
-    if (lower.includes('gallien') || lower.includes('feldzug') || lower.includes('alesia')) {
-        return presetResponses.gallien;
-    }
-    if (lower.includes('angst') || lower.includes('furcht') || lower.includes('mut')) {
-        return presetResponses.angst;
-    }
-    return presetResponses.default;
-}
+// Uses Cloudflare Worker via Pages proxy to fetch real AI responses
+const DEFAULT_PERSONA = 'caesar';
 
 export function DemoChatWidget() {
     const [messages, setMessages] = useState<Message[]>([
@@ -60,7 +29,7 @@ export function DemoChatWidget() {
         }
     }, [messages, isTyping]);
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!input.trim() || isTyping) return;
 
         const userMessage = input.trim();
@@ -68,12 +37,15 @@ export function DemoChatWidget() {
         setInput('');
         setIsTyping(true);
 
-        // Simulate typing delay
-        setTimeout(() => {
-            const response = getResponse(userMessage);
-            setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+        try {
+            const { text } = await askAI(DEFAULT_PERSONA, userMessage);
+            setMessages(prev => [...prev, { role: 'assistant', content: text }]);
+        } catch (err: any) {
+            const msg = err?.message || 'Fehler beim Abruf der KI-Antwort.';
+            setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
+        } finally {
             setIsTyping(false);
-        }, 1500);
+        }
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -136,7 +108,13 @@ export function DemoChatWidget() {
                                         ? 'bg-primary/10 border border-primary/30'
                                         : 'bg-card/70 border border-border/60'
                                     }`}>
-                                    <p className="text-sm leading-relaxed whitespace-pre-line">{msg.content}</p>
+                                    {msg.role === 'assistant' ? (
+                                        <div className="prose prose-sm max-w-none">
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm leading-relaxed whitespace-pre-line">{msg.content}</p>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}

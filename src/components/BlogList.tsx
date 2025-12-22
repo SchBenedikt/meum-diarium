@@ -117,27 +117,11 @@ export function BlogList() {
     <section className="px-4 sm:px-6">
       <div className="">
         {/* Section header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <motion.div
-            variants={fadeUp()}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen className="h-4 w-4 text-primary" />
-              <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
-                {contentFilter === 'diary' ? 'Tagebuch' : contentFilter === 'scientific' ? 'Wissenschaftlich' : 'Alle Beiträge'}
-              </span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-2 text-foreground">
-              Meine <span className="text-primary italic">Kommentare</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground font-light">
-              {filteredPosts.length} Einträge von <span className="italic">{authorInfo.name.split(' ').pop()}</span>
-            </p>
-          </motion.div>
+        <div className="flex items-center gap-2 mb-4">
+          <BookOpen className="h-4 w-4 text-primary" />
+          <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
+            {contentFilter === 'diary' ? 'Tagebuch' : contentFilter === 'scientific' ? 'Wissenschaftlich' : 'Beiträge'}
+          </span>
         </div>
 
         {/* Content Filter Buttons */}
@@ -146,8 +130,8 @@ export function BlogList() {
           <div className="flex items-center gap-4 mb-6">
             <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
             <div>
-              <h2 className="font-display text-3xl font-bold">Tagebucheinträge</h2>
-              <p className="text-muted-foreground text-sm mt-1">Erkunde {authorInfo.name}'s persönliche Aufzeichnungen und Analysen</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold">Einträge</h2>
+              <p className="text-muted-foreground text-sm mt-1">{filteredPosts.length} Einträge von {authorInfo.name}</p>
             </div>
           </div>
 

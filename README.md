@@ -75,3 +75,17 @@ Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/c
 
 
 ---
+
+## AI Integration (Cloudflare Workers)
+
+- Endpoint: `/api/ask?persona=<name>&ask=<frage>`
+- The Pages Function proxies to `https://caesar.schaechner.workers.dev` and returns JSON.
+- Used in the app by `askAI(persona, question)` from `src/lib/api.ts`.
+- Personas align with author IDs, e.g. `caesar`, `cicero`.
+
+Quick test:
+
+```sh
+curl \
+	"http://localhost:5173/api/ask?persona=cicero&ask=$(python -c 'import urllib.parse; print(urllib.parse.quote("Wer bist du? Wer warst du?"))')"
+```

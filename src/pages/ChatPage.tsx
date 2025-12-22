@@ -10,6 +10,9 @@ import { Author } from '@/types/blog';
 import { Send, User, Bot, Sparkles, MessageCircle, ArrowLeft, Map, BookOpen, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageHero } from '@/components/layout/PageHero';
+import { askAI } from '@/lib/api';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
@@ -19,7 +22,7 @@ export default function ChatPage() {
     ]);
     const [input, setInput] = useState('');
 
-    const [resources, setResources] = useState<{ title: string; type: 'map' | 'text'; description: string; link: string }[]>([]);
+    const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
 
     const author = authorId ? authors[authorId as Author] : null;
     const isMinimal = authorId === 'caesar';
@@ -32,25 +35,40 @@ export default function ChatPage() {
 
     if (!author) return null;
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!input.trim()) return;
-        setMessages(prev => [...prev, { role: 'user', content: input }]);
+        const question = input.trim();
+        setMessages(prev => [...prev, { role: 'user', content: question }]);
         setInput('');
 
-        // Mock response and resource suggestion
-        setTimeout(() => {
-            setMessages(prev => [...prev, { role: 'assistant', content: 'Dies ist eine Demonstration der Chat-Funktion. In Kürze werde ich dir basierend auf meinen historischen Schriften antworten können.' }]);
-
-            // Simulating a context trigger for Caesar
-            if (authorId === 'caesar' && resources.length === 0) {
-                setResources(prev => [...prev, {
-                    title: 'Gallien Feldzug Karte',
-                    type: 'map',
-                    description: 'Übersichtskarte der Feldzüge 58 v. Chr.',
-                    link: '/caesar/works/de-bello-gallico'
-                }]);
+        try {
+            const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
+            setMessages(prev => [...prev, { role: 'assistant', content: text }]);
+            if (suggested && suggested.length) {
+                // Merge suggestions, avoid duplicates by link
+                setResources(prev => {
+                    const existingLinks = new Set(prev.map(r => r.link));
+                    const merged = [...prev];
+                    for (const s of suggested) {
+                        if (!existingLinks.has(s.link)) merged.push(s);
+                    }
+                    return merged;
+                });
             }
-        }, 1000);
+        } catch (err: any) {
+            const msg = err?.message || 'Fehler beim Abruf der KI-Antwort.';
+            setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
+        }
+
+        // Keep existing fallback for initial Caesar context if none suggested
+        if (authorId === 'caesar' && resources.length === 0) {
+            setResources(prev => [...prev, {
+                title: 'Gallien Feldzug Karte',
+                type: 'map',
+                description: 'Übersichtskarte der Feldzüge 58 v. Chr.',
+                link: '/caesar/works/de-bello-gallico'
+            }]);
+        }
     };
 
     
@@ -153,7 +171,11 @@ export default function ChatPage() {
                                             {msg.role === 'user' ? <User className="h-5 w-5" /> : <img src={author.heroImage} className="h-full w-full object-cover" />}
                                         </div>
                                         <div className={`rounded-3xl p-4 max-w-[80%] text-sm sm:text-base leading-relaxed ${msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card/70 border border-border/60'}`}>
-                                            {msg.content}
+                                            {msg.role === 'assistant' ? (
+                                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                                            ) : (
+                                                msg.content
+                                            )}
                                         </div>
                                     </motion.div>
                                 ))}

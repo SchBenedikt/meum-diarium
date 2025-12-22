@@ -1,7 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
-import { OverviewGuide } from '@/components/OverviewGuide';
 import { LandingHero } from '@/components/LandingHero';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
@@ -11,7 +10,7 @@ import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, User, BookOpen, ArrowRight, Scroll, Crown, Gamepad2, Zap, History } from 'lucide-react';
+import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -25,6 +24,8 @@ const Index = () => {
       setCurrentAuthor(null);
     }
   }, [authorId, setCurrentAuthor]);
+
+  // const showTimelineCard = currentAuthor !== 'caesar'; // Removed as no longer used
 
   if (authorId && !authors[authorId as Author]) {
     return <NotFound />;
@@ -107,147 +108,22 @@ const Index = () => {
                 </div>
               </motion.div>
 
-              {/* Quick Navigation Grid */}
-              <div className="mb-16">
-                <div className="flex items-center gap-3 mb-6">
-                  <History className="h-5 w-5 text-primary" />
-                  <h2 className="font-display text-xl font-bold">Erkunde {authors[currentAuthor].name}</h2>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-3">
-                  {/* Biografie Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0 }}
-                  >
-                    <Link to={`/${currentAuthor}/about`} className="group block h-full">
-                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
-                        <div className="p-2.5 bg-blue-500/10 rounded-lg mb-4 w-fit group-hover:bg-blue-500/20 transition-all">
-                          <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        </div>
-                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                          Biografie
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4 flex-1">
-                          Leben, Werdegang und historischer Kontext
-                        </p>
-                        <div className="flex items-center text-xs font-semibold text-primary">
-                          Erfahren <ArrowRight className="w-3 h-3 ml-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-
-                  {/* Werke Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.05 }}
-                  >
-                    <Link to={`/${currentAuthor}/about`} className="group block h-full">
-                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
-                        <div className="p-2.5 bg-purple-500/10 rounded-lg mb-4 w-fit group-hover:bg-purple-500/20 transition-all">
-                          <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                        </div>
-                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                          Werke
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4 flex-1">
-                          Literarische Meisterwerke und Schriften
-                        </p>
-                        <div className="flex items-center text-xs font-semibold text-primary">
-                          Entdecken <ArrowRight className="w-3 h-3 ml-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-
-                  {/* Tagebuch Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <Link to={`/${currentAuthor}`} className="group block h-full">
-                      <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
-                        <div className="p-2.5 bg-green-500/10 rounded-lg mb-4 w-fit group-hover:bg-green-500/20 transition-all">
-                          <Scroll className="w-5 h-5 text-green-600 dark:text-green-400" />
-                        </div>
-                        <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                          Tagebuch
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4 flex-1">
-                          Einträge mit Tagebuch- und wissenschaftlicher Perspektive
-                        </p>
-                        <div className="flex items-center text-xs font-semibold text-primary">
-                          Lesen <ArrowRight className="w-3 h-3 ml-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
+              {/* Minimal Tools Row */}
+              <div className="mb-12">
+                <div className="flex flex-wrap gap-3">
+                  <Link to={`/${currentAuthor}/simulation`}>
+                    <Button variant="secondary" className="rounded-lg gap-2">
+                      Interaktives Spiel
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
-              {/* Secondary Features */}
-              <div className="grid gap-4 md:grid-cols-2 mb-16">
-                {/* Timeline Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.15 }}
-                >
-                  <Link to="/timeline" className="group block h-full">
-                    <div className="h-full bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border/40 hover:border-primary/50 transition-all duration-300 flex flex-col">
-                      <div className="p-2.5 bg-amber-500/10 rounded-lg mb-4 w-fit group-hover:bg-amber-500/20 transition-all">
-                        <History className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      </div>
-                      <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                        Chronologie
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4 flex-1">
-                        Interaktive Zeitlinie aller Ereignisse
-                      </p>
-                      <div className="flex items-center text-xs font-semibold text-primary">
-                        Erkunden <ArrowRight className="w-3 h-3 ml-1" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
 
-                {/* Game Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <Link to={`/${currentAuthor}/simulation`} className="group block h-full">
-                    <div className="h-full bg-gradient-to-br from-amber-500/10 via-card/60 to-background backdrop-blur-md rounded-2xl p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 flex flex-col">
-                      <div className="p-2.5 bg-amber-500/20 rounded-lg mb-4 w-fit group-hover:bg-amber-500/30 transition-all">
-                        <Gamepad2 className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      </div>
-                      <h3 className="font-display text-lg font-bold mb-2 text-amber-700 dark:text-amber-300 group-hover:text-amber-600 transition-colors">
-                        Interaktives Spiel
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4 flex-1">
-                        Erlebe Geschichte durch Entscheidungen
-                      </p>
-                      <div className="flex items-center text-xs font-semibold text-amber-600 dark:text-amber-400">
-                        Spielen <ArrowRight className="w-3 h-3 ml-1" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              </div>
 
               {/* Content Sections */}
               <div className="space-y-16 border-t border-border/30 pt-12">
-                <OverviewGuide />
                 <BlogList />
               </div>
             </div>

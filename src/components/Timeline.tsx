@@ -114,8 +114,19 @@ export function Timeline() {
   return (
     <section className="py-8 sm:py-12">
       <div className="container mx-auto px-4">
+        <div className="mb-6 flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+          {[{ label: 'Späte Republik', tone: 'from-amber-500/25 via-amber-500/10 to-transparent' }, { label: 'Bürgerkriege', tone: 'from-red-500/25 via-red-500/10 to-transparent' }, { label: 'Principat', tone: 'from-indigo-500/25 via-indigo-500/10 to-transparent' }, { label: 'Stoa & Briefe', tone: 'from-emerald-500/25 via-emerald-500/10 to-transparent' }].map(({ label, tone }) => (
+            <span
+              key={label}
+              className={`px-3 py-1 rounded-full bg-gradient-to-r ${tone} border border-border/60 backdrop-blur-sm font-semibold text-[10px]`}
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+
         {/* Filters - mobile optimized */}
-        <div className="mb-8 sm:mb-10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-border/40 bg-card/60 backdrop-blur-xl space-y-4 sm:space-y-6">
+        <div className="mb-8 sm:mb-10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-border/40 bg-gradient-to-br from-card/80 via-card/60 to-background/80 backdrop-blur-xl shadow-[0_25px_90px_-60px_rgba(0,0,0,0.65)] space-y-4 sm:space-y-6">
           <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted-foreground" />
@@ -230,7 +241,7 @@ export function Timeline() {
 
         {/* Horizontal Timeline Bar */}
         <div className="mb-12 px-4">
-          <div className="relative h-3 bg-secondary/50 rounded-full">
+          <div className="relative h-3 bg-gradient-to-r from-primary/20 via-secondary/50 to-emerald-500/20 rounded-full overflow-hidden">
             {filteredEvents.map((event, idx) => {
               const position = Number.isFinite(event.year)
                 ? ((event.year - minYear) / totalRange) * 100
@@ -256,9 +267,9 @@ export function Timeline() {
                   whileTap={{ scale: 0.9 }}
                   onClick={handleBarClick}
                   className={cn(
-                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 ",
+                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]",
                     `bg-author-${event.author || 'caesar'}`,
-                    isBarHovered ? "h-5 w-5 z-10  ring-2 ring-background" : "h-3 w-3"
+                    isBarHovered ? "h-5 w-5 z-10 ring-4 ring-background" : "h-3.5 w-3.5"
                   )}
                   style={{
                     left: `${position}%`,
@@ -322,13 +333,19 @@ export function Timeline() {
                     )}>
                       <motion.div
                         className={cn(
-                          "inline-block bg-card/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border transition-all duration-300 text-left touch-manipulation",
-                          post ? 'cursor-pointer hover: active:' : '',
+                          "inline-block bg-gradient-to-br from-card/80 via-card/60 to-background/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border transition-all duration-300 text-left touch-manipulation shadow-[0_25px_80px_-60px_rgba(0,0,0,0.65)]",
+                          post ? 'cursor-pointer' : '',
                           isHovered && post
                             ? `border-author-${event.author || 'caesar'} `
-                            : "border-border/40 hover:border-border/60",
+                            : "border-border/50 hover:border-border/70",
                           isLeft ? "md:ml-auto" : ""
                         )}
+                        style={{
+                          boxShadow: isHovered
+                            ? `0 20px 60px -30px ${author?.color || 'rgba(0,0,0,0.45)'}`
+                            : undefined,
+                          borderColor: isHovered && author?.color ? author.color : undefined,
+                        }}
                       >
                         {/* Header - mobile optimized */}
                         <div className={cn(
@@ -354,6 +371,14 @@ export function Timeline() {
                           )}>
                             {typeLabels[event.type]}
                           </span>
+                          {author && (
+                            <span
+                              className="px-2 py-0.5 rounded-full text-[10px] font-semibold border border-border/40"
+                              style={{ backgroundColor: `${author.color}1a`, color: author.color }}
+                            >
+                              {author.name}
+                            </span>
+                          )}
                         </div>
 
                         {/* Content - mobile optimized */}
@@ -467,6 +492,4 @@ export function Timeline() {
     </section>
   );
 }
-
-type FilterType = 'all' | 'birth' | 'death' | 'event' | 'work';
 

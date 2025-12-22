@@ -217,3 +217,32 @@ export async function deleteWorkDetails(slug: string) {
     if (!res.ok) throw new Error('Failed to delete work details');
     return res.json();
 }
+
+// ============ AI (Cloudflare Worker) ============
+
+type AiResource = { title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string };
+export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    const url = isDev
+        ? new URL('https://caesar.schaechner.workers.dev/')
+        : new URL('/api/ask', origin || '');
+    url.searchParams.set('persona', persona);
+    url.searchParams.set('ask', question);
+    const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
+    if (sitemap) url.searchParams.set('sitemap', sitemap);
+
+    const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { 'accept': 'application/json' }
+    });
+    if (!res.ok) {
+        throw new Error(`AI request failed: ${res.status} ${res.statusText}`);
+    }
+    const json = await res.json();
+    // Worker returns shape: { persona, inputs, response: { response: string }, resources?: [] }
+    const text = json?.response?.response ?? json?.response ?? JSON.stringify(json);
+    const resources: AiResource[] | undefined = json?.resources;
+    const finalText = typeof text === 'string' ? text : String(text);
+    return { text: finalText, resources };
+}

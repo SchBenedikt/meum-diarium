@@ -245,7 +245,7 @@ export function CaesarAboutPage() {
                 <h1 className="font-display text-6xl sm:text-7xl font-bold mb-4 tracking-tighter text-foreground">
                   {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
                 </h1>
-                <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
+                <p className="text-2xl sm:text-3xl text-muted-foreground font-display mb-6">
                   {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
                 </p>
                 <div className="flex items-center gap-6">
@@ -262,41 +262,6 @@ export function CaesarAboutPage() {
               <div className="lg:col-span-5">
                 <div className="rounded-3xl overflow-hidden border border-border/40 bg-card/30">
                   <img src={authorInfo.heroImage} alt={authorInfo.name} className="w-full h-full object-cover" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Reading Guide for Caesar */}
-        <section className="py-12 sm:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-5xl mx-auto">
-              <div className="mb-8">
-                <h2 className="font-display text-2xl font-bold mb-2">Wie nutzt du diese Seite?</h2>
-                <p className="text-muted-foreground">Wähle deinen Einstiegspunkt:</p>
-              </div>
-              <div className="grid gap-4 md:grid-cols-3">
-                <Link to="/timeline" className="card-modern card-hover-primary card-padding-md group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Calendar className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">Chronologie</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Überblick über die wichtigsten Stationen – von Gallien bis zu den Iden des März.</p>
-                </Link>
-                <Link to="/caesar" className="card-modern card-hover-primary card-padding-md group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Scroll className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">Tagebuch</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Einträge mit persönlicher und wissenschaftlicher Perspektive.</p>
-                </Link>
-                <div className="card-modern card-padding-md bg-card/40">
-                  <div className="flex items-center gap-3 mb-3">
-                    <BookOpen className="h-5 w-5 text-primary" />
-                    <h3 className="font-display text-lg font-bold">Diese Seite</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Biografie, Werke und Lebenslauf.</p>
                 </div>
               </div>
             </div>
