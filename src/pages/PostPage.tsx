@@ -47,6 +47,16 @@ function PostContent({ post }: { post: BlogPost }) {
 
   const contentToDisplay = post?.content[perspective];
 
+  // Determine which title to display based on perspective
+  const getDisplayTitle = () => {
+    if (perspective === 'diary' && post.diaryTitle) {
+      return post.diaryTitle;
+    } else if (perspective === 'scientific' && post.scientificTitle) {
+      return post.scientificTitle;
+    }
+    return post.title; // Fallback to default title
+  };
+
   const readingTime = useMemo(() => {
     if (!contentToDisplay) return 0;
     return calculateReadingTime(contentToDisplay);
@@ -88,7 +98,9 @@ function PostContent({ post }: { post: BlogPost }) {
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="relative bg-card p-4 sm:p-6 md:p-10 rounded-lg  lg:-mt-32 pb-12 md:pb-16"
               >
-                <header className="mb-8 md:mb-10 text-left">
+                <header clerspective === 'diary' && '📔 '}
+                        {perspective === 'scientific' && '📚 '}
+                        {getDisplayTitle()mb-8 md:mb-10 text-left">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                     <div className='flex-1'>
                       {post.latinTitle && (

@@ -1,9 +1,8 @@
-
 import { useState, useMemo, useEffect } from 'react';
 import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { authors as baseAuthors } from '@/data/authors';
 import { cn } from '@/lib/utils';
-import { Calendar, Star, BookOpen, Skull, Filter, X } from 'lucide-react';
+import { Calendar, Star, BookOpen, Skull, Filter, X, BookMarked, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Author, TimelineEvent, AuthorInfo } from '@/types/blog';
 import { Link } from 'react-router-dom';
@@ -13,6 +12,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline, getTranslatedAuthors } from '@/lib/translator';
 import { buildTimelineEvents } from '@/lib/timeline-builder';
 import { BlogPost } from '@/types/blog';
+
+type ContentFilter = 'all' | 'diary' | 'scientific';
 
 const typeIcons = {
   birth: Star,
@@ -31,6 +32,12 @@ const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
   );
 }
 
+// Helper function to check if a post has content for a specific perspective
+const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
+  const content = post?.content?.[perspective];
+  return content != null && typeof content === 'string' && content.trim().length > 0;
+};
+
 export function Timeline() {
   const { language, t } = useLanguage();
   const { posts } = usePosts();
@@ -39,6 +46,7 @@ export function Timeline() {
 
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>('all');
+  const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
   const [hoveredEvent, setHoveredEvent] = useState<string | null>(null);
 
   useEffect(() => {
@@ -59,10 +67,24 @@ export function Timeline() {
     work: t('work'),
   };
 
-  const filteredEvents = useMemo(() => {
-    return timelineEvents.filter(event => {
-      const authorMatch = selectedAuthors.length === 0 ||
-        (event.author && selectedAuthors.includes(event.author));
+      // Content filter: check if associated post has the required content
+      let contentMatch = true;
+      if (contentFilter !== 'all') {
+        const post = findPostByEvent(event, posts);
+        if (post) {
+          contentMatch = hasContent(post, contentFilter);
+        } else {
+          // If no post is associated, don't filter out the event
+          contentMatch = true;
+        }
+      }
+      
+      return authorMatch && typeMatch && contentMatch;
+    });
+    setContentFilter('all');
+  };
+
+  const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all' || contentFilter);
       const typeMatch = selectedType === 'all' || event.type === selectedType;
       return authorMatch && typeMatch;
     });
@@ -150,6 +172,51 @@ export function Timeline() {
               return (
                 <button
                   key={type}
+
+          {/* Content Filter - NEW */}
+          <div className="pt-4 border-t border-border/40">
+            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              Nach Inhalt filtern
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setContentFilter('all')}
+                className={cn(
+                  'flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95',
+                  contentFilter === 'all'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary'
+                )}
+              >
+                <BookMarked className="h-3.5 w-3.5 flex-shrink-0" />
+                <span className="whitespace-nowrap">Alle</span>
+              </button>
+              <button
+                onClick={() => setContentFilter('diary')}
+                className={cn(
+                  'flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95',
+                  contentFilter === 'diary'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary'
+                )}
+              >
+                <BookOpen className="h-3.5 w-3.5 flex-shrink-0" />
+                <span className="whitespace-nowrap">📔 Tagebuch</span>
+              </button>
+              <button
+                onClick={() => setContentFilter('scientific')}
+                className={cn(
+                  'flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95',
+                  contentFilter === 'scientific'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary active:bg-secondary'
+                )}
+              >
+                <GraduationCap className="h-3.5 w-3.5 flex-shrink-0" />
+                <span className="whitespace-nowrap">📚 Wissenschaftlich</span>
+              </button>
+            </div>
+          </div>
                   onClick={() => setSelectedType(type)}
                   className={cn(
                     "flex items-center gap-2 px-3 py-2 min-h-[40px] rounded-lg text-sm transition-all duration-200 touch-manipulation active:scale-95",

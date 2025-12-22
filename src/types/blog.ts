@@ -44,7 +44,9 @@ export interface SidebarFact {
 }
 
 export interface BlogPostTranslations {
-  title: string;
+  title?: string; // Kept for backward compatibility
+  diaryTitle?: string;
+  scientificTitle?: string;
   excerpt: string;
   content: {
     diary: string;
@@ -56,7 +58,9 @@ export interface BlogPostTranslations {
 export interface BlogPost {
   id: string;
   slug: string;
-  title: string;
+  title: string; // Kept for backward compatibility - can fallback to diaryTitle
+  diaryTitle?: string; // Title for diary perspective
+  scientificTitle?: string; // Title for scientific perspective
   latinTitle?: string;
   excerpt: string;
   date: string;

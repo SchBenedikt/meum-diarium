@@ -202,10 +202,18 @@ app.get('/api/posts', async (req, res) => {
                             author: author,
                             slug: extractString(content, 'slug') || file.replace('.ts', ''),
                             title: extractString(content, 'title'),
+                            diaryTitle: extractString(content, 'diaryTitle'),
+                            scientificTitle: extractString(content, 'scientificTitle'),
                             excerpt: extractString(content, 'excerpt'),
                             historicalDate: extractString(content, 'historicalDate'),
-                            readingTime: extractNumber(content, 'readingTime') || 5, // Default to 5 if missing
-                            tags: extractStringArray(content, 'tags')
+                            historicalYear: extractNumber(content, 'historicalYear'),
+                            readingTime: extractNumber(content, 'readingTime') || 5,
+                            tags: extractStringArray(content, 'tags'),
+                            coverImage: extractString(content, 'coverImage'),
+                            content: {
+                                diary: extractTemplateLiteral(content, 'diary'),
+                                scientific: extractTemplateLiteral(content, 'scientific')
+                            }
                         });
                     }
                 }
@@ -273,6 +281,8 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
             slug: extractString(content, 'slug'),
             author: extractString(content, 'author'),
             title: extractString(content, 'title'),
+            diaryTitle: extractString(content, 'diaryTitle'),
+            scientificTitle: extractString(content, 'scientificTitle'),
             latinTitle: extractString(content, 'latinTitle'),
             excerpt: extractString(content, 'excerpt'),
             historicalDate: extractString(content, 'historicalDate'),
@@ -297,7 +307,7 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
 // POST creates a new post file
 app.post('/api/posts', async (req, res) => {
     try {
-        const { id, slug, author, title, content, excerpt, translations, tags, historicalDate, historicalYear, readingTime, coverImage, latinTitle } = req.body;
+        const { id, slug, author, title, diaryTitle, scientificTitle, content, excerpt, translations, tags, historicalDate, historicalYear, readingTime, coverImage, latinTitle } = req.body;
 
         if (!author || !slug || !title) {
             return res.status(400).json({ error: 'Missing required fields' });
@@ -319,6 +329,8 @@ const post: BlogPost = {
   slug: '${safeSlug}',
   author: '${author}',
   title: '${escapeString(title)}',
+  ${diaryTitle ? `diaryTitle: '${escapeString(diaryTitle)}',` : ''}
+  ${scientificTitle ? `scientificTitle: '${escapeString(scientificTitle)}',` : ''}
   ${latinTitle ? `latinTitle: '${escapeString(latinTitle)}',` : ''}
   excerpt: '${escapeString(excerpt || '')}',
   historicalDate: '${escapeString(historicalDate || '')}',
