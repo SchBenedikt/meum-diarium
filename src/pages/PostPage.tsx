@@ -98,9 +98,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="relative bg-card p-4 sm:p-6 md:p-10 rounded-lg  lg:-mt-32 pb-12 md:pb-16"
               >
-                <header clerspective === 'diary' && '📔 '}
-                        {perspective === 'scientific' && '📚 '}
-                        {getDisplayTitle()mb-8 md:mb-10 text-left">
+                <header className="mb-8 md:mb-10 text-left">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                     <div className='flex-1'>
                       {post.latinTitle && (
