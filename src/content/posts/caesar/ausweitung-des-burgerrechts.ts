@@ -4,14 +4,14 @@ const post: BlogPost = {
   id: 'ausweitung-des-burgerrechts',
   slug: 'ausweitung-des-burgerrechts',
   author: 'caesar',
-  title: 'Bürgerrecht erweitert',
+  title: 'Erweiterung des Bürgerrechts',
   latinTitle: 'Civitas Amplificata',
   excerpt: 'Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.',
   historicalDate: '49–46 v. Chr.',
   historicalYear: -49,
   date: new Date().toISOString().split('T')[0],
   readingTime: 10,
-  tags: ['Reform','Staatsrecht','Integration','Provinzen'],
+  tags: ["Reform","Staatsrecht","Integration","Provinzen"],
   coverImage: '/images/caesar-hero.jpg',
   content: {
     diary: `Viele sehen nur meine Legionen. Ich sehe die Menschen, aus denen ein Reich besteht. Ein Staat, der nur herrscht, ohne zu integrieren, regiert kurz. Ein Staat, der Talente aufnimmt, regiert lang.
@@ -38,12 +38,26 @@ Manche nannten es Entweihung der alten Ordnung. Ich nenne es Erweiterung der Ord
 - **Zentrums-Peripherie-Ausgleich**: Rom als integrativer Kern statt reiner Eroberer.
 - **Langfristiges Vermächtnis**: Grundlage für die Reichsverwaltung des Prinzipats.
 
-Die Bürgerrechtsausweitung dient der Staatskonsolidierung: Ein Imperium wird tragfähig, wenn es Zugehörigkeit schafft.`,
+Die Bürgerrechtsausweitung dient der Staatskonsolidierung: Ein Imperium wird tragfähig, wenn es Zugehörigkeit schafft.`
   },
   translations: {
-    en: { title: '', excerpt: '', content: { diary: '', scientific: '' } },
-    la: { title: '', excerpt: '', content: { diary: '', scientific: '' } },
+  "en": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
   },
+  "la": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  }
+}
 };
 
 export default post;
