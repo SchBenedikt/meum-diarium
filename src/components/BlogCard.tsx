@@ -27,6 +27,21 @@ export function BlogCard({ post, className }: BlogCardProps) {
   const displayExcerpt =
     post.excerpt || generateExcerpt(post.content?.diary || post.content?.scientific || '', 150);
 
+  // Determine which title to display based on content availability
+  const hasDiary = post.content?.diary && post.content.diary.trim().length > 0;
+  const hasScientific = post.content?.scientific && post.content.scientific.trim().length > 0;
+  
+  let displayTitle = post.title;
+  
+  if (hasDiary && !hasScientific && post.diaryTitle) {
+    displayTitle = post.diaryTitle;
+  } else if (hasScientific && !hasDiary && post.scientificTitle) {
+    displayTitle = post.scientificTitle;
+  } else if (hasDiary && hasScientific) {
+    // Both available, prefer diary title if set, otherwise scientific, fallback to title
+    displayTitle = post.diaryTitle || post.scientificTitle || post.title;
+  }
+
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
@@ -70,7 +85,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
           {/* Title + excerpt */}
           <div className="flex-grow space-y-2.5">
             <h3 className="font-display text-lg sm:text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2 leading-tight">
-              {post.title}
+              {displayTitle}
             </h3>
 
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed line-clamp-2 sm:line-clamp-3">

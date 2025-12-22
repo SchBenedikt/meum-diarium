@@ -22,6 +22,8 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
     // Simple state for form for now
     const [formData, setFormData] = useState({
         title: post?.title || '',
+        diaryTitle: post?.diaryTitle || '',
+        scientificTitle: post?.scientificTitle || '',
         slug: post?.slug || '',
         author: post?.author || 'caesar',
         excerpt: post?.excerpt || '',
@@ -38,7 +40,9 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 id: post?.id || Date.now().toString(), // simplified ID gen
                 slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-'),
                 author: formData.author,
-                title: formData.title,
+                title: formData.title || formData.diaryTitle || formData.scientificTitle || '',
+                diaryTitle: formData.diaryTitle,
+                scientificTitle: formData.scientificTitle,
                 excerpt: formData.excerpt,
                 content: {
                     diary: formData.contentDiary,
@@ -80,13 +84,11 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label>Title</Label>
+                    <div className=Legacy Title (Fallback)</Label>
                             <Input
                                 value={formData.title}
                                 onChange={e => setFormData({ ...formData, title: e.target.value })}
-                                required
+                                placeholder="Optional: Falls beide Titel leer sind"
                             />
                         </div>
                         <div className="space-y-2">
@@ -99,15 +101,51 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         </div>
                     </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-primary/20 rounded-lg bg-primary/5">
+                        <div className="space-y-2">
+                            <Label className="text-primary flex items-center gap-2">
+                                📔 Tagebuch-Titel
+                            </Label>
+                            <Input
+                                value={formData.diaryTitle}
+                                onChange={e => setFormData({ ...formData, diaryTitle: e.target.value })}
+                                placeholder="Titel für Tagebuch-Perspektive"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label className="text-primary flex items-center gap-2">
+                                📚 Wissenschaftlicher Titel
+                            </Label>
+                            <Input
+                                value={formData.scientificTitle}
+                                onChange={e => setFormData({ ...formData, scientificTitle: e.target.value })}
+                                placeholder="Titel für wissenschaftliche Perspektiv
+                                onChange={e => setFormData({ ...formData, slug: e.target.value })}
+                                placeholder="Auto-generated from title"
+                            />
+                        </div>
+                    </div>
+
                     <div className="space-y-2">
                         <Label>Author</Label>
                         <Select
                             value={formData.author}
-                            onValueChange={(val: Author) => setFormData({ ...formData, author: val })}
-                        >
-                            <SelectTrigger>
-                                <SelectValue />
-                            </SelectTrigger>
+                            onV📔 Content (Tagebuch)</Label>
+                        <Textarea
+                            className="min-h-[200px] font-mono"
+                            value={formData.contentDiary}
+                            onChange={e => setFormData({ ...formData, contentDiary: e.target.value })}
+                            placeholder="Persönlicher Tagebuch-Inhalt..."
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label>📚 Content (Wissenschaftlich)</Label>
+                        <Textarea
+                            className="min-h-[200px] font-mono"
+                            value={formData.contentScientific}
+                            onChange={e => setFormData({ ...formData, contentScientific: e.target.value })}
+                            placeholder="Wissenschaftlicher Inhalt..."
                             <SelectContent>
                                 <SelectItem value="caesar">Caesar</SelectItem>
                                 <SelectItem value="cicero">Cicero</SelectItem>

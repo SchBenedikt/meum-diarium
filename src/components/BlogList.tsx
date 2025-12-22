@@ -2,16 +2,21 @@
 import { useAuthor } from '@/context/AuthorContext';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, GraduationCap, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 import { SearchFilter } from './SearchFilter';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { cn } from '@/lib/utils';
+import { BlogPost } from '@/types/blog';
+
+type ContentFilter = 'all' | 'diary' | 'scientific';
 
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
   const { posts, isLoading } = usePosts();
   const [searchQuery, setSearchQuery] = useState('');
+  const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
 
   if (!currentAuthor || !authorInfo) return null;
   if (isLoading) {
@@ -19,13 +24,30 @@ export function BlogList() {
     return <div>Loading...</div>;
   }
 
+  // Helper function to check if a post has content for a specific perspective
+  const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
+    const content = post?.content?.[perspective];
+    return content != null && typeof content === 'string' && content.trim().length > 0;
+  };
+
   const filteredPosts = posts
     .filter((post) => post.author === currentAuthor)
+    .filter((post) => {
+      // Filter by content type
+      if (contentFilter === 'diary') {
+        return hasContent(post, 'diary');
+      } else if (contentFilter === 'scientific') {
+        return hasContent(post, 'scientific');
+      }
+      return true; // 'all' shows everything
+    })
     .filter((post) => {
       if (!searchQuery.trim()) return true;
       const query = searchQuery.toLowerCase();
       return (
         post.title.toLowerCase().includes(query) ||
+        (post.diaryTitle && post.diaryTitle.toLowerCase().includes(query)) ||
+        (post.scientificTitle && post.scientificTitle.toLowerCase().includes(query)) ||
         post.excerpt.toLowerCase().includes(query) ||
         post.tags.some(tag => tag.toLowerCase().includes(query))
       );
@@ -36,6 +58,30 @@ export function BlogList() {
       const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
       return ay - by;
     });
+
+  // Count posts with content for each perspective
+  const counts = useMemo(() => {
+    if (!posts || posts.length === 0) {
+      return { all: 0, diary: 0, scientific: 0 };
+    }
+    
+    const authorPosts = posts.filter(p => p.author === currentAuthor);
+    
+    // Helper function (same as above)
+    const hasContentMemo = (post: BlogPost, perspective: 'diary' | 'scientific') => {
+      const content = post?.content?.[perspective];
+      return content != null && typeof content === 'string' && content.trim().length > 0;
+    };
+    
+    const diaryCount = authorPosts.filter(p => hasContentMemo(p, 'diary')).length;
+    const scientificCount = authorPosts.filter(p => hasContentMemo(p, 'scientific')).length;
+    
+    return {
+      all: authorPosts.length,
+      diary: diaryCount,
+      scientific: scientificCount,
+    };
+  }, [posts, currentAuthor]);
 
   return (
     <section className="px-4 sm:px-6">
@@ -52,7 +98,7 @@ export function BlogList() {
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-4 w-4 text-primary" />
               <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
-                Tagebuch
+                {contentFilter === 'diary' ? 'Tagebuch' : contentFilter === 'scientific' ? 'Wissenschaftlich' : 'Alle Beiträge'}
               </span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-2 text-foreground">
@@ -62,6 +108,46 @@ export function BlogList() {
               {filteredPosts.length} Einträge von <span className="italic">{authorInfo.name.split(' ').pop()}</span>
             </p>
           </motion.div>
+        </div>
+
+        {/* Content Filter Buttons */}
+        <div className="mb-6 flex flex-wrap gap-3">
+          <button
+            onClick={() => setContentFilter('all')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+              contentFilter === 'all'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
+            )}
+          >
+            <BookMarked className="h-4 w-4" />
+            Alle ({counts.all})
+          </button>
+          <button
+            onClick={() => setContentFilter('diary')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+              contentFilter === 'diary'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
+            )}
+          >
+            <BookOpen className="h-4 w-4" />
+            📔 Tagebuch ({counts.diary})
+          </button>
+          <button
+            onClick={() => setContentFilter('scientific')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+              contentFilter === 'scientific'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
+            )}
+          >
+            <GraduationCap className="h-4 w-4" />
+            📚 Wissenschaftlich ({counts.scientific})
+          </button>
         </div>
 
         {/* Search Filter */}
@@ -92,7 +178,11 @@ export function BlogList() {
         ) : (
           <div className="text-center py-16 rounded-lg border border-dashed border-border">
             <p className="text-muted-foreground">
-              Noch keine Einträge von diesem Autor.
+              {contentFilter === 'diary' 
+                ? 'Keine Tagebuch-Einträge von diesem Autor.'
+                : contentFilter === 'scientific'
+                ? 'Keine wissenschaftlichen Artikel von diesem Autor.'
+                : 'Noch keine Einträge von diesem Autor.'}
             </p>
           </div>
         )}

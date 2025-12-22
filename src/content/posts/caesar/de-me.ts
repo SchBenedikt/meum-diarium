@@ -5,6 +5,8 @@ const post: BlogPost = {
   slug: 'de-me',
   author: 'caesar',
   title: 'De me',
+  diaryTitle: 'Wer bin ich? Gaius Julius Caesar!',
+  scientificTitle: 'Gaius Julius Caesar: Biographische Einordnung',
   
   excerpt: 'Über meine Person, Gaius Julius Caesar',
   historicalDate: '100 v. Chr.',
@@ -32,7 +34,33 @@ Dieses Tagebuch wird meine Gedanken, meine Pläne und meine Rechtfertigungen ent
 
 Gaius Julius Caesar
 Pontifex Maximus, Konsul der Römischen Republik`,
-    scientific: ``
+    scientific: `## Biographische Grundlagen zu Gaius Julius Caesar
+
+Gaius Julius Caesar (100-44 v. Chr.) gilt als eine der bedeutendsten Persönlichkeiten der römischen Geschichte und der Weltgeschichte überhaupt. Seine politische und militärische Karriere markiert den Übergang von der römischen Republik zum Prinzipatssystem, das später als römisches Kaiserreich bekannt wurde.
+
+### Herkunft und frühe Jahre
+diaryTitle": "Who am I? Gaius Julius Caesar!",
+    "scientificTitle": "Gaius Julius Caesar: Biographical Classification",
+    "
+Caesar entstammte der patrizischen gens Iulia, die ihre Abstammung mythologisch auf die Göttin Venus und den trojanischen Helden Aeneas zurückführte. Trotz dieser noblen Herkunft war die Familie politisch und wirtschaftlich nicht zur Elite zu rechnen. Sein Onkel Gaius Marius, ein popularer Reformer und Feldherr, prägte die politische Ausrichtung der Familie nachhaltig.
+
+### Politische Positionierung
+
+In der ausgehenden Republik stand Caesar der popularen Partei nahe, die sich für die Interessen der plebs und der Ritterschaft einsetzte, im Gegensatz zu den Optimaten, die die Senatsherrschaft verteidigten. Diese Positionierung brachte ihn früh in Konflikt mit Sulla, dem optimatischen Diktator, der Caesar zur Scheidung von seiner Frau Cornelia zwingen wollte. Caesars Weigerung führte zu seiner Flucht und späteren Begnadigung.
+diaryTitle": "Quis sum? Gaius Iulius Caesar!",
+    "scientificTitle": "Gaius Iulius Caesar: Collocatio biographica",
+    "
+### Literarische Selbstdarstellung
+
+Caesars Commentarii, insbesondere "De Bello Gallico", sind nicht nur militärhistorische Quellen, sondern auch politische Rechtfertigungsschriften. Die Verwendung der dritten Person verleiht seinen Berichten einen Anschein von Objektivität, während sie faktisch der Selbstlegitimation dienen. Diese literarische Technik war innovativ und beeinflusste die historiographische Tradition nachhaltig.
+
+### Clementia Caesaris
+
+Ein zentrales Element von Caesars Selbstdarstellung war seine clementia (Milde) gegenüber besiegten Gegnern. Im Gegensatz zu Sullas Proskriptionen bot Caesar Vergebung an, was ihm politisches Kapital einbrachte, aber auch als Herrschaftsinstrument interpretiert werden kann, das Abhängigkeiten schuf.
+
+### Historiographische Bedeutung
+
+Caesars Schriften sind Primärquellen ersten Ranges, müssen aber quellenkritisch gelesen werden, da sie der Selbstdarstellung dienen. Die moderne Forschung betont den propagandistischen Charakter seiner Werke, ohne ihren dokumentarischen Wert zu schmälern.`
   },
   translations: {
   "en": {
