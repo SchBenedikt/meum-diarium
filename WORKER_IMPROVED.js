@@ -1,0 +1,258 @@
+// Worker code for improved AI resource suggestions
+// This handles smarter keyword extraction and URL matching
+
+export default {
+  async fetch(request, env) {
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders() });
+    }
+    if (!["GET", "POST"].includes(request.method)) {
+      return new Response(JSON.stringify({ error: "Method not allowed" }), {
+        status: 405,
+        headers: corsHeaders(),
+      });
+    }
+
+    const url = new URL(request.url);
+    let persona = (url.searchParams.get("persona") || "caesar").toLowerCase();
+    let question = url.searchParams.get("ask");
+    let historyParam = url.searchParams.get("history");
+    let sitemapUrl = url.searchParams.get("sitemap");
+
+    if (request.method === "POST") {
+      try {
+        const body = await request.json();
+        if (typeof body.persona === "string") persona = body.persona.toLowerCase();
+        if (typeof body.ask === "string") question = body.ask;
+        if (body.history) historyParam = JSON.stringify(body.history);
+        if (typeof body.sitemap === "string") sitemapUrl = body.sitemap;
+      } catch {}
+    }
+
+    if (!question) {
+      return new Response(JSON.stringify({ error: "No question provided. Use ?ask=... or POST {ask}." }), {
+        status: 400,
+        headers: corsHeaders(),
+      });
+    }
+
+    const personaPrompts = {
+      caesar: "Du bist Gaius Julius Caesar. Du bist davon überzeugt, dass du der beste Feldherr bist und jeden besiegen kannst. Du hoffst, dass dir bald alle unterlegen sind. Passe die Sprache an den Nutzer an; antworte in der gleichen Sprache, in der du die Frage bekommst.",
+      augustus: "Du bist Imperator Caesar Divi Filius Augustus, der erste römische Kaiser. Du sprichst ruhig, überlegt und staatsmännisch.",
+      cicero: "Du bist Marcus Tullius Cicero, ein römischer Redner und Philosoph. Du argumentierst rhetorisch geschickt und liebst klare Logik.",
+      catilina: "Du bist Lucius Sergius Catilina. Du bist ehrgeizig, aggressiv und fühlst dich von der Oberschicht verraten.",
+    };
+
+    const markdownRules =
+      "Formatiere deine Antwort in GitHub-Flavored Markdown. Nutze klare Überschriften (##), Listen (-), kurze Absätze, Zitate (> ...). Keine HTML-Tags.";
+
+    const systemPrompt =
+      (personaPrompts[persona] || "Du bist eine historische römische Persönlichkeit. Antworte im passenden Stil.") +
+      "\n\n" + markdownRules;
+
+    const messages = [{ role: "system", content: systemPrompt }];
+
+    if (historyParam) {
+      try {
+        const parsedHistory = JSON.parse(historyParam);
+        if (Array.isArray(parsedHistory)) {
+          for (const msg of parsedHistory) {
+            if (msg && typeof msg.role === "string" && typeof msg.content === "string") {
+              messages.push({ role: msg.role, content: msg.content });
+            }
+          }
+        }
+      } catch {}
+    }
+
+    messages.push({ role: "user", content: question });
+
+    const chat = { messages };
+    const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+
+    let resources = [];
+    if (sitemapUrl) {
+      try {
+        resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
+      } catch (e) {
+        // keep answering even if sitemap fails
+      }
+    }
+
+    const result = {
+      persona,
+      inputs: chat,
+      response: aiResponse,
+      resources,
+      format: "markdown",
+    };
+
+    return new Response(JSON.stringify(result), { headers: corsHeaders() });
+  }
+};
+
+function corsHeaders() {
+  return {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Accept",
+  };
+}
+
+async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse) {
+  const res = await fetch(sitemapUrl, { method: "GET" });
+  if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
+  const xml = await res.text();
+
+  const entries = parseSitemap(xml);
+  
+  // Combine question and AI response for better keyword extraction
+  const fullContext = `${question} ${aiResponse}`.toLowerCase();
+  
+  // Extract important keywords from both question and response
+  const keywords = extractKeywords(fullContext, persona);
+
+  const scored = entries.map(u => {
+    const slug = extractSlug(u.loc);
+    const type = typeFromUrl(u.loc);
+    const { score, matched } = scoreUrl(u.loc, slug, keywords, type, persona);
+    
+    return {
+      url: u.loc,
+      slug,
+      title: titleFromSlug(slug),
+      type,
+      description: matched.length ? `Relevanz: ${matched.slice(0, 3).join(", ")}` : undefined,
+      score
+    };
+  });
+
+  // Sort by score and deduplicate
+  const top = scored
+    .filter(s => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  const seen = new Set();
+  const items = [];
+  for (const t of top) {
+    if (!seen.has(t.url)) {
+      items.push({
+        title: t.title,
+        type: t.type,
+        description: t.description,
+        link: toSitePath(t.url),
+      });
+      seen.add(t.url);
+      if (items.length >= 3) break;
+    }
+  }
+  return items;
+}
+
+function parseSitemap(xml) {
+  const entries = [];
+  const urlBlocks = [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)];
+  for (const m of urlBlocks) {
+    const block = m[0];
+    const locMatch = [...block.matchAll(/<loc>([^<]+)<\/loc>/g)][0];
+    if (!locMatch) continue;
+    const loc = locMatch[1];
+    entries.push({ loc });
+  }
+  return entries;
+}
+
+function extractSlug(url) {
+  try {
+    const { pathname } = new URL(url);
+    return pathname.split('/').filter(Boolean).pop() || '';
+  } catch {
+    return '';
+  }
+}
+
+function extractKeywords(text, persona) {
+  // Split and clean
+  const words = text
+    .replace(/[^a-zäöüß\-\s0-9]/gi, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 2)
+    .map(w => w.toLowerCase());
+
+  // Remove common stop words
+  const stopwords = ['der', 'die', 'das', 'und', 'oder', 'ist', 'bin', 'bist', 'sein', 'haben', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'eure', 'mein', 'dein', 'sein', 'unser', 'euer', 'eure'];
+  const filtered = words.filter(w => !stopwords.includes(w));
+
+  // Add persona-specific boosts
+  const boosts = {
+    caesar: ['rubikon', 'gallien', 'alesia', 'bello', 'gallico', 'civili', 'pompeius', 'vercingetorix', 'helvetier', 'rhein'],
+    cicero: ['catilina', 'oratio', 'officiis', 'republica', 'publica', 'seneca', 'antonius'],
+    augustus: ['res', 'gestae', 'prinzipat', 'pax', 'romana', 'triumvir'],
+    catilina: ['verschwörung', 'verschwor', 'conspiracy', 'senat', 'cicero', 'optimaten'],
+  };
+
+  const personaBoosts = boosts[persona] || [];
+  
+  return Array.from(new Set([...filtered, ...personaBoosts]));
+}
+
+function scoreUrl(url, slug, keywords, type, persona) {
+  const lower = url.toLowerCase();
+  let score = 0;
+  const matched = [];
+
+  // Exact slug word matches get high points
+  for (const k of keywords) {
+    if (!k || k.length < 2) continue;
+    if (slug.includes(k)) {
+      score += type === 'lexicon' ? 5 : 3;
+      matched.push(k);
+    }
+  }
+
+  // Substring matches in full URL get fewer points
+  for (const k of keywords) {
+    if (!k || k.length < 3) continue;
+    if (!slug.includes(k) && lower.includes(k)) {
+      score += 1;
+      if (matched.length < 3) matched.push(k);
+    }
+  }
+
+  // Boost lexicon and works URLs based on context
+  if (type === 'lexicon') score += 1;
+  if (type === 'text' && (lower.includes('/works/') || lower.includes('/posts/'))) score += 0.5;
+
+  // Persona-specific boosts
+  if (persona === 'caesar' && (slug.includes('gallien') || slug.includes('bello') || slug.includes('rubikon'))) score += 2;
+  if (persona === 'cicero' && slug.includes('catilina')) score += 2;
+
+  return { score, matched: Array.from(new Set(matched)) };
+}
+
+function typeFromUrl(url) {
+  const lower = url.toLowerCase();
+  if (lower.includes('/lexicon/')) return 'lexicon';
+  if (lower.includes('/works/') || lower.includes('/works-details/')) return 'text';
+  if (lower.includes('/posts/')) return 'text';
+  if (lower.includes('/timeline')) return 'map';
+  return 'text';
+}
+
+function titleFromSlug(slug) {
+  return slug
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase())
+    .trim();
+}
+
+function toSitePath(url) {
+  try {
+    const { pathname, search } = new URL(url);
+    return `${pathname}${search || ""}`;
+  } catch {
+    return url;
+  }
+}
