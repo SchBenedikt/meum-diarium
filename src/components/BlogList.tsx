@@ -29,6 +29,12 @@ export function BlogList() {
         post.excerpt.toLowerCase().includes(query) ||
         post.tags.some(tag => tag.toLowerCase().includes(query))
       );
+    })
+    // Chronological order by historical year (oldest → newest)
+    .sort((a, b) => {
+      const ay = typeof a.historicalYear === 'number' ? a.historicalYear : new Date(a.date).getFullYear();
+      const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
+      return ay - by;
     });
 
   return (

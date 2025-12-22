@@ -296,7 +296,7 @@ export const workDetails: Record<string, WorkDetail> = {
       {
         latin: 'Alea iacta est.',
         translation: 'Der Würfel ist gefallen.',
-        context: 'Caesars legendäre Worte beim Überschreiten des Rubikon. Symbolisiert den Point of No Return – die bewusste Entscheidung für Krieg und Rebellion.'
+        context: 'Caesars legendäre Worte beim Überschreiten des Rubikon. Symbolisiert den unumkehrbaren Schritt – die bewusste Entscheidung für Krieg und Rebellion.'
       },
       {
         latin: 'Pompeius iniquissimis condicionibus pacem fieri non patiebatur.',

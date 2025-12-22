@@ -99,6 +99,11 @@ function PostContent({ post }: { post: BlogPost }) {
                       <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
                         {post.title}
                       </h1>
+                      {post.contentTitles?.[perspective] && (
+                        <p className="text-base sm:text-lg text-muted-foreground italic mt-2">
+                          {post.contentTitles[perspective]}
+                        </p>
+                      )}
 
                       <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4 mb-6 sm:mb-8">
                         <div className="flex items-center gap-1.5 sm:gap-2">

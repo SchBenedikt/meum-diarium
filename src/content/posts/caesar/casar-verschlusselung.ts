@@ -1,46 +1,48 @@
 import { BlogPost } from '@/types/blog';
 
+const post: BlogPost = {
+  id: '5',
+  slug: 'casar-verschlusselung',
+  author: 'caesar',
+  title: 'Cäsar-Verschlüsselung',
+  
+  excerpt: '',
+  historicalDate: '50 v. Chr.',
+  historicalYear: -50,
+  date: new Date().toISOString().split('T')[0],
+  readingTime: 2,
+  tags: ["Cäsar-Verschlüsselung","Cäsarchiffre"],
+  coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/vehglvku4qq.jpg',
+  content: {
+    diary: `Der römische Geschichtsschreiber Sueton hat in seiner Biographie über mich folgende Passage überliefert: „[…] si qua occultius perferenda erant, per notas scripsit, id est sic structo litterarum ordine, ut nullum verbum effici posset: quae si quis investigare et persequi velit, quartam elementorum litteram, id est D pro A et perinde reliquas commutet." Diese Worte beschreiben eine Methode, die heute viele Namen trägt: Cäsarchiffre, Cäsar-Verschiebung, Caesar Shift, Cäsarverschlüsselung, Einfacher Cäsar oder schlicht Cäsar Code.
 
-    const post: BlogPost = {
-        id: '5',
-        slug: 'casar-verschlusselung',
-        author: 'caesar',
-        title: 'Cäsar-Verschlüsselung',
-        excerpt: '',
-        historicalDate: '50 v. Chr.',
-        historicalYear: -50,
-        date: '2025-12-02',
-        readingTime: 2,
-        tags: ['Cäsar-Verschlüsselung', 'Cäsarchiffre'],
-        coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/vehglvku4qq.jpg',
-        content: {
-          diary: `Überlieferung von Sueton:
+Als Feldherr steht man oft vor der Herausforderung, geheime militärische Pläne vor den Augen der Feinde zu schützen. Meine Gegner würden alles darum geben, meine Strategien zu kennen und meine Befehle abzufangen. Aus dieser Notwendigkeit heraus entwickelte ich eine Verschlüsselungsmethode, die ebenso einfach wie wirksam ist. Die Funktionsweise ist denkbar simpel: Jeder Buchstabe einer Nachricht wird im Alphabet um drei Positionen nach rechts verschoben. So wird aus einem A ein D, aus einem B ein E und so weiter. Um die Anwendung zu erleichtern, verwende ich in dieser Verschlüsselung ausschließlich Kleinbuchstaben.
 
-[…] si qua occultius perferenda erant, per notas scripsit, id est sic structo litterarum ordine, ut nullum verbum effici posset: quae si quis investigare et persequi velit, quartam elementorum litteram, id est D pro A et perinde reliquas commutet.
+Diese Methode erwies sich als so nützlich, dass sie auch nach mir noch Verwendung fand. Mein Großneffe und Nachfolger Augustus nutzte ein ähnliches Verfahren, allerdings mit einer Verschiebung um nur einen Buchstaben und ohne das Alphabet zu rotieren. Anstelle eines X, des letzten Buchstabens des damaligen lateinischen Alphabets, schrieb er AA.
 
-Gaius Suetonius Tranquillus
-Wer hat das verstanden? Für all diejenigen, die es nicht verstanden haben: Das ist die berühmte Cäsar-Verschlüsselung, mit vielen, vielen Namen: Cäsarchiffre, Cäsar-Verschiebung, Caesar Shift, Cäsarverschlüsselung, Einfacher Cäsar, Cäsar Code.
+Man mag nun denken, dies sei die sicherste aller Verschlüsselungen. Doch das Besondere an meiner Methode liegt nicht in ihrer Unknackbarkeit, sondern darin, dass die Entschlüsselungsmethode selbst geheim bleiben muss. Sobald der Gegner das Prinzip kennt, lässt sich die Verschlüsselung leicht brechen. Es existieren unzählige solcher Verschlüsselungsmethoden, doch eine Wahrheit bleibt: Entweder stammt eine Verschlüsselung von mir, von Cäsar, oder sie wurde mir gestohlen.
 
-Doch warum macht sich ein so guter Feldherr die Mühe, und entwickelt sogar noch eine neue „Sprache“? Als Feldherr habe ich oft böse Feinde, die meine guten, geheimen Pläne kennen wollen. Eines Tages wollte ich eine Lösung für das Problem haben und habe die Cäsar-Chiffre erfunden. Die neuartigste und modernste Verschlüsselung der Welt. ©️ Gaius Julius Cäsar.
+Zu dieser Verschlüsselung gibt es noch eine Anekdote aus meinem Leben. Als man mir kurz vor meiner Ermordung auf dem Weg zum Senat eine Warnung zusteckte, soll ich sie mit den Worten „Cras legam" – „Morgen werde ich es lesen" – sorglos zur Seite gelegt haben. Ein fataler Fehler, wie sich zeigen sollte.`,
+    scientific: ``
+  },
+  translations: {
+  "en": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  },
+  "la": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  }
+}
+};
 
-Aber wie funktioniert diese? Das ist ganz einfach: Wenn du ein Wort hast, dann nimmt man einfach jeden Buchstaben und verschiebt diesen um drei Buchstaben nach rechts, wie oben beschrieben. Das bedeutet, dass aus einem A ein D wird. Damit es einfacher ist (viele sind ja noch nicht mal des Schreibens & Lesens mächtig), nutze ich in dieser Verschlüsselung nur Kleinbuchstaben.
-
-Tatsächlich würde ich ja einfach mal bescheiden sagen „Ja, dass habe ich erfunden“, aber dass kann ich leider nicht…. Denn wenn ich von dieser Verschlüsselung schreibe, müsst ihr auch gleich wissen, warum diese so besonders ist. Tatsächlich wird diese Verschlüsselung in den nächsten Jahr(hundert)en immer noch verwendet; einer meiner Nachfolger, Augustus nutzte diese auch – nur mit einer kleinen Abwandlung.
-
-Falls ihr aber denkt, dass das die beste Verschlüsselung ist, habt ihr euch geirrt. Das besondere daran ist nämlich nicht, dass man diese nicht leicht entschlüsseln kann, sondern dass man die Entschlüsselungs-Methode geheim halten muss, damit der Code nicht entschlüsselt werden kann.
-
-Es gibt zigtausende solche Verschlüsselungsmethoden, aber eines müsst ihr immer wissen: Entweder ist die Verschlüsselung, von mir, von Cäsar oder sie ist von mir hinterhältig gestohlen worden!
-
-Zu meiner Verschlüsselung gibt es auch ein berühmtes Zitat von mir:
-
-Cras legam!
-
-Morgen werde ich lesen.
-
-Gaius Julius Caesar`,
-          scientific: ``
-        }
-      };
-
-
-    export default post;
+export default post;
