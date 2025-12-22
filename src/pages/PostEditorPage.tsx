@@ -41,6 +41,8 @@ export default function PostEditorPage() {
     const [formData, setFormData] = useState({
         // Basic info
         title: '',
+        diaryTitle: '',
+        scientificTitle: '',
         latinTitle: '',
         slug: '',
         author: 'caesar' as Author,
@@ -78,6 +80,8 @@ export default function PostEditorPage() {
         if (postData) {
             setFormData({
                 title: postData.title,
+                diaryTitle: postData.diaryTitle || '',
+                scientificTitle: postData.scientificTitle || '',
                 latinTitle: postData.latinTitle || '',
                 slug: postData.slug,
                 author: postData.author,
@@ -117,6 +121,8 @@ export default function PostEditorPage() {
                 slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
                 author: formData.author,
                 title: formData.title,
+                diaryTitle: formData.diaryTitle,
+                scientificTitle: formData.scientificTitle,
                 latinTitle: formData.latinTitle,
                 excerpt: formData.excerpt,
                 historicalDate: formData.historicalDate || '50 v. Chr.',
@@ -251,6 +257,29 @@ export default function PostEditorPage() {
                                         value={formData.latinTitle}
                                         onChange={e => updateField('latinTitle', e.target.value)}
                                         placeholder="Commentarii mei"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-primary/20 rounded-lg bg-primary/5">
+                                <div className="space-y-2">
+                                    <Label className="text-primary flex items-center gap-2">
+                                        📔 Tagebuch-Titel
+                                    </Label>
+                                    <Input
+                                        value={formData.diaryTitle}
+                                        onChange={e => updateField('diaryTitle', e.target.value)}
+                                        placeholder="Titel für Tagebuch-Perspektive"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-primary flex items-center gap-2">
+                                        📚 Wissenschaftlicher Titel
+                                    </Label>
+                                    <Input
+                                        value={formData.scientificTitle}
+                                        onChange={e => updateField('scientificTitle', e.target.value)}
+                                        placeholder="Titel für wissenschaftliche Perspektive"
                                     />
                                 </div>
                             </div>

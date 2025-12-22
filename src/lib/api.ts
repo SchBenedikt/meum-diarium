@@ -1,16 +1,37 @@
 
 const API_BASE = 'http://localhost:3001/api';
 
+// Add request cache for GET requests to avoid redundant network calls
+const requestCache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+async function cachedFetch(url: string, options?: RequestInit) {
+    // Only cache GET requests
+    if (!options || options.method === 'GET' || !options.method) {
+        const cached = requestCache.get(url);
+        if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+            return Promise.resolve(cached.data);
+        }
+    }
+    
+    const res = await fetch(url, options);
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    const data = await res.json();
+    
+    // Cache GET responses
+    if (!options || options.method === 'GET' || !options.method) {
+        requestCache.set(url, { data, timestamp: Date.now() });
+    }
+    
+    return data;
+}
+
 export async function fetchPosts() {
-    const res = await fetch(`${API_BASE}/posts`);
-    if (!res.ok) throw new Error('Failed to fetch posts');
-    return res.json();
+    return cachedFetch(`${API_BASE}/posts`);
 }
 
 export async function fetchPost(author: string, slug: string) {
-    const res = await fetch(`${API_BASE}/posts/${author}/${slug}`);
-    if (!res.ok) throw new Error('Failed to fetch post');
-    return res.json();
+    return cachedFetch(`${API_BASE}/posts/${author}/${slug}`);
 }
 
 export async function createPost(data: any) {
@@ -20,6 +41,8 @@ export async function createPost(data: any) {
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('Failed to create post');
+    // Invalidate cache
+    requestCache.clear();
     return res.json();
 }
 
@@ -28,13 +51,13 @@ export async function deletePost(author: string, slug: string) {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete post');
+    // Invalidate cache
+    requestCache.clear();
     return res.json();
 }
 
 export async function fetchAuthors() {
-    const res = await fetch(`${API_BASE}/authors`);
-    if (!res.ok) throw new Error('Failed to fetch authors');
-    return res.json();
+    return cachedFetch(`${API_BASE}/authors`);
 }
 
 export async function saveAuthor(data: any) {
@@ -44,6 +67,7 @@ export async function saveAuthor(data: any) {
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('Failed to save author');
+    requestCache.clear();
     return res.json();
 }
 
@@ -52,19 +76,16 @@ export async function deleteAuthor(id: string) {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete author');
+    requestCache.clear();
     return res.json();
 }
 
 export async function fetchLexicon() {
-    const res = await fetch(`${API_BASE}/lexicon`);
-    if (!res.ok) throw new Error('Failed to fetch lexicon');
-    return res.json();
+    return cachedFetch(`${API_BASE}/lexicon`);
 }
 
 export async function fetchLexiconEntry(slug: string) {
-    const res = await fetch(`${API_BASE}/lexicon/${slug}`);
-    if (!res.ok) throw new Error('Failed to fetch lexicon entry');
-    return res.json();
+    return cachedFetch(`${API_BASE}/lexicon/${slug}`);
 }
 
 export async function saveLexiconEntry(data: any) {
@@ -74,6 +95,7 @@ export async function saveLexiconEntry(data: any) {
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('Failed to save lexicon entry');
+    requestCache.clear();
     return res.json();
 }
 

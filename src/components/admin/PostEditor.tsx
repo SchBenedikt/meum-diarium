@@ -84,7 +84,9 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className=Legacy Title (Fallback)</Label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <Label>Legacy Title (Fallback)</Label>
                             <Input
                                 value={formData.title}
                                 onChange={e => setFormData({ ...formData, title: e.target.value })}
@@ -119,9 +121,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             <Input
                                 value={formData.scientificTitle}
                                 onChange={e => setFormData({ ...formData, scientificTitle: e.target.value })}
-                                placeholder="Titel für wissenschaftliche Perspektiv
-                                onChange={e => setFormData({ ...formData, slug: e.target.value })}
-                                placeholder="Auto-generated from title"
+                                placeholder="Titel für wissenschaftliche Perspektive"
                             />
                         </div>
                     </div>
@@ -130,22 +130,11 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         <Label>Author</Label>
                         <Select
                             value={formData.author}
-                            onV📔 Content (Tagebuch)</Label>
-                        <Textarea
-                            className="min-h-[200px] font-mono"
-                            value={formData.contentDiary}
-                            onChange={e => setFormData({ ...formData, contentDiary: e.target.value })}
-                            placeholder="Persönlicher Tagebuch-Inhalt..."
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label>📚 Content (Wissenschaftlich)</Label>
-                        <Textarea
-                            className="min-h-[200px] font-mono"
-                            value={formData.contentScientific}
-                            onChange={e => setFormData({ ...formData, contentScientific: e.target.value })}
-                            placeholder="Wissenschaftlicher Inhalt..."
+                            onValueChange={value => setFormData({ ...formData, author: value })}
+                        >
+                            <SelectTrigger>
+                                <SelectValue />
+                            </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="caesar">Caesar</SelectItem>
                                 <SelectItem value="cicero">Cicero</SelectItem>
@@ -160,20 +149,34 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         <Textarea
                             value={formData.excerpt}
                             onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
+                            placeholder="Kurze Zusammenfassung des Beitrags"
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <Label>Content (Diary)</Label>
+                        <Label className="flex items-center gap-2">📔 Content (Tagebuch)</Label>
                         <Textarea
                             className="min-h-[200px] font-mono"
                             value={formData.contentDiary}
                             onChange={e => setFormData({ ...formData, contentDiary: e.target.value })}
+                            placeholder="Persönlicher Tagebuch-Inhalt..."
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label className="flex items-center gap-2">📚 Content (Wissenschaftlich)</Label>
+                        <Textarea
+                            className="min-h-[200px] font-mono"
+                            value={formData.contentScientific}
+                            onChange={e => setFormData({ ...formData, contentScientific: e.target.value })}
+                            placeholder="Wissenschaftlicher Inhalt..."
                         />
                     </div>
 
                     <DialogFooter>
-                        <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+                        <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                            Cancel
+                        </Button>
                         <Button type="submit" disabled={loading}>
                             {loading ? 'Saving...' : 'Save Post'}
                         </Button>
