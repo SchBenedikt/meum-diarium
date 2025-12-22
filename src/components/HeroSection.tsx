@@ -43,7 +43,7 @@ export function HeroSection() {
               className="text-4xl sm:text-5xl lg:text-7xl font-display leading-[1] font-bold tracking-tighter"
             >
               <span className="text-foreground">{authorInfo.name.split(' ')[0]}</span>
-              <span className="text-primary block italic">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
+              <span className="text-primary block">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
             </motion.h1>
 
             <motion.p
