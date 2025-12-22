@@ -178,6 +178,27 @@ export const de = {
     augustus_timeline_5_year: '14 n. Chr.',
     augustus_timeline_5_event: 'Konsekration zum Divus Augustus',
 
+    // Catilina
+    catilina_name: 'Lucius Sergius Catilina',
+    catilina_latinName: 'Lucius Sergius Catilina',
+    catilina_title: 'Verschwörer',
+    catilina_description: 'Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik.',
+    catilina_birthplace: 'Rom',
+    catilina_achievement_0: 'Anführer einer bedeutenden Verschwörung',
+    catilina_achievement_1: 'Symbol für innenpolitische Krise der späten Republik',
+    catilina_achievement_2: 'Herausforderer der Senatsherrschaft',
+    catilina_achievement_3: 'Vertreter der verschuldeten Nobilität',
+    catilina_timeline_0_year: '108 v. Chr.',
+    catilina_timeline_0_event: 'Geburt in Rom',
+    catilina_timeline_1_year: '68-66 v. Chr.',
+    catilina_timeline_1_event: 'Proprätor in Africa',
+    catilina_timeline_2_year: '63 v. Chr.',
+    catilina_timeline_2_event: 'Zweite Wahlniederlage zum Konsulat',
+    catilina_timeline_3_year: '63 v. Chr. (Nov)',
+    catilina_timeline_3_event: 'Ciceros Rede "In Catilinam" & Flucht aus Rom',
+    catilina_timeline_4_year: '62 v. Chr.',
+    catilina_timeline_4_event: 'Tod in der Schlacht bei Pistoria',
+
     // Seneca
     seneca_name: 'Seneca der Jüngere',
     seneca_latinName: 'Lucius Annaeus Seneca',

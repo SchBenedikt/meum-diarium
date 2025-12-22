@@ -1,0 +1,73 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Die Philippischen Reden entstanden zwischen September 44 und April 43 v. Chr., in der chaotischen Phase nach Caesars Ermordung. Marcus Antonius, Caesars Mitkonsul und Vertrauter, versuchte, dessen Erbe anzutreten und die Macht an sich zu reißen.",
+      "Cicero benannte seine Reden nach den berühmten Philippika des griechischen Redners Demosthenes, der im 4. Jh. v. Chr. gegen Philipp II. von Makedonien gekämpft hatte. Damit stellte er Antonius als Tyrannen und Feind der Freiheit dar.",
+      "Die Reden waren Ciceros letzter verzweifelter Versuch, die Republik zu retten. Sie kosteten ihn letztlich das Leben: Als Antonius, Octavian und Lepidus das Zweite Triumvirat bildeten, stand Ciceros Name ganz oben auf der Proskriptionsliste."
+    ],
+    "sections": [
+      {
+        "title": "Eskalation des Konflikts",
+        "content": [
+          "Die erste Philippica (2. Sept. 44) war noch relativ gemäßigt – Cicero kritisierte Antonius' Politik, vermied aber persönliche Angriffe.",
+          "Antonius antwortete mit einer wütenden Gegenrede, in der er Cicero beschuldigte, an Caesars Ermordung beteiligt gewesen zu sein.",
+          "Daraufhin verfasste Cicero die vernichtende zweite Philippica – eine der schärfsten Invektiven der römischen Literatur, die nie öffentlich vorgetragen, aber verbreitet wurde.",
+          "Die folgenden Reden (3-14) wurden im Senat und vor dem Volk gehalten und steigerten sich zu offenem Kriegsaufruf gegen Antonius."
+        ]
+      },
+      {
+        "title": "Rhetorik der Vernichtung",
+        "content": [
+          "In der zweiten Philippica greift Cicero Antonius' gesamtes Leben an: seine Jugend als Liebhaber eines Schauspielers, seine Trunksucht, seine finanzielle Misswirtschaft.",
+          "Er stellt Antonius als neuen Catilina dar – eine weitere Gefahr für die Republik, die vernichtet werden muss.",
+          "Die Reden zeigen Ciceros Meisterschaft der Invektive: Sie sind beleidigend, aber juristisch präzise, emotional, aber argumentativ stringent."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "O tempora, o mores! Senatus haec intellegit, consul videt; hic tamen vivit.",
+        "translation": "O Zeiten, o Sitten! Der Senat versteht dies, der Konsul sieht es; dieser aber lebt noch.",
+        "context": "Cicero beklagt, dass Antonius trotz seiner offensichtlichen Verbrechen ungestraft bleibt – ein Echo seiner Catilinarischen Reden."
+      },
+      {
+        "latin": "Habetis ducem memorem vestri, oblitum sui.",
+        "translation": "Ihr habt einen Führer, der an euch denkt und sich selbst vergisst.",
+        "context": "Cicero präsentiert sich als selbstlosen Verteidiger der Republik, bereit, sein Leben zu opfern."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Die zweite Philippica",
+        "date": "Oktober 44 v. Chr.",
+        "description": "Eine 119-Paragraphen-lange Abrechnung mit Antonius, die nie öffentlich vorgetragen, aber weit verbreitet wurde. Sie greift jeden Aspekt von Antonius' Leben an.",
+        "significance": "Diese Rede machte eine Versöhnung zwischen Cicero und Antonius unmöglich und besiegelte Ciceros Schicksal."
+      },
+      {
+        "title": "Ciceros Tod",
+        "date": "7. Dezember 43 v. Chr.",
+        "description": "Auf Befehl des Antonius wurde Cicero von Soldaten ermordet. Seine Hände und sein Kopf wurden an der Rednertribüne im Forum ausgestellt.",
+        "significance": "Das Ende der republikanischen Redefreiheit und ein Symbol für das Ende der Republik selbst."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "The Philippics were composed between September 44 and April 43 BC, in the chaotic phase after Caesar's assassination."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "Philippicae compositae sunt inter Septembrem anni 44 et Aprilem anni 43 a.C.n., tempore turbulento post necem Caesaris."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

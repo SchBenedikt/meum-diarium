@@ -1,0 +1,72 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Die Res Gestae wurden von Augustus kurz vor seinem Tod im Jahr 14 n. Chr. verfasst. Sie sollten auf zwei Bronzetafeln vor seinem Mausoleum in Rom angebracht werden und seine Taten für die Nachwelt festhalten.",
+      "Der Text wurde im gesamten Römischen Reich verbreitet. Die am besten erhaltene Version wurde 1555 in Ankara (antikes Ancyra) gefunden, wo sie auf den Wänden des Augustustempels eingemeißelt war.",
+      "Die Res Gestae sind ein Meisterwerk der politischen Selbstdarstellung. Augustus präsentiert sich als Retter der Republik, obwohl er faktisch das Kaiserreich begründete. Er betont seine Bescheidenheit und Legitimität, während er seine Macht als unumgänglich darstellt."
+    ],
+    "sections": [
+      {
+        "title": "Struktur und Inhalt",
+        "content": [
+          "Das Werk gliedert sich in drei Hauptteile: politische Ehrungen (1-14), finanzielle Wohltaten (15-24) und militärische Erfolge (25-33).",
+          "Augustus listet akribisch alle Ämter, Ehrungen und Titel auf, die er erhielt – aber betont stets, dass er sie aus freien Stücken ablehnte oder nur widerwillig annahm.",
+          "Er dokumentiert seine massiven Geschenke an das römische Volk: Geld, Getreide, Spiele und Bauwerke. Diese Wohltaten legitimierten seine Herrschaft als 'Gabe' an Rom."
+        ]
+      },
+      {
+        "title": "Propaganda und Wahrheit",
+        "content": [
+          "Augustus verschweigt strategisch: Die Proskriptionen von 43 v. Chr., bei denen Tausende starben, werden nicht erwähnt.",
+          "Er betont seine 'auctoritas' (Autorität) statt 'potestas' (Macht) – eine subtile Verschiebung, die seine Herrschaft als moralisch, nicht militärisch, darstellt.",
+          "Der Text endet mit der Aussage, er habe die Republik 'wiederhergestellt' – eine Formulierung, die die faktische Monarchie verschleiert."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Rem publicam a dominatione factionis oppressam in libertatem vindicavi.",
+        "translation": "Ich habe die Republik, die von der Herrschaft einer Faktion unterdrückt war, in die Freiheit zurückgeführt.",
+        "context": "Augustus' Selbstdarstellung als Befreier, nicht als Diktator – eine geschickte Umdeutung des Bürgerkriegs."
+      },
+      {
+        "latin": "Per totum imperium populi Romani auctoritate omnibus praestiti, potestatis autem nihilo amplius habui quam ceteri.",
+        "translation": "Im gesamten Reich des römischen Volkes überragte ich alle an Autorität, hatte aber nicht mehr Macht als andere.",
+        "context": "Die zentrale Lüge des Prinzipats: Augustus behauptet, nur 'primus inter pares' (Erster unter Gleichen) zu sein."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Die Wiederherstellung der Republik",
+        "date": "27 v. Chr.",
+        "description": "Augustus verkündet die 'restitutio rei publicae' – die Wiederherstellung der Republik. Der Senat verleiht ihm daraufhin den Ehrennamen 'Augustus'.",
+        "significance": "Ein Meisterstück der Inszenierung: Augustus gibt formal die Macht ab, um sie durch Akklamation zurückzuerhalten – nun legitimiert."
+      },
+      {
+        "title": "Das Goldene Zeitalter",
+        "date": "17 v. Chr.",
+        "description": "Augustus feiert die Säkularspiele und verkündet den Beginn eines neuen goldenen Zeitalters unter seiner Führung.",
+        "significance": "Die Pax Romana beginnt – 200 Jahre relativen Friedens und Wohlstands im römischen Reich."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "The Res Gestae were written by Augustus shortly before his death in 14 AD. They were to be inscribed on two bronze tablets in front of his mausoleum in Rome."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "Res Gestae scriptae sunt ab Augusto paulo ante mortem suam anno 14 p.C.n. In tabulis aeneis duabus ante Mausoleum suum Romae inscribendae erant."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

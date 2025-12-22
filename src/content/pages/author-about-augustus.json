@@ -1,0 +1,26 @@
+{
+  "slug": "author-about-augustus",
+  "heroTitle": "Augustus",
+  "heroSubtitle": "Princeps, Erster römischer Kaiser",
+  "heroImage": "/images/augustus-hero.jpg",
+  "introText": "Großneffe und Adoptivsohn Caesars. Begründer des Römischen Kaiserreichs (Prinzipat), der nach Jahrzehnten des Bürgerkriegs eine neue Ära des Friedens einleitete.",
+  "sections": [],
+  "highlights": [],
+  "translations": {
+    "de": {
+      "heroTitle": "Augustus",
+      "heroSubtitle": "Princeps, Erster römischer Kaiser",
+      "introText": "Großneffe und Adoptivsohn Caesars. Begründer des Römischen Kaiserreichs (Prinzipat), der nach Jahrzehnten des Bürgerkriegs eine neue Ära des Friedens einleitete."
+    },
+    "en": {
+      "heroTitle": "Augustus",
+      "heroSubtitle": "Princeps, First Roman Emperor",
+      "introText": "Great-nephew and adopted son of Caesar. Founder of the Roman Empire (Principate), who ushered in a new era of peace after decades of civil war."
+    },
+    "la": {
+      "heroTitle": "Augustus",
+      "heroSubtitle": "Princeps, Imperator Romanus Primus",
+      "introText": "Nepos magnus et filius adoptivus Caesaris. Conditor Imperii Romani (Principatus), qui post decennia belli civilis novam aetatem pacis induxit."
+    }
+  }
+}
