@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, ArrowRight, Clock, Award, Sparkles, Crown, Landmark } from 'lucide-react';
+import { MapPin, BookOpen, ArrowRight, Clock, Award, Sparkles, Crown, Landmark, Sword } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
@@ -113,27 +113,39 @@ export function AugustusAboutPage() {
   const augustusAchievements = [
     {
       title: 'Pax Romana',
-      summary: 'Beendete Jahrzehnte des Bürgerkriegs und etablierte 200 Jahre relativen Friedens im Römischen Reich.',
+      summary: 'Beendete Jahrzehnte des Bürgerkriegs (44–30 v. Chr.) und etablierte 200 Jahre relativen Friedens im Römischen Reich. Schloss Janustempel nach Actium – Symbol des Friedens. Sicherte Grenzen durch Diplomatie und selektive Expansion.',
       tag: 'Frieden',
       icon: 'Sparkles' as const,
     },
     {
       title: 'Institutionalisierung der Macht',
-      summary: 'Verwandelte die Republik faktisch in eine Monarchie, ohne sie formal abzuschaffen – das Prinzipat als geniale Tarnung.',
+      summary: 'Verwandelte die Republik faktisch in eine Monarchie, ohne sie formal abzuschaffen – das Prinzipat als geniale Tarnung. Behält republikanische Ämter (Konsul, Tribun), akkumuliert aber alle Vollmachten. Der Senat bleibt, wird aber entmachtet.',
       tag: 'Verfassung',
       icon: 'Crown' as const,
     },
     {
       title: 'Kulturelle Blüte',
-      summary: 'Förderte Vergil, Horaz, Ovid und Livius – das "Augusteische Zeitalter" wurde zum goldenen Zeitalter der römischen Literatur.',
+      summary: 'Förderte Vergil (Aeneis), Horaz (Oden), Ovid (Metamorphosen) und Livius (Ab urbe condita) – das "Augusteische Zeitalter" wurde zum goldenen Zeitalter der römischen Literatur. Maecenas als Kultursponsor. Kunst im Dienst der Staatsideologie.',
       tag: 'Kultur',
       icon: 'BookOpen' as const,
     },
     {
       title: 'Rom als Marmorstadt',
-      summary: 'Massives Bauprogramm: "Ich fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor" – 82 Tempel restauriert.',
+      summary: 'Massives Bauprogramm: "Ich fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor" – 82 Tempel restauriert, Forum Augustum, Ara Pacis, Theater des Marcellus, Aqua Virgo. Architektur als Herrschaftsinstrument und Legitimation.',
       tag: 'Architektur',
       icon: 'Landmark' as const,
+    },
+    {
+      title: 'Reform der Verwaltung',
+      summary: 'Neuorganisation der Provinzen (senatorisch vs. kaiserlich), professionelles Beamtentum, feste Sold-Regelungen für Legionen, Aerar vs. Fiscus. Census und Steuersystem standardisiert. Grundlage des späteren Kaiserreichs.',
+      tag: 'Administration',
+      icon: 'Crown' as const,
+    },
+    {
+      title: 'Dynastische Nachfolgeregelung',
+      summary: 'Trotz fehlender Söhne sicherte er die Dynastie durch Adoptionen (Tiberius) und dynastische Ehen. Etablierte das Prinzip der kaiserlichen Nachfolge – wenn auch mit Schwächen, die später zum Niedergang führten.',
+      tag: 'Dynastie',
+      icon: 'Crown' as const,
     },
   ];
 
@@ -333,7 +345,7 @@ export function AugustusAboutPage() {
               <h2 className="font-display text-4xl font-bold mb-4">Seine bleibenden Leistungen</h2>
               <p className="text-lg text-muted-foreground">Wie Augustus Rom transformierte und 200 Jahre Frieden sicherte.</p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 max-w-5xl mx-auto">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
               {augustusAchievements.map((achievement) => {
                 const IconComponent = achievement.icon === 'Sparkles' ? Sparkles : achievement.icon === 'Crown' ? Crown : achievement.icon === 'BookOpen' ? BookOpen : Landmark;
                 return (
@@ -350,6 +362,67 @@ export function AugustusAboutPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Das Prinzipat-System */}
+        <section className="py-24 bg-gradient-to-b from-background to-surface-container-low/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Das Prinzipat – Monarchie im republikanischen Gewand</h2>
+              <p className="text-lg text-muted-foreground">Wie Augustus die Macht monopolisierte, ohne König zu werden.</p>
+            </div>
+            <div className="max-w-5xl mx-auto space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="card-modern card-hover-primary card-padding-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Crown className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold">Der Titel \"Princeps\"</h3>
+                  </div>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">\"Erster unter Gleichen\" (Princeps Senatus) – klingt bescheiden, bedeutet aber faktische Alleinherrschaft. Kein König, kein Diktator auf Lebenszeit – nur der \"Erste Bürger\". Geniale PR.</p>
+                  <div className="text-xs text-muted-foreground italic">27 v. Chr. – Der Senat verleiht den Ehrentitel \"Augustus\" (der Erhabene).</div>
+                </div>
+                <div className="card-modern card-hover-primary card-padding-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Landmark className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold">Tribunicia Potestas</h3>
+                  </div>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">Volle tribunizische Gewalt auf Lebenszeit: Vetorecht gegen Senatsbeschlüsse, Gesetzesinitiative, persönliche Unantastbarkeit. Der Schlüssel zur Kontrolle – formal legal, faktisch diktatorisch.</p>
+                  <div className="text-xs text-muted-foreground italic">23 v. Chr. – Lebenslanges Tribunat ohne das Amt selbst zu bekleiden.</div>
+                </div>
+                <div className="card-modern card-hover-primary card-padding-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Sword className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold">Imperium Proconsulare</h3>
+                  </div>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">Oberbefehlsüber alle Legionen (ca. 300.000 Mann). Kontrolle über die wichtigsten Provinzen (Syrien, Ägypten, Gallien). Militärische Macht = politische Macht. Der Senat hat symbolische Provinzen, Augustus die strategischen.</p>
+                  <div className="text-xs text-muted-foreground italic">Das Militär schwor auf ihn persönlich – nicht auf die Republik.</div>
+                </div>
+                <div className="card-modern card-hover-primary card-padding-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Award className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold">Pater Patriae</h3>
+                  </div>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">\"Vater des Vaterlandes\" (2 v. Chr.) – moralische Autorität, die jede rechtliche Macht übersteigt. Augustus als Fürsorglicher, Weiser, Unangreifbarer. Wer den Vater angreift, ist ein Verräter.</p>
+                  <div className="text-xs text-muted-foreground italic">Personenkult als Herrschaftsinstrument – nicht mehr wegzudenken.</div>
+                </div>
+              </div>
+              <div className="card-modern card-padding-lg bg-gradient-to-br from-primary/5 to-background border-primary/20">
+                <h3 className="font-display text-2xl font-bold mb-4 flex items-center gap-3">
+                  <Sparkles className="h-6 w-6 text-primary" />
+                  Das Ergebnis: Monarchie ohne König
+                </h3>
+                <p className="text-sm text-foreground/85 leading-relaxed">Augustus akkumuliert alle entscheidenden Vollmachten, ohne ein einziges traditionell-monarchisches Amt zu übernehmen. Der Senat bleibt formal bestehen, ist aber machtlos. Die Republik ist tot, aber niemand wagt es auszusprechen. Das Prinzipat wird zur Blaupause für 300 Jahre Kaiserherrschaft – bis Diokletian die Maske fallen lässt und sich offen \"Dominus\" (Herr) nennt.</p>
+              </div>
             </div>
           </div>
         </section>

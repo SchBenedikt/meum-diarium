@@ -81,27 +81,39 @@ export function CiceroAboutPage() {
   const ciceroAchievements = [
     {
       title: 'Rhetorik als Waffe',
-      summary: 'Perfektion der lateinischen Rhetorik – seine Reden gegen Catilina, Verres und Antonius sind zeitlose Meisterwerke der Überzeugungskunst.',
+      summary: 'Perfektion der lateinischen Rhetorik – seine Reden gegen Catilina, Verres und Antonius sind zeitlose Meisterwerke der Überzeugungskunst. Entwickelte die klassische Fünfteilung: inventio, dispositio, elocutio, memoria, pronuntiatio.',
       tag: 'Rhetorik',
       icon: 'Users' as const,
     },
     {
       title: 'Philosophie für Rom',
-      summary: 'Vermittlung griechischer Philosophie (Stoizismus, Akademie) in lateinischer Sprache – schuf das Vokabular für abstrakte Begriffe.',
+      summary: 'Vermittlung griechischer Philosophie (Stoizismus, Akademie, Epikureismus) in lateinischer Sprache – schuf das Vokabular für abstrakte Begriffe wie "qualitas", "essentia", "moralis". Machte Philosophie für Roms Elite zugänglich.',
       tag: 'Philosophie',
       icon: 'BookOpen' as const,
     },
     {
       title: 'Verteidiger der Republik',
-      summary: 'Kämpfte bis zuletzt gegen die aufkommende Alleinherrschaft – seine Philippicae gegen Antonius kosteten ihn das Leben.',
+      summary: 'Kämpfte bis zuletzt gegen die aufkommende Alleinherrschaft – seine 14 Philippicae gegen Antonius kosteten ihn das Leben. Verteidigte libertas und res publica gegen Tyrannis. Sein Kopf und seine Hände wurden zur Schau gestellt.',
       tag: 'Politik',
       icon: 'Award' as const,
     },
     {
       title: 'Briefe als Zeitdokument',
-      summary: 'Über 900 erhaltene Briefe gewähren einzigartige Einblicke in das politische und private Leben der späten Republik.',
+      summary: 'Über 900 erhaltene Briefe (an Atticus, Quintus, Brutus) gewähren einzigartige Einblicke in das politische und private Leben der späten Republik. Ungefilterte Gedanken, Zweifel, Hoffnungen – intimer als jede Geschichtsschreibung.',
       tag: 'Quellen',
       icon: 'Scroll' as const,
+    },
+    {
+      title: 'Jurist und Staatstheoretiker',
+      summary: 'Mit "De re publica" und "De legibus" schuf er grundlegende Werke zur Staatstheorie. Seine Ideen von Naturrecht, Gewaltenteilung und res publica prägten Aufklärung und moderne Verfassungen.',
+      tag: 'Staatstheorie',
+      icon: 'Award' as const,
+    },
+    {
+      title: 'Literarischer Stilist',
+      summary: 'Seine Prosa wurde zum Goldstandard der lateinischen Literatur. Sein Periodenstil – komplex, aber klar – beeinflusste Jahrhunderte europäischer Bildung. Jeder Humanist kannte seine Texte auswendig.',
+      tag: 'Sprache',
+      icon: 'BookOpen' as const,
     },
   ];
 
@@ -301,7 +313,7 @@ export function CiceroAboutPage() {
               <h2 className="font-display text-4xl font-bold mb-4">Seine bleibenden Leistungen</h2>
               <p className="text-lg text-muted-foreground">Rhetorik, Philosophie und Politik – Ciceros Erbe für die westliche Zivilisation.</p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 max-w-5xl mx-auto">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
               {ciceroAchievements.map((achievement) => {
                 const IconComponent = achievement.icon === 'Users' ? Users : achievement.icon === 'BookOpen' ? BookOpen : achievement.icon === 'Award' ? Award : Scroll;
                 return (
@@ -318,6 +330,70 @@ export function CiceroAboutPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Rhetorische Meisterwerke */}
+        <section className="py-24 bg-surface-container-low/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Rhetorische Meisterwerke</h2>
+              <p className="text-lg text-muted-foreground">Die Reden, die Rom bewegten und die Rhetorik für immer prägten.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              <div className="card-modern card-hover-primary card-padding-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Scroll className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold">In Catilinam (63 v. Chr.)</h3>
+                    <span className="text-xs text-primary font-semibold">Gegen die Verschwörung</span>
+                  </div>
+                </div>
+                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Vier Reden gegen Catilina, der einen Umsturz plante. Die erste beginnt mit den berühmtesten Worten der lateinischen Literatur. Direkte Ansprache, dramatische Steigerung, moralische Empörung – Rhetorik als Staatsrettung.</p>
+                <div className="text-xs text-muted-foreground italic">"Quo usque tandem abutere, Catilina, patientia nostra?"</div>
+              </div>
+              <div className="card-modern card-hover-primary card-padding-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Scroll className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold">In Verrem (70 v. Chr.)</h3>
+                    <span className="text-xs text-primary font-semibold">Gegen Korruption</span>
+                  </div>
+                </div>
+                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Anklage gegen Verres, den korrupten Statthalter Siziliens. Sieben Reden voller Details über Raub, Folter und Machtmissbrauch. Der Durchbruch des jungen Cicero – Verres floh ins Exil, bevor das Urteil fiel.</p>
+                <div className="text-xs text-muted-foreground italic">Der Prozess, der Ciceros Karriere begründete.</div>
+              </div>
+              <div className="card-modern card-hover-primary card-padding-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Scroll className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold">Philippicae (44–43 v. Chr.)</h3>
+                    <span className="text-xs text-primary font-semibold">Gegen Antonius</span>
+                  </div>
+                </div>
+                <p className="text-sm text-foreground/85 leading-relaxed mb-3">14 feurige Reden gegen Marcus Antonius, benannt nach Demosthenes’ Reden gegen Philipp von Makedonien. Ciceros letzter Kampf für die Republik. Antonius ließ ihn dafür ermorden – Kopf und Hände wurden auf dem Forum ausgestellt.</p>
+                <div className="text-xs text-muted-foreground italic">Sein politisches Vermächtnis – und sein Todesurteil.</div>
+              </div>
+              <div className="card-modern card-hover-primary card-padding-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Scroll className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold">Pro Milone (52 v. Chr.)</h3>
+                    <span className="text-xs text-primary font-semibold">Verteidigung eines Freundes</span>
+                  </div>
+                </div>
+                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Verteidigung des Milo, der Clodius getötet hatte. Obwohl Cicero die Rede unter Einschüchterung hielt und verlor, gilt die schriftliche Fassung als rhetorisches Meisterwerk – perfekt strukturiert, emotional packend.</p>
+                <div className="text-xs text-muted-foreground italic">Die schönste Rede, die nie gehalten wurde (zumindest nicht so).</div>
+              </div>
             </div>
           </div>
         </section>
