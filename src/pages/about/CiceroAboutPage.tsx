@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, ArrowRight, Users, Scroll, Clock, Award, Sparkles } from 'lucide-react';
+import { MapPin, BookOpen, ArrowRight, Users, Scroll, Clock, Award, Sparkles, Crown, Landmark, Calendar } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
@@ -137,6 +137,36 @@ export function CiceroAboutPage() {
       ],
     },
   ];
+
+  const formatYear = (year: number) => {
+    if (Number.isNaN(year)) return '—';
+    if (year === 0) return '0';
+    return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
+  };
+
+  const ciceroSidebar = {
+    karriere: [
+      { year: -81, title: 'Erste Prozesse', note: 'Vertretung im Sextus Roscius-Fall' },
+      { year: -63, title: 'Konsul', note: 'Catilina aufgedeckt, Concordia ordinis' },
+      { year: -58, title: 'Exil', note: 'Wegen Hinrichtungen der Verschwörer' },
+      { year: -57, title: 'Rückkehr aus Exil', note: 'Senatsbeschluss, Applaus' },
+      { year: -51, title: 'Statthalter Kilikien', note: 'Militärischer Erfolg, „Imperator“-Ausruf' },
+      { year: -44, title: 'Philippicae', note: 'Angriff auf Antonius' },
+    ],
+    reden: [
+      { year: -70, title: 'In Verrem', note: 'Korruption Sizilien' },
+      { year: -66, title: 'Pro Lege Manilia', note: 'Unterstützung für Pompeius' },
+      { year: -63, title: 'In Catilinam', note: 'Vier Reden gegen Catilina' },
+      { year: -52, title: 'Pro Milone', note: 'Verteidigung Milos' },
+      { year: -43, title: 'Philippicae', note: '14 Reden gegen Antonius' },
+    ],
+    konflikte: [
+      { year: -58, title: 'Clodius & Exil', note: 'Politische Fehde, Verbannung' },
+      { year: -49, title: 'Zwischen Caesar & Pompeius', note: 'Unentschiedenheit, später Pompeius' },
+      { year: -47, title: 'Versöhnung mit Caesar', note: 'Rückkehr in Politik' },
+      { year: -43, title: 'Proskriptionen', note: 'Zweites Triumvirat; Tod Ciceros' },
+    ],
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
@@ -280,27 +310,6 @@ export function CiceroAboutPage() {
                     ))}
                   </div>
                 </div>
-
-                {details.timeline && (
-                  <div className="card-modern card-padding-lg md:p-10">
-                    <h3 className="font-display text-3xl font-bold mb-10 flex items-center gap-4">
-                      <Clock className="h-8 w-8 text-primary" />
-                      {t('timeline')}
-                    </h3>
-                    <div className="relative pl-4 space-y-12">
-                      <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
-                      {details.timeline.map((item, i) => (
-                        <div key={i} className="relative">
-                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background" />
-                          <div className="flex flex-col">
-                            <span className="text-primary font-bold text-lg mb-1 tracking-tighter">{item.year}</span>
-                            <span className="text-foreground/70 font-light leading-relaxed italic">{item.event}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -393,6 +402,135 @@ export function CiceroAboutPage() {
                 </div>
                 <p className="text-sm text-foreground/85 leading-relaxed mb-3">Verteidigung des Milo, der Clodius getötet hatte. Obwohl Cicero die Rede unter Einschüchterung hielt und verlor, gilt die schriftliche Fassung als rhetorisches Meisterwerk – perfekt strukturiert, emotional packend.</p>
                 <div className="text-xs text-muted-foreground italic">Die schönste Rede, die nie gehalten wurde (zumindest nicht so).</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lebenslauf & Stationen - Full Width Section */}
+        <section className="py-24 border-t border-border/40">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-4 mb-12">
+                <Clock className="h-8 w-8 text-primary" />
+                <div>
+                  <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
+                  <p className="text-lg text-muted-foreground mt-2">Karriere, Reden und die Wendepunkte eines Lebens</p>
+                </div>
+              </div>
+
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Karriere & Ämter */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Karriere</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {ciceroSidebar.karriere.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 1 && (
+                          <Link 
+                            to="/cicero/konsul-und-catilina"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Reden & Prozesse */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Reden</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {ciceroSidebar.reden.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 2 && (
+                          <Link 
+                            to="/cicero/in-catilinam"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 4 && (
+                          <Link 
+                            to="/cicero/philippicae"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Konflikte & Wendepunkte */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Landmark className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Wendepunkte</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {ciceroSidebar.konflikte.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 0 && (
+                          <Link 
+                            to="/cicero/exil-und-rückkehr"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 3 && (
+                          <Link 
+                            to="/cicero/tod-und-vermächtnis"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline visualization below */}
+              <div className="mt-16 pt-12 border-t border-border/40">
+                <p className="text-center text-muted-foreground mb-8">
+                  Für eine detaillierte Chronologie aller Ereignisse:
+                </p>
+                <div className="flex justify-center gap-4">
+                  <Link 
+                    to="/timeline" 
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Zur vollständigen Chronologie
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

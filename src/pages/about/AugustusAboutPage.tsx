@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, ArrowRight, Clock, Award, Sparkles, Crown, Landmark, Sword } from 'lucide-react';
+import { MapPin, BookOpen, ArrowRight, Clock, Award, Sparkles, Crown, Landmark, Sword, Calendar } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
@@ -170,6 +170,36 @@ export function AugustusAboutPage() {
     },
   ];
 
+  const formatYear = (year: number) => {
+    if (Number.isNaN(year)) return '—';
+    if (year === 0) return '0';
+    return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
+  };
+
+  const augustusSidebar = {
+    kriege: [
+      { year: -43, title: 'Mutina', note: 'Sieg gegen Antonius, Konsulat mit Hirtius/Pansa' },
+      { year: -42, title: 'Philippi', note: 'Besiegt Caesarmörder mit Antonius' },
+      { year: -36, title: 'Naulochos', note: 'Sextus Pompeius geschlagen' },
+      { year: -31, title: 'Actium', note: 'Seesieg gegen Antonius & Kleopatra' },
+      { year: -30, title: 'Alexandria', note: 'Suizid Kleopatras, Ende der Ptolemäer' },
+    ],
+    aemter: [
+      { year: -43, title: 'Triumvir', note: 'Mit Antonius & Lepidus' },
+      { year: -27, title: 'Princeps', note: '„Wiederherstellung der Republik“, Beginn Prinzipat' },
+      { year: -23, title: 'Tribunicia potestas', note: 'Dauerhafte Volkstribunengewalt' },
+      { year: -19, title: 'Imperium proconsulare maius', note: 'Oberbefehl über Legionen' },
+      { year: -2, title: 'Pater Patriae', note: 'Ehrentitel, Loyalitätsmarker' },
+    ],
+    reformen: [
+      { year: -28, title: 'Senatsreform', note: 'Bereinigung und Verkleinerung des Senats' },
+      { year: -27, title: 'Provinzordnung', note: 'Trennung kaiserlicher vs. senatorischer Provinzen' },
+      { year: -23, title: 'Heeresreform', note: 'Feste Soldzahlungen, Veteranenkassen' },
+      { year: -18, title: 'Sitten- & Ehegesetze', note: 'Lex Iulia de maritandis ordinibus' },
+      { year: -13, title: 'Ara Pacis & Bauprogramm', note: 'Propaganda der Pax Augusta' },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
@@ -312,27 +342,6 @@ export function AugustusAboutPage() {
                     ))}
                   </div>
                 </div>
-
-                {details.timeline && (
-                  <div className="card-modern card-padding-lg md:p-10">
-                    <h3 className="font-display text-3xl font-bold mb-10 flex items-center gap-4">
-                      <Clock className="h-8 w-8 text-primary" />
-                      {t('timeline')}
-                    </h3>
-                    <div className="relative pl-4 space-y-12">
-                      <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
-                      {details.timeline.map((item, i) => (
-                        <div key={i} className="relative">
-                          <div className="absolute -left-[19px] top-1.5 h-2 w-2 rounded-full border-2 border-primary bg-background" />
-                          <div className="flex flex-col">
-                            <span className="text-primary font-bold text-lg mb-1 tracking-tighter">{item.year}</span>
-                            <span className="text-foreground/70 font-light leading-relaxed italic">{item.event}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -422,6 +431,135 @@ export function AugustusAboutPage() {
                   Das Ergebnis: Monarchie ohne König
                 </h3>
                 <p className="text-sm text-foreground/85 leading-relaxed">Augustus akkumuliert alle entscheidenden Vollmachten, ohne ein einziges traditionell-monarchisches Amt zu übernehmen. Der Senat bleibt formal bestehen, ist aber machtlos. Die Republik ist tot, aber niemand wagt es auszusprechen. Das Prinzipat wird zur Blaupause für 300 Jahre Kaiserherrschaft – bis Diokletian die Maske fallen lässt und sich offen \"Dominus\" (Herr) nennt.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lebenslauf & Stationen - Full Width Section */}
+        <section className="py-24 border-t border-border/40">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-4 mb-12">
+                <Clock className="h-8 w-8 text-primary" />
+                <div>
+                  <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
+                  <p className="text-lg text-muted-foreground mt-2">Kriege, Ämter und die Reformen einer Ära</p>
+                </div>
+              </div>
+
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Bürgerkriege & Schlachten */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Sword className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Kriege</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.kriege.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 3 && (
+                          <Link 
+                            to="/augustus/actium-und-alleinherrschaft"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Ämter & Titel */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Ämter</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.aemter.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 1 && (
+                          <Link 
+                            to="/augustus/princeps-und-prinzipat"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 4 && (
+                          <Link 
+                            to="/augustus/pater-patriae"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Reformen & Bauprogramm */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Landmark className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Reformen</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.reformen.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 2 && (
+                          <Link 
+                            to="/augustus/heeresreform-und-veteranen"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                        {idx === 4 && (
+                          <Link 
+                            to="/augustus/ara-pacis-und-bauprogramm"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            Artikel lesen
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline visualization below */}
+              <div className="mt-16 pt-12 border-t border-border/40">
+                <p className="text-center text-muted-foreground mb-8">
+                  Für eine detaillierte Chronologie aller Ereignisse:
+                </p>
+                <div className="flex justify-center gap-4">
+                  <Link 
+                    to="/timeline" 
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Zur vollständigen Chronologie
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

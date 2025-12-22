@@ -13,6 +13,26 @@ export const authors: Record<string, AuthorInfo> = {
     heroImage: '/images/caesar-hero.jpg',
     theme: 'theme-caesar',
     color: 'hsl(25, 95%, 53%)',
+    highlights: [
+      {
+        title: 'De Bello Gallico',
+        description: 'Der Gallische Krieg – Strategie, Propaganda und Expansion.',
+        link: '/caesar/works/de-bello-gallico',
+        icon: 'book'
+      },
+      {
+        title: 'De Bello Civili',
+        description: 'Der Bürgerkrieg gegen Pompeius – Macht und Rechtfertigung.',
+        link: '/caesar/works/de-bello-civili',
+        icon: 'scroll'
+      },
+      {
+        title: 'Gallienkarte',
+        description: 'Kampagnenkarte und Schlüsselorte der Eroberung.',
+        link: '/timeline',
+        icon: 'map'
+      }
+    ],
   },
   cicero: {
     id: 'cicero',
@@ -26,6 +46,26 @@ export const authors: Record<string, AuthorInfo> = {
     heroImage: '/images/cicero-hero.jpg',
     theme: 'theme-cicero',
     color: 'hsl(210, 80%, 50%)',
+    highlights: [
+      {
+        title: 'In Catilinam',
+        description: 'Vier Reden gegen Catilina – Rhetorik auf höchstem Niveau.',
+        link: '/cicero/works/in-catilinam',
+        icon: 'megaphone'
+      },
+      {
+        title: 'De Officiis',
+        description: 'Über Pflichten – Ethik und Tugenden im Leben.',
+        link: '/cicero/works/de-officiis',
+        icon: 'feather'
+      },
+      {
+        title: 'De Re Publica',
+        description: 'Der ideale Staat – Verfassung, Gerechtigkeit, Gemeinwohl.',
+        link: '/cicero/works/de-re-publica',
+        icon: 'columns'
+      }
+    ],
   },
   catilina: {
     id: 'catilina',
@@ -39,6 +79,20 @@ export const authors: Record<string, AuthorInfo> = {
     heroImage: '/images/catilina-hero.jpg',
     theme: 'theme-catilina',
     color: 'hsl(350, 85%, 45%)',
+    highlights: [
+      {
+        title: 'Die Verschwörung',
+        description: 'Motivationen, Netzwerke und der dramatische Zusammenbruch.',
+        link: '/timeline',
+        icon: 'alert'
+      },
+      {
+        title: 'Ciceros Angriff',
+        description: 'Die Catilinarischen Reden und politische Folgen.',
+        link: '/cicero/works/in-catilinam',
+        icon: 'megaphone'
+      }
+    ],
   },
   augustus: {
     id: 'augustus',
@@ -52,6 +106,20 @@ export const authors: Record<string, AuthorInfo> = {
     heroImage: '/images/augustus-hero.jpg',
     theme: 'theme-augustus',
     color: 'hsl(280, 70%, 55%)',
+    highlights: [
+      {
+        title: 'Res Gestae',
+        description: 'Der Rechenschaftsbericht des Princeps – Monument und Selbstbild.',
+        link: '/augustus/works/res-gestae',
+        icon: 'tablet'
+      },
+      {
+        title: 'Der Prinzipat',
+        description: 'Neue Ordnung nach dem Bürgerkrieg – Macht und Stabilität.',
+        link: '/timeline',
+        icon: 'crown'
+      }
+    ],
   },
   
 };
