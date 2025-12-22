@@ -22,7 +22,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Sync document lang
   useEffect(() => {
-    document.documentElement.lang = i18n.language.split('-')[0];
+    const baseLang = i18n.language.split('-')[0];
+    document.documentElement.lang = baseLang;
+    document.documentElement.dir = ['ar', 'fa', 'he', 'ur'].includes(baseLang) ? 'rtl' : 'ltr';
   }, [i18n.language]);
 
   const t = (key: string, replacements?: Record<string, string | number>): string => {

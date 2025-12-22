@@ -10,13 +10,110 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3001;
+const BASE_URL = (process.env.SITE_URL || 'https://meum-diarium.xn--schchner-2za.de').replace(/\/$/, '');
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
-// Note: Rate limiting should be added for production use
-// Consider using express-rate-limit for API endpoints
-// Example: app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))
+// ========== ROBOTS & SEO ENDPOINTS ==========
+
+// Serve robots.txt with dynamic sitemap reference
+app.get('/robots.txt', (_req, res) => {
+    const content = `User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Disallow admin paths
+Disallow: /admin
+
+Sitemap: ${buildUrl('/sitemap.xml')}
+`;
+    res.type('text/plain').send(content);
+});
+
+// Human-readable sitemap index
+app.get('/sitemap-index.html', async (_req, res) => {
+    try {
+        const staticRoutes = [
+            { path: '/', label: 'Home', priority: 1.0 },
+            { path: '/about', label: 'About', priority: 0.8 },
+            { path: '/timeline', label: 'Timeline', priority: 0.8 },
+            { path: '/lexicon', label: 'Lexicon', priority: 0.7 },
+            { path: '/search', label: 'Search', priority: 0.6 },
+        ];
+
+        const authorIds = await getAuthorIdsFromFile();
+        const authorRoutes = authorIds.flatMap((id) => ([
+            { path: `/${id}`, label: `${id.charAt(0).toUpperCase() + id.slice(1)} - Timeline`, priority: 0.9 },
+            { path: `/${id}/about`, label: `${id.charAt(0).toUpperCase() + id.slice(1)} - About`, priority: 0.8 },
+        ]));
+
+        const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meum Diarium - Sitemap Index</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; }
+        h1 { color: #333; }
+        .routes { display: grid; gap: 8px; }
+        .route-item { padding: 12px; background: #f5f5f5; border-radius: 4px; border-left: 4px solid #8B4513; }
+        .route-item a { color: #0066cc; text-decoration: none; font-weight: bold; }
+        .route-item a:hover { text-decoration: underline; }
+        .route-item .priority { font-size: 12px; color: #666; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <h1>🏛️ Meum Diarium - Sitemap Index</h1>
+    <p>This is a human-readable index of all pages. For search engines, see <a href="/sitemap.xml">/sitemap.xml</a>.</p>
+    
+    <h2>Core Pages</h2>
+    <div class="routes">
+        ${staticRoutes.map((r) => `<div class="route-item"><a href="${buildUrl(r.path)}">${r.label}</a><div class="priority">Priority: ${r.priority}</div></div>`).join('')}
+    </div>
+
+    <h2>Author Pages</h2>
+    <div class="routes">
+        ${authorRoutes.map((r) => `<div class="route-item"><a href="${buildUrl(r.path)}">${r.label}</a><div class="priority">Priority: ${r.priority}</div></div>`).join('')}
+    </div>
+
+    <hr>
+    <p><small>Last updated: ${todayIso()} | Generated dynamically from server</small></p>
+</body>
+</html>
+        `;
+        res.type('text/html').send(html);
+    } catch (error) {
+        console.error('Failed to generate sitemap index', error);
+        res.status(500).send('Failed to generate sitemap index');
+    }
+});
+
 
 const CONTENT_DIR = path.resolve(__dirname, '../src/content');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
@@ -268,6 +365,68 @@ app.delete('/api/posts/:author/:slug', async (req, res) => {
 // ============ AUTHORS API ============
 
 const AUTHORS_FILE = path.join(DATA_DIR, 'authors.ts');
+const WORKS_FILE = path.join(DATA_DIR, 'works.ts');
+
+const todayIso = () => new Date().toISOString().split('T')[0];
+const buildUrl = (pathSegment: string) => `${BASE_URL}${pathSegment}`;
+
+const getAuthorIdsFromFile = async (): Promise<string[]> => {
+    try {
+        const content = await fs.readFile(AUTHORS_FILE, 'utf-8');
+        const blockRegex = /(\w+):\s*{([\s\S]*?)},/g;
+        const ids: string[] = [];
+        let match;
+        while ((match = blockRegex.exec(content)) !== null) {
+            const id = match[1];
+            if (id === 'authors') continue;
+            ids.push(id);
+        }
+        return ids;
+    } catch (error) {
+        console.error('Failed to read authors for sitemap', error);
+        return [];
+    }
+};
+
+const getPostEntries = async (): Promise<Array<{ author: string; slug: string; lastmod: string }>> => {
+    const entries: Array<{ author: string; slug: string; lastmod: string }> = [];
+    try {
+        const authors = await fs.readdir(POSTS_DIR);
+        for (const author of authors) {
+            const dirPath = path.join(POSTS_DIR, author);
+            const stat = await fs.stat(dirPath).catch(() => null);
+            if (!stat || !stat.isDirectory()) continue;
+            const files = await fs.readdir(dirPath);
+            for (const file of files) {
+                if (!file.endsWith('.ts')) continue;
+                const slug = file.replace('.ts', '');
+                const fileStat = await fs.stat(path.join(dirPath, file)).catch(() => null);
+                entries.push({ author, slug, lastmod: fileStat ? fileStat.mtime.toISOString().split('T')[0] : todayIso() });
+            }
+        }
+    } catch (error) {
+        console.error('Failed to read posts for sitemap', error);
+    }
+    return entries;
+};
+
+const getWorkEntries = async (): Promise<Array<{ author: string; slug: string; lastmod: string }>> => {
+    const entries: Array<{ author: string; slug: string; lastmod: string }> = [];
+    try {
+        const content = await fs.readFile(WORKS_FILE, 'utf-8');
+        const blockRegex = /'([^']+)'\s*:\s*{([\s\S]*?)}\s*,/g;
+        let match;
+        while ((match = blockRegex.exec(content)) !== null) {
+            const slug = match[1];
+            const block = match[2];
+            const author = extractString(block, 'author');
+            entries.push({ author, slug, lastmod: todayIso() });
+        }
+    } catch (error) {
+        console.error('Failed to read works for sitemap', error);
+    }
+    return entries;
+};
 
 // GET all authors
 app.get('/api/authors', async (req, res) => {
@@ -991,6 +1150,58 @@ app.post('/api/translations', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to add translation' });
+    }
+});
+
+app.get(['/sitemap.xml', '/sitemap'], async (_req, res) => {
+    try {
+        const staticRoutes = [
+            { path: '/', changefreq: 'weekly', priority: '1.0' },
+            { path: '/about', changefreq: 'monthly', priority: '0.8' },
+            { path: '/timeline', changefreq: 'weekly', priority: '0.8' },
+            { path: '/lexicon', changefreq: 'weekly', priority: '0.7' },
+            { path: '/search', changefreq: 'weekly', priority: '0.6' },
+        ];
+
+        const authorIds = await getAuthorIdsFromFile();
+        const authorRoutes = authorIds.flatMap((id) => ([
+            { path: `/${id}`, changefreq: 'weekly', priority: '0.9' },
+            { path: `/${id}/about`, changefreq: 'monthly', priority: '0.8' },
+            { path: `/${id}/chat`, changefreq: 'monthly', priority: '0.5' },
+            { path: `/${id}/simulation`, changefreq: 'monthly', priority: '0.5' },
+        ]));
+
+        const posts = await getPostEntries();
+        const works = await getWorkEntries();
+        const today = todayIso();
+
+        const urlEntries = [
+            ...staticRoutes,
+            ...authorRoutes,
+            ...posts.map((p) => ({
+                path: `/${p.author}/${p.slug}`,
+                changefreq: 'weekly',
+                priority: '0.7',
+                lastmod: p.lastmod || today,
+            })),
+            ...works
+                .filter((w) => w.author)
+                .map((w) => ({
+                    path: `/${w.author}/works/${w.slug}`,
+                    changefreq: 'monthly',
+                    priority: '0.6',
+                    lastmod: w.lastmod || today,
+                })),
+        ];
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlEntries
+            .map((entry) => `  <url>\n    <loc>${buildUrl(entry.path)}</loc>\n    <lastmod>${entry.lastmod || today}</lastmod>\n    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`)
+            .join('\n')}\n</urlset>`;
+
+        res.type('application/xml').send(xml);
+    } catch (error) {
+        console.error('Failed to generate sitemap', error);
+        res.status(500).send('Failed to generate sitemap');
     }
 });
 
