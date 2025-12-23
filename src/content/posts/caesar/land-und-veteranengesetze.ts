@@ -14,7 +14,7 @@ const post: BlogPost = {
   date: new Date().toISOString().split('T')[0],
   readingTime: 9,
   tags: ["Reform","Sozialpolitik","Veteranen","Landgesetz"],
-  coverImage: '/images/caesar-hero.jpg',
+  coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5fgmcde64rgx9gacgjmcqw%2F1766489373_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=CiOvNhUNU4z2fSRrx2eNzZ6hseOApmyyjnH/EvgIj%2Bc%3D&ac=oaivgprodscus2',
   content: {
     diary: `Ein Heer folgt dem Feldherrn, solange es weiß, wofür es kämpft – und was danach kommt. Ich versprach Land, nicht als Almosen, sondern als Anerkennung. Städte wurden entlastet, ländliche Räume belebt.
 

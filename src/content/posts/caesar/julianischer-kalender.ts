@@ -14,7 +14,7 @@ const post: BlogPost = {
   date: new Date().toISOString().split('T')[0],
   readingTime: 8,
   tags: ["Reform","Wissenschaft","Vermächtnis","Kalender"],
-  coverImage: '/images/calendar-reform.jpg',
+  coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f2kygfa089r9ssrwvryma%2F1766488909_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=C4w5duFjHT464abibHQ0hnm/ZSB1PqD9mmRg2h/bSJU%3D&ac=oaivgprodscus2',
   content: {
     diary: `Das Problem war offensichtlich: Der alte römische Kalender war ein Chaos. Astronomen mussten ständig Schaltmonate einfügen, Priester manipulierten die Zeitrechnung für politische Zwecke, und das Ergebnis? Im Jahr 46 v. Chr. lag unser Kalender drei Monate hinter der tatsächlichen Sonnenbahn.
 

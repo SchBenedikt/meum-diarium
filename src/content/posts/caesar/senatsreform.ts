@@ -14,7 +14,7 @@ const post: BlogPost = {
   date: new Date().toISOString().split('T')[0],
   readingTime: 10,
   tags: ["Reform","Institutionen","Senat","Verwaltung"],
-  coverImage: '/images/caesar-hero.jpg',
+  coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f69bcfen9xwyc7begkwh9%2F1766489035_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=FdSynyG50yo7XgVLRb1VxL1Nbxfwlt61YSVnqIbAJpE%3D&ac=oaivgprodscus2',
   content: {
     diary: `Ich nahm dem Senat die Exklusivität, nicht die Stimme. Die alten Familien beherrschten Rom über Netzwerke, nicht über Kompetenz. Also öffnete ich die Türen: neue Männer, neue Provinzen, neue Stimmen.
 

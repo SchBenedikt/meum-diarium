@@ -14,7 +14,7 @@ const post: BlogPost = {
   date: new Date().toISOString().split('T')[0],
   readingTime: 8,
   tags: ["Reform","Stadtplanung","Infrastruktur","Forum"],
-  coverImage: '/images/caesar-hero.jpg',
+  coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f5170frwvsp2h0f2w9gmv%2F1766488996_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=/UZihoq6U6yWiOy5L3g2fEFa2eAj5EjLGd9EuAE0lAw%3D&ac=oaivgprodscus2',
   content: {
     diary: `Rom war zu eng für Rom. Das alte Forum erstickte in seiner eigenen Geschichte. Ich schuf Raum: Das Forum Iulium, geordnet, klar, ein öffentliches Herz, das den Rhythmus der Stadt sichtbar machte.
 
