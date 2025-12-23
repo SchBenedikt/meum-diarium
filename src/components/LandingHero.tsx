@@ -10,26 +10,25 @@ import { ReadingStats } from './ReadingStats';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { DemoChatWidget } from './DemoChatWidget';
 import { fadeUp, staggerContainer } from '@/lib/motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export function LandingHero() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const stats = [
     { label: 'Tagebucheinträge', value: '50+', icon: Scroll },
     { label: 'Jahre Geschichte', value: '170+', icon: Clock },
-    { label: 'Perspektiven', value: '2', icon: Quote },
+    { label: 'Perspektiven', value: '4', icon: Users },
   ];
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-background" ref={containerRef}>
       {/* Hero Section - Clean & Minimal */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-muted/30">
-        {/* Simple pattern background */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }} />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-background opacity-50" />
 
         <div className="container mx-auto relative z-10 px-4 sm:px-6 pt-24 sm:pt-32 pb-20">
           <motion.div
@@ -40,7 +39,7 @@ export function LandingHero() {
           >
             <motion.div
               variants={fadeUp(0.1)}
-              className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-bold mb-8"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-bold mb-8 hover:bg-primary/15 transition-colors"
             >
               <Sparkles className="w-4 h-4 mr-2" />
               LERNE ÜBER CAESAR
@@ -57,22 +56,21 @@ export function LandingHero() {
               variants={fadeUp(0.3)}
               className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
             >
-              Entdecke die Geschichte durch Caesars persönliche Tagebucheinträge.
-              Authentische Kommentare zu seinen Feldzügen, Entscheidungen und Gedanken.
+              Lesen Sie die Geschichte aus Caesars Perspektive. Seine eigenen Gedanken zu Feldzügen, Entscheidungen und dem Leben im antiken Rom.
             </motion.p>
 
             <motion.div
               variants={fadeUp(0.5)}
               className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16"
             >
-              <Button size="lg" className="h-14 px-10 text-lg rounded-3xl bg-primary text-primary-foreground font-bold" asChild>
+              <Button size="lg" className="h-14 px-10 text-lg rounded-[1.5rem] bg-primary text-primary-foreground font-bold hover:shadow-lg hover:shadow-primary/20 transition-all" asChild>
                 <Link to="/caesar">
                   Caesars Einträge lesen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
 
-              <Button variant="outline" size="lg" className="h-14 px-10 text-lg rounded-3xl border-border" asChild>
+              <Button variant="outline" size="lg" className="h-14 px-10 text-lg rounded-[1.5rem] border-border hover:bg-secondary/50 transition-all" asChild>
                 <Link to="/caesar/chat">
                   Mit Caesar sprechen
                 </Link>
@@ -83,10 +81,10 @@ export function LandingHero() {
       </section>
 
       {/* Stats Section - Clean cards */}
-      <section className="relative z-20 -mt-16 mb-8">
+      <section className="relative z-20 -mt-16 mb-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto w-full max-w-4xl">
-            <div className="bg-card border border-border rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="bg-card border border-border/50 rounded-[1.5rem] p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 hover:border-border/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
@@ -94,9 +92,9 @@ export function LandingHero() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex flex-col items-center text-center gap-2"
+                  className="flex flex-col items-center text-center gap-3 group cursor-default"
                 >
-                  <div className="p-2.5 bg-primary/10 rounded-3xl border border-primary/20">
+                  <div className="p-3 bg-primary/10 rounded-[1.2rem] border border-primary/20 group-hover:bg-primary/15 group-hover:scale-110 transition-all">
                     <stat.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
@@ -119,20 +117,18 @@ export function LandingHero() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 hover:bg-primary/15 transition-colors">
                 <BookOpen className="w-3.5 h-3.5" />
                 WAS IST DAS?
               </div>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Caesars Gedanken, <span className="text-primary">lebendig erzählt.</span>
+                Was ist hier los?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Meum Diarium ist eine Sammlung von Tagebucheinträgen und Kommentaren,
-                die Caesars Leben, Feldzüge und Entscheidungen aus seiner persönlichen Perspektive beleuchten.
+                Meum Diarium sammelt echte Gedanken von Caesar, Cicero und anderen antiken Figuren. Nicht erfunden, sondern basierend auf historischen Quellen und deren Perspektiven.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Jeder Eintrag bietet zwei Perspektiven: den persönlichen <strong>Tagebuch-Stil</strong> und
-                eine <strong>wissenschaftliche Analyse</strong> mit historischen Kontexten.
+                Jeder Eintrag zeigt zwei Seiten: Wie die Person damals selbst gedacht haben könnte, und eine wissenschaftliche Einordnung mit Kontext.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -141,10 +137,15 @@ export function LandingHero() {
                   { icon: MapPin, label: 'Orte & Schlachten' },
                   { icon: Quote, label: 'Originale Zitate' }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2.5 p-3 rounded-lg bg-muted/50 border border-border">
-                    <item.icon className="h-4 w-4 text-primary" />
+                  <motion.div 
+                    key={i} 
+                    onHoverStart={() => setHoveredCard(i)}
+                    onHoverEnd={() => setHoveredCard(null)}
+                    className="flex items-center gap-2.5 p-3 rounded-[1.2rem] bg-muted/50 border border-border hover:bg-primary/10 hover:border-primary/40 transition-all duration-300 cursor-default"
+                  >
+                    <item.icon className={`h-4 w-4 ${hoveredCard === i ? 'text-primary' : 'text-primary/60'} transition-colors`} />
                     <span className="text-sm font-medium">{item.label}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -155,25 +156,30 @@ export function LandingHero() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="rounded-3xl overflow-hidden border border-border aspect-[4/3]">
+              <div className="rounded-[1.5rem] overflow-hidden border border-border/50 aspect-[4/3] shadow-lg hover:shadow-xl hover:border-border transition-all duration-300">
                 <img
                   src="https://videos.openai.com/az/vg-assets/task_01kcs7pbnze61tyb0qdy1teb90%2F1766078554_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-20T02%3A21%3A13Z&ske=2025-12-27T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=aqaune3RBVFcczzZvSPU47xwEeAiVRWNNCq/m2pl6VE%3D&ac=oaivgprodscus2"
                   alt="Gaius Julius Caesar"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-card border border-border rounded-3xl p-4 max-w-[200px]">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="absolute -bottom-4 -right-4 bg-card border border-border/50 rounded-[1.2rem] p-4 max-w-[200px] shadow-lg hover:shadow-xl transition-all"
+              >
                 <p className="text-xs text-muted-foreground mb-1">Hauptfigur</p>
                 <p className="font-display font-bold">Gaius Julius Caesar</p>
                 <p className="text-xs text-primary">100 – 44 v. Chr.</p>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* AI Demo Section */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-24 bg-secondary/15">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <motion.div
@@ -182,32 +188,33 @@ export function LandingHero() {
               viewport={{ once: true }}
               className="order-2 lg:order-1"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 hover:bg-primary/15 transition-colors">
                 <Sparkles className="w-3.5 h-3.5" />
                 INTERAKTIV
               </div>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Frag <span className="text-primary">Caesar</span> direkt.
+                Sprich mit Caesar.
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Stelle Fragen über den Rubikon, die Gallischen Kriege oder seine Entscheidungen.
-                Unser KI-Chat rekonstruiert Caesars Denkweise basierend auf seinen Schriften.
+                Stellen Sie Fragen. Was dachte Caesar am Rubikon? Wie argumentierte Cicero? Das System versucht, aufbauend auf historischen Quellen, authentische Antworten zu geben.
               </p>
               <div className="space-y-2">
                 {[
-                  { icon: BookOpen, text: 'Basiert auf historischen Quellen' },
-                  { icon: Sparkles, text: 'KI-Rekonstruktion seiner Persönlichkeit' },
-                  { icon: Languages, text: 'Antworten auf Deutsch und Latein' }
+                  { icon: BookOpen, text: 'Basiert auf echten historischen Quellen' },
+                  { icon: Sparkles, text: 'Rekonstruiert historische Perspektiven' },
+                  { icon: Languages, text: 'Deutsch, Latein und English' }
                 ].map((item, i) => (
-                  <div
+                  <motion.div
                     key={i}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-card border border-border"
+                    onHoverStart={() => setHoveredCard(4 + i)}
+                    onHoverEnd={() => setHoveredCard(null)}
+                    className="flex items-center gap-3 p-3 rounded-[1.2rem] bg-card border border-border hover:bg-primary/10 hover:border-primary/40 transition-all duration-300 cursor-default"
                   >
-                    <div className="p-1.5 bg-primary/10 rounded-md">
-                      <item.icon className="h-4 w-4 text-primary" />
+                    <div className={`p-1.5 bg-primary/10 rounded-[0.8rem] ${hoveredCard === 4 + i ? 'scale-110' : ''} transition-transform`}>
+                      <item.icon className={`h-4 w-4 ${hoveredCard === 4 + i ? 'text-primary' : 'text-primary/60'} transition-colors`} />
                     </div>
                     <span className="text-sm">{item.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -227,29 +234,6 @@ export function LandingHero() {
       {/* Feature Showcase */}
       <FeatureShowcase />
 
-      {/* Authors Section - Focus on Caesar */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16 max-w-2xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
-              <Users className="w-3.5 h-3.5" />
-              AUTOREN
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Weitere <span className="text-primary">Perspektiven</span>
-            </h2>
-            <p className="text-muted-foreground">
-              Neben Caesar findest du auch Einträge von Cicero, Augustus und Seneca.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       <div id="authors">
         <AuthorGrid />
       </div>
@@ -257,7 +241,7 @@ export function LandingHero() {
       <FeaturedPost />
 
       {/* Quote of the Day Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-secondary/15">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
             <motion.div
