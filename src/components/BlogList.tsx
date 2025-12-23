@@ -205,7 +205,11 @@ export function BlogList() {
                   viewport={{ once: true, amount: 0.05 }}
                 >
                   {postsOfYear.map((post) => (
-                    <BlogCard key={post.id} post={post} />
+                    <BlogCard
+                      key={post.id}
+                      post={post}
+                      preferredPerspective={contentFilter === 'scientific' ? 'scientific' : (contentFilter === 'diary' ? 'diary' : undefined)}
+                    />
                   ))}
                 </motion.div>
               </section>

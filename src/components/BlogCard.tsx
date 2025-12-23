@@ -11,9 +11,10 @@ const cardVariants = fadeUp(0.05, 20);
 interface BlogCardProps {
   post: BlogPost;
   className?: string;
+  preferredPerspective?: 'diary' | 'scientific';
 }
 
-export function BlogCard({ post, className }: BlogCardProps) {
+export function BlogCard({ post, className, preferredPerspective }: BlogCardProps) {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -45,7 +46,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
-        to={`/${post.author}/${post.slug}`}
+        to={`/${post.author}/${post.slug}${preferredPerspective ? `?p=${preferredPerspective}` : ''}`}
         className={cn(
           'card-modern card-hover-primary group flex flex-col h-full overflow-hidden active:border-primary/60 touch-manipulation relative',
           className

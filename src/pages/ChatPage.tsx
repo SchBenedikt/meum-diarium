@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +16,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
+    const [searchParams] = useSearchParams();
     const { setCurrentAuthor } = useAuthor();
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über meine Feldzüge in Gallien oder meine Pläne für Rom.' }
@@ -37,11 +38,9 @@ export default function ChatPage() {
 
     if (!author) return null;
 
-    const handleSend = async () => {
-        if (!input.trim()) return;
-        const question = input.trim();
+    const sendQuestion = async (question: string) => {
+        if (!question.trim()) return;
         setMessages(prev => [...prev, { role: 'user', content: question }]);
-        setInput('');
         setIsTyping(true);
 
         try {
@@ -66,10 +65,26 @@ export default function ChatPage() {
         }
     };
 
+    const handleSend = async () => {
+        const question = input.trim();
+        if (!question) return;
+        setInput('');
+        await sendQuestion(question);
+    };
+
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, isTyping]);
 
+    // Auto-ask when arriving with a query param like ?q=...
+    useEffect(() => {
+        const q = searchParams.get('q');
+        if (q && messages.length === 1 && !isTyping) {
+            // Avoid duplicating if already asked
+            sendQuestion(q);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams]);
     
 
     return (
@@ -151,10 +166,19 @@ export default function ChatPage() {
                                     </span>
                                 </div>
                             </div>
-                            <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
-                                <Bot className="h-4 w-4" />
-                                <span>KI-gestützt</span>
+                            <div className="hidden sm:flex items-center gap-3">
+                                <div className="text-xs text-muted-foreground flex items-center gap-2">
+                                    <Bot className="h-4 w-4" />
+                                    <span>KI-gestützt</span>
+                                </div>
+                                <span className="px-2 py-1 rounded-md text-[10px] font-semibold tracking-wide bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">BETA</span>
                             </div>
+                        </div>
+
+                        {/* Beta banner for visibility */}
+                        <div className="px-4 sm:px-5 py-2 bg-amber-500/10 border-b border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
+                            <Sparkles className="h-3.5 w-3.5" />
+                            <span>Experimenteller KI-Chat (Beta) – Antworten können ungenau sein.</span>
                         </div>
 
                         <ScrollArea className="h-[55vh] sm:h-[60vh] p-4 sm:p-6">

@@ -5,6 +5,8 @@ const post: BlogPost = {
   slug: 'ausweitung-des-burgerrechts',
   author: 'caesar',
   title: 'Erweiterung des Bürgerrechts',
+  
+  
   latinTitle: 'Civitas Amplificata',
   excerpt: 'Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.',
   historicalDate: '49–46 v. Chr.',
@@ -19,26 +21,13 @@ const post: BlogPost = {
 Ich holte italische und provinziale Eliten in unser Bürgerrecht. Nicht als Gnade, sondern als Anerkennung. Sie verwalteten, führten Legionen, sprachen Recht. Dafür verlangte ich: Loyalität zu Rom, Loyalität zu mir.
 
 Manche nannten es Entweihung der alten Ordnung. Ich nenne es Erweiterung der Ordnung. Rom wurde nicht kleiner, wenn andere Römer wurden – es wurde größer.`,
-    scientific: `Die Ausweitung des römischen Bürgerrechts unter Caesar ist Teil eines länger währenden Integrationsprozesses (beginnend in der späten Republik, kulminierend unter Augustus).
+    scientific: `Die Ausweitung des römischen Bürgerrechts unter Caesar ist Teil eines länger währenden Integrationsprozesses, der in der späten Republik begann und unter Augustus kulminierte. Diese Politik verfolgte mehrere strategische Ziele, die sowohl politische als auch administrative Dimensionen umfassten.<br>
 
-## Ziele und Instrumente
+<br>Caesar nutzte die Erweiterung des Bürgerrechts gezielt, um die Provinzialaristokratie an Rom zu binden und ihr Zugang zu Ämtern und Senat zu verschaffen. Durch diese Elitenbindung sicherte er sich die Loyalität der lokalen Führungsschichten. Gleichzeitig verfolgte er das Ziel, die Verwaltungsqualität zu verbessern, indem er kompetente und lokal verankerte Führungskräfte rekrutierte. Die militärische Steuerung profitierte ebenfalls von dieser Maßnahme, da der rechtliche Status und die dadurch eröffneten Karrierewege Loyalität und Motivation stärkten.<br>
 
-- **Elitenbindung**: Provinzialaristokratie erhält Zugang zu Ämtern und Senat.
-- **Verwaltungsqualität**: Rekrutierung kompetenter, lokal verankerter Führungskräfte.
-- **Militärische Steuerung**: Loyalität durch rechtlichen Status und Karrierewege.
+<br>Der historische Kontext dieser Entwicklung reicht zurück bis zu den Gesetzen Lex Iulia und Lex Plautia Papiria aus den Jahren 90–89 v. Chr., die bereits das Bürgerrecht auf italische Verbündete ausgedehnt hatten. Unter Caesar beschleunigte sich die Integration ausgewählter Provinzialeliten, besonders in der Gallia Narbonensis und in Hispania. Diese gezielte Förderung war Teil seiner umfassenderen Reformpolitik.<br>
 
-## Historischer Kontext
-
-- Bereits zuvor: Lex Iulia und Lex Plautia Papiria (90–89 v. Chr.) erweiterten Bürgerrecht auf italische Verbündete.
-- Unter Caesar: Beschleunigung der Integration ausgewählter Provinzialeliten, bes. Gallia Narbonensis und Hispania.
-
-## Effekte
-
-- **Politische Stabilität**: Mehr Repräsentation, weniger Revolten.
-- **Zentrums-Peripherie-Ausgleich**: Rom als integrativer Kern statt reiner Eroberer.
-- **Langfristiges Vermächtnis**: Grundlage für die Reichsverwaltung des Prinzipats.
-
-Die Bürgerrechtsausweitung dient der Staatskonsolidierung: Ein Imperium wird tragfähig, wenn es Zugehörigkeit schafft.`
+<br>Die Effekte dieser Politik waren weitreichend. Sie führte zu größerer politischer Stabilität, da mehr Repräsentation weniger Revolten nach sich zog. Der Ausgleich zwischen Zentrum und Peripherie wurde gestärkt, indem Rom sich als integrativer Kern präsentierte statt als reiner Eroberer. Langfristig legte diese Bürgerrechtsausweitung die Grundlage für die Reichsverwaltung des Prinzipats. Ein Imperium wird tragfähig, wenn es Zugehörigkeit schafft – diese Erkenntnis stand im Zentrum von Caesars Staatskonsolidierung.`
   },
   translations: {
   "en": {
