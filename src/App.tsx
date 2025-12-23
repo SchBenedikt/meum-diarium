@@ -1,6 +1,7 @@
 import { useEffect, lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthorProvider } from "@/context/AuthorContext";
@@ -65,19 +66,19 @@ const AppContent = () => {
         <Header />
         {isAuthorRoute && !isPostPage && <AuthorHeader />}
       </div>
-      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/:authorId" element={<Index />} />
           <Route path="/:authorId/about" element={<AboutPage />} />
           <Route path="/:authorId/works/:slug" element={<WorkPage />} />
           <Route path="/:authorId/chat" element={
-            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Laden...</div>}>
+            <Suspense fallback={<LoadingScreen />}>
               <ChatPage />
             </Suspense>
           } />
           <Route path="/:authorId/simulation" element={
-            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Laden...</div>}>
+            <Suspense fallback={<LoadingScreen />}>
               <SimulationPage />
             </Suspense>
           } />
