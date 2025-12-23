@@ -1,5 +1,13 @@
-
-const API_BASE = 'http://localhost:3001/api';
+// Determine API base URL based on environment
+function getApiBase(): string {
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
+        return 'http://localhost:3001/api';
+    }
+    if (typeof window !== 'undefined') {
+        return `${window.location.origin}/api`;
+    }
+    return '/api';
+}
 
 // Add request cache for GET requests to avoid redundant network calls
 const requestCache = new Map<string, { data: any; timestamp: number }>();
@@ -27,15 +35,15 @@ async function cachedFetch(url: string, options?: RequestInit) {
 }
 
 export async function fetchPosts() {
-    return cachedFetch(`${API_BASE}/posts`);
+    return cachedFetch(`${getApiBase()}/posts`);
 }
 
 export async function fetchPost(author: string, slug: string) {
-    return cachedFetch(`${API_BASE}/posts/${author}/${slug}`);
+    return cachedFetch(`${getApiBase()}/posts/${author}/${slug}`);
 }
 
 export async function createPost(data: any) {
-    const res = await fetch(`${API_BASE}/posts`, {
+    const res = await fetch(`${getApiBase()}/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -47,7 +55,7 @@ export async function createPost(data: any) {
 }
 
 export async function deletePost(author: string, slug: string) {
-    const res = await fetch(`${API_BASE}/posts/${author}/${slug}`, {
+    const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete post');
@@ -57,11 +65,11 @@ export async function deletePost(author: string, slug: string) {
 }
 
 export async function fetchAuthors() {
-    return cachedFetch(`${API_BASE}/authors`);
+    return cachedFetch(`${getApiBase()}/authors`);
 }
 
 export async function saveAuthor(data: any) {
-    const res = await fetch(`${API_BASE}/authors`, {
+    const res = await fetch(`${getApiBase()}/authors`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -72,7 +80,7 @@ export async function saveAuthor(data: any) {
 }
 
 export async function deleteAuthor(id: string) {
-    const res = await fetch(`${API_BASE}/authors/${id}`, {
+    const res = await fetch(`${getApiBase()}/authors/${id}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete author');
@@ -81,15 +89,15 @@ export async function deleteAuthor(id: string) {
 }
 
 export async function fetchLexicon() {
-    return cachedFetch(`${API_BASE}/lexicon`);
+    return cachedFetch(`${getApiBase()}/lexicon`);
 }
 
 export async function fetchLexiconEntry(slug: string) {
-    return cachedFetch(`${API_BASE}/lexicon/${slug}`);
+    return cachedFetch(`${getApiBase()}/lexicon/${slug}`);
 }
 
 export async function saveLexiconEntry(data: any) {
-    const res = await fetch(`${API_BASE}/lexicon`, {
+    const res = await fetch(`${getApiBase()}/lexicon`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -100,7 +108,7 @@ export async function saveLexiconEntry(data: any) {
 }
 
 export async function deleteLexiconEntry(slug: string) {
-    const res = await fetch(`${API_BASE}/lexicon/${slug}`, {
+    const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete lexicon entry');
@@ -108,19 +116,19 @@ export async function deleteLexiconEntry(slug: string) {
 }
 
 export async function fetchPages() {
-    const res = await fetch(`${API_BASE}/pages`);
+    const res = await fetch(`${getApiBase()}/pages`);
     if (!res.ok) throw new Error('Failed to fetch pages');
     return res.json();
 }
 
 export async function fetchPage(slug: string) {
-    const res = await fetch(`${API_BASE}/pages/${slug}`);
+    const res = await fetch(`${getApiBase()}/pages/${slug}`);
     if (!res.ok) throw new Error('Failed to fetch page');
     return res.json();
 }
 
 export async function savePage(data: any) {
-    const res = await fetch(`${API_BASE}/pages`, {
+    const res = await fetch(`${getApiBase()}/pages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -131,7 +139,7 @@ export async function savePage(data: any) {
 
 
 export async function deletePage(slug: string) {
-    const res = await fetch(`${API_BASE}/pages/${slug}`, {
+    const res = await fetch(`${getApiBase()}/pages/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete page');
@@ -141,13 +149,13 @@ export async function deletePage(slug: string) {
 // ============ TAGS API ============
 
 export async function fetchTags() {
-    const res = await fetch(`${API_BASE}/tags`);
+    const res = await fetch(`${getApiBase()}/tags`);
     if (!res.ok) throw new Error('Failed to fetch tags');
     return res.json();
 }
 
 export async function renameTag(oldTag: string, newTag: string) {
-    const res = await fetch(`${API_BASE}/tags`, {
+    const res = await fetch(`${getApiBase()}/tags`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ oldTag, newTag })
@@ -157,7 +165,7 @@ export async function renameTag(oldTag: string, newTag: string) {
 }
 
 export async function deleteTag(tag: string) {
-    const res = await fetch(`${API_BASE}/tags/${tag}`, {
+    const res = await fetch(`${getApiBase()}/tags/${tag}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete tag');
@@ -167,19 +175,19 @@ export async function deleteTag(tag: string) {
 // ============ WORKS API ============
 
 export async function fetchWorks() {
-    const res = await fetch(`${API_BASE}/works`);
+    const res = await fetch(`${getApiBase()}/works`);
     if (!res.ok) throw new Error('Failed to fetch works');
     return res.json();
 }
 
 export async function fetchWork(slug: string) {
-    const res = await fetch(`${API_BASE}/works/${slug}`);
+    const res = await fetch(`${getApiBase()}/works/${slug}`);
     if (!res.ok) throw new Error('Failed to fetch work');
     return res.json();
 }
 
 export async function saveWork(data: any) {
-    const res = await fetch(`${API_BASE}/works`, {
+    const res = await fetch(`${getApiBase()}/works`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -189,21 +197,21 @@ export async function saveWork(data: any) {
 }
 
 export async function deleteWork(slug: string) {
-    const res = await fetch(`${API_BASE}/works/${slug}`, { method: 'DELETE' });
+    const res = await fetch(`${getApiBase()}/works/${slug}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete work');
     return res.json();
 }
 
 // Work Details (key moments, quotes, etc.)
 export async function fetchWorkDetails(slug: string) {
-    const res = await fetch(`${API_BASE}/works/${slug}/details`);
+    const res = await fetch(`${getApiBase()}/works/${slug}/details`);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error('Failed to fetch work details');
     return res.json();
 }
 
 export async function saveWorkDetails(slug: string, details: any) {
-    const res = await fetch(`${API_BASE}/works/${slug}/details`, {
+    const res = await fetch(`${getApiBase()}/works/${slug}/details`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(details)
@@ -213,7 +221,7 @@ export async function saveWorkDetails(slug: string, details: any) {
 }
 
 export async function deleteWorkDetails(slug: string) {
-    const res = await fetch(`${API_BASE}/works/${slug}/details`, { method: 'DELETE' });
+    const res = await fetch(`${getApiBase()}/works/${slug}/details`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete work details');
     return res.json();
 }
