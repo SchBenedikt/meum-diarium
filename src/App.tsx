@@ -30,6 +30,7 @@ const PageEditorPage = lazy(() => import("./pages/PageEditorPage"));
 const WorkEditorPage = lazy(() => import("./pages/WorkEditorPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const DesignGuidePage = lazy(() => import("./pages/DesignGuidePage"));
+const LoadingDemoPage = lazy(() => import("./pages/LoadingDemoPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -101,6 +102,7 @@ const AppContent = () => {
           <Route path="/admin/pages/:slug" element={<PageEditorPage />} />
           <Route path="/admin/settings" element={<SettingsPage />} />
           <Route path="/design" element={<DesignGuidePage />} />
+          <Route path="/loading" element={<LoadingDemoPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
