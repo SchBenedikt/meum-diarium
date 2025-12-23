@@ -3,10 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { BookOpen } from 'lucide-react';
 import { lexicon } from '@/data/lexicon';
+import { authors } from '@/data/authors';
 import { TranslationKey } from '@/locales/translations';
 import { Language } from '@/types/blog';
 import { getTranslatedLexiconEntry } from '@/lib/content-translator';
 import { extractHeadingIds } from '@/lib/toc-generator';
+import { TermPopover } from '@/components/TermPopover';
 
 function slugify(text: string): string {
   return text
@@ -46,8 +48,9 @@ function LexiconTerm({ term, definition, slug, t }: { term: string, definition: 
 
 export function formatContent(content: string, t: (key: TranslationKey) => string, language: Language, currentSlug?: string): React.ReactNode[] {
   // 1. Get all relevant terms for the CURRENT language
-  const termsMap = new Map<string, { slug: string, definition: string }>();
+  const termsMap = new Map<string, { slug: string, definition: string, type: 'lexicon' | 'author' }>();
 
+  // Add lexicon terms
   lexicon.forEach(originalEntry => {
     if (originalEntry.slug === currentSlug) return;
 
@@ -55,15 +58,27 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
 
     // Add main term
     if (translatedEntry.term) {
-      termsMap.set(translatedEntry.term.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition });
+      termsMap.set(translatedEntry.term.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
     }
 
     // Add variants (now including language-specific ones)
     translatedEntry.variants?.forEach(variant => {
       if (variant) {
-        termsMap.set(variant.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition });
+        termsMap.set(variant.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
       }
     });
+  });
+
+  // Add author names
+  Object.values(authors).forEach(author => {
+    const shortName = author.name.split(' ').pop() || '';
+    if (shortName) {
+      termsMap.set(author.name.toLowerCase(), { slug: author.id, definition: author.description, type: 'author' });
+      termsMap.set(shortName.toLowerCase(), { slug: author.id, definition: author.description, type: 'author' });
+    }
+    if (author.latinName && author.latinName !== author.name) {
+      termsMap.set(author.latinName.toLowerCase(), { slug: author.id, definition: author.description, type: 'author' });
+    }
   });
 
   const linkableTerms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
@@ -231,7 +246,18 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       const match = termsMap.get(term.toLowerCase());
 
       if (match) {
-        parts.push(<LexiconTerm key={result.index} term={term} definition={match.definition} slug={match.slug} t={t} />);
+        const linkPath = match.type === 'author' ? `/${match.slug}` : `/lexicon/${match.slug}`;
+        parts.push(
+          <TermPopover key={result.index} term={term} type={match.type}>
+            <Link
+              to={linkPath}
+              state={{ from: location.pathname + location.search }}
+              className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer hover:border-primary transition-colors"
+            >
+              {term}
+            </Link>
+          </TermPopover>
+        );
       } else {
         parts.push(<span key={result.index} dangerouslySetInnerHTML={{ __html: term }} />);
       }
