@@ -4,8 +4,8 @@ import { BlogList } from '@/components/BlogList';
 import { LandingHero } from '@/components/LandingHero';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
-import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
@@ -16,6 +16,8 @@ import { motion } from 'framer-motion';
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
   const { authorId } = useParams<{ authorId?: string }>();
+  const navigate = useNavigate();
+  const [question, setQuestion] = useState('');
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {
@@ -77,8 +79,20 @@ const Index = () => {
                               type="text"
                               placeholder={`Was möchtest du ${authors[currentAuthor].name.split(' ')[0]} fragen?`}
                               className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50 font-light"
+                              value={question}
+                              onChange={(e) => setQuestion(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  const q = question.trim();
+                                  if (q.length > 0) {
+                                    navigate(`/${currentAuthor}/chat?q=${encodeURIComponent(q)}`);
+                                  } else {
+                                    navigate(`/${currentAuthor}/chat`);
+                                  }
+                                }
+                              }}
                             />
-                            <Link to={`/${currentAuthor}/chat`}>
+                            <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
                               <Button size="sm" className="rounded-lg gap-2">
                                 <span className="hidden sm:inline">Chat öffnen</span>
                                 <ArrowRight className="h-4 w-4" />

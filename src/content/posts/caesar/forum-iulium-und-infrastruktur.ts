@@ -5,36 +5,46 @@ const post: BlogPost = {
   slug: 'forum-iulium-und-infrastruktur',
   author: 'caesar',
   title: 'Forum Iulium',
+  
+  
   latinTitle: 'Forum Iulium et Opera Publica',
   excerpt: 'Warum ich baute: Entlastung des alten Forums, Sichtbarkeit staatlicher Autorität, Arbeitsplätze und Prestige für Rom.',
   historicalDate: '46 v. Chr.',
   historicalYear: -46,
   date: new Date().toISOString().split('T')[0],
   readingTime: 8,
-  tags: ['Reform','Stadtplanung','Infrastruktur','Forum'],
+  tags: ["Reform","Stadtplanung","Infrastruktur","Forum"],
   coverImage: '/images/caesar-hero.jpg',
   content: {
     diary: `Rom war zu eng für Rom. Das alte Forum erstickte in seiner eigenen Geschichte. Ich schuf Raum: Das Forum Iulium, geordnet, klar, ein öffentliches Herz, das den Rhythmus der Stadt sichtbar machte.
 
 Straßen, Bauten, Tempel – die Stadt ist nicht nur Kulisse, sie ist Teil der Politik. Wer Ordnung sehen will, muss sie auch sehen können.`,
-    scientific: `Caesars Baupolitik kulminiert im Forum Iulium. Ziel: Entlastung des überfüllten Forum Romanum, räumliche Strukturierung von Gericht, Politik und Markt.
+    scientific: `Caesars Baupolitik kulminiert im Forum Iulium, dessen Errichtung mehrere zentrale Ziele verfolgte. Im Mittelpunkt stand die Entlastung des überfüllten Forum Romanum durch die Schaffung neuer räumlicher Strukturen für Gericht, Politik und Markt.<br>
 
-## Funktionen des Forum Iulium
+<br>Das Forum Iulium erfüllte verschiedene wichtige Funktionen für die Stadt Rom. Die räumliche Entzerrung schuf dringend benötigte neue Flächen für Gerichte und öffentliche Geschäfte, die im alten Forum nicht mehr untergebracht werden konnten. Gleichzeitig diente das neue Forum der symbolischen Ordnung, indem es die Sichtbarkeit der neuen Machtbalance konkret im Stadtraum manifestierte. Darüber hinaus setzte das Bauprojekt einen bedeutenden ökonomischen Impuls durch die Schaffung von Beschäftigung und die umfassende Verbesserung der städtischen Infrastruktur.<br>
 
-- **Räumliche Entzerrung**: neue Flächen für Gerichte und öffentliche Geschäfte.
-- **Symbolische Ordnung**: Sichtbarkeit der neuen Machtbalance.
-- **Ökonomischer Impuls**: Beschäftigung und städtische Infrastrukturverbesserung.
+<br>Über das Forum hinaus umfasste Caesars Infrastrukturpolitik zahlreiche weitere Maßnahmen. Straßensanierungen und die Errichtung öffentlicher Bauten verstärkten die Sichtbarkeit staatlicher Autorität und schufen Vertrauen sowie institutionelle Routine im öffentlichen Leben.<br>
 
-## Infrastruktur darüber hinaus
-
-- **Straßensanierungen** und **öffentliche Bauten**; Sichtbarkeit staatlicher Autorität schafft Vertrauen und Routine.
-
-Die Baupolitik war nicht bloß Prestige. Sie war Verwaltungsreform in Stein: klare Wege, klare Räume, klare Abläufe.`,
+<br>Die Baupolitik war nicht bloß Prestige oder repräsentative Selbstdarstellung. Sie stellte vielmehr eine Verwaltungsreform in Stein dar, die durch klare Wege, klare Räume und klare Abläufe die Funktionsfähigkeit der städtischen Administration nachhaltig verbesserte.`
   },
   translations: {
-    en: { title: '', excerpt: '', content: { diary: '', scientific: '' } },
-    la: { title: '', excerpt: '', content: { diary: '', scientific: '' } },
+  "en": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
   },
+  "la": {
+    "title": "",
+    "excerpt": "",
+    "content": {
+      "diary": "",
+      "scientific": ""
+    }
+  }
+}
 };
 
 export default post;

@@ -29,6 +29,11 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         excerpt: post?.excerpt || '',
         contentDiary: post?.content.diary || '',
         contentScientific: post?.content.scientific || '',
+        quoteText: post?.sidebar?.quote?.text || '',
+        quoteTranslation: post?.sidebar?.quote?.translation || '',
+        quoteAuthor: post?.sidebar?.quote?.author || '',
+        quoteDate: post?.sidebar?.quote?.date || '',
+        quoteSource: post?.sidebar?.quote?.source || '',
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -52,7 +57,19 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 historicalDate: post?.historicalDate || '50 v. Chr.',
                 historicalYear: post?.historicalYear || -50,
                 tags: post?.tags || [],
-                translations: post?.translations || {}
+                translations: post?.translations || {},
+                sidebar: {
+                    ...(post?.sidebar || {}),
+                    quote: (formData.quoteText || formData.quoteTranslation || formData.quoteAuthor || formData.quoteDate || formData.quoteSource)
+                      ? {
+                          text: formData.quoteText,
+                          translation: formData.quoteTranslation || undefined,
+                          author: formData.quoteAuthor || undefined,
+                          date: formData.quoteDate || undefined,
+                          source: formData.quoteSource || undefined,
+                        }
+                      : undefined,
+                },
             };
 
             const res = await fetch('/api/posts', {
@@ -171,6 +188,52 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             onChange={e => setFormData({ ...formData, contentScientific: e.target.value })}
                             placeholder="Wissenschaftlicher Inhalt..."
                         />
+                    </div>
+
+                    <div className="space-y-3 p-4 border border-border/60 rounded-lg bg-secondary/30">
+                        <Label className="font-semibold">Zitat in der Seitenleiste</Label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2 md:col-span-2">
+                                <Label>Zitat (Original)</Label>
+                                <Textarea
+                                    value={formData.quoteText}
+                                    onChange={e => setFormData({ ...formData, quoteText: e.target.value })}
+                                    placeholder="Originalzitat..."
+                                />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <Label>Übersetzung (optional)</Label>
+                                <Textarea
+                                    value={formData.quoteTranslation}
+                                    onChange={e => setFormData({ ...formData, quoteTranslation: e.target.value })}
+                                    placeholder="Übersetzung des Zitats..."
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Autor/Quelle</Label>
+                                <Input
+                                    value={formData.quoteAuthor}
+                                    onChange={e => setFormData({ ...formData, quoteAuthor: e.target.value })}
+                                    placeholder="z. B. Cicero, De Officiis"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Datum (optional)</Label>
+                                <Input
+                                    value={formData.quoteDate}
+                                    onChange={e => setFormData({ ...formData, quoteDate: e.target.value })}
+                                    placeholder="z. B. 45 v. Chr."
+                                />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <Label>Quelle (optional)</Label>
+                                <Input
+                                    value={formData.quoteSource}
+                                    onChange={e => setFormData({ ...formData, quoteSource: e.target.value })}
+                                    placeholder="z. B. Buch/Redetitel, Kapitel, Abschnitt"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     <DialogFooter>

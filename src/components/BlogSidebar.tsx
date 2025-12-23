@@ -75,7 +75,8 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             </p>
           )}
           <cite className="text-xs text-muted-foreground not-italic">
-            — {post.sidebar.quote.source}
+            — {post.sidebar.quote.author || post.sidebar.quote.source}
+            {post.sidebar.quote.date ? `, ${post.sidebar.quote.date}` : ''}
           </cite>
         </div>
       )}

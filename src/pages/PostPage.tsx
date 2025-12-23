@@ -1,7 +1,7 @@
 
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
@@ -30,10 +30,17 @@ const calculateReadingTime = (text: string): number => {
 function PostContent({ post }: { post: BlogPost }) {
   const { t, language } = useLanguage();
   const { posts: allPosts } = usePosts();
+  const [searchParams] = useSearchParams();
   const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
   const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
   const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
-  const [perspective, setPerspective] = useState<Perspective>(defaultPerspective);
+  const requested = (searchParams.get('p') as Perspective | null);
+  const initialPerspective: Perspective = requested === 'scientific' && hasScientific
+    ? 'scientific'
+    : requested === 'diary' && hasDiary
+    ? 'diary'
+    : defaultPerspective;
+  const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
 
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -90,16 +97,16 @@ function PostContent({ post }: { post: BlogPost }) {
         </div>
 
         <div className="bg-background pb-12">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-14 md:py-18">
             <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1fr_350px]">
               <motion.article
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="prose-blog space-y-8 min-w-0"
+                className="prose-blog space-y-7 min-w-0"
               >
 
-                <header className="space-y-6 pb-8 border-b border-border/40">
+                <header className="space-y-4 pb-4 border-b border-border/40">
                   <div className="space-y-3">
                     {post.latinTitle && (
                       <p className="font-display italic text-base sm:text-lg text-primary font-light">
@@ -116,7 +123,7 @@ function PostContent({ post }: { post: BlogPost }) {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1.5">
                         <Calendar className="h-4 w-4 flex-shrink-0" />
@@ -136,7 +143,7 @@ function PostContent({ post }: { post: BlogPost }) {
                     </div>
                   </div>
 
-                  <div className="pt-4">
+                  <div className="pt-2">
                     <PerspectiveToggle value={perspective} onChange={setPerspective} />
                   </div>
                 </header>

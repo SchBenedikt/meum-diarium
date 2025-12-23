@@ -148,6 +148,29 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
       if (items.length >= 3) break;
     }
   }
+  // Fallback: if nothing matched, try loose contains with expanded keywords (prefer lexicon)
+  if (items.length === 0 && keywords.length) {
+    const variants = new Set();
+    for (const k of keywords) {
+      for (const v of expandKeyword(k)) variants.add(v);
+    }
+    const variantList = Array.from(variants);
+    const loose = entries
+      .map(u => ({ url: u.loc, lower: u.loc.toLowerCase(), type: typeFromUrl(u.loc) }))
+      .filter(u => variantList.some(v => v && u.lower.includes(v)))
+      .sort((a, b) => {
+        const aLex = a.type === 'lexicon' ? 1 : 0;
+        const bLex = b.type === 'lexicon' ? 1 : 0;
+        if (bLex !== aLex) return bLex - aLex;
+        // Prefer shorter URLs (likely canonical entries)
+        return a.url.length - b.url.length;
+      })
+      .slice(0, 3);
+    for (const u of loose) {
+      const slug = extractSlug(u.url);
+      items.push({ title: titleFromSlug(slug), type: u.type, link: toSitePath(u.url) });
+    }
+  }
   return items;
 }
 
@@ -176,26 +199,33 @@ function extractSlug(url) {
 function extractKeywords(text, persona) {
   // Split and clean
   const words = text
-    .replace(/[^a-zäöüß\-\s0-9]/gi, ' ')
+    .replace(/[^a-zA-ZäöüÄÖÜß\-\s0-9]/g, ' ')
     .split(/\s+/)
     .filter(w => w.length > 2)
     .map(w => w.toLowerCase());
 
   // Remove common stop words
-  const stopwords = ['der', 'die', 'das', 'und', 'oder', 'ist', 'bin', 'bist', 'sein', 'haben', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'eure', 'mein', 'dein', 'sein', 'unser', 'euer', 'eure'];
+  const stopwords = ['der', 'die', 'das', 'und', 'oder', 'ist', 'bin', 'bist', 'sein', 'haben', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'eure', 'mein', 'dein', 'sein', 'unser', 'euer', 'eure', 'dem', 'den', 'mit', 'was', 'wie', 'warum', 'wieso', 'weshalb', 'hast', 'hat', 'tun', 'machen'];
   const filtered = words.filter(w => !stopwords.includes(w));
 
   // Add persona-specific boosts
   const boosts = {
-    caesar: ['rubikon', 'gallien', 'alesia', 'bello', 'gallico', 'civili', 'pompeius', 'vercingetorix', 'helvetier', 'rhein'],
+    caesar: ['rubikon', 'rubicon', 'gallien', 'gallia', 'alesia', 'bello', 'gallico', 'civili', 'pompeius', 'pompey', 'vercingetorix', 'helvetier', 'rhein', 'rhine'],
     cicero: ['catilina', 'oratio', 'officiis', 'republica', 'publica', 'seneca', 'antonius'],
     augustus: ['res', 'gestae', 'prinzipat', 'pax', 'romana', 'triumvir'],
     catilina: ['verschwörung', 'verschwor', 'conspiracy', 'senat', 'cicero', 'optimaten'],
   };
 
   const personaBoosts = boosts[persona] || [];
-  
-  return Array.from(new Set([...filtered, ...personaBoosts]));
+
+  // Expand with synonyms and normalized forms
+  const expanded = new Set();
+  for (const w of [...filtered, ...personaBoosts]) {
+    for (const v of expandKeyword(w)) {
+      expanded.add(v);
+    }
+  }
+  return Array.from(expanded);
 }
 
 function scoreUrl(url, slug, keywords, type, persona) {
@@ -206,8 +236,9 @@ function scoreUrl(url, slug, keywords, type, persona) {
   // Exact slug word matches get high points
   for (const k of keywords) {
     if (!k || k.length < 2) continue;
-    if (slug.includes(k)) {
-      score += type === 'lexicon' ? 5 : 3;
+    const variants = expandKeyword(k);
+    if (variants.some(v => slug.includes(v))) {
+      score += type === 'lexicon' ? 6 : 4;
       matched.push(k);
     }
   }
@@ -215,8 +246,9 @@ function scoreUrl(url, slug, keywords, type, persona) {
   // Substring matches in full URL get fewer points
   for (const k of keywords) {
     if (!k || k.length < 3) continue;
-    if (!slug.includes(k) && lower.includes(k)) {
-      score += 1;
+    const variants = expandKeyword(k);
+    if (!variants.some(v => slug.includes(v)) && variants.some(v => lower.includes(v))) {
+      score += 1.5;
       if (matched.length < 3) matched.push(k);
     }
   }
@@ -226,7 +258,7 @@ function scoreUrl(url, slug, keywords, type, persona) {
   if (type === 'text' && (lower.includes('/works/') || lower.includes('/posts/'))) score += 0.5;
 
   // Persona-specific boosts
-  if (persona === 'caesar' && (slug.includes('gallien') || slug.includes('bello') || slug.includes('rubikon'))) score += 2;
+  if (persona === 'caesar' && (slug.includes('gallien') || slug.includes('bello') || slug.includes('rubikon') || slug.includes('rubicon'))) score += 2;
   if (persona === 'cicero' && slug.includes('catilina')) score += 2;
 
   return { score, matched: Array.from(new Set(matched)) };
@@ -255,4 +287,51 @@ function toSitePath(url) {
   } catch {
     return url;
   }
+}
+
+// --- Helpers for normalization and synonyms ---
+
+function normalizeToken(s) {
+  if (!s) return '';
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9\-]/g, '');
+}
+
+const SYNONYMS = {
+  rubikon: ['rubicon'],
+  rubicon: ['rubikon'],
+  gallien: ['gallia', 'gaul', 'gallier', 'gallischer', 'gallienfeldzug'],
+  caesar: ['gaius', 'julius', 'gaius-julius-caesar'],
+  pompeius: ['pompey', 'gnaius-pompeius', 'gnaeus-pompeius'],
+  rhein: ['rhine', 'rhenus'],
+  alesia: ['alesia'],
+};
+
+function expandKeyword(k) {
+  const out = new Set();
+  const base = normalizeToken(k);
+  if (base) out.add(base);
+
+  // Raw variant as well
+  out.add((k || '').toLowerCase());
+
+  // Specific k<->c substitution for rubikon-like pattern
+  if (base.includes('rubikon')) out.add(base.replace('rubikon', 'rubicon'));
+  if (base.includes('rubicon')) out.add(base.replace('rubicon', 'rubikon'));
+
+  const syns = SYNONYMS[base];
+  if (syns && syns.length) {
+    for (const s of syns) {
+      out.add(normalizeToken(s));
+      out.add((s || '').toLowerCase());
+    }
+  }
+  return Array.from(out).filter(Boolean);
 }

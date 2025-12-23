@@ -90,7 +90,9 @@ export interface BlogPost {
     quote?: {
       text: string;
       translation?: string;
-      source: string;
+      source?: string;
+      author?: string;
+      date?: string;
     };
   };
 }
