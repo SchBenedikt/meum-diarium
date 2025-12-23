@@ -19,6 +19,7 @@
 - **Domain-aware**: Nutzt `SITE_URL` Environment Variable
 - **KI-Crawler**: Explizit erlaubt für GPTBot, Claude, Anthropic, CCBot
 - **Sitemap Reference**: Automatisch aktuell
+- **Base-URL Konfiguration**: Setze `SITE_URL` (oder `VITE_SITE_URL`/`PUBLIC_URL`/`CF_PAGES_URL`) in den Build-Umgebungsvariablen, z. B. `https://meum-diarium.xn--schchner-2za.de`. Lokal wird `http://localhost:5173` verwendet.
 
 ### 3. **Sitemap Index (Human-Readable)** ✅
 - **Endpoint**: `/sitemap-index.html`
@@ -134,6 +135,7 @@ Stelle sicher `.htaccess` im `public/` Verzeichnis hochgeladen wird.
 1. Google Search Console: https://search.google.com/search-console
 2. Domain verifizieren: meum-diarium.xn--schchner-2za.de
 3. Sitemap einreichen: https://meum-diarium.xn--schchner-2za.de/sitemap.xml
+4. In Cloudflare Pages unter Project → Settings → Environment Variables `SITE_URL` setzen.
 4. Core Web Vitals monitoren
 ```
 
