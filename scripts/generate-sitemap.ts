@@ -1,19 +1,27 @@
+import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { authors as authorMap } from '../src/data/authors';
 import { works as worksMap } from '../src/data/works';
 
 export function getSiteUrl() {
-  const envUrl = process.env.SITE_URL || process.env.VITE_SITE_URL;
+  const envUrl = process.env.SITE_URL || process.env.VITE_SITE_URL || process.env.CF_PAGES_URL || process.env.PUBLIC_URL;
   if (envUrl) return envUrl.replace(/\/$/, '');
   // Fallback for local/dev
+  if (process.env.NODE_ENV === 'production') {
+    return 'https://meum-diarium.xn--schchner-2za.de';
+  }
   return 'http://localhost:5173';
 }
 
-export function url(loc: string, lastmod?: string) {
+type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+
+export function url(loc: string, lastmod?: string, opts?: { changefreq?: ChangeFreq; priority?: number }) {
   const full = `${getSiteUrl()}${loc.startsWith('/') ? loc : `/${loc}`}`;
   const lm = lastmod || new Date().toISOString();
-  return `  <url>\n    <loc>${full}</loc>\n    <lastmod>${lm}</lastmod>\n  </url>`;
+  const cf = opts?.changefreq ? `\n    <changefreq>${opts.changefreq}</changefreq>` : '';
+  const pr = typeof opts?.priority === 'number' ? `\n    <priority>${Math.max(0, Math.min(1, opts.priority)).toFixed(1)}</priority>` : '';
+  return `  <url>\n    <loc>${full}</loc>\n    <lastmod>${lm}</lastmod>${cf}${pr}\n  </url>`;
 }
 
 function unique<T>(arr: T[]) { return Array.from(new Set(arr)); }
@@ -22,22 +30,22 @@ export async function generateSitemap() {
   const urls: string[] = [];
 
   // Core pages
-  urls.push(url('/'));
-  urls.push(url('/timeline'));
-  urls.push(url('/search'));
+  urls.push(url('/', undefined, { changefreq: 'daily', priority: 1.0 }));
+  urls.push(url('/timeline', undefined, { changefreq: 'weekly', priority: 0.6 }));
+  urls.push(url('/search', undefined, { changefreq: 'weekly', priority: 0.5 }));
 
   // Authors and their chat pages
   const authorIds = Object.keys(authorMap);
   for (const aid of authorIds) {
-    urls.push(url(`/${aid}`));
-    urls.push(url(`/${aid}/chat`));
+    urls.push(url(`/${aid}`, undefined, { changefreq: 'weekly', priority: 0.8 }));
+    urls.push(url(`/${aid}/chat`, undefined, { changefreq: 'weekly', priority: 0.7 }));
   }
 
   // Works
   for (const slug of Object.keys(worksMap)) {
     const work = (worksMap as any)[slug];
     const author = work?.author;
-    if (author) urls.push(url(`/${author}/works/${slug}`));
+    if (author) urls.push(url(`/${author}/works/${slug}`, undefined, { changefreq: 'monthly', priority: 0.6 }));
   }
 
   // Lexicon entries (by filename)
@@ -46,7 +54,7 @@ export async function generateSitemap() {
     const files = fs.readdirSync(lexiconDir).filter(f => f.endsWith('.ts'));
     for (const f of files) {
       const slug = f.replace(/\.ts$/, '');
-      urls.push(url(`/lexicon/${slug}`));
+      urls.push(url(`/lexicon/${slug}`, undefined, { changefreq: 'weekly', priority: 0.7 }));
     }
   }
 
@@ -59,7 +67,7 @@ export async function generateSitemap() {
       const postFiles = fs.readdirSync(dir).filter(f => f.endsWith('.ts'));
       for (const f of postFiles) {
         const slug = f.replace(/\.ts$/, '');
-        urls.push(url(`/${aid}/posts/${slug}`));
+        urls.push(url(`/${aid}/posts/${slug}`, undefined, { changefreq: 'monthly', priority: 0.7 }));
       }
     }
   }
