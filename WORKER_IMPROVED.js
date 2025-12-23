@@ -14,6 +14,14 @@ export default {
     }
 
     const url = new URL(request.url);
+    const pathname = url.pathname;
+
+    // Route: /explain?term=... for term summaries
+    if (pathname === '/explain' || pathname.endsWith('/explain')) {
+      return handleExplainTerm(request, env, url);
+    }
+
+    // Default route: persona chat
     let persona = (url.searchParams.get("persona") || "caesar").toLowerCase();
     let question = url.searchParams.get("ask");
     let historyParam = url.searchParams.get("history");
@@ -334,4 +342,61 @@ function expandKeyword(k) {
     }
   }
   return Array.from(out).filter(Boolean);
+}
+
+// =======================================
+// Term explanation endpoint
+// =======================================
+async function handleExplainTerm(request, env, url) {
+  let term = url.searchParams.get('term');
+  let question = url.searchParams.get('question');
+  let historyParam = url.searchParams.get('history');
+
+  if (request.method === 'POST') {
+    try {
+      const body = await request.json();
+      if (body.term) term = body.term;
+      if (body.question) question = body.question;
+      if (body.history) historyParam = JSON.stringify(body.history);
+    } catch {}
+  }
+
+  if (!term) {
+    return new Response(JSON.stringify({ error: 'Missing term parameter' }), {
+      status: 400,
+      headers: corsHeaders(),
+    });
+  }
+
+  const systemPrompt = question 
+    ? `Du bist ein Experte für römische Geschichte und Kultur. Ein Nutzer hat eine Frage zu "${term}". Beantworte die Frage präzise, historisch korrekt und in 2-3 Sätzen. Nutze Markdown: **fett** für wichtige Begriffe, *kursiv* für lateinische Begriffe, Listen (-) falls nützlich. Keine Überschriften.`
+    : `Du bist ein Experte für römische Geschichte und Kultur. Erkläre den Begriff "${term}" in 2-3 kurzen Sätzen. Nutze Markdown: **fett** für wichtige Begriffe, *kursiv* für lateinische Begriffe, Listen (-) falls nützlich. Keine Überschriften.`;
+
+  const messages = [{ role: 'system', content: systemPrompt }];
+
+  if (historyParam) {
+    try {
+      const parsedHistory = JSON.parse(historyParam);
+      if (Array.isArray(parsedHistory)) {
+        for (const msg of parsedHistory) {
+          if (msg && typeof msg.role === 'string' && typeof msg.content === 'string') {
+            messages.push({ role: msg.role, content: msg.content });
+          }
+        }
+      }
+    } catch {}
+  }
+
+  messages.push({ role: 'user', content: question || `Erkläre: ${term}` });
+
+  const chat = { messages };
+  const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+
+  const result = {
+    term,
+    response: aiResponse,
+    format: 'markdown',
+  };
+
+  return new Response(JSON.stringify(result), { headers: corsHeaders() });
 }

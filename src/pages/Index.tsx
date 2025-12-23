@@ -48,8 +48,9 @@ const Index = () => {
                 viewport={{ once: true }}
                 className="mb-16"
               >
-                <div className="bg-gradient-to-br from-primary/10 via-card/60 to-background backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-primary/20 relative overflow-hidden group hover:border-primary/40 transition-all duration-700">
-                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
+                <div className="bg-card rounded-3xl p-8 sm:p-12 border border-border/60 relative overflow-hidden group transition-all duration-300">
+                  {/* Decorative chat icon (kept, no gradients) */}
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-15 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
                     <MessageCircle className="w-48 h-48 text-primary" />
                   </div>
 
@@ -71,9 +72,8 @@ const Index = () => {
                     </p>
 
                     <div className="space-y-4 max-w-3xl">
-                      <div className="relative group/input">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-transparent rounded-2xl group-hover/input:from-primary/20 transition-all" />
-                        <div className="relative bg-secondary/50 backdrop-blur p-1 rounded-2xl border border-border/60 hover:border-primary/40 transition-all">
+                      <div className="relative">
+                          <div className="relative bg-secondary/50 p-1 rounded-2xl border border-border/60 hover:border-primary/40 transition-all">
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
