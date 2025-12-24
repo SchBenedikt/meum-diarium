@@ -89,7 +89,11 @@ export interface BlogPost {
     relatedPosts?: string[];
     quote?: {
       text: string;
-      translation?: string;
+      translations?: {
+        de?: string;
+        en?: string;
+        la?: string;
+      };
       source?: string;
       author?: string;
       date?: string;

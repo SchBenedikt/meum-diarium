@@ -52,6 +52,14 @@ export default function PostEditorPage() {
         tags: [] as string[],
         coverImage: '',
         readingTime: 5,
+        // Sidebar quote
+        quoteText: '',
+        quoteTranslationDe: '',
+        quoteTranslationEn: '',
+        quoteTranslationLa: '',
+        quoteAuthor: '',
+        quoteDate: '',
+        quoteSource: '',
         // German content (main)
         de: {
             diary: '',
@@ -91,6 +99,13 @@ export default function PostEditorPage() {
                 tags: postData.tags || [],
                 coverImage: postData.coverImage || '',
                 readingTime: postData.readingTime || 5,
+                quoteText: postData.sidebar?.quote?.text || '',
+                quoteTranslationDe: postData.sidebar?.quote?.translations?.de || '',
+                quoteTranslationEn: postData.sidebar?.quote?.translations?.en || '',
+                quoteTranslationLa: postData.sidebar?.quote?.translations?.la || '',
+                quoteAuthor: postData.sidebar?.quote?.author || '',
+                quoteDate: postData.sidebar?.quote?.date || '',
+                quoteSource: postData.sidebar?.quote?.source || '',
                 de: {
                     diary: postData.content?.diary || '',
                     scientific: postData.content?.scientific || ''
@@ -135,6 +150,22 @@ export default function PostEditorPage() {
                     diary: formData.de.diary,
                     scientific: formData.de.scientific
                 },
+                sidebar: (formData.quoteText || formData.quoteTranslationDe || formData.quoteTranslationEn || formData.quoteTranslationLa || formData.quoteAuthor || formData.quoteDate || formData.quoteSource)
+                    ? {
+                        facts: postData?.sidebar?.facts || [],
+                        quote: {
+                            text: formData.quoteText,
+                            translations: {
+                                de: formData.quoteTranslationDe || undefined,
+                                en: formData.quoteTranslationEn || undefined,
+                                la: formData.quoteTranslationLa || undefined,
+                            },
+                            author: formData.quoteAuthor || undefined,
+                            date: formData.quoteDate || undefined,
+                            source: formData.quoteSource || undefined,
+                        }
+                    }
+                    : postData?.sidebar,
                 translations: {
                     en: {
                         title: formData.en.title,
@@ -361,6 +392,93 @@ export default function PostEditorPage() {
                                     onChange={e => setTagInput(e.target.value)}
                                     onKeyDown={handleAddTag}
                                     placeholder="Tag eingeben und Enter drücken..."
+                                />
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Sidebar Quote Section */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                💬 Zitat für Seitenleiste
+                            </CardTitle>
+                            <CardDescription>Füge ein optionales Zitat hinzu, das in der Seitenleiste des Blog-Eintrags angezeigt wird</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
+                                <Label>Zitat (Original)</Label>
+                                <Textarea
+                                    value={formData.quoteText}
+                                    onChange={e => updateField('quoteText', e.target.value)}
+                                    placeholder="Das Originalzitat in seiner ursprünglichen Sprache..."
+                                    rows={3}
+                                />
+                            </div>
+                            
+                            <div className="space-y-3 p-4 border border-border/60 rounded-lg bg-secondary/20">
+                                <Label className="font-semibold">Übersetzungen (optional)</Label>
+                                <div className="space-y-3">
+                                    <div className="space-y-2">
+                                        <Label className="text-sm flex items-center gap-2">
+                                            🇩🇪 Deutsche Übersetzung
+                                        </Label>
+                                        <Textarea
+                                            value={formData.quoteTranslationDe}
+                                            onChange={e => updateField('quoteTranslationDe', e.target.value)}
+                                            placeholder="Deutsche Übersetzung des Zitats..."
+                                            rows={2}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="text-sm flex items-center gap-2">
+                                            🇬🇧 Englische Übersetzung
+                                        </Label>
+                                        <Textarea
+                                            value={formData.quoteTranslationEn}
+                                            onChange={e => updateField('quoteTranslationEn', e.target.value)}
+                                            placeholder="English translation of the quote..."
+                                            rows={2}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="text-sm flex items-center gap-2">
+                                            🏛️ Lateinische Übersetzung
+                                        </Label>
+                                        <Textarea
+                                            value={formData.quoteTranslationLa}
+                                            onChange={e => updateField('quoteTranslationLa', e.target.value)}
+                                            placeholder="Translatio Latina citationis..."
+                                            rows={2}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label>Autor/Quelle</Label>
+                                    <Input
+                                        value={formData.quoteAuthor}
+                                        onChange={e => updateField('quoteAuthor', e.target.value)}
+                                        placeholder="z.B. Cicero, De Officiis"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Datum (optional)</Label>
+                                    <Input
+                                        value={formData.quoteDate}
+                                        onChange={e => updateField('quoteDate', e.target.value)}
+                                        placeholder="z.B. 45 v. Chr."
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Zusätzliche Quelle (optional)</Label>
+                                <Input
+                                    value={formData.quoteSource}
+                                    onChange={e => updateField('quoteSource', e.target.value)}
+                                    placeholder="z.B. Buch III, Kapitel 5, Abschnitt 21"
                                 />
                             </div>
                         </CardContent>

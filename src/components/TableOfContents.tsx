@@ -69,32 +69,40 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
   const TocItemComponent = ({ item, depth = 0 }: { item: TocItemWithExpanded; depth?: number }) => {
     const isExpanded = expandedItems.has(item.id);
     const hasChildren = item.children && item.children.length > 0;
+    const isTopLevel = depth === 0;
 
     return (
-      <div key={item.id}>
-        <div className="flex items-center gap-1">
-          {hasChildren ? (
+      <div key={item.id} className={isTopLevel ? 'mb-1' : 'mb-0'}>
+        <div className="flex items-center gap-2 group/item">
+          {hasChildren && (
             <button
               onClick={() => toggleExpanded(item.id)}
-              className="p-1 hover:bg-primary/15 rounded transition-colors ml-0"
+              className="p-1.5 hover:bg-primary/20 rounded-md transition-all duration-200 flex-shrink-0"
               aria-label={isExpanded ? 'Collapse' : 'Expand'}
             >
               <motion.div
                 animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
-                <ChevronDown className="h-4 w-4 text-primary/70 hover:text-primary" />
+                <ChevronDown className="h-3.5 w-3.5 text-primary" />
               </motion.div>
             </button>
-          ) : (
-            <div className="w-6" />
           )}
 
           <button
             onClick={() => handleLinkClick(item.id)}
-            className="flex-1 text-left group px-2 py-2 rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-all duration-200"
+            className={`flex-1 text-left px-3 py-2.5 rounded-lg transition-all duration-200 ${
+              isTopLevel 
+                ? 'font-semibold text-[15px] hover:bg-primary/10 hover:pl-4 hover:shadow-sm' 
+                : 'font-normal text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/60 hover:pl-4'
+            }`}
           >
-            <span className="text-foreground/80 group-hover:text-primary transition-colors">
+            <span className={`transition-colors duration-200 ${
+              isTopLevel 
+                ? 'text-foreground group-hover/item:text-primary' 
+                : 'group-hover/item:text-primary'
+            }`}>
+              {isTopLevel && <span className="text-primary/40 mr-2 font-normal">▸</span>}
               {item.text}
             </span>
           </button>
@@ -106,10 +114,10 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               className="overflow-hidden"
             >
-              <div className="pl-2 space-y-0 border-l-2 border-primary/30 ml-3">
+              <div className="pl-7 mt-1 mb-2 space-y-0.5 border-l-2 border-primary/20 ml-2">
                 {item.children?.map(child => (
                   <TocItemComponent key={child.id} item={child} depth={depth + 1} />
                 ))}
@@ -126,25 +134,29 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="mb-8 rounded-lg bg-secondary/20 border border-primary/20 backdrop-blur-sm shadow-lg overflow-hidden"
+      className="mb-8 rounded-xl bg-gradient-to-br from-card/60 to-card/40 border border-border/50 backdrop-blur-xl shadow-xl overflow-hidden"
     >
       {/* Header */}
-      <div className="px-5 py-2 bg-secondary/30 border-b border-primary/20">
+      <div className="px-5 py-3.5 bg-gradient-to-r from-secondary/40 to-secondary/20 border-b border-border/30">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-primary flex-shrink-0" />
-            <h3 className="font-display text-base font-semibold text-foreground">{title || t('tableOfContents')}</h3>
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-primary/15 rounded-lg">
+              <FileText className="h-4 w-4 text-primary flex-shrink-0" />
+            </div>
+            <h3 className="font-display text-base font-bold text-foreground tracking-tight">
+              {title || t('tableOfContents')}
+            </h3>
           </div>
           <button
             onClick={() => setIsContentExpanded(!isContentExpanded)}
-            className="p-1.5 hover:bg-primary/15 rounded transition-colors"
+            className="p-2 hover:bg-primary/15 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
             aria-label={isContentExpanded ? 'Collapse' : 'Expand'}
           >
             <motion.div
               animate={{ rotate: isContentExpanded ? 0 : -180 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
-              <ChevronDown className="h-5 w-5 text-primary/70 hover:text-primary" />
+              <ChevronDown className="h-5 w-5 text-primary" />
             </motion.div>
           </button>
         </div>
@@ -157,8 +169,8 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="space-y-0 text-sm p-4 overflow-hidden"
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="space-y-0 text-sm px-4 py-4 overflow-hidden"
           >
             {hierarchy.map((item) => (
               <TocItemComponent key={item.id} item={item} />

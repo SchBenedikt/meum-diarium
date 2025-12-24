@@ -30,7 +30,9 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         contentDiary: post?.content.diary || '',
         contentScientific: post?.content.scientific || '',
         quoteText: post?.sidebar?.quote?.text || '',
-        quoteTranslation: post?.sidebar?.quote?.translation || '',
+        quoteTranslationDe: post?.sidebar?.quote?.translations?.de || '',
+        quoteTranslationEn: post?.sidebar?.quote?.translations?.en || '',
+        quoteTranslationLa: post?.sidebar?.quote?.translations?.la || '',
         quoteAuthor: post?.sidebar?.quote?.author || '',
         quoteDate: post?.sidebar?.quote?.date || '',
         quoteSource: post?.sidebar?.quote?.source || '',
@@ -60,10 +62,14 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 translations: post?.translations || {},
                 sidebar: {
                     ...(post?.sidebar || {}),
-                    quote: (formData.quoteText || formData.quoteTranslation || formData.quoteAuthor || formData.quoteDate || formData.quoteSource)
+                    quote: (formData.quoteText || formData.quoteTranslationDe || formData.quoteTranslationEn || formData.quoteTranslationLa || formData.quoteAuthor || formData.quoteDate || formData.quoteSource)
                       ? {
                           text: formData.quoteText,
-                          translation: formData.quoteTranslation || undefined,
+                          translations: {
+                            de: formData.quoteTranslationDe || undefined,
+                            en: formData.quoteTranslationEn || undefined,
+                            la: formData.quoteTranslationLa || undefined,
+                          },
                           author: formData.quoteAuthor || undefined,
                           date: formData.quoteDate || undefined,
                           source: formData.quoteSource || undefined,
@@ -202,11 +208,33 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                                 />
                             </div>
                             <div className="space-y-2 md:col-span-2">
-                                <Label>Übersetzung (optional)</Label>
+                                <Label className="font-semibold">Übersetzungen (optional)</Label>
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <Label className="text-sm">🇩🇪 Deutsch</Label>
                                 <Textarea
-                                    value={formData.quoteTranslation}
-                                    onChange={e => setFormData({ ...formData, quoteTranslation: e.target.value })}
-                                    placeholder="Übersetzung des Zitats..."
+                                    value={formData.quoteTranslationDe}
+                                    onChange={e => setFormData({ ...formData, quoteTranslationDe: e.target.value })}
+                                    placeholder="Deutsche Übersetzung..."
+                                    rows={2}
+                                />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <Label className="text-sm">🇬🇧 English</Label>
+                                <Textarea
+                                    value={formData.quoteTranslationEn}
+                                    onChange={e => setFormData({ ...formData, quoteTranslationEn: e.target.value })}
+                                    placeholder="English translation..."
+                                    rows={2}
+                                />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <Label className="text-sm">🏛️ Latinum</Label>
+                                <Textarea
+                                    value={formData.quoteTranslationLa}
+                                    onChange={e => setFormData({ ...formData, quoteTranslationLa: e.target.value })}
+                                    placeholder="Translatio Latina..."
+                                    rows={2}
                                 />
                             </div>
                             <div className="space-y-2">

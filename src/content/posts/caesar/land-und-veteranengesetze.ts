@@ -29,6 +29,18 @@ Das ist Politik im Rhythmus von Krieg und Frieden.`,
 
 <br>Die Wirkung dieser Maßnahmen war erheblich. Die Veteranengesetze reduzierten das in der späten Republik wiederholt aufgetretene Risiko von heimkehrenden Heeren ohne Perspektive, die regelmäßig zu Unruhen geführt hatten. Caesars Politik verband geschickt Sozialpolitik mit Sicherheits- und Wirtschaftspolitik und spielte eine zentrale Rolle in seiner Konsolidierungsphase. Die systematische Versorgung der Veteranen schuf nicht nur soziale Stabilität, sondern band diese als neue Landbesitzer an die bestehende Ordnung und machte sie zu Garanten der von Caesar geschaffenen Strukturen.`
   },
+  sidebar: {
+    facts: [],
+    quote: {
+      text: 'Milites meos terra, non aere, remuneravi.',
+      translations: {
+        de: 'Meine Soldaten belohnte ich mit Land, nicht mit Münzen.',
+        en: 'I rewarded my soldiers with land, not with coins.'
+      },
+      author: 'Caesar',
+      date: '59 v. Chr.'
+    }
+  },
   translations: {
   "en": {
     "title": "",

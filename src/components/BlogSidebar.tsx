@@ -12,13 +12,27 @@ interface BlogSidebarProps {
 
 export function BlogSidebar({ post }: BlogSidebarProps) {
   const author = authors[post.author];
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { posts } = usePosts();
 
   // Get related posts (same author, different post)
   const relatedPosts = posts
     .filter(p => p.author === post.author && p.id !== post.id)
     .slice(0, 3);
+
+  // Get the appropriate translation for the current language
+  const getQuoteTranslation = () => {
+    if (!post.sidebar?.quote?.translations) return null;
+    
+    // Try to get translation for current language
+    const currentLang = language.split('-')[0] as 'de' | 'en' | 'la';
+    return post.sidebar.quote.translations[currentLang] || 
+           post.sidebar.quote.translations.de || 
+           post.sidebar.quote.translations.en ||
+           null;
+  };
+
+  const quoteTranslation = getQuoteTranslation();
 
   return (
     <motion.aside
@@ -69,9 +83,9 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           <blockquote className="font-display text-base italic mb-3">
             „{post.sidebar.quote.text}“
           </blockquote>
-          {post.sidebar.quote.translation && (
+          {quoteTranslation && (
             <p className="text-sm text-muted-foreground/90 mb-2 italic">
-              {post.sidebar.quote.translation}
+              {quoteTranslation}
             </p>
           )}
           <cite className="text-xs text-muted-foreground not-italic">
