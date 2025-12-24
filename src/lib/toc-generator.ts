@@ -31,6 +31,18 @@ export function generateTableOfContents(content: string): TocItem[] {
     });
   }
   
+  // Normalisiere die Level: Die kleinste verwendete Überschrift wird zu Level 1
+  // Das sorgt dafür, dass TOCs ohne H1 (nur ##, ### etc.) richtig dargestellt werden
+  if (toc.length > 0) {
+    const minLevel = Math.min(...toc.map(item => item.level));
+    if (minLevel > 1) {
+      const offset = minLevel - 1;
+      toc.forEach(item => {
+        item.level = item.level - offset;
+      });
+    }
+  }
+  
   return toc;
 }
 

@@ -307,7 +307,7 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
 // POST creates a new post file
 app.post('/api/posts', async (req, res) => {
     try {
-        const { id, slug, author, title, diaryTitle, scientificTitle, content, excerpt, translations, tags, historicalDate, historicalYear, readingTime, coverImage, latinTitle } = req.body;
+        const { id, slug, author, title, diaryTitle, scientificTitle, content, excerpt, translations, tags, historicalDate, historicalYear, readingTime, coverImage, latinTitle, sidebar } = req.body;
 
         if (!author || !slug || !title) {
             return res.status(400).json({ error: 'Missing required fields' });
@@ -320,6 +320,47 @@ app.post('/api/posts', async (req, res) => {
         await fs.mkdir(authorDir, { recursive: true });
 
         const filePath = path.join(authorDir, `${safeSlug}.ts`);
+
+        // Generate sidebar content if exists
+        let sidebarContent = '';
+        if (sidebar) {
+            const parts = [];
+            
+            if (sidebar.facts && sidebar.facts.length > 0) {
+                parts.push(`    facts: ${JSON.stringify(sidebar.facts)}`);
+            } else {
+                parts.push(`    facts: []`);
+            }
+            
+            if (sidebar.quote) {
+                const quoteLines = [];
+                if (sidebar.quote.text) quoteLines.push(`      text: '${escapeString(sidebar.quote.text)}'`);
+                
+                // Handle translations object
+                if (sidebar.quote.translations) {
+                    const translationLines = [];
+                    if (sidebar.quote.translations.de) translationLines.push(`        de: '${escapeString(sidebar.quote.translations.de)}'`);
+                    if (sidebar.quote.translations.en) translationLines.push(`        en: '${escapeString(sidebar.quote.translations.en)}'`);
+                    if (sidebar.quote.translations.la) translationLines.push(`        la: '${escapeString(sidebar.quote.translations.la)}'`);
+                    
+                    if (translationLines.length > 0) {
+                        quoteLines.push(`      translations: {\n${translationLines.join(',\n')}\n      }`);
+                    }
+                }
+                
+                if (sidebar.quote.author) quoteLines.push(`      author: '${escapeString(sidebar.quote.author)}'`);
+                if (sidebar.quote.date) quoteLines.push(`      date: '${escapeString(sidebar.quote.date)}'`);
+                if (sidebar.quote.source) quoteLines.push(`      source: '${escapeString(sidebar.quote.source)}'`);
+                
+                if (quoteLines.length > 0) {
+                    parts.push(`    quote: {\n${quoteLines.join(',\n')}\n    }`);
+                }
+            }
+            
+            if (parts.length > 0) {
+                sidebarContent = `,\n  sidebar: {\n${parts.join(',\n')}\n  }`;
+            }
+        }
 
         // Generate File Content
         const fileContent = `import { BlogPost } from '@/types/blog';
@@ -342,7 +383,7 @@ const post: BlogPost = {
   content: {
     diary: \`${escapeContent(content.diary || '')}\`,
     scientific: \`${escapeContent(content.scientific || '')}\`
-  },
+  }${sidebarContent},
   translations: ${JSON.stringify(translations, null, 2)}
 };
 
