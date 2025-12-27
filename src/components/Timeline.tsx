@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { authors as baseAuthors } from '@/data/authors';
 import { cn } from '@/lib/utils';
-import { Calendar, Star, BookOpen, Skull, Filter, X, BookMarked, GraduationCap } from 'lucide-react';
+import { Calendar, Star, BookOpen, Skull, Filter, X, BookMarked, GraduationCap, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Author, TimelineEvent, AuthorInfo } from '@/types/blog';
 import { Link } from 'react-router-dom';
@@ -241,7 +241,38 @@ export function Timeline() {
 
         {/* Horizontal Timeline Bar */}
         <div className="mb-12 px-4">
-          <div className="relative h-3 bg-gradient-to-r from-primary/20 via-secondary/50 to-emerald-500/20 rounded-full overflow-hidden">
+          {/* Period labels above timeline */}
+          <div className="relative mb-3">
+            <div className="flex justify-between text-[10px] sm:text-xs font-semibold text-muted-foreground/80 uppercase tracking-wider">
+              <div className="flex flex-col items-start">
+                <span className="px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">Republik</span>
+                <span className="text-[9px] mt-0.5 opacity-60">{formatYear(-100)} - {formatYear(-27)}</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="px-2 py-0.5 rounded bg-red-500/15 text-red-600 dark:text-red-400">Bürgerkriege</span>
+                <span className="text-[9px] mt-0.5 opacity-60">{formatYear(-49)} - {formatYear(-30)}</span>
+              </div>
+              <div className="flex flex-col items-end">
+                <span className="px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-600 dark:text-indigo-400">Kaiserzeit</span>
+                <span className="text-[9px] mt-0.5 opacity-60">{formatYear(-27)} - {formatYear(68)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative h-3 bg-gradient-to-r from-amber-500/10 via-red-500/10 to-indigo-500/10 rounded-full overflow-hidden border border-border/30 shadow-inner">
+            {/* Year markers every 20 years */}
+            {[...Array(Math.ceil((maxYear - minYear) / 20))].map((_, i) => {
+              const year = minYear + (i * 20);
+              const position = ((year - minYear) / totalRange) * 100;
+              return (
+                <div
+                  key={i}
+                  className="absolute top-0 bottom-0 w-px bg-border/20"
+                  style={{ left: `${position}%` }}
+                />
+              );
+            })}
+
             {filteredEvents.map((event, idx) => {
               const position = Number.isFinite(event.year)
                 ? ((event.year - minYear) / totalRange) * 100
@@ -263,13 +294,13 @@ export function Timeline() {
                   key={`bar-${event.year}-${event.title}`}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  whileHover={{ scale: 1.5 }}
+                  whileHover={{ scale: 1.6 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleBarClick}
                   className={cn(
-                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]",
+                    "absolute top-1/2 rounded-full cursor-pointer transition-all duration-300",
                     `bg-author-${event.author || 'caesar'}`,
-                    isBarHovered ? "h-5 w-5 z-10 ring-4 ring-background" : "h-3.5 w-3.5"
+                    isBarHovered ? "h-5 w-5 z-10 ring-4 ring-background shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)]" : "h-3 w-3 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.3)]"
                   )}
                   style={{
                     left: `${position}%`,
@@ -283,17 +314,19 @@ export function Timeline() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 bg-card border border-border rounded-lg  text-xs font-medium pointer-events-none z-20"
+                      className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-2 bg-card border border-border rounded-lg text-xs font-medium pointer-events-none z-20 shadow-xl"
                     >
-                      {event.title}
+                      <div className="font-semibold">{event.title}</div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">{formatYear(event.year)}</div>
                     </motion.div>
                   )}
                 </motion.button>
               );
             })}
           </div>
-          <div className="flex justify-between mt-4 text-xs font-medium text-muted-foreground">
+          <div className="flex justify-between mt-3 text-xs font-medium text-muted-foreground">
             <span>{formatYear(minYear)}</span>
+            <span className="text-[10px] text-center flex-1">{filteredEvents.length} Ereignisse</span>
             <span>{formatYear(maxYear)}</span>
           </div>
         </div>
@@ -349,66 +382,59 @@ export function Timeline() {
                       >
                         {/* Header - mobile optimized */}
                         <div className={cn(
-                          "flex flex-wrap items-center gap-2 mb-2 sm:mb-3",
+                          "flex flex-wrap items-center gap-2 mb-3",
                           isLeft ? "md:justify-end" : ""
                         )}>
-                          {author && (
-                            <div
-                              className={cn(
-                                "h-6 w-6 sm:h-7 sm:w-7 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0",
-                                `bg-author-${event.author || 'caesar'}`
-                              )}
-                            >
-                              {author.name.charAt(0)}
-                            </div>
-                          )}
-                          <span className="text-xs sm:text-sm font-bold" style={{ color: author?.color }}>
+                          <span className="text-sm sm:text-base font-extrabold tracking-tight" style={{ color: author?.color }}>
                             {formatYear(event.year)}
                           </span>
                           <span className={cn(
-                            "px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider",
-                            "bg-secondary text-secondary-foreground"
+                            "px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-widest",
+                            "bg-secondary/80 text-secondary-foreground border border-border/40"
                           )}>
                             {typeLabels[event.type]}
                           </span>
                           {author && (
-                            <span
-                              className="px-2 py-0.5 rounded-full text-[10px] font-semibold border border-border/40"
-                              style={{ backgroundColor: `${author.color}1a`, color: author.color }}
-                            >
-                              {author.name}
-                            </span>
+                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border/40" style={{ backgroundColor: `${author.color}10` }}>
+                              <div
+                                className={cn(
+                                  "h-4 w-4 rounded flex items-center justify-center text-white text-[9px] font-bold flex-shrink-0",
+                                  `bg-author-${event.author || 'caesar'}`
+                                )}
+                              >
+                                {author.name.charAt(0)}
+                              </div>
+                              <span className="text-[10px] font-semibold" style={{ color: author.color }}>
+                                {author.name}
+                              </span>
+                            </div>
                           )}
                         </div>
 
                         {/* Content - mobile optimized */}
                         <h3 className={cn(
-                          "font-display text-base sm:text-lg font-bold mb-1.5 sm:mb-2 transition-colors duration-200 line-clamp-2 italic",
+                          "font-display text-lg sm:text-xl font-bold mb-2 transition-colors duration-200 line-clamp-2",
                           post && 'hover:text-primary',
                           isHovered && post && 'text-primary'
                         )}>
                           {event.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-3">
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                           {event.description}
                         </p>
 
-                        {/* Author Name & Read More */}
-                        <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/50">
-                          {author && (
-                            <p className="text-xs font-medium text-muted-foreground">
-                              {author.name}
-                            </p>
-                          )}
-                          {post && (
+                        {/* Read More */}
+                        {post && (
+                          <div className="mt-4 pt-3 border-t border-border/30">
                             <span className={cn(
-                              "text-xs font-medium transition-colors duration-200",
+                              "inline-flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200",
                               isHovered ? 'text-primary' : 'text-muted-foreground'
                             )}>
-                              {t('readMore')} →
+                              {t('readMore')}
+                              <ArrowRight className="h-3.5 w-3.5" />
                             </span>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </motion.div>
                     </div>
 
@@ -418,10 +444,10 @@ export function Timeline() {
                       whileTap={{ scale: 0.98 }}
                       className={cn(
                         "absolute left-6 sm:left-8 md:left-1/2 md:-translate-x-1/2",
-                        "h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-lg flex items-center justify-center  z-10 transition-all duration-300",
+                        "h-11 w-11 sm:h-12 sm:w-12 rounded-xl flex items-center justify-center z-10 transition-all duration-300 border-4 border-background",
                         `bg-author-${event.author || 'caesar'}`,
-                        post && "cursor-pointer hover: touch-manipulation",
-                        isHovered && "ring-4 ring-background scale-110"
+                        post && "cursor-pointer hover:shadow-lg touch-manipulation",
+                        isHovered && "ring-4 ring-primary/20 scale-110 shadow-xl"
                       )}
                     >
                       <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
@@ -444,7 +470,7 @@ export function Timeline() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className={cn(
-                      "relative flex items-start gap-4 mb-6 scroll-mt-24",
+                      "relative flex items-start gap-4 mb-10 scroll-mt-24",
                       "md:items-center",
                       isLeft ? "md:flex-row" : "md:flex-row-reverse"
                     )}

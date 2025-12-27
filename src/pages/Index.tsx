@@ -12,6 +12,7 @@ import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { SEO } from '@/components/SEO';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
@@ -33,8 +34,15 @@ const Index = () => {
     return <NotFound />;
   }
 
+  const author = currentAuthor ? authors[currentAuthor] : null;
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title={author ? `${author.name} – Tagebuch & Kommentare` : undefined}
+        description={author?.description}
+        author={author?.name}
+      />
       <main className="flex-1">
         {currentAuthor ? (
           <div>

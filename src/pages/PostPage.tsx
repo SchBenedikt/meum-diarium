@@ -19,6 +19,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { BlogCard } from '@/components/BlogCard';
+import { SEO } from '@/components/SEO';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -78,8 +79,21 @@ function PostContent({ post }: { post: BlogPost }) {
     .filter(p => p.author === post.author && p.id !== post.id)
     .slice(0, 6);
 
+  const author = authorData[post.author as Author];
+  const excerpt = post.excerpt || contentToDisplay?.substring(0, 160) || '';
+
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title={getDisplayTitle()}
+        description={excerpt}
+        author={author?.name}
+        image={post.coverImage}
+        type="article"
+        publishedTime={post.date}
+        section={perspective === 'diary' ? 'Tagebuch' : 'Wissenschaftlich'}
+        tags={post.tags || []}
+      />
       <main className="flex-1">
         <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
           <motion.img
