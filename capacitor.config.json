@@ -1,0 +1,12 @@
+{
+	"appId": "com.meumdiarium.app",
+	"appName": "meum-diarium",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	},
+	"ios": {
+		"contentInset": "always"
+	},
+	"packageClassList": []
+}
