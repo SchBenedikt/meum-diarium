@@ -21,6 +21,11 @@ export function Header() {
   const { t } = useLanguage();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isIpad, setIsIpad] = useState(false);
+
+  useEffect(() => {
+    setIsIpad(/iPad/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+  }, []);
 
   const navItems = [
     { href: '/timeline', label: t('navTimeline') },
@@ -64,22 +69,24 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={cn(
-                    "px-4 py-2 text-sm font-display font-medium rounded-lg transition-all",
-                    location.pathname === item.href
-                      ? "bg-secondary text-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            {!isIpad && (
+              <nav className="hidden md:flex items-center gap-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={cn(
+                      "px-4 py-2 text-sm font-display font-medium rounded-lg transition-all",
+                      location.pathname === item.href
+                        ? "bg-secondary text-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            )}
 
             {/* Right side */}
             <div className="flex items-center gap-2 sm:gap-3">
