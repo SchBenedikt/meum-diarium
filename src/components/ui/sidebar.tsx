@@ -185,6 +185,7 @@ const Sidebar = React.forwardRef<
           "relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
+          "shadow-lg shadow-sidebar/10",
           variant === "floating" || variant === "inset"
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
             : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
@@ -196,16 +197,17 @@ const Sidebar = React.forwardRef<
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
             : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          "bg-sidebar/95 backdrop-blur-xl border-r border-sidebar-border/30",
+          "rounded-r-3xl",
           className,
         )}
         {...props}
       >
         <div
-          className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border"
+          className="flex h-full w-full flex-col bg-transparent group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border"
         >
           {children}
         </div>
@@ -344,7 +346,7 @@ const SidebarGroup = React.forwardRef<HTMLDivElement, React.ComponentProps<"div"
     <div
       ref={ref}
       data-sidebar="group"
-      className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
+      className={cn("relative flex w-full min-w-0 flex-col p-1 md:p-2 gap-2", className)}
       {...props}
     />
   );
@@ -360,7 +362,7 @@ const SidebarGroupLabel = React.forwardRef<HTMLDivElement, React.ComponentProps<
         ref={ref}
         data-sidebar="group-label"
         className={cn(
-          "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+          "flex h-7 md:h-8 shrink-0 items-center rounded-md px-2 text-xs font-semibold text-sidebar-foreground/80 outline-none ring-sidebar-ring transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
           "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
           className,
         )}
@@ -449,7 +451,7 @@ const SidebarMenuButton = React.forwardRef<
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(sidebarMenuButtonVariants({ variant, size }), "shadow-sm", className)}
       {...props}
     />
   );
