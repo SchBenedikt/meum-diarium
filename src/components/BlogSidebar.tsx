@@ -105,7 +105,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             <Link
               key={tag}
               to={`/search?category=${encodeURIComponent(tag)}`}
-              className="px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
+              className="flex items-center justify-center px-3 py-1 h-7 min-w-[60px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
             >
               {tag}
             </Link>
