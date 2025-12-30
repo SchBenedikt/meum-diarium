@@ -10,7 +10,7 @@ import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
+import { MessageCircle, ArrowRight, Zap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SEO } from '@/components/SEO';
 
@@ -56,7 +56,7 @@ const Index = () => {
                 viewport={{ once: true }}
                 className="mb-16"
               >
-                <div className="bg-card rounded-3xl p-8 sm:p-12 border border-border/60 relative overflow-hidden group transition-all duration-300">
+                <div className="bg-gradient-to-br from-card to-card/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-border/40 relative overflow-hidden group transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/5">
                   {/* Decorative chat icon (kept, no gradients) */}
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-15 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
                     <MessageCircle className="w-48 h-48 text-primary" />
@@ -64,28 +64,28 @@ const Index = () => {
 
                   <div className="relative z-10">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-primary/20 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/30">
+                      <div className="p-3 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/30 shadow-lg shadow-primary/10">
                         <Zap className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">KI-Konversation</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">Historisches Gespräch</p>
                         <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
                           Sprich mit {authors[currentAuthor].name.split(' ')[0]}
                         </h2>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl mb-8 font-light">
-                      Stelle Fragen an {authors[currentAuthor].name} und erlebe ein Gespräch basierend auf authentischen historischen Quellen.
+                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl mb-8 font-light">
+                      Stellen Sie Fragen an {authors[currentAuthor].name} und erleben Sie ein Gespräch basierend auf authentischen historischen Quellen und wissenschaftlicher Recherche.
                     </p>
 
                     <div className="space-y-4 max-w-3xl">
                       <div className="relative">
-                          <div className="relative bg-secondary/50 p-1 rounded-2xl border border-border/60 hover:border-primary/40 transition-all">
+                          <div className="relative bg-gradient-to-r from-secondary/50 to-secondary/30 p-1 rounded-2xl border border-border/40 hover:border-primary/40 transition-all backdrop-blur-sm">
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
-                              placeholder={`Was möchtest du ${authors[currentAuthor].name.split(' ')[0]} fragen?`}
+                              placeholder={`Was möchten Sie ${authors[currentAuthor].name.split(' ')[0]} fragen?`}
                               className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50 font-light"
                               value={question}
                               onChange={(e) => setQuestion(e.target.value)}
@@ -101,8 +101,8 @@ const Index = () => {
                               }}
                             />
                             <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
-                              <Button size="sm" className="rounded-lg gap-2">
-                                <span className="hidden sm:inline">Chat öffnen</span>
+                              <Button size="sm" className="rounded-lg gap-2 bg-primary hover:bg-primary/90 transition-all">
+                                <span className="hidden sm:inline">Gespräch beginnen</span>
                                 <ArrowRight className="h-4 w-4" />
                               </Button>
                             </Link>
@@ -112,8 +112,8 @@ const Index = () => {
 
                       <div className="flex flex-wrap gap-2">
                         {[
-                          'Erzähle von deinem Leben',
-                          'Deine größten Erfolge',
+                          'Erzählen Sie von Ihrem Leben',
+                          'Ihre größten Erfolge',
                           'Das Römische Reich'
                         ].map((suggestion, i) => (
                           <Link 
@@ -134,8 +134,9 @@ const Index = () => {
               <div className="mb-12">
                 <div className="flex flex-wrap gap-3">
                   <Link to={`/${currentAuthor}/simulation`}>
-                    <Button variant="secondary" className="rounded-lg gap-2">
-                      Interaktives Spiel
+                    <Button variant="secondary" className="rounded-lg gap-2 hover:bg-secondary/80 transition-all">
+                      <Sparkles className="h-4 w-4" />
+                      Interaktive Zeitreise
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>

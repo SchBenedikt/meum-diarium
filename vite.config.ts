@@ -21,9 +21,16 @@ export default defineConfig(({ mode }) => ({
     compression({
       verbose: true,
       disable: false,
-      threshold: 10240,
+      threshold: 5120,
       algorithm: 'gzip',
       ext: '.gz',
+    }),
+    compression({
+      verbose: true,
+      disable: false,
+      threshold: 5120,
+      algorithm: 'brotliCompress',
+      ext: '.br',
     })
   ].filter(Boolean),
   resolve: {
@@ -49,11 +56,14 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'query-vendor': ['@tanstack/react-query'],
-          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip'],
+          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
+          'motion': ['framer-motion'],
+          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
+          'icons': ['lucide-react']
         }
       }
     },
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 500,
     cssCodeSplit: true,
     sourcemap: mode === 'production' ? false : 'inline',
   }
