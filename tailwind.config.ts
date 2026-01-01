@@ -92,10 +92,10 @@ export default {
         },
       },
       borderRadius: {
-        "4xl": "3rem", /* Extra large for M3 */
+        "4xl": "1.25rem",
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 4px)",
-        sm: "calc(var(--radius) - 8px)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {

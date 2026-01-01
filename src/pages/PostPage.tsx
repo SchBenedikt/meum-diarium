@@ -95,23 +95,8 @@ function PostContent({ post }: { post: BlogPost }) {
         tags={post.tags || []}
       />
       <main className="flex-1">
-        <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
-          <motion.img
-            src={post.coverImage}
-            alt={post.title}
-            style={{
-              y: imageY,
-              scale: imageScale,
-              opacity: imageOpacity,
-            }}
-            className="w-full h-full absolute top-0 left-0 object-cover object-top"
-          />
-
-          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent" />
-        </div>
-
         <div className="bg-background pb-12">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-14 md:py-18">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-24 md:py-28">
             <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1fr_350px]">
               <motion.article
                 initial={{ y: -40, opacity: 0 }}
@@ -120,7 +105,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 className="prose-blog space-y-7 min-w-0"
               >
 
-                <header className="space-y-4 pb-4 border-b border-border/40">
+                <header className="space-y-6 pb-6 border-b border-border/40">
                   <div className="space-y-3">
                     {post.latinTitle && (
                       <p className="font-display italic text-base sm:text-lg text-primary font-light">
@@ -135,6 +120,15 @@ function PostContent({ post }: { post: BlogPost }) {
                     <p className="text-lg text-muted-foreground leading-relaxed font-light">
                       {post.excerpt}
                     </p>
+                  </div>
+
+                  {/* Beitragsbild unter dem Titel */}
+                  <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[1.25rem] border border-border/40">
+                    <img
+                      src={post.coverImage}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
@@ -172,7 +166,7 @@ function PostContent({ post }: { post: BlogPost }) {
               {/* Sidebar - below content on mobile, sticky on desktop */}
               <aside className="lg:mt-0 mt-8">
                 <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto space-y-6">
-                  <BlogSidebar post={post} />
+                  <BlogSidebar post={post} readingTime={readingTime} />
                 </div>
               </aside>
             </div>

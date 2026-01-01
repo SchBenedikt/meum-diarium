@@ -48,9 +48,8 @@ export function AuthorIntro() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-card/40 backdrop-blur-md p-8 md:p-12 rounded-2xl sm:rounded-3xl border border-border/40 group overflow-hidden relative"
+          className="bg-card p-8 md:p-12 rounded-[1.25rem] border border-border/40 group overflow-hidden relative"
         >
-          <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl transition-colors" />
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-6">
               <Quote className="h-5 w-5 text-primary" />

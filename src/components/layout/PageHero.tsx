@@ -51,7 +51,7 @@ export function PageHero({
 
       {!noBackground && <ModernBackground />}
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6">
+      <div className="relative z-10 container mx-auto max-w-7xl px-4 sm:px-6">
         <div
           className={cn(
             "max-w-5xl",
@@ -63,7 +63,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-bold mb-6 backdrop-blur-md border border-primary/20 uppercase tracking-[0.2em]"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-6 border border-primary/20 uppercase tracking-wider"
             >
               {eyebrow}
             </motion.div>

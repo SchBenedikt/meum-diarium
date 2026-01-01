@@ -9,7 +9,7 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "",
-        elevated: "shadow-sm",
+        elevated: "",
       },
     },
     defaultVariants: {

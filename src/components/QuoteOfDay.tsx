@@ -31,10 +31,8 @@ export function QuoteOfDay() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative rounded-3xl bg-card/40 backdrop-blur-3xl border border-border/50 p-10 md:p-16 group overflow-hidden hover:border-primary/50 transition-all duration-700"
+      className="relative rounded-[1.25rem] bg-card border border-border/50 p-10 md:p-16 group overflow-hidden hover:border-primary/30 transition-all duration-700"
     >
-      <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] group-hover:bg-primary/20 transition-colors duration-1000" />
-      <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] group-hover:bg-secondary/20 transition-colors duration-1000" />
 
       {/* Decorative Quote Mark */}
       <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-10 transition-opacity duration-700">
@@ -49,7 +47,7 @@ export function QuoteOfDay() {
           transition={{ delay: 0.2 }}
           className="mb-10"
         >
-          <span className="px-6 py-2 rounded-full bg-primary/10 border border-primary/30 text-[10px] font-bold uppercase tracking-[0.35em] text-primary">
+          <span className="px-4 py-1.5 rounded-[1.25rem] bg-primary/10 border border-primary/25 text-[10px] font-semibold uppercase tracking-wider text-primary">
             {t('quoteOfTheDay') || 'Worte der Ewigkeit'}
           </span>
         </motion.div>
@@ -77,8 +75,8 @@ export function QuoteOfDay() {
           transition={{ delay: 0.5 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="h-20 w-20 rounded-full p-1 bg-gradient-to-tr from-primary/50 to-secondary/50">
-            <div className="h-full w-full rounded-full bg-card flex items-center justify-center overflow-hidden border-2 border-background">
+          <div className="h-20 w-20 rounded-full p-1 bg-primary/20">
+            <div className="h-full w-full rounded-full bg-card flex items-center justify-center overflow-hidden border-2 border-primary/30">
               <img
                 src={authors[quote.author].heroImage}
                 alt={authors[quote.author].name}

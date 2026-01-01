@@ -1,7 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
-import { LandingHero } from '@/components/LandingHero';
+import LandingHero from '@/components/LandingHero';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
 import { useEffect, useState } from 'react';

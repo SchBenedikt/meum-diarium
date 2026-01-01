@@ -131,12 +131,14 @@ export default function LexiconPage() {
             <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3">
               <Search className="h-5 w-5 text-muted-foreground" />
               <Input
-                type="text"
-                placeholder={t('searchPlaceholder')}
-                className="border-none bg-transparent text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+  type="text"
+  placeholder={t('searchPlaceholder')}
+  className="border-none bg-transparent text-base h-9 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  style={{ minWidth: 0 }}
+/>
+
               {searchTerm && (
                 <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors ml-auto">
                   <X className="h-4 w-4 text-muted-foreground" />
