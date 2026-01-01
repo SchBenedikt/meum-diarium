@@ -1,4 +1,3 @@
-
 import { useAuthor } from '@/context/AuthorContext';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
@@ -20,7 +19,6 @@ export function BlogList() {
 
   if (!currentAuthor || !authorInfo) return null;
   if (isLoading) {
-    // Optional: Add a loading skeleton here
     return <div>Loading...</div>;
   }
 
@@ -39,13 +37,12 @@ export function BlogList() {
   const filteredPosts = posts
     .filter((post) => post.author === currentAuthor)
     .filter((post) => {
-      // Filter by content type
       if (contentFilter === 'diary') {
         return hasContent(post, 'diary');
       } else if (contentFilter === 'scientific') {
         return hasContent(post, 'scientific');
       }
-      return true; // 'all' shows everything
+      return true;
     })
     .filter((post) => {
       if (!searchQuery.trim()) return true;
@@ -58,14 +55,13 @@ export function BlogList() {
         post.tags.some(tag => tag.toLowerCase().includes(query))
       );
     })
-    // Chronological order by historical year (oldest → newest)
     .sort((a, b) => {
       const ay = typeof a.historicalYear === 'number' ? a.historicalYear : new Date(a.date).getFullYear();
       const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
       return ay - by;
     });
 
-  // Group posts by year for clearer chronological overview
+  // Group posts by year
   const groupedByYear = useMemo(() => {
     const groups: Record<number, BlogPost[]> = {};
     for (const post of filteredPosts) {
@@ -76,28 +72,24 @@ export function BlogList() {
       if (!groups[key]) groups[key] = [];
       groups[key].push(post);
     }
-    // Sort posts within each year by date if available
     Object.keys(groups).forEach((y) => {
       const yearKey = Number(y);
       groups[yearKey].sort((a, b) => {
         const ad = a.date ? new Date(a.date).getTime() : 0;
         const bd = b.date ? new Date(b.date).getTime() : 0;
-        return ad - bd; // oldest → newest within year
+        return ad - bd;
       });
     });
-    // Return entries sorted by year descending (newest first)
     return Object.entries(groups).sort((a, b) => Number(b[0]) - Number(a[0]));
   }, [filteredPosts]);
 
-  // Count posts with content for each perspective
+  // Count posts with content
   const counts = useMemo(() => {
     if (!posts || posts.length === 0) {
       return { all: 0, diary: 0, scientific: 0 };
     }
     
     const authorPosts = posts.filter(p => p.author === currentAuthor);
-    
-    // Helper function (same as above)
     const hasContentMemo = (post: BlogPost, perspective: 'diary' | 'scientific') => {
       const content = post?.content?.[perspective];
       return content != null && typeof content === 'string' && content.trim().length > 0;
@@ -116,15 +108,6 @@ export function BlogList() {
   return (
     <section className="px-4 sm:px-6">
       <div className="">
-        {/* Section header */}
-        <div className="flex items-center gap-2 mb-4">
-          <BookOpen className="h-4 w-4 text-primary" />
-          <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
-            {contentFilter === 'diary' ? 'Tagebuch' : contentFilter === 'scientific' ? 'Wissenschaftlich' : 'Beiträge'}
-          </span>
-        </div>
-
-        {/* Content Filter Buttons */}
         {/* Section Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
@@ -142,7 +125,7 @@ export function BlogList() {
               className={cn(
                 'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
                 contentFilter === 'all'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
               )}
             >
@@ -154,7 +137,7 @@ export function BlogList() {
               className={cn(
                 'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
                 contentFilter === 'diary'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
               )}
             >
@@ -166,7 +149,7 @@ export function BlogList() {
               className={cn(
                 'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
                 contentFilter === 'scientific'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
               )}
             >
@@ -198,7 +181,7 @@ export function BlogList() {
                   <div className="h-px flex-1 bg-border/50 ml-4" />
                 </div>
                 <motion.div
-                  className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                  className="grid gap-6 grid-cols-1 md:grid-cols-2"
                   variants={staggerContainer(0.07)}
                   initial="hidden"
                   whileInView="visible"

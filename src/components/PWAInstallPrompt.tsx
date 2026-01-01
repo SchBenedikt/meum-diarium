@@ -131,7 +131,7 @@ export function PWAInstallPrompt() {
         <SheetContent side="bottom" className="rounded-t-3xl safe-bottom">
           <SheetHeader className="text-left">
             <SheetTitle className="flex items-center gap-3 text-2xl">
-              <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center">
+              <div className="h-12 w-12 rounded-[1.25rem] bg-primary flex items-center justify-center">
                 <Download className="h-6 w-6 text-primary-foreground" />
               </div>
               {t('installApp') || 'App installieren'}
@@ -193,7 +193,7 @@ export function PWAInstallPrompt() {
             <div className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center flex-shrink-0">
+                  <div className="h-12 w-12 rounded-[1.25rem] bg-primary flex items-center justify-center flex-shrink-0">
                     <Download className="h-6 w-6 text-primary-foreground" />
                   </div>
                   <div>
@@ -214,7 +214,7 @@ export function PWAInstallPrompt() {
                 </button>
               </div>
 
-              <div className="bg-secondary/50 rounded-2xl p-4 mb-4">
+              <div className="bg-secondary/50 rounded-[1.25rem] p-4 mb-4">
                 <ol className="space-y-3 text-sm">
                   <li className="flex items-start gap-3">
                     <span className="flex-shrink-0 h-6 w-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">

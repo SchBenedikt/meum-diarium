@@ -67,33 +67,6 @@ export const authors: Record<string, AuthorInfo> = {
       }
     ],
   },
-  catilina: {
-    id: 'catilina',
-    name: 'Lucius Sergius Catilina',
-    latinName: 'Lucius Sergius Catilina',
-    title: 'Conspirator',
-    years: '108 – 62 v. Chr.',
-    birthYear: -108,
-    deathYear: -62,
-    description: 'Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik.',
-    heroImage: '/images/catilina-hero.jpg',
-    theme: 'theme-catilina',
-    color: 'hsl(350, 85%, 45%)',
-    highlights: [
-      {
-        title: 'Die Verschwörung',
-        description: 'Motivationen, Netzwerke und der dramatische Zusammenbruch.',
-        link: '/timeline',
-        icon: 'alert'
-      },
-      {
-        title: 'Ciceros Angriff',
-        description: 'Die Catilinarischen Reden und politische Folgen.',
-        link: '/cicero/works/in-catilinam',
-        icon: 'megaphone'
-      }
-    ],
-  },
   augustus: {
     id: 'augustus',
     name: 'Augustus',

@@ -134,7 +134,7 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="mb-8 rounded-xl bg-gradient-to-br from-card/60 to-card/40 border border-border/50 backdrop-blur-xl shadow-xl overflow-hidden"
+      className="mb-8 rounded-[1.25rem] bg-card border border-border/50 overflow-hidden"
     >
       {/* Header */}
       <div className="px-5 py-3.5 bg-gradient-to-r from-secondary/40 to-secondary/20 border-b border-border/30">

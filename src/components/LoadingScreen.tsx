@@ -14,7 +14,7 @@ export function LoadingScreen() {
 
   return (
     <div className="fixed inset-0 flex min-h-screen items-center justify-center bg-background text-foreground">
-      <div className="mx-4 flex max-w-md flex-col items-center gap-6 rounded-2xl border border-border/60 bg-muted/40 px-6 py-8 backdrop-blur-sm">
+      <div className="mx-4 flex max-w-md flex-col items-center gap-6 rounded-[1.25rem] border border-border/60 bg-card px-6 py-8">
         {/* Titel */}
         <div className="space-y-1 text-center">
           <h1 className="font-display text-3xl md:text-4xl tracking-[0.18em] uppercase">

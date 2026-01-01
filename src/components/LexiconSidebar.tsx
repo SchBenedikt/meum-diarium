@@ -38,7 +38,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
     >
       {/* Etymology */}
       {entry.etymology && (
-        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+        <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
             <BookCopy className="h-4 w-4 text-primary" />
             Etymologie
@@ -50,14 +50,14 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       )}
 
       {/* Category */}
-      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+      <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
           <Tags className="h-4 w-4 text-primary" />
           Kategorie
         </h3>
         <Link
           to={`/search?category=${encodeURIComponent(entry.category)}`}
-          className="inline-block px-3.5 py-1.5 min-h-[36px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
+          className="inline-block px-3 py-1.5 min-h-[32px] rounded-[1.25rem] bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
         >
           {entry.category}
         </Link>
@@ -65,7 +65,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
 
       {/* Related Terms */}
       {relatedTerms.length > 0 && (
-        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+        <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
             <LinkIcon className="h-4 w-4 text-primary" />
             {t('relatedEntries')}
@@ -85,7 +85,7 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
       )}
 
       {/* Go to Lexicon */}
-      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+      <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
         <Link to="/lexicon" className="group">
           <h3 className="font-display text-lg font-medium mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
             <BookMarked className="h-4 w-4 text-primary" />

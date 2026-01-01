@@ -18,12 +18,11 @@ export function OverviewGuide() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/30"
+        className="relative overflow-hidden rounded-[1.25rem] border border-border/40 bg-card"
       >
-        <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary/10 blur-2xl" />
         <div className="p-6 sm:p-8">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-2xl bg-primary/12 border border-primary/20">
+            <div className="p-2 rounded-[1.25rem] bg-primary/12 border border-primary/20">
               <Map className="h-5 w-5 text-primary" />
             </div>
             <h3 className="font-display text-xl sm:text-2xl font-bold">Start hier</h3>
