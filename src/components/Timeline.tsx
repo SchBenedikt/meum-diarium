@@ -120,53 +120,32 @@ export function Timeline() {
     <section className="py-10 sm:py-14">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground/80">
-              Res Romana
-            </p>
-            <h2 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight">
-              {t('timelineHeading') ?? 'Chronologische Timeline'}
-            </h2>
-            <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-              Alle Ereignisse in einer klaren, chronologischen Liste – perfekt, um den roten Faden der
-              römischen Geschichte nachzuvollziehen.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            {['Späte Republik', 'Bürgerkriege', 'Principat', 'Stoa & Briefe'].map((label) => (
-              <span
-                key={label}
-                className="px-3 py-1 rounded-full bg-secondary/60 text-secondary-foreground border border-border/60 font-semibold"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
+        <div className="mb-8 max-w-3xl mx-auto">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-center mb-3">
+            {t('timelineHeading') ?? 'Chronologische Timeline'}
+          </h2>
+          <p className="text-sm text-muted-foreground text-center">
+            Alle Ereignisse in chronologischer Reihenfolge.
+          </p>
         </div>
 
         {/* Filter-Card */}
-        <div className="mb-10 rounded-3xl border border-border/60 bg-gradient-to-br from-card/80 via-card/60 to-background/60 p-5 sm:p-6 shadow-[0_18px_60px_-35px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-          <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4 mb-4">
+        <div className="mb-10 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-4 sm:p-5 max-w-3xl mx-auto">
+          <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Filter className="h-3.5 w-3.5" />
-              </div>
-              <div>
-                <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {t('filter')}
-                </span>
-                <span className="text-xs text-muted-foreground/80">
-                  {filteredEvents.length} {t('events')}
-                </span>
-              </div>
+              <Filter className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm font-semibold text-foreground">
+                {t('filter')}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {filteredEvents.length} {t('events')}
+              </span>
             </div>
 
             {hasFilters && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1.5 rounded-full border border-border/60 bg-secondary/60 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-secondary/60 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
               >
                 <X className="h-3.5 w-3.5" />
                 {t('clearFilters')}
@@ -272,11 +251,8 @@ export function Timeline() {
           </div>
         </div>
 
-        {/* Modern Vertical Timeline */}
-        <div className="relative mx-auto max-w-3xl">
-          {/* zarte Line */}
-          <div className="pointer-events-none absolute left-[9px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-border/40 to-transparent" />
-
+        {/* Modern Event Grid */}
+        <div className="mx-auto max-w-5xl">
           <AnimatePresence>
             {filteredEvents.length === 0 ? (
               <motion.div
@@ -289,102 +265,117 @@ export function Timeline() {
                 <p className="text-sm text-muted-foreground">{t('noEventsFound')}</p>
               </motion.div>
             ) : (
-              filteredEvents.map((event, index) => {
-                const author = event.author ? authors[event.author] : null;
-                const Icon = typeIcons[event.type];
-                const post = findPostByEvent(event, posts);
-                const Wrapper = post ? Link : 'div';
-                const wrapperProps = post
-                  ? { to: `/${post.author}/${post.slug}` }
-                  : ({} as Record<string, unknown>);
+              <div className="space-y-12">
+                {Object.entries(
+                  filteredEvents.reduce((acc, event, index) => {
+                    const decade = Math.floor(event.year / 10) * 10;
+                    const decadeKey = `${decade}s`;
+                    
+                    if (!acc[decadeKey]) {
+                      acc[decadeKey] = [];
+                    }
+                    acc[decadeKey].push({ event, index });
+                    return acc;
+                  }, {} as Record<string, Array<{ event: typeof filteredEvents[0], index: number }>>)
+                ).map(([decadeKey, events]) => {
+                  const decade = parseInt(decadeKey);
+                  const isBC = decade < 0;
+                  const displayDecade = isBC ? Math.abs(decade) : decade;
+                  
+                  return (
+                    <div key={decadeKey}>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/60 border border-border/50">
+                          <Calendar className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-semibold text-foreground">
+                            {isBC ? `${displayDecade}er v. Chr.` : `${displayDecade}er n. Chr.`}
+                          </span>
+                        </div>
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                      </div>
+                      
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {events.map(({ event, index }) => {
+                            const author = event.author ? authors[event.author] : null;
+                            const Icon = typeIcons[event.type];
+                            const post = findPostByEvent(event, posts);
+                            const Wrapper = post ? Link : 'div';
+                            const wrapperProps = post
+                              ? { to: `/${post.author}/${post.slug}` }
+                              : ({} as Record<string, unknown>);
 
-                return (
-                  <Wrapper
-                    key={`${event.year}-${event.title}`}
-                    {...wrapperProps}
-                    className={cn(post && 'block')}
-                  >
-                    <motion.article
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.22, delay: index * 0.03 }}
-                      className="relative pl-8 sm:pl-10 py-3"
-                    >
-                      {/* Node */}
-                      <div className="absolute left-0 top-6 flex h-5 w-5 items-center justify-center">
-                        <div className="h-5 w-5 rounded-full bg-background shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_10px_30px_-18px_rgba(0,0,0,0.9)] flex items-center justify-center">
-                          <div
-                            className={cn(
-                              'flex h-4 w-4 items-center justify-center rounded-full border border-background/80',
-                              `bg-author-${event.author || 'caesar'}`,
-                            )}
-                          >
-                            <Icon className="h-2.5 w-2.5 text-white" />
-                          </div>
+                            return (
+                              <Wrapper
+                                key={`${event.year}-${event.title}`}
+                                {...wrapperProps}
+                                className={cn(post && 'block')}
+                              >
+                                <motion.article
+                                  initial={{ opacity: 0, y: 12 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -12 }}
+                                  transition={{ duration: 0.22, delay: index * 0.02 }}
+                                >
+                                  <motion.div
+                                    whileHover={{ y: -2 }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                                    className={cn(
+                                      'group rounded-lg border border-border/60 bg-card/80 backdrop-blur-sm p-4 h-full flex flex-col',
+                                      'transition-all duration-200',
+                                      post && 'cursor-pointer hover:border-primary/50 hover:shadow-md',
+                                    )}
+                                  >
+                                    <div className="flex items-start gap-3 mb-3">
+                                      <div
+                                        className={cn(
+                                          'flex h-12 w-12 items-center justify-center rounded-lg flex-shrink-0',
+                                          `bg-author-${event.author || 'caesar'}/10`,
+                                        )}
+                                      >
+                                        <Icon className="h-6 w-6" style={{ color: author?.color }} />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <span
+                                          className="text-sm font-bold block"
+                                          style={{ color: author?.color }}
+                                        >
+                                          {formatYear(event.year)}
+                                        </span>
+                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                                          {typeLabels[event.type]}
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <h3
+                                      className={cn(
+                                        'font-display text-base font-semibold text-foreground mb-2 line-clamp-2',
+                                        post && 'group-hover:text-primary transition-colors',
+                                      )}
+                                    >
+                                      {event.title}
+                                    </h3>
+                                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3 flex-1">
+                                      {event.description}
+                                    </p>
+
+                                    {post && (
+                                      <div className="mt-3 pt-3 border-t border-border/40 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground group-hover:text-primary transition-colors">
+                                        {t('readMore')}
+                                        <ArrowRight className="h-3 w-3" />
+                                      </div>
+                                    )}
+                                  </motion.div>
+                                </motion.article>
+                              </Wrapper>
+                            );
+                          })}
                         </div>
                       </div>
-
-                      {/* Card */}
-                      <motion.div
-                        whileHover={{ y: -2, scale: 1.01 }}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                        className={cn(
-                          'group rounded-2xl border border-border/70 bg-gradient-to-br from-card/90 via-card/80 to-background/80 p-4 sm:p-5',
-                          'backdrop-blur-xl shadow-[0_22px_60px_-34px_rgba(0,0,0,0.9)] transition-colors',
-                          post && 'cursor-pointer hover:border-primary/40',
-                        )}
-                      >
-                        <div className="mb-2 flex flex-wrap items-center gap-2">
-                          <span
-                            className="text-sm font-semibold tracking-tight"
-                            style={{ color: author?.color }}
-                          >
-                            {formatYear(event.year)}
-                          </span>
-                          <span className="inline-flex items-center rounded-full bg-secondary/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary-foreground border border-border/60">
-                            {typeLabels[event.type]}
-                          </span>
-                          {author && (
-                            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-secondary/40 px-2.5 py-1 text-[10px] font-medium text-muted-foreground">
-                              <span
-                                className={cn(
-                                  'flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white',
-                                  `bg-author-${event.author || 'caesar'}`,
-                                )}
-                              >
-                                {author.name.charAt(0)}
-                              </span>
-                              <span>{author.name}</span>
-                            </span>
-                          )}
-                        </div>
-
-                        <h3
-                          className={cn(
-                            'font-display text-base sm:text-lg font-semibold tracking-tight text-foreground mb-1 line-clamp-2',
-                            post && 'group-hover:text-primary',
-                          )}
-                        >
-                          {event.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                          {event.description}
-                        </p>
-
-                        {post && (
-                          <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-2">
-                            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground group-hover:text-primary">
-                              {t('readMore')}
-                              <ArrowRight className="h-3 w-3" />
-                            </span>
-                          </div>
-                        )}
-                      </motion.div>
-                    </motion.article>
-                  </Wrapper>
-                );
-              })
+                    );
+                  })}
+              </div>
             )}
           </AnimatePresence>
         </div>

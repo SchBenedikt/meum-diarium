@@ -65,7 +65,6 @@ const AppContent = () => {
       {/* The z-index here ensures the header is above the PostPage hero image */}
       <div className="relative z-50">
         <Header />
-        {isAuthorRoute && !isPostPage && <AuthorHeader />}
       </div>
       <Suspense fallback={<LoadingScreen />}>
         <Routes>

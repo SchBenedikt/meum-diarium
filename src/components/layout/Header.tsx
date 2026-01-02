@@ -46,17 +46,19 @@ export function Header() {
   const [theme, setThemeState] = useState<'light' | 'dark' | 'system'>('system');
   const headerRef = useRef<HTMLDivElement>(null);
 
-  // Detect iPad
+  // iPad Detection (inkl. iPadOS 13+)
   useEffect(() => {
-    setIsIpad(
-      /iPad/i.test(navigator.userAgent) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
+    const iPad =
+      /iPad/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    setIsIpad(!!iPad);
   }, []);
 
   // Load theme from localStorage
   useEffect(() => {
-    const savedTheme = (localStorage.getItem('theme') as 'light' | 'dark' | 'system') || 'system';
+    const savedTheme =
+      (localStorage.getItem('theme') as 'light' | 'dark' | 'system') ||
+      'system';
     setThemeState(savedTheme);
     applyTheme(savedTheme);
   }, []);
@@ -122,20 +124,22 @@ export function Header() {
 
   const isActive = (href: string) => location.pathname === href;
 
+  // Hilfsflag: iPad soll wie Desktop behandelt werden
+  const isDesktopLike = !isIpad; // DU kannst das bei Bedarf anpassen, z.B. immer Desktop auf iPad
+
   return (
     <>
       <header
         ref={headerRef}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 safe-top',
-          isScrolled
-            ? 'bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-lg'
-            : 'bg-background/50 backdrop-blur-md border-b border-border/30 shadow-sm'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'bg-background/70 backdrop-blur-xl border-b border-border/40', // vereinheitlichter Look
+          isScrolled && 'shadow-lg'
         )}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 sm:h-18 items-center justify-between gap-4">
-            {/* Logo mit drehendem Icon */}
+            {/* Logo */}
             <Link
               to="/"
               onClick={handleLogoClick}
@@ -152,34 +156,32 @@ export function Header() {
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            {!isIpad && (
-              <nav className="hidden md:flex items-center gap-2">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  const active = isActive(item.href);
+            {/* Desktop Navigation (inkl. iPad) */}
+            <nav className="hidden md:flex items-center gap-2">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const active = isActive(item.href);
 
-                  return (
-                    <Link
-                      key={item.href}
-                      to={item.href}
-                      className={cn(
-                        'px-3 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 text-sm font-medium',
-                        active
-                          ? 'bg-primary/10 text-primary border border-primary/20'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
-                      )}
-                    >
-                      <Icon className="w-4 h-4" />
-                      {item.label}
-                      {active && (
-                        <span className="ml-1 inline-block w-1.5 h-1.5 bg-primary rounded-full" />
-                      )}
-                    </Link>
-                  );
-                })}
-              </nav>
-            )}
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={cn(
+                      'px-3 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 text-sm font-medium',
+                      active
+                        ? 'bg-primary/10 text-primary border border-primary/20'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                    )}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {item.label}
+                    {active && (
+                      <span className="ml-1 inline-block w-1.5 h-1.5 bg-primary rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-3">
@@ -194,12 +196,10 @@ export function Header() {
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
 
-              {/* Desktop Controls */}
+              {/* Desktop Controls (inkl. iPad) */}
               <div className="hidden md:flex items-center gap-2">
-                {/* Author Switcher */}
                 <AuthorSwitcher />
 
-                {/* Settings Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
@@ -263,7 +263,7 @@ export function Header() {
                 </DropdownMenu>
               </div>
 
-              {/* Mobile Menu */}
+              {/* Mobile Menu (nur < md, auch auf iPad im Portrait sinnvoll) */}
               <div className="md:hidden">
                 <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                   <SheetTrigger asChild>
@@ -343,7 +343,9 @@ export function Header() {
                           </h3>
                           <div className="grid grid-cols-2 gap-2">
                             <Button
-                              variant={language === 'de' ? 'default' : 'outline'}
+                              variant={
+                                language === 'de' ? 'default' : 'outline'
+                              }
                               size="sm"
                               className="text-xs"
                               onClick={() => {
@@ -354,7 +356,9 @@ export function Header() {
                               🇩🇪 Deutsch
                             </Button>
                             <Button
-                              variant={language === 'en' ? 'default' : 'outline'}
+                              variant={
+                                language === 'en' ? 'default' : 'outline'
+                              }
                               size="sm"
                               className="text-xs"
                               onClick={() => {
@@ -379,7 +383,9 @@ export function Header() {
                           </h3>
                           <div className="grid grid-cols-3 gap-2">
                             <Button
-                              variant={theme === 'light' ? 'default' : 'outline'}
+                              variant={
+                                theme === 'light' ? 'default' : 'outline'
+                              }
                               size="sm"
                               className="text-xs"
                               onClick={() => {
@@ -390,7 +396,9 @@ export function Header() {
                               ☀️ Light
                             </Button>
                             <Button
-                              variant={theme === 'dark' ? 'default' : 'outline'}
+                              variant={
+                                theme === 'dark' ? 'default' : 'outline'
+                              }
                               size="sm"
                               className="text-xs"
                               onClick={() => {
@@ -401,7 +409,9 @@ export function Header() {
                               🌙 Dark
                             </Button>
                             <Button
-                              variant={theme === 'system' ? 'default' : 'outline'}
+                              variant={
+                                theme === 'system' ? 'default' : 'outline'
+                              }
                               size="sm"
                               className="text-xs"
                               onClick={() => {
@@ -427,7 +437,10 @@ export function Header() {
       <div className="h-16 sm:h-18" />
 
       {/* Search Dialog */}
-      <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchDialog
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </>
   );
 }

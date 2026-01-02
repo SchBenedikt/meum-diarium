@@ -60,109 +60,53 @@ export default function TimelinePage() {
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
             <div className="absolute top-10 right-10 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
           </div>
 
           <div className="container mx-auto px-4 py-20 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="grid gap-10 lg:grid-cols-[1.2fr,0.8fr] items-center"
+              className="max-w-4xl mx-auto text-center"
             >
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.25em]">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {t('interactiveChronology') || 'Interaktive Chronologie'}
-                </div>
-
-                <div className="space-y-4 max-w-3xl">
-                  <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-foreground">
-                    {t('navTimeline') || 'Zeitstrahl, der lebt.'}
-                  </h1>
-                  <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
-                    {t('timelinePageDesc') || 'Scroll durch Feldzüge, Intrigen und Ideen – kuratiert für Caesar, Cicero, Augustus und Seneca.'}
-                  </p>
-                  <div className="flex flex-wrap gap-2 text-sm text-muted-foreground/80">
-                    {['Späte Republik', 'Bürgerkriege', 'Principat', 'Stoische Wende'].map(label => (
-                      <span
-                        key={label}
-                        className="px-3 py-1 rounded-full bg-secondary/60 border border-border/60 backdrop-blur"
-                      >
-                        {label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="p-4 rounded-2xl bg-card/80 backdrop-blur border border-border/60 shadow-[0_20px_70px_-40px_rgba(0,0,0,0.45)]"
-                    >
-                      <div className="flex items-center justify-start gap-2 mb-3 text-primary">
-                        <stat.icon className="h-4 w-4" />
-                        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                          {stat.label}
-                        </span>
-                      </div>
-                      <p className="font-display text-2xl font-bold text-foreground">{stat.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <button
-                    onClick={scrollToTimeline}
-                    className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center gap-2 shadow-lg shadow-primary/25"
-                  >
-                    Zeitstrahl öffnen
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                  <ShareButton
-                    title="Zeitstrahl der Antike - Meum Diarium"
-                    text="Entdecke wichtige Ereignisse des antiken Roms."
-                  />
-                </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.25em] mb-6">
+                <Calendar className="w-3.5 h-3.5" />
+                {t('interactiveChronology') || 'Interaktive Chronologie'}
               </div>
 
-              <div className="relative">
-                <div className="rounded-3xl border border-border/60 bg-card/70 backdrop-blur shadow-[0_30px_100px_-60px_rgba(0,0,0,0.65)] p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary/80">Live Vorschau</p>
-                      <p className="text-sm text-muted-foreground">Aktuelle Ereignisse nach Autorfarbe</p>
-                    </div>
-                    <div className="flex -space-x-2">
-                      {['caesar', 'cicero', 'augustus', 'seneca'].map(author => (
-                        <span
-                          key={author}
-                          className={`h-8 w-8 rounded-full border-2 border-card bg-author-${author}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-foreground mb-6">
+                {t('navTimeline') || 'Zeitstrahl'}
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                {t('timelinePageDesc') || 'Scroll durch Feldzüge, Intrigen und Ideen – kuratiert für Caesar, Cicero, Augustus und Seneca.'}
+              </p>
 
-                  <div className="relative">
-                    <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-border to-transparent" />
-                    <div className="space-y-4">
-                      {heroPreview.map((event, idx) => (
-                        <div key={`${event.title}-${idx}`} className="pl-8">
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                            <span
-                              className={`h-2.5 w-2.5 rounded-full bg-author-${event.author || 'caesar'}`}
-                              aria-hidden
-                            />
-                            <span className="font-semibold text-foreground line-clamp-1">{event.title}</span>
-                          </div>
-                          <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                            {formatYear(event.year)}
-                          </div>
-                        </div>
-                      ))}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="p-4 rounded-2xl bg-card/80 backdrop-blur border border-border/60 shadow-sm"
+                  >
+                    <div className="flex items-center justify-center gap-2 mb-2 text-primary">
+                      <stat.icon className="h-4 w-4" />
                     </div>
+                    <p className="font-display text-2xl font-bold text-foreground mb-1">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground">{stat.label}</p>
                   </div>
-                </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={scrollToTimeline}
+                  className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center gap-2 shadow-lg shadow-primary/25 hover:bg-primary/90 transition-colors"
+                >
+                  Zeitstrahl öffnen
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+                <ShareButton
+                  title="Zeitstrahl der Antike - Meum Diarium"
+                  text="Entdecke wichtige Ereignisse des antiken Roms."
+                />
               </div>
             </motion.div>
           </div>
