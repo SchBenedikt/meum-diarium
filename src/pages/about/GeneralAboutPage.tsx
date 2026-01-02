@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, BookOpen, Award, Users, Scroll, Clock } from 'lucide-react';
+import { BookOpen, Award, Users, Scroll, Clock, Sparkles, Globe2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { authors as baseAuthors } from '@/data/authors';
 import { motion } from 'framer-motion';
@@ -9,6 +9,7 @@ import { Author } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthors } from '@/lib/translator';
 import { PageContent, PageLanguage } from '@/types/page';
+import { SEO } from '@/components/SEO';
 
 export function GeneralAboutPage() {
   const { setCurrentAuthor } = useAuthor();
@@ -24,6 +25,51 @@ export function GeneralAboutPage() {
   const heroTitle = pageTranslation?.heroTitle || pageContent?.heroTitle || t('aboutProject');
   const heroSubtitle = pageTranslation?.heroSubtitle || pageContent?.heroSubtitle || t('interactiveLearning');
   const projectDescription = pageTranslation?.projectDescription || pageContent?.projectDescription || t('projectDescription');
+
+  const structuredData = useMemo(() => ([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Meum Diarium',
+      url: 'https://meum-diarium.xn--schchner-2za.de/about',
+      sameAs: [
+        'https://www.linkedin.com',
+        'https://github.com/SchBenedikt/meum-diarium'
+      ],
+      description: projectDescription,
+      inLanguage: language,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Was ist Meum Diarium?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ein digitales Geschichtstagebuch, das Tagebuch- und Forschungsperspektive verbindet, um römische Geschichte erlebbar zu machen.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Welche Quellen werden genutzt?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Originaltexte wie Caesars Commentarii, Ciceros Reden und Briefe, Augustus’ Res Gestae sowie Senecas philosophische Schriften – ergänzt um wissenschaftliche Einordnung.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Kann ich Inhalte für Studium oder Unterricht nutzen?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ja. Die Inhalte sind quellennah aufbereitet, zweisprachig übersetzt und mit Kontext versehen, sodass sie für Seminare, Unterricht und Selbststudium geeignet sind.'
+          }
+        }
+      ]
+    }
+  ]), [language, projectDescription]);
 
   const defaultHighlights = useMemo(() => ([
     { icon: BookOpen, title: t('twoPerspectives'), desc: 'Erlebe Geschichte aus zwei radikal unterschiedlichen Blickwinkeln: Die persönliche, oft humorvolle Tagebuchperspektive und die streng wissenschaftliche Analyse mit Quellenangaben und historischer Einordnung.' },
@@ -70,6 +116,20 @@ export function GeneralAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-primary selection:text-primary-foreground">
+      <SEO
+        title={heroTitle || 'Über Meum Diarium'}
+        description={projectDescription || heroSubtitle || 'Meum Diarium verbindet Tagebuch und Forschung, um Rom erfahrbar zu machen.'}
+        tags={[
+          'Römische Geschichte',
+          'Caesar',
+          'Cicero',
+          'Augustus',
+          'Seneca',
+          'Tagebuch',
+          'Wissenschaftliche Analyse'
+        ]}
+        structuredData={structuredData}
+      />
       <main className="flex-1">
         {/* Immersive Hero Section */}
         <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -194,6 +254,29 @@ export function GeneralAboutPage() {
           </div>
         </section>
 
+        {/* Explorer CTA */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto bg-gradient-to-r from-primary/10 via-card to-secondary/30 border border-border/50 rounded-3xl p-10 sm:p-12 backdrop-blur-xl">
+              <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
+                <div className="flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/15 border border-primary/20">
+                  <Globe2 className="h-7 w-7 text-primary" />
+                </div>
+                <div className="flex-1 space-y-3">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Explore</p>
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold">Tauche tiefer in Rom ein</h3>
+                  <p className="text-muted-foreground leading-relaxed">Stöbere im Lexikon, entdecke Zeitleisten oder suche gezielt nach Personen, Schlachten und Begriffen.</p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link to="/lexicon" className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-colors">Lexikon öffnen</Link>
+                    <Link to="/search" className="px-4 py-2 rounded-xl bg-secondary text-secondary-foreground text-sm font-semibold hover:bg-secondary/80 transition-colors">Suche starten</Link>
+                    <Link to="/timeline" className="px-4 py-2 rounded-xl border border-border text-sm font-semibold hover:border-primary hover:text-primary transition-colors">Zeitleiste ansehen</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Authors Showcase */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -229,6 +312,43 @@ export function GeneralAboutPage() {
                     <p className="text-sm text-muted-foreground line-clamp-3 group-hover:line-clamp-none">{author.description}</p>
                   </Link>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-24 bg-muted/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-3">Häufige Fragen</h2>
+              <p className="text-muted-foreground">Schnelle Antworten für Leser:innen, Lehrende und Studierende.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              {[{
+                q: 'Wie verlässlich sind die Inhalte?',
+                a: 'Jeder Beitrag basiert auf Primärquellen und wird in einer wissenschaftlichen Perspektive kommentiert.'
+              }, {
+                q: 'Kann ich Inhalte zitieren?',
+                a: 'Ja, bitte verweise auf Meum Diarium und die jeweilige Quelle im Beitrag.'
+              }, {
+                q: 'Gibt es mehrsprachige Versionen?',
+                a: 'Deutsch, Englisch und Latein stehen zur Verfügung; weitere Sprachen sind geplant.'
+              }, {
+                q: 'Wie halte ich mich auf dem Laufenden?',
+                a: 'Nutze die Suche, das Lexikon und die Zeitleiste oder folge unseren Autoren-Seiten.'
+              }].map((item, i) => (
+                <div key={i} className="p-6 rounded-2xl bg-card/50 border border-border/40">
+                  <div className="flex items-start gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mt-0.5">
+                      <Sparkles className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-bold mb-2">{item.q}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{item.a}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

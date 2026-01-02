@@ -94,8 +94,9 @@ export default function LexiconEntryPage() {
         />
 
         <section className="section-shell -mt-10">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-            <article>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+              <article>
               <motion.div 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -135,13 +136,14 @@ export default function LexiconEntryPage() {
                   </div>
                 )}
               </motion.div>
-            </article>
-            
-            <aside className="hidden lg:block">
-              <div className="sticky top-28">
-                <LexiconSidebar entry={entry} />
-              </div>
-            </aside>
+              </article>
+              
+              <aside className="hidden lg:block">
+                <div className="sticky top-28">
+                  <LexiconSidebar entry={entry} />
+                </div>
+              </aside>
+            </div>
           </div>
         </section>
       </main>
