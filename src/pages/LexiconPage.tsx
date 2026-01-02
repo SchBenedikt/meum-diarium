@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { BookMarked, Search, ArrowRight, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexicon } from '@/lib/translator';
@@ -40,6 +40,7 @@ export default function LexiconPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(searchParams.get('category'));
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
@@ -85,7 +86,8 @@ export default function LexiconPage() {
         const categoryMatch = !activeCategory || entry.category === activeCategory;
         const searchMatch =
           entry.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          entry.definition.toLowerCase().includes(searchTerm.toLowerCase());
+          entry.definition.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (entry.variants || []).some(v => v.toLowerCase().includes(searchTerm.toLowerCase()));
         return categoryMatch && searchMatch;
       })
       .sort((a, b) => a.term.localeCompare(b.term));
@@ -110,6 +112,22 @@ export default function LexiconPage() {
       setTimeout(() => setActiveLetter(null), 1000);
     }
   };
+
+  const handleResetFilters = () => {
+    setSearchTerm('');
+    handleCategoryChange(null);
+  };
+
+  const surpriseMe = () => {
+    const pool = filteredLexicon.length > 0 ? filteredLexicon : lexicon;
+    if (pool.length === 0) return;
+    const random = pool[Math.floor(Math.random() * pool.length)];
+    navigate(`/lexicon/${random.slug}`);
+  };
+
+  const matchCount = filteredLexicon.length;
+  const totalEntries = lexicon.length;
+  const categoryCount = allCategories.length;
 
   return (
     <div ref={heroRef} className="min-h-screen flex flex-col bg-background">
@@ -146,6 +164,97 @@ export default function LexiconPage() {
               )}
             </motion.div>
           </div>
+        </section>
+
+        <section className="section-shell max-w-5xl -mt-6">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="glass-card border-dashed">
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="flex items-center gap-3 rounded-2xl bg-primary/5 px-4 py-3 border border-primary/10">
+                <div className="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
+                  <BookMarked className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold">Einträge</p>
+                  <p className="text-xl font-display font-semibold">{totalEntries}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl bg-secondary/30 px-4 py-3 border border-border/60">
+                <div className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
+                  <Tags className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold">Kategorien</p>
+                  <p className="text-xl font-display font-semibold">{categoryCount}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl bg-emerald-500/10 px-4 py-3 border border-emerald-500/30">
+                <div className="h-10 w-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                  <Check className="h-5 w-5 text-emerald-600" />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-emerald-700 font-bold">Treffer</p>
+                  <p className="text-xl font-display font-semibold">{matchCount}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2 sm:gap-3">
+              <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="rounded-full border-dashed">
+                    <Tags className="h-4 w-4 mr-2" />
+                    {activeCategory || t('allCategories') || 'Kategorien'}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Kategorie finden..." />
+                    <CommandList>
+                      <CommandEmpty>Keine Kategorie</CommandEmpty>
+                      <CommandGroup heading="Kategorien">
+                        <CommandItem onSelect={() => { handleCategoryChange(null); setCategoryPopoverOpen(false); }}>
+                          <X className="mr-2 h-4 w-4" />
+                          Alle Kategorien
+                        </CommandItem>
+                        {allCategories.map(cat => (
+                          <CommandItem
+                            key={cat}
+                            onSelect={() => { handleCategoryChange(cat); setCategoryPopoverOpen(false); }}
+                          >
+                            <Check className={cn("mr-2 h-4 w-4", activeCategory === cat ? "opacity-100" : "opacity-0")} />
+                            {cat}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+
+              {activeCategory && (
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                  {activeCategory}
+                  <button onClick={() => handleCategoryChange(null)} className="hover:text-primary/70">
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+              )}
+
+              <Button variant="secondary" size="sm" className="rounded-full" onClick={surpriseMe}>
+                Überrasch mich
+              </Button>
+
+              {(activeCategory || searchTerm) && (
+                <Button variant="ghost" size="sm" className="rounded-full" onClick={handleResetFilters}>
+                  Filter zurücksetzen
+                </Button>
+              )}
+
+              <div className="ml-auto text-[11px] text-muted-foreground">
+                {matchCount === totalEntries ? 'Alle Einträge sichtbar' : `${matchCount} ${t('results') || 'Treffer'}`}
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         <section className="py-14 sm:py-20">

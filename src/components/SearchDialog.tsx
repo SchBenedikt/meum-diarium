@@ -164,7 +164,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="overflow-hidden rounded-lg bg-card border border-border ">
-                <div className="flex items-center gap-3 p-4 border-b border-border">
+                <div className="flex items-center gap-3 p-3 sm:p-4 border-b border-border">
                   <Search className="h-5 w-5 text-muted-foreground" />
                   <input
                     type="text"
@@ -172,7 +172,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     autoFocus
-                    className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
+                    className="flex-1 bg-transparent text-sm sm:text-base outline-none placeholder:text-muted-foreground py-1"
                   />
                   <kbd className="hidden sm:inline-flex h-6 items-center gap-1 rounded bg-secondary px-2 text-xs text-muted-foreground">
                     ESC
