@@ -48,7 +48,7 @@ const Index = () => {
           <div>
             <HeroSection />
 
-            <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-8 md:-mt-12 relative z-10 pb-12">
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-16 relative z-10 pb-12">
               {/* Primary Feature - AI Chat */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
