@@ -14,12 +14,15 @@ import { MessageCircle, ArrowRight, Zap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslatedAuthorInfo } from '@/lib/author-translator';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
   const { authorId } = useParams<{ authorId?: string }>();
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (authorId && authors[authorId as Author]) {
@@ -36,13 +39,14 @@ const Index = () => {
   }
 
   const author = currentAuthor ? authors[currentAuthor] : null;
+  const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t as any) : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={author ? `${author.name} – Tagebuch & Kommentare` : undefined}
-        description={author?.description}
-        author={author?.name}
+        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : undefined}
+        description={translatedAuthor?.description}
+        author={translatedAuthor?.name}
       />
       <main className="flex-1">
         {currentAuthor ? (
@@ -69,15 +73,15 @@ const Index = () => {
                         <Zap className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">Historisches Gespräch</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">{t('index.historicalChat')}</p>
                         <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
-                          Sprich mit {authors[currentAuthor].name.split(' ')[0]}
+                          {t('index.chatWith', { name: translatedAuthor?.name.split(' ')[0] })}
                         </h2>
                       </div>
                     </div>
 
                     <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl mb-8 font-light">
-                      Stellen Sie Fragen an {authors[currentAuthor].name} und erleben Sie ein Gespräch basierend auf authentischen historischen Quellen und wissenschaftlicher Recherche.
+                      {t('index.chatDescription', { name: translatedAuthor?.name })}
                     </p>
 
                     <div className="space-y-4 max-w-3xl">
@@ -86,7 +90,7 @@ const Index = () => {
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
-                              placeholder={`Was möchten Sie ${authors[currentAuthor].name.split(' ')[0]} fragen?`}
+                              placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
                               className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50 font-light"
                               value={question}
                               onChange={(e) => setQuestion(e.target.value)}
@@ -103,7 +107,7 @@ const Index = () => {
                             />
                             <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
                               <Button size="sm" className="rounded-lg gap-2 bg-primary hover:bg-primary/90 transition-all">
-                                <span className="hidden sm:inline">Gespräch beginnen</span>
+                                <span className="hidden sm:inline">{t('index.startChat')}</span>
                                 <ArrowRight className="h-4 w-4" />
                               </Button>
                             </Link>
@@ -113,9 +117,9 @@ const Index = () => {
 
                       <div className="flex flex-wrap gap-2">
                         {[
-                          'Erzählen Sie von Ihrem Leben',
-                          'Ihre größten Erfolge',
-                          'Das Römische Reich'
+                          t('index.suggestionLife'),
+                          t('index.suggestionAchievements'),
+                          t('index.suggestionEmpire')
                         ].map((suggestion, i) => (
                           <Link
                             key={i}

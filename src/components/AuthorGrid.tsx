@@ -46,15 +46,15 @@ export function AuthorGrid() {
           <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
             <Badge variant="secondary" className="px-3 py-1.5">
               <Brain className="w-3 h-3 mr-1.5" />
-              KI-basierte Dialoge
+              {t('landing.authorGrid.aiDialogs')}
             </Badge>
             <Badge variant="secondary" className="px-3 py-1.5">
               <Target className="w-3 h-3 mr-1.5" />
-              Historisch akkurat
+              {t('landing.authorGrid.historicallyAccurate')}
             </Badge>
             <Badge variant="secondary" className="px-3 py-1.5">
               <Award className="w-3 h-3 mr-1.5" />
-              Wissenschaftlich geprüft
+              {t('landing.authorGrid.scientificallyProven')}
             </Badge>
           </div>
         </motion.div>
@@ -111,7 +111,7 @@ export function AuthorGrid() {
                         <div className="absolute top-4 left-4">
                           <Badge className="bg-primary/90 text-primary-foreground border-0 shadow-lg rounded-full px-3 py-1.5">
                             <Star className="w-3 h-3 mr-1 fill-current" />
-                            Empfohlen
+                            {t('landing.authorGrid.recommended')}
                           </Badge>
                         </div>
                       )}
@@ -175,7 +175,7 @@ export function AuthorGrid() {
 
                       {/* CTA */}
                       <div className="mt-4 flex items-center text-sm font-semibold text-primary">
-                        <span>Profil erkunden</span>
+                        <span>{t('landing.authorGrid.exploreProfile')}</span>
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </CardContent>

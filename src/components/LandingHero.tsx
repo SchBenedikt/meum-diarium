@@ -38,8 +38,10 @@ import { Separator } from './ui/separator';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function LandingHero() {
+  const { t } = useLanguage();
   const [activeDemo, setActiveDemo] = useState<'chat' | 'timeline' | 'blog'>('chat');
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -111,11 +113,11 @@ export default function LandingHero() {
               <div className="bg-muted/40 backdrop-blur-sm flex items-center gap-2.5 rounded-full border border-border/50 px-4 py-2.5 w-fit hover:border-primary/30 transition-colors">
                 <Badge className="bg-primary/20 text-primary hover:bg-primary/30">
                   <Sparkles className="w-3 h-3 mr-1.5" />
-                  KI-Powered
+                  {t('landing.hero.aiPowered')}
                 </Badge>
                 <Separator orientation="vertical" className="h-4" />
                 <span className="text-sm text-muted-foreground">
-                  Geschichte interaktiv erleben
+                  {t('landing.hero.interactiveExperience')}
                 </span>
               </div>
             </motion.div>
@@ -174,7 +176,7 @@ export default function LandingHero() {
 
               {/* Subtitle - Stimmen der Antike */}
               <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-muted-foreground pt-8">
-                Stimmen der Antike
+                {t('landing.hero.voicesOfAntiquity')}
               </p>
             </motion.div>
 
@@ -186,9 +188,7 @@ export default function LandingHero() {
               transition={defaultTransition}
               className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             >
-              Erleben Sie Geschichte durch die Augen ihrer Protagonisten.
-              <br className="hidden sm:block" />
-              KI-gestützt, quellenbasiert, interaktiv.
+              {t('landing.hero.description')}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -201,7 +201,7 @@ export default function LandingHero() {
             >
               <Link to="/caesar" className="w-full sm:w-auto">
                 <Button size="lg" className="gap-2 w-full sm:w-auto group">
-                  Jetzt entdecken
+                  {t('landing.hero.discoverNow')}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -212,7 +212,7 @@ export default function LandingHero() {
                   className="gap-2 w-full sm:w-auto"
                 >
                   <Library className="w-4 h-4" />
-                  Lexikon
+                  {t('landing.hero.lexicon')}
                 </Button>
               </Link>
             </motion.div>
@@ -299,13 +299,13 @@ export default function LandingHero() {
           >
             <Badge variant="secondary" className="mb-4">
               <Star className="w-3 h-3 mr-1.5" />
-              Hauptfunktionen
+              {t('landing.features.badge')}
             </Badge>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              Interaktive Funktionen
+              {t('landing.features.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Erkunden Sie die Geschichte auf völlig neue Weise
+              {t('landing.features.subtitle')}
             </p>
           </motion.div>
 
@@ -334,19 +334,18 @@ export default function LandingHero() {
                       </div>
                       <div>
                         <h3 className="font-display text-2xl font-bold">
-                          KI-Gespräche
+                          {t('landing.features.chat.title')}
                         </h3>
                         <Badge
                           variant="secondary"
                           className="mt-1 text-xs"
                         >
-                          Live Demo
+                          {t('landing.features.chat.liveDemo')}
                         </Badge>
                       </div>
                     </div>
                     <p className="text-muted-foreground">
-                      Authentische Dialoge mit historischen Persönlichkeiten
-                      basierend auf echten Quellen
+                      {t('landing.features.chat.description')}
                     </p>
                   </div>
                 </div>
@@ -364,10 +363,10 @@ export default function LandingHero() {
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
                       <p className="text-xs font-medium text-muted-foreground">
-                        Du
+                        {t('landing.features.chat.user')}
                       </p>
                     </div>
-                    <p className="text-sm">Wie haben Sie Rom verändert?</p>
+                    <p className="text-sm">{t('landing.features.chat.userQuestion')}</p>
                   </motion.div>
 
                   <motion.div
@@ -381,17 +380,16 @@ export default function LandingHero() {
                         C
                       </div>
                       <p className="text-xs font-medium text-primary">
-                        Gaius Julius Caesar
+                        {t('landing.features.chat.caesarAuthor')}
                       </p>
                     </div>
                     <p className="text-sm leading-relaxed">
-                      Der Rubikon war mehr als ein Fluss – er war eine Grenze
-                      zwischen Recht und Macht. Als ich ihn überschritt...
+                      {t('landing.features.chat.caesarAnswer')}
                     </p>
                     <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/40">
                       <BookOpen className="w-3 h-3 text-primary/60" />
                       <span className="text-xs text-primary/60">
-                        Basierend auf historischen Quellen
+                        {t('landing.features.chat.sourceHint')}
                       </span>
                     </div>
                   </motion.div>
@@ -401,7 +399,7 @@ export default function LandingHero() {
                     size="sm"
                     className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                   >
-                    Demo starten
+                    {t('landing.features.chat.startDemo')}
                     <ArrowRight className="w-3 h-3" />
                   </Button>
                 </div>
@@ -424,11 +422,11 @@ export default function LandingHero() {
                   4+
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Historische Figuren
+                  {t('landing.features.stats.characters')}
                 </p>
                 <div className="flex items-center gap-1 text-xs text-primary">
                   <Star className="w-3 h-3" />
-                  <span>Umfassend dokumentiert</span>
+                  <span>{t('landing.features.stats.documented')}</span>
                 </div>
               </div>
             </motion.div>
@@ -449,11 +447,11 @@ export default function LandingHero() {
                   50+
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Artikel & Einträge
+                  {t('landing.features.stats.articles')}
                 </p>
                 <div className="flex items-center gap-1 text-xs text-primary">
                   <TrendingUp className="w-3 h-3" />
-                  <span>Wöchentlich neue Inhalte</span>
+                  <span>{t('landing.features.stats.newContent')}</span>
                 </div>
               </div>
             </motion.div>
@@ -474,16 +472,16 @@ export default function LandingHero() {
                     </div>
                     <div>
                       <h3 className="font-display text-lg font-bold">
-                        Interaktive Zeitreise
+                        {t('landing.features.timeline.title')}
                       </h3>
                       <p className="text-xs text-muted-foreground">
-                        Historische Ereignisse visualisiert
+                        {t('landing.features.timeline.subtitle')}
                       </p>
                     </div>
                   </div>
                   <Link to="/timeline">
                     <Button size="sm" variant="ghost" className="gap-1">
-                      <span className="text-xs">Erkunden</span>
+                      <span className="text-xs">{t('landing.features.timeline.explore')}</span>
                       <ArrowRight className="w-3 h-3" />
                     </Button>
                   </Link>
@@ -499,21 +497,21 @@ export default function LandingHero() {
                       />
                       <div className="absolute left-[20%] top-full mt-2 -translate-x-1/2">
                         <p className="text-[10px] font-medium whitespace-nowrap">
-                          100 v.Chr.
+                          100 {t('common.bc')}
                         </p>
                       </div>
 
                       <div className="absolute left-[50%] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/60" />
                       <div className="absolute left-[50%] top-full mt-2 -translate-x-1/2">
                         <p className="text-[10px] text-muted-foreground whitespace-nowrap">
-                          58 v.Chr.
+                          58 {t('common.bc')}
                         </p>
                       </div>
 
                       <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/40" />
                       <div className="absolute left-[75%] top-full mt-2 -translate-x-1/2">
                         <p className="text-[10px] text-muted-foreground whitespace-nowrap">
-                          44 v.Chr.
+                          44 {t('common.bc')}
                         </p>
                       </div>
                     </div>
@@ -538,13 +536,13 @@ export default function LandingHero() {
           >
             <Badge variant="secondary" className="mb-4">
               <Brain className="w-3 h-3 mr-1.5" />
-              Wissensbank
+              {t('landing.features.knowledge.badge')}
             </Badge>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              Quellenbasierte Inhalte
+              {t('landing.features.knowledge.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Wissenschaftlich fundierte Informationen und historische Einordnung
+              {t('landing.features.knowledge.subtitle')}
             </p>
           </motion.div>
 
@@ -563,36 +561,36 @@ export default function LandingHero() {
                   <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <h3 className="font-display text-lg font-bold">
-                  Quellenbasiert & KI-gestützt
+                  {t('landing.features.knowledge.techTitle')}
                 </h3>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">Historische Quellen</span>
+                    <span className="text-sm">{t('landing.features.knowledge.sources')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">Wissenschaftlich fundiert</span>
+                    <span className="text-sm">{t('landing.features.knowledge.scientific')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">Peer-reviewed</span>
+                    <span className="text-sm">{t('landing.features.knowledge.peerReviewed')}</span>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">KI-Technologie</span>
+                    <span className="text-sm">{t('landing.features.knowledge.aiTech')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">Interaktiv</span>
+                    <span className="text-sm">{t('landing.features.knowledge.interactive')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">Verifizierbar</span>
+                    <span className="text-sm">{t('landing.features.knowledge.verifiable')}</span>
                   </div>
                 </div>
               </div>
@@ -603,13 +601,13 @@ export default function LandingHero() {
               <div className="p-2 rounded-[1.25rem] bg-primary/10 w-fit mb-3">
                 <BookMarked className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="font-display text-base font-bold mb-2">Lexikon</h3>
+              <h3 className="font-display text-base font-bold mb-2">{t('landing.features.lexicon.title')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Fachbegriffe der Antike
+                {t('landing.features.lexicon.description')}
               </p>
               <Link to="/lexicon">
                 <Button variant="outline" size="sm" className="w-full">
-                  Durchsuchen
+                  {t('landing.features.lexicon.search')}
                 </Button>
               </Link>
             </div>
@@ -630,13 +628,13 @@ export default function LandingHero() {
           >
             <Badge variant="secondary" className="mb-4">
               <Award className="w-3 h-3 mr-1.5" />
-              Weitere Features
+              {t('landing.features.additional.badge')}
             </Badge>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              Umfassende Werkzeuge
+              {t('landing.features.additional.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Alles was du brauchst, um Geschichte vollständig zu erleben
+              {t('landing.features.additional.subtitle')}
             </p>
           </motion.div>
 
@@ -654,9 +652,9 @@ export default function LandingHero() {
                 <Languages className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-display text-base font-bold mb-2">
-                Mehrsprachig
+                {t('landing.features.additional.multilingual')}
               </h3>
-              <p className="text-sm text-muted-foreground">DE • EN • LA</p>
+              <p className="text-sm text-muted-foreground">{t('landing.features.additional.languages')}</p>
             </div>
 
             {/* Timeline */}
@@ -665,9 +663,9 @@ export default function LandingHero() {
                 <Clock className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-display text-base font-bold mb-2">
-                Chronologie
+                {t('landing.features.additional.chronology')}
               </h3>
-              <p className="text-sm text-muted-foreground">Detaillierte Zeitleiste</p>
+              <p className="text-sm text-muted-foreground">{t('landing.features.additional.detailedTimeline')}</p>
             </div>
 
             {/* Quotes */}
@@ -676,9 +674,9 @@ export default function LandingHero() {
                 <Quote className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-display text-base font-bold mb-2">
-                Original-Zitate
+                {t('landing.features.additional.quotes')}
               </h3>
-              <p className="text-sm text-muted-foreground">Authentische Quellen</p>
+              <p className="text-sm text-muted-foreground">{t('landing.features.additional.authenticSources')}</p>
             </div>
 
             {/* Places */}
@@ -687,9 +685,9 @@ export default function LandingHero() {
                 <Map className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-display text-base font-bold mb-2">
-                Orte & Reisen
+                {t('landing.features.additional.places')}
               </h3>
-              <p className="text-sm text-muted-foreground">Geografische Kontexte</p>
+              <p className="text-sm text-muted-foreground">{t('landing.features.additional.geoContext')}</p>
             </div>
           </motion.div>
         </div>

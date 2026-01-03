@@ -12,6 +12,7 @@ export function getAuthorTranslationKeys(authorId: Author) {
     description: `${authorId}_description` as TranslationKey,
     achievements: `${authorId}_achievements` as TranslationKey,
     birthplace: `${authorId}_birthplace` as TranslationKey,
+    years: `${authorId}_years` as TranslationKey,
   };
 }
 
@@ -22,6 +23,7 @@ export interface TranslatedAuthorInfo {
   name: string;
   latinName: string;
   title: string;
+  years: string;
   description: string;
   achievements: string;
   birthplace: string;
@@ -32,11 +34,12 @@ export function getTranslatedAuthorInfo(
   t: (key: TranslationKey) => string
 ): TranslatedAuthorInfo {
   const keys = getAuthorTranslationKeys(authorId);
-  
+
   return {
     name: t(keys.name),
     latinName: t(keys.latinName),
     title: t(keys.title),
+    years: t(keys.years),
     description: t(keys.description),
     achievements: t(keys.achievements),
     birthplace: t(keys.birthplace),

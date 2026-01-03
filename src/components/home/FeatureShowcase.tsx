@@ -80,19 +80,19 @@ export function FeatureShowcase() {
                         className="flex items-center justify-center gap-2 text-primary font-bold tracking-widest uppercase text-sm mb-4"
                     >
                         <Sparkles className="w-4 h-4" />
-                        <span>Innovations-Hub</span>
+                        <span>{t('landing.features.innovationHub.badge')}</span>
                     </motion.div>
                     <motion.h2
                         variants={fadeUp(0.2)}
                         className="font-display text-4xl sm:text-5xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
                     >
-                        Die <span className="text-primary italic">Zukunft</span> der Geschichtsschreibung
+                        {(t('landing.features.innovationHub.titleMain') as string)}<span className="text-primary italic">{(t('landing.features.innovationHub.titleHighlight') as string)}</span>{(t('landing.features.innovationHub.titleEnd') as string)}
                     </motion.h2>
                     <motion.p
                         variants={fadeUp(0.3)}
                         className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light"
                     >
-                        {t('featuresSectionSubtitle') || 'Entdecke ein Ökosystem, das historisches Wissen durch modernste Technologie zum Leben erweckt.'}
+                        {t('featuresSectionSubtitle')}
                     </motion.p>
                 </motion.div>
 

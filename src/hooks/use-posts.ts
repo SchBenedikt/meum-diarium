@@ -8,8 +8,10 @@ import { fetchPosts } from '@/lib/api';
 
 export function usePosts() {
   const { language } = useLanguage();
+  const [translatedPosts, setTranslatedPosts] = useState<BlogPost[]>([]);
+  const [isTranslating, setIsTranslating] = useState(false);
 
-  const { data: posts, isLoading } = useQuery<BlogPost[]>({
+  const { data: posts, isLoading: isFetching } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
       try {
@@ -22,10 +24,27 @@ export function usePosts() {
     },
   });
 
-  // Übersetze die Posts basierend auf der aktuellen Sprache (memoisiert, um Referenz-Stabilität zu gewährleisten)
-  const translatedPosts = useMemo(() => {
-    return posts ? getTranslatedPosts(posts, language) : [];
+  useEffect(() => {
+    async function translateAll() {
+      if (!posts) return;
+
+      setIsTranslating(true);
+      try {
+        const translated = await Promise.all(
+          posts.map(post => import('@/lib/translator').then(mod => mod.translatePostInPlace(post, language)))
+        );
+        setTranslatedPosts(translated);
+      } catch (error) {
+        console.error("Translation failed", error);
+        // Fallback to original posts if translation fails
+        setTranslatedPosts(posts);
+      } finally {
+        setIsTranslating(false);
+      }
+    }
+
+    translateAll();
   }, [posts, language]);
 
-  return { posts: translatedPosts, isLoading };
+  return { posts: translatedPosts, isLoading: isFetching || isTranslating };
 }

@@ -5,7 +5,7 @@ import { Language } from '@/types/blog';
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: string, replacements?: Record<string, string | number>) => string;
+  t: <T = string>(key: string, options?: any) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -27,8 +27,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = ['ar', 'fa', 'he', 'ur'].includes(baseLang) ? 'rtl' : 'ltr';
   }, [i18n.language]);
 
-  const t = (key: string, replacements?: Record<string, string | number>): string => {
-    return i18nT(key, replacements);
+  const t = <T = string>(key: string, options?: any): T => {
+    return i18nT(key, options) as T;
   };
 
   return (
