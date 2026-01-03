@@ -17,11 +17,6 @@ export function BlogList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
 
-  if (!currentAuthor || !authorInfo) return null;
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   // Helper function to check if a post has content for a specific perspective
   const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
     const content = post?.content?.[perspective];
@@ -34,32 +29,35 @@ export function BlogList() {
     return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
   };
 
-  const filteredPosts = posts
-    .filter((post) => post.author === currentAuthor)
-    .filter((post) => {
-      if (contentFilter === 'diary') {
-        return hasContent(post, 'diary');
-      } else if (contentFilter === 'scientific') {
-        return hasContent(post, 'scientific');
-      }
-      return true;
-    })
-    .filter((post) => {
-      if (!searchQuery.trim()) return true;
-      const query = searchQuery.toLowerCase();
-      return (
-        post.title.toLowerCase().includes(query) ||
-        (post.diaryTitle && post.diaryTitle.toLowerCase().includes(query)) ||
-        (post.scientificTitle && post.scientificTitle.toLowerCase().includes(query)) ||
-        post.excerpt.toLowerCase().includes(query) ||
-        post.tags.some(tag => tag.toLowerCase().includes(query))
-      );
-    })
-    .sort((a, b) => {
-      const ay = typeof a.historicalYear === 'number' ? a.historicalYear : new Date(a.date).getFullYear();
-      const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
-      return ay - by;
-    });
+  const filteredPosts = useMemo(() => {
+    if (!posts) return [];
+    return posts
+      .filter((post) => post.author === currentAuthor)
+      .filter((post) => {
+        if (contentFilter === 'diary') {
+          return hasContent(post, 'diary');
+        } else if (contentFilter === 'scientific') {
+          return hasContent(post, 'scientific');
+        }
+        return true;
+      })
+      .filter((post) => {
+        if (!searchQuery.trim()) return true;
+        const query = searchQuery.toLowerCase();
+        return (
+          post.title.toLowerCase().includes(query) ||
+          (post.diaryTitle && post.diaryTitle.toLowerCase().includes(query)) ||
+          (post.scientificTitle && post.scientificTitle.toLowerCase().includes(query)) ||
+          post.excerpt.toLowerCase().includes(query) ||
+          post.tags.some(tag => tag.toLowerCase().includes(query))
+        );
+      })
+      .sort((a, b) => {
+        const ay = typeof a.historicalYear === 'number' ? a.historicalYear : new Date(a.date).getFullYear();
+        const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
+        return ay - by;
+      });
+  }, [posts, currentAuthor, contentFilter, searchQuery]);
 
   // Group posts by year
   const groupedByYear = useMemo(() => {
@@ -88,22 +86,31 @@ export function BlogList() {
     if (!posts || posts.length === 0) {
       return { all: 0, diary: 0, scientific: 0 };
     }
-    
+
     const authorPosts = posts.filter(p => p.author === currentAuthor);
     const hasContentMemo = (post: BlogPost, perspective: 'diary' | 'scientific') => {
       const content = post?.content?.[perspective];
       return content != null && typeof content === 'string' && content.trim().length > 0;
     };
-    
+
     const diaryCount = authorPosts.filter(p => hasContentMemo(p, 'diary')).length;
     const scientificCount = authorPosts.filter(p => hasContentMemo(p, 'scientific')).length;
-    
+
     return {
       all: authorPosts.length,
       diary: diaryCount,
       scientific: scientificCount,
     };
   }, [posts, currentAuthor]);
+
+  if (!currentAuthor || !authorInfo) return null;
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-12">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   return (
     <section className="px-4 sm:px-6">
@@ -161,8 +168,8 @@ export function BlogList() {
 
         {/* Search Filter */}
         <div className="mb-8">
-          <SearchFilter 
-            value={searchQuery} 
+          <SearchFilter
+            value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Beiträge durchsuchen..."
           />
@@ -201,11 +208,11 @@ export function BlogList() {
         ) : (
           <div className="text-center py-16 rounded-lg border border-dashed border-border bg-secondary/20">
             <p className="text-muted-foreground">
-              {contentFilter === 'diary' 
+              {contentFilter === 'diary'
                 ? 'Keine Tagebuch-Einträge von diesem Autor.'
                 : contentFilter === 'scientific'
-                ? 'Keine wissenschaftlichen Artikel von diesem Autor.'
-                : 'Noch keine Einträge von diesem Autor.'}
+                  ? 'Keine wissenschaftlichen Artikel von diesem Autor.'
+                  : 'Noch keine Einträge von diesem Autor.'}
             </p>
           </div>
         )}

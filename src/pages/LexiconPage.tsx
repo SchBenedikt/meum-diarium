@@ -85,17 +85,17 @@ export default function LexiconPage() {
       .filter(entry => {
         const categoryMatch = !activeCategory || entry.category === activeCategory;
         const searchMatch =
-          entry.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          entry.definition.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (entry.variants || []).some(v => v.toLowerCase().includes(searchTerm.toLowerCase()));
+          (entry.term || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (entry.definition || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchTerm.toLowerCase()));
         return categoryMatch && searchMatch;
       })
-      .sort((a, b) => a.term.localeCompare(b.term));
+      .sort((a, b) => (a.term || "").localeCompare(b.term || ""));
   }, [searchTerm, activeCategory, lexicon]);
 
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {
-      const firstLetter = entry.term[0].toUpperCase();
+      const firstLetter = entry.term && entry.term.length > 0 ? entry.term[0].toUpperCase() : '?';
       if (!acc[firstLetter]) {
         acc[firstLetter] = [];
       }
@@ -149,13 +149,13 @@ export default function LexiconPage() {
             <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3">
               <Search className="h-5 w-5 text-muted-foreground" />
               <Input
-  type="text"
-  placeholder={t('searchPlaceholder')}
-  className="border-none bg-transparent text-base h-9 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-  style={{ minWidth: 0 }}
-/>
+                type="text"
+                placeholder={t('searchPlaceholder')}
+                className="border-none bg-transparent text-base h-9 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ minWidth: 0 }}
+              />
 
               {searchTerm && (
                 <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors ml-auto">

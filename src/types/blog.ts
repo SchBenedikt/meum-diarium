@@ -16,6 +16,12 @@ export interface AuthorInfo {
   heroImage: string;
   theme: string;
   color: string;
+  highlights?: {
+    title: string;
+    description: string;
+    link: string;
+    icon: string;
+  }[];
   translations?: {
     de?: {
       name?: string;
