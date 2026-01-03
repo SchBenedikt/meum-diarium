@@ -229,6 +229,12 @@ export function Header() {
                     >
                       English 🇬🇧
                     </DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem
+                      checked={language === 'la'}
+                      onCheckedChange={() => setLanguage('la')}
+                    >
+                      Latine 🏛️
+                    </DropdownMenuCheckboxItem>
 
                     <DropdownMenuSeparator className="my-2" />
 
@@ -367,6 +373,19 @@ export function Header() {
                               }}
                             >
                               🇬🇧 English
+                            </Button>
+                            <Button
+                              variant={
+                                language === 'la' ? 'default' : 'outline'
+                              }
+                              size="sm"
+                              className="text-xs"
+                              onClick={() => {
+                                setLanguage('la');
+                                handleNavClick();
+                              }}
+                            >
+                              🏛️ Latine
                             </Button>
                           </div>
                         </div>

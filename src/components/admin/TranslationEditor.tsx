@@ -3,8 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Edit, Save, X, Languages, Globe, Check, Loader2, Plus, AlertCircle } from 'lucide-react';
+import { Search, Edit, Save, X, Languages, Globe, Check, Loader2, Plus, AlertCircle, Filter, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface TranslationData {
@@ -17,10 +16,10 @@ export function TranslationEditor() {
     const [translations, setTranslations] = useState<TranslationData | null>(null);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
+    const [filterMissing, setFilterMissing] = useState(false);
     const [editingKey, setEditingKey] = useState<string | null>(null);
     const [editValues, setEditValues] = useState<{ de: string; en: string; la: string }>({ de: '', en: '', la: '' });
     const [saving, setSaving] = useState(false);
-    const [activeLang, setActiveLang] = useState<'de' | 'en' | 'la'>('de');
 
     // Fetch translations from API
     useEffect(() => {
@@ -40,33 +39,44 @@ export function TranslationEditor() {
         fetchTranslations();
     }, []);
 
-    // Get all unique keys from all languages
+    // Get all unique keys from all languages (Transparency overhaul: include EVERYTHING)
     const allKeys = useMemo(() => {
         if (!translations) return [];
         const keys = new Set<string>();
         Object.keys(translations.de || {}).forEach(k => keys.add(k));
         Object.keys(translations.en || {}).forEach(k => keys.add(k));
         Object.keys(translations.la || {}).forEach(k => keys.add(k));
-        // Exclude author-specific keys (to be handled under Autoren-Editor)
-        const excludePattern = /^(caesar|cicero|augustus|seneca)_/i;
-        return Array.from(keys)
-            .filter(k => !excludePattern.test(k))
-            .sort();
+
+        return Array.from(keys).sort();
     }, [translations]);
 
     const filteredKeys = useMemo(() => {
-        if (!searchQuery) return allKeys;
-        const query = searchQuery.toLowerCase();
-        return allKeys.filter(key => {
-            const deVal = translations?.de?.[key] || '';
-            const enVal = translations?.en?.[key] || '';
-            const laVal = translations?.la?.[key] || '';
-            return key.toLowerCase().includes(query) ||
-                deVal.toLowerCase().includes(query) ||
-                enVal.toLowerCase().includes(query) ||
-                laVal.toLowerCase().includes(query);
-        });
-    }, [allKeys, searchQuery, translations]);
+        let keys = allKeys;
+
+        if (filterMissing && translations) {
+            keys = keys.filter(key => {
+                const hasDe = !!translations.de?.[key];
+                const hasEn = !!translations.en?.[key];
+                const hasLa = !!translations.la?.[key];
+                return !hasDe || !hasEn || !hasLa;
+            });
+        }
+
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            keys = keys.filter(key => {
+                const deVal = translations?.de?.[key] || '';
+                const enVal = translations?.en?.[key] || '';
+                const laVal = translations?.la?.[key] || '';
+                return key.toLowerCase().includes(query) ||
+                    deVal.toLowerCase().includes(query) ||
+                    enVal.toLowerCase().includes(query) ||
+                    laVal.toLowerCase().includes(query);
+            });
+        }
+
+        return keys;
+    }, [allKeys, searchQuery, filterMissing, translations]);
 
     const handleEdit = (key: string) => {
         setEditingKey(key);
@@ -82,7 +92,6 @@ export function TranslationEditor() {
         setSaving(true);
 
         try {
-            // Save to each language that has changes
             const updates = [
                 { lang: 'de', value: editValues.de },
                 { lang: 'en', value: editValues.en },
@@ -102,7 +111,6 @@ export function TranslationEditor() {
                 }
             }
 
-            // Update local state
             setTranslations(prev => prev ? {
                 de: { ...prev.de, [editingKey]: editValues.de },
                 en: { ...prev.en, [editingKey]: editValues.en },
@@ -123,11 +131,38 @@ export function TranslationEditor() {
         setEditValues({ de: '', en: '', la: '' });
     };
 
-    const getMissingCount = (lang: 'de' | 'en' | 'la') => {
-        if (!translations) return 0;
-        const deKeys = Object.keys(translations.de || {});
-        const langKeys = Object.keys(translations[lang] || {});
-        return deKeys.filter(k => !langKeys.includes(k)).length;
+    const handleDeleteKey = async (key: string) => {
+        if (!window.confirm(`Schlüssel "${key}" wirklich in ALLEN Sprachen löschen?`)) return;
+
+        try {
+            const langs = ['de', 'en', 'la'];
+            for (const lang of langs) {
+                await fetch(`/api/translations/${lang}/${key}`, { method: 'DELETE' });
+            }
+
+            setTranslations(prev => {
+                if (!prev) return null;
+                const newDe = { ...prev.de }; delete newDe[key];
+                const newEn = { ...prev.en }; delete newEn[key];
+                const newLa = { ...prev.la }; delete newLa[key];
+                return { de: newDe, en: newEn, la: newLa };
+            });
+            toast.success('Schlüssel gelöscht');
+        } catch (e) {
+            toast.error('Fehler beim Löschen');
+        }
+    };
+
+    const getStatusColor = (key: string) => {
+        if (!translations) return '';
+        const missing = [];
+        if (!translations.de?.[key]) missing.push('DE');
+        if (!translations.en?.[key]) missing.push('EN');
+        if (!translations.la?.[key]) missing.push('LA');
+
+        if (missing.length === 0) return 'bg-green-500/10 text-green-600 border-green-500/20';
+        if (missing.length === 3) return 'bg-destructive/10 text-destructive border-destructive/20';
+        return 'bg-amber-500/10 text-amber-600 border-amber-500/20';
     };
 
     if (loading) {
@@ -141,91 +176,96 @@ export function TranslationEditor() {
     }
 
     return (
-        <Card>
-            <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <Card className="border-none shadow-none bg-transparent">
+            <CardHeader className="px-0 pb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <CardTitle className="flex items-center gap-2">
-                        <Languages className="h-5 w-5 text-primary" />
-                        Übersetzungen verwalten
+                    <CardTitle className="flex items-center gap-2 text-2xl">
+                        <Languages className="h-6 w-6 text-primary" />
+                        Übersetzungen
                     </CardTitle>
                     <CardDescription>
-                        {filteredKeys.length} von {allKeys.length} Einträgen
+                        {filteredKeys.length} von {allKeys.length} Einträgen verwalten
                     </CardDescription>
                 </div>
-                <div className="flex items-center gap-2 text-xs">
-                    <span className="px-2 py-1 rounded bg-green-500/10 text-green-600 border border-green-500/20">
-                        DE: {Object.keys(translations?.de || {}).length}
-                    </span>
-                    <span className={`px-2 py-1 rounded border ${getMissingCount('en') > 0 ? 'bg-amber-500/10 text-amber-600 border-amber-500/20' : 'bg-green-500/10 text-green-600 border-green-500/20'}`}>
-                        EN: {Object.keys(translations?.en || {}).length}
-                        {getMissingCount('en') > 0 && ` (-${getMissingCount('en')})`}
-                    </span>
-                    <span className={`px-2 py-1 rounded border ${getMissingCount('la') > 0 ? 'bg-amber-500/10 text-amber-600 border-amber-500/20' : 'bg-green-500/10 text-green-600 border-green-500/20'}`}>
-                        LA: {Object.keys(translations?.la || {}).length}
-                        {getMissingCount('la') > 0 && ` (-${getMissingCount('la')})`}
-                    </span>
+                <div className="flex items-center gap-2">
+                    <Button
+                        variant={filterMissing ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setFilterMissing(!filterMissing)}
+                        className="gap-2"
+                    >
+                        <Filter className="h-4 w-4" />
+                        Unvollständig
+                    </Button>
                 </div>
             </CardHeader>
-            <CardContent>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                    <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                            placeholder="Schlüssel oder Text suchen..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-9"
-                        />
-                    </div>
+            <CardContent className="px-0">
+                <div className="relative mb-6">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                        placeholder="Schlüssel oder Text suchen..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-9 h-11 bg-card/50"
+                    />
                 </div>
 
-                <div className="overflow-x-auto rounded-lg border border-border">
+                <div className="overflow-x-auto rounded-xl border border-border bg-card/30 backdrop-blur-sm">
                     <Table>
                         <TableHeader>
-                            <TableRow className="bg-muted/50">
-                                <TableHead className="w-[200px]">Schlüssel</TableHead>
-                                <TableHead>DE</TableHead>
-                                <TableHead>EN</TableHead>
-                                <TableHead>LA</TableHead>
-                                <TableHead className="w-[80px] text-right">Aktion</TableHead>
+                            <TableRow className="bg-muted/30 hover:bg-muted/30">
+                                <TableHead className="w-[200px] font-display">Schlüssel</TableHead>
+                                <TableHead className="font-display">Deutsch (DE)</TableHead>
+                                <TableHead className="font-display">English (EN)</TableHead>
+                                <TableHead className="font-display">Latine (LA)</TableHead>
+                                <TableHead className="w-[100px] text-right font-display">Aktionen</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {filteredKeys.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                                    <TableCell colSpan={5} className="text-center text-muted-foreground py-12">
                                         Keine Übersetzungen gefunden
                                     </TableCell>
                                 </TableRow>
                             ) : (
                                 filteredKeys.map((key) => (
-                                    <TableRow key={key}>
-                                        <TableCell className="font-mono text-xs text-muted-foreground">
-                                            {key}
+                                    <TableRow key={key} className="group transition-colors hover:bg-primary/5">
+                                        <TableCell>
+                                            <div className="flex flex-col gap-1.5">
+                                                <code className="text-[10px] px-1.5 py-0.5 rounded bg-muted w-fit text-muted-foreground font-mono">
+                                                    {key}
+                                                </code>
+                                                <div className={`text-[9px] font-bold px-1.5 py-0.5 rounded border w-fit ${getStatusColor(key)}`}>
+                                                    {!translations?.de?.[key] || !translations?.en?.[key] || !translations?.la?.[key] ? 'UNVOLLSTÄNDIG' : 'OK'}
+                                                </div>
+                                            </div>
                                         </TableCell>
+
                                         {editingKey === key ? (
                                             <>
                                                 <TableCell>
                                                     <Input
                                                         value={editValues.de}
                                                         onChange={(e) => setEditValues(prev => ({ ...prev, de: e.target.value }))}
-                                                        className="text-xs h-8"
+                                                        className="text-sm min-h-[40px]"
+                                                        autoFocus
                                                     />
                                                 </TableCell>
                                                 <TableCell>
                                                     <Input
                                                         value={editValues.en}
                                                         onChange={(e) => setEditValues(prev => ({ ...prev, en: e.target.value }))}
-                                                        className="text-xs h-8"
-                                                        placeholder="(leer)"
+                                                        className="text-sm min-h-[40px]"
+                                                        placeholder="English text..."
                                                     />
                                                 </TableCell>
                                                 <TableCell>
                                                     <Input
                                                         value={editValues.la}
                                                         onChange={(e) => setEditValues(prev => ({ ...prev, la: e.target.value }))}
-                                                        className="text-xs h-8"
-                                                        placeholder="(leer)"
+                                                        className="text-sm min-h-[40px]"
+                                                        placeholder="Textus Latinus..."
                                                     />
                                                 </TableCell>
                                                 <TableCell className="text-right">
@@ -235,45 +275,57 @@ export function TranslationEditor() {
                                                             size="icon"
                                                             onClick={handleSave}
                                                             disabled={saving}
-                                                            className="h-7 w-7 text-green-600"
+                                                            className="h-9 w-9 text-green-600 hover:bg-green-50"
                                                         >
-                                                            {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
+                                                            {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}
                                                         </Button>
                                                         <Button
                                                             variant="ghost"
                                                             size="icon"
                                                             onClick={handleCancel}
-                                                            className="h-7 w-7"
+                                                            className="h-9 w-9"
                                                         >
-                                                            <X className="h-3.5 w-3.5" />
+                                                            <X className="h-4 w-4" />
                                                         </Button>
                                                     </div>
                                                 </TableCell>
                                             </>
                                         ) : (
                                             <>
-                                                <TableCell>
-                                                    <span className="text-xs line-clamp-1">{translations?.de?.[key] || ''}</span>
+                                                <TableCell className="max-w-[200px]">
+                                                    <p className={`text-sm line-clamp-2 ${!translations?.de?.[key] ? 'text-destructive italic' : ''}`}>
+                                                        {translations?.de?.[key] || '(fehlt)'}
+                                                    </p>
                                                 </TableCell>
-                                                <TableCell>
-                                                    <span className={`text-xs line-clamp-1 ${!translations?.en?.[key] ? 'text-muted-foreground/50 italic' : ''}`}>
-                                                        {translations?.en?.[key] || '—'}
-                                                    </span>
+                                                <TableCell className="max-w-[200px]">
+                                                    <p className={`text-sm line-clamp-2 ${!translations?.en?.[key] ? 'text-amber-600/60 italic' : ''}`}>
+                                                        {translations?.en?.[key] || '(missing)'}
+                                                    </p>
                                                 </TableCell>
-                                                <TableCell>
-                                                    <span className={`text-xs line-clamp-1 ${!translations?.la?.[key] ? 'text-muted-foreground/50 italic' : ''}`}>
-                                                        {translations?.la?.[key] || '—'}
-                                                    </span>
+                                                <TableCell className="max-w-[200px]">
+                                                    <p className={`text-sm line-clamp-2 ${!translations?.la?.[key] ? 'text-amber-600/60 italic' : ''}`}>
+                                                        {translations?.la?.[key] || '(deest)'}
+                                                    </p>
                                                 </TableCell>
                                                 <TableCell className="text-right">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        onClick={() => handleEdit(key)}
-                                                        className="h-7 w-7"
-                                                    >
-                                                        <Edit className="h-3.5 w-3.5" />
-                                                    </Button>
+                                                    <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() => handleEdit(key)}
+                                                            className="h-8 w-8 text-primary"
+                                                        >
+                                                            <Edit className="h-4 w-4" />
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() => handleDeleteKey(key)}
+                                                            className="h-8 w-8 text-destructive"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
                                                 </TableCell>
                                             </>
                                         )}
@@ -284,17 +336,24 @@ export function TranslationEditor() {
                     </Table>
                 </div>
 
-
-
-                <div className="mt-6 p-4 rounded-lg bg-muted/30 border border-border/50">
-                    <h4 className="font-medium text-sm mb-2 flex items-center gap-2">
-                        <AlertCircle className="h-4 w-4 text-primary" />
-                        Hinweise
+                <div className="mt-8 p-6 rounded-2xl bg-primary/5 border border-primary/10">
+                    <h4 className="font-display font-bold text-base mb-3 flex items-center gap-2 text-primary">
+                        <AlertCircle className="h-5 w-5" />
+                        Optimierung der Arbeitsabläufe
                     </h4>
-                    <ul className="text-xs text-muted-foreground space-y-1">
-                        <li>• Änderungen werden direkt in de.ts, en.ts, la.ts gespeichert</li>
-                        <li>• Nach dem Speichern: Hot-Reload aktualisiert die App automatisch</li>
-                        <li>• Variablen wie {"{{variable}}"} müssen in allen Sprachen beibehalten werden</li>
+                    <ul className="text-sm text-muted-foreground space-y-2">
+                        <li className="flex gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span><strong>Vollständige Transparenz</strong>: Alle Schlüssel (inkl. Autoren-Biografien) sind jetzt sichtbar und editierbar.</span>
+                        </li>
+                        <li className="flex gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span><strong>Auto-Scavenging</strong>: Fehlende Übersetzungen werden sofort als editierbare Platzhalter angezeigt.</span>
+                        </li>
+                        <li className="flex gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span><strong>Filter-Modus</strong>: Nutze den Filter "Unvollständig" oben rechts, um Lücken gezielt zu schließen.</span>
+                        </li>
                     </ul>
                 </div>
             </CardContent>

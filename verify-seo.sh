@@ -58,25 +58,53 @@ else
     echo "   ❌ Production build not found (run: npm run build)"
 fi
 
-# Check SEO files
+# Check internal pages
 echo ""
-echo "5️⃣  Checking SEO documentation..."
-if [ -f "SEO_MOBILE_OPTIMIZATION.md" ]; then
-    echo "   ✅ SEO documentation exists"
-else
-    echo "   ❌ SEO_MOBILE_OPTIMIZATION.md not found"
+echo "4️⃣  Checking internal pages..."
+PAGES=("/timeline" "/caesar" "/cicero")
+for PAGE in "${PAGES[@]}"; do
+    echo "   🔍 Checking $PAGE..."
+    CONTENT=$(curl -s "$BASE_URL$PAGE")
+    if echo "$CONTENT" | grep -q "rel=\"canonical\""; then
+        echo "      ✅ Canonical tag present"
+    else
+        echo "      ❌ Missing canonical tag"
+    fi
+    
+    if echo "$CONTENT" | grep -q "property=\"og:image\""; then
+        echo "      ✅ Social image present"
+    else
+        echo "      ❌ Missing social image"
+    fi
+done
+
+# Check build artifacts (if dist exists)
+if [ -d "dist" ]; then
+    echo ""
+    echo "5️⃣  Checking build artifacts (dist)..."
+    
+    # Check for alt tags on images
+    MISSING_ALT=$(grep -r "<img" dist --exclude-dir=node_modules | grep -v "alt=" | wc -l)
+    if [ "$MISSING_ALT" -eq 0 ]; then
+        echo "   ✅ All images in dist have alt attributes"
+    else
+        echo "   ⚠️ Found $MISSING_ALT images without alt attributes in dist"
+    fi
+
+    # Check for title/meta length across html files
+    echo "   📏 Checking meta lengths..."
+    for f in $(find dist -name "*.html"); do
+        TITLE_LEN=$(grep -o "<title>[^<]*</title>" "$f" | sed 's/<title>//;s/<\/title>//' | wc -c)
+        DESC_LEN=$(grep -o "<meta name=\"description\" content=\"[^\"]*\"" "$f" | sed 's/.*content="//;s/"//' | wc -c)
+        
+        if [ "$TITLE_LEN" -gt 60 ]; then echo "      ⚠️  $f: Title too long ($TITLE_LEN chars)"; fi
+        if [ "$DESC_LEN" -gt 160 ]; then echo "      ⚠️  $f: Description too long ($DESC_LEN chars)"; fi
+    done
 fi
 
-if [ -f "public/.htaccess" ]; then
-    echo "   ✅ .htaccess configuration exists"
-else
-    echo "   ⚠️  .htaccess not found (may not be deployed)"
-fi
-
-# Summary
 echo ""
 echo "=================================================="
-echo "✅ SEO Optimization Check Complete!"
+echo "🎯 Verification complete!"
 echo ""
 echo "📌 Next Steps:"
 echo "   1. Deploy to https://meum-diarium.xn--schchner-2za.de/"

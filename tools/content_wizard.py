@@ -123,6 +123,8 @@ def build_ts(post: dict) -> str:
         readingTime: {post['readingTime']},
         tags: [{tags_array}],
         coverImage: '{post['coverImage']}',
+        seoTitle: '{post.get('seoTitle', '')}',
+        seoDescription: '{post.get('seoDescription', '')}',
         content: {{
           diary: `{diary_de}`,
           scientific: `{scientific_de}`
@@ -158,6 +160,8 @@ def read_post_file(file_path: Path) -> dict:
             'date': r"date:\s*'([^']+)'",
             'readingTime': r"readingTime:\s*(\d+)",
             'coverImage': r"coverImage:\s*'([^']*)'",
+            'seoTitle': r"seoTitle:\s*'([^']*)'",
+            'seoDescription': r"seoDescription:\s*'([^']*)'",
         }
         
         for key, pattern in patterns.items():
@@ -902,6 +906,8 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
                 'coverImage': post_data.get('coverImage', '/images/post-default.jpg'),
                 'content_de_diary': post_data.get('content_de_diary', ''),
                 'content_de_scientific': post_data.get('content_de_scientific', ''),
+                'seoTitle': post_data.get('seoTitle', ''),
+                'seoDescription': post_data.get('seoDescription', ''),
             }
             
             # Optional: EN/LA
@@ -1138,6 +1144,8 @@ class BlogAdminHandler(SimpleHTTPRequestHandler):
                 'coverImage': post_data.get('coverImage', existing.get('coverImage', '/images/post-default.jpg')),
                 'content_de_diary': post_data.get('content_de_diary', ''),
                 'content_de_scientific': post_data.get('content_de_scientific', ''),
+                'seoTitle': post_data.get('seoTitle', existing.get('seoTitle', '')),
+                'seoDescription': post_data.get('seoDescription', existing.get('seoDescription', '')),
             }
 
             # Optional EN

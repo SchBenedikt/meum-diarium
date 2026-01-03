@@ -9,17 +9,17 @@ import { useLanguage } from '@/context/LanguageContext';
 
 // Custom Icons for WhatsApp, Telegram and X
 const WhatsAppIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
 );
 
 const TelegramIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"></path></svg>
 );
 
 const XIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
 );
 
 
@@ -34,7 +34,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  
+
   const shareUrl = url || window.location.href;
   const defaultShareText = text || `Schau mal, was ich gefunden habe: ${shareUrl}`;
 
@@ -89,21 +89,36 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
   };
 
   const handleNativeShare = async () => {
-    if (navigator.share) {
+    const shareData = {
+      title: title,
+      text: text || t('shareText') || 'Schau dir das mal an!',
+      url: shareUrl,
+    };
+
+    // Check if system share is supported and the data is sharable
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
       try {
-        await navigator.share({
-          title,
-          text: defaultShareText,
-          url: shareUrl,
-        });
+        await navigator.share(shareData);
+        return; // Success!
+      } catch (err) {
+        // If user cancelled (AbortError), don't show fallback
+        if ((err as Error).name === 'AbortError') return;
+
+        // Otherwise, fall back to custom menu
+        console.error('Sharing failed:', err);
+        setIsOpen(true);
+      }
+    } else if (navigator.share) {
+      // Older browsers might not have navigator.canShare but still have navigator.share
+      try {
+        await navigator.share(shareData);
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {
-          // If native share fails for other reasons, open the custom menu
           setIsOpen(true);
         }
       }
     } else {
-      // Fallback to custom menu if native share is not supported
+      // Native share not supported at all
       setIsOpen(true);
     }
   };
@@ -115,8 +130,8 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
         aria-label="Inhalt teilen"
         className={cn(
           'inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200',
-          variant === 'compact' 
-            ? 'h-9 w-9 rounded-lg' 
+          variant === 'compact'
+            ? 'h-9 w-9 rounded-lg'
             : 'h-10 px-4 rounded-lg gap-2'
         )}
       >
@@ -135,7 +150,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 z-40 bg-transparent"
             />
-            
+
             {/* Share Menu */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -10 }}

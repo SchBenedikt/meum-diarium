@@ -11,6 +11,7 @@ import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { PWAInstallPrompt } from "./components/PWAInstallPrompt";
 import { SWUpdateToast } from "./components/SWUpdateToast";
+import { OfflineBanner } from "./components/OfflineBanner";
 
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -119,6 +120,7 @@ const App = () => (
             <Toaster richColors />
             <PWAInstallPrompt />
             <SWUpdateToast />
+            <OfflineBanner />
             <BrowserRouter>
               <AppContent />
             </BrowserRouter>

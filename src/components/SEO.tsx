@@ -49,24 +49,24 @@ export function SEO({
 }: SEOProps) {
   const location = useLocation();
   const { language } = useLanguage();
-  
-  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
-  const currentUrl = `${baseUrl}${location.pathname}`;
-  
+
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
+  const currentUrl = `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`;
+
   const defaults = defaultMeta[language] || defaultMeta.de;
   const finalTitle = title ? `${title} | ${defaults.siteName}` : defaults.title;
   const finalDescription = description || defaults.description;
   const finalImage = image || `${baseUrl}/images/caesar-hero.jpg`;
-  
+
   useEffect(() => {
     // Update document title
     document.title = finalTitle;
-    
+
     // Update or create meta tags
     const updateMetaTag = (property: string, content: string, isProperty = false) => {
       const selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
       let element = document.querySelector(selector);
-      
+
       if (!element) {
         element = document.createElement('meta');
         if (isProperty) {
@@ -76,37 +76,38 @@ export function SEO({
         }
         document.head.appendChild(element);
       }
-      
+
       element.setAttribute('content', content);
     };
-    
+
     // Basic meta tags
     updateMetaTag('description', finalDescription);
     updateMetaTag('author', author || 'Meum Diarium');
 
-      // Robots
-      if (noIndex) {
-        updateMetaTag('robots', 'noindex, nofollow');
-      } else {
-        updateMetaTag('robots', 'index, follow');
-      }
-    
+    // Robots
+    if (noIndex) {
+      updateMetaTag('robots', 'noindex, nofollow');
+    } else {
+      updateMetaTag('robots', 'index, follow');
+    }
+
     if (tags.length > 0) {
       updateMetaTag('keywords', tags.join(', '));
     }
-    
+
     // Open Graph
     updateMetaTag('og:title', finalTitle, true);
     updateMetaTag('og:description', finalDescription, true);
     updateMetaTag('og:type', type, true);
     updateMetaTag('og:url', currentUrl, true);
     updateMetaTag('og:image', finalImage, true);
+    updateMetaTag('og:image:alt', title || defaults.siteName, true);
     updateMetaTag('og:site_name', defaults.siteName, true);
     updateMetaTag('og:locale', language === 'de' ? 'de_DE' : language === 'en' ? 'en_US' : 'la', true);
-        Object.keys(defaultMeta)
-          .filter(loc => loc !== language)
-          .forEach(loc => updateMetaTag('og:locale:alternate', loc === 'en' ? 'en_US' : loc === 'de' ? 'de_DE' : 'la', true));
-    
+    Object.keys(defaultMeta)
+      .filter(loc => loc !== language)
+      .forEach(loc => updateMetaTag('og:locale:alternate', loc === 'en' ? 'en_US' : loc === 'de' ? 'de_DE' : 'la', true));
+
     // Article-specific Open Graph tags
     if (type === 'article') {
       if (author) {
@@ -133,13 +134,15 @@ export function SEO({
         });
       }
     }
-    
-    // Twitter Card
+
     updateMetaTag('twitter:card', 'summary_large_image');
     updateMetaTag('twitter:title', finalTitle);
     updateMetaTag('twitter:description', finalDescription);
     updateMetaTag('twitter:image', finalImage);
-    
+    updateMetaTag('twitter:image:alt', title || defaults.siteName);
+    updateMetaTag('twitter:site', '@meumdiarium');
+    updateMetaTag('twitter:creator', author || '@meumdiarium');
+
     // Update canonical link
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonical) {
@@ -148,7 +151,7 @@ export function SEO({
       document.head.appendChild(canonical);
     }
     canonical.href = currentUrl;
-    
+
     // Update html lang attribute
     document.documentElement.lang = language;
 
@@ -165,11 +168,33 @@ export function SEO({
 
     // theme-color for mobile UI polish
     updateMetaTag('theme-color', '#5a0f1f');
+    updateMetaTag('mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
 
     // Structured data (JSON-LD)
     const existingLd = document.querySelectorAll('script[data-managed="seo-ld"]');
     existingLd.forEach(el => el.remove());
-    const blocks = Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [];
+
+    let blocks = Array.isArray(structuredData) ? [...structuredData] : structuredData ? [structuredData] : [];
+
+    // Add default Article schema if it's an article and no schema provided
+    if (type === 'article' && blocks.length === 0) {
+      blocks.push({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title || finalTitle,
+        description: finalDescription,
+        image: finalImage,
+        datePublished: publishedTime,
+        dateModified: modifiedTime || publishedTime,
+        author: {
+          '@type': 'Person',
+          name: author || 'Meum Diarium'
+        }
+      });
+    }
+
     blocks.forEach(block => {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
@@ -177,8 +202,8 @@ export function SEO({
       script.text = JSON.stringify(block);
       document.head.appendChild(script);
     });
-    
+
   }, [finalTitle, finalDescription, finalImage, currentUrl, language, author, type, publishedTime, modifiedTime, section, tags, noIndex, structuredData]);
-  
+
   return null;
 }

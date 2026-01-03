@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,14 +42,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         header .nav {
             display: flex;
             gap: 1rem;
         }
-        
+
         header .nav a {
             padding: 0.5rem 1rem;
             background: rgba(255, 255, 255, 0.1);
@@ -58,11 +59,11 @@
             font-weight: 500;
             transition: background 0.2s;
         }
-        
+
         header .nav a:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-        
+
         header .nav a.active {
             background: rgba(255, 255, 255, 0.3);
         }
@@ -212,11 +213,11 @@
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .post-card:hover {
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
             transform: translateY(-6px);
             border-color: var(--primary);
         }
@@ -301,7 +302,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -318,7 +319,7 @@
             border-radius: 12px;
             width: 90%;
             max-width: 700px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .modal-header {
@@ -542,7 +543,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Alert */
@@ -579,8 +582,61 @@
             align-items: center;
             gap: 0.5rem;
         }
+
+        /* SEO Preview */
+        .seo-preview {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .seo-preview-title {
+            color: #1a0dab;
+            font-size: 1.25rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.25rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .seo-preview-url {
+            color: #006621;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .seo-preview-desc {
+            color: #545454;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .char-counter {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        .char-counter.warning {
+            color: var(--warning);
+        }
+
+        .char-counter.danger {
+            color: var(--danger);
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -593,7 +649,9 @@
             <a href="works.html">Werke</a>
         </div>
         <div class="header-actions">
-            <button class="btn btn-primary" onclick="openNewPostModal()" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white;">➕ Neuer Beitrag</button>
+            <button class="btn btn-primary" onclick="openNewPostModal()"
+                style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white;">➕
+                Neuer Beitrag</button>
         </div>
     </header>
 
@@ -621,7 +679,8 @@
 
             <!-- Search/Filter -->
             <div class="search-bar">
-                <input type="text" class="search-input" id="searchInput" placeholder="🔍 Nach Titel, Excerpt oder Tags suchen..." onkeyup="searchPosts()">
+                <input type="text" class="search-input" id="searchInput"
+                    placeholder="🔍 Nach Titel, Excerpt oder Tags suchen..." onkeyup="searchPosts()">
             </div>
 
             <!-- Posts Container -->
@@ -658,55 +717,91 @@
                     <!-- Titel -->
                     <div class="form-group">
                         <label class="form-label">📝 Titel (DE)</label>
-                        <input type="text" class="form-input" id="postTitle" placeholder="Beitragstitel eingeben..." required>
+                        <input type="text" class="form-input" id="postTitle" placeholder="Beitragstitel eingeben..."
+                            required oninput="updateSeoPreview()">
+                        <div id="titleCounter" class="char-counter">0 / 60</div>
+                    </div>
+
+                    <!-- SEO Title (Optional) -->
+                    <div class="form-group">
+                        <label class="form-label">🔍 SEO-Titel (Optional)</label>
+                        <input type="text" class="form-input" id="postSeoTitle"
+                            placeholder="Falls abweichend von Titel..." oninput="updateSeoPreview()">
                     </div>
 
                     <!-- Excerpt -->
                     <div class="form-group">
                         <label class="form-label">✂️ Kurzbeschreibung (DE)</label>
-                        <textarea class="form-textarea" id="postExcerpt" placeholder="Kurzbeschreibung für die Vorschau..." required></textarea>
+                        <textarea class="form-textarea" id="postExcerpt"
+                            placeholder="Kurzbeschreibung für die Vorschau..." required
+                            oninput="updateSeoPreview()"></textarea>
+                        <div id="excerptCounter" class="char-counter">0 / 160</div>
+                    </div>
+
+                    <!-- SEO Description (Optional) -->
+                    <div class="form-group">
+                        <label class="form-label">🔍 SEO-Beschreibung (Optional)</label>
+                        <textarea class="form-textarea" id="postSeoDesc"
+                            placeholder="Falls abweichend von Kurzbeschreibung..."
+                            oninput="updateSeoPreview()"></textarea>
                     </div>
 
                     <!-- Historisches Datum -->
                     <div class="form-group">
                         <label class="form-label">📅 Historisches Datum</label>
-                        <input type="text" class="form-input" id="postHistDate" placeholder="z.B. 52 v. Chr. oder 14 n. Chr." required>
+                        <input type="text" class="form-input" id="postHistDate"
+                            placeholder="z.B. 52 v. Chr. oder 14 n. Chr." required>
                     </div>
 
                     <!-- Historisches Jahr -->
                     <div class="form-group">
                         <label class="form-label">🏛️ Historisches Jahr</label>
-                        <input type="number" class="form-input" id="postHistYear" placeholder="negativ=v. Chr., positiv=n. Chr." required>
+                        <input type="number" class="form-input" id="postHistYear"
+                            placeholder="negativ=v. Chr., positiv=n. Chr." required>
                     </div>
 
                     <!-- Inhalt Tagebuch -->
                     <div class="form-group">
                         <label class="form-label">📖 Inhalt – Tagebuch (DE)</label>
-                        <textarea class="form-textarea" id="postDiary" placeholder="Persönliche Perspektive und Tagebuch-Einträge..." required></textarea>
+                        <textarea class="form-textarea" id="postDiary"
+                            placeholder="Persönliche Perspektive und Tagebuch-Einträge..." required></textarea>
                     </div>
 
                     <!-- Inhalt Wissenschaftlich -->
                     <div class="form-group">
                         <label class="form-label">🔬 Inhalt – Wissenschaftlich (DE)</label>
-                        <textarea class="form-textarea" id="postScientific" placeholder="Historischer Kontext und wissenschaftliche Analyse..." required></textarea>
+                        <textarea class="form-textarea" id="postScientific"
+                            placeholder="Historischer Kontext und wissenschaftliche Analyse..." required></textarea>
                     </div>
 
                     <!-- Tags -->
                     <div class="form-group">
                         <label class="form-label">🏷️ Tags (Kommagetrennt)</label>
-                        <input type="text" class="form-input" id="postTags" placeholder="z.B. Ereignis, Politik, Krieg, Rom">
+                        <input type="text" class="form-input" id="postTags"
+                            placeholder="z.B. Ereignis, Politik, Krieg, Rom">
                     </div>
 
                     <!-- Cover Image -->
                     <div class="form-group">
                         <label class="form-label">🖼️ Cover-Image URL</label>
-                        <input type="text" class="form-input" id="postCover" value="/images/post-default.jpg" placeholder="/images/...">
+                        <input type="text" class="form-input" id="postCover" value="/images/post-default.jpg"
+                            placeholder="/images/...">
+                    </div>
+
+                    <!-- SEO Preview Section -->
+                    <div class="translations-section">
+                        <h3 class="section-title">🔍 Google-Vorschau</h3>
+                        <div class="seo-preview">
+                            <div class="seo-preview-url" id="previewUrl">https://meum-diarium.de/...</div>
+                            <div class="seo-preview-title" id="previewTitle">Titel-Vorschau</div>
+                            <div class="seo-preview-desc" id="previewDesc">Beschreibungsvorschau...</div>
+                        </div>
                     </div>
 
                     <!-- Translations Section -->
                     <div class="translations-section">
                         <h3 class="section-title">🌍 Übersetzungen (Optional)</h3>
-                        
+
                         <div class="translation-toggles">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="enableEnglish" onchange="toggleLanguage('en')">
@@ -721,7 +816,7 @@
                         <!-- English Translation -->
                         <div id="englishSection" class="language-section" style="display: none;">
                             <h4 class="subsection-title">English Translation</h4>
-                            
+
                             <div class="form-group">
                                 <label class="form-label">Title (EN)</label>
                                 <input type="text" class="form-input" id="postTitleEN" placeholder="English title...">
@@ -729,17 +824,20 @@
 
                             <div class="form-group">
                                 <label class="form-label">Excerpt (EN)</label>
-                                <textarea class="form-textarea" id="postExcerptEN" placeholder="English excerpt..."></textarea>
+                                <textarea class="form-textarea" id="postExcerptEN"
+                                    placeholder="English excerpt..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Content – Diary (EN)</label>
-                                <textarea class="form-textarea" id="postDiaryEN" placeholder="English diary content..."></textarea>
+                                <textarea class="form-textarea" id="postDiaryEN"
+                                    placeholder="English diary content..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Content – Scientific (EN)</label>
-                                <textarea class="form-textarea" id="postScientificEN" placeholder="English scientific content..."></textarea>
+                                <textarea class="form-textarea" id="postScientificEN"
+                                    placeholder="English scientific content..."></textarea>
                             </div>
 
                             <div class="form-group">
@@ -751,7 +849,7 @@
                         <!-- Latin Translation -->
                         <div id="latinSection" class="language-section" style="display: none;">
                             <h4 class="subsection-title">Latinum Translatio</h4>
-                            
+
                             <div class="form-group">
                                 <label class="form-label">Titulus (LA)</label>
                                 <input type="text" class="form-input" id="postTitleLA" placeholder="Titulus Latinus...">
@@ -759,17 +857,20 @@
 
                             <div class="form-group">
                                 <label class="form-label">Excerptum (LA)</label>
-                                <textarea class="form-textarea" id="postExcerptLA" placeholder="Excerptum Latinum..."></textarea>
+                                <textarea class="form-textarea" id="postExcerptLA"
+                                    placeholder="Excerptum Latinum..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Contentus – Diarium (LA)</label>
-                                <textarea class="form-textarea" id="postDiaryLA" placeholder="Diarium Latinum..."></textarea>
+                                <textarea class="form-textarea" id="postDiaryLA"
+                                    placeholder="Diarium Latinum..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Contentus – Scientificum (LA)</label>
-                                <textarea class="form-textarea" id="postScientificLA" placeholder="Analisis Latina..."></textarea>
+                                <textarea class="form-textarea" id="postScientificLA"
+                                    placeholder="Analisis Latina..."></textarea>
                             </div>
 
                             <div class="form-group">
@@ -782,7 +883,9 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closePostModal()">Abbrechen</button>
-                <button class="btn btn-primary" onclick="document.getElementById('postForm').dispatchEvent(new Event('submit'))">✅ Speichern</button>
+                <button class="btn btn-primary"
+                    onclick="document.getElementById('postForm').dispatchEvent(new Event('submit'))">✅
+                    Speichern</button>
             </div>
         </div>
     </div>
@@ -805,14 +908,14 @@
                 renderPosts();
             } catch (error) {
                 console.error('Error loading posts:', error);
-                document.getElementById('postsContainer').innerHTML = 
+                document.getElementById('postsContainer').innerHTML =
                     '<div class="alert alert-danger" style="grid-column: 1/-1;">❌ Fehler beim Laden der Beiträge</div>';
             }
         }
 
         function renderPosts() {
             const container = document.getElementById('postsContainer');
-            
+
             if (filteredPosts.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state" style="grid-column: 1/-1;">
@@ -829,7 +932,7 @@
                 const translationTags = [];
                 if (post.title_en) translationTags.push('EN');
                 if (post.title_la) translationTags.push('LA');
-                
+
                 return `
                     <div class="post-card">
                         <div class="post-header">
@@ -866,6 +969,7 @@
             document.getElementById('postId').value = '';
             currentEditingId = null;
             document.getElementById('postModal').classList.add('active');
+            updateSeoPreview();
         }
 
         function closePostModal() {
@@ -892,7 +996,7 @@
 
         async function savePost(event) {
             event.preventDefault();
-            
+
             const post = {
                 id: document.getElementById('postId').value || undefined,
                 author: document.getElementById('postAuthor').value,
@@ -904,6 +1008,8 @@
                 content_de_scientific: document.getElementById('postScientific').value,
                 tags: document.getElementById('postTags').value.split(',').map(t => t.trim()).filter(t => t),
                 coverImage: document.getElementById('postCover').value,
+                seoTitle: document.getElementById('postSeoTitle').value || undefined,
+                seoDescription: document.getElementById('postSeoDesc').value || undefined,
                 date: new Date().toISOString().split('T')[0]
             };
 
@@ -987,6 +1093,8 @@
             document.getElementById('postScientific').value = post.content_de_scientific || '';
             document.getElementById('postTags').value = (post.tags || []).join(', ');
             document.getElementById('postCover').value = post.coverImage || '/images/post-default.jpg';
+            document.getElementById('postSeoTitle').value = post.seoTitle || '';
+            document.getElementById('postSeoDesc').value = post.seoDescription || '';
 
             // EN
             if (post.title_en) {
@@ -1012,11 +1120,12 @@
 
             document.getElementById('postModal').classList.add('active');
             currentEditingId = post.id;
+            updateSeoPreview();
         }
 
         function searchPosts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            filteredPosts = allPosts.filter(post => 
+            filteredPosts = allPosts.filter(post =>
                 (post.title || '').toLowerCase().includes(query) ||
                 (post.excerpt || '').toLowerCase().includes(query) ||
                 (post.historicalDate || '').toLowerCase().includes(query) ||
@@ -1029,7 +1138,7 @@
             filteredPosts = allPosts.filter(post => post.author === author);
             document.getElementById('searchInput').value = '';
             renderPosts();
-            
+
             // Update active nav item
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             const links = Array.from(document.querySelectorAll('.nav-item'));
@@ -1041,11 +1150,37 @@
             filteredPosts = allPosts;
             document.getElementById('searchInput').value = '';
             renderPosts();
-            
+
             // Update active nav item
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelector('.nav-item:first-of-type').classList.add('active');
         }
+
+        function updateSeoPreview() {
+            const title = document.getElementById('postSeoTitle').value || document.getElementById('postTitle').value;
+            const excerpt = document.getElementById('postSeoDesc').value || document.getElementById('postExcerpt').value;
+            const author = document.getElementById('postAuthor').value;
+
+            // Counters
+            const titleCount = title.length;
+            const excerptCount = excerpt.length;
+
+            const titleEl = document.getElementById('titleCounter');
+            const excerptEl = document.getElementById('excerptCounter');
+
+            titleEl.textContent = `${titleCount} / 60`;
+            excerptEl.textContent = `${excerptCount} / 160`;
+
+            // Stats colors
+            titleEl.className = 'char-counter ' + (titleCount > 60 ? 'danger' : titleCount > 50 ? 'success' : 'warning');
+            excerptEl.className = 'char-counter ' + (excerptCount > 160 ? 'danger' : excerptCount > 140 ? 'success' : 'warning');
+
+            // Preview
+            document.getElementById('previewTitle').textContent = title || 'Titel-Vorschau';
+            document.getElementById('previewDesc').textContent = excerpt || 'Beschreibungsvorschau...';
+            document.getElementById('previewUrl').textContent = `https://meum-diarium.de/${author}/posts/...`;
+        }
     </script>
 </body>
+
 </html>
