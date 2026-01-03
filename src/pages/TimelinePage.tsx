@@ -55,54 +55,91 @@ export default function TimelinePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
-            <div className="absolute top-10 right-10 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
+        {/* Immersive Hero Section */}
+        <section className="relative overflow-hidden bg-background pt-32 pb-20">
+          {/* Animated Background Blobs */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 90, 0],
+                x: [0, 100, 0],
+                y: [0, 50, 0]
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-[20%] -left-[10%] h-[60%] w-[50%] rounded-full bg-primary/5 blur-[120px]"
+            />
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                rotate: [0, -90, 0],
+                x: [0, -80, 0],
+                y: [0, -100, 0]
+              }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute -bottom-[20%] -right-[10%] h-[60%] w-[50%] rounded-full bg-amber-500/5 blur-[120px]"
+            />
           </div>
 
-          <div className="container mx-auto px-4 py-20 relative z-10">
+          {/* Background Texture/Pattern */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, var(--foreground) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+
+          <div className="container mx-auto px-4 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-4xl mx-auto text-center"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.25em] mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-8"
+              >
                 <Calendar className="w-3.5 h-3.5" />
                 {t('interactiveChronology') || 'Interaktive Chronologie'}
-              </div>
+              </motion.div>
 
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-foreground mb-6">
+              <h1 className="font-display text-5xl sm:text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter text-foreground mb-8">
                 {t('navTimeline') || 'Zeitstrahl'}
               </h1>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                {t('timelinePageDesc') || 'Scroll durch Feldzüge, Intrigen und Ideen – kuratiert für Caesar, Cicero, Augustus und Seneca.'}
+
+              <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                {t('timelinePageDesc') || 'Eintauchen in das goldene Zeitalter. Feldzüge, Intrigen und die Geburt einer Weltmacht.'}
               </p>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                {stats.map((stat) => (
-                  <div
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+                {stats.map((stat, idx) => (
+                  <motion.div
                     key={stat.label}
-                    className="p-4 rounded-2xl bg-card/80 backdrop-blur border border-border/60 shadow-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + idx * 0.1 }}
+                    className="p-6 rounded-[2rem] bg-card/40 backdrop-blur-md border border-border/40 hover:border-primary/30 transition-colors group"
                   >
-                    <div className="flex items-center justify-center gap-2 mb-2 text-primary">
-                      <stat.icon className="h-4 w-4" />
+                    <div className="flex items-center justify-center mb-3">
+                      <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                        <stat.icon className="h-5 w-5" />
+                      </div>
                     </div>
-                    <p className="font-display text-2xl font-bold text-foreground mb-1">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  </div>
+                    <div className="font-display text-3xl font-bold text-foreground mb-1">{stat.value}</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{stat.label}</div>
+                  </motion.div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={scrollToTimeline}
-                  className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center gap-2 shadow-lg shadow-primary/25 hover:bg-primary/90 transition-colors"
+                  className="px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-bold flex items-center gap-3 shadow-2xl shadow-primary/20 hover:bg-primary/90 transition-all"
                 >
                   Zeitstrahl öffnen
-                  <ChevronDown className="h-4 w-4" />
-                </button>
+                  <ChevronDown className="h-5 w-5 animate-bounce" />
+                </motion.button>
                 <ShareButton
                   title="Zeitstrahl der Antike - Meum Diarium"
                   text="Entdecke wichtige Ereignisse des antiken Roms."

@@ -21,17 +21,28 @@ async function cachedFetch(url: string, options?: RequestInit) {
             return Promise.resolve(cached.data);
         }
     }
-    
-    const res = await fetch(url, options);
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    const data = await res.json();
-    
-    // Cache GET responses
-    if (!options || options.method === 'GET' || !options.method) {
-        requestCache.set(url, { data, timestamp: Date.now() });
+
+    try {
+        const res = await fetch(url, options);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const data = await res.json();
+
+        // Cache GET responses
+        if (!options || options.method === 'GET' || !options.method) {
+            requestCache.set(url, { data, timestamp: Date.now() });
+        }
+
+        return data;
+    } catch (error) {
+        console.warn(`[API] Fetch failed for ${url}, attempting to use cache/fallback`, error);
+        // If we are in the browser, the Service Worker might have a cached version even if this fetch failed.
+        // However, if we're here, the request already failed. If it was a GET, we might have it in our local memory cache.
+        if (!options || options.method === 'GET' || !options.method) {
+            const cached = requestCache.get(url);
+            if (cached) return cached.data;
+        }
+        throw error;
     }
-    
-    return data;
 }
 
 export async function fetchPosts() {

@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { MessageCircle, ArrowRight, Zap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SEO } from '@/components/SEO';
+import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
@@ -81,7 +82,7 @@ const Index = () => {
 
                     <div className="space-y-4 max-w-3xl">
                       <div className="relative">
-                          <div className="relative bg-gradient-to-r from-secondary/50 to-secondary/30 p-1 rounded-2xl border border-border/40 hover:border-primary/40 transition-all backdrop-blur-sm">
+                        <div className="relative bg-gradient-to-r from-secondary/50 to-secondary/30 p-1 rounded-2xl border border-border/40 hover:border-primary/40 transition-all backdrop-blur-sm">
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
@@ -116,8 +117,8 @@ const Index = () => {
                           'Ihre größten Erfolge',
                           'Das Römische Reich'
                         ].map((suggestion, i) => (
-                          <Link 
-                            key={i} 
+                          <Link
+                            key={i}
                             to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`}
                             className="px-3 py-2 rounded-lg text-xs bg-secondary/40 border border-border/40 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all font-medium"
                           >
@@ -131,16 +132,8 @@ const Index = () => {
               </motion.div>
 
               {/* Minimal Tools Row */}
-              <div className="mb-12">
-                <div className="flex flex-wrap gap-3">
-                  <Link to={`/${currentAuthor}/simulation`}>
-                    <Button variant="secondary" className="rounded-lg gap-2 hover:bg-secondary/80 transition-all">
-                      <Sparkles className="h-4 w-4" />
-                      Interaktive Zeitreise
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
+              <div className="mb-12 relative z-20">
+                <SimulationCarousel authorId={currentAuthor} />
               </div>
 
 

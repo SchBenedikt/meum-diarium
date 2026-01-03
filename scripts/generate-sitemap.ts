@@ -45,7 +45,7 @@ export async function generateSitemap() {
   for (const slug of Object.keys(worksMap)) {
     const work = (worksMap as any)[slug];
     const author = work?.author;
-    if (author) urls.push(url(`/${author}/works/${slug}`, undefined, { changefreq: 'monthly', priority: 0.6 }));
+    if (author) urls.push(url(`/${author}/works/${slug}`, undefined, { changefreq: 'monthly', priority: 0.8 }));
   }
 
   // Lexicon entries (by filename)
@@ -54,7 +54,7 @@ export async function generateSitemap() {
     const files = fs.readdirSync(lexiconDir).filter(f => f.endsWith('.ts'));
     for (const f of files) {
       const slug = f.replace(/\.ts$/, '');
-      urls.push(url(`/lexicon/${slug}`, undefined, { changefreq: 'weekly', priority: 0.7 }));
+      urls.push(url(`/lexicon/${slug}`, undefined, { changefreq: 'monthly', priority: 0.7 }));
     }
   }
 
@@ -67,7 +67,7 @@ export async function generateSitemap() {
       const postFiles = fs.readdirSync(dir).filter(f => f.endsWith('.ts'));
       for (const f of postFiles) {
         const slug = f.replace(/\.ts$/, '');
-        urls.push(url(`/${aid}/posts/${slug}`, undefined, { changefreq: 'monthly', priority: 0.7 }));
+        urls.push(url(`/${aid}/posts/${slug}`, undefined, { changefreq: 'monthly', priority: 0.9 }));
       }
     }
   }

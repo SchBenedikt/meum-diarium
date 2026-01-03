@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { authors as baseAuthors } from '@/data/authors';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,7 @@ import {
   GraduationCap,
   ArrowRight,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Author, TimelineEvent, AuthorInfo, BlogPost } from '@/types/blog';
 import { Link } from 'react-router-dom';
 import { usePosts } from '@/hooks/use-posts';
@@ -56,6 +56,7 @@ export function Timeline() {
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>('all');
   const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     async function updateTimeline() {
@@ -83,6 +84,10 @@ export function Timeline() {
         const authorMatch = selectedAuthors.length === 0 || selectedAuthors.includes(event.author);
         const typeMatch = selectedType === 'all' || event.type === selectedType;
 
+        const searchMatch = !searchTerm ||
+          event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          event.description.toLowerCase().includes(searchTerm.toLowerCase());
+
         let contentMatch = true;
         if (contentFilter !== 'all') {
           const post = findPostByEvent(event, posts);
@@ -93,9 +98,9 @@ export function Timeline() {
           }
         }
 
-        return authorMatch && typeMatch && contentMatch;
+        return authorMatch && typeMatch && contentMatch && searchMatch;
       });
-  }, [timelineEvents, selectedAuthors, selectedType, contentFilter, posts]);
+  }, [timelineEvents, selectedAuthors, selectedType, contentFilter, posts, searchTerm]);
 
   const toggleAuthor = (authorId: Author) => {
     setSelectedAuthors((prev) =>
@@ -107,17 +112,26 @@ export function Timeline() {
     setSelectedAuthors([]);
     setSelectedType('all');
     setContentFilter('all');
+    setSearchTerm('');
   };
 
-  const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all' || contentFilter !== 'all';
+  const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all' || contentFilter !== 'all' || searchTerm !== '';
 
   const formatYear = (year: number) => {
     if (!Number.isFinite(year)) return '—';
     return year > 0 ? `${year} n. Chr.` : `${Math.abs(year)} v. Chr.`;
   };
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
-    <section className="py-10 sm:py-14">
+    <section id="timeline-content" ref={containerRef} className="py-10 sm:py-14 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="mb-8 max-w-3xl mx-auto">
@@ -151,6 +165,18 @@ export function Timeline() {
                 {t('clearFilters')}
               </button>
             )}
+          </div>
+
+          {/* Search Input */}
+          <div className="mb-6 relative">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder={t('searchTimeline') ?? 'Ereignisse durchsuchen...'}
+              className="w-full pl-10 pr-4 py-2 bg-background/50 border border-border/40 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+            />
+            <Filter className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           </div>
 
           {/* Author Filter */}
@@ -251,8 +277,17 @@ export function Timeline() {
           </div>
         </div>
 
-        {/* Modern Event Grid */}
-        <div className="mx-auto max-w-5xl">
+        {/* Modern Vertical Timeline */}
+        <div className="mx-auto max-w-5xl relative">
+          {/* Central Line Base */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border/20 md:-translate-x-1/2 hidden sm:block" />
+
+          {/* Central Line Progress */}
+          <motion.div
+            style={{ scaleY }}
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary to-primary/20 md:-translate-x-1/2 hidden sm:block origin-top"
+          />
+
           <AnimatePresence>
             {filteredEvents.length === 0 ? (
               <motion.div
@@ -265,12 +300,12 @@ export function Timeline() {
                 <p className="text-sm text-muted-foreground">{t('noEventsFound')}</p>
               </motion.div>
             ) : (
-              <div className="space-y-12">
+              <div className="relative space-y-16">
                 {Object.entries(
                   filteredEvents.reduce((acc, event, index) => {
                     const decade = Math.floor(event.year / 10) * 10;
                     const decadeKey = `${decade}s`;
-                    
+
                     if (!acc[decadeKey]) {
                       acc[decadeKey] = [];
                     }
@@ -281,100 +316,120 @@ export function Timeline() {
                   const decade = parseInt(decadeKey);
                   const isBC = decade < 0;
                   const displayDecade = isBC ? Math.abs(decade) : decade;
-                  
+
                   return (
-                    <div key={decadeKey}>
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/60 border border-border/50">
+                    <div key={decadeKey} className="relative">
+                      {/* Decade Sticky Header */}
+                      <div className="sticky top-20 z-20 mb-12 flex justify-start md:justify-center">
+                        <motion.div
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          whileInView={{ scale: 1, opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 shadow-sm flex items-center gap-2"
+                        >
                           <Calendar className="h-4 w-4 text-primary" />
-                          <span className="text-sm font-semibold text-foreground">
+                          <span className="text-sm font-bold tracking-tight text-foreground">
                             {isBC ? `${displayDecade}er v. Chr.` : `${displayDecade}er n. Chr.`}
                           </span>
-                        </div>
-                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                        </motion.div>
                       </div>
-                      
-                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {events.map(({ event, index }) => {
-                            const author = event.author ? authors[event.author] : null;
-                            const Icon = typeIcons[event.type];
-                            const post = findPostByEvent(event, posts);
-                            const Wrapper = post ? Link : 'div';
-                            const wrapperProps = post
-                              ? { to: `/${post.author}/${post.slug}` }
-                              : ({} as Record<string, unknown>);
 
-                            return (
-                              <Wrapper
-                                key={`${event.year}-${event.title}`}
-                                {...wrapperProps}
-                                className={cn(post && 'block')}
-                              >
+                      <div className="space-y-12 relative">
+                        {events.map(({ event, index }, eventIdx) => {
+                          const author = event.author ? authors[event.author] : null;
+                          const Icon = typeIcons[event.type as keyof typeof typeIcons];
+                          const post = findPostByEvent(event, posts);
+                          const isOdd = eventIdx % 2 !== 0;
+
+                          const cardContent = (
+                            <motion.div
+                              whileHover={{ y: -4, scale: 1.01 }}
+                              className={cn(
+                                'group relative rounded-2xl border border-border/50 bg-card/60 backdrop-blur-md p-6 overflow-hidden',
+                                'transition-all duration-300',
+                                post && 'cursor-pointer hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5',
+                              )}
+                            >
+                              {/* Author accent line */}
+                              <div className="absolute top-0 left-0 w-1.5 h-full opacity-60"
+                                style={{ backgroundColor: author?.color }} />
+
+                              <div className="flex items-center gap-3 mb-4">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl flex-shrink-0"
+                                  style={{ backgroundColor: `${author?.color}15` }}>
+                                  <Icon className="h-5 w-5" style={{ color: author?.color }} />
+                                </div>
+                                <div>
+                                  <div className="text-lg font-bold" style={{ color: author?.color }}>
+                                    {formatYear(event.year)}
+                                  </div>
+                                  <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                                    {typeLabels[event.type]}
+                                  </div>
+                                </div>
+                              </div>
+
+                              <h3 className={cn(
+                                'font-display text-lg font-bold text-foreground mb-3 leading-tight',
+                                post && 'group-hover:text-primary transition-colors',
+                              )}>
+                                {event.title}
+                              </h3>
+
+                              <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                                {event.description}
+                              </p>
+
+                              {post && (
+                                <div className="flex items-center gap-2 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0">
+                                  {t('readMore')}
+                                  <ArrowRight className="h-4 w-4" />
+                                </div>
+                              )}
+                            </motion.div>
+                          );
+
+                          return (
+                            <section
+                              key={`${event.year}-${event.title}`}
+                              className={cn(
+                                "relative flex flex-col md:flex-row items-start md:items-center gap-8",
+                                isOdd ? "md:flex-row-reverse" : ""
+                              )}
+                            >
+                              {/* Timeline Node (Bullet) */}
+                              <div className="absolute left-4 md:left-1/2 top-6 md:top-1/2 w-3 h-3 rounded-full bg-background border-2 md:-translate-x-1/2 md:-translate-y-1/2 z-10 hidden sm:block"
+                                style={{ borderColor: author?.color || 'var(--primary)' }} />
+
+                              {/* Card Container */}
+                              <div className="w-full md:w-[45%] ml-10 md:ml-0">
                                 <motion.article
-                                  initial={{ opacity: 0, y: 12 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  exit={{ opacity: 0, y: -12 }}
-                                  transition={{ duration: 0.22, delay: index * 0.02 }}
+                                  initial={{ opacity: 0, x: isOdd ? 20 : -20 }}
+                                  whileInView={{ opacity: 1, x: 0 }}
+                                  viewport={{ once: true, margin: "-50px" }}
+                                  transition={{ duration: 0.4, delay: eventIdx * 0.05 }}
                                 >
-                                  <motion.div
-                                    whileHover={{ y: -2 }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                                    className={cn(
-                                      'group rounded-lg border border-border/60 bg-card/80 backdrop-blur-sm p-4 h-full flex flex-col',
-                                      'transition-all duration-200',
-                                      post && 'cursor-pointer hover:border-primary/50 hover:shadow-md',
-                                    )}
-                                  >
-                                    <div className="flex items-start gap-3 mb-3">
-                                      <div
-                                        className={cn(
-                                          'flex h-12 w-12 items-center justify-center rounded-lg flex-shrink-0',
-                                          `bg-author-${event.author || 'caesar'}/10`,
-                                        )}
-                                      >
-                                        <Icon className="h-6 w-6" style={{ color: author?.color }} />
-                                      </div>
-                                      <div className="flex-1 min-w-0">
-                                        <span
-                                          className="text-sm font-bold block"
-                                          style={{ color: author?.color }}
-                                        >
-                                          {formatYear(event.year)}
-                                        </span>
-                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                                          {typeLabels[event.type]}
-                                        </span>
-                                      </div>
+                                  {post ? (
+                                    <Link to={`/${post.author}/${post.slug}`} className="block">
+                                      {cardContent}
+                                    </Link>
+                                  ) : (
+                                    <div className="block">
+                                      {cardContent}
                                     </div>
-
-                                    <h3
-                                      className={cn(
-                                        'font-display text-base font-semibold text-foreground mb-2 line-clamp-2',
-                                        post && 'group-hover:text-primary transition-colors',
-                                      )}
-                                    >
-                                      {event.title}
-                                    </h3>
-                                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3 flex-1">
-                                      {event.description}
-                                    </p>
-
-                                    {post && (
-                                      <div className="mt-3 pt-3 border-t border-border/40 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                                        {t('readMore')}
-                                        <ArrowRight className="h-3 w-3" />
-                                      </div>
-                                    )}
-                                  </motion.div>
+                                  )}
                                 </motion.article>
-                              </Wrapper>
-                            );
-                          })}
-                        </div>
+                              </div>
+
+                              {/* Date Spacer for Desktop */}
+                              <div className="hidden md:block md:w-[45%]" />
+                            </section>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </AnimatePresence>

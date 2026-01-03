@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { PageHero } from '@/components/layout/PageHero';
+import { SimulationCard } from '@/components/simulation/SimulationCard';
 
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
@@ -185,7 +186,7 @@ export default function SimulationPage() {
                                     initial={{ opacity: 0, scale: 0.97 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.97 }}
-                                    className="glass-card min-h-[240px] cursor-pointer flex flex-col items-center justify-center text-center border-dashed hover:border-primary/50 hover:bg-primary/5"
+                                    className="glass-card min-h-[240px] cursor-pointer flex flex-col items-center justify-center text-center border-dashed hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                                     onClick={() => setShowCustomForm(true)}
                                 >
                                     <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -198,27 +199,11 @@ export default function SimulationPage() {
                         </AnimatePresence>
 
                         {filteredScenarios.map(scenario => (
-                            <motion.div
+                            <SimulationCard
                                 key={scenario.id}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="glass-card min-h-[240px] cursor-pointer flex flex-col"
-                                onClick={() => startGame(scenario)}
-                            >
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-                                        {scenario.date}
-                                    </div>
-                                    <Play className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                                </div>
-                                <h3 className="font-display text-2xl font-medium mb-3">{scenario.title}</h3>
-                                <p className="text-muted-foreground mb-6 line-clamp-3 flex-1 leading-relaxed">{scenario.description}</p>
-                                <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground mt-auto">
-                                    <span className="flex items-center gap-1.5"><Users className="h-3 w-3" /> Volk</span>
-                                    <span className="flex items-center gap-1.5"><Crown className="h-3 w-3" /> Einfluss</span>
-                                    <span className="flex items-center gap-1.5"><Sword className="h-3 w-3" /> Macht</span>
-                                </div>
-                            </motion.div>
+                                scenario={scenario}
+                                onClick={startGame}
+                            />
                         ))}
 
                         {filteredScenarios.length === 0 && searchQuery && (
@@ -338,7 +323,7 @@ export default function SimulationPage() {
                             <Input
                                 placeholder="Eigene Handlung eintippen..."
                                 value={customInput}
-                                onChange={(e) => setCustomInput(e.target.value)}
+                                onChange={(e) => customInput && setCustomInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleCustomInput()}
                                 className="pr-12 py-5 bg-secondary/30 border-primary/10 rounded-xl"
                             />

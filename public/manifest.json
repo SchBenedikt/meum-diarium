@@ -1,4 +1,3 @@
-
 {
   "name": "Meum Diarium - Antike Tagebücher",
   "short_name": "Meum Diarium",
@@ -34,8 +33,17 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "categories": ["education", "books", "history"],
+  "display_override": [
+    "window-controls-overlay",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "categories": [
+    "education",
+    "books",
+    "history",
+    "lifestyle"
+  ],
   "prefer_related_applications": false,
   "dir": "ltr",
   "lang": "de-DE",
@@ -64,6 +72,38 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "Simulation",
+      "short_name": "Sim",
+      "description": "Starte eine historische Simulation",
+      "url": "/caesar/simulation",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Über uns",
+      "short_name": "Über",
+      "description": "Erfahre mehr über das Projekt",
+      "url": "/about",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-1.png",
+      "type": "image/png",
+      "sizes": "1920x1080",
+      "form_factor": "wide"
     }
   ]
 }

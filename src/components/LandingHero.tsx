@@ -219,69 +219,69 @@ export default function LandingHero() {
           </div>
 
           {/* Hero Images Grid */}
-<motion.div
-  variants={fadeUp(0.4)}
-  initial="hidden"
-  animate="visible"
-  transition={defaultTransition}
-  className="mb-24"
->
-  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-24">
-    {/* Image 1 - Large wide */}
-    <div className="col-span-2 md:col-span-2 lg:col-span-3 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[0]}
-        alt="Ancient history 1"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
+          <motion.div
+            variants={fadeUp(0.4)}
+            initial="hidden"
+            animate="visible"
+            transition={defaultTransition}
+            className="mb-24"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-24">
+              {/* Image 1 - Large wide */}
+              <div className="col-span-2 md:col-span-2 lg:col-span-3 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[0]}
+                  alt="Ancient history 1"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-    {/* Image 2 - Medium */}
-    <div className="col-span-1 md:col-span-2 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[1]}
-        alt="Ancient history 2"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
+              {/* Image 2 - Medium */}
+              <div className="col-span-1 md:col-span-2 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[1]}
+                  alt="Ancient history 2"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-    {/* Image 3 - Small */}
-    <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[2]}
-        alt="Ancient history 3"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
+              {/* Image 3 - Small */}
+              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[2]}
+                  alt="Ancient history 3"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-    {/* Image 4 - Medium */}
-    <div className="col-span-1 md:col-span-1 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[3]}
-        alt="Ancient history 4"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
+              {/* Image 4 - Medium */}
+              <div className="col-span-1 md:col-span-1 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[3]}
+                  alt="Ancient history 4"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-    {/* Image 5 */}
-    <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[4]}
-        alt="Ancient history 5"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
+              {/* Image 5 */}
+              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[4]}
+                  alt="Ancient history 5"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-    {/* Image 6 */}
-    <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-      <img
-        src={heroImages[5]}
-        alt="Ancient history 6"
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
-  </div>
-</motion.div>
+              {/* Image 6 */}
+              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
+                <img
+                  src={heroImages[5]}
+                  alt="Ancient history 6"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </motion.div>
 
         </div>
       </section>
