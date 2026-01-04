@@ -18,45 +18,10 @@ import { getLexiconWithOverrides, getAuthorsWithOverrides } from '@/lib/cms-stor
 const translationCache = new Map<string, string>();
 
 async function translateText(text: string, to: Language): Promise<string> {
-    if (to.startsWith('de') || !text) return text;
-
+    // API translations are disabled: always return original text
+    if (!text) return text;
     const cacheKey = `${to}:${text}`;
-    if (translationCache.has(cacheKey)) {
-        return translationCache.get(cacheKey)!;
-    }
-
-    if (to.startsWith('en')) {
-        try {
-            const res = await fetch("https://libretranslate.com/translate", {
-                method: "POST",
-                body: JSON.stringify({
-                    q: text,
-                    source: "de",
-                    target: "en",
-                    format: "text",
-                }),
-                headers: { "Content-Type": "application/json" }
-            });
-
-            if (!res.ok) {
-                console.error("Translation API error:", res.status, res.statusText);
-                return `[Translation Error: ${res.status}] ${text}`;
-            }
-
-            const data = await res.json();
-            const translated = data.translatedText;
-
-            translationCache.set(cacheKey, translated);
-            return translated;
-        } catch (error) {
-            console.error("Failed to fetch translation:", error);
-            return `[Network Error] ${text}`;
-        }
-    }
-
-    if (to === 'la') {
-        return `[LA] ${text}`;
-    }
+    translationCache.set(cacheKey, text);
     return text;
 }
 

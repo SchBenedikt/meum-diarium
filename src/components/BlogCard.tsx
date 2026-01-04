@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react'; // Tag entfernt
 import { motion } from 'framer-motion';
 import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import { getPostTags } from '@/lib/tag-utils';
 import { fadeUp, quickTransition } from '@/lib/motion';
 
 const cardVariants = fadeUp(0.05, 20);
@@ -16,7 +17,7 @@ interface BlogCardProps {
 
 export function BlogCard({ post, className, preferredPerspective }: BlogCardProps) {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
@@ -97,9 +98,9 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
             </div>
 
             {/* Tag‑Chips darunter als Kategorien/Stichwörter */}
-            {post.tags && post.tags.length > 0 && (
+            {((post.tagsWithTranslations && post.tagsWithTranslations.length > 0) || (post.tags && post.tags.length > 0)) && (
               <div className="flex flex-wrap gap-2">
-                {post.tags.slice(0, 4).map((tag, i) => (
+                {getPostTags(post, language).slice(0, 4).map((tag, i) => (
                   <button
                     key={i}
                     onClick={(e) => handleTagClick(e, tag)}

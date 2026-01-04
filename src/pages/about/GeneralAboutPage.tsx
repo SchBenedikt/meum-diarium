@@ -131,8 +131,8 @@ export function GeneralAboutPage() {
         structuredData={structuredData}
       />
       <main className="flex-1">
-        {/* Immersive Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Immersive Hero Section - Full Viewport */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/40 to-background z-10" />
             <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
@@ -159,6 +159,12 @@ export function GeneralAboutPage() {
           </div>
 
           <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-20" />
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-30">
+            <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            </div>
+          </div>
         </section>
 
         {/* Highlights Section */}

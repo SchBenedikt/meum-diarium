@@ -2,12 +2,12 @@ import { useAuthor } from '@/context/AuthorContext';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { BookOpen, GraduationCap, BookMarked } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 import { SearchFilter } from './SearchFilter';
 import { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { BlogPost } from '@/types/blog';
+import { useLanguage } from '@/context/LanguageContext';
+import { getPostTags } from '@/lib/tag-utils';
 
 type ContentFilter = 'all' | 'diary' | 'scientific';
 
@@ -16,6 +16,7 @@ export function BlogList() {
   const { posts, isLoading } = usePosts();
   const [searchQuery, setSearchQuery] = useState('');
   const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
+  const { language } = useLanguage();
 
   // Helper function to check if a post has content for a specific perspective
   const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
@@ -49,7 +50,7 @@ export function BlogList() {
           (post.diaryTitle && post.diaryTitle.toLowerCase().includes(query)) ||
           (post.scientificTitle && post.scientificTitle.toLowerCase().includes(query)) ||
           post.excerpt.toLowerCase().includes(query) ||
-          post.tags.some(tag => tag.toLowerCase().includes(query))
+          getPostTags(post, language).some(tag => tag.toLowerCase().includes(query))
         );
       })
       .sort((a, b) => {
@@ -187,13 +188,7 @@ export function BlogList() {
                   </div>
                   <div className="h-px flex-1 bg-border/50 ml-4" />
                 </div>
-                <motion.div
-                  className="grid gap-6 grid-cols-1 md:grid-cols-2"
-                  variants={staggerContainer(0.07)}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.05 }}
-                >
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
                   {postsOfYear.map((post) => (
                     <BlogCard
                       key={post.id}
@@ -201,7 +196,7 @@ export function BlogList() {
                       preferredPerspective={contentFilter === 'scientific' ? 'scientific' : (contentFilter === 'diary' ? 'diary' : undefined)}
                     />
                   ))}
-                </motion.div>
+                </div>
               </section>
             ))}
           </div>

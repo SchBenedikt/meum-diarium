@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BlogPost, Author } from '@/types/blog';
+import { BlogPost, Author, TagWithTranslations } from '@/types/blog';
 import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye, Globe, X, Hash } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,7 @@ import { upsertPost } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
 import { useAuthors } from '@/hooks/use-authors';
+import { MultilingualTagEditor } from '@/components/admin/MultilingualTagEditor';
 
 export default function PostEditorPage() {
     const { author, slug } = useParams<{ author: string; slug: string }>();
@@ -49,7 +50,8 @@ export default function PostEditorPage() {
         excerpt: '',
         historicalDate: '',
         historicalYear: -50,
-        tags: [] as string[],
+        tags: [] as string[], // Legacy tags
+        tagsWithTranslations: [] as TagWithTranslations[], // New multilingual tags
         coverImage: '',
         readingTime: 5,
         // Sidebar quote
@@ -97,6 +99,7 @@ export default function PostEditorPage() {
                 historicalDate: postData.historicalDate,
                 historicalYear: postData.historicalYear,
                 tags: postData.tags || [],
+                tagsWithTranslations: postData.tagsWithTranslations || [],
                 coverImage: postData.coverImage || '',
                 readingTime: postData.readingTime || 5,
                 quoteText: postData.sidebar?.quote?.text || '',
@@ -131,6 +134,11 @@ export default function PostEditorPage() {
         setLoading(true);
 
         try {
+            // Generate legacy tags from multilingual tags for backward compatibility
+            const legacyTags = formData.tagsWithTranslations.length > 0
+                ? formData.tagsWithTranslations.map(t => t.translations.de)
+                : formData.tags;
+
             const payload: BlogPost = {
                 id: postData?.id || Date.now().toString(),
                 slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
@@ -142,7 +150,8 @@ export default function PostEditorPage() {
                 excerpt: formData.excerpt,
                 historicalDate: formData.historicalDate || '50 v. Chr.',
                 historicalYear: formData.historicalYear,
-                tags: formData.tags,
+                tags: legacyTags, // Legacy format
+                tagsWithTranslations: formData.tagsWithTranslations, // New multilingual format
                 coverImage: formData.coverImage,
                 readingTime: formData.readingTime,
                 date: new Date().toISOString().split('T')[0], // Add current date
@@ -370,32 +379,76 @@ export default function PostEditorPage() {
                                     placeholder="https://..."
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <Label>Tags</Label>
-                                <div className="flex flex-wrap gap-2 mb-2">
-                                    {formData.tags.map(tag => (
-                                        <Badge key={tag} variant="secondary" className="gap-1 px-2 py-1">
-                                            <Hash className="h-3 w-3" />
-                                            {tag}
-                                            <button
-                                                type="button"
-                                                onClick={() => removeTag(tag)}
-                                                className="ml-1 hover:text-destructive transition-colors"
-                                            >
-                                                <X className="h-3 w-3" />
-                                            </button>
-                                        </Badge>
-                                    ))}
-                                </div>
-                                <Input
-                                    value={tagInput}
-                                    onChange={e => setTagInput(e.target.value)}
-                                    onKeyDown={handleAddTag}
-                                    placeholder="Tag eingeben und Enter drücken..."
-                                />
-                            </div>
                         </CardContent>
                     </Card>
+
+                    {/* Multilingual Tags Section */}
+                    <MultilingualTagEditor
+                        tags={formData.tagsWithTranslations}
+                        onChange={(tags) => updateField('tagsWithTranslations', tags)}
+                    />
+
+                    {/* Legacy Tags Section (for backward compatibility) */}
+                    {formData.tags.length > 0 && formData.tagsWithTranslations.length === 0 && (
+                        <Card className="border-amber-500/30 bg-amber-500/5">
+                            <CardHeader>
+                                <CardTitle className="text-amber-600 flex items-center gap-2">
+                                    <Hash className="h-5 w-5" />
+                                    Legacy Tags (Alte Formatierung)
+                                </CardTitle>
+                                <CardDescription>
+                                    Diese Tags sind im alten Format. Bitte migriere sie zu mehrsprachigen Tags.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-2">
+                                    <div className="flex flex-wrap gap-2">
+                                        {formData.tags.map(tag => (
+                                            <Badge key={tag} variant="secondary" className="gap-1 px-2 py-1">
+                                                <Hash className="h-3 w-3" />
+                                                {tag}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeTag(tag)}
+                                                    className="ml-1 hover:text-destructive transition-colors"
+                                                >
+                                                    <X className="h-3 w-3" />
+                                                </button>
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                    <Input
+                                        value={tagInput}
+                                        onChange={e => setTagInput(e.target.value)}
+                                        onKeyDown={handleAddTag}
+                                        placeholder="Tag eingeben und Enter drücken..."
+                                    />
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => {
+                                            // Migrate legacy tags to multilingual format
+                                            const migratedTags = formData.tags.map(tag => ({
+                                                id: tag.toLowerCase().replace(/[^a-z0-9-]/g, '-'),
+                                                translations: {
+                                                    de: tag,
+                                                    en: tag,
+                                                    la: tag
+                                                }
+                                            }));
+                                            updateField('tagsWithTranslations', migratedTags);
+                                            updateField('tags', []);
+                                            toast.success('Tags wurden migriert');
+                                        }}
+                                        className="w-full"
+                                    >
+                                        Zu mehrsprachigen Tags migrieren
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
 
                     {/* Sidebar Quote Section */}
                     <Card>
