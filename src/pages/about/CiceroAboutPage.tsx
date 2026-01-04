@@ -171,8 +171,8 @@ export function CiceroAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        {/* Cicero Hero */}
-        <section className="relative h-[60vh] min-h-[500px] flex items-end overflow-hidden">
+        {/* Cicero Hero - Full Viewport */}
+        <section className="relative min-h-screen flex items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
             <img
@@ -209,6 +209,12 @@ export function CiceroAboutPage() {
                 </p>
               </div>
             </motion.div>
+          </div>
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
+            <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            </div>
           </div>
         </section>
 

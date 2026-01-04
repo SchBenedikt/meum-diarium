@@ -4,6 +4,17 @@ export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca';
 
 export type Perspective = 'diary' | 'scientific';
 
+export interface TagTranslation {
+  de: string;
+  en: string;
+  la: string;
+}
+
+export interface TagWithTranslations {
+  id: string; // Unique identifier for the tag
+  translations: TagTranslation;
+}
+
 export interface AuthorInfo {
   id: Author;
   name: string;
@@ -58,7 +69,7 @@ export interface BlogPostTranslations {
     diary: string;
     scientific: string;
   };
-  tags?: string[];
+  tags?: string[]; // Legacy: simple string tags for backward compatibility
 }
 
 export interface BlogPost {
@@ -73,7 +84,8 @@ export interface BlogPost {
   historicalDate: string;
   historicalYear: number;
   author: Author;
-  tags: string[];
+  tags: string[]; // Legacy format: kept for backward compatibility
+  tagsWithTranslations?: TagWithTranslations[]; // New: multilingual tags
   readingTime: number;
   coverImage?: string;
   content: {

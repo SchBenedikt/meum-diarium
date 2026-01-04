@@ -2,6 +2,7 @@ import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Users, Tags, ArrowRight, Quote } from 'lucide-react';
+import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
@@ -101,7 +102,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           Themen
         </h3>
         <div className="flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
+          {getPostTags(post, language).map((tag) => (
             <Link
               key={tag}
               to={`/search?category=${encodeURIComponent(tag)}`}

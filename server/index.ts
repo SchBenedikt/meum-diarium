@@ -161,6 +161,20 @@ const extractStringArray = (content: string, key: string): string[] => {
         .filter(s => s.length > 0);
 };
 
+// Extracts tagsWithTranslations array if present
+const extractTagsWithTranslations = (content: string): any[] => {
+    const regex = /tagsWithTranslations:\s*(\[[\s\S]*?\])/;
+    const match = content.match(regex);
+    if (!match) return [];
+    try {
+        // Convert single quotes to double for JSON parse
+        const normalized = match[1].replace(/(['"])?([a-zA-Z0-9_]+)(['"])?\s*:/g, '"$2":').replace(/'/g, '"');
+        return JSON.parse(normalized);
+    } catch {
+        return [];
+    }
+};
+
 // Extracts content inside template literals: key: `content`
 const extractTemplateLiteral = (content: string, key: string): string => {
     // Matches key: `...` allowing optional comma or whitespace after; closing backtick not escaped
@@ -289,6 +303,7 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
             historicalYear: extractNumber(content, 'historicalYear'),
             readingTime: extractNumber(content, 'readingTime'),
             tags: extractStringArray(content, 'tags'),
+            tagsWithTranslations: extractTagsWithTranslations(content),
             coverImage: extractString(content, 'coverImage'),
             content: {
                 diary: extractTemplateLiteral(content, 'diary'),
@@ -307,7 +322,7 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
 // POST creates a new post file
 app.post('/api/posts', async (req, res) => {
     try {
-        const { id, slug, author, title, diaryTitle, scientificTitle, content, excerpt, translations, tags, historicalDate, historicalYear, readingTime, coverImage, latinTitle, sidebar } = req.body;
+        const { id, slug, author, title, diaryTitle, scientificTitle, content, excerpt, translations, tags, tagsWithTranslations, historicalDate, historicalYear, readingTime, coverImage, latinTitle, sidebar } = req.body;
 
         if (!author || !slug || !title) {
             return res.status(400).json({ error: 'Missing required fields' });
@@ -378,7 +393,8 @@ const post: BlogPost = {
   historicalYear: ${historicalYear || 0},
   date: new Date().toISOString().split('T')[0],
   readingTime: ${readingTime || 5},
-  tags: ${JSON.stringify(tags || [])},
+    tags: ${JSON.stringify(tags || [])},
+    tagsWithTranslations: ${JSON.stringify(tagsWithTranslations || [])},
   coverImage: '${coverImage || ''}',
   content: {
     diary: \`${escapeContent(content.diary || '')}\`,
@@ -1286,7 +1302,7 @@ app.get('/api/works', async (_req, res) => {
         for (const file of files) {
             if (!file.endsWith('.ts')) continue;
             const content = await fs.readFile(path.join(WORKS_DIR, file), 'utf-8');
-            works.push({
+                        allPosts.push({
                 slug: file.replace('.ts', ''),
                 title: extractString(content, 'title'),
                 author: extractString(content, 'author'),
@@ -1300,6 +1316,7 @@ app.get('/api/works', async (_req, res) => {
     }
 });
 
+                            tagsWithTranslations: extractTagsWithTranslations(content),
 // GET single work
 app.get('/api/works/:slug', async (req, res) => {
     try {

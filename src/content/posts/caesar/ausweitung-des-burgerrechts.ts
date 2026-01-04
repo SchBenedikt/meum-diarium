@@ -13,7 +13,7 @@ const post: BlogPost = {
   historicalYear: -49,
   date: new Date().toISOString().split('T')[0],
   readingTime: 10,
-  tags: ["Reform","Staatsrecht","Integration","Provinzen"],
+  tags: ["dgs","Staatsrecht","Integration","Provinzen"],
   coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f9pg2fsdrhrr9g5vfzh6z%2F1766489150_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=0lHr8SgjaHHRYpm2HM5C1D91m5liHhL9U9529GaHlmk%3D&ac=oaivgprodscus2',
   content: {
     diary: `## Meine Aufgabe und meine Last

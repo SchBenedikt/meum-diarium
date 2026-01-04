@@ -20,6 +20,7 @@ import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
+import { PostTags } from '@/components/PostTags';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -92,7 +93,9 @@ function PostContent({ post }: { post: BlogPost }) {
         type="article"
         publishedTime={post.date}
         section={perspective === 'diary' ? 'Tagebuch' : 'Wissenschaftlich'}
-        tags={post.tags || []}
+        tags={post.tagsWithTranslations && post.tagsWithTranslations.length > 0 
+          ? post.tagsWithTranslations.map(t => t.translations.de) 
+          : (post.tags || [])}
       />
       <main className="flex-1">
         <div className="bg-background pb-12">

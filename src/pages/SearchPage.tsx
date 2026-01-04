@@ -15,6 +15,7 @@ import { Command, CommandEmpty, CommandInput, CommandGroup, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexicon, getTranslatedPost } from '@/lib/translator';
+import { getPostTags } from '@/lib/tag-utils';
 import { PageHero } from '@/components/layout/PageHero';
 
 type SearchResult = 
@@ -65,7 +66,10 @@ export default function SearchPage() {
   }, [language, basePosts, isLoading]);
 
   useEffect(() => {
-      setAllCategories([...new Set([...posts.flatMap(p => p.tags), ...lexicon.map(l => l.category)])].sort());
+      setAllCategories([...new Set([
+        ...posts.flatMap(p => getPostTags(p, language)),
+        ...lexicon.map(l => l.category)
+      ])].sort());
   }, [posts, lexicon]);
 
   useEffect(() => {

@@ -222,9 +222,9 @@ export function CaesarAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        {/* Caesar Hero */}
-        <section className="py-20">
-          <div className="container mx-auto px-4 sm:px-6">
+        {/* Caesar Hero - Full Viewport */}
+        <section className="min-h-screen flex items-center justify-center relative">
+          <div className="container mx-auto px-4 sm:px-6 py-20">
             <div className="grid lg:grid-cols-12 gap-10 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -256,6 +256,12 @@ export function CaesarAboutPage() {
                   <img src={authorInfo.heroImage} alt={authorInfo.name} className="w-full h-full object-cover" />
                 </div>
               </div>
+            </div>
+          </div>
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
           </div>
         </section>

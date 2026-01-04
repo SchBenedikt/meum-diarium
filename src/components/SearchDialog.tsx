@@ -7,6 +7,8 @@ import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
 import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { BlogPost, Author } from '@/types/blog';
+import { getPostTags } from '@/lib/tag-utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface SearchDialogProps {
   isOpen: boolean;
@@ -23,6 +25,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
   const { posts, isLoading } = usePosts();
+  const { language } = useLanguage();
 
   const results: SearchResult[] = useMemo(() => {
     if (isLoading || !query.trim()) return [];
@@ -34,7 +37,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       post.excerpt.toLowerCase().includes(searchTerm) ||
       post.content.diary.toLowerCase().includes(searchTerm) ||
       authors[post.author].name.toLowerCase().includes(searchTerm) ||
-      post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+      getPostTags(post, language).some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
 
     const lexiconResults: SearchResult[] = lexicon.filter(entry =>
