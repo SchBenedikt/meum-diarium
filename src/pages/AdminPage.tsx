@@ -41,7 +41,7 @@ export default function AdminPage() {
     const [filteredTags, setFilteredTags] = useState<string[]>([]);
 
     useEffect(() => {
-        if (posts) setFilteredPosts(posts);
+        if (posts) setFilteredPosts(sortPostsChronologically(posts));
     }, [posts]);
 
     useEffect(() => {
@@ -97,16 +97,23 @@ export default function AdminPage() {
         },
     ];
 
+    const sortPostsChronologically = (postsToSort: BlogPost[]) => {
+        return [...postsToSort].sort((a, b) => {
+            // Sort by historical year in descending order (newer dates first: 44 v.Chr. before 100 v.Chr.)
+            return (b.historicalYear || 0) - (a.historicalYear || 0);
+        });
+    };
+
     const handlePostSearch = (query: string) => {
         if (!query) {
-            setFilteredPosts(posts);
+            setFilteredPosts(sortPostsChronologically(posts));
             return;
         }
         const filtered = posts.filter(post =>
             post.title.toLowerCase().includes(query.toLowerCase()) ||
             post.author.toLowerCase().includes(query.toLowerCase())
         );
-        setFilteredPosts(filtered);
+        setFilteredPosts(sortPostsChronologically(filtered));
     };
 
     const handleDeleteWork = async (slug: string) => {
@@ -123,11 +130,11 @@ export default function AdminPage() {
 
     const handlePostFilter = (author: string) => {
         if (author === 'all') {
-            setFilteredPosts(posts);
+            setFilteredPosts(sortPostsChronologically(posts));
             return;
         }
         const filtered = posts.filter(post => post.author === author);
-        setFilteredPosts(filtered);
+        setFilteredPosts(sortPostsChronologically(filtered));
     };
 
     const handleLexiconSearch = (query: string) => {
@@ -287,7 +294,7 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent>
                             <SearchFilter
-                                onSearch={handlePostSearch}
+                                onChange={handlePostSearch}
                                 onFilter={handlePostFilter}
                                 placeholder="Beiträge durchsuchen..."
                                 filters={[
@@ -506,7 +513,7 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent>
                             <SearchFilter
-                                onSearch={handleLexiconSearch}
+                                onChange={handleLexiconSearch}
                                 placeholder="Lexikon durchsuchen..."
                             />
                             <div className="overflow-x-auto">
@@ -568,7 +575,7 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent>
                             <SearchFilter
-                                onSearch={handleTagSearch}
+                                onChange={handleTagSearch}
                                 placeholder="Tags durchsuchen..."
                             />
                             <div className="flex flex-wrap gap-2 mt-4">

@@ -1302,7 +1302,7 @@ app.get('/api/works', async (_req, res) => {
         for (const file of files) {
             if (!file.endsWith('.ts')) continue;
             const content = await fs.readFile(path.join(WORKS_DIR, file), 'utf-8');
-                        allPosts.push({
+            works.push({
                 slug: file.replace('.ts', ''),
                 title: extractString(content, 'title'),
                 author: extractString(content, 'author'),
@@ -1316,7 +1316,6 @@ app.get('/api/works', async (_req, res) => {
     }
 });
 
-                            tagsWithTranslations: extractTagsWithTranslations(content),
 // GET single work
 app.get('/api/works/:slug', async (req, res) => {
     try {
