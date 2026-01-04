@@ -13,12 +13,11 @@ const post: BlogPost = {
   historicalYear: -44,
   date: new Date().toISOString().split('T')[0],
   readingTime: 2,
-  tags: ["Brutus","Caesarianer","Dolch","Feind","Mord","Verschwörung"],
+    tags: ["Brutus","Caesarianer","Dolch","Feind","Mord","Verschwörung"],
+    tagsWithTranslations: [{"id":"brutus","translations":{"de":"Brutus","en":"Brutus","la":"Brutus"}},{"id":"caesarianer","translations":{"de":"Caesarianer","en":"Caesarianer","la":"Caesarianer"}},{"id":"dolch","translations":{"de":"Dolch","en":"Dolch","la":"Dolch"}},{"id":"feind","translations":{"de":"Feind","en":"Feind","la":"Feind"}},{"id":"mord","translations":{"de":"Mord","en":"Mord","la":"Mord"}},{"id":"verschw-rung","translations":{"de":"Verschwörung","en":"Verschwörung","la":"Verschwörung"}}],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_realistic_face_of_caesar_with_color_9ac25bcb-2a41-4285-9abf-90d67e3cb8ee1.png',
   content: {
-    diary: `15. März 44 v. Chr. – Die Iden des März.
-
-Ich schreibe dies in dem Wissen, dass es meine letzten Worte sein könnten. An diesem Tag fand eine Senatssitzung im Pompeius-Theater statt, und obwohl meine Frau Calpurnia mir von schlimmen Träumen berichtete, ließ ich mich von Decimus Brutus überreden, dennoch zu gehen. Ein Fehler, wie sich herausstellen sollte.
+    diary: `Ich schreibe dies in dem Wissen, dass es meine letzten Worte sein könnten. An diesem Tag fand eine Senatssitzung im Pompeius-Theater statt, und obwohl meine Frau Calpurnia mir von schlimmen Träumen berichtete, ließ ich mich von Decimus Brutus überreden, dennoch zu gehen. Ein Fehler, wie sich herausstellen sollte.
 
 Anfang des Jahres 44 v. Chr. hatten republikanisch gesinnte Senatoren unter der Leitung des Gaius Cassius Longinus begonnen, eine Verschwörung gegen mich zu schmieden. Sie sahen in mir eine Bedrohung für die alte Ordnung, für ihre Privilegien, für die Republik, wie sie sie kannten. Dabei übersahen sie, dass diese Republik längst tot war, dass nur ich noch ihre verwesende Hülle am Leben erhielt.
 
@@ -32,10 +31,7 @@ Was ich mit Sicherheit weiß: Dies ist das Ende. Rom wird nie wieder sein, was e
 
 Ich sterbe nicht als freier Mann der Republik, sondern als letzter Versuch, Rom vor sich selbst zu retten. Die Verschwörer werden für ihren Verrat bezahlen. Innerhalb weniger Jahre werden sie alle tot sein, verfolgt von meinen treuen Anhängern, den Caesarianern. Antonius und Octavian werden sie jagen wie Tiere, und keiner wird entkommen.
 
-Dies sind meine letzten Gedanken: Rom, ich habe dich geliebt. Ich habe dich größer gemacht, reicher, mächtiger. Und du hast mich mit Dolchen belohnt.
-
-Gaius Julius Caesar
-15. März 44 v. Chr. – Die Iden des März`,
+Dies sind meine letzten Gedanken: Rom, ich habe dich geliebt. Ich habe dich größer gemacht, reicher, mächtiger. Und du hast mich mit Dolchen belohnt.`,
     scientific: `## Der Kontext der Verschwörung
 
 Die letzten Monate von Caesars Leben waren geprägt von wachsenden Spannungen zwischen dem Diktator und einer Gruppe von Senatoren, die sich zunehmend bedroht fühlten. Obwohl Caesar nach dem Bürgerkrieg militärisch siegreich war und politisch die oberste Macht innehatte, war seine Position keineswegs so gefestigt, wie sie nach außen wirken mochte. Unter der Oberfläche gärte Widerstand.
@@ -137,19 +133,6 @@ Caesars Ermordung war ein Moment, der die römische Geschichte für immer verän
 Die Verschwörer glaubten, dass sie Rom rettet hätten. Stattdessen haben sie Rom nur in den nächsten Bürgerkrieg getrieben. Aber ob man ihre Handlung moralisch rechtfertigen kann oder nicht – es ist unbestreitbar, dass die Ermordung Caesars eines der wichtigsten Ereignisse der antiken Welt war, ein Moment, der alles veränderte.
 
 Caesar starb nicht als König, wie die Verschwörer befürchtet hatten. Er starb als Diktator, ermordet von Senatoren, die ihm nicht vertrauten. Und in seinem Tod schuf er die Bedingungen für das Aufstieg desjenigen, der seine Diktatur in eine institutionalisierte Monarchie verwandeln würde – Augustus.`
-  },
-  sidebar: {
-    facts: [],
-    quote: {
-      text: 'Et tu, Brute?',
-      translations: {
-        de: 'Auch du, Brutus?',
-        en: 'You too, Brutus?',
-        la: 'Et tu, Brute?'
-      },
-      author: 'Gaius Julius Caesar',
-      date: '44 v. Chr.'
-    }
   },
   translations: {
   "en": {
