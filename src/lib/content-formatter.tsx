@@ -100,6 +100,11 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
 
     if (paragraph.trim() === '') return null;
 
+    // Handle horizontal rule FIRST (before any other HTML processing)
+    if (paragraph.match(/^\s*-{3,}\s*$/) || paragraph.match(/^\s*\*{3,}\s*$/) || paragraph.match(/^\s*_{3,}\s*$/)) {
+      return <hr key={pIndex} className="my-8 border-border/40" />;
+    }
+
     let htmlParagraph = paragraph
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>');
@@ -163,11 +168,6 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       if (listItems.length > 0) {
         return <ol key={pIndex} className="list-decimal pl-6 space-y-2 my-4">{listItems}</ol>;
       }
-    }
-
-    // Handle horizontal rule
-    if (htmlParagraph.match(/^---+$/)) {
-      return <hr key={pIndex} className="my-8 border-border/40" />;
     }
 
     // Handle markdown tables
