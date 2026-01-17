@@ -65,7 +65,7 @@ export default function LandingHero() {
           <div className="max-w-3xl">
             <Badge variant="outline" className="mb-6 py-1 px-3 text-xs uppercase tracking-wide">
               <Sparkles className="mr-2 h-3 w-3" />
-              {t('landing.hero.aiPowered') || 'AI-Powered'}
+              {t('landing.hero.aiPowered') || 'AI-Gestützt'}
             </Badge>
 
             <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl mb-6 text-foreground leading-tight">
@@ -73,20 +73,20 @@ export default function LandingHero() {
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">
-              {t('landing.hero.voicesOfAntiquity') || 'Voices of Antiquity'}
+              {t('landing.hero.voicesOfAntiquity') || 'Stimmen der Antike'}
             </p>
 
             <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
               <Link to="/caesar">
                 <Button size="lg" className="rounded px-6 h-11 bg-primary hover:bg-primary/90">
-                  {t('landing.hero.discoverNow') || 'Discover now'}
+                  {t('landing.hero.discoverNow') || 'Jetzt entdecken'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link to="/lexicon">
                 <Button size="lg" variant="ghost" className="rounded px-6 h-11 hover:bg-secondary">
                   <Library className="mr-2 h-4 w-4" />
-                  {t('landing.hero.lexicon') || 'Lexicon'}
+                  {t('landing.hero.lexicon') || 'Lexikon'}
                 </Button>
               </Link>
             </div>
