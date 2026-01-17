@@ -6,6 +6,16 @@ import { Badge } from './ui/badge';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { usePosts } from '@/hooks/use-posts';
+import { BlogCard } from './BlogCard';
+import { FeatureShowcase } from './home/FeatureShowcase';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 type BentoCard = {
   title: string;
@@ -17,45 +27,17 @@ type BentoCard = {
   delay?: number;
 };
 
-const bentoCards: BentoCard[] = [
-  {
-    title: 'Charakter-Dialoge',
-    description: 'Direkte Interaktion mit historischen Persönlichkeiten auf Basis authentischer Quellen.',
-    icon: MessageCircle,
-    to: '/caesar/chat',
-    cta: 'Dialog starten',
-    className: 'md:col-span-2 md:row-span-2 bg-primary/5 border-primary/20',
-    delay: 0.1
-  },
-  {
-    title: 'Lexikon',
-    description: 'Historische Begriffe präzise auf den Punkt gebracht.',
-    icon: BookOpen,
-    to: '/lexicon',
-    cta: 'Nachschlagen',
-    delay: 0.2
-  },
-  {
-    title: 'Karten',
-    description: 'Schauplätze und Feldzüge visualisiert.',
-    icon: Map,
-    to: '/simulation',
-    cta: 'Karte öffnen',
-    delay: 0.3
-  },
-  {
-    title: 'Analysepunkte',
-    description: 'Tiefergehende Recherchen zu Wendepunkten.',
-    icon: Bookmark,
-    to: '/blog',
-    cta: 'Lesen',
-    className: 'md:col-span-2',
-    delay: 0.4
-  }
-];
+// bentoCards removed in favor of FeatureShowcase component
 
 export default function LandingHero() {
   const { t } = useLanguage();
+  const { posts, isLoading } = usePosts();
+
+  const recentPosts = posts
+    ? [...posts]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6)
+    : [];
 
   return (
     <div className="min-h-screen bg-background selection:bg-primary/20">
@@ -79,7 +61,7 @@ export default function LandingHero() {
               {t('landing.hero.aiPowered') || 'ERLEBE GESCHICHTE NEU'}
             </Badge>
 
-            <h1 className="font-sans text-5xl sm:text-7xl lg:text-8xl mb-8 text-foreground leading-[1.1] tracking-tight">
+            <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl mb-8 text-foreground leading-[1.1] tracking-tighter font-extrabold">
               Meum <span className="text-primary italic">Diarium</span>
             </h1>
 
@@ -105,70 +87,148 @@ export default function LandingHero() {
         </div>
       </section>
 
-      {/* Bento Grid Section */}
-      <section className="py-24 bg-background/50 border-y border-border/50">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-16 text-center sm:text-left">
-            <h2 className="text-3xl sm:text-4xl font-sans mb-4 tracking-tight">Features</h2>
-            <p className="max-w-xl text-muted-foreground text-lg font-light">
-              Entdecke die verschiedenen Wege, wie du die Geschichte hautnah miterleben kannst.
-            </p>
-          </div>
+      <FeatureShowcase />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {bentoCards.map((card, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: card.delay }}
-              >
-                <Link
-                  to={card.to}
-                  className={`group relative flex flex-col h-full overflow-hidden rounded-[var(--radius)] border border-border bg-card/50 p-8 transition-all duration-500 ${card.className || ''}`}
-                >
-                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-500">
-                    <card.icon className="h-6 w-6" />
+      {/* Scientific Vision Section */}
+      <section className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl sm:text-5xl font-sans mb-8 tracking-tighter leading-[1.1]">
+                Die Verschmelzung von <span className="text-primary italic">Wissenschaft</span> & <span className="text-primary italic">Erzählung</span>
+              </h2>
+              <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed">
+                <p>
+                  Meum Diarium ist mehr als nur eine Sammlung von Geschichten. Es ist ein Experiment in digitaler Hermeneutik – der Versuch, die Distanz zwischen der modernen Welt und der antiken Ratio zu überbrücken.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8">
+                  <div className="space-y-2">
+                    <div className="text-primary font-bold flex items-center gap-2">
+                      <Sparkles className="w-5 h-5" />
+                      Authentizität
+                    </div>
+                    <p className="text-sm">Jeder Eintrag basiert auf einer tiefgreifenden Analyse historischer Quellen und Briefe.</p>
                   </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-xl font-sans mb-3 group-hover:text-primary transition-colors duration-300">{card.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed font-light">
-                      {card.description}
-                    </p>
+                  <div className="space-y-2">
+                    <div className="text-primary font-bold flex items-center gap-2">
+                      <Users className="w-5 h-5" />
+                      Perspektive
+                    </div>
+                    <p className="text-sm">Wir lassen die Großen der Geschichte selbst zu Wort kommen, anstatt nur über sie zu schreiben.</p>
                   </div>
+                </div>
+              </div>
+            </motion.div>
 
-                  <div className="mt-8 flex items-center gap-2 text-sm font-medium text-primary">
-                    {card.cta} <ChevronRight className="h-4 w-4" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative aspect-square lg:aspect-auto lg:h-[600px] rounded-[3rem] overflow-hidden border border-border/50 bg-card/30 backdrop-blur-xl shadow-2xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center p-12">
+                <div className="relative w-full h-full flex flex-col justify-center gap-8">
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <div className="flex justify-between items-center text-xs uppercase tracking-widest text-primary/60 font-medium">
+                    <span>Historia</span>
+                    <span>Ratio</span>
+                    <span>Narratio</span>
                   </div>
-
-                  {/* Decorative background for primary card */}
-                  {card.className?.includes('bg-primary/5') && (
-                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-                  )}
-                </Link>
-              </motion.div>
-            ))}
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <div className="p-8 border border-primary/20 bg-primary/5 rounded-2xl italic text-center text-xl text-primary/80">
+                    "Historia vero testis temporum, lux veritatis, vita memoriae, magistra vitae, nuntia vetustatis."
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Authors Section */}
-      <section id="autoren" className="py-32 bg-background">
+      <section id="autoren" className="py-32 bg-background relative border-t border-border">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Perspektiven</p>
-              <h2 className="text-4xl sm:text-5xl font-sans mb-6 tracking-tight">Wähle deinen Begleiter</h2>
-              <p className="text-muted-foreground text-xl font-light italic">
-                "Historia magistra vitae est."
-              </p>
-            </div>
+          <div className="flex flex-col items-center text-center mb-20">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-bold">Wegbereiter</p>
+            <h2 className="text-4xl sm:text-6xl font-display font-extrabold mb-8 tracking-tighter">Wähle deine <span className="italic text-primary">Perspektive</span></h2>
+            <p className="text-muted-foreground text-xl max-w-2xl font-light italic">
+              "Entdecke die Antike durch die Augen derer, die sie geformt haben."
+            </p>
           </div>
           <AuthorGrid />
         </div>
       </section>
+
+      {/* Recent Insights Section */}
+      {!isLoading && recentPosts.length > 0 && (
+        <section className="py-32 bg-secondary/20 border-t border-border mt-16 overflow-hidden">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: false,
+              }}
+              className="w-full relative"
+            >
+              <div className="flex flex-col sm:flex-row justify-between items-end mb-12 gap-6">
+                <div className="max-w-2xl">
+                  <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-bold">Aktuell</p>
+                  <h2 className="text-4xl sm:text-6xl font-display font-extrabold tracking-tighter mb-4">Neuste <span className="italic text-primary">Beiträge</span></h2>
+                  <p className="text-muted-foreground text-lg font-light italic">"Wissen ist der einzige Schatz, der sich vermehrt, wenn man ihn teilt."</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="hidden sm:flex items-center gap-2 mr-4">
+                    <CarouselPrevious className="relative left-0 translate-y-0 h-10 w-10 border-border/40 bg-background/50 hover:bg-background" />
+                    <CarouselNext className="relative right-0 translate-y-0 h-10 w-10 border-border/40 bg-background/50 hover:bg-background" />
+                  </div>
+                  <Link to="/search">
+                    <Button variant="ghost" className="text-primary hover:text-primary/80 group text-lg h-auto px-0 hover:bg-transparent">
+                      Alle Beiträge <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              <CarouselContent className="-ml-6">
+                {recentPosts.map((post) => (
+                  <CarouselItem key={post.id} className="pl-6 basis-full md:basis-1/2">
+                    <BlogCard post={post} className="bg-background/80 h-full" />
+                  </CarouselItem>
+                ))}
+                {/* Last item: "See More" Card */}
+                <CarouselItem className="pl-6 basis-full md:basis-1/2 lg:basis-1/3">
+                  <Link to="/search" className="block h-full min-h-[160px]">
+                    <motion.div
+                      className="h-full flex flex-col items-center justify-center text-center border-2 border-dashed border-border/40 rounded-2xl hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group px-8"
+                    >
+                      <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                        <ArrowRight className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="font-display text-xl font-bold mb-1 tracking-tight">Alle Entdecken</h3>
+                      <p className="text-sm text-muted-foreground">Durchstöbere unser gesamtes Archiv</p>
+                    </motion.div>
+                  </Link>
+                </CarouselItem>
+              </CarouselContent>
+
+              {/* Mobile Navigation */}
+              <div className="flex sm:hidden items-center justify-center gap-6 mt-10">
+                <CarouselPrevious className="relative left-0 translate-y-0 h-12 w-12 border-border/40 bg-background/50" />
+                <CarouselNext className="relative right-0 translate-y-0 h-12 w-12 border-border/40 bg-background/50" />
+              </div>
+            </Carousel>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

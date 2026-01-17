@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
-import { lexicon as baseLexicon, LexiconEntry } from '@/data/lexicon';
+import { lexicon as baseLexicon } from '@/data/lexicon';
+import { LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
@@ -18,7 +19,7 @@ import { getTranslatedLexicon, getTranslatedPost } from '@/lib/translator';
 import { getPostTags } from '@/lib/tag-utils';
 import { PageHero } from '@/components/layout/PageHero';
 
-type SearchResult = 
+type SearchResult =
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry };
 
@@ -39,7 +40,7 @@ export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { language, t } = useLanguage();
   const { posts: basePosts, isLoading } = usePosts();
-  
+
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [activeCategories, setActiveCategories] = useState<string[]>(searchParams.getAll('category') || []);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
@@ -66,10 +67,10 @@ export default function SearchPage() {
   }, [language, basePosts, isLoading]);
 
   useEffect(() => {
-      setAllCategories([...new Set([
-        ...posts.flatMap(p => getPostTags(p, language)),
-        ...lexicon.map(l => l.category)
-      ])].sort());
+    setAllCategories([...new Set([
+      ...posts.flatMap(p => getPostTags(p, language)),
+      ...lexicon.map(l => l.category)
+    ])].sort());
   }, [posts, lexicon]);
 
   useEffect(() => {
@@ -80,24 +81,24 @@ export default function SearchPage() {
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
-    
+
     const newParams = new URLSearchParams(searchParams);
     if (newQuery) {
-        newParams.set('q', newQuery);
+      newParams.set('q', newQuery);
     } else {
-        newParams.delete('q');
+      newParams.delete('q');
     }
     const handler = setTimeout(() => {
-        setSearchParams(newParams, { replace: true });
+      setSearchParams(newParams, { replace: true });
     }, 300);
     return () => clearTimeout(handler);
   };
 
   const toggleCategory = (category: string) => {
     const newActiveCategories = activeCategories.includes(category)
-        ? activeCategories.filter(c => c !== category)
-        : [...activeCategories, category];
-    
+      ? activeCategories.filter(c => c !== category)
+      : [...activeCategories, category];
+
     setActiveCategories(newActiveCategories);
 
     const newParams = new URLSearchParams(searchParams);
@@ -109,81 +110,105 @@ export default function SearchPage() {
   const results: SearchResult[] = useMemo(() => {
     const searchQuery = (searchParams.get('q') || '').toLowerCase();
     const categoryQuery = searchParams.getAll('category');
-    
+
     if (!searchQuery && categoryQuery.length === 0) return [];
-    
+
     let filteredPosts: BlogPost[] = posts;
     let filteredLexicon: LexiconEntry[] = lexicon;
 
     if (categoryQuery.length > 0) {
-        filteredPosts = filteredPosts.filter(post => 
-            categoryQuery.some(cat => post.tags.includes(cat))
-        );
-        filteredLexicon = filteredLexicon.filter(entry =>
-            categoryQuery.includes(entry.category)
-        );
+      filteredPosts = filteredPosts.filter(post =>
+        categoryQuery.some(cat => post.tags.includes(cat))
+      );
+      filteredLexicon = filteredLexicon.filter(entry =>
+        categoryQuery.includes(entry.category)
+      );
     }
 
     if (searchQuery) {
-        filteredPosts = filteredPosts.filter(post => 
-          post.title.toLowerCase().includes(searchQuery) ||
-          post.excerpt.toLowerCase().includes(searchQuery) ||
-          post.content.diary.toLowerCase().includes(searchQuery) ||
-          authors[post.author].name.toLowerCase().includes(searchQuery)
-        );
+      filteredPosts = filteredPosts.filter(post =>
+        post.title.toLowerCase().includes(searchQuery) ||
+        post.excerpt.toLowerCase().includes(searchQuery) ||
+        post.content.diary.toLowerCase().includes(searchQuery) ||
+        authors[post.author].name.toLowerCase().includes(searchQuery)
+      );
 
-        filteredLexicon = filteredLexicon.filter(entry =>
-          entry.term.toLowerCase().includes(searchQuery) ||
-          entry.definition.toLowerCase().includes(searchQuery) ||
-          (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery))
-        );
+      filteredLexicon = filteredLexicon.filter(entry =>
+        entry.term.toLowerCase().includes(searchQuery) ||
+        entry.definition.toLowerCase().includes(searchQuery) ||
+        (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery))
+      );
     }
-    
-    return [...filteredPosts.map(p => ({type: 'post', data: p}) as SearchResult), ...filteredLexicon.map(l => ({type: 'lexicon', data: l}) as SearchResult)];
+
+    return [...filteredPosts.map(p => ({ type: 'post', data: p }) as SearchResult), ...filteredLexicon.map(l => ({ type: 'lexicon', data: l }) as SearchResult)];
 
   }, [searchParams, posts, lexicon]);
 
   const displayQuery = query || activeCategories.join(', ');
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1">
-        <PageHero
-          eyebrow={t('search') as string}
-          title="Finde"
-          highlight="Wissen"
-          description={t('lexiconDescription') || 'Durchsuche Lexikon, Beiträge und Themen in einem einheitlichen Flow.'}
-          align="center"
-          backgroundImage="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2400&auto=format&fit=crop"
-          kicker={<span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Lexikon, Beiträge, Themen</span>}
-        />
+    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+      <main className="flex-1 pt-16 sm:pt-24">
+        {/* Compact, Integrated Header */}
+        <div className="container mx-auto px-4 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative p-8 sm:p-12 rounded-[2.5rem] bg-card/40 backdrop-blur-xl border border-border/40 shadow-2xl overflow-hidden mb-12"
+          >
+            {/* Subtle background decoration */}
+            <div className="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-        <section className="relative -mt-12 sm:-mt-16 z-10">
-          <div className="section-shell max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="glass-card flex items-center gap-3">
-              <Search className="h-5 w-5 text-muted-foreground" />
-              <Input type="text" placeholder={t('searchPlaceholder')} className="w-full bg-transparent border-none text-lg h-12 focus-visible:ring-0" value={query} onChange={handleQueryChange} autoFocus />
-              {query && (
-                <button
-                  onClick={() => {
-                    setQuery('');
-                    const newParams = new URLSearchParams(searchParams);
-                    newParams.delete('q');
-                    setSearchParams(newParams, { replace: true });
-                  }}
-                  className="p-2 rounded-lg hover:bg-secondary text-muted-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </motion.div>
-          </div>
-        </section>
+            <div className="relative z-10 text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.2em]">
+                <Search className="w-3 h-3" />
+                {t('search') || 'Suche'}
+              </div>
+
+              <div>
+                <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tighter text-foreground mb-4">
+                  Finde <span className="text-primary italic">Wissen</span>
+                </h1>
+                <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+                  {t('lexiconDescription') || 'Durchsuche Lexikon, Beiträge und Themen in einem einheitlichen Flow.'}
+                </p>
+              </div>
+
+              {/* Integrated Search */}
+              <div className="max-w-2xl mx-auto pt-4">
+                <div className="glass-card flex items-center gap-3 px-4 py-2 rounded-2xl border-primary/20 focus-within:border-primary/40 transition-all">
+                  <Search className="h-5 w-5 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder={t('searchPlaceholder')}
+                    className="w-full bg-transparent border-none text-lg h-12 focus-visible:ring-0 placeholder:text-muted-foreground/30 font-normal px-2"
+                    value={query}
+                    onChange={handleQueryChange}
+                    autoFocus
+                  />
+                  {query && (
+                    <button
+                      onClick={() => {
+                        setQuery('');
+                        const newParams = new URLSearchParams(searchParams);
+                        newParams.delete('q');
+                        setSearchParams(newParams, { replace: true });
+                      }}
+                      className="p-2 rounded-xl hover:bg-secondary text-muted-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         <section className="py-14 sm:py-20">
           <div className="container mx-auto max-w-4xl">
-             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-10">
-               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-6">
                 {topCategories.map(cat => {
                   const Icon = categoryIcons[cat] || BookMarked;
                   const isActive = activeCategories.includes(cat);
@@ -214,7 +239,7 @@ export default function SearchPage() {
                         <CommandEmpty>Keine Kategorie gefunden.</CommandEmpty>
                         <CommandGroup>
                           {allCategories.map((cat) => (
-                             <CommandItem key={cat} onSelect={() => toggleCategory(cat)}>
+                            <CommandItem key={cat} onSelect={() => toggleCategory(cat)}>
                               <div className={cn("mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary", activeCategories.includes(cat) ? "bg-primary text-primary-foreground" : "opacity-50 [&_svg]:invisible")}><Check className={cn("h-4 w-4")} /></div>
                               {cat}
                             </CommandItem>
@@ -228,51 +253,51 @@ export default function SearchPage() {
             </motion.div>
 
             <div className='max-w-2xl mx-auto'>
-                {displayQuery ? (
+              {displayQuery ? (
                 results.length > 0 ? (
-                    <div>
+                  <div>
                     <p className="text-sm text-muted-foreground mb-4">{t('resultsFound', { count: String(results.length) })}</p>
                     <div className="space-y-4">
-                        {results.map((result, index) => (
+                      {results.map((result, index) => (
                         <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.05 }}>
-                            {result.type === 'post' ? (
+                          {result.type === 'post' ? (
                             <Link to={`/${result.data.author}/${result.data.slug}`} className="block p-4 rounded-lg bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
-                                <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-4">
                                 <BookText className="h-5 w-5 text-primary flex-shrink-0" />
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.title}</p>
-                                    <p className="text-sm text-muted-foreground truncate">{authors[result.data.author].name} • {result.data.historicalDate}</p>
+                                  <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.title}</p>
+                                  <p className="text-sm text-muted-foreground truncate">{authors[result.data.author].name} • {result.data.historicalDate}</p>
                                 </div>
                                 <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-                                </div>
+                              </div>
                             </Link>
-                            ) : (
+                          ) : (
                             <Link to={`/lexicon/${result.data.slug}`} className="block p-4 rounded-lg bg-card border border-border/50 hover:bg-secondary/50 hover:border-border transition-all group">
-                                <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-4">
                                 <BookMarked className="h-5 w-5 text-primary flex-shrink-0" />
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.term}</p>
-                                    <p className="text-sm text-muted-foreground truncate">{result.data.category}</p>
+                                  <p className="font-medium text-base group-hover:text-primary transition-colors">{result.data.term}</p>
+                                  <p className="text-sm text-muted-foreground truncate">{result.data.category}</p>
                                 </div>
                                 <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-                                </div>
+                              </div>
                             </Link>
-                            )}
+                          )}
                         </motion.div>
-                        ))}
+                      ))}
                     </div>
-                    </div>
+                  </div>
                 ) : (
-                    <div className="text-center py-16"><p className="text-muted-foreground">{t('noEntriesFound')}</p></div>
+                  <div className="text-center py-16"><p className="text-muted-foreground">{t('noEntriesFound')}</p></div>
                 )
-                ) : (
+              ) : (
                 <div className="text-center py-16"><p className="text-muted-foreground">{t('searchOrSelectCategory')}</p></div>
-                )}
+              )}
             </div>
           </div>
         </section>
       </main>
       <Footer />
-    </div>
+    </div >
   );
 }

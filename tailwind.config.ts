@@ -30,8 +30,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["system-ui", "-apple-system", "sans-serif"],
-        display: ["system-ui", "-apple-system", "sans-serif"],
+        sans: ["Bricolage Grotesque", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Bricolage Grotesque", "system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

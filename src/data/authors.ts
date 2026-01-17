@@ -94,5 +94,32 @@ export const authors: Record<string, AuthorInfo> = {
       }
     ],
   },
-  
+  catilina: {
+    id: 'catilina',
+    name: 'Lucius Sergius Catilina',
+    latinName: 'Lucius Sergius Catilina',
+    title: 'Patricius, Coniurator',
+    years: '108 – 62 v. Chr.',
+    birthYear: -108,
+    deathYear: -62,
+    description: 'Römischer Politiker und Kopf der nach ihm benannten Verschwörung von 63 v. Chr. Er versuchte durch einen Umsturz die Macht in Rom zu erringen.',
+    heroImage: '/images/catilina-hero.jpg',
+    theme: 'theme-caesar', // Fallback theme
+    color: 'hsl(0, 70%, 40%)',
+    highlights: [],
+  },
+  seneca: {
+    id: 'seneca',
+    name: 'Lucius Annaeus Seneca',
+    latinName: 'Lucius Annaeus Seneca',
+    title: 'Philosophus, Stoicus',
+    years: '4 v. Chr. – 65 n. Chr.',
+    birthYear: -4,
+    deathYear: 65,
+    description: 'Einer der meistgelesenen Schriftsteller seiner Zeit, stoischer Philosoph, Naturforscher und Staatsmann. Erzieher und Berater des jungen Nero.',
+    heroImage: '/images/seneca-hero.jpg',
+    theme: 'theme-cicero', // Fallback theme
+    color: 'hsl(140, 40%, 40%)',
+    highlights: [],
+  },
 };

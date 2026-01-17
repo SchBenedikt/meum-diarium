@@ -3,8 +3,8 @@ import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-re
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
-import { lexicon, LexiconEntry } from '@/data/lexicon';
-import { BlogPost, Author } from '@/types/blog';
+import { lexicon } from '@/data/lexicon';
+import { BlogPost, Author, LexiconEntry } from '@/types/blog';
 import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -13,7 +13,7 @@ interface SearchDialogProps {
   onClose: () => void;
 }
 
-type SearchResult = 
+type SearchResult =
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry }
   | { type: 'author', data: typeof authors[Author] };
@@ -27,14 +27,14 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
 
   const results: SearchResult[] = useMemo(() => {
     if (isLoading || !query.trim()) return [];
-    
+
     const searchTerm = query.toLowerCase();
 
-    const postResults: SearchResult[] = posts.filter(post => 
+    const postResults: SearchResult[] = posts.filter(post =>
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
       post.content.diary.toLowerCase().includes(searchTerm) ||
-      authors[post.author].name.toLowerCase().includes(searchTerm) ||
+      (authors[post.author]?.name || '').toLowerCase().includes(searchTerm) ||
       getPostTags(post, language).some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
 
@@ -44,12 +44,12 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       entry.category.toLowerCase().includes(searchTerm) ||
       (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(entry => ({ type: 'lexicon', data: entry }));
-    
+
     const authorResults: SearchResult[] = Object.values(authors).filter(author =>
-        author.name.toLowerCase().includes(searchTerm) ||
-        author.description.toLowerCase().includes(searchTerm) ||
-        author.title.toLowerCase().includes(searchTerm)
-    ).map(author => ({type: 'author', data: author}));
+      author.name.toLowerCase().includes(searchTerm) ||
+      author.description.toLowerCase().includes(searchTerm) ||
+      author.title.toLowerCase().includes(searchTerm)
+    ).map(author => ({ type: 'author', data: author }));
 
     return [...postResults, ...lexiconResults, ...authorResults].slice(0, 8);
   }, [query, posts, isLoading]);
@@ -61,7 +61,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     if (result.type === 'post') path = `/${result.data.author}/${result.data.slug}`;
     if (result.type === 'lexicon') path = `/lexicon/${result.data.slug}`;
     if (result.type === 'author') path = `/${result.data.id}`;
-    
+
     navigate(path);
     onClose();
   };
@@ -84,7 +84,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
         handleNavigation(activeIndex);
       }
     }
-  }, [results.length, activeIndex, onClose]);
+  }, [results.length, activeIndex, onClose, handleNavigation]); // Added handleNavigation to dependencies
 
   useEffect(() => {
     if (isOpen) {
@@ -143,13 +143,12 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
               key={index}
               to={
                 result.type === 'post' ? `/${result.data.author}/${result.data.slug}` :
-                result.type === 'lexicon' ? `/lexicon/${result.data.slug}` :
-                `/${result.data.id}`
+                  result.type === 'lexicon' ? `/lexicon/${result.data.slug}` :
+                    `/${result.data.id}`
               }
               onClick={onClose}
-              className={`block px-4 py-3 border-b border-border last:border-b-0 ${
-                index === activeIndex ? 'bg-secondary' : ''
-              }`}
+              className={`block px-4 py-3 border-b border-border last:border-b-0 ${index === activeIndex ? 'bg-secondary' : ''
+                }`}
             >
               <div className="flex items-start gap-3">
                 <div className="mt-1 text-primary">
@@ -169,7 +168,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     {result.type === 'author' && result.data.description}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">
-                    {result.type === 'post' && `Eintrag • ${authors[result.data.author].name}`}
+                    {result.type === 'post' && `Eintrag • ${authors[result.data.author]?.name || result.data.author}`}
                     {result.type === 'lexicon' && `Lexikon • ${result.data.category}`}
                     {result.type === 'author' && `Autor • ${result.data.title}`}
                   </div>

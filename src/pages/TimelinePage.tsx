@@ -68,7 +68,7 @@ export default function TimelinePage() {
               </div>
 
               <div>
-                <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tighter text-foreground mb-4">
+                <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tighter text-foreground mb-4">
                   Der <span className="text-primary italic">Zeitstrahl</span>
                 </h1>
                 <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">

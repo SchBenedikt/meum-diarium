@@ -55,7 +55,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
         )}
       >
         {/* Bild links – flexibler, aber mit Mindestbreite */}
-        <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
+        <div className="relative h-40 w-full shrink-0 md:h-auto md:w-40 lg:w-48">
           <img
             src={post.coverImage}
             alt={post.title}
@@ -65,7 +65,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
         </div>
 
         {/* Content rechts – flexibler, passt sich an */}
-        <div className="flex flex-1 flex-col justify-between px-5 py-4 sm:px-6 sm:py-5 gap-3">
+        <div className="flex flex-1 flex-col justify-between px-4 py-3 sm:px-5 sm:py-4 gap-2">
           {/* Datum / Jahr oben */}
           <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/80">
             {post.historicalDate}
@@ -73,16 +73,16 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
 
           {/* Titel + Excerpt */}
           <div className="space-y-2">
-            <h3 className="font-display text-base sm:text-lg md:text-xl font-semibold leading-snug line-clamp-2 transition-colors">
+            <h3 className="font-display text-base sm:text-lg md:text-xl font-bold leading-tight line-clamp-2 transition-colors">
               {displayTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-3">
+            <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed line-clamp-2">
               {displayExcerpt}
             </p>
           </div>
 
           {/* Footer: Jahr, Lesezeit, Kategorien/Tags */}
-          <div className="mt-3 flex flex-col gap-3 pt-2">
+          <div className="mt-2 flex flex-col gap-2 pt-1 border-t border-border/5">
             <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
               {/* Jahr */}
               <span className="inline-flex items-center gap-1.5">

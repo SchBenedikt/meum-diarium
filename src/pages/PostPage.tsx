@@ -1,8 +1,8 @@
 
-
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedPost } from '@/lib/translator';
@@ -40,8 +40,8 @@ function PostContent({ post }: { post: BlogPost }) {
   const initialPerspective: Perspective = requested === 'scientific' && hasScientific
     ? 'scientific'
     : requested === 'diary' && hasDiary
-    ? 'diary'
-    : defaultPerspective;
+      ? 'diary'
+      : defaultPerspective;
   const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
 
   const targetRef = useRef<HTMLDivElement>(null);
@@ -93,8 +93,8 @@ function PostContent({ post }: { post: BlogPost }) {
         type="article"
         publishedTime={post.date}
         section={perspective === 'diary' ? 'Tagebuch' : 'Wissenschaftlich'}
-        tags={post.tagsWithTranslations && post.tagsWithTranslations.length > 0 
-          ? post.tagsWithTranslations.map(t => t.translations.de) 
+        tags={post.tagsWithTranslations && post.tagsWithTranslations.length > 0
+          ? post.tagsWithTranslations.map(t => t.translations.de)
           : (post.tags || [])}
       />
       <main className="flex-1">
@@ -234,7 +234,9 @@ export default function PostPage() {
 
   if (post === undefined) {
     // Still loading
-    return <div className="min-h-screen bg-background" />;
+    return <div className="min-h-screen bg-background">
+      <ScrollProgress />
+    </div>;
   }
 
   if (!post) {

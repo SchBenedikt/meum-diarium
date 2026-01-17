@@ -55,11 +55,9 @@ export function PageHero({
           <img
             src={backgroundImage}
             alt="Background"
-            className="w-full h-full object-cover opacity-35 blur-[3px]"
+            className="w-full h-full object-cover opacity-60"
             style={{ transform: `scale(${bgScale})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/60" />
         </motion.div>
       )}
 
@@ -88,7 +86,7 @@ export function PageHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
             className={cn(
-              "font-display leading-[0.95] tracking-tighter font-bold",
+              "font-display leading-[0.95] tracking-tighter font-extrabold",
               isCompact
                 ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
                 : "text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
