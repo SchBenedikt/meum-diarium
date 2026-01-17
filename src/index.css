@@ -61,7 +61,7 @@
     --input: 0 0% 90%;
     --ring: 345 60% 35%;
 
-    --radius: 0.375rem; /* Consistent border radius */
+    --radius: 15px; /* Consistent border radius across entire website */
 
     /* Wine red for all author colors */
     --author-caesar: 345 60% 35%;
