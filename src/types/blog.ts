@@ -1,6 +1,6 @@
 
 
-export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca';
+export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca' | 'catilina';
 
 export type Perspective = 'diary' | 'scientific';
 

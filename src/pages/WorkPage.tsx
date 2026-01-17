@@ -4,15 +4,15 @@ import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
 import { Author, Work, AuthorInfo } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
-import { 
-  Calendar, 
-  User, 
-  CheckCircle, 
-  ListTree, 
-  ArrowLeft, 
-  BookOpen, 
-  Award, 
-  Lightbulb, 
+import {
+  Calendar,
+  User,
+  CheckCircle,
+  ListTree,
+  ArrowLeft,
+  BookOpen,
+  Award,
+  Lightbulb,
   Quote,
   Target,
   MapPin,
@@ -23,6 +23,8 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
 import NotFound from './NotFound';
 import slugify from 'slugify';
@@ -152,7 +154,8 @@ export default function WorkPage() {
   const translatedAuthor = author;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/20">
+    <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <PageHero
         title={work.title}
         description={work.summary}

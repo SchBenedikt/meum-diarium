@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { AuthorProvider } from "@/context/AuthorContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
@@ -68,47 +69,60 @@ const AppContent = () => {
         <Header />
       </div>
       <Suspense fallback={<LoadingScreen />}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/:authorId" element={<Index />} />
-          <Route path="/:authorId/about" element={<AboutPage />} />
-          <Route path="/:authorId/works/:slug" element={<WorkPage />} />
-          <Route path="/:authorId/chat" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <ChatPage />
-            </Suspense>
-          } />
-          <Route path="/:authorId/simulation" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <SimulationPage />
-            </Suspense>
-          } />
-          <Route path="/:authorId/:slug" element={<PostPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/timeline" element={<TimelinePage />} />
-          <Route path="/lexicon" element={<LexiconPage />} />
-          <Route path="/lexicon/:slug" element={<LexiconEntryPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/post/new" element={<PostEditorPage />} />
-          <Route path="/admin/post/:author/:slug" element={<PostEditorPage />} />
-          <Route path="/admin/author/new" element={<AuthorEditorPage />} />
-          <Route path="/admin/author/:authorId" element={<AuthorEditorPage />} />
-          <Route path="/admin/lexicon/new" element={<LexiconEditorPage />} />
-          <Route path="/admin/lexicon/:slug" element={<LexiconEditorPage />} />
-          <Route path="/admin/work/new" element={<WorkEditorPage />} />
-          <Route path="/admin/work/:slug" element={<WorkEditorPage />} />
-          <Route path="/admin/pages/new" element={<PageEditorPage />} />
-          <Route path="/admin/pages/:slug" element={<PageEditorPage />} />
-          <Route path="/admin/settings" element={<SettingsPage />} />
-          <Route path="/design" element={<DesignGuidePage />} />
-          <Route path="/loading" element={<LoadingDemoPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+            <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
+            <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />
+            <Route path="/:authorId/works/:slug" element={<PageTransition><WorkPage /></PageTransition>} />
+            <Route path="/:authorId/chat" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <PageTransition><ChatPage /></PageTransition>
+              </Suspense>
+            } />
+            <Route path="/:authorId/simulation" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <PageTransition><SimulationPage /></PageTransition>
+              </Suspense>
+            } />
+            <Route path="/:authorId/:slug" element={<PageTransition><PostPage /></PageTransition>} />
+            <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+            <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
+            <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
+            <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
+            <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
+            <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
+            <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
+            <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
+            <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
       </Suspense>
     </>
   );
 };
+
+const PageTransition = ({ children }: { children: React.ReactNode }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.3, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+);
 
 
 const App = () => (

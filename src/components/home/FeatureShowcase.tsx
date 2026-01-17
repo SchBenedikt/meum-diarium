@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { BookOpen, Languages, Quote, History, Database, Users, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { fadeUp, staggerContainer } from '@/lib/motion';
 
 export function FeatureShowcase() {
@@ -15,7 +16,7 @@ export function FeatureShowcase() {
             descKey: 'featureStudyNotesDesc',
             color: 'text-blue-500',
             bg: 'bg-blue-500/10',
-            border: 'hover:border-blue-500/50'
+            className: 'md:col-span-2'
         },
         {
             icon: Languages,
@@ -23,23 +24,15 @@ export function FeatureShowcase() {
             descKey: 'featureBilingualDesc',
             color: 'text-purple-500',
             bg: 'bg-purple-500/10',
-            border: 'hover:border-purple-500/50'
+            className: ''
         },
         {
-            icon: Quote,
-            titleKey: 'featureQuoteTitle',
-            descKey: 'featureQuoteDesc',
-            color: 'text-amber-500',
-            bg: 'bg-amber-500/10',
-            border: 'hover:border-amber-500/50'
-        },
-        {
-            icon: History,
-            titleKey: 'featureTimelineTitle',
+            icon: Sparkles,
+            titleKey: 'featureTimelineTitle', // Reusing key for simplicity or adding logic
             descKey: 'featureTimelineDesc',
             color: 'text-rose-500',
             bg: 'bg-rose-500/10',
-            border: 'hover:border-rose-500/50'
+            className: ''
         },
         {
             icon: Database,
@@ -47,7 +40,7 @@ export function FeatureShowcase() {
             descKey: 'featureLexiconDesc',
             color: 'text-emerald-500',
             bg: 'bg-emerald-500/10',
-            border: 'hover:border-emerald-500/50'
+            className: 'md:col-span-2'
         },
         {
             icon: Users,
@@ -55,7 +48,15 @@ export function FeatureShowcase() {
             descKey: 'featureAuthorsDesc',
             color: 'text-indigo-500',
             bg: 'bg-indigo-500/10',
-            border: 'hover:border-indigo-500/50'
+            className: 'md:col-span-3 lg:col-span-1'
+        },
+        {
+            icon: Quote,
+            titleKey: 'featureQuoteTitle',
+            descKey: 'featureQuoteDesc',
+            color: 'text-amber-500',
+            bg: 'bg-amber-500/10',
+            className: 'md:col-span-3 lg:col-span-2'
         }
     ];
 
@@ -101,21 +102,30 @@ export function FeatureShowcase() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
                     variants={staggerContainer(0.05)}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+                    className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
                 >
                     {features.map((feature, i) => (
-                        <motion.div key={i} variants={fadeUp(0.3 + i * 0.05)}>
-                            <Card className={`h-full p-8 sm:p-8 bg-card/40 backdrop-blur-2xl border border-border/40 ${feature.border} hover:-translate-y-1.5 transition-all duration-500 group relative overflow-hidden rounded-3xl`}>
-                                {/* Gradient background glow */}
-                                <div className={`absolute -right-12 -top-12 w-48 h-48 rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 ${feature.bg}`} />
+                        <motion.div key={i} variants={fadeUp(0.3 + i * 0.05)} className={feature.className}>
+                            <Card className={cn(
+                                "h-full p-8 bg-card/40 backdrop-blur-2xl border border-border/40 hover:border-primary/20 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden rounded-[2rem]",
+                                "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity"
+                            )}>
+                                {/* Glow Effect */}
+                                <div className={cn(
+                                    "absolute -right-12 -top-12 w-48 h-48 rounded-full blur-[80px] opacity-0 group-hover:opacity-10 transition-opacity duration-700",
+                                    feature.bg
+                                )} />
 
-                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-white/10 ${feature.bg}`}>
-                                    <feature.icon className={`w-7 h-7 ${feature.color}`} />
+                                <div className={cn(
+                                    "w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500",
+                                    feature.bg
+                                )}>
+                                    <feature.icon className={cn("w-6 h-6", feature.color)} />
                                 </div>
-                                <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                <h3 className="font-display text-2xl font-extrabold mb-3 tracking-tight group-hover:text-primary transition-colors">
                                     {t(feature.titleKey)}
                                 </h3>
-                                <p className="text-base text-muted-foreground leading-relaxed font-light">
+                                <p className="text-muted-foreground leading-relaxed font-light">
                                     {t(feature.descKey)}
                                 </p>
                             </Card>

@@ -30,7 +30,7 @@ export function HeroSection() {
                 {authorInfo.title}
               </Badge>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-sans leading-[1.1] tracking-tight mb-8">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold leading-[1.1] tracking-tighter mb-8">
                 <span className="text-foreground block">{authorInfo.name.split(' ')[0]}</span>
                 <span className="text-primary italic">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
               </h1>
@@ -64,7 +64,6 @@ export function HeroSection() {
                 alt={authorInfo.name}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
             </div>
 
             {/* Decortive accent */}

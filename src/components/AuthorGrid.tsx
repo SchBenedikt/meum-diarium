@@ -38,8 +38,8 @@ export function AuthorGrid() {
           </p>
         </motion.div>
 
-        {/* Standard Premium Grid */}
-        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+        {/* Standard Premium Grid - 3 Columns for larger but balanced cards */}
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {Object.values(authors).map((author, index) => {
             const translatedInfo = getTranslatedAuthorInfo(author.id, t);
             const isCaesar = author.id === 'caesar';
@@ -60,7 +60,9 @@ export function AuthorGrid() {
                 >
                   <Card
                     className={cn(
-                      'h-full overflow-hidden border border-border/40 transition-all duration-500 bg-card/50 backdrop-blur-sm shadow-none rounded-[2rem] premium-glow'
+                      'h-full overflow-hidden border border-border/40 transition-all duration-700 bg-card/50 backdrop-blur-sm shadow-none rounded-[2rem] premium-glow',
+                      'group-hover:border-primary/30 group-hover:bg-card/80 group-hover:shadow-[0_0_40px_-15px_rgba(var(--primary-rgb),0.2)]',
+                      'relative after:absolute after:inset-0 after:rounded-[2rem] after:transition-opacity after:duration-700 after:opacity-0 group-hover:after:opacity-100 after:pointer-events-none after:shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]'
                     )}
                   >
                     {/* Image Section */}
@@ -68,7 +70,7 @@ export function AuthorGrid() {
                       <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-1000"
+                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
                       />
 
                       {/* Premium Accent Corner */}

@@ -21,11 +21,10 @@ export function AuthorAboutHero({
     return (
         <section className="relative min-h-screen flex items-center pt-32 overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
                 <img
                     src={authorInfo.heroImage}
                     alt={authorInfo.name}
-                    className="w-full h-full object-cover scale-105 blur-[2px]"
+                    className="w-full h-full object-cover scale-105"
                 />
             </div>
 
@@ -38,8 +37,11 @@ export function AuthorAboutHero({
                     <span className="inline-block px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-4">
                         {authorInfo.years}
                     </span>
-                    <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold mb-3 tracking-tighter text-foreground line-clamp-2">
-                        {authorPage?.translations?.[langKey]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold leading-[1.1] tracking-tighter mb-4 text-foreground">
+                        {authorInfo.name.split(' ')[0]}{' '}
+                        <span className="text-primary italic">
+                            {authorInfo.name.split(' ').slice(1).join(' ')}
+                        </span>
                     </h1>
                     <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-display italic mb-4">
                         {authorPage?.translations?.[langKey]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
