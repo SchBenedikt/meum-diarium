@@ -43,17 +43,17 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border mt-20 bg-secondary/20 backdrop-blur-sm">
+    <footer className="border-t border-border mt-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
 
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center group-hover:rotate-6 transition-transform duration-300 shadow-lg shadow-primary/20">
+              <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-none">
                 <Scroll className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-display text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+              <span className="font-display text-2xl font-bold tracking-tight text-foreground">
                 {appName}
               </span>
             </Link>
@@ -71,7 +71,7 @@ export function Footer() {
                 <motion.a
                   whileHover={{ y: -3 }}
                   href="https://github.com/SchBenedikt/meum-diarium"
-                  className="h-10 w-10 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all shadow-sm"
+                  className="h-10 w-10 rounded-xl bg-secondary/50 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all shadow-none"
                   aria-label="GitHub"
                   target="_blank"
                   rel="noreferrer"
@@ -81,7 +81,7 @@ export function Footer() {
                 <motion.a
                   whileHover={{ y: -3 }}
                   href="https://twitter.com"
-                  className="h-10 w-10 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all shadow-sm"
+                  className="h-10 w-10 rounded-xl bg-secondary/50 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all shadow-none"
                   aria-label="Twitter"
                   target="_blank"
                   rel="noreferrer"

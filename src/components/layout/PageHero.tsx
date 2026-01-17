@@ -17,6 +17,8 @@ export type PageHeroProps = {
   tall?: boolean;
   bgScale?: number;
   parallaxY?: any;
+  className?: string;
+  size?: "default" | "compact";
 };
 
 export function PageHero({
@@ -33,9 +35,21 @@ export function PageHero({
   tall = false,
   bgScale = 1.1,
   parallaxY,
+  className,
+  size = "default",
 }: PageHeroProps) {
+  const isCompact = size === "compact";
+
   return (
-    <section className={cn("relative overflow-hidden pt-24 sm:pt-32 pb-14 sm:pb-20", tall && !noBackground ? "min-h-[60vh] sm:min-h-[70vh]" : "", noBackground ? "bg-transparent" : "bg-background")}>{/* Hero wrapper matches Landing page spacing */}
+    <section
+      className={cn(
+        "relative overflow-hidden",
+        isCompact ? "pt-16 sm:pt-20 pb-10 sm:pb-14" : "pt-24 sm:pt-32 pb-14 sm:pb-20",
+        tall && !noBackground ? "min-h-[60vh] sm:min-h-[70vh]" : "",
+        noBackground ? "bg-transparent" : "bg-background",
+        className,
+      )}
+    >{/* Hero wrapper matches Landing page spacing */}
       {!noBackground && backgroundImage && (
         <motion.div className="absolute inset-0" style={parallaxY ? { y: parallaxY } : {}}>
           <img
@@ -74,13 +88,23 @@ export function PageHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
             className={cn(
-              "font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tighter font-bold",
+              "font-display leading-[0.95] tracking-tighter font-bold",
+              isCompact
+                ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                : "text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
               align === "center" ? "mx-auto" : ""
             )}
           >
             {title}{" "}
             {highlight && (
-              <span className="text-primary italic block sm:inline text-5xl sm:text-6xl md:text-7xl">
+              <span
+                className={cn(
+                  "text-primary italic block sm:inline",
+                  isCompact
+                    ? "text-4xl sm:text-5xl md:text-6xl"
+                    : "text-5xl sm:text-6xl md:text-7xl"
+                )}
+              >
                 {highlight}
               </span>
             )}
@@ -92,7 +116,8 @@ export function PageHero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className={cn(
-                "text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed mt-6 font-light",
+                "text-muted-foreground max-w-3xl leading-relaxed mt-6 font-light",
+                isCompact ? "text-base sm:text-lg md:text-xl" : "text-lg sm:text-xl md:text-2xl",
                 align === "center" ? "mx-auto" : ""
               )}
             >

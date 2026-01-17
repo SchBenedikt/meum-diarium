@@ -18,7 +18,7 @@ export function HeroSection() {
     target: heroRef,
     offset: ['start start', 'end start']
   });
-  
+
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
@@ -27,13 +27,13 @@ export function HeroSection() {
 
 
   return (
-    <section ref={heroRef} className="relative flex items-center overflow-hidden bg-background" style={{ minHeight: 'calc(70vh - 4rem)' }}>
+    <section ref={heroRef} className="relative flex items-center overflow-hidden bg-background pt-12 sm:pt-20" style={{ minHeight: '60vh' }}>
       {/* Dynamic Background */}
       <ModernBackground />
 
 
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/50 z-[1]" />
 
 
       <div className="container mx-auto max-w-7xl relative pt-16 sm:pt-20 z-10 px-4 sm:px-6">
@@ -59,10 +59,10 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
-              className="text-4xl sm:text-5xl lg:text-7xl font-display leading-[1.05] font-bold tracking-tighter"
+              className="text-5xl sm:text-6xl lg:text-8xl font-display leading-[1] font-bold tracking-tight"
             >
-              <span className="text-foreground">{authorInfo.name.split(' ')[0]}</span>
-              <span className="text-primary block">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
+              <span className="text-foreground italic">{authorInfo.name.split(' ')[0]}</span>
+              <span className="text-primary block mt-2">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
             </motion.h1>
 
 
@@ -82,13 +82,13 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               transition={defaultTransition}
-              className="flex flex-wrap items-center gap-4 pt-4"
+              className="flex flex-wrap items-center gap-4 pt-6"
             >
               <Link to={`/${authorInfo.id}/about`}>
-                <Button size="lg" className="gap-2 group">
-                  <BookOpen className="w-4 h-4" />
-                  Biografie entdecken 
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Button size="lg" className="rounded-full px-8 h-12 bg-primary hover:bg-primary/90 transition-all shadow-none group">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Biografie entdecken
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
 

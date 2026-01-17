@@ -43,14 +43,14 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
 
   const year =
     post.historicalDate?.match(/\d{4}/)?.[0] ??
-    new Date(post.createdAt || Date.now()).getFullYear().toString();
+    new Date(post.date || Date.now()).getFullYear().toString();
 
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
         to={`/${post.author}/${post.slug}${preferredPerspective ? `?p=${preferredPerspective}` : ''}`}
         className={cn(
-          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg active:border-primary/50 touch-manipulation md:flex-row',
+          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 hover:border-primary/20 hover:bg-muted/10 touch-manipulation md:flex-row',
           className
         )}
       >
@@ -104,7 +104,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
                   <button
                     key={i}
                     onClick={(e) => handleTagClick(e, tag)}
-                    className="relative whitespace-nowrap px-3 py-1.5 min-h-[30px] rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] sm:text-xs font-medium overflow-hidden transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 active:border-primary/50 flex-shrink-0 touch-manipulation"
+                    className="relative whitespace-nowrap px-2.5 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] sm:text-xs font-semibold transition-all hover:bg-primary/10 hover:border-primary/20 flex-shrink-0 touch-manipulation"
                     aria-label={`Filter nach ${tag}`}
                   >
                     {tag}
