@@ -118,52 +118,35 @@ export function BlogList() {
       <div className="">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-4 mb-6">
-            <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold">Einträge</h2>
-              <p className="text-muted-foreground text-sm mt-1">{filteredPosts.length} Einträge von {authorInfo.name}</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight">Einträge</h2>
+              <p className="text-muted-foreground text-sm mt-1">{filteredPosts.length} Einträge</p>
             </div>
+            <BookOpen className="h-6 w-6 text-primary/40 shrink-0" />
           </div>
 
           {/* Content Filter Buttons */}
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setContentFilter('all')}
-              className={cn(
-                'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
-                contentFilter === 'all'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
-              )}
-            >
-              <BookMarked className="h-4 w-4" />
-              Alle <span className="hidden sm:inline">({counts.all})</span>
-            </button>
-            <button
-              onClick={() => setContentFilter('diary')}
-              className={cn(
-                'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
-                contentFilter === 'diary'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
-              )}
-            >
-              <BookOpen className="h-4 w-4" />
-              📔 Tagebuch <span className="hidden sm:inline">({counts.diary})</span>
-            </button>
-            <button
-              onClick={() => setContentFilter('scientific')}
-              className={cn(
-                'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200',
-                contentFilter === 'scientific'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
-              )}
-            >
-              <GraduationCap className="h-4 w-4" />
-              📚 Wissenschaftlich <span className="hidden sm:inline">({counts.scientific})</span>
-            </button>
+            {[
+              { id: 'all', icon: BookMarked, label: 'Alle', count: counts.all },
+              { id: 'diary', icon: BookOpen, label: 'Tagebuch', count: counts.diary },
+              { id: 'scientific', icon: GraduationCap, label: 'Wissenschaftlich', count: counts.scientific }
+            ].map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setContentFilter(filter.id as ContentFilter)}
+                className={cn(
+                  'inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200',
+                  contentFilter === filter.id
+                    ? 'bg-primary text-primary-foreground shadow-none'
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
+                )}
+              >
+                <filter.icon className="h-3.5 w-3.5" />
+                {filter.label} <span className="opacity-60 font-medium">({filter.count})</span>
+              </button>
+            ))}
           </div>
         </div>
 

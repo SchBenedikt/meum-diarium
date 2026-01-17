@@ -14,9 +14,9 @@ export function AuthorGrid() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 sm:py-32 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20" />
+    <section className="py-24 sm:py-32 bg-background relative overflow-hidden">
+      {/* Subtle decoration */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.01)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20 dark:bg-[linear-gradient(rgba(255,255,255,.01)_1px,transparent_1px)]" />
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         {/* Header */}
@@ -27,40 +27,19 @@ export function AuthorGrid() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">
-              {t('voicesOfAntiquity')}
-            </span>
-          </div>
+          <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-4">{t('voicesOfAntiquity')}</p>
 
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
             {t('chooseAnAuthor')}
           </h2>
 
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('authorSelectionDesc')}
           </p>
-
-          {/* Feature Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
-            <Badge variant="secondary" className="px-3 py-1.5">
-              <Brain className="w-3 h-3 mr-1.5" />
-              {t('landing.authorGrid.aiDialogs')}
-            </Badge>
-            <Badge variant="secondary" className="px-3 py-1.5">
-              <Target className="w-3 h-3 mr-1.5" />
-              {t('landing.authorGrid.historicallyAccurate')}
-            </Badge>
-            <Badge variant="secondary" className="px-3 py-1.5">
-              <Award className="w-3 h-3 mr-1.5" />
-              {t('landing.authorGrid.scientificallyProven')}
-            </Badge>
-          </div>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+        {/* Standard Premium Grid */}
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {Object.values(authors).map((author, index) => {
             const translatedInfo = getTranslatedAuthorInfo(author.id, t);
             const isCaesar = author.id === 'caesar';
@@ -71,11 +50,8 @@ export function AuthorGrid() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={cn(
-                  // Caesar: große Karte über 2x2 Spalten im Bento-Grid
-                  isCaesar && 'sm:col-span-2 lg:col-span-2 lg:row-span-2'
-                )}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
               >
                 <Link
                   to={`/${author.id}`}
@@ -84,99 +60,56 @@ export function AuthorGrid() {
                 >
                   <Card
                     className={cn(
-                      'h-full overflow-hidden border transition-all duration-500 relative',
-                      'bg-gradient-to-br from-background/95 via-background/90 to-background',
-                      'hover:shadow-2xl hover:-translate-y-1.5',
-                      'rounded-[1.5rem]',
-                      isCaesar
-                        ? 'border-primary/40 hover:border-primary/70 hover:shadow-primary/25'
-                        : 'border-border/40 hover:border-primary/40 hover:shadow-primary/15'
+                      'h-full overflow-hidden border border-border/40 transition-all duration-500 bg-card shadow-none rounded-[2rem]',
+                      'hover:border-primary/20 hover:bg-muted/10'
                     )}
                   >
-                    {/* Image */}
-                    <div
-                      className={cn(
-                        'relative overflow-hidden',
-                        isCaesar ? 'h-80 sm:h-96 lg:h-[420px]' : 'h-64 sm:h-72'
-                      )}
-                    >
+                    {/* Image Section */}
+                    <div className="relative aspect-[4/5] overflow-hidden">
                       <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
 
-                      {/* Empfohlen-Badge (ohne Verlauf) */}
+                      {/* Premium Accent Corner */}
                       {isCaesar && (
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-primary/90 text-primary-foreground border-0 shadow-lg rounded-full px-3 py-1.5">
-                            <Star className="w-3 h-3 mr-1 fill-current" />
+                        <div className="absolute top-6 left-6">
+                          <Badge className="bg-primary text-primary-foreground border-0 shadow-none rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest">
                             {t('landing.authorGrid.recommended')}
                           </Badge>
                         </div>
                       )}
 
-                      {/* Floating Arrow */}
-                      <div className="absolute top-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-background/80 backdrop-blur-sm border border-border/40 p-2.5 rounded-xl shadow-lg">
-                          <ArrowRight className="w-5 h-5 text-foreground" />
+                      {/* Floating Arrow (Subtle) */}
+                      <div className="absolute bottom-6 right-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                        <div className="bg-background/90 backdrop-blur-md p-3 rounded-full border border-border/20">
+                          <ArrowRight className="w-5 h-5 text-primary" />
                         </div>
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <CardContent
-                      className={cn(
-                        'relative flex flex-col h-full',
-                        isCaesar ? 'p-7 space-y-4' : 'p-6 space-y-3'
-                      )}
-                    >
-                      <div>
-                        <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase mb-2 block">
+                    {/* Content Section */}
+                    <CardContent className="p-8 space-y-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase block">
                           {translatedInfo.title}
                         </span>
-                        <h3
-                          className={cn(
-                            'font-display font-bold transition-colors',
-                            'group-hover:text-primary',
-                            isCaesar ? 'text-2xl sm:text-3xl mb-2' : 'text-lg sm:text-xl'
-                          )}
-                        >
+                        <h3 className="font-display text-2xl font-bold text-foreground transition-colors group-hover:text-primary">
                           {translatedInfo.name}
                         </h3>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-muted-foreground font-medium">
                           {translatedInfo.years}
                         </p>
                       </div>
 
-                      <p
-                        className={cn(
-                          'text-muted-foreground leading-relaxed',
-                          isCaesar ? 'text-sm sm:text-base line-clamp-4' : 'text-sm line-clamp-3'
-                        )}
-                      >
+                      <p className="text-sm text-muted-foreground/80 leading-relaxed line-clamp-3">
                         {translatedInfo.description}
                       </p>
 
-                      {/* Highlights nur für Caesar, aber kompakt */}
-                      {isCaesar && author.highlights && (
-                        <div className="space-y-1 pt-2">
-                          {author.highlights.slice(0, 2).map((highlight, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center gap-2 text-xs text-muted-foreground"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                              <span>{highlight.title}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* CTA */}
-                      <div className="mt-4 flex items-center text-sm font-semibold text-primary">
+                      <div className="pt-2 flex items-center text-xs font-bold text-primary uppercase tracking-widest group-hover:gap-2 transition-all">
                         <span>{t('landing.authorGrid.exploreProfile')}</span>
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="ml-1 w-3.5 h-3.5" />
                       </div>
                     </CardContent>
                   </Card>

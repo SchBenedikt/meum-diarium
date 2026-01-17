@@ -18,7 +18,7 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
   const { t } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [isContentExpanded, setIsContentExpanded] = useState(true);
-  
+
   const flatToc = useMemo(() => generateTableOfContents(content), [content]);
   const hierarchy = useMemo(() => {
     const buildHierarchy = (items: TocItem[]): TocItemWithExpanded[] => {
@@ -91,18 +91,15 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
 
           <button
             onClick={() => handleLinkClick(item.id)}
-            className={`flex-1 text-left px-3 py-2.5 rounded-lg transition-all duration-200 ${
-              isTopLevel 
-                ? 'font-semibold text-[15px] hover:bg-primary/10 hover:pl-4 hover:shadow-sm' 
-                : 'font-normal text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/60 hover:pl-4'
-            }`}
+            className={`flex-1 text-left px-3 py-2 rounded-lg transition-all duration-200 ${isTopLevel
+                ? 'font-semibold text-sm hover:bg-muted/50'
+                : 'font-normal text-sm text-muted-foreground hover:text-foreground hover:bg-muted/30'
+              }`}
           >
-            <span className={`transition-colors duration-200 ${
-              isTopLevel 
-                ? 'text-foreground group-hover/item:text-primary' 
+            <span className={`transition-colors duration-200 ${isTopLevel
+                ? 'text-foreground group-hover/item:text-primary'
                 : 'group-hover/item:text-primary'
-            }`}>
-              {isTopLevel && <span className="text-primary/40 mr-2 font-normal">▸</span>}
+              }`}>
               {item.text}
             </span>
           </button>
@@ -117,7 +114,7 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
               transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               className="overflow-hidden"
             >
-              <div className="pl-7 mt-1 mb-2 space-y-0.5 border-l-2 border-primary/20 ml-2">
+              <div className="pl-4 mt-0.5 mb-1 space-y-0.5 border-l border-border/60 ml-3.5">
                 {item.children?.map(child => (
                   <TocItemComponent key={child.id} item={child} depth={depth + 1} />
                 ))}
@@ -134,10 +131,10 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="mb-8 rounded-[1.25rem] bg-card border border-border/50 overflow-hidden"
+      className="mb-8 rounded-2xl bg-card border border-border/40 overflow-hidden shadow-none"
     >
       {/* Header */}
-      <div className="px-5 py-3.5 bg-gradient-to-r from-secondary/40 to-secondary/20 border-b border-border/30">
+      <div className="px-5 py-3 border-b border-border/30 bg-card">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-primary/15 rounded-lg">

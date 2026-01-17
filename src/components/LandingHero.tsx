@@ -1,700 +1,230 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-  Scroll,
-  Sparkles,
-  MessageCircle,
-  BookOpen,
-  Users,
-  Zap,
-  Clock,
-  ArrowRight,
-  Calendar,
-  Library,
-  Map,
-  BookMarked,
-  Quote,
-  Languages,
-  Star,
-  Brain,
-  Globe2,
-  TrendingUp,
-  Award,
-  Shield,
-  Target,
-  Search,
-  Layers,
-  FileText,
-  Compass,
-  History,
-  Lightbulb,
-  CheckCircle2
-} from 'lucide-react';
+import type { ElementType } from 'react';
+import { Sparkles, MessageCircle, BookOpen, Clock, Map, Library, ArrowRight, Users, ShieldCheck, Compass, Bookmark } from 'lucide-react';
 import { AuthorGrid } from './AuthorGrid';
-import { fadeUp, defaultTransition } from '@/lib/motion';
 import { ModernBackground } from './ui/ModernBackground';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Separator } from './ui/separator';
 import { Link } from 'react-router-dom';
-import { useState, useRef } from 'react';
-import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+
+type BentoCard = {
+  title: string;
+  description: string;
+  icon: ElementType;
+  to: string;
+  cta?: string;
+  tone?: 'primary' | 'neutral';
+};
+
+const bentoCards: BentoCard[] = [
+  {
+    title: 'Charakter-Dialoge',
+    description: 'Direkte Interaktion mit historischen Persönlichkeiten auf Basis authentischer Quellen.',
+    icon: MessageCircle,
+    to: '/caesar/chat',
+    cta: 'Dialog starten',
+    tone: 'primary'
+  },
+  {
+    title: 'Kompaktes Lexikon',
+    description: 'Begriffe, Definitionen und historische Zusammenhänge – präzise auf den Punkt gebracht.',
+    icon: BookOpen,
+    to: '/lexicon',
+    cta: 'Nachschlagen'
+  },
+  {
+    title: 'Virtuelle Karten',
+    description: 'Schauplätze und Feldzüge visualisiert für ein besseres räumliches Verständnis.',
+    icon: Map,
+    to: '/simulation',
+    cta: 'Karte öffnen'
+  },
+  {
+    title: 'Analysepunkte',
+    description: 'Tägliche Einblicke und tiefergehende Recherchen zu bedeutenden Wendepunkten.',
+    icon: Bookmark,
+    to: '/blog',
+    cta: 'Beiträge lesen'
+  },
+  {
+    title: 'Perspektiven',
+    description: 'Entdecke die Geschichte durch verschiedene Stimmen und Deutungen.',
+    icon: Users,
+    to: '/#autoren',
+    cta: 'Autoren wählen'
+  }
+];
 
 export default function LandingHero() {
   const { t } = useLanguage();
-  const [activeDemo, setActiveDemo] = useState<'chat' | 'timeline' | 'blog'>('chat');
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start']
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const heroImages = [
-    'https://videos.openai.com/az/vg-assets/task_01kd5fgmcde64rgx9gacgjmcqw%2F1766489373_img_1.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=423MZImiyMddDyXxFQaQQqGYaNObqorS5Zepowjokhs%3D&ac=oaivgprodscus2',
-    'https://videos.openai.com/az/vg-assets/task_01kd5ff56ne0ksa9mb0wd9y51f%2F1766489329_img_0.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=kUdE%2B7FG66J5HtrkoBAKpL1e4auoo%2BJ%2BnoGBk2wjTA4%3D&ac=oaivgprodscus2',
-    'https://videos.openai.com/az/vg-assets/task_01kd5f9pg2fsdrhrr9g5vfzh6z%2F1766489150_img_1.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=HczD8PiZwGefHAkqD2GpOBFUPjr/B0Yt9JCt/PUsuMI%3D&ac=oaivgprodscus2',
-    'https://videos.openai.com/az/vg-assets/task_01kd5f69bcfen9xwyc7begkwh9%2F1766489035_img_1.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=ewQGmZHoOWJWczw/yPfF4B34A1bheOfzVAEjLMZOJdc%3D&ac=oaivgprodscus2',
-    'https://videos.openai.com/az/vg-assets/task_01kd5f5170frwvsp2h0f2w9gmv%2F1766488996_img_1.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=edXCjLRGqNJw1cwSX0P2hjt0VX0%2BFZkZDC1yLmfp5nY%3D&ac=oaivgprodscus2',
-    'https://videos.openai.com/az/vg-assets/task_01kd5f2kygfa089r9ssrwvryma%2F1766488909_img_0.webp?se=2026-01-07T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-01T01%3A12%3A33Z&ske=2026-01-08T01%3A17%3A33Z&sks=b&skv=2024-08-04&sig=ako5B5z3tuDJ71o19ujuSaMGi6yyg1NYuGDx0yqR69A%3D&ac=oaivgprodscus2'
-  ];
 
   return (
-    <div className="min-h-screen">
-      {/* Landing Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative overflow-hidden bg-background pt-32 pb-32"
-      >
-        {/* Animated Background */}
-        <div className="absolute inset-0 -z-20">
-          {/* Gradient orbs with parallax */}
-          <motion.div
-            style={{ y, opacity }}
-            className="absolute top-0 -left-40 w-80 h-80 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
-          />
-          <motion.div
-            style={{
-              y: useTransform(scrollYProgress, [0, 1], ['0%', '40%']),
-              opacity
-            }}
-            className="absolute top-40 -right-40 w-80 h-80 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
-          />
-          <motion.div
-            style={{
-              y: useTransform(scrollYProgress, [0, 1], ['0%', '20%']),
-              opacity
-            }}
-            className="absolute -bottom-8 left-20 w-80 h-80 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"
-          />
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 border-b border-border/40 overflow-hidden">
+        <ModernBackground />
+        <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6 text-center sm:text-left">
+          <div className="max-w-3xl">
+            <Badge variant="outline" className="mb-6 py-1 px-3 border-primary/20 bg-primary/5 text-primary text-xs uppercase tracking-widest font-semibold">
+              <Sparkles className="mr-2 h-3 w-3" />
+              {t('landing.hero.aiPowered') || 'Historisches KI-Studio'}
+            </Badge>
 
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:50px_50px] opacity-30" />
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-foreground leading-[1.1]">
+              Meum <span className="text-primary italic">Diarium</span>
+            </h1>
 
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+            <p className="text-xl sm:text-2xl text-muted-foreground font-display max-w-2xl mb-8 leading-relaxed">
+              {t('landing.hero.voicesOfAntiquity') || 'Stimmen der Antike – präzise, nachprüfbar, direkt zugänglich.'}
+            </p>
+
+            <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
+              <Link to="/caesar">
+                <Button size="lg" className="rounded-full px-8 h-12 bg-primary hover:bg-primary/90 transition-all shadow-none">
+                  {t('landing.hero.discoverNow') || 'Jetzt starten'}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/lexicon">
+                <Button size="lg" variant="ghost" className="rounded-full px-8 h-12 hover:bg-secondary transition-all">
+                  <Library className="mr-2 h-4 w-4" />
+                  {t('landing.hero.lexicon') || 'Lexikon öffnen'}
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6">
-          {/* Hero Content */}
-          <div className="max-w-4xl mx-auto text-center space-y-8 mb-24">
-            {/* Badge with AI-Powered */}
-            <motion.div
-              variants={fadeUp()}
-              initial="hidden"
-              animate="visible"
-              transition={defaultTransition}
-              className="flex justify-center gap-3 flex-wrap"
-            >
-              <div className="bg-muted/40 backdrop-blur-sm flex items-center gap-2.5 rounded-full border border-border/50 px-4 py-2.5 w-fit hover:border-primary/30 transition-colors">
-                <Badge className="bg-primary/20 text-primary hover:bg-primary/30">
-                  <Sparkles className="w-3 h-3 mr-1.5" />
-                  {t('landing.hero.aiPowered')}
-                </Badge>
-                <Separator orientation="vertical" className="h-4" />
-                <span className="text-sm text-muted-foreground">
-                  {t('landing.hero.interactiveExperience')}
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Main Heading with Underline */}
-            <motion.div
-              variants={fadeUp(0.1)}
-              initial="hidden"
-              animate="visible"
-              transition={defaultTransition}
-              className="space-y-6"
-            >
-              <div className="relative inline-block">
-                <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold tracking-tight leading-[1.1]">
-                  Meum Diarium
-                </h1>
-                {/* Underline SVG */}
-                <svg
-                  width="100%"
-                  height="20"
-                  viewBox="0 0 400 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute inset-x-0 -bottom-6 w-full"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M2 10C50 5 100 2 200 2C300 2 350 5 398 10"
-                    stroke="url(#paint0_linear)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear"
-                      x1="0"
-                      y1="0"
-                      x2="400"
-                      y2="0"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop
-                        stopColor="var(--primary)"
-                        stopOpacity="1"
-                      />
-                      <stop
-                        offset="1"
-                        stopColor="var(--primary)"
-                        stopOpacity="0.2"
-                      />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              {/* Subtitle - Stimmen der Antike */}
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-muted-foreground pt-8">
-                {t('landing.hero.voicesOfAntiquity')}
-              </p>
-            </motion.div>
-
-            {/* Subheading */}
-            <motion.p
-              variants={fadeUp(0.2)}
-              initial="hidden"
-              animate="visible"
-              transition={defaultTransition}
-              className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-            >
-              {t('landing.hero.description')}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={fadeUp(0.3)}
-              initial="hidden"
-              animate="visible"
-              transition={defaultTransition}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-            >
-              <Link to="/caesar" className="w-full sm:w-auto">
-                <Button size="lg" className="gap-2 w-full sm:w-auto group">
-                  {t('landing.hero.discoverNow')}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link to="/lexicon" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="gap-2 w-full sm:w-auto"
-                >
-                  <Library className="w-4 h-4" />
-                  {t('landing.hero.lexicon')}
-                </Button>
-              </Link>
-            </motion.div>
+      {/* Bento Grid Section */}
+      <section className="py-20 sm:py-32 bg-background">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="mb-12">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-3">Struktur & Tiefe</p>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4 tracking-tight">Klarheit durch Design</h2>
+            <p className="max-w-2xl text-muted-foreground text-lg leading-relaxed">
+              Unsere Anwendung ist darauf ausgelegt, komplexe historische Daten in eine leicht verständliche, minimalistische Form zu bringen.
+            </p>
           </div>
 
-          {/* Hero Images Grid */}
-          <motion.div
-            variants={fadeUp(0.4)}
-            initial="hidden"
-            animate="visible"
-            transition={defaultTransition}
-            className="mb-24"
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-24">
-              {/* Image 1 - Large wide */}
-              <div className="col-span-2 md:col-span-2 lg:col-span-3 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[0]}
-                  alt="Ancient history 1"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Image 2 - Medium */}
-              <div className="col-span-1 md:col-span-2 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[1]}
-                  alt="Ancient history 2"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Image 3 - Small */}
-              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[2]}
-                  alt="Ancient history 3"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Image 4 - Medium */}
-              <div className="col-span-1 md:col-span-1 lg:col-span-2 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[3]}
-                  alt="Ancient history 4"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Image 5 */}
-              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[4]}
-                  alt="Ancient history 5"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Image 6 */}
-              <div className="col-span-1 h-full overflow-hidden rounded-[1.25rem] border border-border/30 hover:border-primary/40 transition-colors group">
-                <img
-                  src={heroImages[5]}
-                  alt="Ancient history 6"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-      {/* Features Section 1 - Interactive Features */}
-      <section className="relative py-24 bg-background">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            variants={fadeUp()}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="text-center mb-16"
-          >
-            <Badge variant="secondary" className="mb-4">
-              <Star className="w-3 h-3 mr-1.5" />
-              {t('landing.features.badge')}
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              {t('landing.features.title')}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('landing.features.subtitle')}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-          >
-            {/* Large: Interactive Chat Demo */}
-            <motion.div
-              onHoverStart={() => setHoveredCard('chat')}
-              onHoverEnd={() => setHoveredCard(null)}
-              className="lg:col-span-2 lg:row-span-2 bg-gradient-to-br from-card to-card/50 border border-border rounded-[1.5rem] p-6 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden"
+          <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 auto-rows-[180px]">
+            {/* Featured Bento Card (Dialoge) - Large */}
+            <Link
+              to={bentoCards[0].to}
+              className="md:col-span-6 lg:col-span-8 lg:row-span-2 group relative overflow-hidden rounded-3xl border border-border/40 bg-card p-8 transition-all hover:border-primary/20 hover:bg-muted/30"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <MessageCircle className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-2xl font-bold">
-                          {t('landing.features.chat.title')}
-                        </h3>
-                        <Badge
-                          variant="secondary"
-                          className="mt-1 text-xs"
-                        >
-                          {t('landing.features.chat.liveDemo')}
-                        </Badge>
-                      </div>
-                    </div>
-                    <p className="text-muted-foreground">
-                      {t('landing.features.chat.description')}
-                    </p>
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-white shadow-none">
+                    <MessageCircle className="h-6 w-6" />
                   </div>
+                  <h3 className="text-2xl font-display font-bold mb-3">{bentoCards[0].title}</h3>
+                  <p className="max-w-md text-muted-foreground leading-relaxed text-lg">
+                    {bentoCards[0].description}
+                  </p>
                 </div>
-
-                <Separator className="my-6" />
-
-                {/* Enhanced Chat Demo */}
-                <div className="space-y-4">
-                  <motion.div
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="bg-secondary/50 rounded-[1.25rem] p-4 border border-border/50"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
-                      <p className="text-xs font-medium text-muted-foreground">
-                        {t('landing.features.chat.user')}
-                      </p>
-                    </div>
-                    <p className="text-sm">{t('landing.features.chat.userQuestion')}</p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ x: 20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="bg-primary/10 rounded-[1.25rem] p-4 border border-primary/20"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs text-white font-bold">
-                        C
-                      </div>
-                      <p className="text-xs font-medium text-primary">
-                        {t('landing.features.chat.caesarAuthor')}
-                      </p>
-                    </div>
-                    <p className="text-sm leading-relaxed">
-                      {t('landing.features.chat.caesarAnswer')}
-                    </p>
-                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/40">
-                      <BookOpen className="w-3 h-3 text-primary/60" />
-                      <span className="text-xs text-primary/60">
-                        {t('landing.features.chat.sourceHint')}
-                      </span>
-                    </div>
-                  </motion.div>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  >
-                    {t('landing.features.chat.startDemo')}
-                    <ArrowRight className="w-3 h-3" />
-                  </Button>
+                <div className="flex items-center gap-2 text-primary font-bold transition-all group-hover:gap-3">
+                  {bentoCards[0].cta} <ArrowRight className="h-4 w-4" />
                 </div>
               </div>
-            </motion.div>
+            </Link>
 
-            {/* Characters Stat */}
-            <motion.div
-              onHoverStart={() => setHoveredCard('characters')}
-              onHoverEnd={() => setHoveredCard(null)}
-              className="bg-gradient-to-br from-card to-card/50 border border-border rounded-[1.5rem] p-6 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden"
+            {/* Lexikon Card - Medium */}
+            <Link
+              to={bentoCards[1].to}
+              className="md:col-span-3 lg:col-span-4 lg:row-span-1 group relative overflow-hidden rounded-3xl border border-border/40 bg-card p-6 transition-all hover:border-primary/20 hover:bg-muted/30"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="p-3 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-4">
-                  <Users className="w-5 h-5 text-primary" />
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-display font-bold">{bentoCards[1].title}</h3>
                 </div>
-                <div className="text-5xl font-display font-bold mb-2 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                  4+
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  {t('landing.features.stats.characters')}
+                <p className="text-sm text-muted-foreground leading-snug">
+                  {bentoCards[1].description}
                 </p>
-                <div className="flex items-center gap-1 text-xs text-primary">
-                  <Star className="w-3 h-3" />
-                  <span>{t('landing.features.stats.documented')}</span>
+                <div className="flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transition-all">
+                  {bentoCards[1].cta} <ArrowRight className="h-4 w-4" />
                 </div>
               </div>
-            </motion.div>
+            </Link>
 
-            {/* Articles Stat */}
-            <motion.div
-              onHoverStart={() => setHoveredCard('articles')}
-              onHoverEnd={() => setHoveredCard(null)}
-              className="bg-gradient-to-br from-card to-card/50 border border-border rounded-[1.5rem] p-6 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden"
+            {/* Karten Card - Medium */}
+            <Link
+              to={bentoCards[2].to}
+              className="md:col-span-3 lg:col-span-4 lg:row-span-1 group relative overflow-hidden rounded-3xl border border-border/40 bg-card p-6 transition-all hover:border-primary/20 hover:bg-muted/30"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="p-3 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-4">
-                  <BookOpen className="w-5 h-5 text-primary" />
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary">
+                    <Map className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-display font-bold">{bentoCards[2].title}</h3>
                 </div>
-                <div className="text-5xl font-display font-bold mb-2 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                  50+
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  {t('landing.features.stats.articles')}
+                <p className="text-sm text-muted-foreground leading-snug">
+                  {bentoCards[2].description}
                 </p>
-                <div className="flex items-center gap-1 text-xs text-primary">
-                  <TrendingUp className="w-3 h-3" />
-                  <span>{t('landing.features.stats.newContent')}</span>
+                <div className="flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transition-all">
+                  {bentoCards[2].cta} <ArrowRight className="h-4 w-4" />
                 </div>
               </div>
-            </motion.div>
+            </Link>
 
-            {/* Timeline Feature - Larger */}
-            <motion.div
-              onHoverStart={() => setHoveredCard('timeline-big')}
-              onHoverEnd={() => setHoveredCard(null)}
-              className="lg:col-span-2 bg-gradient-to-br from-card to-card/50 border border-border rounded-[1.5rem] p-6 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden"
+            {/* Blog Card - Wide */}
+            <Link
+              to={bentoCards[3].to}
+              className="md:col-span-3 lg:col-span-7 lg:row-span-1 group relative overflow-hidden rounded-3xl border border-border/40 bg-card p-6 transition-all hover:border-primary/20 hover:bg-muted/30"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Calendar className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold">
-                        {t('landing.features.timeline.title')}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {t('landing.features.timeline.subtitle')}
-                      </p>
-                    </div>
-                  </div>
-                  <Link to="/timeline">
-                    <Button size="sm" variant="ghost" className="gap-1">
-                      <span className="text-xs">{t('landing.features.timeline.explore')}</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </Button>
-                  </Link>
+              <div className="flex h-full items-center gap-6">
+                <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/5 text-primary">
+                  <Bookmark className="h-7 w-7" />
                 </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-display font-bold mb-1">{bentoCards[3].title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                    {bentoCards[3].description}
+                  </p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all" />
+              </div>
+            </Link>
 
-                <div className="relative h-20 bg-gradient-to-r from-secondary/30 via-secondary/50 to-secondary/30 rounded-[1.25rem] border border-border/50 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center px-6">
-                    <div className="flex-1 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 relative">
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="absolute left-[20%] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50"
-                      />
-                      <div className="absolute left-[20%] top-full mt-2 -translate-x-1/2">
-                        <p className="text-[10px] font-medium whitespace-nowrap">
-                          100 {t('common.bc')}
-                        </p>
-                      </div>
-
-                      <div className="absolute left-[50%] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/60" />
-                      <div className="absolute left-[50%] top-full mt-2 -translate-x-1/2">
-                        <p className="text-[10px] text-muted-foreground whitespace-nowrap">
-                          58 {t('common.bc')}
-                        </p>
-                      </div>
-
-                      <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/40" />
-                      <div className="absolute left-[75%] top-full mt-2 -translate-x-1/2">
-                        <p className="text-[10px] text-muted-foreground whitespace-nowrap">
-                          44 {t('common.bc')}
-                        </p>
-                      </div>
-                    </div>
+            {/* Autoren Card - Square-ish */}
+            <Link
+              to={bentoCards[4].to}
+              className="md:col-span-3 lg:col-span-5 lg:row-span-1 group relative overflow-hidden rounded-3xl border border-border/40 bg-card p-6 transition-all hover:border-primary/20 hover:bg-muted/30"
+            >
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary">
+                    <Users className="h-5 w-5" />
                   </div>
+                  <h3 className="text-lg font-display font-bold">Autoren</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-snug">
+                  {bentoCards[4].description}
+                </p>
+                <div className="flex items-center gap-2 text-primary text-sm font-bold transition-all group-hover:gap-3">
+                  {bentoCards[4].cta} <ArrowRight className="h-3 w-3" />
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Features Section 2 - Knowledge Base */}
-      <section className="relative py-24 bg-background/50">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            variants={fadeUp()}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="text-center mb-16"
-          >
-            <Badge variant="secondary" className="mb-4">
-              <Brain className="w-3 h-3 mr-1.5" />
-              {t('landing.features.knowledge.badge')}
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              {t('landing.features.knowledge.title')}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('landing.features.knowledge.subtitle')}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          >
-            {/* Features */}
-            <div className="md:col-span-2 bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="p-2 rounded-[1.25rem] bg-primary/10">
-                  <Sparkles className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="font-display text-lg font-bold">
-                  {t('landing.features.knowledge.techTitle')}
-                </h3>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.sources')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.scientific')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.peerReviewed')}</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.aiTech')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.interactive')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{t('landing.features.knowledge.verifiable')}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Lexicon */}
-            <div className="bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors">
-              <div className="p-2 rounded-[1.25rem] bg-primary/10 w-fit mb-3">
-                <BookMarked className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-display text-base font-bold mb-2">{t('landing.features.lexicon.title')}</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {t('landing.features.lexicon.description')}
-              </p>
-              <Link to="/lexicon">
-                <Button variant="outline" size="sm" className="w-full">
-                  {t('landing.features.lexicon.search')}
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
+      {/* Authors Bottom Section */}
+      <section id="autoren" className="py-20 border-t border-border/40 bg-background/50">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 text-center">
+          <div className="max-w-2xl mx-auto mb-12">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-3">Historische Stimmen</p>
+            <h2 className="text-3xl font-display font-bold mb-4">Wähle deinen Begleiter</h2>
+            <p className="text-muted-foreground text-lg italic">"Historia magistra vitae est."</p>
+          </div>
+          <AuthorGrid />
         </div>
       </section>
-
-      {/* Features Section 3 - Content & Tools */}
-      <section className="relative py-24 bg-background">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            variants={fadeUp()}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="text-center mb-16"
-          >
-            <Badge variant="secondary" className="mb-4">
-              <Award className="w-3 h-3 mr-1.5" />
-              {t('landing.features.additional.badge')}
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-              {t('landing.features.additional.title')}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('landing.features.additional.subtitle')}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={defaultTransition}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-          >
-            {/* Languages */}
-            <div className="bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors group">
-              <div className="p-2 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-3">
-                <Languages className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-display text-base font-bold mb-2">
-                {t('landing.features.additional.multilingual')}
-              </h3>
-              <p className="text-sm text-muted-foreground">{t('landing.features.additional.languages')}</p>
-            </div>
-
-            {/* Timeline */}
-            <div className="bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors group">
-              <div className="p-2 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-3">
-                <Clock className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-display text-base font-bold mb-2">
-                {t('landing.features.additional.chronology')}
-              </h3>
-              <p className="text-sm text-muted-foreground">{t('landing.features.additional.detailedTimeline')}</p>
-            </div>
-
-            {/* Quotes */}
-            <div className="bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors group">
-              <div className="p-2 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-3">
-                <Quote className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-display text-base font-bold mb-2">
-                {t('landing.features.additional.quotes')}
-              </h3>
-              <p className="text-sm text-muted-foreground">{t('landing.features.additional.authenticSources')}</p>
-            </div>
-
-            {/* Places */}
-            <div className="bg-card border border-border rounded-[1.25rem] p-6 hover:border-primary/40 transition-colors group">
-              <div className="p-2 rounded-[1.25rem] bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit mb-3">
-                <Map className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-display text-base font-bold mb-2">
-                {t('landing.features.additional.places')}
-              </h3>
-              <p className="text-sm text-muted-foreground">{t('landing.features.additional.geoContext')}</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Author Grid Section */}
-      <AuthorGrid />
     </div>
   );
 }

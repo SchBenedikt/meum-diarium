@@ -25,94 +25,89 @@
 
   :root,
   .theme-default {
-    /* M3 Expressive Light Theme */
-    --background: 40 20% 99%;
-    --foreground: 30 10% 12%;
+    /* Refined Minimalist Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
 
     /* Surface Colors (Tonal) */
-    --card: 40 20% 99%;
-    --card-foreground: 30 10% 12%;
-    --popover: 40 20% 99%;
-    --popover-foreground: 30 10% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
 
-    /* Surface Containers for elevation approximation without shadow */
+    /* Surface Containers - cleaner transitions */
     --surface-container-lowest: 0 0% 100%;
-    --surface-container-low: 40 20% 96%;
-    --surface-container: 40 20% 94%;
-    --surface-container-high: 40 20% 92%;
-    --surface-container-highest: 40 20% 90%;
+    --surface-container-low: 240 4.8% 95.9%;
+    --surface-container: 240 4.8% 95.9%;
+    --surface-container-high: 240 4.8% 95.9%;
+    --surface-container-highest: 240 4.8% 95.9%;
 
-    --primary: 345 60% 35%;
-    /* Wine Red */
+    --primary: 345 60% 35%; /* Crimson/Wine Red */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 345 15% 92%;
-    --secondary-foreground: 345 30% 25%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 40 10% 94%;
-    --muted-foreground: 30 10% 40%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 345 60% 35%;
-    /* Wine Red - same as primary */
-    --accent-foreground: 0 0% 100%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
 
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 40 10% 88%;
-    --input: 40 10% 88%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
     --ring: 345 60% 35%;
 
-    /* Refined border radius */
-    --radius: 1.25rem;
-    /* 20px */
+    --radius: 0.75rem;
 
-    /* Author Colors - More Vibrant */
-    --author-caesar: 30 100% 55%;
-    --author-cicero: 210 90% 60%;
-    --author-augustus: 280 80% 60%;
-    --author-seneca: 150 85% 40%;
+    /* Toned down Author Colors for consistency */
+    --author-caesar: 345 60% 35%; /* Use primary as base */
+    --author-cicero: 210 20% 40%;
+    --author-augustus: 280 15% 40%;
+    --author-seneca: 150 15% 35%;
   }
 
   .dark {
-    /* M3 Expressive Dark Theme */
-    --background: 260 10% 6%;
-    --foreground: 40 10% 95%;
+    /* Refined Minimalist Dark Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 260 10% 8%;
-    --card-foreground: 40 10% 95%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 260 10% 8%;
-    --popover-foreground: 40 10% 95%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --surface-container-lowest: 260 10% 4%;
-    --surface-container-low: 260 10% 8%;
-    --surface-container: 260 10% 10%;
-    --surface-container-high: 260 10% 14%;
-    --surface-container-highest: 260 10% 18%;
+    --surface-container-lowest: 240 10% 3.9%;
+    --surface-container-low: 240 3.7% 15.9%;
+    --surface-container: 240 3.7% 15.9%;
+    --surface-container-high: 240 3.7% 15.9%;
+    --surface-container-highest: 240 3.7% 15.9%;
 
     --primary: 345 55% 55%;
-    /* Wine Red - lighter for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 345 20% 18%;
-    --secondary-foreground: 345 20% 85%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 260 10% 16%;
-    --muted-foreground: 260 10% 70%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 345 55% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
-    --border: 260 10% 16%;
-    --input: 260 10% 16%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
     --ring: 345 55% 55%;
 
-    /* Dark theme author colors */
-    --author-caesar: 30 100% 65%;
-    --author-cicero: 210 100% 70%;
-    --author-augustus: 280 90% 70%;
-    --author-seneca: 150 90% 50%;
+    /* Dark theme author colors - more muted */
+    --author-caesar: 345 55% 55%;
+    --author-cicero: 210 20% 55%;
+    --author-augustus: 280 15% 55%;
+    --author-seneca: 150 15% 45%;
   }
 
   /* Author Theme Overrides */
@@ -230,11 +225,11 @@
 
   /* Shared glassmorphism panels to mirror landing style */
   .glass-panel {
-    @apply bg-card backdrop-blur-sm border border-border/50 rounded-[1.25rem] transition-all duration-500;
+    @apply bg-background/60 backdrop-blur-md border border-border/50 rounded-2xl transition-all duration-500;
   }
 
   .glass-card {
-    @apply bg-card backdrop-blur-sm border border-border/50 rounded-[1.25rem] transition-colors duration-300 p-6 sm:p-8 hover:border-primary/30;
+    @apply bg-background/60 backdrop-blur-md border border-border/50 rounded-2xl transition-colors duration-300 p-6 sm:p-8 hover:border-primary/20;
   }
 
   .section-shell {
@@ -255,31 +250,27 @@
 
   /* Unified Card System */
   .card-modern {
-    @apply rounded-[1.25rem] bg-card border border-border/40 transition-all duration-300;
-  }
-
-  .card-hover-primary {
-    @apply hover:border-primary/20;
+    @apply rounded-2xl bg-card border border-border/40 transition-all duration-300 hover:border-primary/20;
   }
 
   .card-padding-sm {
-    @apply p-6;
+    @apply p-4 sm:p-6;
   }
 
   .card-padding-md {
-    @apply p-7;
+    @apply p-6 sm:p-8;
   }
 
   .card-padding-lg {
-    @apply p-8;
+    @apply p-8 sm:p-10;
   }
 
   .card-icon-container {
-    @apply rounded-[1.25rem] bg-primary/10 p-3;
+    @apply rounded-xl bg-primary/5 p-2.5 text-primary transition-colors group-hover:bg-primary/10;
   }
 
   .card-icon-container-lg {
-    @apply rounded-[1.25rem] bg-primary/10 inline-flex items-center justify-center;
+    @apply rounded-2xl bg-primary/5 inline-flex items-center justify-center p-4 text-primary transition-colors group-hover:bg-primary/10;
   }
 }
 

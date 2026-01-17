@@ -125,9 +125,12 @@ export default function LexiconPage() {
     navigate(`/lexicon/${random.slug}`);
   };
 
-  const matchCount = filteredLexicon.length;
   const totalEntries = lexicon.length;
   const categoryCount = allCategories.length;
+  const searchPlaceholderRaw = t('lexiconSearchPlaceholder');
+  const searchPlaceholder = searchPlaceholderRaw && searchPlaceholderRaw !== 'lexiconSearchPlaceholder'
+    ? searchPlaceholderRaw
+    : 'Lexikon durchsuchen...';
 
   return (
     <div ref={heroRef} className="min-h-screen flex flex-col bg-background">
@@ -139,36 +142,36 @@ export default function LexiconPage() {
           description={t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
           backgroundImage="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop"
           align="center"
-          tall
-          bgScale={1.4}
+          size="compact"
+          bgScale={1.2}
           parallaxY={bgY}
         />
 
-        <section className="relative -mt-12 sm:-mt-16 z-10">
-          <div className="section-shell max-w-3xl">
-            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-3">
-              <Search className="h-5 w-5 text-muted-foreground" />
+        <section className="relative -mt-10 sm:-mt-12 z-10">
+          <div className="section-shell max-w-2xl">
+            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl">
+              <Search className="h-4 w-4 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder={t('searchPlaceholder')}
-                className="border-none bg-transparent text-base h-9 focus-visible:ring-0 placeholder:text-muted-foreground/40 font-light px-2"
+                placeholder={searchPlaceholder}
+                className="border-none bg-transparent text-sm sm:text-base h-10 focus-visible:ring-0 placeholder:text-muted-foreground/50 font-normal px-2"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{ minWidth: 0 }}
               />
 
               {searchTerm && (
-                <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-lg transition-colors ml-auto">
-                  <X className="h-4 w-4 text-muted-foreground" />
+                <button onClick={() => setSearchTerm('')} className="p-1.5 hover:bg-secondary rounded-lg transition-colors ml-auto">
+                  <X className="h-3.5 w-3.5 text-muted-foreground" />
                 </button>
               )}
             </motion.div>
           </div>
         </section>
 
-        <section className="section-shell max-w-5xl -mt-6">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="glass-card border-dashed">
-            <div className="grid gap-3 sm:grid-cols-3">
+        <section className="section-shell max-w-4xl -mt-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="glass-card">
+            <div className="grid gap-3 sm:grid-cols-2">
               <div className="flex items-center gap-3 rounded-2xl bg-primary/5 px-4 py-3 border border-primary/10">
                 <div className="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
                   <BookMarked className="h-5 w-5 text-primary" />
@@ -185,15 +188,6 @@ export default function LexiconPage() {
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold">Kategorien</p>
                   <p className="text-xl font-display font-semibold">{categoryCount}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl bg-emerald-500/10 px-4 py-3 border border-emerald-500/30">
-                <div className="h-10 w-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                  <Check className="h-5 w-5 text-emerald-600" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-emerald-700 font-bold">Treffer</p>
-                  <p className="text-xl font-display font-semibold">{matchCount}</p>
                 </div>
               </div>
             </div>
@@ -250,9 +244,6 @@ export default function LexiconPage() {
                 </Button>
               )}
 
-              <div className="ml-auto text-[11px] text-muted-foreground">
-                {matchCount === totalEntries ? 'Alle Einträge sichtbar' : `${matchCount} ${t('results') || 'Treffer'}`}
-              </div>
             </div>
           </motion.div>
         </section>
