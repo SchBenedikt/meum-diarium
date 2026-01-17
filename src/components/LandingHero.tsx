@@ -1,10 +1,11 @@
 import type { ElementType } from 'react';
-import { Sparkles, MessageCircle, BookOpen, Map, Library, ArrowRight, Users, Bookmark } from 'lucide-react';
+import { Sparkles, MessageCircle, BookOpen, Map, Library, ArrowRight, Users, Bookmark, ChevronRight } from 'lucide-react';
 import { AuthorGrid } from './AuthorGrid';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import { motion } from 'framer-motion';
 
 type BentoCard = {
   title: string;
@@ -12,7 +13,8 @@ type BentoCard = {
   icon: ElementType;
   to: string;
   cta?: string;
-  tone?: 'primary' | 'neutral';
+  className?: string;
+  delay?: number;
 };
 
 const bentoCards: BentoCard[] = [
@@ -22,35 +24,33 @@ const bentoCards: BentoCard[] = [
     icon: MessageCircle,
     to: '/caesar/chat',
     cta: 'Dialog starten',
-    tone: 'primary'
+    className: 'md:col-span-2 md:row-span-2 bg-primary/5 border-primary/20',
+    delay: 0.1
   },
   {
-    title: 'Kompaktes Lexikon',
-    description: 'Begriffe, Definitionen und historische Zusammenhänge – präzise auf den Punkt gebracht.',
+    title: 'Lexikon',
+    description: 'Historische Begriffe präzise auf den Punkt gebracht.',
     icon: BookOpen,
     to: '/lexicon',
-    cta: 'Nachschlagen'
+    cta: 'Nachschlagen',
+    delay: 0.2
   },
   {
-    title: 'Virtuelle Karten',
-    description: 'Schauplätze und Feldzüge visualisiert für ein besseres räumliches Verständnis.',
+    title: 'Karten',
+    description: 'Schauplätze und Feldzüge visualisiert.',
     icon: Map,
     to: '/simulation',
-    cta: 'Karte öffnen'
+    cta: 'Karte öffnen',
+    delay: 0.3
   },
   {
     title: 'Analysepunkte',
-    description: 'Tägliche Einblicke und tiefergehende Recherchen zu bedeutenden Wendepunkten.',
+    description: 'Tiefergehende Recherchen zu Wendepunkten.',
     icon: Bookmark,
     to: '/blog',
-    cta: 'Beiträge lesen'
-  },
-  {
-    title: 'Autoren',
-    description: 'Entdecke die Geschichte durch verschiedene Stimmen und Deutungen.',
-    icon: Users,
-    to: '/#autoren',
-    cta: 'Autoren wählen'
+    cta: 'Lesen',
+    className: 'md:col-span-2',
+    delay: 0.4
   }
 ];
 
@@ -58,85 +58,113 @@ export default function LandingHero() {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background selection:bg-primary/20">
+      {/* Visual Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 border-b border-border overflow-hidden">
-        <div className="container relative mx-auto max-w-6xl px-4 sm:px-6 text-center sm:text-left">
-          <div className="max-w-3xl">
-            <Badge variant="outline" className="mb-6 py-1 px-3 text-xs uppercase tracking-wide">
-              <Sparkles className="mr-2 h-3 w-3" />
-              {t('landing.hero.aiPowered') || 'AI-Gestützt'}
+      <section className="relative pt-32 pb-20 sm:pt-48 sm:pb-32 overflow-hidden">
+        <div className="container relative mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center text-center max-w-4xl mx-auto"
+          >
+            <Badge variant="outline" className="mb-8 py-1.5 px-4 text-xs uppercase tracking-[0.2em] bg-background/50 backdrop-blur-sm border-primary/20 text-primary">
+              <Sparkles className="mr-2 h-3.5 w-3.5" />
+              {t('landing.hero.aiPowered') || 'ERLEBE GESCHICHTE NEU'}
             </Badge>
 
-            <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl mb-6 text-foreground leading-tight">
-              Meum <span className="italic">Diarium</span>
+            <h1 className="font-sans text-5xl sm:text-7xl lg:text-8xl mb-8 text-foreground leading-[1.1] tracking-tight">
+              Meum <span className="text-primary italic">Diarium</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">
-              {t('landing.hero.voicesOfAntiquity') || 'Stimmen der Antike'}
+            <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed font-light">
+              {t('landing.hero.voicesOfAntiquity') || 'Tauche ein in die Gedankenwelt der größten Persönlichkeiten der Antike.'}
             </p>
 
-            <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link to="/caesar">
-                <Button size="lg" className="rounded-[var(--radius)] px-6 h-11 bg-primary text-primary-foreground">
+                <Button size="lg" className="rounded-full px-8 h-14 text-base bg-primary transition-transform duration-300">
                   {t('landing.hero.discoverNow') || 'Jetzt entdecken'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/lexicon">
-                <Button size="lg" variant="ghost" className="rounded-[var(--radius)] px-6 h-11">
-                  <Library className="mr-2 h-4 w-4" />
+                <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base border-border bg-background/50 backdrop-blur-sm">
+                  <Library className="mr-2 h-5 w-5" />
                   {t('landing.hero.lexicon') || 'Lexikon'}
                 </Button>
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Bento Grid Section */}
-      <section className="py-20 sm:py-32 bg-background">
+      <section className="py-24 bg-background/50 border-y border-border/50">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-12">
-            <p className="text-xs uppercase tracking-wider text-primary mb-3">Struktur & Tiefe</p>
-            <h2 className="text-2xl sm:text-3xl font-sans mb-4">Klarheit durch Design</h2>
-            <p className="max-w-2xl text-muted-foreground text-base leading-relaxed">
-              Unsere Anwendung ist darauf ausgelegt, komplexe historische Daten in eine leicht verständliche, minimalistische Form zu bringen.
+          <div className="mb-16 text-center sm:text-left">
+            <h2 className="text-3xl sm:text-4xl font-sans mb-4 tracking-tight">Features</h2>
+            <p className="max-w-xl text-muted-foreground text-lg font-light">
+              Entdecke die verschiedenen Wege, wie du die Geschichte hautnah miterleben kannst.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {bentoCards.map((card, idx) => (
-              <Link
+              <motion.div
                 key={idx}
-                to={card.to}
-                className="group relative overflow-hidden rounded-[var(--radius)] border border-border bg-card p-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: card.delay }}
               >
-                <div className="flex flex-col h-full">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius)] bg-primary/5 text-primary">
-                    <card.icon className="h-5 w-5" />
+                <Link
+                  to={card.to}
+                  className={`group relative flex flex-col h-full overflow-hidden rounded-[var(--radius)] border border-border bg-card/50 p-8 transition-all duration-500 ${card.className || ''}`}
+                >
+                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-500">
+                    <card.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-lg font-sans mb-2">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
-                    {card.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-primary text-sm">
-                    {card.cta} <ArrowRight className="h-4 w-4" />
+
+                  <div className="flex-1">
+                    <h3 className="text-xl font-sans mb-3 group-hover:text-primary transition-colors duration-300">{card.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed font-light">
+                      {card.description}
+                    </p>
                   </div>
-                </div>
-              </Link>
+
+                  <div className="mt-8 flex items-center gap-2 text-sm font-medium text-primary">
+                    {card.cta} <ChevronRight className="h-4 w-4" />
+                  </div>
+
+                  {/* Decorative background for primary card */}
+                  {card.className?.includes('bg-primary/5') && (
+                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+                  )}
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Authors Bottom Section */}
-      <section id="autoren" className="py-20 border-t border-border bg-background">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 text-center">
-          <div className="max-w-2xl mx-auto mb-12">
-            <p className="text-xs uppercase tracking-wider text-primary mb-3">Historische Stimmen</p>
-            <h2 className="text-2xl sm:text-3xl font-sans mb-4">Wähle deinen Begleiter</h2>
-            <p className="text-muted-foreground text-base italic">"Historia magistra vitae est."</p>
+      {/* Authors Section */}
+      <section id="autoren" className="py-32 bg-background">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Perspektiven</p>
+              <h2 className="text-4xl sm:text-5xl font-sans mb-6 tracking-tight">Wähle deinen Begleiter</h2>
+              <p className="text-muted-foreground text-xl font-light italic">
+                "Historia magistra vitae est."
+              </p>
+            </div>
           </div>
           <AuthorGrid />
         </div>

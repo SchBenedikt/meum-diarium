@@ -42,7 +42,8 @@
     --surface-container-high: 0 0% 98%;
     --surface-container-highest: 0 0% 98%;
 
-    --primary: 345 60% 35%; /* Wine red (Weinrot) */
+    --primary: 345 60% 35%;
+    /* Wine red (Weinrot) */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
@@ -61,13 +62,18 @@
     --input: 0 0% 90%;
     --ring: 345 60% 35%;
 
-    --radius: 15px; /* Consistent border radius across entire website */
+    --radius: 20px;
+    /* Consistent border radius across entire website */
 
-    /* Wine red for all author colors */
+    /* Distinct author colors */
     --author-caesar: 345 60% 35%;
-    --author-cicero: 345 60% 35%;
-    --author-augustus: 345 60% 35%;
-    --author-seneca: 345 60% 35%;
+    /* Crimson */
+    --author-cicero: 215 45% 35%;
+    /* Royal Blue */
+    --author-augustus: 45 65% 35%;
+    /* Golden Bronze */
+    --author-seneca: 165 40% 30%;
+    /* Sage Green */
   }
 
   .dark {
@@ -87,7 +93,8 @@
     --surface-container-high: 0 0% 12%;
     --surface-container-highest: 0 0% 12%;
 
-    --primary: 345 55% 55%; /* Wine red lighter for dark mode */
+    --primary: 345 55% 55%;
+    /* Wine red lighter for dark mode */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 15%;
@@ -103,11 +110,11 @@
     --input: 0 0% 20%;
     --ring: 345 55% 55%;
 
-    /* Dark theme author colors - wine red */
+    /* Dark theme author colors */
     --author-caesar: 345 55% 55%;
-    --author-cicero: 345 55% 55%;
-    --author-augustus: 345 55% 55%;
-    --author-seneca: 345 55% 55%;
+    --author-cicero: 215 50% 60%;
+    --author-augustus: 45 60% 55%;
+    --author-seneca: 165 35% 50%;
   }
 
   /* Author Theme Overrides */
@@ -115,48 +122,56 @@
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
+    --background: 345 2% 99.4%;
   }
 
   .dark.theme-caesar {
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
+    --background: 345 4% 11.5%;
   }
 
   .theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
+    --background: 215 2% 99.4%;
   }
 
   .dark.theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
+    --background: 215 4% 12%;
   }
 
   .theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
+    --background: 45 2% 99.4%;
   }
 
   .dark.theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
+    --background: 45 4% 11.5%;
   }
 
   .theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
+    --background: 165 2% 99.4%;
   }
 
   .dark.theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
+    --background: 165 4% 11%;
   }
 
   * {
@@ -177,6 +192,12 @@
     overscroll-behavior-y: contain;
     /* Improve tap highlight on mobile */
     -webkit-tap-highlight-color: transparent;
+
+    /* Background Pattern */
+    background-image:
+      radial-gradient(at 0% 0%, hsla(var(--primary) / 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(var(--primary) / 0.03) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 
   h1,
@@ -223,11 +244,15 @@
   }
 
   .glass-panel {
-    @apply bg-background border border-border rounded-[var(--radius)];
+    @apply bg-background/60 border border-white/10 dark:border-white/5 rounded-[var(--radius)] backdrop-blur-xl shadow-sm;
   }
 
   .glass-card {
-    @apply bg-background border border-border rounded-[var(--radius)] p-6;
+    @apply bg-white/50 dark:bg-black/20 border border-white/20 dark:border-white/5 rounded-[var(--radius)] p-6 backdrop-blur-md;
+  }
+
+  .premium-glow {
+    @apply relative after:absolute after:inset-0 after:-z-10 after:rounded-[var(--radius)] after:blur-2xl after:bg-primary/10 after:opacity-0 transition-all duration-500;
   }
 
   .section-shell {
@@ -273,6 +298,7 @@
 }
 
 @layer utilities {
+
   /* Simplified hover interactions */
   .hover-uniform {
     @apply transition-colors duration-200;

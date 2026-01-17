@@ -85,7 +85,7 @@ export default function ChatPage() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
-    
+
 
     return (
         <div className={`relative min-h-screen ${isMinimal ? 'bg-transparent' : 'bg-background'}`}>
@@ -129,10 +129,10 @@ export default function ChatPage() {
                                         animate={{ opacity: 1, x: 0 }}
                                         key={i}
                                     >
-                                        <Link to={res.link} className="block p-4 rounded-2xl bg-secondary/30 border border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all group">
+                                        <Link to={res.link} className="block p-4 rounded-2xl bg-secondary/30 border border-border/60 group">
                                             <div className="flex items-center gap-2 mb-2">
                                                 {res.type === 'map' ? <Map className="h-4 w-4 text-primary" /> : <BookOpen className="h-4 w-4 text-primary" />}
-                                                <span className="text-sm font-medium group-hover:text-primary transition-colors">{res.title}</span>
+                                                <span className="text-sm font-medium">{res.title}</span>
                                             </div>
                                             <p className="text-xs text-muted-foreground leading-relaxed">{res.description}</p>
                                         </Link>
@@ -147,7 +147,7 @@ export default function ChatPage() {
                         </div>
 
                         <div className="pt-4 border-t border-border/50">
-                            <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                            <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors">
                                 <ArrowLeft className="h-4 w-4" /> Zurück zur Übersicht
                             </Link>
                         </div>

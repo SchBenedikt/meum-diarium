@@ -133,41 +133,54 @@ export default function LexiconPage() {
     : 'Lexikon durchsuchen...';
 
   return (
-    <div ref={heroRef} className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1">
-        <PageHero
-          eyebrow={t('lexiconGlossary') as string}
-          title="Das"
-          highlight="Lexikon"
-          description={t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
-          backgroundImage="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop"
-          align="center"
-          size="compact"
-          bgScale={1.2}
-          parallaxY={bgY}
-        />
+    <div ref={heroRef} className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+      <main className="flex-1 pt-16 sm:pt-24">
+        {/* Compact, Integrated Header */}
+        <div className="container mx-auto px-4 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative p-8 sm:p-12 rounded-[2.5rem] bg-card/40 backdrop-blur-xl border border-border/40 shadow-2xl overflow-hidden mb-12"
+          >
+            {/* Subtle background decoration */}
+            <div className="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-        <section className="relative -mt-10 sm:-mt-12 z-10">
-          <div className="section-shell max-w-2xl">
-            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, delay: 0.1 }} className="glass-card flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl">
-              <Search className="h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder={searchPlaceholder}
-                className="border-none bg-transparent text-sm sm:text-base h-10 focus-visible:ring-0 placeholder:text-muted-foreground/50 font-normal px-2"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ minWidth: 0 }}
-              />
+            <div className="relative z-10 text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.2em]">
+                <BookMarked className="w-3 h-3" />
+                {t('lexiconGlossary') || 'Glossar'}
+              </div>
 
-              {searchTerm && (
-                <button onClick={() => setSearchTerm('')} className="p-1.5 hover:bg-secondary rounded-lg transition-colors ml-auto">
-                  <X className="h-3.5 w-3.5 text-muted-foreground" />
-                </button>
-              )}
-            </motion.div>
-          </div>
-        </section>
+              <div>
+                <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tighter text-foreground mb-4">
+                  Das <span className="text-primary italic">Lexikon</span>
+                </h1>
+                <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+                  {t('lexiconDescription') || 'Ein Kompendium des antiken Wissens. Von politischen Institutionen bis hin zu philosophischen Strömungen.'}
+                </p>
+              </div>
+
+              {/* Integrated Search */}
+              <div className="max-w-2xl mx-auto pt-4">
+                <div className="glass-card flex items-center gap-2 px-4 py-2 rounded-2xl border-primary/20 focus-within:border-primary/40 transition-all">
+                  <Search className="h-5 w-5 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder={searchPlaceholder}
+                    className="border-none bg-transparent text-base h-12 focus-visible:ring-0 placeholder:text-muted-foreground/30 font-normal px-2"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  {searchTerm && (
+                    <button onClick={() => setSearchTerm('')} className="p-2 hover:bg-secondary rounded-xl transition-colors">
+                      <X className="h-4 w-4 text-muted-foreground" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         <section className="section-shell max-w-4xl -mt-4">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="glass-card">

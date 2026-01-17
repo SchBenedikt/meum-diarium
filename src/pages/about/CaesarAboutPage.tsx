@@ -15,6 +15,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { Button } from '@/components/ui/button';
 import { PageContent, PageLanguage } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
+import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 
 export function CaesarAboutPage() {
   const { setCurrentAuthor } = useAuthor();
@@ -222,49 +223,12 @@ export function CaesarAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        {/* Caesar Hero - Full Viewport */}
-        <section className="min-h-screen flex items-center justify-center relative">
-          <div className="container mx-auto px-4 sm:px-6 py-20">
-            <div className="grid lg:grid-cols-12 gap-10 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="lg:col-span-7"
-              >
-                <span className="inline-block px-4 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                  {authorInfo.years}
-                </span>
-                <h1 className="font-display text-6xl sm:text-7xl font-bold mb-4 tracking-tighter text-foreground">
-                  {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
-                </h1>
-                <p className="text-2xl sm:text-3xl text-muted-foreground font-display mb-6">
-                  {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
-                </p>
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span>{details.birthPlace}</span>
-                  </div>
-                  <div className="h-1 w-12 bg-primary/30 rounded-full" />
-                  <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
-                    {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.projectDescription || authorPage?.projectDescription || authorInfo.description}
-                  </p>
-                </div>
-              </motion.div>
-              <div className="lg:col-span-5">
-                <div className="rounded-3xl overflow-hidden border border-border/40 bg-card/30">
-                  <img src={authorInfo.heroImage} alt={authorInfo.name} className="w-full h-full object-cover" />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            </div>
-          </div>
-        </section>
+        <AuthorAboutHero
+          authorInfo={authorInfo}
+          authorPage={authorPage}
+          language={language}
+          birthPlace={details.birthPlace}
+        />
 
         {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
