@@ -5,24 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[1.25rem] text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        text: "bg-transparent text-foreground hover:bg-secondary/50",
-        tonal: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        outline: "border border-border bg-transparent hover:bg-secondary/50 hover:text-foreground",
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        ghost: "hover:bg-secondary/50 hover:text-foreground",
+        text: "bg-transparent text-foreground",
+        tonal: "bg-secondary text-secondary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
+        outline: "border border-border bg-transparent",
+        default: "bg-primary text-primary-foreground",
+        destructive: "bg-destructive text-destructive-foreground",
+        ghost: "text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        icon: "h-9 w-9",
-        lg: "h-10 px-6 text-base",
-        default: "h-9 px-4 py-2",
-        sm: "h-8 px-3 text-xs",
+        icon: "h-9 w-9 rounded-[var(--radius)]",
+        lg: "h-10 px-6 text-base rounded-[var(--radius)]",
+        default: "h-9 px-4 py-2 rounded-[var(--radius)]",
+        sm: "h-8 px-3 text-xs rounded-[var(--radius)]",
       },
     },
     defaultVariants: {

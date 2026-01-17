@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -43,6 +43,7 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open && !summary && !loading) {
@@ -74,6 +75,7 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Fehler beim Abrufen der Antwort.' }]);
     } finally {
       setSending(false);
+      setTimeout(() => scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
     }
   };
 
@@ -85,12 +87,12 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
             {children}
           </span>
         </PopoverTrigger>
-        <PopoverContent className="w-96 max-w-[calc(100vw-2rem)] p-0 rounded-[var(--radius)]" align="start">
-          <div className="p-4 border-b border-border bg-secondary">
+        <PopoverContent className="w-[calc(100vw-2rem)] sm:w-96 max-w-md p-0" align="start">
+          <div className="p-3 sm:p-4 border-b border-border/50 bg-secondary/30">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-primary" />
-                <h4 className="font-sans font-normal text-base">{term}</h4>
+                <h4 className="font-display font-semibold text-sm sm:text-base">{term}</h4>
               </div>
               <Button
                 variant="ghost"
@@ -104,12 +106,12 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                 <Maximize2 className="h-3.5 w-3.5" />
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">
               {type === 'author' ? 'Historische Persönlichkeit' : 'Lexikon-Eintrag'}
             </p>
           </div>
 
-          <ScrollArea className="h-64 p-4">
+          <ScrollArea className="h-56 sm:h-64 p-3 sm:p-4">
             {loading ? (
               <div className="flex items-center justify-center h-full">
                 <Loader2 className="h-6 w-6 animate-spin text-primary" />
@@ -125,11 +127,12 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                 )}
 
                 {messages.length > 0 && (
-                  <div className="space-y-3 pt-3 border-t border-border">
+                  <div className="space-y-3 pt-3 border-t border-border/50">
                     {messages.map((msg, i) => (
                       <div
                         key={i}
-                        className={`text-sm ${msg.role === 'user' ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
+                        ref={i === messages.length - 1 ? scrollRef : null}
+                        className={`text-xs sm:text-sm ${msg.role === 'user' ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
                       >
                         {msg.role === 'user' ? (
                           <p className="italic">→ {msg.content}</p>
@@ -148,26 +151,26 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
             )}
           </ScrollArea>
 
-          <div className="p-3 border-t border-border bg-secondary">
+          <div className="p-2 sm:p-3 border-t border-border/50 bg-secondary/20">
             <div className="flex items-center gap-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Frage zur Erläuterung..."
-                className="text-sm h-9 rounded-[var(--radius)]"
+                className="text-xs sm:text-sm h-8 sm:h-9"
                 disabled={sending}
               />
               <Button
                 size="sm"
                 onClick={handleSend}
                 disabled={!input.trim() || sending}
-                className="h-9 w-9 p-0"
+                className="h-8 w-8 sm:h-9 sm:w-9 p-0 flex-shrink-0"
               >
-                {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {sending ? <Loader2 className="h-3 w-3 sm:h-4 sm:w-4 animate-spin" /> : <Send className="h-3 w-3 sm:h-4 sm:w-4" />}
               </Button>
             </div>
-            <p className="text-[10px] text-muted-foreground mt-2 text-center">
+            <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-1.5 sm:mt-2 text-center">
               KI-generierte Erklärungen – können ungenau sein
             </p>
           </div>
@@ -176,23 +179,23 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent
-          className="max-w-2xl w-[95vw] max-h-[85vh] p-0 flex flex-col overflow-hidden rounded-[var(--radius)]"
+          className="max-w-2xl w-[95vw] sm:w-[85vw] md:w-full max-h-[85vh] p-0 flex flex-col overflow-hidden translate-x-[-50%] translate-y-[-50%]"
         >
-          <DialogHeader className="p-6 border-b border-border bg-secondary shrink-0">
+          <DialogHeader className="p-5 sm:p-6 border-b border-border/10 bg-muted/20 shrink-0">
             <DialogTitle className="flex items-center gap-3">
-              <div className="p-2 bg-primary/10 rounded-[var(--radius)]">
+              <div className="p-1.5 bg-primary/10 rounded-lg">
                 <BookOpen className="h-4 w-4 text-primary" />
               </div>
-              <div className="flex-1">
-                <span className="font-sans text-xl block">{term}</span>
-                <span className="text-xs text-muted-foreground uppercase block mt-0.5">
+              <div className="flex-1 min-w-0">
+                <span className="font-display text-lg sm:text-xl block truncate">{term}</span>
+                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest block mt-0.5">
                   {type === 'author' ? 'Historische Persönlichkeit' : 'Lexikon-Eintrag'}
                 </span>
               </div>
             </DialogTitle>
           </DialogHeader>
 
-          <ScrollArea className="flex-1 px-8 py-6">
+          <ScrollArea className="flex-1 px-5 sm:px-8 py-6">
             {loading ? (
               <div className="flex items-center justify-center h-full min-h-[200px]">
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -208,10 +211,11 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                 )}
 
                 {messages.length > 0 && (
-                  <div className="space-y-4 pt-4 border-t border-border">
+                  <div className="space-y-4 pt-4 border-t border-border/50">
                     {messages.map((msg, i) => (
                       <div
                         key={i}
+                        ref={i === messages.length - 1 ? scrollRef : null}
                         className={`text-sm ${msg.role === 'user' ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
                       >
                         {msg.role === 'user' ? (
@@ -231,21 +235,21 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
             )}
           </ScrollArea>
 
-          <div className="p-6 border-t border-border bg-secondary">
+          <div className="p-4 sm:p-6 border-t border-border/50 bg-secondary/20">
             <div className="flex items-center gap-3">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Frage zur Erläuterung..."
-                className="text-sm h-10 rounded-[var(--radius)]"
+                className="text-sm h-10"
                 disabled={sending}
               />
               <Button
                 size="sm"
                 onClick={handleSend}
                 disabled={!input.trim() || sending}
-                className="h-10 w-10 p-0"
+                className="h-10 w-10 p-0 flex-shrink-0"
               >
                 {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
               </Button>

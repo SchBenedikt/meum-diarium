@@ -78,13 +78,13 @@ export default function LandingHero() {
 
             <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
               <Link to="/caesar">
-                <Button size="lg" className="rounded px-6 h-11 bg-primary hover:bg-primary/90">
+                <Button size="lg" className="rounded-[var(--radius)] px-6 h-11 bg-primary text-primary-foreground">
                   {t('landing.hero.discoverNow') || 'Jetzt entdecken'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link to="/lexicon">
-                <Button size="lg" variant="ghost" className="rounded px-6 h-11 hover:bg-secondary">
+                <Button size="lg" variant="ghost" className="rounded-[var(--radius)] px-6 h-11">
                   <Library className="mr-2 h-4 w-4" />
                   {t('landing.hero.lexicon') || 'Lexikon'}
                 </Button>
@@ -110,10 +110,10 @@ export default function LandingHero() {
               <Link
                 key={idx}
                 to={card.to}
-                className="group relative overflow-hidden rounded border border-border bg-card p-6 hover:border-primary/20"
+                className="group relative overflow-hidden rounded-[var(--radius)] border border-border bg-card p-6"
               >
                 <div className="flex flex-col h-full">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded bg-primary/5 text-primary">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius)] bg-primary/5 text-primary">
                     <card.icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-lg font-sans mb-2">{card.title}</h3>
