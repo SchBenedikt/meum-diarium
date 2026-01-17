@@ -16,7 +16,7 @@ const buttonVariants = cva(
         default: "bg-primary text-primary-foreground",
         destructive: "bg-destructive text-destructive-foreground",
         ghost: "text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4",
       },
       size: {
         icon: "h-9 w-9 rounded-[var(--radius)]",
