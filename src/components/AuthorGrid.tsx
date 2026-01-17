@@ -60,8 +60,7 @@ export function AuthorGrid() {
                 >
                   <Card
                     className={cn(
-                      'h-full overflow-hidden border border-border/40 transition-all duration-500 bg-card shadow-none rounded-[2rem]',
-                      'hover:border-primary/20 hover:bg-muted/10'
+                      'h-full overflow-hidden border border-border/40 transition-all duration-500 bg-card/50 backdrop-blur-sm shadow-none rounded-[2rem] premium-glow'
                     )}
                   >
                     {/* Image Section */}
@@ -69,7 +68,7 @@ export function AuthorGrid() {
                       <img
                         src={author.heroImage}
                         alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-1000"
                       />
 
                       {/* Premium Accent Corner */}
@@ -81,12 +80,7 @@ export function AuthorGrid() {
                         </div>
                       )}
 
-                      {/* Floating Arrow (Subtle) */}
-                      <div className="absolute bottom-6 right-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-background/90 backdrop-blur-md p-3 rounded-full border border-border/20">
-                          <ArrowRight className="w-5 h-5 text-primary" />
-                        </div>
-                      </div>
+                      {/* Floating Arrow removed */}
                     </div>
 
                     {/* Content Section */}
@@ -95,7 +89,7 @@ export function AuthorGrid() {
                         <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase block">
                           {translatedInfo.title}
                         </span>
-                        <h3 className="font-display text-2xl font-bold text-foreground transition-colors group-hover:text-primary">
+                        <h3 className="font-display text-2xl font-bold text-foreground transition-colors">
                           {translatedInfo.name}
                         </h3>
                         <p className="text-xs text-muted-foreground font-medium">
@@ -107,7 +101,7 @@ export function AuthorGrid() {
                         {translatedInfo.description}
                       </p>
 
-                      <div className="pt-2 flex items-center text-xs font-bold text-primary uppercase tracking-widest group-hover:gap-2 transition-all">
+                      <div className="pt-2 flex items-center text-xs font-bold text-primary uppercase tracking-widest transition-all">
                         <span>{t('landing.authorGrid.exploreProfile')}</span>
                         <ArrowRight className="ml-1 w-3.5 h-3.5" />
                       </div>

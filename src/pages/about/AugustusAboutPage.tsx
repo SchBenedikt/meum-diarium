@@ -14,6 +14,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { Button } from '@/components/ui/button';
 import { PageContent, PageLanguage } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
+import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 
 export function AugustusAboutPage() {
   const { setCurrentAuthor } = useAuthor();
@@ -31,30 +32,21 @@ export function AugustusAboutPage() {
   // Additional Augustus works (fictional but historically based)
   const augustusAdditionalWorks: Work[] = [
     {
-      id: 'augustus_4',
       author: 'augustus',
       title: 'Mein Kampf gegen Antonius',
       summary: 'Hypothetische Kriegstagebücher aus Octavians Kampf gegen Marcus Antonius. Strategie, Diplomatie und die Showdowns von Mutina und Actium.',
-      slug: 'mein-kampf-gegen-antonius',
-      content: '',
       year: '44–30 v. Chr.',
     },
     {
-      id: 'augustus_5',
       author: 'augustus',
       title: 'Ordnung der Provinzen',
       summary: 'Administrative Schriften zur Reorganisation des Imperiums. Steuersysteme, Gouverneursrichtlinien und die Neugliederung der Reichsteile.',
-      slug: 'ordnung-der-provinzen',
-      content: '',
       year: '27 v. Chr.',
     },
     {
-      id: 'augustus_6',
       author: 'augustus',
       title: 'Die Pax Romana',
       summary: 'Propagandistische Texte zur Friedensagenda. Wie Augustus die Welt befriedet, Legionen stärkt und Wohlstand verbreitet.',
-      slug: 'die-pax-romana',
-      content: '',
       year: '30–14 v. Chr.',
     },
   ];
@@ -203,52 +195,12 @@ export function AugustusAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        {/* Augustus Hero - Full Viewport */}
-        <section className="relative min-h-screen flex items-end overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
-            <img
-              src={authorInfo.heroImage}
-              alt={authorInfo.name}
-              className="w-full h-full object-cover scale-105 blur-[2px]"
-            />
-          </div>
-
-          <div className="container mx-auto relative z-20 px-4 sm:px-6 pb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-4xl"
-            >
-              <span className="inline-block px-4 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                {authorInfo.years}
-              </span>
-              <h1 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tighter text-foreground">
-                {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroTitle || authorPage?.heroTitle || authorInfo.name}
-              </h1>
-              <p className="text-2xl sm:text-3xl text-muted-foreground font-display italic mb-6">
-                {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
-              </p>
-
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground/60">
-                  <MapPin className="h-4 w-4 text-primary" />
-                  <span>{details.birthPlace}</span>
-                </div>
-                <div className="h-1 w-12 bg-primary/30 rounded-full" />
-                <p className="text-lg text-muted-foreground max-w-xl font-light leading-relaxed">
-                  {authorPage?.translations?.[language.split('-')[0] as PageLanguage]?.projectDescription || authorPage?.projectDescription || authorInfo.description}
-                </p>
-              </div>
-            </motion.div>
-          </div>
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
-            <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            </div>
-          </div>
-        </section>
+        <AuthorAboutHero
+          authorInfo={authorInfo}
+          authorPage={authorPage}
+          language={language}
+          birthPlace={details.birthPlace}
+        />
 
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
@@ -468,7 +420,7 @@ export function AugustusAboutPage() {
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
                         {idx === 3 && (
-                          <Link 
+                          <Link
                             to="/augustus/actium-und-alleinherrschaft"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
@@ -494,7 +446,7 @@ export function AugustusAboutPage() {
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
                         {idx === 1 && (
-                          <Link 
+                          <Link
                             to="/augustus/princeps-und-prinzipat"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
@@ -503,7 +455,7 @@ export function AugustusAboutPage() {
                           </Link>
                         )}
                         {idx === 4 && (
-                          <Link 
+                          <Link
                             to="/augustus/pater-patriae"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
@@ -529,7 +481,7 @@ export function AugustusAboutPage() {
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
                         {idx === 2 && (
-                          <Link 
+                          <Link
                             to="/augustus/heeresreform-und-veteranen"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
@@ -538,7 +490,7 @@ export function AugustusAboutPage() {
                           </Link>
                         )}
                         {idx === 4 && (
-                          <Link 
+                          <Link
                             to="/augustus/ara-pacis-und-bauprogramm"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
@@ -558,8 +510,8 @@ export function AugustusAboutPage() {
                   Für eine detaillierte Chronologie aller Ereignisse:
                 </p>
                 <div className="flex justify-center gap-4">
-                  <Link 
-                    to="/timeline" 
+                  <Link
+                    to="/timeline"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
                   >
                     <Calendar className="h-4 w-4" />

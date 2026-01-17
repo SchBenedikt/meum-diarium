@@ -81,7 +81,7 @@ export function DemoChatWidget() {
                         <span className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-lg">
                             <Sparkles className="h-3 w-3" /> Demo
                         </span>
-                        <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                        <button className="p-2 rounded-lg transition-colors">
                             <MoreVertical className="h-5 w-5 text-muted-foreground" />
                         </button>
                     </div>
@@ -99,14 +99,14 @@ export function DemoChatWidget() {
                                 className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                             >
                                 <div className={`h-9 w-9 rounded-full flex items-center justify-center shrink-0 text-sm font-bold ${msg.role === 'user'
-                                        ? 'bg-gradient-to-br from-muted to-muted/60 border border-border/40'
-                                        : 'bg-gradient-to-br from-red-500 to-red-600 text-white'
+                                    ? 'bg-gradient-to-br from-muted to-muted/60 border border-border/40'
+                                    : 'bg-gradient-to-br from-red-500 to-red-600 text-white'
                                     }`}>
                                     {msg.role === 'user' ? 'Du' : 'C'}
                                 </div>
                                 <div className={`rounded-2xl px-5 py-3 max-w-[85%] ${msg.role === 'user'
-                                        ? 'bg-primary/10 border border-primary/30'
-                                        : 'bg-card/70 border border-border/60'
+                                    ? 'bg-primary/10 border border-primary/30'
+                                    : 'bg-card/70 border border-border/60'
                                     }`}>
                                     {msg.role === 'assistant' ? (
                                         <div className="prose prose-sm max-w-none">
@@ -169,7 +169,7 @@ export function DemoChatWidget() {
                         <button
                             onClick={handleSend}
                             disabled={!input.trim() || isTyping}
-                            className="p-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="p-3 bg-primary text-primary-foreground rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <Send className="h-5 w-5" />
                         </button>

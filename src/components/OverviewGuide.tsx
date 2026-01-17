@@ -31,15 +31,15 @@ export function OverviewGuide() {
             Neu bei {authorName}? Wähle einen der Einstiege: Profil, Chronologie oder Einträge.
           </p>
           <div className="grid gap-3 sm:grid-cols-3">
-            <Link to={`/${currentAuthor}/about`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 hover:bg-primary/12 transition-colors">
+            <Link to={`/${currentAuthor}/about`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 transition-colors">
               <span className="text-sm sm:text-base font-medium flex items-center gap-2"><Users className="h-4 w-4 text-primary" /> Biografie & Überblick</span>
               <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link to={`/timeline`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 hover:bg-primary/12 transition-colors">
+            <Link to={`/timeline`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 transition-colors">
               <span className="text-sm sm:text-base font-medium flex items-center gap-2"><BookOpen className="h-4 w-4 text-primary" /> Chronologie</span>
               <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link to={`/${currentAuthor}`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 hover:bg-primary/12 transition-colors">
+            <Link to={`/${currentAuthor}`} className="group flex items-center justify-between rounded-xl px-4 py-3 bg-primary/8 border border-border/40 transition-colors">
               <span className="text-sm sm:text-base font-medium">Einträge lesen</span>
               <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
             </Link>

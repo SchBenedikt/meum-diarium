@@ -55,32 +55,32 @@ const Index = () => {
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-16 relative z-10 pb-12">
               {/* Primary Feature - AI Chat */}
               <div className="mb-16">
-                <div className="bg-card rounded-[var(--radius)] border border-border p-8 sm:p-12 relative overflow-hidden">
+                <div className="bg-card/50 backdrop-blur-sm rounded-3xl border border-border p-8 sm:p-12 relative overflow-hidden premium-glow">
                   <div className="relative">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-primary/5 rounded-[var(--radius)] text-primary">
+                      <div className="p-3 bg-primary/10 rounded-2xl text-primary">
                         <Zap className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className="text-xs uppercase tracking-wider text-primary mb-1">{t('index.historicalChat')}</p>
-                        <h2 className="text-xl sm:text-2xl font-sans text-foreground">
+                        <p className="text-xs uppercase tracking-[0.2em] text-primary mb-1">{t('index.historicalChat')}</p>
+                        <h2 className="text-2xl sm:text-3xl font-sans text-foreground tracking-tight">
                           {t('index.chatWith', { name: translatedAuthor?.name.split(' ')[0] })}
                         </h2>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl mb-8">
+                    <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mb-8 font-light">
                       {t('index.chatDescription', { name: translatedAuthor?.name })}
                     </p>
 
-                    <div className="space-y-4 max-w-3xl">
+                    <div className="space-y-6 max-w-3xl">
                       <div className="relative">
-                        <div className="relative bg-secondary p-1 rounded-[var(--radius)] border border-border">
-                          <div className="flex items-center gap-3 px-4 py-3">
+                        <div className="relative bg-secondary/50 backdrop-blur-md p-1.5 rounded-full border border-border group focus-within:border-primary/30 transition-all duration-300">
+                          <div className="flex items-center gap-3 px-4 py-2">
                             <input
                               type="text"
                               placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
-                              className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50"
+                              className="flex-1 bg-transparent border-none outline-none text-base placeholder:text-muted-foreground/50 ml-2"
                               value={question}
                               onChange={(e) => setQuestion(e.target.value)}
                               onKeyDown={(e) => {
@@ -95,9 +95,8 @@ const Index = () => {
                               }}
                             />
                             <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
-                              <Button size="sm" className="rounded-[var(--radius)] gap-2 bg-primary text-primary-foreground">
-                                <span className="hidden sm:inline">{t('index.startChat')}</span>
-                                <ArrowRight className="h-4 w-4" />
+                              <Button size="icon" className="rounded-full h-11 w-11 bg-primary text-primary-foreground hover:scale-105 transition-transform duration-300">
+                                <ArrowRight className="h-5 w-5" />
                               </Button>
                             </Link>
                           </div>
@@ -113,7 +112,7 @@ const Index = () => {
                           <Link
                             key={i}
                             to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`}
-                            className="px-3 py-2 rounded-[var(--radius)] text-xs bg-secondary border border-border text-muted-foreground"
+                            className="px-4 py-2 rounded-full text-xs bg-secondary/50 hover:bg-secondary border border-border text-muted-foreground hover:text-foreground transition-all duration-300 backdrop-blur-sm"
                           >
                             {suggestion}
                           </Link>

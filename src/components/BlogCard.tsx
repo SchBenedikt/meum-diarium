@@ -50,7 +50,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       <Link
         to={`/${post.author}/${post.slug}${preferredPerspective ? `?p=${preferredPerspective}` : ''}`}
         className={cn(
-          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 hover:border-primary/20 hover:bg-muted/10 touch-manipulation md:flex-row',
+          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 touch-manipulation md:flex-row',
           className
         )}
       >
@@ -60,7 +60,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
             src={post.coverImage}
             alt={post.title}
             loading="lazy"
-            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover object-center transition-transform duration-700"
           />
         </div>
 
@@ -73,7 +73,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
 
           {/* Titel + Excerpt */}
           <div className="space-y-2">
-            <h3 className="font-display text-base sm:text-lg md:text-xl font-semibold leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+            <h3 className="font-display text-base sm:text-lg md:text-xl font-semibold leading-snug line-clamp-2 transition-colors">
               {displayTitle}
             </h3>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-3">
@@ -104,7 +104,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
                   <button
                     key={i}
                     onClick={(e) => handleTagClick(e, tag)}
-                    className="relative whitespace-nowrap px-2.5 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] sm:text-xs font-semibold transition-all hover:bg-primary/10 hover:border-primary/20 flex-shrink-0 touch-manipulation"
+                    className="relative whitespace-nowrap px-2.5 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] sm:text-xs font-semibold transition-all flex-shrink-0 touch-manipulation"
                     aria-label={`Filter nach ${tag}`}
                   >
                     {tag}
@@ -116,7 +116,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
 
           {/* Pfeil rechts unten */}
           <div className="mt-1 flex justify-end">
-            <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+            <ArrowRight className="h-5 w-5 text-muted-foreground transition-colors" />
           </div>
         </div>
       </Link>

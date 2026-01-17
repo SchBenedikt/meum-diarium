@@ -62,30 +62,7 @@ export function Footer() {
             </p>
 
             <div className="flex flex-col space-y-3">
-              <div className="inline-flex items-center gap-2.5 text-xs text-primary uppercase tracking-wider px-4 py-2 rounded-[var(--radius)] bg-primary/10 border border-primary/20 w-fit">
-                <Mail className="h-3.5 w-3.5" />
-                contact@meum-diarium.de
-              </div>
-              <div className="flex gap-4">
-                <a
-                  href="https://github.com/SchBenedikt/meum-diarium"
-                  className="h-10 w-10 rounded-[var(--radius)] bg-secondary border border-border flex items-center justify-center text-muted-foreground"
-                  aria-label="GitHub"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  className="h-10 w-10 rounded-[var(--radius)] bg-secondary border border-border flex items-center justify-center text-muted-foreground"
-                  aria-label="Twitter"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-              </div>
+              {/* Social links removed as requested */}
             </div>
           </div>
 

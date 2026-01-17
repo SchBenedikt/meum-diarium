@@ -143,7 +143,7 @@ export function Header() {
             <Link
               to="/"
               onClick={handleLogoClick}
-              className="group flex items-center gap-2 min-w-0 hover:opacity-80 transition-opacity duration-200"
+              className="group flex items-center gap-2 min-w-0 transition-opacity duration-200"
               aria-label={t('appName')}
             >
               <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0 shadow-md">
@@ -170,7 +170,7 @@ export function Header() {
                       'px-3 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 text-sm font-medium',
                       active
                         ? 'bg-primary/10 text-primary border border-primary/20'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                        : 'text-muted-foreground hover:text-foreground'
                     )}
                   >
                     <Icon className="w-4 h-4" />
@@ -190,7 +190,7 @@ export function Header() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setSearchOpen(true)}
-                className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg hover:bg-secondary/50 hover:border-border/50 border border-transparent touch-manipulation"
+                className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg border border-transparent touch-manipulation"
                 aria-label={t('search')}
               >
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -317,7 +317,7 @@ export function Header() {
                                 'px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 text-base font-medium',
                                 active
                                   ? 'bg-primary/10 text-primary border border-primary/20'
-                                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                                  : 'text-muted-foreground hover:text-foreground'
                               )}
                             >
                               <Icon className="w-5 h-5" />
