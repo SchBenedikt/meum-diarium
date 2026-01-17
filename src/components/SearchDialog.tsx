@@ -52,7 +52,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     ).map(author => ({type: 'author', data: author}));
 
     return [...postResults, ...lexiconResults, ...authorResults].slice(0, 8);
-  }, [query, posts, isLoading, language]);
+  }, [query, posts, isLoading]);
 
   const handleNavigation = (index: number) => {
     if (index < 0 || index >= results.length) return;
