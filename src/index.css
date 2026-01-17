@@ -42,7 +42,7 @@
     --surface-container-high: 0 0% 98%;
     --surface-container-highest: 0 0% 98%;
 
-    --primary: 0 0% 20%; /* Simple dark gray */
+    --primary: 345 60% 35%; /* Wine red (Weinrot) */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
@@ -59,15 +59,15 @@
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 0 0% 20%;
+    --ring: 345 60% 35%;
 
-    --radius: 0.25rem;
+    --radius: 0.375rem; /* Consistent border radius */
 
-    /* Simplified author colors - all same */
-    --author-caesar: 0 0% 20%;
-    --author-cicero: 0 0% 20%;
-    --author-augustus: 0 0% 20%;
-    --author-seneca: 0 0% 20%;
+    /* Wine red for all author colors */
+    --author-caesar: 345 60% 35%;
+    --author-cicero: 345 60% 35%;
+    --author-augustus: 345 60% 35%;
+    --author-seneca: 345 60% 35%;
   }
 
   .dark {
@@ -87,8 +87,8 @@
     --surface-container-high: 0 0% 12%;
     --surface-container-highest: 0 0% 12%;
 
-    --primary: 0 0% 85%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 345 55% 55%; /* Wine red lighter for dark mode */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 90%;
@@ -101,13 +101,13 @@
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 0% 85%;
+    --ring: 345 55% 55%;
 
-    /* Dark theme author colors - all same */
-    --author-caesar: 0 0% 85%;
-    --author-cicero: 0 0% 85%;
-    --author-augustus: 0 0% 85%;
-    --author-seneca: 0 0% 85%;
+    /* Dark theme author colors - wine red */
+    --author-caesar: 345 55% 55%;
+    --author-cicero: 345 55% 55%;
+    --author-augustus: 345 55% 55%;
+    --author-seneca: 345 55% 55%;
   }
 
   /* Author Theme Overrides */
@@ -191,15 +191,15 @@
 
 @layer components {
   .surface-elevated {
-    @apply bg-card rounded border border-border;
+    @apply bg-card rounded-[var(--radius)] border border-border;
   }
 
   .surface-tonal {
-    @apply bg-secondary rounded;
+    @apply bg-secondary rounded-[var(--radius)];
   }
 
   .chip {
-    @apply inline-flex items-center gap-1 px-3 py-1 rounded text-sm;
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-[var(--radius)] text-sm;
   }
 
   .chip-filled {
@@ -215,19 +215,19 @@
   }
 
   .card-elevated {
-    @apply bg-card rounded p-4 border border-border;
+    @apply bg-card rounded-[var(--radius)] p-4 border border-border;
   }
 
   .sidebar-card {
-    @apply bg-secondary rounded p-4 border border-border;
+    @apply bg-secondary rounded-[var(--radius)] p-4 border border-border;
   }
 
   .glass-panel {
-    @apply bg-background border border-border rounded;
+    @apply bg-background border border-border rounded-[var(--radius)];
   }
 
   .glass-card {
-    @apply bg-background border border-border rounded p-6;
+    @apply bg-background border border-border rounded-[var(--radius)] p-6;
   }
 
   .section-shell {
@@ -235,20 +235,20 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-[var(--radius)];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-[var(--radius)];
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-3 py-1 text-muted-foreground rounded;
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1 text-muted-foreground rounded-[var(--radius)];
   }
 
   /* Unified Card System */
   .card-modern {
-    @apply rounded bg-card border border-border;
+    @apply rounded-[var(--radius)] bg-card border border-border;
   }
 
   .card-padding-sm {
@@ -264,11 +264,11 @@
   }
 
   .card-icon-container {
-    @apply rounded bg-primary/5 p-2 text-primary;
+    @apply rounded-[var(--radius)] bg-primary/5 p-2 text-primary;
   }
 
   .card-icon-container-lg {
-    @apply rounded bg-primary/5 inline-flex items-center justify-center p-3 text-primary;
+    @apply rounded-[var(--radius)] bg-primary/5 inline-flex items-center justify-center p-3 text-primary;
   }
 }
 

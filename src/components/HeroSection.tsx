@@ -35,7 +35,7 @@ export function HeroSection() {
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link to={`/${authorInfo.id}/about`}>
-                <Button size="lg" className="rounded px-6 h-11 bg-primary hover:bg-primary/90">
+                <Button size="lg" className="rounded-[var(--radius)] px-6 h-11 bg-primary text-primary-foreground">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Biografie entdecken
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -46,12 +46,12 @@ export function HeroSection() {
 
           {/* Hero Image - takes 5 columns */}
           <div className="lg:col-span-5 relative h-[50vh] lg:h-[60vh]">
-            <div className="relative h-full rounded overflow-hidden border border-border bg-card">
+            <div className="relative h-full rounded-[var(--radius)] overflow-hidden border border-border bg-card">
               <div className="w-full h-full relative overflow-hidden">
                 <img
                   src={authorInfo.heroImage}
                   alt={authorInfo.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-[var(--radius)]"
                 />
               </div>
             </div>

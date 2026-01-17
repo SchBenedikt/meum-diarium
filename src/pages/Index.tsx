@@ -10,7 +10,7 @@ import { Author } from '@/types/blog';
 import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ArrowRight, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 import { useLanguage } from '@/context/LanguageContext';
@@ -55,10 +55,10 @@ const Index = () => {
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-16 relative z-10 pb-12">
               {/* Primary Feature - AI Chat */}
               <div className="mb-16">
-                <div className="bg-card rounded border border-border p-8 sm:p-12 relative overflow-hidden">
+                <div className="bg-card rounded-[var(--radius)] border border-border p-8 sm:p-12 relative overflow-hidden">
                   <div className="relative">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-primary/5 rounded text-primary">
+                      <div className="p-3 bg-primary/5 rounded-[var(--radius)] text-primary">
                         <Zap className="w-6 h-6" />
                       </div>
                       <div>
@@ -75,7 +75,7 @@ const Index = () => {
 
                     <div className="space-y-4 max-w-3xl">
                       <div className="relative">
-                        <div className="relative bg-secondary p-1 rounded border border-border">
+                        <div className="relative bg-secondary p-1 rounded-[var(--radius)] border border-border">
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
@@ -95,7 +95,7 @@ const Index = () => {
                               }}
                             />
                             <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
-                              <Button size="sm" className="rounded gap-2 bg-primary hover:bg-primary/90">
+                              <Button size="sm" className="rounded-[var(--radius)] gap-2 bg-primary text-primary-foreground">
                                 <span className="hidden sm:inline">{t('index.startChat')}</span>
                                 <ArrowRight className="h-4 w-4" />
                               </Button>
@@ -113,7 +113,7 @@ const Index = () => {
                           <Link
                             key={i}
                             to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`}
-                            className="px-3 py-2 rounded text-xs bg-secondary border border-border text-muted-foreground hover:text-primary hover:border-primary"
+                            className="px-3 py-2 rounded-[var(--radius)] text-xs bg-secondary border border-border text-muted-foreground"
                           >
                             {suggestion}
                           </Link>
