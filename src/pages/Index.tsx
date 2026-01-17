@@ -11,7 +11,6 @@ import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, ArrowRight, Zap, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 import { useLanguage } from '@/context/LanguageContext';
@@ -55,43 +54,33 @@ const Index = () => {
 
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-16 relative z-10 pb-12">
               {/* Primary Feature - AI Chat */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mb-16"
-              >
-                <div className="bg-gradient-to-br from-card to-card/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-border/40 relative overflow-hidden group transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/5">
-                  {/* Decorative chat icon (kept, no gradients) */}
-                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-15 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6 hidden sm:block">
-                    <MessageCircle className="w-48 h-48 text-primary" />
-                  </div>
-
-                  <div className="relative z-10">
+              <div className="mb-16">
+                <div className="bg-card rounded border border-border p-8 sm:p-12 relative overflow-hidden">
+                  <div className="relative">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform border border-primary/30 shadow-lg shadow-primary/10">
-                        <Zap className="w-6 h-6 text-primary" />
+                      <div className="p-3 bg-primary/5 rounded text-primary">
+                        <Zap className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-1">{t('index.historicalChat')}</p>
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+                        <p className="text-xs uppercase tracking-wider text-primary mb-1">{t('index.historicalChat')}</p>
+                        <h2 className="text-xl sm:text-2xl font-sans text-foreground">
                           {t('index.chatWith', { name: translatedAuthor?.name.split(' ')[0] })}
                         </h2>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl mb-8 font-light">
+                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-3xl mb-8">
                       {t('index.chatDescription', { name: translatedAuthor?.name })}
                     </p>
 
                     <div className="space-y-4 max-w-3xl">
                       <div className="relative">
-                        <div className="relative bg-gradient-to-r from-secondary/50 to-secondary/30 p-1 rounded-2xl border border-border/40 hover:border-primary/40 transition-all backdrop-blur-sm">
+                        <div className="relative bg-secondary p-1 rounded border border-border">
                           <div className="flex items-center gap-3 px-4 py-3">
                             <input
                               type="text"
                               placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
-                              className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50 font-light"
+                              className="flex-1 bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground/50"
                               value={question}
                               onChange={(e) => setQuestion(e.target.value)}
                               onKeyDown={(e) => {
@@ -106,7 +95,7 @@ const Index = () => {
                               }}
                             />
                             <Link to={`/${currentAuthor}/chat${question.trim() ? `?q=${encodeURIComponent(question.trim())}` : ''}`}>
-                              <Button size="sm" className="rounded-lg gap-2 bg-primary hover:bg-primary/90 transition-all">
+                              <Button size="sm" className="rounded gap-2 bg-primary hover:bg-primary/90">
                                 <span className="hidden sm:inline">{t('index.startChat')}</span>
                                 <ArrowRight className="h-4 w-4" />
                               </Button>
@@ -124,7 +113,7 @@ const Index = () => {
                           <Link
                             key={i}
                             to={`/${currentAuthor}/chat?q=${encodeURIComponent(suggestion)}`}
-                            className="px-3 py-2 rounded-lg text-xs bg-secondary/40 border border-border/40 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all font-medium"
+                            className="px-3 py-2 rounded text-xs bg-secondary border border-border text-muted-foreground hover:text-primary hover:border-primary"
                           >
                             {suggestion}
                           </Link>
@@ -133,7 +122,7 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Minimal Tools Row */}
               <div className="mb-12 relative z-20">
