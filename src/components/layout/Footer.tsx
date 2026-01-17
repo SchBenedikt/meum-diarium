@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Scroll, Github, Twitter, Mail, ExternalLink, Sparkles, BookOpen, Clock, Globe } from 'lucide-react';
+import { Scroll, Github, Twitter, Mail, Globe, Sparkles, BookOpen } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { motion } from 'framer-motion';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -12,7 +11,7 @@ export function Footer() {
   };
 
   const appName = text('appName', 'Meum Diarium');
-  const description = text('footerDescription', 'Erleben Sie Geschichte durch die Augen der größten Persönlichkeiten des antiken Roms.');
+  const description = text('footerDescription', 'Experience history through the eyes of the greatest figures of ancient Rome. Diaries and scholarly commentaries.');
 
   const footerLinks = [
     {
@@ -49,11 +48,11 @@ export function Footer() {
 
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-6">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-none">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-[var(--radius)] bg-primary flex items-center justify-center">
                 <Scroll className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-display text-2xl font-bold tracking-tight text-foreground">
+              <span className="font-sans text-2xl text-foreground">
                 {appName}
               </span>
             </Link>
@@ -63,31 +62,29 @@ export function Footer() {
             </p>
 
             <div className="flex flex-col space-y-3">
-              <div className="inline-flex items-center gap-2.5 text-xs text-primary font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-xl bg-primary/10 border border-primary/20 w-fit">
+              <div className="inline-flex items-center gap-2.5 text-xs text-primary uppercase tracking-wider px-4 py-2 rounded-[var(--radius)] bg-primary/10 border border-primary/20 w-fit">
                 <Mail className="h-3.5 w-3.5" />
                 contact@meum-diarium.de
               </div>
               <div className="flex gap-4">
-                <motion.a
-                  whileHover={{ y: -3 }}
+                <a
                   href="https://github.com/SchBenedikt/meum-diarium"
-                  className="h-10 w-10 rounded-xl bg-secondary/50 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all shadow-none"
+                  className="h-10 w-10 rounded-[var(--radius)] bg-secondary border border-border flex items-center justify-center text-muted-foreground"
                   aria-label="GitHub"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Github className="h-5 w-5" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ y: -3 }}
+                </a>
+                <a
                   href="https://twitter.com"
-                  className="h-10 w-10 rounded-xl bg-secondary/50 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all shadow-none"
+                  className="h-10 w-10 rounded-[var(--radius)] bg-secondary border border-border flex items-center justify-center text-muted-foreground"
                   aria-label="Twitter"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Twitter className="h-5 w-5" />
-                </motion.a>
+                </a>
               </div>
             </div>
           </div>
@@ -95,7 +92,7 @@ export function Footer() {
           {/* Navigation Columns */}
           {footerLinks.map((column) => (
             <div key={column.title} className="space-y-6">
-              <h4 className="font-display text-xs font-bold uppercase tracking-[0.3em] text-foreground/50">
+              <h4 className="font-sans text-xs uppercase tracking-wider text-foreground/50">
                 {column.title}
               </h4>
               <ul className="space-y-4">
@@ -103,9 +100,9 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
+                      className="text-sm text-muted-foreground flex items-center gap-2"
                     >
-                      {link.icon && <link.icon className="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />}
+                      {link.icon && <link.icon className="h-3.5 w-3.5 opacity-50" />}
                       {link.label}
                     </Link>
                   </li>
@@ -116,19 +113,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 sm:mt-24 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-16 sm:mt-24 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-            <p className="text-xs text-muted-foreground font-medium">
+            <p className="text-xs text-muted-foreground">
               {t('copyright', { year: new Date().getFullYear().toString() })}
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <Link to="/legal" className="hover:text-foreground transition-colors">Impressum</Link>
-              <Link to="/privacy" className="hover:text-foreground transition-colors">Datenschutz</Link>
+              <Link to="/legal">Impressum</Link>
+              <Link to="/privacy">Datenschutz</Link>
             </div>
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary/60">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-primary/60">
               <Globe className="h-3 w-3" />
               <span>{t('spqr')}</span>
             </div>
