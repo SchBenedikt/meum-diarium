@@ -282,14 +282,6 @@
     @apply transition-colors duration-200;
   }
 
-  .icon-hover {
-    /* No animation */
-  }
-
-  .animate-in {
-    opacity: 1;
-  }
-
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -300,26 +292,6 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
-  }
-
-  .stagger-1 {
-    /* No stagger */
-  }
-
-  .stagger-2 {
-    /* No stagger */
-  }
-
-  .stagger-3 {
-    /* No stagger */
-  }
-
-  .stagger-4 {
-    /* No stagger */
-  }
-
-  .stagger-5 {
-    /* No stagger */
   }
 
   /* Mobile-specific utilities */
@@ -352,28 +324,13 @@
   }
 
   /* Elevation removed for flat design */
-  .elevation-1 {
-    /* No shadow */
-  }
-
-  .elevation-2 {
-    /* No shadow */
-  }
-
-  .elevation-3 {
-    /* No shadow */
-  }
-
-  .dark .elevation-1 {
-    /* No shadow */
-  }
-
-  .dark .elevation-2 {
-    /* No shadow */
-  }
-
+  .elevation-1,
+  .elevation-2,
+  .elevation-3,
+  .dark .elevation-1,
+  .dark .elevation-2,
   .dark .elevation-3 {
-    /* No shadow */
+    /* No shadow for flat minimalist design */
   }
 
   /* Container for centered content with max-width */
