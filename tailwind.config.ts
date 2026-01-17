@@ -30,8 +30,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Lora", "Georgia", "serif"],
+        sans: ["system-ui", "-apple-system", "sans-serif"],
+        display: ["system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
