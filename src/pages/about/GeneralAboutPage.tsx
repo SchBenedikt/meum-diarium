@@ -285,7 +285,7 @@ export function GeneralAboutPage() {
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="font-display text-4xl font-bold mb-4">Vier Stimmen der Antike</h2>
+              <h2 className="font-display text-4xl font-bold mb-4">Vier antike Persönlichkeiten</h2>
               <p className="text-lg text-muted-foreground">Lernen Sie die Männer kennen, deren Worte und Taten die Zivilisation formten.</p>
             </div>
             <div className="grid lg:grid-cols-4 gap-8 max-w-6xl mx-auto">

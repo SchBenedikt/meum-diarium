@@ -11,23 +11,23 @@ Der Name 'Gladius' stammt möglicherweise vom lateinischen 'gladius' (Schwert) a
 Es gab verschiedene Gladius-Typen, die sich im Laufe der Jahrhunderte entwickelten: Der Gladius Hispaniensis (spanisches Schwert) aus der Republik-Zeit hatte eine längere, spitz zulaufende Klinge. Der Mainz-Typ aus der frühen Kaiserzeit hatte eine lange, schlanke Form. Der Pompeii-Typ wurde im 1. Jahrhundert n. Chr. populär und war kürzer und leichter. Der Gladius wurde so zum Symbol römischer Militärmacht - sogar das lateinische Wort für Schwert wurde zum Namensgeber für Gladiatoren.`,
   category: "Militär",
   etymology: `Von lateinisch 'gladius' (Schwert). Das Wort ist möglicherweise keltischen Ursprungs und wurde von den Römern übernommen.`,
-  relatedTerms: ["Legion","Scutum","Centurio"],
+  relatedTerms: ["Legion", "Scutum", "Centurio"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Gladius",
+      "definition": "The Gladius was the primary sword of ancient Roman foot soldiers. It was a short, double-edged sword designed for stabbing and thrusting in close formation combat. It was the standard weapon of the legionaries for centuries.",
+      "etymology": "Latin 'gladius' (sword). Akin to English 'claymore' (via Celtic roots).",
+      "category": "Military",
+      "variants": ["Gladius Hispaniensis"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Gladius",
+      "definition": "Gladius erat ensis brevis militum Romanorum. Utraque parte acutus, ad pungendum aptus erat in pugna cominus. Telum praecipuum legionariorum per multa saecula fuit.",
+      "etymology": "Verbum Latinum, fortasse origine Celtica.",
+      "category": "Res Militaris",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

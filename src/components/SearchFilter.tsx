@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Search, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface SearchFilterProps {
   value?: string;
@@ -44,7 +45,12 @@ export function SearchFilter({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 mb-4">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.1 }}
+      className="flex flex-col sm:flex-row gap-3 mb-4"
+    >
       <div className="relative flex-1">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
@@ -78,6 +84,6 @@ export function SearchFilter({
           </SelectContent>
         </Select>
       )}
-    </div>
+    </motion.div>
   );
 }

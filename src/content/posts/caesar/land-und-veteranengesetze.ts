@@ -11,7 +11,7 @@ const post: BlogPost = {
   excerpt: 'Nach den Kriegen brauchen die Männer Land, die Städte Ruhe und der Staat Planbarkeit. Meine Veteranenpolitik stabilisierte Rom.',
   historicalDate: '59, 49–46 v. Chr.',
   historicalYear: -59,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 9,
     tags: ["Reform","Sozialpolitik","Veteranen","Landgesetz"],
     tagsWithTranslations: [],

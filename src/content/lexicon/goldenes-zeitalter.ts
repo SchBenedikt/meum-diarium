@@ -45,20 +45,20 @@ Historiker betonen, dass rückblickende Idealisierungen oft die realen Probleme 
   relatedTerms: ["Weltalter-Lehre"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Golden Age",
+      "definition": "The Golden Age (Aurea Aetas) is a mythical era of primordial peace, prosperity, and innocence where humans lived in harmony with nature without laws or labor. Augustus used this imagery in his propaganda to depict his reign as the restoration of this blessed era after the chaos of the civil wars.",
+      "etymology": "Concept from Greek mythology (Hesiod), adapted by Roman poets like Virgil.",
+      "category": "Philosophy",
+      "variants": ["Aurea Aetas", "Saturnian Age"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aurea Aetas",
+      "definition": "Aurea Aetas tempus mythicum primordiale fuit, in quo homines sine lege et labore in pace vixerunt. Augustus imperium suum ut restitutionem huius aetatis post bella civilia celebravit.",
+      "etymology": "Conceptus a Graecis (Hesiodo) sumptus est.",
+      "category": "Philosophia",
+      "variants": ["Regna Saturnia"]
     }
-}
+  }
 };
 
 export default entry;

@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'casar-verschlusselung',
   author: 'caesar',
   title: 'Cäsar-Verschlüsselung',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '50 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 2,
-    tags: ["Cäsar-Verschlüsselung","Cäsarchiffre"],
-    tagsWithTranslations: [],
+  tags: ["Cäsar-Verschlüsselung", "Cäsarchiffre"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/vehglvku4qq.jpg',
   content: {
     diary: `Der römische Geschichtsschreiber Sueton hat in seiner Biographie über mich folgende Passage überliefert: „[…] si qua occultius perferenda erant, per notas scripsit, id est sic structo litterarum ordine, ut nullum verbum effici posset: quae si quis investigare et persequi velit, quartam elementorum litteram, id est D pro A et perinde reliquas commutet." Diese Worte beschreiben eine Methode, die heute viele Namen trägt: Cäsarchiffre, Cäsar-Verschiebung, Caesar Shift, Cäsarverschlüsselung, Einfacher Cäsar oder schlicht Cäsar Code.
@@ -80,23 +80,49 @@ Heute dient die Cäsar-Verschlüsselung in der Informatik und Mathematik fast au
 `
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Caesar Cipher",
+      "excerpt": "A simple but effective method to protect my messages: shifting letters. Today elementary, back then a revolution in military communication.",
+      "content": {
+        "diary": `The Roman historian Suetonius has handed down the following passage in his biography of me: "[...] if there was anything confidential to be conveyed, he wrote it in cipher, that is, by so changing the order of the letters of the alphabet, that not a word could be made out: if anyone wishes to decipher these, and get at their meaning, he must substitute the fourth letter of the alphabet, namely D, for A, and so with the others." These words describe a method that today bears many names: Caesar cipher, Caesar shift, or Caesar code.
+
+As a general, one often faces the challenge of protecting secret military plans from the eyes of the enemy. My opponents would give anything to know my strategies and intercept my orders. Out of this necessity, I developed an encryption method that is as simple as it is effective. The operation is extremely simple: Each letter of a message is shifted three positions to the right in the alphabet. Thus, an A becomes a D, a B becomes an E, and so on.
+
+This method proved so useful that it continued to be used after me. My great-nephew and successor Augustus used a similar procedure, but with a shift of only one letter and without rotating the alphabet. Instead of X, the last letter of the Latin alphabet at that time, he wrote AA.
+
+One might think this is the most secure of all encryptions. But the special feature of my method lies not in its unbreakability, but in the fact that the decryption method itself must remain secret. Once the enemy knows the principle, the encryption is easily broken.`,
+        "scientific": `## The Caesar Cipher: Historical Genesis and Principles
+
+The Caesar cipher, also known as the shift cipher, is one of the most fundamental techniques in classical cryptography. It is a symmetric encryption method classified as a monoalphabetic substitution. Although considered insecure by modern standards, it holds immense historical relevance and serves as an elementary model in crypto-education.
+
+## Historical Context
+
+The method is named after the Roman statesman Julius Caesar (100 BC – 44 BC). The primary source is the biographer Suetonius, who describes Caesar using this method to protect military and political correspondence, particularly during the Gallic War. Caesar used a fixed shift of three positions (A → D). Augustus later used a variant with a shift of one (A → B).
+
+## Functionality
+
+The method relies on monoalphabetic substitution, where each plaintext character is mapped to a unique ciphertext character. Mathematically, it is a cyclic shift of the alphabet by a key $k$.
+$E_n(x) = (x + k) \mod 26$
+For Caesar, $k=3$. Decryption is simply the reverse: $D_n(y) = (y - k) \mod 26$.
+
+## Cryptanalysis and Security
+
+From a modern perspective, the Caesar cipher offers no security. The key space is extremely small (only 25 possible shifts), making it vulnerable to brute-force attacks. More critically, it preserves the statistical properties of the language (frequency of letters), making it susceptible to frequency analysis — a method first described by Al-Kindi in the 9th century.
+
+## Legacy
+
+While obsolete for security, the Caesar cipher formed the basis for more complex systems like the Vigenère cipher. In modern computing, a variant called ROT13 (shift by 13) is used for obscuring spoilers, not for security. Historically, its effectiveness relied on "Security through Obscurity" and the illiteracy of opponents.`
+      }
+    },
+    "la": {
+      "title": "Nota Caesaris",
+      "excerpt": "Quomodo litteras occultaverim: ordine elementorum mutato.",
+      "content": {
+        "diary": "Si qua occultius perferenda erant, per notas scripsi. Quartam elementorum litteram, id est D pro A et perinde reliquas commutavi. Hoc modo consilia mea ab hostibus tegebam.",
+        "scientific": "Notae Caesaris sunt ratio scribendi arcana. Litterae in ordine alphabeti mutantur. Caesar tertiam quamque litteram pro prima posuit (A -> D). Augustus autem secundam pro prima (A -> B). Haec ratio simplex sed efficax erat contra barbaros qui litteras nesciebant."
+      }
     }
   }
-}
 };
 
 export default post;

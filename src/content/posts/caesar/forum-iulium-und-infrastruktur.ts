@@ -5,15 +5,15 @@ const post: BlogPost = {
   slug: 'forum-iulium-und-infrastruktur',
   author: 'caesar',
   title: 'Forum Iulium',
-  
-  
+
+
   latinTitle: 'Forum Iulium et Opera Publica',
   excerpt: 'Warum ich baute: Entlastung des alten Forums, Sichtbarkeit staatlicher Autorität, Arbeitsplätze und Prestige für Rom.',
   historicalDate: '46 v. Chr.',
   historicalYear: -46,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 8,
-  tags: ["Reform","Stadtplanung","Infrastruktur","Forum"],
+  tags: ["Reform", "Stadtplanung", "Infrastruktur", "Forum"],
   coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f5170frwvsp2h0f2w9gmv%2F1766488996_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=/UZihoq6U6yWiOy5L3g2fEFa2eAj5EjLGd9EuAE0lAw%3D&ac=oaivgprodscus2',
   content: {
     diary: `Rom war zu eng für Rom. Das alte Forum erstickte in seiner eigenen Geschichte. Ich schuf Raum: Das Forum Iulium, geordnet, klar, ein öffentliches Herz, das den Rhythmus der Stadt sichtbar machte.
@@ -82,23 +82,47 @@ Das Forum Iulium wurde nicht vollständig in Caesars Lebenszeit fertiggestellt, 
 Das Forum Iulium war einer der ersten kaiserlichen Foren, die in Rom gebaut wurden, doch es sollte nicht das letzte sein, da nach Caesars Tod andere Herrscher seinem Beispiel folgten, indem Augustus sein eigenes Forum baute, Trajan sein Forum errichtete und Caracalla sein Forum schuf, wobei das Forum Iulium damit ein Muster setzte, das nachgeahmt und verfeinert wurde. Diese Serie von kaiserlichen Foren bildete letztlich eine neue Struktur der Stadt Rom, wobei jedes Forum eine Schicht der Entwicklung darstellte und zusammen ein Gesamtbild der Macht und der administrativen Rationalität vermittelten.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Forum Iulium",
+      "excerpt": "Why I built: relief for the old Forum, visibility of state authority, jobs and prestige for Rome.",
+      "content": {
+        "diary": `Rome was too tight for Rome. The old Forum suffocated in its own history. I created space: The Forum Iulium, ordered, clear, a public heart that made the city's rhythm visible.
+
+Streets, buildings, temples – the city is not just a backdrop, it is part of politics. Whoever wants to see order must also be able to see it.`,
+        "scientific": `## The Crisis of the Roman Forum
+
+By the 1st century BC, the Roman Forum, the administrative and legal heart of the city, was drastically overcrowded. The centuries of urban development had turned it into a chaotic space where courts, markets, and political assemblies jostled for room, hindering effective administration.
+
+## The Concept of the Forum Iulium
+
+Caesar planned a new forum, the *Forum Iulium*, to relieve this pressure. Funded by spoils from the Gallic Wars, it was an ambitious project requiring the purchase of expensive real estate. It was designed as a rectangular space with colonnades, dominated by the Temple of Venus Genetrix (Caesar's mythical ancestress) at one end.
+
+## Spatial Relief and Administrative Function
+
+The primary goal was functional: to provide separate, dedicated spaces for courts and administrative tasks, distinct from the commercial hustle of the old forum. This was not just about comfort but about restoring administrative order.
+
+## Symbolic Order
+
+Beyond function, the forum was a political statement. While the old forum represented the chaotic, republican past, the strictly ordered Forum Iulium represented Caesar's new rational order. The Temple of Venus Genetrix linked this new order directly to Caesar's divine lineage.
+
+## Economic Impact
+
+The construction project was a massive economic stimulus program, employing thousands of workers and boosting demand for materials. It was part of a broader infrastructure push that included road repairs and public buildings, modernizing Rome's urban fabric.
+
+## Legacy
+
+The Forum Iulium set the precedent for the Imperial Fora. Following Caesar, Augustus and subsequent emperors would build their own fora, transforming the center of Rome into a series of monumental public spaces that reflected the power and rationality of the Empire.`
+      }
+    },
+    "la": {
+      "title": "Forum Iulium",
+      "excerpt": "Cur novum forum aedificaverim: ad urbem ornandam et negotia gerenda.",
+      "content": {
+        "diary": "Roma nimis angusta erat. Forum Vetus turba laborabat. Spatium creavi: Forum Iulium. Templum Veneris Genetricis in medio posui, ut origo mea omnibus nota esset. Non solum aedificia, sed ordinem civitati dedi.",
+        "scientific": "Caesar Forum Iulium aedificavit ut Forum Romanum, quod nimis frequens erat, levaret. Pecunia ex Gallia rapta usus est. Templum Veneris Genetricis dedicavit, matris Aeneae, ut originem suam divinam celebraret. Hoc primum fuit Fororum Imperialium, exemplum successoribus."
+      }
     }
   }
-}
 };
 
 export default post;

@@ -29,20 +29,20 @@ Einige Autoren fügten zwischen das Bronzene und Eiserne Zeitalter noch ein **He
   relatedTerms: ["Goldenes Zeitalter"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Doctrine of the Ages",
+      "definition": "The Doctrine of the Ages (specifically the Four Ages of Man) is a mythological concept describing the decline of humanity from a Gold Age of innocence to Silver, Bronze, and finally an Iron Age of toil and strife. Augustus promoted the idea that a new Golden Age was dawning under his rule.",
+      "etymology": "From Greek mythology (Hesiod's 'Works and Days').",
+      "category": "Philosophy",
+      "variants": ["Four Ages of Man"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aetates Mundi",
+      "definition": "Doctrina de aetatibus mundi (Aurea, Argentea, Aenea, Ferrea) descensum generis humani describit. Poetae sicut Vergilius praedixerunt reditum Aetatis Aureae sub imperio Augusti.",
+      "etymology": "Ex mythologia Graeca (Hesiodus).",
+      "category": "Philosophia",
+      "variants": ["Quattuor Aetates"]
     }
-}
+  }
 };
 
 export default entry;

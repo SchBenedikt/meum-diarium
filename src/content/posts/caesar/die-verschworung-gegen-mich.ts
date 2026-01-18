@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'die-verschworung-gegen-mich',
   author: 'caesar',
   title: 'Die Verschwörung gegen mich',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '44 v. Chr',
   historicalYear: -44,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 2,
-    tags: ["Brutus","Caesarianer","Dolch","Feind","Mord","Verschwörung"],
-    tagsWithTranslations: [{"id":"brutus","translations":{"de":"Brutus","en":"Brutus","la":"Brutus"}},{"id":"caesarianer","translations":{"de":"Caesarianer","en":"Caesarianer","la":"Caesarianer"}},{"id":"dolch","translations":{"de":"Dolch","en":"Dolch","la":"Dolch"}},{"id":"feind","translations":{"de":"Feind","en":"Feind","la":"Feind"}},{"id":"mord","translations":{"de":"Mord","en":"Mord","la":"Mord"}},{"id":"verschw-rung","translations":{"de":"Verschwörung","en":"Verschwörung","la":"Verschwörung"}}],
+  tags: ["Brutus", "Caesarianer", "Dolch", "Feind", "Mord", "Verschwörung"],
+  tagsWithTranslations: [{ "id": "brutus", "translations": { "de": "Brutus", "en": "Brutus", "la": "Brutus" } }, { "id": "caesarianer", "translations": { "de": "Caesarianer", "en": "Caesarianer", "la": "Caesarianer" } }, { "id": "dolch", "translations": { "de": "Dolch", "en": "Dolch", "la": "Dolch" } }, { "id": "feind", "translations": { "de": "Feind", "en": "Feind", "la": "Feind" } }, { "id": "mord", "translations": { "de": "Mord", "en": "Mord", "la": "Mord" } }, { "id": "verschw-rung", "translations": { "de": "Verschwörung", "en": "Verschwörung", "la": "Verschwörung" } }],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_realistic_face_of_caesar_with_color_9ac25bcb-2a41-4285-9abf-90d67e3cb8ee1.png',
   content: {
     diary: `Ich schreibe dies in dem Wissen, dass es meine letzten Worte sein könnten. An diesem Tag fand eine Senatssitzung im Pompeius-Theater statt, und obwohl meine Frau Calpurnia mir von schlimmen Träumen berichtete, ließ ich mich von Decimus Brutus überreden, dennoch zu gehen. Ein Fehler, wie sich herausstellen sollte.
@@ -135,23 +135,55 @@ Die Verschwörer glaubten, dass sie Rom rettet hätten. Stattdessen haben sie Ro
 Caesar starb nicht als König, wie die Verschwörer befürchtet hatten. Er starb als Diktator, ermordet von Senatoren, die ihm nicht vertrauten. Und in seinem Tod schuf er die Bedingungen für das Aufstieg desjenigen, der seine Diktatur in eine institutionalisierte Monarchie verwandeln würde – Augustus.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "The Conspiracy Against Me",
+      "excerpt": "My end on the Ides of March. Betrayed by men I trusted. But my death will not save the Republic, only unleash chaos.",
+      "content": {
+        "diary": `I write this in the knowledge that these might be my last words. On this day, a Senate session was held in the Theater of Pompey, and although my wife Calpurnia told me of bad dreams, I let Decimus Brutus persuade me to go anyway. A mistake, as it would turn out.
+
+At the beginning of the year 44 BC, republican-minded senators led by Gaius Cassius Longinus had begun to plot a conspiracy against me. They saw me as a threat to the old order, to their privileges, to the Republic as they knew it. They overlooked that this Republic was long dead, that only I was keeping its decaying shell alive.
+
+When I entered the theater, the senators surrounded me. What followed was not an honorable battle, but a slaughter. Twenty-three dagger stabs struck my body. They came from all sides, from men I had trusted, to whom I had granted offices and honors. I had pardoned them after Pharsalus, shown them my Clementia, and this was their answer.
+
+The most painful moment came when I recognized Marcus Junius Brutus, who also raised the knife against me. Brutus, whom I had treated like a son, whom I had promoted and protected. Some rumors even claim he really is my son. When I saw him, I am said to have cried out in Greek – so it will be reported later: "Καὶ σύ, τέκνον" – "You too, my child?"
+
+Whether I really spoke these words or whether this is just a dramatic embellishment by historians, I no longer know. In this moment of betrayal, surrounded by daggers and the blood of my wounds, memory blurs. Perhaps I said nothing at all. Perhaps I just stared in disbelief at the man I had trusted so much.
+
+What I know for certain: This is the end. Rome will never be what it was again. The conspirators believe they have saved the Republic. What naivety! They have only invited chaos. Antony will take revenge, Octavian will rise, and in the end, the Empire will emerge that I only hinted at but never fully established.
+
+I die not as a free man of the Republic, but as the last attempt to save Rome from itself. The conspirators will pay for their betrayal. Within a few years, they will all be dead, hunted by my loyal followers, the Caesarians. Antony and Octavian will hunt them like animals, and none will escape.
+
+These are my last thoughts: Rome, I loved you. I made you greater, richer, more powerful. And you rewarded me with daggers.`,
+        "scientific": `## The Context of the Conspiracy
+
+The last months of Caesar's life were marked by growing tensions. Republican senators, led by Gaius Cassius Longinus and Marcus Junius Brutus, plotted against him, seeing him as a tyrant destroying the Republic. They ignored the reality that the old institutions were already dysfunctional.
+
+## The Ides of March
+
+On March 15, 44 BC, despite warnings from his wife Calpurnia and bad omens, Caesar attended a Senate meeting at the Theater of Pompey. He was persuaded by Decimus Brutus, who appealed to his pride.
+
+## The Assassination
+
+As Caesar entered, the conspirators surrounded him. It was a collective act of murder; 23 stab wounds were inflicted, ensuring shared culpability. The most dramatic moment was the involvement of Brutus, Caesar's protégé (and rumored son). Whether Caesar truly said "You too, my child?" is debated, but the betrayal was real.
+
+## Consequences
+
+The assassination did not save the Republic. Instead, it plunged Rome into a new civil war. Mark Antony and Octavian (later Augustus) hunted down the conspirators. Brutus and Cassius were defeated at Philippi in 42 BC.
+
+## Historical Assessment
+
+The conspirators were driven by republican ideals but were politically naive. They removed the man who offered stability, only to pave the way for an even more absolute monarchy under Augustus. The assassination of Caesar was not the end of dictatorship, but the birth of the Empire.`
+      }
+    },
+    "la": {
+      "title": "Conjuratio in Caesarem",
+      "excerpt": "Idus Martiae: dies necis meae. A senatus proditus sum.",
+      "content": {
+        "diary": "Idibus Martiis interfectus sum. Viginti tribus vulneribus confossus impetu coniuratorum. Brutus ipse, quem ut filium dilexi, me percussit. 'Tu quoque, fili mi?' clamavi. Res Publica non servata est, sed in chaos ruit.",
+        "scientific": "Caesar Idibus Martiis a coniuratis, ducibus Bruto et Cassio, in Theatro Pompeii interfectus est. Conjurati putabant se rem publicam liberare, sed re vera bella civilia excitaverunt. Morte Caesaris finis Rei Publicae et initium Imperii factum est. Octavianus ultor Caesaris factus est et primus Imperator."
+      }
     }
   }
-}
 };
 
 export default post;

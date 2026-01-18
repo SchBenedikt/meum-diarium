@@ -9,7 +9,7 @@ const post: BlogPost = {
   excerpt: 'Ciceros Verbannung aus Rom durch Clodius und die politischen Hintergründe seiner Flucht nach Griechenland.',
   historicalDate: '58 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 5,
   tags: ["Exil","Clodius","Politik"],
   coverImage: '',

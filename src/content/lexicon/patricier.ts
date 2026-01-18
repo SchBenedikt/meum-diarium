@@ -11,23 +11,23 @@ Die patricische Vorherrschaft führte zum jahrhundertelangen Ständekonflikt mit
 Patricier zeichneten sich durch besondere Privilegien aus: Sie trugen rote Schuhe (calcei patrici), ihre Namen wurden in speziellen Listen geführt, und sie bildeten geschlossene Heiratskreise. Ihr Reichtum basierte auf Landbesitz und Klientelverhältnissen. In der späten Republik verlor die Unterscheidung zwischen Patriciern und Plebejern an Bedeutung, da sich eine neue Nobilität aus beiden Ständen bildete. Kaiser Konstantin belebte den Patriciertitel später als Ehrentitel neu.`,
   category: "Gesellschaft",
   etymology: `Von lateinisch 'pater' (Vater). Die Patricier waren Nachkommen der ersten Senatoren, die von den 'patres' (Vätern) abstammten.`,
-  relatedTerms: ["Plebejer","Senator"],
+  relatedTerms: ["Plebejer", "Senator"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Patrician",
+      "definition": "The Patricians were the members of the long-established aristocratic upper class of ancient Rome and formed the exclusive ruling elite in the early days of the Roman Republic. The term derives from 'patres' (fathers). They enjoyed a monopoly on political and religious offices for centuries.",
+      "etymology": "From Latin 'pater' (father).",
+      "category": "Society",
+      "variants": ["Patricians"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Patricius",
+      "definition": "Patricii fuerunt cives Romani ordinis senatorii, qui a 'patribus' originem duxerunt. In libera re publica soli magistratus maiores et sacerdotia inire potuerunt. Nobilitas eorum antiquissima et auctoritas gravissima fuit.",
+      "etymology": "A verbo 'pater'.",
+      "category": "Societas",
+      "variants": ["Patricii"]
     }
-}
+  }
 };
 
 export default entry;

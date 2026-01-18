@@ -11,23 +11,23 @@ Der jahrhundertelange Ständekonflikt zwischen Plebejern und Patriciern prägte 
 Mit der Zeit gelang wohlhabenden plebejischen Familien der Aufstieg in die politische Elite. Zusammen mit patricischen Familien bildeten sie die neue Nobilität - eine Amtsaristokratie, deren Status auf erfolgreichen politischen Karrieren beruhte. Berühmte plebejische Geschlechter waren die Caecilier, Livianer und Sempronnier. Die Volksversammlung der Plebejer (concilium plebis) wurde zu einem wichtigen Gesetzgebungsorgan. Trotz formaler Gleichstellung blieben wirtschaftliche Unterschiede: Die 'plebs urbana' (städtische Massen) lebten oft in Armut.`,
   category: "Gesellschaft",
   etymology: `Von lateinisch 'plebs' (das Volk, die Menge). Bezeichnet die einfache Bevölkerung im Gegensatz zur patrizischen Oberschicht.`,
-  relatedTerms: ["Patricier","Volkstribun"],
+  relatedTerms: ["Patricier", "Volkstribun"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Plebeian",
+      "definition": "The Plebeians (plebs) were the common people of Rome, distinct from the aristocratic Patricians. Initially possessing few political rights, they fought for equality in the 'Conflict of the Orders' and eventually gained access to high offices, although social distinctions remained.",
+      "etymology": "From Latin 'plebs' (multitude, common people).",
+      "category": "Society",
+      "variants": ["Plebs", "Plebeians"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Plebeius",
+      "definition": "Plebs, multitudo civium Romanorum quae non patricia erat. Per multa saecula plebei pro iuribus suis certaverunt, donec magistratus et honores assequi potuerunt. Tribuni plebis defensores libertatis eorum fuerunt.",
+      "etymology": "A verbo 'plebs' aut 'plere'.",
+      "category": "Societas",
+      "variants": ["Plebs", "Plebei"]
     }
-}
+  }
 };
 
 export default entry;

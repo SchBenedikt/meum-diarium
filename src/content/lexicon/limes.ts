@@ -11,23 +11,23 @@ Der Limes war mehr als nur eine militärische Verteidigungslinie - er diente der
 Die Konstruktion des Limes variierte je nach geografischen Gegebenheiten und strategischer Bedeutung: In Britannien bestand er aus massiven Steinmauern, in Germanien ursprünglich aus Holzpalisaden, später aus Steinmauern. In Afrika und im Osten bestand der Limes oft nur aus einer Straße mit Wachtürmen. Der Limes markierte die maximale Ausdehnung des Römischen Reiches im 2. Jahrhundert n. Chr. Seine Aufgabe im 3. und 4. Jahrhundert signalisierte die schwindende Macht Roms.`,
   category: "Militär",
   etymology: `Von lateinisch 'limes' (Grenzweg, Grenzlinie). Ursprünglich bezeichnete es einen Feldweg oder eine Schneise, später die militärische Grenze.`,
-  relatedTerms: ["Legion","Kastell"],
+  relatedTerms: ["Legion", "Kastell"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Limes",
+      "definition": "The Limes was the fortified border of the Roman Empire. It consisted of walls, watchtowers, and forts, serving not just as a defensive barrier but also as a zone for trade and cultural exchange with the 'barbarian' tribes beyond.",
+      "etymology": "Latin 'limes' (path, boundary, limit).",
+      "category": "Military",
+      "variants": ["Limes Germanicus"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Limes",
+      "definition": "Limes erat finis imperii Romani munitus. Muris, turribus et castellis constabat. Non solum ad defensionem, sed etiam ad commercium cum barbaris serviebat.",
+      "etymology": "A verbo 'limus' (obliquus) vel 'limen'.",
+      "category": "Res Militaris",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

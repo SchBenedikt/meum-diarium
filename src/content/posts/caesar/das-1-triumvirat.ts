@@ -5,15 +5,15 @@ const post: BlogPost = {
   slug: 'das-1-triumvirat',
   author: 'caesar',
   title: 'Das 1. Triumvirat',
-  
-  
+
+
   latinTitle: 'Primum Triumviratus',
   excerpt: 'Manchmal muss man kreativ werden, wenn alte, steife Senatoren einem im Weg stehen. Meine Lösung? Ein informelles Dreierbündnis, das Rom verändern würde – und von dem niemand etwas ahnen sollte.',
   historicalDate: '60 v. Chr.',
   historicalYear: -60,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 6,
-  tags: ["Crassus","Pompeius","Triumvirat","Politik"],
+  tags: ["Crassus", "Pompeius", "Triumvirat", "Politik"],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Triumvirat_Caesar_Crassus_Pompeius_536c3967-52c1-4504-915d-8b80b9b82f861.png',
   content: {
     diary: `Heute habe ich etwas geschaffen, das die römische Politik für immer verändern wird: ein Dreierbündnis, das so unauffällig ist, dass es offiziell gar nicht existiert. Ich nenne es das Triumvirat, von tres (drei) und viri (Männer). Die alten Knacker im Senat werden es zu spät merken.
@@ -112,23 +112,63 @@ Das Triumvirat war eine Antwort auf institutionelle Dysfunktion. Es war nicht gu
 Das Erste Triumvirat war nicht der direkte Vorläufer der Monarchie. Aber es war ein entscheidender Wendepunkt, an dem klar wurde, dass die alte republikanische Ordnung nicht überleben konnte. Aus dieser Erkenntnis entstanden neue Institutionen, die die nächsten 400 Jahre Roms bestimmen sollten.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "The First Triumvirate",
+      "excerpt": "Sometimes you have to be creative when old, stiff Senators stand in your way. My solution? An informal alliance of three that would change Rome – and of which no one would suspect a thing.",
+      "content": {
+        "diary": `Today I created something that will change Roman politics forever: an alliance of three that is so discreet it officially doesn't even exist. I call it the Triumvirate, from *tres* (three) and *viri* (men). The old geezers in the Senate will realize it too late.
+
+The Senate, that assembly of self-righteous, old-fashioned Optimates, stubbornly refuses to meet Pompey's legitimate demands. My esteemed colleague Pompey Magnus conquered the East, defeated Mithridates, and brought immense wealth to the Roman people. And his thanks? The stubborn senators refuse his veterans the promised land grants. Is this fair? No, it is political suicide.
+
+For my planned Gallic campaign, I need financial support. Who better than Marcus Licinius Crassus, the richest man in Rome? Crassus has a problem: he is filthy rich but politically insignificant. The Optimates despise him as an upstart. The good Crassus gnaws on his insignificance like a dog on an old bone.
+
+Pompey, on the other hand, is militarily brilliant but politically clumsy. He needs someone to push his interests in the Senate. And I? I need both. Crassus' money and Pompey's prestige. But above all, I need the Senate to stop putting obstacles in my way.
+
+The Triumvirate is a masterpiece of political improvisation: Crassus finances my actions and gains political influence. Pompey supports my candidacy for the consulate, and I push his land law through the Senate. I coordinate it all, profit from both, and will end up the only real winner.
+
+To cement the alliance, I have made a small family rearrangement: My beloved daughter Julia will marry Pompey next April. Yes, she was engaged to Quintus Servilius Caepio. Politics is not a children's birthday party. Julia understands that. She is a Caesar, and we Caesars know that personal feelings are subordinate to the good of the family.
+
+The Triumvirate officially does not exist. No contracts, no ceremonies. Just informal agreements between three powerful men who happen to have the same interests. Why so secret? Because the Senate would go crazy if they knew three of the most powerful Romans conspired to bypass them. Cato would probably have a heart attack, and Cicero would give endless speeches about the decline of the Republic.
+
+The scholar Varro has called our Triumvirate a "Three-Headed Monster" (*monstrum triceps*). How charming. But Varro does not understand that such beasts are sometimes necessary to fight the real threats: stagnation, corruption, the incompetence of the old elite.
+
+Here's what the others don't understand: This Triumvirate is just the beginning. Crassus thinks he can buy power. Pompey thinks his military successes give him authority. Both are right, but only half right. I, however, have something neither possesses: foresight. In ten years, I will be the only one left standing. Crassus will try to copy Pompey's military glory and fail miserably. Pompey will try to play alone and arrange himself with the Senate, which will weaken him. And I? I will conquer Gaul, build an invincible army, and return as the most powerful man in Rome.
+
+Crassus and Pompey are not friends, they are tools. Useful, powerful tools, but tools nonetheless. And when a tool has served its purpose, you find new ones. Soon all of Rome will know and fear our Triumvirate. The Senate will have to watch impotently as we undermine its authority. The Optimates will scold, Cato will rage, Cicero will philosophize. But they will change nothing. For I have already written the future, and in this future, there is only one winner.`,
+        "scientific": `## The Political Deadlock of the Early Sixties
+
+In the mid-first century BC, the Roman Republic was paralyzed. The Optimates, the conservative senatorial faction, had established a policy of obstruction that thwarted all significant reform efforts. Government business was not driven by constructive debate but by mutual paralysis.
+
+## The Formation of the Informal Alliance
+
+The Triumvirate was primarily an unofficial institution. It was simply an *amicitia*, a friendship alliance between three men – Caesar, Pompey, and Crassus – who promised to support each other's goals. Its genius lay in its informality; since it was not an official office, no one could legally block it.
+
+## Consoliation and Expansion
+
+In his consulate of 59 BC, Caesar used his authority (and intimidation) to push through the agendas of his partners: land for Pompey's veterans and tax relief for Crassus' business interests. In return, Caesar was granted a five-year command in Gaul, later extended to ten years – the opportunity he needed to build his wealth and military power.
+
+## The Conference of Luca and Consolidation
+
+In 56 BC, the partners met in Luca to renew their alliance. They agreed that Pompey and Crassus would share the consulate of 55 BC, followed by proconsulships in Spain and Syria, respectively.
+
+## Failure and End
+
+The Triumvirate began to destabilize with the death of Caesar's daughter Julia (Pompey's wife) in 54 BC. The catastrophe of Carrhae in 53 BC, where Crassus was killed, destroyed the balance of power. Pompey drifted towards the Senate, setting the stage for the Civil War in 49 BC.
+
+## Historical Legacy
+
+Contemporary authors like Varro called it a "three-headed monster" (*monstrum triceps*). It was indeed the beginning of the end of the Republic, showing that real power no longer lay with the Senate but with private individuals commanding personal loyalty and resources.`
+      }
+    },
+    "la": {
+      "title": "Primum Triumviratus",
+      "excerpt": "Foedus inter tres viros potentissimos: Caesarem, Pompeium, Crassum.",
+      "content": {
+        "diary": "Feci foedus cum Pompeio et Crasso. Pompeius auctoritatem, Crassus divitias, ego ingenium affero. Senatus nos impedire non potest. Julia mea Pompeio nupta est ad foedus firmandum. 'Monstrum triceps' nos vocant. Sed nos rem publicam regemus.",
+        "scientific": "Primum Triumviratus fuit societas privata inter C. Iulium Caesarem, Cn. Pompeium Magnum et M. Licinium Crassum anno 60 a.C.n. inita. Non fuit magistratus legitimus, sed potentia trium virorum rem publicam dominabantur. Caesar Galliam, Pompeius Hispaniam, Crassus Syriam accepit. Morte Crassi et Juliae foedus ruptum est, quod ad bellum civile duxit."
+      }
     }
   }
-}
 };
 
 export default post;

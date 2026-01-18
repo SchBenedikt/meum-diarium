@@ -11,7 +11,7 @@ const post: BlogPost = {
   excerpt: '',
   historicalDate: '58 v. Chr.',
   historicalYear: -58,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 1,
     tags: ["Caesoninus","Gallia Cisaplina","Gallia Transaplina","Illyrien","Prokonsulat"],
     tagsWithTranslations: [],

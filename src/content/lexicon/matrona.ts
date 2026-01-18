@@ -1,10 +1,10 @@
 import { LexiconEntry } from '@/types/blog';
 
 const entry: LexiconEntry = {
-  term: "Matrona",
-  slug: "matrona",
-  variants: [],
-  definition: `## Die ehrbare römische Hausherrin
+    term: "Matrona",
+    slug: "matrona",
+    variants: [],
+    definition: `## Die ehrbare römische Hausherrin
 
 Die **Matrona** (Plural: *matronae*) bezeichnet die verheiratete, ehrenhafte Frau aus der römischen Oberschicht, die als Herrin des Haushalts (*domina*) eine zentrale Rolle in der römischen Gesellschaft innehatte. Im Gegensatz zur unverheirateten Jungfrau oder zur Sklavin genoss die Matrona hohe soziale Anerkennung und trug besondere Würdezeichen.
 
@@ -46,25 +46,25 @@ Berühmte Beispiele tugendhafter Matronen sind Cornelia (Mutter der Gracchen) un
 - **Concubina**: Die Konkubine ohne rechtmäßige Ehe
 - **Meretrix**: Die Prostituierte ohne gesellschaftliche Ehre
 - **Ancilla**: Die Sklavin ohne persönliche Rechte`,
-  category: "Gesellschaft",
-  etymology: `Vom lateinischen *māter* (Mutter) abgeleitet: *matrona* bedeutet wörtlich "die Mütterliche" oder "die Ehefrau". Das Suffix *-ona* verstärkt die Würde und den Status. Der Begriff betont die Rolle als Mutter und respektable Hausherrin im Gegensatz zur *mulier* (einfache Frau) oder *femina* (Weib).`,
-  relatedTerms: [],
-  translations: {
-    "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
-    },
-    "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+    category: "Gesellschaft",
+    etymology: `Vom lateinischen *māter* (Mutter) abgeleitet: *matrona* bedeutet wörtlich "die Mütterliche" oder "die Ehefrau". Das Suffix *-ona* verstärkt die Würde und den Status. Der Begriff betont die Rolle als Mutter und respektable Hausherrin im Gegensatz zur *mulier* (einfache Frau) oder *femina* (Weib).`,
+    relatedTerms: [],
+    translations: {
+        "en": {
+            "term": "Matrona",
+            "definition": "A Matrona was a respectable Roman woman, usually married to a Roman citizen and mother of legitimate children. She managed the household and was held in high esteem, embodying the virtues of modesty and fidelity.",
+            "etymology": "Latin 'mater' (mother).",
+            "category": "Society",
+            "variants": []
+        },
+        "la": {
+            "term": "Matrona",
+            "definition": "Matrona erat femina honesta Romana, nupta et mater familias. Domum regebat et pudicitiam servabat. Magna dignitate in civitate fruebatur.",
+            "etymology": "A verbo 'mater'.",
+            "category": "Societas",
+            "variants": []
+        }
     }
-}
 };
 
 export default entry;

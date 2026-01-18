@@ -290,7 +290,7 @@ export function CaesarAboutPage() {
                       </Link>
                     </Button>
                   </div>
-                  <div className="grid gap-6 md:grid-cols-2">
+                  <div className="grid gap-6">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
                         <article className="card-modern card-hover-primary card-padding-lg relative h-full overflow-hidden flex flex-col">

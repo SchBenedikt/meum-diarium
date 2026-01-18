@@ -5,15 +5,15 @@ const post: BlogPost = {
   slug: 'julianischer-kalender',
   author: 'caesar',
   title: 'Julianischer Kalender',
-  
-  
+
+
   latinTitle: 'Calendarium Iulianum',
   excerpt: 'Wie ich die römische Zeitrechnung revolutionierte und ein System schuf, das Europa 1600 Jahre lang prägen sollte.',
   historicalDate: '1. Januar 45 v. Chr.',
   historicalYear: -45,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 8,
-  tags: ["Reform","Wissenschaft","Vermächtnis","Kalender"],
+  tags: ["Reform", "Wissenschaft", "Vermächtnis", "Kalender"],
   coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f2kygfa089r9ssrwvryma%2F1766488909_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=C4w5duFjHT464abibHQ0hnm/ZSB1PqD9mmRg2h/bSJU%3D&ac=oaivgprodscus2',
   content: {
     diary: `Das Problem war offensichtlich: Der alte römische Kalender war ein Chaos. Astronomen mussten ständig Schaltmonate einfügen, Priester manipulierten die Zeitrechnung für politische Zwecke, und das Ergebnis? Im Jahr 46 v. Chr. lag unser Kalender drei Monate hinter der tatsächlichen Sonnenbahn.
@@ -260,23 +260,49 @@ Die Prinzipien des Julianischen und Gregorianischen Kalenders beeinflussen bis h
 Noch interessanter: Der sowjetische **Revolutionskalender** von 1918 – ein Versuch, einen neuen Kalender aus revolutionären Prinzipien zu schaffen – basierte konzeptionell auf Caesars Idee, dass eine zentrale politische Autorität die Zeitrechnung reformieren konnte.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Julian Calendar",
+      "excerpt": "How I revolutionized Roman timekeeping and created a system that would shape Europe for 1600 years.",
+      "content": {
+        "diary": `The problem was obvious: the old Roman calendar was a mess. Astronomers constantly had to insert leap months, priests manipulated the chronology for political purposes, and the result? In 46 BC, our calendar was three months behind the actual orbit of the sun.
+
+As Pontifex Maximus, it was my duty to change that. But I wanted more than just another patchwork job – I wanted a system that would last for centuries.
+
+I saw the solution in Egypt. The Egyptians had long understood that the solar year lasts 365¼ days. Their calendar was precise, predictable, independent of religious arbitrariness. Back in Rome, I brought the Alexandrian astronomer Sosigenes to me and asked him how many days we needed. He confirmed the Egyptian solution and explained the elegant system to me.
+
+The pre-reform Roman calendar was a lunisolar calendar – it tried to combine lunar months with the solar year. The base year had only 355 days, which was about 10½ days too short. To compensate for this, the Pontifices irregularly inserted a leap month (Mensis intercalaris) after February 23rd. This arbitrariness meant that political terms of office could be manipulated and no one knew when which festival really took place.
+
+So I decided on a radical reform. First, I had to clean up the chaos – the year 46 BC became the "Year of Confusion," 445 days long, to bring everything back in line with the seasons. Then I introduced my new calendar: twelve months with fixed lengths, a total of 365 days, and a leap day in February every four years. I named the fifth month after my family, the *gens Iulia* – *Quintilis* became *Iulius*.
+
+My calendar was more than just practical. It was a scientific achievement that showed how political power can enable scientific progress. The reform came into effect on January 1, 45 BC, and worked so precisely that Europe was to use it for over 1600 years.`,
+        "scientific": `## Introduction: The Crisis of Time
+
+The Roman calendar of the 1st century BC was in chaos. Based on a lunar year of 355 days, it required the manual insertion of leap months by priests, a process rife with political corruption and incompetence. By 46 BC, the calendar was months out of sync with the seasons.
+
+## The Reform: The Julian Calendar
+
+Caesar, relying on the expertise of the Alexandrian astronomer Sosigenes, implemented a radical reform.
+1.  **The Year of Confusion (46 BC):** To realign the calendar with the sun, Caesar extended the year 46 BC to 445 days.
+2.  **The New System:** A solar year of 365 days, with a leap day added every four years. This created an average year length of 365.25 days.
+
+## Scientific Basis
+
+The reform integrated advanced Hellenistic astronomy into Roman administration. The 365.25-day year was a brilliant approximation of the tropical year (365.2422 days). The discrepancy of about 11 minutes per year was negligible for a lifetime but cumulative over centuries (leading to the Gregorian reform in 1582).
+
+## Impact
+
+The Julian Calendar depoliticized timekeeping, preventing priests from manipulating dates for political gain. It synchronized religious festivals with the seasons and facilitated agriculture and trade by providing a predictable framework. It remained the standard in the Western world for over 1600 years and is the direct ancestor of the modern international calendar.`
+      }
+    },
+    "la": {
+      "title": "Calendarium Iulianum",
+      "excerpt": "Quomodo menses et dies ordinavi: annus solaris 365 dierum.",
+      "content": {
+        "diary": "Ad Kalendas Ianuarias anni XLV a.C.n. novum ordinem temporis institui. Vetus calendarium confusum erat. Cum Sosigene astronomo annum solis sequi decrevi: CCCLXV dies, quarto quoque anno dies intercalarius. Nunc tempora anni stabilia sunt.",
+        "scientific": "Caesar, Pontifex Maximus, calendarium reformavit. Annum 'confusionis' (445 dies) instituit ut aequinoctium on ordineretur. Novus annus Iulianus 365 dies et quadrantem habet. Hoc systema per multa saecula mansit, donec Gregorius XIII illud correxit."
+      }
     }
   }
-}
 };
 
 export default post;

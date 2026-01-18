@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'helvetierkrieg-teil-2',
   author: 'caesar',
   title: 'Helvetierkrieg – Teil 2',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '52 v. Chr.',
   historicalYear: -52,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 1,
-    tags: ["Armee","Gallien","Haeduer","Schlacht","Vercingetorix"],
-    tagsWithTranslations: [],
+  tags: ["Armee", "Gallien", "Haeduer", "Schlacht", "Vercingetorix"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_picture_of_gaius_julius_caesar_crossing_rubico_c2115a9b-d146-4690-8370-abd3662b44231.png',
   content: {
     diary: `Meine Eroberungen liefen bis vor kurzem richtig gut. Nein, nein, nein! Nicht meine Eroberungen. Ich verteidige nur mein Land. Aber es heißt ja schließlich: Angriff ist die beste Verteidigung. Und wenn dabei auch etwas in meine Kasse fließt, kann man mir das ja nicht übel nehmen, oder? Ihr seht ja, was ich alles leiste.
@@ -115,23 +115,34 @@ Vercingetorix selbst wurde in der antiken Tradition ein Symbol des edlen Widerst
 Der Aufstand des Vercingetorix im Jahr 52 v. Chr. stellt einen Wendepunkt in der Geschichte Galliens dar. Ein junger, charismatischer Arverner-Fürst gelang es, die zerklüftete gallische Gesellschaft unter einer einzigen Führung zu vereinen und einen letzten großen Widerstand gegen die römische Expansion zu organisieren. Seine militärische Strategie – der Guerillakrieg, die verbrannte Erde, die Nutzung der Kavallerie – war innovativ und in vielen Fällen erfolgreich. Doch letztendlich waren die strukturellen Unterschiede zwischen der dezentralisierten gallischen Gesellschaft und der zentralisierten römischen Militärmacht zu groß. Caesar, mit seiner überlegenen militärischen Organisation und Logistik, konnte diesen Widerstand niederschlagen. Mit der Schlacht um Alesia endete nicht nur Vercingetorix' Aufstand, sondern auch eine ganze Epoche der gallischen Unabhängigkeit. Die Folge war die vollständige Integration Galliens in die römische Welt – ein Prozess, der für die Geschichte Europas und der westlichen Zivilisation von immenser Bedeutung sein sollte.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Helvetian War - Part 2",
+      "excerpt": "Vercingetorix unites Gaul. A brutal revolt, scorched earth, and the siege of Alesia. The final struggle for freedom.",
+      "content": {
+        "diary": `My conquests – I mean, my defense of Rome – was going so well. But in 52 BC, Vercingetorix, a leader of the Arverni, united the Gallic tribes in a massive revolt. He attacked our towns and killed Roman citizens. I couldn't let that stand.
+
+I marched my army through heavy snow to restore order. Vercingetorix used scorched earth tactics, burning his own towns to starve us out. Even our allies, the Aedui, joined him. The situation was critical.
+
+I am ruthless against enemies but show clemency where useful. Whatever comes, I stick to my motto: *Omnium consensu* (With the consent of all).`,
+        "scientific": `## The Revolt of Vercingetorix (52 BC)
+
+The Great Revolt of 52 BC was the climax of the Gallic Wars.
+*   **Vercingetorix:** A charismatic young nobleman of the Arverni tribe, he seized power and united almost all Gallic tribes in a coalition against Rome.
+*   **Strategy:** Vercingetorix realized he could not defeat Roman legions in open battle. He adopted a guerrilla strategy, cutting supply lines and using "scorched earth" tactics (burning villages and crops) to starve Caesar's army.
+*   **Gergovia:** Vercingetorix inflicted a rare defeat on Caesar at the Battle of Gergovia.
+*   **Alesia:** The war culminated in the Siege of Alesia. Caesar constructed massive double fortifications around the hilltop city – one line to keep Vercingetorix in, another to keep a massive Gallic relief army out.
+*   **Outcome:** Caesar defeated the relief army and forced Vercingetorix to surrender. This victory marked the effective end of Gallic independence. Gaul became a Roman province, adopting Roman language, law, and culture.`
+      }
+    },
+    "la": {
+      "title": "Bellum Helveticum - Pars II",
+      "excerpt": "Vercingetorix Gallos contra me ducit. Consilia sua: urbes incendere et famem nobis afferre. Apud Alesiam eum vici.",
+      "content": {
+        "diary": "Vercingetorix Arvernus omnes Gallos contra me concitavit. Urbes suas incendit ut nos fame vinceret. Etiam Haedui, amici nostri, defecerunt. Ego per nives exercitum duxi. Ad Alesiam eum obsedi et vici. Nunc Gallia pacata est.",
+        "scientific": "Anno LII a.C.n., Vercingetorix omnes fere Gallos in bellum contra Caesarem coegit. Consilium eius fuit bellum parva manu gerere et commeatus Romanorum intercludere. Caesar eum apud Alesiam obsidione cinxit. Duabus munitionibus factis, et Vercingetorigem et exercitum auxiliarum Gallorum vicit. Vercingetorix se dedidit et Gallia in provinciam redacta est."
+      }
     }
   }
-}
 };
 
 export default post;

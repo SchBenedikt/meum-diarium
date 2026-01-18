@@ -9,7 +9,7 @@ const post: BlogPost = {
   excerpt: 'Wissenschaftliche Analyse von Ciceros Konsulat im Jahr 63 v.Chr. und seiner Rolle bei der Niederschlagung der Catilinarischen Verschwörung.',
   historicalDate: '63 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 5,
   tags: [],
   coverImage: '',
