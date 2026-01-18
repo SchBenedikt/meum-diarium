@@ -11,23 +11,23 @@ Im Laufe der Geschichte entwickelte sich der Begriff weiter: Das Imperium procon
 Später bezeichnete 'Imperium Romanum' das römische Weltreich selbst - den gesamten Herrschaftsbereich unter römischer Kontrolle. In diesem Sinne umfasste das Imperium auf seinem Höhepunkt im 2. Jahrhundert n. Chr. Gebiete von Britannien bis zum Euphrat und von der Nordsee bis zur Sahara. Der Begriff spiegelte den römischen Anspruch auf universale Herrschaft wider. Aus diesem römischen Konzept entwickelten sich später die Begriffe 'Imperator' (Kaiser) und 'Imperialismus'.`,
   category: "Politik",
   etymology: `Von lateinisch 'imperare' (befehlen, herrschen). Der Begriff entwickelte sich später zur Bezeichnung für das römische Weltreich selbst.`,
-  relatedTerms: ["Konsul","Praetor","Fasces"],
+  relatedTerms: ["Konsul", "Praetor", "Fasces"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Imperium",
+      "definition": "Imperium referred to the supreme executive power usually held by Roman consuls and praetors. It included command of the military and the power to execute the law. Outside the city walls ('pomerium'), it was virtually unlimited.",
+      "etymology": "Latin 'imperare' (to command).",
+      "category": "Politics",
+      "variants": ["Imperium Maius"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Imperium",
+      "definition": "Imperium erat potestas summa imperandi, quam magistratus maiores (consules, praetores) habebant. Ius erat exercitus ducendi et legis adhibendae. Extra pomerium imperium infinitum fere erat.",
+      "etymology": "A verbo 'imperare'.",
+      "category": "Res Publica",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

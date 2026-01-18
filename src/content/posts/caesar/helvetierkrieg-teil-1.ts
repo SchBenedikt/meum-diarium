@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'helvetierkrieg-teil-1',
   author: 'caesar',
   title: 'Helvetierkrieg – Teil 1',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '57 v. Chr.',
   historicalYear: -57,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 1,
-    tags: ["Barbaren","Gallien","Feind","Helvetier"],
-    tagsWithTranslations: [],
+  tags: ["Barbaren", "Gallien", "Feind", "Helvetier"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Casars_macht_in_seinem_ersten_Prokonsul_uber_G_a27d6805-f00b-4f98-81f5-279c5b8e6a051.png',
   content: {
     diary: `Ihr habt doch bestimmt schon mal von den Barbaren und Galliern gehört. Öffentlich darf ich das nicht sagen, dann werde ich ja sofort wieder angezeigt oder noch schlimmer: bei der Diskriminierungsmeldestelle gemeldet, aber hier traue ich mich einfach. Ich lass mich nicht unterkriegen! Die Gallier und Barbaren sind echt barbarisch. Solche ungehobelten Kerle habt ihr noch nie gesehen. Ich finde, dass sind sogar mehr Tiere als Menschen. Die haben noch nie ein vernünftiges Wort gesprochen oder eine Straße gesehen, sondern leben in Wäldern und bekriegen sich als Freizeitbeschäftigung. Die sind so abseits von unserer Provinz, dass teils gar keine Händler zu diesen vordringen.
@@ -83,23 +83,49 @@ Die Helvetier selbst verschwanden nach ihrer Niederlage von 58 v. Chr. aus der g
 Der Helvetierkrieg des Jahres 58 v. Chr. markiert den Auftakt zu einer der spektakulärsten Eroberungsfeldzüge der antiken Welt. Caesar nutzte die Wanderung eines gallischen Stammes, die selbst durch germanischen Druck verursacht war, als Vorwand für seine militärische Intervention in Gallien. Seine Rechtfertigung in den Commentarii offenbarte bereits die raffinierte Propaganda, mit der er seinen Feldzug als notwendige Verteidigung römischer Interessen darstellte. Während moderne Forschung viele seiner Angaben korrigiert hat, bleibt historisch gesichert, dass Caesar die Helvetier militärisch schlug und damit eine neue Phase römischer Expansion einleitete. Der Helvetierkrieg war das Vorspiel zu einer Serie von Kriegen, die letztendlich zur Unterwerfung ganz Galliens führen sollten und Caesars Aufstieg zur Macht beschleunigten.`
   },
   translations: {
-  "en": {
-    "title": "Helvetian War - Part 1",
-    "excerpt": "",
-    "content": {
-      "diary": "Surely you have heard of the barbarians🐺 and Gauls 🦍. I'm not allowed to say that publicly, then I'll immediately be reported again or even worse: reported to the discrimination reporting office, but here I simply dare. I won't let myself be defeated! The Gauls and barbarians are truly - as the name says - barbaric. You have never seen such uncouth fellows. I think they are even more animals than humans. They have never spoken a sensible word or seen a street, but live in forests 🏡and wage war as a leisure activity. They are so far away from our province that sometimes no traders reach them at all.\n\nOne group among them is particularly bad: The Helvetii. Compared to them, the tribes described above are pure rabbits. I dare not describe them more closely, but one word fits it quite well: \"Horrible\".\n\nThat wouldn't be so bad in itself, but now the leader of this uncivilized group has sent his henchmen to me and they demand - under threat of violence, to pass through my territory to wage war.\n\nSince they claimed they had no other way - which is not true, the situation is quite clear: These dishonest enemies of our republic want to attack my territories.\n\nI don't know what to do yet, but one thing is certain: I must act and protect our fellow citizens.\n\nProximity to the people is very important to me, so feel free to write in the comments how I should proceed.\n\nI will not allow these \"animals\" to infiltrate our civilized society!\n\nIt is better to die once and for all than to live in constant expectation of death.\n\nGaius Julius Caesar\nSo that you do not have to have this experience, I will protect you from it.\n\n🥂To me and my successes!",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "Bellum Helveticum - Pars I",
-    "excerpt": "",
-    "content": {
-      "diary": "Certe iam audivistis de barbaris🐺 et Gallis 🦍. Publice hoc dicere non licet, statim iterum accusabor aut peius: ad magistratum discriminationis deferar, sed hic simpliciter audeo. Non me vinci patiar! Galli et barbari sunt vere - ut nomen dicit - barbari. Tales homines incultos numquam vidistis. Puto eos plus bestias esse quam homines. Numquam verbum sensibile locuti sunt nec viam viderunt, sed in silvis 🏡vivunt et bellum gerunt pro otio. Tam procul a provincia nostra sunt ut interdum nulli mercatores ad eos perveniant.\n\nUna gens inter eos maxime mala est: Helvetii. Prae his tribus supra descriptae sunt puri cuniculi. Non audeo eos accuratius describere, sed unum verbum bene convenit: \"Horribile\".\n\nHoc per se non tam malum esset, sed nunc dux huius gregis inculti satellites suos ad me misit et hi postulant - sub minatione violentiae, ut per fines meos transeant ad bellum gerendum.\n\nCum affirmaverint se nullam aliam viam habere - quod verum non est, res est valde clara: Hi inimici inhonesti rei publicae nostrae fines meos oppugnare volunt.\n\nNondum scio quid faciam, sed certum est: Agendum est mihi et cives nostros protegendum.\n\nPopularitas mihi maximi momenti est, ideo scribite libenter in commentariis quomodo procedam.\n\nNon patiar has \"bestias\" societatem nostram civilem subruere!\n\nPraestat semel mori quam in perpetua expectatione mortis vivere.\n\nGaius Iulius Caesar\nNe hanc experientiam habere debeatis, vos ab ea protegam.\n\n🥂Mihi et successibus meis!",
-      "scientific": ""
+    "en": {
+      "title": "Helvetian War - Part 1",
+      "excerpt": "The Barbarians are coming! The Helvetii want to march through our province. I asked for your advice - and I will protect Rome.",
+      "content": {
+        "diary": `Surely you have heard of the barbarians🐺 and Gauls 🦍. I'm not allowed to say that publicly, then I'll immediately be reported again or even worse: reported to the discrimination reporting office, but here I simply dare. I won't let myself be defeated! The Gauls and barbarians are truly - as the name says - barbaric. You have never seen such uncouth fellows. I think they are even more animals than humans. They have never spoken a sensible word or seen a street, but live in forests 🏡and wage war as a leisure activity. They are so far away from our province that sometimes no traders reach them at all.
+
+One group among them is particularly bad: The Helvetii. Compared to them, the tribes described above are pure rabbits. I dare not describe them more closely, but one word fits it quite well: "Horrible".
+
+That wouldn't be so bad in itself, but now the leader of this uncivilized group has sent his henchmen to me and they demand - under threat of violence, to pass through my territory to wage war.
+
+Since they claimed they had no other way - which is not true, the situation is quite clear: These dishonest enemies of our republic want to attack my territories.
+
+I don't know what to do yet, but one thing is certain: I must act and protect our fellow citizens.
+
+Proximity to the people is very important to me, so feel free to write in the comments how I should proceed.
+
+I will not allow these "animals" to infiltrate our civilized society!
+
+It is better to die once and for all than to live in constant expectation of death.
+
+Gaius Julius Caesar
+So that you do not have to have this experience, I will protect you from it.
+
+🥂To me and my successes!`,
+        "scientific": `## The Helvetian War (58 BC): Beginnings of the Gallic Wars
+
+The Helvetian War marks the start of Caesar's conquest of Gaul.
+*   **Background:** The Helvetii, a Celtic tribe from modern-day Switzerland, planned a mass migration west to escape Germanic pressure. They requested passage through the Roman province.
+*   **Caesar's Refusal:** Caesar, seeing an opportunity for military glory and fearing instability, refused. He constructed fortifications to block their path.
+*   **Conflict:** When the Helvetii attempted to bypass the Roman defenses, Caesar pursued them. This unauthorized military action outside his province required careful political justification.
+*   **Battle of Bibracte:** The decisive Roman victory forced the Helvetii to surrender and return to their homeland, serving as a buffer against Germanic tribes.
+*   **Significance:** This campaign launched Caesar's decade-long war in Gaul, establishing his reputation as Rome's premier general.`
+      }
+    },
+    "la": {
+      "title": "Bellum Helveticum - Pars I",
+      "excerpt": "Helvetii per provinciam nostram iter facere volunt. Ego recuso. Bellum paratur.",
+      "content": {
+        "diary": "Certe iam audivistis de barbaris🐺 et Gallis 🦍. Publice hoc dicere non licet, statim iterum accusabor aut peius: ad magistratum discriminationis deferar, sed hic simpliciter audeo. Non me vinci patiar! Galli et barbari sunt vere - ut nomen dicit - barbari. Tales homines incultos numquam vidistis. Puto eos plus bestias esse quam homines. Numquam verbum sensibile locuti sunt nec viam viderunt, sed in silvis 🏡vivunt et bellum gerunt pro otio. Tam procul a provincia nostra sunt ut interdum nulli mercatores ad eos perveniant.\n\nUna gens inter eos maxime mala est: Helvetii. Prae his tribus supra descriptae sunt puri cuniculi. Non audeo eos accuratius describere, sed unum verbum bene convenit: \"Horribile\".\n\nHoc per se non tam malum esset, sed nunc dux huius gregis inculti satellites suos ad me misit et hi postulant - sub minatione violentiae, ut per fines meos transeant ad bellum gerendum.\n\nCum affirmaverint se nullam aliam viam habere - quod verum non est, res est valde clara: Hi inimici inhonesti rei publicae nostrae fines meos oppugnare volunt.\n\nNondum scio quid faciam, sed certum est: Agendum est mihi et cives nostros protegendum.\n\nPopularitas mihi maximi momenti est, ideo scribite libenter in commentariis quomodo procedam.\n\nNon patiar has \"bestias\" societatem nostram civilem subruere!\n\nPraestat semel mori quam in perpetua expectatione mortis vivere.\n\nGaius Iulius Caesar\nNe hanc experientiam habere debeatis, vos ab ea protegam.\n\n🥂Mihi et successibus meis!",
+        "scientific": "Bellum Helveticum (LVIII a.C.n.) initium bellorum Gallicorum fuit. Helvetii, gens Gallica e finibus suis emigrare voluerunt. Caesar iter per Provinciam Romanam negavit et murum aedificavit. Cum Helvetii aliam viam tentarent, Caesar eos secutus est et proelio apud Bibracte vicit. Victos in fines suos redire coegit."
+      }
     }
   }
-}
 };
 
 export default post;

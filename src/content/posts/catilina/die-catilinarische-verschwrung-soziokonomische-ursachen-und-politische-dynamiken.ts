@@ -9,7 +9,7 @@ const post: BlogPost = {
   excerpt: 'Eine wissenschaftliche Untersuchung der komplexen politischen, sozialen und ökonomischen Faktoren, die zur Catilinarischen Verschwörung führten und die spätrömische Republik destabilisierten.',
   historicalDate: '63 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 5,
   tags: [],
   coverImage: '',

@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'darum-mag-mich-jeder',
   author: 'caesar',
   title: 'Darum mag mich jeder',
-  
-  
+
+
   latinTitle: 'Clementia Caesaris',
   excerpt: '',
   historicalDate: '50 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 1,
-    tags: ["Armee","Clementia Caesaris","Feind","Rom","Senat"],
-    tagsWithTranslations: [],
+  tags: ["Armee", "Clementia Caesaris", "Feind", "Rom", "Senat"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_Elon_Musk_und_Mark_Zuckerberg_mit_romischen_St_9606655e-301d-4ec9-b2a9-6c5eba27eca6.png',
   content: {
     diary: `Ich gestehe es offen: Es gibt Momente, in denen ich vielleicht nicht immer alle Einzelheiten meiner Taten erzähle. Doch was würde es ändern? Die Geschichte wird dennoch geschrieben, und so, wie ich sie niederschreibe, wird sie erinnert werden.
@@ -76,23 +76,49 @@ Philosophisch aufgearbeitet wurde das Thema später von Seneca in seiner Schrift
 `
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "That's Why Everyone Likes Me",
+      "excerpt": "Clementia Caesaris – my mercy. Why I spared my enemies instead of killing them. A political necessity, not weakness.",
+      "content": {
+        "diary": `I confess openly: There are moments when I may not tell every detail of my deeds. But what would it change? History is written nonetheless, and as I write it down, it will be remembered.
+
+What must be credited to me, however, is my extraordinary leniency towards my defeated opponents. Have you ever heard of a general who treats his enemies so indulgently? I deliberately chose not to rule with *crudelitas*, with cruelty. Instead of raising the sword against the vanquished, I offered them forgiveness. This ruler's virtue earned me a special name: *Clementia Caesaris* – Caesar's mercy.
+
+One might ask wherein my mercy lies. I have always held that after a victory, I would not commit cruel acts of retaliation. Instead, I offered the defeated a hand in reconciliation. Can I help it if many of my former opponents subsequently became my most loyal followers? Did I make a mistake by sparing enemies? Apparently not, for many of them changed sides and supported me henceforth. Out of gratitude, as they said, they stood by me and helped me to even greater power. Without these new followers, I would never have come this far.
+
+It is an old truth that I recorded in my writings on the Gallic War: "*Libenter homines id quod volunt credunt*" – Men generally believe what they want to believe. Perhaps my former opponents wished for a lenient ruler, and so they believed in my *Clementia*. This strategy of mildness was not only an act of mercy but also political wisdom.
+
+I thank you, my loyal followers, who continue to fight for our common cause. Without you, my rise would have been impossible.`,
+        "scientific": `## Clementia Caesaris: Political Strategy and the Paradox of Mercy
+
+*Clementia Caesaris*, Caesar's proverbial mercy, was far more than a personal virtue or a whim. Modern historical research views this concept as a calculated political instrument used during the Roman Civil War (49–45 BC) to secure power and legitimacy. In contrast to the bloody purges of predecessors like Sulla, Caesar's refusal to use cruelty (*crudelitas*) marked a paradigm shift, though it paradoxically contributed to his violent end.
+
+## The Historical Trauma: Sulla's Shadow
+
+To understand the radical nature of *Clementia*, one must look back to the dictator Sulla, who had "cleansed" Rome through proscriptions and mass executions. When the Civil War broke out, Rome feared a repetition ("Sullana crudelitas"). Caesar surprised everyone by proclaiming a *nova ratio vincendi* (new way of winning): arming oneself with pity and generosity.
+
+## A Strict Dichotomy: Mercy Within, Hardness Without
+
+Caesar's mercy was strictly limited to internal Roman conflicts. While he forgave fellow citizens (*cives*), he acted with extreme brutality against foreign enemies (*hostes*) in the Gallic War. This dichotomy served the dual purpose of securing the empire externally while restoring social order internally.
+
+## The Sociology of Mercy: A Poisoned Gift
+
+*Clementia* created an asymmetrical relationship. By sparing an enemy's life, Caesar created a debt that could never be repaid, effectively reducing proud aristocrats to clients. For many republicans, this was worse than death, as it signified a total loss of political autonomy. *Clementia* implies hierarchy: only a superior can forgive an inferior.
+
+## The Failure of Integration
+
+The tragedy of *Clementia Caesaris* lies in its paradoxical effect. It secured military victory but failed to achieve political integration. The "gratitude" Caesar expected turned into hatred among those who felt humiliated by his mercy. The conspirators of the Idles of March were largely men Caesar had pardoned. They killed him not *despite* his mercy, but *because* of it – to cast off the burden of his grace and restore their own dignity.`
+      }
+    },
+    "la": {
+      "title": "Clementia Caesaris",
+      "excerpt": "Cur hostibus pepercim: non crudelitate, sed clementia vincere volui.",
+      "content": {
+        "diary": "Fateor: hostibus meis peperci. Non crudelitate, sed clementia usus sum. Victos non occidi, sed conservavi. Multi eorum nunc amici mei sunt. Haec est nova ratio vincendi: misericordia et liberalitate munire.",
+        "scientific": "Clementia Caesaris consilium politicum fuit, quo Caesar imperium stabilire studuit. Dissimilis Sullae, qui inimicos proscripsit, Caesar veniam dedit. Sed haec clementia invidiam movit: nam qui vitam debet, libertatem perdit. Conjurati Caesarem interfecerunt, ut onus clementiae deponerent."
+      }
     }
   }
-}
 };
 
 export default post;

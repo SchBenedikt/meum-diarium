@@ -9,8 +9,8 @@ import { ArrowLeft, Crown, Users, Sword, Play, RefreshCw, Send, Plus, Search, X 
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import { PageHero } from '@/components/layout/PageHero';
 import { SimulationCard } from '@/components/simulation/SimulationCard';
+import { Footer } from '@/components/layout/Footer';
 
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
@@ -31,7 +31,6 @@ export default function SimulationPage() {
     const [gameEnded, setGameEnded] = useState(false);
     const [customInput, setCustomInput] = useState('');
 
-    // Auto-scroll to bottom when history changes
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -71,21 +70,18 @@ export default function SimulationPage() {
 
         if (!choice) return;
 
-        // Apply stats
         setStats(prev => ({
             welfare: Math.max(0, Math.min(100, prev.welfare + (choice.effect.welfare || 0))),
             influence: Math.max(0, Math.min(100, prev.influence + (choice.effect.influence || 0))),
             power: Math.max(0, Math.min(100, prev.power + (choice.effect.power || 0))),
         }));
 
-        // Add history
         setHistory(prev => [
             ...prev,
             { text: choice.text, type: 'choice' },
             { text: choice.response, type: 'feedback' }
         ]);
 
-        // Navigate
         if (choice.nextEventId === 'END') {
             setGameEnded(true);
         } else {
@@ -125,18 +121,43 @@ export default function SimulationPage() {
         };
 
         return (
-            <div className="relative min-h-screen bg-background">
-                <PageHero
-                    eyebrow="Textbased Game"
-                    title="Triff Entscheidungen als"
-                    highlight={author.name}
-                    description={`Erlebe die Geschichte aus der Ich-Perspektive. Wähle Szenarien, entscheide und beobachte die Konsequenzen.`}
-                    backgroundImage={author.heroImage}
-                    kicker={<span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{allScenarios.length} Szenarien • Dynamische Konsequenzen</span>}
-                />
+            <div className="min-h-screen flex flex-col bg-background">
+                <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+                    {/* Minimalist Header */}
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="space-y-4"
+                        >
+                            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+                                <div className="w-8 h-[1px] bg-primary/30" />
+                                INTERAKTIVE SIMULATION
+                            </div>
+                            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+                                Entscheidungen als <span className="text-primary italic">{author.name.split(' ').slice(1).join(' ')}</span>
+                            </h1>
+                            <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                                Erlebe die Geschichte aus der Ich-Perspektive. Wähle Szenarien, entscheide und beobachte die Konsequenzen.
+                            </p>
+                        </motion.div>
 
-                <section className="section-shell -mt-8 pb-16 relative z-10 space-y-8">
-                    <div className="glass-card max-w-xl">
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex flex-col gap-4 items-end"
+                        >
+                            <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+                                <div className="flex flex-col items-end">
+                                    <span className="text-foreground">{allScenarios.length}</span>
+                                    <span>Szenarien</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Search */}
+                    <div className="card-modern card-padding-md max-w-xl mb-8">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                             <Input
@@ -153,6 +174,7 @@ export default function SimulationPage() {
                         </div>
                     </div>
 
+                    {/* Scenarios Grid */}
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <AnimatePresence mode="wait">
                             {showCustomForm ? (
@@ -161,7 +183,7 @@ export default function SimulationPage() {
                                     initial={{ opacity: 0, scale: 0.97 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.97 }}
-                                    className="glass-card min-h-[240px] flex flex-col"
+                                    className="card-modern card-padding-md min-h-[240px] flex flex-col"
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <h3 className="font-display text-lg font-medium">Neues Szenario</h3>
@@ -186,7 +208,7 @@ export default function SimulationPage() {
                                     initial={{ opacity: 0, scale: 0.97 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.97 }}
-                                    className="glass-card min-h-[240px] cursor-pointer flex flex-col items-center justify-center text-center border-dashed hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                                    className="card-modern card-padding-md min-h-[240px] cursor-pointer flex flex-col items-center justify-center text-center border-dashed hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                                     onClick={() => setShowCustomForm(true)}
                                 >
                                     <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -207,7 +229,7 @@ export default function SimulationPage() {
                         ))}
 
                         {filteredScenarios.length === 0 && searchQuery && (
-                            <div className="md:col-span-2 lg:col-span-3 glass-card text-center py-12 text-muted-foreground">
+                            <div className="md:col-span-2 lg:col-span-3 card-modern card-padding-lg text-center py-12 text-muted-foreground">
                                 <Search className="h-8 w-8 mx-auto mb-4 opacity-50" />
                                 <p>Keine Szenarien gefunden für "{searchQuery}"</p>
                                 <button onClick={() => setSearchQuery('')} className="text-primary mt-2 text-sm hover:underline">
@@ -216,7 +238,8 @@ export default function SimulationPage() {
                             </div>
                         )}
                     </div>
-                </section>
+                </main>
+                <Footer />
             </div>
         );
     }
@@ -225,18 +248,10 @@ export default function SimulationPage() {
     const currentEvent = currentEventId ? activeScenario.events[currentEventId] : null;
 
     return (
-        <div className="relative min-h-screen bg-background">
-            <PageHero
-                eyebrow={activeScenario.date}
-                title={activeScenario.title}
-                highlight={author.name}
-                description={activeScenario.description}
-                backgroundImage={author.heroImage}
-                kicker={<span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Interaktive Entscheidungen • Live-Bilanz</span>}
-            />
-
-            <section className="section-shell -mt-10 pb-16 relative z-10 space-y-6">
-                <div className="glass-panel p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
+        <div className="min-h-screen flex flex-col bg-background">
+            <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+                {/* Game Header */}
+                <div className="card-modern card-padding-md flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div className="flex items-center gap-3">
                         <Button variant="ghost" size="icon" className="h-10 w-10" onClick={() => setActiveScenario(null)}>
                             <ArrowLeft className="h-4 w-4" />
@@ -253,7 +268,8 @@ export default function SimulationPage() {
                     </div>
                 </div>
 
-                <div className="glass-panel overflow-hidden">
+                {/* Game Content */}
+                <div className="card-modern overflow-hidden mb-6">
                     <div ref={scrollRef} className="max-h-[55vh] sm:max-h-[60vh] overflow-auto scroll-smooth px-4 sm:px-6 py-4 space-y-4">
                         {history.map((item, i) => (
                             <motion.div
@@ -278,7 +294,7 @@ export default function SimulationPage() {
                         ))}
 
                         {gameEnded && (
-                            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="glass-panel p-6 text-center space-y-3 max-w-xl mx-auto">
+                            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card-modern card-padding-lg text-center space-y-3 max-w-xl mx-auto">
                                 <Crown className="h-10 w-10 text-primary mx-auto" />
                                 <h2 className="font-display text-2xl">Tagesabschluss</h2>
                                 <p className="text-muted-foreground">Der Tag ist vorüber. Hier ist deine Bilanz:</p>
@@ -301,8 +317,9 @@ export default function SimulationPage() {
                     </div>
                 </div>
 
+                {/* Choices */}
                 {!gameEnded && currentEvent && (
-                    <div className="glass-panel p-4 sm:p-5 space-y-4">
+                    <div className="card-modern card-padding-md space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {currentEvent.choices.map(choice => (
                                 <button
@@ -323,7 +340,7 @@ export default function SimulationPage() {
                             <Input
                                 placeholder="Eigene Handlung eintippen..."
                                 value={customInput}
-                                onChange={(e) => customInput && setCustomInput(e.target.value)}
+                                onChange={(e) => setCustomInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleCustomInput()}
                                 className="pr-12 py-5 bg-secondary/30 border-primary/10 rounded-xl"
                             />
@@ -333,7 +350,8 @@ export default function SimulationPage() {
                         </div>
                     </div>
                 )}
-            </section>
+            </main>
+            <Footer />
         </div>
     );
 }

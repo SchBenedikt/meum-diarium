@@ -11,23 +11,23 @@ Das Forum war der Schauplatz der bedeutendsten Ereignisse römischer Geschichte:
 Im täglichen Leben war das Forum der pulsierende Mittelpunkt der Stadt: Kaufleute boten ihre Waren an, Anwälte vertraten ihre Klienten, Philosophen debattierten, und Nachrichtenverkünder verbreiteten die neuesten Ereignisse. Die umgebenden Kolonnaden boten Schutz vor Sonne und Regen. Mit dem Niedergang Roms verfiel auch das Forum, wurde aber später zu einer der wichtigsten archäologischen Stätten der Welt.`,
   category: "Gesellschaft",
   etymology: `Von lateinisch 'forum' (Marktplatz, öffentlicher Platz). Das Forum war traditionell der zentrale Treffpunkt jeder römischen Stadt.`,
-  relatedTerms: ["Curia","Senator","Basilika"],
+  relatedTerms: ["Curia", "Senator", "Basilika"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Forum Romanum",
+      "definition": "The Forum Romanum was the political, legal, and commercial center of ancient Rome. Located between the Palatine and Capitoline Hills, it hosted the Senate House (Curia), law courts (Basilicas), temples, and public meetings. It was the heart of public life.",
+      "etymology": "Latin 'forum' (public square, market).",
+      "category": "Geography",
+      "variants": ["The Forum"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Forum Romanum",
+      "definition": "Forum Romanum centrum vitae publicae Romae fuit. Inter Palatium et Capitolium situm, Curiam, basilicas et templa continebat. Hic senatus habebatur, ius dicebatur et populus conveniebat.",
+      "etymology": "Verbum 'forum' a 'foris' (extra) derivatur.",
+      "category": "Geographia",
+      "variants": ["Forum"]
     }
-}
+  }
 };
 
 export default entry;

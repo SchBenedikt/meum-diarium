@@ -41,20 +41,20 @@ Dennoch bleiben diese Epochen faszinierende Studienobjekte für die Frage, wie g
   relatedTerms: [],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Cultural Flowering",
+      "definition": "The 'Cultural Flowering' refers to the Augustan Age, often considered the Golden Age of Latin literature and art. Under Augustus's patronage (via Maecenas), poets like Virgil, Horace, and Ovid flourished, creating works that celebrated the new era and Roman identity.",
+      "etymology": "Modern historical term describing the Augustan Golden Age.",
+      "category": "Society",
+      "variants": ["Augustan Age", "Golden Age of Literature"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Florens Cultura",
+      "definition": "Aetas Augustea tempus florentissimum litterarum et artium Latinarum erat. Sub tutela Augusti et Maecenatis, poetae sicut Vergilius, Horatius et Ovidius opera insignia creaverunt.",
+      "etymology": "Terminus modernus ad describendum Saeculum Augustum.",
+      "category": "Societas",
+      "variants": ["Saeculum Augustum"]
     }
-}
+  }
 };
 
 export default entry;

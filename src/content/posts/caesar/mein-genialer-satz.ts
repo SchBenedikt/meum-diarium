@@ -5,11 +5,11 @@ const post: BlogPost = {
   slug: 'mein-genialer-satz',
   author: 'caesar',
   title: 'Mein genialer Satz',
-  
+
   excerpt: '',
   historicalDate: '58 v. Chr.',
   historicalYear: -58,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 2,
   tags: ["Gallien"],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_romische_Schriftrollen_mit_Gesetzen_5849504c-6029-491e-91f3-da42b0893bf4.png',
@@ -54,23 +54,55 @@ Der Satz ist stilistisch meisterhaft. Die symmetrische Struktur und die klare Gl
 **Quellen:** Rüpke, J. (2005) *Die Religion der Römer*; Woolf, G. (1998) *Becoming Roman*`
   },
   translations: {
-  "en": {
-    "title": "My Genius Sentence",
-    "excerpt": "Who doesn\\'t know my famous opening?",
-    "content": {
-      "diary": "Who doesn't know my famous opening?\n\nGallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.\n\nHave you ever heard such a genius idea? Yes, yes... I know you don't understand it 😦. Why should you? You probably didn't pay attention in Latin class.... I was looking forward to learning something about Rome's history back then. Every student has to learn this sentence by heart in Latin class. Sometimes they are even quizzed on it... You see here how much influence I have. I even influence the curriculum. I am simply someone who writes history. And when even children learn my quotes, then you see again how I am admired by everyone. But we are straying from the subject. My genius sentence translates as follows:\n\nAll Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third.\n\nI thought that through well, didn't I? Feel free to write in the comments what you think about it (But only positive things!). No one has ever come up with that before: And of course I conquered the whole area too. Just like that. Because I'm so good.\n\nAnd so the Rhine served as a natural border between the Gauls and the Germans. All in all, my conquests separated three areas in all of Gaul, each differing in language and culture. I created that! Isn't that great?\n\nBut there are still a few people who are quite jealous and now claim that everything I thought of is wrong again...\n\nBut do you really think anyone could cast doubt on my words, my deeds, my achievements? I not only described Gaul but also conquered it.\n\nGallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.\n\nAll Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third.\n\nGaius Julius Caesar",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "Sententia Mea Ingeniosa",
-    "excerpt": "Quis initium meum clarissimum nescit?",
-    "content": {
-      "diary": "Quis initium meum clarissimum nescit?\n\nGallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.\n\nAudivistisne umquam talem sententiam ingeniosam? Ita, ita... Scio vos non intellegere 😦. Cur intellegeretis? Fortasse in schola Latina non attenti eratis.... Ego tunc gaudebam aliquid de historia Romana discere. In schola Latina omnis discipulus hanc sententiam ediscere debet. Interdum etiam interrogantur... Videtis hic quantum valeam. Etiam cursum studiorum flecto. Sum simpliciter aliquis qui historiam scribit. Et cum etiam pueri dicta mea discunt, tum rursus videtis quomodo ab omnibus admirer. Sed a re aberramus. Sententia mea ingeniosa sic vertitur:\n\nGallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.\n\nHoc bene excogitavi, nonne? Scribite libenter in commentariis quid de hoc sentiatis (Sed tantum positiva!). Nemo antea hoc invenit: Et totam regionem naturaliter etiam vici. Simpliciter. Quia tam bonus sum.\n\nEt sic Rhenus finis naturalis inter Gallos et Germanos fuit. Omnino per victorias meas tres partes in tota Gallia divisae sunt, quae lingua et cultura differunt. Hoc ego creavi! Nonne mirabile est?\n\nSed sunt tamen pauci qui valde invidi sunt et nunc affirmant omnia rursus falsa esse quae excogitavi...\n\nSed vere creditis quemquam verba mea, facta mea, res gestas meas in dubium vocare posse? Galliam non solum descripsi sed etiam vici.\n\nGallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.\n\nGaius Iulius Caesar",
-      "scientific": ""
+    "en": {
+      "title": "My Genius Sentence",
+      "excerpt": "\"Gallia est omnis divisa in partes tres...\" - The sentence every Latin student knows. How I defined a continent with a few words.",
+      "content": {
+        "diary": `Who doesn't know my famous opening?
+
+"Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur."
+
+With these words I begin my work on the Gallic War, *De Bello Gallico*. A sentence that would make history and is taught in schools to this day. The fact that later generations will memorize my words shows what a lasting impression my deeds and writings have left.
+
+The translation is: "All Gaul is divided into three parts, one of which the Belgae inhabit, the Aquitani another, those who in their own language are called Celts, in our Gauls, the third."
+
+This tripartite division is not just a geographical description, but also the result of my conquests. I brought this huge area under Roman rule and established natural borders like the Rhine as a demarcation line between Gauls and Germans. The three regions differ in language and culture, and I conquered them all.
+
+The sentence is more than just the beginning of a report. It is the announcement of a complete transformation of these territories. What was previously a confused jumble of barbarian tribes, I have transformed into an ordered Roman province. The Belgae in the north between Seine, Marne and Rhine, the Aquitani in the southwest between Pyrenees and Garonne, and the Celts in the heartland between Loire and Seine – all finally recognized Rome's superiority.
+
+Some will later claim that this tripartite division is too simplified, that the ethnic borders were actually more fluid. But that's not the point. I not only described Gaul but also conquered and ordered it. My work is both report and justification, chronicle and propaganda.
+
+"Gallia est omnis divisa in partes tres..." – A sentence that changed the world.
+
+Gaius Julius Caesar`,
+        "scientific": `## Historical Context
+
+The famous opening sentence of Caesar's *De Bello Gallico* is not only literary brilliance but also ethnographically significant. Caesar presents a simplified but useful tripartite division of Gaul.
+
+### The Three Groups of People
+
+*   **The Belgae:** Inhabited the northern part (modern Belgium/Northern France). Considered the most warlike because they were furthest from Roman civilization.
+*   **The Aquitani:** Settled in the southwest. Culturally more related to Iberians than Celts.
+*   **The Celtae/Galli:** Inhabited the central heartland. This group formed the majority of the Gallic population.
+
+### Scientific Assessment
+
+Modern archaeologists and historians view Caesar's tripartite division as a simplification. Cultural and ethnic boundaries were more fluid. Caesar's depiction served propaganda purposes: it justified his conquest as the ordering of a chaotic region.
+
+### Literary Significance
+
+The sentence is stylistically masterful. Its symmetric structure and clear organization demonstrate Caesar's rhetorical training. It immediately establishes the factual, documentary tone that characterizes the entire work.`
+      }
+    },
+    "la": {
+      "title": "Sententia Mea Ingeniosa",
+      "excerpt": "\"Gallia est omnis divisa in partes tres...\" - Verba quae historiam scripserunt.",
+      "content": {
+        "diary": "\"Gallia est omnis divisa in partes tres...\" His verbis opus meum incipio. Non solum geographiam describo, sed victoriam meam nuntio. Omnes gentes Galliae - Belgas, Aquitanos, Gallos - subegi et in provinciam redegi. Hoc est monumentum gloriae meae.",
+        "scientific": "Initium *De Bello Gallico* celeberrimum est. Caesar Galliam in tres partes dividit: Belgas, Aquitanos, et Gallos. Haec divisio, quamvis simplicior rei veritate, rhetoricam Caesaris et consilium eius politicum demonstrat. Caesar non solum scriptor, sed etiam ordinator Galliae se praebet."
+      }
     }
   }
-}
 };
 
 export default post;

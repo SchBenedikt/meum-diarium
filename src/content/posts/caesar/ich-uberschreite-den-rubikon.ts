@@ -5,15 +5,15 @@ const post: BlogPost = {
   slug: 'ich-uberschreite-den-rubikon',
   author: 'caesar',
   title: 'Ich überschreite den Rubikon',
-  
+
   scientificTitle: 'Überquerung des Rubikon',
-  
+
   excerpt: 'Der Moment, der alles veränderte: Als ich mit meinen Legionen einen kleinen Fluss überquerte und damit den größten Bürgerkrieg Roms auslöste. War es Wahnsinn? Vielleicht. War es notwendig? Absolut.',
   historicalDate: '10. Januar 49 v. Chr.',
   historicalYear: -49,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 6,
-  tags: ["Armee","Bürgerkrieg","Feind","Pompeius","Rom","Rubikon","Senat"],
+  tags: ["Armee", "Bürgerkrieg", "Feind", "Pompeius", "Rom", "Rubikon", "Senat"],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_image_of_gaius_julius_caesar_crossing_the_rubi_3316f166-9765-493e-a244-108688cce9301.png',
   content: {
     diary: `10. Januar 49 v. Chr. – ein kleiner Fluss, eine große Entscheidung.
@@ -106,23 +106,78 @@ Doch er versuchte nicht, eine neue monarchische Herrschaft zu etablieren. Caesar
 Diese Synthese war unstabil und würde nicht lange andauern. Nach Caesars Ermordung würde sein Erbe und sein System durch weitere Kriege und Umwälzungen transformiert werden. Doch die Überquerung des Rubikon markierte den Punkt, an dem es kein Zurück zur alten Republik mehr gab. Die Zukunft Roms würde nicht in republikanischen Strukturen liegen, sondern in einer neuen Form der Herrschaft, die Caesar initiiert und später Augustus perfektionieren sollte.`
   },
   translations: {
-  "en": {
-    "title": "I Cross the Rubicon",
-    "excerpt": "The moment that changed everything: When I crossed a small river with my legions and triggered Rome\\'s greatest civil war. Was it madness? Perhaps. Was it necessary? Absolutely.",
-    "content": {
-      "diary": "**January 10, 49 BC – The Day That Changed Everything**\n\nI stand here on the banks of the Rubicon – a ridiculously small river that one could almost jump over in good weather. But this inconspicuous stream is the border between my province Gallia Cisalpina and Italy. And these idiotic senators have decided that I am not allowed to cross it with my troops.\n\nWait a minute – let me summarize this: I have conquered Gaul for eight years, brought Rome indescribable wealth, extended the borders to the Rhine and across the English Channel. And now I'm supposed to just leave my legions here and walk unarmed to Rome? Only to be arrested by these corrupt Optimates?\n\n**As if.**\n\n**The Backstory – How the Senate Betrayed Me**\n\nIt all started when these senile old men in the Senate decided to prosecute me. For what? Oh, some \"constitutional violations\" during my consulship ten years ago. Cato – that self-righteous moralist – and his Optimates clique want to finish me off.\n\nThe deal was actually clear: I run for consulship for 48 BC, remain proconsul with immunity. Simple. Clean. Legal.\n\nBut then came this Senate resolution: \"Caesar shall lay down his command.\" Translated: \"Caesar shall surrender defenseless to his enemies.\"\n\nEven better: They have authorized Pompey – MY FORMER ALLY – to proceed against me. Pompey Magnus. The man who married my daughter Julia. The man with whom I founded the Triumvirate.\n\nTraitors. All of them.\n\n**The Moment of Decision**\n\nI only have one legion here – the XIII Gemina. About 5,000 men. Pompey has ten legions in Italy and Spain. The Senate controls the state treasury. The entire elite of Rome stands against me.\n\nEvery reasonable person would give up now.\n\nBut I am not every reasonable person. I am Gaius Julius Caesar.\n\nI look at my soldiers – veterans from the Gallic wars. Men who have been through hell with me. Who have bled for me. Who are loyal to me because I have brought them loot, land, and glory.\n\nThen I think of these fat, lazy senators in Rome. Who have never held a sword. Who have never fought a battle. Who think they can just eliminate me like a annoying fly.\n\n**\"Ἀνερρίφθω κύβος!\" – The die is cast!**\n\nI say it in Greek because I am an educated man – not like these philistines in the Senate. (Brutus would understand. Cicero probably too, the old windbag.)\n\nIt's a quote from Menander. Dramatic. Theatrical. Just right for this moment.\n\nIn Latin: **\"Alea iacta est\"** – The dice are cast.\n\nWhat does that mean? Simple: There is no turning back. I have made my decision. The Senate wanted war? They will get war.\n\nI give the command: \"Forward.\"\n\nThe XIII Legion marches across the Rubicon.\n\n**Technically speaking, I am now a criminal.** A traitor. An enemy of the state.\n\n**Practically speaking, I am the only man who can save Rome – from itself.**",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "Rubiconem Transeo",
-    "excerpt": "Momentum quod omnia mutavit: Cum cum legionibus meis parvum flumen transii et maximum bellum civile Romae incendi. Insanianne fuit? Fortasse. Necessarianne? Omnino.",
-    "content": {
-      "diary": "**X Kalendas Ianuarias XLIX a.C.n. – Dies Qui Omnia Mutavit**\n\nSto hic ad ripam Rubiconis – flumen ridicule parvum quod tempore bono fere transsilire possis. Sed hic rivus inconspicuus est limes inter provinciam meam Galliam Cisalpinam et Italiam. Et hi stulti senatores decreverunt me cum copiis meis eum transire non licere.\n\nMane – permitte mihi hoc summare: Octo annos Galliam subegi, Romae divitias incredibiles attuli, fines usque ad Rhenum et trans Oceanum Britannicum prorogavi. Et nunc legiones meas hic relinquere et inermis Romam ambulare debeo? Ut ab his corruptis Optimatibus comprehendar?\n\n**Quasi.**\n\n**Historia Antecedente – Quomodo Senatus Me Prodidit**\n\nOmnia inceperunt cum hi seniles viri in Senatu decreverunt me accusare. Qua de causa? Ah, quaedam \"violationes constitutionis\" durante consulatu meo decem annos ante. Cato – hic hypocrita moralis – et sua Optimatum factio me delere volunt.\n\nPactum re vera clarum erat: Consulatum peto anno XLVIII a.C.n., maneo proconsul cum immunitate. Simplex. Purus. Legalis.\n\nSed tum venit hoc senatus consultum: \"Caesar imperium deponat.\" Interpretatum: \"Caesar se inermem inimicis tradat.\"\n\nEtiam melius: Pompeium – MEUM SOCIUM PRIOREM – contra me procedere auctorizaverunt. Pompeius Magnus. Vir qui filiam meam Iuliam in matrimonium duxit. Vir cum quo Triumviratum fundavi.\n\nProditores. Omnes.",
-      "scientific": ""
+    "en": {
+      "title": "I Cross the Rubicon",
+      "excerpt": "The moment that changed everything: When I crossed a small river with my legions and triggered Rome's greatest civil war. Was it madness? Perhaps. Was it necessary? Absolutely.",
+      "content": {
+        "diary": `**January 10, 49 BC – The Day That Changed Everything**
+
+I stand here on the banks of the Rubicon – a ridiculously small river that one could almost jump over in good weather. But this inconspicuous stream is the border between my province Gallia Cisalpina and Italy. And these idiotic senators have decided that I am not allowed to cross it with my troops.
+
+Wait a minute – let me summarize this: I have conquered Gaul for eight years, brought Rome indescribable wealth, extended the borders to the Rhine and across the English Channel. And now I'm supposed to just leave my legions here and walk unarmed to Rome? Only to be arrested by these corrupt Optimates?
+
+**As if.**
+
+**The Backstory – How the Senate Betrayed Me**
+
+It all started when these senile old men in the Senate decided to prosecute me. For what? Oh, some "constitutional violations" during my consulship ten years ago. Cato – that self-righteous moralist – and his Optimates clique want to finish me off.
+
+The deal was actually clear: I run for consulship for 48 BC, remain proconsul with immunity. Simple. Clean. Legal.
+
+But then came this Senate resolution: "Caesar shall lay down his command." Translated: "Caesar shall surrender defenseless to his enemies."
+
+Even better: They have authorized Pompey – MY FORMER ALLY – to proceed against me. Pompey Magnus. The man who married my daughter Julia. The man with whom I founded the Triumvirate.
+
+Traitors. All of them.
+
+**The Moment of Decision**
+
+I only have one legion here – the XIII Gemina. About 5,000 men. Pompey has ten legions in Italy and Spain. The Senate controls the state treasury. The entire elite of Rome stands against me.
+
+Every reasonable person would give up now.
+
+But I am not every reasonable person. I am Gaius Julius Caesar.
+
+I look at my soldiers – veterans from the Gallic wars. Men who have been through hell with me. Who have bled for me. Who are loyal to me because I have brought them loot, land, and glory.
+
+Then I think of these fat, lazy senators in Rome. Who have never held a sword. Who have never fought a battle. Who think they can just eliminate me like a annoying fly.
+
+**"Ἀνερρίφθω κύβος!" – The die is cast!**
+
+I say it in Greek because I am an educated man – not like these philistines in the Senate. (Brutus would understand. Cicero probably too, the old windbag.)
+
+It's a quote from Menander. Dramatic. Theatrical. Just right for this moment.
+
+In Latin: **"Alea iacta est"** – The dice are cast.
+
+What does that mean? Simple: There is no turning back. I have made my decision. The Senate wanted war? They will get war.
+
+I give the command: "Forward."
+
+The XIII Legion marches across the Rubicon.
+
+**Technically speaking, I am now a criminal.** A traitor. An enemy of the state.
+
+**Practically speaking, I am the only man who can save Rome – from itself.**`,
+        "scientific": `## The Crossing of the Rubicon (49 BC)
+
+On January 10, 49 BC, Caesar crossed the Rubicon River, the legal boundary between his province (Cisalpine Gaul) and Italy proper. This act was a declaration of civil war.
+
+*   **Context:** After his conquest of Gaul, conservatives in the Senate (led by Cato) and his former ally Pompey maneuvered to strip Caesar of his command and immunity from prosecution. They demanded he return to Rome as a private citizen, where he would face politically motivated trials.
+*   **The Decision:** Facing political annihilation, Caesar chose war. He crossed the Rubicon with a single legion, the XIII Gemina.
+*   **"Alea Iacta Est":** He famously quoted Menander: "The die is cast." This signified the point of no return.
+*   **Consequences:** Pompey and the Senate, unprepared for Caesar's speed, fled Rome for Greece. Caesar seized Italy and the treasury. This began a civil war that spanned the Mediterranean (Spain, Greece, Egypt, Africa) and ended with Caesar's victory and establishment as Dictator Perpetuo, effectively ending the Roman Republic.`
+      }
+    },
+    "la": {
+      "title": "Rubiconem Transeo",
+      "excerpt": "Momentum quod omnia mutavit: Cum cum legionibus meis parvum flumen transii et maximum bellum civile Romae incendi. Insanianne fuit? Fortasse. Necessarianne? Omnino.",
+      "content": {
+        "diary": "**X Kalendas Ianuarias XLIX a.C.n. – Dies Qui Omnia Mutavit**\n\nSto hic ad ripam Rubiconis – flumen ridicule parvum quod tempore bono fere transsilire possis. Sed hic rivus inconspicuus est limes inter provinciam meam Galliam Cisalpinam et Italiam. Et hi stulti senatores decreverunt me cum copiis meis eum transire non licere.\n\nMane – permitte mihi hoc summare: Octo annos Galliam subegi, Romae divitias incredibiles attuli, fines usque ad Rhenum et trans Oceanum Britannicum prorogavi. Et nunc legiones meas hic relinquere et inermis Romam ambulare debeo? Ut ab his corruptis Optimatibus comprehendar?\n\n**Quasi.**\n\n**Historia Antecedente – Quomodo Senatus Me Prodidit**\n\nOmnia inceperunt cum hi seniles viri in Senatu decreverunt me accusare. Qua de causa? Ah, quaedam \"violationes constitutionis\" durante consulatu meo decem annos ante. Cato – hic hypocrita moralis – et sua Optimatum factio me delere volunt.\n\nPactum re vera clarum erat: Consulatum peto anno XLVIII a.C.n., maneo proconsul cum immunitate. Simplex. Purus. Legalis.\n\nSed tum venit hoc senatus consultum: \"Caesar imperium deponat.\" Interpretatum: \"Caesar se inermem inimicis tradat.\"\n\nEtiam melius: Pompeium – MEUM SOCIUM PRIOREM – contra me procedere auctorizaverunt. Pompeius Magnus. Vir qui filiam meam Iuliam in matrimonium duxit. Vir cum quo Triumviratum fundavi.\n\nProditores. Omnes.",
+        "scientific": "Transitus Rubiconis (X Ian. 49 a.C.n.) initium belli civilis fuit. Caesar, cum imperium deponere iussus esset, cum legione XIII flumen transiit, dicens: 'Alea iacta est.' Pompeius et Senatus ex Italia fugerunt. Caesar Romam in potestatem suam redegit et postea dictator factus est. Finis Rei Publicae aderat."
+      }
     }
   }
-}
 };
 
 export default post;

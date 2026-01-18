@@ -11,23 +11,23 @@ Die Aufgaben der Ädilen waren vielfältig und bürgernah: Sie überwachten Mär
 Das Amt war ein Sprungbrett für ehrgeizige Politiker: Julius Caesar ruinierte sich beinahe finanziell mit aufwendigen Spielen als Ädil, was aber seine Popularität enorm steigerte. Marcus Agrippa nutzte seine Ädilität, um Rom mit öffentlichen Bädern und Wasserleitungen zu verschrönen. Die Ädilen waren die sichtbarsten Magistrate im Alltag der römischen Bürger - ihre Tätigkeit betraf direkt die Lebensqualität in der Stadt. Erfolgreiche Ädilen konnten auf eine Praetur und schließlich ein Konsulat hoffen.`,
   category: "Politik",
   etymology: `Von lateinisch 'aedes' (Gebäude, Tempel). Die Aedilen waren ursprünglich für die Pflege der Tempel zuständig.`,
-  relatedTerms: ["Praetor","Cursus honorum"],
+  relatedTerms: ["Praetor", "Cursus honorum"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aedile",
+      "definition": "The Aedile was a magistrate of the Roman Republic responsible for public buildings, games, and the grain supply. It was an important step in the 'Cursus Honorum', allowing politicians to gain popularity through lavish public games.",
+      "etymology": "Latin 'aedes' (temple/building). Originally caretakers of the Temple of Ceres.",
+      "category": "Politics",
+      "variants": ["Curule Aedile", "Plebeian Aedile"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aedilis",
+      "definition": "Aedilis fuit magistratus Romanus qui curam aedium, ludorum et annonae habebat. Gradus erat in cursu honorum. Aediles ludos magnificos edebant ut favorem populi conciliarent.",
+      "etymology": "A verbo 'aedes'.",
+      "category": "Res Publica",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

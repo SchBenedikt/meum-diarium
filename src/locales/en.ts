@@ -5,6 +5,9 @@ export const en = {
     },
     navTimeline: 'Timeline',
     navLexicon: 'Lexicon',
+    lexiconSearchPlaceholder: 'Search the lexicon...',
+    lexiconGlossary: 'The Glossary',
+    lexiconDescription: 'A compendium of the most important terms of ancient Rome.',
     navAbout: 'About',
     search: 'Search',
     openMenu: 'Open Menu',
@@ -54,6 +57,15 @@ export const en = {
     otherWorks: 'Other Works',
     methodology: 'Methodology & Sources',
     methodologyDesc: 'How we reconstruct: original texts, semantic analysis, and careful validation.',
+    timelineHeading: 'Chronological Timeline',
+    searchTimeline: 'Search events...',
+    birth: 'Birth',
+    death: 'Death',
+    event: 'Event',
+    work: 'Work',
+
+    filter: 'Filter',
+    clearFilters: 'Clear Filters',
     sources: 'Primary Sources',
     sourcesDesc: 'Original texts in Latin and translations form the basis of every reconstruction.',
     analysis: 'Semantic Analysis',
@@ -99,8 +111,7 @@ export const en = {
     followUs: 'Follow us',
     copyright: '© {{year}} Meum Diarium. All rights reserved.',
     spqr: 'SPQR · Senatus Populusque Romanus',
-    lexiconGlossary: 'Glossary of Antiquity',
-    lexiconDescription: 'A reference work for the most important terms, people, and concepts of ancient Rome.',
+
     morePostsFrom: 'More posts from {{name}}',
     landing: {
         hero: {
@@ -182,12 +193,7 @@ export const en = {
             exploreProfile: 'Explore profile',
         }
     },
-    filter: 'Filter',
-    clearFilters: 'Clear Filters',
-    birth: 'Birth',
-    death: 'Death',
-    event: 'Event',
-    work: 'Work',
+
     noEventsFound: 'No events found for these filters',
     births: 'Births',
     timePeriod: 'Time Period',

@@ -163,56 +163,80 @@
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
-    --background: 345 2% 99.4%;
+    --background: 345 10% 97.5%;
+    --surface-container-low: 345 6% 98.5%;
+    --surface-container: 345 6% 99%;
+    --card: 345 4% 99.5%;
   }
 
   .dark.theme-caesar {
     --primary: var(--author-caesar);
     --accent: var(--author-caesar);
     --ring: var(--author-caesar);
-    --background: 345 4% 11.5%;
+    --background: 345 14% 11%;
+    --surface-container-low: 345 10% 13%;
+    --surface-container: 345 10% 13.5%;
+    --card: 345 8% 14%;
   }
 
   .theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
-    --background: 215 2% 99.4%;
+    --background: 215 12% 97.5%;
+    --surface-container-low: 215 8% 98.5%;
+    --surface-container: 215 8% 99%;
+    --card: 215 6% 99.5%;
   }
 
   .dark.theme-cicero {
     --primary: var(--author-cicero);
     --accent: var(--author-cicero);
     --ring: var(--author-cicero);
-    --background: 215 4% 12%;
+    --background: 215 15% 11.5%;
+    --surface-container-low: 215 11% 13.5%;
+    --surface-container: 215 11% 14%;
+    --card: 215 9% 14.5%;
   }
 
   .theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
-    --background: 45 2% 99.4%;
+    --background: 45 10% 97%;
+    --surface-container-low: 45 6% 98.5%;
+    --surface-container: 45 6% 99%;
+    --card: 45 4% 99.5%;
   }
 
   .dark.theme-augustus {
     --primary: var(--author-augustus);
     --accent: var(--author-augustus);
     --ring: var(--author-augustus);
-    --background: 45 4% 11.5%;
+    --background: 45 14% 11%;
+    --surface-container-low: 45 10% 13%;
+    --surface-container: 45 10% 13.5%;
+    --card: 45 8% 14%;
   }
 
   .theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
-    --background: 165 2% 99.4%;
+    --background: 165 8% 97.5%;
+    --surface-container-low: 165 5% 98.5%;
+    --surface-container: 165 5% 99%;
+    --card: 165 3% 99.5%;
   }
 
   .dark.theme-seneca {
     --primary: var(--author-seneca);
     --accent: var(--author-seneca);
     --ring: var(--author-seneca);
-    --background: 165 4% 11%;
+    --background: 165 12% 11.5%;
+    --surface-container-low: 165 8% 13.5%;
+    --surface-container: 165 8% 14%;
+    --card: 165 6% 14.5%;
   }
 
   * {

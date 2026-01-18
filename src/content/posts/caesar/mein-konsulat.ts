@@ -5,13 +5,13 @@ const post: BlogPost = {
   slug: 'mein-konsulat',
   author: 'caesar',
   title: 'Mein Konsulat',
-  
+
   excerpt: 'Das Jahr 59 v. Chr. – Ich werde endlich Konsul! Mit etwas "Überredungskunst" von Pompeius, massiver Korruption und einem völlig inkompetenten Kollegen. Spoiler: Es wird chaotisch. Aber glorreich.',
   historicalDate: '59 v. Chr.',
   historicalYear: -59,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 6,
-  tags: ["Bibulus","Crassus","Gegner","Konsulat","Pompeius","Triumvirat","Reform"],
+  tags: ["Bibulus", "Crassus", "Gegner", "Konsulat", "Pompeius", "Triumvirat", "Reform"],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/18088652-e1710258453455.jpg',
   content: {
     diary: `Das Jahr 59 v. Chr. – endlich bin ich Konsul! Nach all den Jahren des Wartens, der Intrigen und politischen Manöver stehe ich nun an der Spitze Roms. Lasst die Trompeten erschallen – Gaius Julius Caesar ist Konsul der Römischen Republik!
@@ -296,23 +296,62 @@ Das Konsulat Caesars 59 v. Chr. war ein Wendepunkt römischer Geschichte. Es dem
 Die Methoden – Gewalt, Korruption, Verfassungsbruch – waren moralisch fragwürdig, aber politisch effektiv. Sie ebneten Caesar den Weg nach Gallien, wo er in den nächsten acht Jahren ein Imperium erobern und eine Armee aufbauen würde, die schließlich die Republik stürzen sollte.`
   },
   translations: {
-  "en": {
-    "title": "My Consulship",
-    "excerpt": "The year 59 BC – I finally become Consul! With some \"persuasion\" from Pompey, massive corruption, and a completely incompetent colleague. Spoiler: It will be chaotic. But glorious.",
-    "content": {
-      "diary": "**59 BC – The Year I Finally Become Consul**\n\nFINALLY! After all those years of waiting, intrigues, political maneuvers – I am now Consul of Rome!\n\nPop the corks! 🎉 Let the trumpets sound! Gaius Julius Caesar – Consul of the Roman Republic!\n\nOkay, I admit: It didn't go ENTIRELY according to democratic rules. But honestly – since when do these hypocritical senators care about democracy? They just want to secure their own power.\n\n**How I Won (with a little help from my friends)**\n\nI had a pretty good campaign. Pompey \"discreetly\" threatened every senator who didn't want to vote for me with his sword. Very subtle. Very effective.",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "Consulatus Meus",
-    "excerpt": "Annus LIX a.C.n. – Tandem Consul fio! Cum aliqua \"persuasione\" Pompeii, corruptione magna, et collega omnino incompetente. Spoiler: Chaos erit. Sed gloriosum.",
-    "content": {
-      "diary": "**LIX a.C.n. – Annus Quo Tandem Consul Fio**\n\nTANDEM! Post omnes illos annos exspectationis, insidiarum, molitorum politicorum – nunc Consul Romae sum!\n\nGaudete! 🎉 Tubae sonent! Gaius Iulius Caesar – Consul Rei Publicae Romanae!\n\nBene, fateor: Non OMNINO secundum regulas democraticas processit. Sed sincere – ex quo tempore hi hypocritae senatores de democratia curant? Tantum potestatem suam confirmare volunt.",
-      "scientific": ""
+    "en": {
+      "title": "My Consulship",
+      "excerpt": "The year 59 BC – I finally become Consul! With some \"persuasion\" from Pompey, massive corruption, and a completely incompetent colleague. Spoiler: It will be chaotic. But glorious.",
+      "content": {
+        "diary": `**59 BC – The Year I Finally Become Consul**
+
+FINALLY! After all those years of waiting, intrigues, political maneuvers – I am now Consul of Rome!
+
+Pop the corks! 🎉 Let the trumpets sound! Gaius Julius Caesar – Consul of the Roman Republic!
+
+Okay, I admit: It didn't go ENTIRELY according to democratic rules. But honestly – since when do these hypocritical senators care about democracy? They just want to secure their own power.
+
+**How I Won (with a little help from my friends)**
+
+I had a pretty good campaign. Pompey "discreetly" threatened every senator who didn't want to vote for me with his sword. Very subtle. Very effective. Crassus meanwhile pressed a decent purse into the hand of every century leader. Let's call it "campaign financing."
+
+**My Colleague: Bibulus (The Drinker)**
+
+Oh yes, I have a colleague. Technically. His name is Bibulus – Latin for "fond of drinking." The man carries his vice in his name. The Optimates put him up to block me. Their strategy was simple: If Caesar proposes something, Bibulus says No. No matter what. Just No. Very sophisticated strategy.
+
+The funny thing is: After two months he gave up. Just completely stopped coming to work. He stayed at home and allegedly "observed unfavorable omens." Translation: The gods don't want me to work. Romans started calling the year not "Consulship of Caesar and Bibulus" but "Consulship of Julius and Caesar." I must say, I find that extremely funny.
+
+**Reforms (aka: Doing What Needs to be Done)**
+
+As Consul, I finally have the power to change things. Pompey's veterans need land. They fought for Rome for years, and what do they get? Nothing. These ungrateful senators didn't want to give them land. So I pushed through a law: Land for veterans, state-funded. How I pushed it through? I convened the People's Assembly, and when the senators protested, a few of Pompey's soldiers ensured order. Cato tried to block the vote with an endless speech, so I just had him carried out of the Forum. Problem solved.
+
+Crassus wanted the tax farmers to pay less. These people are his best friends and helped him to his wealth. The Senate was of course against it. "Breach of constitution! Corruption! Scandal!" I waved it through. Crassus was happy, the publicani were happy, and I had a very powerful, very rich friend on my side. That's how politics works, my friends.
+
+**The Aftermath**
+
+After my consulship, many charges await me: Breach of constitution multiple times, violence against senators, corruption, abuse of office. Am I worried? No. Why? Because Crassus pays the best lawyers in Rome. And because after my consulship I get a proconsular command in Gaul. Proconsul means immunity – as long as I am in office, no one can accuse me. So I will simply stay in office. For a very, very long time.`,
+        "scientific": `## Caesar's Consulship (59 BC): Constitutional Crisis and Popular Politics
+
+The year 59 BC marked a turning point in the late Roman Republic. Caesar used his consulship to push through radical reforms, supported by the First Triumvirate (Caesar, Pompey, Crassus).
+
+**The Triumvirate's Agenda:**
+*   **Land for Veterans:** Caesar passed the *Lex Iulia Agraria* to settle Pompey's veterans, bypassing the Senate by going directly to the People's Assembly and using intimidation (Pompey's soldiers).
+*   **Tax Relief:** He favored Crassus' allies, the tax farmers (*publicani*), by reducing their tax liability.
+*   **Foreign Policy:** He recognized Ptolemy XII as King of Egypt in exchange for a massive bribe.
+
+**Opposition and Constitutional Breaches:**
+His co-consul, the Optimate Bibulus, attempted to block these measures through vetos and by claiming religious omens. Caesar systematically ignored these checks, effectively silencing his colleague. Bibulus retreated to his home, leading wits to call the year the "Consulship of Julius and Caesar".
+
+**Legacy:**
+Caesar's actions weakened the Senate's authority and demonstrated that power now lay with private alliances and military force. He secured a long-term proconsular command in Gaul, ensuring his immunity from prosecution and setting the stage for his military conquests.`
+      }
+    },
+    "la": {
+      "title": "Consulatus Meus",
+      "excerpt": "Annus LIX a.C.n. – Tandem Consul fio! Cum aliqua \"persuasione\" Pompeii, corruptione magna, et collega omnino incompetente. Spoiler: Chaos erit. Sed gloriosum.",
+      "content": {
+        "diary": "LIX a.C.n. – Annus Quo Tandem Consul Fio. Tandem! Post omnes illos annos exspectationis. Nunc Consul Romae sum! Pompeius et Crassus me adiuverunt. Collega meus Bibulus domi manet et signa observat. Ego leges fero: agros veteranis, pecuniam publicanis. Senatus iratus est, sed nihil facere potest. Post consulatum in Galliam ibo. Potentia mea incipit.",
+        "scientific": "Consulatus Caesaris (59 a.C.n.) finis Rei Publicae liberae fuit. Caesar, adiutus a Pompeio et Crasso, leges contra voluntatem Senatus tulit. Collegam suum Bibulum vi et minis domi manere coegit. Leges agrarias tulit ut veteranis Pompeii satis faceret. Hoc gessit per vim et contra auspicia. Post consulatum imperium Galliae accepit."
+      }
     }
   }
-}
 };
 
 export default post;

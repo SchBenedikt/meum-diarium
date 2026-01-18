@@ -1,10 +1,10 @@
 import { LexiconEntry } from '@/types/blog';
 
 const entry: LexiconEntry = {
-  term: "Paterfamilias",
-  slug: "paterfamilias",
-  variants: [],
-  definition: `## Der Hausvater im römischen Recht
+    term: "Paterfamilias",
+    slug: "paterfamilias",
+    variants: [],
+    definition: `## Der Hausvater im römischen Recht
 
 Der **Paterfamilias** ("Vater der Familie") war das männliche Oberhaupt der römischen *familia* und besitzt die umfassende rechtliche Gewalt (*patria potestas*) über alle Familienmitglieder. Diese Position machte ihn zum absoluten Herrscher über Haus, Hof und alle darin lebenden Personen – ein Kernstück des römischen Gesellschaftssystems.
 
@@ -52,25 +52,25 @@ In der frühen Republik war die *patria potestas* fast absolut. Über die Jahrhu
 - **Filius familias**: Der Sohn unter väterlicher Gewalt (auch als Erwachsener)
 - **Matrona**: Die Ehefrau, Herrin des Haushalts, aber rechtlich untergeordnet
 - **Libertus**: Der Freigelassene, der weiter Verpflichtungen hatte`,
-  category: "Gesellschaft",
-  etymology: `Von *pater* (Vater) und *familia* (Familie/Hausgemeinschaft): "Vater der Familie". Der Begriff betont nicht nur biologische Vaterschaft, sondern die rechtliche Herrschaft über die gesamte *domus* (Hausgemeinschaft). Später verknüpft mit *patria potestas* (väterliche Gewalt) als zentralem Rechtsbegriff.`,
-  relatedTerms: [],
-  translations: {
-    "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
-    },
-    "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+    category: "Gesellschaft",
+    etymology: `Von *pater* (Vater) und *familia* (Familie/Hausgemeinschaft): "Vater der Familie". Der Begriff betont nicht nur biologische Vaterschaft, sondern die rechtliche Herrschaft über die gesamte *domus* (Hausgemeinschaft). Später verknüpft mit *patria potestas* (väterliche Gewalt) als zentralem Rechtsbegriff.`,
+    relatedTerms: [],
+    translations: {
+        "en": {
+            "term": "Paterfamilias",
+            "definition": "The Paterfamilias was the male head of the Roman household. He held absolute legal authority ('patria potestas') over his wife, children, and slaves, including technically the power of life and death, though this was rarely exercised in later periods.",
+            "etymology": "Latin 'pater' (father) + 'familias' (archaic genitive of family).",
+            "category": "Society",
+            "variants": []
+        },
+        "la": {
+            "term": "Paterfamilias",
+            "definition": "Paterfamilias erat caput familiae Romanae. Patriam potestatem in liberos et uxorem et servos habebat. Dominus vitae necisque in domo sua erat.",
+            "etymology": "Ex 'pater' et 'familias'.",
+            "category": "Societas",
+            "variants": []
+        }
     }
-}
 };
 
 export default entry;

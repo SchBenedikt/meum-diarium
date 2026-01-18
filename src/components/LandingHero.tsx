@@ -62,7 +62,7 @@ export default function LandingHero() {
             </Badge>
 
             <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl mb-8 text-foreground leading-[1.1] tracking-tighter font-extrabold">
-              Meum <span className="text-primary italic">Diarium</span>
+              <span className="text-primary">Meum Diarium</span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed font-light">

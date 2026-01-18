@@ -20,20 +20,20 @@ Die Konstruktion eines Aquädukts war eine gewaltige logistische und finanzielle
   relatedTerms: [],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aqueduct",
+      "definition": "An Aqueduct was a water supply channel constructed to convey water to Roman cities. Using gravity and a precise gradient, they transported water over long distances, often crossing valleys on massive arched bridges.",
+      "etymology": "Latin 'aqua' (water) + 'ducere' (to lead).",
+      "category": "Architecture",
+      "variants": ["Aquaeductus"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Aquaeductus",
+      "definition": "Aquaeductus est canalis structilis ad aquam ducendam. Romani aquaeductus per longa spatia aquam in urbes ducebant, saepe super arcus magnificos.",
+      "etymology": "Ab 'aqua' et 'ducere'.",
+      "category": "Architectura",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

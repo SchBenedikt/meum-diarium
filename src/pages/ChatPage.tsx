@@ -9,15 +9,17 @@ import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
 import { Send, User, Bot, Sparkles, MessageCircle, ArrowLeft, Map, BookOpen, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PageHero } from '@/components/layout/PageHero';
 import { askAI } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Footer } from '@/components/layout/Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const [searchParams] = useSearchParams();
     const { setCurrentAuthor } = useAuthor();
+    const { t } = useLanguage();
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über meine Feldzüge in Gallien oder meine Pläne für Rom.' }
     ]);
@@ -28,7 +30,6 @@ export default function ChatPage() {
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
 
     const author = authorId ? authors[authorId as Author] : null;
-    const isMinimal = authorId === 'caesar';
 
     useEffect(() => {
         if (authorId) {
@@ -47,7 +48,6 @@ export default function ChatPage() {
             const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
             if (suggested && suggested.length) {
-                // Merge suggestions, avoid duplicates by link
                 setResources(prev => {
                     const existingLinks = new Set(prev.map(r => r.link));
                     const merged = [...prev];
@@ -76,11 +76,9 @@ export default function ChatPage() {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, isTyping]);
 
-    // Auto-ask when arriving with a query param like ?q=...
     useEffect(() => {
         const q = searchParams.get('q');
         if (q && messages.length === 1 && !isTyping) {
-            // Avoid duplicating if already asked
             sendQuestion(q);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,24 +86,41 @@ export default function ChatPage() {
 
 
     return (
-        <div className={`relative min-h-screen ${isMinimal ? 'bg-transparent' : 'bg-background'}`}>
-            <PageHero
-                eyebrow="Historischer Chat"
-                title="Sprich mit"
-                highlight={author.name}
-                description={`Stelle gezielte Fragen an ${author.name.split(' ')[0]} und erhalte kontextreiche, KI-gestützte Antworten.`}
-                backgroundImage={isMinimal ? undefined : author.heroImage}
-                noBackground={isMinimal}
-                kicker={
-                    <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors">
-                        <ArrowLeft className="h-3.5 w-3.5" /> Zurück zur Übersicht
-                    </Link>
-                }
-            />
+        <div className="min-h-screen flex flex-col bg-background">
+            <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+                {/* Minimalist Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="space-y-4"
+                    >
+                        <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+                            <div className="w-8 h-[1px] bg-primary/30" />
+                            HISTORISCHER CHAT
+                        </div>
+                        <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+                            Sprich mit <span className="text-primary italic">{author.name.split(' ').slice(1).join(' ')}</span>
+                        </h1>
+                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                            Stelle gezielte Fragen an {author.name.split(' ')[0]} und erhalte kontextreiche, KI-gestützte Antworten.
+                        </p>
+                    </motion.div>
 
-            <section className="section-shell -mt-8 pb-16 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="flex flex-col gap-4 items-end"
+                    >
+                        <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors">
+                            <ArrowLeft className="h-3.5 w-3.5" /> Zurück
+                        </Link>
+                    </motion.div>
+                </div>
+
+                {/* Chat Content */}
                 <div className="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
-                    <div className="glass-card space-y-6 lg:sticky lg:top-24">
+                    <div className="card-modern card-padding-md space-y-6 lg:sticky lg:top-24">
                         <div className="flex items-center gap-3">
                             <div className="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                                 <MessageCircle className="h-6 w-6 text-primary" />
@@ -145,15 +160,9 @@ export default function ChatPage() {
                                 </div>
                             )}
                         </div>
-
-                        <div className="pt-4 border-t border-border/50">
-                            <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors">
-                                <ArrowLeft className="h-4 w-4" /> Zurück zur Übersicht
-                            </Link>
-                        </div>
                     </div>
 
-                    <div className="glass-panel p-0 overflow-hidden">
+                    <div className="card-modern p-0 overflow-hidden">
                         <div className="flex items-center justify-between border-b border-border/50 px-4 sm:px-5 py-4 bg-background/70 backdrop-blur-xl">
                             <div className="flex items-center gap-3">
                                 <div className="h-10 w-10 rounded-full overflow-hidden ring-2 ring-primary/20">
@@ -175,7 +184,6 @@ export default function ChatPage() {
                             </div>
                         </div>
 
-                        {/* Beta banner for visibility */}
                         <div className="px-4 sm:px-5 py-2 bg-amber-500/10 border-b border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
                             <Sparkles className="h-3.5 w-3.5" />
                             <span>Experimenteller KI-Chat (Beta) – Antworten können ungenau sein.</span>
@@ -267,7 +275,8 @@ export default function ChatPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </main>
+            <Footer />
         </div>
     );
 }

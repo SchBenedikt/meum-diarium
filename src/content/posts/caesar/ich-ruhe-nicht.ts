@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'ich-ruhe-nicht',
   author: 'caesar',
   title: 'Caesar & Ägpyten',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '47 v. Chr.',
   historicalYear: -47,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 1,
-    tags: ["Ägypten","Pompeius","Rom"],
-    tagsWithTranslations: [],
+  tags: ["Ägypten", "Pompeius", "Rom"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/fcis1i60ix4.jpg',
   content: {
     diary: `So jetzt stehe ich in Ägypten und weiß nicht, was ich noch machen soll. Ich muss sagen, mir ist ein bisschen langweilig. Aber alles was zählt: Ich habe bereits einiges geschafft. Da könnt Ihr mir mal echt auf die Schulter klopfen. Nein, natürlich nicht. Sonst werfe ich euch den Löwen zum Fraß vor. Aber meine Erfolge sind beachtlich, dass muss jeder zugeben.
@@ -177,23 +177,45 @@ Kleopatra wiederum nutzte Caesars Hilfe meisterhaft: Aus einer verjagten Prinzes
 Damit zeigt der Alexandrinische Krieg exemplarisch die Verbindung von persönlicher Ambition und Weltpolitik, von Romantik und Realpolitik – ein Kapitel, in dem Macht, Leidenschaft und Strategie untrennbar verwoben sind.`
   },
   translations: {
-  "en": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Caesar & Egypt",
+      "excerpt": "My journey to Egypt: political intrigue, war in Alexandria, and a 'diplomatic' stay with Cleopatra. I came, I saw, I conquered.",
+      "content": {
+        "diary": `So now I'm in Egypt and I don't know what else to do. I have to say, I'm a bit bored. But all that matters: I have already achieved quite a bit. You can really pat me on the shoulder for that. No, of course not. Otherwise I'll throw you to the lions. But my successes are remarkable, everyone has to admit that.
+
+I'm just currently considering how far I should go.
+
+Currently I'm staying with the Egyptian Queen Cleopatra. I have to say, I think I got involved a little too much there. I had a child with Cleopatra, but he is quite naughty. The real problem is that I now have to wage war in Egypt. By the way: I didn't burn down the Library of Alexandria. That is proven.
+
+But then after a short time I had to return to Rome. A few wars and dead opponents later, I can now dedicate myself to greater things. But that is still secret. In any case, Pompey's sons, who were accidentally killed in one of my wars, are no longer in my way. Everything has its advantage.
+
+But you can see that I am simply a born winner. I won a campaign after 5 days. I just say:
+
+*Veni, vidi, vici.*
+
+I came, I saw, I conquered.
+
+Gaius Julius Caesar`,
+        "scientific": `## Caesar in Egypt (48–47 BC)
+
+The Alexandrian War and Caesar's relationship with Cleopatra are pivotal moments.
+*   **Arrival:** After defeating Pompey at Pharsalus, Caesar pursued him to Egypt, only to find him already assassinated by order of King Ptolemy XIII.
+*   **Dynastic Crisis:** Egypt was in a civil war between Ptolemy XIII and his sister, Cleopatra VII. Caesar intervened to settle the dispute, favoring Cleopatra.
+*   **War in Alexandria:** Ptolemy's faction besieged Caesar in the palace quarter. Outnumbered, Caesar burned the Egyptian fleet (accidentally damaging harbor warehouses, but likely not the Great Library).
+*   **Victory:** Reinforcements arrived under Mithridates of Pergamon. Ptolemy XIII was defeated and drowned in the Nile.
+*   **Outcome:** Caesar installed Cleopatra as Queen (co-ruling with her younger brother). He remained in Egypt for months, securing the province's vast wealth for Rome and fathering a son, Caesarion, with Cleopatra.
+*   **"Veni, Vidi, Vici":** Immediately after leaving Egypt, Caesar defeated Pharnaces II of Pontus in a lightning campaign, coined his famous phrase "I came, I saw, I conquered."`
+      }
+    },
+    "la": {
+      "title": "Caesar et Aegyptus",
+      "excerpt": "Iter meum in Aegyptum. Bellum Alexandrinum, Cleopatra, et victoria celeris: Veni, vidi, vici.",
+      "content": {
+        "diary": "In Aegypto sum. Cum Cleopatra, regina, tempus egi et filium genui. Bellum Alexandrinum gessi contra Ptolemaeum. Bibliothecam non incendi! Postea in Asiam profectus sum et Pharnacem celeriter vici. Veni, vidi, vici!",
+        "scientific": "Caesar Pompeium in Aegyptum secutus est. Ibi bellum civile inter Cleopatram et fratrem eius Ptolemaeum invenit. Pro Cleopatra pugnavit et Ptolemaeum vicit. Cleopatra regina Aegypti facta est. Caesar cum ea filium, Caesarionem, habuit. Deinde in Ponto Pharnacem vicit, scribens: Veni, vidi, vici."
+      }
     }
   }
-}
 };
 
 export default post;

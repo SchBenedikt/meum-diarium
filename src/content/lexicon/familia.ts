@@ -1,10 +1,10 @@
 import { LexiconEntry } from '@/types/blog';
 
 const entry: LexiconEntry = {
-  term: "Familia",
-  slug: "familia",
-  variants: [],
-  definition: `## Die römische Hausgemeinschaft
+    term: "Familia",
+    slug: "familia",
+    variants: [],
+    definition: `## Die römische Hausgemeinschaft
 
 Die **Familia** bezeichnete im römischen Recht die gesamte Hausgemeinschaft unter der Gewalt (*potestas*) des *paterfamilias*. Der Begriff umfasste weit mehr als die moderne Kernfamilie und bildete die Grundeinheit der römischen Gesellschaft.
 
@@ -64,25 +64,25 @@ Die Fortsetzung des Familienkultes war entscheidend – daher die Bedeutung män
 - Rechtliche, nicht nur biologische Einheit
 - Wirtschaftsgemeinschaft unter autokratischer Führung
 - Religiöse Kultgemeinschaft`,
-  category: "Gesellschaft",
-  etymology: `Von *famulus* (Diener, Haussklave): Ursprünglich bezeichnete *familia* die Gesamtheit der Haussklaven. Später erweitert auf alle Personen unter der *patria potestas* des Hausherrn. Verwandt mit oskisch *faama* (Haus) und der indogermanischen Wurzel *dhē-* (setzen, stellen – die "Hausgemeinschaft").`,
-  relatedTerms: [],
-  translations: {
-    "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
-    },
-    "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+    category: "Gesellschaft",
+    etymology: `Von *famulus* (Diener, Haussklave): Ursprünglich bezeichnete *familia* die Gesamtheit der Haussklaven. Später erweitert auf alle Personen unter der *patria potestas* des Hausherrn. Verwandt mit oskisch *faama* (Haus) und der indogermanischen Wurzel *dhē-* (setzen, stellen – die "Hausgemeinschaft").`,
+    relatedTerms: [],
+    translations: {
+        "en": {
+            "term": "Familia",
+            "definition": "The 'familia' was the core social unit of Rome, but much broader than the modern nuclear family. It included the 'paterfamilias' (head of the household), his wife, children, other relatives living in the household, and slaves. The paterfamilias held absolute power ('patria potestas') over all members.",
+            "etymology": "Latin 'familia' (household), from 'famulus' (servant/slave).",
+            "category": "Society",
+            "variants": ["Paterfamilias"]
+        },
+        "la": {
+            "term": "Familia",
+            "definition": "Familia Romana non solum parentes et liberos, sed etiam servos et omnes qui sub potestate patris familias erant, comprehendebat. Pater familias potestatem vitae necisque in suos habuit.",
+            "etymology": "A verbo 'famulus'.",
+            "category": "Societas",
+            "variants": []
+        }
     }
-}
 };
 
 export default entry;

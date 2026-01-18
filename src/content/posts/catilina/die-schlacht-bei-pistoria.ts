@@ -9,7 +9,7 @@ const post: BlogPost = {
   excerpt: 'Die Schlacht bei Pistoria im Januar 62 v. Chr. markierte das blutige Ende der Catilinarischen Verschwörung und den Tod ihres Anführers Lucius Sergius Catilina.',
   historicalDate: '62 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 5,
   tags: ["Schlacht","Pistoria","Catilina","Militär"],
   coverImage: '',

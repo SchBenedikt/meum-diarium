@@ -26,20 +26,20 @@ Die Idee der Pax Romana hatte auch eine ideologische Komponente: Sie diente der 
   relatedTerms: [],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Pax Romana",
+      "definition": "The Pax Romana ('Roman Peace') was a long period of relative peace and stability across the Roman Empire, lasting roughly from the accession of Augustus (27 BC) to the death of Marcus Aurelius (180 AD). It was characterized by economic prosperity and efficient administration, though enforced by military might.",
+      "etymology": "Latin 'pax' (peace) + 'Romana' (Roman).",
+      "category": "Politics",
+      "variants": ["Pax Augusta"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Pax Romana",
+      "definition": "Pax Romana fuit tempus pacis et securitatis sub imperio Romano, ab Augusto usque ad Marcum Aurelium. Bella civilia finita sunt et provinciae florebant, quamquam pax armis servabatur.",
+      "etymology": "A verbis 'pax' et 'Romana'.",
+      "category": "Res Publica",
+      "variants": ["Pax Augusta"]
     }
-}
+  }
 };
 
 export default entry;

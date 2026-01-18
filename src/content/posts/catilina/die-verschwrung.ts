@@ -9,7 +9,7 @@ const post: BlogPost = {
   excerpt: 'Die Catilinarische Verschwörung von 63 v. Chr. stellte einen Wendepunkt in der spätrömischen Republik dar und markierte einen der gefährlichsten innenpolitischen Konflikte dieser Ära.',
   historicalDate: '63 v. Chr.',
   historicalYear: -50,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 5,
   tags: ["Verschwörung","Catilina","Cicero","Senat","Republik"],
   coverImage: '',

@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import { AuthorInfo } from '@/types/blog';
 import { PageContent, PageLanguage } from '@/types/page';
+import { useRef } from 'react';
 
 interface AuthorAboutHeroProps {
     authorInfo: AuthorInfo;
@@ -17,14 +18,24 @@ export function AuthorAboutHero({
     birthPlace,
 }: AuthorAboutHeroProps) {
     const langKey = language.split('-')[0] as PageLanguage;
+    const ref = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5]);
 
     return (
-        <section className="relative min-h-screen flex items-center pt-32 overflow-hidden">
+        <section ref={ref} className="relative min-h-screen flex items-end pb-32 pt-32 overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <img
+                <motion.img
                     src={authorInfo.heroImage}
                     alt={authorInfo.name}
                     className="w-full h-full object-cover scale-105"
+                    style={{ y, opacity }}
                 />
             </div>
 

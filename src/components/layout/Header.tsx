@@ -175,9 +175,6 @@ export function Header() {
                   >
                     <Icon className="w-4 h-4" />
                     {item.label}
-                    {active && (
-                      <span className="ml-1 inline-block w-1.5 h-1.5 bg-primary rounded-full" />
-                    )}
                   </Link>
                 );
               })}
@@ -322,9 +319,6 @@ export function Header() {
                             >
                               <Icon className="w-5 h-5" />
                               {item.label}
-                              {active && (
-                                <span className="ml-auto inline-block w-2 h-2 bg-primary rounded-full" />
-                              )}
                             </Link>
                           );
                         })}

@@ -11,7 +11,7 @@ const post: BlogPost = {
   excerpt: 'Über meine Person, Gaius Julius Caesar',
   historicalDate: '100 v. Chr.',
   historicalYear: -100,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 3,
   tags: [],
   coverImage: '/images/post-default.jpg',

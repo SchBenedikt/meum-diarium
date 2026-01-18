@@ -5,6 +5,9 @@ export const de = {
     },
     navTimeline: 'Zeitstrahl',
     navLexicon: 'Lexikon',
+    lexiconSearchPlaceholder: 'Lexikon durchsuchen...',
+    lexiconGlossary: 'Das Glossar',
+    lexiconDescription: 'Ein Kompendium der wichtigsten Begriffe der römischen Antike.',
     navAbout: 'Über',
     search: 'Suche',
     openMenu: 'Menü öffnen',
@@ -54,6 +57,15 @@ export const de = {
     otherWorks: 'Andere Werke',
     methodology: 'Methodik & Quellen',
     methodologyDesc: 'Wie wir rekonstruieren: Originaltexte, semantische Analyse und sorgfältige Validierung.',
+    timelineHeading: 'Chronologische Timeline',
+    searchTimeline: 'Ereignisse durchsuchen...',
+    birth: 'Geburt',
+    death: 'Tod',
+    event: 'Ereignis',
+    work: 'Werk',
+
+    filter: 'Filter',
+    clearFilters: 'Filter zurücksetzen',
     sources: 'Primärquellen',
     sourcesDesc: 'Originaltexte in Latein und Übersetzungen bilden die Grundlage jeder Rekonstruktion.',
     analysis: 'Semantische Analyse',
@@ -66,7 +78,7 @@ export const de = {
     discoverAuthorsBtn: 'Autoren entdecken',
     timelineDesc: 'Verfolgen Sie die wichtigsten Ereignisse.',
     lexiconDesc: 'Ein Nachschlagewerk für Begriffe.',
-    voicesOfAntiquity: 'Stimmen der Antike',
+    voicesOfAntiquity: 'Antike hautnah erleben',
     chooseAnAuthor: 'Wähle einen Autor',
     authorSelectionDesc: 'Jeder Autor bietet eine einzigartige Perspektive auf die turbulenten Zeiten des alten Roms.',
     featuredPost: 'Empfohlener Beitrag',
@@ -99,14 +111,13 @@ export const de = {
     followUs: 'Folgen Sie uns',
     copyright: '© {{year}} Meum Diarium. Alle Rechte vorbehalten.',
     spqr: 'SPQR · Senatus Populusque Romanus',
-    lexiconGlossary: 'Glossar der Antike',
-    lexiconDescription: 'Ein Nachschlagewerk für die wichtigsten Begriffe, Personen und Konzepte des antiken Roms.',
+
     morePostsFrom: 'Weitere Beiträge von {{name}}',
     landing: {
         hero: {
             aiPowered: 'KI-gestützt',
             interactiveExperience: 'Geschichte interaktiv erleben',
-            voicesOfAntiquity: 'Stimmen der Antike',
+            voicesOfAntiquity: 'Antike hautnah erleben',
             description: 'Erleben Sie Geschichte durch die Augen ihrer Protagonisten. KI-gestützt, quellenbasiert, interaktiv.',
             discoverNow: 'Jetzt entdecken',
             lexicon: 'Lexikon',
@@ -182,12 +193,7 @@ export const de = {
             exploreProfile: 'Profil erkunden',
         }
     },
-    filter: 'Filter',
-    clearFilters: 'Filter zurücksetzen',
-    birth: 'Geburt',
-    death: 'Tod',
-    event: 'Ereignis',
-    work: 'Werk',
+
     noEventsFound: 'Keine Ereignisse für diese Filter gefunden',
     births: 'Geburten',
     timePeriod: 'Zeitraum',
@@ -396,7 +402,7 @@ export const de = {
 
     // Landing Page - Authors Section
     landing_protagonists: 'DIE PROTAGONISTEN',
-    landing_fourVoices: 'Vier Stimmen der Antike',
+    landing_fourVoices: 'Vier antike Persönlichkeiten',
     landing_authorsDesc: 'Erlebe die Geschichte Roms durch zwei Perspektiven: persönliche Tagebucheinträge und wissenschaftliche Analysen.',
 
     // Landing Page - Demo Chat Section

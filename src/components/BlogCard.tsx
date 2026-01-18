@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BlogPost } from '@/types/blog';
 import { Calendar, Clock, ArrowRight } from 'lucide-react'; // Tag entfernt
@@ -41,9 +42,23 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
     displayTitle = post.diaryTitle || post.scientificTitle || post.title;
   }
 
-  const year =
-    post.historicalDate?.match(/\d{4}/)?.[0] ??
-    new Date(post.date || Date.now()).getFullYear().toString();
+  const year = useMemo(() => {
+    // 1. Try to extract any year-like number from historicalDate (handles "59 v. Chr.")
+    const yearMatch = post.historicalDate?.match(/\d+/)?.[0];
+    if (yearMatch) {
+      const suffix = post.historicalDate.includes('v. Chr.') ? ' v. Chr.' : '';
+      return `${yearMatch}${suffix}`;
+    }
+
+    // 2. Use historicalYear if available
+    if (post.historicalYear !== undefined) {
+      if (post.historicalYear < 0) return `${Math.abs(post.historicalYear)} v. Chr.`;
+      return post.historicalYear.toString();
+    }
+
+    // 3. Fallback to the real-world post date
+    return new Date(post.date || "2024-03-24").getFullYear().toString();
+  }, [post.historicalDate, post.historicalYear, post.date]);
 
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
@@ -55,7 +70,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
         )}
       >
         {/* Bild links – flexibler, aber mit Mindestbreite */}
-        <div className="relative h-40 w-full shrink-0 md:h-auto md:w-40 lg:w-48">
+        <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
           <img
             src={post.coverImage}
             alt={post.title}
@@ -81,15 +96,9 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
             </p>
           </div>
 
-          {/* Footer: Jahr, Lesezeit, Kategorien/Tags */}
+          {/* Footer: Lesezeit, Kategorien/Tags */}
           <div className="mt-2 flex flex-col gap-2 pt-1 border-t border-border/5">
             <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
-              {/* Jahr */}
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar className="h-4 w-4" />
-                <span className="font-medium">{year}</span>
-              </span>
-
               {/* Lesezeit */}
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="h-4 w-4" />

@@ -11,23 +11,23 @@ Es gab verschiedene Gladiatorentypen mit unterschiedlicher Ausrüstung und Kampf
 Gladiatoren waren paradoxe Figuren der römischen Gesellschaft: rechtlich verachtet als infames (Ehrlose), aber oft vom Publikum wie Sportstars verehrt. Frauen schwärmten für erfolgreiche Kämpfer, und Graffiti in Pompeji preisen einzelne Gladiatoren. Nach mehreren erfolgreichen Kämpfen konnte ein Gladiator mit dem rudis, einem hölzernen Schwert, symbolisch die Freiheit erlangen. Gladiatorenspiele waren politische Instrumente - Politiker und Kaiser nutzten sie, um die Bevölkerung zu beeindrucken und ihre Macht zu demonstrieren.`,
   category: "Gesellschaft",
   etymology: `Von lateinisch 'gladius' (Schwert). Wörtlich: Schwertkampfer. Der Name leitet sich von ihrer primären Waffe ab.`,
-  relatedTerms: ["Amphitheater","Murmillo","Retiarius"],
+  relatedTerms: ["Amphitheater", "Murmillo", "Retiarius"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Gladiator",
+      "definition": "A Gladiator was an armed combatant who entertained audiences in the Roman Republic and Empire in violent confrontations with other gladiators, wild animals, and condemned criminals. Most were slaves or prisoners of war.",
+      "etymology": "From Latin 'gladius' (sword). Literally 'swordsman'.",
+      "category": "Society",
+      "variants": ["Munera"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Gladiator",
+      "definition": "Gladiator erat vir qui in harena pugnabat ad populum delectandum. Saepe servi aut captivi erant, sed etiam liberi homines gloriam quaerentes. Cum aliis gladiatoribus aut bestiis pugnabant.",
+      "etymology": "A verbo 'gladius'.",
+      "category": "Societas",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;

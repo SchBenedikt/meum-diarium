@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'ausweitung-des-burgerrechts',
   author: 'caesar',
   title: 'Erweiterung des Bürgerrechts',
-  
-  
+
+
   latinTitle: 'Civitas Romana',
   excerpt: 'Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.',
   historicalDate: '49–46 v. Chr.',
   historicalYear: -49,
-  date: new Date().toISOString().split('T')[0],
+  date: "2024-03-24",
   readingTime: 10,
-    tags: ["dgs","Staatsrecht","Integration","Provinzen"],
-    tagsWithTranslations: [],
+  tags: ["dgs", "Staatsrecht", "Integration", "Provinzen"],
+  tagsWithTranslations: [],
   coverImage: 'https://videos.openai.com/az/vg-assets/task_01kd5f9pg2fsdrhrr9g5vfzh6z%2F1766489150_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=0lHr8SgjaHHRYpm2HM5C1D91m5liHhL9U9529GaHlmk%3D&ac=oaivgprodscus2',
   content: {
     diary: `## Meine Aufgabe und meine Last
@@ -193,23 +193,71 @@ Indem Caesar die Provinzialeliten strategisch an Rom band und ihnen echten Zugan
 Diese tiefe Einsicht – dass Macht durch Integration und echte Partizipation gefestigt wird, nicht durch Unterdrückung allein – sollte für die weitere römische Geschichte grundlegend sein. Sie prägte die imperiale Struktur, die Rom über viele Jahrhunderte aufrechterhalten sollte. Die römische Zivilisation überlebte nicht, weil Rom seine Feinde militärisch besiegte – das hätten viele Imperien geschafft. Sie überlebte, weil Rom seine Provinzen nach und nach in ein echtes politisches System integrierte, in dem Aufstieg und Partizipation möglich waren.`
   },
   translations: {
-  "en": {
-    "title": "asdf",
-    "excerpt": "sdg",
-    "content": {
-      "diary": "sgd",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "",
-    "excerpt": "",
-    "content": {
-      "diary": "",
-      "scientific": ""
+    "en": {
+      "title": "Expansion of Citizenship",
+      "excerpt": "Why I made provincial elites Romans: to professionalize administration, secure loyalty, and expand Rome – not by occupation alone.",
+      "content": {
+        "diary": `## My Duty and My Burden
+
+It might seem easy to lead Rome. Win a few wars, defeat a few rival generals, reform some dysfunctional institutions – and you have a stable empire. But I realize it's not as simple as it sounds. Rome's problems were deep, structural, almost incurable. The Senate was blocked. The Republic was rotten. Pompey had become fearful. And the Optimates – well, they were simply incompetent.
+
+I took on the burden of fixing these things. Not out of ambition, you understand. I could have stayed in Gaul, in my comfortable command, commanding my legions, collecting my war profits. Instead, I crossed the Rubicon, exposed myself to the Senate's wrath, risked a civil war – all because I realized Rome needed my leadership.
+
+## My Reforms are Necessary and Wise
+
+Take my calendar. The old calendar was chaos – 355 days a year, leap months manipulated arbitrarily by priests. How could an empire function if not even time itself was reliable? I brought in an Alexandrian mathematician, Sosigenes, and together we created the Julian calendar. 365.25 days on average, precise, immutable, elegant. It is true that this is not absolutely perfect – the tropical year is slightly shorter – but isn't this a brilliant compromise between theoretical perfection and practical feasibility?
+
+My Forum. The old Roman Forum was overcrowded, disorganized, chaotic. I built the Forum Julium – a new place for courts, administration, the market. With colonnades, with clear spatial order, with a Temple of Venus Genetrix at the head. This is not just a construction project. This is administration cast in stone. This is the order I brought to Rome.
+
+My debt reforms – I could have cancelled all debts, as the popular demagogues demanded. Instead, I did something smarter. I regulated usury, I set valuation rules based on pre-war prices, I created orderly repayment paths. The result? A stable market. Confidence returned to the economy. Not the simple populist recipe, but rational economics.
+
+## My Senate – Larger, More Diverse, Better
+
+Yes, I enlarged the Senate to about 900 members. The Optimates cried scandal – they lost their control, their exclusive powers. But what was the alternative? A Senate of 300 members dominated by a few families? This was ineffective, prone to gridlock and internal power struggles.
+
+A larger Senate with provincial members is not only just – it is practically brilliant. A senator from Gaul brings knowledge of Gaul. A senator from Spain understands the resources and population of his region. I have given the Senate not only new members, but new competencies and new perspectives.
+
+## My Citizenship – Integration Instead of Oppression
+
+I expanded citizenship. Provincials who deserved it became Romans. Local elites in Gaul and Spain received Senate seats. They could now become magistrates, pursue military careers, rise up.
+
+The conservatives said this devalued citizenship. They said Rome should remain a city of Rome, not a collection of provincials. I see this differently. An empire founded on mere oppression is fragile. Legions will run away from it. Provinces will rebel.
+
+But an empire where local elites can hope that their sons becomes senators, that they themselves can make careers in Rome – this is a stable empire. You may say this is populist. I answer: It is not populist, it is intelligent. Provincial elites now have an interest in keeping Rome stable. They are no longer oppressed rebels. They are partners in the system. This is not weakness – this is strength.`,
+        "scientific": `## Foundations and Definition of Roman Citizenship
+
+Roman citizenship, known as *civitas Romana*, was originally the privilege of the male inhabitants of the city of Rome itself. However, with the continuous expansion of Roman rule, this right was gradually extended to other individuals and groups. Citizenship was far more than a formal category – it fundamentally determined a person's legal and social status within the Empire.
+
+The rights of a Roman citizen were substantial. A *civis romanus* possessed the *ius suffragiorum* (right to vote), *ius honorum* (right to hold office), *ius commercii* (right to trade and own property), and *ius conubii* (right to legal marriage). They enjoyed immunity from local laws, exemption from certain taxes, and protection from torture and arbitrary execution.
+
+## Historical Context and Caesar's Strategic Integration
+
+The extension of citizenship under Caesar was the acceleration of a development that had begun decades earlier. Following the Social War (91–88 BC), Rome had been forced to grant citizenship to its Italian allies. Caesar recognized that a stable empire required deeper ties than military force alone.
+
+Caesar used the extension of citizenship as a deliberate instrument of political control. By integrating provincial elites – particularly in Gallia Narbonensis and Hispania – he secured their loyalty. These elites now had a vested interest in Rome's stability and success. A Gallic noble could now aspire to the Senate, creating a personal bond with the Roman order.
+
+## Administrative and Military Consequences
+
+This policy not only bound elites to Rome but also improved administration. Local elites brought invaluable regional knowledge to the central government. Militarily, it opened up careers for provincials in the legions, creating a powerful incentive structure that bolstered loyalty and recruitment.
+
+## Strategic Selectivity
+
+Caesar applied this policy selectively. Regions like Narbonensis, which were culturally Hellenized and economically integrated, received citizenship more generously than newly conquered areas. It was a tool of power politics, not humanitarianism.
+
+## Legacy and Impact
+
+Caesar's policy laid the foundations for the Principate under Augustus and the long-term stability of the Roman Empire. It transformed Rome from a city-state ruling over subjects into an integrative empire where provincials could become partners in rule. This process culminated centuries later in the *Constitutio Antoniniana* of 212 AD, which granted citizenship to all free inhabitants of the Empire.`
+      }
+    },
+    "la": {
+      "title": "De Civitate Amplificanda",
+      "excerpt": "Cur principes provinciarum civitate donaverim: ad imperium firmandum.",
+      "content": {
+        "diary": "Onus regendi suscepi. Non ambitione, sed necessitate. Kalendarium emendavi, Forum aedificavi, aerarium stabilivi. Senatum auxi, ut melius consuleret. Civitatem dedi, ut imperium stabile esset.",
+        "scientific": "Civitas Romana, privilegium quondam unius urbis, a Caesare ad provinciales, praecipue in Gallia et Hispania, extensa est. Hoc consilium non solum fidelitatem principum provincialium firmavit, sed etiam administrationem meliorem fecit et vires militares auxit. Caesar intellexit imperium non armis tantum, sed etiam integratione sociorum servari posse. Fundamenta iecit imperii universalis, quod per saecula duravit."
+      }
     }
   }
-}
 };
 
 export default post;

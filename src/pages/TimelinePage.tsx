@@ -50,46 +50,45 @@ export default function TimelinePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
-      <main className="flex-1 pt-16 sm:pt-24">
-        {/* Compact, Integrated Header */}
-        <div className="container mx-auto px-4 max-w-5xl mb-12">
+      <main className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
+        {/* Minimalist Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="relative p-8 sm:p-12 rounded-[2.5rem] bg-card/40 backdrop-blur-xl border border-border/40 shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-4"
           >
-            {/* Subtle background decoration */}
-            <div className="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-primary/30" />
+              CHRONOLOGIA
+            </div>
+            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+              Der <span className="text-primary italic">Zeitstrahl</span>
+            </h1>
+            <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+              {t('timelineDescription') || 'Eine chronologische Reise durch die Geschichte Roms. Von der Gründung bis zum Fall.'}
+            </p>
+          </motion.div>
 
-            <div className="relative z-10 text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em]">
-                <Calendar className="w-3 h-3" />
-                {t('interactiveChronology') || 'Interaktive Chronologie'}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex flex-col gap-4 items-end"
+          >
+            <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+              <div className="flex flex-col items-end">
+                <span className="text-foreground">{stats[0].value}</span>
+                <span>{stats[0].label}</span>
               </div>
-
-              <div>
-                <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tighter text-foreground mb-4">
-                  Der <span className="text-primary italic">Zeitstrahl</span>
-                </h1>
-                <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
-                  {t('timelinePageDesc') || 'Eintauchen in das goldene Zeitalter. Feldzüge, Intrigen und die Geburt einer Weltmacht.'}
-                </p>
+              <div className="w-px h-6 bg-border/40" />
+              <div className="flex flex-col items-end">
+                <span className="text-foreground">{stats[2].value}</span>
+                <span>{stats[2].label}</span>
               </div>
-
-              {/* Minimal Stats Row */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto pt-4">
-                {stats.map((stat, idx) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * idx }}
-                    className="p-4 rounded-2xl bg-background/50 border border-border/20"
-                  >
-                    <div className="font-display text-xl font-bold text-foreground">{stat.value}</div>
-                    <div className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">{stat.label}</div>
-                  </motion.div>
-                ))}
+              <div className="w-px h-6 bg-border/40" />
+              <div className="flex flex-col items-end">
+                <span className="text-foreground">{stats[3].value}</span>
+                <span>{stats[3].label}</span>
               </div>
             </div>
           </motion.div>

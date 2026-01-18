@@ -11,23 +11,23 @@ Es gab verschiedene Arten von Togen mit spezifischer gesellschaftlicher Bedeutun
 Die Toga war unpraktisch und unbequem - sie war schwer, heiß, schränkte die Bewegung ein und erforderte ständige Aufmerksamkeit, um nicht zu verrutschen. Zum Anlegen brauchte man oft Hilfe von Sklaven. In der späten Republik und Kaiserzeit wurde sie zunehmend nur noch bei formellen Anlässen getragen, während im Alltag die praktischere Tunika bevorzugt wurde. Kaiser Augustus versuchte vergeblich, das Togatragen wiederzubeleben. Trotz ihrer Unpraktikalität blieb die Toga ein mächtiges Symbol römischer Kultur und Zivilisation.`,
   category: "Gesellschaft",
   etymology: `Von lateinisch 'tegere' (bedecken, verhüllen). Die Toga war das charakteristische Kleidungsstück des römischen Civis (Bürgers).`,
-  relatedTerms: ["Senator","Tunika"],
+  relatedTerms: ["Senator", "Tunika"],
   translations: {
     "en": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Toga",
+      "definition": "The Toga was the distinctive garment of ancient Roman citizens. It was a semi-circular cloth draped over the shoulders and around the body. Only Roman citizens were allowed to wear it, and specific types (like the 'toga praetexta' with a purple border) indicated rank or age.",
+      "etymology": "From Latin 'tegere' (to cover).",
+      "category": "Society",
+      "variants": ["Toga Virilis", "Toga Praetexta"]
     },
     "la": {
-        "term": "",
-        "definition": "",
-        "etymology": "",
-        "category": "",
-        "variants": []
+      "term": "Toga",
+      "definition": "Toga vestis propria civium Romanorum erat. Ex lana facta, super umeros iniciebatur. Genera diversa erant, ut toga virilis aut toga praetexta, quae dignitatem vel aetatem significabant.",
+      "etymology": "A verbo 'tegere'.",
+      "category": "Societas",
+      "variants": []
     }
-}
+  }
 };
 
 export default entry;
