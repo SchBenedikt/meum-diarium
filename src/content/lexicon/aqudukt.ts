@@ -21,14 +21,14 @@ Die Konstruktion eines Aquädukts war eine gewaltige logistische und finanzielle
   translations: {
     "en": {
       "term": "Aqueduct",
-      "definition": "An Aqueduct was a water supply channel constructed to convey water to Roman cities. Using gravity and a precise gradient, they transported water over long distances, often crossing valleys on massive arched bridges.",
+      "definition": "An Aqueduct (from 'aqua' and 'ductus') was a conduit built to transport fresh water over long distances into cities and industrial sites. Utilizing gravity and a precise, constant gradient (often dropping only a few inches per mile), Roman engineers created complex systems that included both underground channels and the iconic arched stone bridges used to span valleys. Rome was supplied by eleven major aqueducts, delivering about a million cubic meters of water daily to public baths, fountains, and private homes. Key examples include the Pont du Gard in France and the Aqua Claudia in Rome, many of which still stand today as testaments to Roman engineering.",
       "etymology": "Latin 'aqua' (water) + 'ducere' (to lead).",
       "category": "Architecture",
       "variants": ["Aquaeductus"]
     },
     "la": {
       "term": "Aquaeductus",
-      "definition": "Aquaeductus est canalis structilis ad aquam ducendam. Romani aquaeductus per longa spatia aquam in urbes ducebant, saepe super arcus magnificos.",
+      "definition": "Aquaeductus est canalis structilis ad aquam per longa spatia in urbes ducendam. Romani machinatores scientia summa canales fecerunt, qui aqua tantum gravitate ducebant, sicut Aqua Claudia Romae aut Pont du Gard in Gallia. Roma ipsa undecim aquaeductibus servata est, qui aquam ad thermas, fontes et domos privatas ferebant. Hic mos vivendi et luxus urbis sine aquaeductibus fieri non potuit.",
       "etymology": "Ab 'aqua' et 'ducere'.",
       "category": "Architectura",
       "variants": []

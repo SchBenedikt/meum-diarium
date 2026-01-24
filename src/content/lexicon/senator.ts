@@ -11,14 +11,14 @@ const entry: LexiconEntry = {
     translations: {
         "en": {
             "term": "Senator",
-            "definition": "A Senator was a member of the Roman Senate, the supreme council of state. Senators were usually former magistrates and held office for life. They debated legislation, foreign policy, and financial matters, advising the magistrates.",
+            "definition": "A Senator was a member of the Roman Senate, the primary consultative and governing body of the Roman Republic and later the Empire. Historically derived from the council of elders (*senex*), the Senate reached about 300 to 600 members, mostly consisting of former high-ranking magistrates (cursus honorum). Senators held their seats for life, though they could be removed by censors for misconduct. They exercised immense authority over foreign policy, state finances, and the assignment of provincial commands. While the Senate's advice (*senatus consultum*) was technically non-binding, it held massive political weight until the rise of imperial autocracy eclipsed its traditional power.",
             "etymology": "From Latin 'senex' (old man), implying a council of elders.",
             "category": "Politics",
             "variants": ["Patres Conscripti"]
         },
         "la": {
             "term": "Senator",
-            "definition": "Senator erat socius Senatus Romani. Plerumque magistratus honoribus functi in senatum legebantur et ad vitam manebant. De re publica, legibus et bello consulebant.",
+            "definition": "Senator erat socius Senatus Romani, qui fuit maximum consilium rei publicae. Huic ordini senatorio adhaerebant plerumque viri qui magistratus (sicut quaesturam aut praeturam) sustinuerant. Senatores de legibus, aerario et bellis consulebant; eorum 'senatus consulta' magnam auctoritatem apud magistratus et populum habuerunt. In senatu auctoritas et sapientia (itaque nomen a 'senex') praecipuae habebantur. Augustus et successores eius potestatem senatus paulatim minuerunt, sed dignitas senatoria per saecula mansit.",
             "etymology": "A verbo 'senex'.",
             "category": "Res Publica",
             "variants": ["Patres"]

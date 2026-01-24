@@ -58,14 +58,14 @@ In der frühen Republik war die *patria potestas* fast absolut. Über die Jahrhu
     translations: {
         "en": {
             "term": "Paterfamilias",
-            "definition": "The Paterfamilias was the male head of the Roman household. He held absolute legal authority ('patria potestas') over his wife, children, and slaves, including technically the power of life and death, though this was rarely exercised in later periods.",
+            "definition": "The Paterfamilias was the male head of a Roman household (*familia*) and the only person in the family who was legally independent (*sui iuris*). He held supreme and absolute authority (*patria potestas*) over all family members, including his wife, children, and slaves. Historically, this power included the *ius vitae necisque* (power of life and death), although social norms and later imperial laws strictly curtailed its absolute exercise. The Paterfamilias managed all family property, negotiated marriages, and presided over the domestic religious cults (*sacra familiaria*). This institution was the foundational pillar of the patriarchal Roman social and legal structure.",
             "etymology": "Latin 'pater' (father) + 'familias' (archaic genitive of family).",
             "category": "Society",
             "variants": []
         },
         "la": {
             "term": "Paterfamilias",
-            "definition": "Paterfamilias erat caput familiae Romanae. Patriam potestatem in liberos et uxorem et servos habebat. Dominus vitae necisque in domo sua erat.",
+            "definition": "Paterfamilias erat caput familiae Romanae et solus homo sui iuris in domo sua. Patriam potestatem in omnes subiectas personas gerebat, id est in uxorem, liberos et servos. Hoc ius antiquis temporibus ad vitam et necem spectabat. Paterfamilias non solum dominus rerum, sed etiam sacerdos domesticus erat, qui sacra familiaria curabat. Hic mos erat fundamentum iuris civilis et societatis Romanae.",
             "etymology": "Ex 'pater' et 'familias'.",
             "category": "Societas",
             "variants": []

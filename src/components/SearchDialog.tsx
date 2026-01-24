@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
@@ -97,105 +98,125 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     setActiveIndex(0);
   }, [query]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 bg-background/80 flex items-start justify-center pt-[20vh]">
-      <div
-        className="bg-background border border-border rounded-[var(--radius)] w-full max-w-2xl mx-4 overflow-hidden"
-      >
-        <div className="flex items-center border-b border-border px-4">
-          <Search className="h-5 w-5 text-muted-foreground" />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Suche nach Einträgen, Lexikon, Autoren..."
-            className="flex-1 bg-transparent border-none outline-none px-4 py-4 text-sm"
-            autoFocus
-          />
-          <button onClick={onClose} className="text-muted-foreground p-2">
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="max-h-96 overflow-y-auto">
-          {results.length === 0 && query.trim() && !isLoading && (
-            <div className="p-8 text-center text-muted-foreground text-sm">
-              Keine Ergebnisse gefunden
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-start justify-center pt-[20vh]"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            transition={{
+              type: "spring",
+              damping: 25,
+              stiffness: 300,
+              duration: 0.3
+            }}
+            className="bg-background border border-border rounded-[var(--radius)] w-full max-w-2xl mx-4 overflow-hidden shadow-2xl"
+          >
+            <div className="flex items-center border-b border-border px-4">
+              <Search className="h-5 w-5 text-muted-foreground" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Suche nach Einträgen, Lexikon, Autoren..."
+                className="flex-1 bg-transparent border-none outline-none px-4 py-4 text-sm"
+                autoFocus
+              />
+              <button onClick={onClose} className="text-muted-foreground p-2">
+                <X className="h-5 w-5" />
+              </button>
             </div>
-          )}
 
-          {results.length === 0 && !query.trim() && (
-            <div className="p-8 text-center text-muted-foreground text-sm">
-              Gib einen Suchbegriff ein
-            </div>
-          )}
-
-          {isLoading && (
-            <div className="p-8 text-center text-muted-foreground text-sm">
-              Lädt...
-            </div>
-          )}
-
-          {results.map((result, index) => (
-            <Link
-              key={index}
-              to={
-                result.type === 'post' ? `/${result.data.author}/${result.data.slug}` :
-                  result.type === 'lexicon' ? `/lexicon/${result.data.slug}` :
-                    `/${result.data.id}`
-              }
-              onClick={onClose}
-              className={`block px-4 py-3 border-b border-border last:border-b-0 ${index === activeIndex ? 'bg-secondary' : ''
-                }`}
-            >
-              <div className="flex items-start gap-3">
-                <div className="mt-1 text-primary">
-                  {result.type === 'post' && <BookText className="h-4 w-4" />}
-                  {result.type === 'lexicon' && <BookMarked className="h-4 w-4" />}
-                  {result.type === 'author' && <User className="h-4 w-4" />}
+            <div className="max-h-96 overflow-y-auto">
+              {results.length === 0 && query.trim() && !isLoading && (
+                <div className="p-8 text-center text-muted-foreground text-sm">
+                  Keine Ergebnisse gefunden
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-foreground truncate">
-                    {result.type === 'post' && result.data.title}
-                    {result.type === 'lexicon' && result.data.term}
-                    {result.type === 'author' && result.data.name}
-                  </div>
-                  <div className="text-xs text-muted-foreground truncate mt-0.5">
-                    {result.type === 'post' && result.data.excerpt}
-                    {result.type === 'lexicon' && result.data.definition}
-                    {result.type === 'author' && result.data.description}
-                  </div>
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {result.type === 'post' && `Eintrag • ${authors[result.data.author]?.name || result.data.author}`}
-                    {result.type === 'lexicon' && `Lexikon • ${result.data.category}`}
-                    {result.type === 'author' && `Autor • ${result.data.title}`}
-                  </div>
+              )}
+
+              {results.length === 0 && !query.trim() && (
+                <div className="p-8 text-center text-muted-foreground text-sm">
+                  Gib einen Suchbegriff ein
                 </div>
+              )}
+
+              {isLoading && (
+                <div className="p-8 text-center text-muted-foreground text-sm">
+                  Lädt...
+                </div>
+              )}
+
+              {results.map((result, index) => (
+                <Link
+                  key={index}
+                  to={
+                    result.type === 'post' ? `/${result.data.author}/${result.data.slug}` :
+                      result.type === 'lexicon' ? `/lexicon/${result.data.slug}` :
+                        `/${result.data.id}`
+                  }
+                  onClick={onClose}
+                  className={`block px-4 py-3 border-b border-border last:border-b-0 ${index === activeIndex ? 'bg-secondary' : ''
+                    }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 text-primary">
+                      {result.type === 'post' && <BookText className="h-4 w-4" />}
+                      {result.type === 'lexicon' && <BookMarked className="h-4 w-4" />}
+                      {result.type === 'author' && <User className="h-4 w-4" />}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-medium text-foreground truncate">
+                        {result.type === 'post' && result.data.title}
+                        {result.type === 'lexicon' && result.data.term}
+                        {result.type === 'author' && result.data.name}
+                      </div>
+                      <div className="text-xs text-muted-foreground truncate mt-0.5">
+                        {result.type === 'post' && result.data.excerpt}
+                        {result.type === 'lexicon' && result.data.definition}
+                        {result.type === 'author' && result.data.description}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {result.type === 'post' && `Eintrag • ${authors[result.data.author]?.name || result.data.author}`}
+                        {result.type === 'lexicon' && `Lexikon • ${result.data.category}`}
+                        {result.type === 'author' && `Autor • ${result.data.title}`}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="px-4 py-3 border-t border-border bg-secondary text-xs text-muted-foreground flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1">
+                  <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↑</kbd>
+                  <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↓</kbd>
+                  <span>navigieren</span>
+                </span>
+                <span className="flex items-center gap-1">
+                  <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↵</kbd>
+                  <span>öffnen</span>
+                </span>
               </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="px-4 py-3 border-t border-border bg-secondary text-xs text-muted-foreground flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↑</kbd>
-              <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↓</kbd>
-              <span>navigieren</span>
-            </span>
-            <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">↵</kbd>
-              <span>öffnen</span>
-            </span>
-          </div>
-          <span className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">esc</kbd>
-            <span>schließen</span>
-          </span>
-        </div>
-      </div>
-    </div>
+              <span className="flex items-center gap-1">
+                <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-xs">esc</kbd>
+                <span>schließen</span>
+              </span>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

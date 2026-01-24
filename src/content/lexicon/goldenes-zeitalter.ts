@@ -46,14 +46,14 @@ Historiker betonen, dass rückblickende Idealisierungen oft die realen Probleme 
   translations: {
     "en": {
       "term": "Golden Age",
-      "definition": "The Golden Age (Aurea Aetas) is a mythical era of primordial peace, prosperity, and innocence where humans lived in harmony with nature without laws or labor. Augustus used this imagery in his propaganda to depict his reign as the restoration of this blessed era after the chaos of the civil wars.",
+      "definition": "The Golden Age (Aurea Aetas) is a fundamental myth in antiquity describing an ideal primordial era of peace, harmony, and abundance. According to Hesiod (8th c. BC), it was the first of the World Ages under Saturn's rule, where humans lived like gods without labor, old age, or sorrow. Roman poets like Ovid and Virgil later used this imagery; Virgil especially famously prophesied its return under the reign of Augustus in his 4th Eclogue. This myth served as a powerful ideological tool for Augustus to portray the end of the civil wars as a restoration of this blessed era. In modern usage, 'Golden Age' refers to any peak period of cultural or political achievement in history.",
       "etymology": "Concept from Greek mythology (Hesiod), adapted by Roman poets like Virgil.",
       "category": "Philosophy",
       "variants": ["Aurea Aetas", "Saturnian Age"]
     },
     "la": {
       "term": "Aurea Aetas",
-      "definition": "Aurea Aetas tempus mythicum primordiale fuit, in quo homines sine lege et labore in pace vixerunt. Augustus imperium suum ut restitutionem huius aetatis post bella civilia celebravit.",
+      "definition": "Aurea Aetas tempus mythicum primordiale fuit, in quo homines sine lege, labore et bellis in summa pace vixerunt. Hesiodus et Ovidius hanc aetatem sub Saturni regimine descripserunt, ubi terra ipsa omnia sponte ferebat. Virgilius in quarta Ecloga reditum Aureae Aetatis sub Augusto cecinit, quod imperator ad potestatem suam confirmandam adhibuit. Moderno tempore hic terminus significat summam cuiusvis culturae aut historiae florentem periodum.",
       "etymology": "Conceptus a Graecis (Hesiodo) sumptus est.",
       "category": "Philosophia",
       "variants": ["Regna Saturnia"]

@@ -15,14 +15,14 @@ Die Konstruktion des Limes variierte je nach geografischen Gegebenheiten und str
   translations: {
     "en": {
       "term": "Limes",
-      "definition": "The Limes was the fortified border of the Roman Empire. It consisted of walls, watchtowers, and forts, serving not just as a defensive barrier but also as a zone for trade and cultural exchange with the 'barbarian' tribes beyond.",
+      "definition": "The Limes (Latin for 'boundary path') was the fortified frontier system of the Roman Empire, marking the division between Roman civilization and the so-called 'barbarian' lands. Spanning thousands of miles, including the Upper Germanic-Rhaetian Limes in central Europe and Hadrian’s Wall in Britain, the system comprised walls, ditches, watchtowers, and military forts (*castella*). More than just a wall, the Limes served as a managed zone for trade, migration, and tax collection. It was supported by a network of military roads and garrisoned by auxiliary troops. At its height in the 2nd century AD, it represented the maximum extent and security of the *Pax Romana*.",
       "etymology": "Latin 'limes' (path, boundary, limit).",
       "category": "Military",
       "variants": ["Limes Germanicus"]
     },
     "la": {
       "term": "Limes",
-      "definition": "Limes erat finis imperii Romani munitus. Muris, turribus et castellis constabat. Non solum ad defensionem, sed etiam ad commercium cum barbaris serviebat.",
+      "definition": "Limes erat finis munitus Imperii Romani, qui orbem Romanum a barbaris dividebat. Hic margo limitaneus muris, vallis, castellis et turribus constabat, sicut Vallum Hadriani in Britannia. Non modo munitio bellica, sed etiam locus commercii et nuntiorum fuit. Milites in castellis dispositi erant ad pacem servandam et tributa exigenda. Saeculo secundo p.C.n. Limes summam amplitudinem imperii signabat.",
       "etymology": "A verbo 'limus' (obliquus) vel 'limen'.",
       "category": "Res Militaris",
       "variants": []

@@ -277,21 +277,21 @@ So I decided on a radical reform. First, I had to clean up the chaos – the yea
 My calendar was more than just practical. It was a scientific achievement that showed how political power can enable scientific progress. The reform came into effect on January 1, 45 BC, and worked so precisely that Europe was to use it for over 1600 years.`,
         "scientific": `## Introduction: The Crisis of Time
 
-The Roman calendar of the 1st century BC was in chaos. Based on a lunar year of 355 days, it required the manual insertion of leap months by priests, a process rife with political corruption and incompetence. By 46 BC, the calendar was months out of sync with the seasons.
+The Roman calendar of the 1st century BC was in a state of terminal chaos. Based on a lunar year of 355 days, it required the manual insertion of leap months by the *Pontifex Maximus*—a process frequently exploited for political gain. By 46 BC, religious festivals, harvest cycles, and administrative terms were months out of sync with the astronomical seasons. This desynchronization (estimated at 90 to 120 days) threatened the administrative cohesion of the expanding Empire.
 
 ## The Reform: The Julian Calendar
 
-Caesar, relying on the expertise of the Alexandrian astronomer Sosigenes, implemented a radical reform.
-1.  **The Year of Confusion (46 BC):** To realign the calendar with the sun, Caesar extended the year 46 BC to 445 days.
-2.  **The New System:** A solar year of 365 days, with a leap day added every four years. This created an average year length of 365.25 days.
+In 46 BC, Caesar implemented a radical solution, drawing on the expertise of the Alexandrian astronomer Sosigenes.
+1.  **The Year of Confusion:** To realign the calendar with the sun, the year 46 BC was extended to **445 days**, a unique historical event known as the *annus confusionis*.
+2.  **The New System:** Caesar introduced a solar-based calendar with a year length of 365 days and a leap day added every four years. This resulted in an average year length of 365.25 days.
 
-## Scientific Basis
+## Scientific Basis and Hellenistic Roots
 
-The reform integrated advanced Hellenistic astronomy into Roman administration. The 365.25-day year was a brilliant approximation of the tropical year (365.2422 days). The discrepancy of about 11 minutes per year was negligible for a lifetime but cumulative over centuries (leading to the Gregorian reform in 1582).
+The reform was a hallmark of the Hellenistic-Roman knowledge transfer. Sosigenes utilized the latest findings of Alexandrian mathematics to create a system that was mechanical, transparent, and manageable. While the 365.25-day year was a brilliant approximation, it differed from the actual tropical year by approximately **11 minutes and 14 seconds** annually. While negligible in a human lifetime, this cumulative drift (about one day every 128 years) eventually necessitated the Gregorian reform in 1582.
 
-## Impact
+## Impact: Integration and Depoliticization
 
-The Julian Calendar depoliticized timekeeping, preventing priests from manipulating dates for political gain. It synchronized religious festivals with the seasons and facilitated agriculture and trade by providing a predictable framework. It remained the standard in the Western world for over 1600 years and is the direct ancestor of the modern international calendar.`
+The Julian Calendar became a primary tool of imperial integration. By establishing a uniform timekeeping system, Rome projected its authority across diverse provinces. Crucially, the reform **depoliticized time**: by replacing discretionary priestly decisions with a mechanical rule, Caesar removed a significant source of corruption. It provided a predictable framework for agriculture, trade, and law, remaining the standard in the Western world for more than 1600 years.`
       }
     },
     "la": {

@@ -75,23 +75,23 @@ Some will later claim that this tripartite division is too simplified, that the 
 "Gallia est omnis divisa in partes tres..." – A sentence that changed the world.
 
 Gaius Julius Caesar`,
-        "scientific": `## Historical Context
+        "scientific": `## Historical Context and Ethnographic Framework
 
-The famous opening sentence of Caesar's *De Bello Gallico* is not only literary brilliance but also ethnographically significant. Caesar presents a simplified but useful tripartite division of Gaul.
+The famous opening sentence of Caesar's *De Bello Gallico* is not only a masterpiece of Latin prose but also a significant ethnographic document. Caesar presents a simplified, tripartite division of Gaul that served his strategic and political purposes.
 
-### The Three Groups of People
+### The Three Ethnic Groupings
 
-*   **The Belgae:** Inhabited the northern part (modern Belgium/Northern France). Considered the most warlike because they were furthest from Roman civilization.
-*   **The Aquitani:** Settled in the southwest. Culturally more related to Iberians than Celts.
-*   **The Celtae/Galli:** Inhabited the central heartland. This group formed the majority of the Gallic population.
+*   **The Belgae:** Inhabiting northern Gaul (modern Belgium and Northern France), they were considered the most warlike because they were furthest from the "refinement" of Roman civilization and in constant conflict with the Germanic tribes beyond the Rhine.
+*   **The Aquitani:** Settled in the southwest (between the Pyrenees and the Garonne), they were culturally and linguistically closer to the Iberians than to the central Celts.
+*   **The Celtae/Galli:** Occupying the central heartland (from the Garonne to the Seine), they formed the majority of the population and are the group the Romans primarily identified as "Gauls."
 
-### Scientific Assessment
+### Scientific and Modern Assessment
 
-Modern archaeologists and historians view Caesar's tripartite division as a simplification. Cultural and ethnic boundaries were more fluid. Caesar's depiction served propaganda purposes: it justified his conquest as the ordering of a chaotic region.
+Modern archaeology and history view Caesar’s rigid division as a severe oversimplification. In reality, cultural and ethnic boundaries in 1st-century BC Gaul were fluid and complex. Caesar’s depiction served a clear propagandistic purpose: it justified his conquest as the "ordering" of a chaotic, fragmented region into a manageable Roman province. By defining the Rhine as a natural boundary, he also established a clear demarcation between "civilizable" Gauls and "untameable" Germans.
 
-### Literary Significance
+### Literary and Rhetorical Significance
 
-The sentence is stylistically masterful. Its symmetric structure and clear organization demonstrate Caesar's rhetorical training. It immediately establishes the factual, documentary tone that characterizes the entire work.`
+Stylistically, the sentence is a demonstration of Caesar’s rhetorical training. Its symmetrical structure and objective, documentary tone (*commentarius*) immediately establish the author as an impartial observer rather than a personally motivated actor. This "plain style" was designed to give his reports the weight of historical fact, masking the underlying political justifications for his campaigns.`
       }
     },
     "la": {

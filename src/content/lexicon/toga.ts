@@ -15,14 +15,14 @@ Die Toga war unpraktisch und unbequem - sie war schwer, heiß, schränkte die Be
   translations: {
     "en": {
       "term": "Toga",
-      "definition": "The Toga was the distinctive garment of ancient Roman citizens. It was a semi-circular cloth draped over the shoulders and around the body. Only Roman citizens were allowed to wear it, and specific types (like the 'toga praetexta' with a purple border) indicated rank or age.",
+      "definition": "The Toga was the iconic garment of ancient Roman citizens and the preeminent symbol of Roman identity and civil rights. A large semi-circular woolen cloth of about 5-6 meters in length, it was draped artfully around the body, leaving the right arm free. As an exclusive privilege of *cives* (citizens), it distinguished Romans from foreigners and barbabians. Various types indicated social status: the *toga virilis* was the plain white gown of adult citizens; the *toga praetexta* with a purple border was worn by magistrates; and the *toga picta* was reserved for triumphant generals. Though heavy and impractical for daily labor, its presence underscored the 'pax togata' and the dignity of the Roman state.",
       "etymology": "From Latin 'tegere' (to cover).",
       "category": "Society",
       "variants": ["Toga Virilis", "Toga Praetexta"]
     },
     "la": {
       "term": "Toga",
-      "definition": "Toga vestis propria civium Romanorum erat. Ex lana facta, super umeros iniciebatur. Genera diversa erant, ut toga virilis aut toga praetexta, quae dignitatem vel aetatem significabant.",
+      "definition": "Toga fuit vestis propria et sollemnis civium Romanorum. Ex magna lana facta, eam gerere tantum civibus licebat; unde Romani 'gens togata' vocabantur. Genera togae diversa erant secundum dignitatem: toga pura (alba) a civibus, toga praetexta (clavo purpureo) a magistratibus, toga candida a candidatis, et toga picta a victoribus triumphante gerebantur. Quamquam gravis et ad gerendum difficilis erat, toga semper symbolum pacis et auctoritatis Romanae mansit.",
       "etymology": "A verbo 'tegere'.",
       "category": "Societas",
       "variants": []
