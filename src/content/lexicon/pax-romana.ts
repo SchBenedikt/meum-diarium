@@ -27,14 +27,14 @@ Die Idee der Pax Romana hatte auch eine ideologische Komponente: Sie diente der 
   translations: {
     "en": {
       "term": "Pax Romana",
-      "definition": "The Pax Romana ('Roman Peace') was a long period of relative peace and stability across the Roman Empire, lasting roughly from the accession of Augustus (27 BC) to the death of Marcus Aurelius (180 AD). It was characterized by economic prosperity and efficient administration, though enforced by military might.",
+      "definition": "The Pax Romana ('Roman Peace') describes a period of approximately 200 years of relative peace, stability, and prosperity throughout the Roman Empire. Beginning with the reign of Augustus in 27 BC following the chaos of the civil wars, it lasted until the death of Marcus Aurelius in 180 AD. During this era, Rome reached its peak territorial extent and cultural bloom. The absence of major internal conflicts facilitated a boom in trade, infrastructure (roads and aqueducts), and urban development across the Mediterranean. While borders were still guarded by military force, the interior of the empire enjoyed a level of legal security and economic integration previously unknown in history.",
       "etymology": "Latin 'pax' (peace) + 'Romana' (Roman).",
       "category": "Politics",
       "variants": ["Pax Augusta"]
     },
     "la": {
       "term": "Pax Romana",
-      "definition": "Pax Romana fuit tempus pacis et securitatis sub imperio Romano, ab Augusto usque ad Marcum Aurelium. Bella civilia finita sunt et provinciae florebant, quamquam pax armis servabatur.",
+      "definition": "Pax Romana fuit aetas pacis, securitatis et ubertatis sub imperio Romano, quae ab Augusto usque ad Marcum Aurelium CC fere annos duravit. Post saeva bella civilia, Augustus pacem orbi terrarum reddidit; itaque haec concordia 'Pax Augusta' quoque vocatur. Per hoc tempus fines imperii maxime prolati sunt, commercia floruerunt et viae per omnes provincias stratae sunt. Quamquam exercitus ad limites pugnabat, in partibus interioribus imperii leges et disciplina Romana vigebant.",
       "etymology": "A verbis 'pax' et 'Romana'.",
       "category": "Res Publica",
       "variants": ["Pax Augusta"]

@@ -15,14 +15,14 @@ Mit der Zeit gelang wohlhabenden plebejischen Familien der Aufstieg in die polit
   translations: {
     "en": {
       "term": "Plebeian",
-      "definition": "The Plebeians (plebs) were the common people of Rome, distinct from the aristocratic Patricians. Initially possessing few political rights, they fought for equality in the 'Conflict of the Orders' and eventually gained access to high offices, although social distinctions remained.",
+      "definition": "The Plebeians (plebs) were the broad class of free Roman citizens who were not members of the aristocratic-patrician elite. Their long struggle for political and social equality with the patricians, known as the 'Conflict of the Orders', was a defining feature of the early Roman Republic. Through strategic withdrawals from the city (secessio plebis) starting in 494 BC, they secured the creation of the Plebeian Tribunes (tribuni plebis) and eventually gained legal recognition through the Twelve Tables (450 BC). Key milestones included the Lex Canuleia (445 BC), allowing intermarriage, and the Leges Liciniae Sextiae (367 BC), which opened the consulship to them. Over time, wealthy plebeian families merged with the patricians to form the new ruling elite (nobilitas).",
       "etymology": "From Latin 'plebs' (multitude, common people).",
       "category": "Society",
       "variants": ["Plebs", "Plebeians"]
     },
     "la": {
       "term": "Plebeius",
-      "definition": "Plebs, multitudo civium Romanorum quae non patricia erat. Per multa saecula plebei pro iuribus suis certaverunt, donec magistratus et honores assequi potuerunt. Tribuni plebis defensores libertatis eorum fuerunt.",
+      "definition": "Plebeii erant maior pars civium Romanorum, qui non ex patriciorum numeris nati sunt. Per multa saecula in 'certamine ordinum' pro aequalitate iuris contra patricios pugnaverunt. Per secessiones (primam anno CDXCIV a.C.n.) tribunos plebis creavere, qui eorum libertatem defenderent. Codificatio iuris XII Tabulis (CDL a.C.n.) et apertio consulatus (CCCLXVII a.C.n.) gradus maximi ad aequalitatem fuerunt. Postremo plebeii divites cum patriciis novam nobilitatem formaverunt.",
       "etymology": "A verbo 'plebs' aut 'plere'.",
       "category": "Societas",
       "variants": ["Plebs", "Plebei"]

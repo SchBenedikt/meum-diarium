@@ -11,14 +11,14 @@ const entry: LexiconEntry = {
     translations: {
         "en": {
             "term": "Rubicon",
-            "definition": "The Rubicon was the boundary river between the province of Cisalpine Gaul and Italy proper. Crossing this river with an army was considered a declaration of war against the Roman Republic. Caesar crossed it in 49 BC, uttering 'Alea iacta est', sparking the civil war.",
+            "definition": "The Rubicon was a small river in northern Italy that served as the legal boundary between Italy proper and the province of Cisalpine Gaul. In January 49 BC, Gaius Julius Caesar crossed the river with his 13th Legion, a move that was an act of treason as Roman law prohibited generals from entering Italy with armed forces. By crossing, Caesar famously uttered 'alea iacta est' ('the die is cast'), igniting the Great Roman Civil War against Pompey and the Senate. Today, 'crossing the Rubicon' is a common idiom for passing a point of no return.",
             "etymology": "From Latin 'rubeus' (red), due to the color of the riverbed.",
             "category": "Geography",
             "variants": ["Rubico"]
         },
         "la": {
             "term": "Rubico",
-            "definition": "Rubico flumen erat finis inter Galliam Cisalpinam et Italiam. Exercitum traducere nefas erat. Caesar anno 49 a.C.n. flumen transegit dicens 'Alea iacta est', quod initium belli civilis fuit.",
+            "definition": "Rubico parvus fluvius erat, qui fines inter Galliam Cisalpinam et Italiam signabat. Mense Ianuario XLIX a.C.n., Gaius Iulius Caesar hunc fluvium cum legionibus suis transiit, quod nefas erat secundum leges Romanas. Caesar tunc 'alea iacta est' dixisse fertur, quod initium Belli Civilis contra Pompeium et Senatum fuit. Hodie hic terminus significat consilium inrevocabile.",
             "etymology": "A colore rubro aquae aut soli.",
             "category": "Geographia",
             "variants": []

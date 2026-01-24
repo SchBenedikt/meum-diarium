@@ -15,14 +15,14 @@ Später bezeichnete 'Imperium Romanum' das römische Weltreich selbst - den gesa
   translations: {
     "en": {
       "term": "Imperium",
-      "definition": "Imperium referred to the supreme executive power usually held by Roman consuls and praetors. It included command of the military and the power to execute the law. Outside the city walls ('pomerium'), it was virtually unlimited.",
+      "definition": "Imperium was the supreme executive, administrative, and military power in ancient Rome, primarily held by high-ranking magistrates like consuls, praetors, and dictators. Originally, it denoted the legal authority to command an army and enforce discipline, symbolized by the fasces (bundles of rods with axes) carried by lictors. Outside the sacred boundary of the city (pomerium), this power was absolute, including the authority of life and death. The term evolved into 'Imperium Romanum' to describe the Roman Empire itself—the entire territory under Roman rule. Augustus founded his imperial authority on the 'imperium proconsulare maius', giving him control over all provinces with legions.",
       "etymology": "Latin 'imperare' (to command).",
       "category": "Politics",
       "variants": ["Imperium Maius"]
     },
     "la": {
       "term": "Imperium",
-      "definition": "Imperium erat potestas summa imperandi, quam magistratus maiores (consules, praetores) habebant. Ius erat exercitus ducendi et legis adhibendae. Extra pomerium imperium infinitum fere erat.",
+      "definition": "Imperium erat potestas summa imperandi et ius exercitus ducendi, quam consules, praetores et dictatores habebant. Signum imperii erant fasces, quos lictores ante magistratus ferebant. Extra urbem (pomerium) haec potestas absoluta erat. Postea 'Imperium Romanum' significare coepit omnes terras sub dicione populi Romani positas. Augustus imperium suum in 'imperio proconsulari maiore' fundavit, ut auctoritatem in omnes provincias haberet.",
       "etymology": "A verbo 'imperare'.",
       "category": "Res Publica",
       "variants": []

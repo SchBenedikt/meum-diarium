@@ -156,23 +156,37 @@ I die not as a free man of the Republic, but as the last attempt to save Rome fr
 These are my last thoughts: Rome, I loved you. I made you greater, richer, more powerful. And you rewarded me with daggers.`,
         "scientific": `## The Context of the Conspiracy
 
-The last months of Caesar's life were marked by growing tensions. Republican senators, led by Gaius Cassius Longinus and Marcus Junius Brutus, plotted against him, seeing him as a tyrant destroying the Republic. They ignored the reality that the old institutions were already dysfunctional.
+The final months of Caesar's life were characterized by escalating tensions between the Dictator and a faction of senators who felt increasingly marginalized. While Caesar had emerged militarily victorious and held supreme political authority, his position was not as secure as it appeared. Beneath the surface, republican resistance was fermenting.
 
-## The Ides of March
+The republicans, led by Gaius Cassius Longinus and involving Marcus Junius Brutus, began plotting in early 44 BC. Cassius, a seasoned politician who had fought for Pompey at Pharsalus, remained committed to republican ideals despite having been pardoned and promoted by Caesar. For these conspirators, Caesar was not a necessary reformer but a tyrant whose existence was an affront to the *mos maiorum* (ancestral custom). They overlooked the structural dysfunction of the late Republic, viewing any form of permanent dictatorship as a fundamental violation of Roman values.
 
-On March 15, 44 BC, despite warnings from his wife Calpurnia and bad omens, Caesar attended a Senate meeting at the Theater of Pompey. He was persuaded by Decimus Brutus, who appealed to his pride.
+## The Path to Crisis: Monarchy and Ambition
 
-## The Assassination
+Several factors exacerbated the situation in the weeks leading up to the assassination. Caesar's planned expedition against the Parthian Empire raised fears that his power would become even more unassailable upon his return. Simultaneously, the Senate's grant of the title *dictator perpetuo* (dictator for life) was an unprecedented departure from republican norms. 
 
-As Caesar entered, the conspirators surrounded him. It was a collective act of murder; 23 stab wounds were inflicted, ensuring shared culpability. The most dramatic moment was the involvement of Brutus, Caesar's protégé (and rumored son). Whether Caesar truly said "You too, my child?" is debated, but the betrayal was real.
+Rumors that Caesar sought to be crowned king—a title abhorred by Romans since the expulsion of the Tarquins 500 years earlier—fueled the fire. Although Caesar famously rejected a diadem offered by Mark Antony, his critics viewed this as a choreographed display of false modesty. His increasing disregard for senatorial traditionalism and the accumulation of divine-like honors suggested a monarchical transformation of the state.
 
-## Consequences
+## The Ides of March: 44 BC
 
-The assassination did not save the Republic. Instead, it plunged Rome into a new civil war. Mark Antony and Octavian (later Augustus) hunted down the conspirators. Brutus and Cassius were defeated at Philippi in 42 BC.
+On the morning of March 15, 44 BC—the Ides of March—a crucial Senate session was scheduled at the Theater of Pompey, a temporary venue while the Curia Julia was under reconstruction. Caesar's wife, Calpurnia, reportedly plagued by nightmares of his murder, pleaded with him not to attend. Caesar initially wavered, but Decimus Brutus, a trusted associate and secret conspirator, appealed to his pride and sense of duty, urging him not to insult the Senate by staying home based on a woman's dreams.
 
-## Historical Assessment
+## The Assassination: A Collective Sacrifice
 
-The conspirators were driven by republican ideals but were politically naive. They removed the man who offered stability, only to pave the way for an even more absolute monarchy under Augustus. The assassination of Caesar was not the end of dictatorship, but the birth of the Empire.`
+When Caesar entered the theater, the conspirators moved according to plan. They surrounded him under the guise of presenting a petition. What followed was not an honorable confrontation but a collective execution. Caesar was stabbed at least twenty-three times. 
+
+Each conspirator was required to deal a blow, a symbolic act designed to spread the guilt and responsibility among the entire group. This made the assassination a communal political sacrifice for the "restoration of liberty." Despite initial resistance, Caesar was quickly overwhelmed by the sheer number of assailants and collapsed at the base of Pompey’s statue.
+
+## The Emotional Catalyst: "You too, my child?"
+
+The defining emotional moment occurred when Caesar recognized Marcus Junius Brutus among his killers. Brutus was not only a distinguished senator but a man Caesar had treated with paternal affection. He had pardoned Brutus after the Battle of Pharsalus and promoted his career. 
+
+According to ancient historians like Suetonius, Caesar uttered his final words in Greek: "Καὶ σύ, τέκνον" (transliterated: *Kai sy, teknon*), meaning "You too, my child?" or "Even you, my boy?". While historians debate whether Caesar actually spoke these words or if they were a later dramatic addition, the phrase captures the profound sense of personal betrayal that lay at the heart of the event.
+
+## Consequences and Historical Failure
+
+The conspirators anticipated that Caesar's death would spontaneously restore the Republic. Instead, it triggered immediate panic and confusion. The Roman populace did not celebrate "liberty" but feared the return of civil war. Mark Antony and Caesar's designated heir, Octavian, effectively harnessed this public sentiment against the "liberators."
+
+A new series of civil wars ensued. Brutus and Cassius were forced to flee to the East, where they were eventually defeated by Antony and Octavian at the Battle of Philippi in 42 BC. Both committed suicide. Paradoxically, the assassination designed to save the Republic accelerated its final destruction. It cleared the path for Octavian to consolidate absolute power and eventually emerge as Augustus, the first Emperor, transforming Caesar's ad-hoc dictatorship into the institutionalized monarchy known as the Principate.`
       }
     },
     "la": {

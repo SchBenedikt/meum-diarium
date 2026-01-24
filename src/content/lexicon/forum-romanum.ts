@@ -15,16 +15,16 @@ Im täglichen Leben war das Forum der pulsierende Mittelpunkt der Stadt: Kaufleu
   translations: {
     "en": {
       "term": "Forum Romanum",
-      "definition": "The Forum Romanum was the political, legal, and commercial center of ancient Rome. Located between the Palatine and Capitoline Hills, it hosted the Senate House (Curia), law courts (Basilicas), temples, and public meetings. It was the heart of public life.",
+      "definition": "The Forum Romanum was the political, religious, commercial, and social heart of ancient Rome. Situated in the valley between the Palatine and Capitoline Hills, it evolved from a simple marketplace into the representative center of the Roman Empire by the 7th century BC. It was home to key structures like the Curia (Senate House), major law courts known as basilicas, and temples such as those of Saturn and Vesta. It was the stage for public speeches (from the Rostra), triumphal processions, and political assemblies. Under Caesar and Augustus, it was extensively rebuilt in marble, becoming a grand symbol of imperial power.",
       "etymology": "Latin 'forum' (public square, market).",
-      "category": "Geography",
+      "category": "Society",
       "variants": ["The Forum"]
     },
     "la": {
       "term": "Forum Romanum",
-      "definition": "Forum Romanum centrum vitae publicae Romae fuit. Inter Palatium et Capitolium situm, Curiam, basilicas et templa continebat. Hic senatus habebatur, ius dicebatur et populus conveniebat.",
+      "definition": "Forum Romanum fuit centrum vitae politicae, religiosae et socialis Romae antiquae. Inter montes Palatium et Capitolium situm, a saeculo VII a.C.n. ab emporio simplici ad centrum imperii splendens crevit. Hic aedificia maxima erant, sicut Curia, basilicae iuridicae, et templa Saturni Vestaeque. In Foro oratores pro Rostris dixerunt, triumphi acti sunt, et populus convenit. Iulius Caesar et Augustus Forum marmore et monumentis exornaverunt.",
       "etymology": "Verbum 'forum' a 'foris' (extra) derivatur.",
-      "category": "Geographia",
+      "category": "Societas",
       "variants": ["Forum"]
     }
   }

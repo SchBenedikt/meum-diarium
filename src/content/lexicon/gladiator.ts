@@ -15,14 +15,14 @@ Gladiatoren waren paradoxe Figuren der römischen Gesellschaft: rechtlich verach
   translations: {
     "en": {
       "term": "Gladiator",
-      "definition": "A Gladiator was an armed combatant who entertained audiences in the Roman Republic and Empire in violent confrontations with other gladiators, wild animals, and condemned criminals. Most were slaves or prisoners of war.",
+      "definition": "A Gladiator (from 'gladius', sword) was a trained combatant who fought in public spectacles in the Roman Republic and Empire. While initially part of funeral rites (munera), these games evolved into massive entertainment events in amphitheaters like the Colosseum. Most gladiators were enslaved persons, prisoners of war, or condemned criminals, though free citizens also volunteered for the fame and monetary rewards. They were trained in specialized schools (ludi) as various types such as the Murmillo (heavy shield), Retiarius (net and trident), or Thraex. Though legally 'infames' (dishonored), successful gladiators became popular icons and could win their freedom (symbolized by the wooden sword, rudis).",
       "etymology": "From Latin 'gladius' (sword). Literally 'swordsman'.",
       "category": "Society",
       "variants": ["Munera"]
     },
     "la": {
       "term": "Gladiator",
-      "definition": "Gladiator erat vir qui in harena pugnabat ad populum delectandum. Saepe servi aut captivi erant, sed etiam liberi homines gloriam quaerentes. Cum aliis gladiatoribus aut bestiis pugnabant.",
+      "definition": "Gladiator (a verbo 'gladius') erat pugnator armatus qui in amphitheatris pro populo Romano certabat. Initio munera funebria fuerunt, deinde spectacula maxima ad populum delectandum facta sunt. Plerique servi aut captivi erant, qui in ludis a lanistis erudiebantur. Genera eorum diversa erant, ut Murmillones, Retiarii, aut Thraces. Quamquam iure infames erant, victores clari fuerunt et libertatem per rudiem accipere potuerunt.",
       "etymology": "A verbo 'gladius'.",
       "category": "Societas",
       "variants": []

@@ -15,14 +15,14 @@ Amphitheater waren mehr als nur Unterhaltungsstätten - sie dienten als Orte der
   translations: {
     "en": {
       "term": "Amphitheater",
-      "definition": "An Amphitheater was an oval open-air venue used for entertainment, particularly gladiator fights and wild animal hunts ('venationes'). The most famous example is the Colosseum (Flavian Amphitheater) in Rome.",
+      "definition": "An Amphitheater was a monumental oval or elliptical structure unique to Roman architecture, specifically designed for public spectacles like gladiatorial combat and wild animal hunts (*venationes*). Unlike the semi-circular Greek theater, the amphitheater was fully enclosed, featuring concentric tiers of seating surrounding a central arena. The most iconic example is the Colosseum (Flavian Amphitheater) in Rome, which could hold up to 50,000 spectators. These venues was highly engineered, often featuring an underground network (*hypogeum*) for traps and elevators, and a retractable awning (*velarium*) to protect patrons from the sun.",
       "etymology": "Greek 'amphi' (on both sides) + 'theatron' (place for viewing).",
       "category": "Architecture",
       "variants": ["Arena", "Colosseum"]
     },
     "la": {
       "term": "Amphitheatrum",
-      "definition": "Amphitheatrum erat aedificium ovale ubi munera gladiatoria et venationes edebantur. Clarissimum est Amphitheatrum Flavium Romae.",
+      "definition": "Amphitheatrum erat aedificium ovale vel ellipticum magnificum Romae antiquae, ad munera gladiatoria et venationes bestiarum celebranda factum. Diversum a theatro Graeco, amphitheatrum undique clausum erat cum gradibus ad sedendum dispositis. Clarissimum omnium est Amphitheatrum Flavium Romae, quod etiam Colosseum vocatur. In arena non solum pugnae gladiorum, sed etiam ludi scaenici et supplicia habebantur. Haec monumenta erant signa potentiae et luxuriae populi Romani.",
       "etymology": "Verbum Graecum significans 'theatrum circumquaque'.",
       "category": "Architectura",
       "variants": ["Harena"]

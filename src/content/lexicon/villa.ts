@@ -15,14 +15,14 @@ Die villa rustica war das wirtschaftliche Herz des Landguts: Hier wurden Oliven 
   translations: {
     "en": {
       "term": "Villa",
-      "definition": "A Villa was a Roman country house owned by the upper class. There were two main types: the 'villa rustica' (a working farm estate) and the 'villa urbana' (a luxurious country residence for leisure and relaxation).",
+      "definition": "A Villa was a substantial Roman country estate or house owned by the wealthy elite, serving as both a residence and an agricultural production center. There were two primary types: the 'villa rustica', a working farm estate with quarters for slaves and facilities for wine or olive oil production, and the 'villa urbana', a luxurious country residence designed for leisure and relaxation away from the noise of the city. Wealthy Romans used these estates for otium (cultivated leisure), including study, writing, and hosting guests. Famous examples include Pliny the Younger's villas and Hadrian's magnificent Palace Villa at Tivoli.",
       "etymology": "Latin 'villa' (country house, farm).",
       "category": "Society",
       "variants": ["Villa Urbana", "Villa Rustica"]
     },
     "la": {
       "term": "Villa",
-      "definition": "Villa erat domus rustica Romanorum. Distinguebatur inter villam rusticam, quae ad agriculturam spectabat, et villam urbanam, quae ad otium et luxuriam dominorum aedificata erat.",
+      "definition": "Villa erat domus rustica vel praedium locupletium Romanorum. Distinguebatur inter villam rusticam, ubi servi sub vilico agriculturam faciebant (vinum, oleum, frumentum), et villam urbanam, quae ad otium, studia et luxuriam dominorum aedificata erat. Multi proceres, sicut Cicero et Plinius, in villis suis opera philosophica scripserunt. Villae erant symbola divitiarum et culturae Romanae.",
       "etymology": "Verbum Latinum.",
       "category": "Societas",
       "variants": []

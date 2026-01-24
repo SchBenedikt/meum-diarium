@@ -52,14 +52,14 @@ Berühmte Beispiele tugendhafter Matronen sind Cornelia (Mutter der Gracchen) un
     translations: {
         "en": {
             "term": "Matrona",
-            "definition": "A Matrona was a respectable Roman woman, usually married to a Roman citizen and mother of legitimate children. She managed the household and was held in high esteem, embodying the virtues of modesty and fidelity.",
+            "definition": "A Matrona was a free-born, respectable Roman woman, usually married to a Roman citizen and the mother of legitimate children. As the mistress of the household (domina), she held a central and esteemed position in Roman society, managing the domestic sphere (cura domestica), supervising slaves, and overseeing the early education of her children. Unlike the unmarried virgo or the low-status ancilla, she enjoyed high social recognition and wore specific attire as signs of her dignity: the stola (a long dress) and vittae (woolen hair bands). She was expected to embody traditional virtues like castitas (chastity), pudicitia (modesty), and pietas (devotion to family and gods).",
             "etymology": "Latin 'mater' (mother).",
             "category": "Society",
             "variants": []
         },
         "la": {
             "term": "Matrona",
-            "definition": "Matrona erat femina honesta Romana, nupta et mater familias. Domum regebat et pudicitiam servabat. Magna dignitate in civitate fruebatur.",
+            "definition": "Matrona erat femina libera, honesta et nupta Romae antiquae. Ut domina domus, curam domesticam gerebat, servis imperabat et liberos educabat. Magna dignitate in societate fruebatur, quam veste propria, sicut stola et vittis, significabat. Virtutes eius praecipuae erant castitas, pudicitia et pietas. Exempla clarissima matronarum erant Cornelia, mater Gracchorum, et Lucretia, quae ob pudicitiam mortem sibi conscivit.",
             "etymology": "A verbo 'mater'.",
             "category": "Societas",
             "variants": []

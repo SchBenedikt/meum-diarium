@@ -15,14 +15,14 @@ Ein Triumph war auch eine gewaltige politische Demonstration: Julius Caesar feie
   translations: {
     "en": {
       "term": "Triumph",
-      "definition": "A Triumph was the highest honor awarded to a victorious Roman general. It was a spectacular ceremonial procession through Rome to the Temple of Jupiter Optimus Maximus. The general, dressed like Jupiter, rode in a chariot, followed by his army and spoils of war.",
+      "definition": "A Triumph (*triumphus*) was the highest military honor granted by the Senate to a victorious Roman general. To qualify, a general had to have killed at least 5,000 enemies in a significant battle and secured a decisive victory for the state. During the triumphal procession, the victorious general—dressed in a purple *toga picta* and painted red to emulate the god Jupiter—rode in a chariot through Rome to the Temple of Jupiter Optimus Maximus on the Capitoline Hill. Behind him stood a slave, whispering 'memento mori' to remind the conqueror of his mortality amidst the divine-like glory. The parade included the general's legions, spoils of war, and captive enemies in chains.",
       "etymology": "From Greek 'thriambos' (hymn to Dionysus) via Etruscan.",
       "category": "Military",
       "variants": ["Triumphus"]
     },
     "la": {
       "term": "Triumphus",
-      "definition": "Triumphus erat maximus honor imperatoris victoris. Pompa magnifica per urbem Romam ad Capitolium ducebatur. Imperator curru vectus, spolia hostium et captivos prae se ferens, a militibus suis sequebatur.",
+      "definition": "Triumphus fuit summus honor militaris, quem senatus tantum victoribus imperatoribus dabat. Pompa magnifica per viam sacram ad Capitolium ducebatur. Imperator in curru triumphali, veste purpurea (toga picta) et laurea coronatus, Deum Iovem imitabatur. Post eum servus 'memento mori' susurrabat, ne victor superbia inflaretur. In pompa fuerunt spolia belli, captivi catenis vincti, et milites victoriam canentes. Augustus postea hunc honorem sibi et familiae suae tantum reservavit.",
       "etymology": "Verbum origines Graecas habet.",
       "category": "Res Militaris",
       "variants": []
