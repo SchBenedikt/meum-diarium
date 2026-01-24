@@ -77,7 +77,7 @@ Philosophisch aufgearbeitet wurde das Thema später von Seneca in seiner Schrift
   },
   translations: {
     "en": {
-      "title": "That's Why Everyone Likes Me",
+      "title": "Clementia Caesaris: The Strategic Use of Mercy",
       "excerpt": "Clementia Caesaris – my mercy. Why I spared my enemies instead of killing them. A political necessity, not weakness.",
       "content": {
         "diary": `I confess openly: There are moments when I may not tell every detail of my deeds. But what would it change? History is written nonetheless, and as I write it down, it will be remembered.
@@ -89,25 +89,31 @@ One might ask wherein my mercy lies. I have always held that after a victory, I 
 It is an old truth that I recorded in my writings on the Gallic War: "*Libenter homines id quod volunt credunt*" – Men generally believe what they want to believe. Perhaps my former opponents wished for a lenient ruler, and so they believed in my *Clementia*. This strategy of mildness was not only an act of mercy but also political wisdom.
 
 I thank you, my loyal followers, who continue to fight for our common cause. Without you, my rise would have been impossible.`,
-        "scientific": `## Clementia Caesaris: Political Strategy and the Paradox of Mercy
+        "scientific": `## Clementia Caesaris: Political Strategy, Rule Legitimation, and the Paradox of Mercy
 
-*Clementia Caesaris*, Caesar's proverbial mercy, was far more than a personal virtue or a whim. Modern historical research views this concept as a calculated political instrument used during the Roman Civil War (49–45 BC) to secure power and legitimacy. In contrast to the bloody purges of predecessors like Sulla, Caesar's refusal to use cruelty (*crudelitas*) marked a paradigm shift, though it paradoxically contributed to his violent end.
+The *Clementia Caesaris*, or Caesar's mercy, was far more than a personal character trait or a random act of kindness. In the context of the Roman Civil War (49–45 BC), it served as a sophisticated and calculated political instrument designed to secure power and establish historical legitimacy. Unlike the blood-soaked purges of previous Roman leaders, Caesar’s demonstrative rejection of *crudelitas* (cruelty) marked a fundamental shift in Roman domestic policy—a shift that, paradoxically, contributed to his eventual assassination.
 
-## The Historical Trauma: Sulla's Shadow
+### The Historical Shadow: Escaping the Specter of Sulla
 
-To understand the radical nature of *Clementia*, one must look back to the dictator Sulla, who had "cleansed" Rome through proscriptions and mass executions. When the Civil War broke out, Rome feared a repetition ("Sullana crudelitas"). Caesar surprised everyone by proclaiming a *nova ratio vincendi* (new way of winning): arming oneself with pity and generosity.
+The radical nature of *Clementia* only becomes clear when viewed against the background of 1st-century BC Roman history. Decades before Caesar crossed the Rubicon, the dictator Sulla had "cleansed" Rome through a terrifying regime of proscriptions—public lists of state enemies who were systematically murdered and their estates confiscated. 
 
-## A Strict Dichotomy: Mercy Within, Hardness Without
+When the Civil War broke out in 49 BC, the Roman elite fully expected a repetition of this "Sullana crudelitas." Caesar shocked both friend and foe by proclaiming a *nova ratio vincendi* (a new way of winning). In a famous letter, he wrote: "Let this be our new way of conquering: to arm ourselves with pity and generosity." By refusing to proscribe his enemies, Caesar aimed to break the cycle of violence and foster broad acceptance of his rule.
 
-Caesar's mercy was strictly limited to internal Roman conflicts. While he forgave fellow citizens (*cives*), he acted with extreme brutality against foreign enemies (*hostes*) in the Gallic War. This dichotomy served the dual purpose of securing the empire externally while restoring social order internally.
+### A Strategic Dichotomy: Mercy at Home, Brutality Abroad
 
-## The Sociology of Mercy: A Poisoned Gift
+It is vital to note a strict dichotomy in Caesar's conduct. His *Clementia* was reserved exclusively for internal Roman conflicts. While he forgave fellow Roman citizens (*cives*), he acted with devastating brutality against foreign enemies (*hostes*) during the Gallic Wars. This was not a contradiction but a dual strategy: the destruction of the external threat ensured the security of the state, while the sparing of the internal rival served to restore social order (*concordia*).
 
-*Clementia* created an asymmetrical relationship. By sparing an enemy's life, Caesar created a debt that could never be repaid, effectively reducing proud aristocrats to clients. For many republicans, this was worse than death, as it signified a total loss of political autonomy. *Clementia* implies hierarchy: only a superior can forgive an inferior.
+### The Sociology of Mercy: A Poisoned Gift
 
-## The Failure of Integration
+Modern scholarship often analyzes *Clementia* through the lens of social debt. In the status-obsessed world of the Roman aristocracy, relationships were built on reciprocity and honor (*dignitas*). By sparing an opponent's life, Caesar bestowed a gift so immense that it could never be adequately repaid. 
 
-The tragedy of *Clementia Caesaris* lies in its paradoxical effect. It secured military victory but failed to achieve political integration. The "gratitude" Caesar expected turned into hatred among those who felt humiliated by his mercy. The conspirators of the Idles of March were largely men Caesar had pardoned. They killed him not *despite* his mercy, but *because* of it – to cast off the burden of his grace and restore their own dignity.`
+This created an unbreakable social debt. Pardoned senators (such as Brutus and Cassius) were no longer free citizens acting on equal terms; they were effectively transformed into clients of an all-powerful patron. For many proud Republicans, this mercy was worse than death, as it signified the total loss of their political autonomy and a manifestation of Caesar's status as a monarch standing above the law.
+
+### Institutionalization and Failure
+
+Toward the end of his life, Caesar's *Clementia* was institutionalized. In 44 BC, the Senate decreed the construction of a Temple of the *Clementia Caesaris*, where Caesar and the goddess Clementia were depicted together. This elevation of a personal virtue to a state divinity signaled the end of the Republic and the dawn of a monarchy.
+
+Ultimately, however, *Clementia* failed to integrate the defeated elite. The "gratitude" Caesar expected never materialized. Instead, the conspirators of the Ides of March were largely men whom Caesar had previously pardoned. They killed him not *despite* his mercy, but *because* of it—as a desperate attempt to reclaim the *Dignitas* they felt had been eroded by the weight of his unpayable grace.`
       }
     },
     "la": {

@@ -196,15 +196,33 @@ But you can see that I am simply a born winner. I won a campaign after 5 days. I
 I came, I saw, I conquered.
 
 Gaius Julius Caesar`,
-        "scientific": `## Caesar in Egypt (48–47 BC)
+        "scientific": `## Caesar in Egypt (48–47 BC): The Alexandrian War and Its Consequences
 
-The Alexandrian War and Caesar's relationship with Cleopatra are pivotal moments.
-*   **Arrival:** After defeating Pompey at Pharsalus, Caesar pursued him to Egypt, only to find him already assassinated by order of King Ptolemy XIII.
-*   **Dynastic Crisis:** Egypt was in a civil war between Ptolemy XIII and his sister, Cleopatra VII. Caesar intervened to settle the dispute, favoring Cleopatra.
-*   **War in Alexandria:** Ptolemy's faction besieged Caesar in the palace quarter. Outnumbered, Caesar burned the Egyptian fleet (accidentally damaging harbor warehouses, but likely not the Great Library).
-*   **Victory:** Reinforcements arrived under Mithridates of Pergamon. Ptolemy XIII was defeated and drowned in the Nile.
-*   **Outcome:** Caesar installed Cleopatra as Queen (co-ruling with her younger brother). He remained in Egypt for months, securing the province's vast wealth for Rome and fathering a son, Caesarion, with Cleopatra.
-*   **"Veni, Vidi, Vici":** Immediately after leaving Egypt, Caesar defeated Pharnaces II of Pontus in a lightning campaign, coined his famous phrase "I came, I saw, I conquered."`
+The intervention of Julius Caesar in Egypt was a pivotal moment in both his career and the history of the late Republic. What began as a pursuit of his rival Pompey transformed into a complex military and political entanglement that reshaped the Ptolemaic Kingdom.
+
+### The Dynastic Crisis: Ptolemy XIII and Cleopatra VII
+
+When Caesar arrived in Alexandria in October 48 BC, he found Egypt divided by a civil war between the young King **Ptolemy XIII** and his sister-wife **Cleopatra VII**. Caesar, acting with the authority of a Roman consul, intended to enforce the will of their late father, Ptolemy XII, which called for joint rule under Roman protection. However, Ptolemy's advisors—notably the eunuch Pothinus and the general Achillas—viewed Caesar as an intruder and sought to eliminate him.
+
+### The Siege of Alexandria
+
+Caesar soon found himself besieged within the palace quarter of Alexandria by superior Egyptian forces. Outnumbered nearly five-to-one, he was forced into a desperate urban struggle. During this conflict, several key events occurred:
+*   **The Burning of the Fleet**: To prevent the Egyptians from seizing the harbor, Caesar ordered his limited ships set on fire. The resulting conflagration spread to the harbor installations and warehouses. While legend suggests the Great Library was destroyed, modern scholarship indicates that while some book stores near the harbor may have burned, the main library remained largely intact.
+*   **The Arrival of Cleopatra**: Cleopatra famously entered the palace (legend says smuggled in a carpet) to present her case to Caesar personally. Caesar was captivated by her intellect and political vision, aligning himself with her cause.
+
+### The Battle of the Nile and Victory
+
+The tide turned with the arrival of Roman reinforcements under **Mithridates of Pergamon**. In a decisive encounter known as the Battle of the Nile (47 BC), Caesar and his allies crushed the forces of Ptolemy XIII. The young king drowned in the Nile during his flight, ending the resistance to Roman arbitration.
+
+### Outcome: A Client Kingdom and Caesarion
+
+Caesar did not annex Egypt but instead re-established Cleopatra on the throne, co-ruling with her even younger brother, Ptolemy XIV. This arrangement suited Caesar's needs perfectly:
+*   **Strategic Grain Supply**: Egypt was the "breadbasket" of the Mediterranean. By keeping it as a client kingdom under a loyal queen, Caesar secured Rome's grain supply without the administrative burden of direct annexation.
+*   **The Birth of Caesarion**: Cleopatra gave birth to a son, **Ptolemy XV Caesar (Caesarion)**, whom she claimed was Caesar’s. While Caesar never officially recognized him in Rome, the child’s existence solidified the personal and political bond between the two leaders.
+
+### Historical Significance: "Veni, Vidi, Vici"
+
+Immediately following his stay in Egypt, Caesar embarked on a lightning campaign against Pharnaces II of Pontus. His overwhelming victory in just five days led to his famous report to the Senate: *Veni, Vidi, Vici* ("I came, I saw, I conquered"). The Egyptian episode demonstrated Caesar’s ability to navigate complex Eastern diplomacy while maintaining the ultimate military authority of Rome.`
       }
     },
     "la": {
