@@ -5,16 +5,16 @@ const post: BlogPost = {
   slug: 'prokonsulat',
   author: 'caesar',
   title: 'Prokonsulat',
-  
-  
-  
+
+
+
   excerpt: '',
   historicalDate: '58 v. Chr.',
   historicalYear: -58,
   date: "2024-03-24",
   readingTime: 1,
-    tags: ["Caesoninus","Gallia Cisaplina","Gallia Transaplina","Illyrien","Prokonsulat"],
-    tagsWithTranslations: [],
+  tags: ["Caesoninus", "Gallia Cisaplina", "Gallia Transaplina", "Illyrien", "Prokonsulat"],
+  tagsWithTranslations: [],
   coverImage: 'https://caesar.schächner.de/wp-content/uploads/2024/03/ec65a34c-cfae-4a84-a7f1-2136c4327433.png',
   content: {
     diary: `Jetzt hätte ich doch fast Ärger mit diesen Gesetzeshütern bekommen. Die wollten mich doch tatsächlich verklagen und verurteilen, sobald ich wieder Privatmann bin! Aber das können die sich abschminken. Nur weil ich nicht alles so gemacht habe, wie es vielleicht vorgeschrieben ist. So ist es halt, wenn man viel Macht hat. Es gibt immer Gegner, die das nicht wollen.
@@ -127,23 +127,47 @@ Für Rom selbst waren die Konsequenzen weniger positiv, wenigstens für die trad
 Caesars Prokonsulat von 58 bis 50 v.Chr. war einer der Wendepunkte der antiken Geschichte. Ausgestattet mit dem Kommando über Legionen und den Provinzen an der Peripherie des römischen Staates, unternahm Caesar systematisch die Eroberung des freien Gallien, eine Region, die größer als Rom selbst war. Durch militärisches Genie, taktische Innovation, politisches Geschick und nicht zuletzt durch rücksichtslose Entschlossenheit brachte Caesar Gallien unter römische Kontrolle. Seine zehn Jahre als Prokonsul verschafften ihm die militärische Basis, die politische Unterstützung und den Ruhm, der ihn befähigte, die römische Republik zu transformieren. Die Folgen dieser Transformation würden die Geschichte Europas und der westlichen Zivilisation für die nächsten zwei Jahrtausende prägen. Gallien wurde römisch, die römische Republik starb, und eine neue Form von Herrschaft – die Kaiserherrschaft – entstieg ihren Überresten.`
   },
   translations: {
-  "en": {
-    "title": "Proconsulship",
-    "excerpt": "",
-    "content": {
-      "diary": "Now I almost got into trouble with these \"guardians of the law\" - they actually wanted to sue ⚔️ and convict me as soon as I am a private citizen again! But they can forget that. Just because I didn't do everything exactly as it might be prescribed. But that's how it is when you have a lot of power. There are always opponents who don't want that.\n\nBut we as a triumvirate are strong and fight for that too. That's why Pompey and Crassus helped me so that it doesn't come to that in the first place. That's why I'm still here - and report with joy that I have become Proconsul. A Proconsul is a Roman governor who is in office for a year and represents the Consul in the provinces. In any case, I am now Proconsul for five years for the time being - now I have to show what I can do. 🌍My territories are quite large this time (today's Netherlands, France and Belgium) - from Illyria to Gallia Cisalpina and Gallia Transalpina. That means I can wage great wars of conquest, and the Senate must forgive me - because I am the only true leader of Rome!\n\nBut before I set off for Gaul, I am marrying Calpurnia - the daughter of the Roman Senator Lucius Calpurnius Piso Caesoninus. But I only do that - how could it be otherwise - so that Calpurnia's father's election as consul for the following year is simplified.\n\nNow it really starts:\n\nNovarum rerum cupidus!\n\nI am eager for new things!\n\nGaius Julius Caesar",
-      "scientific": ""
-    }
-  },
-  "la": {
-    "title": "Proconsulatus",
-    "excerpt": "",
-    "content": {
-      "diary": "Nunc paene in turbas incidi cum his \"custodibus legis\" - re vera me accusare ⚔️ et damnare volebant, simulac iterum privatus essem! Sed hoc oblivisci possunt. Tantum quia non omnia feci sicut fortasse praescriptum est. Sed sic est cum multam potestatem habes. Semper sunt adversarii qui hoc nolunt.\n\nSed nos ut triumviratus fortes sumus et pro hoc etiam pugnamus. Ideo Pompeius et Crassus mihi adfuerunt ne hoc omnino accideret. Ideo adhuc hic sum - et cum gaudio nuntio me Proconsulem factum esse. Proconsul est gubernator Romanus qui per unum annum in officio est et consulem in provinciis repraesentat. In omni casu nunc pro tempore quinque annos Proconsul sum - nunc ostendere debeo quid possim. 🌍Territoria mea hoc tempore satis magna sunt (hodie Nederlandia, Francia et Belgica) - ab Illyrico ad Galliam Cisalpinam et Galliam Transalpinam. Hoc significat me magna bella expugnationis gerere posse, et Senatus mihi ignoscere debet - quia ego sum solus verus dux Romae!\n\nSed antequam in Galliam proficiscar, Calpurniam duco - filiam senatoris Romani Lucii Calpurnii Pisonis Caesonini. Hoc autem tantum facio - quomodo aliter esse posset - ut patri Calpurniae electio in consulatum anni sequentis facilior reddatur.\n\nNunc vere incipit:\n\nNovarum rerum cupidus!\n\nGaius Iulius Caesar",
-      "scientific": ""
+    "en": {
+      "title": "Proconsulship",
+      "excerpt": "",
+      "content": {
+        "diary": "Now I almost got into trouble with these \"guardians of the law\" - they actually wanted to sue ⚔️ and convict me as soon as I am a private citizen again! But they can forget that. Just because I didn't do everything exactly as it might be prescribed. But that's how it is when you have a lot of power. There are always opponents who don't want that.\n\nBut we as a triumvirate are strong and fight for that too. That's why Pompey and Crassus helped me so that it doesn't come to that in the first place. That's why I'm still here - and report with joy that I have become Proconsul. A Proconsul is a Roman governor who is in office for a year and represents the Consul in the provinces. In any case, I am now Proconsul for five years for the time being - now I have to show what I can do. 🌍My territories are quite large this time (today's Netherlands, France and Belgium) - from Illyria to Gallia Cisalpina and Gallia Transalpina. That means I can wage great wars of conquest, and the Senate must forgive me - because I am the only true leader of Rome!\n\nBut before I set off for Gaul, I am marrying Calpurnia - the daughter of the Roman Senator Lucius Calpurnius Piso Caesoninus. But I only do that - how could it be otherwise - so that Calpurnia's father's election as consul for the following year is simplified.\n\nNow it really starts:\n\nNovarum rerum cupidus!\n\nI am eager for new things!\n\nGaius Julius Caesar",
+        "scientific": `## The Proconsulship (58–50 BC): The Path to Absolute Power
+
+The period from 58 to 50 BC represents one of the most consequential eras in the history of the Roman Republic. Gaius Julius Caesar utilized his proconsulship—the governorship over multiple provinces—not only to militarily conquer "Free Gaul" but also to construct an immense personal military power that would eventually dismantle the traditional republican constitution. 
+
+### Legal and Political Foundation
+
+Following his controversial consulship in 59 BC, Caesar faced immediate prosecution from his political enemies, the *Optimates*. To secure immunity and build the resources necessary for a power struggle, he obtained a five-year governorship over Illyricum and Cisalpine Gaul, later expanded to include Transalpine Gaul. This proconsular command provided the legal shield of *imperium*, preventing any legal action against him as long as he remained in office.
+
+### The Gallic Wars: Strategic Expansion
+
+Caesar’s campaigns began in 58 BC, initially triggered by the migration of the Helvetii and the Germanic incursions of Ariovistus. What began as "defensive" interventions rapidly transformed into a systematic war of conquest across modern-day France, Belgium, and the Netherlands. 
+
+Key milestones of his ten-year command included:
+*   **57 BC**: The suppression of the Belgae and the near-disaster at the Sambre, where Caesar's personal bravery saved his legions.
+*   **56 BC**: The Conference of Luca, where the Triumvirate was renewed, granting Caesar a five-year extension of his command.
+*   **55–54 BC**: The first Roman crossings of the Rhine and the daring expeditions to Britain, which, while militarily limited, provided unparalleled propaganda value in Rome.
+*   **52 BC**: The Great Gallic Revolt under Vercingetorix, culminating in the masterful siege of Alesia. This victory effectively ended organized Gallic resistance.
+
+### Military Innovation and Propaganda
+
+Caesar emerged as a genius of logistics and engineering. His ability to build bridges over the Rhine in days and construct massive double-walled siege works at Alesia showcased Roman technical superiority. Furthermore, his *Commentarii de Bello Gallico* served as brilliant political propaganda, framing his brutal conquests as a series of necessary actions for the security of the Republic, while highlighting his own leadership and the loyalty of his troops.
+
+### Long-term Impact: The Fall of the Republic
+
+By 50 BC, Caesar commanded ten veteran legions whose primary loyalty was to him personally, not the state. The wealth extracted from Gaul and the glory of his conquests made him the most powerful man in the Roman world. When the Senate demanded he relinquish his command in 49 BC, the resulting impasse led directly to his crossing of the Rubicon. The proconsulship had successfully provided Caesar with the army and the prestige to dismantle the Republic and transition Rome toward the age of the Emperors.`
+      }
+    },
+    "la": {
+      "title": "Proconsulatus",
+      "excerpt": "",
+      "content": {
+        "diary": "Nunc paene in turbas incidi cum his \"custodibus legis\" - re vera me accusare ⚔️ et damnare volebant, simulac iterum privatus essem! Sed hoc oblivisci possunt. Tantum quia non omnia feci sicut fortasse praescriptum est. Sed sic est cum multam potestatem habes. Semper sunt adversarii qui hoc nolunt.\n\nSed nos ut triumviratus fortes sumus et pro hoc etiam pugnamus. Ideo Pompeius et Crassus mihi adfuerunt ne hoc omnino accideret. Ideo adhuc hic sum - et cum gaudio nuntio me Proconsulem factum esse. Proconsul est gubernator Romanus qui per unum annum in officio est et consulem in provinciis repraesentat. In omni casu nunc pro tempore quinque annos Proconsul sum - nunc ostendere debeo quid possim. 🌍Territoria mea hoc tempore satis magna sunt (hodie Nederlandia, Francia et Belgica) - ab Illyrico ad Galliam Cisalpinam et Galliam Transalpinam. Hoc significat me magna bella expugnationis gerere posse, et Senatus mihi ignoscere debet - quia ego sum solus verus dux Romae!\n\nSed antequam in Galliam proficiscar, Calpurniam duco - filiam senatoris Romani Lucii Calpurnii Pisonis Caesonini. Hoc autem tantum facio - quomodo aliter esse posset - ut patri Calpurniae electio in consulatum anni sequentis facilior reddatur.\n\nNunc vere incipit:\n\nNovarum rerum cupidus!\n\nGaius Iulius Caesar",
+        "scientific": ""
+      }
     }
   }
-}
 };
 
 export default post;
