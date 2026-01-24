@@ -107,8 +107,8 @@ Diese Synthese war unstabil und würde nicht lange andauern. Nach Caesars Ermord
   },
   translations: {
     "en": {
-      "title": "I Cross the Rubicon",
-      "excerpt": "The moment that changed everything: When I crossed a small river with my legions and triggered Rome's greatest civil war. Was it madness? Perhaps. Was it necessary? Absolutely.",
+      "title": "Alea Iacta Est: The Crossing of the Rubicon",
+      "excerpt": "The moment that changed everything: When I crossed a small river with my legions and triggered Rome's greatest civil war. War was inevitable, but order was the goal.",
       "content": {
         "diary": `**January 10, 49 BC – The Day That Changed Everything**
 
@@ -142,13 +142,7 @@ I look at my soldiers – veterans from the Gallic wars. Men who have been throu
 
 Then I think of these fat, lazy senators in Rome. Who have never held a sword. Who have never fought a battle. Who think they can just eliminate me like a annoying fly.
 
-**"Ἀνερρίφθω κύβος!" – The die is cast!**
-
-I say it in Greek because I am an educated man – not like these philistines in the Senate. (Brutus would understand. Cicero probably too, the old windbag.)
-
-It's a quote from Menander. Dramatic. Theatrical. Just right for this moment.
-
-In Latin: **"Alea iacta est"** – The dice are cast.
+**"Alea iacta est" – The die is cast!**
 
 What does that mean? Simple: There is no turning back. I have made my decision. The Senate wanted war? They will get war.
 
@@ -159,14 +153,31 @@ The XIII Legion marches across the Rubicon.
 **Technically speaking, I am now a criminal.** A traitor. An enemy of the state.
 
 **Practically speaking, I am the only man who can save Rome – from itself.**`,
-        "scientific": `## The Crossing of the Rubicon (49 BC)
+        "scientific": `## The Crossing of the Rubicon (49 BC): Escalation and the Collapse of Order
 
-On January 10, 49 BC, Caesar crossed the Rubicon River, the legal boundary between his province (Cisalpine Gaul) and Italy proper. This act was a declaration of civil war.
+The crossing of the Rubicon on January 10, 49 BC, was not a sudden act of aggression but the final, inevitable consequence of years of political and legal maneuvering. This event signaled the definitive collapse of the Roman Republic's traditional institutional framework and the beginning of a civil war that would span the entire Mediterranean.
 
-*   **Context:** After his conquest of Gaul, conservatives in the Senate (led by Cato) and his former ally Pompey maneuvered to strip Caesar of his command and immunity from prosecution. They demanded he return to Rome as a private citizen, where he would face politically motivated trials.
-*   **The Decision:** Facing political annihilation, Caesar chose war. He crossed the Rubicon with a single legion, the XIII Gemina.
-*   **"Alea Iacta Est":** He famously quoted Menander: "The die is cast." This signified the point of no return.
-*   **Consequences:** Pompey and the Senate, unprepared for Caesar's speed, fled Rome for Greece. Caesar seized Italy and the treasury. This began a civil war that spanned the Mediterranean (Spain, Greece, Egypt, Africa) and ended with Caesar's victory and establishment as Dictator Perpetuo, effectively ending the Roman Republic.`
+### The Legal Deadlock: Immunity and Command
+
+The root of the conflict lay in Caesar's legal vulnerability. As his proconsular command in Gaul drew to a close, he sought to transition directly into a second consulship. Under Roman law, as long as he held a military command (*imperium*), he was immune from prosecution. His enemies in the Senate, primarily the *Optimates* led by Cato the Younger and backed by Gnaeus Pompeius Magnus, were determined to force him into private life, where he could be tried for alleged constitutional violations during his first consulship in 59 BC.
+
+When the Senate passed the *Senatus Consultum Ultimum* (Final Decree), declaring a state of emergency and ordering Caesar to lay down his command or be declared a public enemy, Caesar was left with a binary choice: political destruction or armed rebellion.
+
+### The Rubicon as a Legal and Symbolic Boundary
+
+The Rubicon was the geographical line separating the province of Cisalpine Gaul from Italy proper. For a Roman general to lead troops across this line without senatorial authorization was the ultimate act of treason. By crossing it with the **Legio XIII Gemina**, Caesar knowingly moved from legal participant to revolutionary actor.
+
+His famous quote, *Alea iacta est* (the die is cast), reflected the fatalistic nature of the decision. He was no longer negotiating; he was committed to the consequences of a gamble for the survival of both his political career and his vision for the Roman state.
+
+### Military Momentum and the Flight of the Senate
+
+Caesar’s strategy relied on speed and psychological impact. By moving swiftly into Italy, he caught the Senate and Pompey completely off guard. Pompey, despite having superior total numbers, realized he could not defend Rome against Caesar’s veteran legionaries in time. He and a large portion of the Senate fled south to Brundisium and then to Greece, abandoning the capital and the state treasury.
+
+This rapid advance demonstrated a crucial reality: the traditional Republican leadership lacked the popular and military support required to hold Italy against a charismatic general who promised order and stability.
+
+### Historical Context: The Death of the City-State
+
+Ultimately, the Rubicon crossing proved that the city-state institutions of the Republic were fundamentally incapable of managing a global Empire. The system had become a vehicle for factional gridlock, where individual ambitions could only be resolved through military force. Caesar did not destroy the Republic; he merely acknowledged that it had already ceased to function. His victory at Pharsalus (48 BC) and his subsequent appointment as *Dictator Perpetuo* (Dictator for Life) laid the administrative foundations for the transition to the Principate, which his heir Augustus would eventually finalize.`
       }
     },
     "la": {

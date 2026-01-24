@@ -81,7 +81,7 @@ Heute dient die Cäsar-Verschlüsselung in der Informatik und Mathematik fast au
   },
   translations: {
     "en": {
-      "title": "Caesar Cipher",
+      "title": "The Caesar Cipher: Principles of Classical Cryptography",
       "excerpt": "A simple but effective method to protect my messages: shifting letters. Today elementary, back then a revolution in military communication.",
       "content": {
         "diary": `The Roman historian Suetonius has handed down the following passage in his biography of me: "[...] if there was anything confidential to be conveyed, he wrote it in cipher, that is, by so changing the order of the letters of the alphabet, that not a word could be made out: if anyone wishes to decipher these, and get at their meaning, he must substitute the fourth letter of the alphabet, namely D, for A, and so with the others." These words describe a method that today bears many names: Caesar cipher, Caesar shift, or Caesar code.
@@ -91,27 +91,38 @@ As a general, one often faces the challenge of protecting secret military plans 
 This method proved so useful that it continued to be used after me. My great-nephew and successor Augustus used a similar procedure, but with a shift of only one letter and without rotating the alphabet. Instead of X, the last letter of the Latin alphabet at that time, he wrote AA.
 
 One might think this is the most secure of all encryptions. But the special feature of my method lies not in its unbreakability, but in the fact that the decryption method itself must remain secret. Once the enemy knows the principle, the encryption is easily broken.`,
-        "scientific": `## The Caesar Cipher: Historical Genesis and Principles
+        "scientific": `## The Caesar Cipher: Historical Genesis, Mathematical Principles, and Vulnerabilities
 
-The Caesar cipher, also known as the shift cipher, is one of the most fundamental techniques in classical cryptography. It is a symmetric encryption method classified as a monoalphabetic substitution. Although considered insecure by modern standards, it holds immense historical relevance and serves as an elementary model in crypto-education.
+The Caesar cipher, also known as the shift cipher, is one of the oldest and most fundamental techniques in classical cryptography. It is a symmetric encryption method belonging to the class of monoalphabetic substitutions. While utterly insecure by modern standards, it represents a milestone in the history of secret communication and serves as an essential introductory model in cryptography.
 
-## Historical Context
+### Historical Context and Sources
 
-The method is named after the Roman statesman Julius Caesar (100 BC – 44 BC). The primary source is the biographer Suetonius, who describes Caesar using this method to protect military and political correspondence, particularly during the Gallic War. Caesar used a fixed shift of three positions (A → D). Augustus later used a variant with a shift of one (A → B).
+The method is named after the Roman statesman Julius Caesar (100 BC – 44 BC). The primary historical source is the biographer Suetonius (*De Vita Caesarum*), who describes Caesar using this method to protect military and political correspondence. According to Suetonius, Caesar utilized a fixed shift of three positions (A → D, B → E, etc.). This allowed him to communicate strategic orders across the Empire without risk of interception by illiterate enemies or those unaware of the cipher's key.
 
-## Functionality
+After Caesar, his successor Augustus used a variant with a shift of only one position (A → B). Interestingly, Augustus did not use a cyclic shift; for the letter 'X' (often the last in the Roman alphabet of the time), he simply wrote 'AA'.
 
-The method relies on monoalphabetic substitution, where each plaintext character is mapped to a unique ciphertext character. Mathematically, it is a cyclic shift of the alphabet by a key $k$.
-$E_n(x) = (x + k) \mod 26$
-For Caesar, $k=3$. Decryption is simply the reverse: $D_n(y) = (y - k) \mod 26$.
+### Mathematical Framework
 
-## Cryptanalysis and Security
+The Caesar cipher operates on the principle of shifting the alphabet by a chosen key $k$. To describe this mathematically, we map each letter to a number ($A=0, B=1, \dots, Z=25$). The encryption function $E$ for a plaintext letter $x$ with key $k$ is:
 
-From a modern perspective, the Caesar cipher offers no security. The key space is extremely small (only 25 possible shifts), making it vulnerable to brute-force attacks. More critically, it preserves the statistical properties of the language (frequency of letters), making it susceptible to frequency analysis — a method first described by Al-Kindi in the 9th century.
+$E_k(x) = (x + k) \mod 26$
 
-## Legacy
+Decryption $D$ is the inverse operation, subtracting the key:
 
-While obsolete for security, the Caesar cipher formed the basis for more complex systems like the Vigenère cipher. In modern computing, a variant called ROT13 (shift by 13) is used for obscuring spoilers, not for security. Historically, its effectiveness relied on "Security through Obscurity" and the illiteracy of opponents.`
+$D_k(y) = (y - k) \mod 26$
+
+In Caesar's original method, the key $k=3$. The simplicity of the algorithm made it easy to use in the field without complex equipment, requiring only a basic understanding of the alphabet.
+
+### Cryptanalysis: Brute Force and Frequency Analysis
+
+From a kryptoanalytical perspective, the Caesar cipher offers no serious security today. It is vulnerable to two primary types of attack:
+
+1.  **Brute Force**: Since there are only 26 possible shifts (one being the identity shift), an attacker can easily test all 25 possible keys within minutes by hand, or microseconds with a computer, until legible text appears.
+2.  **Frequency Analysis**: Because the cipher is monoalphabetic, it preserves the statistical distribution of letters in the language. In English, 'E' is the most frequent letter. By identifying the most frequent letter in a sufficiently long ciphertext, an attacker can assume it represents 'E' and instantly derive the key $k$. This method was first described by the Arab polymath Al-Kindi in the 9th century, marking the historical end of simple substitution's effectiveness.
+
+### Legacy and Modern Usage
+
+While obsolete for security, the Caesar cipher is the root of more complex polyalphabetic systems like the Vigenère cipher. In modern digital culture, a variant called **ROT13** (a shift of 13) is commonly used in online forums to obscure "spoilers" or joke punchlines. Its pedagogical value remains high, as it perfectly illustrates the base principles of modular arithmetic and the difference between an algorithm and a key.`
       }
     },
     "la": {

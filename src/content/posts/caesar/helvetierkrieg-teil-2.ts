@@ -116,7 +116,7 @@ Der Aufstand des Vercingetorix im Jahr 52 v. Chr. stellt einen Wendepunkt in der
   },
   translations: {
     "en": {
-      "title": "Helvetian War - Part 2",
+      "title": "The Great Revolt: Vercingetorix and the Struggle for Gaul",
       "excerpt": "Vercingetorix unites Gaul. A brutal revolt, scorched earth, and the siege of Alesia. The final struggle for freedom.",
       "content": {
         "diary": `My conquests – I mean, my defense of Rome – was going so well. But in 52 BC, Vercingetorix, a leader of the Arverni, united the Gallic tribes in a massive revolt. He attacked our towns and killed Roman citizens. I couldn't let that stand.
@@ -124,14 +124,30 @@ Der Aufstand des Vercingetorix im Jahr 52 v. Chr. stellt einen Wendepunkt in der
 I marched my army through heavy snow to restore order. Vercingetorix used scorched earth tactics, burning his own towns to starve us out. Even our allies, the Aedui, joined him. The situation was critical.
 
 I am ruthless against enemies but show clemency where useful. Whatever comes, I stick to my motto: *Omnium consensu* (With the consent of all).`,
-        "scientific": `## The Revolt of Vercingetorix (52 BC)
+        "scientific": `## The Context of the Great Revolt (52 BC)
 
-The Great Revolt of 52 BC was the climax of the Gallic Wars.
-*   **Vercingetorix:** A charismatic young nobleman of the Arverni tribe, he seized power and united almost all Gallic tribes in a coalition against Rome.
-*   **Strategy:** Vercingetorix realized he could not defeat Roman legions in open battle. He adopted a guerrilla strategy, cutting supply lines and using "scorched earth" tactics (burning villages and crops) to starve Caesar's army.
-*   **Gergovia:** Vercingetorix inflicted a rare defeat on Caesar at the Battle of Gergovia.
-*   **Alesia:** The war culminated in the Siege of Alesia. Caesar constructed massive double fortifications around the hilltop city – one line to keep Vercingetorix in, another to keep a massive Gallic relief army out.
-*   **Outcome:** Caesar defeated the relief army and forced Vercingetorix to surrender. This victory marked the effective end of Gallic independence. Gaul became a Roman province, adopting Roman language, law, and culture.`
+By 52 BC, Roman control over Gaul appeared secure after nearly six years of campaigning. However, the underlying resentment of the Gallic tribes culminated in a massive, coordinated uprising led by **Vercingetorix**, a young nobleman of the Arverni. This revolt represented the most significant threat to Caesar's conquest and remains the primary example of a collective Gallic national resistance.
+
+### Vercingetorix: Charisma and Strategy
+
+Vercingetorix was a revolutionary leader who understood Roman tactical superiority. Recognizing that Gallic warriors could not hope to defeat disciplined legions in open pitched battle, he implemented a sophisticated guerrilla strategy:
+*   **Scorched Earth**: To starve the Roman legions, he ordered his allies to burn their own villages and destroy grain stores, forcing Caesar into a logistical crisis.
+*   **Cutting Supply Lines**: Utilizing highly mobile Gallic cavalry, he systematically targeted Roman foraging parties and communication routes.
+*   **The Rare Defeat at Gergovia**: Near his home capital, Vercingetorix inflicted a significant tactical defeat on Caesar, proving to the Gauls that the Roman Dictator could be beaten.
+
+### The Siege of Alesia: The Masterpiece of Roman Engineering
+
+The conflict reached its climax at **Alesia**, where Vercingetorix retreated with 80,000 men into the hilltop fortress. Caesar responded with a feat of engineering unparalleled in ancient warfare, constructing two massive lines of fortifications:
+1.  **The Circumvallation**: An inner wall (approx. 18 km) designed to trap Vercingetorix inside the city.
+2.  **The Contravallation**: An outer wall (approx. 21 km) designed to protect the Roman army from a massive Gallic relief force of nearly 250,000 warriors attacking from the rear.
+
+Trapped between two armies, Caesar’s legions fought a desperate double-front battle. Despite several near-breakthroughs by the Gauls, Roman discipline and the strength of Caesar's fortifications held.
+
+### Surrender and Historical Significance
+
+Following the defeat of the relief army, Vercingetorix surrendered personally to Caesar, famously riding out of the city gates and laying down his weapons in a final act of aristocratic dignity. His surrender marked the effective end of the Gallic Wars. 
+
+The consequences were profound: the organized resistance of the Celts was broken, and Gaul was transformed into a series of stable Roman provinces. Gaul would eventually become one of the most thoroughly "Romanized" parts of the Empire, adopting Roman law, city planning, and eventually the Latin language, which evolved into modern French. Vercingetorix himself was taken to Rome, displayed in Caesar’s triumph, and executed, becoming a legendary figure of noble but doomed resistance to imperial expansion.`
       }
     },
     "la": {
