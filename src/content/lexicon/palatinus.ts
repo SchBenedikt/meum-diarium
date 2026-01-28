@@ -1,0 +1,29 @@
+import { LexiconEntry } from '@/types/blog';
+
+const entry: LexiconEntry = {
+    term: "Palatinus",
+    slug: "palatinus",
+    variants: ["Palatin", "Palatine Hill"],
+    definition: `Der Palatin (lat. Collis Palatinus oder Mons Palatinus) ist einer der sieben Hügel Roms und gilt als der älteste besiedelte Teil der Stadt. Der Legende nach gründete Romulus hier 753 v. Chr. die Stadt Rom. In der Republik lebten wohlhabende Römer auf dem Palatin, darunter Cicero. In der Kaiserzeit wurde der Palatin zum exklusiven Wohnort der Kaiser: Augustus, Tiberius, Caligula, Domitian und andere errichteten hier ihre Paläste. Die kaiserlichen Residenzen wurden so prächtig, dass das lateinische Wort 'palatium' (Palast) vom Hügelnamen abgeleitet wurde und in vielen Sprachen zum Begriff für "Palast" wurde (englisch "palace", französisch "palais", deutsch "Palast").`,
+    category: "Geographie & Orte",
+    etymology: `Von lateinisch 'Palatium' - der Palatinhügel. Der Name leitet sich möglicherweise von der Göttin Pales ab, die von Hirten verehrt wurde.`,
+    relatedTerms: ["Rom", "Augustus", "Domus", "Sieben Hügel"],
+    translations: {
+        "en": {
+            "term": "Palatine",
+            "definition": "The Palatine (Latin: Collis Palatinus or Mons Palatinus) is one of the seven hills of Rome and is considered the oldest inhabited part of the city. According to legend, Romulus founded the city of Rome here in 753 BC. During the Republic, wealthy Romans lived on the Palatine, including Cicero. In the Imperial period, the Palatine became the exclusive residence of the emperors: Augustus, Tiberius, Caligula, Domitian, and others built their palaces here. The imperial residences became so magnificent that the Latin word 'palatium' (palace) was derived from the hill's name and became the term for 'palace' in many languages (English 'palace', French 'palais', German 'Palast').",
+            "etymology": "From Latin 'Palatium' - the Palatine Hill. The name possibly derives from the goddess Pales, who was worshipped by shepherds.",
+            "category": "Geography & Places",
+            "variants": ["Palatine Hill"]
+        },
+        "la": {
+            "term": "Palatinus",
+            "definition": "Palatinus (Latine: Collis Palatinus vel Mons Palatinus) unus ex septem collibus Romae est et ut pars antiquissima urbis habitata habetur. Secundum legendam, Romulus urbem Romam hic anno 753 a.C.n. fundavit. In re publica, Romani divites in Palatino habitabant, inter eos Cicero. In periodo imperiali, Palatinus sedes exclusiva imperatorum factus est: Augustus, Tiberius, Caligula, Domitianus et alii palatia sua hic aedificaverunt. Sedes imperiales tam magnificae factae sunt ut vocabulum Latinum 'palatium' a nomine collis derivatum sit et in multis linguis vocabulum pro 'palatium' factum sit (Anglice 'palace', Gallice 'palais', Germanice 'Palast').",
+            "etymology": "A vocabulo Latino 'Palatium' - Collis Palatinus. Nomen fortasse a dea Pale, quae a pastoribus colebatur, derivatur.",
+            "category": "Geographia et Loca",
+            "variants": []
+        }
+    }
+};
+
+export default entry;

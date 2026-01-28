@@ -1,0 +1,29 @@
+import { LexiconEntry } from '@/types/blog';
+
+const entry: LexiconEntry = {
+    term: "Marcus Licinius Crassus",
+    slug: "crassus",
+    variants: ["Crassus"],
+    definition: `Marcus Licinius Crassus (ca. 115–53 v. Chr.) war einer der reichsten Männer Roms und ein einflussreicher Politiker und Feldherr der späten Republik. Er erwarb sein immenses Vermögen durch Grundstückspekulationen (er kaufte brennende Häuser günstig auf) und den Verkauf von Kriegsgefangenen. 71 v. Chr. schlug er den Sklavenaufstand des Spartacus nieder. 70 v. Chr. war er Konsul zusammen mit Pompeius. 60 v. Chr. bildete er mit Caesar und Pompeius das Erste Triumvirat. Aus Ehrgeiz führte er 53 v. Chr. einen Feldzug gegen die Parther, wurde aber in der Schlacht von Carrhae vernichtend geschlagen und getötet. Sein Tod destabilisierte das Triumvirat und trug zur Eskalation zwischen Caesar und Pompeius bei.`,
+    category: "Historische Personen",
+    etymology: `Der Name 'Crassus' bedeutet "dick, derb". Es ist unklar, ob dies ein Spitzname oder ein echter Familienname war.`,
+    relatedTerms: ["Triumvirat", "Spartacus", "Pompeius", "Caesar", "Carrhae"],
+    translations: {
+        "en": {
+            "term": "Marcus Licinius Crassus",
+            "definition": "Marcus Licinius Crassus (c. 115–53 BC) was one of the richest men in Rome and an influential politician and general of the late Republic. He acquired his immense fortune through real estate speculation (buying burning houses cheaply) and selling war prisoners. In 71 BC he suppressed the slave revolt of Spartacus. In 70 BC he was consul together with Pompey. In 60 BC he formed the First Triumvirate with Caesar and Pompey. Out of ambition, he led a campaign against the Parthians in 53 BC but was crushingly defeated and killed at the Battle of Carrhae. His death destabilized the Triumvirate and contributed to the escalation between Caesar and Pompey.",
+            "etymology": "The name 'Crassus' means 'thick, coarse'. It is unclear whether this was a nickname or a genuine family name.",
+            "category": "Historical Figures",
+            "variants": ["Crassus"]
+        },
+        "la": {
+            "term": "Marcus Licinius Crassus",
+            "definition": "Marcus Licinius Crassus (c. 115–53 a.C.n.) fuit unus ex viris ditissimis Romae et politicus et imperator influxus rei publicae serae. Divitias immensas per speculationes praediorum (aedes ardentes vili emit) et venditionem captivorum bellicorum acquisivit. Anno 71 a.C.n. revoltam servorum Spartaci oppressit. Anno 70 a.C.n. consul una cum Pompeio erat. Anno 60 a.C.n. Primum Triumviratum cum Caesare et Pompeio formavit. Ex ambitione, expeditionem contra Parthos anno 53 a.C.n. duxit sed in pugna Carrharum funditus victus et occisus est. Mors eius Triumviratum destabilizavit et ad escalationem inter Caesarem et Pompeium contribuit.",
+            "etymology": "Nomen 'Crassus' significat 'crassus, rudis'. Incertum est an hoc cognomen vel nomen familiae genuinum fuerit.",
+            "category": "Personae Historicae",
+            "variants": []
+        }
+    }
+};
+
+export default entry;
