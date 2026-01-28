@@ -311,6 +311,314 @@ export const de = {
     seneca_timeline_4_year: '65 n. Chr.',
     seneca_timeline_4_event: 'Erzwungener Selbstmord',
 
+    // Seneca Biographie-Seite
+    seneca: {
+        worksSubtitle: 'Philosophische Werke und Tragödien',
+        diaryRecent: 'Ausgewählte Einträge',
+        viewAll: 'Alle anzeigen',
+        readArticle: 'Artikel lesen',
+        readEntry: 'Zum Tagebucheintrag',
+
+        snapshots: {
+            title: 'Auf einen Blick',
+            lifespan: 'Lebensspanne',
+            exile: 'Verbannung',
+            advisor: 'Berater Neros',
+            works: 'Hauptwerke',
+            philosophy: 'Philosophie',
+            death: 'Tod',
+        },
+
+        biography: {
+            title: 'Lebenslauf',
+            subtitle: 'Lebensstationen, Werke und philosophische Beiträge',
+            earlyLife: 'Frühe Jahre',
+            career: 'Karriere & Exil',
+            neroYears: 'Die Nero-Jahre',
+            laterWorks: 'Spätere Werke',
+            fullTimeline: 'Vollständige Zeitleiste',
+            timelineHint: 'Folgen Sie Senecas Weg von Corduba zu den Höhen römischer Macht',
+        },
+
+        legacy: {
+            title: 'Philosophisches Erbe',
+            subtitle: 'Ideen, die das westliche Denken prägten',
+            stoicism: 'Stoische Philosophie',
+            stoicismSummary: 'Popularisierte die Stoa für römisches Publikum und machte komplexe griechische Philosophie durch praktische Weisheit und persönliche Briefe zugänglich.',
+            moralLetters: 'Briefe über Ethik an Lucilius',
+            moralLettersSummary: '124 Briefe philosophischer Anleitung über Ethik, Tugend, Tod und gutes Leben. Ein Meisterwerk antiker Weisheitsliteratur.',
+            tragedies: 'Tragödiendichtung',
+            tragediesSummary: 'Neun erhaltene Tragödien, die Renaissance-Theater und Shakespeare beeinflussten. Erforschten Themen wie Leidenschaft, Macht und moralische Korruption.',
+            ethics: 'Praktische Ethik',
+            ethicsSummary: 'Essays über Zorn, Milde, Vorsehung und die Kürze des Lebens. Betonten Selbstbeherrschung, Seelenruhe und Akzeptanz des Schicksals.',
+            naturalPhilosophy: 'Naturbetrachtungen',
+            naturalPhilosophySummary: 'Sieben Bücher über Naturphänomene wie Kometen, Erdbeben und Blitze. Verbanden Naturwissenschaft mit Moralphilosophie.',
+            influence: 'Spätere Wirkung',
+            influenceSummary: 'Beeinflusste christliches Denken, Renaissance-Humanismus und moderne Psychologie tiefgreifend. Von der Antike bis heute weitgelesen.',
+        },
+
+        deepDive: {
+            title: 'Werke im Detail',
+            subtitle: 'Bedeutende philosophische und literarische Beiträge',
+            lettersDetail: 'Die 124 Briefe über Ethik an Lucilius (Epistulae Morales) sind Senecas philosophisches Hauptwerk. Im Ruhestand verfasst (62-65 n. Chr.), decken sie jeden Aspekt stoischen Lebens ab: Umgang mit Angst, Zorn und Trauer; wie man dem Tod begegnet; wie man inneren Frieden findet. Jeder Brief ist ein Juwel praktischer Weisheit.',
+            dialoguesDetail: 'Seneca schrieb philosophische Dialoge über Schlüsselthemen: Über den Zorn (De Ira), Über die Milde (De Clementia), Über die Vorsehung (De Providentia) und den berühmten Essay Über die Kürze des Lebens (De Brevitate Vitae). Diese Werke machten die Stoa praktisch und zugänglich.',
+            tragediesDetail: 'Neun Tragödien sind erhalten: Medea, Phaedra, Oedipus, Thyestes und andere. Anders als die griechische Tragödie betonten Senecas Stücke psychologischen Horror und moralische Korruption. Sie beeinflussten das elisabethanische Drama, besonders Shakespeare, tiefgreifend.',
+            impact: 'Wirkung',
+        },
+
+        polarization: {
+            title: 'Eine umstrittene Figur',
+            subtitle: 'Warum die Meinungen über Seneca geteilt bleiben',
+            admired: 'Warum er bewundert wurde',
+            admiredPoints: [
+                'Meister der stoischen Philosophie, der antike Weisheit zugänglich machte',
+                'Brillanter Schriftsteller, dessen Stil die lateinische Prosa jahrhundertelang beeinflusste',
+                'Versuchte, Neros Tyrannei zu mäßigen und zur Milde zu raten',
+                'Seine Werke über Ethik und Tugend blieben zeitlos',
+                'Begegnete dem Tod mit philosophischem Mut und Würde',
+            ],
+            criticized: 'Warum er kritisiert wurde',
+            criticizedPoints: [
+                'Häufte enormen Reichtum an, während er gegen Materialismus predigte',
+                'Diente Nero und ermöglichte dessen frühe Herrschaft trotz seiner Verbrechen',
+                'Seine Philosophie wirkte heuchlerisch angesichts seines luxuriösen Lebensstils',
+                'Verteidigte Neros Muttermord in öffentlichen Reden',
+                'Möglicherweise in die Pisonische Verschwörung gegen Nero verwickelt',
+            ],
+        },
+
+        theaters: {
+            title: 'Lebensstationen & Orte',
+            subtitle: 'Von Hispanien ins Herz des Kaiserreichs',
+            locationsTitle: 'Orte',
+            rolesTitle: 'Rollen',
+            mapTitle: 'Senecas Welt',
+            mapDesc: 'Von seiner Geburt in Corduba (heute Córdoba, Spanien) über sein Exil auf Korsika bis nach Rom, wo er als Neros Erzieher und Berater diente.',
+        },
+
+        locations: {
+            corduba: {
+                title: 'Corduba (Hispanien)',
+                note: 'Geboren ca. 4 v. Chr. in eine Ritterfamilie. Sein Vater war ein berühmter Rhetoriker. Die Familie zog nach Rom, als Seneca jung war.',
+            },
+            rome: {
+                title: 'Rom',
+                note: 'Zentrum seiner Ausbildung, politischen Karriere und philosophischen Tätigkeit. Studierte Rhetorik und stoische Philosophie bei den besten Lehrern.',
+            },
+            corsica: {
+                title: 'Korsika (Exil)',
+                note: 'Verbannt 41-49 n. Chr. durch Claudius, angeblich wegen Ehebruchs mit Julia Livilla. Schrieb in dieser Zeit philosophische Trostschriften.',
+            },
+            court: {
+                title: 'Kaiserhof',
+                note: 'Kehrte 49 n. Chr. zurück, um den jungen Nero zu unterrichten. Wurde de facto Mitregent Roms (54-62 n. Chr.) mit Burrus während des "Quinquennium Neronis".',
+            },
+        },
+
+        roles: {
+            philosopher: {
+                title: 'Stoischer Philosoph',
+                years: 'Lebenslang',
+                note: 'Schüler von Attalus, Sotion und anderen Stoikern. Entwickelte eine praktische, römische Version der Stoa mit Fokus auf Ethik und Tugend.',
+            },
+            senator: {
+                title: 'Senator & Redner',
+                years: '31-41 n. Chr.',
+                note: 'Erlangte im Senat durch brillante Reden Prominenz. Sein Erfolg erregte Caligulas Eifersucht und kostete ihn beinahe das Leben.',
+            },
+            exile: {
+                title: 'Exil auf Korsika',
+                years: '41-49 n. Chr.',
+                note: 'Acht Jahre Verbannung. Schrieb philosophische Werke, darunter Trostschriften an seine Mutter Helvia und an Polybius.',
+            },
+            tutor: {
+                title: 'Erzieher Neros',
+                years: '49-54 n. Chr.',
+                note: 'Von Agrippina zurückgerufen, um ihren Sohn Nero zu unterrichten. Lehrte ihm Rhetorik, Philosophie und (angeblich) Tugend und Milde.',
+            },
+            advisor: {
+                title: 'Kaiserlicher Berater',
+                years: '54-62 n. Chr.',
+                note: 'Mit Burrus regierte er faktisch Rom während Neros früher Herrschaft. Diese Periode wurde später als "Quinquennium Neronis" gefeiert.',
+            },
+            retirement: {
+                title: 'Ruhestand & Schreiben',
+                years: '62-65 n. Chr.',
+                note: 'Zog sich nach Burrus\' Tod aus dem öffentlichen Leben zurück. Widmete sich der Philosophie und schrieb die Briefe und Naturbetrachtungen.',
+            },
+        },
+
+        works: {
+            title: 'Hauptwerke',
+            subtitle: 'Philosophie, Drama und Naturwissenschaft',
+            moralLetters: {
+                title: 'Epistulae Morales ad Lucilium',
+                subtitle: 'Briefe über Ethik an Lucilius',
+                date: '62-65 n. Chr.',
+                note: '124 philosophische Briefe über alle Aspekte stoischer Ethik. Sein Hauptwerk und einflussreichster Text.',
+            },
+            dialogues: {
+                title: 'Dialogi',
+                subtitle: 'Philosophische Dialoge',
+                date: '41-64 n. Chr.',
+                note: 'Zehn Dialoge, darunter Über den Zorn, Über die Milde, Über die Vorsehung und Über die Kürze des Lebens.',
+            },
+            tragedies: {
+                title: 'Tragoediae',
+                subtitle: 'Neun Tragödien',
+                date: 'Verschiedene Daten',
+                note: 'Medea, Phaedra, Oedipus, Thyestes, Hercules Furens, Troades, Phoenissae, Agamemnon, Hercules Oetaeus.',
+            },
+            naturalQuestions: {
+                title: 'Naturales Quaestiones',
+                subtitle: 'Naturbetrachtungen',
+                date: '62-64 n. Chr.',
+                note: 'Sieben Bücher über Naturphänomene: Kometen, Blitze, Erdbeben. Verbindet Wissenschaft und Moralphilosophie.',
+            },
+            clemency: {
+                title: 'De Clementia',
+                subtitle: 'Über die Milde',
+                date: '55-56 n. Chr.',
+                note: 'Für den jungen Nero geschrieben, plädiert für milde Herrschaft. Ironisch angesichts Neros späterer Tyrannei.',
+            },
+            shortness: {
+                title: 'De Brevitate Vitae',
+                subtitle: 'Über die Kürze des Lebens',
+                date: 'ca. 49 n. Chr.',
+                note: 'Berühmter Essay mit dem Argument, dass das Leben lang genug ist, wenn wir es weise nutzen. Wir verschwenden Zeit mit Trivialitäten.',
+            },
+        },
+
+        rising: {
+            title: 'Weg zur Macht',
+            subtitle: 'Vom Exil zu den Höhen kaiserlichen Einflusses',
+            phase1: 'Phase 1: Aufstieg & Fall',
+            earlySuccess: 'Senatorischer Erfolg',
+            earlySuccessDesc: 'Stieg durch brillante Redekunst rasch im Senat auf. Seine Eloquenz provozierte beinahe Caligula, ihn aus Eifersucht hinrichten zu lassen.',
+            exile: 'Verbannung nach Korsika',
+            exileDate: '41 n. Chr.',
+            exileTitle: 'Verbannung durch Claudius',
+            exileSubtitle: 'Acht Jahre philosophischer Reflexion',
+            exileDesc: 'Des Ehebruchs mit Julia Livilla, Caligulas Schwester, beschuldigt. Aufs karge Korsika verbannt. Schrieb philosophische Trostschriften und kultivierte Geduld.',
+            exileTag: 'Wendepunkt',
+            exileBtn: 'Über das Exil',
+
+            phase2: 'Phase 2: Rückkehr & Einfluss',
+            recall: 'Rückruf und Erziehung',
+            recallDesc: 'Agrippina rief Seneca zurück, um ihren Sohn Nero zu unterrichten. Er lehrte den künftigen Kaiser Rhetorik, Philosophie und (theoretisch) Milde.',
+            quinquennium: 'Die goldenen fünf Jahre',
+            quinquenniumDesc: 'Mit dem Prätorianerpräfekten Burrus regierte Seneca faktisch Rom (54-59 n. Chr.). Diese Periode wurde später als aufgeklärte Herrschaft gefeiert.',
+
+            phase3: 'Phase 3: Niedergang & Tod',
+            burrusDeath: 'Tod des Burrus',
+            burrusDeathDate: '62 n. Chr.',
+            burrusDeathDesc: 'Sein Mitregent und Beschützer starb. Seneca verlor an Einfluss, bat um Ruhestand und zog sich zurück, um Philosophie zu schreiben.',
+            conspiracy: 'Pisonische Verschwörung',
+            conspiracyDate: '65 n. Chr.',
+            conspiracyDesc: 'In eine Verschwörung zum Mord an Nero verwickelt (möglicherweise fälschlich). Der Kaiser befahl ihm, Selbstmord zu begehen.',
+            death: 'Der Tod eines Philosophen',
+            deathDate: '65 n. Chr.',
+            deathDesc: 'Begegnete dem Tod mit stoischer Ruhe. Öffnete seine Adern und starb umgeben von Freunden, seine letzten Gedanken diktierend. Seine Frau Paulina versuchte, mit ihm zu sterben, wurde aber gerettet.',
+        },
+
+        quotes: {
+            title: 'Zeitlose Weisheit',
+            subtitle: 'Worte, die durch die Zeitalter hallen',
+            impact: 'Vermächtnis',
+            brevitas: {
+                quote: 'Non exiguum temporis habemus, sed multum perdidimus.',
+                translation: 'Nicht dass wir wenig Zeit haben, sondern dass wir viel davon verschwenden.',
+                when: 'De Brevitate Vitae',
+                meaning: 'Senecas berühmteste Einsicht: Das Leben ist nicht kurz; wir machen es so, indem wir Zeit für triviale Beschäftigungen und Ablenkungen verschwenden.',
+            },
+            vincit: {
+                quote: 'Qui toto se animo in praesens inclinavit, futura invisit.',
+                translation: 'Wer sich ganz der Gegenwart hingibt, schätzt die Zukunft gering.',
+                when: 'Epistulae Morales',
+                meaning: 'Achtsames Leben im gegenwärtigen Moment ist der Schlüssel zur Zufriedenheit. Opfere das Heute nicht für ein imaginiertes Morgen.',
+            },
+            fortuna: {
+                quote: 'Ducunt volentem fata, nolentem trahunt.',
+                translation: 'Das Schicksal führt den Willigen, den Widerstrebenden schleift es mit.',
+                when: 'Epistulae Morales 107',
+                meaning: 'Eine zentrale stoische Lehre: Wir können äußere Ereignisse nicht kontrollieren, aber unsere Einstellung dazu wählen.',
+            },
+            vita: {
+                quote: 'Nemo diu malus, qui meminit quanti bona constent.',
+                translation: 'Niemand bleibt lange böse, der sich erinnert, was die Tugend kostet.',
+                when: 'Epistulae Morales',
+                meaning: 'Böses entsteht aus dem Vergessen dessen, was wirklich zählt. Die Erinnerung an den Wert der Tugend führt uns natürlich zum Guten.',
+            },
+        },
+
+        philosophy: {
+            title: 'Stoische Philosophie',
+            subtitle: 'Senecas Beitrag zur antiken Weisheit',
+            stoicismTitle: 'Römische Stoa',
+            stoicismDesc: 'Seneca passte die griechische Stoa für römisches Publikum an. Während griechische Stoiker wie Chrysipp sich auf Logik konzentrierten, betonte Seneca praktische Ethik: wie man tugendhaft lebt, Schicksal akzeptiert und Seelenruhe findet.',
+            keyTeachings: 'Kernlehren',
+            teachings: [
+                {
+                    title: 'Akzeptiere, was du nicht kontrollieren kannst',
+                    desc: 'Unterscheide zwischen dem, was in deiner Macht steht (deine Gedanken, Einstellungen, Reaktionen) und was nicht (äußere Ereignisse, Handlungen anderer). Fokussiere dich auf Ersteres.',
+                },
+                {
+                    title: 'Zeit ist unsere kostbarste Ressource',
+                    desc: 'Wir beklagen uns, das Leben sei kurz, doch verschwenden wir Unmengen für Trivialitäten. Lebe bewusst. Jeder Moment zählt.',
+                },
+                {
+                    title: 'Übe Armut, um sie weniger zu fürchten',
+                    desc: 'Lebe regelmäßig einfach, um dir selbst zu beweisen, dass du es kannst. Das nimmt die Angst vor dem Verlust von Reichtum und Status.',
+                },
+                {
+                    title: 'Zorn ist vorübergehender Wahnsinn',
+                    desc: 'Zorn trübt das Urteil und lässt uns Dinge tun, die wir später bereuen. Kultiviere Ruhe durch Vernunft und Perspektive.',
+                },
+                {
+                    title: 'Der Tod ist natürlich, nicht böse',
+                    desc: 'Über Sterblichkeit zu meditieren ist nicht morbide – es hilft uns, das Leben zu schätzen und dem Tod ohne Furcht zu begegnen. Wir kehren zurück, woher wir kamen.',
+                },
+                {
+                    title: 'Tugend ist das einzig wahre Gut',
+                    desc: 'Reichtum, Gesundheit, Vergnügen – alles sind "bevorzugte Gleichgültigkeiten". Nur Tugend (Weisheit, Gerechtigkeit, Mut, Mäßigung) ist wahrhaft gut.',
+                },
+            ],
+        },
+
+        timeline: {
+            life: {
+                birth: { title: 'Geburt in Corduba', note: 'Geboren in Hispanien in eine Ritterfamilie. Vater war der berühmte Rhetoriker Seneca der Ältere.' },
+                rome: { title: 'Umzug nach Rom', note: 'Studierte Rhetorik und stoische Philosophie bei Attalus, Sotion und anderen Meistern.' },
+                quaestor: { title: 'Eintritt in den Senat', note: 'Begann politische Karriere als Quästor. Erlangte schnell Ruhm durch seine Redekunst.' },
+                caligula: { title: 'Caligulas Eifersucht', note: 'Kaiser Caligula wäre fast dabei, ihn aus Neid auf seine rhetorische Brillanz hinzurichten.' },
+                exile: { title: 'Verbannung nach Korsika', note: 'Des Ehebruchs mit Julia Livilla beschuldigt. Verbrachte acht Jahre in philosophischer Reflexion.' },
+                recall: { title: 'Rückruf durch Agrippina', note: 'Zurückgeholt, um den jungen Nero zu unterrichten. Hoffte, ihn zu einem Philosophen-Kaiser zu formen.' },
+                neroEmperor: { title: 'Nero wird Kaiser', note: 'Mit Burrus regierte faktisch Rom während des "Quinquennium Neronis" (54-59 n. Chr.).' },
+                matricide: { title: 'Nero tötet Agrippina', note: 'Seneca verteidigte den Muttermord öffentlich, ein Makel auf seinem Ruf.' },
+                burrusDeath: { title: 'Tod des Burrus', note: 'Verlor seinen Beschützer und Mitregenten. Einfluss schwand; bat um Ruhestand.' },
+                retirement: { title: 'Ruhestand', note: 'Zog sich zurück, um Philosophie zu schreiben. Produzierte die Briefe und Naturbetrachtungen.' },
+                conspiracy: { title: 'Pisonische Verschwörung', note: 'In Verschwörung zum Mord an Nero verwickelt. Befohlen, Selbstmord zu begehen.' },
+                death: { title: 'Tod', note: 'Öffnete seine Adern. Starb ruhig, umgeben von Freunden, letzte philosophische Gedanken diktierend.' },
+            },
+        },
+
+        tags: {
+            philosophy: 'Philosophie',
+            literature: 'Literatur',
+            politics: 'Politik',
+            ethics: 'Ethik',
+            drama: 'Drama',
+            science: 'Naturwissenschaft',
+            stoicism: 'Stoizismus',
+        },
+
+        horizons: {
+            immediate: 'Unmittelbar',
+            mediumTerm: 'Mittelfristig',
+            longTerm: 'Langanhaltend',
+        },
+    },
+
     // Weitere UI-Texte
     minutes: 'Min.',
     posts: 'Beiträge',
