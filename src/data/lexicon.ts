@@ -37,6 +37,28 @@ import matrona from '@/content/lexicon/matrona';
 import paterfamilias from '@/content/lexicon/paterfamilias';
 import familia from '@/content/lexicon/familia';
 
+// New entries
+import cohors from '@/content/lexicon/cohors';
+import manipulus from '@/content/lexicon/manipulus';
+import testudo from '@/content/lexicon/testudo';
+import quaestor from '@/content/lexicon/quaestor';
+import censor from '@/content/lexicon/censor';
+import cursusHonorum from '@/content/lexicon/cursus-honorum';
+import virtus from '@/content/lexicon/virtus';
+import pietas from '@/content/lexicon/pietas';
+import dignitas from '@/content/lexicon/dignitas';
+import auctoritas from '@/content/lexicon/auctoritas';
+import gravitas from '@/content/lexicon/gravitas';
+import mosMaiorum from '@/content/lexicon/mos-maiorum';
+import clientela from '@/content/lexicon/clientela';
+import patronus from '@/content/lexicon/patronus';
+import fides from '@/content/lexicon/fides';
+import scutum from '@/content/lexicon/scutum';
+import pompeius from '@/content/lexicon/pompeius';
+import crassus from '@/content/lexicon/crassus';
+import palatinus from '@/content/lexicon/palatinus';
+import tiberis from '@/content/lexicon/tiberis';
+
 export const lexicon: LexiconEntry[] = [
 
   volkstribun,
@@ -74,4 +96,25 @@ export const lexicon: LexiconEntry[] = [
   matrona,
   paterfamilias,
   familia,
+  // New entries
+  cohors,
+  manipulus,
+  testudo,
+  quaestor,
+  censor,
+  cursusHonorum,
+  virtus,
+  pietas,
+  dignitas,
+  auctoritas,
+  gravitas,
+  mosMaiorum,
+  clientela,
+  patronus,
+  fides,
+  scutum,
+  pompeius,
+  crassus,
+  palatinus,
+  tiberis,
 ];
