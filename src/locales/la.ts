@@ -286,6 +286,174 @@ export const la = {
     catilina_timeline_4_year: '62 a.C.n.',
     catilina_timeline_4_event: 'Mors in pugna apud Pistoriam',
 
+    // Catilina Biography Page
+    catilina: {
+        snapshots: {
+            lifespan: 'Vita',
+            conspiracy: 'Coniuratio',
+            conspiracyHint: 'Coniuratio Catilinae',
+            consulElections: 'Comitia Consularia',
+            supporters: 'Fautores',
+            supportersHint: 'Nobiles debitores et veterani',
+            ciceroSpeeches: 'Orationes Ciceronis',
+            finalBattle: 'Proelium Ultimum',
+        },
+        quickFacts: {
+            title: 'Summatim',
+        },
+        intro: {
+            paragraph1: 'Lucius Sergius Catilina (108–62 a.C.n.) fuit patricius Romanus ex familia nobili antiqua, qui dux "Coniurationis Catilinariae" in historia notus factus est. Coniuratio eius anni 63 a.C.n. una ex gravissimis crisisbus internis rei publicae Romanae sero habetur.',
+            paragraph2: 'Catilina ex familia patricia paupere oriundus erat et crises nobilitatis Romanae corporabat: multum debens, politice ambitiosus, sed a structuris potentiae stabilitis exclusus. Post plures repulsas candidaturae consularis, coniurationem ordinavit quae ruinam ordinis existentis proposuit.',
+            paragraph3: 'Historice, Catilina praecipue per quattuor orationes celebres Ciceronis contra eum ("In Catilinam") notus est, quae inter opera praeclara rhetoricae Romanae numerantur. Tamen, conditio fontium de persona eius problematica est: omnes fere informationes ab inimicis politicis eius, praesertim Cicerone et Sallustio, veniunt, unde imago obiectiva personae et motivorum eius difficulter reconstitui potest.',
+        },
+        historicalContext: {
+            title: 'Contextus Historicus',
+        },
+        context: {
+            lateRepublic: {
+                title: 'Res Publica Romana Sera',
+                description: 'Roma saeculo primo a.C.n. res publica crisi vexata erat: bella civilia, tensiones sociales, certamina potentiae inter Optimates et Populares, crisis debitorum, et debilitatio imperii senatorii traditionalis tempus characterizabant.',
+            },
+            debtCrisis: {
+                title: 'Crisis Debitorum Nobilitatis',
+                description: 'Multi nobiles propter comitia sumptuosa, ludos et aedificia magnifica, et proscriptiones Sullanas multum debebant. Catilina et fautores eius remissionem debitorum postulaverunt, quam senatus stricte reiecit.',
+            },
+            sullaLegacy: {
+                title: 'Hereditas Sullae',
+                description: 'Catilina sub dictatore Sulla serviverat et in proscriptionibus (tabulis mortis) participaverat. Hoc praeteritum famam eius laesit, simul vero ex distributionibus terrarum Sullae veteranis profecit.',
+                period: 'Annos 80 a.C.n.',
+            },
+            nobilitas: {
+                title: 'Crisis Nobilitatis',
+                description: 'Classis ducens traditionalis Romae, nobilitas, sub pressione a novis hominibus ut Cicerone, problematibus oeconomicis, et potentia crescente singulorum imperatorum venit. Catilina desperationem patriciorum pauperum repraesentabat.',
+                period: 'Post Graccos (133 a.C.n.)',
+            },
+        },
+        timeline: {
+            title: 'Cursus Vitae',
+            birth: {
+                title: 'Natus Romae',
+                description: 'Lucius Sergius Catilina in familiam patriciam antiquam nascitur. Circumstantiae exactae annorum primorum ignotae sunt. Familia Sergiorum ad nobilitatem pertinebat sed oeconomice debilitata erat.',
+            },
+            praetor: {
+                title: 'Praetor Romae',
+                description: 'Catilina officium praetoris, munus iudiciale et administrativum altum, tenet. Particularia historica de actis eius ut praetoris raro tradita sunt.',
+            },
+            africa: {
+                title: 'Propraetor in Africa',
+                description: 'Catilina ut gubernator (propraetor) in provinciam Africae mittitur. Post reditum eius, de repetundis (extorsione) accusatur, quod primam candidaturam consulariam eius (65 a.C.n.) impedit vel tardat.',
+            },
+            firstElection: {
+                title: 'Prima Repulsa Electoralis',
+                description: 'Catilina se consulatum pro anno 63 a.C.n. petit sed vincitur. Sunt indicationes speculativae de primo conatu eversionis (sic dicta "Prima Coniuratio Catilinae" annorum 65/64 a.C.n.), sed historicitas eius disputatur.',
+            },
+            secondElection: {
+                title: 'Secunda Repulsa Electoralis',
+                description: 'Catilina iterum consulatum pro anno 62 a.C.n. petit et iterum vincitur – hoc tempore a Marco Tullio Cicerone, homine novo. Repulsa ab homine novo ex familia non nobili a Catilina ut contumelia profunda sentitur.',
+            },
+            conspiracyRevealed: {
+                title: 'Detectio Coniurationis',
+                description: 'Cicero, nunc consul, consilia Catilinae detegit: conatus caedis senatorum principum, incendia in urbe, et insurrectio armata. Die VIII Novembris 63 a.C.n., Cicero orationem celebrem primam "In Catilinam" in senatu habet, Catilina praesente.',
+            },
+            fleeRome: {
+                title: 'Fuga ex Urbe',
+                description: 'Post accusationem devastantem Ciceronis, Catilina ex Roma ad exercitum suum in Etruria (prope Faesulas, nunc Fiesole) fugit. Romae, quinque conscii eius capiuntur et – post disputationem senatus – necantur, quod postea valde controversum erit.',
+            },
+            death: {
+                title: 'Mors apud Pistoriam',
+                description: 'Catilina cum exercitu suo a consulibus anni 62 a.C.n. in pugna apud Pistoriam (nunc Pistoia) opponitur. In proelio cadit. Fontes antiquae emphasizant eum fortiter ad finem pugnavisse et inter fautores suos mortuos inventum esse.',
+            },
+        },
+        conspiracy: {
+            title: 'Coniuratio Catilinae',
+            outcome: 'Exitus',
+            firstPlot: {
+                title: 'Primus Conatus Eversionis (putatus)',
+                description: 'Secundum Sallustium et alios fontes, iam annis 65/64 a.C.n. primum consilium coniurationis fuisse dicitur, quod tamen non effectum est. Historicitas huius "primi comploti" in investigatione disputatur – fortasse constructio posterior ab inimicis Catilinae.',
+                outcome: 'Nulla basis historica secura; fortasse propaganda.',
+            },
+            secondPlot: {
+                title: 'Coniuratio Principalis (63 a.C.n.)',
+                description: 'Post repulsam electoralem iteratam anno 63 a.C.n., Catilina consilia eversionis concreta incipit: fautores colligit – praecipue nobiles debitos, veteranos Sullanos, et classes inferiores dissentatores. Propositum: caedes senatorum principum, incendia in urbe, remissio debitorum, et ordinatio nova rei publicae.',
+                outcome: 'Consilium partim in actum deductum sed tempore a Cicerone detectum.',
+            },
+            exposure: {
+                title: 'Detectio a Cicerone',
+                year: 'November 63 a.C.n.',
+                description: 'Cicero informationes de coniuratione per Fulviam, amicam conscii, accipit. In quattuor orationibus celebribus ("In Catilinam" I–IV), Catilinam publice accusat, coniurationem detegit, et senatus consultum ultimum (decretum emergen tiae) obtinet quod ei potestates extraordinarias dat.',
+                outcome: 'Catilina ex urbe fugit; conscii eius capiuntur.',
+            },
+            finalStand: {
+                title: 'Proelium Finale et Mors',
+                year: 'Initio 62 a.C.n.',
+                description: 'Catilina in Etruria exercitum circiter trium milium virorum colligit. Haec copia a consulibus anni 62 a.C.n., Gaio Antonio Hybrida et Marco Petreio, in pugna apud Pistoriam deletur. Catilina in proelio cadit, et coniuratio definitive terminatur.',
+                outcome: 'Clades completa; mors Catilinae in pugna.',
+            },
+        },
+        ciceroSpeeches: {
+            title: 'Orationes Ciceronis Contra Catilinam',
+            description: 'Marcus Tullius Cicero, ut consul anni 63 a.C.n., quattuor orationes celebres contra Catilinam habuit quae inter culmina rhetoricae Romanae numerantur et hodie etiam ut exempla praeclara orationis politicae habentur.',
+            impactLabel: 'Effectus',
+            first: {
+                title: 'In Catilinam I (VIII Kal. Nov. 63 a.C.n.)',
+                date: 'VIII Kalendas Novembres 63 a.C.n., in senatu',
+                summary: 'Celeberrima quattuor orationum. Cicero Catilinam directe aggreditur, qui in senatu praesens est: "Quo usque tandem abutere, Catilina, patientia nostra?" Cicero coniurationem describit et Catilinam exire ex urbe postulat.',
+                impact: 'Catilina ipsa nocte Romam relinquit et ad exercitum suum fugit. Oratio Ciceronem ut servatorem rei publicae constituit.',
+            },
+            second: {
+                title: 'In Catilinam II (VII Kal. Nov. 63 a.C.n.)',
+                date: 'VII Kalendas Novembres 63 a.C.n., coram populo',
+                summary: 'Uno die post primam orationem, Cicero ad populum Romanum se convertit et exponit cur Catilinam non necari iusserit. Fautores Catilinae in sex categoriis characterizat – a nobilibus multum debentibus ad desperatos criminales – et de periculo monet.',
+                impact: 'Mobilizatio opinionis publicae contra Catilinam; confirmatio positionis Ciceronis.',
+            },
+            third: {
+                title: 'In Catilinam III (III Non. Dec. 63 a.C.n.)',
+                date: 'III Nonas Decembres 63 a.C.n., coram populo',
+                summary: 'Cicero de detectione comploti caedis contra se et de captione legatorum Allobrogum Gallicorum, qui a consciis Catilinae sollicitari debebant, refert. Testimonia scripta praesentat et captionem consciorum principalium iubet.',
+                impact: 'Testimonium decisivum existentiae coniurationis; captio consciorum.',
+            },
+            fourth: {
+                title: 'In Catilinam IV (III Kal. Dec. 63 a.C.n.)',
+                date: 'III Kalendas Decembres 63 a.C.n., in senatu',
+                summary: 'In quarta oratione, Cicero de poena consciorum captorum positionem capit. Indirecte poenam mortis (a Catone postulatam) contra Caesarem, qui pro carcere perpetuo argutus erat, sustinet. Conscii sine iudicio ordinario necantur.',
+                impact: 'Necatio quinque consciorum principalium; postea punctum impugnationis pro inimicis Ciceronis (procedura sine iudicio).',
+            },
+        },
+        legacy: {
+            title: 'Significatio Historica et Hereditas',
+            symbolOfCorruption: 'Symbolum Coniurationis Politicae',
+            symbolOfCorruptionSummary: 'Catilina typus coniuratoris impudens et hostis internus rei publicae factus est. Nomen eius synonymum stat pro eversione civitatis, violentia politica, et corruptione virtutum republicanarum.',
+            ciceroRise: 'Ascensus Ciceronis',
+            ciceroRiseSummary: 'Detectio et oppressio coniurationis feliciter facta Ciceronem "pater patriae" fecit et famam eius ut defensor rei publicae fundavit. Orationes contra Catilinam ut opera magistralia rhetorica habentur.',
+            republicanCrisis: 'Crisis Rei Publicae',
+            republicanCrisisSummary: 'Coniuratio crises profundas rei publicae serae revelavit: tensiones sociales, crisis debitorum nobilitatis, paratitatem ad violentiam in politica, et debilitationem auctoritatis senatoriae. Praenuntius bellorum civilium venientium fuit.',
+            debtCrisis: 'Crisis Debitorum et Quaestio Socialis',
+            debtCrisisSummary: 'Fautores Catilinae praecipue ex debitoribus et socialiter degradatis recrutabantur. Coniuratio demonstravit rem publicam incapacem esse problemata socioeconomica solvendi – problema structurale quod Caesar et alii postea exploitaverunt.',
+        },
+        tags: {
+            politics: 'Politica',
+            rhetoric: 'Rhetorica',
+            history: 'Historia',
+            economics: 'Oeconomia',
+        },
+        horizons: {
+            longTerm: 'Longe',
+            mediumTerm: 'Mediocriter',
+            immediate: 'Statim',
+        },
+        sources: {
+            title: 'Fontes Historici et Critica Fontium',
+            description: 'Scientia nostra de Catilina fere exclusive in scriptis inimicorum eius politicorum fundata est:',
+            cicero: 'Orationes Ciceronis "In Catilinam" et epistulae – valde partiales sed coaevanae',
+            sallust: 'Monographia Sallustii "De coniuratione Catilinae" – litterarie praeclara sed partialis',
+            note: 'Nota: Imago aequilibrata motivorum et characteris Catilinae propter conditionem fontium unilateralem vix possibilis est. Multa particularia disputata vel speculativa sunt.',
+        },
+        relatedContent: {
+            title: 'Plura de Catilina',
+        },
+        viewDiary: 'Ad Diarium',
+    },
+
     // Seneca
     seneca_name: 'Seneca Minor',
     seneca_latinName: 'Lucius Annaeus Seneca',

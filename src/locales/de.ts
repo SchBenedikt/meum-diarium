@@ -289,6 +289,174 @@ export const de = {
     catilina_timeline_4_year: '62 v. Chr.',
     catilina_timeline_4_event: 'Tod in der Schlacht bei Pistoria',
 
+    // Catilina Biography Page
+    catilina: {
+        snapshots: {
+            lifespan: 'Lebenszeit',
+            conspiracy: 'Verschwörung',
+            conspiracyHint: 'Catilinarische Verschwörung',
+            consulElections: 'Konsulatswahlen',
+            supporters: 'Unterstützer',
+            supportersHint: 'Verschuldete Adlige & Veteranen',
+            ciceroSpeeches: 'Cicero-Reden',
+            finalBattle: 'Letzte Schlacht',
+        },
+        quickFacts: {
+            title: 'Auf einen Blick',
+        },
+        intro: {
+            paragraph1: 'Lucius Sergius Catilina (108–62 v. Chr.) war ein römischer Patrizier aus altem Adel, der als Anführer der nach ihm benannten "Catilinarischen Verschwörung" in die Geschichte einging. Seine Verschwörung von 63 v. Chr. gilt als eine der schwerwiegendsten innenpolitischen Krisen der späten Römischen Republik.',
+            paragraph2: 'Catilina stammte aus einer verarmten patrizischen Familie und verkörperte die Krise der römischen Nobilität: hochverschuldet, politisch ambitioniert, aber von den etablierten Machtstrukturen ausgeschlossen. Nach mehreren gescheiterten Bewerbungen um das Konsulat organisierte er eine Verschwörung, die den Sturz der bestehenden Ordnung zum Ziel hatte.',
+            paragraph3: 'Historisch ist Catilina vor allem durch die vier berühmten Reden Ciceros gegen ihn ("In Catilinam") bekannt, die zu den Meisterwerken römischer Rhetorik zählen. Die Quellenlage zu seiner Person ist allerdings problematisch: Nahezu alle Informationen stammen von seinen politischen Gegnern, insbesondere Cicero und Sallust, weshalb ein objektives Bild seiner Persönlichkeit und Motive schwierig zu rekonstruieren ist.',
+        },
+        historicalContext: {
+            title: 'Historischer Kontext',
+        },
+        context: {
+            lateRepublic: {
+                title: 'Die späte Römische Republik',
+                description: 'Rom im 1. Jahrhundert v. Chr. war eine krisengeschüttelte Republik: Bürgerkriege, soziale Spannungen, Machtkämpfe der Optimaten und Popularen, Schuldenkrise und die Schwächung der traditionellen Senatsherrschaft prägten die Zeit.',
+            },
+            debtCrisis: {
+                title: 'Die Schuldenkrise der Nobilität',
+                description: 'Viele Adlige waren durch kostspielige Wahlkämpfe, aufwendige Spiele und Bauten sowie Sullas Proskriptionen hochverschuldet. Catilina und seine Anhänger forderten einen Schuldenerlass, was vom Senat strikt abgelehnt wurde.',
+            },
+            sullaLegacy: {
+                title: 'Das Erbe Sullas',
+                description: 'Catilina hatte unter dem Diktator Sulla gedient und war an den Proskriptionen (Todeslisten) beteiligt gewesen. Diese Vergangenheit belastete sein Ansehen, gleichzeitig profitierte er von Sullas Landverteilungen an Veteranen.',
+                period: '80er Jahre v. Chr.',
+            },
+            nobilitas: {
+                title: 'Krise der Nobilität',
+                description: 'Die traditionelle Führungsschicht Roms, die Nobilität, geriet durch neue Männer (homines novi) wie Cicero, wirtschaftliche Probleme und die wachsende Macht einzelner Feldherren unter Druck. Catilina repräsentierte die Verzweiflung verarmter Patrizier.',
+                period: 'Seit den Gracchen (133 v. Chr.)',
+            },
+        },
+        timeline: {
+            title: 'Lebensweg',
+            birth: {
+                title: 'Geburt in Rom',
+                description: 'Lucius Sergius Catilina wird in eine alte patrizische Familie geboren. Die genauen Umstände seiner frühen Jahre sind unbekannt. Die Familie der Sergier gehörte zur Nobilität, war aber wirtschaftlich geschwächt.',
+            },
+            praetor: {
+                title: 'Prätor in Rom',
+                description: 'Catilina bekleidet das Amt des Prätors, eines hohen richterlichen und administrativen Amtes. Historische Details zu seinem Wirken als Prätor sind spärlich überliefert.',
+            },
+            africa: {
+                title: 'Proprätor in Africa',
+                description: 'Catilina wird als Statthalter (Proprätor) in die Provinz Africa entsandt. Nach seiner Rückkehr wird er wegen Erpressung (repetundae) angeklagt, was seine erste Konsulatsbewerbung (65 v. Chr.) verhindert oder verzögert.',
+            },
+            firstElection: {
+                title: 'Erste Wahlniederlage',
+                description: 'Catilina bewirbt sich um das Konsulat für das Jahr 63 v. Chr., unterliegt jedoch. Es gibt spekulative Hinweise auf einen ersten Umsturzversuch (die sogenannte "Erste Catilinarische Verschwörung" von 65/64 v. Chr.), dessen Historizität aber umstritten ist.',
+            },
+            secondElection: {
+                title: 'Zweite Wahlniederlage',
+                description: 'Catilina bewirbt sich erneut um das Konsulat für 62 v. Chr. und verliert wieder – diesmal gegen Marcus Tullius Cicero, einen homo novus. Die Niederlage gegen einen Aufsteiger aus nicht-adliger Familie empfindet Catilina als tiefe Kränkung.',
+            },
+            conspiracyRevealed: {
+                title: 'Aufdeckung der Verschwörung',
+                description: 'Cicero, nun Konsul, deckt Catilinas Pläne auf: Mordanschläge auf führende Senatoren, Brandstiftung in Rom und ein bewaffneter Aufstand. Am 8. November 63 v. Chr. hält Cicero seine berühmte erste Rede "In Catilinam" im Senat, während Catilina anwesend ist.',
+            },
+            fleeRome: {
+                title: 'Flucht aus Rom',
+                description: 'Nach Ciceros vernichtender Anklage flieht Catilina aus Rom zu seinem Heer in Etrurien (bei Faesulae, heute Fiesole). In Rom werden fünf seiner Mitverschworenen verhaftet und – nach einer Senatsdebatte – hingerichtet, was später heftig umstritten sein wird.',
+            },
+            death: {
+                title: 'Tod bei Pistoria',
+                description: 'Catilina wird mit seinem Heer von den Konsuln des Jahres 62 v. Chr. in der Schlacht bei Pistoria (heute Pistoia) gestellt. Er fällt im Kampf. Die antiken Quellen betonen, dass er tapfer bis zum Ende gekämpft habe und inmitten seiner gefallenen Anhänger gefunden wurde.',
+            },
+        },
+        conspiracy: {
+            title: 'Die Catilinarische Verschwörung',
+            outcome: 'Ergebnis',
+            firstPlot: {
+                title: 'Erster Umsturzversuch (mutmaßlich)',
+                description: 'Laut Sallust und anderen Quellen soll es bereits 65/64 v. Chr. einen ersten Verschwörungsplan gegeben haben, der aber nicht zur Ausführung kam. Die Historizität dieses "ersten Komplotts" ist in der Forschung umstritten – möglicherweise eine spätere Konstruktion von Catilinas Gegnern.',
+                outcome: 'Keine gesicherte historische Grundlage; möglicherweise Propaganda.',
+            },
+            secondPlot: {
+                title: 'Die Hauptverschwörung (63 v. Chr.)',
+                description: 'Nach seiner erneuten Wahlniederlage 63 v. Chr. beginnt Catilina mit konkreten Umsturzplänen: Er sammelt Anhänger – vor allem verschuldete Adlige, Sullas Veteranen und unzufriedene Unterschichten. Das Ziel: Ermordung führender Senatoren, Brandstiftung in Rom, Schuldenerlass und Neuordnung des Staates.',
+                outcome: 'Plan teilweise in die Tat umgesetzt, aber durch Cicero rechtzeitig aufgedeckt.',
+            },
+            exposure: {
+                title: 'Aufdeckung durch Cicero',
+                year: 'November 63 v. Chr.',
+                description: 'Cicero erhält Informationen über die Verschwörung durch Fulvia, die Geliebte eines Verschwörers. In vier berühmten Reden ("In Catilinam" I–IV) klagt er Catilina öffentlich an, deckt die Verschwörung auf und sichert sich ein senatus consultum ultimum (Notstandsbeschluss), das ihm außerordentliche Vollmachten gibt.',
+                outcome: 'Catilina flieht aus Rom; seine Mitverschworener werden festgenommen.',
+            },
+            finalStand: {
+                title: 'Endkampf und Tod',
+                year: 'Anfang 62 v. Chr.',
+                description: 'Catilina sammelt in Etrurien ein Heer von etwa 3.000 Mann. Dieses wird von den Konsulen des Jahres 62 v. Chr., Gaius Antonius Hybrida und Marcus Petreius, in der Schlacht bei Pistoria vernichtet. Catilina fällt im Kampf, und die Verschwörung endet endgültig.',
+                outcome: 'Vollständige Niederlage; Catilinas Tod in der Schlacht.',
+            },
+        },
+        ciceroSpeeches: {
+            title: 'Ciceros Reden gegen Catilina',
+            description: 'Marcus Tullius Cicero hielt als Konsul des Jahres 63 v. Chr. vier berühmte Reden gegen Catilina, die zu den Glanzstücken römischer Rhetorik zählen und bis heute als Paradebeispiele für politische Redekunst gelten.',
+            impactLabel: 'Wirkung',
+            first: {
+                title: 'In Catilinam I (8. November 63 v. Chr.)',
+                date: '8. November 63 v. Chr., im Senat',
+                summary: 'Die berühmteste der vier Reden. Cicero greift Catilina direkt an, der im Senat anwesend ist: "Quo usque tandem abutere, Catilina, patientia nostra?" ("Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?"). Cicero schildert die Verschwörung und fordert Catilina auf, Rom zu verlassen.',
+                impact: 'Catilina verlässt noch in der Nacht Rom und flieht zu seinem Heer. Die Rede etabliert Cicero als Retter der Republik.',
+            },
+            second: {
+                title: 'In Catilinam II (9. November 63 v. Chr.)',
+                date: '9. November 63 v. Chr., vor dem Volk',
+                summary: 'Einen Tag nach der ersten Rede wendet sich Cicero an das römische Volk und erklärt, warum er Catilina nicht hat töten lassen. Er charakterisiert die Anhänger Catilinas in sechs Kategorien – von hochverschuldeten Adligen bis zu kriminellen Desperados – und warnt vor der Gefahr.',
+                impact: 'Mobilisierung der öffentlichen Meinung gegen Catilina; Stärkung von Ciceros Position.',
+            },
+            third: {
+                title: 'In Catilinam III (3. Dezember 63 v. Chr.)',
+                date: '3. Dezember 63 v. Chr., vor dem Volk',
+                summary: 'Cicero berichtet von der Aufdeckung eines Mordkomplotts gegen ihn und von der Festnahme der Gesandten der gallischen Allobroger, die von Catilinas Mitverschwörern angeworben werden sollten. Er präsentiert schriftliche Beweise und lässt die Verhaftung der Hauptverschwörer durchführen.',
+                impact: 'Entscheidender Beweis für die Existenz der Verschwörung; Festnahme der Verschwörer.',
+            },
+            fourth: {
+                title: 'In Catilinam IV (5. Dezember 63 v. Chr.)',
+                date: '5. Dezember 63 v. Chr., im Senat',
+                summary: 'In der vierten Rede nimmt Cicero Stellung zur Bestrafung der verhafteten Verschwörer. Er unterstützt indirekt das Todesurteil (von Cato gefordert) gegen Caesar, der für lebenslange Haft plädiert hatte. Die Verschwörer werden ohne ordentliches Gerichtsverfahren hingerichtet.',
+                impact: 'Hinrichtung der fünf Hauptverschwörer; späterer Angriffspunkt für Ciceros Gegner (Verfahren ohne Gerichtsurteil).',
+            },
+        },
+        legacy: {
+            title: 'Historische Bedeutung und Nachwirkung',
+            symbolOfCorruption: 'Symbol für politische Verschwörung',
+            symbolOfCorruptionSummary: 'Catilina wurde zum Inbegriff des skrupellosen Verschwörers und des inneren Feindes der Republik. Sein Name steht synonym für Staatsumsturz, politische Gewalt und den Verfall republikanischer Tugenden.',
+            ciceroRise: 'Ciceros Aufstieg',
+            ciceroRiseSummary: 'Die erfolgreiche Aufdeckung und Niederschlagung der Verschwörung machte Cicero zum "pater patriae" (Vater des Vaterlandes) und begründete seinen Ruhm als Verteidiger der Republik. Die Reden gegen Catilina gelten als rhetorische Meisterwerke.',
+            republicanCrisis: 'Krise der Republik',
+            republicanCrisisSummary: 'Die Verschwörung verdeutlichte die tiefe Krise der späten Republik: soziale Spannungen, Schuldenkrise der Nobilität, Gewaltbereitschaft in der Politik und die Schwächung der senatorischen Autorität. Sie war ein Vorbote der kommenden Bürgerkriege.',
+            debtCrisis: 'Schuldenkrise und Soziale Frage',
+            debtCrisisSummary: 'Catilinas Anhänger rekrutierten sich vor allem aus den Verschuldeten und sozial Deklassierten. Die Verschwörung zeigte, dass die Republik nicht in der Lage war, die sozioökonomischen Probleme zu lösen – ein strukturelles Problem, das später auch Caesar und andere ausnutzten.',
+        },
+        tags: {
+            politics: 'Politik',
+            rhetoric: 'Rhetorik',
+            history: 'Geschichte',
+            economics: 'Wirtschaft',
+        },
+        horizons: {
+            longTerm: 'Langfristig',
+            mediumTerm: 'Mittelfristig',
+            immediate: 'Unmittelbar',
+        },
+        sources: {
+            title: 'Historische Quellen und Quellenkritik',
+            description: 'Unsere Kenntnis von Catilina beruht fast ausschließlich auf den Schriften seiner politischen Gegner:',
+            cicero: 'Ciceros Reden "In Catilinam" und Briefe – hochgradig tendenziös, aber zeitgenössisch',
+            sallust: 'Sallusts Monographie "De coniuratione Catilinae" – literarisch brillant, aber parteiisch',
+            note: 'Hinweis: Ein ausgewogenes Bild von Catilinas Motiven und Charakter ist aufgrund der einseitigen Quellenlage kaum möglich. Viele Details sind umstritten oder spekulativ.',
+        },
+        relatedContent: {
+            title: 'Weitere Einträge zu Catilina',
+        },
+        viewDiary: 'Zu den Einträgen',
+    },
+
     // Seneca
     seneca_name: 'Seneca der Jüngere',
     seneca_latinName: 'Lucius Annaeus Seneca',
