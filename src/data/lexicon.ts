@@ -59,6 +59,59 @@ import crassus from '@/content/lexicon/crassus';
 import palatinus from '@/content/lexicon/palatinus';
 import tiberis from '@/content/lexicon/tiberis';
 
+// New entries - Military terms
+import ballista from '@/content/lexicon/ballista';
+import onager from '@/content/lexicon/onager';
+import aquila from '@/content/lexicon/aquila';
+import signum from '@/content/lexicon/signum';
+import castra from '@/content/lexicon/castra';
+import vallum from '@/content/lexicon/vallum';
+import fossatum from '@/content/lexicon/fossatum';
+import sica from '@/content/lexicon/sica';
+import pugio from '@/content/lexicon/pugio';
+import viaPraetoria from '@/content/lexicon/via-praetoria';
+import cingulumMilitare from '@/content/lexicon/cingulum-militare';
+
+// New entries - Gladiator types
+import murmillo from '@/content/lexicon/murmillo';
+import retiarius from '@/content/lexicon/retiarius';
+import secutor from '@/content/lexicon/secutor';
+import thraex from '@/content/lexicon/thraex';
+import hoplomachus from '@/content/lexicon/hoplomachus';
+
+// New entries - Political offices
+import consul from '@/content/lexicon/consul';
+import tribunusPlebis from '@/content/lexicon/tribunus-plebis';
+
+// New entries - Roman values
+import honor from '@/content/lexicon/honor';
+import gloria from '@/content/lexicon/gloria';
+import clementia from '@/content/lexicon/clementia';
+import iustitia from '@/content/lexicon/iustitia';
+import fama from '@/content/lexicon/fama';
+import fortuna from '@/content/lexicon/fortuna';
+
+// New entries - Geographical locations
+import capitolium from '@/content/lexicon/capitolium';
+import aventinus from '@/content/lexicon/aventinus';
+import quirinalis from '@/content/lexicon/quirinalis';
+import ostia from '@/content/lexicon/ostia';
+
+// New entries - Historical figures
+import marcusBrutus from '@/content/lexicon/marcus-brutus';
+import marcusAntonius from '@/content/lexicon/marcus-antonius';
+import cleopatra from '@/content/lexicon/cleopatra';
+import octaviaMinor from '@/content/lexicon/octavia-minor';
+
+// New entries - Cultural terms
+import balneum from '@/content/lexicon/balneum';
+import thermae from '@/content/lexicon/thermae';
+import ludus from '@/content/lexicon/ludus';
+import circus from '@/content/lexicon/circus';
+
+// New entries - Historical events
+import actium from '@/content/lexicon/actium';
+
 export const lexicon: LexiconEntry[] = [
 
   volkstribun,
@@ -117,4 +170,49 @@ export const lexicon: LexiconEntry[] = [
   crassus,
   palatinus,
   tiberis,
+  // New entries - Military terms
+  ballista,
+  onager,
+  aquila,
+  signum,
+  castra,
+  vallum,
+  fossatum,
+  sica,
+  pugio,
+  viaPraetoria,
+  cingulumMilitare,
+  // New entries - Gladiator types
+  murmillo,
+  retiarius,
+  secutor,
+  thraex,
+  hoplomachus,
+  // New entries - Political offices
+  consul,
+  tribunusPlebis,
+  // New entries - Roman values
+  honor,
+  gloria,
+  clementia,
+  iustitia,
+  fama,
+  fortuna,
+  // New entries - Geographical locations
+  capitolium,
+  aventinus,
+  quirinalis,
+  ostia,
+  // New entries - Historical figures
+  marcusBrutus,
+  marcusAntonius,
+  cleopatra,
+  octaviaMinor,
+  // New entries - Cultural terms
+  balneum,
+  thermae,
+  ludus,
+  circus,
+  // New entries - Historical events
+  actium,
 ];
