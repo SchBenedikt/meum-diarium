@@ -308,6 +308,314 @@ export const la = {
     seneca_timeline_4_year: '65 p.C.n.',
     seneca_timeline_4_event: 'Suicidium Coactum',
 
+    // Seneca Pagina Biographica
+    seneca: {
+        worksSubtitle: 'Opera Philosophica et Tragoediae',
+        diaryRecent: 'Commentarii Selecti',
+        viewAll: 'Omnes Videre',
+        readArticle: 'Legere Commentarium',
+        readEntry: 'Ad Commentarium',
+
+        snapshots: {
+            title: 'Breviter',
+            lifespan: 'Vita',
+            exile: 'Exilium',
+            advisor: 'Consiliarius Neronis',
+            works: 'Opera Praecipua',
+            philosophy: 'Philosophia',
+            death: 'Mors',
+        },
+
+        biography: {
+            title: 'Curriculum Vitae',
+            subtitle: 'Stationes vitae, opera et contributiones philosophicae',
+            earlyLife: 'Iuventus',
+            career: 'Cursus et Exilium',
+            neroYears: 'Anni Neroniani',
+            laterWorks: 'Opera Posteriora',
+            fullTimeline: 'Temporum Ordo Plenus',
+            timelineHint: 'Sequere iter Senecae ab Corduba ad fastigium potestatis Romanae',
+        },
+
+        legacy: {
+            title: 'Hereditas Philosophica',
+            subtitle: 'Ideae quae cogitationem Occidentalem formaverunt',
+            stoicism: 'Philosophia Stoica',
+            stoicismSummary: 'Stoicismum pro Romanis popularizavit, philosophiam Graecam per sapientiam practicam et epistulas personales accessibilem reddens.',
+            moralLetters: 'Epistulae Morales ad Lucilium',
+            moralLettersSummary: 'CXXIV epistulae de ethica, virtute, morte et recta vita. Opus praeclarum litterarum sapientiae antiquae.',
+            tragedies: 'Drama Tragicum',
+            tragediesSummary: 'Novem tragoediae superstites quae theatrum Renascentiae et Shakespeare moverunt. Argumenta passionis, potestatis et corruptionis moralis.',
+            ethics: 'Ethica Practica',
+            ethicsSummary: 'Tractatus de ira, clementia, providentia et brevitate vitae. Emphasizaverunt imperium sui, tranquillitatem et acceptationem fati.',
+            naturalPhilosophy: 'Naturales Quaestiones',
+            naturalPhilosophySummary: 'Septem libri de phenomenis naturalibus: cometis, terrae motibus, fulminibus. Scientiam cum philosophia morali coniunxerunt.',
+            influence: 'Influentia Posterior',
+            influenceSummary: 'Cogitationem Christianam, humanismum Renascentiae et psychologiam modernam profunde movit. Ab antiquitate ad hodie late lectus.',
+        },
+
+        deepDive: {
+            title: 'Opera in Particulari',
+            subtitle: 'Contributiones philosophicae et litterariae magnae',
+            lettersDetail: 'CXXIV Epistulae Morales ad Lucilium sunt opus philosophicum praecipuum Senecae. In otio scriptae (LXII-LXV p.C.n.), omnes aspectus vitae Stoicae tegunt: quomodo metu, ira et luctu tractare; quomodo morti occurrere; quomodo pacem interiorem invenire. Quaeque epistula gemma sapientiae practicae est.',
+            dialoguesDetail: 'Seneca dialogos philosophicos de argumentis principalibus scripsit: De Ira, De Clementia, De Providentia, et celebrem De Brevitate Vitae. Haec opera Stoicismum practicum et accessibilem reddiderunt.',
+            tragediesDetail: 'Novem tragoediae supersunt: Medea, Phaedra, Oedipus, Thyestes et aliae. Dissimiles a tragoedia Graeca, fabulae Senecae horrorem psychologicum et corruptionem moralem emphasizaverunt. Drama Elisabethanum, praesertim Shakespearem, profunde moverunt.',
+            impact: 'Effectus',
+        },
+
+        polarization: {
+            title: 'Figura Controversa',
+            subtitle: 'Cur opiniones de Seneca divisae manent',
+            admired: 'Cur Admiratus Est',
+            admiredPoints: [
+                'Magister philosophiae Stoicae qui sapientiam antiquam accessibilem reddidit',
+                'Scriptor praeclarus cuius stilus prosam Latinam per saecula movit',
+                'Tyrannidem Neronis moderare et clementiam suadere conatus est',
+                'Opera sua de ethica et virtute mansuerunt aeterna',
+                'Morti cum fortitudine philosophica et dignitate occurrit',
+            ],
+            criticized: 'Cur Vituperatus Est',
+            criticizedPoints: [
+                'Divitias enormes cumulavit dum contra materialismum praedicabat',
+                'Neroni servivit et regnum eius primum possibilem reddidit non obstante sceleribus',
+                'Philosophia eius hypocrita videbatur propter vitam luxuriosam',
+                'Matricidium Neronis in orationibus publicis defendit',
+                'Fortasse in coniurationem Pisonianam contra Neronem implicatus',
+            ],
+        },
+
+        theaters: {
+            title: 'Stationes Vitae et Loca',
+            subtitle: 'Ab Hispania ad cor Imperii Romani',
+            locationsTitle: 'Loca',
+            rolesTitle: 'Officia',
+            mapTitle: 'Mundus Senecae',
+            mapDesc: 'A nativitate Cordubae (hodie Córdoba, Hispania) per exilium in Corsica ad Romam ubi doctor et consiliarius Neronis fuit.',
+        },
+
+        locations: {
+            corduba: {
+                title: 'Corduba (Hispania)',
+                note: 'Natus c. IV a.C.n. in familiam equestrem. Pater fuit rhetor celeberrimus. Familia Romam migravit cum Seneca iuvenis erat.',
+            },
+            rome: {
+                title: 'Roma',
+                note: 'Centrum educationis, cursus politici et activitatis philosophicae. Rhetoricam et philosophiam Stoicam apud doctores optimos studuit.',
+            },
+            corsica: {
+                title: 'Corsica (Exilium)',
+                note: 'Exilium XLI-XLIX p.C.n. a Claudio, alleganter ob adulterium cum Iulia Livilla. Consolationes philosophicas hoc tempore scripsit.',
+            },
+            court: {
+                title: 'Aula Imperialis',
+                note: 'XLIX p.C.n. rediit ut Neronem iuvenem doceret. Factus est de facto co-gubernator Romae (LIV-LXII p.C.n.) cum Burro tempore "Quinquennii Neroniani".',
+            },
+        },
+
+        roles: {
+            philosopher: {
+                title: 'Philosophus Stoicus',
+                years: 'Tota Vita',
+                note: 'Discipulus Attali, Sotionis et aliorum Stoicorum. Versionem practicam, Romanam Stoicismi de ethica et virtute evolvit.',
+            },
+            senator: {
+                title: 'Senator et Orator',
+                years: 'XXXI-XLI p.C.n.',
+                note: 'Ad eminentiam in Senatu per orationes praeclaras pervenit. Successus eius invidiam Caligulae excitavit et paene vitam eius costavit.',
+            },
+            exile: {
+                title: 'Exilium in Corsica',
+                years: 'XLI-XLIX p.C.n.',
+                note: 'Octo anni relegationis. Opera philosophica scripsit includens consolationes ad matrem Helviam et ad Polybium.',
+            },
+            tutor: {
+                title: 'Doctor Neronis',
+                years: 'XLIX-LIV p.C.n.',
+                note: 'Ab Agrippina revocatus ut filium Neronem educaret. Rhetoricam, philosophiam et (putative) virtutem et clementiam docuit.',
+            },
+            advisor: {
+                title: 'Consiliarius Imperialis',
+                years: 'LIV-LXII p.C.n.',
+                note: 'Cum Burro, Romam de facto gubernavit tempore primi regni Neronis. Haec periodus postea ut "Quinquennium Neronis" celebrata est.',
+            },
+            retirement: {
+                title: 'Otium et Scriptura',
+                years: 'LXII-LXV p.C.n.',
+                note: 'Post mortem Burri a vita publica secessit. Se philosophiae dedit, Epistulas et Quaestiones Naturales scribens.',
+            },
+        },
+
+        works: {
+            title: 'Opera Praecipua',
+            subtitle: 'Philosophia, drama et scientia naturalis',
+            moralLetters: {
+                title: 'Epistulae Morales ad Lucilium',
+                subtitle: 'Epistulae Morales ad Lucilium',
+                date: 'LXII-LXV p.C.n.',
+                note: 'CXXIV epistulae philosophicae omnes aspectus ethicae Stoicae tegentes. Opus praecipuum et textus maxime influens.',
+            },
+            dialogues: {
+                title: 'Dialogi',
+                subtitle: 'Dialogi Philosophici',
+                date: 'XLI-LXIV p.C.n.',
+                note: 'Decem dialogi includentes De Ira, De Clementia, De Providentia et De Brevitate Vitae.',
+            },
+            tragedies: {
+                title: 'Tragoediae',
+                subtitle: 'Novem Tragoediae',
+                date: 'Varia Tempora',
+                note: 'Medea, Phaedra, Oedipus, Thyestes, Hercules Furens, Troades, Phoenissae, Agamemnon, Hercules Oetaeus.',
+            },
+            naturalQuestions: {
+                title: 'Naturales Quaestiones',
+                subtitle: 'Quaestiones Naturales',
+                date: 'LXII-LXIV p.C.n.',
+                note: 'Septem libri de phenomenis naturalibus: cometis, fulminibus, terrae motibus. Scientiam et philosophiam moralem coniungit.',
+            },
+            clemency: {
+                title: 'De Clementia',
+                subtitle: 'De Clementia',
+                date: 'LV-LVI p.C.n.',
+                note: 'Pro Nerone iuvene scriptum, regnum clementem suadens. Ironicum propter tyrannidem Neronis posteriorem.',
+            },
+            shortness: {
+                title: 'De Brevitate Vitae',
+                subtitle: 'De Brevitate Vitae',
+                date: 'c. XLIX p.C.n.',
+                note: 'Tractatus celebris argumentans vitam satis longam esse si prudenter utimur. Tempus in nugis consumimus.',
+            },
+        },
+
+        rising: {
+            title: 'Iter ad Potestatem',
+            subtitle: 'Ab exilio ad fastigia influentiae imperialis',
+            phase1: 'Pars I: Ascensus et Casus',
+            earlySuccess: 'Successus Senatorius',
+            earlySuccessDesc: 'Per eloquentiam praeclaram in Senatu celeriter ascendit. Eloquentia eius paene Caligulam provocavit ut eum ex invidia occideret.',
+            exile: 'Exilium in Corsica',
+            exileDate: 'XLI p.C.n.',
+            exileTitle: 'Relegatio a Claudio',
+            exileSubtitle: 'Octo anni reflexionis philosophicae',
+            exileDesc: 'Adulterii cum Iulia Livilla, sorore Caligulae, accusatus. In Corsicam sterilem missus. Consolationes philosophicas scripsit et patientiam colebat.',
+            exileTag: 'Punctum Mutationis',
+            exileBtn: 'De Exilio',
+
+            phase2: 'Pars II: Reditus et Influentia',
+            recall: 'Revocatio et Magisterium',
+            recallDesc: 'Agrippina Senecam revocavit ut filium Neronem doceret. Futurum imperatorem rhetoricam, philosophiam et (theoria) clementiam docuit.',
+            quinquennium: 'Quinque Anni Aurei',
+            quinquenniumDesc: 'Cum Praefecto Praetorio Burro, Seneca Romam de facto gubernavit (LIV-LIX p.C.n.). Haec periodus postea ut gubernatio illuminata celebrata est.',
+
+            phase3: 'Pars III: Declinatio et Mors',
+            burrusDeath: 'Mors Burri',
+            burrusDeathDate: 'LXII p.C.n.',
+            burrusDeathDesc: 'Co-gubernator et protector eius mortuus est. Seneca influentiam amisit, otium petivit et secessit ut philosophiam scriberet.',
+            conspiracy: 'Coniuratio Pisoniana',
+            conspiracyDate: 'LXV p.C.n.',
+            conspiracyDesc: 'In coniurationem ad Neronem occidendum implicatus (fortasse falso). Imperator ei mandavit ut suicidium committeret.',
+            death: 'Mors Philosophi',
+            deathDate: 'LXV p.C.n.',
+            deathDesc: 'Morti cum tranquillitate Stoica occurrit. Venas aperuit et mortuus est amicis circumstantibus, ultimas cogitationes dictans. Uxor eius Paulina cum eo mori conata est sed servata est.',
+        },
+
+        quotes: {
+            title: 'Sapientia Aeterna',
+            subtitle: 'Verba quae per aetates resonant',
+            impact: 'Hereditas',
+            brevitas: {
+                quote: 'Non exiguum temporis habemus, sed multum perdidimus.',
+                translation: 'Non temporis exiguitatem habemus, sed multum inde perdidimus.',
+                when: 'De Brevitate Vitae',
+                meaning: 'Cogitatio celeberrima Senecae: vita non brevis est; nos eam brevem facimus tempus in rebus futilibus et distractionibus consumentes.',
+            },
+            vincit: {
+                quote: 'Qui toto se animo in praesens inclinavit, futura invisit.',
+                translation: 'Qui totum animum praesenti dedit, futurum vilem facit.',
+                when: 'Epistulae Morales',
+                meaning: 'Vivere attente in momento praesenti clavis est contentamenti. Ne sacrifices hodiernum pro imaginato crastino.',
+            },
+            fortuna: {
+                quote: 'Ducunt volentem fata, nolentem trahunt.',
+                translation: 'Fata volentem ducunt, nolentem trahunt.',
+                when: 'Epistulae Morales CVII',
+                meaning: 'Doctrina Stoica centralis: non possumus eventus externos regere, sed attitudinem nostram erga illos eligere possumus.',
+            },
+            vita: {
+                quote: 'Nemo diu malus, qui meminit quanti bona constent.',
+                translation: 'Nemo diu malus manet, qui meminit pretium virtutis.',
+                when: 'Epistulae Morales',
+                meaning: 'Malum ex oblivione eorum quae vere important venit. Memoria valoris virtutis naturaliter nos ad bonum ducit.',
+            },
+        },
+
+        philosophy: {
+            title: 'Philosophia Stoica',
+            subtitle: 'Contributio Senecae ad sapientiam antiquam',
+            stoicismTitle: 'Stoicismus Romanus',
+            stoicismDesc: 'Seneca Stoicismum Graecum pro Romanis adaptavit. Dum Stoici Graeci ut Chrysippus in logica se concentraverunt, Seneca ethicam practicam emphasizavit: quomodo virtuose vivere, fatum acceptare et tranquillitatem invenire.',
+            keyTeachings: 'Doctrinae Principales',
+            teachings: [
+                {
+                    title: 'Accepta Quae Non Potes Regere',
+                    desc: 'Distingue inter id quod in potestate tua est (cogitationes, attitudines, reactiones) et quod non est (eventus externi, actiones aliorum). In priore te concentra.',
+                },
+                {
+                    title: 'Tempus Est Nostra Res Pretiosissima',
+                    desc: 'Querimur vitam brevem esse, sed magnam partem in nugis consumimus. Vive deliberate. Quodque momentum valet.',
+                },
+                {
+                    title: 'Paupertatem Exerce Ut Minus Timeas',
+                    desc: 'Regulariter simpliciter vive ut tibi ipsi proves te posse. Hoc metum amittendi divitias et dignitatem removet.',
+                },
+                {
+                    title: 'Ira Est Insania Temporaria',
+                    desc: 'Ira iudicium obscurat et nos facit ea quae postea paenitemus. Cole tranquillitatem per rationem et perspectivam.',
+                },
+                {
+                    title: 'Mors Naturalis Est, Non Mala',
+                    desc: 'De mortalitate meditari non morbide est—nos adiuvat vitam aestimare et morti sine metu occurrere. Revertimur unde venimus.',
+                },
+                {
+                    title: 'Virtus Est Unum Bonum Verum',
+                    desc: 'Divitiae, salus, voluptas—omnia sunt "indifferentia praeferenda". Solum virtus (sapientia, iustitia, fortitudo, moderatio) vere bona est.',
+                },
+            ],
+        },
+
+        timeline: {
+            life: {
+                birth: { title: 'Nativitas Cordubae', note: 'Natus in Hispania in familiam equestrem. Pater fuit rhetor celeberrimus Seneca Maior.' },
+                rome: { title: 'Migravit Romam', note: 'Rhetoricam et philosophiam Stoicam apud Attalum, Sotionem et alios magistros studuit.' },
+                quaestor: { title: 'Ingressus Senatum', note: 'Cursus politicus ut quaestor coepit. Celeriter famam per eloquentiam adeptus est.' },
+                caligula: { title: 'Invidia Caligulae', note: 'Imperator Caligula paene eum occidit, invidus brillantiae rhetoricae eius.' },
+                exile: { title: 'Relegatus in Corsicam', note: 'Adulterii cum Iulia Livilla accusatus. Octo annos in reflexione philosophica egit.' },
+                recall: { title: 'Revocatus ab Agrippina', note: 'Reductus ut Neronem iuvenem doceret. Speravit eum in regem-philosophum formare.' },
+                neroEmperor: { title: 'Nero Imperator Factus', note: 'Cum Burro, Romam de facto gubernavit tempore "Quinquennii Neronis" (LIV-LIX p.C.n.).' },
+                matricide: { title: 'Nero Agrippinam Occidit', note: 'Seneca matricidium publice defendit, macula in reputatione eius.' },
+                burrusDeath: { title: 'Mors Burri', note: 'Protectorem et co-gubernatorem amisit. Influentia decrevit; otium petivit.' },
+                retirement: { title: 'Otium', note: 'Secessit ut philosophiam scriberet. Epistulas et Quaestiones Naturales produxit.' },
+                conspiracy: { title: 'Coniuratio Pisoniana', note: 'In coniurationem ad Neronem occidendum implicatus. Mandatus suicidium committere.' },
+                death: { title: 'Mors', note: 'Venas aperuit. Tranquille mortuus est, amicis circumstantibus, ultimas cogitationes philosophicas dictans.' },
+            },
+        },
+
+        tags: {
+            philosophy: 'Philosophia',
+            literature: 'Litterae',
+            politics: 'Res Publica',
+            ethics: 'Ethica',
+            drama: 'Drama',
+            science: 'Scientia Naturalis',
+            stoicism: 'Stoicismus',
+        },
+
+        horizons: {
+            immediate: 'Immediatus',
+            mediumTerm: 'Medius Terminus',
+            longTerm: 'Diuturnus',
+        },
+    },
+
     // Aliae Textus UI
     minutes: 'min.',
     posts: 'Commentarii',

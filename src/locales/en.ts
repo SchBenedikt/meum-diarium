@@ -311,6 +311,314 @@ export const en = {
     seneca_timeline_4_year: '65 AD',
     seneca_timeline_4_event: 'Forced Suicide',
 
+    // Seneca Biography Page
+    seneca: {
+        worksSubtitle: 'Philosophical Works and Tragedies',
+        diaryRecent: 'Selected Entries',
+        viewAll: 'View All',
+        readArticle: 'Read Article',
+        readEntry: 'To Diary Entry',
+
+        snapshots: {
+            title: 'Quick Facts',
+            lifespan: 'Lifespan',
+            exile: 'Exile',
+            advisor: 'Advisor to Nero',
+            works: 'Major Works',
+            philosophy: 'Philosophy',
+            death: 'Death',
+        },
+
+        biography: {
+            title: 'Curriculum Vitae',
+            subtitle: 'Life stations, works, and philosophical contributions',
+            earlyLife: 'Early Life',
+            career: 'Career & Exile',
+            neroYears: 'The Nero Years',
+            laterWorks: 'Later Works',
+            fullTimeline: 'View Full Timeline',
+            timelineHint: 'Follow Seneca\'s journey from Corduba to the heights of Roman power',
+        },
+
+        legacy: {
+            title: 'Philosophical Legacy',
+            subtitle: 'Ideas that shaped Western thought',
+            stoicism: 'Stoic Philosophy',
+            stoicismSummary: 'Popularized Stoicism for Roman audiences, making complex Greek philosophy accessible through practical wisdom and personal letters.',
+            moralLetters: 'Moral Letters to Lucilius',
+            moralLettersSummary: '124 letters of philosophical guidance, covering ethics, virtue, death, and how to live well. A masterpiece of ancient wisdom literature.',
+            tragedies: 'Tragic Drama',
+            tragediesSummary: 'Nine surviving tragedies that influenced Renaissance theater and Shakespeare. Explored themes of passion, power, and moral corruption.',
+            ethics: 'Practical Ethics',
+            ethicsSummary: 'Essays on anger, clemency, providence, and the shortness of life. Emphasized self-mastery, tranquility, and acceptance of fate.',
+            naturalPhilosophy: 'Natural Questions',
+            naturalPhilosophySummary: 'Seven books exploring natural phenomena like comets, earthquakes, and lightning. Combined science with moral philosophy.',
+            influence: 'Later Influence',
+            influenceSummary: 'Profoundly influenced Christian thought, Renaissance humanism, and modern psychology. Widely read from antiquity to today.',
+        },
+
+        deepDive: {
+            title: 'Works in Detail',
+            subtitle: 'Major philosophical and literary contributions',
+            lettersDetail: 'The 124 Moral Letters to Lucilius (Epistulae Morales) are Seneca\'s philosophical masterwork. Written in retirement (62-65 AD), they cover every aspect of Stoic living: how to deal with fear, anger, and grief; how to face death; how to find inner peace. Each letter is a gem of practical wisdom.',
+            dialoguesDetail: 'Seneca wrote philosophical dialogues on key topics: On Anger (De Ira), On Clemency (De Clementia), On Providence (De Providentia), and the famous On the Shortness of Life (De Brevitate Vitae). These works made Stoicism practical and accessible.',
+            tragediesDetail: 'Nine tragedies survive: Medea, Phaedra, Oedipus, Thyestes, and others. Unlike Greek tragedy, Seneca\'s plays emphasized psychological horror and moral corruption. They profoundly influenced Elizabethan drama, especially Shakespeare.',
+            impact: 'Impact',
+        },
+
+        polarization: {
+            title: 'A Controversial Figure',
+            subtitle: 'Why opinions about Seneca remain divided',
+            admired: 'Why He Was Admired',
+            admiredPoints: [
+                'Master of Stoic philosophy who made ancient wisdom accessible',
+                'Brilliant writer whose style influenced Latin prose for centuries',
+                'Tried to moderate Nero\'s tyranny and counsel clemency',
+                'His works on ethics and virtue remained timeless',
+                'Faced death with philosophical courage and dignity',
+            ],
+            criticized: 'Why He Was Criticized',
+            criticizedPoints: [
+                'Amassed enormous wealth while preaching against materialism',
+                'Served and enabled Nero\'s early rule despite his crimes',
+                'His philosophy seemed hypocritical given his luxurious lifestyle',
+                'Defended Nero\'s matricide in public speeches',
+                'Possibly implicated in the Pisonian conspiracy against Nero',
+            ],
+        },
+
+        theaters: {
+            title: 'Life Stages & Locations',
+            subtitle: 'From Hispania to the heart of imperial Rome',
+            locationsTitle: 'Places',
+            rolesTitle: 'Roles',
+            mapTitle: 'Seneca\'s World',
+            mapDesc: 'From his birth in Corduba (modern Córdoba, Spain) to his exile in Corsica, and finally to Rome where he served as Nero\'s tutor and advisor.',
+        },
+
+        locations: {
+            corduba: {
+                title: 'Corduba (Hispania)',
+                note: 'Born c. 4 BC into an equestrian family. His father was a famous rhetorician. The family moved to Rome when Seneca was young.',
+            },
+            rome: {
+                title: 'Rome',
+                note: 'Center of his education, political career, and philosophical activity. Studied rhetoric and Stoic philosophy under the finest teachers.',
+            },
+            corsica: {
+                title: 'Corsica (Exile)',
+                note: 'Exiled 41-49 AD by Claudius, allegedly for adultery with Julia Livilla. Wrote philosophical consolations during this period.',
+            },
+            court: {
+                title: 'Imperial Court',
+                note: 'Returned 49 AD to tutor young Nero. Became de facto co-ruler of Rome (54-62 AD) with Burrus during Nero\'s "Quinquennium Neronis."',
+            },
+        },
+
+        roles: {
+            philosopher: {
+                title: 'Stoic Philosopher',
+                years: 'Lifelong',
+                note: 'Student of Attalus, Sotion, and other Stoics. Developed a practical, Roman version of Stoicism focused on ethics and virtue.',
+            },
+            senator: {
+                title: 'Senator & Orator',
+                years: '31-41 AD',
+                note: 'Rose to prominence in the Senate with brilliant speeches. His success aroused Caligula\'s jealousy and nearly cost him his life.',
+            },
+            exile: {
+                title: 'Exile on Corsica',
+                years: '41-49 AD',
+                note: 'Eight years of banishment. Wrote philosophical works including consolations to his mother Helvia and to Polybius.',
+            },
+            tutor: {
+                title: 'Tutor to Nero',
+                years: '49-54 AD',
+                note: 'Recalled by Agrippina to educate her son Nero. Taught him rhetoric, philosophy, and (ostensibly) virtue and clemency.',
+            },
+            advisor: {
+                title: 'Imperial Advisor',
+                years: '54-62 AD',
+                note: 'With Burrus, effectively governed Rome during Nero\'s early reign. This period was later celebrated as the "Quinquennium Neronis."',
+            },
+            retirement: {
+                title: 'Retirement & Writing',
+                years: '62-65 AD',
+                note: 'Withdrew from public life after Burrus\' death. Devoted himself to philosophy, writing the Moral Letters and Natural Questions.',
+            },
+        },
+
+        works: {
+            title: 'Major Works',
+            subtitle: 'Philosophy, drama, and natural science',
+            moralLetters: {
+                title: 'Epistulae Morales ad Lucilium',
+                subtitle: 'Moral Letters to Lucilius',
+                date: '62-65 AD',
+                note: '124 philosophical letters covering all aspects of Stoic ethics. His masterwork and most influential text.',
+            },
+            dialogues: {
+                title: 'Dialogi',
+                subtitle: 'Philosophical Dialogues',
+                date: '41-64 AD',
+                note: 'Ten dialogues including On Anger, On Clemency, On Providence, and On the Shortness of Life.',
+            },
+            tragedies: {
+                title: 'Tragoediae',
+                subtitle: 'Nine Tragedies',
+                date: 'Various dates',
+                note: 'Medea, Phaedra, Oedipus, Thyestes, Hercules Furens, Troades, Phoenissae, Agamemnon, Hercules Oetaeus.',
+            },
+            naturalQuestions: {
+                title: 'Naturales Quaestiones',
+                subtitle: 'Natural Questions',
+                date: '62-64 AD',
+                note: 'Seven books on natural phenomena: comets, lightning, earthquakes. Combines science and moral philosophy.',
+            },
+            clemency: {
+                title: 'De Clementia',
+                subtitle: 'On Clemency',
+                date: '55-56 AD',
+                note: 'Written for young Nero, advocating merciful rule. Ironic given Nero\'s later tyranny.',
+            },
+            shortness: {
+                title: 'De Brevitate Vitae',
+                subtitle: 'On the Shortness of Life',
+                date: 'c. 49 AD',
+                note: 'Famous essay arguing that life is long enough if we use it wisely. We waste time on trivialities.',
+            },
+        },
+
+        rising: {
+            title: 'Path to Power',
+            subtitle: 'From exile to the heights of imperial influence',
+            phase1: 'Phase 1: Rise & Fall',
+            earlySuccess: 'Senatorial Success',
+            earlySuccessDesc: 'Rose rapidly in the Senate through brilliant oratory. His eloquence nearly provoked Caligula to execute him out of jealousy.',
+            exile: 'Exile to Corsica',
+            exileDate: '41 AD',
+            exileTitle: 'Banishment by Claudius',
+            exileSubtitle: 'Eight years of philosophical reflection',
+            exileDesc: 'Accused of adultery with Julia Livilla, Caligula\'s sister. Sent to barren Corsica. Wrote philosophical consolations and cultivated patience.',
+            exileTag: 'Turning Point',
+            exileBtn: 'About the Exile',
+
+            phase2: 'Phase 2: Return & Influence',
+            recall: 'Recall and Tutorship',
+            recallDesc: 'Agrippina recalled Seneca to tutor her son Nero. He taught the future emperor rhetoric, philosophy, and (in theory) clemency.',
+            quinquennium: 'The Golden Five Years',
+            quinquenniumDesc: 'With Praetorian Prefect Burrus, Seneca effectively ruled Rome (54-59 AD). This period was later celebrated as enlightened governance.',
+
+            phase3: 'Phase 3: Decline & Death',
+            burrusDeath: 'Death of Burrus',
+            burrusDeathDate: '62 AD',
+            burrusDeathDesc: 'His co-ruler and protector died. Seneca lost influence, requested retirement, and withdrew to write philosophy.',
+            conspiracy: 'Pisonian Conspiracy',
+            conspiracyDate: '65 AD',
+            conspiracyDesc: 'Implicated (possibly falsely) in a plot to assassinate Nero. The emperor ordered him to commit suicide.',
+            death: 'The Death of a Philosopher',
+            deathDate: '65 AD',
+            deathDesc: 'Faced death with Stoic calm. Opened his veins and died surrounded by friends, dictating his final thoughts. His wife Paulina tried to die with him but was saved.',
+        },
+
+        quotes: {
+            title: 'Timeless Wisdom',
+            subtitle: 'Words that echo through the ages',
+            impact: 'Legacy',
+            brevitas: {
+                quote: 'Non exiguum temporis habemus, sed multum perdidimus.',
+                translation: 'It is not that we have a short time to live, but that we waste much of it.',
+                when: 'De Brevitate Vitae',
+                meaning: 'Seneca\'s most famous insight: life isn\'t short; we make it so by squandering time on trivial pursuits and distractions.',
+            },
+            vincit: {
+                quote: 'Qui toto se animo in praesens inclinavit, futura invisit.',
+                translation: 'He who has given himself entirely to the present makes the future worthless.',
+                when: 'Epistulae Morales',
+                meaning: 'Living mindfully in the present moment is the key to contentment. Don\'t sacrifice today for an imagined tomorrow.',
+            },
+            fortuna: {
+                quote: 'Ducunt volentem fata, nolentem trahunt.',
+                translation: 'Fate leads the willing and drags along the reluctant.',
+                when: 'Epistulae Morales 107',
+                meaning: 'A core Stoic teaching: we cannot control external events, but we can choose our attitude toward them.',
+            },
+            vita: {
+                quote: 'Nemo diu malus, qui meminit quanti bona constent.',
+                translation: 'No one remains wicked long, who remembers the price of virtue.',
+                when: 'Epistulae Morales',
+                meaning: 'Evil comes from forgetfulness of what truly matters. Remembering virtue\'s value naturally leads us to good.',
+            },
+        },
+
+        philosophy: {
+            title: 'Stoic Philosophy',
+            subtitle: 'Seneca\'s contribution to ancient wisdom',
+            stoicismTitle: 'Roman Stoicism',
+            stoicismDesc: 'Seneca adapted Greek Stoicism for Roman audiences. While Greek Stoics like Chrysippus focused on logic, Seneca emphasized practical ethics: how to live virtuously, accept fate, and find tranquility.',
+            keyTeachings: 'Key Teachings',
+            teachings: [
+                {
+                    title: 'Accept What You Cannot Control',
+                    desc: 'Distinguish between what is in your power (your thoughts, attitudes, reactions) and what is not (external events, other people\'s actions). Focus on the former.',
+                },
+                {
+                    title: 'Time is Our Most Precious Resource',
+                    desc: 'We complain life is short, yet we waste vast amounts on trivialities. Live deliberately. Every moment counts.',
+                },
+                {
+                    title: 'Practice Poverty to Fear It Less',
+                    desc: 'Periodically live simply to prove to yourself that you can. This removes fear of losing wealth and status.',
+                },
+                {
+                    title: 'Anger is Temporary Madness',
+                    desc: 'Anger clouds judgment and makes us do things we later regret. Cultivate calm through reason and perspective.',
+                },
+                {
+                    title: 'Death is Natural, Not Evil',
+                    desc: 'Meditating on mortality isn\'t morbid—it helps us appreciate life and face death without fear. We return to where we came from.',
+                },
+                {
+                    title: 'Virtue is the Only True Good',
+                    desc: 'Wealth, health, pleasure—all are "preferred indifferents." Only virtue (wisdom, justice, courage, moderation) is truly good.',
+                },
+            ],
+        },
+
+        timeline: {
+            life: {
+                birth: { title: 'Birth in Corduba', note: 'Born in Hispania to a family of equestrians. Father was the famous rhetorician Seneca the Elder.' },
+                rome: { title: 'Moved to Rome', note: 'Studied rhetoric and Stoic philosophy under Attalus, Sotion, and other masters.' },
+                quaestor: { title: 'Entered the Senate', note: 'Began political career as quaestor. Quickly gained fame for his oratory.' },
+                caligula: { title: 'Caligula\'s Jealousy', note: 'Emperor Caligula nearly executed him, jealous of his rhetorical brilliance.' },
+                exile: { title: 'Exiled to Corsica', note: 'Accused of adultery with Julia Livilla. Spent eight years in philosophical reflection.' },
+                recall: { title: 'Recalled by Agrippina', note: 'Brought back to tutor young Nero. Hoped to shape him into a philosopher-king.' },
+                neroEmperor: { title: 'Nero Becomes Emperor', note: 'With Burrus, effectively governed Rome during the "Quinquennium Neronis" (54-59 AD).' },
+                matricide: { title: 'Nero Kills Agrippina', note: 'Seneca defended the matricide publicly, a stain on his reputation.' },
+                burrusDeath: { title: 'Death of Burrus', note: 'Lost his protector and co-ruler. Influence waned; requested retirement.' },
+                retirement: { title: 'Retirement', note: 'Withdrew to write philosophy. Produced Moral Letters and Natural Questions.' },
+                conspiracy: { title: 'Pisonian Conspiracy', note: 'Implicated in plot to assassinate Nero. Ordered to commit suicide.' },
+                death: { title: 'Death', note: 'Opened his veins. Died calmly, surrounded by friends, dictating final philosophical thoughts.' },
+            },
+        },
+
+        tags: {
+            philosophy: 'Philosophy',
+            literature: 'Literature',
+            politics: 'Politics',
+            ethics: 'Ethics',
+            drama: 'Drama',
+            science: 'Natural Science',
+            stoicism: 'Stoicism',
+        },
+
+        horizons: {
+            immediate: 'Immediate',
+            mediumTerm: 'Medium-term',
+            longTerm: 'Long-lasting',
+        },
+    },
+
     // Additional UI texts
     minutes: 'min',
     posts: 'Posts',
