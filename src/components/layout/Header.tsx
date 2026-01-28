@@ -26,7 +26,7 @@ import {
   Sun,
   Moon,
   Globe,
-  Home,
+  History,
   BookOpen,
   Info,
   Users,
@@ -109,7 +109,7 @@ export function Header() {
   }, []);
 
   const navItems = [
-    { href: '/timeline', label: t('navTimeline'), icon: Home },
+    { href: '/timeline', label: t('navTimeline'), icon: History },
     { href: '/lexicon', label: t('navLexicon'), icon: BookOpen },
     { href: '/about', label: t('navAbout'), icon: Info },
   ];
@@ -143,15 +143,15 @@ export function Header() {
             <Link
               to="/"
               onClick={handleLogoClick}
-              className="group flex items-center gap-2 min-w-0 transition-opacity duration-200"
+              className="group flex items-center gap-3 min-w-0 transition-opacity duration-200"
               aria-label={t('appName')}
             >
-              <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0 shadow-md">
-                <span className="inline-block text-sm sm:text-base font-bold text-primary-foreground transform transition-transform duration-300 ease-out group-hover:rotate-180">
+              <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:rotate-3">
+                <span className="inline-block text-xs sm:text-sm font-bold text-primary-foreground">
                   MD
                 </span>
               </div>
-              <span className="hidden xs:block font-display text-base sm:text-lg truncate font-semibold">
+              <span className="hidden xs:block font-display text-lg sm:text-xl truncate font-extrabold tracking-tighter">
                 {t('appName')}
               </span>
             </Link>
@@ -279,7 +279,7 @@ export function Header() {
                       <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-full p-0 sm:w-80">
+                  <SheetContent side="left" className="w-full p-0 flex flex-col sm:max-w-sm border-none bg-background/95 backdrop-blur-2xl">
                     <div className="flex flex-col h-full">
                       {/* Sheet Header */}
                       <div className="flex items-center justify-between p-6 border-b border-border/30">

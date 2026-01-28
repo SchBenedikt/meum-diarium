@@ -5,12 +5,13 @@ import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
 import { simulations, SimulationScenario, SimulationStats } from '@/data/simulations';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Crown, Users, Sword, Play, RefreshCw, Send, Plus, Search, X } from 'lucide-react';
+import { ArrowLeft, Crown, Users, Sword, Play, RefreshCw, Send, Plus, Search, X, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { SimulationCard } from '@/components/simulation/SimulationCard';
 import { Footer } from '@/components/layout/Footer';
+import { simulateAI } from '@/lib/api';
 
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
@@ -22,12 +23,14 @@ export default function SimulationPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [showCustomForm, setShowCustomForm] = useState(false);
     const [customScenarioText, setCustomScenarioText] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     // Game State
     const [activeScenario, setActiveScenario] = useState<SimulationScenario | null>(null);
     const [currentEventId, setCurrentEventId] = useState<string | null>(null);
-    const [stats, setStats] = useState<SimulationStats>({ welfare: 0, influence: 0, power: 0 });
-    const [history, setHistory] = useState<{ text: string, type: 'narrative' | 'choice' | 'feedback' }[]>([]);
+    const [stats, setStats] = useState<SimulationStats>({ welfare: 50, influence: 50, power: 50 });
+    const [history, setHistory] = useState<{ text: string, type: 'narrative' | 'choice' | 'feedback', role?: 'user' | 'assistant' }[]>([]);
+    const [currentOptions, setCurrentOptions] = useState<{ id: string, text: string }[]>([]);
     const [gameEnded, setGameEnded] = useState(false);
     const [customInput, setCustomInput] = useState('');
 
@@ -35,7 +38,7 @@ export default function SimulationPage() {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
-    }, [history]);
+    }, [history, isLoading]);
 
     const author = authorId ? authors[authorId as Author] : null;
     const allScenarios = authorId && simulations[authorId] ? simulations[authorId] : [];
@@ -51,59 +54,75 @@ export default function SimulationPage() {
         }
     }, [authorId, setCurrentAuthor]);
 
-    const startGame = (scenario: SimulationScenario) => {
+    const startGame = async (scenario: SimulationScenario) => {
+        setIsLoading(true);
         setActiveScenario(scenario);
         setStats(scenario.initialStats);
-        setCurrentEventId(scenario.startEventId);
         setGameEnded(false);
-        setHistory([{
-            text: scenario.events[scenario.startEventId].description,
-            type: 'narrative'
-        }]);
+
+        try {
+            const res = await simulateAI(authorId || 'caesar', scenario.title, []);
+            setHistory([{
+                text: res.narrative,
+                type: 'narrative' as const,
+                role: 'assistant' as const
+            }]);
+            setCurrentOptions(res.options || []);
+            setGameEnded(res.ended || false);
+        } catch (error) {
+            console.error("Failed to start AI simulation:", error);
+            // Fallback to static if AI fails
+            setHistory([{
+                text: scenario.events[scenario.startEventId].description,
+                type: 'narrative'
+            }]);
+            setCurrentEventId(scenario.startEventId);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const handleChoice = (choiceId: string) => {
-        if (!activeScenario || !currentEventId) return;
+    const handleChoice = async (choiceText: string) => {
+        if (isLoading || gameEnded) return;
+        setIsLoading(true);
 
-        const currentEvent = activeScenario.events[currentEventId];
-        const choice = currentEvent.choices.find(c => c.id === choiceId);
+        const newHistoryRows = [
+            ...history.map(h => ({ role: h.role || (h.type === 'choice' ? 'user' : 'assistant'), content: h.text })),
+        ];
 
-        if (!choice) return;
+        setHistory(prev => [...prev, { text: choiceText, type: 'choice' as const, role: 'user' as const }]);
 
-        setStats(prev => ({
-            welfare: Math.max(0, Math.min(100, prev.welfare + (choice.effect.welfare || 0))),
-            influence: Math.max(0, Math.min(100, prev.influence + (choice.effect.influence || 0))),
-            power: Math.max(0, Math.min(100, prev.power + (choice.effect.power || 0))),
-        }));
+        try {
+            const res = await simulateAI(authorId || 'caesar', activeScenario?.title || '', newHistoryRows, choiceText);
 
-        setHistory(prev => [
-            ...prev,
-            { text: choice.text, type: 'choice' },
-            { text: choice.response, type: 'feedback' }
-        ]);
+            if (res.stats) {
+                setStats(prev => ({
+                    welfare: Math.max(0, Math.min(100, prev.welfare + (res.stats.volk || 0))),
+                    influence: Math.max(0, Math.min(100, prev.influence + (res.stats.einfluss || 0))),
+                    power: Math.max(0, Math.min(100, prev.power + (res.stats.macht || 0))),
+                }));
+            }
 
-        if (choice.nextEventId === 'END') {
-            setGameEnded(true);
-        } else {
-            setCurrentEventId(choice.nextEventId);
-            setTimeout(() => {
-                setHistory(prev => [
-                    ...prev,
-                    { text: activeScenario.events[choice.nextEventId].description, type: 'narrative' }
-                ]);
-            }, 800);
+            setHistory(prev => [
+                ...prev,
+                { text: res.consequence || '', type: 'feedback' as const, role: 'assistant' as const },
+                { text: res.narrative, type: 'narrative' as const, role: 'assistant' as const }
+            ].filter(item => item.text));
+
+            setCurrentOptions(res.options || []);
+            setGameEnded(res.ended || false);
+        } catch (error) {
+            console.error("AI Choice Error:", error);
+            setHistory(prev => [...prev, { text: "Die Verbindung zu deinen Beratern wurde unterbrochen...", type: 'feedback' as const }]);
+        } finally {
+            setIsLoading(false);
+            setCustomInput('');
         }
     };
 
     const handleCustomInput = () => {
         if (!customInput.trim()) return;
-
-        setHistory(prev => [
-            ...prev,
-            { text: customInput, type: 'choice' },
-            { text: "Deine Berater notieren den Vorschlag, weisen aber darauf hin, dass die Demo nur vordefinierte Pfade unterstützt.", type: 'feedback' }
-        ]);
-        setCustomInput('');
+        handleChoice(customInput);
     };
 
     if (!author) return null;
@@ -112,9 +131,16 @@ export default function SimulationPage() {
     if (!activeScenario) {
         const handleCustomSubmit = () => {
             if (customScenarioText.trim()) {
-                sessionStorage.setItem('customScenario', customScenarioText);
-                navigate(`/${authorId}/simulation?custom=true`);
-                alert(`Szenario wird vorbereitet:\n\n"${customScenarioText}"\n\n(In der vollständigen Version würde hier KI-generierter Inhalt erscheinen)`);
+                startGame({
+                    id: 'custom',
+                    authorId: authorId as string,
+                    title: customScenarioText,
+                    description: customScenarioText,
+                    date: 'Heute',
+                    initialStats: { welfare: 50, influence: 50, power: 50 },
+                    startEventId: 'start',
+                    events: {}
+                } as any);
                 setCustomScenarioText('');
                 setShowCustomForm(false);
             }
@@ -198,7 +224,8 @@ export default function SimulationPage() {
                                         className="flex-1 w-full p-3 rounded-xl bg-secondary/30 border border-border/50 resize-none text-sm outline-none focus:ring-2 focus:ring-primary/20 mb-4"
                                         rows={4}
                                     />
-                                    <Button onClick={handleCustomSubmit} disabled={!customScenarioText.trim()} className="w-full">
+                                    <Button onClick={handleCustomSubmit} disabled={!customScenarioText.trim() || isLoading} className="w-full">
+                                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Play className="h-4 w-4 mr-2" />}
                                         Szenario starten
                                     </Button>
                                 </motion.div>
@@ -245,8 +272,6 @@ export default function SimulationPage() {
     }
 
     // --- GAME VIEW ---
-    const currentEvent = currentEventId ? activeScenario.events[currentEventId] : null;
-
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -293,6 +318,13 @@ export default function SimulationPage() {
                             </motion.div>
                         ))}
 
+                        {isLoading && (
+                            <div className="flex items-center gap-2 text-muted-foreground italic text-sm py-2">
+                                <RefreshCw className="h-4 w-4 animate-spin text-primary" />
+                                Schicksal wird gewoben...
+                            </div>
+                        )}
+
                         {gameEnded && (
                             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card-modern card-padding-lg text-center space-y-3 max-w-xl mx-auto">
                                 <Crown className="h-10 w-10 text-primary mx-auto" />
@@ -318,22 +350,27 @@ export default function SimulationPage() {
                 </div>
 
                 {/* Choices */}
-                {!gameEnded && currentEvent && (
+                {!gameEnded && (
                     <div className="card-modern card-padding-md space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {currentEvent.choices.map(choice => (
-                                <button
-                                    key={choice.id}
-                                    onClick={() => handleChoice(choice.id)}
-                                    className="h-auto py-3 px-4 flex flex-col items-start gap-1 rounded-2xl border border-primary/20 bg-background hover:bg-primary/5 hover:border-primary/50 transition-all text-left group"
-                                >
-                                    <span className="font-medium text-sm group-hover:text-primary transition-colors">{choice.text}</span>
-                                    <div className="flex gap-2 text-[10px] text-muted-foreground opacity-70">
-                                        {choice.effect.welfare && <span className={choice.effect.welfare > 0 ? 'text-green-500' : 'text-red-500'}>{choice.effect.welfare > 0 ? '+' : ''}{choice.effect.welfare} Volk</span>}
-                                        {choice.effect.power && <span className={choice.effect.power > 0 ? 'text-green-500' : 'text-red-500'}>{choice.effect.power > 0 ? '+' : ''}{choice.effect.power} Macht</span>}
-                                    </div>
-                                </button>
-                            ))}
+                            {currentOptions.length > 0 ? (
+                                currentOptions.map(choice => (
+                                    <button
+                                        key={choice.id}
+                                        onClick={() => handleChoice(choice.text)}
+                                        disabled={isLoading}
+                                        className="h-auto py-3 px-4 flex flex-col items-start gap-1 rounded-2xl border border-primary/20 bg-background hover:bg-primary/5 hover:border-primary/50 transition-all text-left group disabled:opacity-50"
+                                    >
+                                        <span className="font-medium text-sm group-hover:text-primary transition-colors">{choice.text}</span>
+                                    </button>
+                                ))
+                            ) : (
+                                !isLoading && (
+                                    <p className="text-xs text-muted-foreground italic col-span-2 text-center py-2">
+                                        Wähle eine eigene Handlung unten aus, um fortzufahren...
+                                    </p>
+                                )
+                            )}
                         </div>
 
                         <div className="relative">
@@ -342,9 +379,16 @@ export default function SimulationPage() {
                                 value={customInput}
                                 onChange={(e) => setCustomInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleCustomInput()}
+                                disabled={isLoading}
                                 className="pr-12 py-5 bg-secondary/30 border-primary/10 rounded-xl"
                             />
-                            <Button size="icon" variant="ghost" className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9 text-primary" onClick={handleCustomInput}>
+                            <Button
+                                size="icon"
+                                variant="ghost"
+                                className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9 text-primary"
+                                onClick={handleCustomInput}
+                                disabled={isLoading || !customInput.trim()}
+                            >
                                 <Send className="h-4 w-4" />
                             </Button>
                         </div>

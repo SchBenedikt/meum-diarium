@@ -265,3 +265,23 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const finalText = typeof text === 'string' ? text : String(text);
     return { text: finalText, resources };
 }
+
+export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    const url = isDev
+        ? new URL('https://caesar.schaechner.workers.dev/simulate')
+        : new URL('/api/simulate', origin || '');
+
+    const res = await fetch(url.toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ persona, scenario, history, choice })
+    });
+
+    if (!res.ok) {
+        throw new Error(`Simulation failed: ${res.status}`);
+    }
+
+    return res.json();
+}
