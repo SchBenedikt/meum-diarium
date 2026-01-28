@@ -1,0 +1,29 @@
+import { LexiconEntry } from '@/types/blog';
+
+const entry: LexiconEntry = {
+    term: "Signum",
+    slug: "signum",
+    variants: ["Feldzeichen", "Standarte"],
+    definition: `Das Signum (Plural: Signa) war ein römisches Militärfeldzeichen, das kleinere Einheiten wie Centurien oder Manipel kennzeichnete. Im Gegensatz zur Aquila, die die gesamte Legion repräsentierte, dienten die Signa als taktische Orientierungspunkte für kleinere Truppenverbände. Ein Signum bestand typischerweise aus einer langen Stange mit mehreren übereinander angebrachten Metallscheiben (phalerae), Kränzen und oft einer Hand (manus) an der Spitze. Der Signifer (Standartenträger) war verantwortlich für das Tragen des Signum und genoss hohes Ansehen. Die Signa wurden in der Schlacht vorangetragen, um die Formation zu leiten und als Sammelpunkt zu dienen. Sie wurden auch bei religiösen Zeremonien verwendet und in einem speziellen Schrein im Legionslager aufbewahrt. Der Ausdruck "sub signis" (unter den Feldzeichen) bedeutete "im aktiven Militärdienst".`,
+    category: "Militär & Kriegsführung",
+    etymology: `Von lateinisch 'signum' (Zeichen, Merkmal), von der Wurzel *sek- (schneiden, markieren). Bezeichnete ursprünglich jedes Erkennungszeichen.`,
+    relatedTerms: ["Aquila", "Signifer", "Centurio", "Legion"],
+    translations: {
+        "en": {
+            "term": "Signum",
+            "definition": "The signum (plural: signa) was a Roman military standard that marked smaller units such as centuries or maniples. Unlike the aquila, which represented the entire legion, the signa served as tactical orientation points for smaller troop formations. A signum typically consisted of a long pole with several metal discs (phalerae), wreaths, and often a hand (manus) at the top mounted one above another. The signifer (standard-bearer) was responsible for carrying the signum and enjoyed high esteem. The signa were carried at the forefront in battle to guide the formation and serve as a rallying point. They were also used in religious ceremonies and kept in a special shrine in the legion camp. The expression 'sub signis' (under the standards) meant 'in active military service'.",
+            "etymology": "From Latin 'signum' (sign, mark), from the root *sek- (to cut, mark). Originally denoted any identification mark.",
+            "category": "Military & Warfare",
+            "variants": ["Military Standard"]
+        },
+        "la": {
+            "term": "Signum",
+            "definition": "Signum (plurale: signa) fuit signum militare Romanum quod unitates minores ut centurias vel manipulos designabat. Dissimiliter ab aquila, quae totam legionem repraesentabat, signa ut puncta orientationis tactica pro formationibus copiarum minoribus serviebant. Signum typice ex stipite longo cum pluribus discis metallicis (phalerae), coronis et saepe manu (manus) in summo superimpositis constabat. Signifer signum portare debebat et aestimatione alta fruebatur. Signa in pugna praeferabantur ut formationem ducerent et ut punctum collectionis servirent. Etiam in caerimoniis religiosis adhibebantur et in sacrario speciali in castris legionis servabantur. Expressio 'sub signis' 'in servitio militari activo' significabat.",
+            "etymology": "A vocabulo Latino 'signum' (signum, nota), a radice *sek- (secare, signare). Initio quodlibet signum identificationis designabat.",
+            "category": "Militia et Bellum",
+            "variants": []
+        }
+    }
+};
+
+export default entry;
