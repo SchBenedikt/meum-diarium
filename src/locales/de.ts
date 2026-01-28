@@ -122,6 +122,12 @@ export const de = {
             discoverNow: 'Jetzt entdecken',
             lexicon: 'Lexikon',
         },
+        stats: {
+            lexiconEntries: 'Lexikon-Einträge',
+            authors: 'Historische Autoren',
+            languages: 'Sprachen',
+            yearsHistory: 'Jahre Geschichte',
+        },
         features: {
             badge: 'Hauptfunktionen',
             title: 'Interaktive Funktionen',
