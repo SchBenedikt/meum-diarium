@@ -289,6 +289,174 @@ export const en = {
     catilina_timeline_4_year: '62 BC',
     catilina_timeline_4_event: 'Death at the Battle of Pistoria',
 
+    // Catilina Biography Page
+    catilina: {
+        snapshots: {
+            lifespan: 'Lifespan',
+            conspiracy: 'Conspiracy',
+            conspiracyHint: 'Catilinarian Conspiracy',
+            consulElections: 'Consular Elections',
+            supporters: 'Supporters',
+            supportersHint: 'Indebted nobles & veterans',
+            ciceroSpeeches: 'Cicero\'s Speeches',
+            finalBattle: 'Final Battle',
+        },
+        quickFacts: {
+            title: 'Quick Facts',
+        },
+        intro: {
+            paragraph1: 'Lucius Sergius Catilina (108–62 BC) was a Roman patrician from an ancient noble family who went down in history as the leader of the "Catilinarian Conspiracy" named after him. His conspiracy of 63 BC is considered one of the most serious domestic political crises of the late Roman Republic.',
+            paragraph2: 'Catilina came from an impoverished patrician family and embodied the crisis of the Roman nobility: heavily in debt, politically ambitious, but excluded from the established power structures. After several failed applications for the consulship, he organized a conspiracy aimed at overthrowing the existing order.',
+            paragraph3: 'Historically, Catilina is known primarily through Cicero\'s four famous speeches against him ("In Catilinam"), which are among the masterpieces of Roman rhetoric. However, the source situation regarding his person is problematic: almost all information comes from his political opponents, particularly Cicero and Sallust, making it difficult to reconstruct an objective picture of his personality and motives.',
+        },
+        historicalContext: {
+            title: 'Historical Context',
+        },
+        context: {
+            lateRepublic: {
+                title: 'The Late Roman Republic',
+                description: 'Rome in the 1st century BC was a crisis-ridden republic: civil wars, social tensions, power struggles between Optimates and Populares, debt crisis, and the weakening of traditional senatorial rule characterized the period.',
+            },
+            debtCrisis: {
+                title: 'The Nobility\'s Debt Crisis',
+                description: 'Many nobles were heavily in debt due to costly election campaigns, elaborate games and buildings, and Sulla\'s proscriptions. Catilina and his followers demanded debt relief, which was strictly rejected by the Senate.',
+            },
+            sullaLegacy: {
+                title: 'Sulla\'s Legacy',
+                description: 'Catilina had served under the dictator Sulla and had been involved in the proscriptions (death lists). This past damaged his reputation, while at the same time he benefited from Sulla\'s land distributions to veterans.',
+                period: '80s BC',
+            },
+            nobilitas: {
+                title: 'Crisis of the Nobility',
+                description: 'Rome\'s traditional leadership class, the nobility, came under pressure from new men (homines novi) like Cicero, economic problems, and the growing power of individual generals. Catilina represented the desperation of impoverished patricians.',
+                period: 'Since the Gracchi (133 BC)',
+            },
+        },
+        timeline: {
+            title: 'Life Timeline',
+            birth: {
+                title: 'Birth in Rome',
+                description: 'Lucius Sergius Catilina is born into an ancient patrician family. The exact circumstances of his early years are unknown. The Sergii family belonged to the nobility but was economically weakened.',
+            },
+            praetor: {
+                title: 'Praetor in Rome',
+                description: 'Catilina holds the office of praetor, a high judicial and administrative position. Historical details about his activities as praetor are scarcely documented.',
+            },
+            africa: {
+                title: 'Propraetor in Africa',
+                description: 'Catilina is sent as governor (propraetor) to the province of Africa. Upon his return, he is accused of extortion (repetundae), which prevents or delays his first consular candidacy (65 BC).',
+            },
+            firstElection: {
+                title: 'First Electoral Defeat',
+                description: 'Catilina runs for the consulship for the year 63 BC but loses. There are speculative indications of a first coup attempt (the so-called "First Catilinarian Conspiracy" of 65/64 BC), but its historicity is disputed.',
+            },
+            secondElection: {
+                title: 'Second Electoral Defeat',
+                description: 'Catilina runs again for the consulship for 62 BC and loses again – this time to Marcus Tullius Cicero, a homo novus. Defeat by an upstart from a non-noble family is perceived by Catilina as a deep humiliation.',
+            },
+            conspiracyRevealed: {
+                title: 'Exposure of the Conspiracy',
+                description: 'Cicero, now consul, uncovers Catilina\'s plans: assassination attempts on leading senators, arson in Rome, and an armed uprising. On November 8, 63 BC, Cicero delivers his famous first speech "In Catilinam" in the Senate, with Catilina present.',
+            },
+            fleeRome: {
+                title: 'Flight from Rome',
+                description: 'After Cicero\'s devastating accusation, Catilina flees from Rome to his army in Etruria (near Faesulae, now Fiesole). In Rome, five of his co-conspirators are arrested and – after a Senate debate – executed, which would later be highly controversial.',
+            },
+            death: {
+                title: 'Death at Pistoria',
+                description: 'Catilina and his army are confronted by the consuls of 62 BC in the Battle of Pistoria (now Pistoia). He falls in battle. Ancient sources emphasize that he fought bravely to the end and was found among his fallen followers.',
+            },
+        },
+        conspiracy: {
+            title: 'The Catilinarian Conspiracy',
+            outcome: 'Outcome',
+            firstPlot: {
+                title: 'First Coup Attempt (alleged)',
+                description: 'According to Sallust and other sources, there was supposedly a first conspiracy plan as early as 65/64 BC, which however was not executed. The historicity of this "first plot" is disputed in research – possibly a later construction by Catilina\'s enemies.',
+                outcome: 'No secure historical basis; possibly propaganda.',
+            },
+            secondPlot: {
+                title: 'The Main Conspiracy (63 BC)',
+                description: 'After his renewed electoral defeat in 63 BC, Catilina begins concrete coup plans: he gathers supporters – mainly indebted nobles, Sulla\'s veterans, and dissatisfied lower classes. The goal: assassination of leading senators, arson in Rome, debt relief, and reorganization of the state.',
+                outcome: 'Plan partially put into action but uncovered in time by Cicero.',
+            },
+            exposure: {
+                title: 'Exposure by Cicero',
+                year: 'November 63 BC',
+                description: 'Cicero receives information about the conspiracy through Fulvia, the mistress of a conspirator. In four famous speeches ("In Catilinam" I–IV), he publicly accuses Catilina, exposes the conspiracy, and secures a senatus consultum ultimum (emergency decree) granting him extraordinary powers.',
+                outcome: 'Catilina flees from Rome; his co-conspirators are arrested.',
+            },
+            finalStand: {
+                title: 'Final Battle and Death',
+                year: 'Early 62 BC',
+                description: 'Catilina gathers an army of about 3,000 men in Etruria. This force is destroyed by the consuls of 62 BC, Gaius Antonius Hybrida and Marcus Petreius, in the Battle of Pistoria. Catilina falls in battle, and the conspiracy ends definitively.',
+                outcome: 'Complete defeat; Catilina\'s death in battle.',
+            },
+        },
+        ciceroSpeeches: {
+            title: 'Cicero\'s Speeches Against Catilina',
+            description: 'Marcus Tullius Cicero, as consul of 63 BC, delivered four famous speeches against Catilina that are among the highlights of Roman rhetoric and are still regarded today as prime examples of political oratory.',
+            impactLabel: 'Impact',
+            first: {
+                title: 'In Catilinam I (November 8, 63 BC)',
+                date: 'November 8, 63 BC, in the Senate',
+                summary: 'The most famous of the four speeches. Cicero directly attacks Catilina, who is present in the Senate: "Quo usque tandem abutere, Catilina, patientia nostra?" ("How long, Catilina, will you abuse our patience?"). Cicero describes the conspiracy and demands that Catilina leave Rome.',
+                impact: 'Catilina leaves Rome that very night and flees to his army. The speech establishes Cicero as savior of the Republic.',
+            },
+            second: {
+                title: 'In Catilinam II (November 9, 63 BC)',
+                date: 'November 9, 63 BC, before the people',
+                summary: 'One day after the first speech, Cicero addresses the Roman people and explains why he did not have Catilina killed. He characterizes Catilina\'s followers in six categories – from heavily indebted nobles to criminal desperados – and warns of the danger.',
+                impact: 'Mobilization of public opinion against Catilina; strengthening of Cicero\'s position.',
+            },
+            third: {
+                title: 'In Catilinam III (December 3, 63 BC)',
+                date: 'December 3, 63 BC, before the people',
+                summary: 'Cicero reports on the uncovering of an assassination plot against him and the arrest of envoys of the Gallic Allobroges, who were to be recruited by Catilina\'s co-conspirators. He presents written evidence and orders the arrest of the main conspirators.',
+                impact: 'Decisive proof of the conspiracy\'s existence; arrest of the conspirators.',
+            },
+            fourth: {
+                title: 'In Catilinam IV (December 5, 63 BC)',
+                date: 'December 5, 63 BC, in the Senate',
+                summary: 'In the fourth speech, Cicero takes a position on the punishment of the arrested conspirators. He indirectly supports the death penalty (demanded by Cato) against Caesar, who had argued for life imprisonment. The conspirators are executed without proper trial.',
+                impact: 'Execution of the five main conspirators; later point of attack for Cicero\'s opponents (procedure without trial).',
+            },
+        },
+        legacy: {
+            title: 'Historical Significance and Legacy',
+            symbolOfCorruption: 'Symbol of Political Conspiracy',
+            symbolOfCorruptionSummary: 'Catilina became the epitome of the unscrupulous conspirator and the internal enemy of the Republic. His name stands synonymous with coup d\'état, political violence, and the decay of republican virtues.',
+            ciceroRise: 'Cicero\'s Rise',
+            ciceroRiseSummary: 'The successful uncovering and suppression of the conspiracy made Cicero the "pater patriae" (father of the fatherland) and established his fame as defender of the Republic. The speeches against Catilina are considered rhetorical masterpieces.',
+            republicanCrisis: 'Crisis of the Republic',
+            republicanCrisisSummary: 'The conspiracy revealed the deep crisis of the late Republic: social tensions, debt crisis of the nobility, readiness for violence in politics, and the weakening of senatorial authority. It was a harbinger of the coming civil wars.',
+            debtCrisis: 'Debt Crisis and Social Question',
+            debtCrisisSummary: 'Catilina\'s followers were recruited mainly from the indebted and socially declassed. The conspiracy showed that the Republic was unable to solve the socioeconomic problems – a structural problem that Caesar and others would later exploit.',
+        },
+        tags: {
+            politics: 'Politics',
+            rhetoric: 'Rhetoric',
+            history: 'History',
+            economics: 'Economics',
+        },
+        horizons: {
+            longTerm: 'Long-term',
+            mediumTerm: 'Medium-term',
+            immediate: 'Immediate',
+        },
+        sources: {
+            title: 'Historical Sources and Source Criticism',
+            description: 'Our knowledge of Catilina is based almost exclusively on the writings of his political opponents:',
+            cicero: 'Cicero\'s speeches "In Catilinam" and letters – highly biased but contemporary',
+            sallust: 'Sallust\'s monograph "De coniuratione Catilinae" – literarily brilliant but partisan',
+            note: 'Note: A balanced picture of Catilina\'s motives and character is hardly possible due to the one-sided source situation. Many details are disputed or speculative.',
+        },
+        relatedContent: {
+            title: 'More Entries on Catilina',
+        },
+        viewDiary: 'View Diary',
+    },
+
     // Seneca
     seneca_name: 'Seneca the Younger',
     seneca_latinName: 'Lucius Annaeus Seneca',
