@@ -297,9 +297,9 @@ export function SenecaAboutPage() {
                   </div>
 
                   <div className="grid gap-6 sm:grid-cols-2">
-                    {authorWorks.map((work, i) => (
+                    {authorWorks.map((work) => (
                       <Link
-                        key={i}
+                        key={work.slug || work.title}
                         to={`/seneca/works/${slugify(work.title, { lower: true, strict: true })}`}
                         className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
                       >
@@ -415,7 +415,7 @@ export function SenecaAboutPage() {
                     <h3 className="font-display text-2xl font-bold">{t('seneca.biography.earlyLife')}</h3>
                   </div>
                   <div className="space-y-4">
-                    {senecaSidebar.earlyLife.map((item, idx) => (
+                    {senecaSidebar.earlyLife.map((item) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
@@ -432,7 +432,7 @@ export function SenecaAboutPage() {
                     <h3 className="font-display text-2xl font-bold">{t('seneca.biography.neroYears')}</h3>
                   </div>
                   <div className="space-y-4">
-                    {senecaSidebar.neroYears.map((item, idx) => (
+                    {senecaSidebar.neroYears.map((item) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
@@ -449,7 +449,7 @@ export function SenecaAboutPage() {
                     <h3 className="font-display text-2xl font-bold">{t('seneca.biography.laterWorks')}</h3>
                   </div>
                   <div className="space-y-4">
-                    {senecaSidebar.laterLife.map((item, idx) => (
+                    {senecaSidebar.laterLife.map((item) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
@@ -497,8 +497,6 @@ export function SenecaAboutPage() {
                     <span className="inline-flex px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-semibold">
                       {item.horizon === t('seneca.horizons.immediate') ? (
                         <>⚡ {item.horizon}</>
-                      ) : item.horizon === t('seneca.horizons.mediumTerm') ? (
-                        <>↗ {item.horizon}</>
                       ) : (
                         <>↗ {item.horizon}</>
                       )}
@@ -804,7 +802,7 @@ export function SenecaAboutPage() {
                     className="card-modern card-hover-primary card-padding-md"
                   >
                     <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                      <Feather className="h-6 w-6 text-primary" />
+                      <BookOpen className="h-6 w-6 text-primary" />
                     </div>
                     <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">{t('seneca.rising.deathDate')}</span>
                     <h3 className="font-display text-xl font-bold mt-2 mb-3">{t('seneca.rising.death')}</h3>

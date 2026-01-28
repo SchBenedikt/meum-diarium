@@ -424,7 +424,7 @@ export const de = {
             senator: {
                 title: 'Senator & Redner',
                 years: '31-41 n. Chr.',
-                note: 'Erlangte im Senat durch brillante Reden Prominenz. Sein Erfolg erregte Caligulas Eifersucht und kostete ihn beinahe das Leben.',
+                note: 'Erlangte im Senat durch brillante Reden Prominenz. Sein Erfolg erregte Caligulas Eifersucht und hätte ihn beinahe das Leben gekostet.',
             },
             exile: {
                 title: 'Exil auf Korsika',
@@ -590,7 +590,7 @@ export const de = {
                 birth: { title: 'Geburt in Corduba', note: 'Geboren in Hispanien in eine Ritterfamilie. Vater war der berühmte Rhetoriker Seneca der Ältere.' },
                 rome: { title: 'Umzug nach Rom', note: 'Studierte Rhetorik und stoische Philosophie bei Attalus, Sotion und anderen Meistern.' },
                 quaestor: { title: 'Eintritt in den Senat', note: 'Begann politische Karriere als Quästor. Erlangte schnell Ruhm durch seine Redekunst.' },
-                caligula: { title: 'Caligulas Eifersucht', note: 'Kaiser Caligula wäre fast dabei, ihn aus Neid auf seine rhetorische Brillanz hinzurichten.' },
+                caligula: { title: 'Caligulas Eifersucht', note: 'Kaiser Caligula hätte ihn beinahe aus Neid auf seine rhetorische Brillanz hingerichtet.' },
                 exile: { title: 'Verbannung nach Korsika', note: 'Des Ehebruchs mit Julia Livilla beschuldigt. Verbrachte acht Jahre in philosophischer Reflexion.' },
                 recall: { title: 'Rückruf durch Agrippina', note: 'Zurückgeholt, um den jungen Nero zu unterrichten. Hoffte, ihn zu einem Philosophen-Kaiser zu formen.' },
                 neroEmperor: { title: 'Nero wird Kaiser', note: 'Mit Burrus regierte faktisch Rom während des "Quinquennium Neronis" (54-59 n. Chr.).' },
