@@ -114,6 +114,12 @@ export const la = {
             discoverNow: 'Nunc explora',
             lexicon: 'Lexicon',
         },
+        stats: {
+            lexiconEntries: 'Lemmata Lexici',
+            authors: 'Auctores Historici',
+            languages: 'Linguae',
+            yearsHistory: 'Anni Historiae',
+        },
         features: {
             badge: 'Munera Praecipua',
             title: 'Munera Interactiva',
