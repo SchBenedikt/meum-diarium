@@ -113,11 +113,41 @@ export const la = {
             description: 'Experire historiam per oculos protagonistarum. Restitutio KI, fontibus fulta, interactiva.',
             discoverNow: 'Nunc explora',
             lexicon: 'Lexicon',
+            badge: 'Historiam Denuo Experire',
+            title1: 'Historia',
+            title2: 'ad vitam revocata',
+            startJourney: 'Iter Incipe',
+            exploreLexicon: 'Lexicon Explora',
+            quote: 'Veni, vidi, vici',
+            quoteAuthor: 'Gaius Iulius Caesar',
+            feature1: 'Dialogi KI Historici',
+            feature2: 'Lexicon Amplum',
+            feature3: 'Iter Temporale Interactivum',
+        },
+        stats: {
+            lexiconEntries: 'Lemmata Lexici',
+            authors: 'Auctores Historici',
+            languages: 'Linguae',
+            yearsHistory: 'Anni Historiae',
+            entries: 'Lemmata',
+            years: 'Anni',
         },
         features: {
-            badge: 'Munera Praecipua',
-            title: 'Munera Interactiva',
-            subtitle: 'Historiam modo novo perscrutari',
+            badge: 'Munera',
+            title: 'Omnia quae opus sunt',
+            subtitle: 'Platea completa ad antiquitatem Romanam studendum',
+            aiChat: 'Colloquia KI',
+            aiChatDesc: 'Dialogi historici cum personis Romanis',
+            lexiconTitle: 'Lexicon',
+            lexiconDesc: '92+ lemmata de antiquitate Romana',
+            multilingual: 'Multilingue',
+            multilingualDesc: 'Germanice, Anglice et Latine',
+            timelineTitle: 'Series Temporum',
+            timelineDesc: '170+ anni historiae Romanae',
+            works: 'Opera',
+            worksDesc: 'Opera originalia et analyses',
+            authentic: 'Authenticum',
+            authenticDesc: 'In fontibus positum et historice validum',
             chat: {
                 title: 'Colloquia KI',
                 liveDemo: 'Simulatio Viva',
@@ -183,7 +213,24 @@ export const la = {
             scientificallyProven: 'Scientifice probatum',
             recommended: 'Commendatum',
             exploreProfile: 'Profilum explora',
-        }
+        },
+        authors: {
+            badge: 'Personae',
+            title: 'Voces Antiquitatis',
+            subtitle: 'Diaria et opera maximorum personarum Romanarum explora',
+        },
+        recent: {
+            badge: 'Recentia',
+            title: 'Indices Novissimi',
+            subtitle: 'Commentarii novissimi ex diariis',
+            viewAll: 'Omnes videre',
+        },
+        cta: {
+            title: 'Paratus es ad iter temporale?',
+            description: 'Iter tuum per mundum fascinantem Romae antiquae nunc incipe',
+            start: 'Nunc incipe',
+            learnMore: 'Plura disce',
+        },
     },
     filter: 'Filtra',
     clearFilters: 'Filtra purga',
@@ -286,6 +333,174 @@ export const la = {
     catilina_timeline_4_year: '62 a.C.n.',
     catilina_timeline_4_event: 'Mors in pugna apud Pistoriam',
 
+    // Catilina Biography Page
+    catilina: {
+        snapshots: {
+            lifespan: 'Vita',
+            conspiracy: 'Coniuratio',
+            conspiracyHint: 'Coniuratio Catilinae',
+            consulElections: 'Comitia Consularia',
+            supporters: 'Fautores',
+            supportersHint: 'Nobiles debitores et veterani',
+            ciceroSpeeches: 'Orationes Ciceronis',
+            finalBattle: 'Proelium Ultimum',
+        },
+        quickFacts: {
+            title: 'Summatim',
+        },
+        intro: {
+            paragraph1: 'Lucius Sergius Catilina (108–62 a.C.n.) fuit patricius Romanus ex familia nobili antiqua, qui dux "Coniurationis Catilinariae" in historia notus factus est. Coniuratio eius anni 63 a.C.n. una ex gravissimis crisisbus internis rei publicae Romanae sero habetur.',
+            paragraph2: 'Catilina ex familia patricia paupere oriundus erat et crises nobilitatis Romanae corporabat: multum debens, politice ambitiosus, sed a structuris potentiae stabilitis exclusus. Post plures repulsas candidaturae consularis, coniurationem ordinavit quae ruinam ordinis existentis proposuit.',
+            paragraph3: 'Historice, Catilina praecipue per quattuor orationes celebres Ciceronis contra eum ("In Catilinam") notus est, quae inter opera praeclara rhetoricae Romanae numerantur. Tamen, conditio fontium de persona eius problematica est: omnes fere informationes ab inimicis politicis eius, praesertim Cicerone et Sallustio, veniunt, unde imago obiectiva personae et motivorum eius difficulter reconstitui potest.',
+        },
+        historicalContext: {
+            title: 'Contextus Historicus',
+        },
+        context: {
+            lateRepublic: {
+                title: 'Res Publica Romana Sera',
+                description: 'Roma saeculo primo a.C.n. res publica crisi vexata erat: bella civilia, tensiones sociales, certamina potentiae inter Optimates et Populares, crisis debitorum, et debilitatio imperii senatorii traditionalis tempus characterizabant.',
+            },
+            debtCrisis: {
+                title: 'Crisis Debitorum Nobilitatis',
+                description: 'Multi nobiles propter comitia sumptuosa, ludos et aedificia magnifica, et proscriptiones Sullanas multum debebant. Catilina et fautores eius remissionem debitorum postulaverunt, quam senatus stricte reiecit.',
+            },
+            sullaLegacy: {
+                title: 'Hereditas Sullae',
+                description: 'Catilina sub dictatore Sulla serviverat et in proscriptionibus (tabulis mortis) participaverat. Hoc praeteritum famam eius laesit, simul vero ex distributionibus terrarum Sullae veteranis profecit.',
+                period: 'Annos 80 a.C.n.',
+            },
+            nobilitas: {
+                title: 'Crisis Nobilitatis',
+                description: 'Classis ducens traditionalis Romae, nobilitas, sub pressione a novis hominibus ut Cicerone, problematibus oeconomicis, et potentia crescente singulorum imperatorum venit. Catilina desperationem patriciorum pauperum repraesentabat.',
+                period: 'Post Graccos (133 a.C.n.)',
+            },
+        },
+        timeline: {
+            title: 'Cursus Vitae',
+            birth: {
+                title: 'Natus Romae',
+                description: 'Lucius Sergius Catilina in familiam patriciam antiquam nascitur. Circumstantiae exactae annorum primorum ignotae sunt. Familia Sergiorum ad nobilitatem pertinebat sed oeconomice debilitata erat.',
+            },
+            praetor: {
+                title: 'Praetor Romae',
+                description: 'Catilina officium praetoris, munus iudiciale et administrativum altum, tenet. Particularia historica de actis eius ut praetoris raro tradita sunt.',
+            },
+            africa: {
+                title: 'Propraetor in Africa',
+                description: 'Catilina ut gubernator (propraetor) in provinciam Africae mittitur. Post reditum eius, de repetundis (extorsione) accusatur, quod primam candidaturam consulariam eius (65 a.C.n.) impedit vel tardat.',
+            },
+            firstElection: {
+                title: 'Prima Repulsa Electoralis',
+                description: 'Catilina se consulatum pro anno 63 a.C.n. petit sed vincitur. Sunt indicationes speculativae de primo conatu eversionis (sic dicta "Prima Coniuratio Catilinae" annorum 65/64 a.C.n.), sed historicitas eius disputatur.',
+            },
+            secondElection: {
+                title: 'Secunda Repulsa Electoralis',
+                description: 'Catilina iterum consulatum pro anno 62 a.C.n. petit et iterum vincitur – hoc tempore a Marco Tullio Cicerone, homine novo. Repulsa ab homine novo ex familia non nobili a Catilina ut contumelia profunda sentitur.',
+            },
+            conspiracyRevealed: {
+                title: 'Detectio Coniurationis',
+                description: 'Cicero, nunc consul, consilia Catilinae detegit: conatus caedis senatorum principum, incendia in urbe, et insurrectio armata. Die VIII Novembris 63 a.C.n., Cicero orationem celebrem primam "In Catilinam" in senatu habet, Catilina praesente.',
+            },
+            fleeRome: {
+                title: 'Fuga ex Urbe',
+                description: 'Post accusationem devastantem Ciceronis, Catilina ex Roma ad exercitum suum in Etruria (prope Faesulas, nunc Fiesole) fugit. Romae, quinque conscii eius capiuntur et – post disputationem senatus – necantur, quod postea valde controversum erit.',
+            },
+            death: {
+                title: 'Mors apud Pistoriam',
+                description: 'Catilina cum exercitu suo a consulibus anni 62 a.C.n. in pugna apud Pistoriam (nunc Pistoia) opponitur. In proelio cadit. Fontes antiquae emphasizant eum fortiter ad finem pugnavisse et inter fautores suos mortuos inventum esse.',
+            },
+        },
+        conspiracy: {
+            title: 'Coniuratio Catilinae',
+            outcome: 'Exitus',
+            firstPlot: {
+                title: 'Primus Conatus Eversionis (putatus)',
+                description: 'Secundum Sallustium et alios fontes, iam annis 65/64 a.C.n. primum consilium coniurationis fuisse dicitur, quod tamen non effectum est. Historicitas huius "primi comploti" in investigatione disputatur – fortasse constructio posterior ab inimicis Catilinae.',
+                outcome: 'Nulla basis historica secura; fortasse propaganda.',
+            },
+            secondPlot: {
+                title: 'Coniuratio Principalis (63 a.C.n.)',
+                description: 'Post repulsam electoralem iteratam anno 63 a.C.n., Catilina consilia eversionis concreta incipit: fautores colligit – praecipue nobiles debitos, veteranos Sullanos, et classes inferiores dissentatores. Propositum: caedes senatorum principum, incendia in urbe, remissio debitorum, et ordinatio nova rei publicae.',
+                outcome: 'Consilium partim in actum deductum sed tempore a Cicerone detectum.',
+            },
+            exposure: {
+                title: 'Detectio a Cicerone',
+                year: 'November 63 a.C.n.',
+                description: 'Cicero informationes de coniuratione per Fulviam, amicam conscii, accipit. In quattuor orationibus celebribus ("In Catilinam" I–IV), Catilinam publice accusat, coniurationem detegit, et senatus consultum ultimum (decretum emergen tiae) obtinet quod ei potestates extraordinarias dat.',
+                outcome: 'Catilina ex urbe fugit; conscii eius capiuntur.',
+            },
+            finalStand: {
+                title: 'Proelium Finale et Mors',
+                year: 'Initio 62 a.C.n.',
+                description: 'Catilina in Etruria exercitum circiter trium milium virorum colligit. Haec copia a consulibus anni 62 a.C.n., Gaio Antonio Hybrida et Marco Petreio, in pugna apud Pistoriam deletur. Catilina in proelio cadit, et coniuratio definitive terminatur.',
+                outcome: 'Clades completa; mors Catilinae in pugna.',
+            },
+        },
+        ciceroSpeeches: {
+            title: 'Orationes Ciceronis Contra Catilinam',
+            description: 'Marcus Tullius Cicero, ut consul anni 63 a.C.n., quattuor orationes celebres contra Catilinam habuit quae inter culmina rhetoricae Romanae numerantur et hodie etiam ut exempla praeclara orationis politicae habentur.',
+            impactLabel: 'Effectus',
+            first: {
+                title: 'In Catilinam I (VIII Kal. Nov. 63 a.C.n.)',
+                date: 'VIII Kalendas Novembres 63 a.C.n., in senatu',
+                summary: 'Celeberrima quattuor orationum. Cicero Catilinam directe aggreditur, qui in senatu praesens est: "Quo usque tandem abutere, Catilina, patientia nostra?" Cicero coniurationem describit et Catilinam exire ex urbe postulat.',
+                impact: 'Catilina ipsa nocte Romam relinquit et ad exercitum suum fugit. Oratio Ciceronem ut servatorem rei publicae constituit.',
+            },
+            second: {
+                title: 'In Catilinam II (VII Kal. Nov. 63 a.C.n.)',
+                date: 'VII Kalendas Novembres 63 a.C.n., coram populo',
+                summary: 'Uno die post primam orationem, Cicero ad populum Romanum se convertit et exponit cur Catilinam non necari iusserit. Fautores Catilinae in sex categoriis characterizat – a nobilibus multum debentibus ad desperatos criminales – et de periculo monet.',
+                impact: 'Mobilizatio opinionis publicae contra Catilinam; confirmatio positionis Ciceronis.',
+            },
+            third: {
+                title: 'In Catilinam III (III Non. Dec. 63 a.C.n.)',
+                date: 'III Nonas Decembres 63 a.C.n., coram populo',
+                summary: 'Cicero de detectione comploti caedis contra se et de captione legatorum Allobrogum Gallicorum, qui a consciis Catilinae sollicitari debebant, refert. Testimonia scripta praesentat et captionem consciorum principalium iubet.',
+                impact: 'Testimonium decisivum existentiae coniurationis; captio consciorum.',
+            },
+            fourth: {
+                title: 'In Catilinam IV (III Kal. Dec. 63 a.C.n.)',
+                date: 'III Kalendas Decembres 63 a.C.n., in senatu',
+                summary: 'In quarta oratione, Cicero de poena consciorum captorum positionem capit. Indirecte poenam mortis (a Catone postulatam) contra Caesarem, qui pro carcere perpetuo argutus erat, sustinet. Conscii sine iudicio ordinario necantur.',
+                impact: 'Necatio quinque consciorum principalium; postea punctum impugnationis pro inimicis Ciceronis (procedura sine iudicio).',
+            },
+        },
+        legacy: {
+            title: 'Significatio Historica et Hereditas',
+            symbolOfCorruption: 'Symbolum Coniurationis Politicae',
+            symbolOfCorruptionSummary: 'Catilina typus coniuratoris impudens et hostis internus rei publicae factus est. Nomen eius synonymum stat pro eversione civitatis, violentia politica, et corruptione virtutum republicanarum.',
+            ciceroRise: 'Ascensus Ciceronis',
+            ciceroRiseSummary: 'Detectio et oppressio coniurationis feliciter facta Ciceronem "pater patriae" fecit et famam eius ut defensor rei publicae fundavit. Orationes contra Catilinam ut opera magistralia rhetorica habentur.',
+            republicanCrisis: 'Crisis Rei Publicae',
+            republicanCrisisSummary: 'Coniuratio crises profundas rei publicae serae revelavit: tensiones sociales, crisis debitorum nobilitatis, paratitatem ad violentiam in politica, et debilitationem auctoritatis senatoriae. Praenuntius bellorum civilium venientium fuit.',
+            debtCrisis: 'Crisis Debitorum et Quaestio Socialis',
+            debtCrisisSummary: 'Fautores Catilinae praecipue ex debitoribus et socialiter degradatis recrutabantur. Coniuratio demonstravit rem publicam incapacem esse problemata socioeconomica solvendi – problema structurale quod Caesar et alii postea exploitaverunt.',
+        },
+        tags: {
+            politics: 'Politica',
+            rhetoric: 'Rhetorica',
+            history: 'Historia',
+            economics: 'Oeconomia',
+        },
+        horizons: {
+            longTerm: 'Longe',
+            mediumTerm: 'Mediocriter',
+            immediate: 'Statim',
+        },
+        sources: {
+            title: 'Fontes Historici et Critica Fontium',
+            description: 'Scientia nostra de Catilina fere exclusive in scriptis inimicorum eius politicorum fundata est:',
+            cicero: 'Orationes Ciceronis "In Catilinam" et epistulae – valde partiales sed coaevanae',
+            sallust: 'Monographia Sallustii "De coniuratione Catilinae" – litterarie praeclara sed partialis',
+            note: 'Nota: Imago aequilibrata motivorum et characteris Catilinae propter conditionem fontium unilateralem vix possibilis est. Multa particularia disputata vel speculativa sunt.',
+        },
+        relatedContent: {
+            title: 'Plura de Catilina',
+        },
+        viewDiary: 'Ad Diarium',
+    },
+
     // Seneca
     seneca_name: 'Seneca Minor',
     seneca_latinName: 'Lucius Annaeus Seneca',
@@ -307,6 +522,314 @@ export const la = {
     seneca_timeline_3_event: 'Gubernatio Rei Publicae',
     seneca_timeline_4_year: '65 p.C.n.',
     seneca_timeline_4_event: 'Suicidium Coactum',
+
+    // Seneca Pagina Biographica
+    seneca: {
+        worksSubtitle: 'Opera Philosophica et Tragoediae',
+        diaryRecent: 'Commentarii Selecti',
+        viewAll: 'Omnes Videre',
+        readArticle: 'Legere Commentarium',
+        readEntry: 'Ad Commentarium',
+
+        snapshots: {
+            title: 'Breviter',
+            lifespan: 'Vita',
+            exile: 'Exilium',
+            advisor: 'Consiliarius Neronis',
+            works: 'Opera Praecipua',
+            philosophy: 'Philosophia',
+            death: 'Mors',
+        },
+
+        biography: {
+            title: 'Curriculum Vitae',
+            subtitle: 'Stationes vitae, opera et contributiones philosophicae',
+            earlyLife: 'Iuventus',
+            career: 'Cursus et Exilium',
+            neroYears: 'Anni Neroniani',
+            laterWorks: 'Opera Posteriora',
+            fullTimeline: 'Temporum Ordo Plenus',
+            timelineHint: 'Sequere iter Senecae ab Corduba ad fastigium potestatis Romanae',
+        },
+
+        legacy: {
+            title: 'Hereditas Philosophica',
+            subtitle: 'Ideae quae cogitationem Occidentalem formaverunt',
+            stoicism: 'Philosophia Stoica',
+            stoicismSummary: 'Stoicismum pro Romanis popularizavit, philosophiam Graecam per sapientiam practicam et epistulas personales accessibilem reddens.',
+            moralLetters: 'Epistulae Morales ad Lucilium',
+            moralLettersSummary: 'CXXIV epistulae de ethica, virtute, morte et recta vita. Opus praeclarum litterarum sapientiae antiquae.',
+            tragedies: 'Drama Tragicum',
+            tragediesSummary: 'Novem tragoediae superstites quae theatrum Renascentiae et Shakespeare moverunt. Argumenta passionis, potestatis et corruptionis moralis.',
+            ethics: 'Ethica Practica',
+            ethicsSummary: 'Tractatus de ira, clementia, providentia et brevitate vitae. Emphasizaverunt imperium sui, tranquillitatem et acceptationem fati.',
+            naturalPhilosophy: 'Naturales Quaestiones',
+            naturalPhilosophySummary: 'Septem libri de phenomenis naturalibus: cometis, terrae motibus, fulminibus. Scientiam cum philosophia morali coniunxerunt.',
+            influence: 'Influentia Posterior',
+            influenceSummary: 'Cogitationem Christianam, humanismum Renascentiae et psychologiam modernam profunde movit. Ab antiquitate ad hodie late lectus.',
+        },
+
+        deepDive: {
+            title: 'Opera in Particulari',
+            subtitle: 'Contributiones philosophicae et litterariae magnae',
+            lettersDetail: 'CXXIV Epistulae Morales ad Lucilium sunt opus philosophicum praecipuum Senecae. In otio scriptae (LXII-LXV p.C.n.), omnes aspectus vitae Stoicae tegunt: quomodo metu, ira et luctu tractare; quomodo morti occurrere; quomodo pacem interiorem invenire. Quaeque epistula gemma sapientiae practicae est.',
+            dialoguesDetail: 'Seneca dialogos philosophicos de argumentis principalibus scripsit: De Ira, De Clementia, De Providentia, et celebrem De Brevitate Vitae. Haec opera Stoicismum practicum et accessibilem reddiderunt.',
+            tragediesDetail: 'Novem tragoediae supersunt: Medea, Phaedra, Oedipus, Thyestes et aliae. Dissimiles a tragoedia Graeca, fabulae Senecae horrorem psychologicum et corruptionem moralem emphasizaverunt. Drama Elisabethanum, praesertim Shakespearem, profunde moverunt.',
+            impact: 'Effectus',
+        },
+
+        polarization: {
+            title: 'Figura Controversa',
+            subtitle: 'Cur opiniones de Seneca divisae manent',
+            admired: 'Cur Admiratus Est',
+            admiredPoints: [
+                'Magister philosophiae Stoicae qui sapientiam antiquam accessibilem reddidit',
+                'Scriptor praeclarus cuius stilus prosam Latinam per saecula movit',
+                'Tyrannidem Neronis moderare et clementiam suadere conatus est',
+                'Opera sua de ethica et virtute mansuerunt aeterna',
+                'Morti cum fortitudine philosophica et dignitate occurrit',
+            ],
+            criticized: 'Cur Vituperatus Est',
+            criticizedPoints: [
+                'Divitias enormes cumulavit dum contra materialismum praedicabat',
+                'Neroni servivit et regnum eius primum possibilem reddidit non obstante sceleribus',
+                'Philosophia eius hypocrita videbatur propter vitam luxuriosam',
+                'Matricidium Neronis in orationibus publicis defendit',
+                'Fortasse in coniurationem Pisonianam contra Neronem implicatus',
+            ],
+        },
+
+        theaters: {
+            title: 'Stationes Vitae et Loca',
+            subtitle: 'Ab Hispania ad cor Imperii Romani',
+            locationsTitle: 'Loca',
+            rolesTitle: 'Officia',
+            mapTitle: 'Mundus Senecae',
+            mapDesc: 'A nativitate Cordubae (hodie Córdoba, Hispania) per exilium in Corsica ad Romam ubi doctor et consiliarius Neronis fuit.',
+        },
+
+        locations: {
+            corduba: {
+                title: 'Corduba (Hispania)',
+                note: 'Natus c. IV a.C.n. in familiam equestrem. Pater fuit rhetor celeberrimus. Familia Romam migravit cum Seneca iuvenis erat.',
+            },
+            rome: {
+                title: 'Roma',
+                note: 'Centrum educationis, cursus politici et activitatis philosophicae. Rhetoricam et philosophiam Stoicam apud doctores optimos studuit.',
+            },
+            corsica: {
+                title: 'Corsica (Exilium)',
+                note: 'Exilium XLI-XLIX p.C.n. a Claudio, alleganter ob adulterium cum Iulia Livilla. Consolationes philosophicas hoc tempore scripsit.',
+            },
+            court: {
+                title: 'Aula Imperialis',
+                note: 'XLIX p.C.n. rediit ut Neronem iuvenem doceret. Factus est de facto co-gubernator Romae (LIV-LXII p.C.n.) cum Burro tempore "Quinquennii Neroniani".',
+            },
+        },
+
+        roles: {
+            philosopher: {
+                title: 'Philosophus Stoicus',
+                years: 'Tota Vita',
+                note: 'Discipulus Attali, Sotionis et aliorum Stoicorum. Versionem practicam, Romanam Stoicismi de ethica et virtute evolvit.',
+            },
+            senator: {
+                title: 'Senator et Orator',
+                years: 'XXXI-XLI p.C.n.',
+                note: 'Ad eminentiam in Senatu per orationes praeclaras pervenit. Successus eius invidiam Caligulae excitavit et paene vitam eius costavit.',
+            },
+            exile: {
+                title: 'Exilium in Corsica',
+                years: 'XLI-XLIX p.C.n.',
+                note: 'Octo anni relegationis. Opera philosophica scripsit includens consolationes ad matrem Helviam et ad Polybium.',
+            },
+            tutor: {
+                title: 'Doctor Neronis',
+                years: 'XLIX-LIV p.C.n.',
+                note: 'Ab Agrippina revocatus ut filium Neronem educaret. Rhetoricam, philosophiam et (putative) virtutem et clementiam docuit.',
+            },
+            advisor: {
+                title: 'Consiliarius Imperialis',
+                years: 'LIV-LXII p.C.n.',
+                note: 'Cum Burro, Romam de facto gubernavit tempore primi regni Neronis. Haec periodus postea ut "Quinquennium Neronis" celebrata est.',
+            },
+            retirement: {
+                title: 'Otium et Scriptura',
+                years: 'LXII-LXV p.C.n.',
+                note: 'Post mortem Burri a vita publica secessit. Se philosophiae dedit, Epistulas et Quaestiones Naturales scribens.',
+            },
+        },
+
+        works: {
+            title: 'Opera Praecipua',
+            subtitle: 'Philosophia, drama et scientia naturalis',
+            moralLetters: {
+                title: 'Epistulae Morales ad Lucilium',
+                subtitle: 'Epistulae Morales ad Lucilium',
+                date: 'LXII-LXV p.C.n.',
+                note: 'CXXIV epistulae philosophicae omnes aspectus ethicae Stoicae tegentes. Opus praecipuum et textus maxime influens.',
+            },
+            dialogues: {
+                title: 'Dialogi',
+                subtitle: 'Dialogi Philosophici',
+                date: 'XLI-LXIV p.C.n.',
+                note: 'Decem dialogi includentes De Ira, De Clementia, De Providentia et De Brevitate Vitae.',
+            },
+            tragedies: {
+                title: 'Tragoediae',
+                subtitle: 'Novem Tragoediae',
+                date: 'Varia Tempora',
+                note: 'Medea, Phaedra, Oedipus, Thyestes, Hercules Furens, Troades, Phoenissae, Agamemnon, Hercules Oetaeus.',
+            },
+            naturalQuestions: {
+                title: 'Naturales Quaestiones',
+                subtitle: 'Quaestiones Naturales',
+                date: 'LXII-LXIV p.C.n.',
+                note: 'Septem libri de phenomenis naturalibus: cometis, fulminibus, terrae motibus. Scientiam et philosophiam moralem coniungit.',
+            },
+            clemency: {
+                title: 'De Clementia',
+                subtitle: 'De Clementia',
+                date: 'LV-LVI p.C.n.',
+                note: 'Pro Nerone iuvene scriptum, regnum clementem suadens. Ironicum propter tyrannidem Neronis posteriorem.',
+            },
+            shortness: {
+                title: 'De Brevitate Vitae',
+                subtitle: 'De Brevitate Vitae',
+                date: 'c. XLIX p.C.n.',
+                note: 'Tractatus celebris argumentans vitam satis longam esse si prudenter utimur. Tempus in nugis consumimus.',
+            },
+        },
+
+        rising: {
+            title: 'Iter ad Potestatem',
+            subtitle: 'Ab exilio ad fastigia influentiae imperialis',
+            phase1: 'Pars I: Ascensus et Casus',
+            earlySuccess: 'Successus Senatorius',
+            earlySuccessDesc: 'Per eloquentiam praeclaram in Senatu celeriter ascendit. Eloquentia eius paene Caligulam provocavit ut eum ex invidia occideret.',
+            exile: 'Exilium in Corsica',
+            exileDate: 'XLI p.C.n.',
+            exileTitle: 'Relegatio a Claudio',
+            exileSubtitle: 'Octo anni reflexionis philosophicae',
+            exileDesc: 'Adulterii cum Iulia Livilla, sorore Caligulae, accusatus. In Corsicam sterilem missus. Consolationes philosophicas scripsit et patientiam colebat.',
+            exileTag: 'Punctum Mutationis',
+            exileBtn: 'De Exilio',
+
+            phase2: 'Pars II: Reditus et Influentia',
+            recall: 'Revocatio et Magisterium',
+            recallDesc: 'Agrippina Senecam revocavit ut filium Neronem doceret. Futurum imperatorem rhetoricam, philosophiam et (theoria) clementiam docuit.',
+            quinquennium: 'Quinque Anni Aurei',
+            quinquenniumDesc: 'Cum Praefecto Praetorio Burro, Seneca Romam de facto gubernavit (LIV-LIX p.C.n.). Haec periodus postea ut gubernatio illuminata celebrata est.',
+
+            phase3: 'Pars III: Declinatio et Mors',
+            burrusDeath: 'Mors Burri',
+            burrusDeathDate: 'LXII p.C.n.',
+            burrusDeathDesc: 'Co-gubernator et protector eius mortuus est. Seneca influentiam amisit, otium petivit et secessit ut philosophiam scriberet.',
+            conspiracy: 'Coniuratio Pisoniana',
+            conspiracyDate: 'LXV p.C.n.',
+            conspiracyDesc: 'In coniurationem ad Neronem occidendum implicatus (fortasse falso). Imperator ei mandavit ut suicidium committeret.',
+            death: 'Mors Philosophi',
+            deathDate: 'LXV p.C.n.',
+            deathDesc: 'Morti cum tranquillitate Stoica occurrit. Venas aperuit et mortuus est amicis circumstantibus, ultimas cogitationes dictans. Uxor eius Paulina cum eo mori conata est sed servata est.',
+        },
+
+        quotes: {
+            title: 'Sapientia Aeterna',
+            subtitle: 'Verba quae per aetates resonant',
+            impact: 'Hereditas',
+            brevitas: {
+                quote: 'Non exiguum temporis habemus, sed multum perdidimus.',
+                translation: 'Non temporis exiguitatem habemus, sed multum inde perdidimus.',
+                when: 'De Brevitate Vitae',
+                meaning: 'Cogitatio celeberrima Senecae: vita non brevis est; nos eam brevem facimus tempus in rebus futilibus et distractionibus consumentes.',
+            },
+            vincit: {
+                quote: 'Qui toto se animo in praesens inclinavit, futura invisit.',
+                translation: 'Qui totum animum praesenti dedit, futurum vilem facit.',
+                when: 'Epistulae Morales',
+                meaning: 'Vivere attente in momento praesenti clavis est contentamenti. Ne sacrifices hodiernum pro imaginato crastino.',
+            },
+            fortuna: {
+                quote: 'Ducunt volentem fata, nolentem trahunt.',
+                translation: 'Fata volentem ducunt, nolentem trahunt.',
+                when: 'Epistulae Morales CVII',
+                meaning: 'Doctrina Stoica centralis: non possumus eventus externos regere, sed attitudinem nostram erga illos eligere possumus.',
+            },
+            vita: {
+                quote: 'Nemo diu malus, qui meminit quanti bona constent.',
+                translation: 'Nemo diu malus manet, qui meminit pretium virtutis.',
+                when: 'Epistulae Morales',
+                meaning: 'Malum ex oblivione eorum quae vere important venit. Memoria valoris virtutis naturaliter nos ad bonum ducit.',
+            },
+        },
+
+        philosophy: {
+            title: 'Philosophia Stoica',
+            subtitle: 'Contributio Senecae ad sapientiam antiquam',
+            stoicismTitle: 'Stoicismus Romanus',
+            stoicismDesc: 'Seneca Stoicismum Graecum pro Romanis adaptavit. Dum Stoici Graeci ut Chrysippus in logica se concentraverunt, Seneca ethicam practicam emphasizavit: quomodo virtuose vivere, fatum acceptare et tranquillitatem invenire.',
+            keyTeachings: 'Doctrinae Principales',
+            teachings: [
+                {
+                    title: 'Accepta Quae Non Potes Regere',
+                    desc: 'Distingue inter id quod in potestate tua est (cogitationes, attitudines, reactiones) et quod non est (eventus externi, actiones aliorum). In priore te concentra.',
+                },
+                {
+                    title: 'Tempus Est Nostra Res Pretiosissima',
+                    desc: 'Querimur vitam brevem esse, sed magnam partem in nugis consumimus. Vive deliberate. Quodque momentum valet.',
+                },
+                {
+                    title: 'Paupertatem Exerce Ut Minus Timeas',
+                    desc: 'Regulariter simpliciter vive ut tibi ipsi proves te posse. Hoc metum amittendi divitias et dignitatem removet.',
+                },
+                {
+                    title: 'Ira Est Insania Temporaria',
+                    desc: 'Ira iudicium obscurat et nos facit ea quae postea paenitemus. Cole tranquillitatem per rationem et perspectivam.',
+                },
+                {
+                    title: 'Mors Naturalis Est, Non Mala',
+                    desc: 'De mortalitate meditari non morbide est—nos adiuvat vitam aestimare et morti sine metu occurrere. Revertimur unde venimus.',
+                },
+                {
+                    title: 'Virtus Est Unum Bonum Verum',
+                    desc: 'Divitiae, salus, voluptas—omnia sunt "indifferentia praeferenda". Solum virtus (sapientia, iustitia, fortitudo, moderatio) vere bona est.',
+                },
+            ],
+        },
+
+        timeline: {
+            life: {
+                birth: { title: 'Nativitas Cordubae', note: 'Natus in Hispania in familiam equestrem. Pater fuit rhetor celeberrimus Seneca Maior.' },
+                rome: { title: 'Migravit Romam', note: 'Rhetoricam et philosophiam Stoicam apud Attalum, Sotionem et alios magistros studuit.' },
+                quaestor: { title: 'Ingressus Senatum', note: 'Cursus politicus ut quaestor coepit. Celeriter famam per eloquentiam adeptus est.' },
+                caligula: { title: 'Invidia Caligulae', note: 'Imperator Caligula paene eum occidit, invidus brillantiae rhetoricae eius.' },
+                exile: { title: 'Relegatus in Corsicam', note: 'Adulterii cum Iulia Livilla accusatus. Octo annos in reflexione philosophica egit.' },
+                recall: { title: 'Revocatus ab Agrippina', note: 'Reductus ut Neronem iuvenem doceret. Speravit eum in regem-philosophum formare.' },
+                neroEmperor: { title: 'Nero Imperator Factus', note: 'Cum Burro, Romam de facto gubernavit tempore "Quinquennii Neronis" (LIV-LIX p.C.n.).' },
+                matricide: { title: 'Nero Agrippinam Occidit', note: 'Seneca matricidium publice defendit, macula in reputatione eius.' },
+                burrusDeath: { title: 'Mors Burri', note: 'Protectorem et co-gubernatorem amisit. Influentia decrevit; otium petivit.' },
+                retirement: { title: 'Otium', note: 'Secessit ut philosophiam scriberet. Epistulas et Quaestiones Naturales produxit.' },
+                conspiracy: { title: 'Coniuratio Pisoniana', note: 'In coniurationem ad Neronem occidendum implicatus. Mandatus suicidium committere.' },
+                death: { title: 'Mors', note: 'Venas aperuit. Tranquille mortuus est, amicis circumstantibus, ultimas cogitationes philosophicas dictans.' },
+            },
+        },
+
+        tags: {
+            philosophy: 'Philosophia',
+            literature: 'Litterae',
+            politics: 'Res Publica',
+            ethics: 'Ethica',
+            drama: 'Drama',
+            science: 'Scientia Naturalis',
+            stoicism: 'Stoicismus',
+        },
+
+        horizons: {
+            immediate: 'Immediatus',
+            mediumTerm: 'Medius Terminus',
+            longTerm: 'Diuturnus',
+        },
+    },
 
     // Aliae Textus UI
     minutes: 'min.',
@@ -689,6 +1212,63 @@ export const la = {
             longTerm: 'diuturnum',
             immediate: 'statim',
             mediumTerm: 'medium tempus',
+        },
+    },
+    about: {
+        badge: 'De Hoc Opere',
+        pageTitle: 'De Meo Diario',
+        pageDescription: 'Experire historiam Romanam per oculos protagonistarum. Restitutio KI, fontibus fulta, interactiva.',
+        hero: {
+            title1: 'Historia',
+            title2: 'vitae reddita',
+            description: 'Meum Diarium diaria personalia cum analysi scientifica coniungit historiamque Romanam per technologiam KI recentissimam experiendum praebet.',
+            startExploring: 'Nunc explora',
+            designGuide: 'Norma Designii',
+        },
+        stats: {
+            authors: 'Auctores',
+            entries: 'Lemmata Lexici',
+            languages: 'Linguae',
+            years: 'Anni Historiae',
+        },
+        features: {
+            badge: 'Munera',
+            title: 'Quid Meum Diarium praebet',
+            subtitle: 'Systema amplum ad historiam Romanam studiendam',
+            aiDialogs: 'Colloquia KI',
+            aiDialogsDesc: 'Colloquia historica cum personis Romanis per KI',
+            dualPerspective: 'Perspectiva Duplex',
+            dualPerspectiveDesc: 'Diarium personale et analysis scientifica',
+            trilingual: 'Trilinguis',
+            trilingualDesc: 'Germanice, Anglice et Latine plene disponibilis',
+            sourcesBased: 'Fontibus Fultum',
+            sourcesBasedDesc: 'Omnis contentus in fontibus primariis historicis fundatur',
+            timeline: 'Series Temporum',
+            timelineDesc: '170+ anni historiae Romanae accurate descripti',
+            lexicon: 'Lexicon',
+            lexiconDesc: '92+ lemmata ampla de antiquitate Romana',
+        },
+        authors: {
+            badge: 'Personae',
+            title: 'Voces Romae',
+            subtitle: 'Quinque personae quae Romam antiquam formabant',
+        },
+        methodology: {
+            badge: 'Methodus',
+            title: 'Quomodo laboramus',
+            subtitle: 'Accuratio scientifica cum technologia moderna coniungitur',
+            sources: 'Fontes Primarii',
+            sourcesDesc: 'Omnis contentus in textibus originalibus auctorum Romanorum et documentis historicis fundatur.',
+            analysis: 'Analysis Scientifica',
+            analysisDesc: 'Omne lemma historice contextualizatur et commentario scientifico instruitur.',
+            technology: 'Technologia KI',
+            technologyDesc: 'KI moderna in praesentatione adiuvat historiamque interactive experiendam facit.',
+        },
+        cta: {
+            title: 'Paratus ad historiam detegendam?',
+            description: 'Demittere te in mundum Romae antiquae et experire historiam ipse',
+            start: 'Nunc incipe',
+            lexicon: 'Lexicon percurre',
         },
     },
     common: {

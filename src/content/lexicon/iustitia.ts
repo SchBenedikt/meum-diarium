@@ -1,0 +1,29 @@
+import { LexiconEntry } from '@/types/blog';
+
+const entry: LexiconEntry = {
+    term: "Iustitia",
+    slug: "iustitia",
+    variants: ["Gerechtigkeit", "Rechtschaffenheit"],
+    definition: `Iustitia war die römische Tugend der Gerechtigkeit, Rechtschaffenheit und des gerechten Handelns, fundamental für die römische Rechts- und Staatsauffassung. Sie bezeichnete sowohl die Eigenschaft des gerechten Menschen als auch die abstrakte Idee der Gerechtigkeit. Cicero definierte iustitia als "jedem das Seine geben" (suum cuique tribuere) – die korrekte Zuteilung von Rechten, Pflichten und Strafen. Iustitia war eine der vier Kardinaltugenden (mit prudentia, fortitudo und temperantia) und bildete die Grundlage des römischen Rechtssystems. Sie wurde personifiziert als Göttin Iustitia, dargestellt mit Waage und Schwert. Augustus ließ iustitia auf seinem goldenen Ehrenschild (clipeus virtutis) verzeichnen. Die Römer betrachteten die gerechte Verwaltung eroberter Gebiete als Rechtfertigung ihrer Herrschaft. Iustitia unterschied legitime von tyrannischer Macht. In der Philosophie war iustitia eng mit dem Naturrecht (ius naturale) verbunden.`,
+    category: "Philosophie & Werte",
+    etymology: `Von lateinisch 'iustus' (gerecht, rechtmäßig) → 'iustitia'. Von 'ius' (Recht), verwandt mit 'iubere' (befehlen, anordnen).`,
+    relatedTerms: ["Ius", "Aequitas", "Clementia", "Lex"],
+    translations: {
+        "en": {
+            "term": "Iustitia",
+            "definition": "Iustitia was the Roman virtue of justice, righteousness, and fair dealing, fundamental to Roman concepts of law and state. It denoted both the quality of the just person and the abstract idea of justice. Cicero defined iustitia as 'giving each his due' (suum cuique tribuere) – the correct allocation of rights, duties, and punishments. Iustitia was one of the four cardinal virtues (with prudentia, fortitudo, and temperantia) and formed the basis of the Roman legal system. It was personified as the goddess Iustitia, depicted with scales and sword. Augustus had iustitia inscribed on his golden shield of honor (clipeus virtutis). The Romans regarded just administration of conquered territories as justification for their rule. Iustitia distinguished legitimate from tyrannical power. In philosophy, iustitia was closely linked to natural law (ius naturale).",
+            "etymology": "From Latin 'iustus' (just, lawful) → 'iustitia'. From 'ius' (law), related to 'iubere' (to command, order).",
+            "category": "Philosophy & Values",
+            "variants": ["Justice"]
+        },
+        "la": {
+            "term": "Iustitia",
+            "definition": "Iustitia fuit virtus Romana iustitiae, rectitudinis et actionis iustae, fundamentalis pro conceptibus Romanis iuris et civitatis. Et qualitatem personae iustae et ideam abstractam iustitiae designabat. Cicero iustitiam ut 'suum cuique tribuere' definiebat – allocationem correctam iurium, officiorum et poenarum. Iustitia una ex quattuor virtutibus cardinalibus erat (cum prudentia, fortitudine et temperantia) et basem systematis iuridici Romani formabat. Ut dea Iustitia personificata erat, cum libra et gladio depicta. Augustus iustitiam in scuto aureo honoris sui (clipeus virtutis) inscribi iussit. Romani administrationem iustam territoriorum conquistorum ut iustificationem imperii sui habebant. Iustitia potestatem legitimam a tyrannica distinguebat. In philosophia, iustitia stricte cum iure naturali (ius naturale) coniuncta erat.",
+            "etymology": "A vocabulo Latino 'iustus' (iustus, legitimus) → 'iustitia'. Ab 'ius' (ius), cognatum cum 'iubere' (iubere, ordinare).",
+            "category": "Philosophia et Valores",
+            "variants": []
+        }
+    }
+};
+
+export default entry;
