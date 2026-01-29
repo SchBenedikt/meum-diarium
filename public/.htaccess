@@ -26,27 +26,22 @@
   Header unset X-Powered-By
 </IfModule>
 
-# Enable HTTPS
+# Enable HTTPS and handle all URL rewriting
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  
+  # Force HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
-
-# Remove trailing slashes
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+  
+  # Remove trailing slashes (except for directories)
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)/$ /$1 [L,R=301]
-</IfModule>
-
-# SPA Routing - Serve index.html for all routes
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  # Don't rewrite files or directories
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [L,R=301]
+  
+  # SPA Routing - Serve index.html for all non-file/non-directory routes
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  # Rewrite everything else to index.html to allow client-side routing
   RewriteRule ^ index.html [L]
 </IfModule>
 
