@@ -89,6 +89,36 @@ export default function LandingHero() {
 
       <FeatureShowcase />
 
+      {/* Statistics Section */}
+      <section className="py-16 bg-gradient-to-b from-background to-secondary/20 border-y border-border">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">92+</div>
+              <div className="text-sm text-muted-foreground">{t('landing.stats.lexiconEntries') || 'Lexikon-Einträge'}</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">5</div>
+              <div className="text-sm text-muted-foreground">{t('landing.stats.authors') || 'Historische Autoren'}</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">3</div>
+              <div className="text-sm text-muted-foreground">{t('landing.stats.languages') || 'Sprachen'}</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">170+</div>
+              <div className="text-sm text-muted-foreground">{t('landing.stats.yearsHistory') || 'Jahre Geschichte'}</div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Authors Section */}
       <section id="autoren" className="pt-16 pb-0 bg-background relative border-t border-border">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">

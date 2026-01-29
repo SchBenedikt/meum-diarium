@@ -1,0 +1,29 @@
+import { LexiconEntry } from '@/types/blog';
+
+const entry: LexiconEntry = {
+    term: "Testudo",
+    slug: "testudo",
+    variants: ["Schildkrötenformation"],
+    definition: `Die Testudo (lat. "Schildkröte") war eine defensive Kampfformation römischer Legionäre, bei der die Soldaten ihre großen rechteckigen Schilde (Scutum) so hielten, dass sie rundum und von oben geschützt waren. Die vorderste Reihe hielt die Schilde frontal, die Soldaten an den Seiten hielten sie seitlich, und die inneren Reihen hoben ihre Schilde über die Köpfe, sodass ein geschlossener "Panzer" entstand. Diese Formation war besonders effektiv gegen Geschosswaffen (Pfeile, Speere, Steine) und wurde bei Belagerungen und beim Vorrücken unter Beschuss eingesetzt. Die Testudo erforderte hohe Disziplin und Training.`,
+    category: "Militär",
+    etymology: `Von lateinisch 'testudo' - Schildkröte. Die Formation erinnerte an den schützenden Panzer einer Schildkröte.`,
+    relatedTerms: ["Scutum", "Legion", "Belagerung"],
+    translations: {
+        "en": {
+            "term": "Testudo",
+            "definition": "The testudo (Latin for 'tortoise') was a defensive combat formation of Roman legionaries in which soldiers held their large rectangular shields (scutum) to provide all-around and overhead protection. The front row held shields forward, soldiers on the sides held them sideways, and inner rows raised shields overhead, creating a closed 'armor'. This formation was particularly effective against missile weapons (arrows, spears, stones) and was used in sieges and when advancing under fire. The testudo required high discipline and training.",
+            "etymology": "From Latin 'testudo' - tortoise. The formation resembled a tortoise's protective shell.",
+            "category": "Military",
+            "variants": ["Tortoise Formation"]
+        },
+        "la": {
+            "term": "Testudo",
+            "definition": "Testudo fuit formatio defensiva militum Romanorum in qua milites scuta sua magna rectangularia (scutum) ita tenebant ut circumcirca et superne protecti essent. Primus ordo scuta in fronte tenebat, milites ad latera ea lateraliter tenebant, et ordines interiores scuta super capita elevaverunt, ita ut 'lorica' clausa crearetur. Haec formatio praesertim contra tela missilia (sagittas, hastas, lapides) efficax erat et in obsidionibus et dum sub igne progrederetur adhibebatur. Testudo disciplinam altam et exercitationem requirebat.",
+            "etymology": "A vocabulo Latino 'testudo' - testudo. Formatio testam protectivam testudinis similabat.",
+            "category": "Res Militaris",
+            "variants": []
+        }
+    }
+};
+
+export default entry;

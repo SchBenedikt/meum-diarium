@@ -121,11 +121,41 @@ export const en = {
             description: 'Experience history through the eyes of its protagonists. AI-powered, source-based, interactive.',
             discoverNow: 'Discover now',
             lexicon: 'Lexicon',
+            badge: 'Experience History Anew',
+            title1: 'History',
+            title2: 'brought to life',
+            startJourney: 'Start Journey',
+            exploreLexicon: 'Explore Lexicon',
+            quote: 'Veni, vidi, vici',
+            quoteAuthor: 'Gaius Julius Caesar',
+            feature1: 'Historical AI Dialogues',
+            feature2: 'Comprehensive Lexicon',
+            feature3: 'Interactive Time Travel',
+        },
+        stats: {
+            lexiconEntries: 'Lexicon Entries',
+            authors: 'Historical Authors',
+            languages: 'Languages',
+            yearsHistory: 'Years of History',
+            entries: 'Entries',
+            years: 'Years',
         },
         features: {
-            badge: 'Main Features',
-            title: 'Interactive Features',
-            subtitle: 'Explore history in a completely new way',
+            badge: 'Features',
+            title: 'Everything you need',
+            subtitle: 'A comprehensive platform for studying Roman antiquity',
+            aiChat: 'AI Conversations',
+            aiChatDesc: 'Historical dialogues with Roman personalities',
+            lexiconTitle: 'Lexicon',
+            lexiconDesc: '92+ entries on Roman antiquity',
+            multilingual: 'Multilingual',
+            multilingualDesc: 'German, English and Latin',
+            timelineTitle: 'Timeline',
+            timelineDesc: '170+ years of Roman history',
+            works: 'Works',
+            worksDesc: 'Original works and analyses',
+            authentic: 'Authentic',
+            authenticDesc: 'Source-based and historically sound',
             chat: {
                 title: 'AI Conversations',
                 liveDemo: 'Live Demo',
@@ -191,7 +221,24 @@ export const en = {
             scientificallyProven: 'Scientifically proven',
             recommended: 'Recommended',
             exploreProfile: 'Explore profile',
-        }
+        },
+        authors: {
+            badge: 'Personalities',
+            title: 'Voices of Antiquity',
+            subtitle: 'Discover the diaries and works of the greatest Roman personalities',
+        },
+        recent: {
+            badge: 'Current',
+            title: 'Latest Entries',
+            subtitle: 'The newest posts from the diaries',
+            viewAll: 'View all',
+        },
+        cta: {
+            title: 'Ready for your time travel?',
+            description: 'Start your journey through the fascinating world of ancient Rome now',
+            start: 'Start now',
+            learnMore: 'Learn more',
+        },
     },
 
     noEventsFound: 'No events found for these filters',
@@ -289,6 +336,174 @@ export const en = {
     catilina_timeline_4_year: '62 BC',
     catilina_timeline_4_event: 'Death at the Battle of Pistoria',
 
+    // Catilina Biography Page
+    catilina: {
+        snapshots: {
+            lifespan: 'Lifespan',
+            conspiracy: 'Conspiracy',
+            conspiracyHint: 'Catilinarian Conspiracy',
+            consulElections: 'Consular Elections',
+            supporters: 'Supporters',
+            supportersHint: 'Indebted nobles & veterans',
+            ciceroSpeeches: 'Cicero\'s Speeches',
+            finalBattle: 'Final Battle',
+        },
+        quickFacts: {
+            title: 'Quick Facts',
+        },
+        intro: {
+            paragraph1: 'Lucius Sergius Catilina (108–62 BC) was a Roman patrician from an ancient noble family who went down in history as the leader of the "Catilinarian Conspiracy" named after him. His conspiracy of 63 BC is considered one of the most serious domestic political crises of the late Roman Republic.',
+            paragraph2: 'Catilina came from an impoverished patrician family and embodied the crisis of the Roman nobility: heavily in debt, politically ambitious, but excluded from the established power structures. After several failed applications for the consulship, he organized a conspiracy aimed at overthrowing the existing order.',
+            paragraph3: 'Historically, Catilina is known primarily through Cicero\'s four famous speeches against him ("In Catilinam"), which are among the masterpieces of Roman rhetoric. However, the source situation regarding his person is problematic: almost all information comes from his political opponents, particularly Cicero and Sallust, making it difficult to reconstruct an objective picture of his personality and motives.',
+        },
+        historicalContext: {
+            title: 'Historical Context',
+        },
+        context: {
+            lateRepublic: {
+                title: 'The Late Roman Republic',
+                description: 'Rome in the 1st century BC was a crisis-ridden republic: civil wars, social tensions, power struggles between Optimates and Populares, debt crisis, and the weakening of traditional senatorial rule characterized the period.',
+            },
+            debtCrisis: {
+                title: 'The Nobility\'s Debt Crisis',
+                description: 'Many nobles were heavily in debt due to costly election campaigns, elaborate games and buildings, and Sulla\'s proscriptions. Catilina and his followers demanded debt relief, which was strictly rejected by the Senate.',
+            },
+            sullaLegacy: {
+                title: 'Sulla\'s Legacy',
+                description: 'Catilina had served under the dictator Sulla and had been involved in the proscriptions (death lists). This past damaged his reputation, while at the same time he benefited from Sulla\'s land distributions to veterans.',
+                period: '80s BC',
+            },
+            nobilitas: {
+                title: 'Crisis of the Nobility',
+                description: 'Rome\'s traditional leadership class, the nobility, came under pressure from new men (homines novi) like Cicero, economic problems, and the growing power of individual generals. Catilina represented the desperation of impoverished patricians.',
+                period: 'Since the Gracchi (133 BC)',
+            },
+        },
+        timeline: {
+            title: 'Life Timeline',
+            birth: {
+                title: 'Birth in Rome',
+                description: 'Lucius Sergius Catilina is born into an ancient patrician family. The exact circumstances of his early years are unknown. The Sergii family belonged to the nobility but was economically weakened.',
+            },
+            praetor: {
+                title: 'Praetor in Rome',
+                description: 'Catilina holds the office of praetor, a high judicial and administrative position. Historical details about his activities as praetor are scarcely documented.',
+            },
+            africa: {
+                title: 'Propraetor in Africa',
+                description: 'Catilina is sent as governor (propraetor) to the province of Africa. Upon his return, he is accused of extortion (repetundae), which prevents or delays his first consular candidacy (65 BC).',
+            },
+            firstElection: {
+                title: 'First Electoral Defeat',
+                description: 'Catilina runs for the consulship for the year 63 BC but loses. There are speculative indications of a first coup attempt (the so-called "First Catilinarian Conspiracy" of 65/64 BC), but its historicity is disputed.',
+            },
+            secondElection: {
+                title: 'Second Electoral Defeat',
+                description: 'Catilina runs again for the consulship for 62 BC and loses again – this time to Marcus Tullius Cicero, a homo novus. Defeat by an upstart from a non-noble family is perceived by Catilina as a deep humiliation.',
+            },
+            conspiracyRevealed: {
+                title: 'Exposure of the Conspiracy',
+                description: 'Cicero, now consul, uncovers Catilina\'s plans: assassination attempts on leading senators, arson in Rome, and an armed uprising. On November 8, 63 BC, Cicero delivers his famous first speech "In Catilinam" in the Senate, with Catilina present.',
+            },
+            fleeRome: {
+                title: 'Flight from Rome',
+                description: 'After Cicero\'s devastating accusation, Catilina flees from Rome to his army in Etruria (near Faesulae, now Fiesole). In Rome, five of his co-conspirators are arrested and – after a Senate debate – executed, which would later be highly controversial.',
+            },
+            death: {
+                title: 'Death at Pistoria',
+                description: 'Catilina and his army are confronted by the consuls of 62 BC in the Battle of Pistoria (now Pistoia). He falls in battle. Ancient sources emphasize that he fought bravely to the end and was found among his fallen followers.',
+            },
+        },
+        conspiracy: {
+            title: 'The Catilinarian Conspiracy',
+            outcome: 'Outcome',
+            firstPlot: {
+                title: 'First Coup Attempt (alleged)',
+                description: 'According to Sallust and other sources, there was supposedly a first conspiracy plan as early as 65/64 BC, which however was not executed. The historicity of this "first plot" is disputed in research – possibly a later construction by Catilina\'s enemies.',
+                outcome: 'No secure historical basis; possibly propaganda.',
+            },
+            secondPlot: {
+                title: 'The Main Conspiracy (63 BC)',
+                description: 'After his renewed electoral defeat in 63 BC, Catilina begins concrete coup plans: he gathers supporters – mainly indebted nobles, Sulla\'s veterans, and dissatisfied lower classes. The goal: assassination of leading senators, arson in Rome, debt relief, and reorganization of the state.',
+                outcome: 'Plan partially put into action but uncovered in time by Cicero.',
+            },
+            exposure: {
+                title: 'Exposure by Cicero',
+                year: 'November 63 BC',
+                description: 'Cicero receives information about the conspiracy through Fulvia, the mistress of a conspirator. In four famous speeches ("In Catilinam" I–IV), he publicly accuses Catilina, exposes the conspiracy, and secures a senatus consultum ultimum (emergency decree) granting him extraordinary powers.',
+                outcome: 'Catilina flees from Rome; his co-conspirators are arrested.',
+            },
+            finalStand: {
+                title: 'Final Battle and Death',
+                year: 'Early 62 BC',
+                description: 'Catilina gathers an army of about 3,000 men in Etruria. This force is destroyed by the consuls of 62 BC, Gaius Antonius Hybrida and Marcus Petreius, in the Battle of Pistoria. Catilina falls in battle, and the conspiracy ends definitively.',
+                outcome: 'Complete defeat; Catilina\'s death in battle.',
+            },
+        },
+        ciceroSpeeches: {
+            title: 'Cicero\'s Speeches Against Catilina',
+            description: 'Marcus Tullius Cicero, as consul of 63 BC, delivered four famous speeches against Catilina that are among the highlights of Roman rhetoric and are still regarded today as prime examples of political oratory.',
+            impactLabel: 'Impact',
+            first: {
+                title: 'In Catilinam I (November 8, 63 BC)',
+                date: 'November 8, 63 BC, in the Senate',
+                summary: 'The most famous of the four speeches. Cicero directly attacks Catilina, who is present in the Senate: "Quo usque tandem abutere, Catilina, patientia nostra?" ("How long, Catilina, will you abuse our patience?"). Cicero describes the conspiracy and demands that Catilina leave Rome.',
+                impact: 'Catilina leaves Rome that very night and flees to his army. The speech establishes Cicero as savior of the Republic.',
+            },
+            second: {
+                title: 'In Catilinam II (November 9, 63 BC)',
+                date: 'November 9, 63 BC, before the people',
+                summary: 'One day after the first speech, Cicero addresses the Roman people and explains why he did not have Catilina killed. He characterizes Catilina\'s followers in six categories – from heavily indebted nobles to criminal desperados – and warns of the danger.',
+                impact: 'Mobilization of public opinion against Catilina; strengthening of Cicero\'s position.',
+            },
+            third: {
+                title: 'In Catilinam III (December 3, 63 BC)',
+                date: 'December 3, 63 BC, before the people',
+                summary: 'Cicero reports on the uncovering of an assassination plot against him and the arrest of envoys of the Gallic Allobroges, who were to be recruited by Catilina\'s co-conspirators. He presents written evidence and orders the arrest of the main conspirators.',
+                impact: 'Decisive proof of the conspiracy\'s existence; arrest of the conspirators.',
+            },
+            fourth: {
+                title: 'In Catilinam IV (December 5, 63 BC)',
+                date: 'December 5, 63 BC, in the Senate',
+                summary: 'In the fourth speech, Cicero takes a position on the punishment of the arrested conspirators. He indirectly supports the death penalty (demanded by Cato) against Caesar, who had argued for life imprisonment. The conspirators are executed without proper trial.',
+                impact: 'Execution of the five main conspirators; later point of attack for Cicero\'s opponents (procedure without trial).',
+            },
+        },
+        legacy: {
+            title: 'Historical Significance and Legacy',
+            symbolOfCorruption: 'Symbol of Political Conspiracy',
+            symbolOfCorruptionSummary: 'Catilina became the epitome of the unscrupulous conspirator and the internal enemy of the Republic. His name stands synonymous with coup d\'état, political violence, and the decay of republican virtues.',
+            ciceroRise: 'Cicero\'s Rise',
+            ciceroRiseSummary: 'The successful uncovering and suppression of the conspiracy made Cicero the "pater patriae" (father of the fatherland) and established his fame as defender of the Republic. The speeches against Catilina are considered rhetorical masterpieces.',
+            republicanCrisis: 'Crisis of the Republic',
+            republicanCrisisSummary: 'The conspiracy revealed the deep crisis of the late Republic: social tensions, debt crisis of the nobility, readiness for violence in politics, and the weakening of senatorial authority. It was a harbinger of the coming civil wars.',
+            debtCrisis: 'Debt Crisis and Social Question',
+            debtCrisisSummary: 'Catilina\'s followers were recruited mainly from the indebted and socially declassed. The conspiracy showed that the Republic was unable to solve the socioeconomic problems – a structural problem that Caesar and others would later exploit.',
+        },
+        tags: {
+            politics: 'Politics',
+            rhetoric: 'Rhetoric',
+            history: 'History',
+            economics: 'Economics',
+        },
+        horizons: {
+            longTerm: 'Long-term',
+            mediumTerm: 'Medium-term',
+            immediate: 'Immediate',
+        },
+        sources: {
+            title: 'Historical Sources and Source Criticism',
+            description: 'Our knowledge of Catilina is based almost exclusively on the writings of his political opponents:',
+            cicero: 'Cicero\'s speeches "In Catilinam" and letters – highly biased but contemporary',
+            sallust: 'Sallust\'s monograph "De coniuratione Catilinae" – literarily brilliant but partisan',
+            note: 'Note: A balanced picture of Catilina\'s motives and character is hardly possible due to the one-sided source situation. Many details are disputed or speculative.',
+        },
+        relatedContent: {
+            title: 'More Entries on Catilina',
+        },
+        viewDiary: 'View Diary',
+    },
+
     // Seneca
     seneca_name: 'Seneca the Younger',
     seneca_latinName: 'Lucius Annaeus Seneca',
@@ -310,6 +525,314 @@ export const en = {
     seneca_timeline_3_event: 'De facto ruler of the Empire',
     seneca_timeline_4_year: '65 AD',
     seneca_timeline_4_event: 'Forced Suicide',
+
+    // Seneca Biography Page
+    seneca: {
+        worksSubtitle: 'Philosophical Works and Tragedies',
+        diaryRecent: 'Selected Entries',
+        viewAll: 'View All',
+        readArticle: 'Read Article',
+        readEntry: 'To Diary Entry',
+
+        snapshots: {
+            title: 'Quick Facts',
+            lifespan: 'Lifespan',
+            exile: 'Exile',
+            advisor: 'Advisor to Nero',
+            works: 'Major Works',
+            philosophy: 'Philosophy',
+            death: 'Death',
+        },
+
+        biography: {
+            title: 'Curriculum Vitae',
+            subtitle: 'Life stations, works, and philosophical contributions',
+            earlyLife: 'Early Life',
+            career: 'Career & Exile',
+            neroYears: 'The Nero Years',
+            laterWorks: 'Later Works',
+            fullTimeline: 'View Full Timeline',
+            timelineHint: 'Follow Seneca\'s journey from Corduba to the heights of Roman power',
+        },
+
+        legacy: {
+            title: 'Philosophical Legacy',
+            subtitle: 'Ideas that shaped Western thought',
+            stoicism: 'Stoic Philosophy',
+            stoicismSummary: 'Popularized Stoicism for Roman audiences, making complex Greek philosophy accessible through practical wisdom and personal letters.',
+            moralLetters: 'Moral Letters to Lucilius',
+            moralLettersSummary: '124 letters of philosophical guidance, covering ethics, virtue, death, and how to live well. A masterpiece of ancient wisdom literature.',
+            tragedies: 'Tragic Drama',
+            tragediesSummary: 'Nine surviving tragedies that influenced Renaissance theater and Shakespeare. Explored themes of passion, power, and moral corruption.',
+            ethics: 'Practical Ethics',
+            ethicsSummary: 'Essays on anger, clemency, providence, and the shortness of life. Emphasized self-mastery, tranquility, and acceptance of fate.',
+            naturalPhilosophy: 'Natural Questions',
+            naturalPhilosophySummary: 'Seven books exploring natural phenomena like comets, earthquakes, and lightning. Combined science with moral philosophy.',
+            influence: 'Later Influence',
+            influenceSummary: 'Profoundly influenced Christian thought, Renaissance humanism, and modern psychology. Widely read from antiquity to today.',
+        },
+
+        deepDive: {
+            title: 'Works in Detail',
+            subtitle: 'Major philosophical and literary contributions',
+            lettersDetail: 'The 124 Moral Letters to Lucilius (Epistulae Morales) are Seneca\'s philosophical masterwork. Written in retirement (62-65 AD), they cover every aspect of Stoic living: how to deal with fear, anger, and grief; how to face death; how to find inner peace. Each letter is a gem of practical wisdom.',
+            dialoguesDetail: 'Seneca wrote philosophical dialogues on key topics: On Anger (De Ira), On Clemency (De Clementia), On Providence (De Providentia), and the famous On the Shortness of Life (De Brevitate Vitae). These works made Stoicism practical and accessible.',
+            tragediesDetail: 'Nine tragedies survive: Medea, Phaedra, Oedipus, Thyestes, and others. Unlike Greek tragedy, Seneca\'s plays emphasized psychological horror and moral corruption. They profoundly influenced Elizabethan drama, especially Shakespeare.',
+            impact: 'Impact',
+        },
+
+        polarization: {
+            title: 'A Controversial Figure',
+            subtitle: 'Why opinions about Seneca remain divided',
+            admired: 'Why He Was Admired',
+            admiredPoints: [
+                'Master of Stoic philosophy who made ancient wisdom accessible',
+                'Brilliant writer whose style influenced Latin prose for centuries',
+                'Tried to moderate Nero\'s tyranny and counsel clemency',
+                'His works on ethics and virtue remained timeless',
+                'Faced death with philosophical courage and dignity',
+            ],
+            criticized: 'Why He Was Criticized',
+            criticizedPoints: [
+                'Amassed enormous wealth while preaching against materialism',
+                'Served and enabled Nero\'s early rule despite his crimes',
+                'His philosophy seemed hypocritical given his luxurious lifestyle',
+                'Defended Nero\'s matricide in public speeches',
+                'Possibly implicated in the Pisonian conspiracy against Nero',
+            ],
+        },
+
+        theaters: {
+            title: 'Life Stages & Locations',
+            subtitle: 'From Hispania to the heart of imperial Rome',
+            locationsTitle: 'Places',
+            rolesTitle: 'Roles',
+            mapTitle: 'Seneca\'s World',
+            mapDesc: 'From his birth in Corduba (modern Córdoba, Spain) to his exile in Corsica, and finally to Rome where he served as Nero\'s tutor and advisor.',
+        },
+
+        locations: {
+            corduba: {
+                title: 'Corduba (Hispania)',
+                note: 'Born c. 4 BC into an equestrian family. His father was a famous rhetorician. The family moved to Rome when Seneca was young.',
+            },
+            rome: {
+                title: 'Rome',
+                note: 'Center of his education, political career, and philosophical activity. Studied rhetoric and Stoic philosophy under the finest teachers.',
+            },
+            corsica: {
+                title: 'Corsica (Exile)',
+                note: 'Exiled 41-49 AD by Claudius, allegedly for adultery with Julia Livilla. Wrote philosophical consolations during this period.',
+            },
+            court: {
+                title: 'Imperial Court',
+                note: 'Returned 49 AD to tutor young Nero. Became de facto co-ruler of Rome (54-62 AD) with Burrus during Nero\'s "Quinquennium Neronis."',
+            },
+        },
+
+        roles: {
+            philosopher: {
+                title: 'Stoic Philosopher',
+                years: 'Lifelong',
+                note: 'Student of Attalus, Sotion, and other Stoics. Developed a practical, Roman version of Stoicism focused on ethics and virtue.',
+            },
+            senator: {
+                title: 'Senator & Orator',
+                years: '31-41 AD',
+                note: 'Rose to prominence in the Senate with brilliant speeches. His success aroused Caligula\'s jealousy and nearly cost him his life.',
+            },
+            exile: {
+                title: 'Exile on Corsica',
+                years: '41-49 AD',
+                note: 'Eight years of banishment. Wrote philosophical works including consolations to his mother Helvia and to Polybius.',
+            },
+            tutor: {
+                title: 'Tutor to Nero',
+                years: '49-54 AD',
+                note: 'Recalled by Agrippina to educate her son Nero. Taught him rhetoric, philosophy, and (ostensibly) virtue and clemency.',
+            },
+            advisor: {
+                title: 'Imperial Advisor',
+                years: '54-62 AD',
+                note: 'With Burrus, effectively governed Rome during Nero\'s early reign. This period was later celebrated as the "Quinquennium Neronis."',
+            },
+            retirement: {
+                title: 'Retirement & Writing',
+                years: '62-65 AD',
+                note: 'Withdrew from public life after Burrus\' death. Devoted himself to philosophy, writing the Moral Letters and Natural Questions.',
+            },
+        },
+
+        works: {
+            title: 'Major Works',
+            subtitle: 'Philosophy, drama, and natural science',
+            moralLetters: {
+                title: 'Epistulae Morales ad Lucilium',
+                subtitle: 'Moral Letters to Lucilius',
+                date: '62-65 AD',
+                note: '124 philosophical letters covering all aspects of Stoic ethics. His masterwork and most influential text.',
+            },
+            dialogues: {
+                title: 'Dialogi',
+                subtitle: 'Philosophical Dialogues',
+                date: '41-64 AD',
+                note: 'Ten dialogues including On Anger, On Clemency, On Providence, and On the Shortness of Life.',
+            },
+            tragedies: {
+                title: 'Tragoediae',
+                subtitle: 'Nine Tragedies',
+                date: 'Various dates',
+                note: 'Medea, Phaedra, Oedipus, Thyestes, Hercules Furens, Troades, Phoenissae, Agamemnon, Hercules Oetaeus.',
+            },
+            naturalQuestions: {
+                title: 'Naturales Quaestiones',
+                subtitle: 'Natural Questions',
+                date: '62-64 AD',
+                note: 'Seven books on natural phenomena: comets, lightning, earthquakes. Combines science and moral philosophy.',
+            },
+            clemency: {
+                title: 'De Clementia',
+                subtitle: 'On Clemency',
+                date: '55-56 AD',
+                note: 'Written for young Nero, advocating merciful rule. Ironic given Nero\'s later tyranny.',
+            },
+            shortness: {
+                title: 'De Brevitate Vitae',
+                subtitle: 'On the Shortness of Life',
+                date: 'c. 49 AD',
+                note: 'Famous essay arguing that life is long enough if we use it wisely. We waste time on trivialities.',
+            },
+        },
+
+        rising: {
+            title: 'Path to Power',
+            subtitle: 'From exile to the heights of imperial influence',
+            phase1: 'Phase 1: Rise & Fall',
+            earlySuccess: 'Senatorial Success',
+            earlySuccessDesc: 'Rose rapidly in the Senate through brilliant oratory. His eloquence nearly provoked Caligula to execute him out of jealousy.',
+            exile: 'Exile to Corsica',
+            exileDate: '41 AD',
+            exileTitle: 'Banishment by Claudius',
+            exileSubtitle: 'Eight years of philosophical reflection',
+            exileDesc: 'Accused of adultery with Julia Livilla, Caligula\'s sister. Sent to barren Corsica. Wrote philosophical consolations and cultivated patience.',
+            exileTag: 'Turning Point',
+            exileBtn: 'About the Exile',
+
+            phase2: 'Phase 2: Return & Influence',
+            recall: 'Recall and Tutorship',
+            recallDesc: 'Agrippina recalled Seneca to tutor her son Nero. He taught the future emperor rhetoric, philosophy, and (in theory) clemency.',
+            quinquennium: 'The Golden Five Years',
+            quinquenniumDesc: 'With Praetorian Prefect Burrus, Seneca effectively ruled Rome (54-59 AD). This period was later celebrated as enlightened governance.',
+
+            phase3: 'Phase 3: Decline & Death',
+            burrusDeath: 'Death of Burrus',
+            burrusDeathDate: '62 AD',
+            burrusDeathDesc: 'His co-ruler and protector died. Seneca lost influence, requested retirement, and withdrew to write philosophy.',
+            conspiracy: 'Pisonian Conspiracy',
+            conspiracyDate: '65 AD',
+            conspiracyDesc: 'Implicated (possibly falsely) in a plot to assassinate Nero. The emperor ordered him to commit suicide.',
+            death: 'The Death of a Philosopher',
+            deathDate: '65 AD',
+            deathDesc: 'Faced death with Stoic calm. Opened his veins and died surrounded by friends, dictating his final thoughts. His wife Paulina tried to die with him but was saved.',
+        },
+
+        quotes: {
+            title: 'Timeless Wisdom',
+            subtitle: 'Words that echo through the ages',
+            impact: 'Legacy',
+            brevitas: {
+                quote: 'Non exiguum temporis habemus, sed multum perdidimus.',
+                translation: 'It is not that we have a short time to live, but that we waste much of it.',
+                when: 'De Brevitate Vitae',
+                meaning: 'Seneca\'s most famous insight: life isn\'t short; we make it so by squandering time on trivial pursuits and distractions.',
+            },
+            vincit: {
+                quote: 'Qui toto se animo in praesens inclinavit, futura invisit.',
+                translation: 'He who has given himself entirely to the present makes the future worthless.',
+                when: 'Epistulae Morales',
+                meaning: 'Living mindfully in the present moment is the key to contentment. Don\'t sacrifice today for an imagined tomorrow.',
+            },
+            fortuna: {
+                quote: 'Ducunt volentem fata, nolentem trahunt.',
+                translation: 'Fate leads the willing and drags along the reluctant.',
+                when: 'Epistulae Morales 107',
+                meaning: 'A core Stoic teaching: we cannot control external events, but we can choose our attitude toward them.',
+            },
+            vita: {
+                quote: 'Nemo diu malus, qui meminit quanti bona constent.',
+                translation: 'No one remains wicked long, who remembers the price of virtue.',
+                when: 'Epistulae Morales',
+                meaning: 'Evil comes from forgetfulness of what truly matters. Remembering virtue\'s value naturally leads us to good.',
+            },
+        },
+
+        philosophy: {
+            title: 'Stoic Philosophy',
+            subtitle: 'Seneca\'s contribution to ancient wisdom',
+            stoicismTitle: 'Roman Stoicism',
+            stoicismDesc: 'Seneca adapted Greek Stoicism for Roman audiences. While Greek Stoics like Chrysippus focused on logic, Seneca emphasized practical ethics: how to live virtuously, accept fate, and find tranquility.',
+            keyTeachings: 'Key Teachings',
+            teachings: [
+                {
+                    title: 'Accept What You Cannot Control',
+                    desc: 'Distinguish between what is in your power (your thoughts, attitudes, reactions) and what is not (external events, other people\'s actions). Focus on the former.',
+                },
+                {
+                    title: 'Time is Our Most Precious Resource',
+                    desc: 'We complain life is short, yet we waste vast amounts on trivialities. Live deliberately. Every moment counts.',
+                },
+                {
+                    title: 'Practice Poverty to Fear It Less',
+                    desc: 'Periodically live simply to prove to yourself that you can. This removes fear of losing wealth and status.',
+                },
+                {
+                    title: 'Anger is Temporary Madness',
+                    desc: 'Anger clouds judgment and makes us do things we later regret. Cultivate calm through reason and perspective.',
+                },
+                {
+                    title: 'Death is Natural, Not Evil',
+                    desc: 'Meditating on mortality isn\'t morbid—it helps us appreciate life and face death without fear. We return to where we came from.',
+                },
+                {
+                    title: 'Virtue is the Only True Good',
+                    desc: 'Wealth, health, pleasure—all are "preferred indifferents." Only virtue (wisdom, justice, courage, moderation) is truly good.',
+                },
+            ],
+        },
+
+        timeline: {
+            life: {
+                birth: { title: 'Birth in Corduba', note: 'Born in Hispania to a family of equestrians. Father was the famous rhetorician Seneca the Elder.' },
+                rome: { title: 'Moved to Rome', note: 'Studied rhetoric and Stoic philosophy under Attalus, Sotion, and other masters.' },
+                quaestor: { title: 'Entered the Senate', note: 'Began political career as quaestor. Quickly gained fame for his oratory.' },
+                caligula: { title: 'Caligula\'s Jealousy', note: 'Emperor Caligula nearly executed him, jealous of his rhetorical brilliance.' },
+                exile: { title: 'Exiled to Corsica', note: 'Accused of adultery with Julia Livilla. Spent eight years in philosophical reflection.' },
+                recall: { title: 'Recalled by Agrippina', note: 'Brought back to tutor young Nero. Hoped to shape him into a philosopher-king.' },
+                neroEmperor: { title: 'Nero Becomes Emperor', note: 'With Burrus, effectively governed Rome during the "Quinquennium Neronis" (54-59 AD).' },
+                matricide: { title: 'Nero Kills Agrippina', note: 'Seneca defended the matricide publicly, a stain on his reputation.' },
+                burrusDeath: { title: 'Death of Burrus', note: 'Lost his protector and co-ruler. Influence waned; requested retirement.' },
+                retirement: { title: 'Retirement', note: 'Withdrew to write philosophy. Produced Moral Letters and Natural Questions.' },
+                conspiracy: { title: 'Pisonian Conspiracy', note: 'Implicated in plot to assassinate Nero. Ordered to commit suicide.' },
+                death: { title: 'Death', note: 'Opened his veins. Died calmly, surrounded by friends, dictating final philosophical thoughts.' },
+            },
+        },
+
+        tags: {
+            philosophy: 'Philosophy',
+            literature: 'Literature',
+            politics: 'Politics',
+            ethics: 'Ethics',
+            drama: 'Drama',
+            science: 'Natural Science',
+            stoicism: 'Stoicism',
+        },
+
+        horizons: {
+            immediate: 'Immediate',
+            mediumTerm: 'Medium-term',
+            longTerm: 'Long-lasting',
+        },
+    },
 
     // Additional UI texts
     minutes: 'min',
@@ -692,6 +1215,63 @@ export const en = {
             longTerm: 'long-term',
             immediate: 'immediate',
             mediumTerm: 'medium-term',
+        },
+    },
+    about: {
+        badge: 'About The Project',
+        pageTitle: 'About Meum Diarium',
+        pageDescription: 'Experience Roman history through the eyes of its protagonists. AI-powered, source-based, interactive.',
+        hero: {
+            title1: 'History',
+            title2: 'brought to life',
+            description: 'Meum Diarium combines personal diaries with scientific analysis and makes Roman history experienceable through cutting-edge AI technology.',
+            startExploring: 'Start exploring',
+            designGuide: 'Design Guide',
+        },
+        stats: {
+            authors: 'Authors',
+            entries: 'Lexicon Entries',
+            languages: 'Languages',
+            years: 'Years of History',
+        },
+        features: {
+            badge: 'Features',
+            title: 'What Meum Diarium offers',
+            subtitle: 'A comprehensive platform for studying Roman history',
+            aiDialogs: 'AI Dialogues',
+            aiDialogsDesc: 'Historical conversations with Roman personalities through AI',
+            dualPerspective: 'Dual Perspective',
+            dualPerspectiveDesc: 'Personal diary and scientific analysis',
+            trilingual: 'Trilingual',
+            trilingualDesc: 'German, English and Latin fully available',
+            sourcesBased: 'Source-Based',
+            sourcesBasedDesc: 'All content is based on historical primary sources',
+            timeline: 'Timeline',
+            timelineDesc: '170+ years of Roman history in detail',
+            lexicon: 'Lexicon',
+            lexiconDesc: '92+ comprehensive entries on Roman antiquity',
+        },
+        authors: {
+            badge: 'Personalities',
+            title: 'The Voices of Rome',
+            subtitle: 'Five personalities who shaped ancient Rome',
+        },
+        methodology: {
+            badge: 'Methodology',
+            title: 'How we work',
+            subtitle: 'Scientific accuracy meets modern technology',
+            sources: 'Primary Sources',
+            sourcesDesc: 'All content is based on original texts by Roman authors and historical documents.',
+            analysis: 'Scientific Analysis',
+            analysisDesc: 'Every entry is historically contextualized and provided with scientific commentary.',
+            technology: 'AI Technology',
+            technologyDesc: 'Modern AI assists in presentation and makes history interactively experienceable.',
+        },
+        cta: {
+            title: 'Ready to discover history?',
+            description: 'Immerse yourself in the world of ancient Rome and experience history firsthand',
+            start: 'Start now',
+            lexicon: 'Browse Lexicon',
         },
     },
     common: {

@@ -120,6 +120,25 @@ export const authors: Record<string, AuthorInfo> = {
     heroImage: '/images/seneca-hero.jpg',
     theme: 'theme-cicero', // Fallback theme
     color: 'hsl(140, 40%, 40%)',
-    highlights: [],
+    highlights: [
+      {
+        title: 'Epistulae Morales',
+        description: '124 Briefe über Ethik – Zeitlose stoische Weisheit.',
+        link: '/seneca/works/epistulae-morales',
+        icon: 'scroll'
+      },
+      {
+        title: 'De Brevitate Vitae',
+        description: 'Über die Kürze des Lebens – Ein Essay über Zeitnutzung.',
+        link: '/seneca/works/de-brevitate-vitae',
+        icon: 'clock'
+      },
+      {
+        title: 'De Clementia',
+        description: 'Über die Milde – Ein Fürstenspiegel für Nero.',
+        link: '/seneca/works/de-clementia',
+        icon: 'heart'
+      }
+    ],
   },
 };
