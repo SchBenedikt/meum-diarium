@@ -35,6 +35,7 @@
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
+    "standalone",
     "minimal-ui"
   ],
   "orientation": "any",
@@ -48,6 +49,12 @@
   "dir": "ltr",
   "lang": "de-DE",
   "id": "/",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
   "shortcuts": [
     {
       "name": "Zeitstrahl",
@@ -103,7 +110,17 @@
       "src": "/screenshots/desktop-1.png",
       "type": "image/png",
       "sizes": "1920x1080",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "Meum Diarium Startseite"
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
