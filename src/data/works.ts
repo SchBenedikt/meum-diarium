@@ -181,4 +181,47 @@ export const works: Record<string, Work> = {
         ],
         translations: {}
     },
+
+    // Seneca
+    'epistulae-morales': {
+        title: 'Epistulae Morales ad Lucilium',
+        author: 'seneca',
+        year: '62 – 65 n. Chr.',
+        summary: 'Senecas philosophisches Hauptwerk: 124 Briefe über stoische Ethik an seinen Freund Lucilius.',
+        takeaway: 'Ein zeitloses Handbuch für ein gutes Leben.',
+        structure: [
+            { title: 'Briefe 1–29', content: 'Grundlagen der Ethik' },
+            { title: 'Briefe 30–65', content: 'Praktische Weisheit' },
+            { title: 'Briefe 66–92', content: 'Vertiefung und Fortschritt' },
+            { title: 'Briefe 93–124', content: 'Fortgeschrittene Themen' }
+        ],
+        translations: {}
+    },
+    'de-brevitate-vitae': {
+        title: 'De Brevitate Vitae',
+        author: 'seneca',
+        year: 'ca. 49 n. Chr.',
+        summary: 'Senecas berühmter Essay über die Kürze des Lebens.',
+        takeaway: 'Das Leben ist lang genug, wenn wir es weise nutzen.',
+        structure: [
+            { title: 'Kap. 1–7', content: 'Ist das Leben wirklich zu kurz?' },
+            { title: 'Kap. 8–13', content: 'Wie wir Zeit verschwenden' },
+            { title: 'Kap. 14–19', content: 'Das Leben der Philosophen' },
+            { title: 'Kap. 20', content: 'Lebe jetzt, nutze jeden Moment' }
+        ],
+        translations: {}
+    },
+    'de-clementia': {
+        title: 'De Clementia',
+        author: 'seneca',
+        year: '55 – 56 n. Chr.',
+        summary: 'Senecas politisch-philosophische Schrift über Milde in der Herrschaft, für Nero geschrieben.',
+        takeaway: 'Ein Fürstenspiegel: Herrschaft durch Milde, nicht Terror.',
+        structure: [
+            { title: 'Buch I, Kap. 1–9', content: 'Definition der Clementia' },
+            { title: 'Buch I, Kap. 10–26', content: 'Warum Milde besser ist' },
+            { title: 'Buch II', content: 'Praktische Anwendung' }
+        ],
+        translations: {}
+    },
 };
