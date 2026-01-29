@@ -33,6 +33,9 @@ const WorkEditorPage = lazy(() => import("./pages/WorkEditorPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const DesignGuidePage = lazy(() => import("./pages/DesignGuidePage"));
 const LoadingDemoPage = lazy(() => import("./pages/LoadingDemoPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const ImprintPage = lazy(() => import("./pages/ImprintPage"));
+const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -104,6 +107,9 @@ const AppContent = () => {
             <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
             <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
             <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
+            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+            <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
+            <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
             <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>

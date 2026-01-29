@@ -1,8 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { BookOpen, Award, Users, Scroll, Clock, Sparkles, Globe2, Zap, Shield, Target, TrendingUp, Code, Palette, BookMarked } from 'lucide-react';
+import { BookOpen, Users, Clock, Sparkles, Globe2, Zap, Shield, Target, Code, BookMarked } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { authors as baseAuthors } from '@/data/authors';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -54,54 +53,6 @@ export function GeneralAboutPageNew() {
       title: t('about.features.lexicon') || 'Lexikon',
       description: t('about.features.lexiconDesc') || '92+ umfassende Einträge zur römischen Antike',
       gradient: 'from-red-500/20 to-red-500/5',
-    },
-  ];
-
-  const authors_list = [
-    {
-      id: 'caesar',
-      name: 'Gaius Julius Caesar',
-      title: 'Dictator Perpetuo',
-      years: '100 – 44 v. Chr.',
-      description: 'Feldherr, Staatsmann und Schriftsteller',
-      image: '/images/caesar-hero.jpg',
-      color: 'hsl(25, 95%, 53%)',
-    },
-    {
-      id: 'cicero',
-      name: 'Marcus Tullius Cicero',
-      title: 'Consul, Orator',
-      years: '106 – 43 v. Chr.',
-      description: 'Redner, Philosoph und Verteidiger der Republik',
-      image: '/images/cicero-hero.jpg',
-      color: 'hsl(210, 80%, 50%)',
-    },
-    {
-      id: 'augustus',
-      name: 'Augustus',
-      title: 'Princeps',
-      years: '63 v. Chr. – 14 n. Chr.',
-      description: 'Erster römischer Kaiser und Friedensbringer',
-      image: '/images/augustus-hero.jpg',
-      color: 'hsl(280, 70%, 55%)',
-    },
-    {
-      id: 'seneca',
-      name: 'Lucius Annaeus Seneca',
-      title: 'Philosophus Stoicus',
-      years: '4 v. Chr. – 65 n. Chr.',
-      description: 'Stoischer Philosoph und Staatsmann',
-      image: '/images/seneca-hero.jpg',
-      color: 'hsl(140, 40%, 40%)',
-    },
-    {
-      id: 'catilina',
-      name: 'Lucius Sergius Catilina',
-      title: 'Coniurator',
-      years: '108 – 62 v. Chr.',
-      description: 'Verschwörer gegen die Republik',
-      image: '/images/catilina-hero.jpg',
-      color: 'hsl(0, 70%, 40%)',
     },
   ];
 
@@ -243,63 +194,6 @@ export function GeneralAboutPageNew() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Authors Section */}
-        <section className="py-20 bg-gradient-to-b from-background to-secondary/20 border-y border-border">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <Badge variant="outline" className="mb-4 py-2 px-4 text-xs uppercase tracking-[0.2em]">
-                {t('about.authors.badge') || 'Persönlichkeiten'}
-              </Badge>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-                {t('about.authors.title') || 'Die Stimmen Roms'}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                {t('about.authors.subtitle') || 'Fünf Persönlichkeiten, die das antike Rom prägten'}
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {authors_list.map((author, i) => (
-                <motion.div
-                  key={author.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <Link to={`/${author.id}/about`}>
-                    <div className="group relative rounded-2xl overflow-hidden border border-border bg-card transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1">
-                      <div className="aspect-[4/3] relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                        <img
-                          src={author.image}
-                          alt={author.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          onError={(e) => {
-                            e.currentTarget.src = 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?w=800&h=600&fit=crop';
-                          }}
-                        />
-                      </div>
-                      <div className="p-6">
-                        <h3 className="font-bold text-xl mb-1">{author.name}</h3>
-                        <p className="text-sm text-primary mb-2">{author.title}</p>
-                        <p className="text-sm text-muted-foreground mb-3">{author.years}</p>
-                        <p className="text-sm text-muted-foreground">{author.description}</p>
-                      </div>
-                    </div>
-                  </Link>
                 </motion.div>
               ))}
             </div>
