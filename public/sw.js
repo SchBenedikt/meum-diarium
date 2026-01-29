@@ -1,6 +1,7 @@
-const CACHE_NAME = 'meum-diarium-v2';
-const RUNTIME_CACHE = 'runtime-cache-v2';
-const OFFLINE_CACHE = 'offline-content-v1';
+const CACHE_NAME = 'meum-diarium-v3';
+const RUNTIME_CACHE = 'runtime-cache-v3';
+const OFFLINE_CACHE = 'offline-content-v2';
+const IMAGES_CACHE = 'images-cache-v1';
 
 // Assets to cache on install (Core UI)
 const PRECACHE_ASSETS = [
@@ -12,6 +13,13 @@ const PRECACHE_ASSETS = [
   '/icons/favicon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
+  '/placeholder.svg',
+  // Hero images for authors
+  '/images/caesar-hero.jpg',
+  '/images/cicero-hero.jpg',
+  '/images/augustus-hero.jpg',
+  '/images/seneca-hero.jpg',
+  '/images/catilina-hero.jpg',
 ];
 
 // Install event - precache essential UI assets
@@ -30,7 +38,12 @@ self.addEventListener('activate', (event) => {
       caches.keys().then(cacheNames => {
         return Promise.all(
           cacheNames
-            .filter(name => name !== CACHE_NAME && name !== RUNTIME_CACHE && name !== OFFLINE_CACHE)
+            .filter(name => 
+              name !== CACHE_NAME && 
+              name !== RUNTIME_CACHE && 
+              name !== OFFLINE_CACHE &&
+              name !== IMAGES_CACHE
+            )
             .map(name => caches.delete(name))
         );
       }),
@@ -126,6 +139,29 @@ self.addEventListener('fetch', (event) => {
 
   // Skip cross-origin requests
   if (url.origin !== location.origin) return;
+
+  // Handle images separately with longer cache duration
+  if (request.destination === 'image' || /\.(jpg|jpeg|png|gif|svg|webp|ico)$/i.test(url.pathname)) {
+    event.respondWith(
+      caches.match(request).then(cachedResponse => {
+        if (cachedResponse) return cachedResponse;
+
+        return fetch(request).then(response => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(IMAGES_CACHE).then(cache => {
+              cache.put(request, responseClone);
+            });
+          }
+          return response;
+        }).catch(() => {
+          // Return placeholder for offline images
+          return caches.match('/placeholder.svg');
+        });
+      })
+    );
+    return;
+  }
 
   // Network first for Everything except static assets
   // This ensures fresh content when online, but falls back to cache when offline
