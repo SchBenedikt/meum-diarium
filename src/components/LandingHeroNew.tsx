@@ -29,7 +29,7 @@ export default function LandingHeroNew() {
     },
     {
       icon: Library,
-      title: t('landing.features.lexicon') || 'Lexikon',
+      title: t('landing.features.lexiconTitle') || 'Lexikon',
       description: t('landing.features.lexiconDesc') || '92+ Einträge zur römischen Antike',
       color: 'from-blue-500/20 to-blue-500/10',
     },
@@ -41,7 +41,7 @@ export default function LandingHeroNew() {
     },
     {
       icon: Clock,
-      title: t('landing.features.timeline') || 'Zeitstrahl',
+      title: t('landing.features.timelineTitle') || 'Zeitstrahl',
       description: t('landing.features.timelineDesc') || '170+ Jahre römische Geschichte',
       color: 'from-purple-500/20 to-purple-500/10',
     },
