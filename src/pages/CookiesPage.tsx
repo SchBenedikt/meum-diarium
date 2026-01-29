@@ -1,5 +1,4 @@
 import { Footer } from '@/components/layout/Footer';
-import { useLanguage } from '@/context/LanguageContext';
 import { SEO } from '@/components/SEO';
 import { Cookie, CheckCircle2, XCircle, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -7,13 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 
 export default function CookiesPage() {
-  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={t('cookies.pageTitle') || 'Cookie-Richtlinien - Meum Diarium'}
-        description={t('cookies.pageDescription') || 'Informationen zur Verwendung von Cookies auf Meum Diarium.'}
+        title='Cookie-Richtlinien - Meum Diarium'
+        description='Informationen zur Verwendung von Cookies auf Meum Diarium.'
       />
 
       <main className="flex-1">
@@ -33,19 +31,19 @@ export default function CookiesPage() {
             >
               <Badge variant="outline" className="mb-6 py-2 px-4 text-xs uppercase tracking-[0.2em]">
                 <Cookie className="mr-2 h-4 w-4" />
-                {t('cookies.badge') || 'Cookie-Richtlinien'}
+                Cookie-Richtlinien
               </Badge>
 
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-                {t('cookies.title') || 'Cookie-Richtlinien'}
+                Cookie-Richtlinien
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('cookies.subtitle') || 'Wie wir Cookies auf dieser Website verwenden'}
+                Wie wir Cookies auf dieser Website verwenden
               </p>
 
               <p className="text-sm text-muted-foreground mt-4">
-                {t('cookies.lastUpdated') || 'Stand'}: {new Date().toLocaleDateString('de-DE')}
+                Stand: {new Date().toLocaleDateString('de-DE')}
               </p>
             </motion.div>
           </div>
@@ -66,10 +64,10 @@ export default function CookiesPage() {
                   <CheckCircle2 className="w-8 h-8 text-green-500 flex-shrink-0 mt-1" />
                   <div>
                     <h2 className="text-xl font-bold mb-3 text-green-700 dark:text-green-400">
-                      {t('cookies.summary.title') || 'Gute Nachricht!'}
+                      Gute Nachricht!
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      {t('cookies.summary.text') || 'Meum Diarium verwendet keine Tracking-Cookies oder Analyse-Tools. Wir setzen ausschließlich technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich sind. Diese dienen nur der Speicherung Ihrer Präferenzen wie Sprache und Theme.'}
+                      Meum Diarium verwendet keine Tracking-Cookies oder Analyse-Tools. Wir setzen ausschließlich technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich sind. Diese dienen nur der Speicherung Ihrer Präferenzen wie Sprache und Theme.
                     </p>
                   </div>
                 </div>
@@ -79,17 +77,17 @@ export default function CookiesPage() {
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <Cookie className="w-6 h-6 text-primary" />
-                  {t('cookies.what.title') || 'Was sind Cookies?'}
+                  Was sind Cookies?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('cookies.what.text') || 'Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Präferenzen über einen bestimmten Zeitraum zu speichern, sodass Sie diese nicht bei jedem Besuch erneut eingeben müssen.'}
+                  Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Präferenzen über einen bestimmten Zeitraum zu speichern, sodass Sie diese nicht bei jedem Besuch erneut eingeben müssen.
                 </p>
               </div>
 
               {/* Cookie Types */}
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold">
-                  {t('cookies.types.title') || 'Welche Cookies verwenden wir?'}
+                  Welche Cookies verwenden wir?
                 </h2>
 
                 {/* Essential Cookies */}
@@ -100,40 +98,40 @@ export default function CookiesPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">
-                        {t('cookies.types.essential.title') || 'Notwendige Cookies'}
+                        Notwendige Cookies
                       </h3>
                       <Badge variant="outline" className="mb-3 text-xs">
-                        {t('cookies.types.essential.status') || 'Immer aktiv'}
+                        Immer aktiv
                       </Badge>
                     </div>
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    {t('cookies.types.essential.description') || 'Diese Cookies sind für den Betrieb der Website unbedingt erforderlich und können nicht deaktiviert werden. Sie dienen ausschließlich technischen Zwecken.'}
+                    Diese Cookies sind für den Betrieb der Website unbedingt erforderlich und können nicht deaktiviert werden. Sie dienen ausschließlich technischen Zwecken.
                   </p>
 
                   <div className="mt-6 space-y-4">
                     <div className="p-4 rounded-xl bg-secondary/20">
                       <h4 className="font-semibold mb-2 text-sm">
-                        {t('cookies.types.essential.preference.title') || 'Präferenz-Speicherung'}
+                        Präferenz-Speicherung
                       </h4>
                       <p className="text-sm text-muted-foreground mb-2">
-                        {t('cookies.types.essential.preference.purpose') || 'Zweck: Speicherung Ihrer Sprachauswahl, Theme-Einstellungen und ausgewählten Autors'}
+                        Zweck: Speicherung Ihrer Sprachauswahl, Theme-Einstellungen und ausgewählten Autors
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {t('cookies.types.essential.preference.storage') || 'Speicherort: Browser Local Storage'}
+                        Speicherort: Browser Local Storage
                       </p>
                     </div>
 
                     <div className="p-4 rounded-xl bg-secondary/20">
                       <h4 className="font-semibold mb-2 text-sm">
-                        {t('cookies.types.essential.session.title') || 'Session-Cookies'}
+                        Session-Cookies
                       </h4>
                       <p className="text-sm text-muted-foreground mb-2">
-                        {t('cookies.types.essential.session.purpose') || 'Zweck: Aufrechterhaltung Ihrer Sitzung während des Besuchs'}
+                        Zweck: Aufrechterhaltung Ihrer Sitzung während des Besuchs
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {t('cookies.types.essential.session.duration') || 'Gültigkeit: Bis zum Schließen des Browsers'}
+                        Gültigkeit: Bis zum Schließen des Browsers
                       </p>
                     </div>
                   </div>
@@ -147,16 +145,16 @@ export default function CookiesPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">
-                        {t('cookies.types.analytics.title') || 'Analyse-Cookies'}
+                        Analyse-Cookies
                       </h3>
                       <Badge variant="outline" className="mb-3 text-xs border-red-500/30">
-                        {t('cookies.types.analytics.status') || 'Nicht verwendet'}
+                        Nicht verwendet
                       </Badge>
                     </div>
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed">
-                    {t('cookies.types.analytics.description') || 'Wir verwenden keine Cookies für Analysen, Tracking oder Werbezwecke. Tools wie Google Analytics, Facebook Pixel oder ähnliche Dienste werden nicht eingesetzt.'}
+                    Wir verwenden keine Cookies für Analysen, Tracking oder Werbezwecke. Tools wie Google Analytics, Facebook Pixel oder ähnliche Dienste werden nicht eingesetzt.
                   </p>
                 </div>
 
@@ -168,16 +166,16 @@ export default function CookiesPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">
-                        {t('cookies.types.marketing.title') || 'Marketing-Cookies'}
+                        Marketing-Cookies
                       </h3>
                       <Badge variant="outline" className="mb-3 text-xs border-red-500/30">
-                        {t('cookies.types.marketing.status') || 'Nicht verwendet'}
+                        Nicht verwendet
                       </Badge>
                     </div>
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed">
-                    {t('cookies.types.marketing.description') || 'Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein.'}
+                    Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein.
                   </p>
                 </div>
               </div>
@@ -186,37 +184,37 @@ export default function CookiesPage() {
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <Settings className="w-6 h-6 text-primary" />
-                  {t('cookies.control.title') || 'Cookie-Einstellungen verwalten'}
+                  Cookie-Einstellungen verwalten
                 </h2>
                 
                 <div className="space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
-                    {t('cookies.control.browser.text') || 'Sie können Cookies in Ihren Browser-Einstellungen jederzeit verwalten, blockieren oder löschen:'}
+                    Sie können Cookies in Ihren Browser-Einstellungen jederzeit verwalten, blockieren oder löschen:
                   </p>
 
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span><strong>Chrome:</strong> {t('cookies.control.chrome') || 'Einstellungen → Datenschutz und Sicherheit → Cookies'}</span>
+                      <span><strong>Chrome:</strong> Einstellungen → Datenschutz und Sicherheit → Cookies</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span><strong>Firefox:</strong> {t('cookies.control.firefox') || 'Einstellungen → Datenschutz & Sicherheit → Cookies'}</span>
+                      <span><strong>Firefox:</strong> Einstellungen → Datenschutz & Sicherheit → Cookies</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span><strong>Safari:</strong> {t('cookies.control.safari') || 'Einstellungen → Datenschutz → Cookies'}</span>
+                      <span><strong>Safari:</strong> Einstellungen → Datenschutz → Cookies</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span><strong>Edge:</strong> {t('cookies.control.edge') || 'Einstellungen → Cookies und Websiteberechtigungen'}</span>
+                      <span><strong>Edge:</strong> Einstellungen → Cookies und Websiteberechtigungen</span>
                     </li>
                   </ul>
 
                   <div className="mt-6 p-4 rounded-xl bg-secondary/20">
                     <p className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">{t('cookies.control.note') || 'Hinweis:'}</strong>{' '}
-                      {t('cookies.control.noteText') || 'Das Blockieren oder Löschen von Cookies kann dazu führen, dass Ihre Präferenzen (wie Sprache und Theme) nicht gespeichert werden.'}
+                      <strong className="text-foreground">Hinweis:</strong>{' '}
+                      Das Blockieren oder Löschen von Cookies kann dazu führen, dass Ihre Präferenzen (wie Sprache und Theme) nicht gespeichert werden.
                     </p>
                   </div>
                 </div>
@@ -225,10 +223,10 @@ export default function CookiesPage() {
               {/* Updates */}
               <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40">
                 <h2 className="text-xl font-bold mb-3">
-                  {t('cookies.updates.title') || 'Änderungen an dieser Richtlinie'}
+                  Änderungen an dieser Richtlinie
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t('cookies.updates.text') || 'Wir können diese Cookie-Richtlinien von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite veröffentlicht. Das Datum der letzten Aktualisierung finden Sie oben auf dieser Seite.'}
+                  Wir können diese Cookie-Richtlinien von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite veröffentlicht. Das Datum der letzten Aktualisierung finden Sie oben auf dieser Seite.
                 </p>
               </div>
 
@@ -236,12 +234,12 @@ export default function CookiesPage() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link to="/privacy">
                   <div className="px-6 py-3 rounded-xl bg-card/40 border border-border/40 hover:border-primary/50 transition-colors text-center">
-                    <p className="text-sm font-medium">{t('cookies.links.privacy') || 'Datenschutzerklärung'}</p>
+                    <p className="text-sm font-medium">Datenschutzerklärung</p>
                   </div>
                 </Link>
                 <Link to="/legal">
                   <div className="px-6 py-3 rounded-xl bg-card/40 border border-border/40 hover:border-primary/50 transition-colors text-center">
-                    <p className="text-sm font-medium">{t('cookies.links.imprint') || 'Impressum'}</p>
+                    <p className="text-sm font-medium">Impressum</p>
                   </div>
                 </Link>
               </div>
