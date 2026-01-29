@@ -75,6 +75,31 @@ const AppContent = () => {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+            {/* Static routes must come before dynamic :authorId routes */}
+            <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+            <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
+            <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
+            <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
+            <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
+            <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
+            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+            <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
+            <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
+            <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+            {/* Admin routes */}
+            <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
+            <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
+            {/* Dynamic author routes - must come after static routes */}
             <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />
             <Route path="/:authorId/works/:slug" element={<PageTransition><WorkPage /></PageTransition>} />
@@ -89,28 +114,7 @@ const AppContent = () => {
               </Suspense>
             } />
             <Route path="/:authorId/:slug" element={<PageTransition><PostPage /></PageTransition>} />
-            <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
-            <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
-            <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
-            <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
-            <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
-            <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
-            <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
-            <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
-            <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-            <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-            <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-            <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-            <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-            <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-            <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
-            <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
-            <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
-            <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
-            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
-            <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
-            <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
-            <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+            {/* 404 must be last */}
             <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>
         </AnimatePresence>
