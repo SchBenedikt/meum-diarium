@@ -888,6 +888,253 @@ export default function DesignGuidePage() {
           </motion.div>
         </section>
 
+        {/* 2026 Component Updates */}
+        <section className="mb-32">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Sparkles className="w-8 h-8 text-primary" />
+              <h2 className="font-display text-4xl font-bold">
+                2026 Component Updates
+              </h2>
+            </div>
+
+            <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+              <div className="space-y-12">
+                {/* LandingHeroNew Component */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    LandingHeroNew Component
+                  </h3>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Vollständig überarbeitete Landing Page mit modernem, ansprechendem Design und verbesserten Animationen.
+                    </p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• <strong>Two-Column Layout:</strong> Hero-Bereich mit dynamischem Text und Call-to-Action</li>
+                        <li>• <strong>Animated Backgrounds:</strong> Subtile Hintergrundanimationen mit Framer Motion</li>
+                        <li>• <strong>Statistics Showcase:</strong> Interaktive Statistikkarten mit Hover-Effekten</li>
+                        <li>• <strong>Feature Grid:</strong> 3-spaltige Grid-Darstellung der Hauptfunktionen</li>
+                        <li>• <strong>Author Section:</strong> Prominente Darstellung des Autors mit Bild und Beschreibung</li>
+                        <li>• <strong>Blog Posts Grid:</strong> Neueste Blog-Einträge in Card-Format</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                      <div className="text-muted-foreground mb-2">// Component Structure</div>
+                      <div>{'<div className="bg-gradient-to-br from-background via-secondary/5 to-background">'}</div>
+                      <div className="ml-4">{'<motion.div variants={fadeIn}>'}</div>
+                      <div className="ml-8">{'// Hero content with statistics'}</div>
+                      <div className="ml-4">{'</motion.div>'}</div>
+                      <div>{'</div>'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* GeneralAboutPageNew Component */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    GeneralAboutPageNew Component
+                  </h3>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Überarbeitete /about Seite mit verbesserter Struktur und visueller Hierarchie.
+                    </p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• <strong>Hero with Animations:</strong> Großflächiger Hero-Bereich mit Scroll-Animationen</li>
+                        <li>• <strong>Statistics Section:</strong> Zahlen und Fakten in ansprechenden Cards</li>
+                        <li>• <strong>Features Grid:</strong> Übersichtliche Darstellung der Plattform-Features</li>
+                        <li>• <strong>Methodology Section:</strong> Ausführliche Beschreibung der wissenschaftlichen Methodik</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                      <div className="text-muted-foreground mb-2">// Styling Pattern</div>
+                      <div>{'bg-card/40 backdrop-blur-xl'}</div>
+                      <div>{'rounded-3xl border border-border/40'}</div>
+                      <div>{'hover:border-primary/40 transition-colors'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Legal Pages */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    Legal Pages (Privacy, Imprint, Cookies)
+                  </h3>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Professionelle Rechtsseiten mit GDPR und TMG-Konformität, gestaltet mit klarer visueller Hierarchie.
+                    </p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• <strong>GDPR & TMG Compliant:</strong> Vollständige rechtliche Konformität</li>
+                        <li>• <strong>Icon-Based Headers:</strong> Shield, FileText, Cookie Icons für visuelle Orientierung</li>
+                        <li>• <strong>Color-Coded Badges:</strong> Grüne Badges für erlaubt/empfohlen, rote für verboten/kritisch</li>
+                        <li>• <strong>Structured Sections:</strong> Klare Gliederung mit Cards und Accordion-Elementen</li>
+                        <li>• <strong>Contact Information:</strong> Prominent platzierte Kontaktdaten</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                      <div className="text-muted-foreground mb-2">// Badge Examples</div>
+                      <div>{'<span className="bg-green-500/10 text-green-500 px-3 py-1 rounded-full">'}</div>
+                      <div className="ml-4">Empfohlen</div>
+                      <div>{'</span>'}</div>
+                      <div className="mt-2">{'<span className="bg-red-500/10 text-red-500 px-3 py-1 rounded-full">'}</div>
+                      <div className="ml-4">Abgelehnt</div>
+                      <div>{'</span>'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Catilina Biography Page */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    Catilina Biography Page
+                  </h3>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Umfassende Biographie über Lucius Sergius Catilina mit über 650 Zeilen historischem Content.
+                    </p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• <strong>650+ Lines:</strong> Ausführliche biografische Darstellung</li>
+                        <li>• <strong>Historical Context:</strong> Einordnung in die politische Situation der späten Republik</li>
+                        <li>• <strong>Conspiracy Analysis:</strong> Detaillierte Analyse der catilinarischen Verschwörung</li>
+                        <li>• <strong>Cicero's Speeches:</strong> Einbindung und Analyse der Catilinarischen Reden</li>
+                        <li>• <strong>Source Criticism:</strong> Kritische Auseinandersetzung mit antiken Quellen</li>
+                        <li>• <strong>Timeline Integration:</strong> Chronologische Darstellung der Ereignisse</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                      <div className="text-muted-foreground mb-2">// Section Structure</div>
+                      <div>{'<section className="bg-card/40 backdrop-blur-xl rounded-3xl p-12">'}</div>
+                      <div className="ml-4">{'<h2 className="font-display text-3xl font-bold mb-6">'}</div>
+                      <div className="ml-8">Early Life & Background</div>
+                      <div className="ml-4">{'</h2>'}</div>
+                      <div className="ml-4">{'// Historical content with citations'}</div>
+                      <div>{'</section>'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lexicon Expansion */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    Lexicon Expansion
+                  </h3>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Massive Erweiterung des Lexikons von 35 auf 92 Einträge mit umfassenden Übersetzungen und Erklärungen.
+                    </p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Statistiken:</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• <strong>35 → 92 Entries:</strong> +57 neue Einträge (+163% Wachstum)</li>
+                        <li>• <strong>Categories:</strong> Military, Political, Philosophical, Cultural, Geographical</li>
+                        <li>• <strong>2000-3500 Characters:</strong> Ausführliche Beschreibungen pro Eintrag</li>
+                        <li>• <strong>Complete Translations:</strong> Vollständige DE/EN/LA Übersetzungen</li>
+                        <li>• <strong>Historical Context:</strong> Einordnung in historischen Kontext</li>
+                        <li>• <strong>Usage Examples:</strong> Praktische Anwendungsbeispiele aus antiken Quellen</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
+                      <p className="font-semibold text-sm">Neue Kategorien:</p>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="font-medium text-primary mb-2">Militär (Military)</p>
+                          <ul className="text-muted-foreground space-y-1 text-xs">
+                            <li>• Aquilifer, Centurio, Cohors</li>
+                            <li>• Contubernium, Hastati</li>
+                            <li>• Impedimenta, Legio, Primus Pilus</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="font-medium text-primary mb-2">Politik (Political)</p>
+                          <ul className="text-muted-foreground space-y-1 text-xs">
+                            <li>• Censor, Cursus honorum</li>
+                            <li>• Fasces, Imperium, Lex</li>
+                            <li>• Senatus consultum, SPQR</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="font-medium text-primary mb-2">Philosophie (Philosophical)</p>
+                          <ul className="text-muted-foreground space-y-1 text-xs">
+                            <li>• Ataraxia, Logos, Summum bonum</li>
+                            <li>• Virtus, Memento mori</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="font-medium text-primary mb-2">Kultur (Cultural)</p>
+                          <ul className="text-muted-foreground space-y-1 text-xs">
+                            <li>• Aedilis, Forum, Thermae</li>
+                            <li>• Triclinium, Villa rustica</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                      <div className="text-muted-foreground mb-2">// Lexicon Entry Structure</div>
+                      <div>{'{'}</div>
+                      <div className="ml-4">id: "centurio",</div>
+                      <div className="ml-4">latin: "Centurio",</div>
+                      <div className="ml-4">{'translations: { de: "...", en: "...", la: "..." },'}</div>
+                      <div className="ml-4">{'description: { de: "...", en: "..." },'}</div>
+                      <div className="ml-4">category: "military",</div>
+                      <div className="ml-4">length: 2500 // characters</div>
+                      <div>{'}'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Summary */}
+                <div className="border-t border-border/40 pt-8">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
+                    Zusammenfassung
+                  </h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
+                      <div className="text-3xl font-bold text-primary mb-2">5</div>
+                      <p className="text-sm font-semibold">Neue Components</p>
+                      <p className="text-xs text-muted-foreground mt-1">Landing, About, Legal Pages</p>
+                    </div>
+                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
+                      <div className="text-3xl font-bold text-primary mb-2">+163%</div>
+                      <p className="text-sm font-semibold">Lexikon Wachstum</p>
+                      <p className="text-xs text-muted-foreground mt-1">35 → 92 Einträge</p>
+                    </div>
+                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
+                      <div className="text-3xl font-bold text-primary mb-2">650+</div>
+                      <p className="text-sm font-semibold">Zeilen Content</p>
+                      <p className="text-xs text-muted-foreground mt-1">Catilina Biographie</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Implementation Examples */}
         <section>
           <motion.div
