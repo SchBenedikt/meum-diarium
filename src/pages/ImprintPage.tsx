@@ -10,8 +10,8 @@ export default function ImprintPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title='Impressum - Meum Diarium'
-        description='Rechtliche Informationen und Kontaktdaten von Meum Diarium.'
+        title="Impressum - Meum Diarium"
+        description="Rechtliche Informationen und Kontaktdaten von Meum Diarium."
       />
 
       <main className="flex-1">

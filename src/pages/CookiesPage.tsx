@@ -10,8 +10,8 @@ export default function CookiesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title='Cookie-Richtlinien - Meum Diarium'
-        description='Informationen zur Verwendung von Cookies auf Meum Diarium.'
+        title="Cookie-Richtlinien - Meum Diarium"
+        description="Informationen zur Verwendung von Cookies auf Meum Diarium."
       />
 
       <main className="flex-1">
