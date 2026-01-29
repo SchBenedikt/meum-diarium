@@ -360,6 +360,19 @@
   .card-icon-container-lg {
     @apply rounded-[var(--radius)] bg-primary/5 inline-flex items-center justify-center p-3 text-primary;
   }
+
+  /* Card hover effects matching design page */
+  .card-hover-primary {
+    @apply hover:border-primary/50 transition-all duration-500;
+  }
+
+  .card-hover-primary .card-icon {
+    @apply group-hover:scale-110 transition-transform duration-300;
+  }
+
+  .card-hover-primary .card-arrow {
+    @apply group-hover:translate-x-1 transition-transform;
+  }
 }
 
 @layer utilities {

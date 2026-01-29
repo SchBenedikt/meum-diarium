@@ -40,6 +40,16 @@
   RewriteRule ^(.+)/$ /$1 [L,R=301]
 </IfModule>
 
+# SPA Routing - Serve index.html for all routes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Don't rewrite files or directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Rewrite everything else to index.html to allow client-side routing
+  RewriteRule ^ index.html [L]
+</IfModule>
+
 # Add security headers
 <IfModule mod_headers.c>
   Header set X-Frame-Options "SAMEORIGIN"
