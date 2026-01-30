@@ -81,10 +81,7 @@ Die grundlegende Machtstruktur Roms hatte sich nicht verändert. Caesar, Pompeiu
 In den folgenden Monaten und Jahren musste Cicero einen äußerst schwierigen politischen Balanceakt vollführen. Er zeigte öffentlich Unterstützung für Pompeius und damit indirekt für das gesamte Triumvirat. Wo es möglich erschien, übte er vorsichtige Kritik, doch musste er stets die Grenzen des Tolerierbaren beachten. Zunehmend fokussierte er sich auf "sichere" Themen wie Gerichtsfälle, wo er seine rhetorischen Fähigkeiten ohne politische Gefahr entfalten konnte. Seine philosophischen Schriften wurden dabei zu einem wichtigen Rückzugsraum, in dem er freier denken und schreiben konnte.
 
 **Die Rede "De Provinciis Consularibus" (56 v. Chr.):**
-Ein Jahr nach der Rückkehr hielt Cicero eine Rede zur Verteidigung von Caesars Statthalterschaft in Gallien - ein klares Zeichen seiner politischen Kompromisse. Die Rede zeigt:
-- Anerkennung der politischen Realitäten
-- Pragmatischer Umgang mit Macht
-- Versuch, durch Kooperation Einfluss zu bewahren
+Ein Jahr nach der Rückkehr hielt Cicero eine Rede zur Verteidigung von Caesars Statthalterschaft in Gallien - ein klares Zeichen seiner politischen Kompromisse. Die Rede zeigt deutlich seine Anerkennung der politischen Realitäten, einen pragmatischen Umgang mit der Macht und seinen Versuch, durch Kooperation mit den Mächtigen seinen politischen Einfluss zu bewahren.
 
 ### Psychologische Dimensionen
 
