@@ -97,10 +97,7 @@ Doch Cicero hatte grundlegend falsch kalkuliert:
 Geschlagen, aber nicht vernichtet, flieht er zu Lepidus' Armee in Gallien. Dort vereinigt er sich mit anderen caesarianischen Truppen.
 
 **Octavian zeigt sein wahres Gesicht:**
-Mit beiden Konsuln tot, ist er der einzige militärische Führer. Statt Antonius zu verfolgen:
-- Marschiert er auf Rom
-- Erzwingt das Konsulat (mit 19 Jahren!)
-- Verweigert die Verfolgung des Antonius
+Mit beiden Konsuln tot, ist er der einzige militärische Führer. Doch statt Antonius zu verfolgen, wie der Senat es erwartet, marschiert er auf Rom, erzwingt mit militärischer Gewalt das Konsulat - mit nur 19 Jahren! - und verweigert kategorisch die Verfolgung des Antonius. Der junge Mann hat Cicero vollkommen getäuscht.
 
 **Oktober 43 v. Chr. - Die Katastrophe:**
 Im Oktober 43 v. Chr. trafen sich Antonius, Octavian und Lepidus auf einer kleinen Insel im Fluss Reno bei Bononia. Dort bildeten sie das Zweite Triumvirat, eine offizielle Machteilung zu dritt, die rechtlich abgesichert wurde. Das Entsetzlichste aber waren die beschlossenen Proskriptionen - Todeslisten politischer Feinde. Ciceros Name stand ganz oben auf dieser Liste.
