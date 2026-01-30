@@ -50,14 +50,10 @@ Mit einer Kaltblütigkeit, die sein ganzes Leben prägen sollte, entschied sich 
 Caesars Testament wurde öffentlich verlesen. Die Bestimmungen waren sensationell:
 
 **Für das römische Volk:**
-- 300 Sesterzen für jeden Bürger
-- Caesars Gärten am Tiber als öffentlicher Park
-- Verschiedene Legate und Geschenke
+Caesar vermachte 300 Sesterzen für jeden Bürger, seine Gärten am Tiber als öffentlichen Park sowie verschiedene Legate und Geschenke.
 
 **Für Gaius Octavius:**
-- ¾ von Caesars gewaltigem Vermögen
-- **Adoption als Sohn** - mit vollem Namen und allen Rechten
-- Der Name "Gaius Julius Caesar"
+Octavius erhielt drei Viertel von Caesars gewaltigem Vermögen, die **Adoption als Sohn** mit vollem Namen und allen Rechten sowie den Namen "Gaius Julius Caesar".
 
 **Die Sprengkraft:**
 Diese Adoption war posthum, aber rechtlich bindend. Octavius wurde Caesar, Sohn des vergöttlichten Julius (nach Caesars späterer Deifizierung), Erbe von Caesars Klientennetzwerk und der Loyalität seiner Veteranen, und zugleich der symbolische Rächer seines "Vaters".
@@ -90,25 +86,17 @@ Der alte Senator sah in Octavian ein Werkzeug gegen Antonius: Er pries ihn im Se
 Herbst/Winter 44-43 v. Chr.: Die Lage spitzte sich zu:
 
 **Antonius' Fehler:**
-- Unterschätzte Octavian kontinuierlich
-- Isolierte sich politisch
-- Setzte auf Gewalt statt Diplomatie
-- Belagerte Decimus Brutus in Mutina
+Antonius unterschätzte Octavian kontinuierlich, isolierte sich politisch, setzte auf Gewalt statt Diplomatie und belagerte Decimus Brutus in Mutina.
 
 **Octavians Geschick:**
-- Präsentierte sich als Verteidiger der Republik (!)
-- Arbeitete mit dem Senat zusammen
-- Ließ sich zum propraetor ernennen - mit 19 Jahren
-- Marschierte mit den Konsuln Hirtius und Pansa gegen Antonius
+Octavian präsentierte sich geschickt als Verteidiger der Republik (!), arbeitete mit dem Senat zusammen, ließ sich zum propraetor ernennen - mit nur 19 Jahren - und marschierte mit den Konsuln Hirtius und Pansa gegen Antonius.
 
 ### Die Schlacht bei Mutina (April 43 v. Chr.)
 
 Bei Mutina kam es zur militärischen Konfrontation:
 
 **Ergebnis:**
-- Antonius wurde geschlagen und musste fliehen
-- ABER: Beide Konsuln fielen in der Schlacht
-- Octavian war plötzlich der einzige militärische Führer
+Antonius wurde geschlagen und musste fliehen. Doch beide Konsuln fielen in der Schlacht, sodass Octavian plötzlich der einzige militärische Führer war.
 
 **Die entscheidende Wende:**
 Statt Antonius zu verfolgen (wie der Senat forderte), zeigte Octavian sein wahres Gesicht: Er weigerte sich weiterzukämpfen, marschierte auf Rom und forderte das Konsulat - mit 19 Jahren, gegen alle Gesetze. Der Senat wagte nicht zu widersprechen.
