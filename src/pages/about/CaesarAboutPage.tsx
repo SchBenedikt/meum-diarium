@@ -253,18 +253,34 @@ export function CaesarAboutPage() {
                         className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
                       >
                         <div className="relative z-10">
-                          <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
-                            <BookOpen className="h-5 w-5 text-primary" />
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                              <BookOpen className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                {work.year}
+                              </p>
+                            </div>
                           </div>
-                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                          <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                             {work.title}
                           </h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                          <p className="text-sm text-muted-foreground line-clamp-4 mb-4 leading-relaxed">
                             {work.summary}
                           </p>
-                          <div className="flex items-center text-xs font-semibold text-primary gap-2">
+                          {work.structure && work.structure.length > 0 && (
+                            <div className="mb-4 pt-3 border-t border-border/50">
+                              <p className="text-xs text-muted-foreground">
+                                <span className="font-semibold">{work.structure.length} Bücher</span>
+                                {work.takeaway && <span className="mx-2">•</span>}
+                                {work.takeaway && <span>Umfangreiche Analyse</span>}
+                              </p>
+                            </div>
+                          )}
+                          <div className="flex items-center text-sm font-semibold text-primary gap-2">
                             <span>{t('caesar.readArticle')}</span>
-                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>
                       </Link>
