@@ -102,12 +102,8 @@ Das römische System bevorzugte reiche, gut vernetzte Kandidaten. Die konservati
 **Catilinas Frustration:**
 Aus seiner Sicht war die Situation zutiefst ungerecht. Er war ein Patrizier, während Cicero ein Niemand war. Seine Familie hatte Rom seit Jahrhunderten gedient. Das System erschien ihm korrupt und unfair, die Optimaten hielten die Macht monopolisiert, und verzweifelte Menschen brauchten dringend radikale Lösungen.
 
-**Die Verbittertheit:**
-Dreimaliges Scheitern:
-- Jede Niederlage verschlimmerte die Schuldenlast
-- Jede Niederlage verringerte seine Glaubwürdigkeit
-- Jede Niederlage trieb ihn radikaler
-- Der legale Weg war erschöpft
+**Die Verbittertung:**
+Dreimaliges Scheitern hatte verheerende Folgen: Jede Niederlage verschlimmerte die Schuldenlast, verringerte seine Glaubwürdigkeit und trieb ihn radikaler. Der legale Weg war endgültig erschöpft.
 
 **Der Punkt ohne Wiederkehr:**
 Nach der dritten Niederlage hatte Catilina nichts mehr zu verlieren. Kein Konsulat bedeutete keinen Weg aus den Schulden, die Gläubiger würden sein Vermögen konfiszieren. Soziale Schande und finanzieller Ruin standen bevor. Die einzige Alternative war Umsturz oder Untergang.
