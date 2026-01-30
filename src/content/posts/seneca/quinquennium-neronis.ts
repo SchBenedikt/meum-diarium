@@ -6,7 +6,7 @@ const post: BlogPost = {
   author: 'seneca',
   title: 'Quinquennium Neronis - Die fünf guten Jahre',
   
-  excerpt: 'Die ersten fünf Regierungsjahre Neros (54-59 n. Chr.) unter Senecas und Burrus' Einfluss - eine Zeit relativer Gerechtigkeit und Prosperität, bevor der Terror begann.',
+  excerpt: 'Die ersten fünf Regierungsjahre Neros (54-59 n. Chr.) unter Senecas und Burrus\' Einfluss - eine Zeit relativer Gerechtigkeit und Prosperität, bevor der Terror begann.',
   historicalDate: '54-59 n. Chr.',
   historicalYear: 54,
   date: "2024-04-02",
