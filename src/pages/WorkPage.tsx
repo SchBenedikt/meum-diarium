@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
-import { works as localWorks } from '@/data/works';
+import { works as baseWorks } from '@/data/works';
 import { Author, Work, AuthorInfo } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import {
@@ -93,6 +93,10 @@ export default function WorkPage() {
       try {
         const data = await fetchWork(slug);
         const lang = language.split('-')[0];
+        
+        // Fallback to baseWorks if structure is missing
+        const baseWork = baseWorks[slug as keyof typeof baseWorks];
+        
         if (data?.translations && data.translations[lang]) {
           const tr = data.translations[lang];
           setWork({
@@ -100,20 +104,16 @@ export default function WorkPage() {
             title: tr.title || data.title,
             summary: tr.summary || data.summary,
             takeaway: tr.takeaway || data.takeaway,
-            structure: tr.structure || data.structure,
+            structure: tr.structure || data.structure || baseWork?.structure,
           });
         } else {
-          setWork(data);
+          setWork({
+            ...data,
+            structure: data.structure || baseWork?.structure,
+          });
         }
       } catch (e) {
-        // Fallback to local works data if API fails
-        console.warn('API fetch failed, using local data:', e);
-        const localWork = localWorks[slug];
-        if (localWork) {
-          setWork(localWork);
-        } else {
-          setWork(null);
-        }
+        setWork(null);
       }
 
       // Load details JSON (language-specific if available)
@@ -171,101 +171,81 @@ export default function WorkPage() {
       <ScrollProgress />
       <PageHero
         title={work.title}
-        description={work.summary}
+        subtitle={work.year}
       />
 
       <div className="container max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Metadata Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                  <Calendar className="w-4 h-4" />
-                  <span className="text-xs font-medium uppercase tracking-wider">Jahr</span>
-                </div>
-                <p className="text-xl font-bold text-foreground">{work.year}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                  <User className="w-4 h-4" />
-                  <span className="text-xs font-medium uppercase tracking-wider">Autor</span>
-                </div>
-                <p className="text-sm font-bold text-foreground truncate">{translatedAuthor.name}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                  <BookOpen className="w-4 h-4" />
-                  <span className="text-xs font-medium uppercase tracking-wider">Bücher</span>
-                </div>
-                <p className="text-xl font-bold text-foreground">{work.structure?.length || '—'}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                  <Clock className="w-4 h-4" />
-                  <span className="text-xs font-medium uppercase tracking-wider">Epoche</span>
-                </div>
-                <p className="text-xs font-bold text-foreground">1. Jh. v. Chr.</p>
-              </motion.div>
+        {/* Intro Section - Compact */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-16 max-w-4xl"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                <Calendar className="w-4 h-4" />
+                <span className="text-xs font-medium uppercase tracking-wider">Jahr</span>
+              </div>
+              <p className="text-lg font-bold text-foreground">{work.year}</p>
             </div>
 
-            {/* Summary */}
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="prose prose-blog dark:prose-invert max-w-none"
-            >
-              <div className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl">
-                <p className="text-lg leading-relaxed">{work.summary}</p>
+            <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                <User className="w-4 h-4" />
+                <span className="text-xs font-medium uppercase tracking-wider">Autor</span>
               </div>
-            </motion.article>
+              <p className="text-sm font-bold text-foreground truncate">{translatedAuthor.name}</p>
+            </div>
 
-            {/* Takeaway */}
+            <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                <BookOpen className="w-4 h-4" />
+                <span className="text-xs font-medium uppercase tracking-wider">Teile</span>
+              </div>
+              <p className="text-lg font-bold text-foreground">
+                {work.structure?.length ? `${work.structure.length} Teile` : '—'}
+              </p>
+            </div>
+
+            <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                <Clock className="w-4 h-4" />
+                <span className="text-xs font-medium uppercase tracking-wider">Epoche</span>
+              </div>
+              <p className="text-sm font-bold text-foreground">1. Jh. v. Chr.</p>
+            </div>
+          </div>
+
+          {/* Intro Text - Compact */}
+          <div className="bg-card border border-border/50 rounded-3xl p-6 backdrop-blur-xl">
+            <p className="text-base leading-relaxed text-foreground">{work.summary}</p>
+          </div>
+        </motion.section>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-12">
+            {/* Takeaway & Key Info */}
             {work.takeaway && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="bg-card border border-border/50 rounded-3xl p-6 backdrop-blur-xl"
+                transition={{ delay: 0.3 }}
+                className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-3xl p-8 backdrop-blur-xl"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
-                    <Lightbulb className="w-5 h-5 text-primary" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                    <Lightbulb className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="flex-1 space-y-2">
-                    <div>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">Warum es zählt</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Die Kernaussage destilliert das Werk auf seine Hauptbotschaft: Was Caesar rechtfertigt, welche Wirkung er sucht und welche Lesart er der Nachwelt vorgibt.
-                      </p>
-                    </div>
-                    <h3 className="text-lg font-bold">Kernaussage</h3>
-                    <p className="text-muted-foreground leading-relaxed">{work.takeaway}</p>
+                  <div className="flex-1">
+                    <p className="text-xs uppercase tracking-wide font-bold text-primary mb-2">Die Kernaussage</p>
+                    <p className="text-lg font-bold text-foreground mb-3">{work.takeaway}</p>
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      Diese zentrale Botschaft stellt die Hauptintention des Werkes dar – wofür der Autor argumentiert und welche Wirkung er beabsichtigt.
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -276,14 +256,17 @@ export default function WorkPage() {
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 0.4 }}
                 className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-secondary/80 flex items-center justify-center">
-                    <ListTree className="w-5 h-5 text-secondary-foreground" />
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/80 flex items-center justify-center">
+                    <ListTree className="w-6 h-6 text-secondary-foreground" />
                   </div>
-                  <h2 className="text-2xl font-bold">Struktur & Aufbau</h2>
+                  <div>
+                    <h2 className="text-2xl font-bold">Struktur & Aufbau</h2>
+                    <p className="text-sm text-muted-foreground mt-1">Die Gliederung des Werkes in {work.structure.length} Teil{work.structure.length > 1 ? 'e' : ''}</p>
+                  </div>
                 </div>
                 <div className="space-y-3">
                   {work.structure.map((book, idx) => (
@@ -291,7 +274,7 @@ export default function WorkPage() {
                       key={idx}
                       className="flex items-start gap-4 p-4 rounded-xl bg-secondary/20 hover:bg-secondary/30 transition-colors border border-border/30"
                     >
-                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
                         <span className="text-sm font-bold text-primary">
                           {String(idx + 1).padStart(2, '0')}
                         </span>
@@ -309,12 +292,12 @@ export default function WorkPage() {
             {/* Dynamic Content from work-details.ts */}
             {detail && (
               <>
-                {/* Context Section - Always expanded by default */}
+                {/* Context Section - Most Important Content First */}
                 {detail.context && (
                   <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
+                    transition={{ delay: 0.5 }}
                     className="bg-card border border-border/50 rounded-3xl overflow-hidden backdrop-blur-xl"
                   >
                     <button
@@ -322,10 +305,13 @@ export default function WorkPage() {
                       className="w-full flex items-center justify-between p-8 hover:bg-secondary/20 transition-colors"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                          <MapPin className="w-5 h-5 text-blue-500" />
+                        <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                          <MapPin className="w-6 h-6 text-blue-500" />
                         </div>
-                        <h2 className="text-2xl font-bold">{detail.context.title}</h2>
+                        <div className="text-left">
+                          <h2 className="text-2xl font-bold">{detail.context.title}</h2>
+                          <p className="text-sm text-muted-foreground mt-1">Verstehen des historischen Hintergrunds</p>
+                        </div>
                       </div>
                       {expandedSections.has('context') ? (
                         <ChevronUp className="w-5 h-5 text-muted-foreground" />
@@ -341,33 +327,31 @@ export default function WorkPage() {
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
+                          className="overflow-hidden border-t border-border/30"
                         >
-                          <div className="px-8 pb-8 space-y-6">
+                          <div className="px-8 py-8 space-y-6">
                             {detail.context.paragraphs.map((para, idx) => (
-                              <p key={idx} className="text-muted-foreground leading-relaxed">
+                              <p key={idx} className="text-foreground/85 leading-relaxed">
                                 {para}
                               </p>
                             ))}
 
                             {detail.context.timeline && detail.context.timeline.length > 0 && (
-                              <div className="mt-8 space-y-4">
+                              <div className="mt-8 space-y-4 pt-8 border-t border-border/30">
                                 <h3 className="text-lg font-bold flex items-center gap-2">
                                   <Clock className="w-5 h-5 text-blue-500" />
-                                  Zeitstrahl
+                                  Zeitlicher Überblick
                                 </h3>
-                                <div className="space-y-3">
+                                <div className="space-y-2">
                                   {detail.context.timeline.map((item, idx) => (
                                     <div
                                       key={idx}
-                                      className="flex gap-4 p-4 rounded-xl bg-secondary/20 border border-border/30"
+                                      className="flex gap-4 p-3 rounded-lg bg-secondary/20 border border-border/30 text-sm"
                                     >
-                                      <div className="flex-shrink-0">
-                                        <span className="inline-block px-3 py-1 rounded-lg bg-blue-500/20 text-blue-500 text-sm font-bold">
-                                          {item.year}
-                                        </span>
-                                      </div>
-                                      <p className="text-sm text-muted-foreground leading-relaxed">
+                                      <span className="inline-block px-2 py-1 rounded-lg bg-blue-500/20 text-blue-500 font-bold whitespace-nowrap">
+                                        {item.year}
+                                      </span>
+                                      <p className="text-foreground/85">
                                         {item.event}
                                       </p>
                                     </div>
@@ -375,6 +359,87 @@ export default function WorkPage() {
                                 </div>
                               </div>
                             )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.section>
+                )}
+
+                {/* Book Chapters / Parts Description */}
+                {detail.bookChapters && detail.bookChapters.length > 0 && (
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55 }}
+                    className="bg-card border border-border/50 rounded-3xl overflow-hidden backdrop-blur-xl"
+                  >
+                    <button
+                      onClick={() => toggleSection('bookChapters')}
+                      className="w-full flex items-center justify-between p-8 hover:bg-secondary/20 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center">
+                          <BookOpen className="w-6 h-6 text-indigo-500" />
+                        </div>
+                        <div className="text-left">
+                          <h2 className="text-2xl font-bold">Überblick der Bücher</h2>
+                          <p className="text-sm text-muted-foreground mt-1">Was in jedem Teil des Werkes behandelt wird</p>
+                        </div>
+                      </div>
+                      {expandedSections.has('bookChapters') ? (
+                        <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                      )}
+                    </button>
+
+                    <AnimatePresence>
+                      {expandedSections.has('bookChapters') && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden border-t border-border/30"
+                        >
+                          <div className="px-8 py-8 space-y-6">
+                            {detail.bookChapters.map((chapter, idx) => (
+                              <div
+                                key={idx}
+                                className="p-6 rounded-xl border border-indigo-500/20 bg-indigo-500/5"
+                              >
+                                <div className="flex items-start justify-between mb-3">
+                                  <div>
+                                    <div className="inline-flex items-center gap-3">
+                                      <span className="px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-600 font-bold text-sm">
+                                        Buch {chapter.number}
+                                      </span>
+                                      {chapter.timeframe && (
+                                        <span className="text-sm font-semibold text-muted-foreground">
+                                          {chapter.timeframe}
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                                <h3 className="text-lg font-bold text-foreground mb-2">{chapter.title}</h3>
+                                <p className="text-foreground/85 leading-relaxed mb-4">{chapter.description}</p>
+                                {chapter.keyEvents && chapter.keyEvents.length > 0 && (
+                                  <div className="mt-4 space-y-2">
+                                    <p className="text-sm font-semibold text-foreground">Wichtigste Ereignisse:</p>
+                                    <ul className="space-y-1.5">
+                                      {chapter.keyEvents.map((event, eventIdx) => (
+                                        <li key={eventIdx} className="flex gap-2 text-sm text-foreground/85">
+                                          <span className="text-indigo-500 font-bold">•</span>
+                                          <span>{event}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
                           </div>
                         </motion.div>
                       )}
@@ -393,7 +458,7 @@ export default function WorkPage() {
                       key={idx}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 + idx * 0.1 }}
+                      transition={{ delay: 0.6 + idx * 0.1 }}
                       className="bg-card border border-border/50 rounded-3xl overflow-hidden backdrop-blur-xl"
                     >
                       <button
@@ -401,10 +466,13 @@ export default function WorkPage() {
                         className="w-full flex items-center justify-between p-8 hover:bg-secondary/20 transition-colors"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-primary" />
+                          <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-primary" />
                           </div>
-                          <h2 className="text-2xl font-bold">{section.title}</h2>
+                          <div className="text-left">
+                            <h2 className="text-2xl font-bold">{section.title}</h2>
+                            <p className="text-sm text-muted-foreground mt-1">Umfassende Analysen und Erläuterungen</p>
+                          </div>
                         </div>
                         {isExpanded ? (
                           <ChevronUp className="w-5 h-5 text-muted-foreground" />
@@ -420,11 +488,11 @@ export default function WorkPage() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
+                            className="overflow-hidden border-t border-border/30"
                           >
-                            <div className="px-8 pb-8 space-y-4">
+                            <div className="px-8 py-8 space-y-5">
                               {section.content.map((para, paraIdx) => (
-                                <p key={paraIdx} className="text-muted-foreground leading-relaxed">
+                                <p key={paraIdx} className="text-foreground/85 leading-relaxed">
                                   {para}
                                 </p>
                               ))}
@@ -441,20 +509,26 @@ export default function WorkPage() {
                   <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2 }}
+                    transition={{ delay: 0.8 }}
                     className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-purple-500" />
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                        <Sparkles className="w-6 h-6 text-purple-500" />
                       </div>
-                      <h2 className="text-2xl font-bold">Literarische Besonderheiten</h2>
+                      <div>
+                        <h2 className="text-2xl font-bold">Literarische Besonderheiten</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Stilmittel und Erzähltechniken des Werkes</p>
+                      </div>
                     </div>
-                    <div className="grid gap-6">
+                    <div className="grid gap-8 md:grid-cols-2">
                       {detail.literaryFeatures.map((feature, idx) => (
-                        <div key={idx} className="space-y-3">
-                          <h3 className="text-lg font-bold text-foreground">{feature.title}</h3>
-                          <p className="text-muted-foreground leading-relaxed">
+                        <div key={idx} className="space-y-3 pb-6 border-b border-border/30 md:border-0 last:border-0 md:last:border-0">
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 rounded-full bg-purple-500" />
+                            <h3 className="text-lg font-bold text-foreground">{feature.title}</h3>
+                          </div>
+                          <p className="text-foreground/85 leading-relaxed">
                             {feature.description}
                           </p>
                           {feature.examples && feature.examples.length > 0 && (
@@ -462,9 +536,9 @@ export default function WorkPage() {
                               {feature.examples.map((example, exIdx) => (
                                 <li
                                   key={exIdx}
-                                  className="flex gap-3 text-sm text-muted-foreground"
+                                  className="flex gap-3 text-sm text-foreground/85"
                                 >
-                                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
+                                  <CheckCircle className="w-4 h-4 text-purple-500 flex-shrink-0 mt-0.5" />
                                   <span>{example}</span>
                                 </li>
                               ))}
@@ -481,36 +555,38 @@ export default function WorkPage() {
                   <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.3 }}
+                    transition={{ delay: 0.9 }}
                     className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center">
-                        <Target className="w-5 h-5 text-amber-500" />
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center">
+                        <Target className="w-6 h-6 text-amber-500" />
                       </div>
-                      <h2 className="text-2xl font-bold">Schlüsselmomente</h2>
+                      <div>
+                        <h2 className="text-2xl font-bold">Schlüsselmomente</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Wendepunkte und wichtige Szenen im Werk</p>
+                      </div>
                     </div>
                     <div className="space-y-6">
                       {detail.keyMoments.map((moment, idx) => (
                         <div
                           key={idx}
-                          className="relative pl-8 pb-6 border-l-2 border-border/50 last:pb-0"
+                          className="relative pl-8 pb-6 border-l-2 border-amber-500/30 last:pb-0"
                         >
                           <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-amber-500 border-2 border-background" />
                           <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                              <span className="inline-block px-3 py-1 rounded-lg bg-amber-500/20 text-amber-500 text-xs font-bold">
+                              <span className="inline-block px-3 py-1 rounded-lg bg-amber-500/20 text-amber-600 text-xs font-bold">
                                 {moment.date}
                               </span>
                             </div>
                             <h3 className="text-lg font-bold text-foreground">{moment.title}</h3>
-                            <p className="text-muted-foreground leading-relaxed">
+                            <p className="text-foreground/85 leading-relaxed">
                               {moment.description}
                             </p>
-                            <div className="mt-3 p-3 rounded-lg bg-secondary/20 border border-border/30">
-                              <p className="text-sm text-muted-foreground">
-                                <span className="font-medium text-foreground">Bedeutung:</span>{' '}
-                                {moment.significance}
+                            <div className="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                              <p className="text-sm text-foreground/90">
+                                <span className="font-bold text-amber-600">Bedeutung:</span> {moment.significance}
                               </p>
                             </div>
                           </div>
@@ -525,33 +601,36 @@ export default function WorkPage() {
                   <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4 }}
+                    transition={{ delay: 1.0 }}
                     className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center">
-                        <Quote className="w-5 h-5 text-green-500" />
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                        <Quote className="w-6 h-6 text-green-500" />
                       </div>
-                      <h2 className="text-2xl font-bold">Berühmte Zitate</h2>
+                      <div>
+                        <h2 className="text-2xl font-bold">Berühmte Zitate</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Prägende Aussagen aus dem Werk</p>
+                      </div>
                     </div>
                     <div className="space-y-6">
                       {detail.quotes.map((quote, idx) => (
                         <div
                           key={idx}
-                          className="relative p-6 rounded-2xl bg-card border border-border/50"
+                          className="relative p-6 rounded-2xl bg-gradient-to-br from-green-500/5 to-transparent border border-green-500/20"
                         >
                           <div className="absolute top-4 right-4">
-                            <Sparkles className="w-6 h-6 text-green-500/40" />
+                            <Sparkles className="w-5 h-5 text-green-500/40" />
                           </div>
                           <blockquote className="space-y-4">
                             <p className="text-lg font-medium text-foreground italic leading-relaxed">
                               "{quote.latin}"
                             </p>
-                            <p className="text-sm text-muted-foreground border-l-2 border-primary/50 pl-4">
+                            <p className="text-foreground/85 border-l-2 border-green-500/50 pl-4">
                               {quote.translation}
                             </p>
-                            <p className="text-sm text-muted-foreground">
-                              <span className="font-medium text-foreground">Kontext:</span>{' '}
+                            <p className="text-sm text-foreground/80">
+                              <span className="font-bold text-foreground">Kontext:</span>{' '}
                               {quote.context}
                             </p>
                           </blockquote>
@@ -566,24 +645,27 @@ export default function WorkPage() {
                   <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-xl"
+                    transition={{ delay: 1.1 }}
+                    className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-3xl p-8 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <TrendingUp className="w-5 h-5 text-primary" />
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                        <TrendingUp className="w-6 h-6 text-primary" />
                       </div>
-                      <h2 className="text-2xl font-bold">{detail.impact.title}</h2>
+                      <div>
+                        <h2 className="text-2xl font-bold">{detail.impact.title}</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Wirkung und Erbe des Werkes</p>
+                      </div>
                     </div>
                     <div className="space-y-6">
                       {detail.impact.paragraphs.map((para, idx) => (
-                        <p key={idx} className="text-muted-foreground leading-relaxed">
+                        <p key={idx} className="text-foreground/85 leading-relaxed">
                           {para}
                         </p>
                       ))}
 
                       {detail.impact.highlights && detail.impact.highlights.length > 0 && (
-                        <div className="mt-6 space-y-3">
+                        <div className="mt-8 pt-6 border-t border-primary/20 space-y-3">
                           {detail.impact.highlights.map((highlight, idx) => (
                             <div
                               key={idx}
@@ -611,7 +693,10 @@ export default function WorkPage() {
               transition={{ delay: 0.3 }}
               className="bg-card border border-border/50 rounded-3xl p-6 backdrop-blur-xl sticky top-24"
             >
-              <h3 className="text-lg font-bold mb-4">Über den Autor</h3>
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <User className="w-5 h-5 text-primary" />
+                Über den Autor
+              </h3>
               <Link
                 to={`/${authorId}`}
                 className="group block space-y-4 hover:scale-[1.02] transition-transform"
@@ -636,10 +721,11 @@ export default function WorkPage() {
               {/* Related Works */}
               {otherWorks.length > 0 && (
                 <div className="mt-8 pt-6 border-t border-border/50">
-                  <h4 className="text-sm font-bold mb-4 text-muted-foreground uppercase tracking-wider">
+                  <h4 className="text-sm font-bold mb-4 text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                    <BookOpen className="w-4 h-4" />
                     Weitere Werke
                   </h4>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {otherWorks.map((otherwork) => {
                       if (!otherwork?.title) return null;
                       const otherSlug = slugify(otherwork.title, { lower: true, strict: true });
@@ -647,7 +733,7 @@ export default function WorkPage() {
                         <Link
                           key={otherSlug}
                           to={`/${authorId}/works/${otherSlug}`}
-                          className="block p-3 rounded-xl bg-secondary/20 hover:bg-secondary/40 transition-colors border border-border/30"
+                          className="block p-3 rounded-xl bg-secondary/20 hover:bg-primary/10 transition-colors border border-border/30 hover:border-primary/50"
                         >
                           <p className="text-sm font-medium text-foreground line-clamp-2">
                             {otherwork.title}
