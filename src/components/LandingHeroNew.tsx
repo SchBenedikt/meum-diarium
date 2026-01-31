@@ -85,12 +85,12 @@ export default function LandingHeroNew() {
                   {t('landing.hero.badge') || 'Erlebe Geschichte Neu'}
                 </Badge>
 
-                <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tighter">
-                  <span className="font-extrabold text-red-600">
+                <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tight">
+                  <span className="font-extrabold text-red-600 tracking-[0.06em] sm:tracking-[0.08em]">
                     {t('landing.hero.title1') || 'Historia'}
                   </span>
                   <br />
-                  <span className="font-light italic">
+                  <span className="font-medium italic text-foreground/80 text-4xl sm:text-5xl lg:text-6xl">
                     {t('landing.hero.title2') || 'zum Leben erweckt'}
                   </span>
                 </h1>

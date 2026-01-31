@@ -81,8 +81,11 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40">
                   <p className="mb-2"><strong>Meum Diarium</strong></p>
-                  <p className="text-muted-foreground mb-0">
+                  <p className="text-muted-foreground mb-2">
                     Kontakt siehe Impressum
+                  </p>
+                  <p className="text-muted-foreground mb-0">
+                    Wir sind die verantwortliche Stelle für den Betrieb der Website und die Verarbeitung der hier beschriebenen Daten.
                   </p>
                 </div>
               </div>
@@ -181,11 +184,14 @@ export default function PrivacyPage() {
                   Rechtsgrundlagen in Kurzform
                 </h2>
                 <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Wir verarbeiten Daten nur, wenn es dafür eine klare rechtliche Grundlage gibt. In der Praxis stützen wir uns vor allem auf berechtigte Interessen und die Erfüllung von Anfragen.
+                  </p>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li>• Betrieb der Website und Sicherheit: berechtigtes Interesse</li>
-                    <li>• Speicherung von Präferenzen: berechtigtes Interesse</li>
-                    <li>• Reichweitenmessung: berechtigtes Interesse</li>
-                    <li>• Beantwortung von Anfragen: Vertragsanbahnung bzw. berechtigtes Interesse</li>
+                    <li>Betrieb der Website und Sicherheit: berechtigtes Interesse</li>
+                    <li>Speicherung von Präferenzen: berechtigtes Interesse</li>
+                    <li>Reichweitenmessung: berechtigtes Interesse</li>
+                    <li>Beantwortung von Anfragen: Vertragsanbahnung bzw. berechtigtes Interesse</li>
                   </ul>
                 </div>
               </div>
@@ -201,13 +207,16 @@ export default function PrivacyPage() {
                     Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
                   </p>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li>• Recht auf Auskunft über Ihre gespeicherten Daten</li>
-                    <li>• Recht auf Berichtigung unrichtiger Daten</li>
-                    <li>• Recht auf Löschung Ihrer Daten</li>
-                    <li>• Recht auf Einschränkung der Verarbeitung</li>
-                    <li>• Recht auf Datenübertragbarkeit</li>
-                    <li>• Recht auf Widerspruch gegen die Verarbeitung</li>
+                    <li>Recht auf Auskunft über Ihre gespeicherten Daten</li>
+                    <li>Recht auf Berichtigung unrichtiger Daten</li>
+                    <li>Recht auf Löschung Ihrer Daten</li>
+                    <li>Recht auf Einschränkung der Verarbeitung</li>
+                    <li>Recht auf Datenübertragbarkeit</li>
+                    <li>Recht auf Widerspruch gegen die Verarbeitung</li>
                   </ul>
+                  <p className="text-muted-foreground leading-relaxed mt-4 mb-0">
+                    Wir prüfen jede Anfrage sorgfältig und melden uns so schnell wie möglich zurück. Je nach Umfang kann die Bearbeitung etwas Zeit benötigen.
+                  </p>
                   <p className="text-muted-foreground leading-relaxed mt-4 mb-0">
                     Zur Ausübung dieser Rechte kontaktieren Sie uns bitte über die im Impressum angegebenen Kontaktdaten. Wenn es nur um Cookies geht, können Sie das auch direkt im Browser regeln. Caesar hätte dafür eine Verordnung erlassen, wir begnügen uns mit einem freundlichen Hinweis.
                   </p>
@@ -222,6 +231,9 @@ export default function PrivacyPage() {
                 <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40">
                   <p className="text-muted-foreground leading-relaxed mb-0">
                     Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen unseres Services anzupassen. Die jeweils aktuelle Datenschutzerklärung finden Sie stets auf dieser Seite.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mt-3 mb-0">
+                    Bei größeren Änderungen weisen wir an dieser Stelle darauf hin und aktualisieren das Datum entsprechend.
                   </p>
                 </div>
               </div>

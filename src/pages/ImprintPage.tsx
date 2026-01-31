@@ -82,6 +82,7 @@ export default function ImprintPage() {
                   </p>
                   <p>Adresse auf Anfrage</p>
                   <p className="text-sm">Hinweis: Private, nicht-kommerzielle Seite mit Fokus auf Bildung und Kultur.</p>
+                  <p className="text-sm">Die Anschrift geben wir auf Anfrage an, um Privatsphäre und Sicherheit zu wahren.</p>
                 </div>
               </div>
 
@@ -110,6 +111,9 @@ export default function ImprintPage() {
                       </a>
                     </div>
                   </div>
+                  <p className="text-sm text-muted-foreground">
+                    Für allgemeine Anfragen nutzen Sie bitte die E-Mail-Adresse. Wir antworten in der Regel innerhalb weniger Werktage.
+                  </p>
                 </div>
               </div>
 
@@ -128,6 +132,9 @@ export default function ImprintPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
                     </p>
+                    <p className="text-muted-foreground leading-relaxed mt-3">
+                      Sollten Ihnen Fehler auffallen, freuen wir uns über einen Hinweis, damit wir nachbessern können.
+                    </p>
                   </div>
 
                   <div>
@@ -137,6 +144,9 @@ export default function ImprintPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
                     </p>
+                    <p className="text-muted-foreground leading-relaxed mt-3">
+                      Links werden sorgfältig ausgewählt, können sich aber jederzeit ändern.
+                    </p>
                   </div>
 
                   <div>
@@ -145,6 +155,9 @@ export default function ImprintPage() {
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-3">
+                      Zitate sind im Rahmen des Zitatrechts möglich, sofern sie korrekt gekennzeichnet werden.
                     </p>
                   </div>
                 </div>
@@ -161,6 +174,9 @@ export default function ImprintPage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mt-4">
                   Wir wollen Geschichte nachvollziehbar machen: mit klaren Kontexten, Quellenbezug und einem modernen Zugang. Wenn dabei ein kleiner Schmunzler mitschwingt, ist das Absicht, aber die Fakten bleiben sauber.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Das Angebot richtet sich an Lernende, Lehrende und alle, die römische Geschichte verständlich und gut aufbereitet erleben möchten.
                 </p>
               </div>
 
@@ -179,6 +195,9 @@ export default function ImprintPage() {
                   >
                     https://ec.europa.eu/consumers/odr
                   </a>
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
                 </p>
               </div>
 
