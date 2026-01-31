@@ -9,11 +9,9 @@ const PRECACHE_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/robots.txt',
-  '/favicon.ico',
   '/icons/favicon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
-  '/placeholder.svg',
   // Hero images for authors
   '/images/caesar-hero.jpg',
   '/images/cicero-hero.jpg',
@@ -156,7 +154,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         }).catch(() => {
           // Return placeholder for offline images
-          return caches.match('/placeholder.svg');
+          return caches.match('/icons/favicon.svg');
         });
       })
     );

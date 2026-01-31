@@ -4,15 +4,9 @@ const work: Work = {
   title: 'De Bello Gallico',
   author: 'caesar',
   year: '58-50 v. Chr.',
-  summary: `Caesars monumentales Werk "De Bello Gallico" (Der Gallische Krieg) ist weit mehr als ein bloßer Schlachtenbericht. Es ist ein Meisterwerk der politischen Kommunikation, das den Leser in die dramatischen Ereignisse der Jahre 58 bis 50 v. Chr. hineinzieht. In kristallklarer Prosa schildert Caesar die Eroberung Galliens, ethnographische Beobachtungen über die gallischen und germanischen Völker sowie die militärische Brillanz römischer Kriegsführung.
-
-Das Werk umfasst acht Bücher, wobei das achte Buch von Caesars Offizier Aulus Hirtius vervollständigt wurde. Caesar schrieb diese Kommentare ursprünglich als Jahresberichte an den römischen Senat, um seine Feldzüge zu rechtfertigen und seine politische Position in Rom zu stärken. Die scheinbar objektive Darstellung in der dritten Person verschleiert geschickt die propagandistische Absicht: Caesar präsentiert sich als rationalen, besonnenen Feldherrn, der nur aus Notwendigkeit handelt.
-
-Die literarische Qualität des Werkes ist außergewöhnlich. Caesars knappe, präzise Sprache wurde zum Stilideal für militärische Berichte und Prosaschriften. Schon antike Autoren wie Cicero lobten die elegante Einfachheit und Klarheit des Stils. Das Werk beginnt mit dem berühmten Satz: "Gallia est omnis divisa in partes tres" (Ganz Gallien ist in drei Teile gegliedert), der bis heute Schülergenerationen im Lateinunterricht begleitet.`,
+  summary: `Caesars Bericht über die Eroberung Galliens (58-50 v. Chr.). Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa. Das Werk prägt bis heute den Lateinunterricht mit seinem berühmten Eröffnungssatz: "Gallia est omnis divisa in partes tres".`,
   
-  takeaway: `De Bello Gallico ist ein Meisterwerk der Propaganda, getarnt als nüchterne Kriegsberichterstattung. Caesar rechtfertigt seine Eroberung Galliens als defensive Notwendigkeit zum Schutz Roms, während er gleichzeitig systematisch ein gewaltiges Territorium unterwirft. Das Werk zeigt exemplarisch, wie Geschichte von Siegern geschrieben wird: Die brutale Realität eines Eroberungskrieges - schätzungsweise eine Million Tote und eine weitere Million Versklavte - wird als zivilisatorische Mission dargestellt.
-
-Dennoch bietet das Werk unschätzbare Einblicke in die gallische und germanische Gesellschaft, römische Militärtaktik und die Psychologie der Kriegsführung. Es ist zugleich historische Quelle, literarisches Kunstwerk und politisches Manifest - eine Kombination, die seine zeitlose Faszination erklärt.`,
+  takeaway: `Rechtfertigung einer Eroberung als Notwendigkeit. Caesar präsentiert die Unterwerfung Galliens als defensive Maßnahme zum Schutz Roms. Ein Meisterwerk der Geschichtsschreibung durch den Sieger: brutale Realität, elegant verpackt als zivilisatorische Mission.`,
   
   structure: [
     { 

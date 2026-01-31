@@ -24,13 +24,7 @@ async function generateIcons() {
     console.log(`Generated ${outputPath}`);
   }
   
-  // Also generate favicon
-  const faviconPath = path.join(__dirname, '../public/favicon.ico');
-  await sharp(svgBuffer)
-    .resize(32, 32)
-    .png()
-    .toFile(faviconPath.replace('.ico', '.png'));
-  console.log('Generated favicon.png');
+  console.log('Icon generation complete');
 }
 
 generateIcons().catch(console.error);

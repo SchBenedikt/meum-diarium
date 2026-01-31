@@ -67,7 +67,7 @@ export default function PrivacyPage() {
                       Einleitung
                     </h2>
                     <p className="text-muted-foreground leading-relaxed mb-0">
-                      Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert Sie darüber, welche Daten wir erheben, wie wir sie verwenden und welche Rechte Sie haben.
+                      Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung erklärt in klaren Worten, welche Daten wir erheben, wofür wir sie brauchen und welche Rechte Sie haben. Kurz gesagt: Wir sammeln nur, was für einen stabilen Betrieb, eine gute Nutzererfahrung und eine nachvollziehbare Reichweitenmessung notwendig ist.
                     </p>
                   </div>
                 </div>
@@ -111,6 +111,24 @@ export default function PrivacyPage() {
                       Wir verwenden den Local Storage Ihres Browsers zur Speicherung von Präferenzen (z.B. ausgewählter Autor, Sprache, Theme). Diese Daten werden ausschließlich lokal in Ihrem Browser gespeichert und nicht an unsere Server übertragen.
                     </p>
                   </div>
+
+                  <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
+                    <h3 className="text-lg font-semibold mb-3">
+                      Reichweitenmessung
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Wir messen die Nutzung unserer Website, um Inhalte und Performance zu verbessern. Dabei verwenden wir Analyse-Cookies und erfassen z.B. Seitenaufrufe, Verweildauer, verwendete Endgeräte und ungefähre Standortregionen. Wir interessieren uns für Trends, nicht für einzelne Personen.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
+                    <h3 className="text-lg font-semibold mb-3">
+                      Kontakt per E-Mail
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Wenn Sie uns per E-Mail kontaktieren, verarbeiten wir die von Ihnen übermittelten Daten zur Bearbeitung der Anfrage. Diese Daten werden nicht ohne Ihre Zustimmung weitergegeben.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -122,10 +140,10 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    Diese Website verwendet keine Tracking-Cookies. Wir setzen ausschließlich technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich sind. Diese dienen der Speicherung Ihrer Sprachauswahl und Theme-Einstellungen.
+                    Diese Website verwendet technisch notwendige Cookies sowie Analyse-Cookies zur Reichweitenmessung. Die notwendigen Cookies sichern Kernfunktionen (z.B. Sprache und Theme). Die Analyse-Cookies helfen uns zu verstehen, welche Inhalte funktionieren und wo wir verbessern können.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-0">
-                    Sie können die Verwendung von Cookies in Ihren Browser-Einstellungen verwalten und jederzeit löschen.
+                    Sie können Cookies in Ihren Browser-Einstellungen verwalten und jederzeit löschen. Wenn Sie Analyse-Cookies blockieren, funktioniert die Seite weiterhin, nur unsere Statistik wird etwas blinder (Caesar würde es vermutlich trotzdem als Triumph verkaufen).
                   </p>
                 </div>
               </div>
@@ -148,12 +166,27 @@ export default function PrivacyPage() {
 
                   <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                     <h3 className="text-lg font-semibold mb-3">
-                      Keine Analytics
+                      Analyse und Statistik
                     </h3>
                     <p className="text-muted-foreground leading-relaxed mb-0">
-                      Wir verwenden keine Analyse-Tools wie Google Analytics. Ihre Nutzung wird nicht getrackt oder analysiert.
+                      Wir nutzen eine Reichweitenmessung, um Inhalte zu verbessern und technische Probleme schneller zu erkennen. Dabei erfassen wir Nutzungsdaten in aggregierter Form. Keine Werbung, kein Verkauf von Daten, keine personalisierten Profile.
                     </p>
                   </div>
+                </div>
+              </div>
+
+              <div className="mb-12">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-primary" />
+                  Rechtsgrundlagen in Kurzform
+                </h2>
+                <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Betrieb der Website und Sicherheit: berechtigtes Interesse</li>
+                    <li>• Speicherung von Präferenzen: berechtigtes Interesse</li>
+                    <li>• Reichweitenmessung: berechtigtes Interesse</li>
+                    <li>• Beantwortung von Anfragen: Vertragsanbahnung bzw. berechtigtes Interesse</li>
+                  </ul>
                 </div>
               </div>
 
@@ -176,7 +209,7 @@ export default function PrivacyPage() {
                     <li>• Recht auf Widerspruch gegen die Verarbeitung</li>
                   </ul>
                   <p className="text-muted-foreground leading-relaxed mt-4 mb-0">
-                    Zur Ausübung dieser Rechte kontaktieren Sie uns bitte über die im Impressum angegebenen Kontaktdaten.
+                    Zur Ausübung dieser Rechte kontaktieren Sie uns bitte über die im Impressum angegebenen Kontaktdaten. Wenn es nur um Cookies geht, können Sie das auch direkt im Browser regeln. Caesar hätte dafür eine Verordnung erlassen, wir begnügen uns mit einem freundlichen Hinweis.
                   </p>
                 </div>
               </div>

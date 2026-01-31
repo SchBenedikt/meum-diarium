@@ -4,17 +4,9 @@ const work: Work = {
   title: 'De Re Publica',
   author: 'cicero',
   year: '54–51 v. Chr.',
-  summary: `"De Re Publica" (Über den Staat) ist Ciceros ambitioniertestes philosophisches Werk - ein Dialog über den idealen Staat, inspiriert von Platons gleichnamigem Werk. Verfasst in den Jahren 54-51 v. Chr., während Cicero zeitweilig aus der aktiven Politik ausgeschlossen war, reflektiert das Werk über Staatsformen, Gerechtigkeit und die Pflichten des Staatsmannes.
-
-Das Werk ist als Dialog gestaltet, der im Jahr 129 v. Chr. im Garten des Scipio Aemilianus stattfindet - einer Generation vor Ciceros eigener Zeit, aber einer Periode, die Cicero als goldenes Zeitalter der römischen Republik idealisiert. Die Hauptsprecher sind historische Persönlichkeiten der römischen Elite, allen voran Scipio selbst.
-
-Tragischerweise ist das Werk nur fragmentarisch erhalten. Große Teile, besonders von Buch III und IV, sind verloren. Was wir besitzen, verdanken wir mittelalterlichen Palimpsesten (wiederverwendeten Manuskripten) und Zitaten spätantiker Autoren. Das berühmte "Somnium Scipionis" (Traum des Scipio) am Ende von Buch VI blieb durch den Kommentar des Macrobius erhalten und wurde im Mittelalter viel gelesen.`,
+  summary: `Ciceros Verteidigung der idealen Republik als Dialog. Argumentiert für die gemischte Verfassung (Monarchie + Aristokratie + Demokratie), die Roms Verfassung verkörpert. Viel fragmentarisch erhalten; das berühmte "Somnium Scipionis" inspirierte das Mittelalter.`,
   
-  takeaway: `De Re Publica ist Ciceros Verteidigung der römischen Republik als beste aller Staatsformen. Er argumentiert für eine "gemischte Verfassung" (constitutio mixta), die Elemente der Monarchie (Konsulate), Aristokratie (Senat) und Demokratie (Volksversammlungen) kombiniert - genau wie Rom es (theoretisch) tat.
-
-Das Werk ist zugleich philosophische Abhandlung und politisches Manifest. Cicero idealisiert die römische Republik seiner Jugend und warnt vor den Gefahren der Demagogie und Diktatur - ironischerweise genau in den Jahren, als Caesar an die Macht kam. De Re Publica ist damit ein Dokument des politischen Niedergangs, geschrieben von einem Mann, der verzweifelt versuchte, eine untergehende Ordnung zu verteidigen.
-
-Das "Somnium Scipionis" bietet eine kosmische Perspektive: Scipio Africanus der Ältere erscheint seinem Enkel im Traum und zeigt ihm die Ordnung des Universums. Die Botschaft: Wahre Größe liegt in der Sorge um den Staat; die Seelen der großen Staatsmänner steigen nach dem Tod zu den Sternen auf. Diese Vision der Unsterblichkeit durch Verdienst um den Staat wird zur Grundlage von Ciceros politischer Ethik.`,
+  takeaway: `Ein verzweifelter Verteidigungsschrift für die untergehende Republik. Cicero warnt vor Demagogie und Diktatur - Ironie: verfasst genau als Caesar an die Macht kommt. Das "Somnium Scipionis" schuf das mittelalterliche Ideal der Unsterblichkeit durch Staatsdienst.`,
   
   structure: [
     { 

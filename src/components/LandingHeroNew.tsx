@@ -85,12 +85,12 @@ export default function LandingHeroNew() {
                   {t('landing.hero.badge') || 'Erlebe Geschichte Neu'}
                 </Badge>
 
-                <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tighter font-extrabold">
-                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                    {t('landing.hero.title1') || 'Geschichte'}
+                <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tighter">
+                  <span className="font-extrabold text-red-600">
+                    {t('landing.hero.title1') || 'Historia'}
                   </span>
                   <br />
-                  <span className="text-foreground">
+                  <span className="font-light italic">
                     {t('landing.hero.title2') || 'zum Leben erweckt'}
                   </span>
                 </h1>
@@ -152,25 +152,7 @@ export default function LandingHeroNew() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                 
-                {/* Overlay content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3">
-                  {[
-                    { icon: MessageCircle, text: t('landing.hero.feature1') || 'Historische KI-Dialoge' },
-                    { icon: BookOpen, text: t('landing.hero.feature2') || 'Umfassendes Lexikon' },
-                    { icon: Map, text: t('landing.hero.feature3') || 'Interaktive Zeitreisen' },
-                  ].map((feature, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
-                      className="flex items-center gap-3 text-foreground/90 backdrop-blur-sm"
-                    >
-                      <feature.icon className="w-5 h-5 text-primary" />
-                      <span className="text-sm font-medium">{feature.text}</span>
-                    </motion.div>
-                  ))}
-                </div>
+
               </div>
 
               {/* Floating Elements */}
@@ -225,11 +207,9 @@ export default function LandingHeroNew() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group relative"
               >
-                <div className="relative h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1">
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                  
+                <div className="relative h-full rounded-2xl border border-border/40 bg-card p-6 transition-all duration-500 hover:border-primary/50">
                   <div className="relative">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center mb-4">
                       <feature.icon className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
@@ -301,7 +281,7 @@ export default function LandingHeroNew() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {recentPosts.slice(0, 6).map((post, i) => (
                 <motion.div
                   key={post.id}

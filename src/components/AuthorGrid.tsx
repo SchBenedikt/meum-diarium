@@ -60,9 +60,8 @@ export function AuthorGrid() {
                 >
                   <Card
                     className={cn(
-                      'h-full overflow-hidden border border-border/40 transition-all duration-500 bg-card/50 backdrop-blur-sm shadow-none rounded-[2rem] premium-glow',
-                      'group-hover:border-primary/50 group-hover:bg-card/50 group-hover:shadow-[0_0_50px_-15px_rgba(var(--primary-rgb),0.1)]',
-                      'relative after:absolute after:inset-0 after:rounded-[2rem] after:transition-opacity after:duration-500 after:opacity-0 group-hover:after:opacity-100 after:pointer-events-none after:shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]'
+                      'h-full overflow-hidden rounded-[2rem] border border-border/40 bg-card transition-all duration-500',
+                      'group-hover:border-primary/50'
                     )}
                   >
                     {/* Image Section */}

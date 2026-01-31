@@ -59,15 +59,15 @@ export default function CookiesPage() {
               className="space-y-12"
             >
               {/* Summary */}
-              <div className="p-6 rounded-2xl bg-green-500/10 border border-green-500/20">
+              <div className="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20">
                 <div className="flex items-start gap-4">
-                  <CheckCircle2 className="w-8 h-8 text-green-500 flex-shrink-0 mt-1" />
+                  <CheckCircle2 className="w-8 h-8 text-amber-500 flex-shrink-0 mt-1" />
                   <div>
-                    <h2 className="text-xl font-bold mb-3 text-green-700 dark:text-green-400">
-                      Gute Nachricht!
+                    <h2 className="text-xl font-bold mb-3 text-amber-700 dark:text-amber-400">
+                      Kurzfassung
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Meum Diarium verwendet keine Tracking-Cookies oder Analyse-Tools. Wir setzen ausschließlich technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich sind. Diese dienen nur der Speicherung Ihrer Präferenzen wie Sprache und Theme.
+                      Meum Diarium verwendet notwendige Cookies und Analyse-Cookies. Die notwendigen Cookies sichern Grundfunktionen wie Sprache und Theme. Die Analyse-Cookies helfen uns zu verstehen, welche Inhalte gelesen werden und wo wir nachbessern sollten. Keine Werbung, kein Datenhandel, kein heimliches Imperium.
                     </p>
                   </div>
                 </div>
@@ -80,7 +80,10 @@ export default function CookiesPage() {
                   Was sind Cookies?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Präferenzen über einen bestimmten Zeitraum zu speichern, sodass Sie diese nicht bei jedem Besuch erneut eingeben müssen.
+                  Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie helfen der Website, sich an Ihre Einstellungen zu erinnern oder anonyme Nutzungsstatistiken zu erstellen. Kein Zauber, keine Spione, nur kleine Notizzettel.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Wir nutzen zudem Local Storage für Einstellungen wie Sprache und Theme. Das ist technisch ähnlich, aber kein klassisches Cookie. Beide Varianten können Sie im Browser verwalten.
                 </p>
               </div>
 
@@ -140,22 +143,35 @@ export default function CookiesPage() {
                 {/* No Analytics */}
                 <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                      <XCircle className="w-6 h-6 text-red-500" />
+                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-6 h-6 text-amber-500" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">
                         Analyse-Cookies
                       </h3>
-                      <Badge variant="outline" className="mb-3 text-xs border-red-500/30">
-                        Nicht verwendet
+                      <Badge variant="outline" className="mb-3 text-xs border-amber-500/30">
+                        Wird verwendet
                       </Badge>
                     </div>
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed">
-                    Wir verwenden keine Cookies für Analysen, Tracking oder Werbezwecke. Tools wie Google Analytics, Facebook Pixel oder ähnliche Dienste werden nicht eingesetzt.
+                    Wir verwenden Analyse-Cookies zur Reichweitenmessung und Verbesserung der Inhalte. Erfasst werden z.B. Seitenaufrufe, Verweildauer, Gerätetypen und ungefähre Regionen. Wir suchen Muster, nicht Personen. Caesar zählte Legionen, wir zählen Seitenaufrufe.
                   </p>
+                  <div className="mt-6 space-y-4">
+                    <div className="p-4 rounded-xl bg-secondary/20">
+                      <h4 className="font-semibold mb-2 text-sm">
+                        Reichweitenmessung
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        Zweck: Statistik, Fehlererkennung, Optimierung von Inhalten
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Gültigkeit: Variiert je nach Cookie, in der Regel wenige Tage bis Monate
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* No Marketing */}
@@ -175,7 +191,7 @@ export default function CookiesPage() {
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed">
-                    Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein.
+                    Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein. Keine Verfolger, keine Banner-Flut, keine Imperatoren im Werbenetzwerk.
                   </p>
                 </div>
               </div>

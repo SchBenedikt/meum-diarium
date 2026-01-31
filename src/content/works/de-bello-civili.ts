@@ -4,15 +4,9 @@ const work: Work = {
   title: 'De Bello Civili',
   author: 'caesar',
   year: '49-48 v. Chr.',
-  summary: `"De Bello Civili" (Der Bürgerkrieg) ist Caesars Rechtfertigungsschrift für den verheerendsten Konflikt der römischen Geschichte - den Bürgerkrieg gegen Pompeius Magnus und die senatorische Fraktion. Verfasst zwischen 49-48 v. Chr., dokumentiert das Werk den Todeskampf der Römischen Republik aus der Perspektive des Mannes, der sie zu Grabe trug.
-
-Im Gegensatz zu "De Bello Gallico" ist dieser Text persönlicher, emotionaler und defensiver im Ton. Caesar präsentiert sich als Opfer einer Verschwörung, gezwungen zur Selbstverteidigung gegen eine Clique von Senatoren, die die Gesetze missachteten. Die Ironie ist offenkundig: Der Mann, der den Rubikon überschritt und damit das heiligste Tabu der Republik brach, stellt sich als Verteidiger der Legalität dar.
-
-Das Werk umfasst drei vollständige Bücher und bricht mitten in der Schilderung des Alexandrinischen Krieges ab - möglicherweise wurde es nie vollendet, oder spätere Teile gingen verloren. Die fehlenden Abschnitte (Afrikanischer und Spanischer Krieg) wurden von unbekannten Autoren aus Caesars Umfeld ergänzt, erreichen aber nicht die literarische Qualität der authentischen Bücher.`,
+  summary: `Caesars Bericht über den Bürgerkrieg gegen Pompeius (49-48 v. Chr.). Emotionaler und defensiver als De Bello Gallico. Caesar rechtfertigt die Überschreitung des Rubikon als Selbstverteidigung gegen eine illegale senatorische Clique - ein Meisterwerk der politischen Selbstrechtfertigung.`,
   
-  takeaway: `De Bello Civili ist ein faszinierendes historisches Dokument und zugleich ein problematisches Propagandawerk. Caesar rechtfertigt sein Handeln durch eine selektive Darstellung der Ereignisse, unterschlägt wesentliche Fakten und präsentiert seine Gegner als irrational und gesetzlos.
-
-Dennoch bietet das Werk unersetzliche Einblicke in die dramatischen Monate zwischen Januar 49 und Herbst 48 v. Chr. Die militärischen Schilderungen sind brillant, die politischen Argumente jedoch durchsichtig selbstrechtfertigend. Das Werk zeigt exemplarisch, wie ein hochintelligenter Diktator seine Machtergreifung als unvermeidbare Notwendigkeit darstellt - eine Lektion, die durch die Geschichte immer wieder aktuell bleibt.`,
+  takeaway: `Ein hochintelligenter Diktator rechtfertigt seine Machtergreifung als unvermeidbare Notwendigkeit. Caesar stellt sich als Opfer dar, der gezwungen wurde zu handeln. Die militärischen Schilderungen sind brillant, aber die politischen Argumente sind durchsichtig selbstrechtfertigend.`,
   
   structure: [
     { 

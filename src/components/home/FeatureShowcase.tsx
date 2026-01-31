@@ -107,22 +107,12 @@ export function FeatureShowcase() {
                     {features.map((feature, i) => (
                         <motion.div key={i} variants={fadeUp(0.3 + i * 0.05)} className={feature.className}>
                             <Card className={cn(
-                                "h-full p-8 bg-card/40 backdrop-blur-2xl border border-border/40 hover:border-primary/20 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden rounded-[2rem]",
-                                "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity"
+                                "h-full p-8 bg-card border border-border/40 hover:border-primary/50 transition-all duration-500 rounded-2xl"
                             )}>
-                                {/* Glow Effect */}
-                                <div className={cn(
-                                    "absolute -right-12 -top-12 w-48 h-48 rounded-full blur-[80px] opacity-0 group-hover:opacity-10 transition-opacity duration-700",
-                                    feature.bg
-                                )} />
-
-                                <div className={cn(
-                                    "w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500",
-                                    feature.bg
-                                )}>
+                                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-secondary/50">
                                     <feature.icon className={cn("w-6 h-6", feature.color)} />
                                 </div>
-                                <h3 className="font-display text-2xl font-extrabold mb-3 tracking-tight group-hover:text-primary transition-colors">
+                                <h3 className="font-display text-2xl font-extrabold mb-3 tracking-tight">
                                     {t(feature.titleKey)}
                                 </h3>
                                 <p className="text-muted-foreground leading-relaxed font-light">
