@@ -68,6 +68,7 @@ export default function CookiesPage() {
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Meum Diarium verwendet notwendige Cookies und Analyse-Cookies. Die notwendigen Cookies sichern Grundfunktionen wie Sprache und Theme. Die Analyse-Cookies helfen uns zu verstehen, welche Inhalte gelesen werden und wo wir nachbessern sollten. Keine Werbung, kein Datenhandel, kein heimliches Imperium.
+                      Alles bleibt übersichtlich und auf den Zweck der Website beschränkt.
                     </p>
                   </div>
                 </div>
@@ -84,6 +85,9 @@ export default function CookiesPage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mt-4">
                   Wir nutzen zudem Local Storage für Einstellungen wie Sprache und Theme. Das ist technisch ähnlich, aber kein klassisches Cookie. Beide Varianten können Sie im Browser verwalten.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Für Meum Diarium bedeutet das: schnelleres Laden, stabile Einstellungen und besseres Verständnis, welche Inhalte besonders hilfreich sind.
                 </p>
               </div>
 
@@ -111,6 +115,9 @@ export default function CookiesPage() {
                   
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     Diese Cookies sind für den Betrieb der Website unbedingt erforderlich und können nicht deaktiviert werden. Sie dienen ausschließlich technischen Zwecken.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Ohne diese Cookies kann die Seite grundlegende Funktionen wie Sprache oder Layout nicht zuverlässig speichern.
                   </p>
 
                   <div className="mt-6 space-y-4">
@@ -159,6 +166,9 @@ export default function CookiesPage() {
                   <p className="text-muted-foreground leading-relaxed">
                     Wir verwenden Analyse-Cookies zur Reichweitenmessung und Verbesserung der Inhalte. Erfasst werden z.B. Seitenaufrufe, Verweildauer, Gerätetypen und ungefähre Regionen. Wir suchen Muster, nicht Personen. Caesar zählte Legionen, wir zählen Seitenaufrufe.
                   </p>
+                  <p className="text-muted-foreground leading-relaxed mt-4">
+                    Wenn Sie Analyse-Cookies deaktivieren, funktioniert die Website weiterhin, nur unsere Statistik wird weniger präzise.
+                  </p>
                   <div className="mt-6 space-y-4">
                     <div className="p-4 rounded-xl bg-secondary/20">
                       <h4 className="font-semibold mb-2 text-sm">
@@ -193,6 +203,9 @@ export default function CookiesPage() {
                   <p className="text-muted-foreground leading-relaxed">
                     Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein. Keine Verfolger, keine Banner-Flut, keine Imperatoren im Werbenetzwerk.
                   </p>
+                  <p className="text-muted-foreground leading-relaxed mt-4">
+                    Es gibt keine Profile, kein Retargeting und keine Weitergabe an Werbenetzwerke.
+                  </p>
                 </div>
               </div>
 
@@ -208,7 +221,7 @@ export default function CookiesPage() {
                     Sie können Cookies in Ihren Browser-Einstellungen jederzeit verwalten, blockieren oder löschen:
                   </p>
 
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-muted-foreground list-none">
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
                       <span><strong>Chrome:</strong> Einstellungen → Datenschutz und Sicherheit → Cookies</span>
@@ -233,6 +246,9 @@ export default function CookiesPage() {
                       Das Blockieren oder Löschen von Cookies kann dazu führen, dass Ihre Präferenzen (wie Sprache und Theme) nicht gespeichert werden.
                     </p>
                   </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Cookie-Einstellungen gelten in der Regel pro Gerät und Browser. Wenn Sie mehrere Geräte nutzen, müssen die Einstellungen dort jeweils separat angepasst werden.
+                  </p>
                 </div>
               </div>
 
@@ -243,6 +259,9 @@ export default function CookiesPage() {
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Wir können diese Cookie-Richtlinien von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite veröffentlicht. Das Datum der letzten Aktualisierung finden Sie oben auf dieser Seite.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  Bei wesentlichen Änderungen ergänzen wir eine kurze Zusammenfassung, damit Sie die wichtigsten Punkte schnell erfassen.
                 </p>
               </div>
 

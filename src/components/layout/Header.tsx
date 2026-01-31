@@ -146,11 +146,11 @@ export function Header() {
               className="group flex items-center gap-3 min-w-0 transition-opacity duration-200"
               aria-label={t('appName')}
             >
-              <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:rotate-3">
-                <span className="inline-block text-xs sm:text-sm font-bold text-primary-foreground">
-                  MD
-                </span>
-              </div>
+              <img
+                src="/icons/favicon.svg"
+                alt="Meum Diarium"
+                className="h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all duration-300 group-hover:scale-105"
+              />
               <span className="hidden xs:block font-display text-lg sm:text-xl truncate font-extrabold tracking-tighter">
                 {t('appName')}
               </span>
@@ -288,11 +288,11 @@ export function Header() {
                           onClick={handleNavClick}
                           className="flex items-center gap-2"
                         >
-                          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center shadow-md">
-                            <span className="text-sm font-bold text-primary-foreground">
-                              MD
-                            </span>
-                          </div>
+                          <img
+                            src="/icons/favicon.svg"
+                            alt="Meum Diarium"
+                            className="h-9 w-9 flex-shrink-0"
+                          />
                           <span className="font-display text-lg font-semibold">
                             {t('appName')}
                           </span>
