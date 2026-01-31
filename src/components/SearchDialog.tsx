@@ -1,13 +1,16 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
+import { Search, X, BookText, BookMarked, User, CornerDownLeft, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
 import { lexicon } from '@/data/lexicon';
-import { BlogPost, Author, LexiconEntry } from '@/types/blog';
+import { works } from '@/data/works';
+import { workDetails } from '@/data/work-details';
+import { BlogPost, Author, LexiconEntry, Work } from '@/types/blog';
 import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
+import slugify from 'slugify';
 
 interface SearchDialogProps {
   isOpen: boolean;
@@ -17,7 +20,8 @@ interface SearchDialogProps {
 type SearchResult =
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry }
-  | { type: 'author', data: typeof authors[Author] };
+  | { type: 'author', data: typeof authors[Author] }
+  | { type: 'work', data: Work, authorId: string };
 
 export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [query, setQuery] = useState('');
@@ -25,6 +29,65 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const navigate = useNavigate();
   const { posts, isLoading } = usePosts();
   const { language } = useLanguage();
+
+  // Helper function to extract searchable text from work details
+  const getWorkSearchableContent = (slug: string): string => {
+    const detail = workDetails[slug as keyof typeof workDetails];
+    if (!detail) return '';
+
+    const parts: string[] = [];
+
+    // Add context paragraphs
+    if (detail.context?.paragraphs) {
+      parts.push(...detail.context.paragraphs);
+    }
+
+    // Add quotes
+    if (detail.quotes) {
+      detail.quotes.forEach(q => {
+        parts.push(q.latin, q.translation, q.context);
+      });
+    }
+
+    // Add sections
+    if (detail.sections) {
+      detail.sections.forEach(s => {
+        parts.push(s.title, ...s.content);
+      });
+    }
+
+    // Add key moments
+    if (detail.keyMoments) {
+      detail.keyMoments.forEach(m => {
+        parts.push(m.title, m.description, m.significance);
+      });
+    }
+
+    // Add literary features
+    if (detail.literaryFeatures) {
+      detail.literaryFeatures.forEach(f => {
+        parts.push(f.title, f.description);
+        if (f.examples) parts.push(...f.examples);
+      });
+    }
+
+    // Add book chapters
+    if (detail.bookChapters) {
+      detail.bookChapters.forEach(b => {
+        parts.push(b.title, b.description);
+        if (b.keyEvents) parts.push(...b.keyEvents);
+      });
+    }
+
+    // Add impact
+    if (detail.impact) {
+      parts.push(detail.impact.title);
+      parts.push(...detail.impact.paragraphs);
+      parts.push(...detail.impact.highlights);
+    }
+
+    return parts.join(' ').toLowerCase();
+  };
 
   const results: SearchResult[] = useMemo(() => {
     if (isLoading || !query.trim()) return [];
@@ -52,7 +115,23 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       author.title.toLowerCase().includes(searchTerm)
     ).map(author => ({ type: 'author', data: author }));
 
-    return [...postResults, ...lexiconResults, ...authorResults].slice(0, 8);
+    const workResults: SearchResult[] = Object.entries(works).filter(([slug, work]) => {
+      const searchableText = [
+        work.title,
+        work.summary,
+        work.takeaway,
+        ...(work.structure?.map(s => s.title + ' ' + s.content) || []),
+        authors[work.author as Author]?.name || '',
+        getWorkSearchableContent(slug)
+      ].map(t => (t || '').toString().toLowerCase()).join(' ');
+      return searchableText.includes(searchTerm);
+    }).map(([slug, work]) => ({ 
+      type: 'work', 
+      data: work, 
+      authorId: work.author as string 
+    }));
+
+    return [...postResults, ...workResults, ...lexiconResults, ...authorResults].slice(0, 8);
   }, [query, posts, isLoading]);
 
   const handleNavigation = (index: number) => {
@@ -62,6 +141,10 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     if (result.type === 'post') path = `/${result.data.author}/${result.data.slug}`;
     if (result.type === 'lexicon') path = `/lexicon/${result.data.slug}`;
     if (result.type === 'author') path = `/${result.data.id}`;
+    if (result.type === 'work') {
+      const workSlug = slugify(result.data.title, { lower: true, strict: true });
+      path = `/${result.authorId}/works/${workSlug}`;
+    }
 
     navigate(path);
     onClose();
@@ -129,7 +212,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Suche nach Einträgen, Lexikon, Autoren..."
+                placeholder="Suche nach Einträgen, Werken, Lexikon, Autoren..."
                 className="flex-1 bg-transparent border-none outline-none px-4 py-4 text-sm"
                 autoFocus
               />
@@ -163,7 +246,8 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                   to={
                     result.type === 'post' ? `/${result.data.author}/${result.data.slug}` :
                       result.type === 'lexicon' ? `/lexicon/${result.data.slug}` :
-                        `/${result.data.id}`
+                        result.type === 'work' ? `/${result.authorId}/works/${slugify(result.data.title, { lower: true, strict: true })}` :
+                          `/${result.data.id}`
                   }
                   onClick={onClose}
                   className={`block px-4 py-3 border-b border-border last:border-b-0 ${index === activeIndex ? 'bg-secondary' : ''
@@ -174,22 +258,26 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                       {result.type === 'post' && <BookText className="h-4 w-4" />}
                       {result.type === 'lexicon' && <BookMarked className="h-4 w-4" />}
                       {result.type === 'author' && <User className="h-4 w-4" />}
+                      {result.type === 'work' && <Book className="h-4 w-4" />}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-medium text-foreground truncate">
                         {result.type === 'post' && result.data.title}
                         {result.type === 'lexicon' && result.data.term}
                         {result.type === 'author' && result.data.name}
+                        {result.type === 'work' && result.data.title}
                       </div>
                       <div className="text-xs text-muted-foreground truncate mt-0.5">
                         {result.type === 'post' && result.data.excerpt}
                         {result.type === 'lexicon' && result.data.definition}
                         {result.type === 'author' && result.data.description}
+                        {result.type === 'work' && result.data.summary}
                       </div>
                       <div className="text-xs text-muted-foreground mt-1">
                         {result.type === 'post' && `Eintrag • ${authors[result.data.author]?.name || result.data.author}`}
                         {result.type === 'lexicon' && `Lexikon • ${result.data.category}`}
                         {result.type === 'author' && `Autor • ${result.data.title}`}
+                        {result.type === 'work' && `Werk • ${authors[result.authorId as Author]?.name || result.authorId}`}
                       </div>
                     </div>
                   </div>

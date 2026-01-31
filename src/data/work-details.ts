@@ -8,6 +8,7 @@ export interface WorkDetail {
   impact: ImpactSection;
   literaryFeatures: LiteraryFeature[];
   context: ContextSection;
+  bookChapters?: BookChapter[];
 }
 
 export interface WorkSection {
@@ -46,6 +47,14 @@ export interface ContextSection {
   title: string;
   paragraphs: string[];
   timeline?: { year: string; event: string }[];
+}
+
+export interface BookChapter {
+  number: number;
+  title: string;
+  description: string;
+  timeframe?: string;
+  keyEvents?: string[];
 }
 
 export const workDetails: Record<string, WorkDetail> = {
