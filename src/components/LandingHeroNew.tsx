@@ -144,43 +144,32 @@ export default function LandingHeroNew() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="hidden lg:block relative"
             >
-              <div className="relative rounded-3xl overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm p-8 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+              <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-2xl">
+                <img 
+                  src="/images/caesar-hero.jpg" 
+                  alt="Julius Caesar"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                 
-                {/* Decorative Quote */}
-                <div className="relative space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Scroll className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-lg font-serif italic text-foreground leading-relaxed">
-                        "{t('landing.hero.quote') || 'Veni, vidi, vici'}"
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        — {t('landing.hero.quoteAuthor') || 'Gaius Julius Caesar'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-4 border-t border-border/50">
-                    {[
-                      { icon: MessageCircle, text: t('landing.hero.feature1') || 'Historische KI-Dialoge' },
-                      { icon: BookOpen, text: t('landing.hero.feature2') || 'Umfassendes Lexikon' },
-                      { icon: Map, text: t('landing.hero.feature3') || 'Interaktive Zeitreisen' },
-                    ].map((feature, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
-                        className="flex items-center gap-3 text-muted-foreground"
-                      >
-                        <feature.icon className="w-5 h-5 text-primary" />
-                        <span className="text-sm">{feature.text}</span>
-                      </motion.div>
-                    ))}
-                  </div>
+                {/* Overlay content */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3">
+                  {[
+                    { icon: MessageCircle, text: t('landing.hero.feature1') || 'Historische KI-Dialoge' },
+                    { icon: BookOpen, text: t('landing.hero.feature2') || 'Umfassendes Lexikon' },
+                    { icon: Map, text: t('landing.hero.feature3') || 'Interaktive Zeitreisen' },
+                  ].map((feature, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
+                      className="flex items-center gap-3 text-foreground/90 backdrop-blur-sm"
+                    >
+                      <feature.icon className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-medium">{feature.text}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 

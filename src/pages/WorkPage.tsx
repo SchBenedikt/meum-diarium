@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
+import { works as localWorks } from '@/data/works';
 import { Author, Work, AuthorInfo } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import {
@@ -88,7 +89,7 @@ export default function WorkPage() {
         setAuthor(translatedAuthor ?? baseAuthor ?? null);
       }
 
-      // Load work base + translations from API
+      // Load work base + translations from API, fallback to local data
       try {
         const data = await fetchWork(slug);
         const lang = language.split('-')[0];
@@ -105,7 +106,14 @@ export default function WorkPage() {
           setWork(data);
         }
       } catch (e) {
-        setWork(null);
+        // Fallback to local works data if API fails
+        console.warn('API fetch failed, using local data:', e);
+        const localWork = localWorks[slug];
+        if (localWork) {
+          setWork(localWork);
+        } else {
+          setWork(null);
+        }
       }
 
       // Load details JSON (language-specific if available)
@@ -121,7 +129,7 @@ export default function WorkPage() {
         setDetails(null);
       }
 
-      // Related works (API list)
+      // Related works (API list with local fallback)
       try {
         const list = await fetchWorks();
         const related = (list || [])
@@ -130,7 +138,12 @@ export default function WorkPage() {
           .map((w: any) => ({ title: w.title, year: w.year } as Work));
         setOtherWorks(related);
       } catch {
-        setOtherWorks([]);
+        // Fallback to local works data
+        const related = Object.entries(localWorks)
+          .filter(([workSlug, w]) => w.author === authorId && workSlug !== slug)
+          .slice(0, 3)
+          .map(([_, w]) => ({ title: w.title, year: w.year } as Work));
+        setOtherWorks(related);
       }
 
       setLoading(false);
