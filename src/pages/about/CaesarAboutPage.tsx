@@ -273,8 +273,6 @@ export function CaesarAboutPage() {
                             <div className="mb-4 pt-3 border-t border-border/50">
                               <p className="text-xs text-muted-foreground">
                                 <span className="font-semibold">{work.structure.length} Bücher</span>
-                                {work.takeaway && <span className="mx-2">•</span>}
-                                {work.takeaway && <span>Umfangreiche Analyse</span>}
                               </p>
                             </div>
                           )}

@@ -4,17 +4,9 @@ const work: Work = {
   title: 'Res Gestae Divi Augusti',
   author: 'augustus',
   year: '14 n. Chr.',
-  summary: `Die "Res Gestae Divi Augusti" (Taten des göttlichen Augustus) sind Augustus' autobiographischer Rechenschaftsbericht, verfasst in seinen letzten Lebensmonaten. Dieser einzigartige Text wurde nach seinem Tod im Jahr 14 n. Chr. auf Bronzetafeln vor seinem Mausoleum in Rom angebracht und im gesamten Römischen Reich verbreitet.
-
-Das Dokument ist ein Meisterwerk der politischen Selbstdarstellung. Augustus präsentiert sich als Retter und Wiederhersteller der Republik, verschweigt jedoch elegant, dass er faktisch das römische Kaisertum begründete und die republikanischen Institutionen zu bloßen Fassaden reduzierte. Die Inschrift listet systematisch seine militärischen Siege, politischen Ämter, Ehrungen und Wohltaten auf - ein perfekt orchestriertes Vermächtnis für die Nachwelt.
-
-Die beste erhaltene Kopie wurde 1555 in Ankara (dem antiken Ancyra) entdeckt - der sogenannte "Monumentum Ancyranum". Weitere Fragmente fanden sich in Apollonia und Antiochia. Die Inschrift ist zweisprachig in Latein und Griechisch verfasst, was ihre Bedeutung für das gesamte Reich unterstreicht.`,
+  summary: `Augustus' autobiographischer Rechenschaftsbericht, verfasst am Lebensende. Auf Bronzetafeln im ganzen Reich verbreitet: Taten, Ämter, Ehrungen aufgelistet. Ein Meisterwerk der Propaganda: er stellt sich als Retter der Republik dar, obwohl er sie zur Monarchie umwandelte.`,
   
-  takeaway: `Die Res Gestae sind ein faszinierendes Beispiel für die Formung eines historischen Vermächtnisses. Augustus konstruiert meisterhaft ein Bild von sich als bescheidenem Bürger, der nur widerwillig außergewöhnliche Macht annahm - eine offensichtliche Verzerrung der Realität.
-
-Was das Dokument verschweigt, ist oft aufschlussreicher als was es sagt: Die Proskriptionen von 43 v. Chr., bei denen Tausende ermordet wurden, werden kaum erwähnt. Seine absolute Macht wird hinter republikanischen Titeln versteckt. Die Verwandlung Roms von einer Republik in eine Monarchie wird als "Restauration" dargestellt.
-
-Dennoch ist der Text eine unschätzbare historische Quelle. Er dokumentiert Augustus' beispiellose politische Karriere, die Ausdehnung des Reiches, seine bau- und finanzpolitischen Leistungen. Die Res Gestae zeigen, wie ein brillanter Politiker sein Erbe für die Ewigkeit gestaltet - und wie Propaganda und Wahrheit verschmelzen können.`,
+  takeaway: `Meisterwerk der Propaganda. Was das Dokument verschweigt, ist aufschlussreicher als was es sagt: Die Proskriptionen von 43 v. Chr., etwa Tausend Morde, werden kaum erwähnt. Die Monarchie wird als "Restauration" dargestellt. Zeigt, wie Propaganda und Wahrheit verschmelzen.`,
   
   structure: [
     { 

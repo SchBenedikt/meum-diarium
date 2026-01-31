@@ -12,11 +12,7 @@ Die erste Rede beginnt mit den unsterblichen Worten: "Quo usque tandem abutere, 
 
 Die Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und emotionale Appelle virtuos verbinden. Sie zeigen Cicero auf dem Höhepunkt seiner Macht als "pater patriae" (Vater des Vaterlandes), der die Republik vor ihren inneren Feinden rettet. Zugleich werfen sie schwierige Fragen über Rechtsstaatlichkeit, Notstandsmaßnahmen und die Grenzen der Exekutivgewalt auf.`,
   
-  takeaway: `Die Catilinarischen Reden sind ein Lehrstück über die Macht der Rhetorik und die Ambivalenz des Heldentums. Cicero rettete Rom vor einer realen Bedrohung - aber seine Methoden, insbesondere die Hinrichtung römischer Bürger ohne ordentliches Gerichtsverfahren, waren juristisch fragwürdig und politisch verhängnisvoll.
-
-Der spätere Preis war hoch: Ciceros Gegner nutzten sein Vorgehen gegen die Catilinarier, um ihn 58 v. Chr. ins Exil zu treiben. Die Reden zeigen, wie ein Staatsmann in einer Krise zwischen Legalität und Effektivität wählen muss - und wie diese Wahl ihn später einholen kann.
-
-Rhetorisch sind die Reden unübertroffen: Der dramatische Aufbau, die emotionalen Appelle, die geschickte Verwendung von Fragen, Wiederholungen und Bildern machen sie zu zeitlosen Vorbildern der Redekunst.`,
+  takeaway: `Die Macht der Rhetorik und ihre Grenzen. Cicero rettete Rom durch brillante Reden - aber seine Methoden (Todesurteile ohne Prozess) führten zu seinem späteren Exil. Ein Lehrstück über die unbeabsichtigten Konsequenzen von Notstandsmaßnahmen.`,
   
   structure: [
     { 

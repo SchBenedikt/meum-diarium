@@ -4,19 +4,9 @@ const work: Work = {
   title: 'De Officiis',
   author: 'cicero',
   year: '44 v. Chr.',
-  summary: `"De Officiis" (Über die Pflichten) ist Ciceros letztes und meistgelesenes philosophisches Werk. Verfasst zwischen Oktober und Dezember 44 v. Chr., nur Monate nach Caesars Ermordung, ist es ein Brief an seinen Sohn Marcus, der in Athen Philosophie studiert.
-
-Das Werk behandelt praktische Ethik: Wie soll man sich im Leben verhalten? Welche Pflichten hat man gegenüber Familie, Staat und Mitmenschen? Wie löst man moralische Dilemmata? Cicero kombiniert stoische Philosophie (vor allem Panaitios) mit römischer Tradition zu einem praktischen Handbuch für tugendhaftes Leben.
-
-De Officiis wurde zum einflussreichsten ethischen Text der westlichen Tradition. Im Mittelalter war es das meistgelesene antike Werk nach der Bibel. Die Humanisten der Renaissance studierten es intensiv. Noch im 18. Jahrhundert war es Pflichtlektüre für jeden gebildeten Europäer. Voltaire, John Locke und die amerikanischen Gründerväter kannten es auswendig.`,
+  summary: `Ciceros meistgelesenes Werk über Ethik und Pflicht (44 v. Chr.). Ein Brief an seinen Sohn: Wie soll man sich verhalten? Welche Pflichten hat man? Kombination von stoischer Philosophie und römischer Praxis. Der einflussreichste ethische Text der westlichen Tradition.`,
   
-  takeaway: `De Officiis ist zeitlos, weil es universelle menschliche Dilemmata behandelt: Soll man nützlich oder ehrenhaft handeln? Wie weit darf man für den Erfolg gehen? Ist Täuschung manchmal gerechtfertigt? 
-
-Ciceros Antwort ist klar: Das Ehrbare (honestum) und das Nützliche (utile) stehen letztlich nicht im Widerspruch. Was wirklich nützlich ist, kann nicht unehrenhaft sein - und umgekehrt. Diese optimistische Vision basiert auf der stoischen Überzeugung, dass das Universum moralisch geordnet ist.
-
-Das Werk zeigt Cicero als Vermittler zwischen griechischer Philosophie und römischer Praxis. Er übersetzt abstrakte philosophische Konzepte in konkrete Verhaltensregeln für das tägliche Leben. Die vier Kardinaltugenden - Weisheit, Gerechtigkeit, Tapferkeit, Mäßigung - werden mit römischen Beispielen illustriert.
-
-Geschrieben in einer Zeit politischen Chaos, ist De Officiis auch ein politisches Manifest: Ciceros letzte Verteidigung republikanischer Werte gegen die aufkommende Diktatur.`,
+  takeaway: `Univerelle Fragen ohne universelle Antworten: Nützlichkeit oder Ehrenhaftigkeit? Ciceros These: Sie sind komplementär, nicht gegensätzlich. Ein zeitloses Handbuch für ethisches Leben. Geschrieben im Chaos nach Caesars Ermordung - Ciceros letzte Verteidigung republikanischer Werte.`,
   
   structure: [
     { 

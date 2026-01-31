@@ -332,5 +332,307 @@ export const workDetails: Record<string, WorkDetail> = {
         'Einfluss auf spätere Rechtfertigungsschriften von Machthabern'
       ]
     }
+  },
+  'in-catilinam': {
+    slug: 'in-catilinam',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'Im Herbst 63 v. Chr. versuchte der verschuldete Aristokrat Lucius Sergius Catilina mit einer Verschwörergruppe, Rom zu besetzen und die bestehende Ordnung zu stürzen. Seine Anhänger waren teilweise Veteranen, teilweise arme Stadtbewohner, vermutlich auch Sklaven.',
+        'Cicero, als amtierender Konsul, entdeckte die Verschwörung durch seine Spione und brachte Catilina dazu, Rom zu verlassen. In der Senatssitzung vom 8. November 63 v. Chr. konfrontierte Cicero Catilina – dieser war selbst im Senat anwesend – und zwang ihn, Rom zu verlassen.',
+        'Die Catilinarischen Reden sind Ciceros Bericht dieser Ereignisse und eine Darstellung der aufgedeckten Verschwörung. Sie machten Cicero zum berühmtesten Redner seiner Zeit – «pater patriae» (Vater des Vaterlandes).'
+      ],
+      timeline: [
+        { year: 'Sommer 63 v. Chr.', event: 'Catilinas geheime Verschwörung nimmt Gestalt an' },
+        { year: '8. November 63 v. Chr.', event: 'Ciceros erste Rede gegen Catilina im Senat' },
+        { year: 'November 63 v. Chr.', event: 'Catilina flieht aus Rom, seine Mitverschwörer werden verhaftet' },
+        { year: 'Dezember 63 v. Chr.', event: 'Ciceros Reden II-IV; Todesurteile gegen die Verschwörer' },
+        { year: '62 v. Chr.', event: 'Catilina stirbt in der Schlacht bei Pistoia' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Merkmale',
+        content: [
+          'Die erste Rede ist dramatisch: Cicero konfrontiert Catilina direkt im Senat mit den Worten »Quo usque tandem abutere, Catilina, patientia nostra?« (Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?)',
+          'Die Reden kombinieren präzise Argumentation mit emotionalen Appellen. Cicero nutzt Anaphora (Wiederholung), Alliteration und antithetische Strukturen für maximale Wirkung.',
+          'Die Invektiven gegen Catilina sind vernichtend. Cicero greift nicht nur sein Handeln an, sondern auch seinen Charakter, seine Beziehungen und seine Ziele.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Politische Strategie',
+        content: [
+          'Schnelle Reaktion: Durch schnelle Handlung und dramatische Konfrontation verhindert Cicero einen Bürgerkrieg im Keim.',
+          'Öffentlich machen: Cicero macht die Verschwörung öffentlich bekannt, um die Bevölkerung zu mobilisieren.',
+          'Moralische Überlegenheit: Er stellt sich als Retter der Republik dar – eine Rolle, die ihm später zum Verhängnis wird.',
+          'Präventivschlag: Cicero setzt auf harte Maßnahmen (Todesurteile ohne regulären Prozess), um zukünftige Aufstände zu verhindern.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Die berühmte Anrede',
+        description: 'Die Eröffnung »Quo usque tandem abutere, Catilina, patientia nostra?« ist eine der wirkungsvollsten Zeilen der lateinischen Literatur – vier Worte, die sofort festlegen, was folgt: Anklage, Verachtung, Autorität.',
+        examples: [
+          'Alliteration: »Quo usque tandem«',
+          'Rhetorische Frage mit impliziter Antwort',
+          'Die praetorische Autorität des Konsuls wird sofort etabliert'
+        ]
+      },
+      {
+        title: 'Wiederholung als Stilmittel',
+        description: 'Cicero nutzt Anapher und Epistrophe (Wiederholung am Anfang/Ende von Sätzen) für rhythmische und emotionale Kraft.',
+        examples: [
+          'Wiederholte »O patria, patria!« für dramatische Innigkeit',
+          'Aufzählungen von Catilinas Verbrechen in parallelischer Struktur'
+        ]
+      },
+      {
+        title: 'Psychologische Analyse',
+        description: 'Cicero zeigt tiefes psychologisches Verständnis. Er analysiert Catilinas Motivationen (Schulden, Ehrgeiz), seine Persönlichkeit (rücksichtslos, gewalttätig) und seinen Hilfsbedarf.',
+        examples: [
+          'Beschreibung von Catilinas verschwendungsüchtiger Vergangenheit',
+          'Analyse der Folgen von Schuldknechtschaft auf die Psyche',
+          'Porträt eines unzufriedenen Aristokraten'
+        ]
+      },
+      {
+        title: 'Authentische Atmosphäre',
+        description: 'Cicero schafft Spannung durch Details – den Senat im Aufruhr, Angst in den Straßen Roms, die Gefahr der Nacht. Der Leser spürt die Dramatik.',
+        examples: [
+          'Beschreibung von Verschwörertreffen in Catilinas Haus',
+          'Schilderung der Angst in Rom',
+          'Details über Catilinas Pläne und Bewegungen'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Enthüllung der Verschwörung',
+        date: 'Herbst 63 v. Chr.',
+        description: 'Cicero erfährt durch Spione von Catilinas Plänen. Er sammelt Beweise und bereitet seine Attacke vor.',
+        significance: 'Der kritische Moment, in dem Cicero zwischen Kluft und Handlung wählt. Er handelt schnell und entschlossen.'
+      },
+      {
+        title: 'Konfrontation im Senat',
+        date: '8. November 63 v. Chr.',
+        description: 'Cicero hält die erste Rede gegen Catilina – direkt vor ihm, im Senat. Ein dramatischer Moment mit »Quo usque tandem...«',
+        significance: 'Catilina wird öffentlich beschuldigt. Er verlässt Rom noch am selben Tag – eine Niederlage, aber auch eine Eingeständnis von Schuld.'
+      },
+      {
+        title: 'Todesurteile der Verschwörer',
+        date: 'Dezember 63 v. Chr.',
+        description: 'Die in Rom gefangenen Verschwörer werden ohne regulären Prozess hingerichtet – ein verfassungsrechtlich fragwürdiger Akt.',
+        significance: 'Cicero etabliert sich als Diktator des Augenblicks. Diese Maßnahme wird später zu seiner Verurteilung und Verbannung führen.'
+      },
+      {
+        title: 'Catilinas Tod',
+        date: '62 v. Chr.',
+        description: 'Catilina fällt mit seinen verbleibenden Anhängern in der Schlacht von Pistoia in Etrurien.',
+        significance: 'Das dramatische Ende – aber auch das Ende von Ciceros Glück. Er hatte sich als Retter der Republik positioniert, wurde aber später selbst zum Opfer politischer Feindschaft.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Quo usque tandem abutere, Catilina, patientia nostra?',
+        translation: 'Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?',
+        context: 'Die berühmteste Zeile – der Satzanfang einer Freske der lateinischen Rhetorik. Mit diesen vier Worten etabliert Cicero Autorität und Verachtung.'
+      },
+      {
+        latin: 'O patria, patria, locus iste quem sacpe meminisse me delectat!',
+        translation: 'O Vaterland, Vaterland, dieser Ort, an den mich zu erinnern, mich erfreut!',
+        context: 'Ciceros leidenschaftliche Verteidigungsrede für Rom. Eine emotionale Appell an das Patriotismus der Senatoren.'
+      },
+      {
+        latin: 'Silent enim leges inter arma.',
+        translation: 'Denn unter den Waffen schweigen die Gesetze.',
+        context: 'Ciceros Rechtfertigung für außerordentliche Maßnahmen – ein problematischer, aber politisch wirksamer Satz, der später gegen ihn verwendet wird.'
+      }
+    ],
+    impact: {
+      title: 'Wirkung & Vermächtnis',
+      paragraphs: [
+        'Die Catilinarischen Reden machten Cicero zum berühmtesten Redner seiner Zeit. Sie zeigen die Kraft der Rhetorik – eine Verschwörung wurde nicht durch Gewalt, sondern durch Worte besiegt.',
+        'Allerdings legten die Maßnahmen auch den Grundstein für Ciceros späteren Fall. Seine Gegner (besonders Caesar, Pompeius und Crassus) nutzten Ciceros außerordentliche Vollmachten als Vorwand, um später ihre eigene Machtkonzentration zu rechtfertigen.',
+        'Die Reden sind heute ein Klassiker der Rhetorik. Sie zeigen alle Techniken: Invektive, Appell, Logik, Emotion. Sie sind auch ein Lehrbuch über die Grenzen zwischen notwendiger Sicherheit und despotischer Überschreitung.'
+      ],
+      highlights: [
+        'Verhindert einen Bürgerkrieg im Keim',
+        'Cicero wird zum »pater patriae« (Vater des Vaterlandes)',
+        'Zeigt die Macht der Rhetorik – Verschwörung durch Worte besiegt',
+        'Das Problem: Zukünftige Machthaber rechtfertigen ihre Übergriffe mit Ciceros Präzedenzfall',
+        'Ein pyrrhussieg – Cicero siegt, wird aber später für seine Maßnahmen unschuldiger Menschen verurteilt und verbannt'
+      ]
+    }
+  },
+  'de-officiis': {
+    slug: 'de-officiis',
+    context: {
+      title: 'Zeitlicher Kontext',
+      paragraphs: [
+        'De Officiis wurde in den letzten Monaten von Ciceros Leben geschrieben (Oktober-November 44 v. Chr.), nur wenige Wochen nach Caesars Ermordung am 15. März 44 v. Chr.',
+        'Cicero schrieb das Werk als Brief an seinen Sohn Marcus, der damals in Athen studierte. Es ist eine Art Testament – Ciceros Vermächtniswerk über Ethik und Pflicht in einer Zeit des Chaos.',
+        'Politisch ist der Moment turbulent: Die Caesarmörder haben die Macht übernommen, aber die Stabilität ist fragil. Marcus Antonius, der Konsul, verkörpert die neue Hoffnung – oder die neue Bedrohung. Cicero versucht, mit De Officiis eine moralische Orientierung zu geben.'
+      ],
+      timeline: [
+        { year: '15. März 44 v. Chr.', event: 'Caesars Ermordung' },
+        { year: 'März-April 44 v. Chr.', event: 'Übergangsphase, Hoffnung auf Restauration der Republik' },
+        { year: 'Oktober-November 44 v. Chr.', event: 'Cicero schreibt De Officiis' },
+        { year: '43 v. Chr.', event: 'Zweites Triumvirat, Cicero wird verfolgt und ermordet' },
+        { year: 'Nachantike', event: 'De Officiis wird zum meistgelesenen antiken Werk neben der Bibel' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Philosophische Grundlagen',
+        content: [
+          'De Officiis kombiniert stoische Philosophie (Panaitios, Posidonios) mit römischer Praxis. Cicero übernimmt stoische Konzepte, macht sie aber "praktisch" für das römische Leben.',
+          'Das Werk teilt sich in drei Bücher: I. Sittlichkeit (honestum), II. Nützlichkeit (utile), III. Die Auflösung von Konflikten zwischen beiden.',
+          'Zentral ist die Idee, dass Tugendhaftigkeit und Nützlichkeit nicht im Widerspruch stehen – eine optimistische Sicht auf die moralische Ordnung des Universums.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Praktische Ethik',
+        content: [
+          'Vier Kardinaltugenden: Weisheit, Gerechtigkeit, Tapferkeit, Mäßigung – nicht abstrakt, sondern mit römischen Beispielen illustriert.',
+          'Pflichten in verschiedenen Lebenssituationen: als Privatmann, als Senator, als Feldherr, als Freund.',
+          'Die »gemischte Verfassung« als ideale Staatsform – ein Thema, das Cicero aus De Re Publica übernimmt und weiterentwickelt.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Form eines philosophischen Briefs',
+        description: 'De Officiis ist kein systematisches Lehrbuch, sondern ein persönlicher Brief an Ciceros Sohn. Das macht es persönlich, zugänglich und zeitlos.',
+        examples: [
+          'Ton zwischen Vater und Sohn – liebevoll, aber auch ermahnend',
+          'Mischung aus theoretischer Philosophie und praktischer Anwendung',
+          'Viele Anekdoten und historische Beispiele aus Rom'
+        ]
+      },
+      {
+        title: 'Stoische Anpassung',
+        description: 'Cicero übernimmt stoische Konzepte, passt sie aber an römische Werte und römische Tradition an. Er "latinisiert" die griechische Philosophie.',
+        examples: [
+          'Stoische Tugendlehre mit römischen Exempla',
+          'Betonung von pietas (Pflicht zum Staat), fides (Treue), honor (Ehre) – speziell römische Konzepte',
+          'Anwendung stoischer Prinzipien auf konkrete Lebenssituationen'
+        ]
+      },
+      {
+        title: 'Optimistische Weltanschauung',
+        description: 'Im Gegensatz zu pessimistischen Skeptizisten argumentiert Cicero, dass das Universum moralisch geordnet ist und dass Tugend mit Nützlichkeit konvergiert.',
+        examples: [
+          'Die Idee einer »natura« (Natur), die das Ethische bestimmt',
+          'Glaube an die Möglichkeit einer ethischen Ordnung',
+          'Betonung der »recta ratio« (rechte Vernunft)'
+        ]
+      },
+      {
+        title: 'Behandlung von Dilemmas',
+        description: 'Cicero behandelt schwierige ethische Fragen: Soll man einem Freund helfen, wenn er Unrecht begeht? Wann ist Täuschung gerechtfertigt?',
+        examples: [
+          'Das klassische Beispiel: Ein Sklavenverkäufer muss ich die Käufern über einen defekt berichten?',
+          'Fragen zur Gerechtigkeit im Krieg',
+          'Die Balance zwischen Nützlichkeit und Ethik'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Caesars Ermordung als Hintergrund',
+        date: '15. März 44 v. Chr.',
+        description: 'Die Ides of March – Caesar wird im Senat ermordet. Der Hoffnungsschimmer auf eine Restauration der Republik ist da.',
+        significance: 'Oder ist es? De Officiis ist geschrieben vor Ciceros großer Enttäuschung (die Triumviren). Er versucht noch, eine ethische Grundlage für das politische Leben zu etablieren.'
+      },
+      {
+        title: 'Ciceros Aufenthalt bei Atticus',
+        date: 'Oktober-November 44 v. Chr.',
+        description: 'Cicero zieht sich vorübergehend aus der Politik zurück und verbringt Zeit bei seinem Freund Atticus. In dieser Zeit schreibt er De Officiis.',
+        significance: 'Eine Zeit der Reflexion. Cicero versucht, seinen Sohn zu unterweisen, bevor die Zeiten wieder turbulent werden – und das werden sie.'
+      },
+      {
+        title: 'Die Triumvirn-Listen',
+        date: 'November 43 v. Chr.',
+        description: 'Weniger als ein Jahr nach De Officiis bilden Caesar Octavian, Marcus Antonius und Lepidus das Zweite Triumvirat. Cicero ist auf der Proskriptionsliste.',
+        significance: 'Eine Refutation von allem, was Cicero in De Officiis predigte. Die Ethik scheitert vor der rohen Macht.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Honestum est quod iustum est, quod rectum est, quod denique ratione quadrat et cum natura congruens.',
+        translation: 'Das Sitliche ist das Gerechte, das Anständige, das, was mit der Vernunft übereinstimmt und mit der Natur in Einklang steht.',
+        context: 'Ciceros Definition des höchsten Guten – nicht Vergnügen oder Gewinn, sondern moralische Integrität im Einklang mit der Natur.'
+      },
+      {
+        latin: 'Iustitia autem vacua est morte, iniuria vero et mala mens.',
+        translation: 'Gerechtigkeit aber ist vakant ohne den Tod, Unrecht aber und Bösis...keit.',
+        context: 'Eine schwierige Passage, die Ciceros Engagement für Gerechtigkeit trotz ihrer möglichen Konsequenzen zeigt.'
+      },
+      {
+        latin: 'Non est igitur utile sed turpe illud lucrum quod est ex iniuria consectus.',
+        translation: 'Jener Gewinn also, der aus Ungerechtigkeit nachgefolgt wird, ist nicht nützlich, sondern beschämend.',
+        context: 'Ein Kernpunkt: Unethische Gewinne sind nicht nur falsch, sondern auch längerfristig nicht nützlich.'
+      }
+    ],
+    impact: {
+      title: 'Wirkung & Philosophisches Erbe',
+      paragraphs: [
+        'De Officiis wurde zum einflussreichsten antiken Ethik-Text außerhalb der Bibel. Im Mittelalter war es Pflichtlektüre, die Renaissance studierte es intensiv, die Aufklärung baute auf ihm auf.',
+        'Der Text bietet keine einfachen Antworten, sondern trainiert den Leser im ethischen Denken. Das macht ihn zeitlos – jede Generation findet in De Officiis neue Anwendungen.',
+        'Cicero gelingt es, griechische Philosophie mit römischen Werten zu verbinden. De Officiis ist daher nicht nur philosophisch wertvoll, sondern auch kulturhistorisch ein Fenster in die römische Mentalität.'
+      ],
+      highlights: [
+        'Das meistgelesene philosophische Werk der abendländischen Welt (außer wissenschaftlichen Texten)',
+        'Beeinflusst christliche Ethik durch mittelalterliche Übernahme',
+        'Grundlage für die aufklärerische Naturrechst-Philosophie',
+        'Zeigt Ciceros letzte Gedanken: Ein Mann an der Schwelle des Todes, der noch versucht, der Welt einen ethischen Rahmen zu geben',
+        'Ein Meisterwerk der Vermittlung: Schwierige Philosophie wird praktisch und verständlich gemacht'
+      ]
+    }
+  },
+  'de-re-publica': {
+    slug: 'de-re-publica',
+    context: {
+      title: 'Historischer und Persönlicher Kontext',
+      paragraphs: [
+        'De Re Publica wurde in den Jahren 54-51 v. Chr. verfasst, als Cicero zeitweilig aus der aktiven Politik ausgeschlossen war. Er hatte sich zurückgezogen und nutzte die Zeit für philosophische Werke.',
+        'Das Werk ist in Form eines Dialogs aufgebaut und spielt im Garten des Scipio Aemilianus aus einer früheren Generation. Cicero nutzt die Vergangenheit, um seine Gegenwart zu kommentieren.',
+        'Tragischerweise wurde De Re Publica später fast vollständig zerstört. Nur Fragmente blieben erhalten, rekonstruiert aus Zitaten späterer Autoren und einem mittelalterlichen Palimpsest, das 1819 wiederentdeckt wurde.'
+      ],
+      timeline: [
+        { year: '54-51 v. Chr.', event: 'Abfassung von De Re Publica' },
+        { year: 'Antike bis Mittelalter', event: 'Das Werk wird großenteils zerstört – nur Fragmente bleiben' },
+        { year: '1819', event: 'Kardinal Mai entdeckt einen Palimpsest mit Teilen von De Re Publica' },
+        { year: 'Renaissance bis heute', event: 'De Re Publica wird als Klassiker der Politikphilosophie rekonstruiert und studiert' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Politische Theorie',
+        content: [
+          'Cicero definiert den Staat (res publica) als das Gemeinwesen des Volkes: »Res publica est res populi« – ein Staat, der nicht Gewalt ist, sondern Konsens.',
+          'Die »gemischte Verfassung« (constitutio mixta): Rom vereint die beste Monarchie (Konsulate), Aristokratie (Senat) und Demokratie (Volksversammlungen).',
+          'Ein Staat ohne Gerechtigkeit ist kein wahrer Staat – eine radikale These, die die Rechtfertigbarkeit von Gemeinschaften infrage stellt.'
+        ],
+        type: 'literary'
+      }    ],
+    quotes: [],
+    literaryFeatures: [],
+    keyMoments: [],
+    impact: {
+      title: 'Vermächtnis',
+      paragraphs: [],
+      highlights: []
+    }
   }
 };

@@ -4,19 +4,9 @@ const work: Work = {
   title: 'Philippicae',
   author: 'cicero',
   year: '44–43 v. Chr.',
-  summary: `Die vierzehn "Philippischen Reden" sind Ciceros letzter verzweifelter Kampf für die römische Republik - eine Serie flammender Angriffe gegen Marcus Antonius nach Caesars Ermordung. Der Name ist eine bewusste Anspielung auf die Reden des griechischen Redners Demosthenes gegen Philipp II. von Makedonien.
-
-Zwischen September 44 und April 43 v. Chr. gehalten, markieren diese Reden Ciceros politisches Comeback im Alter von 62 Jahren. Nach Caesars Tod am 15. März 44 v. Chr. hoffte Cicero auf eine Restauration der Republik. Stattdessen erhob sich Marcus Antonius, Caesars Konsulkollege, als neuer Machthaber. Cicero sah in Antonius eine noch größere Bedrohung als Caesar - einen trunkenen, korrupten Demagogen ohne Caesars Genie.
-
-Die Reden sind rhetorische Meisterwerke voll beißendem Sarkasmus, moralischer Entrüstung und politischer Analyse. Sie kosteten Cicero letztlich das Leben: Als Antonius, Octavian und Lepidus 43 v. Chr. das Zweite Triumvirat bildeten, stand Ciceros Name ganz oben auf der Proskriptionsliste. Am 7. Dezember 43 v. Chr. wurde er auf der Flucht ermordet - seine Hände und sein Kopf wurden zur Schau auf dem Forum ausgestellt.`,
+  summary: `Ciceros letzte verzweifelte Angriffe gegen Marcus Antonius nach Caesars Mord (44-43 v. Chr.). Vierzehn flammende Reden - Meisterwerke von Sarkasmus und Rhetorik. Kosteten Cicero sein Leben: Am 7. Dezember 43 v. Chr. ermordet, sein Kopf auf dem Forum zur Schau gestellt.`,
   
-  takeaway: `Die Philippischen Reden sind ein Dokument politischer Integrität und rhetorischer Brillanz - und zugleich ein Zeugnis politischer Naivität. Cicero überschätzte die Kraft der Worte und unterschätzte die Macht der Waffen.
-
-Seine Strategie war riskant: Er setzte auf den jungen Octavian (den späteren Augustus), um Antonius zu besiegen, und hoffte, Octavian danach kontrollieren zu können. Diese Rechnung ging nicht auf - Octavian verbündete sich mit Antonius und opferte Cicero.
-
-Dennoch bleiben die Reden ein leuchtendes Beispiel für den Mut, der Tyrannei mit Worten entgegenzutreten. Cicero wusste, dass seine Attacken tödlich sein könnten, setzte sie aber fort. Er starb für seine Prinzipien - eine der wenigen Figuren der späten Republik, die man so charakterisieren kann.
-
-Die Philippicae zeigen Cicero auf dem Höhepunkt seiner rhetorischen Kunst: Die Ironie ist vernichtend, die Invektiven brutal, die Argumentation brillant. Sie sind das  Testament eines Mannes, der die Republik mehr liebte als sein Leben.`,
+  takeaway: `Cicero überschätzte die Kraft der Worte und unterschätzte die Macht der Waffen. Sein Vertrauen in Octavian war Selbstmord. Dennoch starb er für seine Prinzipien. Ein Testament für einen Mann, der die Republik mehr liebte als sein Leben.`,
   
   structure: [
     { 

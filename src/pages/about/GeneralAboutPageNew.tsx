@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { BookOpen, Users, Clock, Sparkles, Globe2, Zap, Shield, Target, Code, BookMarked } from 'lucide-react';
+import { BookOpen, Users, Clock, Sparkles, Globe2, Zap, Shield, Target, Code, BookMarked, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
@@ -181,11 +181,9 @@ export function GeneralAboutPageNew() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="group relative"
                 >
-                  <div className="relative h-full rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1">
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                    
+                  <div className="relative h-full rounded-2xl border border-border/40 bg-card p-8 transition-all duration-500 hover:border-primary/50">
                     <div className="relative">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center mb-6">
                         <feature.icon className="w-6 h-6 text-primary" />
                       </div>
                       <h3 className="text-xl font-bold mb-3">{feature.title}</h3>

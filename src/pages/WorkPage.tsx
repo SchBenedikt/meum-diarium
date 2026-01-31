@@ -220,7 +220,7 @@ export default function WorkPage() {
 
           {/* Intro Text - Compact */}
           <div className="bg-card border border-border/50 rounded-3xl p-6 backdrop-blur-xl">
-            <p className="text-base leading-relaxed text-foreground">{work.summary}</p>
+            <p className="text-sm leading-relaxed text-foreground/90">{work.summary}</p>
           </div>
         </motion.section>
 
@@ -228,24 +228,21 @@ export default function WorkPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
-            {/* Takeaway & Key Info */}
+            {/* Takeaway - Compact */}
             {work.takeaway && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-3xl p-8 backdrop-blur-xl"
+                className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-3xl p-6 backdrop-blur-xl"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <Lightbulb className="w-6 h-6 text-primary" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Lightbulb className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs uppercase tracking-wide font-bold text-primary mb-2">Die Kernaussage</p>
-                    <p className="text-lg font-bold text-foreground mb-3">{work.takeaway}</p>
-                    <p className="text-sm text-foreground/80 leading-relaxed">
-                      Diese zentrale Botschaft stellt die Hauptintention des Werkes dar – wofür der Autor argumentiert und welche Wirkung er beabsichtigt.
-                    </p>
+                    <p className="text-xs uppercase tracking-wide font-bold text-primary mb-2">Kernaussage</p>
+                    <p className="text-sm font-bold text-foreground leading-relaxed">{work.takeaway}</p>
                   </div>
                 </div>
               </motion.div>

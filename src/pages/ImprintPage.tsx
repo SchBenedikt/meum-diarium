@@ -62,8 +62,26 @@ export default function ImprintPage() {
                 </h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p><strong className="text-foreground">Meum Diarium</strong></p>
-                  <p>Benedikt Schächner</p>
+                  <p>
+                    Benedikt Schächner —{' '}
+                    <a
+                      href="https://benedikt.xn--schchner-2za.de"
+                      className="text-primary hover:underline"
+                    >
+                      benedikt.schächner.de
+                    </a>
+                  </p>
+                  <p>
+                    Vinzenz Schächner —{' '}
+                    <a
+                      href="https://vinzenz.xn--schchner-2za.de"
+                      className="text-primary hover:underline"
+                    >
+                      vinzenz.schächner.de
+                    </a>
+                  </p>
                   <p>Adresse auf Anfrage</p>
+                  <p className="text-sm">Hinweis: Private, nicht-kommerzielle Seite mit Fokus auf Bildung und Kultur.</p>
                 </div>
               </div>
 
@@ -140,6 +158,9 @@ export default function ImprintPage() {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Meum Diarium ist ein nicht-kommerzielles Bildungsprojekt zur Vermittlung römischer Geschichte. Die Inhalte basieren auf historischen Quellen und wissenschaftlicher Forschung. Alle dargestellten Tagebucheinträge sind fiktiv und dienen der didaktischen Aufbereitung historischer Ereignisse.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Wir wollen Geschichte nachvollziehbar machen: mit klaren Kontexten, Quellenbezug und einem modernen Zugang. Wenn dabei ein kleiner Schmunzler mitschwingt, ist das Absicht, aber die Fakten bleiben sauber.
                 </p>
               </div>
 
