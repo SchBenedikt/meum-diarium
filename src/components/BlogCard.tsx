@@ -65,7 +65,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       <Link
         to={`/${post.author}/${post.slug}${preferredPerspective ? `?p=${preferredPerspective}` : ''}`}
         className={cn(
-          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 touch-manipulation md:flex-row',
+          'group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-card hover:border-primary/50 transition-all duration-500 touch-manipulation md:flex-row',
           className
         )}
       >
@@ -75,7 +75,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
             src={post.coverImage}
             alt={post.title}
             loading="lazy"
-            className="h-full w-full object-cover object-center transition-transform duration-700"
+            className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
           />
         </div>
 
