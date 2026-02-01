@@ -1,5 +1,13 @@
 export const onRequest = async (context: any) => {
     const url = new URL(context.request.url);
+    const pathname = url.pathname.replace(/\/$/, '');
+
+    // If it's the exact /api path, it's the documentation page (SPA).
+    // Hand it back to the assets origin.
+    if (pathname === '/api') {
+        return context.env.ASSETS.fetch(context.request);
+    }
+
     const path = url.pathname.replace(/^\/api/, '');
     const assetUrl = new URL(`/api${path}.json`, url.origin);
 
