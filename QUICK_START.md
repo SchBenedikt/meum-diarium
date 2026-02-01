@@ -1,16 +1,18 @@
 # Quick Start: D1 Database Integration
 
-## 🚀 In 3 Schritten zur D1-Datenbank
+## 🚀 In 3 Steps zur D1-Datenbank
 
 ### Schritt 1: Datenbank vorbereiten
 
 ```bash
-# Migrations anwenden (erstellt Tabellen)
+# Migrations anwenden (erstellt Tabellen) - WICHTIG: Zuerst ausführen!
 npx wrangler d1 migrations apply meum-diarium --remote
 
 # Duplikate prüfen (optional)
 npm run db:check-duplicates
 ```
+
+**Wichtig:** Die Migrations MÜSSEN vor dem Cleanup ausgeführt werden, sonst gibt es Fehler bei nicht existierenden Tabellen.
 
 ### Schritt 2: Daten importieren
 
@@ -149,7 +151,28 @@ Siehe auch: [TROUBLESHOOTING_DUPLICATES.md](TROUBLESHOOTING_DUPLICATES.md)
 ./seed_database.sh
 ```
 
-### Problem: "D1 database not available"
+### Problem: "no such table: latin_texts"
+
+**Symptom:**
+```
+✘ [ERROR] no such table: latin_texts: SQLITE_ERROR
+```
+
+**Ursache:** Migrations wurden nicht ausgeführt
+
+**Lösung:**
+```bash
+# 1. Migrations anwenden (erstellt alle Tabellen)
+npx wrangler d1 migrations apply meum-diarium --remote
+
+# 2. Dann erst cleanup
+./cleanup_database.sh
+
+# 3. Dann seeden
+./seed_database.sh
+```
+
+**Alternative:** Verwende `cleanup_database.sh` statt `cleanup_db.sql` - das Script behandelt fehlende Tabellen automatisch.
 
 **Symptom:**
 ```
