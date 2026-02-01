@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { AuthorProvider } from "@/context/AuthorContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -38,6 +38,7 @@ const ImprintPage = lazy(() => import("./pages/ImprintPage"));
 const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
+const LatinTools = lazy(() => import('./pages/LatinTools'));
 
 const queryClient = new QueryClient();
 
@@ -88,6 +89,9 @@ const AppContent = () => {
             <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
             <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+            <Route path="/latin" element={<PageTransition><LatinTools /></PageTransition>} />
+            <Route path="/latin/vocab" element={<Navigate to="/latin" replace />} />
+            <Route path="/latin/reader" element={<Navigate to="/latin?mode=reader" replace />} />
             {/* Admin routes */}
             <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
             <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />

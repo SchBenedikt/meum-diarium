@@ -7,6 +7,7 @@ import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { getPostTags } from '@/lib/tag-utils';
 import { fadeUp, quickTransition } from '@/lib/motion';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 const cardVariants = fadeUp(0.05, 20);
 
@@ -71,7 +72,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       >
         {/* Bild links – flexibler, aber mit Mindestbreite */}
         <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
-          <img
+          <ImageWithFallback
             src={post.coverImage}
             alt={post.title}
             loading="lazy"

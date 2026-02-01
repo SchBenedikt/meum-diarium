@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { ModernBackground } from "@/components/ui/ModernBackground";
 import { cn } from "@/lib/utils";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 
 export type PageHeroProps = {
   eyebrow?: string;
@@ -52,7 +53,7 @@ export function PageHero({
     >{/* Hero wrapper matches Landing page spacing */}
       {!noBackground && backgroundImage && (
         <motion.div className="absolute inset-0" style={parallaxY ? { y: parallaxY } : {}}>
-          <img
+          <ImageWithFallback
             src={backgroundImage}
             alt="Background"
             className="w-full h-full object-cover opacity-60"

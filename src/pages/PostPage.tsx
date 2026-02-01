@@ -21,6 +21,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
 import { PostTags } from '@/components/PostTags';
+import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -127,7 +128,7 @@ function PostContent({ post }: { post: BlogPost }) {
 
                   {/* Beitragsbild unter dem Titel */}
                   <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
-                    <img
+                    <ImageWithFallback
                       src={post.coverImage}
                       alt={post.title}
                       className="w-full h-full object-cover"
@@ -165,7 +166,7 @@ function PostContent({ post }: { post: BlogPost }) {
               {/* Sidebar - below content on mobile, sticky on desktop */}
               <aside className="lg:mt-0 mt-8">
                 <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto space-y-6">
-                  <BlogSidebar post={post} readingTime={readingTime} />
+                  <BlogSidebar post={post} />
                 </div>
               </aside>
             </div>
