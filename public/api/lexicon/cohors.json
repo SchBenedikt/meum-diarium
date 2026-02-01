@@ -1,6 +1,33 @@
 {
-  "slug": "cohors",
   "term": "Kohorte",
+  "slug": "cohors",
+  "variants": [
+    "Cohors"
+  ],
   "definition": "Die Kohorte (lat. cohors) war die taktische Grundeinheit der römischen Legion ab der marianischen Heeresreform (107 v. Chr.). Eine Legion bestand aus zehn Kohorten zu je sechs Centurien (etwa 480 Mann). Die erste Kohorte hatte Doppelstärke (ca. 800 Mann) und führte die Legionsstandarten. Kohorten waren flexibler als die alten Manipel und erlaubten bessere Manövrierbarkeit im Gefecht. Sie kämpften in drei Linien (Triplex Acies) und konnten eigenständig taktische Aufgaben übernehmen.",
-  "category": "Militär"
+  "category": "Militär",
+  "etymology": "Von lateinisch 'cohors' - Umzäunung, Gehege, dann: militärische Einheit. Ursprünglich bezeichnete es einen umzäunten Platz, später eine geschlossene Kampfgruppe.",
+  "relatedTerms": [
+    "Legion",
+    "Centurio",
+    "Manipel"
+  ],
+  "translations": {
+    "en": {
+      "term": "Cohort",
+      "definition": "The cohort (Latin: cohors) was the basic tactical unit of the Roman legion after the Marian reforms (107 BC). A legion consisted of ten cohorts, each with six centuries (about 480 men). The first cohort was double-strength (about 800 men) and carried the legion's standards. Cohorts were more flexible than the old maniples and allowed better maneuverability in battle. They fought in three lines (triplex acies) and could independently carry out tactical missions.",
+      "etymology": "From Latin 'cohors' - enclosure, yard, then: military unit.",
+      "category": "Military",
+      "variants": [
+        "Cohors"
+      ]
+    },
+    "la": {
+      "term": "Cohors",
+      "definition": "Cohors fuit unitas tactica legionis Romanae post reformas Marianas (107 a.C.n.). Legio ex decem cohortibus constabat, quaeque sex centurias (circiter CCCLXXX viros) habebat. Prima cohors duplicem vim (circiter DCCC viros) habebat et signa legionis gerebat. Cohortes flexibiliores quam veteres manipuli erant et meliorem mobilitatem in proelio permittebant. In tribus ordinibus (triplex acies) pugnabant et missiones tacticas independenter perficere poterant.",
+      "etymology": "A vocabulo Latino 'cohors' - area clausa, deinde: unitas militaris.",
+      "category": "Res Militaris",
+      "variants": []
+    }
+  }
 }

@@ -1,6 +1,36 @@
 {
-  "slug": "fama",
   "term": "Fama",
+  "slug": "fama",
+  "variants": [
+    "Ruf",
+    "Gerücht"
+  ],
   "definition": "Fama war im römischen Denken sowohl der Ruf, den eine Person in der Öffentlichkeit genoss, als auch das personifizierte Gerücht als göttliche Macht. Als abstrakter Begriff bezeichnete fama den guten oder schlechten Ruf, die öffentliche Meinung und das Ansehen in der Gesellschaft. Fama war entscheidend für politischen Erfolg – ein guter fama öffnete Türen, ein schlechter konnte eine Karriere zerstören. Als Göttin Fama (griechisch Pheme) war sie eine geflügelte Gestalt, die Nachrichten und Gerüchte verbreitete. Vergil beschreibt sie in der Aeneis als vielköpfiges, vieläugiges Monster mit zahllosen Zungen, das Wahrheit und Lüge vermischt. Ovid schildert ihr Haus als bronzenen Palast, offen zu allen Seiten, wo alle Gerüchte der Welt zusammenlaufen. Fama symbolisierte die Macht der öffentlichen Meinung und die Unkontrollierbarkeit von Informationsverbreitung – Themen, die schon in Rom hochaktuell waren.",
-  "category": "Philosophie & Werte"
+  "category": "Philosophie & Werte",
+  "etymology": "Von lateinisch 'fari' (sprechen, sagen) → 'fama' (Gerücht, Ruf). Bezeichnet das Gesprochene, den allgemeinen Volksmund.",
+  "relatedTerms": [
+    "Gloria",
+    "Honor",
+    "Infamia",
+    "Rumor"
+  ],
+  "translations": {
+    "en": {
+      "term": "Fama",
+      "definition": "Fama in Roman thought was both the reputation a person enjoyed in public and personified rumor as a divine power. As an abstract concept, fama denoted good or bad reputation, public opinion, and standing in society. Fama was crucial for political success – a good fama opened doors, a bad one could destroy a career. As the goddess Fama (Greek Pheme), she was a winged figure who spread news and rumors. Vergil describes her in the Aeneid as a many-headed, many-eyed monster with countless tongues that mixes truth and lies. Ovid describes her house as a bronze palace, open on all sides, where all the world's rumors converge. Fama symbolized the power of public opinion and the uncontrollability of information dissemination – themes that were already highly topical in Rome.",
+      "etymology": "From Latin 'fari' (to speak, say) → 'fama' (rumor, reputation). Refers to what is spoken, the general popular voice.",
+      "category": "Philosophy & Values",
+      "variants": [
+        "Fame",
+        "Rumor"
+      ]
+    },
+    "la": {
+      "term": "Fama",
+      "definition": "Fama in cogitatione Romana et fama quam persona in publico fruebatur et rumor personificatus ut potestas divina erat. Ut conceptus abstractus, fama famam bonam vel malam, opinionem publicam et statum in societate designabat. Fama cruciabilis pro successu politico erat – fama bona portas aperiebat, mala carrierem destruere poterat. Ut dea Fama (Graece Pheme), figura alata erat quae novas et rumores disseminabat. Vergilius eam in Aeneide ut monstrum multiceps, multoculus cum linguis innumeris describit quod veritatem et mendacium miscet. Ovidius domum eius ut palatium aeneum describit, omnibus lateribus apertum, ubi omnes rumores mundi confluunt. Fama potentiam opinionis publicae et incontrollabilitatem disseminationis informationis symbolizabat – themata quae iam Romae valde actualia erant.",
+      "etymology": "A vocabulo Latino 'fari' (loqui, dicere) → 'fama' (rumor, fama). Ad id quod loquitur, vocem popularem generalem refertur.",
+      "category": "Philosophia et Valores",
+      "variants": []
+    }
+  }
 }

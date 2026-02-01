@@ -1,6 +1,35 @@
 {
-  "slug": "gloria",
   "term": "Gloria",
+  "slug": "gloria",
+  "variants": [
+    "Ruhm",
+    "Ehre"
+  ],
   "definition": "Gloria war der römische Begriff für Ruhm und Nachruhm, besonders für militärischen Ruhm und herausragende Leistungen, die über das eigene Leben hinaus Bestand hatten. Anders als honor (öffentliche Ehre im Leben) bezeichnete gloria den bleibenden Ruhm nach dem Tod, der durch große Taten verdient wurde. Gloria war das ultimative Ziel römischer Feldherren und Staatsmänner – sie strebten danach, durch ihre Taten unsterblich zu werden. Caesar, Pompeius und Alexander der Große verkörperten das Streben nach gloria. Die Suche nach gloria motivierte militärische Eroberungen, politischen Ehrgeiz und öffentliche Bauprojekte. Historiker wie Livius und Dichter wie Vergil bewahrten die gloria großer Männer für die Nachwelt. Gloria konnte durch Triumphe, Denkmäler, literarische Werke und die mündliche Überlieferung gesichert werden. Sie war eng verbunden mit virtus (Tapferkeit) und fama (Bekanntheit). Das christliche Konzept der \"Gloria Dei\" (Ehre Gottes) übernahm später den Begriff.",
-  "category": "Philosophie & Werte"
+  "category": "Philosophie & Werte",
+  "etymology": "Von lateinisch 'gloria' (Ruhm, Herrlichkeit), möglicherweise verwandt mit 'gnarus' (bekannt) oder von indogermanisch *ǵneh₃- (kennen).",
+  "relatedTerms": [
+    "Honor",
+    "Fama",
+    "Virtus",
+    "Triumph"
+  ],
+  "translations": {
+    "en": {
+      "term": "Gloria",
+      "definition": "Gloria was the Roman term for glory and posthumous fame, especially for military glory and outstanding achievements that endured beyond one's own life. Unlike honor (public honor in life), gloria denoted lasting fame after death, earned through great deeds. Gloria was the ultimate goal of Roman generals and statesmen – they strove to become immortal through their deeds. Caesar, Pompey, and Alexander the Great embodied the pursuit of gloria. The quest for gloria motivated military conquests, political ambition, and public building projects. Historians like Livy and poets like Vergil preserved the gloria of great men for posterity. Gloria could be secured through triumphs, monuments, literary works, and oral tradition. It was closely linked to virtus (bravery) and fama (renown). The Christian concept of 'Gloria Dei' (glory of God) later adopted the term.",
+      "etymology": "From Latin 'gloria' (glory, magnificence), possibly related to 'gnarus' (known) or from Indo-European *ǵneh₃- (to know).",
+      "category": "Philosophy & Values",
+      "variants": [
+        "Glory"
+      ]
+    },
+    "la": {
+      "term": "Gloria",
+      "definition": "Gloria fuit vocabulum Romanum pro fama et fama posthuma, praecipue pro gloria militari et praestationibus praestantibus quae ultra vitam propriam durabant. Dissimiliter ab honore (honore publico in vita), gloria famam durantem post mortem designabat, per facta magna meritam. Gloria finis ultimus imperatorum et virorum publicorum Romanorum erat – per facta sua immortales fieri conabantur. Caesar, Pompeius et Alexander Magnus cupiditatem gloriae incorporabant. Quaestio gloriae conquistas militares, ambitionem politicam et projecta aedificiorum publicorum motivabat. Historici ut Livius et poetae ut Vergilius gloriam virorum magnorum pro posteritate conservabant. Gloria per triumphos, monumenta, opera litteraria et traditionem oralem secura fieri poterat. Stricte cum virtute (fortitudine) et fama (notitia) coniuncta erat. Conceptus Christianus 'Gloria Dei' (gloria Dei) postea vocabulum adoptavit.",
+      "etymology": "A vocabulo Latino 'gloria' (gloria, magnificentia), fortasse cognatum cum 'gnarus' (notus) vel ab Indoeuropaeo *ǵneh₃- (scire).",
+      "category": "Philosophia et Valores",
+      "variants": []
+    }
+  }
 }

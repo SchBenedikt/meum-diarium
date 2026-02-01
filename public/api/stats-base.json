@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-02-01T13:30:47.238Z",
+  "counts": {
+    "posts": 41,
+    "lexicon": 92,
+    "works": 7,
+    "authors": 5
+  },
+  "yearRange": {
+    "min": -100,
+    "max": 65
+  },
+  "readingMinutes": 302,
+  "wordCount": 63447
+}

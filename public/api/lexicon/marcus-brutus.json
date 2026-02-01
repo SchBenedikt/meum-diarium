@@ -1,6 +1,35 @@
 {
-  "slug": "marcus-brutus",
   "term": "Marcus Iunius Brutus",
+  "slug": "marcus-brutus",
+  "variants": [
+    "Brutus",
+    "Marcus Brutus"
+  ],
   "definition": "Marcus Iunius Brutus (85–42 v. Chr.) war ein römischer Politiker und Philosoph, der als Anführer der Verschwörer gegen Caesar in die Geschichte einging. Als Sohn einer Nichte Catos des Jüngeren stand er in der Tradition republikanischer Ideale. Trotz seiner Begnadigung durch Caesar nach der Schlacht von Pharsalus (48 v. Chr.) und seiner Ernennung zum Praetor schloss er sich der Verschwörung an, die Caesar an den Iden des März (15. März 44 v. Chr.) ermordete. Brutus rechtfertigte den Tyrannenmord mit republikanischen Prinzipien und berief sich auf seinen angeblichen Vorfahren Lucius Iunius Brutus, der die Könige aus Rom vertrieben hatte. Nach Caesars Tod floh Brutus in den Osten, wurde aber 42 v. Chr. bei Philippi von Antonius und Octavian besiegt und beging Selbstmord. Shakespeare verewigte ihn in seinem Drama. Brutus verkörperte den tragischen Konflikt zwischen persönlicher Loyalität und politischem Ideal.",
-  "category": "Historische Personen"
+  "category": "Historische Personen",
+  "etymology": "Der Name 'Brutus' bedeutet im Lateinischen \"schwerfällig, dumm\" – ein Name, der ironischerweise mit politischer Scharfsinnigkeit verbunden wurde.",
+  "relatedTerms": [
+    "Caesar",
+    "Iden des März",
+    "Philippi",
+    "Cato"
+  ],
+  "translations": {
+    "en": {
+      "term": "Marcus Iunius Brutus",
+      "definition": "Marcus Iunius Brutus (85–42 BC) was a Roman politician and philosopher who entered history as the leader of the conspirators against Caesar. As the son of a niece of Cato the Younger, he stood in the tradition of republican ideals. Despite his pardon by Caesar after the Battle of Pharsalus (48 BC) and his appointment as praetor, he joined the conspiracy that murdered Caesar on the Ides of March (March 15, 44 BC). Brutus justified the tyrannicide with republican principles and invoked his alleged ancestor Lucius Iunius Brutus, who had driven the kings from Rome. After Caesar's death, Brutus fled to the East but was defeated at Philippi in 42 BC by Antony and Octavian and committed suicide. Shakespeare immortalized him in his drama. Brutus embodied the tragic conflict between personal loyalty and political ideal.",
+      "etymology": "The name 'Brutus' means 'dull, stupid' in Latin – a name ironically associated with political acumen.",
+      "category": "Historical Figures",
+      "variants": [
+        "Brutus"
+      ]
+    },
+    "la": {
+      "term": "Marcus Iunius Brutus",
+      "definition": "Marcus Iunius Brutus (85–42 a.C.n.) fuit politicus et philosophus Romanus qui ut dux coniuratorum contra Caesarem in historiam intravit. Ut filius neptis Catonis Iunioris in traditione idealium republicanorum stabat. Malgre veniam a Caesare post pugnam Pharsali (48 a.C.n.) et nominationem suam ut praetor, coniurationi se iunxit quae Caesarem Idibus Martiis (die quinto decimo Martii 44 a.C.n.) occiderunt. Brutus tyrannicidium cum principiis republicanis iustificavit et maiorem suum putativum Lucium Iunium Brutum invocavit, qui reges e Roma expulerat. Post mortem Caesaris, Brutus in Orientem fugit sed anno 42 a.C.n. apud Philippos ab Antonio et Octaviano victus est et suicidium commisit. Shakespeare eum in dramate suo immortalem fecit. Brutus conflictum tragicum inter fidelitatem personalem et ideale politicum incorporabat.",
+      "etymology": "Nomen 'Brutus' 'tardum, stulte' in Latino significat – nomen ironice cum acumine politico coniunctum.",
+      "category": "Personae Historicae",
+      "variants": []
+    }
+  }
 }

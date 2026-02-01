@@ -1,0 +1,33 @@
+{
+  "id": "cicero",
+  "name": "Marcus Tullius Cicero",
+  "latinName": "Marcus Tullius Cicero",
+  "title": "Consul, Orator, Philosophus",
+  "years": "106 – 43 v. Chr.",
+  "birthYear": -106,
+  "deathYear": -43,
+  "description": "Der bedeutendste Redner Roms, Staatsmann, Philosoph und Verteidiger der Republik. Prägte die lateinische Prosa und die abendländische Rhetorik.",
+  "heroImage": "/images/cicero-hero.jpg",
+  "theme": "theme-cicero",
+  "color": "hsl(210, 80%, 50%)",
+  "highlights": [
+    {
+      "title": "In Catilinam",
+      "description": "Vier Reden gegen Catilina – Rhetorik auf höchstem Niveau.",
+      "link": "/cicero/works/in-catilinam",
+      "icon": "megaphone"
+    },
+    {
+      "title": "De Officiis",
+      "description": "Über Pflichten – Ethik und Tugenden im Leben.",
+      "link": "/cicero/works/de-officiis",
+      "icon": "feather"
+    },
+    {
+      "title": "De Re Publica",
+      "description": "Der ideale Staat – Verfassung, Gerechtigkeit, Gemeinwohl.",
+      "link": "/cicero/works/de-re-publica",
+      "icon": "columns"
+    }
+  ]
+}

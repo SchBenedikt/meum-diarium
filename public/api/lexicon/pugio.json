@@ -1,6 +1,36 @@
 {
-  "slug": "pugio",
   "term": "Pugio",
+  "slug": "pugio",
+  "variants": [
+    "Dolch",
+    "Römischer Dolch"
+  ],
   "definition": "Der Pugio war der standardisierte römische Dolch, der von Legionären als Sekundärwaffe getragen wurde und sowohl militärisch als auch zivil von großer Bedeutung war. Mit einer etwa 20-30 cm langen, breiten, doppelschneidigen Klinge war der Pugio eine effektive Nahkampfwaffe für dichte Formationen. Die Klinge hatte typischerweise eine charakteristische blattförmige Form mit breitester Stelle in der Mitte. Legionäre trugen den Pugio auf der linken Seite am Gürtel (cingulum militare), gegenüber dem Gladius auf der rechten Seite. Der Pugio war nicht nur Waffe, sondern auch Werkzeug und Statussymbol. Die prachtvollsten Exemplare hatten verzierte Scheiden und Griffe mit Einlegearbeiten aus Edelmetall. Julius Caesar wurde bekanntlich mit Pugiones ermordet. In der Spätantike verschwand der Pugio allmählich aus der militärischen Ausrüstung.",
-  "category": "Militär & Kriegsführung"
+  "category": "Militär & Kriegsführung",
+  "etymology": "Von lateinisch 'pugio' (Dolch), möglicherweise verwandt mit 'pugnus' (Faust) – eine Waffe für den Faustgriff.",
+  "relatedTerms": [
+    "Gladius",
+    "Legion",
+    "Centurio",
+    "Cingulum"
+  ],
+  "translations": {
+    "en": {
+      "term": "Pugio",
+      "definition": "The pugio was the standardized Roman dagger carried by legionaries as a secondary weapon and was of great importance both militarily and civilly. With a blade about 20-30 cm long, wide, and double-edged, the pugio was an effective close combat weapon for dense formations. The blade typically had a characteristic leaf-shaped form with the widest point in the middle. Legionaries wore the pugio on the left side of the belt (cingulum militare), opposite the gladius on the right side. The pugio was not only a weapon but also a tool and status symbol. The most magnificent examples had decorated sheaths and hilts with inlays of precious metal. Julius Caesar was famously murdered with pugiones. In late antiquity, the pugio gradually disappeared from military equipment.",
+      "etymology": "From Latin 'pugio' (dagger), possibly related to 'pugnus' (fist) – a weapon for fist grip.",
+      "category": "Military & Warfare",
+      "variants": [
+        "Dagger",
+        "Roman Dagger"
+      ]
+    },
+    "la": {
+      "term": "Pugio",
+      "definition": "Pugio fuit pugio Romanus standardizatus a legionariis ut arma secundaria portatus et magni momenti et militariter et civiliter erat. Cum lamina circa viginti ad triginta centimetra longa, lata et duplici acie, pugio arma corporalis efficax pro formationibus densis erat. Lamina typice formam characteristicam foliatam cum puncto latissimo in medio habebat. Legionarii pugionem in latere sinistro cinguli (cingulum militare) portabant, contra gladium in latere dextro. Pugio non tantum arma sed etiam instrumentum et symbolum status erat. Exemplaria magnificentissima vaginas et capulos ornatos cum insertionibus metalli pretiosi habebant. Iulius Caesar celebriter cum pugionibus occisus est. Antiquitate sera, pugio paulatim ex armamento militari evanuit.",
+      "etymology": "A vocabulo Latino 'pugio' (pugio), fortasse cognatum cum 'pugnus' (pugnus) – arma pro prehensione pugni.",
+      "category": "Militia et Bellum",
+      "variants": []
+    }
+  }
 }

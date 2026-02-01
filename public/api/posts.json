@@ -2,206 +2,746 @@
   {
     "slug": "adoption-durch-caesar",
     "author": "augustus",
-    "title": "Adoption durch Caesar - Der Beginn einer Dynastie"
+    "title": "Adoption durch Caesar - Der Beginn einer Dynastie",
+    "excerpt": "Wie ein 18-jähriger Gaius Octavius durch Caesars Testament zum Erben des mächtigsten Mannes Roms wurde und als Augustus die Welt veränderte.",
+    "date": "2024-03-27",
+    "historicalDate": "44 v. Chr.",
+    "historicalYear": -44,
+    "readingTime": 12,
+    "tags": [
+      "Adoption",
+      "Caesar",
+      "Erbe",
+      "Aufstieg",
+      "Testament"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "das-zweite-triumvirat",
     "author": "augustus",
-    "title": "Das Zweite Triumvirat - Pakt mit dem Teufel"
+    "title": "Das Zweite Triumvirat - Pakt mit dem Teufel",
+    "excerpt": "Die brutale Allianz von Octavian, Antonius und Lepidus 43 v. Chr. - Proskriptionen, Machteilung und der Weg zur Alleinherrschaft.",
+    "date": "2024-04-07",
+    "historicalDate": "43 v. Chr.",
+    "historicalYear": -43,
+    "readingTime": 11,
+    "tags": [
+      "Triumvirat",
+      "Antonius",
+      "Lepidus",
+      "Proskriptionen",
+      "Machtpolitik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "der-prinzipat",
     "author": "augustus",
-    "title": "Der Prinzipat - Monarchie im republikanischen Gewand"
+    "title": "Der Prinzipat - Monarchie im republikanischen Gewand",
+    "excerpt": "Wie Augustus 27 v. Chr. die römische Republik formal \"wiederherstellte\", tatsächlich aber das Kaisertum begründete - ein Meisterwerk politischer Tarnung.",
+    "date": "2024-03-29",
+    "historicalDate": "27 v. Chr.",
+    "historicalYear": -27,
+    "readingTime": 13,
+    "tags": [
+      "Prinzipat",
+      "Kaiser",
+      "Republik",
+      "Senat",
+      "Verfassung"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "die-schlacht-bei-actium",
     "author": "augustus",
-    "title": "Die Schlacht bei Actium"
+    "title": "Die Schlacht bei Actium",
+    "excerpt": "Die Seeschlacht bei Actium am 2. September 31 v. Chr. entschied den letzten Bürgerkrieg der römischen Republik und ebnete Octavian den Weg zur Alleinherrschaft als Augustus.",
+    "date": "2024-03-24",
+    "historicalDate": "31 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [],
+    "tagsWithTranslations": []
   },
   {
     "slug": "pax-augusta",
     "author": "augustus",
-    "title": "Pax Augusta - Der Augusteische Frieden"
+    "title": "Pax Augusta - Der Augusteische Frieden",
+    "excerpt": "Nach Jahrhunderten der Bürgerkriege brachte Augustus dem römischen Reich Frieden, Stabilität und Prosperität - der Preis war die Freiheit.",
+    "date": "2024-04-03",
+    "historicalDate": "27 v. Chr. - 14 n. Chr.",
+    "historicalYear": -27,
+    "readingTime": 11,
+    "tags": [
+      "Frieden",
+      "Reformen",
+      "Wirtschaft",
+      "Kultur",
+      "Stabilität"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "schlacht-bei-philippi",
     "author": "augustus",
-    "title": "Schlacht bei Philippi - Rache für Caesar"
+    "title": "Schlacht bei Philippi - Rache für Caesar",
+    "excerpt": "Die entscheidende Schlacht von 42 v. Chr., in der Octavian und Antonius die Caesarmörder Brutus und Cassius besiegten und die Republik endgültig begruben.",
+    "date": "2024-03-28",
+    "historicalDate": "42 v. Chr.",
+    "historicalYear": -42,
+    "readingTime": 11,
+    "tags": [
+      "Philippi",
+      "Brutus",
+      "Cassius",
+      "Triumvirat",
+      "Bürgerkrieg"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "ausweitung-des-burgerrechts",
     "author": "caesar",
-    "title": "Erweiterung des Bürgerrechts"
+    "title": "Erweiterung des Bürgerrechts",
+    "excerpt": "Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.",
+    "date": "2024-03-24",
+    "historicalDate": "49–46 v. Chr.",
+    "historicalYear": -49,
+    "readingTime": 10,
+    "tags": [
+      "dgs",
+      "Staatsrecht",
+      "Integration",
+      "Provinzen"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "casar-verschlusselung",
     "author": "caesar",
-    "title": "Cäsar-Verschlüsselung"
+    "title": "Cäsar-Verschlüsselung",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "50 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 2,
+    "tags": [
+      "Cäsar-Verschlüsselung",
+      "Cäsarchiffre"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "darum-mag-mich-jeder",
     "author": "caesar",
-    "title": "Darum mag mich jeder"
+    "title": "Darum mag mich jeder",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "50 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 1,
+    "tags": [
+      "Armee",
+      "Clementia Caesaris",
+      "Feind",
+      "Rom",
+      "Senat"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "das-1-triumvirat",
     "author": "caesar",
-    "title": "Das 1. Triumvirat"
+    "title": "Das 1. Triumvirat",
+    "excerpt": "Manchmal muss man kreativ werden, wenn alte, steife Senatoren einem im Weg stehen. Meine Lösung? Ein informelles Dreierbündnis, das Rom verändern würde – und von dem niemand etwas ahnen sollte.",
+    "date": "2024-03-24",
+    "historicalDate": "60 v. Chr.",
+    "historicalYear": -60,
+    "readingTime": 6,
+    "tags": [
+      "Crassus",
+      "Pompeius",
+      "Triumvirat",
+      "Politik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "de-me",
     "author": "caesar",
-    "title": "De me"
+    "title": "De me",
+    "excerpt": "Über meine Person, Gaius Julius Caesar",
+    "date": "2024-03-24",
+    "historicalDate": "100 v. Chr.",
+    "historicalYear": -100,
+    "readingTime": 3,
+    "tags": [],
+    "tagsWithTranslations": []
   },
   {
     "slug": "die-verschworung-gegen-mich",
     "author": "caesar",
-    "title": "Die Verschwörung gegen mich"
+    "title": "Die Verschwörung gegen mich",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "44 v. Chr",
+    "historicalYear": -44,
+    "readingTime": 2,
+    "tags": [
+      "Brutus",
+      "Caesarianer",
+      "Dolch",
+      "Feind",
+      "Mord",
+      "Verschwörung"
+    ],
+    "tagsWithTranslations": [
+      {
+        "id": "brutus",
+        "translations": {
+          "de": "Brutus",
+          "en": "Brutus",
+          "la": "Brutus"
+        }
+      },
+      {
+        "id": "caesarianer",
+        "translations": {
+          "de": "Caesarianer",
+          "en": "Caesarianer",
+          "la": "Caesarianer"
+        }
+      },
+      {
+        "id": "dolch",
+        "translations": {
+          "de": "Dolch",
+          "en": "Dolch",
+          "la": "Dolch"
+        }
+      },
+      {
+        "id": "feind",
+        "translations": {
+          "de": "Feind",
+          "en": "Feind",
+          "la": "Feind"
+        }
+      },
+      {
+        "id": "mord",
+        "translations": {
+          "de": "Mord",
+          "en": "Mord",
+          "la": "Mord"
+        }
+      },
+      {
+        "id": "verschw-rung",
+        "translations": {
+          "de": "Verschwörung",
+          "en": "Verschwörung",
+          "la": "Verschwörung"
+        }
+      }
+    ]
   },
   {
     "slug": "er-ist-da",
     "author": "caesar",
-    "title": "Er ist da."
+    "title": "Er ist da.",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "100 v. Chr",
+    "historicalYear": -100,
+    "readingTime": 2,
+    "tags": [
+      "Disclaimer",
+      "Geburt",
+      "Spenden"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "forum-iulium-und-infrastruktur",
     "author": "caesar",
-    "title": "Forum Iulium"
+    "title": "Forum Iulium",
+    "excerpt": "Warum ich baute: Entlastung des alten Forums, Sichtbarkeit staatlicher Autorität, Arbeitsplätze und Prestige für Rom.",
+    "date": "2024-03-24",
+    "historicalDate": "46 v. Chr.",
+    "historicalYear": -46,
+    "readingTime": 8,
+    "tags": [
+      "Reform",
+      "Stadtplanung",
+      "Infrastruktur",
+      "Forum"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "helvetierkrieg-teil-1",
     "author": "caesar",
-    "title": "Helvetierkrieg – Teil 1"
+    "title": "Helvetierkrieg – Teil 1",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "57 v. Chr.",
+    "historicalYear": -57,
+    "readingTime": 1,
+    "tags": [
+      "Barbaren",
+      "Gallien",
+      "Feind",
+      "Helvetier"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "helvetierkrieg-teil-2",
     "author": "caesar",
-    "title": "Helvetierkrieg – Teil 2"
+    "title": "Helvetierkrieg – Teil 2",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "52 v. Chr.",
+    "historicalYear": -52,
+    "readingTime": 1,
+    "tags": [
+      "Armee",
+      "Gallien",
+      "Haeduer",
+      "Schlacht",
+      "Vercingetorix"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "ich-ruhe-nicht",
     "author": "caesar",
-    "title": "Caesar & Ägpyten"
+    "title": "Caesar & Ägpyten",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "47 v. Chr.",
+    "historicalYear": -47,
+    "readingTime": 1,
+    "tags": [
+      "Ägypten",
+      "Pompeius",
+      "Rom"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "ich-uberschreite-den-rubikon",
     "author": "caesar",
-    "title": "Ich überschreite den Rubikon"
+    "title": "Ich überschreite den Rubikon",
+    "excerpt": "Der Moment, der alles veränderte: Als ich mit meinen Legionen einen kleinen Fluss überquerte und damit den größten Bürgerkrieg Roms auslöste. War es Wahnsinn? Vielleicht. War es notwendig? Absolut.",
+    "date": "2024-03-24",
+    "historicalDate": "10. Januar 49 v. Chr.",
+    "historicalYear": -49,
+    "readingTime": 6,
+    "tags": [
+      "Armee",
+      "Bürgerkrieg",
+      "Feind",
+      "Pompeius",
+      "Rom",
+      "Rubikon",
+      "Senat"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "julianischer-kalender",
     "author": "caesar",
-    "title": "Julianischer Kalender"
+    "title": "Julianischer Kalender",
+    "excerpt": "Wie ich die römische Zeitrechnung revolutionierte und ein System schuf, das Europa 1600 Jahre lang prägen sollte.",
+    "date": "2024-03-24",
+    "historicalDate": "1. Januar 45 v. Chr.",
+    "historicalYear": -45,
+    "readingTime": 8,
+    "tags": [
+      "Reform",
+      "Wissenschaft",
+      "Vermächtnis",
+      "Kalender"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "land-und-veteranengesetze",
     "author": "caesar",
-    "title": "Veteranen und Land"
+    "title": "Veteranen und Land",
+    "excerpt": "Nach den Kriegen brauchen die Männer Land, die Städte Ruhe und der Staat Planbarkeit. Meine Veteranenpolitik stabilisierte Rom.",
+    "date": "2024-03-24",
+    "historicalDate": "59, 49–46 v. Chr.",
+    "historicalYear": -59,
+    "readingTime": 9,
+    "tags": [
+      "Reform",
+      "Sozialpolitik",
+      "Veteranen",
+      "Landgesetz"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "mein-genialer-satz",
     "author": "caesar",
-    "title": "Mein genialer Satz"
+    "title": "Mein genialer Satz",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "58 v. Chr.",
+    "historicalYear": -58,
+    "readingTime": 2,
+    "tags": [
+      "Gallien"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "mein-konsulat",
     "author": "caesar",
-    "title": "Mein Konsulat"
+    "title": "Mein Konsulat",
+    "excerpt": "Das Jahr 59 v. Chr. – Ich werde endlich Konsul! Mit etwas \"Überredungskunst\" von Pompeius, massiver Korruption und einem völlig inkompetenten Kollegen. Spoiler: Es wird chaotisch. Aber glorreich.",
+    "date": "2024-03-24",
+    "historicalDate": "59 v. Chr.",
+    "historicalYear": -59,
+    "readingTime": 6,
+    "tags": [
+      "Bibulus",
+      "Crassus",
+      "Gegner",
+      "Konsulat",
+      "Pompeius",
+      "Triumvirat",
+      "Reform"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "prokonsulat",
     "author": "caesar",
-    "title": "Prokonsulat"
+    "title": "Prokonsulat",
+    "excerpt": "",
+    "date": "2024-03-24",
+    "historicalDate": "58 v. Chr.",
+    "historicalYear": -58,
+    "readingTime": 1,
+    "tags": [
+      "Caesoninus",
+      "Gallia Cisaplina",
+      "Gallia Transaplina",
+      "Illyrien",
+      "Prokonsulat"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "schuldenerlass-und-zinsdeckel",
     "author": "caesar",
-    "title": "Schuld und Zins"
+    "title": "Schuld und Zins",
+    "excerpt": "Wie ich Rom nach dem Bruch beruhigte: Begrenzte Zinsforderungen, realistische Immobilienbewertung und Schutz vor Plünderung der Schuldner.",
+    "date": "2024-03-24",
+    "historicalDate": "49–46 v. Chr.",
+    "historicalYear": -49,
+    "readingTime": 9,
+    "tags": [
+      "Reform",
+      "Ökonomie",
+      "Krise",
+      "Bürgerkrieg"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "senatsreform",
     "author": "caesar",
-    "title": "Senatsreform – Erweiterung und Entmachtung der alten Netzwerke"
+    "title": "Senatsreform – Erweiterung und Entmachtung der alten Netzwerke",
+    "excerpt": "Warum ich den Senat vergrößerte: Provinzvertreter einbinden, Patronatsnetzwerke brechen, Verwaltung professionalisieren – und Widerstand streuen.",
+    "date": "2024-03-24",
+    "historicalDate": "46–44 v. Chr.",
+    "historicalYear": -46,
+    "readingTime": 10,
+    "tags": [
+      "Reform",
+      "Institutionen",
+      "Senat",
+      "Verwaltung"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "die-catilinarische-verschwrung-soziokonomische-ursachen-und-politische-dynamiken",
     "author": "catilina",
-    "title": "Die Catilinarische Verschwörung: Sozioökonomische Ursachen und politische Dynamiken"
+    "title": "Die Catilinarische Verschwörung: Sozioökonomische Ursachen und politische Dynamiken",
+    "excerpt": "Eine wissenschaftliche Untersuchung der komplexen politischen, sozialen und ökonomischen Faktoren, die zur Catilinarischen Verschwörung führten und die spätrömische Republik destabilisierten.",
+    "date": "2024-03-24",
+    "historicalDate": "63 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [],
+    "tagsWithTranslations": []
   },
   {
     "slug": "die-schlacht-bei-pistoria",
     "author": "catilina",
-    "title": "Die Schlacht bei Pistoria"
+    "title": "Die Schlacht bei Pistoria",
+    "excerpt": "Die Schlacht bei Pistoria im Januar 62 v. Chr. markierte das blutige Ende der Catilinarischen Verschwörung und den Tod ihres Anführers Lucius Sergius Catilina.",
+    "date": "2024-03-24",
+    "historicalDate": "62 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [
+      "Schlacht",
+      "Pistoria",
+      "Catilina",
+      "Militär"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "die-verschwrung",
     "author": "catilina",
-    "title": "Die Verschwörung"
+    "title": "Die Verschwörung",
+    "excerpt": "Die Catilinarische Verschwörung von 63 v. Chr. stellte einen Wendepunkt in der spätrömischen Republik dar und markierte einen der gefährlichsten innenpolitischen Konflikte dieser Ära.",
+    "date": "2024-03-24",
+    "historicalDate": "63 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [
+      "Verschwörung",
+      "Catilina",
+      "Cicero",
+      "Senat",
+      "Republik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "flucht-nach-etrurien",
     "author": "catilina",
-    "title": "Flucht nach Etrurien - Der Beginn des bewaffneten Aufstands"
+    "title": "Flucht nach Etrurien - Der Beginn des bewaffneten Aufstands",
+    "excerpt": "Nach Ciceros erster Rede flieht Catilina im November 63 v. Chr. aus Rom zu seinem Heer in Etrurien - der Übergang vom Verschwörer zum Rebellen.",
+    "date": "2024-04-04",
+    "historicalDate": "63 v. Chr.",
+    "historicalYear": -63,
+    "readingTime": 10,
+    "tags": [
+      "Flucht",
+      "Manlius",
+      "Rebellion",
+      "Cicero",
+      "Aufstand"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "gescheiterte-ambitionen",
     "author": "catilina",
-    "title": "Gescheiterte Ambitionen - Der Weg zur Verzweiflung"
+    "title": "Gescheiterte Ambitionen - Der Weg zur Verzweiflung",
+    "excerpt": "Catilinas wiederholte Niederlagen bei den Konsulwahlen 64 und 63 v. Chr. trieben den verschuldeten Patrizier zur Verzweiflung und zur Verschwörung.",
+    "date": "2024-04-01",
+    "historicalDate": "64-63 v. Chr.",
+    "historicalYear": -64,
+    "readingTime": 11,
+    "tags": [
+      "Konsulat",
+      "Wahlen",
+      "Schulden",
+      "Verzweiflung",
+      "Politik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "de-re-publica",
     "author": "cicero",
-    "title": "De Re Publica - Ciceros Vermächtnis für die Nachwelt"
+    "title": "De Re Publica - Ciceros Vermächtnis für die Nachwelt",
+    "excerpt": "In den Jahren 54-51 v. Chr. verfasste Cicero sein philosophisches Hauptwerk über den idealen Staat - eine Verteidigung der Republik in ihrer Todesstunde.",
+    "date": "2024-04-05",
+    "historicalDate": "54-51 v. Chr.",
+    "historicalYear": -54,
+    "readingTime": 10,
+    "tags": [
+      "Philosophie",
+      "Republik",
+      "Staatstheorie",
+      "Schriften",
+      "Ideal"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "im-exil",
     "author": "cicero",
-    "title": "Im Exil"
+    "title": "Im Exil",
+    "excerpt": "Ciceros Verbannung aus Rom durch Clodius und die politischen Hintergründe seiner Flucht nach Griechenland.",
+    "date": "2024-03-24",
+    "historicalDate": "58 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [
+      "Exil",
+      "Clodius",
+      "Politik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "mein-konsulat-die-rettung-der-republik",
     "author": "cicero",
-    "title": "Mein Konsulat - Die Rettung der Republik"
+    "title": "Mein Konsulat - Die Rettung der Republik",
+    "excerpt": "Wissenschaftliche Analyse von Ciceros Konsulat im Jahr 63 v.Chr. und seiner Rolle bei der Niederschlagung der Catilinarischen Verschwörung.",
+    "date": "2024-03-24",
+    "historicalDate": "63 v. Chr.",
+    "historicalYear": -50,
+    "readingTime": 5,
+    "tags": [],
+    "tagsWithTranslations": []
   },
   {
     "slug": "philippische-reden",
     "author": "cicero",
-    "title": "Die Philippischen Reden - Ciceros letzter Kampf"
+    "title": "Die Philippischen Reden - Ciceros letzter Kampf",
+    "excerpt": "Ciceros verzweifelter Kampf gegen Marcus Antonius 44-43 v. Chr. - vierzehn flammende Reden, die ihm das Leben kosteten, aber die Republik verteidigten.",
+    "date": "2024-03-26",
+    "historicalDate": "44-43 v. Chr.",
+    "historicalYear": -44,
+    "readingTime": 13,
+    "tags": [
+      "Philippicae",
+      "Antonius",
+      "Republik",
+      "Octavian",
+      "Tod"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "ruckkehr-aus-dem-exil",
     "author": "cicero",
-    "title": "Rückkehr aus dem Exil"
+    "title": "Rückkehr aus dem Exil",
+    "excerpt": "Ciceros triumphaler Rückkehr nach Rom im September 57 v. Chr. nach 16 Monaten Verbannung - ein politischer Sieg über seine Feinde.",
+    "date": "2024-03-25",
+    "historicalDate": "57 v. Chr.",
+    "historicalYear": -57,
+    "readingTime": 11,
+    "tags": [
+      "Exil",
+      "Rückkehr",
+      "Pompeius",
+      "Milo",
+      "Triumph"
+    ],
+    "tagsWithTranslations": []
   },
   {
-    "slug": "die-philosophischen-schriften",
+    "slug": "de-philosophischen-schriften",
     "author": "seneca",
-    "title": "Die philosophischen Hauptwerke - Senecas geistiges Vermächtnis"
+    "title": "Die philosophischen Hauptwerke - Senecas geistiges Vermächtnis",
+    "excerpt": "Senecas philosophische Dialoge, Traktate und Briefe - sein Versuch, stoische Weisheit für römische Leser zugänglich zu machen.",
+    "date": "2024-04-08",
+    "historicalDate": "41-65 n. Chr.",
+    "historicalYear": 41,
+    "readingTime": 12,
+    "tags": [
+      "Philosophie",
+      "Stoizismus",
+      "Schriften",
+      "Ethik",
+      "Dialoge"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "erzieher-neros",
     "author": "seneca",
-    "title": "Erzieher des jungen Nero"
+    "title": "Erzieher des jungen Nero",
+    "excerpt": "Senecas Rückkehr aus dem Exil 49 n. Chr. als Tutor des zukünftigen Kaisers Nero - eine Chance, den perfekten Philosophenherrscher zu formen.",
+    "date": "2024-03-30",
+    "historicalDate": "49-54 n. Chr.",
+    "historicalYear": 49,
+    "readingTime": 12,
+    "tags": [
+      "Nero",
+      "Erziehung",
+      "Agrippina",
+      "Philosophie",
+      "Politik"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "exil-auf-korsika",
     "author": "seneca",
-    "title": "Exil auf Korsika"
+    "title": "Exil auf Korsika",
+    "excerpt": "Senecas achtjähriges Exil auf Korsika (41-49 n. Chr.) durch Kaiser Claudius - eine Zeit philosophischer Reifung und literarischer Produktivität.",
+    "date": "2024-03-24",
+    "historicalDate": "41-49 n. Chr.",
+    "historicalYear": 41,
+    "readingTime": 12,
+    "tags": [
+      "Exil",
+      "Korsika",
+      "Philosophie",
+      "Messalina"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "quinquennium-neronis",
     "author": "seneca",
-    "title": "Quinquennium Neronis - Die fünf guten Jahre"
+    "title": "Quinquennium Neronis - Die fünf guten Jahre",
+    "excerpt": "Die ersten fünf Regierungsjahre Neros (54-59 n. Chr.) unter Senecas und Burrus' Einfluss - eine Zeit relativer Gerechtigkeit und Prosperität, bevor der Terror begann.",
+    "date": "2024-04-02",
+    "historicalDate": "54-59 n. Chr.",
+    "historicalYear": 54,
+    "readingTime": 12,
+    "tags": [
+      "Nero",
+      "Regierung",
+      "Reform",
+      "Burrus",
+      "Goldenes Zeitalter"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "ruckzug-aus-der-politik",
     "author": "seneca",
-    "title": "Rückzug aus der Politik - Senecas letzter Versuch"
+    "title": "Rückzug aus der Politik - Senecas letzter Versuch",
+    "excerpt": "Im Jahr 62 n. Chr. versuchte Seneca, sich aus Neros Umfeld zurückzuziehen und sein Vermögen zurückzugeben - vergeblich.",
+    "date": "2024-04-06",
+    "historicalDate": "62 n. Chr.",
+    "historicalYear": 62,
+    "readingTime": 10,
+    "tags": [
+      "Rückzug",
+      "Politik",
+      "Nero",
+      "Burrus",
+      "Poppaea"
+    ],
+    "tagsWithTranslations": []
   },
   {
     "slug": "tod-senecas",
     "author": "seneca",
-    "title": "Der Tod Senecas - Stoisch bis zum Ende"
+    "title": "Der Tod Senecas - Stoisch bis zum Ende",
+    "excerpt": "Senecas erzwungener Selbstmord 65 n. Chr. nach der Pisonischen Verschwörung - ein stoisches Ende eines widersprüchlichen Lebens.",
+    "date": "2024-03-31",
+    "historicalDate": "65 n. Chr.",
+    "historicalYear": 65,
+    "readingTime": 13,
+    "tags": [
+      "Tod",
+      "Selbstmord",
+      "Nero",
+      "Pisonische Verschwörung",
+      "Stoizismus"
+    ],
+    "tagsWithTranslations": []
   }
 ]

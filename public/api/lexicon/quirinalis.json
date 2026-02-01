@@ -1,6 +1,36 @@
 {
-  "slug": "quirinalis",
   "term": "Quirinalis",
+  "slug": "quirinalis",
+  "variants": [
+    "Quirinal",
+    "Quirinalischer Hügel"
+  ],
   "definition": "Der Quirinalis (Quirinal) war einer der sieben Hügel Roms und ursprünglich Siedlungsgebiet der Sabiner, die nach der legendären Verschmelzung mit den Römern unter Romulus hier wohnten. Der Name leitet sich vom sabinischen Kriegsgott Quirinus ab, mit dem Romulus nach seiner Apotheose identifiziert wurde. Der Hügel war Standort wichtiger Tempel, darunter der Tempel des Quirinus (einer der ältesten Roms) und später der Tempel der Fortuna und des Sol. In der Kaiserzeit entstanden hier prächtige Anlagen, darunter die Thermen des Konstantin und die Diokletiansthermen. Der Quirinal war auch Sitz mehrerer kaiserlicher Residenzen. Seine erhöhte Lage bot eine gesunde, luftige Position. Seit 1583 ist der Quirinalspalast Sitz des Papstes, heute des italienischen Staatspräsidenten. Der Hügel symbolisierte die Verschmelzung von Römern und Sabinern zur römischen Identität.",
-  "category": "Geographie & Orte"
+  "category": "Geographie & Orte",
+  "etymology": "Von lateinisch 'Quirinalis', abgeleitet von 'Quirinus', dem sabinischen Kriegsgott und vergöttlichten Romulus. Möglicherweise von sabinisch 'quiris' (Speer).",
+  "relatedTerms": [
+    "Quirinus",
+    "Romulus",
+    "Palatinus",
+    "Sabiner"
+  ],
+  "translations": {
+    "en": {
+      "term": "Quirinalis",
+      "definition": "The Quirinalis (Quirinal) was one of the seven hills of Rome and originally the settlement area of the Sabines, who lived here after the legendary merger with the Romans under Romulus. The name derives from the Sabine war god Quirinus, with whom Romulus was identified after his apotheosis. The hill was the site of important temples, including the Temple of Quirinus (one of Rome's oldest) and later the Temple of Fortuna and Sol. In the Imperial period, magnificent complexes were built here, including the Baths of Constantine and the Baths of Diocletian. The Quirinal was also the seat of several imperial residences. Its elevated position offered a healthy, airy location. Since 1583, the Quirinal Palace has been the seat of the Pope, today of the Italian President. The hill symbolized the merger of Romans and Sabines into Roman identity.",
+      "etymology": "From Latin 'Quirinalis', derived from 'Quirinus', the Sabine war god and deified Romulus. Possibly from Sabine 'quiris' (spear).",
+      "category": "Geography & Places",
+      "variants": [
+        "Quirinal",
+        "Quirinal Hill"
+      ]
+    },
+    "la": {
+      "term": "Quirinalis",
+      "definition": "Quirinalis fuit unus ex septem collibus Romae et initio area consessionis Sabinorum, qui hic post fusionem legendariam cum Romanis sub Romulo habitabant. Nomen a deo belli Sabino Quirino derivatur, cum quo Romulus post apotheosim identificatus est. Collis situs aedium importantium erat, inter quas aedes Quirini (una ex antiquissimis Romae) et postea aedes Fortunae et Solis. Aetate imperatoria, complexus magnifici hic constructi sunt, inter quos thermae Constantini et thermae Diocletiani. Quirinalis etiam sedes plurimarum residentiarum imperialium erat. Positio elevata locum salubrem et ventilatum praebebat. Ab anno 1583, Palatium Quirinale sedes Papae fuit, hodie Praesidis Italici. Collis fusionem Romanorum et Sabinorum in identitatem Romanam symbolizabat.",
+      "etymology": "A vocabulo Latino 'Quirinalis', derivato a 'Quirinus', deo belli Sabino et Romulo deificato. Fortasse a Sabino 'quiris' (hasta).",
+      "category": "Geographia et Loca",
+      "variants": []
+    }
+  }
 }

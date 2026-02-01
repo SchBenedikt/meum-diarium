@@ -1,6 +1,35 @@
 {
-  "slug": "octavia-minor",
   "term": "Octavia Minor",
+  "slug": "octavia-minor",
+  "variants": [
+    "Octavia",
+    "Octavia die Jüngere"
+  ],
   "definition": "Octavia Minor (ca. 69–11 v. Chr.) war die ältere Schwester des Augustus (Octavian) und eine zentrale politische Figur in den Wirren des untergehenden Republik. Bekannt für ihre Tugenden – Schönheit, Intelligenz und pietas – wurde sie zum Vorbild römischer Weiblichkeit. Nach dem Tod ihres ersten Mannes, Gaius Claudius Marcellus, wurde sie 40 v. Chr. mit Marcus Antonius verheiratet, um das politische Bündnis zwischen ihrem Bruder und Antonius zu festigen. Die Ehe zerbrach, als Antonius sich Kleopatra zuwandte. Trotz öffentlicher Demütigung blieb Octavia würdevoll und zog Antonius' Kinder (auch die mit Kleopatra) auf. Augustus ehrte sie mit dem ersten öffentlichen Bauwerk, das nach einer Frau benannt wurde (Porticus Octaviae). Nach ihrem Tod wurde sie mit einem Staatsbegräbnis geehrt. Octavia verkörperte römische Tugend in einer Zeit des Umbruchs.",
-  "category": "Historische Personen"
+  "category": "Historische Personen",
+  "etymology": "Der Name 'Octavia' leitet sich von 'octavus' (der achte) ab, ursprünglich ein Name für das achte Kind oder mit dem achten Monat verbunden.",
+  "relatedTerms": [
+    "Augustus",
+    "Marcus Antonius",
+    "Cleopatra",
+    "Matrona"
+  ],
+  "translations": {
+    "en": {
+      "term": "Octavia Minor",
+      "definition": "Octavia Minor (ca. 69–11 BC) was the elder sister of Augustus (Octavian) and a central political figure in the turmoil of the declining Republic. Known for her virtues – beauty, intelligence, and pietas – she became a model of Roman womanhood. After the death of her first husband, Gaius Claudius Marcellus, she was married in 40 BC to Marcus Antonius to solidify the political alliance between her brother and Antony. The marriage broke down when Antony turned to Cleopatra. Despite public humiliation, Octavia remained dignified and raised Antony's children (including those with Cleopatra). Augustus honored her with the first public building named after a woman (Porticus Octaviae). After her death, she was honored with a state funeral. Octavia embodied Roman virtue in a time of upheaval.",
+      "etymology": "The name 'Octavia' derives from 'octavus' (the eighth), originally a name for the eighth child or associated with the eighth month.",
+      "category": "Historical Figures",
+      "variants": [
+        "Octavia"
+      ]
+    },
+    "la": {
+      "term": "Octavia Minor",
+      "definition": "Octavia Minor (circa 69–11 a.C.n.) fuit soror maior Augusti (Octaviani) et figura politica centralis in turbis rei publicae cadentis. Pro virtutibus suis nota – pulchritudine, intelligentia et pietate – exemplar femineitatis Romanae facta est. Post mortem primi mariti sui, Gai Claudi Marcelli, anno 40 a.C.n. Marco Antonio in matrimonium data est ut foedus politicum inter fratrem suum et Antonium solidaret. Matrimonium collabatum est cum Antonius se Cleopatrae convertit. Malgre humiliationem publicam, Octavia digna mansit et liberos Antonii (etiam eos cum Cleopatra) educavit. Augustus eam cum primo aedificio publico quod ex nomine feminae nominatum est (Porticus Octaviae) honoravit. Post mortem eius, funere publico honorata est. Octavia virtutem Romanam in tempore commutationis incorporabat.",
+      "etymology": "Nomen 'Octavia' ab 'octavus' (octavus) derivatur, initio nomen pro octavo libero vel cum octavo mense coniunctum.",
+      "category": "Personae Historicae",
+      "variants": []
+    }
+  }
 }

@@ -1,6 +1,27 @@
 {
-  "slug": "rubikon",
   "term": "Rubikon",
+  "slug": "rubikon",
+  "variants": [],
   "definition": "Der Rubikon (lateinisch Rubico) war ein kleiner Fluss in Norditalien, der die Grenze zwischen Italien und der Provinz Gallia Cisalpina markierte. Als Caesar im Januar 49 v. Chr. mit seinen Legionen den Rubikon überschritt, brach er römisches Recht, das Feldherren verbot, mit bewaffneten Truppen italienischen Boden zu betreten. Mit den Worten \"alea iacta est\" (\"Der Würfel ist gefallen\") löste er den Bürgerkrieg gegen Pompeius und den Senat aus. Die Überschreitung des Rubikon wurde zum Synonym für eine unwiderrufliche Entscheidung.",
-  "category": "Politik"
+  "category": "Politik",
+  "etymology": "",
+  "relatedTerms": [],
+  "translations": {
+    "en": {
+      "term": "Rubicon",
+      "definition": "The Rubicon was a small river in northern Italy that served as the legal boundary between Italy proper and the province of Cisalpine Gaul. In January 49 BC, Gaius Julius Caesar crossed the river with his 13th Legion, a move that was an act of treason as Roman law prohibited generals from entering Italy with armed forces. By crossing, Caesar famously uttered 'alea iacta est' ('the die is cast'), igniting the Great Roman Civil War against Pompey and the Senate. Today, 'crossing the Rubicon' is a common idiom for passing a point of no return.",
+      "etymology": "From Latin 'rubeus' (red), due to the color of the riverbed.",
+      "category": "Geography",
+      "variants": [
+        "Rubico"
+      ]
+    },
+    "la": {
+      "term": "Rubico",
+      "definition": "Rubico parvus fluvius erat, qui fines inter Galliam Cisalpinam et Italiam signabat. Mense Ianuario XLIX a.C.n., Gaius Iulius Caesar hunc fluvium cum legionibus suis transiit, quod nefas erat secundum leges Romanas. Caesar tunc 'alea iacta est' dixisse fertur, quod initium Belli Civilis contra Pompeium et Senatum fuit. Hodie hic terminus significat consilium inrevocabile.",
+      "etymology": "A colore rubro aquae aut soli.",
+      "category": "Geographia",
+      "variants": []
+    }
+  }
 }

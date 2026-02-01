@@ -64,7 +64,7 @@ export function OfflineBanner() {
         }
     };
 
-    if (!visible || !isMobile) return null;
+    if (!visible) return null;
 
     return (
         <div className="fixed bottom-20 left-4 right-4 z-50 pointer-events-none md:bottom-6 md:left-auto md:w-96">

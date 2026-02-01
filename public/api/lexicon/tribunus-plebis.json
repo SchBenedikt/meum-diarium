@@ -1,6 +1,35 @@
 {
-  "slug": "tribunus-plebis",
   "term": "Tribunus Plebis",
+  "slug": "tribunus-plebis",
+  "variants": [
+    "Volkstribun",
+    "Tribunus"
+  ],
   "definition": "Der Tribunus Plebis (Volkstribun) war ein einzigartiges Amt der römischen Republik, das ausschließlich die Interessen der Plebejer vertrat und als Gegengewicht zur patricischen Macht diente. Eingeführt 494 v. Chr. nach dem ersten Ständekampf, waren die Tribunen sakrosankt (sacrosancti) – ihre Person war unverletzlich, und Angriffe auf sie waren mit dem Tod zu bestrafen. Die zehn Tribunen hatten das mächtige Recht der Interzession (intercessio): Sie konnten gegen Senatsbeschlüsse, Magistratsentscheidungen und sogar Consuln ihr Veto einlegen. Sie konnten Volksversammlungen (concilia plebis) einberufen und Plebiszite vorschlagen. Ihr auxilium (Beistand) schützte einzelne Bürger vor Willkür der Magistrate. Berühmte Tribunen wie die Gracchen nutzten das Amt für Reformen. Das Tribunat war ein demokratisches Element in der sonst aristokratischen Republik. In der Kaiserzeit übernahmen die Kaiser selbst die tribunizische Gewalt (tribunicia potestas).",
-  "category": "Politik & Verwaltung"
+  "category": "Politik & Verwaltung",
+  "etymology": "Von lateinisch 'tribus' (Stamm, Bezirk) → 'tribunus' (Stammesvertreter) + 'plebs' (einfaches Volk). Bezeichnung für den Vertreter des Volkes.",
+  "relatedTerms": [
+    "Plebejer",
+    "Intercessio",
+    "Concilium Plebis",
+    "Patricier"
+  ],
+  "translations": {
+    "en": {
+      "term": "Tribunus Plebis",
+      "definition": "The tribunus plebis (tribune of the plebs) was a unique office of the Roman Republic that exclusively represented the interests of the plebeians and served as a counterweight to patrician power. Introduced in 494 BC after the first conflict of the orders, the tribunes were sacrosanct (sacrosancti) – their person was inviolable, and attacks on them were punishable by death. The ten tribunes had the powerful right of intercession (intercessio): they could veto Senate resolutions, magistrate decisions, and even consuls. They could convene popular assemblies (concilia plebis) and propose plebiscites. Their auxilium (assistance) protected individual citizens from arbitrary actions by magistrates. Famous tribunes like the Gracchi used the office for reforms. The tribunate was a democratic element in the otherwise aristocratic Republic. In the Imperial period, the emperors themselves assumed tribunician power (tribunicia potestas).",
+      "etymology": "From Latin 'tribus' (tribe, district) → 'tribunus' (tribal representative) + 'plebs' (common people). Designation for the representative of the people.",
+      "category": "Politics & Administration",
+      "variants": [
+        "Tribune of the Plebs"
+      ]
+    },
+    "la": {
+      "term": "Tribunus Plebis",
+      "definition": "Tribunus plebis fuit magistratus unicus rei publicae Romanae qui exclusive intersessa plebeiorum repraesentabat et ut contraponderatio potestatis patriciae serviebat. Anno 494 a.C.n. post primum conflictum ordinum introductus, tribuni sacrosancti erant – persona eorum inviolabilis erat et impetus contra eos morte puniendi erant. Decem tribuni ius potens intercessioni (intercessio) habebant: contra decreta senatus, decisiones magistratuum et etiam consules veto ponere poterant. Concilia plebis convocare et plebiscita proponere poterant. Auxilium eorum cives singulos contra arbitrium magistratuum protegebat. Tribuni celebres ut Gracchi magistratum pro reformis adhibebant. Tribunatus elementum democraticum in re publica alioquin aristocratica erat. Aetate imperatoria, imperatores ipsi potestatem tribuniciam (tribunicia potestas) assumpserunt.",
+      "etymology": "A vocabulo Latino 'tribus' (tribus, regio) → 'tribunus' (repraesentator tribus) + 'plebs' (vulgus). Designatio pro repraesentatore populi.",
+      "category": "Politica et Administratio",
+      "variants": []
+    }
+  }
 }

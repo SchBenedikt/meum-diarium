@@ -1,6 +1,33 @@
 {
-  "slug": "gravitas",
   "term": "Gravitas",
+  "slug": "gravitas",
+  "variants": [
+    "Ernst",
+    "Würde"
+  ],
   "definition": "Gravitas (lat. \"Schwere\", \"Gewicht\") bezeichnete in der römischen Kultur eine Charaktereigenschaft, die Ernst, Würde, Besonnenheit und moralisches Gewicht umfasste. Ein Mann mit gravitas war ernsthaft, selbstbeherrscht, würdevoll in seinem Auftreten und bedacht in seinen Entscheidungen. Diese Eigenschaft war besonders wichtig für Senatoren, Richter und Staatsmänner. Gravitas stand im Gegensatz zu levitas (Leichtfertigkeit) und war eng verbunden mit constantia (Standhaftigkeit) und prudentia (Klugheit). Cato der Ältere galt als Inbegriff römischer gravitas. Wer gravitas besaß, strahlte natürliche Autorität aus und wurde ernst genommen.",
-  "category": "Philosophie & Werte"
+  "category": "Philosophie & Werte",
+  "etymology": "Von lateinisch 'gravis' (schwer, gewichtig) → 'gravitas'. Das physische \"Gewicht\" wurde auf moralisches Gewicht übertragen.",
+  "relatedTerms": [
+    "Dignitas",
+    "Auctoritas",
+    "Constantia",
+    "Prudentia"
+  ],
+  "translations": {
+    "en": {
+      "term": "Gravitas",
+      "definition": "Gravitas (Latin 'heaviness', 'weight') denoted a character trait in Roman culture that encompassed seriousness, dignity, prudence, and moral weight. A man with gravitas was serious, self-controlled, dignified in demeanor, and deliberate in decisions. This quality was particularly important for senators, judges, and statesmen. Gravitas stood in contrast to levitas (frivolity) and was closely connected with constantia (steadfastness) and prudentia (wisdom). Cato the Elder was considered the epitome of Roman gravitas. Those who possessed gravitas radiated natural authority and were taken seriously.",
+      "etymology": "From Latin 'gravis' (heavy, weighty) → 'gravitas'. The physical 'weight' was transferred to moral weight.",
+      "category": "Philosophy & Values",
+      "variants": []
+    },
+    "la": {
+      "term": "Gravitas",
+      "definition": "Gravitas in cultura Romana proprietatem characteris designabat quae severitatem, dignitatem, prudentiam et pondus morale comprehendebat. Vir cum gravitate serius, temperatus, dignus in gestu et consideratus in decisionibus erat. Haec proprietas praesertim pro senatoribus, iudicibus et viris publicis magna erat. Gravitas contra levitatem stabat et cum constantia et prudentia stricte coniuncta erat. Cato Maior typus gravitatis Romanae habebatur. Qui gravitatem possidebat, auctoritatem naturalem radiabat et serio accipiebatur.",
+      "etymology": "A vocabulo Latino 'gravis' (gravis, ponderosus) → 'gravitas'. 'Pondus' physicum ad pondus morale transferebatur.",
+      "category": "Philosophia et Valores",
+      "variants": []
+    }
+  }
 }

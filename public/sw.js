@@ -36,9 +36,9 @@ self.addEventListener('activate', (event) => {
       caches.keys().then(cacheNames => {
         return Promise.all(
           cacheNames
-            .filter(name => 
-              name !== CACHE_NAME && 
-              name !== RUNTIME_CACHE && 
+            .filter(name =>
+              name !== CACHE_NAME &&
+              name !== RUNTIME_CACHE &&
               name !== OFFLINE_CACHE &&
               name !== IMAGES_CACHE
             )
@@ -52,11 +52,23 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+// Helper to send progress to all clients
+async function reportProgress(progress, status) {
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({
+      type: 'PRECACHE_PROGRESS',
+      payload: { progress, status }
+    });
+  });
+}
+
 // Deep Pre-caching Logic
 async function triggerDeepPrecache() {
   console.log('[SW] Starting deep pre-cache...');
   try {
     const offlineCache = await caches.open(OFFLINE_CACHE);
+    await reportProgress(5, 'Initialisiere Download...');
 
     // 1. Fetch Lists
     const endpoints = [
@@ -67,12 +79,14 @@ async function triggerDeepPrecache() {
       '/api/tags'
     ];
 
-    const lists = await Promise.all(endpoints.map(async url => {
+    const lists = await Promise.all(endpoints.map(async (url, index) => {
       try {
         const res = await fetch(url);
         if (res.ok) {
           const clone = res.clone();
           await offlineCache.put(url, clone);
+          const progress = 5 + Math.round(((index + 1) / endpoints.length) * 15);
+          await reportProgress(progress, `Lade Listen... (${index + 1}/${endpoints.length})`);
           return await res.json();
         }
       } catch (e) {
@@ -108,8 +122,15 @@ async function triggerDeepPrecache() {
       });
     }
 
+    if (detailTasks.length === 0) {
+      await reportProgress(100, 'Alle Inhalte sind aktuell.');
+      return;
+    }
+
     // Cache details in chunks to avoid overwhelming the network
-    const CHUNK_SIZE = 10;
+    const CHUNK_SIZE = 5;
+    let completed = 0;
+
     for (let i = 0; i < detailTasks.length; i += CHUNK_SIZE) {
       const chunk = detailTasks.slice(i, i + CHUNK_SIZE);
       await Promise.all(chunk.map(async url => {
@@ -120,13 +141,20 @@ async function triggerDeepPrecache() {
           }
         } catch (e) {
           // Ignore failures for individual items
+        } finally {
+          completed++;
         }
       }));
+
+      const progress = 20 + Math.round((completed / detailTasks.length) * 80);
+      await reportProgress(progress, `Speichere Artikel... (${completed}/${detailTasks.length})`);
     }
 
+    await reportProgress(100, 'Alle Inhalte offline verfügbar!');
     console.log(`[SW] Deep pre-cache complete. Cached ${detailTasks.length} detail pages.`);
   } catch (error) {
     console.error('[SW] Deep pre-cache failed', error);
+    await reportProgress(-1, 'Fehler beim Herunterladen.');
   }
 }
 
