@@ -51,30 +51,38 @@ export default {
                 return renderApiDocs(request);
             }
 
-            // Otherwise, proxy to the backend server
-            const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
-            const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+            // Only proxy write operations or specific AI queries
+            // GET requests to content (like /api/catalog) fall through to Pages Functions
+            if (["POST", "PUT", "DELETE"].includes(request.method) || question) {
+                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+                const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
-            try {
-                const response = await fetch(proxyUrl.toString(), {
-                    method: request.method,
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: request.method === "POST" ? JSON.stringify(body) : null
-                });
+                // Safety: Don't proxy back to self
+                if (url.hostname === "meum-diarium.xn--schchner-2za.de") {
+                    // Let it fall through
+                } else {
+                    try {
+                        const response = await fetch(proxyUrl.toString(), {
+                            method: request.method,
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: request.method === "POST" ? JSON.stringify(body) : null
+                        });
 
-                const data = await response.json();
-                return new Response(JSON.stringify(data), {
-                    headers: corsHeaders(),
-                    status: response.status
-                });
-            } catch (e) {
-                return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
-                    status: 502,
-                    headers: corsHeaders()
-                });
+                        const data = await response.json();
+                        return new Response(JSON.stringify(data), {
+                            headers: corsHeaders(),
+                            status: response.status
+                        });
+                    } catch (e) {
+                        return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
+                            status: 502,
+                            headers: corsHeaders()
+                        });
+                    }
+                }
             }
         }
 

@@ -1,13 +1,12 @@
-export const onRequest = async ({ request }: { request: Request }) => {
-    const url = new URL(request.url);
+export const onRequest = async (context: any) => {
+    const url = new URL(context.request.url);
     const worksUrl = `${url.origin}/api/works.json`;
 
     try {
-        const response = await fetch(worksUrl);
-        if (!response.ok) throw new Error('Failed to fetch works data');
+        const response = await context.env.ASSETS.fetch(new Request(worksUrl));
+        if (!response.ok) throw new Error('Static works file not found');
 
-        const data = await response.json();
-        return new Response(JSON.stringify(data), {
+        return new Response(response.body, {
             headers: {
                 'content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'

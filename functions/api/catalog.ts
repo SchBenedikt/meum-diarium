@@ -1,20 +1,19 @@
-export const onRequest = async ({ request }: { request: Request }) => {
-    const url = new URL(request.url);
+export const onRequest = async (context: any) => {
+    const url = new URL(context.request.url);
     const catalogUrl = `${url.origin}/api/catalog.json`;
 
     try {
-        const response = await fetch(catalogUrl);
-        if (!response.ok) throw new Error('Failed to fetch catalog data');
+        const response = await context.env.ASSETS.fetch(new Request(catalogUrl));
+        if (!response.ok) throw new Error('Static catalog file not found');
 
-        const data = await response.json();
-        return new Response(JSON.stringify(data), {
+        return new Response(response.body, {
             headers: {
                 'content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
         });
     } catch (err: any) {
-        return new Response(JSON.stringify({ error: 'API Error', message: err.message }), {
+        return new Response(JSON.stringify({ error: 'API Error', message: err.message, origin: url.origin }), {
             status: 500,
             headers: { 'content-type': 'application/json' }
         });
