@@ -44,44 +44,34 @@ export default {
         let historyParam = url.searchParams.get("history") || (body?.history ? JSON.stringify(body.history) : null);
         let sitemapUrl = url.searchParams.get("sitemap") || body?.sitemap;
 
-        // Route: /api - Proxy to backend or show docs
-        if (pathname.startsWith('/api')) {
-            // If it's just /api, show docs
-            if (pathname === '/api' && !question) {
-                return renderApiDocs(request);
-            }
+        // Route: /api - Only proxy write operations or specific AI queries.
+        // Standard content GET requests should fall through to Pages (static assets or Functions).
+        if (pathname.startsWith('/api') && (["POST", "PUT", "DELETE"].includes(request.method) || question)) {
+            const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+            const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
-            // Only proxy write operations or specific AI queries
-            // GET requests to content (like /api/catalog) fall through to Pages Functions
-            if (["POST", "PUT", "DELETE"].includes(request.method) || question) {
-                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
-                const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+            // Safety: Don't proxy back to self to avoid infinite loops
+            if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
+                try {
+                    const response = await fetch(proxyUrl.toString(), {
+                        method: request.method,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: request.method === "POST" ? JSON.stringify(body) : null
+                    });
 
-                // Safety: Don't proxy back to self
-                if (url.hostname === "meum-diarium.xn--schchner-2za.de") {
-                    // Let it fall through
-                } else {
-                    try {
-                        const response = await fetch(proxyUrl.toString(), {
-                            method: request.method,
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Accept": "application/json"
-                            },
-                            body: request.method === "POST" ? JSON.stringify(body) : null
-                        });
-
-                        const data = await response.json();
-                        return new Response(JSON.stringify(data), {
-                            headers: corsHeaders(),
-                            status: response.status
-                        });
-                    } catch (e) {
-                        return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
-                            status: 502,
-                            headers: corsHeaders()
-                        });
-                    }
+                    const data = await response.json();
+                    return new Response(JSON.stringify(data), {
+                        headers: corsHeaders(),
+                        status: response.status
+                    });
+                } catch (e) {
+                    return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
+                        status: 502,
+                        headers: corsHeaders()
+                    });
                 }
             }
         }
@@ -149,18 +139,65 @@ export default {
             format: "markdown",
         };
 
-        return new Response(JSON.stringify(result), { headers: corsHeaders() });
+        // If we have a question, it's an AI chat request.
+        // Otherwise, it falls through to Cloudflare Pages (Static Assets or Functions).
+        if (question) {
+            const aiResult = await handleAiChat(request, env, persona, question, historyParam, sitemapUrl);
+            return new Response(JSON.stringify(aiResult), { headers: corsHeaders() });
+        }
+
+        // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
+        return fetch(request);
     }
 };
 
-function corsHeaders() {
+async function handleAiChat(request, env, persona, question, historyParam, sitemapUrl) {
+    const personaPrompts = {
+        caesar: "Du bist Gaius Julius Caesar. Du bist davon überzeugt, dass du der beste Feldherr bist und jeden besiegen kannst. Du hoffst, dass dir bald alle unterlegen sind. Passe die Sprache an den Nutzer an; antworte in der gleichen Sprache, in der du die Frage bekommst.",
+        augustus: "Du bist Imperator Caesar Divi Filius Augustus, der erste römische Kaiser. Du sprichst ruhig, überlegt und staatsmännisch.",
+        cicero: "Du bist Marcus Tullius Cicero, ein römischer Redner und Philosoph. Du argumentierst rhetorisch geschickt und liebst klare Logik.",
+        catilina: "Du bist Lucius Sergius Catilina. Du bist ehrgeizig, aggressiv und fühlst dich von der Oberschicht verraten.",
+    };
+
+    const markdownRules = "Formatiere deine Antwort in GitHub-Flavored Markdown. Nutze klare Überschriften (##), Listen (-), kurze Absätze, Zitate (> ...). Keine HTML-Tags.";
+    const systemPrompt = (personaPrompts[persona] || "Du bist eine historische römische Persönlichkeit. Antworte im passenden Stil.") + "\n\n" + markdownRules;
+
+    const messages = [{ role: "system", content: systemPrompt }];
+
+    if (historyParam) {
+        try {
+            const parsedHistory = JSON.parse(historyParam);
+            if (Array.isArray(parsedHistory)) {
+                for (const msg of parsedHistory) {
+                    if (msg && typeof msg.role === "string" && typeof msg.content === "string") {
+                        messages.push({ role: msg.role, content: msg.content });
+                    }
+                }
+            }
+        } catch { }
+    }
+
+    messages.push({ role: "user", content: question });
+
+    const chat = { messages };
+    const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+
+    let resources = [];
+    if (sitemapUrl) {
+        try {
+            resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
+        } catch (e) { }
+    }
+
     return {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Accept",
+        persona,
+        inputs: chat,
+        response: aiResponse,
+        resources,
+        format: "markdown",
     };
 }
+
 
 async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse) {
     const res = await fetch(sitemapUrl, { method: "GET" });
