@@ -76,74 +76,15 @@ export default {
             }
         }
 
-        // Route: Root / or PersonaChat - let fall through to SPA for premium React docs
-        if (!question && (pathname === "" || pathname === "/personachat")) {
-            return fetch(request);
-        }
-
-        if (!question) {
-            return new Response(JSON.stringify({ error: "No question provided. Use ?ask=... or POST {ask}." }), {
-                status: 400,
-                headers: corsHeaders(),
-            });
-        }
-
-        const personaPrompts = {
-            caesar: "Du bist Gaius Julius Caesar. Du bist davon überzeugt, dass du der beste Feldherr bist und jeden besiegen kannst. Du hoffst, dass dir bald alle unterlegen sind. Passe die Sprache an den Nutzer an; antworte in der gleichen Sprache, in der du die Frage bekommst.",
-            augustus: "Du bist Imperator Caesar Divi Filius Augustus, der erste römische Kaiser. Du sprichst ruhig, überlegt und staatsmännisch.",
-            cicero: "Du bist Marcus Tullius Cicero, ein römischer Redner und Philosoph. Du argumentierst rhetorisch geschickt und liebst klare Logik.",
-            catilina: "Du bist Lucius Sergius Catilina. Du bist ehrgeizig, aggressiv und fühlst dich von der Oberschicht verraten.",
-        };
-
-        const markdownRules =
-            "Formatiere deine Antwort in GitHub-Flavored Markdown. Nutze klare Überschriften (##), Listen (-), kurze Absätze, Zitate (> ...). Keine HTML-Tags.";
-
-        const systemPrompt =
-            (personaPrompts[persona] || "Du bist eine historische römische Persönlichkeit. Antworte im passenden Stil.") +
-            "\n\n" + markdownRules;
-
-        const messages = [{ role: "system", content: systemPrompt }];
-
-        if (historyParam) {
-            try {
-                const parsedHistory = JSON.parse(historyParam);
-                if (Array.isArray(parsedHistory)) {
-                    for (const msg of parsedHistory) {
-                        if (msg && typeof msg.role === "string" && typeof msg.content === "string") {
-                            messages.push({ role: msg.role, content: msg.content });
-                        }
-                    }
-                }
-            } catch { }
-        }
-
-        messages.push({ role: "user", content: question });
-
-        const chat = { messages };
-        const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
-
-        let resources = [];
-        if (sitemapUrl) {
-            try {
-                resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
-            } catch (e) {
-                // keep answering even if sitemap fails
-            }
-        }
-
-        const result = {
-            persona,
-            inputs: chat,
-            response: aiResponse,
-            resources,
-            format: "markdown",
-        };
-
-        // If we have a question, it's an AI chat request.
-        // Otherwise, it falls through to Cloudflare Pages (Static Assets or Functions).
+        // Consolidate: If we have a question, it's an AI chat request.
         if (question) {
             const aiResult = await handleAiChat(request, env, persona, question, historyParam, sitemapUrl);
             return new Response(JSON.stringify(aiResult), { headers: corsHeaders() });
+        }
+
+        // Route: Root / or /api or PersonaChat - let fall through to SPA for premium React docs
+        if (pathname === "" || pathname === "/api" || pathname === "/personachat") {
+            return fetch(request);
         }
 
         // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
