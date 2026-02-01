@@ -37,6 +37,7 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const ImprintPage = lazy(() => import("./pages/ImprintPage"));
 const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ const AppContent = () => {
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
             {/* Static routes must come before dynamic :authorId routes */}
             <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+            <Route path="/api" element={<PageTransition><ApiDocsPage /></PageTransition>} />
             <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
             <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
             <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />

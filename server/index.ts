@@ -1071,7 +1071,6 @@ app.delete('/api/tags/:tag', async (req, res) => {
 });
 
 // ============ TRANSLATIONS API ============
-const LOCALES_DIR = path.resolve(__dirname, '../src/locales');
 
 // Helper to parse translations from TS file
 const parseTranslationsFile = async (lang: string): Promise<Record<string, any>> => {
@@ -1227,6 +1226,7 @@ app.post('/api/translations', async (req, res) => {
 
 app.get(['/sitemap.xml', '/sitemap'], async (_req, res) => {
     try {
+        const today = todayIso();
         const staticRoutes = [
             { path: '/', changefreq: 'weekly', priority: '1.0', lastmod: today },
             { path: '/about', changefreq: 'monthly', priority: '0.8', lastmod: today },
@@ -1245,7 +1245,6 @@ app.get(['/sitemap.xml', '/sitemap'], async (_req, res) => {
 
         const posts = await getPostEntries();
         const works = await getWorkEntries();
-        const today = todayIso();
 
         const urlEntries = [
             ...staticRoutes,
