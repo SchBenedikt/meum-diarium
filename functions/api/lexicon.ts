@@ -3,8 +3,11 @@ import { lexicon } from '../../../src/db/schema';
 import { eq, like, or } from 'drizzle-orm';
 
 export const onRequest = async (context: any) => {
-    const startTime = Date.now();
-    
+    const corsHeaders = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+    };
+
     try {
         // Check if D1 database is available
         if (!context.env?.DB) {
@@ -14,10 +17,11 @@ export const onRequest = async (context: any) => {
                 message: 'D1 database binding not found'
             }), {
                 status: 503,
-                headers: { 'Content-Type': 'application/json' }
+                headers: corsHeaders
             });
         }
 
+        const startTime = Date.now();
         const db = getDb(context.env);
         const url = new URL(context.request.url);
         const slug = url.searchParams.get('slug');
@@ -37,7 +41,7 @@ export const onRequest = async (context: any) => {
                 console.warn(`⚠️ [Lexicon API] Entry not found: ${slug} (${queryTime}ms)`);
                 return new Response(JSON.stringify({ error: 'Not Found' }), {
                     status: 404,
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: corsHeaders
                 });
             }
 
@@ -45,8 +49,7 @@ export const onRequest = async (context: any) => {
 
             return new Response(JSON.stringify(result), {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
+                    ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
                     'X-Data-Source': 'cloudflare-d1'
                 }
@@ -71,8 +74,7 @@ export const onRequest = async (context: any) => {
 
         return new Response(JSON.stringify(results), {
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+                ...corsHeaders,
                 'Cache-Control': 'public, max-age=3600',
                 'X-Data-Source': 'cloudflare-d1',
                 'X-Entry-Count': results.length.toString()
@@ -80,7 +82,7 @@ export const onRequest = async (context: any) => {
         });
 
     } catch (err: any) {
-        const queryTime = Date.now() - startTime;
+        const queryTime = Date.now() - (context.startTime || Date.now());
         console.error(`❌ [Lexicon API] D1 query failed (${queryTime}ms):`, err.message);
         console.error('   Stack:', err.stack);
         
@@ -90,7 +92,7 @@ export const onRequest = async (context: any) => {
             hint: 'Check if database is seeded and migrations are applied'
         }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: corsHeaders
         });
     }
 };

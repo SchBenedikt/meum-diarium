@@ -1,22 +1,18 @@
 -- Cleanup script: Remove all data before re-seeding
--- IMPORTANT: Delete in correct order to avoid FK constraint violations
+-- Note: Foreign keys are disabled so deletion order doesn't matter for constraints
+-- Order is maintained for readability (child tables before parent tables)
 
--- Temporarily disable foreign key checks (SQLite specific)
+-- Temporarily disable foreign key checks
 PRAGMA foreign_keys = OFF;
 
--- Delete all data (in correct order to respect foreign keys)
+-- Delete data from all tables
+-- These will silently fail if tables don't exist (which is fine for cleanup)
 DELETE FROM latin_texts;
 DELETE FROM vocabulary;
 DELETE FROM posts;
 DELETE FROM lexicon;
 DELETE FROM works;
 DELETE FROM authors;
-
--- Verify cleanup (optional, for debugging)
--- SELECT 'authors', COUNT(*) FROM authors
--- UNION ALL SELECT 'works', COUNT(*) FROM works
--- UNION ALL SELECT 'posts', COUNT(*) FROM posts
--- UNION ALL SELECT 'lexicon', COUNT(*) FROM lexicon;
 
 -- Re-enable foreign key checks
 PRAGMA foreign_keys = ON;

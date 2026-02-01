@@ -23,6 +23,9 @@ interface DuplicateReport {
 const duplicates: DuplicateReport[] = [];
 
 function extractInsertValues(sql: string, table: string): { column: string; values: string[] } {
+  // Note: This regex only matches single-row INSERT statements
+  // Multi-row inserts like INSERT INTO table (...) VALUES (...), (...) are not supported
+  // and will only capture the first row
   const regex = new RegExp(`INSERT INTO ${table}\\s*\\(([^)]+)\\)\\s*VALUES\\s*\\(([^;]+)\\)`, 'gi');
   const matches = [...sql.matchAll(regex)];
   
@@ -37,6 +40,8 @@ function extractInsertValues(sql: string, table: string): { column: string; valu
   for (const match of matches) {
     const valuesPart = match[2];
     // Extract the first value (corresponding to primary column)
+    // Note: This simple split approach may fail if the value contains commas (even when quoted)
+    // For production use, consider a proper SQL parser
     const firstValue = valuesPart.split(',')[0].trim().replace(/^['"]|['"]$/g, '');
     values.push(firstValue);
   }

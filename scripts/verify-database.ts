@@ -56,7 +56,15 @@ async function runQuery<T = any>(sql: string): Promise<T[]> {
       return [];
     }
     
-    const result = JSON.parse(stdout);
+    let result: any;
+    try {
+      result = JSON.parse(stdout);
+    } catch (parseError) {
+      console.error('❌ Failed to parse JSON from wrangler output');
+      console.error('   This might indicate an issue with the wrangler command or database connection');
+      console.error('   Raw output:', stdout.substring(0, 200));
+      return [];
+    }
     
     // Handle different output formats
     if (Array.isArray(result)) {

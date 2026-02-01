@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Improved Database Seeding Script with Error Handling
 # This script safely seeds the D1 database with all content
@@ -42,21 +42,27 @@ execute_sql() {
         return 1
     fi
     
-    if npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --file "$file" --yes 2>&1 | tee /tmp/wrangler_output.txt | grep -q "Error"; then
+    # Execute and capture both stdout and exit code
+    local output
+    output=$(npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --file "$file" --yes 2>&1)
+    local exit_code=$?
+    
+    # Check exit code first (most reliable)
+    if [ $exit_code -ne 0 ]; then
         echo -e "${RED}✗ Error executing $file${NC}"
-        cat /tmp/wrangler_output.txt | grep -A 3 "Error"
+        echo "$output" | grep -A 3 "ERROR" || echo "$output"
         
         # Check if it's a constraint error
-        if grep -q "UNIQUE constraint failed" /tmp/wrangler_output.txt; then
-            echo -e "${YELLOW}⚠️  This might be a duplicate entry issue.${NC}"
+        if echo "$output" | grep -q "UNIQUE constraint failed"; then
+            echo -e "${YELLOW}⚠️  This is a duplicate entry issue.${NC}"
             echo -e "${YELLOW}   Run cleanup first: npx wrangler d1 execute $DB_NAME $REMOTE_FLAG --file cleanup_db.sql --yes${NC}"
         fi
         
         return 1
-    else
-        echo -e "${GREEN}✓ Success${NC}"
-        return 0
     fi
+    
+    echo -e "${GREEN}✓ Success${NC}"
+    return 0
 }
 
 # Step 1: Cleanup
