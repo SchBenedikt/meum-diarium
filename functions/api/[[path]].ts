@@ -1,21 +1,18 @@
-export const onRequest = async ({ request }: { request: Request }) => {
-    const url = new URL(request.url);
-    // Remove /api prefix and append .json
+export const onRequest = async (context: any) => {
+    const url = new URL(context.request.url);
     const path = url.pathname.replace(/^\/api/, '');
     const jsonUrl = `${url.origin}/api${path}.json`;
 
     try {
-        const response = await fetch(jsonUrl);
+        const response = await context.env.ASSETS.fetch(new Request(jsonUrl));
         if (!response.ok) {
-            // Fallback for subpaths like /api/posts/caesar/slug
             return new Response(JSON.stringify({ error: 'Endpoint not found', path: url.pathname }), {
                 status: 404,
                 headers: { 'content-type': 'application/json' }
             });
         }
 
-        const data = await response.json();
-        return new Response(JSON.stringify(data), {
+        return new Response(response.body, {
             headers: {
                 'content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
