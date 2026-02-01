@@ -10,9 +10,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
-import { PWAInstallPrompt } from "./components/PWAInstallPrompt";
-import { SWUpdateToast } from "./components/SWUpdateToast";
-import { OfflineBanner } from "./components/OfflineBanner";
 
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -39,6 +36,7 @@ const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
+const LatinReader = lazy(() => import('./pages/LatinReader'));
 
 const queryClient = new QueryClient();
 
@@ -91,7 +89,7 @@ const AppContent = () => {
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
             <Route path="/latin" element={<PageTransition><LatinTools /></PageTransition>} />
             <Route path="/latin/vocab" element={<Navigate to="/latin" replace />} />
-            <Route path="/latin/reader" element={<Navigate to="/latin?mode=reader" replace />} />
+            <Route path="/latin/reader" element={<PageTransition><LatinReader /></PageTransition>} />
             {/* Admin routes */}
             <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
             <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
@@ -151,9 +149,6 @@ const App = () => (
         <LanguageProvider>
           <AuthorProvider>
             <Toaster richColors />
-            <PWAInstallPrompt />
-            <SWUpdateToast />
-            <OfflineBanner />
             <BrowserRouter>
               <AppContent />
             </BrowserRouter>

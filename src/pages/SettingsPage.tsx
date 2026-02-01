@@ -306,93 +306,95 @@ export default function SettingsPage() {
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    Offline-Inhalte
-                    {isOffline && <WifiOff className="h-4 w-4 text-destructive" />}
-                  </CardTitle>
-                  <CardDescription>Verwalte die Offline-Verfügbarkeit der Website</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="flex flex-col gap-4 p-4 rounded-xl bg-muted/50 border border-border">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${cacheComplete ? 'bg-green-500/10 text-green-500' :
-                          isCaching ? 'bg-primary/20 text-primary' : 'bg-background text-muted-foreground'
-                        }`}>
-                        {cacheComplete ? <CheckCircle className="h-6 w-6" /> :
-                          isCaching ? <Download className="h-6 w-6 animate-bounce" /> :
-                            <Download className="h-6 w-6" />}
+              <div className="block md:hidden">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      Offline-Inhalte
+                      {isOffline && <WifiOff className="h-4 w-4 text-destructive" />}
+                    </CardTitle>
+                    <CardDescription>Verwalte die Offline-Verfügbarkeit der Website</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="flex flex-col gap-4 p-4 rounded-xl bg-muted/50 border border-border">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${cacheComplete ? 'bg-green-500/10 text-green-500' :
+                            isCaching ? 'bg-primary/20 text-primary' : 'bg-background text-muted-foreground'
+                          }`}>
+                          {cacheComplete ? <CheckCircle className="h-6 w-6" /> :
+                            isCaching ? <Download className="h-6 w-6 animate-bounce" /> :
+                              <Download className="h-6 w-6" />}
+                        </div>
+                        <div className="flex-1 space-y-1">
+                          <p className="font-bold text-sm">
+                            {cacheComplete ? "Alles offline verfügbar" :
+                              isCaching ? "Download läuft..." : "Komplette Website offline speichern"}
+                          </p>
+                          <p className="text-xs text-muted-foreground">{statusText}</p>
+                        </div>
                       </div>
-                      <div className="flex-1 space-y-1">
-                        <p className="font-bold text-sm">
-                          {cacheComplete ? "Alles offline verfügbar" :
-                            isCaching ? "Download läuft..." : "Komplette Website offline speichern"}
+
+                      <AnimatePresence>
+                        {isCaching && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="space-y-2 overflow-hidden"
+                          >
+                            <div className="w-full h-2 bg-background rounded-full overflow-hidden border border-border">
+                              <motion.div
+                                className="h-full bg-primary"
+                                animate={{ width: `${progress}%` }}
+                                transition={{ duration: 0.3 }}
+                              />
+                            </div>
+                            <p className="text-[10px] text-right text-muted-foreground font-mono">{Math.round(progress)}%</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {!cacheComplete && (
+                        <Button
+                          type="button"
+                          onClick={triggerPrecache}
+                          disabled={isCaching || isOffline}
+                          className="w-full h-11"
+                          variant={isError ? "outline" : "default"}
+                        >
+                          {isCaching ? "Lädt herunter..." : isError ? "Erneut versuchen" : "Jetzt herunterladen"}
+                        </Button>
+                      )}
+
+                      {cacheComplete && (
+                        <Button
+                          type="button"
+                          onClick={triggerPrecache}
+                          variant="outline"
+                          className="w-full h-11"
+                        >
+                          Erneut aktualisieren
+                        </Button>
+                      )}
+
+                      {isOffline && (
+                        <p className="text-[10px] text-destructive text-center font-medium">
+                          Download nur im Online-Modus möglich
                         </p>
-                        <p className="text-xs text-muted-foreground">{statusText}</p>
-                      </div>
+                      )}
                     </div>
 
-                    <AnimatePresence>
-                      {isCaching && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="space-y-2 overflow-hidden"
-                        >
-                          <div className="w-full h-2 bg-background rounded-full overflow-hidden border border-border">
-                            <motion.div
-                              className="h-full bg-primary"
-                              animate={{ width: `${progress}%` }}
-                              transition={{ duration: 0.3 }}
-                            />
-                          </div>
-                          <p className="text-[10px] text-right text-muted-foreground font-mono">{Math.round(progress)}%</p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {!cacheComplete && (
-                      <Button
-                        type="button"
-                        onClick={triggerPrecache}
-                        disabled={isCaching || isOffline}
-                        className="w-full h-11"
-                        variant={isError ? "outline" : "default"}
-                      >
-                        {isCaching ? "Lädt herunter..." : isError ? "Erneut versuchen" : "Jetzt herunterladen"}
+                    <div className="pt-4 border-t border-border">
+                      <Button type="button" onClick={clearCache} variant="ghost" className="w-full text-destructive hover:text-destructive hover:bg-destructive/10">
+                        Lokalen Cache leeren
                       </Button>
-                    )}
-
-                    {cacheComplete && (
-                      <Button
-                        type="button"
-                        onClick={triggerPrecache}
-                        variant="outline"
-                        className="w-full h-11"
-                      >
-                        Erneut aktualisieren
-                      </Button>
-                    )}
-
-                    {isOffline && (
-                      <p className="text-[10px] text-destructive text-center font-medium">
-                        Download nur im Online-Modus möglich
+                      <p className="text-[10px] text-center text-muted-foreground mt-2">
+                        Löscht alle gespeicherten Artikel und Bilder von diesem Gerät.
                       </p>
-                    )}
-                  </div>
-
-                  <div className="pt-4 border-t border-border">
-                    <Button type="button" onClick={clearCache} variant="ghost" className="w-full text-destructive hover:text-destructive hover:bg-destructive/10">
-                      Lokalen Cache leeren
-                    </Button>
-                    <p className="text-[10px] text-center text-muted-foreground mt-2">
-                      Löscht alle gespeicherten Artikel und Bilder von diesem Gerät.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
           </Tabs>
         </form>

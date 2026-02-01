@@ -1,21 +1,55 @@
+import { getDb } from '../../../src/db/client';
+import { works } from '../../../src/db/schema';
+import { eq } from 'drizzle-orm';
+
 export const onRequest = async (context: any) => {
+    const db = getDb(context.env);
+
     const url = new URL(context.request.url);
-    const worksUrl = `${url.origin}/api/works.json`;
+    const slug = url.searchParams.get('slug');
 
     try {
-        const response = await context.env.ASSETS.fetch(new Request(worksUrl));
-        if (!response.ok) throw new Error('Static works file not found');
+        if (slug) {
+            const result = await db.query.works.findFirst({
+                where: eq(works.id, slug),
+                with: {
+                    author: true
+                }
+            });
 
-        return new Response(response.body, {
-            headers: {
-                'content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+            if (!result) {
+                return new Response(JSON.stringify({ error: 'Not Found' }), {
+                    status: 404,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+
+            return new Response(JSON.stringify(result), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Cache-Control': 'public, max-age=3600'
+                }
+            });
+        }
+
+        const results = await db.query.works.findMany({
+            with: {
+                author: true
             }
         });
-    } catch (err: any) {
-        return new Response(JSON.stringify({ error: 'API Error', message: err.message }), {
+
+        return new Response(JSON.stringify(results), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=3600'
+            }
+        });
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: 'Internal Error', message: e.message }), {
             status: 500,
-            headers: { 'content-type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 };

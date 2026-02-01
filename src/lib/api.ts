@@ -50,7 +50,8 @@ export async function fetchPosts() {
 }
 
 export async function fetchPost(author: string, slug: string) {
-    return cachedFetch(`${getApiBase()}/posts/${author}/${slug}`);
+    // Current API ignores author param as slug is unique
+    return cachedFetch(`${getApiBase()}/posts?slug=${slug}`);
 }
 
 export async function createPost(data: any) {
@@ -104,7 +105,7 @@ export async function fetchLexicon() {
 }
 
 export async function fetchLexiconEntry(slug: string) {
-    return cachedFetch(`${getApiBase()}/lexicon/${slug}`);
+    return cachedFetch(`${getApiBase()}/lexicon?slug=${slug}`);
 }
 
 export async function saveLexiconEntry(data: any) {
@@ -196,9 +197,7 @@ export async function fetchWorks() {
 }
 
 export async function fetchWork(slug: string) {
-    const res = await fetch(`${getApiBase()}/works/${slug}`);
-    if (!res.ok) throw new Error('Failed to fetch work');
-    return res.json();
+    return cachedFetch(`${getApiBase()}/works?slug=${slug}`);
 }
 
 export async function saveWork(data: any) {
