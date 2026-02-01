@@ -17,12 +17,12 @@ export function usePosts() {
       console.log('🔄 [usePosts] Fetching posts...');
       
       try {
-        const startTime = Date.now();
+        const apiStartTime = Date.now();
         const apiPosts = await fetchPosts();
-        const fetchTime = Date.now() - startTime;
+        const apiFetchTime = Date.now() - apiStartTime;
         
         if (apiPosts && apiPosts.length > 0) {
-          console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${fetchTime}ms)`);
+          console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${apiFetchTime}ms)`);
           console.log('   Data source: Cloudflare D1 via API');
           return apiPosts;
         } else {
@@ -34,10 +34,10 @@ export function usePosts() {
       }
       
       console.log('📁 [usePosts] Loading posts from static files...');
-      const startTime = Date.now();
+      const fileStartTime = Date.now();
       const filePosts = await getAllPosts();
-      const loadTime = Date.now() - startTime;
-      console.log(`✅ [usePosts] Loaded ${filePosts.length} posts from files (${loadTime}ms)`);
+      const fileLoadTime = Date.now() - fileStartTime;
+      console.log(`✅ [usePosts] Loaded ${filePosts.length} posts from files (${fileLoadTime}ms)`);
       console.log('   Data source: TypeScript files in src/content/posts/');
       
       return filePosts;
