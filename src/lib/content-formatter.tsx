@@ -181,7 +181,9 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
         
         lines.forEach((line, idx) => {
           // Skip separator line
-          if (line.match(/^\|?\s*[-:\s|]+\s*\|?\s*$/)) {
+          const separatorClass = "[" + "-:" + "\\s" + "|" + "]+";
+          const separatorRegex = new RegExp(`^\\|?\\s*${separatorClass}\\s*\\|?\\s*$`);
+          if (separatorRegex.test(line)) {
             return;
           }
           

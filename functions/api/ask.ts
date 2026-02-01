@@ -3,13 +3,13 @@ export const onRequest = async ({ request }: { request: Request }) => {
     return new Response(null, {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Accept'
       }
     });
   }
 
-  if (request.method !== 'GET') {
+  if (!['GET', 'POST'].includes(request.method)) {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
       headers: { 'content-type': 'application/json' }
@@ -18,10 +18,23 @@ export const onRequest = async ({ request }: { request: Request }) => {
 
   const url = new URL(request.url);
   const target = new URL('https://caesar.schaechner.workers.dev/');
-  // Forward all expected params
+  let body: any = null;
+
+  if (request.method === 'POST') {
+    try {
+      body = await request.json();
+    } catch {
+      return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
+        status: 400,
+        headers: { 'content-type': 'application/json' }
+      });
+    }
+  }
+
+  // Forward all expected params from query or body
   ['persona', 'ask', 'history', 'sitemap'].forEach((key) => {
-    const v = url.searchParams.get(key);
-    if (v != null) target.searchParams.set(key, v);
+    const v = url.searchParams.get(key) ?? body?.[key];
+    if (v != null) target.searchParams.set(key, typeof v === 'string' ? v : JSON.stringify(v));
   });
 
   try {

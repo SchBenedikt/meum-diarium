@@ -1,48 +1,41 @@
 export const onRequest = async ({ request }: { request: Request }) => {
-  // CORS preflight
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Accept'
       }
     });
   }
 
-  if (!['GET', 'POST'].includes(request.method)) {
+  if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
       headers: { 'content-type': 'application/json' }
     });
   }
 
-  const url = new URL(request.url);
-  // Target Worker endpoint for explaining terms
-  const target = new URL('https://caesar.schaechner.workers.dev/explain');
-  let body: any = null;
-
-  if (request.method === 'POST') {
-    try {
-      body = await request.json();
-    } catch {
-      return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
-        status: 400,
-        headers: { 'content-type': 'application/json' }
-      });
-    }
+  let payload: any = null;
+  try {
+    payload = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
+      status: 400,
+      headers: { 'content-type': 'application/json' }
+    });
   }
 
-  // Forward expected params: term, question, history
-  ['term', 'question', 'history'].forEach((key) => {
-    const v = url.searchParams.get(key) ?? body?.[key];
-    if (v != null) target.searchParams.set(key, typeof v === 'string' ? v : JSON.stringify(v));
-  });
+  const target = new URL('https://caesar.schaechner.workers.dev/simulate');
 
   try {
     const upstream = await fetch(target.toString(), {
-      method: 'GET',
-      headers: { accept: 'application/json' }
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json'
+      },
+      body: JSON.stringify(payload)
     });
 
     const body = await upstream.text();
