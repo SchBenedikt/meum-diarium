@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
-import { lexicon as baseLexicon } from '@/data/lexicon';
+import { useLexicon } from '@/hooks/use-lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogPost } from '@/types/blog';
@@ -45,9 +45,9 @@ export default function SearchPage() {
   const [activeCategories, setActiveCategories] = useState<string[]>(searchParams.getAll('category') || []);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
   const { setCurrentAuthor } = useAuthor();
+  const { lexicon = [] } = useLexicon();
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [lexicon, setLexicon] = useState<LexiconEntry[]>(baseLexicon);
   const [allCategories, setAllCategories] = useState<string[]>([]);
 
   useEffect(() => {

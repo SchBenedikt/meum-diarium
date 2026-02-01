@@ -3,8 +3,8 @@ import { Search, X, BookText, BookMarked, User, CornerDownLeft, Book } from 'luc
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '@/hooks/use-posts';
+import { useLexicon } from '@/hooks/use-lexicon';
 import { authors } from '@/data/authors';
-import { lexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
 import { workDetails } from '@/data/work-details';
 import { BlogPost, Author, LexiconEntry, Work } from '@/types/blog';
@@ -28,6 +28,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
   const { posts, isLoading } = usePosts();
+  const { lexicon = [] } = useLexicon();
   const { language } = useLanguage();
 
   // Helper function to extract searchable text from work details
