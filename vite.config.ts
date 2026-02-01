@@ -12,11 +12,19 @@ export default defineConfig(({ mode }) => ({
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+        bypass: (req) => {
+          // If the request is exactly /api or /api/, served by the frontend
+          if (req.url === '/api' || req.url === '/api/') {
+            return req.url;
+          }
+          // Otherwise, proceed with proxying
+          return null;
+        }
       },
     },
   },
   plugins: [
-    react(), 
+    react(),
     mode === "development" && componentTagger(),
     compression({
       verbose: true,
