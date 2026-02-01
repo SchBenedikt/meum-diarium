@@ -86,7 +86,7 @@ export default function LandingHeroNew() {
                 </Badge>
 
                 <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tight">
-                  <span className="font-extrabold text-red-600 tracking-[0.06em] sm:tracking-[0.08em]">
+                  <span className="font-extrabold text-primary tracking-[0.06em] sm:tracking-[0.08em]">
                     {t('landing.hero.title1') || 'Historia'}
                   </span>
                   <br />
@@ -145,13 +145,12 @@ export default function LandingHeroNew() {
               className="hidden lg:block relative"
             >
               <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-2xl">
-                <img 
-                  src="/images/caesar-hero.jpg" 
+                <img
+                  src="/images/caesar-hero.jpg"
                   alt="Julius Caesar"
                   className="w-full h-auto object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                
+
 
               </div>
 
@@ -244,7 +243,7 @@ export default function LandingHeroNew() {
               {t('landing.authors.subtitle') || 'Entdecke die Tagebücher und Werke der größten römischen Persönlichkeiten'}
             </p>
           </motion.div>
-          
+
           <AuthorGrid />
         </div>
       </section>
@@ -314,7 +313,7 @@ export default function LandingHeroNew() {
                 {t('landing.cta.title') || 'Bereit für deine Zeitreise?'}
               </h2>
             </div>
-            
+
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               {t('landing.cta.description') || 'Beginne jetzt deine Reise durch die faszinierende Welt des antiken Roms'}
             </p>

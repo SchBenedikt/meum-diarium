@@ -105,7 +105,6 @@ export default function SimulationPage() {
 
             setHistory(prev => [
                 ...prev,
-                { text: res.consequence || '', type: 'feedback' as const, role: 'assistant' as const },
                 { text: res.narrative, type: 'narrative' as const, role: 'assistant' as const }
             ].filter(item => item.text));
 
@@ -311,8 +310,6 @@ export default function SimulationPage() {
                                     )}
                                 </div>
                                 <div className={`rounded-3xl p-4 max-w-[80%] ${item.type === 'choice' ? 'bg-primary text-primary-foreground' : 'bg-card/70 border border-border/60'}`}>
-                                    {item.type === 'narrative' && <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1">Situation</h4>}
-                                    {item.type === 'feedback' && <h4 className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Konsequenz</h4>}
                                     <p className="text-sm md:text-base leading-relaxed">{item.text}</p>
                                 </div>
                             </motion.div>

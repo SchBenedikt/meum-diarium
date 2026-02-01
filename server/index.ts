@@ -340,38 +340,38 @@ app.post('/api/posts', async (req, res) => {
         let sidebarContent = '';
         if (sidebar) {
             const parts = [];
-            
+
             if (sidebar.facts && sidebar.facts.length > 0) {
                 parts.push(`    facts: ${JSON.stringify(sidebar.facts)}`);
             } else {
                 parts.push(`    facts: []`);
             }
-            
+
             if (sidebar.quote) {
                 const quoteLines = [];
                 if (sidebar.quote.text) quoteLines.push(`      text: '${escapeString(sidebar.quote.text)}'`);
-                
+
                 // Handle translations object
                 if (sidebar.quote.translations) {
                     const translationLines = [];
                     if (sidebar.quote.translations.de) translationLines.push(`        de: '${escapeString(sidebar.quote.translations.de)}'`);
                     if (sidebar.quote.translations.en) translationLines.push(`        en: '${escapeString(sidebar.quote.translations.en)}'`);
                     if (sidebar.quote.translations.la) translationLines.push(`        la: '${escapeString(sidebar.quote.translations.la)}'`);
-                    
+
                     if (translationLines.length > 0) {
                         quoteLines.push(`      translations: {\n${translationLines.join(',\n')}\n      }`);
                     }
                 }
-                
+
                 if (sidebar.quote.author) quoteLines.push(`      author: '${escapeString(sidebar.quote.author)}'`);
                 if (sidebar.quote.date) quoteLines.push(`      date: '${escapeString(sidebar.quote.date)}'`);
                 if (sidebar.quote.source) quoteLines.push(`      source: '${escapeString(sidebar.quote.source)}'`);
-                
+
                 if (quoteLines.length > 0) {
                     parts.push(`    quote: {\n${quoteLines.join(',\n')}\n    }`);
                 }
             }
-            
+
             if (parts.length > 0) {
                 sidebarContent = `,\n  sidebar: {\n${parts.join(',\n')}\n  }`;
             }
@@ -1438,4 +1438,75 @@ app.delete('/api/works/:slug/details', async (req, res) => {
         res.status(500).json({ error: 'Failed to delete work details' });
     }
 });
+
+// ============ PAGES API ============
+
+// GET general about page
+app.get('/api/pages/about', async (_req, res) => {
+    try {
+        const filePath = path.join(PAGES_DIR, 'about.json');
+        const content = await fs.readFile(filePath, 'utf-8');
+        res.json(JSON.parse(content));
+    } catch (e) {
+        res.status(404).json({ error: 'About page not found' });
+    }
+});
+
+// GET author about page
+app.get('/api/pages/author-about/:author', async (req, res) => {
+    try {
+        const { author } = req.params;
+        const filePath = path.join(PAGES_DIR, `author-about-${author}.json`);
+        const content = await fs.readFile(filePath, 'utf-8');
+        res.json(JSON.parse(content));
+    } catch (e) {
+        res.status(404).json({ error: `About page for author ${req.params.author} not found` });
+    }
+});
+
+// ============ CATALOG API ============
+app.get('/api/catalog', async (_req, res) => {
+    try {
+        const counts = {
+            posts: 0,
+            lexicon: 0,
+            works: 0,
+            authors: 0
+        };
+
+        // Count authors
+        const authorIds = await getAuthorIdsFromFile();
+        counts.authors = authorIds.length;
+
+        // Count posts
+        for (const author of ['caesar', 'cicero', 'augustus', 'seneca', 'catilina']) {
+            try {
+                const authorPostsDir = path.join(POSTS_DIR, author);
+                const files = await fs.readdir(authorPostsDir);
+                counts.posts += files.filter(f => f.endsWith('.ts')).length;
+            } catch { }
+        }
+
+        // Count lexicon
+        try {
+            const lexiconFiles = await fs.readdir(LEXICON_DIR);
+            counts.lexicon = lexiconFiles.filter(f => f.endsWith('.ts')).length;
+        } catch { }
+
+        // Count works
+        try {
+            const workFiles = await fs.readdir(WORKS_DIR);
+            counts.works = workFiles.filter(f => f.endsWith('.ts')).length;
+        } catch { }
+
+        res.json({
+            timestamp: todayIso(),
+            counts,
+            available_authors: authorIds
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to generate catalog' });
+    }
+});
+
 

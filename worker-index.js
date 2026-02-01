@@ -14,32 +14,73 @@ export default {
         }
 
         const url = new URL(request.url);
-        const pathname = url.pathname;
+        // Normalize pathname: remove trailing slash and convert to lowercase
+        const pathname = url.pathname.toLowerCase().replace(/\/$/, "");
 
-        // Route: /explain?term=... for term summaries
-        if (pathname === '/explain' || pathname.endsWith('/explain')) {
-            return handleExplainTerm(request, env, url);
-        }
-
-        // Route: /simulate for text-based game
-        if (pathname === '/simulate' || pathname.endsWith('/simulate')) {
-            return handleSimulation(request, env, url);
-        }
-
-        // Default route: persona chat
-        let persona = (url.searchParams.get("persona") || "caesar").toLowerCase();
-        let question = url.searchParams.get("ask");
-        let historyParam = url.searchParams.get("history");
-        let sitemapUrl = url.searchParams.get("sitemap");
-
+        let body = null;
         if (request.method === "POST") {
             try {
-                const body = await request.json();
-                if (typeof body.persona === "string") persona = body.persona.toLowerCase();
-                if (typeof body.ask === "string") question = body.ask;
-                if (body.history) historyParam = JSON.stringify(body.history);
-                if (typeof body.sitemap === "string") sitemapUrl = body.sitemap;
-            } catch { }
+                body = await request.json();
+            } catch (e) {
+                console.error("[Worker] Body parse error:", e);
+            }
+        }
+
+        console.log(`[Worker] Received ${request.method} request for ${pathname}`);
+
+        // Route: /explain - handle term summaries
+        if (pathname.endsWith('/explain')) {
+            return handleExplainTerm(request, env, url, body);
+        }
+
+        // Route: /simulate - handle text-based game
+        if (pathname.endsWith('/simulate')) {
+            return handleSimulation(request, env, url, body);
+        }
+
+        // Persona extraction and Documentation check
+        let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
+        let question = url.searchParams.get("ask") || body?.ask;
+        let historyParam = url.searchParams.get("history") || (body?.history ? JSON.stringify(body.history) : null);
+        let sitemapUrl = url.searchParams.get("sitemap") || body?.sitemap;
+
+        // Route: /api - Proxy to backend or show docs
+        if (pathname.startsWith('/api')) {
+            // If it's just /api, show docs
+            if (pathname === '/api' && !question) {
+                return renderApiDocs(request);
+            }
+
+            // Otherwise, proxy to the backend server
+            const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+            const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+
+            try {
+                const response = await fetch(proxyUrl.toString(), {
+                    method: request.method,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: request.method === "POST" ? JSON.stringify(body) : null
+                });
+
+                const data = await response.json();
+                return new Response(JSON.stringify(data), {
+                    headers: corsHeaders(),
+                    status: response.status
+                });
+            } catch (e) {
+                return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
+                    status: 502,
+                    headers: corsHeaders()
+                });
+            }
+        }
+
+        // Route: Root / or PersonaChat - Show docs if no question
+        if (!question && (pathname === "" || pathname === "/personachat")) {
+            return renderApiDocs(request);
         }
 
         if (!question) {
@@ -352,19 +393,10 @@ function expandKeyword(k) {
 // =======================================
 // Term explanation endpoint
 // =======================================
-async function handleExplainTerm(request, env, url) {
-    let term = url.searchParams.get('term');
-    let question = url.searchParams.get('question');
-    let historyParam = url.searchParams.get('history');
-
-    if (request.method === 'POST') {
-        try {
-            const body = await request.json();
-            if (body.term) term = body.term;
-            if (body.question) question = body.question;
-            if (body.history) historyParam = JSON.stringify(body.history);
-        } catch { }
-    }
+async function handleExplainTerm(request, env, url, body) {
+    let term = url.searchParams.get('term') || body?.term;
+    let question = url.searchParams.get('question') || body?.question;
+    let historyParam = url.searchParams.get('history') || (body?.history ? JSON.stringify(body.history) : null);
 
     if (!term) {
         return new Response(JSON.stringify({ error: 'Missing term parameter' }), {
@@ -409,24 +441,12 @@ async function handleExplainTerm(request, env, url) {
 // =======================================
 // Simulation logic (Text-based game)
 // =======================================
-async function handleSimulation(request, env, url) {
+async function handleSimulation(request, env, url, body) {
     try {
-        let persona = (url.searchParams.get('persona') || 'caesar').toLowerCase();
-        let scenario = url.searchParams.get('scenario');
-        let rawHistory = [];
-        let userChoice = url.searchParams.get('choice');
-
-        if (request.method === 'POST') {
-            try {
-                const body = await request.json();
-                if (body.persona) persona = body.persona.toLowerCase();
-                if (body.scenario) scenario = body.scenario;
-                if (Array.isArray(body.history)) rawHistory = body.history;
-                if (body.choice) userChoice = body.choice;
-            } catch (e) {
-                console.error("Body parse error:", e);
-            }
-        }
+        let persona = (url.searchParams.get('persona') || body?.persona || 'caesar').toLowerCase();
+        let scenario = url.searchParams.get('scenario') || body?.scenario;
+        let rawHistory = body?.history || [];
+        let userChoice = url.searchParams.get('choice') || body?.choice;
 
         const personaPrompts = {
             caesar: "Du bist eine Engine für Gaius Julius Caesar. Deine Sprache ist dramatisch, fesselnd und voller Pathos. Du redest oft im Pluralis Majestatis oder sehr heroisch.",
@@ -440,32 +460,37 @@ Persona: ${personaPrompts[persona] || "Einer historischer Römer"}.
 Szenario: ${scenario}
 
 Aufgabe: 
-Beschreibe die Situation oder die Folgen der letzten Handlung des Nutzers HOCHDRAMATISCH und ATMOSPHÄRISCH (1. Person, passend zur Persona). 
+Beschreibe die aktuelle Situation HOCHDRAMATISCH, ATMOSPHÄRISCH und ABWECHSLUNGSREICH. Nutze verschiedene Erzählstile:
+- Manchmal direkte Handlung: "Die Würfel sind gefallen!"
+- Manchmal Beschreibung: "Der Rubikon liegt vor uns, dunkel und bedrohlich."
+- Manchmal innerer Monolog: "Unser Schicksal ruft uns!"
+- Manchmal Reaktionen: "Die Legionen jubeln, die Feinde zittern!"
 
 Generiere eine Antwort im JSON-Format mit folgendem Schema:
 {
-  "narrative": "Eine atmosphärische, hochdramatische Beschreibung der neuen Situation (max 4 Sätze). Nutze Pathos und starke Adjektive. Vermeide Anführungszeichen innerhalb des Textes.",
-  "consequence": "Die direkte, spürbare Folge der letzten Handlung des Spielers (falls vorhanden). Vermeide Anführungszeichen.",
-  "stats": {
-    "volk": Delta-Wert für das Wohl des Volkes (-15 bis +15),
-    "einfluss": Delta-Wert für deinen privaten Einfluss (-15 bis +15),
-    "macht": Delta-Wert für deine militärische/politische Macht (-15 bis +15)
-  },
-  "options": [
-    {"id": "o1", "text": "Eine SACHLICHE, NEUTRALE Handlungsoption (max 10 Wörter)"},
-    {"id": "o2", "text": "Eine SACHLICHE, NEUTRALE alternative Strategie (max 10 Wörter)"},
-    {"id": "o3", "text": "Eine SACHLICHE, NEUTRALE riskante oder moralische Option (max 10 Wörter)"}
-  ],
-  "ended": boolean (true wenn die Geschichte heroisch endet, du triumphierst oder tragisch stirbst)
+"narrative": "Eine atmosphärische, hochdramatische Beschreibung (MAXIMAL 3 KURZE SÄTZE). Nutze Pathos, starke Verben und bildhafte Sprache. VARIIERE den Satzbau - nicht immer 'Wir haben...' am Anfang! Vermeide Anführungszeichen innerhalb des Textes.",
+"stats": {
+  "volk": Delta-Wert für das Wohl des Volkes (-15 bis +15),
+  "einfluss": Delta-Wert für deinen privaten Einfluss (-15 bis +15),
+  "macht": Delta-Wert für deine militärische/politische Macht (-15 bis +15)
+},
+"options": [
+  {"id": "o1", "text": "Kurze SACHLICHE Handlungsoption (max 8 Wörter)"},
+  {"id": "o2", "text": "Kurze SACHLICHE alternative Strategie (max 8 Wörter)"},
+  {"id": "o3", "text": "Kurze SACHLICHE riskante Option (max 8 Wörter)"}
+],
+"ended": boolean (true wenn die Geschichte heroisch endet, wir triumphieren oder wir tragisch sterben)
 }
 
-WICHTIG:
+KRITISCH WICHTIG:
 - Antworte NUR in purem validem JSON.
-- Der 'narrative' und 'consequence' Teil muss in der Ich-Form und DRAMATISCH sein.
-- Die 'options' müssen NEUTRAL und SACHLICH formuliert sein, damit der Spieler frei entscheiden kann.
-- Die Antwort muss alle logischen Wege abdecken.
-- Die Werte in "stats" MÜSSEN die Entscheidung des Spielers widerspiegeln.
-- REALE DATEN: Nutze keine Anführungszeichen in den Werten, da dies das JSON beschädigen kann.
+- Starte deine Antwort direkt mit '{' und beende sie mit '}'.
+- JEDER Text, der nicht Teil des JSON-Objekts ist, ist STRENG VERBOTEN.
+- HALTE DICH AN DIE LÄNGENBESCHRÄNKUNGEN: narrative max 3 Sätze, options max 8 Wörter.
+- VARIIERE die Erzählweise - nicht immer "Wir haben..." verwenden!
+- Die 'options' müssen NEUTRAL und SACHLICH formuliert sein.
+- Nutze KEINE Anführungszeichen innerhalb der Texte.
+- Das JSON MUSS vollständig und gültig sein.
 `;
 
         const messages = [{ role: 'system', content: systemPrompt }];
@@ -488,46 +513,73 @@ WICHTIG:
         const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', { messages });
 
         if (!aiResponse || !aiResponse.response) {
+            console.error("[Simulation] AI returned empty response");
             throw new Error("AI returned no response content");
         }
 
         const text = aiResponse.response;
+        console.log("[Simulation] Raw AI Response:", text);
 
-        // Improved Extraction Regex
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        // Improved Extraction Logic: Look for the first '{' and the last '}'
+        const firstBrace = text.indexOf('{');
+        const lastBrace = text.lastIndexOf('}');
 
-        if (!jsonMatch) {
-            console.error("AI Response without JSON:", text);
+        if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
+            console.error("[Simulation] No JSON object found in response");
             return new Response(JSON.stringify({
                 narrative: "Die Götter schweigen... (Kein JSON gefunden)",
-                consequence: "Deine Taten sind im Nebel der Zeit verhallt.",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
-                options: [{ id: "retry", text: "Schicksal erneut beschwören" }],
+                options: [{ id: "retry", text: "Wir werden es erneut versuchen" }],
                 ended: false,
-                debug: text.substring(0, 100)
+                debug: text.substring(0, 500) // Log more for debugging
             }), { headers: corsHeaders() });
         }
 
-        let cleanedJson = jsonMatch[0];
+        let cleanedJson = text.substring(firstBrace, lastBrace + 1);
+        console.log("[Simulation] Extracted JSON string:", cleanedJson);
 
-        // Basic JSON cleanup
+        // Check if JSON appears truncated (missing required fields)
+        const hasNarrative = cleanedJson.includes('"narrative"');
+        const hasStats = cleanedJson.includes('"stats"');
+        const hasOptions = cleanedJson.includes('"options"');
+        const hasEnded = cleanedJson.includes('"ended"');
+
+        if (!hasNarrative || !hasStats || !hasOptions || !hasEnded) {
+            console.error("[Simulation] JSON appears truncated, missing required fields");
+            return new Response(JSON.stringify({
+                narrative: "Die Antwort der Götter wurde unterbrochen... Die Prophezeiung ist unvollständig.",
+                stats: { volk: 0, einfluss: 0, macht: 0 },
+                options: [{ id: "retry", text: "Erneut die Götter befragen" }],
+                ended: false,
+                debug: "Truncated response - missing fields. Content: " + cleanedJson.substring(0, 300)
+            }), { headers: corsHeaders() });
+        }
+
+        // Basic JSON cleanup for common LLM mistakes
         cleanedJson = cleanedJson
             .replace(/,\s*([}\]])/g, '$1') // remove trailing commas
-            .replace(/\n/g, ' ')           // remove newlines inside JSON if any
+            .replace(/\n/g, ' ')           // remove newlines inside JSON
             .replace(/\r/g, ' ');
 
         try {
             const result = JSON.parse(cleanedJson);
+            console.log("[Simulation] Successfully parsed JSON object");
+
+            // Validate that all required fields exist
+            if (!result.narrative || !result.stats || !result.options || typeof result.ended !== 'boolean') {
+                throw new Error("Missing required fields in parsed JSON");
+            }
+
             return new Response(JSON.stringify(result), { headers: corsHeaders() });
         } catch (parseError) {
-            console.error("JSON Parse Error:", parseError, "Text:", cleanedJson);
+            console.error("[Simulation] JSON Parse Error:", parseError);
+            console.error("[Simulation] Content that failed to parse:", cleanedJson);
             return new Response(JSON.stringify({
                 narrative: "Ein Fehler in den Schriftrollen... (Parse-Fehler)",
-                consequence: "Die Chronisten konnten deine Taten nicht entziffern.",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
                 options: [{ id: "retry", text: "Erneut versuchen" }],
                 ended: false,
-                debug: cleanedJson.substring(0, 50)
+                debug: "Error: " + parseError.message + " | Content: " + cleanedJson.substring(0, 300)
             }), { headers: corsHeaders() });
         }
 
@@ -536,7 +588,6 @@ WICHTIG:
         return new Response(JSON.stringify({
             error: "Simulation engine failure",
             narrative: "Ein Schatten legt sich über das Imperium. (Technikfehler)",
-            consequence: `Der Bote berichtet von Verwirrung in den Reihen.`,
             stats: { volk: 0, einfluss: 0, macht: 0 },
             options: [{ id: "retry", text: "Schicksal erneut prüfen" }],
             ended: false
@@ -544,4 +595,316 @@ WICHTIG:
             headers: corsHeaders(),
         });
     }
+}
+
+function renderApiDocs(request) {
+    const html = `
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meum Diarium API | Dokumentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e11d48;
+            --background: #09090b;
+            --card: #18181b;
+            --border: #27272a;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(225, 29, 72, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(225, 29, 72, 0.2);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1.25rem;
+        }
+
+        .endpoint-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .endpoint-card:hover {
+            border-color: rgba(225, 29, 72, 0.4);
+        }
+
+        .method {
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .url {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            word-break: break-all;
+        }
+
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .params-table th, .params-table td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .params-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .param-name {
+            font-family: monospace;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .example-box {
+            margin-top: 2rem;
+        }
+
+        .example-header {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        pre {
+            background: #000;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            color: #d4d4d8;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 400px;
+            background: radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.15), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="container">
+        <header>
+            <div class="badge">API Dokumentation</div>
+            <h1>Meum Diarium</h1>
+            <p class="subtitle">Interaktive Schnittstellen zu den größten Persönlichkeiten der römischen Geschichte.</p>
+        </header>
+
+        <section>
+            <h2>Übersicht</h2>
+            <div class="endpoint-card">
+                <p>Willkommen zur Meum Diarium API. Diese API ermöglicht es dir, direkt mit historischen Figuren zu kommunizieren, Simulationen durchzuführen und Begriffe erklären zu lassen.</p>
+                <div style="margin-top: 1.5rem;">
+                    <p><strong>Base URL:</strong> <code class="url">${new URL(request.url).origin}</code></p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Endpunkte</h2>
+
+            <!-- Persona Chat -->
+            <div class="endpoint-card">
+                <h3>Persona Chat</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Sprich direkt mit Caesar, Augustus oder Cicero.</p>
+                <code class="url">GET /?persona=caesar&ask=Wer+war+Pompeius?</code>
+                
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Typ</th>
+                            <th>Beschreibung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">persona</span></td>
+                            <td>string</td>
+                            <td>Name der Persona (caesar, augustus, cicero, catilina)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">ask</span></td>
+                            <td>string</td>
+                            <td>Die eigentliche Frage an die Persona</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">history</span></td>
+                            <td>JSON</td>
+                            <td>Optionaler Gesprächsverlauf [{role, content}]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Simulation -->
+            <div class="endpoint-card">
+                <h3>Simulation (Rollenspiel)</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Erstelle interaktive historische Szenarien.</p>
+                <code class="url">POST /simulate</code>
+                
+                <div class="example-box">
+                    <div class="example-header">Request Body (JSON)</div>
+                    <pre>{
+  "persona": "caesar",
+  "scenario": "Die Überquerung des Rubikon",
+  "choice": "Wir werden angreifen!"
+}</pre>
+                </div>
+            </div>
+
+            <!-- Explain -->
+            <div class="endpoint-card">
+                <h3>Begriffs-Erklärung</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Historische Fakten und Begriffe präzise erklärt.</p>
+                <code class="url">GET /explain?term=Prinzipat</code>
+                
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Typ</th>
+                            <th>Beschreibung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">term</span></td>
+                            <td>string</td>
+                            <td>Der zu erklärende historische Begriff</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Meum Diarium. Entwickelt für die römische Ewigkeit.</p>
+            <p style="margin-top: 0.5rem;"><a href="https://github.com/SchBenedikt/meum-diarium">GitHub Repository</a></p>
+        </footer>
+    </div>
+</body>
+</html>
+  `;
+
+    return new Response(html, {
+        headers: {
+            "Content-Type": "text/html;charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+        }
+    });
 }
