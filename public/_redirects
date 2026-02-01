@@ -1,3 +1,4 @@
 # Netlify/Cloudflare Pages redirects for SPA routing
 # Serve index.html for all routes that don't match a file
-/*    /index.html   200
+/*                     /index.html   200
+/index.html            /index.html   200

@@ -76,8 +76,8 @@ export default {
             }
         }
 
-        // Route: Root / or PersonaChat - Show docs if no question
-        if (!question && (pathname === "" || pathname === "/personachat")) {
+        // Route: Root / or /api or PersonaChat - Show docs if no question
+        if (!question && (pathname === "" || pathname === "/api" || pathname === "/personachat")) {
             return renderApiDocs(request);
         }
 
@@ -652,15 +652,18 @@ function renderApiDocs(request) {
     <title>Meum Diarium API | Dokumentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #e11d48;
+            --primary-glow: rgba(225, 29, 72, 0.4);
             --background: #09090b;
-            --card: #18181b;
-            --border: #27272a;
+            --surface: #121214;
+            --surface-hover: #1c1c20;
+            --border: rgba(255, 255, 255, 0.08);
             --text: #fafafa;
             --text-muted: #a1a1aa;
+            --radius: 20px;
         }
 
         * {
@@ -675,276 +678,371 @@ function renderApiDocs(request) {
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(225, 29, 72, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(225, 29, 72, 0.03) 0%, transparent 40%);
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 6rem 1.5rem;
         }
 
         header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
+            position: relative;
         }
 
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
+            padding: 0.4rem 1rem;
             background: rgba(225, 29, 72, 0.1);
             color: var(--primary);
             border: 1px solid rgba(225, 29, 72, 0.2);
-            border-radius: 9999px;
+            border-radius: 99px;
             font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            background: linear-gradient(to bottom, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
         section {
-            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
         }
 
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary);
-            padding-left: 1.25rem;
+            font-size: 2.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
         .endpoint-card {
-            background: var(--card);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .endpoint-card:hover {
-            border-color: rgba(225, 29, 72, 0.4);
+            border-color: rgba(225, 29, 72, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
         }
 
-        .method {
-            font-weight: 700;
-            color: var(--primary);
-            margin-right: 0.5rem;
-        }
-
-        .url {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 0.75rem;
-            display: inline-block;
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 1.5rem;
-            word-break: break-all;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .params-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
+        .method-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
-        .params-table th, .params-table td {
-            text-align: left;
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-
-        .params-table th {
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-        }
-
-        .param-name {
-            font-family: monospace;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .example-box {
-            margin-top: 2rem;
-        }
-
-        .example-header {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
+        .url-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text);
+            padding: 0.75rem 1.25rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            flex: 1;
+            min-width: 250px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .url-box code {
+            color: var(--primary);
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .copy-btn:hover {
+            color: white;
+        }
+
+        .description {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .params-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem 2.5rem;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+        }
+
+        .param-name {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .param-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .example-section {
+            margin-top: 2.5rem;
+        }
+
+        .example-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
         pre {
+            font-family: 'JetBrains Mono', monospace;
             background: #000;
             padding: 1.5rem;
-            border-radius: 1rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
             overflow-x: auto;
-            font-size: 0.85rem;
-            color: #d4d4d8;
             border: 1px solid var(--border);
+            color: #d1d5db;
         }
+
+        .json-key { color: #f472b6; }
+        .json-string { color: #34d399; }
+        .json-bool { color: #fbbf24; }
+        .json-number { color: #60a5fa; }
 
         footer {
+            margin-top: 8rem;
+            padding: 4rem 1.5rem;
             text-align: center;
-            padding: 4rem 0;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
-            font-size: 14px;
         }
 
-        .glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
-            height: 400px;
-            background: radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.15), transparent 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        a {
+        footer a {
             color: var(--primary);
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.1), transparent 40%);
+            z-index: 10;
+        }
+
+        @media (max-width: 640px) {
+            .endpoint-card { padding: 1.5rem; }
+            h1 { font-size: 2.5rem; }
+            .params-grid { grid-template-columns: 1fr; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
     <div class="container">
         <header>
-            <div class="badge">API Dokumentation</div>
-            <h1>Meum Diarium</h1>
-            <p class="subtitle">Interaktive Schnittstellen zu den größten Persönlichkeiten der römischen Geschichte.</p>
+            <div class="badge">V1 API Docs</div>
+            <h1>Meum Diarium API</h1>
+            <p class="subtitle">Eine moderne, schnelle und interaktive API für alle Inhalte des römischen Imperiums.</p>
         </header>
 
-        <section>
-            <h2>Übersicht</h2>
-            <div class="endpoint-card">
-                <p>Willkommen zur Meum Diarium API. Diese API ermöglicht es dir, direkt mit historischen Figuren zu kommunizieren, Simulationen durchzuführen und Begriffe erklären zu lassen.</p>
-                <div style="margin-top: 1.5rem;">
-                    <p><strong>Base URL:</strong> <code class="url">${new URL(request.url).origin}</code></p>
-                </div>
-            </div>
-        </section>
+        <div class="grid">
+            <!-- Content API Section -->
+            <section>
+                <h2>Inhalts-API</h2>
+                <p class="description" style="margin-bottom: 3rem;">Greife auf alle strukturierten Daten der Plattform zu – von Blogposts über Lexikoneinträge bis hin zu antiken Werken.</p>
 
-        <section>
-            <h2>Endpunkte</h2>
-
-            <!-- Persona Chat -->
-            <div class="endpoint-card">
-                <h3>Persona Chat</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Sprich direkt mit Caesar, Augustus oder Cicero.</p>
-                <code class="url">GET /?persona=caesar&ask=Wer+war+Pompeius?</code>
-                
-                <table class="params-table">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Typ</th>
-                            <th>Beschreibung</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="param-name">persona</span></td>
-                            <td>string</td>
-                            <td>Name der Persona (caesar, augustus, cicero, catilina)</td>
-                        </tr>
-                        <tr>
-                            <td><span class="param-name">ask</span></td>
-                            <td>string</td>
-                            <td>Die eigentliche Frage an die Persona</td>
-                        </tr>
-                        <tr>
-                            <td><span class="param-name">history</span></td>
-                            <td>JSON</td>
-                            <td>Optionaler Gesprächsverlauf [{role, content}]</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Simulation -->
-            <div class="endpoint-card">
-                <h3>Simulation (Rollenspiel)</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Erstelle interaktive historische Szenarien.</p>
-                <code class="url">POST /simulate</code>
-                
-                <div class="example-box">
-                    <div class="example-header">Request Body (JSON)</div>
-                    <pre>{
-  "persona": "caesar",
-  "scenario": "Die Überquerung des Rubikon",
-  "choice": "Wir werden angreifen!"
+                <!-- Catalog -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">GET</span>
+                        <div class="url-box">
+                            <code>/api/catalog</code>
+                        </div>
+                    </div>
+                    <p class="description">Gibt eine Übersicht über die gesamte Datenbank zurück, inklusive Beitragszahlen und verfügbaren Autoren.</p>
+                    
+                    <div class="example-section">
+                        <span class="example-label">Response Beispiel</span>
+                        <pre>{
+  <span class="json-key">"timestamp"</span>: <span class="json-string">"2026-02-01"</span>,
+  <span class="json-key">"counts"</span>: {
+    <span class="json-key">"posts"</span>: <span class="json-number">41</span>,
+    <span class="json-key">"lexicon"</span>: <span class="json-number">92</span>,
+    <span class="json-key">"works"</span>: <span class="json-number">7</span>
+  },
+  <span class="json-key">"available_authors"</span>: [<span class="json-string">"caesar"</span>, <span class="json-string">"cicero"</span>, <span class="json-string">"augustus"</span>]
 }</pre>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Explain -->
-            <div class="endpoint-card">
-                <h3>Begriffs-Erklärung</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Historische Fakten und Begriffe präzise erklärt.</p>
-                <code class="url">GET /explain?term=Prinzipat</code>
-                
-                <table class="params-table">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Typ</th>
-                            <th>Beschreibung</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="param-name">term</span></td>
-                            <td>string</td>
-                            <td>Der zu erklärende historische Begriff</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                <!-- Posts -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">GET</span>
+                        <div class="url-box">
+                            <code>/api/posts</code>
+                        </div>
+                    </div>
+                    <p class="description">Listet alle verfassen Blog-Beiträge mit Slugs, Titeln und Autoren auf.</p>
+                </div>
+
+                <!-- Specific Post -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">GET</span>
+                        <div class="url-box">
+                            <code>/api/posts/{author}/{slug}</code>
+                        </div>
+                    </div>
+                    <p class="description">Gibt den vollständigen Inhalt eines Beitrags zurück, inklusive Tagebuch- und wissenschaftlichem Text.</p>
+                </div>
+
+                <!-- Lexicon -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">GET</span>
+                        <div class="url-box">
+                            <code>/api/lexicon</code>
+                        </div>
+                    </div>
+                    <p class="description">Gibt eine Liste aller historischen Begriffe und Definitionen zurück.</p>
+                </div>
+
+                <!-- Works -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">GET</span>
+                        <div class="url-box">
+                            <code>/api/works</code>
+                        </div>
+                    </div>
+                    <p class="description">Liefert eine Liste der antiken Standardwerke, die auf der Plattform referenziert werden.</p>
+                </div>
+            </section>
+
+            <!-- AI Engine Section -->
+            <section>
+                <h2>KI Schnittstellen</h2>
+                <p class="description" style="margin-bottom: 3rem;">Nutze unsere spezialisierten LLM-Modelle, um interaktive Gespräche mit historischen Persönlichkeiten zu führen.</p>
+
+                <!-- Persona Chat -->
+                <div class="endpoint-card">
+                    <div class="glow-overlay"></div>
+                    <div class="endpoint-header">
+                        <span class="method-tag" style="background: #ffffff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.2)">GET</span>
+                        <div class="url-box">
+                            <code>/api?persona=caesar&ask={text}</code>
+                        </div>
+                    </div>
+                    <p class="description">Kommuniziere direkt mit einer historischen Persona. Die KI antwortet im entsprechenden Stil und schlägt passende Ressourcen vor.</p>
+                    
+                    <div class="params-grid">
+                        <span class="param-name">persona</span>
+                        <span class="param-desc">Name der Figur (caesar, cicero, augustus, catilina, seneca).</span>
+                        <span class="param-name">ask</span>
+                        <span class="param-desc">Die Nachricht oder Frage an die KI.</span>
+                        <span class="param-name">personaParam</span>
+                        <span class="param-desc">Optional: Context-Historie für fortlaufende Gespräche.</span>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-tag">POST</span>
+                        <div class="url-box">
+                            <code>/simulate</code>
+                        </div>
+                    </div>
+                    <p class="description">Startet ein textbasiertes Rollenspiel-Szenario, in dem du Entscheidungen triffst, die den Verlauf der Geschichte beeinflussen.</p>
+                </div>
+            </section>
+        </div>
 
         <footer>
-            <p>&copy; 2026 Meum Diarium. Entwickelt für die römische Ewigkeit.</p>
-            <p style="margin-top: 0.5rem;"><a href="https://github.com/SchBenedikt/meum-diarium">GitHub Repository</a></p>
+            <p>&copy; 2026 Meum Diarium. Entwickelt von <a href="https://github.com/SchBenedikt">Benedikt Schächner</a>.</p>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.8rem;">Alle Daten werden statisch exportiert und via Cloudflare Global Edge Network ausgeliefert.</p>
         </footer>
     </div>
 </body>
 </html>
-  `;
+    `;
 
     return new Response(html, {
         headers: {
