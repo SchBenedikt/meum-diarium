@@ -1,0 +1,72 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "De Re Publica wurde zwischen 54 und 51 v. Chr. verfasst, während Cicero sich aus dem aktiven politischen Leben zurückgezogen hatte. Es war eine Zeit der Instabilität, in der das Erste Triumvirat (Caesar, Pompeius, Crassus) die traditionelle republikanische Ordnung bedrohte.",
+      "Das Werk ist als Dialog konzipiert, der im Jahr 129 v. Chr. stattfindet – eine bewusste Wahl, um an die 'gute alte Zeit' der Republik zu erinnern. Die Hauptfigur ist Scipio Aemilianus, ein idealisierter Staatsmann.",
+      "Von den ursprünglich sechs Büchern sind nur Fragmente erhalten, die meisten durch Zitate späterer Autoren. Das sechste Buch, das 'Somnium Scipionis', wurde vollständig überliefert, weil Macrobius im 5. Jh. einen ausführlichen Kommentar dazu schrieb."
+    ],
+    "sections": [
+      {
+        "title": "Die gemischte Verfassung",
+        "content": [
+          "Cicero argumentiert, dass die römische Verfassung die beste ist, weil sie Elemente von Monarchie (Konsuln), Aristokratie (Senat) und Demokratie (Volksversammlungen) vereint.",
+          "Diese 'gemischte Verfassung' (res publica mixta) verhindert die Entartung jeder einzelnen Staatsform und sorgt für Stabilität und Balance.",
+          "Cicero verteidigt damit implizit die traditionelle Republik gegen die aufkommenden Alleinherrscher seiner Zeit."
+        ]
+      },
+      {
+        "title": "Das Somnium Scipionis",
+        "content": [
+          "Der 'Traum des Scipio' ist eine Vision des Jenseits, in der Scipio Aemilianus seinen verstorbenen Großvater trifft.",
+          "Es beschreibt die kosmische Ordnung, die Unsterblichkeit der Seele und den Lohn für tugendhafte Staatsmänner im Jenseits.",
+          "Diese mystische Vision beeinflusste später die christliche Theologie und wurde im Mittelalter intensiv studiert."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Res publica res populi.",
+        "translation": "Der Staat ist die Sache des Volkes.",
+        "context": "Ciceros Definition des Staates – er gehört dem Volk, nicht einem einzelnen Herrscher."
+      },
+      {
+        "latin": "Salus populi suprema lex esto.",
+        "translation": "Das Wohl des Volkes soll oberstes Gesetz sein.",
+        "context": "Ein Grundprinzip republikanischer Politik, das bis heute in vielen Verfassungen nachwirkt."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Der Dialog über Staatsformen",
+        "date": "Buch I",
+        "description": "Die Diskutanten vergleichen Monarchie, Aristokratie und Demokratie und kommen zum Schluss, dass jede Form ihre Schwächen hat.",
+        "significance": "Legt den Grundstein für das Konzept der gemischten Verfassung."
+      },
+      {
+        "title": "Die Vision des Jenseits",
+        "date": "Buch VI (Somnium Scipionis)",
+        "description": "Scipio sieht die kosmische Ordnung und erfährt, dass tugendhafte Staatsmänner nach dem Tod zu den Sternen aufsteigen.",
+        "significance": "Verbindet Politik und Metaphysik – gute Taten im Diesseits werden im Jenseits belohnt."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "De Re Publica was written between 54 and 51 BC, while Cicero had withdrawn from active political life."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "De Re Publica scriptum est inter annos 54 et 51 a.C.n., Cicerone ex vita politica secessum."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

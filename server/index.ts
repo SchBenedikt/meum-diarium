@@ -119,7 +119,11 @@ const CONTENT_DIR = path.resolve(__dirname, '../src/content');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
 const WORKS_DIR = path.join(CONTENT_DIR, 'works');
 const WORKS_DETAILS_DIR = path.join(CONTENT_DIR, 'works-details');
+const LEXICON_DIR = path.join(CONTENT_DIR, 'lexicon');
+const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
 const DATA_DIR = path.resolve(__dirname, '../src/data');
+const LOCALES_DIR = path.resolve(__dirname, '../src/locales');
+const PUBLIC_DIR = path.resolve(__dirname, '../public');
 
 // Helper to sanitize slug
 const sanitizeSlug = (slug: string) => slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
@@ -437,6 +441,7 @@ const AUTHORS_FILE = path.join(DATA_DIR, 'authors.ts');
 const WORKS_FILE = path.join(DATA_DIR, 'works.ts');
 
 const todayIso = () => new Date().toISOString().split('T')[0];
+const today = todayIso();
 const buildUrl = (pathSegment: string) => `${BASE_URL}${pathSegment}`;
 
 const getAuthorIdsFromFile = async (): Promise<string[]> => {
@@ -688,7 +693,6 @@ app.delete('/api/authors/:id', async (req, res) => {
 });
 
 // ============ LEXICON API ============
-const LEXICON_DIR = path.join(CONTENT_DIR, 'lexicon');
 
 // Helper: extract either template literal (multi-line) or simple string for a given key
 const extractStringOrTemplate = (content: string, key: string): string => {
@@ -881,7 +885,6 @@ app.delete('/api/lexicon/:slug', async (req, res) => {
 });
 
 // ============ PAGES API ============
-const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
 
 // GET page content
 app.get('/api/pages/:slug', async (req, res) => {
@@ -1225,19 +1228,19 @@ app.post('/api/translations', async (req, res) => {
 app.get(['/sitemap.xml', '/sitemap'], async (_req, res) => {
     try {
         const staticRoutes = [
-            { path: '/', changefreq: 'weekly', priority: '1.0' },
-            { path: '/about', changefreq: 'monthly', priority: '0.8' },
-            { path: '/timeline', changefreq: 'weekly', priority: '0.8' },
-            { path: '/lexicon', changefreq: 'weekly', priority: '0.7' },
-            { path: '/search', changefreq: 'weekly', priority: '0.6' },
+            { path: '/', changefreq: 'weekly', priority: '1.0', lastmod: today },
+            { path: '/about', changefreq: 'monthly', priority: '0.8', lastmod: today },
+            { path: '/timeline', changefreq: 'weekly', priority: '0.8', lastmod: today },
+            { path: '/lexicon', changefreq: 'weekly', priority: '0.7', lastmod: today },
+            { path: '/search', changefreq: 'weekly', priority: '0.6', lastmod: today },
         ];
 
         const authorIds = await getAuthorIdsFromFile();
         const authorRoutes = authorIds.flatMap((id) => ([
-            { path: `/${id}`, changefreq: 'weekly', priority: '0.9' },
-            { path: `/${id}/about`, changefreq: 'monthly', priority: '0.8' },
-            { path: `/${id}/chat`, changefreq: 'monthly', priority: '0.5' },
-            { path: `/${id}/simulation`, changefreq: 'monthly', priority: '0.5' },
+            { path: `/${id}`, changefreq: 'weekly', priority: '0.9', lastmod: today },
+            { path: `/${id}/about`, changefreq: 'monthly', priority: '0.8', lastmod: today },
+            { path: `/${id}/chat`, changefreq: 'monthly', priority: '0.5', lastmod: today },
+            { path: `/${id}/simulation`, changefreq: 'monthly', priority: '0.5', lastmod: today },
         ]));
 
         const posts = await getPostEntries();

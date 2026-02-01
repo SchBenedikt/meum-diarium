@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "de-bello-civili",
+    "title": "De Bello Civili",
+    "author": "caesar",
+    "year": "49-48 v. Chr."
+  },
+  {
+    "slug": "de-bello-gallico",
+    "title": "De Bello Gallico",
+    "author": "caesar",
+    "year": "58-50 v. Chr."
+  },
+  {
+    "slug": "de-officiis",
+    "title": "De Officiis",
+    "author": "cicero",
+    "year": "44 v. Chr."
+  },
+  {
+    "slug": "de-re-publica",
+    "title": "De Re Publica",
+    "author": "cicero",
+    "year": "54–51 v. Chr."
+  },
+  {
+    "slug": "in-catilinam",
+    "title": "In Catilinam",
+    "author": "cicero",
+    "year": "63 v. Chr."
+  },
+  {
+    "slug": "philippicae",
+    "title": "Philippicae",
+    "author": "cicero",
+    "year": "44–43 v. Chr."
+  },
+  {
+    "slug": "res-gestae",
+    "title": "Res Gestae Divi Augusti",
+    "author": "augustus",
+    "year": "14 n. Chr."
+  }
+]

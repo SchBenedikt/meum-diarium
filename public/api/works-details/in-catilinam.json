@@ -1,0 +1,72 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Die Reden gegen Catilina entstanden im Jahr 63 v. Chr., während Ciceros Amtszeit als Consul. Sie markieren einen Wendepunkt in der Geschichte der späten Republik, als innere Verschwörungen die Stabilität Roms bedrohten.",
+      "Catilina, ein verschuldeter Patrizier, hatte zweimal erfolglos für das Konsulat kandidiert. Aus Verzweiflung und politischem Ehrgeiz plante er einen Staatsstreich, um seine Schulden zu tilgen und Rom zu kontrollieren.",
+      "Cicero nutzte seine rhetorischen Fähigkeiten, um die Verschwörung aufzudecken und Catilina öffentlich anzuklagen – ein riskanter Schritt, da er keine konkreten Beweise hatte."
+    ],
+    "sections": [
+      {
+        "title": "Rhetorik als Waffe",
+        "content": [
+          "Die erste Rede beginnt mit den unsterblichen Worten: 'Quo usque tandem abutere, Catilina, patientia nostra?' – 'Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?'",
+          "Cicero wendet sich direkt an Catilina, der im Senat anwesend ist, und beschuldigt ihn offen der Verschwörung. Diese direkte Konfrontation ist rhetorisch brillant und politisch mutig.",
+          "Die Reden zeigen Ciceros Meisterschaft in der Verwendung von Pathos, Ethos und Logos – er appelliert an Emotionen, präsentiert sich als Verteidiger Roms und argumentiert logisch gegen Catilina."
+        ]
+      },
+      {
+        "title": "Politische Bedeutung",
+        "content": [
+          "Ciceros Reden führten zu Catilinas Flucht aus Rom und später zu seinem Tod in der Schlacht bei Pistoria (62 v. Chr.).",
+          "Die Hinrichtung der Verschwörer ohne ordentlichen Prozess wurde später zu einem Kritikpunkt gegen Cicero und führte zu seiner Verbannung (58 v. Chr.).",
+          "Die 'Catilinarias' etablierten Cicero als 'pater patriae' (Vater des Vaterlandes), obwohl seine Methoden umstritten blieben."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Quo usque tandem abutere, Catilina, patientia nostra?",
+        "translation": "Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?",
+        "context": "Der berühmteste Satz der römischen Rhetorik – ein kraftvoller Auftakt, der sofort Aufmerksamkeit erregt und Catilina in die Defensive drängt."
+      },
+      {
+        "latin": "O tempora, o mores!",
+        "translation": "O Zeiten, o Sitten!",
+        "context": "Ciceros Klage über den moralischen Verfall Roms – ein zeitloser Ausruf, der bis heute zitiert wird."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Erste Rede im Senat",
+        "date": "8. November 63 v. Chr.",
+        "description": "Cicero greift Catilina direkt an, während dieser im Senat sitzt. Die Rede ist so überzeugend, dass die anderen Senatoren von Catilina abrücken.",
+        "significance": "Catilina flieht noch in derselben Nacht aus Rom – ein Triumph der Rhetorik über Gewalt."
+      },
+      {
+        "title": "Hinrichtung der Verschwörer",
+        "date": "5. Dezember 63 v. Chr.",
+        "description": "Nach Ciceros vierter Rede stimmt der Senat für die sofortige Hinrichtung der gefangenen Verschwörer ohne Gerichtsverfahren.",
+        "significance": "Diese umstrittene Entscheidung sichert Roms Stabilität, verfolgt Cicero aber politisch für den Rest seines Lebens."
+      }
+    ]
+  },
+  "en": {
+    "contextTitle": "Historical Context",
+    "contextParagraphs": [
+      "The speeches against Catiline were delivered in 63 BC during Cicero's tenure as consul. They mark a turning point in late Republican history when internal conspiracies threatened Rome's stability."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  },
+  "la": {
+    "contextTitle": "Contextus Historicus",
+    "contextParagraphs": [
+      "Orationes contra Catilinam habitae sunt anno 63 a.C.n., tempore consulatus Ciceronis. Momentum versationis in historia rei publicae sero significant."
+    ],
+    "sections": [],
+    "quotes": [],
+    "keyMoments": []
+  }
+}

@@ -1,0 +1,370 @@
+[
+  {
+    "slug": "actium",
+    "term": "Actium"
+  },
+  {
+    "slug": "aedil",
+    "term": "Aedil"
+  },
+  {
+    "slug": "amphitheater",
+    "term": "Amphitheater"
+  },
+  {
+    "slug": "aqudukt",
+    "term": "Aquädukt"
+  },
+  {
+    "slug": "aquila",
+    "term": "Aquila"
+  },
+  {
+    "slug": "auctoritas",
+    "term": "Auctoritas"
+  },
+  {
+    "slug": "aventinus",
+    "term": "Aventinus"
+  },
+  {
+    "slug": "ballista",
+    "term": "Ballista"
+  },
+  {
+    "slug": "balneum",
+    "term": "Balneum"
+  },
+  {
+    "slug": "capitolium",
+    "term": "Capitolium"
+  },
+  {
+    "slug": "castra",
+    "term": "Castra"
+  },
+  {
+    "slug": "censor",
+    "term": "Censor"
+  },
+  {
+    "slug": "centurio",
+    "term": "Centurio"
+  },
+  {
+    "slug": "cingulum-militare",
+    "term": "Cingulum Militare"
+  },
+  {
+    "slug": "circus",
+    "term": "Circus"
+  },
+  {
+    "slug": "clementia",
+    "term": "Clementia"
+  },
+  {
+    "slug": "cleopatra",
+    "term": "Cleopatra VII Philopator"
+  },
+  {
+    "slug": "clientela",
+    "term": "Clientela"
+  },
+  {
+    "slug": "cohors",
+    "term": "Kohorte"
+  },
+  {
+    "slug": "consul",
+    "term": "Consul"
+  },
+  {
+    "slug": "crassus",
+    "term": "Marcus Licinius Crassus"
+  },
+  {
+    "slug": "cursus-honorum",
+    "term": "Cursus Honorum"
+  },
+  {
+    "slug": "dignitas",
+    "term": "Dignitas"
+  },
+  {
+    "slug": "diktator",
+    "term": "Diktator"
+  },
+  {
+    "slug": "fama",
+    "term": "Fama"
+  },
+  {
+    "slug": "familia",
+    "term": "Familia"
+  },
+  {
+    "slug": "fides",
+    "term": "Fides"
+  },
+  {
+    "slug": "fortuna",
+    "term": "Fortuna"
+  },
+  {
+    "slug": "forum-romanum",
+    "term": "Forum Romanum"
+  },
+  {
+    "slug": "fossatum",
+    "term": "Fossatum"
+  },
+  {
+    "slug": "gallischer-krieg",
+    "term": "Gallischer Krieg"
+  },
+  {
+    "slug": "gladiator",
+    "term": "Gladiator"
+  },
+  {
+    "slug": "gladius",
+    "term": "Gladius"
+  },
+  {
+    "slug": "gloria",
+    "term": "Gloria"
+  },
+  {
+    "slug": "goldenes-zeitalter",
+    "term": "Goldenes Zeitalter"
+  },
+  {
+    "slug": "gravitas",
+    "term": "Gravitas"
+  },
+  {
+    "slug": "honor",
+    "term": "Honor"
+  },
+  {
+    "slug": "hoplomachus",
+    "term": "Hoplomachus"
+  },
+  {
+    "slug": "imperator",
+    "term": "Imperator"
+  },
+  {
+    "slug": "imperium",
+    "term": "Imperium"
+  },
+  {
+    "slug": "iustitia",
+    "term": "Iustitia"
+  },
+  {
+    "slug": "kulturelle-blte",
+    "term": "Kulturelle Blüte"
+  },
+  {
+    "slug": "legio",
+    "term": "Legio"
+  },
+  {
+    "slug": "legion",
+    "term": "Legion"
+  },
+  {
+    "slug": "limes",
+    "term": "Limes"
+  },
+  {
+    "slug": "ludus",
+    "term": "Ludus"
+  },
+  {
+    "slug": "manipulus",
+    "term": "Manipel"
+  },
+  {
+    "slug": "marcus-antonius",
+    "term": "Marcus Antonius"
+  },
+  {
+    "slug": "marcus-brutus",
+    "term": "Marcus Iunius Brutus"
+  },
+  {
+    "slug": "matrona",
+    "term": "Matrona"
+  },
+  {
+    "slug": "mos-maiorum",
+    "term": "Mos Maiorum"
+  },
+  {
+    "slug": "murmillo",
+    "term": "Murmillo"
+  },
+  {
+    "slug": "octavia-minor",
+    "term": "Octavia Minor"
+  },
+  {
+    "slug": "onager",
+    "term": "Onager"
+  },
+  {
+    "slug": "ostia",
+    "term": "Ostia"
+  },
+  {
+    "slug": "palatinus",
+    "term": "Palatinus"
+  },
+  {
+    "slug": "paterfamilias",
+    "term": "Paterfamilias"
+  },
+  {
+    "slug": "patricier",
+    "term": "Patricier"
+  },
+  {
+    "slug": "patronus",
+    "term": "Patronus"
+  },
+  {
+    "slug": "pax-romana",
+    "term": "Pax Romana"
+  },
+  {
+    "slug": "pietas",
+    "term": "Pietas"
+  },
+  {
+    "slug": "pilum",
+    "term": "Pilum"
+  },
+  {
+    "slug": "plebejer",
+    "term": "Plebejer"
+  },
+  {
+    "slug": "pompeius",
+    "term": "Gaius Pompeius Magnus"
+  },
+  {
+    "slug": "pontifex-maximus",
+    "term": "Pontifex Maximus"
+  },
+  {
+    "slug": "praetor",
+    "term": "Praetor"
+  },
+  {
+    "slug": "pugio",
+    "term": "Pugio"
+  },
+  {
+    "slug": "quaestor",
+    "term": "Quästor"
+  },
+  {
+    "slug": "quirinalis",
+    "term": "Quirinalis"
+  },
+  {
+    "slug": "retiarius",
+    "term": "Retiarius"
+  },
+  {
+    "slug": "rubikon",
+    "term": "Rubikon"
+  },
+  {
+    "slug": "scutum",
+    "term": "Scutum"
+  },
+  {
+    "slug": "secutor",
+    "term": "Secutor"
+  },
+  {
+    "slug": "senator",
+    "term": "Senator"
+  },
+  {
+    "slug": "sica",
+    "term": "Sica"
+  },
+  {
+    "slug": "signum",
+    "term": "Signum"
+  },
+  {
+    "slug": "testudo",
+    "term": "Testudo"
+  },
+  {
+    "slug": "thermae",
+    "term": "Thermae"
+  },
+  {
+    "slug": "thraex",
+    "term": "Thraex"
+  },
+  {
+    "slug": "tiberis",
+    "term": "Tiberis"
+  },
+  {
+    "slug": "toga",
+    "term": "Toga"
+  },
+  {
+    "slug": "tribunus-plebis",
+    "term": "Tribunus Plebis"
+  },
+  {
+    "slug": "triumph",
+    "term": "Triumph"
+  },
+  {
+    "slug": "triumphzug",
+    "term": "Triumphzug"
+  },
+  {
+    "slug": "triumvirat",
+    "term": "Triumvirat"
+  },
+  {
+    "slug": "vallum",
+    "term": "Vallum"
+  },
+  {
+    "slug": "vercingetorix",
+    "term": "Vercingetorix"
+  },
+  {
+    "slug": "via-praetoria",
+    "term": "Via Praetoria"
+  },
+  {
+    "slug": "villa",
+    "term": "Villa"
+  },
+  {
+    "slug": "virtus",
+    "term": "Virtus"
+  },
+  {
+    "slug": "volkstribun",
+    "term": "Volkstribun"
+  },
+  {
+    "slug": "weltalter-lehre",
+    "term": "Weltalter-Lehre"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "slug": "author-about-cicero",
+  "heroTitle": "Marcus Tullius Cicero",
+  "heroSubtitle": "Consul, Orator, Philosophus",
+  "heroImage": "/images/cicero-hero.jpg",
+  "introText": "Der bedeutendste Redner Roms, Staatsmann, Philosoph und Verteidiger der Republik. Prägte die lateinische Prosa und die abendländische Rhetorik.",
+  "sections": [],
+  "highlights": [],
+  "translations": {
+    "de": {
+      "heroTitle": "Marcus Tullius Cicero",
+      "heroSubtitle": "Konsul, Redner, Philosoph",
+      "introText": "Der bedeutendste Redner Roms, Staatsmann, Philosoph und Verteidiger der Republik. Prägte die lateinische Prosa und die abendländische Rhetorik."
+    },
+    "en": {
+      "heroTitle": "Marcus Tullius Cicero",
+      "heroSubtitle": "Consul, Orator, Philosopher",
+      "introText": "Rome's greatest orator, statesman, philosopher, and defender of the Republic. Shaped Latin prose and Western rhetoric."
+    },
+    "la": {
+      "heroTitle": "Marcus Tullius Cicero",
+      "heroSubtitle": "Consul, Orator, Philosophus",
+      "introText": "Orator Romanus maximus, vir publicus, philosophus et defensor rei publicae. Prosam Latinam et rhetoricam occidentalem formavit."
+    }
+  }
+}
