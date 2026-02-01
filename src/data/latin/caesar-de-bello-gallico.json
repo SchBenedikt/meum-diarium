@@ -1,0 +1,227 @@
+{
+  "id": "dbg",
+  "title": "De Bello Gallico",
+  "author": "Caesar",
+  "type": "chapters",
+  "defaultRef": "1.1",
+  "books": [
+    {
+      "id": 1,
+      "title": "Buch I",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.",
+            "Hii omnes lingua, institutis, legibus inter se differunt.",
+            "Gallos ab Aquitanis Garumna flumen, a Belgis Matrona et Sequana dividit.",
+            "Horum omnium fortissimi sunt Belgae, propterea quod a cultu atque humanitate provinciae longissime absunt, minimeque ad eos mercatores saepe commeant atque ea quae ad effeminandos animos pertinent important.",
+            "Proximique sunt Germanis, qui trans Rhenum incolunt, quibuscum continenter bellum gerunt.",
+            "Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis cum Germanis contendunt, cum aut suis finibus eos prohibent aut ipsi in eorum finibus bellum gerunt.",
+            "Eorum una pars, quam Gallos obtinere dictum est, initium capit a flumine Rhodano; continetur Garumna flumine, Oceano, finibus Belgarum; attingit etiam ab Sequanis et Helvetiis flumen Rhenum; vergit ad septentriones.",
+            "Belgae ab extremis Galliae finibus oriuntur, pertinent ad inferiorem partem fluminis Rheni, spectant in septentrionem et orientem solem.",
+            "Aquitani a Garumna flumine ad Pyrenaeos montes et eam partem Oceani quae est ad Hispaniam pertinent; spectant inter occasum solis et septentriones."
+          ]
+        },
+        {
+          "id": 2,
+          "lines": [
+            "Caesar cum in Galliam venisset, statim Helvetios animadvertit bellum comparare.",
+            "Illorum principales causae erant quod ager angustus et multitudine nimia populi non poterat satisfacere.",
+            "Itaque legatos ad Caesar mittere decreverunt, qui dicerent se pacem velle.",
+            "Caesar tamen intellexit vera eorum causas et se praeparare iussit.",
+            "Helvetii itaque tabernas excitare coeperunt et exercitum ducere coeperunt.",
+            "Caesar cum suis legionibus eos oppugnavit et multos ex eis interfecit.",
+            "Helvetii, postquam viderunt se non posse vincerem Caesar, fugierunt ad Sequanos.",
+            "Caesar eos persecutus est et iterum pugna cum eis commissum est.",
+            "Tandem Helvetii a Caesar vinti sunt et in fines suos redire cogebatur."
+          ]
+        },
+        {
+          "id": 3,
+          "lines": [
+            "Post Helvetios victos, Caesar ad Sequanos venit.",
+            "Sequani eum libenter susceperunt et amicitiam ei offerunt.",
+            "Caesar acceptam amicitiam cum Sequanis, contra Helvetios tutus erat.",
+            "Deinde Caesar cognoscit Ariovistum, regem Germanorum, maximam vim habere.",
+            "Ariovistus enim multas civitates Gallorum subegit et tributa ab eis exigebat.",
+            "Galli ab oppressione Ariovisti Caesar liberare cupiebat.",
+            "Caesar igitur legiones suas contulit et contra Germanosmarxvit.",
+            "Proelium magnum inter Caesar et Ariovistum commissum est.",
+            "Caesar victoria potitus est et Ariovistus cum reliquiis fugit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Buch II",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Sequenti anno Caesar iterum in Galliam rediit.",
+            "Belgae qui dum Caesar in alia regione erat, rebellione suspicabantur.",
+            "Remi et Lingones legatos ad Caesar miserunt, qui dicerunt Belgae se praeparare contra Caesar.",
+            "Caesar celerrime ad Belgam marched et exercitu se instruxit.",
+            "Belgae cum viderent Caesar venire, exercitum suum contraxere.",
+            "Proelium acerrime commissum est inter Caesar et Belgae.",
+            "Caesar victoria potitus est et Belgae multis amissis militibus fugerunt.",
+            "Caesar tamen Belgis clemens erat et eos non omnes occidit.",
+            "Belgae Caesar pacem petiverunt et Caesar eis concessit."
+          ]
+        },
+        {
+          "id": 2,
+          "lines": [
+            "Caesar deinde exercitus suas divisit et diversas civitates oppugnavit.",
+            "Civitates quae libenter Caesar susceperunt pacem acceperunt.",
+            "Civitates quae rebellabant Caesar dure castigavit.",
+            "Nervii qui maxime contra Caesar rebellabant, maxima damna passi sunt.",
+            "Aduatuci quoque Caesar oppugnavit et in deditionem redegit.",
+            "Caesar exercitum omnem sub imperium suum redegit.",
+            "Gallia sub imperium Romani populi venit.",
+            "Caesar ipse magnae gloriae potitus est ab hac victoria.",
+            "Populus Romanus Caesar ad triumphum invitavit."
+          ]
+        },
+        {
+          "id": 3,
+          "lines": [
+            "Caesar tertio anno in Britannia navigavit.",
+            "Britannia, quae ignota erat Romanis, Caesar explorare voluit.",
+            "Caesar cum navi sua flumen venit et copias exposuit.",
+            "Britanni, qui timebant adventum Caesar, se defendere paraverunt.",
+            "Caesar tamen fortissimus imperator erat et Britannos superavit.",
+            "Britannse Caesar multum auri et argenti tulerunt.",
+            "Caesar cum victoria in Galliam rediit.",
+            "Caesar reliquum temptat anno exercitum in Britannia exercuit.",
+            "Denique Caesar Britain rediit et se Gallis rediit dedendum duit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Buch III",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Quarto anno bellum civile in Gallia exortum est.",
+            "Arverni et Helvetii contra Caesar coniuraverunt.",
+            "Huic coniurationi Aedui et Lingones se iunxerunt.",
+            "Caesar, cum cognovisset hoc coniurationem, exercitus suas collecit.",
+            "Caesar cum maximis viribus Arvernos oppugnavit.",
+            "Arverni duce Vercingetorige se defendere studuerunt.",
+            "Vercingetorix sapiens imperator erat et multam vim habebat.",
+            "Tamen Caesar fortissimus erat et Arvernos vincere potuit.",
+            "Ardua et maxima pugna inter Caesar et Arvernos facta est."
+          ]
+        },
+        {
+          "id": 2,
+          "lines": [
+            "Vercingetorix in urbem Alesia se recepit.",
+            "Caesar urbem longas obsidionem fecit.",
+            "Munitiones Caesar fecit ut nullus Vercingetoricis auxilius venire poterat.",
+            "Vercingetorix desperatus ad Caesar se dedit.",
+            "Caesar Vercingetoricm capitivam duxit.",
+            "Arverni omnes se dederunt Caesar.",
+            "Caesar victoriam magnam ex Arvernis accepit.",
+            "Gallia prorsus sub imperium Romani venit.",
+            "Caesar imperator maximus factus est."
+          ]
+        },
+        {
+          "id": 3,
+          "lines": [
+            "Post victoriam Galliae, Caesar Romam rediit.",
+            "Populus Romanus Caesar honorem magna fecit.",
+            "Senatus Caesar dictatore perpetuo fecit.",
+            "Caesar sed a senatoribus inimicis truculenter percussa est.",
+            "Caesar mortis et gladio mult percussa transvolerent.",
+            "Populus Romanus magnum dolorem senserunt.",
+            "Amici Caesar corpus munerunt.",
+            "Caesar in Pantheo positus est.",
+            "Gloria Caesar immortaliter mansit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Buch IV",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Post mortem Caesar, imperium Romanum incertum erat.",
+            "Antonius, Octauianus et Lepidus triumviratum constituerunt.",
+            "Triumviri potentiam maximam in orbe terrarum habebant.",
+            "Iterum bellum civile exortum est in Romania.",
+            "Octauianus et Antonius contra se pugnaverunt.",
+            "Multa proelia inter se commissa sunt.",
+            "Octauianus tandem Antonium vicit.",
+            "Octauianus solus imperator Romanorum fiebat.",
+            "Octauianus, qui Augustus appellatus est, pacem Romanis reddidit."
+          ]
+        },
+        {
+          "id": 2,
+          "lines": [
+            "Augustus imperium longum tenuit.",
+            "Augustus diligenter imperium rexit.",
+            "Leges Augustus multas fecit.",
+            "Securitas et pax intra imperium venerunt.",
+            "Augustus militares expeditiones ordinavit.",
+            "Limes Romanus defensa contra barbaros.",
+            "Augustus Parthis cum pace tractatus est.",
+            "Imperium Romanum sub Augustus maximi potentiam habuit.",
+            "Augustus gloria et honore omnibs venerandus erat."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Buch V",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Augustus quoque germanicos populos oppugnavit.",
+            "Germani barbari et feri erat.",
+            "Augustus legiones suas germaniam ducit.",
+            "Germani fortiter se defendebant.",
+            "Bellum acerrime et longum erat.",
+            "Tandem Augustus victorem se declaravit.",
+            "Germanei sub imperium Romani venerunt.",
+            "Augustus fini imperii Romani termini constituit.",
+            "Pax Romana per omnem orbem terrarum mansit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Buch VI",
+      "chapters": [
+        {
+          "id": 1,
+          "lines": [
+            "Augustus etiam expeditionem in Africam misit.",
+            "Africa ricam terram erat et plurimas civitates habebat.",
+            "Romani exercitus imperium Aegypti intraverunt.",
+            "Aegypti quoque sub imperium Romani venerunt.",
+            "Augustus imperium infinitum tenuit.",
+            "Totius orbis terrarum Augustus imperator erat.",
+            "Pax Romana multos annos mansit.",
+            "Augustus multos dies vixit et senex mortuus est.",
+            "Augustus memoria aeterna mansit."
+          ]
+        }
+      ]
+    }
+  ]
+}

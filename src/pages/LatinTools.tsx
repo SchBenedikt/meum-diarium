@@ -5,7 +5,6 @@ import { lexicon } from '@/data/lexicon';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Input } from '@/components/ui/input';
 import {
     ArrowLeft,
     RotateCcw,
@@ -20,26 +19,13 @@ import {
     ChevronLeft,
     Info,
     XCircle,
-    Languages,
-    BookOpen,
-    Search,
-    Loader2
+    Languages
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
-import { askAI } from '@/lib/api';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { cn } from '@/lib/utils';
 
-type Mode = 'menu' | 'flashcards' | 'learn' | 'match' | 'test' | 'reader';
-
-const CLASSICAL_WORKS = [
-    { id: 'dbg', title: 'De Bello Gallico', author: 'Caesar', defaultRef: '1.1' },
-    { id: 'met', title: 'Metamorphosen', author: 'Ovid', defaultRef: '1.1' },
-    { id: 'off', title: 'De Officiis', author: 'Cicero', defaultRef: '1.1' },
-    { id: 'cat', title: 'In Catilinam', author: 'Cicero', defaultRef: '1.1' },
-];
+type Mode = 'menu' | 'flashcards' | 'learn' | 'match' | 'test';
 
 export default function LatinTools() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -88,7 +74,6 @@ export default function LatinTools() {
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
-                {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -97,19 +82,13 @@ export default function LatinTools() {
                     >
                         <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
                             <div className="w-8 h-[1px] bg-primary/30" />
-                            {mode === 'reader' ? 'LATEINISCHER TEXT-READER' : 'VOKABEL-TRAINER'}
+                            LERNEN
                         </div>
                         <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
-                            {mode === 'reader' ? (
-                                <>Klassiker <span className="text-primary italic">verstehen</span></>
-                            ) : (
-                                <>Meistere <span className="text-primary italic">Latein</span></>
-                            )}
+                            Meistere <span className="text-primary italic">Latein</span>
                         </h1>
                         <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
-                            {mode === 'reader'
-                                ? 'Wähle ein Werk und navigiere durch die Verse. Erhalte sofortige Übersetzungen und Analysen.'
-                                : 'Interaktive Modi im Quizlet-Stil helfen dir, Vokabeln schneller und effektiver zu lernen.'}
+                            Wähle zwischen klassischen Texten und interaktivem Vokabeltraining.
                         </p>
                     </motion.div>
 
@@ -134,56 +113,72 @@ export default function LatinTools() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
+                            className="space-y-12"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <ModeCard
-                                    icon={Languages}
-                                    title="Text-Reader"
-                                    description="Lies klassische Texte mit KI-gestützter Übersetzungshilfe und Analyse."
-                                    color="text-amber-500"
-                                    onClick={() => setMode('reader')}
-                                    image="https://images.unsplash.com/photo-1513001900722-370f803f498d?q=80&w=800&auto=format&fit=crop"
-                                />
-                                <ModeCard
-                                    icon={Layers}
-                                    title="Flashcards"
-                                    description="Klassisches Karteikarten-Lernen mit flüssigen Animationen."
-                                    color="text-blue-500"
-                                    onClick={() => setMode('flashcards')}
-                                    count={vocabList.length}
-                                    image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop"
-                                />
-                                <ModeCard
-                                    icon={Brain}
-                                    title="Lernen"
-                                    description="Aktives Erinnern durch personalisierte Multiple-Choice Fragen."
-                                    color="text-purple-500"
-                                    onClick={() => setMode('learn')}
-                                    count={vocabList.length}
-                                    image="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800&auto=format&fit=crop"
-                                />
-                                <ModeCard
-                                    icon={Gamepad2}
-                                    title="Zuordnen"
-                                    description="Ein schnelles Spiel zum Zuordnen von Begriffen unter Zeitdruck."
-                                    color="text-orange-500"
-                                    onClick={() => setMode('match')}
-                                    image="https://images.unsplash.com/photo-1606326608941-48988ed99461?q=80&w=800&auto=format&fit=crop"
-                                />
-                                <ModeCard
-                                    icon={GraduationCap}
-                                    title="Test"
-                                    description="Überprüfe dein Wissen in einem umfassenden schriftlichen Test."
-                                    color="text-green-500"
-                                    onClick={() => setMode('test')}
-                                    image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop"
-                                />
+                            {/* Antike Texte */}
+                            <div className="space-y-4">
+                                <div className="px-2">
+                                    <h2 className="text-xl sm:text-2xl font-display font-bold mb-2">Antike Texte</h2>
+                                    <p className="text-sm text-muted-foreground/70 font-light">Lies klassische lateinische Werke direkt eingebettet.</p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+                                    <Link to="/latin/reader" className="contents">
+                                        <ModeCard
+                                            icon={Languages}
+                                            title="Text-Reader"
+                                            description="Lies klassische Texte direkt eingebettet mit klarer Kapitel- und Zeilennavigation."
+                                            color="text-amber-500"
+                                            onClick={() => { }}
+                                            image="https://images.unsplash.com/photo-1513001900722-370f803f498d?q=80&w=800&auto=format&fit=crop"
+                                        />
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* Vokabeln Lernen */}
+                            <div className="space-y-4">
+                                <div className="px-2">
+                                    <h2 className="text-xl sm:text-2xl font-display font-bold mb-2">Vokabeln Lernen</h2>
+                                    <p className="text-sm text-muted-foreground/70 font-light">Interaktive Modi im Quizlet-Stil für effektives Lernen.</p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <ModeCard
+                                        icon={Layers}
+                                        title="Flashcards"
+                                        description="Klassisches Karteikarten-Lernen mit flüssigen Animationen."
+                                        color="text-blue-500"
+                                        onClick={() => setMode('flashcards')}
+                                        count={vocabList.length}
+                                        image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop"
+                                    />
+                                    <ModeCard
+                                        icon={Brain}
+                                        title="Lernen"
+                                        description="Aktives Erinnern durch personalisierte Multiple-Choice Fragen."
+                                        color="text-purple-500"
+                                        onClick={() => setMode('learn')}
+                                        count={vocabList.length}
+                                        image="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800&auto=format&fit=crop"
+                                    />
+                                    <ModeCard
+                                        icon={Gamepad2}
+                                        title="Zuordnen"
+                                        description="Ein schnelles Spiel zum Zuordnen von Begriffen unter Zeitdruck."
+                                        color="text-orange-500"
+                                        onClick={() => setMode('match')}
+                                        image="https://images.unsplash.com/photo-1606326608941-48988ed99461?q=80&w=800&auto=format&fit=crop"
+                                    />
+                                    <ModeCard
+                                        icon={GraduationCap}
+                                        title="Test"
+                                        description="Überprüfe dein Wissen in einem umfassenden schriftlichen Test."
+                                        color="text-green-500"
+                                        onClick={() => setMode('test')}
+                                        image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop"
+                                    />
+                                </div>
                             </div>
                         </motion.div>
-                    )}
-
-                    {mode === 'reader' && (
-                        <ReaderMode key="reader" />
                     )}
 
                     {mode === 'flashcards' && (
@@ -331,197 +326,6 @@ function ModeCard({ icon: Icon, title, description, onClick, color, count, image
     );
 }
 
-function ReaderMode() {
-    const [selectedWork, setSelectedWork] = useState(CLASSICAL_WORKS[0]);
-    const [reference, setReference] = useState(CLASSICAL_WORKS[0].defaultRef);
-    const [isLoading, setIsLoading] = useState(false);
-    const [content, setContent] = useState<{ latin: string; german: string; analysis: string } | null>(null);
-    const [error, setError] = useState<string | null>(null);
-
-    const fetchText = async (ref: string = reference) => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            const prompt = `Du bist ein Latein-Experte. Gib mir den lateinischen Text für "${selectedWork.title}" bei der Stelle "${ref}". 
-      Erstelle zudem eine präzise deutsche Übersetzung und eine kurze grammatikalische Analyse (Besonderheiten, Konstruktionen).
-      Antworte im JSON-Format:
-      {
-        "latin": "...",
-        "german": "...",
-        "analysis": "..."
-      }`;
-
-            const { text } = await askAI(selectedWork.author.toLowerCase(), prompt);
-            const jsonStr = text.replace(/```json\n?|\n?```/g, '').trim();
-            const data = JSON.parse(jsonStr);
-            setContent(data);
-        } catch (err: any) {
-            console.error(err);
-            setError("Text konnte nicht geladen werden. Bitte überprüfe die Quellenangabe.");
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchText();
-    }, [selectedWork]);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="grid lg:grid-cols-[300px_1fr] gap-8 items-start"
-        >
-            <div className="space-y-6 lg:sticky lg:top-24">
-                <Card className="card-modern p-6 space-y-6 border-border/40 bg-card/30 backdrop-blur-xl">
-                    <div className="space-y-4">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Werk auswählen</p>
-                        <div className="space-y-2">
-                            {CLASSICAL_WORKS.map((work) => (
-                                <button
-                                    key={work.id}
-                                    onClick={() => setSelectedWork(work)}
-                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all border ${selectedWork.id === work.id
-                                        ? 'bg-primary/10 border-primary/30 text-primary font-medium shadow-inner'
-                                        : 'bg-secondary/10 border-transparent hover:border-border/60 text-muted-foreground'
-                                        }`}
-                                >
-                                    <div className="flex items-center justify-between">
-                                        <span>{work.title}</span>
-                                        {selectedWork.id === work.id && <ChevronRight className="h-4 w-4" />}
-                                    </div>
-                                    <span className="text-[10px] opacity-60 uppercase tracking-wider">{work.author}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="space-y-4 pt-4 border-t border-border/50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Navigation</p>
-                        <div className="flex gap-2">
-                            <Input
-                                value={reference}
-                                onChange={(e) => setReference(e.target.value)}
-                                placeholder="Stelle (z.B. 1.1)"
-                                className="bg-secondary/40 border-primary/10 focus-visible:ring-primary/30 rounded-xl"
-                            />
-                            <Button onClick={() => fetchText()} disabled={isLoading} className="rounded-xl aspect-square p-0 w-12 shrink-0 bg-primary/20 hover:bg-primary/30 text-primary border border-primary/20">
-                                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-                            </Button>
-                        </div>
-                        <p className="text-[10px] text-muted-foreground/60 italic leading-relaxed">
-                            Versuche z.B. "1.1-5", "Met. 1.220"
-                        </p>
-                    </div>
-                </Card>
-
-                <div className="card-modern p-6 bg-amber-500/5 border-amber-500/10 backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                        <Info className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
-                        <p className="text-[11px] text-amber-600/80 dark:text-amber-400/80 leading-relaxed font-light italic">
-                            KI-generierte Texte können Fehler enthalten. Bitte prüfe sie mit Deiner Schulausgabe.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="space-y-6 min-h-[500px]">
-                <AnimatePresence mode="wait">
-                    {isLoading ? (
-                        <motion.div
-                            key="loading"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="card-modern h-full flex flex-col items-center justify-center text-center p-12 border-border/40 bg-card/20"
-                        >
-                            <div className="relative mb-8">
-                                <BookOpen className="h-16 w-16 text-primary/10" />
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                                    className="absolute inset-0 border-2 border-primary border-t-transparent rounded-full"
-                                />
-                            </div>
-                            <h3 className="font-display text-2xl mb-2 font-bold tracking-tight">Suche in den Archiven...</h3>
-                            <p className="text-sm text-muted-foreground/60 font-light">Einen Moment, wir rufen das Original ab.</p>
-                        </motion.div>
-                    ) : error ? (
-                        <motion.div
-                            key="error"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="card-modern p-16 text-center border-destructive/20 bg-destructive/5"
-                        >
-                            <div className="h-16 w-16 bg-destructive/10 text-destructive rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <XCircle className="h-8 w-8" />
-                            </div>
-                            <h3 className="font-display text-2xl mb-2 font-bold">Unerwartetes Problem</h3>
-                            <p className="text-sm text-muted-foreground/60 mb-8 max-w-sm mx-auto">{error}</p>
-                            <Button onClick={() => fetchText()} variant="outline" className="rounded-xl px-8 border-destructive/20 text-destructive hover:bg-destructive/10">Erneut versuchen</Button>
-                        </motion.div>
-                    ) : content ? (
-                        <motion.div
-                            key="content"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-6"
-                        >
-                            <Card className="card-modern overflow-hidden border-border/40 bg-card/30 backdrop-blur-2xl shadow-2xl">
-                                <div className="px-8 py-4 border-b border-white/5 bg-primary/5 flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <div className="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/80">LATINUS TEXTUS</span>
-                                    </div>
-                                    <span className="text-[10px] font-mono tracking-wider opacity-40">{selectedWork.title} • {reference}</span>
-                                </div>
-                                <div className="p-10 sm:p-16">
-                                    <p className="text-3xl sm:text-5xl font-display leading-[1.4] italic font-semibold tracking-tight text-foreground/90 selection:bg-primary/30">
-                                        {content.latin}
-                                    </p>
-                                </div>
-                            </Card>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <Card className="card-modern border-border/40 bg-card/40 backdrop-blur-xl">
-                                    <div className="px-6 py-4 border-b border-white/5 bg-primary/5 flex items-center gap-3">
-                                        <Languages className="h-4 w-4 text-primary opacity-60" />
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/70">Übersetzung</span>
-                                    </div>
-                                    <div className="p-8">
-                                        <p className="text-base sm:text-lg leading-relaxed text-muted-foreground font-light">
-                                            {content.german}
-                                        </p>
-                                    </div>
-                                </Card>
-
-                                <Card className="card-modern border-amber-500/20 bg-card/40 backdrop-blur-xl">
-                                    <div className="px-6 py-4 border-b border-white/5 bg-amber-500/5 flex items-center gap-3">
-                                        <Sparkles className="h-4 w-4 text-amber-500 opacity-60" />
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-600/70">Grammatik-Analyse</span>
-                                    </div>
-                                    <div className="p-8 prose prose-sm dark:prose-invert max-w-none font-light prose-headings:font-display prose-headings:tracking-tight prose-headings:text-amber-500">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                            {content.analysis}
-                                        </ReactMarkdown>
-                                    </div>
-                                </Card>
-                            </div>
-                        </motion.div>
-                    ) : (
-                        <div className="card-modern p-20 text-center text-muted-foreground/30 border-dashed border-2 border-border/20 bg-transparent flex flex-col items-center justify-center">
-                            <Search className="h-16 w-16 mb-6 opacity-10" />
-                            <p className="text-lg font-light italic tracking-tight">Gib eine Stelle ein, um in die Geschichte einzutauchen.</p>
-                        </div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </motion.div>
-    );
-}
-
-// Reusing existing components logic but with slightly refined UI
 function LearnMode({ vocabList, onComplete }: any) {
     const [index, setIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
