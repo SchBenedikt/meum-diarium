@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-02-01",
+  "counts": {
+    "posts": 41,
+    "lexicon": 92,
+    "works": 7,
+    "authors": 5
+  },
+  "available_authors": [
+    "caesar",
+    "cicero",
+    "augustus",
+    "catilina",
+    "seneca"
+  ]
+}
