@@ -14,9 +14,12 @@ When seeding the database, you get errors like:
 This error occurs when trying to insert entries with duplicate primary keys (slugs/IDs). Common causes:
 
 1. **Running seed scripts multiple times** without cleanup
-2. **Duplicate entries** in the seed files themselves
+2. **Duplicate entries** in the seed files themselves  
 3. **Incomplete cleanup** before re-seeding
 4. **Script interrupted** mid-execution, leaving partial data
+5. **Using both seed_posts.sql AND seed_posts_*.sql** (fixed in v2 of seed_database.sh)
+
+**Important:** The repository contains both `seed_posts.sql` and split files `seed_posts_1.sql` through `seed_posts_9.sql`. These contain the SAME posts, just organized differently. The improved `seed_database.sh` script now uses ONLY the split files to avoid duplicates.
 
 ## Quick Fix
 

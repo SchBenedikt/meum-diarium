@@ -111,38 +111,44 @@ echo -e "${BLUE}━━━ Step 4: Seeding Blog Posts ━━━${NC}"
 POST_COUNT=0
 POST_ERRORS=0
 
-# First try seed_posts.sql if it exists
-if [ -f "seed_posts.sql" ]; then
+# Check if split post files exist (preferred method)
+if ls seed_posts_*.sql 1> /dev/null 2>&1; then
+    echo -e "${YELLOW}Using split post files (seed_posts_*.sql)${NC}"
+    
+    # Process numbered post seeds
+    for file in seed_posts_*.sql; do
+        if [ -f "$file" ]; then
+            POST_COUNT=$((POST_COUNT + 1))
+            echo -e "${YELLOW}[$POST_COUNT/9]${NC} Processing $file..."
+            
+            if execute_sql "$file" "  Inserting posts batch"; then
+                sleep 2
+            else
+                POST_ERRORS=$((POST_ERRORS + 1))
+                echo -e "${RED}  Failed to process $file${NC}"
+                
+                # Ask user if they want to continue
+                echo -e "${YELLOW}  Continue with remaining files? (y/n)${NC}"
+                read -r response
+                if [[ ! "$response" =~ ^[Yy]$ ]]; then
+                    echo -e "${RED}Aborting...${NC}"
+                    exit 1
+                fi
+            fi
+        fi
+    done
+elif [ -f "seed_posts.sql" ]; then
+    echo -e "${YELLOW}Using main post file (seed_posts.sql)${NC}"
     echo -e "${YELLOW}[Main]${NC} Processing seed_posts.sql..."
     if execute_sql "seed_posts.sql" "  Inserting main posts"; then
         sleep 2
     else
         POST_ERRORS=$((POST_ERRORS + 1))
     fi
+else
+    echo -e "${RED}⚠️  No post seed files found${NC}"
+    POST_ERRORS=$((POST_ERRORS + 1))
 fi
-
-# Then process numbered post seeds
-for file in seed_posts_*.sql; do
-    if [ -f "$file" ]; then
-        POST_COUNT=$((POST_COUNT + 1))
-        echo -e "${YELLOW}[$POST_COUNT/9]${NC} Processing $file..."
-        
-        if execute_sql "$file" "  Inserting posts batch"; then
-            sleep 2
-        else
-            POST_ERRORS=$((POST_ERRORS + 1))
-            echo -e "${RED}  Failed to process $file${NC}"
-            
-            # Ask user if they want to continue
-            echo -e "${YELLOW}  Continue with remaining files? (y/n)${NC}"
-            read -r response
-            if [[ ! "$response" =~ ^[Yy]$ ]]; then
-                echo -e "${RED}Aborting...${NC}"
-                exit 1
-            fi
-        fi
-    fi
-done
 
 echo ""
 if [ $POST_ERRORS -eq 0 ]; then
@@ -157,41 +163,73 @@ echo -e "${BLUE}━━━ Step 5: Verification ━━━${NC}"
 echo "Checking database contents..."
 echo ""
 
-# Count authors
-echo -n "Authors: "
-npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --command "SELECT COUNT(*) as count FROM authors" --json 2>/dev/null | grep -o '"count":[0-9]*' | cut -d: -f2 || echo "?"
+# Function to get count from D1
+get_count() {
+    local table=$1
+    npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --command "SELECT COUNT(*) as count FROM $table" --json 2>&1 | \
+        grep -oP '"count":\s*\K\d+' | head -1 || echo "0"
+}
 
-# Count posts
-echo -n "Posts: "
-npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --command "SELECT COUNT(*) as count FROM posts" --json 2>/dev/null | grep -o '"count":[0-9]*' | cut -d: -f2 || echo "?"
+# Count and display
+AUTHORS_COUNT=$(get_count "authors")
+POSTS_COUNT=$(get_count "posts")
+LEXICON_COUNT=$(get_count "lexicon")
+WORKS_COUNT=$(get_count "works")
 
-# Count lexicon
-echo -n "Lexicon entries: "
-npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --command "SELECT COUNT(*) as count FROM lexicon" --json 2>/dev/null | grep -o '"count":[0-9]*' | cut -d: -f2 || echo "?"
-
-# Count works
-echo -n "Works: "
-npx wrangler d1 execute "$DB_NAME" $REMOTE_FLAG --command "SELECT COUNT(*) as count FROM works" --json 2>/dev/null | grep -o '"count":[0-9]*' | cut -d: -f2 || echo "?"
+echo "Authors: $AUTHORS_COUNT"
+echo "Posts: $POSTS_COUNT"
+echo "Lexicon entries: $LEXICON_COUNT"
+echo "Works: $WORKS_COUNT"
 
 echo ""
 echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
 
-# Final summary
+# Final summary with validation
 TOTAL_ERRORS=$((LEXICON_ERRORS + POST_ERRORS))
-if [ $TOTAL_ERRORS -eq 0 ]; then
+
+# Validate expected counts
+EXPECTED_AUTHORS=5
+EXPECTED_POSTS=42
+EXPECTED_LEXICON=92
+
+if [ $TOTAL_ERRORS -eq 0 ] && [ "$AUTHORS_COUNT" -ge "$EXPECTED_AUTHORS" ] && [ "$POSTS_COUNT" -ge "$EXPECTED_POSTS" ] && [ "$LEXICON_COUNT" -ge "$EXPECTED_LEXICON" ]; then
     echo -e "${GREEN}✓ Database seeding completed successfully!${NC}"
     echo ""
-    echo "Next steps:"
-    echo "  1. Run verification: npm run db:verify:remote"
-    echo "  2. Test the website to ensure content loads"
-    echo "  3. Check browser console for API errors"
-else
-    echo -e "${YELLOW}⚠️  Database seeding completed with $TOTAL_ERRORS error(s)${NC}"
+    echo "Validation:"
+    echo "  ✓ Authors: $AUTHORS_COUNT/$EXPECTED_AUTHORS"
+    echo "  ✓ Posts: $POSTS_COUNT/$EXPECTED_POSTS"
+    echo "  ✓ Lexicon: $LEXICON_COUNT/$EXPECTED_LEXICON"
     echo ""
-    echo "Please review the errors above and:"
-    echo "  1. Check for duplicate entries in seed files"
-    echo "  2. Ensure cleanup ran successfully"
-    echo "  3. Try re-running this script"
+    echo "Next steps:"
+    echo "  1. Test the website to ensure content loads"
+    echo "  2. Check browser console for D1 database logs"
+else
+    echo -e "${YELLOW}⚠️  Database seeding completed with issues${NC}"
+    echo ""
+    if [ $TOTAL_ERRORS -gt 0 ]; then
+        echo "Errors during seeding: $TOTAL_ERRORS"
+    fi
+    echo "Validation:"
+    if [ "$AUTHORS_COUNT" -lt "$EXPECTED_AUTHORS" ]; then
+        echo "  ⚠️  Authors: $AUTHORS_COUNT/$EXPECTED_AUTHORS (missing $(($EXPECTED_AUTHORS - $AUTHORS_COUNT)))"
+    else
+        echo "  ✓ Authors: $AUTHORS_COUNT/$EXPECTED_AUTHORS"
+    fi
+    if [ "$POSTS_COUNT" -lt "$EXPECTED_POSTS" ]; then
+        echo "  ⚠️  Posts: $POSTS_COUNT/$EXPECTED_POSTS (missing $(($EXPECTED_POSTS - $POSTS_COUNT)))"
+    else
+        echo "  ✓ Posts: $POSTS_COUNT/$EXPECTED_POSTS"
+    fi
+    if [ "$LEXICON_COUNT" -lt "$EXPECTED_LEXICON" ]; then
+        echo "  ⚠️  Lexicon: $LEXICON_COUNT/$EXPECTED_LEXICON (missing $(($EXPECTED_LEXICON - $LEXICON_COUNT)))"
+    else
+        echo "  ✓ Lexicon: $LEXICON_COUNT/$EXPECTED_LEXICON"
+    fi
+    echo ""
+    echo "Recommended actions:"
+    echo "  1. Run verification: npm run db:verify:remote"
+    echo "  2. Check for duplicate entries: npm run db:check-duplicates"
+    echo "  3. Try running cleanup and re-seeding"
 fi
 
 echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"

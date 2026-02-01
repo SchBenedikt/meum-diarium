@@ -72,8 +72,10 @@ After seeding, the database contains:
 
 - `cleanup_db.sql` - Clears all data (run first)
 - `seed_authors_works.sql` - Authors and their works
-- `seed_lexicon_1.sql` to `seed_lexicon_10.sql` - Lexicon entries
-- `seed_posts_1.sql` to `seed_posts_9.sql` - Blog posts
+- `seed_lexicon_1.sql` to `seed_lexicon_10.sql` - Lexicon entries (92 total)
+- `seed_posts_1.sql` to `seed_posts_9.sql` - Blog posts split into chunks (42 total)
+
+**Note:** The `seed_posts.sql` file exists as a backup but is NOT used by the seeding script. The split files (`seed_posts_*.sql`) are used instead to avoid duplicate entries and improve reliability.
 
 ## Data Flow
 
