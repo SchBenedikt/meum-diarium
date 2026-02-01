@@ -30,6 +30,8 @@ import {
   BookOpen,
   Info,
   Users,
+  GraduationCap,
+  Languages,
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
 import { AuthorSwitcher } from '@/components/AuthorSwitcher';
@@ -109,8 +111,8 @@ export function Header() {
   }, []);
 
   const navItems = [
-    { href: '/timeline', label: t('navTimeline'), icon: History },
     { href: '/lexicon', label: t('navLexicon'), icon: BookOpen },
+    { href: '/latin', label: t('navLernen'), icon: GraduationCap },
     { href: '/about', label: t('navAbout'), icon: Info },
   ];
 

@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Scroll } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 export function HeroSection() {
   const { authorInfo, currentAuthor } = useAuthor();
@@ -59,7 +60,7 @@ export function HeroSection() {
             className="lg:col-span-5 relative"
           >
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border bg-card shadow-2xl glass-panel">
-              <img
+              <ImageWithFallback
                 src={authorInfo.heroImage}
                 alt={authorInfo.name}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"

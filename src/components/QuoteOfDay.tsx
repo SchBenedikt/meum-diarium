@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { authors } from '@/data/authors';
 import { Author } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 interface QuoteData {
   text: string;
@@ -77,7 +78,7 @@ export function QuoteOfDay() {
         >
           <div className="h-20 w-20 rounded-full p-1 bg-primary/20">
             <div className="h-full w-full rounded-full bg-card flex items-center justify-center overflow-hidden border-2 border-primary/30">
-              <img
+              <ImageWithFallback
                 src={authors[quote.author].heroImage}
                 alt={authors[quote.author].name}
                 className="w-full h-full object-cover"

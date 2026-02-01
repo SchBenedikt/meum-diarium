@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { FeatureShowcase } from './home/FeatureShowcase';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 export default function LandingHeroNew() {
   const { t } = useLanguage();
@@ -145,7 +146,7 @@ export default function LandingHeroNew() {
               className="hidden lg:block relative"
             >
               <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-2xl">
-                <img
+                <ImageWithFallback
                   src="/images/caesar-hero.jpg"
                   alt="Julius Caesar"
                   className="w-full h-auto object-cover"

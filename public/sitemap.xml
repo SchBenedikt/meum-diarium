@@ -1,921 +1,1622 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/</loc>
-    <lastmod>2026-02-01T13:30:46.950Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.302Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <title>Meum Diarium</title>
+    <excerpt>Erlebe Geschichte neu mit KI-gestützten Zeitreisen.</excerpt>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/timeline</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <loc>https://meum-diarium.xn--schchner-2za.de/lexicon</loc>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <title>Lexikon</title>
+    <excerpt>Das Glossar der römischen Antike.</excerpt>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/search</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <loc>https://meum-diarium.xn--schchner-2za.de/latin</loc>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <title>Latein-Tools</title>
+    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/about</loc>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <title>Über uns</title>
+    <excerpt>Wer wir sind und was wir machen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <title>Gaius Julius Caesar</title>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/chat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <title>Chat mit Gaius Julius Caesar</title>
+    <excerpt>Interaktives Gespräch mit dem historischen Charakter Gaius Julius Caesar.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <title>Marcus Tullius Cicero</title>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/chat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <title>Chat mit Marcus Tullius Cicero</title>
+    <excerpt>Interaktives Gespräch mit dem historischen Charakter Marcus Tullius Cicero.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <title>Augustus</title>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/chat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <title>Chat mit Augustus</title>
+    <excerpt>Interaktives Gespräch mit dem historischen Charakter Augustus.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <title>Lucius Sergius Catilina</title>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/chat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <title>Chat mit Lucius Sergius Catilina</title>
+    <excerpt>Interaktives Gespräch mit dem historischen Charakter Lucius Sergius Catilina.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <title>Lucius Annaeus Seneca</title>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/chat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <title>Chat mit Lucius Annaeus Seneca</title>
+    <excerpt>Interaktives Gespräch mit dem historischen Charakter Lucius Annaeus Seneca.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-gallico</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>De Bello Gallico</title>
+    <excerpt>Caesars Bericht über die Eroberung Galliens (58-50 v. Chr.). Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa. Das Werk prägt bis heute den Lateinunterricht mit seinem berühmten Eröffnungssatz: "Gallia est omnis divisa in partes tres".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-civili</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>De Bello Civili</title>
+    <excerpt>Caesars Bericht über den Bürgerkrieg gegen Pompeius (49-48 v. Chr.). Emotionaler und defensiver als De Bello Gallico. Caesar rechtfertigt die Überschreitung des Rubikon als Selbstverteidigung gegen eine illegale senatorische Clique - ein Meisterwerk der politischen Selbstrechtfertigung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-re-publica</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>De Re Publica</title>
+    <excerpt>Ciceros Verteidigung der idealen Republik als Dialog. Argumentiert für die gemischte Verfassung (Monarchie + Aristokratie + Demokratie), die Roms Verfassung verkörpert. Viel fragmentarisch erhalten; das berühmte "Somnium Scipionis" inspirierte das Mittelalter.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-officiis</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>De Officiis</title>
+    <excerpt>Ciceros meistgelesenes Werk über Ethik und Pflicht (44 v. Chr.). Ein Brief an seinen Sohn: Wie soll man sich verhalten? Welche Pflichten hat man? Kombination von stoischer Philosophie und römischer Praxis. Der einflussreichste ethische Text der westlichen Tradition.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/in-catilinam</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>In Catilinam</title>
+    <excerpt>Die vier "Catilin
+
+arischen Reden" (In Catilinam Orationes) gehören zu den berühmtesten Reden der Weltliteratur. Gehalten von Marcus Tullius Cicero während seiner Amtszeit als Consul im Jahr 63 v. Chr., deckten sie die Verschwörung des Lucius Sergius Catilina auf und führten zu dessen Flucht aus Rom.
+
+Die erste Rede beginnt mit den unsterblichen Worten: "Quo usque tandem abutere, Catilina, patientia nostra?" (Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?) - eine der wirkungsvollsten rhetorischen Eröffnungen aller Zeiten. Cicero konfrontiert Catilina direkt im Senat, während dieser persönlich anwesend ist - ein dramatischer Moment ungeheurer politischer Spannung.
+
+Die Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und emotionale Appelle virtuos verbinden. Sie zeigen Cicero auf dem Höhepunkt seiner Macht als "pater patriae" (Vater des Vaterlandes), der die Republik vor ihren inneren Feinden rettet. Zugleich werfen sie schwierige Fragen über Rechtsstaatlichkeit, Notstandsmaßnahmen und die Grenzen der Exekutivgewalt auf.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/philippicae</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>Philippicae</title>
+    <excerpt>Ciceros letzte verzweifelte Angriffe gegen Marcus Antonius nach Caesars Mord (44-43 v. Chr.). Vierzehn flammende Reden - Meisterwerke von Sarkasmus und Rhetorik. Kosteten Cicero sein Leben: Am 7. Dezember 43 v. Chr. ermordet, sein Kopf auf dem Forum zur Schau gestellt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/works/res-gestae</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.303Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <title>Res Gestae Divi Augusti</title>
+    <excerpt>Augustus' autobiographischer Rechenschaftsbericht, verfasst am Lebensende. Auf Bronzetafeln im ganzen Reich verbreitet: Taten, Ämter, Ehrungen aufgelistet. Ein Meisterwerk der Propaganda: er stellt sich als Retter der Republik dar, obwohl er sie zur Monarchie umwandelte.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/actium</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.305Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Actium</title>
+    <excerpt>Die Schlacht von Actium (2. September 31 v. Chr.) war die entscheidende Seeschlacht vor der Westküste Griechenlands, in der Octavian (der spätere Augustus) die Flotten von Marcus Antonius und Kleopatra VII. besiegte und damit das Schicksal der römischen Republik besiegelte. Antonius und Kleopatra hatten etwa 230 Kriegsschiffe und 50.000 Mann, Octavian unter Admiral Agrippa verfügte über circa 400 kleinere, wendigere Schiffe. Die Schlacht endete mit der Flucht Kleopatras und Antonius', die etwa 60 Schiffe mit sich nahmen, während der Rest kapitulierte. Diese Niederlage bedeutete das Ende ihrer politischen und militärischen Macht. Ein Jahr später eroberte Octavian Ägypten, Antonius und Kleopatra begingen Selbstmord. Actium markierte das Ende der Bürgerkriege und den Beginn des Prinzipats unter Augustus. Der Sieg wurde durch den Bau von Nikopolis ("Siegesstadt") und Triumph-Spiele gefeiert.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/aedil</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.306Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Aedil</title>
+    <excerpt>Der Aedil war ein römischer Magistrat, der für die städtische Verwaltung, Marktaufsicht, öffentliche Gebäude und die Organisation von Spielen zuständig war. Das Amt der Aedilität war eine wichtige Stufe auf dem cursus honorum, der politischen Laufbahn. Es gab ursprünglich zwei plebejische Ädilen, die von der Volksversammlung der Plebejer gewählt wurden. Später kamen zwei kurulische Ädilen hinzu, die auch Patriciern offenstanden und auf dem kurulischen Stuhl (sella curulis) sitzen durften - ein Symbol höherer Würde. Ädilen wurden für ein Jahr gewählt und mussten mindestens 37 Jahre alt sein.
+
+Die Aufgaben der Ädilen waren vielfältig und bürgernah: Sie überwachten Märkte, kontrollierten Maße und Gewichte, sorgten für die Instandhaltung von Straßen, Brücken, Aquädukten und öffentlichen Gebäuden, beaufsichtigten die Wasserversorgung und regelten den Verkehr. Sie hatten die Polizeigewalt in der Stadt und konnten Geldstrafen verhängen. Eine besonders wichtige und kostspielige Aufgabe war die Organisation öffentlicher Spiele (ludi) und Gladiatorenkämpfe. Ehrgeizigädilen gaben oft ihr eigenes Vermögen aus, um prächtige Spiele zu veranstalten und so die Gunst des Volkes für höhere Ämter zu gewinnen.
+
+Das Amt war ein Sprungbrett für ehrgeizige Politiker: Julius Caesar ruinierte sich beinahe finanziell mit aufwendigen Spielen als Ädil, was aber seine Popularität enorm steigerte. Marcus Agrippa nutzte seine Ädilität, um Rom mit öffentlichen Bädern und Wasserleitungen zu verschrönen. Die Ädilen waren die sichtbarsten Magistrate im Alltag der römischen Bürger - ihre Tätigkeit betraf direkt die Lebensqualität in der Stadt. Erfolgreiche Ädilen konnten auf eine Praetur und schließlich ein Konsulat hoffen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/amphitheater</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.307Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Amphitheater</title>
+    <excerpt>Ein Amphitheater war ein monumentales ovales oder elliptisches Bauwerk der römischen Antike, das speziell für die Veranstaltung von Gladiatorenkämpfen, Tierhetzen (venationes) und anderen öffentlichen Spektakeln konzipiert wurde. Im Gegensatz zum griechischen Theater, das halbrund angelegt war und hauptsächlich für dramatische Aufführungen diente, war das Amphitheater vollständig geschlossen und verfolgend konzentrisch ansteigende Sitzränge rund um die zentrale Arena. Das berühmteste Beispiel ist das Kolosseum in Rom, das ursprünglich Amphitheatrum Flavium hieß und bis zu 50.000 Zuschauer aufnehmen konnte.
+
+Die Architektur römischer Amphitheater war technisch hochentwickelt: Durch ein ausgeklügeltes System von Gängen und unterirdischen Räumen (hypogeum) konnten Gladiatoren, wilde Tiere und Bühnenaufbauten schnell in die Arena transportiert werden. Das Publikum war nach sozialer Stellung getrennt - die Kaiser und Senatoren saßen in den besten Plätzen nahe der Arena, während die einfachen Bürger und Frauen in den obersten Rängen Platz nahmen. Viele Amphitheater verfügten über ein ausziehbares Sonnensegel (velarium), das von Matrosen bedient wurde.
+
+Amphitheater waren mehr als nur Unterhaltungsstätten - sie dienten als Orte der politischen Selbstdarstellung und sozialen Kontrolle. Durch die Ausrichtung kostspieliger Spiele (munera) konnten wohlhabende Bürger und Kaiser ihre Großzügigkeit demonstrieren und die Gunst des Volkes gewinnen. Diese Veranstaltungen förderten das Gemeinschaftsgefühl und vermittelten römische Werte wie Tapferkeit und militärische Stärke.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/aqudukt</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.308Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Aquädukt</title>
+    <excerpt>Ein Aquädukt ist ein künstlich angelegtes Wasserleitungsbauwerk, das Wasser über weite Strecken – oft viele Kilometer bis zu über 100 Kilometer – in eine Stadt oder Siedlung transportiert. Der Begriff bezeichnet sowohl die oberirdischen Bogenkonstruktionen, die uns heute als eindrückliche Ruinen begegnen, als auch die unterirdischen Leitungssysteme, die den größten Teil der antiken Wasserleitungen ausmachten.
+
+Besonders berühmt sind die römischen Aquädukte, die mit außerordentlicher ingenieurtechnischer Präzision gebaut wurden. Die Römer nutzten das Gefälleprinzip: Das Wasser floss ausschließlich durch die Schwerkraft, wobei die Leitungen ein konstantes, aber sehr geringes Gefälle aufwiesen – oft nur wenige Zentimeter pro Kilometer. Diese Präzision erforderte hochentwickelte Vermessungstechniken.
+
+Die spektakulären Bogenreihen, die wir heute bewundern, waren notwendig, um Täler zu überqueren, ohne dass die Wasserleitung zu tief verlaufen musste. Berühmte Beispiele sind der Pont du Gard in Südfrankreich (fast 50 Meter hoch), die Segovia-Aquädukt in Spanien oder die zahlreichen Aquädukte, die Rom mit Wasser versorgten, wie die Aqua Claudia.
+
+Rom selbst wurde von elf großen Aquädukten versorgt, die täglich etwa eine Million Kubikmeter Wasser in die Stadt brachten – genug, um die Bedürfnisse von über einer Million Einwohnern zu decken. Das Wasser versorgte nicht nur private Haushalte, sondern vor allem die zahlreichen öffentlichen Brunnen, Thermen und die aufwendigen Latrinensysteme.
+
+Die Aquädukte wurden aus Stein, Ziegeln und dem berühmten römischen Beton (opus caementicium) gebaut. Ihre Robustheit zeigt sich daran, dass viele von ihnen – oder zumindest ihre Reste – bis heute überdauert haben. Einige wurden im Mittelalter und sogar in der Neuzeit weitergenutzt oder instandgesetzt.
+
+Die Konstruktion eines Aquädukts war eine gewaltige logistische und finanzielle Unternehmung. Sie erforderte nicht nur technisches Know-how, sondern auch die Mobilisierung enormer Ressourcen an Arbeitskräften, Baumaterialien und Kapital. Aquädukte galten daher als prestigeträchtige Bauprojekte, die den Ruhm und die Macht ihrer Auftraggeber demonstrierten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/aquila</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.309Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Aquila</title>
+    <excerpt>Die Aquila (lat. "Adler") war das wichtigste Feldzeichen einer römischen Legion und symbolisierte ihre Ehre, Identität und Kampfkraft. Eingeführt von Marius um 104 v. Chr., ersetzte die silberne oder vergoldete Adlerstandarte die früheren fünf verschiedenen Tierstandarten. Die Aquila wurde vom Aquilifer (Adlerträger) getragen, einem der höchstrangigen Unteroffiziere der Legion. Der Verlust einer Aquila an den Feind galt als tiefste Schmach und konnte zur Auflösung der Legion führen. Augustus musste nach der Varusschlacht (9 n. Chr.) drei verlorene Adler zurückerobern. Die Aquila stand im Zentrum des Legionslagers und wurde in einem eigenen Heiligtum (aedes) aufbewahrt. Sie war Gegenstand religiöser Verehrung und verkörperte Jupiter, den Schutzgott Roms. Bei wichtigen Schlachten wurde um die Aquila herum gekämpft.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/auctoritas</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.310Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Auctoritas</title>
+    <excerpt>Auctoritas war in Rom das persönliche Ansehen, die moralische Autorität und der gesellschaftliche Einfluss einer Person, unabhängig von formalen Machtbefugnissen (potestas). Sie beruhte auf virtus (Tugend), dignitas (Würde), Lebenserfahrung, Verdiensten und Weisheit. Senatoren und Patrizier besaßen auctoritas kraft ihrer Stellung und ihres Lebenswerks. Augustus bezeichnete sich als "princeps" (Erster) nicht durch Macht, sondern durch auctoritas – er beanspruchte moralische Führerschaft, ohne formell König oder Diktator zu sein. Auctoritas war subtiler und oft wirksamer als bloße Macht: Ein Rat von jemandem mit hoher auctoritas wurde befolgt, ohne dass Zwang nötig war. Der Begriff ist die Wurzel des deutschen "Autorität".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/aventinus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.310Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Aventinus</title>
+    <excerpt>Der Aventinus (Aventin) war einer der sieben Hügel Roms und historisch der plebejische Hügel, im Gegensatz zum patricischen Palatinus. Ursprünglich außerhalb des pomerium (der heiligen Stadtgrenze) gelegen, war er das Zentrum der Plebejer und ihrer politischen Bewegung. Hier fanden 494 v. Chr. und 449 v. Chr. die berühmten Secessionen der Plebejer statt (secessio plebis), als diese in Streik traten und auf den Aventin auszogen, um politische Rechte zu erzwingen – dies führte zur Einrichtung des Volkstribunats. Der Aventin beherbergte wichtige Tempel, darunter den Tempel der Diana (Göttin der Sklaven und Unterschichten) und den Tempel der Ceres (Göttin des Ackerbaus). Später siedelten sich dort wohlhabende Bürger an. Die südliche Lage bot einen Überblick über den Tiber und den Handelshafen. Der Aventin symbolisierte plebejische Identität, sozialen Widerstand und politische Emanzipation.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/ballista</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.311Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Ballista</title>
+    <excerpt>Die Ballista war eine römische Torsionsgeschützmaschine, die nach dem Prinzip der Spannkraft funktionierte und große Geschosse (Steine oder schwere Bolzen) über beträchtliche Distanzen schleudern konnte. Sie basierte auf griechischen Vorbildern und wurde durch die Torsionskraft gedrehter Sehnenbündel angetrieben. Die Ballista war eine präzise Fernwaffe, die sowohl bei Belagerungen als auch in Feldschlachten eingesetzt wurde. Größere Modelle (Onager) konnten Steine von bis zu 30 kg über 400 Meter schleudern. Jede Legion verfügte über mehrere Ballistae als Teil ihrer Artillerieausrüstung. Die Bedienung erforderte speziell ausgebildete Artilleristen (ballistarii). Die Ballista symbolisierte die technologische Überlegenheit der römischen Kriegsführung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/balneum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.313Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Balneum</title>
+    <excerpt>Ein Balneum (Plural: balnea) war ein römisches Bad oder eine kleinere Badeanstalt, im Gegensatz zu den großen öffentlichen Thermen. Balnea waren private oder halböffentliche Badeeinrichtungen mit den grundlegenden Elementen: caldarium (Heißbad), tepidarium (lauwarmes Bad) und frigidarium (Kaltbad). Sie waren über die gesamte römische Welt verbreitet und dienten der Körperpflege, sozialen Interaktion und Entspannung. Viele Wohnhäuser wohlhabender Familien hatten private balnea. Öffentliche balnea waren kleiner und weniger luxuriös als die monumentalen Kaiserthermen, aber für die breite Bevölkerung zugänglich. Das Badewesen war zentral für die römische Kultur und Lebensweise. Seneca beklagte sich über den Lärm eines balneum unter seiner Wohnung. Der Begriff unterschied sich von den thermae, die größere, prächtigere Anlagen bezeichneten. Balnea fanden sich in Militärlagern, Landvillen und Provinzstädten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/capitolium</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.314Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Capitolium</title>
+    <excerpt>Das Capitolium war einer der sieben Hügel Roms und das religiöse und symbolische Zentrum der Stadt sowie des gesamten Römischen Reiches. Auf seinem südlichen Gipfel stand der Tempel des Iuppiter Optimus Maximus (bester und größter Jupiter), zusammen mit Iuno (Juno) und Minerva – die kapitolinische Trias. Dieser Tempel war der wichtigste in Rom, dort begannen und endeten Triumpfzüge, und neue Consuln legten dort ihre Amtseide ab. Der nördliche Gipfel beherbergte den Tempel der Iuno Moneta (Warner-Juno), bei dem später die römische Münzstätte stand (daher "Moneta" = Münze). Das Capitolium wurde durch seine steilen Klippen (Rupes Tarpeia) geschützt, von denen Verräter hinabgestürzt wurden. Das Wort "Kapitol" wurde weltweit zum Symbol staatlicher Macht (z.B. US Capitol). Der Hügel repräsentierte römische Identität, religiöse Autorität und politische Legitimität.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/castra</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.315Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Castra</title>
+    <excerpt>Castra (Singular: castrum) bezeichnete römische Militärlager, die nach einem standardisierten, rechteckigen Muster angelegt wurden und die Basis der römischen Militärlogistik bildeten. Jedes Lager war von einem Graben (fossa) und einer Erdwall (vallum) mit Palisaden umgeben. Die innere Struktur war streng geometrisch: zwei Hauptstraßen (via praetoria und via principalis) kreuzten sich im Zentrum, wo das Prätorium (Zelt des Kommandanten) und die Principia (Stabsgebäude) lagen. Jede Legion und ihre Hilfstruppen hatten feste Positionen. Das Lagertor hieß porta praetoria. Temporäre Lager wurden jede Nacht errichtet, permanente Lager (castra stativa) entwickelten sich zu Städten wie Castra Regina (Regensburg) oder Castra Vetera (Xanten). Die Disziplin im Lager war streng, der Bau gehörte zur täglichen Routine und demonstrierte römische Ingenieurskunst.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/censor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.315Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Censor</title>
+    <excerpt>Der Censor war eines der höchsten und ehrenvollsten Ämter der römischen Republik. Zwei Censoren wurden alle fünf Jahre für 18 Monate gewählt und waren für die Volkszählung (Census), die Überwachung der Senatorenliste (Album Senatorium) und der Ritterschaft, sowie die Aufsicht über die öffentliche Moral (regimen morum) zuständig. Sie konnten Senatoren wegen unwürdigen Verhaltens aus dem Senat ausschließen (Nota Censoria) und vergaben Staatsaufträge. Das Amt stand am Ende des cursus honorum und wurde meist von ehemaligen Konsuln bekleidet. Berühmte Censoren: Cato der Ältere, Appius Claudius Caecus.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/centurio</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.316Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Centurio</title>
+    <excerpt>Ein Centurio (Zenturio) war ein Berufsoffizier der römischen Armee, der eine Centuria (etwa 80 Mann) kommandierte. Centurionen waren das Rückgrat der militärischen Führung, verantwortlich für Disziplin, Training und die Kampffähigkeit ihrer Einheit. Sie trugen charakteristische Helme mit Querbüschen und einen Weinstock (vitis) als Rangabzeichen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/cingulum-militare</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.317Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Cingulum Militare</title>
+    <excerpt>Das Cingulum Militare war der charakteristische römische Militärgürtel, den Legionäre und Offiziere als Teil ihrer Standard-Uniform trugen und der sowohl praktische als auch symbolische Bedeutung hatte. Der breite Ledergürtel war mit Bronze- oder Messingplatten verziert und hatte mehrere Funktionen: Er trug das Gladius (auf der rechten Seite) und den Pugio (auf der linken Seite), stützte den Rücken bei langen Märschen und zeigte den militärischen Status. Vom Gürtel hingen mehrere Lederriemen (pteruges) herab, die die Leistengegend schützten und teilweise mit Metallenden beschwert waren. Das Cingulum war ein Zeichen aktiven Militärdienstes – es anzulegen bedeutete "unter Waffen treten" (cingulum sumere), es abzulegen bedeutete aus dem Dienst auszuscheiden. Prachtvolle Exemplare mit Silber- oder Goldverzierungen zeigten Rang und Verdienste. Das Cingulum symbolisierte römische Disziplin und Militärmacht.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/circus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.318Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Circus</title>
+    <excerpt>Der Circus war die römische Arena für Wagenrennen (ludi circenses), die zu den populärsten Unterhaltungsformen im Römischen Reich gehörten. Der Circus Maximus in Rom war mit etwa 250.000 Plätzen die größte Sportarena der Antike. Die langgestreckte, ovale Anlage hatte eine zentrale Barriere (spina) mit Obelisken, Statuen und Wasserbecken. Die Wagenlenker (aurigae) fuhren meist mit Viergespannen (quadrigae) und gehörten zu vier Rennställen (factiones): Rot, Weiß, Blau und Grün. Jede Fraktion hatte leidenschaftliche Anhänger. Die Rennen waren gefährlich – Unfälle (naufragia) häufig und oft tödlich. Erfolgreiche Wagenlenker wie Diocles wurden zu Superstars und verdienten Vermögen. Die Spiele dienten auch politischer Kontrolle (panem et circenses – Brot und Spiele). Neben dem Circus Maximus gab es viele kleinere circi in Provinzstädten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/clementia</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.319Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Clementia</title>
+    <excerpt>Clementia war die römische Tugend der Milde, Nachsicht und Gnade gegenüber Besiegten und Untergebenen, besonders bedeutsam im militärischen und politischen Kontext. Anders als die griechische Philanthropie war clementia eine bewusste Machtdemonstration: Der Sieger zeigte durch Gnade seine Überlegenheit und moralische Größe. Caesar machte clementia zu seinem politischen Markenzeichen – er begnadigte besiegte Gegner wie Brutus und Cassius nach dem Bürgerkrieg, was ihm kurzfristig Loyalität, langfristig aber auch Kritik einbrachte. Die Tugend wurde unter Augustus institutionalisiert: Der Senat ehrte ihn 27 v. Chr. mit einem goldenen Schild (clipeus virtutis), der seine virtus, clementia, iustitia und pietas pries. Clementia wurde als göttliche Eigenschaft betrachtet und war Gegenstand religiöser Verehrung. Sie unterschied zivilisierte römische Herrschaft von barbarischer Tyrannei. Allerdings konnte übertriebene clementia auch als Schwäche ausgelegt werden – die Balance war entscheidend.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/cleopatra</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.320Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Cleopatra VII Philopator</title>
+    <excerpt>Cleopatra VII. Philopator (69–30 v. Chr.) war die letzte Herrscherin des ptolemäischen Ägyptens und eine der faszinierendsten Figuren der Antike. Als hochgebildete Politikerin sprach sie mehrere Sprachen und war die erste Ptolemäerin, die Ägyptisch lernte. Um ihre Macht zu sichern, verbündete sie sich zunächst mit Caesar (mit dem sie einen Sohn, Caesarion, hatte) und nach dessen Tod mit Marcus Antonius, den sie heiratete und mit dem sie Zwillinge und einen weiteren Sohn hatte. Ihre Beziehung zu Antonius führte zum Konflikt mit Octavian, der sie als orientalische Bedrohung Roms darstellte. Nach der Niederlage bei Actium (31 v. Chr.) und der Eroberung Alexandrias (30 v. Chr.) beging sie Selbstmord, angeblich durch Schlangenbiss. Mit ihrem Tod endete das hellenistische Zeitalter. Cleopatra wurde zur Legende – Symbol für weibliche Macht, exotische Verführung und tragische Liebe.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/clientela</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.320Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Clientela</title>
+    <excerpt>Die Clientela war ein fundamentales soziales System im antiken Rom, das auf gegenseitigen Verpflichtungen zwischen einem Patron (patronus) und seinen Klienten (clientes) beruhte. Der Patron, meist ein wohlhabender und einflussreicher Mann, bot seinen Klienten Schutz, Rechtsvertretung, finanzielle Unterstützung und politischen Beistand. Im Gegenzug schuldeten die Klienten ihrem Patron Loyalität, Gehorsam und politische Unterstützung (z.B. bei Wahlen). Die Beziehung war erblich und galt als heilig (fides). Jeden Morgen empfing der Patron seine Klienten zur salutatio (Morgenbegrüßung). Das Clientelsystem durchdrang die gesamte römische Politik und Gesellschaft und war eine der Hauptquellen politischer Macht.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/cohors</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.321Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Kohorte</title>
+    <excerpt>Die Kohorte (lat. cohors) war die taktische Grundeinheit der römischen Legion ab der marianischen Heeresreform (107 v. Chr.). Eine Legion bestand aus zehn Kohorten zu je sechs Centurien (etwa 480 Mann). Die erste Kohorte hatte Doppelstärke (ca. 800 Mann) und führte die Legionsstandarten. Kohorten waren flexibler als die alten Manipel und erlaubten bessere Manövrierbarkeit im Gefecht. Sie kämpften in drei Linien (Triplex Acies) und konnten eigenständig taktische Aufgaben übernehmen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/consul</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.322Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Consul</title>
+    <excerpt>Der Consul war das höchste ordentliche Amt der römischen Republik und bildete die Spitze des cursus honorum. Jährlich wurden zwei Consuln vom Volk gewählt, die gemeinsam regierten (Kollegialitätsprinzip) und sich gegenseitig kontrollieren konnten (Interzession). Sie führten den Vorsitz im Senat, leiteten die Volksversammlungen, kommandierten die Armeen und verwalteten die Republik. Das Amt war mit imperium (Befehlsgewalt) ausgestattet. Die Amtszeit betrug ein Jahr, und die Jahre wurden nach den Consuln benannt (eponyme Funktion). Nach der Amtszeit wurden ehemalige Consuln automatisch Senatoren mit großem Einfluss. In der Kaiserzeit behielten die Consuln nominelle Bedeutung, verloren aber ihre eigentliche Macht an den Kaiser. Berühmte Consuln waren Cicero (63 v. Chr.) und Caesar (59 v. Chr.). Das Amt symbolisierte die Prinzipien der römischen Republik: geteilte Macht und zeitliche Begrenzung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/crassus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.323Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Marcus Licinius Crassus</title>
+    <excerpt>Marcus Licinius Crassus (ca. 115–53 v. Chr.) war einer der reichsten Männer Roms und ein einflussreicher Politiker und Feldherr der späten Republik. Er erwarb sein immenses Vermögen durch Grundstückspekulationen (er kaufte brennende Häuser günstig auf) und den Verkauf von Kriegsgefangenen. 71 v. Chr. schlug er den Sklavenaufstand des Spartacus nieder. 70 v. Chr. war er Konsul zusammen mit Pompeius. 60 v. Chr. bildete er mit Caesar und Pompeius das Erste Triumvirat. Aus Ehrgeiz führte er 53 v. Chr. einen Feldzug gegen die Parther, wurde aber in der Schlacht von Carrhae vernichtend geschlagen und getötet. Sein Tod destabilisierte das Triumvirat und trug zur Eskalation zwischen Caesar und Pompeius bei.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/cursus-honorum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.323Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Cursus Honorum</title>
+    <excerpt>Der cursus honorum ("Lauf der Ehrenämter") war die festgelegte Abfolge politischer und militärischer Ämter in der römischen Republik, die ein Politiker durchlaufen musste, um an die Spitze des Staates zu gelangen. Die klassische Reihenfolge lautete: Quästor (Finanzverwalter, ab 30 Jahren) → Aedil (optional, Stadtverwalter) → Praetor (Richter und Befehlshaber, ab 39 Jahren) → Consul (höchstes Amt, ab 42 Jahren). Danach konnten ehemalige Konsuln noch Censor werden. Zwischen den Ämtern mussten mindestens zwei Jahre liegen (Biennium). Der cursus honorum sollte sicherstellen, dass nur erfahrene und erprobte Männer in die höchsten Positionen gelangten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/dignitas</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.324Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Dignitas</title>
+    <excerpt>Dignitas bezeichnete in der römischen Gesellschaft die persönliche Würde, das Ansehen und den gesellschaftlichen Rang eines Bürgers. Sie wurde durch Leistungen im Dienst des Staates, militärische Erfolge, politische Ämter und vorbildliches Verhalten erworben und musste ständig verteidigt werden. Dignitas war ein zentraler Wert der römischen Oberschicht (Nobilität) und eng mit dem Konzept der Honor (Ehre) verbunden. Der Verlust der dignitas war eine schwere Demütigung. Caesar rechtfertigte den Bürgerkrieg mit der Verteidigung seiner dignitas – er sah sie durch Pompeius und den Senat bedroht. Die dignitas bestimmte den sozialen Status und den politischen Einfluss in Rom.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/diktator</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.325Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Diktator</title>
+    <excerpt>Der Diktator war ursprünglich ein temporäres Notstandsamt der römischen Republik mit absoluter Macht, das in Krisenzeiten für maximal sechs Monate ernannt wurde. Der Diktator hatte imperium und konnte ohne Kolleg regieren. Caesar ließ sich 49 v. Chr. zum Diktator ernennen und verlängerte das Amt mehrfach, bis er 44 v. Chr. zum "dictator perpetuo" (Diktator auf Lebenszeit) wurde. Diese Dauerherrschaft brach mit der republikanischen Tradition und war einer der Hauptgründe für seine Ermordung an den Iden des März. Nach Caesar wurde das Amt abgeschafft.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/fama</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.326Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Fama</title>
+    <excerpt>Fama war im römischen Denken sowohl der Ruf, den eine Person in der Öffentlichkeit genoss, als auch das personifizierte Gerücht als göttliche Macht. Als abstrakter Begriff bezeichnete fama den guten oder schlechten Ruf, die öffentliche Meinung und das Ansehen in der Gesellschaft. Fama war entscheidend für politischen Erfolg – ein guter fama öffnete Türen, ein schlechter konnte eine Karriere zerstören. Als Göttin Fama (griechisch Pheme) war sie eine geflügelte Gestalt, die Nachrichten und Gerüchte verbreitete. Vergil beschreibt sie in der Aeneis als vielköpfiges, vieläugiges Monster mit zahllosen Zungen, das Wahrheit und Lüge vermischt. Ovid schildert ihr Haus als bronzenen Palast, offen zu allen Seiten, wo alle Gerüchte der Welt zusammenlaufen. Fama symbolisierte die Macht der öffentlichen Meinung und die Unkontrollierbarkeit von Informationsverbreitung – Themen, die schon in Rom hochaktuell waren.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/familia</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.327Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Familia</title>
+    <excerpt>## Die römische Hausgemeinschaft
+
+Die **Familia** bezeichnete im römischen Recht die gesamte Hausgemeinschaft unter der Gewalt (*potestas*) des *paterfamilias*. Der Begriff umfasste weit mehr als die moderne Kernfamilie und bildete die Grundeinheit der römischen Gesellschaft.
+
+### Zusammensetzung der Familia
+
+Zur *familia* gehörten alle Personen und Güter unter der Herrschaft des Hausherrn:
+
+**Personen (*personae*):**
+- Der *paterfamilias* selbst (einziger rechtlich Unabhängiger)
+- Ehefrau (*uxor* bzw. *matrona*)
+- Kinder (*liberi*) jeden Alters
+- Adoptierte Kinder
+- Sklaven (*servi*)
+- Freigelassene mit Verpflichtungen (*liberti*)
+- Manchmal auch Klienten (*clientes*)
+
+**Vermögen (*res*):**
+- Das gesamte Familienvermögen (*patrimonium*)
+- Haus und Grundbesitz
+- Sklaven als lebendiges Eigentum
+- Alles, was Familienmitglieder erwarben
+
+### Rechtliche Bedeutung
+
+Die *familia* war keine Personengemeinschaft im modernen Sinne, sondern eine **Herrschaftseinheit**:
+
+- Nur der *paterfamilias* war *sui iuris* (rechtlich selbständig)
+- Alle anderen waren *alieni iuris* (unter fremder Gewalt)
+- Die *patria potestas* band alle an den Hausvater
+- Beim Tod des *paterfamilias* entstanden mehrere neue *familiae*
+
+> "Familia appellatio refertur ad servos" - Die Bezeichnung Familie bezieht sich ursprünglich auf die Sklaven (Ulpian)
+
+### Arten der Familia
+
+**Familia proprio iure**: Die Familie im engeren Sinne unter einem *paterfamilias*
+
+**Familia communi iure**: Alle Personen, die unter einem gemeinsamen Vorfahren gestanden hätten (Gens, Sippe)
+
+**Familia pecuniaque**: Familie und Vermögen als rechtliche Einheit
+
+### Religiöse Dimension
+
+Die *familia* war auch kultische Gemeinschaft:
+
+- **Sacra familiaria**: Private Familienriten und Opfer
+- **Lararium**: Hausaltar für Schutzgötter (*Lares*, *Penaten*)
+- **Totenkult**: Verehrung der Ahnen (*manes*)
+- **Genius**: Schutzgeist des *paterfamilias*
+
+Die Fortsetzung des Familienkultes war entscheidend – daher die Bedeutung männlicher Nachkommen oder Adoption.
+
+### Unterschied zu modernen Familienkonzepten
+
+- Keine Gleichberechtigung der Mitglieder
+- Einschluss von Unfreien (Sklaven)
+- Rechtliche, nicht nur biologische Einheit
+- Wirtschaftsgemeinschaft unter autokratischer Führung
+- Religiöse Kultgemeinschaft</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/fides</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.328Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Fides</title>
+    <excerpt>Fides war einer der grundlegendsten Werte der römischen Kultur und bezeichnete Treue, Vertrauen, Verlässlichkeit und die Einhaltung von Zusagen. Fides galt als göttliche Tugend (personifiziert als Göttin Fides) und war die Basis aller zwischenmenschlichen und politischen Beziehungen: Verträge, Bündnisse (foedus), Eide, Patron-Klient-Beziehungen und Freundschaften beruhten auf fides. Wer seine fides brach, verlor seine Ehre und sein Ansehen vollständig. Die Römer sahen sich selbst als besonders treu und verlässlich – ein Grund für ihren Erfolg in der Außenpolitik. "Fidem servare" (die Treue wahren) und "fidem frangere" (die Treue brechen) waren zentrale Kategorien römischer Moralität. Das lateinische Wort ist die Wurzel des deutschen "Fidel" (treu).</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/fortuna</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.329Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Fortuna</title>
+    <excerpt>Fortuna war die römische Göttin des Glücks, des Schicksals und des Zufalls, eine der am meisten verehrten Gottheiten im römischen Pantheon. Sie wurde als launische Macht dargestellt, die das Leben jedes Menschen beeinflussen konnte – sowohl zum Guten als auch zum Schlechten. Fortuna wurde typischerweise mit einem Füllhorn (cornucopia - Symbol des Überflusses) und einem Steuerruder (gubernaculum - Symbol der Lenkung des Schicksals) dargestellt, oft auf einer Kugel oder einem Rad stehend (Symbol der Unbeständigkeit). Sie hatte verschiedene Aspekte: Fortuna Redux (die Heimkehrende), Fortuna Augusta (kaiserliches Glück), Fortuna Virilis (Männerglück). Feldherren, Kaiser und einfache Bürger verehrten sie gleichermaßen. Das berühmte mittelalterliche "Rota Fortunae" (Rad der Fortuna) ging auf römische Vorstellungen zurück. Der Ausdruck "Fortuna audaces iuvat" (Das Glück begünstigt die Mutigen) war ein beliebtes römisches Sprichwort.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/forum-romanum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.330Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Forum Romanum</title>
+    <excerpt>Das Forum Romanum war das politische, religiöse, wirtschaftliche und gesellschaftliche Zentrum des antiken Rom und gilt als das bedeutendste Forum des römischen Weltreichs. Dieser rechteckige Platz im Tal zwischen den Hügeln Kapitol und Palatin entwickelte sich ab dem 7. Jahrhundert v. Chr. vom ursprünglichen Marktplatz zum repräsentativen Machtzentrum des Imperiums. Hier befanden sich die wichtigsten öffentlichen Gebäude: die Curia (Senatsgebäude), die Basiliken für Gerichtsverhandlungen und Geschäfte, zahlreiche Tempel wie der Saturntempel und der Tempel der Vesta, sowie Triumphbögen und Ehrendenkmäler.
+
+Das Forum war der Schauplatz der bedeutendsten Ereignisse römischer Geschichte: Hier hielten Politiker ihre Reden von der Rednertribüne (Rostra), hier fanden Triumpfzüge siegreicher Feldherren statt, und hier versammelten sich die Bürger zu Volksversammlungen. Unter Julius Caesar und später Augustus wurde das Forum grundlegend umgestaltet und mit prächtigen Marmorgebäuden ausgestattet. Die Via Sacra, die heilige Straße, durchzog das Forum und verband es mit anderen wichtigen Bereichen der Stadt.
+
+Im täglichen Leben war das Forum der pulsierende Mittelpunkt der Stadt: Kaufleute boten ihre Waren an, Anwälte vertraten ihre Klienten, Philosophen debattierten, und Nachrichtenverkünder verbreiteten die neuesten Ereignisse. Die umgebenden Kolonnaden boten Schutz vor Sonne und Regen. Mit dem Niedergang Roms verfiel auch das Forum, wurde aber später zu einer der wichtigsten archäologischen Stätten der Welt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/fossatum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.330Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Fossatum</title>
+    <excerpt>Das Fossatum (von 'fossa' - Graben) war der Verteidigungsgraben, der vor dem Wall (vallum) römischer Militärlager und Befestigungsanlagen ausgehoben wurde. Das Ausheben des Fossatum gehörte zu den ersten Aufgaben beim Lagerbau und war Teil der täglichen Routine marschierender Legionen. Der Graben war typischerweise 2-3 Meter tief und 3-4 Meter breit, mit V-förmigem oder steilwandigem Profil. Die ausgehobene Erde wurde zur Aufschüttung des Vallum verwendet. Bei permanenten Befestigungen wie dem Limes waren die Gräben noch tiefer und breiter, manchmal mehrfach angelegt. Das Fossatum diente mehreren Zwecken: Es verlangsamte feindliche Angriffe, erschwerte den Einsatz von Belagerungsmaschinen und bot den Verteidigern Zeit zur Vorbereitung. Entlang der Grenzen entstanden fossata als Teil größerer Verteidigungssysteme. Das Wort lebt in modernen Begriffen wie "Fossat" fort.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/gallischer-krieg</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.331Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gallischer Krieg</title>
+    <excerpt>Der Gallische Krieg (58-50 v. Chr.) war eine Serie von Militärkampagnen, durch die Julius Caesar ganz Gallien (das heutige Frankreich, Belgien und Teile Deutschlands) unter römische Kontrolle brachte. In acht Feldzugsbüchern, den "Commentarii de Bello Gallico", dokumentierte Caesar selbst diese Eroberungen. Die Kriege begannen mit der Abwehr der Helvetier-Migration und umfassten Kämpfe gegen germanische Stämme unter Ariovist, belgische Koalitionen und den entscheidenden Aufstand unter Vercingetorix, der 52 v. Chr. in Alesia niedergeschlagen wurde. Diese militärischen Erfolge machten Caesar zum reichsten und mächtigsten Mann Roms und bildeten die Grundlage für seinen späteren Aufstieg zur Alleinherrschaft. Die Eroberung Galliens erweiterte das Römische Reich erheblich und sicherte die Rheingrenze.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/gladiator</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.332Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gladiator</title>
+    <excerpt>Ein Gladiator war ein bewaffneter Kämpfer, der in den Arenen des römischen Reiches zur Unterhaltung der Massen kämpfte - oft auf Leben und Tod. Die meisten Gladiatoren waren Sklaven, Kriegsgefangene oder zum Tode Verurteilte, doch es gab auch Freiwillige, die von Ruhm und Geld angelockt wurden. Sie wurden in speziellen Gladiatorenschulen (ludi gladiatorii) unter der Leitung eines lanista ausgebildet und lebten dort in kasernenahnlichen Verhältnissen. Der Beruf war gefährlich, aber erfolgreiche Gladiatoren konnten berühmt werden und beträchtliche Preisgelder gewinnen.
+
+Es gab verschiedene Gladiatorentypen mit unterschiedlicher Ausrüstung und Kampfstil: Der Murmillo trug einen großen rechteckigen Schild und Helm mit Fischgratenverzierung, der Retiarius kämpfte mit Netz und Dreizack ohne schwere Rüstung, der Thraex hatte einen kleinen runden Schild und gekrümmtes Schwert, und der Secutor war speziell als Gegner des Retiarius konzipiert. Diese verschiedenen Typen wurden oft strategisch gegeneinander angesetzt, um spannende Kämpfe zu gewährleisten. Vor dem Kampf schwörten Gladiatoren einen Eid: 'uri, vinciri, verberari ferroque necari' - bereit zu sein, verbrannt, gefesselt, geschlagen und mit dem Schwert getötet zu werden.
+
+Gladiatoren waren paradoxe Figuren der römischen Gesellschaft: rechtlich verachtet als infames (Ehrlose), aber oft vom Publikum wie Sportstars verehrt. Frauen schwärmten für erfolgreiche Kämpfer, und Graffiti in Pompeji preisen einzelne Gladiatoren. Nach mehreren erfolgreichen Kämpfen konnte ein Gladiator mit dem rudis, einem hölzernen Schwert, symbolisch die Freiheit erlangen. Gladiatorenspiele waren politische Instrumente - Politiker und Kaiser nutzten sie, um die Bevölkerung zu beeindrucken und ihre Macht zu demonstrieren.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/gladius</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.333Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gladius</title>
+    <excerpt>Der Gladius war das charakteristische Kurzschwert der römischen Legionäre und eine der effektivsten Nahkampfwaffen der Antike. Mit einer Klingenlänge von etwa 60-85 cm und einer Breite von 5-7 cm war der Gladius speziell für den Stoß optimiert, konnte aber auch zum Hieb verwendet werden. Die zweischneidige Klinge verfügte über eine scharfe Spitze und war aus hochwertigem Stahl geschmiedet. Römische Soldaten trugen das Schwert üblicherweise auf der rechten Seite, damit es beim Marschieren in enger Formation nicht mit dem großen Schild (Scutum) des Nebenmanns kollidierte.
+
+Der Name 'Gladius' stammt möglicherweise vom lateinischen 'gladius' (Schwert) ab, das wiederum keltischen Ursprungs sein könnte. Im Nahkampf war die römische Kampftaktik verheerend effektiv: Soldaten schlugen erst mit dem Schildbuckel zu, um den Gegner aus dem Gleichgewicht zu bringen, und führten dann einen schnellen Stoß mit dem Gladius in den ungeschützten Körper aus. Diese Technik war tödlicher als Hiebwaffen, da Stichverletzungen tiefer eindringen konnten. Die enge Formation der Legionäre (Testudo) ermöglichte diese Kampfweise ideal.
+
+Es gab verschiedene Gladius-Typen, die sich im Laufe der Jahrhunderte entwickelten: Der Gladius Hispaniensis (spanisches Schwert) aus der Republik-Zeit hatte eine längere, spitz zulaufende Klinge. Der Mainz-Typ aus der frühen Kaiserzeit hatte eine lange, schlanke Form. Der Pompeii-Typ wurde im 1. Jahrhundert n. Chr. populär und war kürzer und leichter. Der Gladius wurde so zum Symbol römischer Militärmacht - sogar das lateinische Wort für Schwert wurde zum Namensgeber für Gladiatoren.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/gloria</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.334Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gloria</title>
+    <excerpt>Gloria war der römische Begriff für Ruhm und Nachruhm, besonders für militärischen Ruhm und herausragende Leistungen, die über das eigene Leben hinaus Bestand hatten. Anders als honor (öffentliche Ehre im Leben) bezeichnete gloria den bleibenden Ruhm nach dem Tod, der durch große Taten verdient wurde. Gloria war das ultimative Ziel römischer Feldherren und Staatsmänner – sie strebten danach, durch ihre Taten unsterblich zu werden. Caesar, Pompeius und Alexander der Große verkörperten das Streben nach gloria. Die Suche nach gloria motivierte militärische Eroberungen, politischen Ehrgeiz und öffentliche Bauprojekte. Historiker wie Livius und Dichter wie Vergil bewahrten die gloria großer Männer für die Nachwelt. Gloria konnte durch Triumphe, Denkmäler, literarische Werke und die mündliche Überlieferung gesichert werden. Sie war eng verbunden mit virtus (Tapferkeit) und fama (Bekanntheit). Das christliche Konzept der "Gloria Dei" (Ehre Gottes) übernahm später den Begriff.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/goldenes-zeitalter</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.335Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Goldenes Zeitalter</title>
+    <excerpt>Das **Goldene Zeitalter** geht auf antike Mythen zurück und beschreibt ursprünglich eine ideale Urzeit ohne Krieg, Not und Ungerechtigkeit, in der die Natur aus sich heraus Überfluss spendet und die Menschen in Harmonie leben. Diese Vorstellung findet sich in vielen antiken Kulturen und repräsentiert die Sehnsucht nach einem verlorenen Paradies.
+
+## Der antike Mythos
+
+**Bei Hesiod** (8. Jahrhundert v. Chr.) findet sich in den "Werken und Tagen" die klassische Darstellung: Das erste Menschengeschlecht lebte unter der Herrschaft des Kronos "wie Götter, ohne Sorge im Herzen, fern von Mühe und Jammer". Die Erde brachte von selbst Nahrung hervor, es gab keinen Zwang zur Arbeit, kein Alter und keinen Tod im heutigen Sinne – die Menschen schliefen ein wie in einen sanften Schlaf.
+
+**Ovid** beschreibt in den "Metamorphosen" das Goldene Zeitalter poetisch:
+> "Das erste war das goldene Zeitalter; ohne Rächer, ohne Gesetz,  
+> von selbst wurde Treue und Recht bewahrt. Strafe und Furcht fehlten...  
+> Die Erde selbst, unberührt vom Spaten, von keiner Pflugschar verletzt,  
+> gab von selbst alles."
+
+## Der Mythos als Geschichtsphilosophie
+
+Die antiken Denker verbanden mit dem Goldenen Zeitalter oft eine **zyklische Geschichtsauffassung**. Nach Hesiod folgten auf das Goldene die Zeitalter des Silbers, der Bronze und des Eisens – ein progressiver Verfall. Diese pessimistische Sichtweise stand im Gegensatz zum späteren christlichen Fortschrittsglauben.
+
+Interessanterweise verknüpften römische Dichter das Goldene Zeitalter mit konkreten politischen Hoffnungen. **Vergil** prophezeite in seiner 4. Ekloge die Rückkehr des Goldenen Zeitalters unter Augustus:
+> "Nun kehrt die Jungfrau zurück, es kehren zurück die Reiche des Saturn,  
+> nun wird ein neues Geschlecht vom hohen Himmel herabgesandt."
+
+Diese Identifikation der Pax Augusta mit einer neuen goldenen Zeit diente der Herrschaftslegitimation.
+
+## Übertragene Verwendung
+
+Später wurde der Ausdruck auf reale historische Epochen übertragen, die im Rückblick als besonders friedlich, wohlhabend oder kulturell herausragend gelten:
+
+- **Das Goldene Zeitalter Athens** (5. Jahrhundert v. Chr.) unter Perikles
+- **Das Goldene Zeitalter der Niederlande** (17. Jahrhundert) mit seiner Blüte in Handel, Kunst und Wissenschaft
+- **Das Goldene Zeitalter des Islam** (8.-13. Jahrhundert) als Periode wissenschaftlicher und kultureller Höchstleistungen
+- **Das Goldene Zeitalter Spaniens** (*Siglo de Oro*, 16.-17. Jahrhundert) in Literatur und Kunst
+
+## Kritische Betrachtung
+
+Die Vorstellung eines Goldenen Zeitalters ist ambivalent. Einerseits drückt sie legitime Sehnsucht nach besseren Verhältnissen aus. Andererseits kann sie zu **regressiven politischen Programmen** führen, die eine vermeintlich bessere Vergangenheit idealisieren und wiederherstellen wollen.
+
+Historiker betonen, dass rückblickende Idealisierungen oft die realen Probleme jener Epochen ausblenden – soziale Ungleichheit, Sklaverei, Unterdrückung. Das "Goldene Zeitalter" ist mehr Konstruktion als historische Realität, mehr Projektion als Beschreibung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/gravitas</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.335Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gravitas</title>
+    <excerpt>Gravitas (lat. "Schwere", "Gewicht") bezeichnete in der römischen Kultur eine Charaktereigenschaft, die Ernst, Würde, Besonnenheit und moralisches Gewicht umfasste. Ein Mann mit gravitas war ernsthaft, selbstbeherrscht, würdevoll in seinem Auftreten und bedacht in seinen Entscheidungen. Diese Eigenschaft war besonders wichtig für Senatoren, Richter und Staatsmänner. Gravitas stand im Gegensatz zu levitas (Leichtfertigkeit) und war eng verbunden mit constantia (Standhaftigkeit) und prudentia (Klugheit). Cato der Ältere galt als Inbegriff römischer gravitas. Wer gravitas besaß, strahlte natürliche Autorität aus und wurde ernst genommen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/honor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.336Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Honor</title>
+    <excerpt>Honor war ein zentraler römischer Wert und bezeichnete die öffentliche Ehre, das Ansehen und den guten Ruf eines Bürgers in der Gesellschaft. Anders als moderne Ehrbegriffe war honor objektiv messbar: durch Ämter, militärische Auszeichnungen, Triumphe, Statuen, Inschriften und öffentliche Ehrungen. Der Begriff war eng mit der politischen Karriere verbunden – jedes Amt auf dem cursus honorum brachte honor. Honor musste kontinuierlich verdient und verteidigt werden. Verletzungen des honor durch Beleidigungen oder Schmähungen waren schwere Vergehen und konnten gerichtlich verfolgt werden. Honor war auch personifiziert als Gottheit Honor, oft zusammen mit Virtus (Tapferkeit) verehrt. Tempel für Honor und Virtus standen oft zusammen, etwa der von Marius 101 v. Chr. errichtete. Der Verlust von honor (dedecus) war eine der größten Schanden für einen Römer. Honor war die sichtbare Manifestation von virtus und dignitas.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/hoplomachus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.337Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Hoplomachus</title>
+    <excerpt>Der Hoplomachus (von griech. 'hoplon' - Schild und 'machomai' - kämpfen) war ein Gladiatorentyp, dessen Ausrüstung sich an den griechischen Hopliten orientierte und der zu den schwergerüsteten Kämpfern gehörte. Er war ausgestattet mit einem kleinen runden Schild (parmula), einer Lanze (hasta), einem Kurzschwert (gladius) für den Nahkampf, hohen Beinschonern (ocreae) und einem geschlossenen Helm mit breiter Krempe. Die Kombination aus Lanze und Schwert machte ihn zu einem vielseitigen Kämpfer mit guter Reichweite. Der Hoplomachus kämpfte typischerweise gegen Murmillones oder Thraces. Sein Kampfstil kombinierte den Fernkampf mit der Lanze und den Nahkampf mit dem Gladius. Die griechisch inspirierte Ausrüstung war eine Hommage an die hellenistische Kriegsführung und sprach das gebildete Publikum an, das mit griechischer Geschichte vertraut war. Der Hoplomachus war weniger populär als Murmillo oder Retiarius, aber respektiert für seine Vielseitigkeit.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/imperator</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.338Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Imperator</title>
+    <excerpt>Der Imperator war ursprünglich ein Ehrentitel für siegreiche römische Feldherren. Nach einer gewonnenen Schlacht wurde ein General von seinen Soldaten zum Imperator ausgerufen. Dieser Titel entwickelte sich während der späten Republik und frühen Kaiserzeit zu einem Herrschertitel. Julius Caesar trug den Titel mehrfach nach seinen Gallien- und Bürgerkriegssiegen. Unter Augustus wurde Imperator zum ständigen Bestandteil des Kaisernamens und symbolisierte die militärische Oberhoheit. Der Begriff bezeichnete somit nicht nur militärische Führung, sondern auch die höchste politische Macht im römischen Reich. Die moderne Bezeichnung "Kaiser" und "Emperor" leiten sich direkt von diesem antiken Titel ab.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/imperium</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.338Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Imperium</title>
+    <excerpt>Imperium bezeichnete in der römischen Antike die höchste Befehls- und Amtsgewalt, insbesondere die militärische Kommandogewalt. Ursprünglich war das Imperium das Recht, Truppen zu befehligen und militärische Disziplin durchzusetzen - einschließlich der Macht über Leben und Tod. Konsuln, Praetoren und Diktatoren verfügten über das Imperium während ihrer Amtszeit. Ein Magistrat mit Imperium durfte die Liktoren mit Rutengebündeln (fasces) als Zeichen seiner Autorität vor sich hertragen lassen. Außerhalb Roms einschloss das Imperium auch die zivile Gerichtsbarkeit.
+
+Im Laufe der Geschichte entwickelte sich der Begriff weiter: Das Imperium proconsulare war eine verlängerte oder außerordentliche Kommandogewalt, die auch ehemaligen Magistraten verliehen werden konnte. Während der späten Republik erhielten Feldherren wie Pompeius und Caesar außergewöhnliche imperium-Befugnisse über mehrere Provinzen gleichzeitig. Augustus begründete seine Macht geschickt auf dem imperium proconsulare maius, das ihm Autorität über alle Provinzen mit Legionen gab, ohne dass er formell König oder Diktator sein musste.
+
+Später bezeichnete 'Imperium Romanum' das römische Weltreich selbst - den gesamten Herrschaftsbereich unter römischer Kontrolle. In diesem Sinne umfasste das Imperium auf seinem Höhepunkt im 2. Jahrhundert n. Chr. Gebiete von Britannien bis zum Euphrat und von der Nordsee bis zur Sahara. Der Begriff spiegelte den römischen Anspruch auf universale Herrschaft wider. Aus diesem römischen Konzept entwickelten sich später die Begriffe 'Imperator' (Kaiser) und 'Imperialismus'.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/iustitia</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.339Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Iustitia</title>
+    <excerpt>Iustitia war die römische Tugend der Gerechtigkeit, Rechtschaffenheit und des gerechten Handelns, fundamental für die römische Rechts- und Staatsauffassung. Sie bezeichnete sowohl die Eigenschaft des gerechten Menschen als auch die abstrakte Idee der Gerechtigkeit. Cicero definierte iustitia als "jedem das Seine geben" (suum cuique tribuere) – die korrekte Zuteilung von Rechten, Pflichten und Strafen. Iustitia war eine der vier Kardinaltugenden (mit prudentia, fortitudo und temperantia) und bildete die Grundlage des römischen Rechtssystems. Sie wurde personifiziert als Göttin Iustitia, dargestellt mit Waage und Schwert. Augustus ließ iustitia auf seinem goldenen Ehrenschild (clipeus virtutis) verzeichnen. Die Römer betrachteten die gerechte Verwaltung eroberter Gebiete als Rechtfertigung ihrer Herrschaft. Iustitia unterschied legitime von tyrannischer Macht. In der Philosophie war iustitia eng mit dem Naturrecht (ius naturale) verbunden.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/kulturelle-blte</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.341Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Kulturelle Blüte</title>
+    <excerpt>Als **kulturelle Blüte** bezeichnet man eine historische Phase, in der Kunst, Literatur, Wissenschaft und oft auch Bildung in verhältnismäßig kurzer Zeit besonders viele bedeutende Werke und Neuerungen hervorbringen. Der Begriff beschreibt Perioden außerordentlicher kreativer und intellektueller Produktivität, die oft als Höhepunkte einer Zivilisation oder Epoche gelten.
+
+## Voraussetzungen kultureller Blütezeiten
+
+Solche Blütezeiten sind typischerweise mit mehreren Faktoren verbunden:
+
+- **Politische Stabilität** schafft den nötigen Freiraum für künstlerische und wissenschaftliche Tätigkeit
+- **Wirtschaftlicher Wohlstand** ermöglicht es, Künstler, Gelehrte und Handwerker zu unterstützen
+- **Mäzenatentum** – sei es durch Herrscher, Adlige, reiche Bürger oder religiöse Institutionen – stellt die materiellen Ressourcen bereit
+- **Kultureller Austausch** durch Handel, Migration oder Eroberung führt zu befruchtenden Begegnungen verschiedener Traditionen
+
+## Historische Beispiele
+
+**Das klassische Athen** (5. Jahrhundert v. Chr.) brachte die großen Dramatiker Aischylos, Sophokles und Euripides hervor, ebenso die Philosophen Sokrates, Platon und Aristoteles. Die attische Demokratie und der wirtschaftliche Wohlstand durch den Attischen Seebund schufen ideale Bedingungen.
+
+**Die augusteische Literatur** erreichte unter Kaiser Augustus ihren Höhepunkt mit Dichtern wie Vergil (*Aeneis*), Horaz (*Oden*) und Ovid (*Metamorphosen*). Die neu etablierte Pax Romana nach den Bürgerkriegen bot den kulturellen Freiraum.
+
+**Das islamische Goldene Zeitalter** (8. bis 13. Jahrhundert) sah bedeutende Fortschritte in Mathematik, Astronomie, Medizin und Philosophie. Bagdad, Cordoba und Kairo wurden zu Zentren des Wissens, wo griechische Texte bewahrt und weiterentwickelt wurden.
+
+**Die italienische Renaissance** (15.-16. Jahrhundert) gilt als eine der bedeutendsten kulturellen Blütezeiten Europas. In Florenz, Rom und Venedig schufen Künstler wie Leonardo da Vinci, Michelangelo und Raffael unsterbliche Werke. Gleichzeitig revolutionierten Denker wie Machiavelli das politische und Galilei das wissenschaftliche Denken.
+
+**Das niederländische Goldene Zeitalter** (17. Jahrhundert) brachte Meister wie Rembrandt, Vermeer und Hals hervor. Der wirtschaftliche Erfolg der Niederlande durch Handel und die religiöse Toleranz zogen Talente aus ganz Europa an.
+
+**Die Weimarer Klassik** (um 1800) mit Goethe und Schiller machte das kleine Weimar zum Zentrum der deutschen Literatur. Die Unterstützung durch Herzog Carl August ermöglichte diese Konzentration literarischer Genies.
+
+## Kritische Perspektiven
+
+Kulturelle Blütezeiten sind jedoch keine rein positiven Phänomene. Sie gehen oft mit sozialer Ungleichheit einher, da die kulturelle Produktion häufig von privilegierten Eliten getragen wird. Die materiellen Grundlagen – Reichtum durch Handel, Eroberung oder Ausbeutung – werden in der retrospektiven Verehrung oft ausgeblendet.
+
+Zudem kann der Rückblick verklärend sein: Was spätere Generationen als "Blüte" wahrnehmen, wurde von Zeitgenossen möglicherweise anders erlebt. Viele bedeutende Künstler lebten in Armut oder wurden erst nach ihrem Tod anerkannt.
+
+Dennoch bleiben diese Epochen faszinierende Studienobjekte für die Frage, wie günstige Umstände menschliche Kreativität zu außerordentlichen Leistungen anspornen können.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/legio</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.342Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Legio</title>
+    <excerpt>Eine Legio (Legion) war die größte militärische Einheit der römischen Armee, bestehend aus etwa 4.200 bis 6.000 schwerbewaffneten Infanteristen (Legionäre) und Unterstützungstruppen. Jede Legion war in Kohorten, Manipel und Centurien unterteilt und wurde von einem Legaten kommandiert. Legionen waren das Rückgrat der römischen Militärmacht und ermöglichten die Eroberung und Verteidigung des Reiches.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/legion</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.342Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Legion</title>
+    <excerpt>Die Legion war die Grundeinheit des römischen Heeres und bildete das Rückgrat der militärischen Macht Roms. Eine Legion bestand in der Kaiserzeit aus etwa 4.800 bis 6.000 schwer bewaffneten Infanteristen (Legionären), die alle römische Bürger sein mussten. Die organisatorische Struktur einer Legion war hochgradig entwickelt: Sie war in 10 Kohorten unterteilt, wobei jede Kohorte wiederum aus mehreren Zenturien (etwa 80 Mann) bestand, die von einem Centurio befehligt wurden. Die erste Kohorte hatte eine Sonderstellung mit doppelter Stärke und beherbergte den Legionsadler (aquila), das wichtigste Symbol der Legion. Zu einer Legion gehörten zudem etwa 120 Reiter für Aufklärungs- und Meldedienste sowie zahlreiche Hilfstruppen (Auxiliartruppen) aus nicht-römischen Völkern. Die Legion war eine hochmobile, disziplinierte Kampfeinheit, die nicht nur im Kampf, sondern auch beim Bau von Straßen, Brücken und Befestigungen eingesetzt wurde. Jede Legion trug eine Nummer und oft einen Beinamen, der an Siege oder den Gründer erinnerte.CenturioGladiusLimes</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/limes</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.343Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Limes</title>
+    <excerpt>Der Limes war die befestigte Grenzlinie des Römischen Reiches, die das zivilisierte Imperium von den 'barbarischen' Gebieten jenseits der Grenze trennte. Diese monumentale Verteidigungsanlage bestand aus einer Kombination von Wachtürmen, Kastellen, Palisaden, Mauern, Gräben und Straßen. Der bekannteste Abschnitt ist der obergermanisch-rätische Limes in Deutschland, der sich über 550 Kilometer von Rheinbrohl am Rhein bis Hienheim an der Donau erstreckt und zum UNESCO-Welterbe gehört. Der Hadrianswall in Britannien (etwa 120 km) und der Antoninuswall (60 km) sind weitere berühmte Beispiele.
+
+Der Limes war mehr als nur eine militärische Verteidigungslinie - er diente der Kontrolle von Handel und Migration, der Erhebung von Zöllen und als Symbol römischer Macht. An der Grenze waren zahlreiche Hilfstruppeneinheiten (Auxiliartruppen) stationiert, die in Kastellen unterschiedlicher Größe untergebracht waren. Wachtürme standen in Sichtweite voneinander, sodass Signale schnell weitergegeben werden konnten. Hinter dem Limes verlief eine Militärstraße, die den schnellen Transport von Truppen ermöglichte. Größere Kastelle entwickelten sich zu blühenden Siedlungen mit zivilen Anwohnern (canabae).
+
+Die Konstruktion des Limes variierte je nach geografischen Gegebenheiten und strategischer Bedeutung: In Britannien bestand er aus massiven Steinmauern, in Germanien ursprünglich aus Holzpalisaden, später aus Steinmauern. In Afrika und im Osten bestand der Limes oft nur aus einer Straße mit Wachtürmen. Der Limes markierte die maximale Ausdehnung des Römischen Reiches im 2. Jahrhundert n. Chr. Seine Aufgabe im 3. und 4. Jahrhundert signalisierte die schwindende Macht Roms.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/ludus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.344Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Ludus</title>
+    <excerpt>Ludus (Plural: ludi) war ein vielseitiger lateinischer Begriff, der sowohl "Spiel", "Schule" als auch "öffentliche Spiele" bezeichnete. In der Bedeutung "Schule" (ludus litterarius) waren ludi Grundschulen, wo Kinder zwischen 7 und 11 Jahren Lesen, Schreiben und Rechnen lernten. Der Unterricht war privat organisiert und kostenpflichtig. Als "öffentliche Spiele" (ludi publici) waren ludi große Festveranstaltungen mit Wagenrennen, Gladiatorenkämpfen und Theateraufführungen, die von Magistraten oder dem Kaiser finanziert wurden. Berühmt waren die Ludi Romani (zu Ehren Jupiters), Ludi Plebeii und Ludi Megalenses. Ein ludus gladiatorius war eine Gladiatorenschule, wo Kämpfer trainiert wurden – die berühmteste war der Ludus Magnus in Rom neben dem Kolosseum. Der Begriff verkörpert die römische Verbindung von Bildung, Unterhaltung und Sport.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/manipulus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.345Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Manipel</title>
+    <excerpt>Der Manipel (lat. manipulus, "Handvoll") war die taktische Grundeinheit der römischen Legion vor den marianischen Reformen. Ein Manipel bestand aus zwei Centurien (120-160 Mann) und war klein genug für flexible Manöver. Die Legion wurde in 30 Manipel gegliedert: 10 Hastati (erste Reihe), 10 Principes (zweite Reihe) und 10 Triarii (dritte Reihe, die erfahrensten Veteranen). Dieses System ermöglichte eine schachbrettartige Aufstellung (Quincunx), bei der frische Truppen nachrücken konnten. Nach Marius wurde der Manipel durch die größere Kohorte ersetzt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/marcus-antonius</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.346Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Marcus Antonius</title>
+    <excerpt>Marcus Antonius (83–30 v. Chr.), bekannt als Mark Anton, war ein römischer Feldherr und Politiker, Anhänger Caesars und später Triumvir, dessen dramatische Beziehung zu Kleopatra das Ende der Republik mitbestimmte. Als Caesars Magister Equitum (Reiteroberst) war er dessen engster Vertrauter. Nach Caesars Ermordung (44 v. Chr.) hielt Antonius die berühmte Leichenrede, die zum Volksaufstand gegen die Verschwörer führte. 43 v. Chr. bildete er mit Octavian und Lepidus das Zweite Triumvirat und besiegte bei Philippi (42 v. Chr.) Brutus und Cassius. Im Osten lernte er Kleopatra VII. kennen und verliebte sich in sie, was zum Bruch mit Octavian führte. Die Schlacht von Actium (31 v. Chr.) besiegelte seine Niederlage. Nach der Eroberung Alexandrias durch Octavian (30 v. Chr.) beging Antonius Selbstmord. Seine Geschichte symbolisiert den Konflikt zwischen römischer Pflicht und persönlicher Leidenschaft.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/marcus-brutus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.346Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Marcus Iunius Brutus</title>
+    <excerpt>Marcus Iunius Brutus (85–42 v. Chr.) war ein römischer Politiker und Philosoph, der als Anführer der Verschwörer gegen Caesar in die Geschichte einging. Als Sohn einer Nichte Catos des Jüngeren stand er in der Tradition republikanischer Ideale. Trotz seiner Begnadigung durch Caesar nach der Schlacht von Pharsalus (48 v. Chr.) und seiner Ernennung zum Praetor schloss er sich der Verschwörung an, die Caesar an den Iden des März (15. März 44 v. Chr.) ermordete. Brutus rechtfertigte den Tyrannenmord mit republikanischen Prinzipien und berief sich auf seinen angeblichen Vorfahren Lucius Iunius Brutus, der die Könige aus Rom vertrieben hatte. Nach Caesars Tod floh Brutus in den Osten, wurde aber 42 v. Chr. bei Philippi von Antonius und Octavian besiegt und beging Selbstmord. Shakespeare verewigte ihn in seinem Drama. Brutus verkörperte den tragischen Konflikt zwischen persönlicher Loyalität und politischem Ideal.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/matrona</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.347Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Matrona</title>
+    <excerpt>## Die ehrbare römische Hausherrin
+
+Die **Matrona** (Plural: *matronae*) bezeichnet die verheiratete, ehrenhafte Frau aus der römischen Oberschicht, die als Herrin des Haushalts (*domina*) eine zentrale Rolle in der römischen Gesellschaft innehatte. Im Gegensatz zur unverheirateten Jungfrau oder zur Sklavin genoss die Matrona hohe soziale Anerkennung und trug besondere Würdezeichen.
+
+### Rechtliche Stellung und Privilegien
+
+Die Matrona befand sich rechtlich unter der *manus* (Gewalt) ihres Ehemannes oder, bei einer *sine manu*-Ehe, unter der *patria potestas* ihres Vaters. Dennoch hatte sie im Haushalt weitreichende Befugnisse:
+
+- Verwaltung des Haushalts (*cura domestica*)
+- Aufsicht über Sklaven und Personal
+- Erziehung der Kinder, besonders der Töchter
+- Teilnahme an religiösen Kulten (z.B. Bona Dea)
+- Repräsentation der Familie in der Öffentlichkeit
+
+### Äußere Kennzeichen der Würde
+
+Die Matrona unterschied sich durch bestimmte Kleidung und Insignien:
+
+- **Stola**: Das bodenlange Übergewand, das nur verheirateten Frauen zustand
+- **Palla**: Der große rechteckige Mantel
+- **Vittae**: Schmale Wollbinden im Haar als Zeichen der Ehrbarkeit
+- **Schmuck**: Gold und Edelsteine zur Zurschaustellung des Familienvermögens
+
+> "Matrona, quae recte ac probe vivit" - Die Matrona, die rechtschaffen und ehrenhaft lebt
+
+### Tugenden und Idealbild
+
+Von der Matrona wurden die klassischen römischen Tugenden erwartet:
+
+- **Castitas** (Keuschheit): Sexuelle Treue zum Ehemann
+- **Pudicitia** (Sittsamkeit): Zurückhaltung und Bescheidenheit
+- **Pietas** (Pflichterfüllung): Hingabe an Familie und Götter
+- **Lanificium** (Wollarbeit): Häusliche Tüchtigkeit, auch wenn Sklavinnen die Arbeit verrichteten
+
+Berühmte Beispiele tugendhafter Matronen sind Cornelia (Mutter der Gracchen) und Lucretia, deren Freitod zur Vertreibung der Könige führte.
+
+### Unterschied zu anderen Frauenrollen
+
+- **Virgo**: Die unverheiratete Jungfrau, noch unter väterlicher Gewalt
+- **Concubina**: Die Konkubine ohne rechtmäßige Ehe
+- **Meretrix**: Die Prostituierte ohne gesellschaftliche Ehre
+- **Ancilla**: Die Sklavin ohne persönliche Rechte</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/mos-maiorum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Mos Maiorum</title>
+    <excerpt>Mos maiorum (lat. "Sitte der Vorfahren") bezeichnete das ungeschriebene Gesetz der überlieferten Sitten, Bräuche und Werte, die von den Ahnen vererbt wurden und die römische Gesellschaft prägten. Es war kein formales Gesetzbuch, sondern ein moralischer und sozialer Verhaltenskodex, der als verbindlich galt. Zum mos maiorum gehörten Werte wie pietas (Pflichtgefühl), virtus (Tugend), fides (Treue) und gravitas (Ernst). Die Römer beriefen sich ständig auf den mos maiorum, um politische Entscheidungen zu legitimieren oder Neuerungen abzulehnen. Konservative Politiker wie Cato der Ältere verteidigten den mos maiorum gegen griechische Einflüsse und Dekadenz. In der Krise der späten Republik wurde der Verfall des mos maiorum beklagt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/murmillo</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.349Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Murmillo</title>
+    <excerpt>Der Murmillo (auch Mirmillo) war ein Gladiatorentyp, der nach einem Fisch (griech. 'mormyros') benannt wurde, dessen stilisierte Form seinen Helm zierte. Er war mit schwerer Rüstung ausgestattet: einem großen rechteckigen Schild (scutum) wie ein Legionär, einem Kurzschwert (gladius), einem Helm mit Kamm und Visier, einem Beinschoner (ocrea) am linken Bein und einem Armschutz (manica) am rechten Arm. Der Murmillo kämpfte typischerweise gegen den netzführenden Retiarius oder den leichter gerüsteten Thraex. Sein Kampfstil war defensiv und ausdauernd, da er sich auf seine schwere Panzerung verließ. Die Duelle zwischen Murmillo und Retiarius waren besonders populär, da sie den Gegensatz zwischen schwer gerüstetem Infanteristen und beweglichem Kämpfer darstellten. Die Ausrüstung des Murmillo war an römische Legionäre angelehnt und symbolisierte römische Militärmacht.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/octavia-minor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.349Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Octavia Minor</title>
+    <excerpt>Octavia Minor (ca. 69–11 v. Chr.) war die ältere Schwester des Augustus (Octavian) und eine zentrale politische Figur in den Wirren des untergehenden Republik. Bekannt für ihre Tugenden – Schönheit, Intelligenz und pietas – wurde sie zum Vorbild römischer Weiblichkeit. Nach dem Tod ihres ersten Mannes, Gaius Claudius Marcellus, wurde sie 40 v. Chr. mit Marcus Antonius verheiratet, um das politische Bündnis zwischen ihrem Bruder und Antonius zu festigen. Die Ehe zerbrach, als Antonius sich Kleopatra zuwandte. Trotz öffentlicher Demütigung blieb Octavia würdevoll und zog Antonius' Kinder (auch die mit Kleopatra) auf. Augustus ehrte sie mit dem ersten öffentlichen Bauwerk, das nach einer Frau benannt wurde (Porticus Octaviae). Nach ihrem Tod wurde sie mit einem Staatsbegräbnis geehrt. Octavia verkörperte römische Tugend in einer Zeit des Umbruchs.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/onager</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.350Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Onager</title>
+    <excerpt>Der Onager (lat. "Wildesel") war eine schwere römische Belagerungswaffe des 4. Jahrhunderts n. Chr., eine Art Katapult, das große Steine über Stadtmauern schleudern konnte. Der Name bezog sich auf den gewaltigen Rückschlag der Maschine, der an den Tritt eines Wildesels erinnerte. Der Onager funktionierte mit einem einzigen vertikalen Wurfarm, der durch ein Torsionsbündel gespannt wurde. Beim Lösen der Spannung schnellte der Arm nach vorn und schleuderte das Geschoss aus einer Schlinge. Diese Waffe konnte Steine von 25-90 kg über Distanzen von 100-400 Metern schleudern. Der Onager war besonders bei Belagerungen gefürchtet, da seine Geschosse Mauern beschädigen und Verteidiger demoralisieren konnten. Vegetius beschreibt ihn ausführlich in seinem Werk "De Re Militari".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/ostia</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.351Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Ostia</title>
+    <excerpt>Ostia (vollständig Ostia Antica) war die antike Hafenstadt Roms an der Tibermündung, etwa 25 km südwestlich der Hauptstadt, und diente als lebenswichtiger Handels- und Versorgungsknotenpunkt des Römischen Reiches. Der Name bedeutet "Mündung" (von lat. 'ostium'). Gegründet der Legende nach im 7. Jahrhundert v. Chr. von König Ancus Marcius, entwickelte sich Ostia zum wichtigsten Seehafen für Getreideimporte aus Ägypten, Afrika und Sizilien. Die Stadt verfügte über ausgeklügelte Lagerhäuser (horrea), einen künstlichen Hafen (von Kaiser Claudius und Trajan erweitert), Handelsgilden (scholae) und eine multikulturelle Bevölkerung. Ostia war auch Flottenstützpunkt (classis Ostiensis). Mit über 50.000 Einwohnern in der Kaiserzeit war sie eine blühende Handelsmetropole. Die gut erhaltenen Ruinen zeigen Wohnhäuser (insulae), Thermen, Theater und den Neptuntempel. Ostia symbolisierte die wirtschaftliche Macht Roms.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/palatinus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.351Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Palatinus</title>
+    <excerpt>Der Palatin (lat. Collis Palatinus oder Mons Palatinus) ist einer der sieben Hügel Roms und gilt als der älteste besiedelte Teil der Stadt. Der Legende nach gründete Romulus hier 753 v. Chr. die Stadt Rom. In der Republik lebten wohlhabende Römer auf dem Palatin, darunter Cicero. In der Kaiserzeit wurde der Palatin zum exklusiven Wohnort der Kaiser: Augustus, Tiberius, Caligula, Domitian und andere errichteten hier ihre Paläste. Die kaiserlichen Residenzen wurden so prächtig, dass das lateinische Wort 'palatium' (Palast) vom Hügelnamen abgeleitet wurde und in vielen Sprachen zum Begriff für "Palast" wurde (englisch "palace", französisch "palais", deutsch "Palast").</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/paterfamilias</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.352Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Paterfamilias</title>
+    <excerpt>## Der Hausvater im römischen Recht
+
+Der **Paterfamilias** ("Vater der Familie") war das männliche Oberhaupt der römischen *familia* und besitzt die umfassende rechtliche Gewalt (*patria potestas*) über alle Familienmitglieder. Diese Position machte ihn zum absoluten Herrscher über Haus, Hof und alle darin lebenden Personen – ein Kernstück des römischen Gesellschaftssystems.
+
+### Die *Patria Potestas*
+
+Die väterliche Gewalt des Paterfamilias war nahezu unbegrenzt und umfasste:
+
+- **Ius vitae necisque** (Recht über Leben und Tod): Theoretisches Recht, Kinder zu töten oder auszusetzen
+- **Verkäuflichkeit**: Recht, Kinder in Sklaverei zu verkaufen (später eingeschränkt)
+- **Eigentumsrecht**: Alles, was Familienmitglieder erwarben, gehörte ihm
+- **Ehegewalt**: Zustimmung oder Ablehnung von Heiraten der Kinder
+- **Strafgewalt**: Häusliches Gericht über Familienangelegenheiten
+
+> "Patria potestas in pietate debet, non atrocitate consistere" - Die väterliche Gewalt soll auf Liebe beruhen, nicht auf Grausamkeit (Rechtsgrundsätze)
+
+### Wer konnte Paterfamilias werden?
+
+Nur ein römischer Bürger (*civis Romanus*) **sui iuris** (rechtlich unabhängig) konnte Paterfamilias sein:
+
+- Man wurde es durch den Tod des eigenen Vaters
+- Adoptierte Söhne traten in die *potestas* des Adoptivvaters
+- **Emanzipation** konnte Söhne aus der Gewalt entlassen
+- Frauen konnten niemals Paterfamilias werden, selbst als Witwen
+
+### Pflichten des Paterfamilias
+
+ Trotz seiner Macht hatte er auch Pflichten:
+
+- **Alimenta**: Verpflichtung zum Unterhalt aller *personae alieni iuris*
+- **Bildung**: Ausbildung der Söhne (oft durch *grammaticus* und *rhetor*)
+- **Mitgift**: Bereitstellung der Mitgift (*dos*) für Töchter
+- **Totenkult**: Durchführung der *sacra familiaria* (Familienriten)
+- **Rechtsvertretung**: Handeln vor Gericht für Untergebene
+
+### Historische Entwicklung
+
+In der frühen Republik war die *patria potestas* fast absolut. Über die Jahrhunderte wurde sie gemäßigt:
+
+- **2. Jh. v. Chr.**: Gesellschaftliche Missbilligung extremer Gewaltausübung
+- **Kaiserzeit**: Gesetzliche Einschränkungen (z.B. Verbot, Kinder zu töten)
+- **Konstantin**: Christliche Ethik schwächte die absolute Gewalt weiter
+
+### Unterschied zu anderen Familienrollen
+
+- **Filius familias**: Der Sohn unter väterlicher Gewalt (auch als Erwachsener)
+- **Matrona**: Die Ehefrau, Herrin des Haushalts, aber rechtlich untergeordnet
+- **Libertus**: Der Freigelassene, der weiter Verpflichtungen hatte</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/patricier</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.353Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Patricier</title>
+    <excerpt>Die Patricier waren die Angehörigen der alteingesessenen aristokratischen Oberschicht des antiken Rom und bildeten in der Frühzeit der römischen Republik die exklusive herrschende Elite. Der Begriff leitet sich von 'patres' (Väter) ab und bezog sich ursprünglich auf die Nachkommen der ersten Senatoren, die Romulus angeblich ernannt hatte. Patricier genossen jahrhundertelang ein Monopol auf politische und religiöse Ämter - nur sie konnten Konsuln, Praetoren oder Pontifices werden. Sie verfügten über das ausschließliche Recht, die Auspizien zu nehmen, also den Willen der Götter zu deuten.
+
+Die patricische Vorherrschaft führte zum jahrhundertelangen Ständekonflikt mit den Plebejern, der einfachen Bürgerschaft. Durch die Leges Liciniae Sextiae (367 v. Chr.) wurde festgelegt, dass einer der beiden Konsuln ein Plebejer sein musste. Die Lex Hortensia (287 v. Chr.) erklärte plebiszitäre Beschlüsse für das gesamte Volk bindend. Trotz dieser politischen Öffnung blieben patricische Familien lange einflussreich. Zu den berühmtesten patricischen Geschlechtern zählten die Fabier, Claudier, Cornelier und Julier (aus denen Julius Caesar stammte).
+
+Patricier zeichneten sich durch besondere Privilegien aus: Sie trugen rote Schuhe (calcei patrici), ihre Namen wurden in speziellen Listen geführt, und sie bildeten geschlossene Heiratskreise. Ihr Reichtum basierte auf Landbesitz und Klientelverhältnissen. In der späten Republik verlor die Unterscheidung zwischen Patriciern und Plebejern an Bedeutung, da sich eine neue Nobilität aus beiden Ständen bildete. Kaiser Konstantin belebte den Patriciertitel später als Ehrentitel neu.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/patronus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.354Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Patronus</title>
+    <excerpt>Der Patronus (Schutzherr) war im römischen Clientelsystem der sozial höherstehende Partner, der seinen Klienten (clientes) Schutz, Unterstützung und Förderung bot. Patrone waren meist wohlhabende Senatoren, Ritter oder einflussreiche Bürger. Sie vertraten ihre Klienten vor Gericht, halfen ihnen finanziell in Notlagen, verschafften ihnen Ämter und Aufträge, und boten politischen Beistand. Dafür erwarteten sie Loyalität, Gehorsam und politische Unterstützung (Wahlstimmen, Gefolge bei öffentlichen Auftritten). Die Patron-Klient-Beziehung war lebenslang und vererblich. Freigelassene (Liberti) blieben automatisch Klienten ihres ehemaligen Herrn. Das Patronatssystem war eine der Säulen römischer Macht und sozialer Ordnung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pax-romana</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.355Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Pax Romana</title>
+    <excerpt>Die Pax Romana ("Römischer Frieden") bezeichnet eine etwa 200- bis 250-jährige Phase relativen Friedens und innerer Stabilität im Römischen Reich. Sie begann mit der Herrschaft des Augustus (27 v. Chr.) nach den jahrzehntelangen Bürgerkriegen der späten Republik und endete ungefähr mit dem Tod des Kaisers Marcus Aurelius (180 n. Chr.), als mit den Markomannenkriegen und zunehmenden Grenzkonflikten eine neue Ära der Instabilität einsetzte.
+
+Während der Pax Romana erlebte das Römische Reich seine größte territoriale Ausdehnung und wirtschaftliche Blüte. Unter den fünf guten Kaisern (Nerva, Trajan, Hadrian, Antoninus Pius und Marcus Aurelius) erreichte das Reich zwischen 96 und 180 n. Chr. seinen Höhepunkt an Stabilität und Wohlstand. Das Fehlen größerer innerer Konflikte ermöglichte einen beispiellosen wirtschaftlichen Aufschwung.
+
+Der Handel blühte im gesamten Mittelmeerraum und darüber hinaus. Handelswege verbanden Rom mit Indien, China und dem subsaharischen Afrika. Die berühmte Via Appia und andere Römerstraßen durchzogen das Reich und erleichterten sowohl den Warentransport als auch die Kommunikation. Ein einheitliches Währungssystem, basierend auf dem Denar und Aureus, vereinfachte den Handel erheblich.
+
+Der Städtebau erreichte ein neues Niveau. Überall im Reich entstanden prächtige Städte nach römischem Vorbild mit Foren, Tempeln, Thermen, Amphitheatern und Aquädukten. Die römische Infrastruktur mit ihrem ausgeklügelten Straßennetz, Wasserleitungen und Abwassersystemen war für die damalige Zeit revolutionär.
+
+Die Pax Romana schuf auch günstige Bedingungen für kulturellen Austausch und geistige Entwicklung. Literatur, Philosophie, Architektur und Rechtswissenschaft blühten. Die kaiserliche Verwaltung, obwohl nicht perfekt, funktionierte vergleichsweise zuverlässig und sorgte für Rechtssicherheit im gesamten Reich.
+
+Allerdings war die Pax Romana keineswegs eine Zeit absoluten Friedens. An den Grenzen des Reiches fanden ständig militärische Auseinandersetzungen statt, etwa in Britannien, Germanien, Dakien und Parthien. Auch innerhalb des Reiches kam es gelegentlich zu Aufständen, wie dem jüdischen Krieg (66-70 n. Chr.). Der Begriff bezieht sich daher primär auf den Frieden im Kernland des Reiches und die Abwesenheit zerstörerischer Bürgerkriege.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pietas</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.356Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Pietas</title>
+    <excerpt>Pietas war ein fundamentaler Wert der römischen Gesellschaft und bezeichnete die Pflichterfüllung und Frömmigkeit gegenüber den Göttern, der Familie und dem Staat. Der Begriff umfasste mehrere Dimensionen: religiöse Frömmigkeit (Verehrung der Götter), familiäre Pietät (Respekt vor Eltern und Ahnen), und staatsbürgerliche Pflichterfüllung (Loyalität zur res publica). Pietas war die Grundlage des römischen Wertesystems und galt als unverzichtbare Tugend für jeden römischen Bürger. Vergils Aeneas wird wiederholt als 'pius Aeneas' (der fromme Aeneas) beschrieben, weil er trotz persönlicher Opfer seine Pflicht gegenüber den Göttern und seinem Volk erfüllt. Das lateinische Wort ist die Wurzel des deutschen "Pietät".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pilum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.357Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Pilum</title>
+    <excerpt>Das Pilum war der charakteristische Wurfspeer der römischen Legionäre, der als taktische Waffe eine entscheidende Rolle in der römischen Kriegführung spielte. Mit einer Gesamtlänge von etwa 2 Metern bestand es aus einem langen, dünnen Eisenschaft, der in einen hölzernen Schaft eingelassen war. Die besondere Konstruktion sorgte dafür, dass sich die Eisenspitze beim Aufprall verbog, sodass der Gegner den Speer weder zurückwerfen noch ihn aus seinem Schild ziehen konnte. Jeder Legionär trug üblicherweise zwei Pila: ein leichteres (pilum levis) und ein schwereres (pilum grave). Im Kampf wurden die Pila aus etwa 15-30 Metern Entfernung kurz vor dem Nahkampf geworfen, um die feindlichen Schildwälle zu durchbrechen und die gegnerische Formation zu stören. Caesar setzte das Pilum im Gallischen Krieg mit großem Erfolg ein, besonders gegen die dicht gedrängten gallischen Formationen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/plebejer</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.358Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Plebejer</title>
+    <excerpt>Die Plebejer waren die breite Bürgerschicht des antiken Rom, die nicht zur alteingesessenen aristokratischen Elite der Patricier gehörte. Der Begriff leitet sich von 'plebs' (das Volk, die Menge) ab und umfasste ursprünglich alle freien römischen Bürger ohne patricischen Stammbaum - von wohlhabenden Kaufleuten und Handwerkern bis zu armen Bauern und Tagelohnern. In der Frühzeit der römischen Republik waren Plebejer von den höchsten politischen und religiösen Ämtern ausgeschlossen und litten unter wirtschaftlicher Ausbeutung und rechtlicher Benachteiligung.
+
+Der jahrhundertelange Ständekonflikt zwischen Plebejern und Patriciern prägte die römische Geschichte. Die Plebejer kämpften systematisch für Gleichberechtigung: Durch die Secessio plebis (Auszug der Plebejer) 494 v. Chr. erzwangen sie die Einrichtung der Volkstribunen, die ihre Interessen vertraten und ein Vetorecht gegen Senatsbeschlüsse hatten. Die Zwölftafelgesetze (450 v. Chr.) kodifizierten erstmals das römische Recht schriftlich. Die Lex Canuleia (445 v. Chr.) erlaubte Ehen zwischen Patriciern und Plebejern. Die Leges Liciniae Sextiae (367 v. Chr.) öffneten das Konsulat für Plebejer.
+
+Mit der Zeit gelang wohlhabenden plebejischen Familien der Aufstieg in die politische Elite. Zusammen mit patricischen Familien bildeten sie die neue Nobilität - eine Amtsaristokratie, deren Status auf erfolgreichen politischen Karrieren beruhte. Berühmte plebejische Geschlechter waren die Caecilier, Livianer und Sempronnier. Die Volksversammlung der Plebejer (concilium plebis) wurde zu einem wichtigen Gesetzgebungsorgan. Trotz formaler Gleichstellung blieben wirtschaftliche Unterschiede: Die 'plebs urbana' (städtische Massen) lebten oft in Armut.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pompeius</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.358Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Gaius Pompeius Magnus</title>
+    <excerpt>Gnaeus Pompeius Magnus (106–48 v. Chr.), genannt "der Große", war einer der mächtigsten Feldherren und Politiker der späten römischen Republik. Er feierte spektakuläre militärische Erfolge gegen Sertorius in Hispania, gegen die Seeräuber im Mittelmeer und gegen Mithridates VI. von Pontus. 70 v. Chr. war er Konsul, 60 v. Chr. bildete er mit Caesar und Crassus das Erste Triumvirat. Nach Crassus' Tod (53 v. Chr.) eskalierte die Rivalität mit Caesar. Pompeius verbündete sich mit dem Senat gegen Caesar, unterlag aber 48 v. Chr. in der Schlacht von Pharsalus und wurde auf der Flucht in Ägypten ermordet. Sein Bündnis mit dem Senat und sein Konflikt mit Caesar trugen entscheidend zum Ende der Republik bei.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pontifex-maximus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.359Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Pontifex Maximus</title>
+    <excerpt>Der Pontifex Maximus war der oberste Priester der römischen Staatsreligion und Vorsitzender des Priesterkollegiums der Pontifices. Dieses Ämt war eines der höchsten und einflussreichsten religiösen Ämter im antiken Rom. Der Pontifex Maximus beaufsichtigte alle religiösen Angelegenheiten, einschließlich der Festlegung des Kalenders, der Interpretation des göttlichen Willens und der Überwachung anderer Priester wie der Vestalinnen. Er wohnte traditionsgemacht in der Regia auf dem Forum Romanum und hatte die heiligen Flammen und religiösen Archive unter seiner Obhut.
+
+Urspratt war der Pontifex Maximus ein auf Lebenszeit gewhltes Amt, das anfangs nur Patriciern vorbehalten war. Die Leges Ogulniae (300 v. Chr.) öffneten das Amt für Plebejer. Während der Republik wurde das Amt zunehmend politisiert - berühmte Inhaber waren Julius Caesar, der es 63 v. Chr. erlangte, und später Augustus. Unter Augustus wurde das Amt dauerhaft mit dem Kaisertum verknüpft. Jeder römische Kaiser trug fortan den Titel Pontifex Maximus, was ihre Position als religiöse und weltliche Oberhäupter des Reiches unterstrich.
+
+Die Autorität des Pontifex Maximus war beträchtlich: Er konnte Adoptionen genehmigen, über Testamente entscheiden und religiöse Gesetze interpretieren. Die Pontifices führten die Annales maximi, jährliche Aufzeichnungen wichtiger Ereignisse. Der Titel wurde bis 382 n. Chr. von römischen Kaisern getragen, als Kaiser Gratian ihn aufgab. Interessanterweise übernahm der Papst später den Titel 'Pontifex Maximus', den er bis heute trägt - ein bemerkenswertes Beispiel römischer Kontinuität im Christentum.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/praetor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.360Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Praetor</title>
+    <excerpt>Der Praetor war ein hoher Magistrat der römischen Republik und stand in der Ranghierarchie direkt unter den Konsuln. Die Praetur war ein zentrales Amt im cursus honorum, dem traditionellen Karriereweg römischer Politiker. Praetoren waren primär für die Rechtsprechung zuständig und leiteten Gerichtsverfahren in Rom. Der praetor urbanus richtete über Rechtsstreitigkeiten zwischen römischen Bürgern, während der praetor peregrinus für Fälle mit Beteiligung von Ausländern zuständig war. Mit der Expansion Roms wuchs die Anzahl der Praetoren von ursprünglich einem auf bis zu acht oder mehr, da sie auch als Statthalter in den Provinzen eingesetzt wurden. Praetoren verfügten über imperium, die höchste Amtsgewalt, wenn auch in geringerem Maße als Konsuln. Sie konnten militärische Kommandos übernehmen und Armeen führen. Nach ihrer Amtszeit wurden viele Praetoren als Proprätoren in die Provinzen entsandt, wo sie als Statthalter fungierten. Das Amt war ein Sprungbrett zum Konsulat, dem höchsten Amt der Republik.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/pugio</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.361Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Pugio</title>
+    <excerpt>Der Pugio war der standardisierte römische Dolch, der von Legionären als Sekundärwaffe getragen wurde und sowohl militärisch als auch zivil von großer Bedeutung war. Mit einer etwa 20-30 cm langen, breiten, doppelschneidigen Klinge war der Pugio eine effektive Nahkampfwaffe für dichte Formationen. Die Klinge hatte typischerweise eine charakteristische blattförmige Form mit breitester Stelle in der Mitte. Legionäre trugen den Pugio auf der linken Seite am Gürtel (cingulum militare), gegenüber dem Gladius auf der rechten Seite. Der Pugio war nicht nur Waffe, sondern auch Werkzeug und Statussymbol. Die prachtvollsten Exemplare hatten verzierte Scheiden und Griffe mit Einlegearbeiten aus Edelmetall. Julius Caesar wurde bekanntlich mit Pugiones ermordet. In der Spätantike verschwand der Pugio allmählich aus der militärischen Ausrüstung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/quaestor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.361Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Quästor</title>
+    <excerpt>Der Quästor (lat. quaestor) war der niedrigste Rang im cursus honorum, der römischen Ämterlaufbahn. Quästoren waren für die Verwaltung der Staatsfinanzen zuständig: Sie verwalteten die Staatskasse (aerarium), beaufsichtigten Steuereinkünfte und begleiteten Feldherren als Quartiermeister und Finanzverwalter in Provinzen oder Feldzügen. Das Amt wurde jährlich vergeben, zunächst gab es zwei Quästoren, später bis zu 40. Wer Quästor gewesen war, hatte lebenslang Sitz im Senat. Das Mindestalter war 30 Jahre (ab Augustus). Cicero begann seine politische Karriere als Quästor in Sizilien (75 v. Chr.).</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/quirinalis</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.362Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Quirinalis</title>
+    <excerpt>Der Quirinalis (Quirinal) war einer der sieben Hügel Roms und ursprünglich Siedlungsgebiet der Sabiner, die nach der legendären Verschmelzung mit den Römern unter Romulus hier wohnten. Der Name leitet sich vom sabinischen Kriegsgott Quirinus ab, mit dem Romulus nach seiner Apotheose identifiziert wurde. Der Hügel war Standort wichtiger Tempel, darunter der Tempel des Quirinus (einer der ältesten Roms) und später der Tempel der Fortuna und des Sol. In der Kaiserzeit entstanden hier prächtige Anlagen, darunter die Thermen des Konstantin und die Diokletiansthermen. Der Quirinal war auch Sitz mehrerer kaiserlicher Residenzen. Seine erhöhte Lage bot eine gesunde, luftige Position. Seit 1583 ist der Quirinalspalast Sitz des Papstes, heute des italienischen Staatspräsidenten. Der Hügel symbolisierte die Verschmelzung von Römern und Sabinern zur römischen Identität.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/retiarius</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.363Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Retiarius</title>
+    <excerpt>Der Retiarius (von lat. 'rete' - Netz) war ein Gladiatorentyp, der mit Netz und Dreizack kämpfte und eine der ungewöhnlichsten und beliebtesten Gladiatorenklassen darstellte. Anders als andere Gladiatoren trug er kaum Rüstung: nur einen Armschutz (manica) am linken Arm und eine Schulterpanzerung (galerus). Seine Hauptwaffen waren ein gewichtetes Netz (rete), ein Dreizack (fuscina oder tridens) und ein Dolch (pugio). Seine Strategie bestand darin, den Gegner mit dem Netz zu fangen und ihn dann mit dem Dreizack niederzustechen. Der Retiarius kämpfte typischerweise gegen den schwer gerüsteten Murmillo oder Secutor. Seine Mobilität und Reichweite waren seine größten Vorteile. Der Kampf zwischen Retiarius und Murmillo symbolisierte den Konflikt zwischen Fischer und Fisch, Agilität und Panzerung. Trotz fehlender Rüstung waren erfolgreiche Retiarii hochgeachtet.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/rubikon</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.364Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Rubikon</title>
+    <excerpt>Der Rubikon (lateinisch Rubico) war ein kleiner Fluss in Norditalien, der die Grenze zwischen Italien und der Provinz Gallia Cisalpina markierte. Als Caesar im Januar 49 v. Chr. mit seinen Legionen den Rubikon überschritt, brach er römisches Recht, das Feldherren verbot, mit bewaffneten Truppen italienischen Boden zu betreten. Mit den Worten "alea iacta est" ("Der Würfel ist gefallen") löste er den Bürgerkrieg gegen Pompeius und den Senat aus. Die Überschreitung des Rubikon wurde zum Synonym für eine unwiderrufliche Entscheidung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/scutum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.364Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Scutum</title>
+    <excerpt>Das Scutum war der große rechteckige (später leicht ovalförmige) Schild der römischen Legionäre und eines der charakteristischsten Ausrüstungsstücke der Legion. Es maß etwa 1,20 m × 0,75 m und bestand aus drei verleimten Holzschichten, die mit Leinwand und Leder überzogen waren. Ein metallener Schildbuckel (umbo) in der Mitte schützte die Hand und konnte als Waffe eingesetzt werden. Das Scutum war leicht gebogen und bot so besseren Schutz gegen Geschosse von vorn und von der Seite. Es wog etwa 10 kg. Mit dem Scutum konnten römische Legionäre die Testudo-Formation bilden und waren gegen Pfeile, Speerwürfe und Nahkampfangriffe gut geschützt. Jede Legion hatte eigene Schildbemalungen zur Identifikation.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/secutor</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.365Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Secutor</title>
+    <excerpt>Der Secutor (lat. "Verfolger") war ein spezialisierter Gladiatorentyp, der entwickelt wurde, um gegen den Retiarius (Netzfechter) zu kämpfen. Sein Name bezog sich auf seine Rolle, den beweglichen Retiarius durch die Arena zu verfolgen. Der Secutor war schwer gerüstet mit einem großen ovalen oder rechteckigen Schild (scutum), einem Kurzschwert (gladius), einem geschlossenen, glatten Helm ohne Krempe oder Vorsprünge (damit sich das Netz nicht verfangen konnte), einem Beinschoner (ocrea) am linken Bein und einem Armschutz (manica) am rechten Arm. Sein Helm hatte nur kleine Augenschlitze, was seine Sicht einschränkte, aber Schutz gegen den Dreizack des Retiarius bot. Der Secutor musste schnell sein, da seine schwere Rüstung ihn bei längeren Kämpfen ermüdete. Diese Spezialisierung machte Kämpfe zwischen Secutor und Retiarius zu den populärsten Arenaspektakeln.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/senator</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.366Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Senator</title>
+    <excerpt>Mitglied des römischen Senats, des höchsten Regierungsorgans der römischen Republik. Senatoren waren meist ehemalige Magistrate und bildeten eine Elite aus etwa 300-600 Männern.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/sica</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.367Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Sica</title>
+    <excerpt>Die Sica war ein charakteristisches gebogenes Kurzschwert mit sichelförmiger Klinge, das ursprünglich von den thrakischen Kriegern Südosteuropas verwendet wurde und später zur typischen Waffe des Gladiatorentyps Thraex wurde. Die Klinge war etwa 40-45 cm lang und nach innen gebogen, ähnlich einer Sichel, was ihr den Namen gab (lat. 'sica' = Dolch, von 'secare' = schneiden). Diese Form ermöglichte es, um Schilde herum zu schlagen und Gegner durch ungewöhnliche Winkel zu treffen. Die Sica war sowohl Hieb- als auch Stichwaffe. In der römischen Literatur wurde die Sica oft mit Meuchelmord und heimtückischer Gewalt assoziiert – Cicero verwendete den Begriff metaphorisch für politische Attentäter. Die Waffe symbolisierte barbarische Kampfkunst aus römischer Sicht, war aber in der Arena hocheffektiv und beliebt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/signum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.368Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Signum</title>
+    <excerpt>Das Signum (Plural: Signa) war ein römisches Militärfeldzeichen, das kleinere Einheiten wie Centurien oder Manipel kennzeichnete. Im Gegensatz zur Aquila, die die gesamte Legion repräsentierte, dienten die Signa als taktische Orientierungspunkte für kleinere Truppenverbände. Ein Signum bestand typischerweise aus einer langen Stange mit mehreren übereinander angebrachten Metallscheiben (phalerae), Kränzen und oft einer Hand (manus) an der Spitze. Der Signifer (Standartenträger) war verantwortlich für das Tragen des Signum und genoss hohes Ansehen. Die Signa wurden in der Schlacht vorangetragen, um die Formation zu leiten und als Sammelpunkt zu dienen. Sie wurden auch bei religiösen Zeremonien verwendet und in einem speziellen Schrein im Legionslager aufbewahrt. Der Ausdruck "sub signis" (unter den Feldzeichen) bedeutete "im aktiven Militärdienst".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/testudo</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.369Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Testudo</title>
+    <excerpt>Die Testudo (lat. "Schildkröte") war eine defensive Kampfformation römischer Legionäre, bei der die Soldaten ihre großen rechteckigen Schilde (Scutum) so hielten, dass sie rundum und von oben geschützt waren. Die vorderste Reihe hielt die Schilde frontal, die Soldaten an den Seiten hielten sie seitlich, und die inneren Reihen hoben ihre Schilde über die Köpfe, sodass ein geschlossener "Panzer" entstand. Diese Formation war besonders effektiv gegen Geschosswaffen (Pfeile, Speere, Steine) und wurde bei Belagerungen und beim Vorrücken unter Beschuss eingesetzt. Die Testudo erforderte hohe Disziplin und Training.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/thermae</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.370Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Thermae</title>
+    <excerpt>Thermae (von griech. 'thermos' - warm) waren die großen, monumentalen öffentlichen Badeanstalten des Römischen Reiches, die weit über reine Körperpflege hinausgingen und zu sozialen, kulturellen und Sport-Zentren wurden. Die kaiserlichen Thermen (wie die Caracalla-Thermen oder Diokletiansthermen in Rom) waren gigantische Komplexe mit verschiedenen Baderäumen: frigidarium (Kaltbad), tepidarium (lauwarmes Bad), caldarium (Heißbad) und oft einem sudatorium (Schwitzbad). Dazu kamen Palästra (Sportplätze), Bibliotheken, Gärten, Geschäfte und Versammlungsräume. Die Thermen wurden durch ein ausgeklügeltes Hypocaustum-Heizsystem erwärmt. Der Eintritt war meist sehr günstig oder kostenlos, sodass alle Bevölkerungsschichten Zutritt hatten. Die Thermen waren Orte politischer Diskussionen, geschäftlicher Treffen und sozialer Netzwerke. Sie symbolisierten römische Zivilisation und Ingenieurskunst.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/thraex</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.371Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Thraex</title>
+    <excerpt>Der Thraex (Plural: Thraces, "Thraker") war ein Gladiatorentyp, dessen Ausrüstung und Kampfstil von den thrakischen Kriegern Südosteuropas inspiriert war. Er war ausgestattet mit einem kleinen rechteckigen oder quadratischen Schild (parmula), einem gebogenen Kurzschwert (sica), einem Helm mit breiter Krempe, hohen Beinschonern (ocreae) an beiden Beinen und Armschützern (manicae). Die charakteristische sica war eine sichelförmige Klinge, die es erlaubte, um das Schild des Gegners herum zu schlagen. Der Thraex war beweglicher als der schwer gerüstete Murmillo und kämpfte häufig gegen diesen oder gegen einen Hoplomachus. Sein aggressiver, offensiver Kampfstil und die ungewöhnliche Waffe machten ihn beim Publikum sehr beliebt. Die hohen Beinschoner waren charakteristisch und boten Schutz gegen niedrige Angriffe. Einige der berühmtesten Gladiatoren, einschließlich Spartacus, waren Thraces.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/tiberis</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.372Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Tiberis</title>
+    <excerpt>Der Tiber (lat. Tiberis, italienisch Tevere) ist der drittlängste Fluss Italiens (etwa 405 km) und der Fluss, an dem Rom erbaut wurde. Die Lage am Tiber war entscheidend für Roms Aufstieg: Der Fluss bot Trinkwasser, Transportwege ins Landesinnere, Verteidigung und Zugang zum Meer (über den Hafen Ostia an der Tibermündung). Die Tiber-Insel (Insula Tiberina) im Stadtgebiet war ein wichtiger Übergangsort und Heiligtum. Der Fluss wurde häufig überschwemmt, was Gefahr, aber auch fruchtbaren Boden brachte. Viele historische Ereignisse fanden am Tiber statt: Romulus und Remus wurden der Legende nach hier ausgesetzt, Horatius Cocles verteidigte die Pons Sublicius, und Caesar wurde am Tiberufer ermordet (Largo di Torre Argentina, nahe dem Fluss).</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/toga</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.373Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Toga</title>
+    <excerpt>Die Toga war das traditionelle Obergewand der römischen Bürger und das wichtigste Symbol römischer Identität und Bürgerrechte. Dieses halbkreisförmige Wolltuch von etwa 5-6 Metern Länge wurde kunstvoll um den Körper drapiert, wobei die rechte Schulter und der rechte Arm frei blieben. Das Tragen der Toga war ein exklusives Privileg römischer cives (Bürger) - Sklaven, Ausländer und verbannte Bürger durften sie nicht tragen. Die Römer nannten sich selbst stolz 'gens togata' (das Toga-tragende Volk), im Gegensatz zu den 'Barbaren', die Hosen trugen.
+
+Es gab verschiedene Arten von Togen mit spezifischer gesellschaftlicher Bedeutung: Die Toga virilis oder toga pura war die schlichte weiße Toga erwachsener Bürger. Die Toga praetexta hatte einen purpurnen Rand und wurde von Magistraten und freigeborenen Jungen bis zur Volljährigkeit getragen. Die Toga candida war besonders weiß gekreidet und wurde von Kandidaten für politische Ämter getragen (daher das Wort 'Kandidat'). Die Toga picta oder toga triumphalis war purpurn mit goldenen Stickereien und wurde bei Triumphzügen getragen. Trauerndedürfen in der Toga pulla, einer dunklen oder schwarzen Toga.
+
+Die Toga war unpraktisch und unbequem - sie war schwer, heiß, schränkte die Bewegung ein und erforderte ständige Aufmerksamkeit, um nicht zu verrutschen. Zum Anlegen brauchte man oft Hilfe von Sklaven. In der späten Republik und Kaiserzeit wurde sie zunehmend nur noch bei formellen Anlässen getragen, während im Alltag die praktischere Tunika bevorzugt wurde. Kaiser Augustus versuchte vergeblich, das Togatragen wiederzubeleben. Trotz ihrer Unpraktikalität blieb die Toga ein mächtiges Symbol römischer Kultur und Zivilisation.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/tribunus-plebis</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.374Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Tribunus Plebis</title>
+    <excerpt>Der Tribunus Plebis (Volkstribun) war ein einzigartiges Amt der römischen Republik, das ausschließlich die Interessen der Plebejer vertrat und als Gegengewicht zur patricischen Macht diente. Eingeführt 494 v. Chr. nach dem ersten Ständekampf, waren die Tribunen sakrosankt (sacrosancti) – ihre Person war unverletzlich, und Angriffe auf sie waren mit dem Tod zu bestrafen. Die zehn Tribunen hatten das mächtige Recht der Interzession (intercessio): Sie konnten gegen Senatsbeschlüsse, Magistratsentscheidungen und sogar Consuln ihr Veto einlegen. Sie konnten Volksversammlungen (concilia plebis) einberufen und Plebiszite vorschlagen. Ihr auxilium (Beistand) schützte einzelne Bürger vor Willkür der Magistrate. Berühmte Tribunen wie die Gracchen nutzten das Amt für Reformen. Das Tribunat war ein demokratisches Element in der sonst aristokratischen Republik. In der Kaiserzeit übernahmen die Kaiser selbst die tribunizische Gewalt (tribunicia potestas).</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/triumph</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.374Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Triumph</title>
+    <excerpt>Der Triumphzug (triumphus) war die höchste militärische Auszeichnung im antiken Rom - eine feierliche Prozession durch die Stadt, die einem siegreichen Feldherrn vom Senat gewährt wurde. Um einen Triumph zu erhalten, musste ein Feldherr mindestens 5.000 Feinde in einer entscheidenden Schlacht getötet haben, eine Provinz erweitert oder einen bedeutenden Krieg siegreich beendet haben. Der Triumphator trug die purpurne Toga picta mit goldenen Stickereien, einen Lorbeerkranz und hielt ein Elfenbeinzepter. Sein Gesicht war rot bemalt, um Jupiter zu imitieren. Ein Sklave stand hinter ihm und flüsterte wiederholt 'Memento mori' (Gedenke, dass du sterblich bist), um ihn daran zu erinnern, dass er trotz der Ehre ein Mensch blieb.
+
+Die Prozession begann am Circus Flaminius, zog durch die Via Triumphalis, unter dem Triumphbogen hindurch, durch das Forum Romanum und endete am Kapitol im Jupitertempel. Der Triumphator fuhr auf einem von vier Schimmeln gezogenen Wagen, gefolgt von seinen Soldaten, Beute, Gefangenen in Ketten und Darstellungen eroberter Städte. Die Soldaten sangen zügelloser Spottlieder über ihren General - eine rituelle Demutigung zum Schutz vor göttlichem Neid. Das römische Volk säumte die Straßen und jubelte. Am Kapitol opferte der Triumphator weiße Ochsen an Jupiter und weihte seinen Lorbeerkranz dem Gott.
+
+Ein Triumph war auch eine gewaltige politische Demonstration: Julius Caesar feierte vier Triumphe in einem Monat. Pompeius der Große wollte seinen Wagen von Elefanten ziehen lassen (scheiterte aber, weil sie nicht durch das Stadttor passten). Einige Feldherren erhielten nur einen 'kleinen Triumph' (ovatio), bei dem sie zu Fuß gingen und einen Myrtenkranz statt Lorbeer trugen. Später wurden Triumphe zum exklusiven Privileg der Kaiser. Der Triumphbogen wurde zum dauerhaften steinernen Denkmal dieser Tradition.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/triumphzug</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.375Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Triumphzug</title>
+    <excerpt>Ein Triumphzug (lateinisch: triumphus) war eine feierliche Prozession durch Rom, bei der ein siegreicher Feldherr mit seinen Truppen und Kriegsbeute durch die Stadt zog. Der Triumphator fuhr auf einem mit vier Pferden bespannten Wagen (Quadriga), trug eine purpurrote Toga und einen Lorbeerkranz. Diese höchste militärische Auszeichnung wurde nur für bedeutende Siege über ausländische Feinde verliehen und endete am Jupitertempel auf dem Kapitol mit einem Opfer.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/triumvirat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.376Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Triumvirat</title>
+    <excerpt>Ein Triumvirat war ein inoffizielles politisches Bündnis von drei mächtigen römischen Politikern. Das Erste Triumvirat (60 v. Chr.) bestand aus Caesar, Pompeius und Crassus, die gemeinsam ihre Interessen gegen den Senat durchsetzten. Nach Crassus' Tod (53 v. Chr.) und dem Bruch zwischen Caesar und Pompeius führte dieses Bündnis zum Bürgerkrieg. Das Zweite Triumvirat (43 v. Chr.) aus Oktavian, Marcus Antonius und Lepidus wurde offiziell als Staatsamt eingesetzt und führte Proskriptionen gegen Caesars Mörder durch. Diese Machtvereinigungen waren entscheidend für den Übergang von der Republik zum Prinzipat.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/vallum</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.376Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Vallum</title>
+    <excerpt>Das Vallum war der Erdwall mit aufgesetzter Holzpalisade, der römische Militärlager (castra) und Grenzbefestigungen umgab und die erste Verteidigungslinie bildete. Der Begriff bezeichnete sowohl den Wall selbst als auch die gesamte Befestigungsanlage. Das typische Vallum bestand aus einem aufgeschütteten Erdwall, der aus dem Aushub des davor liegenden Grabens (fossa) gewonnen wurde. Auf der Wallkrone wurden angespitzte Holzpfähle (valli) dicht aneinander gesetzt, die dem Wall seinen Namen gaben. Die Legionäre trugen auf Märschen ihre eigenen Palisadenpfähle mit sich. Bei dauerhaften Befestigungen wie dem Hadrianswall oder dem Limes wurde das Vallum durch Steinmauern ersetzt. Der Bau eines Vallum war tägliche Routine und gehörte zur Grundausbildung jedes Legionärs. Diese Praxis gab Rom einen entscheidenden taktischen Vorteil.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/vercingetorix</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.377Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Vercingetorix</title>
+    <excerpt>Vercingetorix (ca. 82-46 v. Chr.) war ein arvernischer Fürst und der charismatische Anführer des großen gallischen Aufstands gegen Julius Caesar im Jahr 52 v. Chr. Als Sohn eines mächtigen Stammesfürsten gelang es ihm, die zerstrittenen gallischen Stämme zu einer großen Koalition zu vereinen. Seine Guerilla-Taktik der verbrannten Erde setzte Caesar erheblich zu. Der entscheidende Wendepunkt kam bei der Belagerung von Alesia, wo Vercingetorix' Truppen trotz eines massiven Entsatzheeres eingeschlossen und besiegt wurden. Nach seiner Kapitulation wurde er sechs Jahre in Rom gefangen gehalten und schließlich 46 v. Chr. während Caesars Triumphzug hingerichtet. Er gilt heute als gallischer Nationalheld und Symbol des Widerstands gegen die römische Eroberung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/via-praetoria</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.378Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Via Praetoria</title>
+    <excerpt>Die Via Praetoria war eine der beiden Hauptstraßen im standardisierten Grundriss römischer Militärlager (castra) und verlief vom Haupttor (porta praetoria) durch das Zentrum bis zum hinteren Teil des Lagers. Sie kreuzte die Via Principalis, die zweite Hauptstraße, im Zentrum beim Prätorium (Kommandantenzelt) und den Principia (Stabsgebäude). Dieser kreuzförmige Straßenplan war in jedem römischen Lager identisch und ermöglichte schnelle Orientierung und effiziente Bewegung der Truppen. Die Via Praetoria war breit genug für marschierende Kohorten und führende Offiziere. Bei permanenten Lagern wurden diese Straßen gepflastert und bildeten das Rückgrat der späteren Städte. Viele moderne europäische Städte bewahren noch heute den römischen Straßenplan. Die Via Praetoria symbolisierte römische Ordnung, Disziplin und militärische Effizienz. Der Name leitet sich vom Prätorium ab, auf das die Straße zuführte.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/villa</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.379Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Villa</title>
+    <excerpt>Eine Villa war ein Landgut oder Landhaus wohlhabender Römer, das sowohl als Wohnsitz als auch als landwirtschaftlicher Produktionsbetrieb diente. Römische Villen waren zentrale Einheiten der antiken Agrarwirtschaft und Orte aristokratischen Lebens außerhalb der Stadt. Man unterschied zwischen der villa urbana (dem herrschaftlichen Wohnbereich mit Luxusausstattung) und der villa rustica (dem Wirtschaftsteil mit Unterkünften für Sklaven und Verwalter, Lagerräumen, Werkstätten und Stallungen). Viele Villen verfügten auch über einen Gartenbereich (hortus) und manchmal ein kleines Bad (balneum).
+
+Die villa urbana war oft luxuriös ausgestattet: Mosaiken schmückten die Böden, Fresken die Wände, und ein Peristyl (Säulenhof) bildete das Zentrum. Reiche Römer nutzten ihre Villen als Rückzugsorte vom hektischen Stadtleben - hier widmeten sie sich dem otium (Müßiggang, Studium, philosophischen Gesprächen). Plinius der Jüngere beschrieb seine Villen detailliert in Briefen. Cicero besessen mehrere Villen und schrieb viele seiner philosophischen Werke dort. Die Villa war Statussymbol und Ausdruck von Reichtum, Bildung und Geschmack.
+
+Die villa rustica war das wirtschaftliche Herz des Landguts: Hier wurden Oliven gepresst, Wein gekeltert, Getreide gelagert und verarbeitet. Sklaven unter der Aufsicht eines vilicus (Verwalters) führten die tägliche Arbeit durch. Cato der Ältere und Varro schrieben landwirtschaftliche Handbücher über die optimale Verwaltung einer Villa. Villen produzierten nicht nur für den Eigenbedarf, sondern auch für den Markt. Im gesamten Römischen Reich finden sich archäologische Überreste von Villen - von einfachen Bauernvill en bis zu prächtigen Palastvill en wie der Villa Hadriana bei Tivoli.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/virtus</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.379Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Virtus</title>
+    <excerpt>Virtus (lat. "Mannhaftigkeit", "Tugend") war einer der zentralen Werte der römischen Kultur und bezeichnete ursprünglich militärische Tapferkeit und Mannesmut (von 'vir' = Mann). Im Lauf der Zeit erweiterte sich die Bedeutung zu umfassender moralischer Exzellenz: Charakterstärke, Pflichterfüllung, Selbstbeherrschung und tugendhaftes Verhalten in allen Lebensbereichen. Virtus stand im Zentrum des römischen Ehrenkodex und war eng mit anderen Kernwerten wie pietas (Pflichtgefühl), dignitas (Würde) und gravitas (Ernst) verbunden. Sie war die Grundlage für den Anspruch auf auctoritas (Autorität) und damit für politischen Einfluss. Römische Feldherren und Staatsmänner wurden an ihrer virtus gemessen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/volkstribun</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.380Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Volkstribun</title>
+    <excerpt>Der Volkstribun (tribunus plebis) war eines der wichtigsten politischen Ämter der römischen Republik und diente als Schutzorgan der Plebejer gegen die Willkür der patrizischen Magistrate. Das Amt entstand im Jahr 494 v. Chr. nach dem ersten Ständekampf, als die Plebejer durch ihren Auszug auf den Heiligen Berg (secessio plebis) die Einrichtung eigener Amtsträger erzwangen.
+
+Die Volkstribunen besaßen außergewöhnliche Befugnisse: Sie waren sakrosankt (sacrosanctitas), das heißt ihre Person war unantastbar und heilig – wer einen Tribun angriff, konnte straflos getötet werden. Ihr wichtigstes Instrument war das Vetorecht (intercessio), mit dem sie gegen jeden Beschluss eines Magistrats, des Senats oder sogar gegen Gesetzesvorlagen Einspruch erheben konnten. Dieses absolute Veto machte sie zu mächtigen politischen Akteuren.
+
+Ursprünglich gab es zwei Volkstribunen, ihre Zahl wurde später auf zehn erhöht. Sie wurden ausschließlich von der Plebs in den Tributkomitien gewählt und konnten nur Plebejer sein. Die Tribunen durften Rom während ihrer Amtszeit nicht verlassen und mussten ihre Häuser Tag und Nacht für hilfesuchende Bürger offenhalten. Sie hatten das Recht, Versammlungen der Plebs (concilium plebis) einzuberufen und Senatssitzungen beizuwohnen.
+
+Berühmte Volkstribunen wie die Gracchen (Tiberius und Gaius Gracchus) nutzten das Amt für weitreichende Sozialreformen, was zu heftigen politischen Konflikten führte. In der späten Republik wurde das Tribunat oft als Sprungbrett für ehrgeizige Politiker genutzt. Gaius Iulius Caesar begann seine politische Karriere ebenfalls in diesem Amt. Nach der Errichtung des Prinzipats behielt Augustus die tribunizische Gewalt (tribunicia potestas) für sich bei, wodurch das Amt faktisch seiner ursprünglichen Macht beraubt wurde.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon/weltalter-lehre</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.381Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <title>Weltalter-Lehre</title>
+    <excerpt>## Die Verfallsgeschichte der Menschheit
+
+Die **Weltalter-Lehre** ist ein zentrales Konzept der antiken Mythologie und Philosophie, das die Geschichte der Menschheit als einen kontinuierlichen **Abstieg** von einem ursprünglich vollkommenen Zustand zu immer schlechteren Zeitaltern beschreibt. Diese Vorstellung findet sich sowohl in der griechischen als auch in der römischen Tradition und dient als kulturelles Erklärungsmodell für soziale Ungerechtigkeiten, Kriege und moralischen Verfall.
+
+### Die vier/fünf Zeitalter
+
+Nach **Hesiod** ("Werke und Tage", ca. 700 v. Chr.) und **Ovid** ("Metamorphosen", ca. 8 n. Chr.) durchläuft die Menschheit folgende Phasen:
+
+1. **Goldenes Zeitalter** (*aurea aetas*): Eine Zeit ohne Arbeit, Krieg oder Leid, in der die Menschen in Harmonie mit der Natur leben
+2. **Silbernes Zeitalter** (*argentea aetas*): Die erste Verschlechterung – Jahreszeiten entstehen, Landwirtschaft wird nötig, die Menschen werden schwächer
+3. **Bronzenes Zeitalter** (*aenea/aereum aetas*): Gewalt und Kriege nehmen zu, die Menschen werden härter und kriegerischer
+4. **Eisernes Zeitalter** (*ferrea aetas*): Die Gegenwart der Dichter – geprägt von Ungerechtigkeit, Betrug, Habgier und ständigen Konflikten
+
+> "Nun herrscht das eiserne Geschlecht. Niemals bei Tag gibt es Rast von Mühe und Elend, niemals bei Nacht von verderblichem Untergang." – Hesiod
+
+### Kulturelle und philosophische Bedeutung
+
+Die Weltalter-Lehre reflektiert die **pessimistische Geschichtsauffassung** der Antike, die den Fortschritt ablehnt und stattdessen einen Verfall sieht. Sie steht im Kontrast zu modernen Fortschrittsideologien. In Rom wurde diese Lehre besonders in Krisenzeiten bemüht, um die sozialen Spannungen der späten Republik zu erklären.
+
+Einige Autoren fügten zwischen das Bronzene und Eiserne Zeitalter noch ein **Heroisches Zeitalter** ein (bei Hesiod), in dem die großen Helden wie Herakles und Achilles lebten – eine kurze Blüte vor dem endgültigen Niedergang.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/adoption-durch-caesar</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.382Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Adoption durch Caesar - Der Beginn einer Dynastie</title>
+    <excerpt>Wie ein 18-jähriger Gaius Octavius durch Caesars Testament zum Erben des mächtigsten Mannes Roms wurde und als Augustus die Welt veränderte.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/das-zweite-triumvirat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.383Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Das Zweite Triumvirat - Pakt mit dem Teufel</title>
+    <excerpt>Die brutale Allianz von Octavian, Antonius und Lepidus 43 v. Chr. - Proskriptionen, Machteilung und der Weg zur Alleinherrschaft.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/der-prinzipat</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.384Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Der Prinzipat - Monarchie im republikanischen Gewand</title>
+    <excerpt>Wie Augustus 27 v. Chr. die römische Republik formal "wiederherstellte", tatsächlich aber das Kaisertum begründete - ein Meisterwerk politischer Tarnung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/die-schlacht-bei-actium</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.385Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Schlacht bei Actium</title>
+    <excerpt>Die Seeschlacht bei Actium am 2. September 31 v. Chr. entschied den letzten Bürgerkrieg der römischen Republik und ebnete Octavian den Weg zur Alleinherrschaft als Augustus.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/pax-augusta</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.386Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Pax Augusta - Der Augusteische Frieden</title>
+    <excerpt>Nach Jahrhunderten der Bürgerkriege brachte Augustus dem römischen Reich Frieden, Stabilität und Prosperität - der Preis war die Freiheit.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/posts/schlacht-bei-philippi</loc>
-    <lastmod>2026-02-01T13:30:46.951Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.387Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Schlacht bei Philippi - Rache für Caesar</title>
+    <excerpt>Die entscheidende Schlacht von 42 v. Chr., in der Octavian und Antonius die Caesarmörder Brutus und Cassius besiegten und die Republik endgültig begruben.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/ausweitung-des-burgerrechts</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.389Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Erweiterung des Bürgerrechts</title>
+    <excerpt>Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5f9pg2fsdrhrr9g5vfzh6z%2F1766489150_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=0lHr8SgjaHHRYpm2HM5C1D91m5liHhL9U9529GaHlmk%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Erweiterung des Bürgerrechts</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/casar-verschlusselung</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.390Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Cäsar-Verschlüsselung</title>
+    <excerpt>A simple but effective method to protect my messages: shifting letters. Today elementary, back then a revolution in military communication.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/vehglvku4qq.jpg</image:loc>
+      <image:title>Cäsar-Verschlüsselung</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/darum-mag-mich-jeder</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.391Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Darum mag mich jeder</title>
+    <excerpt>Clementia Caesaris – my mercy. Why I spared my enemies instead of killing them. A political necessity, not weakness.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_Elon_Musk_und_Mark_Zuckerberg_mit_romischen_St_9606655e-301d-4ec9-b2a9-6c5eba27eca6.png</image:loc>
+      <image:title>Darum mag mich jeder</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/das-1-triumvirat</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.393Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Das 1. Triumvirat</title>
+    <excerpt>Manchmal muss man kreativ werden, wenn alte, steife Senatoren einem im Weg stehen. Meine Lösung? Ein informelles Dreierbündnis, das Rom verändern würde – und von dem niemand etwas ahnen sollte.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Triumvirat_Caesar_Crassus_Pompeius_536c3967-52c1-4504-915d-8b80b9b82f861.png</image:loc>
+      <image:title>Das 1. Triumvirat</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/de-me</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.394Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>De me</title>
+    <excerpt>Über meine Person, Gaius Julius Caesar</excerpt>
+    <image:image>
+      <image:loc>/images/post-default.jpg</image:loc>
+      <image:title>De me</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/die-verschworung-gegen-mich</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.395Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Verschwörung gegen mich</title>
+    <excerpt>My end on the Ides of March. Betrayed by men I trusted. But my death will not save the Republic, only unleash chaos.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_realistic_face_of_caesar_with_color_9ac25bcb-2a41-4285-9abf-90d67e3cb8ee1.png</image:loc>
+      <image:title>Die Verschwörung gegen mich</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/er-ist-da</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.396Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Er ist da.</title>
+    <excerpt>My birth, my family, and my divine ancestry. The beginning of a legend.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Trimuvirat_von_Gaius_Julius_Casar_mit_Bezos_un_8094af79-7bf1-41d1-90f5-4e04f76403921.png</image:loc>
+      <image:title>Er ist da.</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/forum-iulium-und-infrastruktur</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.397Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Forum Iulium</title>
+    <excerpt>Warum ich baute: Entlastung des alten Forums, Sichtbarkeit staatlicher Autorität, Arbeitsplätze und Prestige für Rom.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5f5170frwvsp2h0f2w9gmv%2F1766488996_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=/UZihoq6U6yWiOy5L3g2fEFa2eAj5EjLGd9EuAE0lAw%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Forum Iulium</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/helvetierkrieg-teil-1</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Helvetierkrieg – Teil 1</title>
+    <excerpt>The Barbarians are coming! The Helvetii want to march through our province. I asked for your advice - and I will protect Rome.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Casars_macht_in_seinem_ersten_Prokonsul_uber_G_a27d6805-f00b-4f98-81f5-279c5b8e6a051.png</image:loc>
+      <image:title>Helvetierkrieg – Teil 1</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/helvetierkrieg-teil-2</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.400Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Helvetierkrieg – Teil 2</title>
+    <excerpt>Vercingetorix unites Gaul. A brutal revolt, scorched earth, and the siege of Alesia. The final struggle for freedom.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_picture_of_gaius_julius_caesar_crossing_rubico_c2115a9b-d146-4690-8370-abd3662b44231.png</image:loc>
+      <image:title>Helvetierkrieg – Teil 2</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/ich-ruhe-nicht</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.401Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Caesar &amp; Ägpyten</title>
+    <excerpt>My journey to Egypt: political intrigue, war in Alexandria, and a 'diplomatic' stay with Cleopatra. I came, I saw, I conquered.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/fcis1i60ix4.jpg</image:loc>
+      <image:title>Caesar &amp; Ägpyten</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/ich-uberschreite-den-rubikon</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.402Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Ich überschreite den Rubikon</title>
+    <excerpt>Der Moment, der alles veränderte: Als ich mit meinen Legionen einen kleinen Fluss überquerte und damit den größten Bürgerkrieg Roms auslöste. War es Wahnsinn? Vielleicht. War es notwendig? Absolut.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_image_of_gaius_julius_caesar_crossing_the_rubi_3316f166-9765-493e-a244-108688cce9301.png</image:loc>
+      <image:title>Ich überschreite den Rubikon</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/julianischer-kalender</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.403Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Julianischer Kalender</title>
+    <excerpt>Wie ich die römische Zeitrechnung revolutionierte und ein System schuf, das Europa 1600 Jahre lang prägen sollte.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5f2kygfa089r9ssrwvryma%2F1766488909_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=C4w5duFjHT464abibHQ0hnm/ZSB1PqD9mmRg2h/bSJU%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Julianischer Kalender</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/land-und-veteranengesetze</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.404Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Veteranen und Land</title>
+    <excerpt>Nach den Kriegen brauchen die Männer Land, die Städte Ruhe und der Staat Planbarkeit. Meine Veteranenpolitik stabilisierte Rom.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5fgmcde64rgx9gacgjmcqw%2F1766489373_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=CiOvNhUNU4z2fSRrx2eNzZ6hseOApmyyjnH/EvgIj%2Bc%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Veteranen und Land</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/mein-genialer-satz</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.405Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Mein genialer Satz</title>
+    <excerpt>"Gallia est omnis divisa in partes tres..." - The sentence every Latin student knows. How I defined a continent with a few words.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/04/kkg_system_36041_romische_Schriftrollen_mit_Gesetzen_5849504c-6029-491e-91f3-da42b0893bf4.png</image:loc>
+      <image:title>Mein genialer Satz</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/mein-konsulat</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.407Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Mein Konsulat</title>
+    <excerpt>Das Jahr 59 v. Chr. – Ich werde endlich Konsul! Mit etwas "Überredungskunst" von Pompeius, massiver Korruption und einem völlig inkompetenten Kollegen. Spoiler: Es wird chaotisch. Aber glorreich.</excerpt>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/18088652-e1710258453455.jpg</image:loc>
+      <image:title>Mein Konsulat</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/prokonsulat</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.409Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Prokonsulat</title>
+    <image:image>
+      <image:loc>https://caesar.schächner.de/wp-content/uploads/2024/03/ec65a34c-cfae-4a84-a7f1-2136c4327433.png</image:loc>
+      <image:title>Prokonsulat</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/schuldenerlass-und-zinsdeckel</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.410Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Schuld und Zins</title>
+    <excerpt>Wie ich Rom nach dem Bruch beruhigte: Begrenzte Zinsforderungen, realistische Immobilienbewertung und Schutz vor Plünderung der Schuldner.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5ff56ne0ksa9mb0wd9y51f%2F1766489329_img_0.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=PeGpQsOXst%2BcU6yaldCl209z1VjLCP9ofJ7an2U6Ono%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Schuld und Zins</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/posts/senatsreform</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.411Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Senatsreform – Erweiterung und Entmachtung der alten Netzwerke</title>
+    <excerpt>Warum ich den Senat vergrößerte: Provinzvertreter einbinden, Patronatsnetzwerke brechen, Verwaltung professionalisieren – und Widerstand streuen.</excerpt>
+    <image:image>
+      <image:loc>https://videos.openai.com/az/vg-assets/task_01kd5f69bcfen9xwyc7begkwh9%2F1766489035_img_1.webp?se=2025-12-26T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-23T02%3A21%3A13Z&ske=2025-12-30T02%3A26%3A13Z&sks=b&skv=2024-08-04&sig=FdSynyG50yo7XgVLRb1VxL1Nbxfwlt61YSVnqIbAJpE%3D&ac=oaivgprodscus2</image:loc>
+      <image:title>Senatsreform – Erweiterung und Entmachtung der alten Netzwerke</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/posts/die-catilinarische-verschwrung-soziokonomische-ursachen-und-politische-dynamiken</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.412Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Catilinarische Verschwörung: Sozioökonomische Ursachen und politische Dynamiken</title>
+    <excerpt>Eine wissenschaftliche Untersuchung der komplexen politischen, sozialen und ökonomischen Faktoren, die zur Catilinarischen Verschwörung führten und die spätrömische Republik destabilisierten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/posts/die-schlacht-bei-pistoria</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.413Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Schlacht bei Pistoria</title>
+    <excerpt>Die Schlacht bei Pistoria im Januar 62 v. Chr. markierte das blutige Ende der Catilinarischen Verschwörung und den Tod ihres Anführers Lucius Sergius Catilina.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/posts/die-verschwrung</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.414Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Verschwörung</title>
+    <excerpt>Die Catilinarische Verschwörung von 63 v. Chr. stellte einen Wendepunkt in der spätrömischen Republik dar und markierte einen der gefährlichsten innenpolitischen Konflikte dieser Ära.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/posts/flucht-nach-etrurien</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.414Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Flucht nach Etrurien - Der Beginn des bewaffneten Aufstands</title>
+    <excerpt>Nach Ciceros erster Rede flieht Catilina im November 63 v. Chr. aus Rom zu seinem Heer in Etrurien - der Übergang vom Verschwörer zum Rebellen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/catilina/posts/gescheiterte-ambitionen</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.415Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Gescheiterte Ambitionen - Der Weg zur Verzweiflung</title>
+    <excerpt>Catilinas wiederholte Niederlagen bei den Konsulwahlen 64 und 63 v. Chr. trieben den verschuldeten Patrizier zur Verzweiflung und zur Verschwörung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/posts/de-re-publica</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.416Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>De Re Publica - Ciceros Vermächtnis für die Nachwelt</title>
+    <excerpt>In den Jahren 54-51 v. Chr. verfasste Cicero sein philosophisches Hauptwerk über den idealen Staat - eine Verteidigung der Republik in ihrer Todesstunde.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/posts/im-exil</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.417Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Im Exil</title>
+    <excerpt>Ciceros Verbannung aus Rom durch Clodius und die politischen Hintergründe seiner Flucht nach Griechenland.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/posts/mein-konsulat-die-rettung-der-republik</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.417Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Mein Konsulat - Die Rettung der Republik</title>
+    <excerpt>Wissenschaftliche Analyse von Ciceros Konsulat im Jahr 63 v.Chr. und seiner Rolle bei der Niederschlagung der Catilinarischen Verschwörung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/posts/philippische-reden</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.419Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die Philippischen Reden - Ciceros letzter Kampf</title>
+    <excerpt>Ciceros verzweifelter Kampf gegen Marcus Antonius 44-43 v. Chr. - vierzehn flammende Reden, die ihm das Leben kosteten, aber die Republik verteidigten.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/posts/ruckkehr-aus-dem-exil</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.420Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Rückkehr aus dem Exil</title>
+    <excerpt>Ciceros triumphaler Rückkehr nach Rom im September 57 v. Chr. nach 16 Monaten Verbannung - ein politischer Sieg über seine Feinde.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/die-philosophischen-schriften</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.421Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Die philosophischen Hauptwerke - Senecas geistiges Vermächtnis</title>
+    <excerpt>Senecas philosophische Dialoge, Traktate und Briefe - sein Versuch, stoische Weisheit für römische Leser zugänglich zu machen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/erzieher-neros</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.422Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Erzieher des jungen Nero</title>
+    <excerpt>Senecas Rückkehr aus dem Exil 49 n. Chr. als Tutor des zukünftigen Kaisers Nero - eine Chance, den perfekten Philosophenherrscher zu formen.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/exil-auf-korsika</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.422Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Exil auf Korsika</title>
+    <excerpt>Senecas achtjähriges Exil auf Korsika (41-49 n. Chr.) durch Kaiser Claudius - eine Zeit philosophischer Reifung und literarischer Produktivität.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/quinquennium-neronis</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.423Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Quinquennium Neronis - Die fünf guten Jahre</title>
+    <excerpt>Die ersten fünf Regierungsjahre Neros (54-59 n. Chr.) unter Senecas und Burrus' Einfluss - eine Zeit relativer Gerechtigkeit und Prosperität, bevor der Terror begann.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/ruckzug-aus-der-politik</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.424Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Rückzug aus der Politik - Senecas letzter Versuch</title>
+    <excerpt>Im Jahr 62 n. Chr. versuchte Seneca, sich aus Neros Umfeld zurückzuziehen und sein Vermögen zurückzugeben - vergeblich.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/seneca/posts/tod-senecas</loc>
-    <lastmod>2026-02-01T13:30:46.952Z</lastmod>
+    <lastmod>2026-02-01T13:59:28.425Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <title>Der Tod Senecas - Stoisch bis zum Ende</title>
+    <excerpt>Senecas erzwungener Selbstmord 65 n. Chr. nach der Pisonischen Verschwörung - ein stoisches Ende eines widersprüchlichen Lebens.</excerpt>
   </url>
 </urlset>

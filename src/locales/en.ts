@@ -5,6 +5,7 @@ export const en = {
     },
     navTimeline: 'Timeline',
     navLexicon: 'Lexicon',
+    navLernen: 'Learn',
     lexiconSearchPlaceholder: 'Search the lexicon...',
     lexiconGlossary: 'The Glossary',
     lexiconDescription: 'A compendium of the most important terms of ancient Rome.',

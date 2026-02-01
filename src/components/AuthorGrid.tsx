@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Sparkles, Star, Brain, Target, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
@@ -66,7 +67,7 @@ export function AuthorGrid() {
                   >
                     {/* Image Section */}
                     <div className="relative aspect-[4/5] overflow-hidden">
-                      <img
+                      <ImageWithFallback
                         src={author.heroImage}
                         alt={translatedInfo.name}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
