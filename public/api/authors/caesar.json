@@ -1,0 +1,33 @@
+{
+  "id": "caesar",
+  "name": "Gaius Julius Caesar",
+  "latinName": "Gaius Iulius Caesar",
+  "title": "Dictator Perpetuo",
+  "years": "100 – 44 v. Chr.",
+  "birthYear": -100,
+  "deathYear": -44,
+  "description": "Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.",
+  "heroImage": "/images/caesar-hero.jpg",
+  "theme": "theme-caesar",
+  "color": "hsl(25, 95%, 53%)",
+  "highlights": [
+    {
+      "title": "De Bello Gallico",
+      "description": "Der Gallische Krieg – Strategie, Propaganda und Expansion.",
+      "link": "/caesar/works/de-bello-gallico",
+      "icon": "book"
+    },
+    {
+      "title": "De Bello Civili",
+      "description": "Der Bürgerkrieg gegen Pompeius – Macht und Rechtfertigung.",
+      "link": "/caesar/works/de-bello-civili",
+      "icon": "scroll"
+    },
+    {
+      "title": "Gallienkarte",
+      "description": "Kampagnenkarte und Schlüsselorte der Eroberung.",
+      "link": "/timeline",
+      "icon": "map"
+    }
+  ]
+}

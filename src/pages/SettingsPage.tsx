@@ -6,7 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, Save, Settings as SettingsIcon, Globe, Palette, Bell } from 'lucide-react';
+import { ArrowLeft, Save, Settings as SettingsIcon, Globe, Palette, Bell, Download, CheckCircle, AlertCircle, WifiOff } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { Switch } from '@/components/ui/switch';
 import { SiteSettings, defaultSettings } from '@/types/settings';
@@ -17,6 +18,14 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
 
+  // Offline features state
+  const [isCaching, setIsCaching] = useState(false);
+  const [cacheComplete, setCacheComplete] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isError, setIsError] = useState(false);
+  const [statusText, setStatusText] = useState('Alle Artikel und das Lexikon offline speichern.');
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
+
   useEffect(() => {
     try {
       const loaded = getSettings();
@@ -24,7 +33,66 @@ export default function SettingsPage() {
     } catch (error) {
       console.error('Failed to load settings', error);
     }
+
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === 'PRECACHE_PROGRESS') {
+        const { progress: p, status } = event.data.payload;
+        if (p === -1) {
+          setIsError(true);
+          setIsCaching(false);
+          setStatusText('Download fehlgeschlagen.');
+        } else {
+          setProgress(p);
+          setStatusText(status);
+          if (p === 100) {
+            setTimeout(() => {
+              setIsCaching(false);
+              setCacheComplete(true);
+            }, 500);
+          }
+        }
+      }
+    };
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', handleMessage);
+    }
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.removeEventListener('message', handleMessage);
+      }
+    };
   }, []);
+
+  const triggerPrecache = () => {
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      setIsCaching(true);
+      setIsError(false);
+      setCacheComplete(false);
+      setProgress(0);
+      navigator.serviceWorker.controller.postMessage({ type: 'TRIGGER_PRECACHE' });
+      toast.info('Offline-Download gestartet...');
+    } else {
+      toast.error('Service Worker nicht bereit.');
+    }
+  };
+
+  const clearCache = async () => {
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(key => caches.delete(key)));
+      toast.success('Cache geleert. Die Seite wird neu geladen.');
+      setTimeout(() => window.location.reload(), 1000);
+    }
+  };
 
   const updateSetting = (key: keyof SiteSettings, value: string | boolean) => {
     setSettings(prev => ({ ...prev, [key]: value }));
@@ -37,10 +105,10 @@ export default function SettingsPage() {
     try {
       await saveSettings(settings);
       toast.success('Einstellungen gespeichert');
-      
+
       // In a real implementation, you would send to API:
       // await fetch('/api/settings', { method: 'POST', ... });
-      
+
     } catch (error) {
       console.error(error);
       toast.error('Fehler beim Speichern');
@@ -240,16 +308,89 @@ export default function SettingsPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Cache & Performance</CardTitle>
-                  <CardDescription>Optimiere die Ladezeiten</CardDescription>
+                  <CardTitle className="flex items-center gap-2">
+                    Offline-Inhalte
+                    {isOffline && <WifiOff className="h-4 w-4 text-destructive" />}
+                  </CardTitle>
+                  <CardDescription>Verwalte die Offline-Verfügbarkeit der Website</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <Button type="button" variant="outline" className="w-full">
-                    Cache leeren
-                  </Button>
-                  <p className="text-xs text-muted-foreground">
-                    Löscht zwischengespeicherte Daten und zwingt Neuladen von Assets
-                  </p>
+                <CardContent className="space-y-6">
+                  <div className="flex flex-col gap-4 p-4 rounded-xl bg-muted/50 border border-border">
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${cacheComplete ? 'bg-green-500/10 text-green-500' :
+                          isCaching ? 'bg-primary/20 text-primary' : 'bg-background text-muted-foreground'
+                        }`}>
+                        {cacheComplete ? <CheckCircle className="h-6 w-6" /> :
+                          isCaching ? <Download className="h-6 w-6 animate-bounce" /> :
+                            <Download className="h-6 w-6" />}
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <p className="font-bold text-sm">
+                          {cacheComplete ? "Alles offline verfügbar" :
+                            isCaching ? "Download läuft..." : "Komplette Website offline speichern"}
+                        </p>
+                        <p className="text-xs text-muted-foreground">{statusText}</p>
+                      </div>
+                    </div>
+
+                    <AnimatePresence>
+                      {isCaching && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="space-y-2 overflow-hidden"
+                        >
+                          <div className="w-full h-2 bg-background rounded-full overflow-hidden border border-border">
+                            <motion.div
+                              className="h-full bg-primary"
+                              animate={{ width: `${progress}%` }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                          <p className="text-[10px] text-right text-muted-foreground font-mono">{Math.round(progress)}%</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {!cacheComplete && (
+                      <Button
+                        type="button"
+                        onClick={triggerPrecache}
+                        disabled={isCaching || isOffline}
+                        className="w-full h-11"
+                        variant={isError ? "outline" : "default"}
+                      >
+                        {isCaching ? "Lädt herunter..." : isError ? "Erneut versuchen" : "Jetzt herunterladen"}
+                      </Button>
+                    )}
+
+                    {cacheComplete && (
+                      <Button
+                        type="button"
+                        onClick={triggerPrecache}
+                        variant="outline"
+                        className="w-full h-11"
+                      >
+                        Erneut aktualisieren
+                      </Button>
+                    )}
+
+                    {isOffline && (
+                      <p className="text-[10px] text-destructive text-center font-medium">
+                        Download nur im Online-Modus möglich
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="pt-4 border-t border-border">
+                    <Button type="button" onClick={clearCache} variant="ghost" className="w-full text-destructive hover:text-destructive hover:bg-destructive/10">
+                      Lokalen Cache leeren
+                    </Button>
+                    <p className="text-[10px] text-center text-muted-foreground mt-2">
+                      Löscht alle gespeicherten Artikel und Bilder von diesem Gerät.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

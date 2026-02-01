@@ -1,6 +1,35 @@
 {
-  "slug": "ostia",
   "term": "Ostia",
+  "slug": "ostia",
+  "variants": [
+    "Ostia Antica",
+    "Hafenstadt"
+  ],
   "definition": "Ostia (vollständig Ostia Antica) war die antike Hafenstadt Roms an der Tibermündung, etwa 25 km südwestlich der Hauptstadt, und diente als lebenswichtiger Handels- und Versorgungsknotenpunkt des Römischen Reiches. Der Name bedeutet \"Mündung\" (von lat. 'ostium'). Gegründet der Legende nach im 7. Jahrhundert v. Chr. von König Ancus Marcius, entwickelte sich Ostia zum wichtigsten Seehafen für Getreideimporte aus Ägypten, Afrika und Sizilien. Die Stadt verfügte über ausgeklügelte Lagerhäuser (horrea), einen künstlichen Hafen (von Kaiser Claudius und Trajan erweitert), Handelsgilden (scholae) und eine multikulturelle Bevölkerung. Ostia war auch Flottenstützpunkt (classis Ostiensis). Mit über 50.000 Einwohnern in der Kaiserzeit war sie eine blühende Handelsmetropole. Die gut erhaltenen Ruinen zeigen Wohnhäuser (insulae), Thermen, Theater und den Neptuntempel. Ostia symbolisierte die wirtschaftliche Macht Roms.",
-  "category": "Geographie & Orte"
+  "category": "Geographie & Orte",
+  "etymology": "Von lateinisch 'ostium' (Mündung, Eingang) → 'Ostia'. Bezeichnet die Lage an der Tibermündung ins Mittelmeer.",
+  "relatedTerms": [
+    "Portus",
+    "Tiberis",
+    "Horrea",
+    "Classis"
+  ],
+  "translations": {
+    "en": {
+      "term": "Ostia",
+      "definition": "Ostia (fully Ostia Antica) was the ancient port city of Rome at the mouth of the Tiber, about 25 km southwest of the capital, and served as a vital commercial and supply hub of the Roman Empire. The name means 'mouth' (from Latin 'ostium'). Founded according to legend in the 7th century BC by King Ancus Marcius, Ostia developed into the most important seaport for grain imports from Egypt, Africa, and Sicily. The city had sophisticated warehouses (horrea), an artificial harbor (expanded by Emperors Claudius and Trajan), trade guilds (scholae), and a multicultural population. Ostia was also a naval base (classis Ostiensis). With over 50,000 inhabitants in the Imperial period, it was a flourishing commercial metropolis. The well-preserved ruins show apartment buildings (insulae), baths, theaters, and the Neptune temple. Ostia symbolized Rome's economic power.",
+      "etymology": "From Latin 'ostium' (mouth, entrance) → 'Ostia'. Refers to its location at the mouth of the Tiber into the Mediterranean.",
+      "category": "Geography & Places",
+      "variants": [
+        "Ostia Antica"
+      ]
+    },
+    "la": {
+      "term": "Ostia",
+      "definition": "Ostia (plene Ostia Antiqua) fuit urbs portus antiqua Romae ad ostium Tiberis, circa viginti quinque milia passuum ad sudoccidentem a capite, et ut nodus commercialis et provisionis vitalis Imperii Romani serviebat. Nomen 'ostium' (ab ostio Latino) significat. Secundum legendam saeculo septimo a.C.n. a rege Anco Marcio condita, Ostia in portum maritimum gravissimum pro importationibus frumenti ex Aegypto, Africa et Sicilia evoluta est. Urbs horrea sophisticata, portum artificialem (ab imperatoribus Claudio et Traiano expansum), collegia mercatorum (scholae) et populationem multiculturaliam habebat. Ostia etiam basis navalis (classis Ostiensis) erat. Cum plus quam quinquaginta milibus incolarum aetate imperatoria, metropolis commercialis florens erat. Ruinae bene conservatae aedificia habitationis (insulae), thermas, theatra et aedem Neptuni monstrant. Ostia potentiam oeconomicam Romae symbolizabat.",
+      "etymology": "A vocabulo Latino 'ostium' (ostium, introitus) → 'Ostia'. Ad positionem ad ostium Tiberis in Mare Mediterraneum refertur.",
+      "category": "Geographia et Loca",
+      "variants": []
+    }
+  }
 }

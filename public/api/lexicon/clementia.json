@@ -1,6 +1,36 @@
 {
-  "slug": "clementia",
   "term": "Clementia",
+  "slug": "clementia",
+  "variants": [
+    "Milde",
+    "Gnade"
+  ],
   "definition": "Clementia war die römische Tugend der Milde, Nachsicht und Gnade gegenüber Besiegten und Untergebenen, besonders bedeutsam im militärischen und politischen Kontext. Anders als die griechische Philanthropie war clementia eine bewusste Machtdemonstration: Der Sieger zeigte durch Gnade seine Überlegenheit und moralische Größe. Caesar machte clementia zu seinem politischen Markenzeichen – er begnadigte besiegte Gegner wie Brutus und Cassius nach dem Bürgerkrieg, was ihm kurzfristig Loyalität, langfristig aber auch Kritik einbrachte. Die Tugend wurde unter Augustus institutionalisiert: Der Senat ehrte ihn 27 v. Chr. mit einem goldenen Schild (clipeus virtutis), der seine virtus, clementia, iustitia und pietas pries. Clementia wurde als göttliche Eigenschaft betrachtet und war Gegenstand religiöser Verehrung. Sie unterschied zivilisierte römische Herrschaft von barbarischer Tyrannei. Allerdings konnte übertriebene clementia auch als Schwäche ausgelegt werden – die Balance war entscheidend.",
-  "category": "Philosophie & Werte"
+  "category": "Philosophie & Werte",
+  "etymology": "Von lateinisch 'clemens' (mild, sanft) → 'clementia'. Verwandt mit griechisch 'κλίνειν' (klínein, neigen, sich beugen).",
+  "relatedTerms": [
+    "Virtus",
+    "Iustitia",
+    "Pietas",
+    "Misericordia"
+  ],
+  "translations": {
+    "en": {
+      "term": "Clementia",
+      "definition": "Clementia was the Roman virtue of mercy, leniency, and grace toward the defeated and subordinates, particularly significant in military and political contexts. Unlike Greek philanthropia, clementia was a conscious demonstration of power: the victor showed his superiority and moral greatness through mercy. Caesar made clementia his political trademark – he pardoned defeated opponents like Brutus and Cassius after the civil war, which brought him short-term loyalty but also long-term criticism. The virtue was institutionalized under Augustus: the Senate honored him in 27 BC with a golden shield (clipeus virtutis) that praised his virtus, clementia, iustitia, and pietas. Clementia was considered a divine quality and was the object of religious veneration. It distinguished civilized Roman rule from barbaric tyranny. However, excessive clementia could also be interpreted as weakness – balance was crucial.",
+      "etymology": "From Latin 'clemens' (mild, gentle) → 'clementia'. Related to Greek 'κλίνειν' (klínein, to incline, to bend).",
+      "category": "Philosophy & Values",
+      "variants": [
+        "Mercy",
+        "Clemency"
+      ]
+    },
+    "la": {
+      "term": "Clementia",
+      "definition": "Clementia fuit virtus Romana clementiae, indulgentiae et gratiae erga victos et subditos, praecipue significans in contextibus militaribus et politicis. Dissimiliter a philanthropia Graeca, clementia demonstratio potestatis conscia erat: victor per clementiam superioritatem et magnitudinem moralem suam monstrabat. Caesar clementiam insigne politicum suum fecit – adversarios victos ut Brutum et Cassium post bellum civile veniam dedit, quod ei fidelitatem brevem sed etiam criticam longam attulit. Virtus sub Augusto institutionalizata est: senatus eum anno 27 a.C.n. cum scuto aureo (clipeus virtutis) honoravit qui virtutem, clementiam, iustitiam et pietatem eius laudavit. Clementia ut qualitas divina habebatur et obiectum venerationis religiosae erat. Imperium Romanum civile a tyrannide barbara distinguebat. Tamen clementia excessiva etiam ut infirmitas interpretari poterat – aequilibrium cruciale erat.",
+      "etymology": "A vocabulo Latino 'clemens' (clemens, lenis) → 'clementia'. Cognatum cum Graeco 'κλίνειν' (klínein, inclinare, flectere).",
+      "category": "Philosophia et Valores",
+      "variants": []
+    }
+  }
 }

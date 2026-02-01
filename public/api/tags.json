@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "adoption",
+    "translations": {
+      "de": "Adoption",
+      "en": "Adoption",
+      "la": "Adoption"
+    },
+    "count": 1
+  },
+  {
+    "id": "agrippina",
+    "translations": {
+      "de": "Agrippina",
+      "en": "Agrippina",
+      "la": "Agrippina"
+    },
+    "count": 1
+  },
+  {
+    "id": "gypten",
+    "translations": {
+      "de": "Ägypten",
+      "en": "Ägypten",
+      "la": "Ägypten"
+    },
+    "count": 1
+  },
+  {
+    "id": "antonius",
+    "translations": {
+      "de": "Antonius",
+      "en": "Antonius",
+      "la": "Antonius"
+    },
+    "count": 2
+  },
+  {
+    "id": "armee",
+    "translations": {
+      "de": "Armee",
+      "en": "Armee",
+      "la": "Armee"
+    },
+    "count": 3
+  },
+  {
+    "id": "aufstand",
+    "translations": {
+      "de": "Aufstand",
+      "en": "Aufstand",
+      "la": "Aufstand"
+    },
+    "count": 1
+  },
+  {
+    "id": "aufstieg",
+    "translations": {
+      "de": "Aufstieg",
+      "en": "Aufstieg",
+      "la": "Aufstieg"
+    },
+    "count": 1
+  },
+  {
+    "id": "barbaren",
+    "translations": {
+      "de": "Barbaren",
+      "en": "Barbaren",
+      "la": "Barbaren"
+    },
+    "count": 1
+  },
+  {
+    "id": "bibulus",
+    "translations": {
+      "de": "Bibulus",
+      "en": "Bibulus",
+      "la": "Bibulus"
+    },
+    "count": 1
+  },
+  {
+    "id": "brutus",
+    "translations": {
+      "de": "Brutus",
+      "en": "Brutus",
+      "la": "Brutus"
+    },
+    "count": 2
+  },
+  {
+    "id": "b-rgerkrieg",
+    "translations": {
+      "de": "Bürgerkrieg",
+      "en": "Bürgerkrieg",
+      "la": "Bürgerkrieg"
+    },
+    "count": 3
+  },
+  {
+    "id": "burrus",
+    "translations": {
+      "de": "Burrus",
+      "en": "Burrus",
+      "la": "Burrus"
+    },
+    "count": 2
+  },
+  {
+    "id": "caesar",
+    "translations": {
+      "de": "Caesar",
+      "en": "Caesar",
+      "la": "Caesar"
+    },
+    "count": 1
+  },
+  {
+    "id": "caesarianer",
+    "translations": {
+      "de": "Caesarianer",
+      "en": "Caesarianer",
+      "la": "Caesarianer"
+    },
+    "count": 1
+  },
+  {
+    "id": "caesoninus",
+    "translations": {
+      "de": "Caesoninus",
+      "en": "Caesoninus",
+      "la": "Caesoninus"
+    },
+    "count": 1
+  },
+  {
+    "id": "c-sar-verschl-sselung",
+    "translations": {
+      "de": "Cäsar-Verschlüsselung",
+      "en": "Cäsar-Verschlüsselung",
+      "la": "Cäsar-Verschlüsselung"
+    },
+    "count": 1
+  },
+  {
+    "id": "c-sarchiffre",
+    "translations": {
+      "de": "Cäsarchiffre",
+      "en": "Cäsarchiffre",
+      "la": "Cäsarchiffre"
+    },
+    "count": 1
+  },
+  {
+    "id": "cassius",
+    "translations": {
+      "de": "Cassius",
+      "en": "Cassius",
+      "la": "Cassius"
+    },
+    "count": 1
+  },
+  {
+    "id": "catilina",
+    "translations": {
+      "de": "Catilina",
+      "en": "Catilina",
+      "la": "Catilina"
+    },
+    "count": 2
+  },
+  {
+    "id": "cicero",
+    "translations": {
+      "de": "Cicero",
+      "en": "Cicero",
+      "la": "Cicero"
+    },
+    "count": 2
+  },
+  {
+    "id": "clementia-caesaris",
+    "translations": {
+      "de": "Clementia Caesaris",
+      "en": "Clementia Caesaris",
+      "la": "Clementia Caesaris"
+    },
+    "count": 1
+  },
+  {
+    "id": "clodius",
+    "translations": {
+      "de": "Clodius",
+      "en": "Clodius",
+      "la": "Clodius"
+    },
+    "count": 1
+  },
+  {
+    "id": "crassus",
+    "translations": {
+      "de": "Crassus",
+      "en": "Crassus",
+      "la": "Crassus"
+    },
+    "count": 2
+  },
+  {
+    "id": "dgs",
+    "translations": {
+      "de": "dgs",
+      "en": "dgs",
+      "la": "dgs"
+    },
+    "count": 1
+  },
+  {
+    "id": "dialoge",
+    "translations": {
+      "de": "Dialoge",
+      "en": "Dialoge",
+      "la": "Dialoge"
+    },
+    "count": 1
+  },
+  {
+    "id": "disclaimer",
+    "translations": {
+      "de": "Disclaimer",
+      "en": "Disclaimer",
+      "la": "Disclaimer"
+    },
+    "count": 1
+  },
+  {
+    "id": "dolch",
+    "translations": {
+      "de": "Dolch",
+      "en": "Dolch",
+      "la": "Dolch"
+    },
+    "count": 1
+  },
+  {
+    "id": "erbe",
+    "translations": {
+      "de": "Erbe",
+      "en": "Erbe",
+      "la": "Erbe"
+    },
+    "count": 1
+  },
+  {
+    "id": "erziehung",
+    "translations": {
+      "de": "Erziehung",
+      "en": "Erziehung",
+      "la": "Erziehung"
+    },
+    "count": 1
+  },
+  {
+    "id": "ethik",
+    "translations": {
+      "de": "Ethik",
+      "en": "Ethik",
+      "la": "Ethik"
+    },
+    "count": 1
+  },
+  {
+    "id": "exil",
+    "translations": {
+      "de": "Exil",
+      "en": "Exil",
+      "la": "Exil"
+    },
+    "count": 3
+  },
+  {
+    "id": "feind",
+    "translations": {
+      "de": "Feind",
+      "en": "Feind",
+      "la": "Feind"
+    },
+    "count": 4
+  },
+  {
+    "id": "flucht",
+    "translations": {
+      "de": "Flucht",
+      "en": "Flucht",
+      "la": "Flucht"
+    },
+    "count": 1
+  },
+  {
+    "id": "forum",
+    "translations": {
+      "de": "Forum",
+      "en": "Forum",
+      "la": "Forum"
+    },
+    "count": 1
+  },
+  {
+    "id": "frieden",
+    "translations": {
+      "de": "Frieden",
+      "en": "Frieden",
+      "la": "Frieden"
+    },
+    "count": 1
+  },
+  {
+    "id": "gallia-cisaplina",
+    "translations": {
+      "de": "Gallia Cisaplina",
+      "en": "Gallia Cisaplina",
+      "la": "Gallia Cisaplina"
+    },
+    "count": 1
+  },
+  {
+    "id": "gallia-transaplina",
+    "translations": {
+      "de": "Gallia Transaplina",
+      "en": "Gallia Transaplina",
+      "la": "Gallia Transaplina"
+    },
+    "count": 1
+  },
+  {
+    "id": "gallien",
+    "translations": {
+      "de": "Gallien",
+      "en": "Gallien",
+      "la": "Gallien"
+    },
+    "count": 3
+  },
+  {
+    "id": "geburt",
+    "translations": {
+      "de": "Geburt",
+      "en": "Geburt",
+      "la": "Geburt"
+    },
+    "count": 1
+  },
+  {
+    "id": "gegner",
+    "translations": {
+      "de": "Gegner",
+      "en": "Gegner",
+      "la": "Gegner"
+    },
+    "count": 1
+  },
+  {
+    "id": "goldenes-zeitalter",
+    "translations": {
+      "de": "Goldenes Zeitalter",
+      "en": "Goldenes Zeitalter",
+      "la": "Goldenes Zeitalter"
+    },
+    "count": 1
+  },
+  {
+    "id": "haeduer",
+    "translations": {
+      "de": "Haeduer",
+      "en": "Haeduer",
+      "la": "Haeduer"
+    },
+    "count": 1
+  },
+  {
+    "id": "helvetier",
+    "translations": {
+      "de": "Helvetier",
+      "en": "Helvetier",
+      "la": "Helvetier"
+    },
+    "count": 1
+  },
+  {
+    "id": "ideal",
+    "translations": {
+      "de": "Ideal",
+      "en": "Ideal",
+      "la": "Ideal"
+    },
+    "count": 1
+  },
+  {
+    "id": "illyrien",
+    "translations": {
+      "de": "Illyrien",
+      "en": "Illyrien",
+      "la": "Illyrien"
+    },
+    "count": 1
+  },
+  {
+    "id": "infrastruktur",
+    "translations": {
+      "de": "Infrastruktur",
+      "en": "Infrastruktur",
+      "la": "Infrastruktur"
+    },
+    "count": 1
+  },
+  {
+    "id": "institutionen",
+    "translations": {
+      "de": "Institutionen",
+      "en": "Institutionen",
+      "la": "Institutionen"
+    },
+    "count": 1
+  },
+  {
+    "id": "integration",
+    "translations": {
+      "de": "Integration",
+      "en": "Integration",
+      "la": "Integration"
+    },
+    "count": 1
+  },
+  {
+    "id": "kaiser",
+    "translations": {
+      "de": "Kaiser",
+      "en": "Kaiser",
+      "la": "Kaiser"
+    },
+    "count": 1
+  },
+  {
+    "id": "kalender",
+    "translations": {
+      "de": "Kalender",
+      "en": "Kalender",
+      "la": "Kalender"
+    },
+    "count": 1
+  },
+  {
+    "id": "konsulat",
+    "translations": {
+      "de": "Konsulat",
+      "en": "Konsulat",
+      "la": "Konsulat"
+    },
+    "count": 2
+  },
+  {
+    "id": "korsika",
+    "translations": {
+      "de": "Korsika",
+      "en": "Korsika",
+      "la": "Korsika"
+    },
+    "count": 1
+  },
+  {
+    "id": "krise",
+    "translations": {
+      "de": "Krise",
+      "en": "Krise",
+      "la": "Krise"
+    },
+    "count": 1
+  },
+  {
+    "id": "kultur",
+    "translations": {
+      "de": "Kultur",
+      "en": "Kultur",
+      "la": "Kultur"
+    },
+    "count": 1
+  },
+  {
+    "id": "landgesetz",
+    "translations": {
+      "de": "Landgesetz",
+      "en": "Landgesetz",
+      "la": "Landgesetz"
+    },
+    "count": 1
+  },
+  {
+    "id": "lepidus",
+    "translations": {
+      "de": "Lepidus",
+      "en": "Lepidus",
+      "la": "Lepidus"
+    },
+    "count": 1
+  },
+  {
+    "id": "machtpolitik",
+    "translations": {
+      "de": "Machtpolitik",
+      "en": "Machtpolitik",
+      "la": "Machtpolitik"
+    },
+    "count": 1
+  },
+  {
+    "id": "manlius",
+    "translations": {
+      "de": "Manlius",
+      "en": "Manlius",
+      "la": "Manlius"
+    },
+    "count": 1
+  },
+  {
+    "id": "messalina",
+    "translations": {
+      "de": "Messalina",
+      "en": "Messalina",
+      "la": "Messalina"
+    },
+    "count": 1
+  },
+  {
+    "id": "milit-r",
+    "translations": {
+      "de": "Militär",
+      "en": "Militär",
+      "la": "Militär"
+    },
+    "count": 1
+  },
+  {
+    "id": "milo",
+    "translations": {
+      "de": "Milo",
+      "en": "Milo",
+      "la": "Milo"
+    },
+    "count": 1
+  },
+  {
+    "id": "mord",
+    "translations": {
+      "de": "Mord",
+      "en": "Mord",
+      "la": "Mord"
+    },
+    "count": 1
+  },
+  {
+    "id": "nero",
+    "translations": {
+      "de": "Nero",
+      "en": "Nero",
+      "la": "Nero"
+    },
+    "count": 4
+  },
+  {
+    "id": "octavian",
+    "translations": {
+      "de": "Octavian",
+      "en": "Octavian",
+      "la": "Octavian"
+    },
+    "count": 1
+  },
+  {
+    "id": "konomie",
+    "translations": {
+      "de": "Ökonomie",
+      "en": "Ökonomie",
+      "la": "Ökonomie"
+    },
+    "count": 1
+  },
+  {
+    "id": "philippi",
+    "translations": {
+      "de": "Philippi",
+      "en": "Philippi",
+      "la": "Philippi"
+    },
+    "count": 1
+  },
+  {
+    "id": "philippicae",
+    "translations": {
+      "de": "Philippicae",
+      "en": "Philippicae",
+      "la": "Philippicae"
+    },
+    "count": 1
+  },
+  {
+    "id": "philosophie",
+    "translations": {
+      "de": "Philosophie",
+      "en": "Philosophie",
+      "la": "Philosophie"
+    },
+    "count": 4
+  },
+  {
+    "id": "pisonische-verschw-rung",
+    "translations": {
+      "de": "Pisonische Verschwörung",
+      "en": "Pisonische Verschwörung",
+      "la": "Pisonische Verschwörung"
+    },
+    "count": 1
+  },
+  {
+    "id": "pistoria",
+    "translations": {
+      "de": "Pistoria",
+      "en": "Pistoria",
+      "la": "Pistoria"
+    },
+    "count": 1
+  },
+  {
+    "id": "politik",
+    "translations": {
+      "de": "Politik",
+      "en": "Politik",
+      "la": "Politik"
+    },
+    "count": 5
+  },
+  {
+    "id": "pompeius",
+    "translations": {
+      "de": "Pompeius",
+      "en": "Pompeius",
+      "la": "Pompeius"
+    },
+    "count": 5
+  },
+  {
+    "id": "poppaea",
+    "translations": {
+      "de": "Poppaea",
+      "en": "Poppaea",
+      "la": "Poppaea"
+    },
+    "count": 1
+  },
+  {
+    "id": "prinzipat",
+    "translations": {
+      "de": "Prinzipat",
+      "en": "Prinzipat",
+      "la": "Prinzipat"
+    },
+    "count": 1
+  },
+  {
+    "id": "prokonsulat",
+    "translations": {
+      "de": "Prokonsulat",
+      "en": "Prokonsulat",
+      "la": "Prokonsulat"
+    },
+    "count": 1
+  },
+  {
+    "id": "proskriptionen",
+    "translations": {
+      "de": "Proskriptionen",
+      "en": "Proskriptionen",
+      "la": "Proskriptionen"
+    },
+    "count": 1
+  },
+  {
+    "id": "provinzen",
+    "translations": {
+      "de": "Provinzen",
+      "en": "Provinzen",
+      "la": "Provinzen"
+    },
+    "count": 1
+  },
+  {
+    "id": "rebellion",
+    "translations": {
+      "de": "Rebellion",
+      "en": "Rebellion",
+      "la": "Rebellion"
+    },
+    "count": 1
+  },
+  {
+    "id": "reform",
+    "translations": {
+      "de": "Reform",
+      "en": "Reform",
+      "la": "Reform"
+    },
+    "count": 7
+  },
+  {
+    "id": "reformen",
+    "translations": {
+      "de": "Reformen",
+      "en": "Reformen",
+      "la": "Reformen"
+    },
+    "count": 1
+  },
+  {
+    "id": "regierung",
+    "translations": {
+      "de": "Regierung",
+      "en": "Regierung",
+      "la": "Regierung"
+    },
+    "count": 1
+  },
+  {
+    "id": "republik",
+    "translations": {
+      "de": "Republik",
+      "en": "Republik",
+      "la": "Republik"
+    },
+    "count": 4
+  },
+  {
+    "id": "rom",
+    "translations": {
+      "de": "Rom",
+      "en": "Rom",
+      "la": "Rom"
+    },
+    "count": 3
+  },
+  {
+    "id": "rubikon",
+    "translations": {
+      "de": "Rubikon",
+      "en": "Rubikon",
+      "la": "Rubikon"
+    },
+    "count": 1
+  },
+  {
+    "id": "r-ckkehr",
+    "translations": {
+      "de": "Rückkehr",
+      "en": "Rückkehr",
+      "la": "Rückkehr"
+    },
+    "count": 1
+  },
+  {
+    "id": "r-ckzug",
+    "translations": {
+      "de": "Rückzug",
+      "en": "Rückzug",
+      "la": "Rückzug"
+    },
+    "count": 1
+  },
+  {
+    "id": "schlacht",
+    "translations": {
+      "de": "Schlacht",
+      "en": "Schlacht",
+      "la": "Schlacht"
+    },
+    "count": 2
+  },
+  {
+    "id": "schriften",
+    "translations": {
+      "de": "Schriften",
+      "en": "Schriften",
+      "la": "Schriften"
+    },
+    "count": 2
+  },
+  {
+    "id": "schulden",
+    "translations": {
+      "de": "Schulden",
+      "en": "Schulden",
+      "la": "Schulden"
+    },
+    "count": 1
+  },
+  {
+    "id": "selbstmord",
+    "translations": {
+      "de": "Selbstmord",
+      "en": "Selbstmord",
+      "la": "Selbstmord"
+    },
+    "count": 1
+  },
+  {
+    "id": "senat",
+    "translations": {
+      "de": "Senat",
+      "en": "Senat",
+      "la": "Senat"
+    },
+    "count": 5
+  },
+  {
+    "id": "sozialpolitik",
+    "translations": {
+      "de": "Sozialpolitik",
+      "en": "Sozialpolitik",
+      "la": "Sozialpolitik"
+    },
+    "count": 1
+  },
+  {
+    "id": "spenden",
+    "translations": {
+      "de": "Spenden",
+      "en": "Spenden",
+      "la": "Spenden"
+    },
+    "count": 1
+  },
+  {
+    "id": "staatsrecht",
+    "translations": {
+      "de": "Staatsrecht",
+      "en": "Staatsrecht",
+      "la": "Staatsrecht"
+    },
+    "count": 1
+  },
+  {
+    "id": "staatstheorie",
+    "translations": {
+      "de": "Staatstheorie",
+      "en": "Staatstheorie",
+      "la": "Staatstheorie"
+    },
+    "count": 1
+  },
+  {
+    "id": "stabilit-t",
+    "translations": {
+      "de": "Stabilität",
+      "en": "Stabilität",
+      "la": "Stabilität"
+    },
+    "count": 1
+  },
+  {
+    "id": "stadtplanung",
+    "translations": {
+      "de": "Stadtplanung",
+      "en": "Stadtplanung",
+      "la": "Stadtplanung"
+    },
+    "count": 1
+  },
+  {
+    "id": "stoizismus",
+    "translations": {
+      "de": "Stoizismus",
+      "en": "Stoizismus",
+      "la": "Stoizismus"
+    },
+    "count": 2
+  },
+  {
+    "id": "testament",
+    "translations": {
+      "de": "Testament",
+      "en": "Testament",
+      "la": "Testament"
+    },
+    "count": 1
+  },
+  {
+    "id": "tod",
+    "translations": {
+      "de": "Tod",
+      "en": "Tod",
+      "la": "Tod"
+    },
+    "count": 2
+  },
+  {
+    "id": "triumph",
+    "translations": {
+      "de": "Triumph",
+      "en": "Triumph",
+      "la": "Triumph"
+    },
+    "count": 1
+  },
+  {
+    "id": "triumvirat",
+    "translations": {
+      "de": "Triumvirat",
+      "en": "Triumvirat",
+      "la": "Triumvirat"
+    },
+    "count": 4
+  },
+  {
+    "id": "vercingetorix",
+    "translations": {
+      "de": "Vercingetorix",
+      "en": "Vercingetorix",
+      "la": "Vercingetorix"
+    },
+    "count": 1
+  },
+  {
+    "id": "verfassung",
+    "translations": {
+      "de": "Verfassung",
+      "en": "Verfassung",
+      "la": "Verfassung"
+    },
+    "count": 1
+  },
+  {
+    "id": "verm-chtnis",
+    "translations": {
+      "de": "Vermächtnis",
+      "en": "Vermächtnis",
+      "la": "Vermächtnis"
+    },
+    "count": 1
+  },
+  {
+    "id": "verschw-rung",
+    "translations": {
+      "de": "Verschwörung",
+      "en": "Verschwörung",
+      "la": "Verschwörung"
+    },
+    "count": 2
+  },
+  {
+    "id": "verwaltung",
+    "translations": {
+      "de": "Verwaltung",
+      "en": "Verwaltung",
+      "la": "Verwaltung"
+    },
+    "count": 1
+  },
+  {
+    "id": "verzweiflung",
+    "translations": {
+      "de": "Verzweiflung",
+      "en": "Verzweiflung",
+      "la": "Verzweiflung"
+    },
+    "count": 1
+  },
+  {
+    "id": "veteranen",
+    "translations": {
+      "de": "Veteranen",
+      "en": "Veteranen",
+      "la": "Veteranen"
+    },
+    "count": 1
+  },
+  {
+    "id": "wahlen",
+    "translations": {
+      "de": "Wahlen",
+      "en": "Wahlen",
+      "la": "Wahlen"
+    },
+    "count": 1
+  },
+  {
+    "id": "wirtschaft",
+    "translations": {
+      "de": "Wirtschaft",
+      "en": "Wirtschaft",
+      "la": "Wirtschaft"
+    },
+    "count": 1
+  },
+  {
+    "id": "wissenschaft",
+    "translations": {
+      "de": "Wissenschaft",
+      "en": "Wissenschaft",
+      "la": "Wissenschaft"
+    },
+    "count": 1
+  }
+]

@@ -162,7 +162,11 @@ export async function deletePage(slug: string) {
 export async function fetchTags() {
     const res = await fetch(`${getApiBase()}/tags`);
     if (!res.ok) throw new Error('Failed to fetch tags');
-    return res.json();
+    const data = await res.json();
+    if (Array.isArray(data) && data.length > 0 && data[0]?.translations) {
+        return data.map((tag: any) => tag.translations?.de || tag.id).filter(Boolean);
+    }
+    return data;
 }
 
 export async function renameTag(oldTag: string, newTag: string) {

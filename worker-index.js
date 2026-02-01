@@ -38,6 +38,11 @@ export default {
             return handleSimulation(request, env, url, body);
         }
 
+        // Route: /stats - handle dynamic metrics
+        if (pathname.endsWith('/stats')) {
+            return handleStats();
+        }
+
         // Persona extraction and Documentation check
         let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
         let question = url.searchParams.get("ask") || body?.ask;
@@ -374,6 +379,62 @@ function expandKeyword(k) {
         }
     }
     return Array.from(out).filter(Boolean);
+}
+
+// =======================================
+// Stats endpoint
+// =======================================
+async function handleStats() {
+    const baseUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const statsUrl = new URL('/api/stats-base', baseUrl);
+
+    try {
+        const upstream = await fetch(statsUrl.toString(), {
+            method: 'GET',
+            headers: { accept: 'application/json' }
+        });
+
+        if (!upstream.ok) {
+            return new Response(JSON.stringify({ error: 'Failed to load stats base' }), {
+                status: upstream.status,
+                headers: corsHeaders()
+            });
+        }
+
+        const base = await upstream.json();
+        const minutes = Number(base.readingMinutes || 0);
+        const hours = Math.round((minutes / 60) * 10) / 10;
+        const days = Math.round((hours / 24) * 10) / 10;
+        const minYear = Number.isFinite(base?.yearRange?.min) ? base.yearRange.min : null;
+        const maxYear = Number.isFinite(base?.yearRange?.max) ? base.yearRange.max : null;
+        const coverageYears = minYear !== null && maxYear !== null
+            ? Math.abs(maxYear - minYear) + 1
+            : null;
+
+        const response = {
+            generatedAt: new Date().toISOString(),
+            baseGeneratedAt: base.generatedAt,
+            counts: base.counts,
+            yearRange: {
+                min: minYear,
+                max: maxYear
+            },
+            coverageYears,
+            readingTime: {
+                minutes,
+                hours,
+                days,
+                words: Number(base.wordCount || 0)
+            }
+        };
+
+        return new Response(JSON.stringify(response), { headers: corsHeaders() });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: 'Stats unavailable' }), {
+            status: 502,
+            headers: corsHeaders()
+        });
+    }
 }
 
 // =======================================

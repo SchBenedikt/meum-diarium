@@ -21,6 +21,7 @@ export function Footer() {
         { label: t('navTimeline'), href: '/timeline' },
         { label: t('navLexicon'), href: '/lexicon' },
         { label: t('navAbout'), href: '/about' },
+        { label: 'API', href: '/api' },
       ]
     },
     {

@@ -1,6 +1,32 @@
 {
-  "slug": "consul",
   "term": "Consul",
+  "slug": "consul",
+  "variants": [
+    "Konsul"
+  ],
   "definition": "Der Consul war das höchste ordentliche Amt der römischen Republik und bildete die Spitze des cursus honorum. Jährlich wurden zwei Consuln vom Volk gewählt, die gemeinsam regierten (Kollegialitätsprinzip) und sich gegenseitig kontrollieren konnten (Interzession). Sie führten den Vorsitz im Senat, leiteten die Volksversammlungen, kommandierten die Armeen und verwalteten die Republik. Das Amt war mit imperium (Befehlsgewalt) ausgestattet. Die Amtszeit betrug ein Jahr, und die Jahre wurden nach den Consuln benannt (eponyme Funktion). Nach der Amtszeit wurden ehemalige Consuln automatisch Senatoren mit großem Einfluss. In der Kaiserzeit behielten die Consuln nominelle Bedeutung, verloren aber ihre eigentliche Macht an den Kaiser. Berühmte Consuln waren Cicero (63 v. Chr.) und Caesar (59 v. Chr.). Das Amt symbolisierte die Prinzipien der römischen Republik: geteilte Macht und zeitliche Begrenzung.",
-  "category": "Politik & Verwaltung"
+  "category": "Politik & Verwaltung",
+  "etymology": "Von lateinisch 'consulere' (beraten, Rat pflegen) → 'consul' (Ratgeber, Konsul). Ursprünglich Bezeichnung für einen, der berät.",
+  "relatedTerms": [
+    "Cursus Honorum",
+    "Imperium",
+    "Senator",
+    "Praetor"
+  ],
+  "translations": {
+    "en": {
+      "term": "Consul",
+      "definition": "The consul was the highest regular office of the Roman Republic and formed the apex of the cursus honorum. Annually, two consuls were elected by the people, who ruled jointly (principle of collegiality) and could control each other (intercession). They presided over the Senate, directed the popular assemblies, commanded the armies, and administered the Republic. The office was endowed with imperium (command authority). The term of office was one year, and years were named after the consuls (eponymous function). After their term, former consuls automatically became senators with great influence. In the Imperial period, the consuls retained nominal significance but lost their actual power to the emperor. Famous consuls were Cicero (63 BC) and Caesar (59 BC). The office symbolized the principles of the Roman Republic: shared power and temporal limitation.",
+      "etymology": "From Latin 'consulere' (to consult, take counsel) → 'consul' (counselor, consul). Originally designation for one who advises.",
+      "category": "Politics & Administration",
+      "variants": []
+    },
+    "la": {
+      "term": "Consul",
+      "definition": "Consul fuit magistratus ordinarius summus rei publicae Romanae et culmen cursus honorum formabat. Quotannis duo consules a populo eligebantur qui simul regebant (principium collegialitatis) et se invicem coercere poterant (intercessio). Senatui praesidebant, comitia dirigebant, exercitus ducebant et rem publicam administrabant. Magistratus imperio (potestate imperandi) instructus erat. Tempus magistratus unum annum erat et anni ex consulibus nominabantur (functio eponyma). Post magistratum, consules priores automatice senatores cum influxu magno fiebant. Aetate imperatoria, consules significationem nominalem retinebant sed potestatem actualem ad imperatorem amittebant. Consules celebres erant Cicero (63 a.C.n.) et Caesar (59 a.C.n.). Magistratus principia rei publicae Romanae symbolizabat: potestatem divisam et limitationem temporalem.",
+      "etymology": "A vocabulo Latino 'consulere' (consulere, consilium capere) → 'consul' (consiliarius, consul). Initio designatio pro eo qui consulit.",
+      "category": "Politica et Administratio",
+      "variants": []
+    }
+  }
 }

@@ -1,6 +1,35 @@
 {
-  "slug": "cursus-honorum",
   "term": "Cursus Honorum",
+  "slug": "cursus-honorum",
+  "variants": [
+    "Ämterlaufbahn"
+  ],
   "definition": "Der cursus honorum (\"Lauf der Ehrenämter\") war die festgelegte Abfolge politischer und militärischer Ämter in der römischen Republik, die ein Politiker durchlaufen musste, um an die Spitze des Staates zu gelangen. Die klassische Reihenfolge lautete: Quästor (Finanzverwalter, ab 30 Jahren) → Aedil (optional, Stadtverwalter) → Praetor (Richter und Befehlshaber, ab 39 Jahren) → Consul (höchstes Amt, ab 42 Jahren). Danach konnten ehemalige Konsuln noch Censor werden. Zwischen den Ämtern mussten mindestens zwei Jahre liegen (Biennium). Der cursus honorum sollte sicherstellen, dass nur erfahrene und erprobte Männer in die höchsten Positionen gelangten.",
-  "category": "Politik"
+  "category": "Politik",
+  "etymology": "Lateinisch 'cursus honorum' - Lauf der Ehren/Ämter. Die Bezeichnung betont die systematische Abfolge der magistratischen Karriere.",
+  "relatedTerms": [
+    "Quästor",
+    "Aedil",
+    "Praetor",
+    "Consul",
+    "Censor"
+  ],
+  "translations": {
+    "en": {
+      "term": "Cursus Honorum",
+      "definition": "The cursus honorum ('course of honors') was the established sequence of political and military offices in the Roman Republic that a politician had to go through to reach the top of the state. The classic sequence was: Quaestor (financial administrator, from age 30) → Aedile (optional, city administrator) → Praetor (judge and commander, from age 39) → Consul (highest office, from age 42). Thereafter, former consuls could still become Censor. At least two years had to pass between offices (Biennium). The cursus honorum was intended to ensure that only experienced and proven men reached the highest positions.",
+      "etymology": "Latin 'cursus honorum' - course of honors/offices. The term emphasizes the systematic sequence of the magisterial career.",
+      "category": "Politics",
+      "variants": [
+        "Course of Honors"
+      ]
+    },
+    "la": {
+      "term": "Cursus Honorum",
+      "definition": "Cursus honorum fuit series ordinata magistratuum politicorum et militarium in re publica Romana quam politicus percurrere debebat ut ad summum civitatis perveniret. Series classica erat: Quaestor (administrator pecuniae, ab XXX annis) → Aedilis (optionalis, administrator urbis) → Praetor (iudex et imperator, ab XXXIX annis) → Consul (magistratus summus, ab XLII annis). Postea, ex-consules adhuc censor fieri poterant. Inter magistratus minimum duo anni intercedere debebant (Biennium). Cursus honorum destinatus erat ut solum viri experti et probati ad positiones summas pervenirent.",
+      "etymology": "Latine 'cursus honorum' - cursus honorum/magistratuum. Nomen seriem systematicam cursus magistratualis emphasizat.",
+      "category": "Res Publica",
+      "variants": []
+    }
+  }
 }

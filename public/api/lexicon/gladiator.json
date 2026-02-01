@@ -1,6 +1,33 @@
 {
-  "slug": "gladiator",
   "term": "Gladiator",
+  "slug": "gladiator",
+  "variants": [
+    "Gladiatoren"
+  ],
   "definition": "Ein Gladiator war ein bewaffneter Kämpfer, der in den Arenen des römischen Reiches zur Unterhaltung der Massen kämpfte - oft auf Leben und Tod. Die meisten Gladiatoren waren Sklaven, Kriegsgefangene oder zum Tode Verurteilte, doch es gab auch Freiwillige, die von Ruhm und Geld angelockt wurden. Sie wurden in speziellen Gladiatorenschulen (ludi gladiatorii) unter der Leitung eines lanista ausgebildet und lebten dort in kasernenahnlichen Verhältnissen. Der Beruf war gefährlich, aber erfolgreiche Gladiatoren konnten berühmt werden und beträchtliche Preisgelder gewinnen.\n\nEs gab verschiedene Gladiatorentypen mit unterschiedlicher Ausrüstung und Kampfstil: Der Murmillo trug einen großen rechteckigen Schild und Helm mit Fischgratenverzierung, der Retiarius kämpfte mit Netz und Dreizack ohne schwere Rüstung, der Thraex hatte einen kleinen runden Schild und gekrümmtes Schwert, und der Secutor war speziell als Gegner des Retiarius konzipiert. Diese verschiedenen Typen wurden oft strategisch gegeneinander angesetzt, um spannende Kämpfe zu gewährleisten. Vor dem Kampf schwörten Gladiatoren einen Eid: 'uri, vinciri, verberari ferroque necari' - bereit zu sein, verbrannt, gefesselt, geschlagen und mit dem Schwert getötet zu werden.\n\nGladiatoren waren paradoxe Figuren der römischen Gesellschaft: rechtlich verachtet als infames (Ehrlose), aber oft vom Publikum wie Sportstars verehrt. Frauen schwärmten für erfolgreiche Kämpfer, und Graffiti in Pompeji preisen einzelne Gladiatoren. Nach mehreren erfolgreichen Kämpfen konnte ein Gladiator mit dem rudis, einem hölzernen Schwert, symbolisch die Freiheit erlangen. Gladiatorenspiele waren politische Instrumente - Politiker und Kaiser nutzten sie, um die Bevölkerung zu beeindrucken und ihre Macht zu demonstrieren.",
-  "category": "Gesellschaft"
+  "category": "Gesellschaft",
+  "etymology": "Von lateinisch 'gladius' (Schwert). Wörtlich: Schwertkampfer. Der Name leitet sich von ihrer primären Waffe ab.",
+  "relatedTerms": [
+    "Amphitheater",
+    "Murmillo",
+    "Retiarius"
+  ],
+  "translations": {
+    "en": {
+      "term": "Gladiator",
+      "definition": "A Gladiator (from 'gladius', sword) was a trained combatant who fought in public spectacles in the Roman Republic and Empire. While initially part of funeral rites (munera), these games evolved into massive entertainment events in amphitheaters like the Colosseum. Most gladiators were enslaved persons, prisoners of war, or condemned criminals, though free citizens also volunteered for the fame and monetary rewards. They were trained in specialized schools (ludi) as various types such as the Murmillo (heavy shield), Retiarius (net and trident), or Thraex. Though legally 'infames' (dishonored), successful gladiators became popular icons and could win their freedom (symbolized by the wooden sword, rudis).",
+      "etymology": "From Latin 'gladius' (sword). Literally 'swordsman'.",
+      "category": "Society",
+      "variants": [
+        "Munera"
+      ]
+    },
+    "la": {
+      "term": "Gladiator",
+      "definition": "Gladiator (a verbo 'gladius') erat pugnator armatus qui in amphitheatris pro populo Romano certabat. Initio munera funebria fuerunt, deinde spectacula maxima ad populum delectandum facta sunt. Plerique servi aut captivi erant, qui in ludis a lanistis erudiebantur. Genera eorum diversa erant, ut Murmillones, Retiarii, aut Thraces. Quamquam iure infames erant, victores clari fuerunt et libertatem per rudiem accipere potuerunt.",
+      "etymology": "A verbo 'gladius'.",
+      "category": "Societas",
+      "variants": []
+    }
+  }
 }

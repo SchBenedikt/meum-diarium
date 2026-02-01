@@ -1,6 +1,35 @@
 {
-  "slug": "hoplomachus",
   "term": "Hoplomachus",
+  "slug": "hoplomachus",
+  "variants": [
+    "Hoplomache",
+    "Schwerbewaffneter Gladiator"
+  ],
   "definition": "Der Hoplomachus (von griech. 'hoplon' - Schild und 'machomai' - kämpfen) war ein Gladiatorentyp, dessen Ausrüstung sich an den griechischen Hopliten orientierte und der zu den schwergerüsteten Kämpfern gehörte. Er war ausgestattet mit einem kleinen runden Schild (parmula), einer Lanze (hasta), einem Kurzschwert (gladius) für den Nahkampf, hohen Beinschonern (ocreae) und einem geschlossenen Helm mit breiter Krempe. Die Kombination aus Lanze und Schwert machte ihn zu einem vielseitigen Kämpfer mit guter Reichweite. Der Hoplomachus kämpfte typischerweise gegen Murmillones oder Thraces. Sein Kampfstil kombinierte den Fernkampf mit der Lanze und den Nahkampf mit dem Gladius. Die griechisch inspirierte Ausrüstung war eine Hommage an die hellenistische Kriegsführung und sprach das gebildete Publikum an, das mit griechischer Geschichte vertraut war. Der Hoplomachus war weniger populär als Murmillo oder Retiarius, aber respektiert für seine Vielseitigkeit.",
-  "category": "Unterhaltung & Sport"
+  "category": "Unterhaltung & Sport",
+  "etymology": "Von griechisch 'ὁπλομάχος' (hoplomachos), von 'ὅπλον' (hoplon, schwere Waffe, Schild) + 'μάχομαι' (machomai, kämpfen). Wörtlich \"Schildkämpfer\".",
+  "relatedTerms": [
+    "Gladiator",
+    "Murmillo",
+    "Thraex",
+    "Hasta"
+  ],
+  "translations": {
+    "en": {
+      "term": "Hoplomachus",
+      "definition": "The hoplomachus (from Greek 'hoplon' - shield and 'machomai' - to fight) was a type of gladiator whose equipment was based on Greek hoplites and who belonged to the heavily armored fighters. He was equipped with a small round shield (parmula), a spear (hasta), a short sword (gladius) for close combat, high shin guards (ocreae), and a closed helmet with wide brim. The combination of spear and sword made him a versatile fighter with good reach. The hoplomachus typically fought against murmillones or thraces. His fighting style combined long-range combat with the spear and close combat with the gladius. The Greek-inspired equipment was a tribute to Hellenistic warfare and appealed to educated audiences familiar with Greek history. The hoplomachus was less popular than the murmillo or retiarius but respected for his versatility.",
+      "etymology": "From Greek 'ὁπλομάχος' (hoplomachos), from 'ὅπλον' (hoplon, heavy weapon, shield) + 'μάχομαι' (machomai, to fight). Literally 'shield-fighter'.",
+      "category": "Entertainment & Sports",
+      "variants": [
+        "Shield Fighter"
+      ]
+    },
+    "la": {
+      "term": "Hoplomachus",
+      "definition": "Hoplomachus (a Graeco 'hoplon' - scutum et 'machomai' - pugnare) fuit genus gladiatoris cuius armatura ad hoplitas Graecos conformata erat et qui ad pugnatores graviter armatos pertinebat. Instructus erat parmula (scuto parvo rotundo), hasta, gladio brevi (gladius) pro pugna corporali, ocreis altis et galea clausa cum limbo lato. Combinatio hastae et gladii eum pugnatorem versatilem cum amplitudine bona faciebat. Hoplomachus typice contra murmillones vel thraces pugnabat. Modus pugnandi eius pugnam longinquam cum hasta et pugnam corpoream cum gladio combinabat. Armatura Graece inspirata tributum bello Hellenistico erat et spectatores educatos qui cum historia Graeca familiares erant appellebat. Hoplomachus minus popularis quam murmillo vel retiarius erat sed pro versatilitate respectus.",
+      "etymology": "A Graeco 'ὁπλομάχος' (hoplomachos), ab 'ὅπλον' (hoplon, arma gravis, scutum) + 'μάχομαι' (machomai, pugnare). Litteraliter 'pugnator cum scuto'.",
+      "category": "Ludus et Certamen",
+      "variants": []
+    }
+  }
 }

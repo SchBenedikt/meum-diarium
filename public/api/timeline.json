@@ -1,0 +1,699 @@
+[
+  {
+    "year": -100,
+    "title": "De me",
+    "description": "Über meine Person, Gaius Julius Caesar",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "De Me: About Myself",
+        "description": "An introduction to the person of Gaius Julius Caesar, his lineage, and his self-presentation."
+      },
+      "la": {
+        "title": "De me",
+        "description": "De persona mea, Gaius Iulius Caesar"
+      }
+    }
+  },
+  {
+    "year": -100,
+    "title": "Er ist da.",
+    "description": "",
+    "author": "caesar",
+    "type": "birth",
+    "translations": {
+      "en": {
+        "title": "He is here.",
+        "description": "My birth, my family, and my divine ancestry. The beginning of a legend."
+      },
+      "la": {
+        "title": "Adsum.",
+        "description": "Natus sum Romae. Genus meum a Venere descendit. Mundum regere volo."
+      }
+    }
+  },
+  {
+    "year": -64,
+    "title": "Gescheiterte Ambitionen - Der Weg zur Verzweiflung",
+    "description": "Catilinas wiederholte Niederlagen bei den Konsulwahlen 64 und 63 v. Chr. trieben den verschuldeten Patrizier zur Verzweiflung und zur Verschwörung.",
+    "author": "catilina",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -63,
+    "title": "Flucht nach Etrurien - Der Beginn des bewaffneten Aufstands",
+    "description": "Nach Ciceros erster Rede flieht Catilina im November 63 v. Chr. aus Rom zu seinem Heer in Etrurien - der Übergang vom Verschwörer zum Rebellen.",
+    "author": "catilina",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -60,
+    "title": "Das 1. Triumvirat",
+    "description": "Manchmal muss man kreativ werden, wenn alte, steife Senatoren einem im Weg stehen. Meine Lösung? Ein informelles Dreierbündnis, das Rom verändern würde – und von dem niemand etwas ahnen sollte.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "The First Triumvirate",
+        "description": "Sometimes you have to be creative when old, stiff Senators stand in your way. My solution? An informal alliance of three that would change Rome – and of which no one would suspect a thing."
+      },
+      "la": {
+        "title": "Primum Triumviratus",
+        "description": "Foedus inter tres viros potentissimos: Caesarem, Pompeium, Crassum."
+      }
+    }
+  },
+  {
+    "year": -59,
+    "title": "Veteranen und Land",
+    "description": "Nach den Kriegen brauchen die Männer Land, die Städte Ruhe und der Staat Planbarkeit. Meine Veteranenpolitik stabilisierte Rom.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Veterans and Land",
+        "description": "After the wars, the men need land, the cities need peace, and the state needs predictability. My veteran policy stabilized Rome."
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -59,
+    "title": "Mein Konsulat",
+    "description": "Das Jahr 59 v. Chr. – Ich werde endlich Konsul! Mit etwas \"Überredungskunst\" von Pompeius, massiver Korruption und einem völlig inkompetenten Kollegen. Spoiler: Es wird chaotisch. Aber glorreich.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "My Consulship",
+        "description": "The year 59 BC – I finally become Consul! With some \"persuasion\" from Pompey, massive corruption, and a completely incompetent colleague. Spoiler: It will be chaotic. But glorious."
+      },
+      "la": {
+        "title": "Consulatus Meus",
+        "description": "Annus LIX a.C.n. – Tandem Consul fio! Cum aliqua \"persuasione\" Pompeii, corruptione magna, et collega omnino incompetente. Spoiler: Chaos erit. Sed gloriosum."
+      }
+    }
+  },
+  {
+    "year": -58,
+    "title": "Mein genialer Satz",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "My Genius Sentence",
+        "description": "\"Gallia est omnis divisa in partes tres...\" - The sentence every Latin student knows. How I defined a continent with a few words."
+      },
+      "la": {
+        "title": "Sententia Mea Ingeniosa",
+        "description": "\"Gallia est omnis divisa in partes tres...\" - Verba quae historiam scripserunt."
+      }
+    }
+  },
+  {
+    "year": -58,
+    "title": "Prokonsulat",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Proconsulship",
+        "description": ""
+      },
+      "la": {
+        "title": "Proconsulatus",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -57,
+    "title": "Helvetierkrieg – Teil 1",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Helvetian War - Part 1",
+        "description": "The Barbarians are coming! The Helvetii want to march through our province. I asked for your advice - and I will protect Rome."
+      },
+      "la": {
+        "title": "Bellum Helveticum - Pars I",
+        "description": "Helvetii per provinciam nostram iter facere volunt. Ego recuso. Bellum paratur."
+      }
+    }
+  },
+  {
+    "year": -57,
+    "title": "Rückkehr aus dem Exil",
+    "description": "Ciceros triumphaler Rückkehr nach Rom im September 57 v. Chr. nach 16 Monaten Verbannung - ein politischer Sieg über seine Feinde.",
+    "author": "cicero",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -54,
+    "title": "De Re Publica - Ciceros Vermächtnis für die Nachwelt",
+    "description": "In den Jahren 54-51 v. Chr. verfasste Cicero sein philosophisches Hauptwerk über den idealen Staat - eine Verteidigung der Republik in ihrer Todesstunde.",
+    "author": "cicero",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -52,
+    "title": "Helvetierkrieg – Teil 2",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "The Great Revolt: Vercingetorix and the Struggle for Gaul",
+        "description": "Vercingetorix unites Gaul. A brutal revolt, scorched earth, and the siege of Alesia. The final struggle for freedom."
+      },
+      "la": {
+        "title": "Bellum Helveticum - Pars II",
+        "description": "Vercingetorix Gallos contra me ducit. Consilia sua: urbes incendere et famem nobis afferre. Apud Alesiam eum vici."
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Die Schlacht bei Actium",
+    "description": "Die Seeschlacht bei Actium am 2. September 31 v. Chr. entschied den letzten Bürgerkrieg der römischen Republik und ebnete Octavian den Weg zur Alleinherrschaft als Augustus.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "The Battle of Actium",
+        "description": "The naval battle of Actium on September 2, 31 BC decided the final civil war of the Roman Republic and paved the way for Octavian's sole rule as Augustus."
+      },
+      "la": {
+        "title": "Pugna Actiaca",
+        "description": "Pugna navalis Actiaca die 2 Septembris 31 a.C.n. finem bellis civilibus fecit et Octaviano imperium singulare dedit."
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Cäsar-Verschlüsselung",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "The Caesar Cipher: Principles of Classical Cryptography",
+        "description": "A simple but effective method to protect my messages: shifting letters. Today elementary, back then a revolution in military communication."
+      },
+      "la": {
+        "title": "Nota Caesaris",
+        "description": "Quomodo litteras occultaverim: ordine elementorum mutato."
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Darum mag mich jeder",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Clementia Caesaris: The Strategic Use of Mercy",
+        "description": "Clementia Caesaris – my mercy. Why I spared my enemies instead of killing them. A political necessity, not weakness."
+      },
+      "la": {
+        "title": "Clementia Caesaris",
+        "description": "Cur hostibus pepercim: non crudelitate, sed clementia vincere volui."
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Die Catilinarische Verschwörung: Sozioökonomische Ursachen und politische Dynamiken",
+    "description": "Eine wissenschaftliche Untersuchung der komplexen politischen, sozialen und ökonomischen Faktoren, die zur Catilinarischen Verschwörung führten und die spätrömische Republik destabilisierten.",
+    "author": "catilina",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Die Schlacht bei Pistoria",
+    "description": "Die Schlacht bei Pistoria im Januar 62 v. Chr. markierte das blutige Ende der Catilinarischen Verschwörung und den Tod ihres Anführers Lucius Sergius Catilina.",
+    "author": "catilina",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Die Verschwörung",
+    "description": "Die Catilinarische Verschwörung von 63 v. Chr. stellte einen Wendepunkt in der spätrömischen Republik dar und markierte einen der gefährlichsten innenpolitischen Konflikte dieser Ära.",
+    "author": "catilina",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Im Exil",
+    "description": "Ciceros Verbannung aus Rom durch Clodius und die politischen Hintergründe seiner Flucht nach Griechenland.",
+    "author": "cicero",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -50,
+    "title": "Mein Konsulat - Die Rettung der Republik",
+    "description": "Wissenschaftliche Analyse von Ciceros Konsulat im Jahr 63 v.Chr. und seiner Rolle bei der Niederschlagung der Catilinarischen Verschwörung.",
+    "author": "cicero",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -49,
+    "title": "Erweiterung des Bürgerrechts",
+    "description": "Warum ich Provinzialeliten zu Römern machte: Verwaltung professionalisieren, Loyalität sichern, Rom erweitern – ohne Besatzung allein.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Expansion of Citizenship",
+        "description": "Why I made provincial elites Romans: to professionalize administration, secure loyalty, and expand Rome – not by occupation alone."
+      },
+      "la": {
+        "title": "De Civitate Amplificanda",
+        "description": "Cur principes provinciarum civitate donaverim: ad imperium firmandum."
+      }
+    }
+  },
+  {
+    "year": -49,
+    "title": "Ich überschreite den Rubikon",
+    "description": "Der Moment, der alles veränderte: Als ich mit meinen Legionen einen kleinen Fluss überquerte und damit den größten Bürgerkrieg Roms auslöste. War es Wahnsinn? Vielleicht. War es notwendig? Absolut.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Alea Iacta Est: The Crossing of the Rubicon",
+        "description": "The moment that changed everything: When I crossed a small river with my legions and triggered Rome's greatest civil war. War was inevitable, but order was the goal."
+      },
+      "la": {
+        "title": "Rubiconem Transeo",
+        "description": "Momentum quod omnia mutavit: Cum cum legionibus meis parvum flumen transii et maximum bellum civile Romae incendi. Insanianne fuit? Fortasse. Necessarianne? Omnino."
+      }
+    }
+  },
+  {
+    "year": -49,
+    "title": "Schuld und Zins",
+    "description": "Wie ich Rom nach dem Bruch beruhigte: Begrenzte Zinsforderungen, realistische Immobilienbewertung und Schutz vor Plünderung der Schuldner.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Debt and Interest",
+        "description": "How I calmed Rome after the break: Limited interest demands, realistic real estate valuation, and protection for debtors."
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -47,
+    "title": "Caesar & Ägpyten",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Caesar & Egypt",
+        "description": "My journey to Egypt: political intrigue, war in Alexandria, and a 'diplomatic' stay with Cleopatra. I came, I saw, I conquered."
+      },
+      "la": {
+        "title": "Caesar et Aegyptus",
+        "description": "Iter meum in Aegyptum. Bellum Alexandrinum, Cleopatra, et victoria celeris: Veni, vidi, vici."
+      }
+    }
+  },
+  {
+    "year": -46,
+    "title": "Forum Iulium",
+    "description": "Warum ich baute: Entlastung des alten Forums, Sichtbarkeit staatlicher Autorität, Arbeitsplätze und Prestige für Rom.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Forum Iulium: Architecture as Political Reform",
+        "description": "Why I built: relief for the old Forum, visibility of state authority, jobs and prestige for Rome."
+      },
+      "la": {
+        "title": "Forum Iulium",
+        "description": "Cur novum forum aedificaverim: ad urbem ornandam et negotia gerenda."
+      }
+    }
+  },
+  {
+    "year": -46,
+    "title": "Senatsreform – Erweiterung und Entmachtung der alten Netzwerke",
+    "description": "Warum ich den Senat vergrößerte: Provinzvertreter einbinden, Patronatsnetzwerke brechen, Verwaltung professionalisieren – und Widerstand streuen.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Senate Reform – Expanding and Disempowering Old Networks",
+        "description": "Why I expanded the Senate: integrate provincial representatives, break patronage networks, professionalize administration – and scatter resistance."
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -45,
+    "title": "Julianischer Kalender",
+    "description": "Wie ich die römische Zeitrechnung revolutionierte und ein System schuf, das Europa 1600 Jahre lang prägen sollte.",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "Julian Calendar",
+        "description": "How I revolutionized Roman timekeeping and created a system that would shape Europe for 1600 years."
+      },
+      "la": {
+        "title": "Calendarium Iulianum",
+        "description": "Quomodo menses et dies ordinavi: annus solaris 365 dierum."
+      }
+    }
+  },
+  {
+    "year": -44,
+    "title": "Adoption durch Caesar - Der Beginn einer Dynastie",
+    "description": "Wie ein 18-jähriger Gaius Octavius durch Caesars Testament zum Erben des mächtigsten Mannes Roms wurde und als Augustus die Welt veränderte.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -44,
+    "title": "Die Verschwörung gegen mich",
+    "description": "",
+    "author": "caesar",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "The Conspiracy Against Me",
+        "description": "My end on the Ides of March. Betrayed by men I trusted. But my death will not save the Republic, only unleash chaos."
+      },
+      "la": {
+        "title": "Conjuratio in Caesarem",
+        "description": "Idus Martiae: dies necis meae. A senatus proditus sum."
+      }
+    }
+  },
+  {
+    "year": -44,
+    "title": "Die Philippischen Reden - Ciceros letzter Kampf",
+    "description": "Ciceros verzweifelter Kampf gegen Marcus Antonius 44-43 v. Chr. - vierzehn flammende Reden, die ihm das Leben kosteten, aber die Republik verteidigten.",
+    "author": "cicero",
+    "type": "death",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -43,
+    "title": "Das Zweite Triumvirat - Pakt mit dem Teufel",
+    "description": "Die brutale Allianz von Octavian, Antonius und Lepidus 43 v. Chr. - Proskriptionen, Machteilung und der Weg zur Alleinherrschaft.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -42,
+    "title": "Schlacht bei Philippi - Rache für Caesar",
+    "description": "Die entscheidende Schlacht von 42 v. Chr., in der Octavian und Antonius die Caesarmörder Brutus und Cassius besiegten und die Republik endgültig begruben.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -27,
+    "title": "Der Prinzipat - Monarchie im republikanischen Gewand",
+    "description": "Wie Augustus 27 v. Chr. die römische Republik formal \"wiederherstellte\", tatsächlich aber das Kaisertum begründete - ein Meisterwerk politischer Tarnung.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": -27,
+    "title": "Pax Augusta - Der Augusteische Frieden",
+    "description": "Nach Jahrhunderten der Bürgerkriege brachte Augustus dem römischen Reich Frieden, Stabilität und Prosperität - der Preis war die Freiheit.",
+    "author": "augustus",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 41,
+    "title": "Die philosophischen Hauptwerke - Senecas geistiges Vermächtnis",
+    "description": "Senecas philosophische Dialoge, Traktate und Briefe - sein Versuch, stoische Weisheit für römische Leser zugänglich zu machen.",
+    "author": "seneca",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 41,
+    "title": "Exil auf Korsika",
+    "description": "Senecas achtjähriges Exil auf Korsika (41-49 n. Chr.) durch Kaiser Claudius - eine Zeit philosophischer Reifung und literarischer Produktivität.",
+    "author": "seneca",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 49,
+    "title": "Erzieher des jungen Nero",
+    "description": "Senecas Rückkehr aus dem Exil 49 n. Chr. als Tutor des zukünftigen Kaisers Nero - eine Chance, den perfekten Philosophenherrscher zu formen.",
+    "author": "seneca",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 54,
+    "title": "Quinquennium Neronis - Die fünf guten Jahre",
+    "description": "Die ersten fünf Regierungsjahre Neros (54-59 n. Chr.) unter Senecas und Burrus' Einfluss - eine Zeit relativer Gerechtigkeit und Prosperität, bevor der Terror begann.",
+    "author": "seneca",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 62,
+    "title": "Rückzug aus der Politik - Senecas letzter Versuch",
+    "description": "Im Jahr 62 n. Chr. versuchte Seneca, sich aus Neros Umfeld zurückzuziehen und sein Vermögen zurückzugeben - vergeblich.",
+    "author": "seneca",
+    "type": "event",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "year": 65,
+    "title": "Der Tod Senecas - Stoisch bis zum Ende",
+    "description": "Senecas erzwungener Selbstmord 65 n. Chr. nach der Pisonischen Verschwörung - ein stoisches Ende eines widersprüchlichen Lebens.",
+    "author": "seneca",
+    "type": "death",
+    "translations": {
+      "en": {
+        "title": "",
+        "description": ""
+      },
+      "la": {
+        "title": "",
+        "description": ""
+      }
+    }
+  }
+]
