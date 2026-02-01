@@ -446,8 +446,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Spacing after fixed header */}
-      <div className="h-16 sm:h-18" />
 
       {/* Search Dialog */}
       <SearchDialog

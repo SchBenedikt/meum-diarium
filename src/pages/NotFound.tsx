@@ -1,6 +1,5 @@
 
 import { Link } from "react-router-dom";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -10,8 +9,7 @@ const NotFound = () => {
   const { t } = useLanguage();
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 flex items-center justify-center pt-16">
+      <main className="flex-1 flex items-center justify-center pt-32">
         <div className="text-center px-4">
           <p className="text-sm font-medium text-primary mb-4">404</p>
           <h1 className="font-display text-4xl md:text-5xl font-semibold mb-4">

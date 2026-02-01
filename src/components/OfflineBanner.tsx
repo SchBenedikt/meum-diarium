@@ -10,6 +10,9 @@ export function OfflineBanner() {
     const [isCaching, setIsCaching] = useState(false);
     const [cacheComplete, setCacheComplete] = useState(false);
     const [visible, setVisible] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const [statusText, setStatusText] = useState('Speichert alle Artikel und das Lexikon für unterwegs.');
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         const handleOnline = () => setIsOffline(false);
@@ -18,23 +21,46 @@ export function OfflineBanner() {
         window.addEventListener('online', handleOnline);
         window.addEventListener('offline', handleOffline);
 
+        const handleMessage = (event: MessageEvent) => {
+            if (event.data && event.data.type === 'PRECACHE_PROGRESS') {
+                const { progress: p, status } = event.data.payload;
+                if (p === -1) {
+                    setIsError(true);
+                    setIsCaching(false);
+                    setStatusText('Download fehlgeschlagen. Bitte versuche es später erneut.');
+                } else {
+                    setProgress(p);
+                    setStatusText(status);
+                    if (p === 100) {
+                        setTimeout(() => {
+                            setIsCaching(false);
+                            setCacheComplete(true);
+                        }, 500);
+                        setTimeout(() => setVisible(false), 5000);
+                    }
+                }
+            }
+        };
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', handleMessage);
+        }
+
         return () => {
             window.removeEventListener('online', handleOnline);
             window.removeEventListener('offline', handleOffline);
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.removeEventListener('message', handleMessage);
+            }
         };
     }, []);
 
     const triggerPrecache = () => {
         if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
             setIsCaching(true);
+            setIsError(false);
+            setProgress(0);
             navigator.serviceWorker.controller.postMessage({ type: 'TRIGGER_PRECACHE' });
-
-            // Mock progress/completion for UI feedback since SW doesn't report back easily yet
-            setTimeout(() => {
-                setIsCaching(false);
-                setCacheComplete(true);
-                setTimeout(() => setVisible(false), 5000);
-            }, 3000);
         }
     };
 
@@ -76,8 +102,11 @@ export function OfflineBanner() {
                                     {isCaching ? <Download className="h-5 w-5 animate-bounce" /> : <Download className="h-5 w-5" />}
                                 </div>
                                 <div className="text-sm">
-                                    <p className="font-bold">Offline verfügbar machen?</p>
-                                    <p className="text-xs text-muted-foreground">Speichert alle Artikel und das Lexikon für unterwegs.</p>
+                                    <p className="font-bold flex items-center gap-2">
+                                        {isError ? "Download fehlgeschlagen" : "Offline verfügbar machen?"}
+                                        {isError && <AlertCircle className="h-4 w-4 text-destructive" />}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">{statusText}</p>
                                 </div>
                             </div>
                             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setVisible(false)}>
@@ -85,17 +114,19 @@ export function OfflineBanner() {
                             </Button>
                         </div>
                         {!isCaching ? (
-                            <Button size="sm" onClick={triggerPrecache} className="w-full">
-                                Jetzt herunterladen
+                            <Button size="sm" onClick={triggerPrecache} className="w-full" variant={isError ? "outline" : "default"}>
+                                {isError ? "Erneut versuchen" : "Jetzt herunterladen"}
                             </Button>
                         ) : (
-                            <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                <motion.div
-                                    className="h-full bg-primary"
-                                    initial={{ width: "0%" }}
-                                    animate={{ width: "100%" }}
-                                    transition={{ duration: 3 }}
-                                />
+                            <div className="w-full space-y-2">
+                                <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-primary"
+                                        animate={{ width: `${progress}%` }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </div>
+                                <p className="text-[10px] text-right text-muted-foreground font-mono">{Math.round(progress)}%</p>
                             </div>
                         )}
                     </motion.div>
