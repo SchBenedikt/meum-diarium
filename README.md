@@ -18,6 +18,7 @@
 - 🚀 **Vite** for lightning-fast performance
 - 📱 **PWA capabilities** with offline support and mobile-first design
 - 🔒 **Cloudflare deployment** ensuring security and global reach
+- 💾 **Cloudflare D1 Database** for scalable edge-based data storage
 
 ## 🎯 Key Features
 
@@ -50,6 +51,36 @@ npm run dev
 
 ## 🛠️ Development
 
+### Database Setup
+
+**IMPORTANT**: All blog posts and lexicon entries are now stored in Cloudflare D1 database.
+
+1. **Apply database migrations** (creates tables):
+   ```bash
+   npx wrangler d1 migrations apply meum-diarium --remote
+   ```
+
+2. **Seed the database** (populates with all content):
+   ```bash
+   chmod +x apply_seeds.sh
+   ./apply_seeds.sh
+   ```
+
+3. **Verify database contents**:
+   ```bash
+   npx tsx scripts/verify-database.ts --remote
+   ```
+
+After seeding, the database will contain:
+- ✅ 5 Authors (Caesar, Cicero, Augustus, Catilina, Seneca)
+- ✅ 42 Blog Posts (diary entries and articles)
+- ✅ 92 Lexicon Entries (terms and concepts)
+- ✅ Multiple literary works
+
+**Note**: Content files in `src/content/` are kept as backup. The app prioritizes the database but falls back to files if needed.
+
+📖 See [DATABASE_SETUP.md](DATABASE_SETUP.md) for detailed documentation.
+
 ### Creating Content
 Use the included Python CLI wizard for easy content creation:
 
@@ -62,13 +93,15 @@ Options:
 - `--title "Your Title"`
 - `--slug your-slug`
 - `--date YYYY-MM-DD`
-- `--cover /images/post-default. jpg`
+- `--cover /images/post-default.jpg`
+
+Or use the built-in CMS at `/admin` (requires authentication).
 
 ### AI Integration
 Test the AI endpoint locally: 
 
 ```sh
-curl "http://localhost:5173/api/ask? persona=cicero&ask=$(python -c 'import urllib.parse; print(urllib.parse.quote("Wer bist du?"))')"
+curl "http://localhost:5173/api/ask?persona=cicero&ask=$(python -c 'import urllib.parse; print(urllib.parse.quote("Wer bist du?"))')"
 ```
 
 ## 📦 Deployment
@@ -86,6 +119,7 @@ Deploy via [Lovable](https://lovable.dev/projects/9ca2799d-c7bd-4b69-8ca7-2dcd46
 
 ## 📚 Documentation
 
+- [Database Setup Guide](DATABASE_SETUP.md) - **Start here for D1 setup**
 - [CMS Documentation](CMS_DOCUMENTATION.md)
 - [Content Translation Templates](CONTENT_TRANSLATION_TEMPLATES.md)
 - [SEO Implementation](SEO_IMPLEMENTATION_COMPLETE.md)
