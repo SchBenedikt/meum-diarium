@@ -1,7 +1,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { lexicon } from '@/data/lexicon';
+import { useLexicon } from '@/hooks/use-lexicon';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -30,6 +30,7 @@ type Mode = 'menu' | 'flashcards' | 'learn' | 'match' | 'test';
 export default function LatinTools() {
     const [searchParams, setSearchParams] = useSearchParams();
     const mode = (searchParams.get('mode') as Mode) || 'menu';
+    const { lexicon = [] } = useLexicon();
 
     const setMode = (newMode: Mode) => {
         if (newMode === 'menu') {

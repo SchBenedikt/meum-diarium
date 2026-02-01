@@ -8,7 +8,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexicon } from '@/lib/translator';
-import { lexicon as baseLexicon } from '@/data/lexicon';
+import { useLexicon } from '@/hooks/use-lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { Button } from '@/components/ui/button';
 import { PageHero } from '@/components/layout/PageHero';
@@ -43,21 +43,13 @@ export default function LexiconPage() {
   const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
+  const { lexicon = [], isLoading } = useLexicon();
 
-  const [lexicon, setLexicon] = useState<LexiconEntry[]>(baseLexicon);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
 
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
-  useEffect(() => {
-    async function translateLexicon() {
-      const translated = await getTranslatedLexicon(language);
-      setLexicon(translated);
-    }
-    translateLexicon();
-  }, [language]);
 
   useEffect(() => {
     const category = searchParams.get('category');
