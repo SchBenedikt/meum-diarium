@@ -18,14 +18,29 @@ async function cachedFetch(url: string, options?: RequestInit) {
     if (!options || options.method === 'GET' || !options.method) {
         const cached = requestCache.get(url);
         if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+            console.log(`💾 [API] Using cached response for ${url}`);
             return Promise.resolve(cached.data);
         }
     }
 
     try {
         const res = await fetch(url, options);
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        
+        // Log data source from response headers
+        const dataSource = res.headers.get('X-Data-Source');
+        const itemCount = res.headers.get('X-Post-Count') || res.headers.get('X-Entry-Count');
+        
+        if (!res.ok) {
+            console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
+            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        
         const data = await res.json();
+
+        // Log successful fetch with data source info
+        if (dataSource) {
+            console.log(`✅ [API] Response from ${dataSource}${itemCount ? ` (${itemCount} items)` : ''}`);
+        }
 
         // Cache GET responses
         if (!options || options.method === 'GET' || !options.method) {

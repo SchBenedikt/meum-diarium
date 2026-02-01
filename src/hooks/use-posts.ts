@@ -14,13 +14,33 @@ export function usePosts() {
   const { data: posts, isLoading: isFetching } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
+      console.log('🔄 [usePosts] Fetching posts...');
+      
       try {
+        const startTime = Date.now();
         const apiPosts = await fetchPosts();
-        if (apiPosts && apiPosts.length > 0) return apiPosts;
+        const fetchTime = Date.now() - startTime;
+        
+        if (apiPosts && apiPosts.length > 0) {
+          console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${fetchTime}ms)`);
+          console.log('   Data source: Cloudflare D1 via API');
+          return apiPosts;
+        } else {
+          console.warn('⚠️ [usePosts] API returned empty result, falling back to static files');
+        }
       } catch (e) {
-        console.warn('API fetch failed, falling back to static content', e);
+        console.error('❌ [usePosts] API fetch failed:', e);
+        console.warn('   Falling back to static file content');
       }
-      return await getAllPosts();
+      
+      console.log('📁 [usePosts] Loading posts from static files...');
+      const startTime = Date.now();
+      const filePosts = await getAllPosts();
+      const loadTime = Date.now() - startTime;
+      console.log(`✅ [usePosts] Loaded ${filePosts.length} posts from files (${loadTime}ms)`);
+      console.log('   Data source: TypeScript files in src/content/posts/');
+      
+      return filePosts;
     },
   });
 
