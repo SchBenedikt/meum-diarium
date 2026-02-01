@@ -3,11 +3,13 @@ export const onRequest = async (context: any) => {
     const pathname = url.pathname.replace(/\/$/, '');
 
     // If it's the exact /api path, it's the documentation page (SPA).
-    // Hand it back to the assets origin.
+    // Explicitly fetch index.html to ensure the SPA is returned.
     if (pathname === '/api') {
-        const response = await context.env.ASSETS.fetch(context.request);
+        const indexUrl = new URL('/index.html', url.origin);
+        const response = await context.env.ASSETS.fetch(new Request(indexUrl.toString()));
         const headers = new Headers(response.headers);
         headers.set('content-type', 'text/html; charset=utf-8');
+        headers.set('cache-control', 'no-store');
         return new Response(response.body, {
             status: response.status,
             headers
