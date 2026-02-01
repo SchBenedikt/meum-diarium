@@ -1,20 +1,30 @@
-export const onRequest = async ({ request }: { request: Request }) => {
-    const url = new URL(request.url);
-    const dataUrl = `${url.origin}/api/posts.json`;
+export const onRequest = async (context: any) => {
+    const url = new URL(context.request.url);
+    const assetUrl = new URL('/api/posts.json', url.origin);
 
     try {
-        const response = await fetch(dataUrl);
-        if (!response.ok) throw new Error('Failed to fetch posts data');
+        const response = await context.env.ASSETS.fetch(new Request(assetUrl.toString()));
 
-        const data = await response.json();
-        return new Response(JSON.stringify(data), {
+        if (!response.ok) {
+            return new Response(JSON.stringify({
+                error: 'API Error',
+                message: `Static file not found at ${assetUrl.pathname}`,
+                status: response.status
+            }), {
+                status: 500,
+                headers: { 'content-type': 'application/json' }
+            });
+        }
+
+        return new Response(response.body, {
             headers: {
                 'content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=3600'
             }
         });
     } catch (err: any) {
-        return new Response(JSON.stringify({ error: 'API Error', message: err.message }), {
+        return new Response(JSON.stringify({ error: 'Internal Error', message: err.message }), {
             status: 500,
             headers: { 'content-type': 'application/json' }
         });
