@@ -57,18 +57,26 @@ npx wrangler d1 migrations apply meum-diarium --remote
 This populates the database with all content:
 
 ```bash
-chmod +x apply_seeds.sh
-./apply_seeds.sh
+chmod +x seed_database.sh
+./seed_database.sh
 ```
 
 **What This Does:**
-1. Cleans up any existing data
+1. Cleans up any existing data (prevents UNIQUE constraint errors)
 2. Inserts 5 authors (Caesar, Cicero, Augustus, Catilina, Seneca)
 3. Inserts all literary works
 4. Inserts 92 lexicon entries across 10 files
 5. Inserts 42 blog posts across 9 files
 
-**Expected Duration:** ~5-10 minutes (includes 10-second delays between files)
+**Expected Duration:** ~5-10 minutes (includes 2-second delays between files)
+
+**Alternative:** Use the original script (less robust):
+```bash
+chmod +x apply_seeds.sh
+./apply_seeds.sh
+```
+
+**If you get UNIQUE constraint errors**, see [TROUBLESHOOTING_DUPLICATES.md](TROUBLESHOOTING_DUPLICATES.md)
 
 ### Step 3: Verify Everything Works
 

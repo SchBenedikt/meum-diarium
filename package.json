@@ -16,7 +16,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "db:verify": "tsx scripts/verify-database.ts",
-    "db:verify:remote": "tsx scripts/verify-database.ts --remote"
+    "db:verify:remote": "tsx scripts/verify-database.ts --remote",
+    "db:check-duplicates": "tsx scripts/check-duplicates.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -60,15 +60,22 @@ npm run dev
    npx wrangler d1 migrations apply meum-diarium --remote
    ```
 
-2. **Seed the database** (populates with all content):
+2. **Check for duplicates** (optional but recommended):
    ```bash
-   chmod +x apply_seeds.sh
-   ./apply_seeds.sh
+   npm run db:check-duplicates
    ```
 
-3. **Verify database contents**:
+3. **Seed the database** (populates with all content):
    ```bash
-   npx tsx scripts/verify-database.ts --remote
+   chmod +x seed_database.sh
+   ./seed_database.sh
+   ```
+   
+   **Note:** The improved `seed_database.sh` script handles errors gracefully and always cleans up before seeding.
+
+4. **Verify database contents**:
+   ```bash
+   npm run db:verify:remote
    ```
 
 After seeding, the database will contain:
@@ -79,7 +86,9 @@ After seeding, the database will contain:
 
 **Note**: Content files in `src/content/` are kept as backup. The app prioritizes the database but falls back to files if needed.
 
-📖 See [DATABASE_SETUP.md](DATABASE_SETUP.md) for detailed documentation.
+📖 **Documentation:**
+- [DATABASE_SETUP.md](DATABASE_SETUP.md) - Complete setup guide
+- [TROUBLESHOOTING_DUPLICATES.md](TROUBLESHOOTING_DUPLICATES.md) - **Fix UNIQUE constraint errors**
 
 ### Creating Content
 Use the included Python CLI wizard for easy content creation:
@@ -120,6 +129,8 @@ Deploy via [Lovable](https://lovable.dev/projects/9ca2799d-c7bd-4b69-8ca7-2dcd46
 ## 📚 Documentation
 
 - [Database Setup Guide](DATABASE_SETUP.md) - **Start here for D1 setup**
+- [Logging Guide](LOGGING_GUIDE.md) - **D1 usage in console logs**
+- [Troubleshooting Duplicates](TROUBLESHOOTING_DUPLICATES.md) - **Fix UNIQUE constraint errors**
 - [CMS Documentation](CMS_DOCUMENTATION.md)
 - [Content Translation Templates](CONTENT_TRANSLATION_TEMPLATES.md)
 - [SEO Implementation](SEO_IMPLEMENTATION_COMPLETE.md)
