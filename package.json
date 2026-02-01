@@ -14,7 +14,9 @@
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "db:verify": "tsx scripts/verify-database.ts",
+    "db:verify:remote": "tsx scripts/verify-database.ts --remote"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
