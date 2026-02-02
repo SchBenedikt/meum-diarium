@@ -1,9 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { BlogPost } from '@/types/blog';
-import { getAllPosts } from '@/data/posts';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedPosts } from '@/lib/post-translator';
 import { fetchPosts } from '@/lib/api';
 
 export function usePosts() {
@@ -11,37 +9,26 @@ export function usePosts() {
   const [translatedPosts, setTranslatedPosts] = useState<BlogPost[]>([]);
   const [isTranslating, setIsTranslating] = useState(false);
 
-  const { data: posts, isLoading: isFetching } = useQuery<BlogPost[]>({
+  const { data: posts, isLoading: isFetching, error } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
-      console.log('🔄 [usePosts] Fetching posts...');
+      console.log('🔄 [usePosts] Fetching posts from D1 database...');
       
-      try {
-        const apiStartTime = Date.now();
-        const apiPosts = await fetchPosts();
-        const apiFetchTime = Date.now() - apiStartTime;
-        
-        if (apiPosts && apiPosts.length > 0) {
-          console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${apiFetchTime}ms)`);
-          console.log('   Data source: Cloudflare D1 via API');
-          return apiPosts;
-        } else {
-          console.warn('⚠️ [usePosts] API returned empty result, falling back to static files');
-        }
-      } catch (e) {
-        console.error('❌ [usePosts] API fetch failed:', e);
-        console.warn('   Falling back to static file content');
+      const apiStartTime = Date.now();
+      const apiPosts = await fetchPosts();
+      const apiFetchTime = Date.now() - apiStartTime;
+      
+      if (apiPosts && apiPosts.length > 0) {
+        console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${apiFetchTime}ms)`);
+        console.log('   Data source: Cloudflare D1 via API');
+        return apiPosts;
       }
       
-      console.log('📁 [usePosts] Loading posts from static files...');
-      const fileStartTime = Date.now();
-      const filePosts = await getAllPosts();
-      const fileLoadTime = Date.now() - fileStartTime;
-      console.log(`✅ [usePosts] Loaded ${filePosts.length} posts from files (${fileLoadTime}ms)`);
-      console.log('   Data source: TypeScript files in src/content/posts/');
-      
-      return filePosts;
+      console.warn('⚠️ [usePosts] D1 database returned empty result');
+      return [];
     },
+    retry: 2,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   useEffect(() => {
@@ -66,5 +53,9 @@ export function usePosts() {
     translateAll();
   }, [posts, language]);
 
-  return { posts: translatedPosts, isLoading: isFetching || isTranslating };
+  return { 
+    posts: translatedPosts, 
+    isLoading: isFetching || isTranslating,
+    error 
+  };
 }
