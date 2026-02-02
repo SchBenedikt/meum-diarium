@@ -51,25 +51,38 @@ npm run dev
 
 ## 🛠️ Development
 
-### Database Setup
-
-**IMPORTANT**: All blog posts and lexicon entries are now stored in Cloudflare D1 database.
-
-**🚀 EINFACHSTE METHODE - Ein einziges Script:**
+### Quick Start
 
 ```bash
-# Alles auf einmal - von Grund auf neu erstellen
+npm run dev
+```
+
+**Note for Local Development:**
+- Local dev shows empty data (no local D1 database configured)
+- This is expected behavior
+- UI and components work perfectly
+- Deploy to Cloudflare Pages to see real data from D1
+
+**See [LOCAL_DEV_GUIDE.md](LOCAL_DEV_GUIDE.md) for detailed local development instructions.**
+
+### Database Setup (Production)
+
+**IMPORTANT**: All blog posts and lexicon entries are now stored in Cloudflare D1 edge database.
+
+**🚀 ONE-COMMAND SETUP:**
+
+```bash
 ./setup_complete_database.sh
 ```
 
-Dieses Script macht ALLES:
-- ✅ Überprüft Datenbank
-- ✅ Wendet Migrations an (erstellt alle Tabellen)
-- ✅ Löscht alte Daten
-- ✅ Fügt alle Inhalte ein (5 Autoren, 42 Posts, 92 Lexikon-Einträge)
-- ✅ Verifiziert dass alles gespeichert wurde
+This script does EVERYTHING:
+- ✅ Verifies database exists
+- ✅ Applies migrations (creates all tables)
+- ✅ Cleans old data
+- ✅ Seeds all content (5 Authors, 42 Posts, 92 Lexicon entries)
+- ✅ Verifies data was saved correctly
 
-**Erwartete Ausgabe:**
+**Expected output:**
 ```
 ✓✓✓ DATABASE SETUP COMPLETE! ✓✓✓
 
@@ -107,16 +120,39 @@ After seeding, the database will contain:
 - ✅ 92 Lexicon Entries (terms and concepts)
 - ✅ Multiple literary works
 
-**Note**: Content files in `src/content/` are kept as backup. The app prioritizes the database but falls back to files if needed.
+**Important Changes:**
+- 🗑️ Static content files have been removed (`src/content/posts/`, `src/content/lexicon/`)
+- 💾 All data now comes from D1 database exclusively
+- 🔐 Admin CMS added for content management (password: "benedikt")
+- 📱 Local development shows empty data (deploy to see real data)
 
 📖 **Documentation:**
-- [COMPLETE_SETUP_GUIDE.md](COMPLETE_SETUP_GUIDE.md) - **🔥 Wenn Daten nicht gespeichert werden**
+- [LOCAL_DEV_GUIDE.md](LOCAL_DEV_GUIDE.md) - **🆕 Local development guide**
+- [COMPLETE_SETUP_GUIDE.md](COMPLETE_SETUP_GUIDE.md) - **🔥 Database troubleshooting**
+- [SYSTEM_SUMMARY.md](SYSTEM_SUMMARY.md) - Architecture overview
 - [DATABASE_SETUP.md](DATABASE_SETUP.md) - Complete setup guide
 - [TROUBLESHOOTING_DUPLICATES.md](TROUBLESHOOTING_DUPLICATES.md) - Fix UNIQUE constraint errors
 - [LOGGING_GUIDE.md](LOGGING_GUIDE.md) - Console logging reference
 
-### Creating Content
-Use the included Python CLI wizard for easy content creation:
+### Admin CMS
+
+Access the admin panel to manage all content:
+
+1. Navigate to `/admin/login`
+2. Enter password: `benedikt`
+3. Access admin dashboard
+
+**Features:**
+- ✅ Create/edit/delete posts
+- ✅ Manage lexicon entries
+- ✅ Edit author profiles
+- ✅ Manage works and translations
+- ✅ Tag management
+- ✅ Secure authentication with logout
+
+### Creating Content (Old Method - No Longer Used)
+
+**Note:** The Python CLI wizard is deprecated. Use the Admin CMS instead (see above).
 
 ```bash
 python3 tools/content_wizard.py
