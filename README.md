@@ -189,10 +189,19 @@ Deploy via [Lovable](https://lovable.dev/projects/9ca2799d-c7bd-4b69-8ca7-2dcd46
 
 ## 📚 Documentation
 
-- [Database Setup Guide](DATABASE_SETUP.md) - **Start here for D1 setup**
-- [Logging Guide](LOGGING_GUIDE.md) - **D1 usage in console logs**
+### Getting Started
+- [Quick Start Guide](QUICK_START.md) - **3-step database setup**
+- [Local Development Guide](LOCAL_DEV_GUIDE.md) - **How to develop locally**
+- [Console Errors Explained](CONSOLE_ERRORS_EXPLAINED.md) - **⭐ Understand console messages**
+
+### Database & Deployment
+- [Database Setup Guide](DATABASE_SETUP.md) - **D1 setup details**
+- [Deployment Fix](DEPLOYMENT_FIX.md) - **Fix build errors**
 - [Troubleshooting Duplicates](TROUBLESHOOTING_DUPLICATES.md) - **Fix UNIQUE constraint errors**
-- [CMS Documentation](CMS_DOCUMENTATION.md)
+
+### Features & Content
+- [CMS Documentation](CMS_DOCUMENTATION.md) - **Admin panel guide**
+- [Logging Guide](LOGGING_GUIDE.md) - **D1 usage in console logs**
 - [Content Translation Templates](CONTENT_TRANSLATION_TEMPLATES.md)
 - [SEO Implementation](SEO_IMPLEMENTATION_COMPLETE.md)
 - [Future Enhancements](FUTURE_ENHANCEMENTS.md)

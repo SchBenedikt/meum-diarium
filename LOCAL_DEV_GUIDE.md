@@ -122,6 +122,34 @@ The admin panel is protected with password authentication.
 ### React Router deprecation warnings
 **Fixed.** Future flags added to BrowserRouter for React Router v7 compatibility.
 
+### Browser Extension Console Errors (background.js, content.js)
+**NOT A BUG.** If you see errors like:
+```
+background.js:12 exit status 1
+content.js:2 Uncaught (in promise) Error: no ad
+```
+
+**These are from browser extensions, NOT from our code:**
+- Ad blockers inject `background.js` and `content.js`
+- They search for ads and log errors when none are found
+- **These errors are completely harmless**
+- They don't affect website functionality
+- This is expected behavior
+
+**To verify:**
+1. Open site in incognito/private mode (no extensions)
+2. Errors should disappear
+3. If they do, it's definitely browser extensions
+
+**Common extensions that cause these:**
+- uBlock Origin
+- AdBlock Plus
+- Privacy Badger
+- Ghostery
+- Any ad blocker or privacy extension
+
+**No action needed** - these are normal and expected when developing with browser extensions enabled.
+
 ## Deployment Checklist
 
 Before deploying to production:
