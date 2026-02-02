@@ -60,13 +60,12 @@ echo -e "${BLUE}═════════════════════�
 echo ""
 
 echo "Applying migrations to create database schema..."
-if npx wrangler d1 migrations apply "$DB_NAME" --remote --yes 2>&1; then
+if npx wrangler d1 migrations apply "$DB_NAME" --remote 2>&1 | grep -E "(Success|Error|already been applied|No unapplied)"; then
     echo ""
     echo -e "${GREEN}✓ Migrations applied successfully${NC}"
 else
     echo ""
-    echo -e "${YELLOW}⚠️  Migrations may already be applied or there was an error${NC}"
-    echo "Continuing anyway..."
+    echo -e "${YELLOW}⚠️  Applying migrations...${NC}"
 fi
 
 echo ""
@@ -85,7 +84,7 @@ TABLES=("latin_texts" "vocabulary" "posts" "lexicon" "works" "authors")
 
 for table in "${TABLES[@]}"; do
     echo -n "  Clearing $table... "
-    if npx wrangler d1 execute "$DB_NAME" --remote --command "DELETE FROM $table" --yes 2>&1 | grep -q "successfully"; then
+    if npx wrangler d1 execute "$DB_NAME" --remote --command "DELETE FROM $table" 2>&1 | grep -qE "(success|rows|Success)"; then
         echo -e "${GREEN}✓${NC}"
     else
         echo -e "${YELLOW}⊘ (skipped or empty)${NC}"
@@ -116,7 +115,7 @@ execute_seed() {
     fi
     
     local output
-    output=$(npx wrangler d1 execute "$DB_NAME" --remote --file "$file" --yes 2>&1)
+    output=$(npx wrangler d1 execute "$DB_NAME" --remote --file "$file" 2>&1)
     local exit_code=$?
     
     if [ $exit_code -eq 0 ]; then
