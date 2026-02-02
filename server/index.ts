@@ -11,6 +11,9 @@ const app = express();
 const PORT = 3001;
 const BASE_URL = (process.env.SITE_URL || 'https://meum-diarium.xn--schchner-2za.de').replace(/\/$/, '');
 
+// Known author IDs
+const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
+
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
@@ -66,7 +69,7 @@ app.get('/sitemap-index.html', async (_req, res) => {
         { path: '/search', label: 'Search', priority: 0.6 },
     ];
 
-    const authorIds = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
+    const authorIds = AUTHOR_IDS;
     const authorRoutes = authorIds.flatMap((id) => ([
         { path: `/${id}`, label: `${id.charAt(0).toUpperCase() + id.slice(1)} - Timeline`, priority: 0.9 },
         { path: `/${id}/about`, label: `${id.charAt(0).toUpperCase() + id.slice(1)} - About`, priority: 0.8 },
@@ -145,13 +148,15 @@ app.get('/api/lexicon/:slug', (_req, res) => {
 });
 
 app.get('/api/authors', (_req, res) => {
-    res.json({
-        caesar: { id: 'caesar', name: 'Caesar', slug: 'caesar' },
-        augustus: { id: 'augustus', name: 'Augustus', slug: 'augustus' },
-        cicero: { id: 'cicero', name: 'Cicero', slug: 'cicero' },
-        catilina: { id: 'catilina', name: 'Catilina', slug: 'catilina' },
-        seneca: { id: 'seneca', name: 'Seneca', slug: 'seneca' }
+    const authors: Record<string, { id: string; name: string; slug: string }> = {};
+    AUTHOR_IDS.forEach(id => {
+        authors[id] = {
+            id,
+            name: id.charAt(0).toUpperCase() + id.slice(1),
+            slug: id
+        };
     });
+    res.json(authors);
 });
 
 app.get('/api/works', (_req, res) => {
