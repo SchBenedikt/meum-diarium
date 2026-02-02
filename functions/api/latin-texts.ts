@@ -1,5 +1,5 @@
-import { getDb } from '../../../src/db/client';
-import { latinTexts } from '../../../src/db/schema';
+import { getDb } from '../db/client';
+import { latinTexts } from '../db/schema';
 import { eq, and, asc } from 'drizzle-orm';
 
 export const onRequest = async (context: any) => {
