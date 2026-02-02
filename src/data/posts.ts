@@ -1,16 +1,11 @@
+// This file is kept for type exports only
+// Actual posts are fetched from D1 database via usePosts hook
+
 import { BlogPost } from '@/types/blog';
 
-// This function now dynamically imports all posts from the content directory.
-// It uses Vite's `import.meta.glob` feature to find all post files.
+// This function is no longer used - posts come from D1 database
+// Kept for backward compatibility during migration
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const postImports = import.meta.glob('/src/content/posts/**/*.ts');
-
-  const posts = await Promise.all(
-    Object.values(postImports).map(async (importer) => {
-      const { default: post } = await importer() as { default: BlogPost };
-      return post;
-    })
-  );
-
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  console.warn('getAllPosts() called but posts should come from D1 database');
+  return [];
 }
