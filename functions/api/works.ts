@@ -1,5 +1,5 @@
-import { getDb } from '../../../src/db/client';
-import { works } from '../../../src/db/schema';
+import { getDb } from '../db/client';
+import { works } from '../db/schema';
 import { eq } from 'drizzle-orm';
 
 export const onRequest = async (context: any) => {

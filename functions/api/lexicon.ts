@@ -1,5 +1,5 @@
-import { getDb } from '../../../src/db/client';
-import { lexicon } from '../../../src/db/schema';
+import { getDb } from '../db/client';
+import { lexicon } from '../db/schema';
 import { eq, like, or } from 'drizzle-orm';
 
 export const onRequest = async (context: any) => {

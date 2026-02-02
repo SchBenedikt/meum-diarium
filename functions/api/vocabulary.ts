@@ -1,5 +1,5 @@
-import { getDb } from '../../../src/db/client';
-import { vocabulary } from '../../../src/db/schema';
+import { getDb } from '../db/client';
+import { vocabulary } from '../db/schema';
 import { sql, eq } from 'drizzle-orm';
 
 export const onRequest = async (context: any) => {
