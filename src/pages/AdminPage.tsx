@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuth } from '@/context/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,7 +10,7 @@ import { useLexicon } from '@/hooks/use-lexicon';
 import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry, renameTag, deleteTag } from '@/lib/api';
 import { fetchWorks, deleteWork } from '@/lib/api';
 import { useTags } from '@/hooks/use-tags';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
     Table,
     TableBody,
@@ -18,7 +19,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, Settings, LayoutDashboard, ArrowUpRight, Tags, Hash, Eye, BookMarked } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, Settings, LayoutDashboard, ArrowUpRight, Tags, Hash, Eye, BookMarked, LogOut } from 'lucide-react';
 import { toast } from 'sonner';
 import { BlogPost, LexiconEntry } from '@/types/blog';
 import { QuickStats } from '@/components/QuickStats';
@@ -28,6 +29,8 @@ import { useQueryClient } from '@tanstack/react-query';
 
 export default function AdminPage() {
     const { t } = useLanguage();
+    const { logout } = useAuth();
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { posts } = usePosts();
     const { authors: authorEntries } = useAuthors();
@@ -229,11 +232,26 @@ export default function AdminPage() {
         <div className="container mx-auto py-10 px-4 max-w-7xl pt-24 sm:pt-28">
             {/* Header */}
             <div className="mb-10">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-                        <LayoutDashboard className="h-5 w-5 text-primary" />
+                <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+                            <LayoutDashboard className="h-5 w-5 text-primary" />
+                        </div>
+                        <h1 className="font-display text-3xl font-bold">Admin</h1>
                     </div>
-                    <h1 className="font-display text-3xl font-bold">Admin</h1>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                            logout();
+                            navigate('/admin/login');
+                            toast.success('Erfolgreich abgemeldet');
+                        }}
+                        className="flex items-center gap-2"
+                    >
+                        <LogOut className="h-4 w-4" />
+                        Abmelden
+                    </Button>
                 </div>
                 <p className="text-muted-foreground">Beiträge, Lexikon, Autoren und Übersetzungen verwalten</p>
             </div>
