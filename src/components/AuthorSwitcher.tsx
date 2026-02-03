@@ -1,7 +1,7 @@
 
 import { useAuthor } from '@/context/AuthorContext';
-import { authors } from '@/data/authors';
-import { Check, ChevronDown } from 'lucide-react';
+import { useAuthors } from '@/hooks/use-authors';
+import { Check, ChevronDown, Loader2 } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +14,7 @@ import { ImageWithFallback } from './ui/ImageWithFallback';
 
 export function AuthorSwitcher() {
   const { currentAuthor, setCurrentAuthor, authorInfo } = useAuthor();
+  const { authors, isLoading } = useAuthors();
 
   return (
     <DropdownMenu>
@@ -33,7 +34,12 @@ export function AuthorSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
-        {Object.values(authors).map((author) => (
+        {isLoading ? (
+          <div className="flex items-center justify-center p-4">
+            <Loader2 className="h-4 w-4 animate-spin" />
+          </div>
+        ) : (
+          Object.values(authors).map((author) => (
           <DropdownMenuItem
             key={author.id}
             onClick={() => setCurrentAuthor(author.id)}
@@ -50,7 +56,8 @@ export function AuthorSwitcher() {
               )}
             </Link>
           </DropdownMenuItem>
-        ))}
+          ))
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -1,5 +1,5 @@
-import { authors } from '@/data/authors';
 import { useAuthor } from '@/context/AuthorContext';
+import { useAuthors } from '@/hooks/use-authors';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
@@ -13,6 +13,11 @@ import { ImageWithFallback } from './ui/ImageWithFallback';
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
   const { t } = useLanguage();
+  const { authors, isLoading } = useAuthors();
+  
+  if (isLoading || Object.keys(authors).length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-24 sm:py-32 bg-background relative overflow-hidden">
