@@ -1,8 +1,9 @@
 import { getDb } from '../db/client';
 import { vocabulary } from '../db/schema';
 import { sql, eq } from 'drizzle-orm';
+import type { PagesContext } from '../types';
 
-export const onRequest = async (context: any) => {
+export const onRequest = async (context: PagesContext): Promise<Response> => {
     const db = getDb(context.env);
     const url = new URL(context.request.url);
     const type = url.searchParams.get('type');

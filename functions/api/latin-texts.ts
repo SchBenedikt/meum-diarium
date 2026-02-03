@@ -1,8 +1,9 @@
 import { getDb } from '../db/client';
 import { latinTexts } from '../db/schema';
 import { eq, and, asc } from 'drizzle-orm';
+import type { PagesContext } from '../types';
 
-export const onRequest = async (context: any) => {
+export const onRequest = async (context: PagesContext): Promise<Response> => {
     const db = getDb(context.env);
     const url = new URL(context.request.url);
 

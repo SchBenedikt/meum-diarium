@@ -1,8 +1,9 @@
 import { getDb } from '../db/client';
 import { lexicon } from '../db/schema';
 import { eq, like, or } from 'drizzle-orm';
+import type { PagesContext } from '../types';
 
-export const onRequest = async (context: any) => {
+export const onRequest = async (context: PagesContext): Promise<Response> => {
     const corsHeaders = {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -11,10 +12,12 @@ export const onRequest = async (context: any) => {
     try {
         // Check if D1 database is available
         if (!context.env?.DB) {
-            console.error('❌ [Lexicon API] D1 database not available in context.env.DB');
+            console.error('❌ [Lexicon API] D1 database not available');
+            console.error('   env keys:', context.env ? Object.keys(context.env) : 'no env');
             return new Response(JSON.stringify({ 
                 error: 'Database not configured',
-                message: 'D1 database binding not found'
+                message: 'D1 database binding not found',
+                hint: 'Check wrangler.toml and Pages environment settings'
             }), {
                 status: 503,
                 headers: corsHeaders
@@ -22,6 +25,7 @@ export const onRequest = async (context: any) => {
         }
 
         const startTime = Date.now();
+        console.log('🔷 [Lexicon API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
         const url = new URL(context.request.url);
         const slug = url.searchParams.get('slug');
