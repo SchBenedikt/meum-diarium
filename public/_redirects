@@ -1,6 +1,2 @@
-# Netlify/Cloudflare Pages redirects for SPA routing
-# Allow /api paths to pass through to Functions/assets
-/api/*                 /api/:splat   200
-
-# Serve index.html for all routes that don't match a file
-/*                     /index.html   200
+# Cloudflare Pages redirects for SPA routing
+# No redirects needed - Pages handles SPA routing automatically
