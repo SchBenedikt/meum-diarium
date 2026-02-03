@@ -65,7 +65,10 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         const queryTime = Date.now() - startTime;
         console.log(`✅ [Authors API] D1 query successful: Fetched ${results.length} authors (${queryTime}ms)`);
 
-        return new Response(JSON.stringify(results), {
+        // Ensure proper UTF-8 encoding for response with umlaut-rich author data
+        const responseText = JSON.stringify(results);
+        
+        return new Response(responseText, {
             headers: {
                 ...corsHeaders,
                 'Cache-Control': 'public, max-age=3600',

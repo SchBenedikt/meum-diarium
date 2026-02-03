@@ -21,13 +21,13 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             if (!result) {
                 return new Response(JSON.stringify({ error: 'Not Found' }), {
                     status: 404,
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json; charset=utf-8' }
                 });
             }
 
             return new Response(JSON.stringify(result), {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json; charset=utf-8',
                     'Access-Control-Allow-Origin': '*',
                     'Cache-Control': 'public, max-age=3600'
                 }
@@ -42,7 +42,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
         return new Response(JSON.stringify(results), {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Access-Control-Allow-Origin': '*',
                 'Cache-Control': 'public, max-age=3600'
             }
@@ -50,7 +50,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
     } catch (e: any) {
         return new Response(JSON.stringify({ error: 'Internal Error', message: e.message }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     }
 };

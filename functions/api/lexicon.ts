@@ -76,29 +76,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         const queryTime = Date.now() - startTime;
         console.log(`✅ [Lexicon API] D1 query successful: Fetched ${results.length} entries (${queryTime}ms)`);
 
-        // Ensure proper UTF-8 encoding in response
-        let responseText: string;
-        try {
-            responseText = JSON.stringify(results, null, 0);
-        } catch (jsonErr: any) {
-            console.error(`❌ [Lexicon API] JSON serialization failed:`, jsonErr.message);
-            console.error('   Problematic data sample:', results.slice(0, 2));
-            
-            // Try to sanitize the data
-            const sanitized = results.map((entry: any) => {
-                const cleaned: any = { ...entry };
-                // Ensure all string fields are properly UTF-8
-                Object.keys(cleaned).forEach(key => {
-                    if (typeof cleaned[key] === 'string') {
-                        // Remove any invalid UTF-8 sequences
-                        cleaned[key] = cleaned[key].replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
-                    }
-                });
-                return cleaned;
-            });
-            
-            responseText = JSON.stringify(sanitized, null, 0);
-        }
+        // Ensure proper UTF-8 encoding in response with umlauts
+        const responseText = JSON.stringify(results);
         
         return new Response(responseText, {
             headers: {
