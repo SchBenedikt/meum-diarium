@@ -4,10 +4,10 @@ import { BlogList } from '@/components/BlogList';
 import LandingHeroNew from '@/components/LandingHeroNew';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
+import { useAuthors } from '@/hooks/use-authors';
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Author } from '@/types/blog';
-import { authors } from '@/data/authors';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap } from 'lucide-react';
@@ -18,26 +18,30 @@ import { getTranslatedAuthorInfo } from '@/lib/author-translator';
 
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
+  const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
   const { authorId } = useParams<{ authorId?: string }>();
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
 
   useEffect(() => {
-    if (authorId && authors[authorId as Author]) {
+    if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
     } else if (!authorId) {
       setCurrentAuthor(null);
     }
-  }, [authorId, setCurrentAuthor]);
+  }, [authorId, dbAuthors, setCurrentAuthor]);
 
   // const showTimelineCard = currentAuthor !== 'caesar'; // Removed as no longer used
 
-  if (authorId && !authors[authorId as Author]) {
+  if (authorId && !dbAuthors[authorId as Author]) {
+    if (authorsLoading) {
+      return null; // Show loading state
+    }
     return <NotFound />;
   }
 
-  const author = currentAuthor ? authors[currentAuthor] : null;
+  const author = currentAuthor ? dbAuthors[currentAuthor] : null;
   const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t as any) : null;
 
   return (

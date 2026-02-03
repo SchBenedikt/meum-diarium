@@ -54,12 +54,12 @@ export const posts = sqliteTable('posts', {
 export const lexicon = sqliteTable('lexicon', {
     slug: text('slug').primaryKey(),
     term: text('term').notNull(),
-    variants: text('variants', { mode: 'json' }),
+    variants: text('variants'), // Store as raw text, parse manually to handle malformed data
     definition: text('definition').notNull(),
     category: text('category'),
     etymology: text('etymology'),
-    relatedTerms: text('related_terms', { mode: 'json' }),
-    translations: text('translations', { mode: 'json' }),
+    relatedTerms: text('related_terms'), // Store as raw text, parse manually
+    translations: text('translations'), // Store as raw text, parse manually
 });
 
 // Vocabulary Table (New structure for learning)

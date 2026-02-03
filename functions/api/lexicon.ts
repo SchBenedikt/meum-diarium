@@ -73,25 +73,37 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             limit: limit
         });
 
+        // Helper function to safely parse JSON fields
+        const parseJsonField = (value: any): any => {
+            if (!value || typeof value !== 'string') return null;
+            try {
+                return JSON.parse(value);
+            } catch (e: any) {
+                console.warn(`⚠️ [Lexicon API] Malformed JSON in field: ${value.substring(0, 50)}...`);
+                return null;
+            }
+        };
+
+        // Parse JSON fields manually to handle corrupted/malformed data gracefully
+        const parsedResults = results.map((entry: any) => ({
+            ...entry,
+            variants: parseJsonField(entry.variants) || [],
+            relatedTerms: parseJsonField(entry.relatedTerms) || [],
+            translations: parseJsonField(entry.translations) || {},
+        }));
+
         const queryTime = Date.now() - startTime;
         console.log(`✅ [Lexicon API] D1 query successful: Fetched ${results.length} entries (${queryTime}ms)`);
 
         // Sanitize each entry to ensure valid JSON serialization with proper UTF-8
-        const sanitizedResults = results.map((entry: any) => {
+        const sanitizedResults = parsedResults.map((entry: any) => {
             const sanitized: any = {};
             Object.entries(entry).forEach(([key, value]) => {
                 if (typeof value === 'string') {
                     // Properly handle UTF-8 strings - keep umlauts and special chars
-                    // Only normalize problematic whitespace but preserve all valid Unicode
                     sanitized[key] = value
                         .replace(/\x00/g, '')          // Remove null bytes
                         .replace(/[\x01-\x08\x0B\x0C\x0E-\x1F]/g, ''); // Remove control chars except \n\r\t
-                } else if (Array.isArray(value)) {
-                    // Handle JSON array fields
-                    sanitized[key] = value;
-                } else if (typeof value === 'object' && value !== null) {
-                    // Handle JSON object fields
-                    sanitized[key] = value;
                 } else {
                     sanitized[key] = value;
                 }
@@ -104,14 +116,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         try {
             responseText = JSON.stringify(sanitizedResults, (_key, value) => {
                 if (typeof value === 'string') {
-                    // Final pass: ensure no problematic sequences
                     return value.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
                 }
                 return value;
             });
         } catch (jsonErr: any) {
             console.error(`❌ [Lexicon API] JSON serialization failed:`, jsonErr.message);
-            // Fallback: stringify with basic sanitization
             responseText = JSON.stringify(sanitizedResults.slice(0, 10));
         }
         
