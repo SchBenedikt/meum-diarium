@@ -135,8 +135,40 @@ app.get('/api/posts', (_req, res) => {
     res.json([]);
 });
 
+app.post('/api/posts', (req, res) => {
+    // In dev, always return success for create
+    console.log('📝 [Dev] POST /api/posts - creating post:', req.body.slug);
+    res.status(201).json({ 
+        success: true, 
+        message: 'Post created (dev mode)',
+        post: req.body 
+    });
+});
+
 app.get('/api/posts/:author/:slug', (_req, res) => {
     res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+});
+
+app.put('/api/posts/:author/:slug', (req, res) => {
+    // In dev, always return success for update
+    const { author, slug } = req.params;
+    console.log(`✏️  [Dev] PUT /api/posts/${author}/${slug} - updating post`);
+    res.status(200).json({ 
+        success: true, 
+        message: 'Post updated (dev mode)',
+        post: req.body 
+    });
+});
+
+app.delete('/api/posts/:author/:slug', (req, res) => {
+    // In dev, always return success for delete
+    const { author, slug } = req.params;
+    console.log(`🗑️  [Dev] DELETE /api/posts/${author}/${slug} - deleting post`);
+    res.status(200).json({ 
+        success: true, 
+        message: 'Post deleted (dev mode)',
+        slug: slug 
+    });
 });
 
 app.get('/api/lexicon', (_req, res) => {
