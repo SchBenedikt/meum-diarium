@@ -7,9 +7,9 @@ import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { TableOfContents } from '@/components/TableOfContents';
 import { motion } from 'framer-motion';
 import NotFound from './NotFound';
-import { useAuthor } from '@/context/AuthorContext';
-import { formatContent } from '@/lib/content-formatter';
+import { FormattedContent } from '@/components/FormattedContent';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuthor } from '@/context/AuthorContext';
 import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
@@ -78,8 +78,6 @@ export default function LexiconEntryPage() {
     return <NotFound />;
   }
 
-  const formattedContent = formatContent(entry.definition, t, language, entry.slug);
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pb-16">
@@ -127,7 +125,7 @@ export default function LexiconEntryPage() {
 
                 <div className="prose-blog text-lg">
                   <TableOfContents content={entry.definition} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
-                  {formattedContent}
+                  <FormattedContent content={entry.definition} language={language} currentSlug={entry.slug} />
                 </div>
 
                 {relatedPosts.length > 0 && (

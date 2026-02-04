@@ -11,7 +11,7 @@ import { Author, Perspective, BlogPost } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, Clock, BookText } from 'lucide-react';
 import NotFound from './NotFound';
-import { formatContent } from '@/lib/content-formatter';
+import { FormattedContent } from '@/components/FormattedContent';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { TableOfContents } from '@/components/TableOfContents';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -78,11 +78,6 @@ function PostContent({ post }: { post: BlogPost }) {
     if (!contentToDisplay) return 0;
     return calculateReadingTime(contentToDisplay);
   }, [contentToDisplay]);
-
-  const formattedContent = useMemo(() => {
-    if (!contentToDisplay) return [];
-    return formatContent(contentToDisplay, t, language);
-  }, [contentToDisplay, t, language]);
 
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {
@@ -184,7 +179,7 @@ function PostContent({ post }: { post: BlogPost }) {
 
                 <div className="space-y-8">
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
-                  {formattedContent}
+                  <FormattedContent content={contentToDisplay} language={language} currentSlug={post?.slug} />
                 </div>
 
               </motion.article>
