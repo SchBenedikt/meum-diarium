@@ -94,9 +94,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             )}
           </div>
         </div>
-      )}Link>
-        </div>
-      </div>
+      )}
 
       {post.sidebar?.quote && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
@@ -114,8 +112,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
             {post.sidebar.quote.date ? `, ${post.sidebar.quote.date}` : ''}
           </cite>
         </div>
-      )}
-
       )}
 
       {getPostTags(post, language).length > 0 && (
