@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { BookOpen, Send, Loader2, Maximize2 } from 'lucide-react';
+import { BookOpen, Send, Loader2, Maximize2, ExternalLink } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -12,6 +13,7 @@ interface TermPopoverProps {
   term: string;
   children: React.ReactNode;
   type: 'lexicon' | 'author';
+  slug?: string;
 }
 
 interface Message {
@@ -35,7 +37,7 @@ async function explainTerm(term: string, question?: string, history?: Message[])
   return data.response?.response || data.response || 'Keine Antwort verfügbar.';
 }
 
-export function TermPopover({ term, children, type }: TermPopoverProps) {
+export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
   const [open, setOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [summary, setSummary] = useState<string | null>(null);
@@ -43,6 +45,8 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+
+  const linkPath = type === 'author' ? `/${slug}` : `/lexicon/${slug}`;
 
   useEffect(() => {
     if (open && !summary && !loading) {
@@ -148,7 +152,7 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
             )}
           </ScrollArea>
 
-          <div className="p-3 border-t border-border bg-secondary">
+          <div className="p-3 border-t border-border bg-secondary space-y-3">
             <div className="flex items-center gap-2">
               <Input
                 value={input}
@@ -167,7 +171,16 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                 {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
               </Button>
             </div>
-            <p className="text-[10px] text-muted-foreground mt-2 text-center">
+            {slug && (
+              <Link
+                to={linkPath}
+                className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 transition-colors"
+              >
+                <span>Zum vollständigen Eintrag</span>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            )}
+            <p className="text-[10px] text-muted-foreground text-center">
               KI-generierte Erklärungen – können ungenau sein
             </p>
           </div>
@@ -250,9 +263,20 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                 {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
               </Button>
             </div>
-            <p className="text-[10px] text-muted-foreground mt-2 text-center">
-              KI-generierte Erklärungen – können ungenau sein
-            </p>
+            <div className="flex items-center gap-4 mt-3">
+              <p className="text-[10px] text-muted-foreground flex-1">
+                KI-generierte Erklärungen – können ungenau sein
+              </p>
+              {slug && (
+                <Link
+                  to={linkPath}
+                  className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
+                >
+                  <span>Zum vollständigen Eintrag</span>
+                  <ExternalLink className="h-3 w-3" />
+                </Link>
+              )}
+            </div>
           </div>
         </DialogContent>
       </Dialog>

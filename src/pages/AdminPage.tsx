@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { usePosts } from '@/hooks/use-posts';
 import { useAuthors } from '@/hooks/use-authors';
 import { useLexicon } from '@/hooks/use-lexicon';
-import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry, renameTag, deleteTag } from '@/lib/api';
-import { fetchWorks, deleteWork } from '@/lib/api';
+import { useWorks } from '@/hooks/use-works';
+import { deletePost as removePost, deleteAuthor as removeAuthor, deleteLexiconEntry as removeLexiconEntry, renameTag, deleteTag, deleteWork } from '@/lib/api';
 import { useTags } from '@/hooks/use-tags';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -35,8 +35,8 @@ export default function AdminPage() {
     const { posts } = usePosts();
     const { authors: authorEntries } = useAuthors();
     const { lexicon: lexiconEntries } = useLexicon();
+    const { works } = useWorks();
     const { tags } = useTags();
-    const [works, setWorks] = useState<any[]>([]);
 
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
@@ -54,16 +54,6 @@ export default function AdminPage() {
     useEffect(() => {
         if (tags) setFilteredTags(tags);
     }, [tags]);
-
-    useEffect(() => {
-        async function loadWorks() {
-            try {
-                const data = await fetchWorks();
-                setWorks(data || []);
-            } catch {}
-        }
-        loadWorks();
-    }, []);
 
     const postRows = posts || [];
 
@@ -124,8 +114,7 @@ export default function AdminPage() {
         try {
             await deleteWork(slug);
             toast.success('Werk gelöscht');
-            const data = await fetchWorks();
-            setWorks(data || []);
+            queryClient.invalidateQueries({ queryKey: ['works'] });
         } catch (e) {
             toast.error('Fehler beim Löschen');
         }

@@ -7,8 +7,14 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
     const corsHeaders = {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
     };
-    const startTime = Date.now();
+
+    // Handle CORS preflight
+    if (context.request.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders });
+    }
 
     const parseJsonField = (value: any): any => {
         if (!value || typeof value !== 'string') return null;
@@ -34,125 +40,319 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         return sanitized;
     };
 
+    const startTime = Date.now();
+
     try {
         // Check if D1 database is available
         if (!context.env?.DB) {
             console.error('❌ [Lexicon API] D1 database not available');
-            console.error('   env keys:', context.env ? Object.keys(context.env) : 'no env');
             return new Response(JSON.stringify({ 
                 error: 'Database not configured',
-                message: 'D1 database binding not found',
-                hint: 'Check wrangler.toml and Pages environment settings'
+                message: 'D1 database binding not found'
             }), {
                 status: 503,
                 headers: corsHeaders
             });
         }
 
-
-        console.log('🔷 [Lexicon API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
         const url = new URL(context.request.url);
-        const slug = url.searchParams.get('slug');
+        const method = context.request.method;
+
+        console.log(`🔷 [Lexicon API] ${method} request: ${url.pathname}${url.search}`);
+
+        // Extract slug from path or query params
+        const pathSegments = url.pathname.split('/').filter(Boolean);
+        const slugFromPath = pathSegments[pathSegments.length - 1] !== 'lexicon' ? pathSegments[pathSegments.length - 1] : null;
+        const slugParam = slugFromPath || url.searchParams.get('slug');
         const search = url.searchParams.get('search');
         const limit = parseInt(url.searchParams.get('limit') || '100');
 
-        console.log(`🔷 [Lexicon API] Query: ${slug ? `slug=${slug}` : search ? `search=${search}` : 'all entries'}`);
+        // GET handler
+        if (method === 'GET') {
+            if (slugParam) {
+                const result = await db.query.lexicon.findFirst({
+                    where: eq(lexicon.slug, slugParam)
+                });
 
-        if (slug) {
-            const result = await db.query.lexicon.findFirst({
-                where: eq(lexicon.slug, slug)
-            });
+                const queryTime = Date.now() - startTime;
 
-            const queryTime = Date.now() - startTime;
+                if (!result) {
+                    console.warn(`⚠️ [Lexicon API] Entry not found: ${slugParam}`);
+                    return new Response(JSON.stringify({ error: 'Not Found' }), {
+                        status: 404,
+                        headers: corsHeaders
+                    });
+                }
 
-            if (!result) {
-                console.warn(`⚠️ [Lexicon API] Entry not found: ${slug} (${queryTime}ms)`);
-                return new Response(JSON.stringify({ error: 'Not Found' }), {
-                    status: 404,
-                    headers: corsHeaders
+                console.log(`✅ [Lexicon API] GET found entry "${result.term}" (${queryTime}ms)`);
+
+                const parsedResult = {
+                    ...result,
+                    variants: parseJsonField(result.variants) || [],
+                    relatedTerms: parseJsonField(result.relatedTerms) || [],
+                    translations: parseJsonField(result.translations) || {},
+                };
+
+                const sanitizedResult = sanitizeEntry(parsedResult);
+
+                return new Response(JSON.stringify(sanitizedResult), {
+                    headers: {
+                        ...corsHeaders,
+                        'Cache-Control': 'public, max-age=3600',
+                        'X-Data-Source': 'cloudflare-d1'
+                    }
                 });
             }
 
-            console.log(`✅ [Lexicon API] D1 query successful: Found entry "${result.term}" (${queryTime}ms)`);
+            let whereClause = undefined;
+            if (search) {
+                whereClause = or(
+                    like(lexicon.term, `%${search}%`),
+                    like(lexicon.definition, `%${search}%`)
+                );
+            }
 
-            const parsedResult = {
-                ...result,
-                variants: parseJsonField(result.variants) || [],
-                relatedTerms: parseJsonField(result.relatedTerms) || [],
-                translations: parseJsonField(result.translations) || {},
-            };
+            const results = await db.query.lexicon.findMany({
+                where: whereClause,
+                limit: limit
+            });
 
-            const sanitizedResult = sanitizeEntry(parsedResult);
+            // Parse JSON fields manually
+            const parsedResults = results.map((entry: any) => ({
+                ...entry,
+                variants: parseJsonField(entry.variants) || [],
+                relatedTerms: parseJsonField(entry.relatedTerms) || [],
+                translations: parseJsonField(entry.translations) || {},
+            }));
 
-            return new Response(JSON.stringify(sanitizedResult), {
+            const queryTime = Date.now() - startTime;
+            console.log(`✅ [Lexicon API] GET fetched ${results.length} entries (${queryTime}ms)`);
+
+            const sanitizedResults = parsedResults.map(sanitizeEntry);
+
+            let responseText: string;
+            try {
+                responseText = JSON.stringify(sanitizedResults, (_key, value) => {
+                    if (typeof value === 'string') {
+                        return value.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+                    }
+                    return value;
+                });
+            } catch (jsonErr: any) {
+                console.error(`❌ [Lexicon API] JSON serialization failed:`, jsonErr.message);
+                responseText = JSON.stringify(sanitizedResults.slice(0, 10));
+            }
+            
+            return new Response(responseText, {
                 headers: {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
-                    'X-Data-Source': 'cloudflare-d1'
+                    'X-Data-Source': 'cloudflare-d1',
+                    'X-Entry-Count': results.length.toString()
                 }
             });
         }
 
-        let whereClause = undefined;
-        if (search) {
-            whereClause = or(
-                like(lexicon.term, `%${search}%`),
-                like(lexicon.definition, `%${search}%`)
-            );
-        }
-
-        const results = await db.query.lexicon.findMany({
-            where: whereClause,
-            limit: limit
-        });
-
-        // Parse JSON fields manually to handle corrupted/malformed data gracefully
-        const parsedResults = results.map((entry: any) => ({
-            ...entry,
-            variants: parseJsonField(entry.variants) || [],
-            relatedTerms: parseJsonField(entry.relatedTerms) || [],
-            translations: parseJsonField(entry.translations) || {},
-        }));
-
-        const queryTime = Date.now() - startTime;
-        console.log(`✅ [Lexicon API] D1 query successful: Fetched ${results.length} entries (${queryTime}ms)`);
-
-        // Sanitize each entry to ensure valid JSON serialization with proper UTF-8
-        const sanitizedResults = parsedResults.map((entry: any) => sanitizeEntry(entry));
-
-        // Proper UTF-8 JSON serialization with replacer to handle edge cases
-        let responseText: string;
-        try {
-            responseText = JSON.stringify(sanitizedResults, (_key, value) => {
-                if (typeof value === 'string') {
-                    return value.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+        // POST handler - Create new entry
+        if (method === 'POST') {
+            try {
+                const body = await context.request.json();
+                
+                // Validate required fields
+                if (!body.slug || !body.term || !body.definition) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Missing required fields',
+                        required: ['slug', 'term', 'definition']
+                    }), {
+                        status: 400,
+                        headers: corsHeaders
+                    });
                 }
-                return value;
-            });
-        } catch (jsonErr: any) {
-            console.error(`❌ [Lexicon API] JSON serialization failed:`, jsonErr.message);
-            responseText = JSON.stringify(sanitizedResults.slice(0, 10));
-        }
-        
-        return new Response(responseText, {
-            headers: {
-                ...corsHeaders,
-                'Cache-Control': 'public, max-age=3600',
-                'X-Data-Source': 'cloudflare-d1',
-                'X-Entry-Count': results.length.toString()
+
+                // Check if entry already exists
+                const existing = await db.query.lexicon.findFirst({
+                    where: eq(lexicon.slug, body.slug)
+                });
+
+                if (existing) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Entry already exists',
+                        slug: body.slug
+                    }), {
+                        status: 409,
+                        headers: corsHeaders
+                    });
+                }
+
+                // Create new entry
+                const newEntry = {
+                    slug: body.slug,
+                    term: body.term,
+                    variants: body.variants || [],
+                    definition: body.definition,
+                    category: body.category || '',
+                    etymology: body.etymology || '',
+                    relatedTerms: body.relatedTerms || [],
+                    translations: body.translations || {}
+                };
+
+                await db.insert(lexicon).values(newEntry);
+                
+                const queryTime = Date.now() - startTime;
+                console.log(`✅ [Lexicon API] POST created entry "${newEntry.term}" (${queryTime}ms)`);
+
+                return new Response(JSON.stringify({ 
+                    success: true,
+                    message: 'Entry created',
+                    entry: newEntry
+                }), {
+                    status: 201,
+                    headers: corsHeaders
+                });
+            } catch (err: any) {
+                console.error('❌ [Lexicon API] POST failed:', err.message);
+                return new Response(JSON.stringify({ 
+                    error: 'Failed to create entry',
+                    message: err.message
+                }), {
+                    status: 400,
+                    headers: corsHeaders
+                });
             }
+        }
+
+        // PUT handler - Update entry
+        if (method === 'PUT') {
+            try {
+                if (!slugParam) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Slug required for update'
+                    }), {
+                        status: 400,
+                        headers: corsHeaders
+                    });
+                }
+
+                const body = await context.request.json();
+
+                // Check if entry exists
+                const existing = await db.query.lexicon.findFirst({
+                    where: eq(lexicon.slug, slugParam)
+                });
+
+                if (!existing) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Entry not found',
+                        slug: slugParam
+                    }), {
+                        status: 404,
+                        headers: corsHeaders
+                    });
+                }
+
+                // Update entry
+                const updatedData = {
+                    term: body.term ?? existing.term,
+                    variants: body.variants ?? existing.variants,
+                    definition: body.definition ?? existing.definition,
+                    category: body.category ?? existing.category,
+                    etymology: body.etymology ?? existing.etymology,
+                    relatedTerms: body.relatedTerms ?? existing.relatedTerms,
+                    translations: body.translations ?? existing.translations
+                };
+
+                await db.update(lexicon)
+                    .set(updatedData)
+                    .where(eq(lexicon.slug, slugParam));
+
+                const queryTime = Date.now() - startTime;
+                console.log(`✅ [Lexicon API] PUT updated entry "${slugParam}" (${queryTime}ms)`);
+
+                return new Response(JSON.stringify({ 
+                    success: true,
+                    message: 'Entry updated',
+                    slug: slugParam
+                }), {
+                    headers: corsHeaders
+                });
+            } catch (err: any) {
+                console.error('❌ [Lexicon API] PUT failed:', err.message);
+                return new Response(JSON.stringify({ 
+                    error: 'Failed to update entry',
+                    message: err.message
+                }), {
+                    status: 400,
+                    headers: corsHeaders
+                });
+            }
+        }
+
+        // DELETE handler
+        if (method === 'DELETE') {
+            try {
+                if (!slugParam) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Slug required for deletion'
+                    }), {
+                        status: 400,
+                        headers: corsHeaders
+                    });
+                }
+
+                // Check if entry exists
+                const existing = await db.query.lexicon.findFirst({
+                    where: eq(lexicon.slug, slugParam)
+                });
+
+                if (!existing) {
+                    return new Response(JSON.stringify({ 
+                        error: 'Entry not found',
+                        slug: slugParam
+                    }), {
+                        status: 404,
+                        headers: corsHeaders
+                    });
+                }
+
+                await db.delete(lexicon).where(eq(lexicon.slug, slugParam));
+
+                const queryTime = Date.now() - startTime;
+                console.log(`✅ [Lexicon API] DELETE removed entry "${slugParam}" (${queryTime}ms)`);
+
+                return new Response(JSON.stringify({ 
+                    success: true,
+                    message: 'Entry deleted',
+                    slug: slugParam
+                }), {
+                    headers: corsHeaders
+                });
+            } catch (err: any) {
+                console.error('❌ [Lexicon API] DELETE failed:', err.message);
+                return new Response(JSON.stringify({ 
+                    error: 'Failed to delete entry',
+                    message: err.message
+                }), {
+                    status: 400,
+                    headers: corsHeaders
+                });
+            }
+        }
+
+        return new Response(JSON.stringify({ 
+            error: 'Method not allowed'
+        }), {
+            status: 405,
+            headers: corsHeaders
         });
 
     } catch (err: any) {
         const queryTime = Date.now() - startTime;
-        console.error(`❌ [Lexicon API] D1 query failed (${queryTime}ms):`, err.message);
-        console.error('   Stack:', err.stack);
+        console.error(`❌ [Lexicon API] Error (${queryTime}ms):`, err.message);
         
         return new Response(JSON.stringify({ 
-            error: 'Database Error', 
-            message: err.message,
-            hint: 'Check if database is seeded and migrations are applied'
+            error: 'Server error', 
+            message: err.message
         }), {
             status: 500,
             headers: corsHeaders

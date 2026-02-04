@@ -81,8 +81,22 @@ export async function createPost(data: any) {
     return res.json();
 }
 
-export async function deletePost(author: string, slug: string) {
-    const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
+export async function updatePost(slug: string, data: any) {
+    const res = await fetch(`${getApiBase()}/posts/${slug}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to update post');
+    // Invalidate cache
+    requestCache.clear();
+    return res.json();
+}
+
+export async function deletePost(authorOrSlug: string, slug?: string) {
+    // Support both old signature deletePost(author, slug) and new deletePost(slug)
+    const targetSlug = slug || authorOrSlug;
+    const res = await fetch(`${getApiBase()}/posts/${targetSlug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete post');
@@ -96,12 +110,44 @@ export async function fetchAuthors() {
 }
 
 export async function saveAuthor(data: any) {
+    // Smart save: if ID exists, try update first, fallback to create
+    if (data.id) {
+        try {
+            const res = await fetch(`${getApiBase()}/authors/${data.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                requestCache.clear();
+                return res.json();
+            }
+            if (res.status !== 404) {
+                throw new Error('Failed to update author');
+            }
+            // 404 = doesn't exist, try create
+        } catch (err) {
+            // Continue to create
+        }
+    }
+    // Create new
     const res = await fetch(`${getApiBase()}/authors`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('Failed to save author');
+    requestCache.clear();
+    return res.json();
+}
+
+export async function updateAuthor(id: string, data: any) {
+    const res = await fetch(`${getApiBase()}/authors/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to update author');
     requestCache.clear();
     return res.json();
 }
@@ -124,6 +170,27 @@ export async function fetchLexiconEntry(slug: string) {
 }
 
 export async function saveLexiconEntry(data: any) {
+    // Smart save: if slug exists, try update first, fallback to create
+    if (data.slug) {
+        try {
+            const res = await fetch(`${getApiBase()}/lexicon/${data.slug}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                requestCache.clear();
+                return res.json();
+            }
+            if (res.status !== 404) {
+                throw new Error('Failed to update entry');
+            }
+            // 404 = doesn't exist, try create
+        } catch (err) {
+            // Continue to create
+        }
+    }
+    // Create new
     const res = await fetch(`${getApiBase()}/lexicon`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -134,11 +201,23 @@ export async function saveLexiconEntry(data: any) {
     return res.json();
 }
 
+export async function updateLexiconEntry(slug: string, data: any) {
+    const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to update lexicon entry');
+    requestCache.clear();
+    return res.json();
+}
+
 export async function deleteLexiconEntry(slug: string) {
     const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete lexicon entry');
+    requestCache.clear();
     return res.json();
 }
 
@@ -206,37 +285,129 @@ export async function deleteTag(tag: string) {
 // ============ WORKS API ============
 
 export async function fetchWorks() {
-    const res = await fetch(`${getApiBase()}/works`);
-    if (!res.ok) throw new Error('Failed to fetch works');
-    return res.json();
+    // Try to fetch from static JSON first (more reliable)
+    try {
+        const res = await fetch('/api/works.json', { 
+            headers: { 'Content-Type': 'application/json' } 
+        });
+        if (res.ok) {
+            console.log('✅ [API] Loaded works from static JSON');
+            return await res.json();
+        }
+    } catch (err) {
+        console.warn('⚠️ [API] Failed to load static works.json, trying API...');
+    }
+    
+    // Fallback to API if static JSON fails
+    try {
+        const res = await fetch(`${getApiBase()}/works`);
+        if (!res.ok) throw new Error('API returned non-200');
+        console.log('✅ [API] Loaded works from D1 API');
+        return await res.json();
+    } catch (err) {
+        console.error('❌ [API] Failed to fetch works from both sources:', err);
+        return [];
+    }
 }
 
 export async function fetchWork(slug: string) {
+    // Try static works.json first
+    try {
+        const res = await fetch('/api/works.json');
+        if (res.ok) {
+            const works = await res.json();
+            const work = Array.isArray(works) ? works.find((w: any) => w.slug === slug) : null;
+            if (work) {
+                console.log(`✅ [API] Found work "${slug}" in static JSON`);
+                return work;
+            }
+        }
+    } catch (err) {
+        console.warn('⚠️ [API] Failed to search static works.json');
+    }
+    
+    // Fallback to API
     return cachedFetch(`${getApiBase()}/works?slug=${slug}`);
 }
 
 export async function saveWork(data: any) {
+    // Smart save: if ID exists, try update first, fallback to create
+    if (data.id) {
+        try {
+            const res = await fetch(`${getApiBase()}/works/${data.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                requestCache.clear();
+                return res.json();
+            }
+            if (res.status !== 404) {
+                throw new Error('Failed to update work');
+            }
+            // 404 = doesn't exist, try create
+        } catch (err) {
+            // Continue to create
+        }
+    }
+    // Create new
     const res = await fetch(`${getApiBase()}/works`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('Failed to save work');
+    requestCache.clear();
+    return res.json();
+}
+
+export async function updateWork(id: string, data: any) {
+    const res = await fetch(`${getApiBase()}/works/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to update work');
+    requestCache.clear();
     return res.json();
 }
 
 export async function deleteWork(slug: string) {
     const res = await fetch(`${getApiBase()}/works/${slug}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete work');
+    requestCache.clear();
     return res.json();
 }
 
-// Work Details (key moments, quotes, etc.)
+// Work Details (key moments, quotes, etc.) - Load from static JSON first
 export async function fetchWorkDetails(slug: string) {
-    const res = await fetch(`${getApiBase()}/works/${slug}/details`);
-    if (res.status === 404) return null;
-    if (!res.ok) throw new Error('Failed to fetch work details');
-    return res.json();
+    // Try static JSON first (static/works-details/{slug}.json)
+    try {
+        const res = await fetch(`/api/works-details/${slug}.json`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (res.ok) {
+            console.log(`✅ [API] Loaded work details for "${slug}" from static JSON`);
+            const data = await res.json();
+            // Extract language-specific data if needed
+            return data;
+        }
+    } catch (err) {
+        console.warn(`⚠️ [API] Failed to load static work details for "${slug}"`);
+    }
+    
+    // Fallback to API
+    try {
+        const res = await fetch(`${getApiBase()}/works/${slug}/details`);
+        if (res.status === 404) return null;
+        if (!res.ok) throw new Error('Failed to fetch work details');
+        console.log(`✅ [API] Loaded work details for "${slug}" from D1 API`);
+        return res.json();
+    } catch (err) {
+        console.error(`❌ [API] Failed to fetch work details for "${slug}":`, err);
+        return null;
+    }
 }
 
 export async function saveWorkDetails(slug: string, details: any) {
