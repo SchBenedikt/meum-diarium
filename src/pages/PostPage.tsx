@@ -132,7 +132,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="prose-blog space-y-7 min-w-0"
+                className="prose-blog space-y-7 min-w-0 lg:col-span-1"
               >
 
                 <header className="space-y-5 pb-8 border-b border-border/40">
@@ -190,7 +190,7 @@ function PostContent({ post }: { post: BlogPost }) {
               </motion.article>
 
               {/* Sidebar - below content on mobile, sticky on desktop */}
-              <aside className="lg:mt-0 mt-8">
+              <aside className="lg:col-span-1 mt-12 lg:mt-0">
                 <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto space-y-6">
                   <BlogSidebar post={post} />
                 </div>
