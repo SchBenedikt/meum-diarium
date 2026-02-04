@@ -78,18 +78,35 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 },
             };
 
-            const res = await fetch('/api/posts', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
+            // Determine whether this is a create or update
+            const isUpdate = !!post;
+            const finalSlug = payload.slug;
+            const finalAuthor = payload.author;
+
+            let res: Response;
+            if (isUpdate) {
+                // Update: PUT /api/posts/{author}/{slug}
+                res = await fetch(`/api/posts/${finalAuthor}/${finalSlug}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } else {
+                // Create: POST /api/posts
+                res = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            }
 
             if (res.ok) {
-                toast.success(post ? 'Post updated' : 'Post created');
+                toast.success(isUpdate ? 'Post updated' : 'Post created');
                 onSuccess();
                 onOpenChange(false);
             } else {
-                toast.error('Failed to save post');
+                const error = await res.json();
+                toast.error(`Failed to save post: ${error.error || 'Unknown error'}`);
             }
         } catch (error) {
             console.error(error);

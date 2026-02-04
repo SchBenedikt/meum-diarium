@@ -21,14 +21,14 @@ export function getPages(): PageContent[] {
 // Mutations
 
 export async function upsertPost(post: BlogPost): Promise<void> {
-  // If post has a slug and ID, it's an update; otherwise, it's a create
-  if (post.slug) {
+  // If post has a slug and author, it's an update; otherwise, it's a create
+  if (post.slug && post.author) {
     try {
       // Try to fetch existing post
       const existing = await api.fetchPost(post.author, post.slug).catch(() => null);
       if (existing) {
-        // Update existing
-        await api.updatePost(post.slug, post);
+        // Update existing - pass author, slug, and data
+        await api.updatePost(post.author, post.slug, post);
         return;
       }
     } catch {

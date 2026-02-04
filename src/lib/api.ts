@@ -65,8 +65,8 @@ export async function fetchPosts() {
 }
 
 export async function fetchPost(author: string, slug: string) {
-    // Current API ignores author param as slug is unique
-    return cachedFetch(`${getApiBase()}/posts?slug=${slug}`);
+    // Use author/slug route: /api/posts/{author}/{slug}
+    return cachedFetch(`${getApiBase()}/posts/${author}/${slug}`);
 }
 
 export async function createPost(data: any) {
@@ -81,8 +81,9 @@ export async function createPost(data: any) {
     return res.json();
 }
 
-export async function updatePost(slug: string, data: any) {
-    const res = await fetch(`${getApiBase()}/posts/${slug}`, {
+export async function updatePost(author: string, slug: string, data: any) {
+    // Use author/slug route: /api/posts/{author}/{slug}
+    const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -93,10 +94,9 @@ export async function updatePost(slug: string, data: any) {
     return res.json();
 }
 
-export async function deletePost(authorOrSlug: string, slug?: string) {
-    // Support both old signature deletePost(author, slug) and new deletePost(slug)
-    const targetSlug = slug || authorOrSlug;
-    const res = await fetch(`${getApiBase()}/posts/${targetSlug}`, {
+export async function deletePost(author: string, slug: string) {
+    // Use author/slug route: /api/posts/{author}/{slug}
+    const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete post');
