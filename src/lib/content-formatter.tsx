@@ -91,26 +91,40 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
   const escapedTerms = linkableTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
 
-  // Pre-process content to separate lists from text
-  const processedContent = content.replace(/\n([-\d])/g, '\n\n$1');
+  // Pre-process content to normalize line breaks and separate lists
+  let processedContent = content
+    // Protect code blocks from processing
+    .replace(/(```[\s\S]*?```)/g, '\n\n$1\n\n')
+    // Ensure markdown headings are on their own line
+    .replace(/([^\n])(#{2,4}\s)/g, '$1\n\n$2')
+    // Ensure horizontal rules are on their own line
+    .replace(/([^\n])(-{3,}|\*{3,}|_{3,})/g, '$1\n\n$2')
+    // Ensure blockquotes are on their own line
+    .replace(/([^\n])(>\s)/g, '$1\n\n$2')
+    // Ensure lists are separated
+    .replace(/([^\n])([-•]\s|\d+\.\s)/g, '$1\n\n$2')
+    // Normalize multiple newlines to double newlines
+    .replace(/\n{3,}/g, '\n\n')
+    // Trim
+    .trim();
 
-  return processedContent.split(/(\n\n)/).map((paragraph, pIndex) => {
+  return processedContent.split(/\n\n+/).map((paragraph, pIndex) => {
     let parts: (string | React.ReactNode)[] = [];
     let lastIndex = 0;
 
-    if (paragraph.trim() === '') return null;
+    // Skip empty paragraphs
+    const trimmedParagraph = paragraph.trim();
+    if (!trimmedParagraph) return null;
 
     // Handle horizontal rule FIRST (before any other HTML processing)
-    if (paragraph.match(/^\s*-{3,}\s*$/) || paragraph.match(/^\s*\*{3,}\s*$/) || paragraph.match(/^\s*_{3,}\s*$/)) {
+    if (trimmedParagraph.match(/^-{3,}$/) || trimmedParagraph.match(/^\*{3,}$/) || trimmedParagraph.match(/^_{3,}$/)) {
       return <hr key={pIndex} className="my-8 border-border/40" />;
     }
 
-    const rawParagraph = paragraph;
-
     // Handle headings BEFORE markdown replacement
-    if (rawParagraph.match(/^#{2,3}\s/)) {
-      const level = rawParagraph.startsWith('###') ? 3 : 2;
-      const text = rawParagraph.replace(/^#{2,3}\s+/, '').trim();
+    if (trimmedParagraph.match(/^#{2,3}\s/)) {
+      const level = trimmedParagraph.startsWith('###') ? 3 : 2;
+      const text = trimmedParagraph.replace(/^#{2,3}\s+/, '').trim();
       // Process markdown in heading
       const processedText = text
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -130,8 +144,8 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     }
     
     // Handle headings with ####
-    if (rawParagraph.match(/^#{4}\s/)) {
-      const text = rawParagraph.replace(/^#{4}\s+/, '').trim();
+    if (trimmedParagraph.match(/^#{4}\s/)) {
+      const text = trimmedParagraph.replace(/^#{4}\s+/, '').trim();
       const processedText = text
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
@@ -145,8 +159,8 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     }
     
     // Handle blockquotes
-    if (rawParagraph.match(/^>\s/)) {
-      const text = rawParagraph.replace(/^>\s+/, '').trim();
+    if (trimmedParagraph.match(/^>\s/)) {
+      const text = trimmedParagraph.replace(/^>\s+/, '').trim();
       const processedText = text
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
@@ -157,19 +171,35 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       );
     }
 
-    let htmlParagraph = rawParagraph
+    let htmlParagraph = trimmedParagraph
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>');
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-secondary/50 text-sm font-mono">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/\n/g, '<br />'); // Convert single line breaks to <br />
 
-    // Handle unordered lists (lines starting with -)
-    if (htmlParagraph.match(/^-\s/) || htmlParagraph.includes('\n-')) {
+    // Handle code blocks (triple backticks)
+    if (trimmedParagraph.startsWith('```')) {
+      const lines = trimmedParagraph.split('\n');
+      const language = lines[0].replace(/```/, '').trim();
+      const codeContent = lines.slice(1, -1).join('\n');
+      
+      return (
+        <pre key={pIndex} className="bg-secondary/50 rounded-lg p-4 overflow-x-auto my-4">
+          <code className="text-sm font-mono">{codeContent}</code>
+        </pre>
+      );
+    }
+
+    // Handle unordered lists (lines starting with - or •)
+    if (htmlParagraph.match(/^[-•]\s/) || htmlParagraph.includes('\n-') || htmlParagraph.includes('\n•')) {
       const lines = htmlParagraph.split('\n');
       const listItems: React.ReactNode[] = [];
       
       lines.forEach((line, idx) => {
         const trimmed = line.trim();
-        if (trimmed.startsWith('-')) {
-          const itemText = trimmed.replace(/^-\s*/, '');
+        if (trimmed.startsWith('-') || trimmed.startsWith('•')) {
+          const itemText = trimmed.replace(/^[-•]\s*/, '');
           listItems.push(<li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />);
         }
       });
@@ -180,7 +210,7 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     }
 
     // Handle ordered lists (lines starting with numbers)
-    if (htmlParagraph.match(/^\d+\.\s/) || htmlParagraph.includes('\n1.') || htmlParagraph.includes('\n2.')) {
+    if (htmlParagraph.match(/^\d+\.\s/)) {
       const lines = htmlParagraph.split('\n');
       const listItems: React.ReactNode[] = [];
       
