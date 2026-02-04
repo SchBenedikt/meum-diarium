@@ -51,6 +51,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             // Normalize field names and parse JSON fields
             const normalizedResult = {
                 ...result,
+                author: result.authorId ?? result.author_id,
                 authorId: result.authorId ?? result.author_id,
                 author_id: result.authorId ?? result.author_id,
                 // Parse JSON fields if they're strings
@@ -78,6 +79,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         // Normalize post fields and filter by tag if requested
         let filtered = allPosts.map((post: any) => ({
             ...post,
+            author: post.authorId ?? post.author_id,
             authorId: post.authorId ?? post.author_id,
             author_id: post.authorId ?? post.author_id,
             // Parse JSON fields if they're strings

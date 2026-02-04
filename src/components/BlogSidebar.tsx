@@ -13,18 +13,24 @@ interface BlogSidebarProps {
 }
 
 export function BlogSidebar({ post }: BlogSidebarProps) {
-  const author = authors[post.author];
+  if (!post) {
+    return null;
+  }
+
+  const author = post?.author ? authors[post.author] : null;
   const { t, language } = useLanguage();
   const { posts } = usePosts();
 
   // Get related posts (same author, different post)
-  const relatedPosts = posts
-    .filter(p => p.author === post.author && p.slug !== post.slug)
-    .slice(0, 3);
+  const relatedPosts = post?.author && post?.slug && Array.isArray(posts)
+    ? posts
+        .filter(p => p?.author === post.author && p?.slug !== post.slug)
+        .slice(0, 3)
+    : [];
 
   // Get the appropriate translation for the current language
   const getQuoteTranslation = () => {
-    if (!post.sidebar?.quote?.translations) return null;
+    if (!post?.sidebar?.quote?.translations) return null;
 
     // Try to get translation for current language
     const currentLang = language.split('-')[0] as 'de' | 'en' | 'la';
@@ -35,6 +41,11 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
   };
 
   const quoteTranslation = getQuoteTranslation();
+
+  if (!author) {
+    console.warn('[BlogSidebar] Author not found for post:', post?.author);
+    return null;
+  }
 
   return (
     <motion.aside
