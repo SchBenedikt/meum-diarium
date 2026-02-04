@@ -1,7 +1,7 @@
-import { getDb } from '../../db/client';
-import { posts } from '../../db/schema';
+import { getDb } from '../../../db/client';
+import { posts } from '../../../db/schema';
 import { desc, eq } from 'drizzle-orm';
-import type { PagesContext } from '../../types';
+import type { PagesContext } from '../../../types';
 
 export const onRequest = async (context: PagesContext): Promise<Response> => {
     const corsHeaders = {
