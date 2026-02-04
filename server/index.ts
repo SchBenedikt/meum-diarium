@@ -230,7 +230,7 @@ app.get('/health', (_req, res) => {
 
 // **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router
 // This must be LAST to catch all deep routes like /caesar/works/:slug
-app.get('*', async (_req, res) => {
+app.get(/^(?!\/api\/)/, async (_req, res) => {
     try {
         const indexPath = path.resolve(__dirname, '../public/index.html');
         const html = await fs.readFile(indexPath, 'utf-8');
