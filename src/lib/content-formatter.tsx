@@ -323,68 +323,75 @@ function parseMarkdown(content: string): Block[] {
   return blocks;
 }
 
-// Render a text node with lexicon linking
+// Render a text node with lexicon linking and formatting
 function renderTextNode(node: TextNode, termsMap: Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>, location: ReturnType<typeof useLocation>): React.ReactNode {
+  const renderWithTerms = (text: string): React.ReactNode[] => {
+    const terms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
+    if (terms.length === 0) return [text];
+
+    const escapedTerms = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
+
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(text)) !== null) {
+      // Add text before match
+      if (lastIndex < match.index) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+
+      const term = match[0];
+      const termInfo = termsMap.get(term.toLowerCase());
+
+      if (termInfo) {
+        const linkPath = termInfo.type === 'author' ? `/${termInfo.slug}` : `/lexicon/${termInfo.slug}`;
+        parts.push(
+          <TermPopover key={`term-${match.index}`} term={term} type={termInfo.type}>
+            <Link
+              to={linkPath}
+              state={{ from: location.pathname + location.search }}
+              className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer hover:border-primary transition-colors"
+            >
+              {term}
+            </Link>
+          </TermPopover>
+        );
+      } else {
+        parts.push(term);
+      }
+
+      lastIndex = match.index + term.length;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts;
+  };
+
   switch (node.type) {
     case 'text':
-      // Check if text contains any terms
-      const terms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
-      if (terms.length === 0) return node.content;
-
-      const escapedTerms = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-      const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
-
-      const parts: React.ReactNode[] = [];
-      let lastIndex = 0;
-      let match;
-
-      while ((match = regex.exec(node.content)) !== null) {
-        // Add text before match
-        if (lastIndex < match.index) {
-          parts.push(node.content.substring(lastIndex, match.index));
-        }
-
-        const term = match[0];
-        const termInfo = termsMap.get(term.toLowerCase());
-
-        if (termInfo) {
-          const linkPath = termInfo.type === 'author' ? `/${termInfo.slug}` : `/lexicon/${termInfo.slug}`;
-          parts.push(
-            <TermPopover key={match.index} term={term} type={termInfo.type}>
-              <Link
-                to={linkPath}
-                state={{ from: location.pathname + location.search }}
-                className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer hover:border-primary transition-colors"
-              >
-                {term}
-              </Link>
-            </TermPopover>
-          );
-        } else {
-          parts.push(term);
-        }
-
-        lastIndex = match.index + term.length;
-      }
-
-      if (lastIndex < node.content.length) {
-        parts.push(node.content.substring(lastIndex));
-      }
-
-      return <>{parts}</>;
+      return <>{renderWithTerms(node.content)}</>;
 
     case 'bold':
-      return <strong>{node.content}</strong>;
+      return <strong>{renderWithTerms(node.content)}</strong>;
+    
     case 'italic':
-      return <em>{node.content}</em>;
+      return <em>{renderWithTerms(node.content)}</em>;
+    
     case 'code':
       return <code className="px-1.5 py-0.5 rounded bg-secondary/50 text-sm font-mono">{node.content}</code>;
+    
     case 'link':
       return (
         <a href={node.href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-          {node.content}
+          {renderWithTerms(node.content)}
         </a>
       );
+    
     default:
       return node.content;
   }
