@@ -5,7 +5,6 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedPost } from '@/lib/translator';
 import { authors as authorData } from '@/data/authors';
 import { usePosts } from '@/hooks/use-posts';
 import { Author, Perspective, BlogPost } from '@/types/blog';
@@ -216,16 +215,7 @@ function PostContent({ post }: { post: BlogPost }) {
 export default function PostPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
   const { setCurrentAuthor } = useAuthor();
-  const { language } = useLanguage();
-  const [post, setPost] = useState<BlogPost | null | undefined>(undefined);
-
-  useEffect(() => {
-    async function translatePost() {
-      const translated = await getTranslatedPost(language, authorId as Author, slug as string);
-      setPost(translated);
-    }
-    translatePost();
-  }, [language, authorId, slug]);
+  const { posts, isLoading } = usePosts();
 
   useEffect(() => {
     if (authorId && authorData[authorId as Author]) {
@@ -233,8 +223,14 @@ export default function PostPage() {
     }
   }, [authorId, setCurrentAuthor]);
 
-  if (post === undefined) {
-    // Still loading
+  // Find the post from the loaded posts
+  const post = useMemo(() => {
+    if (!slug || !authorId) return null;
+    return posts.find(p => p.author === authorId && p.slug === slug) || null;
+  }, [posts, slug, authorId]);
+
+  if (isLoading) {
+    // Loading state
     return <div className="min-h-screen bg-background">
       <ScrollProgress />
     </div>;
