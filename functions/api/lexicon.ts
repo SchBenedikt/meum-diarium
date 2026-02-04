@@ -8,6 +8,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
     };
+    const startTime = Date.now();
 
     const parseJsonField = (value: any): any => {
         if (!value || typeof value !== 'string') return null;
@@ -48,7 +49,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             });
         }
 
-        const startTime = Date.now();
+
         console.log('🔷 [Lexicon API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
         const url = new URL(context.request.url);
@@ -144,7 +145,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         });
 
     } catch (err: any) {
-        const queryTime = Date.now() - (context.startTime || Date.now());
+        const queryTime = Date.now() - startTime;
         console.error(`❌ [Lexicon API] D1 query failed (${queryTime}ms):`, err.message);
         console.error('   Stack:', err.stack);
         

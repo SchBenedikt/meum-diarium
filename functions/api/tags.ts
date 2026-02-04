@@ -7,6 +7,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
     };
+    
+    const startTime = Date.now();
 
     try {
         // Check if D1 database is available
@@ -22,7 +24,6 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             });
         }
 
-        const startTime = Date.now();
         console.log('🔷 [Tags API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
 
@@ -56,7 +57,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         });
 
     } catch (err: any) {
-        const queryTime = Date.now() - (context.startTime || Date.now());
+        const queryTime = Date.now() - startTime;
         console.error(`❌ [Tags API] D1 query failed (${queryTime}ms):`, err.message);
         console.error('   Stack:', err.stack);
         

@@ -77,7 +77,7 @@ function PostContent({ post }: { post: BlogPost }) {
   }, [contentToDisplay, t, language]);
 
   const relatedPosts = allPosts
-    .filter(p => p.author === post.author && p.id !== post.id)
+    .filter(p => p.author === post.author && p.slug !== post.slug)
     .slice(0, 6);
 
   const author = authorData[post.author as Author];
@@ -225,8 +225,28 @@ export default function PostPage() {
 
   // Find the post from the loaded posts
   const post = useMemo(() => {
-    if (!slug || !authorId) return null;
-    return posts.find(p => p.author === authorId && p.slug === slug) || null;
+    if (!slug || !authorId) {
+      console.warn('[PostPage] Missing slug or authorId:', { slug, authorId });
+      return null;
+    }
+    
+    console.log(`[PostPage] Looking for post: authorId=${authorId}, slug=${slug}`);
+    console.log(`[PostPage] Available posts: ${posts.length}`, posts.map(p => ({ slug: p.slug, author: p.author, authorId: p.authorId })));
+    
+    const found = posts.find(p => {
+      const slugMatch = p.slug === slug;
+      const authorMatch = p.author === authorId || p.authorId === authorId;
+      console.log(`   Checking post ${p.slug}: slugMatch=${slugMatch}, authorMatch=${authorMatch}`);
+      return slugMatch && authorMatch;
+    }) || null;
+    
+    if (!found) {
+      console.warn(`[PostPage] Post not found! slug=${slug}, authorId=${authorId}`);
+    } else {
+      console.log(`[PostPage] Found post! slug=${slug}, title=${found.title}`);
+    }
+    
+    return found;
   }, [posts, slug, authorId]);
 
   if (isLoading) {

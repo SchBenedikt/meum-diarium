@@ -8,6 +8,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
     };
+    const startTime = Date.now();
 
     try {
         // Check if D1 database is available
@@ -24,7 +25,6 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             });
         }
 
-        const startTime = Date.now();
         console.log('🔷 [Authors API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
         const url = new URL(context.request.url);
@@ -50,7 +50,13 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
             console.log(`✅ [Authors API] D1 query successful: Found author "${result.name}" (${queryTime}ms)`);
 
-            return new Response(JSON.stringify(result), {
+            // Parse JSON fields if they're strings
+            const normalizedResult = {
+                ...result,
+                highlights: typeof result.highlights === 'string' ? JSON.parse(result.highlights) : result.highlights,
+            };
+
+            return new Response(JSON.stringify(normalizedResult), {
                 headers: {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
@@ -78,7 +84,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         });
 
     } catch (err: any) {
-        const queryTime = Date.now() - (context.startTime || Date.now());
+        const queryTime = Date.now() - startTime;
         console.error(`❌ [Authors API] D1 query failed (${queryTime}ms):`, err.message);
         console.error('   Stack:', err.stack);
         

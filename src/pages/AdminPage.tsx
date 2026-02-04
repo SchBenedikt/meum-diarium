@@ -153,8 +153,12 @@ export default function AdminPage() {
     };
 
     const handleDeletePost = async (postId: string) => {
-        const post = posts.find(p => p.id === postId);
-        if (!post) return;
+        // postId is actually the slug, find post by slug
+        const post = posts.find(p => p.slug === postId || p.id === postId);
+        if (!post) {
+            toast.error('Beitrag nicht gefunden');
+            return;
+        }
         if (!window.confirm(`Beitrag "${post.title}" wirklich löschen?`)) return;
 
         try {

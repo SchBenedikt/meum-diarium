@@ -147,7 +147,7 @@ export default function LandingHero() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {recentPosts.map((post) => (
-                <BlogCard key={post.id} post={post} className="bg-background/80 h-full" />
+                <BlogCard key={post.slug} post={post} className="bg-background/80 h-full" />
               ))}
             </div>
 

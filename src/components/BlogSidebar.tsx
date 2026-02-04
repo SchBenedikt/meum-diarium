@@ -19,7 +19,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
   // Get related posts (same author, different post)
   const relatedPosts = posts
-    .filter(p => p.author === post.author && p.id !== post.id)
+    .filter(p => p.author === post.author && p.slug !== post.slug)
     .slice(0, 3);
 
   // Get the appropriate translation for the current language
@@ -123,7 +123,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           <div className="space-y-3">
             {relatedPosts.map((relatedPost) => (
               <Link
-                key={relatedPost.id}
+                key={relatedPost.slug}
                 to={`/${relatedPost.author}/${relatedPost.slug}`}
                 className="block group rounded-lg -m-2 p-2 hover:bg-secondary/60 active:scale-[0.99] transition-all"
               >
