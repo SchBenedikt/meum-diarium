@@ -138,7 +138,7 @@ export default function LexiconEntryPage() {
                     </div>
                     <div className="grid md:grid-cols-2 gap-6">
                       {relatedPosts.slice(0,2).map((post) => (
-                        <BlogCard post={post} key={post.id} />
+                        <BlogCard post={post} key={post.slug} />
                       ))}
                     </div>
                   </div>

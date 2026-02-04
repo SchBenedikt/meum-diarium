@@ -17,16 +17,23 @@ export function usePosts() {
       const apiStartTime = Date.now();
       const apiPosts = await fetchPosts();
       const normalizedPosts = Array.isArray(apiPosts)
-        ? apiPosts.map((post: any) => ({
-            ...post,
-            author: post.author ?? post.authorId,
-          }))
+        ? apiPosts.map((post: any) => {
+            // Normalize author field (API returns author_id or authorId)
+            const authorId = post.author_id ?? post.authorId ?? post.author;
+            console.log(`   Post: ${post.slug} => author: ${authorId}`);
+            return {
+              ...post,
+              author: authorId,
+              authorId: authorId, // Ensure both fields are set
+            };
+          })
         : [];
       const apiFetchTime = Date.now() - apiStartTime;
       
       if (normalizedPosts.length > 0) {
         console.log(`✅ [usePosts] Loaded ${normalizedPosts.length} posts from D1 database (${apiFetchTime}ms)`);
         console.log('   Data source: Cloudflare D1 via API');
+        console.log('   Sample post:', normalizedPosts[0]);
         return normalizedPosts;
       }
       

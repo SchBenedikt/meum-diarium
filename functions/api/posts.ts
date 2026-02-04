@@ -8,6 +8,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
     };
+    const startTime = Date.now();
 
     try {
         // Check if D1 database is available
@@ -24,7 +25,6 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             });
         }
 
-        const startTime = Date.now();
         console.log('🔷 [Posts API] DB binding found, initializing Drizzle...');
         const db = getDb(context.env);
         const url = new URL(context.request.url);
@@ -48,9 +48,20 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 });
             }
 
-            console.log(`✅ [Posts API] D1 query successful: Found post "${result.title}" (${queryTime}ms)`);
+            // Normalize field names and parse JSON fields
+            const normalizedResult = {
+                ...result,
+                authorId: result.authorId ?? result.author_id,
+                author_id: result.authorId ?? result.author_id,
+                // Parse JSON fields if they're strings
+                content: typeof result.content === 'string' ? JSON.parse(result.content) : result.content,
+                tags: typeof result.tags === 'string' ? JSON.parse(result.tags) : result.tags,
+                translations: typeof result.translations === 'string' ? JSON.parse(result.translations) : result.translations,
+            };
+
+            console.log(`✅ [Posts API] D1 query successful: Found post "${normalizedResult.title}" (${queryTime}ms)`);
             
-            return new Response(JSON.stringify(result), {
+            return new Response(JSON.stringify(normalizedResult), {
                 headers: {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
@@ -64,10 +75,19 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             orderBy: [desc(posts.date)]
         });
 
-        // Filter by tag if requested (client-side filtering for JSON array)
-        let filtered = allPosts;
+        // Normalize post fields and filter by tag if requested
+        let filtered = allPosts.map((post: any) => ({
+            ...post,
+            authorId: post.authorId ?? post.author_id,
+            author_id: post.authorId ?? post.author_id,
+            // Parse JSON fields if they're strings
+            content: typeof post.content === 'string' ? JSON.parse(post.content) : post.content,
+            tags: typeof post.tags === 'string' ? JSON.parse(post.tags) : post.tags,
+            translations: typeof post.translations === 'string' ? JSON.parse(post.translations) : post.translations,
+        }));
+        
         if (tag) {
-            filtered = allPosts.filter((post: any) => {
+            filtered = filtered.filter((post: any) => {
                 const tags = post.tags;
                 return Array.isArray(tags) && tags.includes(tag);
             });
@@ -86,7 +106,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         });
 
     } catch (err: any) {
-        const queryTime = Date.now() - (context.startTime || Date.now());
+        const queryTime = Date.now() - startTime;
         console.error(`❌ [Posts API] D1 query failed (${queryTime}ms):`, err.message);
         console.error('   Stack:', err.stack);
         
