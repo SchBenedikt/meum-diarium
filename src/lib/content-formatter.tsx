@@ -35,64 +35,112 @@ type Block =
   | { type: 'list'; ordered: boolean; items: TextNode[][] }
   | { type: 'blockquote'; content: TextNode[] }
   | { type: 'code'; language: string; content: string }
+  | { type: 'table'; headers: string[]; rows: string[][] }
   | { type: 'hr' };
 
 // Parse inline formatting (bold, italic, code, links)
 function parseInlineFormatting(text: string): TextNode[] {
   const nodes: TextNode[] = [];
-  let currentIndex = 0;
-  
-  // Regex patterns for various inline elements
-  const patterns = [
-    { pattern: /\*\*([^\*]+)\*\*/, type: 'bold' },
-    { pattern: /\*([^\*]+)\*/, type: 'italic' },
-    { pattern: /`([^`]+)`/, type: 'code' },
-    { pattern: /\[([^\]]+)\]\(([^)]+)\)/, type: 'link' },
-  ];
 
-  let lastIndex = 0;
-  let html = text;
+  // Collect all matches with their positions
+  const matches: Array<{ 
+    index: number; 
+    end: number; 
+    type: 'bold' | 'italic' | 'code' | 'link'; 
+    value: string;
+    url?: string;
+  }> = [];
 
-  // Process patterns in order: links first, then formatting
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  let match;
-  const links = [];
-  while ((match = linkRegex.exec(text)) !== null) {
-    links.push({ start: match.index, end: match.index + match[0].length, text: match[1], url: match[2] });
+  // Bold must be checked BEFORE italic to avoid overlaps
+  // **text** should not be parsed as *italic*
+  const boldMatches = Array.from(text.matchAll(/\*\*([^\*]+)\*\*/g));
+  const boldRanges = new Set<number>();
+  boldMatches.forEach(m => {
+    matches.push({ 
+      index: m.index!, 
+      end: m.index! + m[0].length, 
+      type: 'bold', 
+      value: m[1] 
+    });
+    // Mark these positions as taken
+    for (let i = m.index!; i < m.index! + m[0].length; i++) {
+      boldRanges.add(i);
+    }
+  });
+
+  // Italic - only match if NOT inside bold markers
+  const italicMatches = Array.from(text.matchAll(/\*([^\*]+)\*/g));
+  italicMatches.forEach(m => {
+    // Check if this match overlaps with bold
+    let isInBold = false;
+    for (let i = m.index!; i < m.index! + m[0].length; i++) {
+      if (boldRanges.has(i)) {
+        isInBold = true;
+        break;
+      }
+    }
+    if (!isInBold && m[1].length > 0) {
+      matches.push({ 
+        index: m.index!, 
+        end: m.index! + m[0].length, 
+        type: 'italic', 
+        value: m[1] 
+      });
+    }
+  });
+
+  // Code
+  const codeMatches = Array.from(text.matchAll(/`([^`]+)`/g));
+  codeMatches.forEach(m => {
+    matches.push({ 
+      index: m.index!, 
+      end: m.index! + m[0].length, 
+      type: 'code', 
+      value: m[1] 
+    });
+  });
+
+  // Links
+  const linkMatches = Array.from(text.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g));
+  linkMatches.forEach(m => {
+    matches.push({ 
+      index: m.index!, 
+      end: m.index! + m[0].length, 
+      type: 'link', 
+      value: m[1],
+      url: m[2]
+    });
+  });
+
+  // Sort by index
+  matches.sort((a, b) => a.index - b.index);
+
+  // Remove overlapping matches (keep the first one)
+  const finalMatches: typeof matches = [];
+  let lastEnd = 0;
+  for (const match of matches) {
+    if (match.index >= lastEnd) {
+      finalMatches.push(match);
+      lastEnd = match.end;
+    }
   }
 
-  // Remove links from text parts that will be processed
-  let processedText = text;
-  const boldRegex = /\*\*([^\*]+)\*\*/g;
-  const italicRegex = /\*([^\*]+)\*/g;
-  const codeRegex = /`([^`]+)`/g;
-
-  const segments: Array<{ text: string; type: string; value?: string }> = [];
-  lastIndex = 0;
-
-  // Simple approach: split on patterns and identify them
-  const combined = [
-    ...Array.from(text.matchAll(/\*\*([^\*]+)\*\*/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'bold', value: m[1] })),
-    ...Array.from(text.matchAll(/\*([^\*]+)\*/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'italic', value: m[1] })),
-    ...Array.from(text.matchAll(/`([^`]+)`/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'code', value: m[1] })),
-    ...Array.from(text.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'link', value: m[1], url: m[2] })),
-  ].sort((a, b) => a.index - b.index);
-
-  lastIndex = 0;
-  for (const match of combined) {
+  // Build nodes
+  let lastIndex = 0;
+  for (const match of finalMatches) {
     // Add text before this match
     if (lastIndex < match.index) {
       nodes.push({ type: 'text', content: text.substring(lastIndex, match.index) });
     }
 
     if (match.type === 'bold') {
-      nodes.push({ type: 'bold', content: match.value! });
+      nodes.push({ type: 'bold', content: match.value });
     } else if (match.type === 'italic') {
-      nodes.push({ type: 'italic', content: match.value! });
+      nodes.push({ type: 'italic', content: match.value });
     } else if (match.type === 'code') {
-      nodes.push({ type: 'code', content: match.value! });
+      nodes.push({ type: 'code', content: match.value });
     } else if (match.type === 'link') {
-      nodes.push({ type: 'link', content: match.value!, href: match.url });
+      nodes.push({ type: 'link', content: match.value, href: match.url });
     }
 
     lastIndex = match.end;
@@ -162,6 +210,48 @@ function parseMarkdown(content: string): Block[] {
       continue;
     }
 
+    // Tables - must check before lists since tables use |
+    if (trimmed.includes('|') && i + 1 < lines.length) {
+      const nextLine = lines[i + 1].trim();
+      // Check if next line is a separator (contains | and ---)
+      if (nextLine.includes('|') && nextLine.match(/[|-]/g)) {
+        const isSeparator = nextLine.split('|')
+          .filter(cell => cell.trim())
+          .every(cell => cell.trim().match(/^[-:\s]+$/));
+
+        if (isSeparator) {
+          // Parse table
+          const headerCells = trimmed.split('|')
+            .map(cell => cell.trim())
+            .filter(cell => cell);
+
+          const tableRows: string[][] = [];
+          i += 2; // Skip header and separator
+
+          while (i < lines.length && lines[i].trim().includes('|')) {
+            const rowLine = lines[i].trim();
+            const rowCells = rowLine.split('|')
+              .map(cell => cell.trim())
+              .filter(cell => cell);
+            
+            if (rowCells.length > 0) {
+              tableRows.push(rowCells);
+            }
+            i++;
+          }
+
+          if (headerCells.length > 0) {
+            blocks.push({
+              type: 'table',
+              headers: headerCells,
+              rows: tableRows,
+            });
+            continue;
+          }
+        }
+      }
+    }
+
     // Blockquotes
     if (trimmed.startsWith('>')) {
       const quoteLines: string[] = [];
@@ -216,7 +306,8 @@ function parseMarkdown(content: string): Block[] {
            !lines[i].trim().match(/^\d+\.\s+/) &&
            !lines[i].trim().match(/^>/) &&
            !lines[i].trim().match(/^```/) &&
-           !lines[i].trim().match(/^(-{3,}|\*{3,}|_{3,})$/)) {
+           !lines[i].trim().match(/^(-{3,}|\*{3,}|_{3,})$/) &&
+           !(i + 1 < lines.length && lines[i].includes('|') && lines[i + 1].trim().match(/\|.*-+/))) {
       paragraphLines.push(lines[i]);
       i++;
     }
@@ -386,6 +477,40 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
           <pre key={idx} className="bg-secondary/50 rounded-lg p-4 overflow-x-auto my-4">
             <code className="text-sm font-mono">{block.content}</code>
           </pre>
+        );
+
+      case 'table':
+        return (
+          <div key={idx} className="overflow-x-auto my-6">
+            <table className="w-full border-collapse border border-border">
+              <thead>
+                <tr className="bg-secondary/60">
+                  {block.headers.map((header, hIdx) => (
+                    <th 
+                      key={hIdx}
+                      className="px-4 py-3 text-left font-semibold border border-border text-sm"
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, rIdx) => (
+                  <tr key={rIdx} className="hover:bg-secondary/30 transition-colors">
+                    {row.map((cell, cIdx) => (
+                      <td 
+                        key={cIdx}
+                        className="px-4 py-2 border border-border text-sm"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         );
 
       case 'hr':
