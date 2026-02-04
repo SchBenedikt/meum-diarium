@@ -105,34 +105,61 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       return <hr key={pIndex} className="my-8 border-border/40" />;
     }
 
-    let htmlParagraph = paragraph
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    const rawParagraph = paragraph;
 
-    // Handle headings
-    if (htmlParagraph.match(/^#{2,3}\s/)) {
-      const level = htmlParagraph.startsWith('###') ? 3 : 2;
-      const text = htmlParagraph.replace(/^#{2,3}\s/, '');
+    // Handle headings BEFORE markdown replacement
+    if (rawParagraph.match(/^#{2,3}\s/)) {
+      const level = rawParagraph.startsWith('###') ? 3 : 2;
+      const text = rawParagraph.replace(/^#{2,3}\s+/, '').trim();
+      // Process markdown in heading
+      const processedText = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
       const id = slugify(text);
+      
+      const className = level === 2 
+        ? 'font-display text-2xl sm:text-3xl font-bold leading-tight tracking-tight mt-8 mb-4 scroll-mt-24'
+        : 'font-display text-xl sm:text-2xl font-bold leading-tight tracking-tight mt-6 mb-3 scroll-mt-24';
+      
       return React.createElement(`h${level}`, { 
         key: pIndex, 
+        className,
         'data-heading-id': id,
-        dangerouslySetInnerHTML: { __html: text } 
+        dangerouslySetInnerHTML: { __html: processedText } 
       });
     }
     
     // Handle headings with ####
-    if (htmlParagraph.match(/^#{4}\s/)) {
-      const text = htmlParagraph.replace(/^#{4}\s/, '');
+    if (rawParagraph.match(/^#{4}\s/)) {
+      const text = rawParagraph.replace(/^#{4}\s+/, '').trim();
+      const processedText = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
       const id = slugify(text);
-      return <h4 key={pIndex} data-heading-id={id} dangerouslySetInnerHTML={{ __html: text }} />;
+      return <h4 
+        key={pIndex} 
+        className="font-display text-lg sm:text-xl font-bold leading-tight tracking-tight mt-5 mb-2 scroll-mt-24"
+        data-heading-id={id} 
+        dangerouslySetInnerHTML={{ __html: processedText }} 
+      />;
     }
     
     // Handle blockquotes
-    if (htmlParagraph.match(/^>\s/)) {
-      const text = htmlParagraph.replace(/^>\s/, '');
-      return <blockquote key={pIndex}><p dangerouslySetInnerHTML={{ __html: text }} /></blockquote>;
+    if (rawParagraph.match(/^>\s/)) {
+      const text = rawParagraph.replace(/^>\s+/, '').trim();
+      const processedText = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+      return (
+        <blockquote key={pIndex} className="border-l-4 border-primary/40 pl-4 italic text-muted-foreground my-4">
+          <p dangerouslySetInnerHTML={{ __html: processedText }} />
+        </blockquote>
+      );
     }
+
+    let htmlParagraph = rawParagraph
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>');
 
     // Handle unordered lists (lines starting with -)
     if (htmlParagraph.match(/^-\s/) || htmlParagraph.includes('\n-')) {
@@ -148,7 +175,7 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       });
       
       if (listItems.length > 0) {
-        return <ul key={pIndex} className="list-disc pl-6 space-y-2 my-4">{listItems}</ul>;
+        return <ul key={pIndex} className="list-disc pl-6 space-y-2 my-4 marker:text-primary">{listItems}</ul>;
       }
     }
 
@@ -166,7 +193,7 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       });
       
       if (listItems.length > 0) {
-        return <ol key={pIndex} className="list-decimal pl-6 space-y-2 my-4">{listItems}</ol>;
+        return <ol key={pIndex} className="list-decimal pl-6 space-y-2 my-4 marker:text-primary">{listItems}</ol>;
       }
     }
 
@@ -271,6 +298,6 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex) }} />);
     }
 
-    return <p key={pIndex}>{parts}</p>;
+    return <p key={pIndex} className="text-base leading-relaxed mb-4">{parts}</p>;
   }).filter(Boolean);
 }

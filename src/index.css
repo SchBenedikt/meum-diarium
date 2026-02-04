@@ -559,16 +559,24 @@ select {
   @apply text-foreground leading-relaxed;
 }
 
+.prose-blog h1 {
+  @apply font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mt-10 mb-5 scroll-mt-24;
+}
+
 .prose-blog h2 {
-  @apply text-xl font-normal mt-8 mb-4 text-foreground;
+  @apply font-display text-2xl sm:text-3xl font-bold leading-tight tracking-tight mt-8 mb-4 scroll-mt-24 text-foreground;
 }
 
 .prose-blog h3 {
-  @apply text-lg font-normal mt-6 mb-3 text-foreground;
+  @apply font-display text-xl sm:text-2xl font-bold leading-tight tracking-tight mt-6 mb-3 scroll-mt-24 text-foreground;
+}
+
+.prose-blog h4 {
+  @apply font-display text-lg sm:text-xl font-bold leading-tight tracking-tight mt-5 mb-2 scroll-mt-24 text-foreground;
 }
 
 .prose-blog p {
-  @apply mb-4 leading-relaxed;
+  @apply mb-4 leading-relaxed text-base;
 }
 
 .prose-blog strong {
@@ -580,16 +588,47 @@ select {
 }
 
 .prose-blog blockquote {
-  @apply border-l-2 border-border pl-4 my-4 italic text-muted-foreground;
+  @apply border-l-4 border-primary/40 pl-4 my-4 italic text-muted-foreground py-2;
 }
 
-.prose-blog ul,
+.prose-blog blockquote p {
+  @apply mb-0;
+}
+
+.prose-blog ul {
+  @apply my-4 ml-6 list-disc space-y-2;
+}
+
 .prose-blog ol {
-  @apply my-4 ml-6;
+  @apply my-4 ml-6 list-decimal space-y-2;
 }
 
 .prose-blog li {
-  @apply mb-2;
+  @apply mb-0 leading-relaxed;
+}
+
+.prose-blog a {
+  @apply text-primary border-b border-primary/50 border-dashed hover:border-primary transition-colors cursor-pointer;
+}
+
+.prose-blog table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose-blog th {
+  @apply px-4 py-3 text-left font-semibold bg-secondary/50 border border-border text-sm;
+}
+
+.prose-blog td {
+  @apply px-4 py-3 border border-border text-sm;
+}
+
+.prose-blog tr {
+  @apply hover:bg-secondary/20 transition-colors;
+}
+
+.prose-blog hr {
+  @apply my-8 border-border/40;
 }
 
 /* Antique map styling */
