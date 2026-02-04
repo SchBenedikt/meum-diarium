@@ -1,5 +1,5 @@
 // Determine API base URL based on environment
-function getApiBase(): string {
+export function getApiBase(): string {
     if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
         return 'http://localhost:3001/api';
     }
