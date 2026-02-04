@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
-import { authors } from '@/data/authors';
+import { useAuthors } from '@/hooks/use-authors';
 import { Author } from '@/types/blog';
 import { simulations, SimulationScenario, SimulationStats } from '@/data/simulations';
 import { Button } from '@/components/ui/button';
@@ -16,8 +16,12 @@ import { simulateAI } from '@/lib/api';
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const { setCurrentAuthor } = useAuthor();
+    const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
     const navigate = useNavigate();
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Get author from D1 database
+    const author = authorId && dbAuthors ? dbAuthors[authorId as Author] : null;
 
     // UI State
     const [searchQuery, setSearchQuery] = useState('');
@@ -40,7 +44,6 @@ export default function SimulationPage() {
         }
     }, [history, isLoading]);
 
-    const author = authorId ? authors[authorId as Author] : null;
     const allScenarios = authorId && simulations[authorId] ? simulations[authorId] : [];
     const filteredScenarios = allScenarios.filter(s =>
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -148,6 +151,16 @@ export default function SimulationPage() {
         return (
             <div className="min-h-screen flex flex-col bg-background">
                 <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+                    {authorsLoading ? (
+                        <div className="flex items-center justify-center min-h-[60vh] text-muted-foreground">
+                            <p>Lade Autoren...</p>
+                        </div>
+                    ) : !author ? (
+                        <div className="flex items-center justify-center min-h-[60vh] text-muted-foreground">
+                            <p>Autor nicht gefunden</p>
+                        </div>
+                    ) : (
+                        <>
                     {/* Minimalist Header */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                         <motion.div
@@ -264,6 +277,8 @@ export default function SimulationPage() {
                             </div>
                         )}
                     </div>
+                        </>
+                    )}
                 </main>
                 <Footer />
             </div>
@@ -271,6 +286,8 @@ export default function SimulationPage() {
     }
 
     // --- GAME VIEW ---
+    if (!activeScenario || !author) return null;
+    
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
