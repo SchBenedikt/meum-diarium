@@ -197,10 +197,14 @@ self.addEventListener('fetch', (event) => {
         .then(response => {
           if (response.ok) {
             const responseClone = response.clone();
-            const cacheType = url.pathname.startsWith('/api/') ? OFFLINE_CACHE : RUNTIME_CACHE;
-            caches.open(cacheType).then(cache => {
-              cache.put(request, responseClone);
-            });
+            // Only cache GET requests - POST, PUT, DELETE will bypass cache
+            // Cache API spec only supports GET/HEAD/OPTIONS
+            if (request.method === 'GET' || !request.method) {
+              const cacheType = url.pathname.startsWith('/api/') ? OFFLINE_CACHE : RUNTIME_CACHE;
+              caches.open(cacheType).then(cache => {
+                cache.put(request, responseClone);
+              });
+            }
           }
           return response;
         })

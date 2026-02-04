@@ -21,6 +21,21 @@ export function getPages(): PageContent[] {
 // Mutations
 
 export async function upsertPost(post: BlogPost): Promise<void> {
+  // If post has a slug and ID, it's an update; otherwise, it's a create
+  if (post.slug) {
+    try {
+      // Try to fetch existing post
+      const existing = await api.fetchPost(post.author, post.slug).catch(() => null);
+      if (existing) {
+        // Update existing
+        await api.updatePost(post.slug, post);
+        return;
+      }
+    } catch {
+      // If fetch fails, treat as new
+    }
+  }
+  // Create new
   await api.createPost(post);
 }
 
@@ -34,6 +49,20 @@ export async function deletePost(idOrSlug: string): Promise<void> {
 }
 
 export async function upsertLexiconEntry(entry: LexiconEntry): Promise<void> {
+  // If entry has a slug, check if it exists
+  if (entry.slug) {
+    try {
+      const existing = await api.fetchLexiconEntry(entry.slug).catch(() => null);
+      if (existing) {
+        // Update existing
+        await api.updateLexiconEntry(entry.slug, entry);
+        return;
+      }
+    } catch {
+      // If fetch fails, treat as new
+    }
+  }
+  // Create new
   await api.saveLexiconEntry(entry);
 }
 
@@ -42,6 +71,22 @@ export async function deleteLexiconEntry(slug: string): Promise<void> {
 }
 
 export async function upsertAuthor(entry: AuthorInfo): Promise<void> {
+  // If entry has an ID, check if it exists
+  if (entry.id) {
+    try {
+      const existing = await api.fetchAuthors().then((authors: any) => 
+        Object.values(authors).find((a: any) => a.id === entry.id)
+      ).catch(() => null);
+      if (existing) {
+        // Update existing
+        await api.updateAuthor(entry.id, entry);
+        return;
+      }
+    } catch {
+      // If fetch fails, treat as new
+    }
+  }
+  // Create new
   await api.saveAuthor(entry);
 }
 

@@ -31,7 +31,7 @@ import NotFound from './NotFound';
 import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedWork, getTranslatedAuthor } from '@/lib/translator';
-import { fetchWork, fetchWorkDetails, fetchWorks } from '@/lib/api';
+import { useWorks, useWorkDetails } from '@/hooks/use-works';
 import { PageHero } from '@/components/layout/PageHero';
 
 export default function WorkPage() {
@@ -43,7 +43,10 @@ export default function WorkPage() {
   const [otherWorks, setOtherWorks] = useState<Work[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['context']));
   const [loading, setLoading] = useState(true);
-  const [details, setDetails] = useState<any | null>(null);
+
+  // Load works and details from hooks
+  const { works: allWorks, isLoading: isWorksLoading } = useWorks();
+  const { details, isLoading: isDetailsLoading } = useWorkDetails(slug);
 
   const toggleSection = (sectionTitle: string) => {
     setExpandedSections(prev => {
@@ -83,66 +86,49 @@ export default function WorkPage() {
       }
 
       setLoading(true);
+      
+      // Set author
       const baseAuthor = baseAuthors[authorId as keyof typeof baseAuthors];
       const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
       if (active) {
         setAuthor(translatedAuthor ?? baseAuthor ?? null);
       }
 
-      // Load work base + translations from API, fallback to local data
-      try {
-        const data = await fetchWork(slug);
+      // Get work from all works list
+      const foundWork = allWorks.find((w: any) => w.slug === slug);
+      
+      if (foundWork) {
         const lang = language.split('-')[0];
         
-        // Fallback to baseWorks if structure is missing
+        // Try to get translations if they exist
+        if (foundWork.translations && foundWork.translations[lang]) {
+          const tr = foundWork.translations[lang];
+          setWork({
+            ...foundWork,
+            title: tr.title || foundWork.title,
+            summary: tr.summary || foundWork.summary,
+            takeaway: tr.takeaway || foundWork.takeaway,
+            structure: tr.structure || foundWork.structure,
+          });
+        } else {
+          setWork(foundWork);
+        }
+      } else {
         const baseWork = baseWorks[slug as keyof typeof baseWorks];
-        
-        if (data?.translations && data.translations[lang]) {
-          const tr = data.translations[lang];
-          setWork({
-            ...data,
-            title: tr.title || data.title,
-            summary: tr.summary || data.summary,
-            takeaway: tr.takeaway || data.takeaway,
-            structure: tr.structure || data.structure || baseWork?.structure,
-          });
+        if (baseWork) {
+          setWork(baseWork);
         } else {
-          setWork({
-            ...data,
-            structure: data.structure || baseWork?.structure,
-          });
+          setWork(null);
         }
-      } catch (e) {
-        setWork(null);
       }
 
-      // Load details JSON (language-specific if available)
-      try {
-        const det = await fetchWorkDetails(slug);
-        if (det) {
-          const lang = language.split('-')[0];
-          setDetails(det[lang] || det.de || det);
-        } else {
-          setDetails(null);
-        }
-      } catch {
-        setDetails(null);
-      }
-
-      // Related works (API list with local fallback)
-      try {
-        const list = await fetchWorks();
-        const related = (list || [])
-          .filter((w: any) => w.author === authorId && w.slug !== slug)
-          .slice(0, 3)
-          .map((w: any) => ({ title: w.title, year: w.year } as Work));
-        setOtherWorks(related);
-      } catch {
-        // Fallback to local works data
-        const related = Object.entries(localWorks)
-          .filter(([workSlug, w]) => w.author === authorId && workSlug !== slug)
-          .slice(0, 3)
-          .map(([_, w]) => ({ title: w.title, year: w.year } as Work));
+      // Load related works (from allWorks list)
+      const related = allWorks
+        .filter((w: any) => w.author === authorId && w.slug !== slug)
+        .slice(0, 3)
+        .map((w: any) => ({ title: w.title, year: w.year } as Work));
+      
+      if (active) {
         setOtherWorks(related);
       }
 
@@ -153,9 +139,9 @@ export default function WorkPage() {
     return () => {
       active = false;
     };
-  }, [slug, language, authorId]);
+  }, [slug, language, authorId, allWorks]);
 
-  if (loading) {
+  if (loading || isWorksLoading || isDetailsLoading) {
     return null;
   }
 

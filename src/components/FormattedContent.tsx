@@ -373,7 +373,7 @@ export function FormattedContent({ content, language, currentSlug }: FormattedCo
       if (termInfo) {
         const linkPath = termInfo.type === 'author' ? `/${termInfo.slug}` : `/lexicon/${termInfo.slug}`;
         parts.push(
-          <TermPopover key={`term-${keyCounter++}`} term={term} type={termInfo.type}>
+          <TermPopover key={`term-${keyCounter++}`} term={term} type={termInfo.type} slug={termInfo.slug}>
             <Link
               to={linkPath}
               state={{ from: location.pathname + location.search }}
