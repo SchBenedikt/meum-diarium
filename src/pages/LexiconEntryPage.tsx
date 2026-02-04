@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { TableOfContents } from '@/components/TableOfContents';
@@ -10,7 +10,6 @@ import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
 import { formatContent } from '@/lib/content-formatter';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedPost } from '@/lib/translator';
 import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
@@ -38,24 +37,22 @@ export default function LexiconEntryPage() {
         setEntry(data || null);
 
         if (data && !postsLoading) {
+          const variantsList = Array.isArray(data.variants) ? data.variants : [];
           const searchTerms = [
             data.term?.toLowerCase(),
-            ...(data.variants?.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || '')) || [])
+            ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
           ].filter(Boolean);
           
           const foundPosts = [];
           for (const post of allPosts) {
-            const translatedPost = await getTranslatedPost(language, post.author, post.slug);
-            if (translatedPost) {
-              const isRelated = searchTerms.some(term => 
-                translatedPost.title.toLowerCase().includes(term) ||
-                translatedPost.excerpt?.toLowerCase().includes(term) ||
-                translatedPost.content.diary?.toLowerCase().includes(term) ||
-                translatedPost.content.scientific?.toLowerCase().includes(term)
-              );
-              if (isRelated) {
-                foundPosts.push(translatedPost);
-              }
+            const isRelated = searchTerms.some(term => 
+              post.title.toLowerCase().includes(term) ||
+              post.excerpt?.toLowerCase().includes(term) ||
+              post.content.diary?.toLowerCase().includes(term) ||
+              post.content.scientific?.toLowerCase().includes(term)
+            );
+            if (isRelated) {
+              foundPosts.push(post);
             }
           }
           setRelatedPosts(foundPosts.slice(0, 5));
@@ -81,7 +78,7 @@ export default function LexiconEntryPage() {
     return <NotFound />;
   }
 
-  const formattedContent = formatContent(entry.definition, t, entry.slug);
+  const formattedContent = formatContent(entry.definition, t, language, entry.slug);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -115,13 +112,17 @@ export default function LexiconEntryPage() {
                       {entry.category}
                     </span>
                   </Link>
-                  {entry.variants?.slice(0, 4).map((v, i) => (
-                    <Link key={i} to={`/search?q=${encodeURIComponent(v)}`} className="group">
-                      <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors border border-border/60 leading-tight">
-                        {v}
-                      </span>
-                    </Link>
-                  ))}
+                  {(Array.isArray(entry.variants) ? entry.variants : []).slice(0, 4).map((variant, i) => {
+                    const label = typeof variant === 'string' ? variant : variant?.term;
+                    if (!label) return null;
+                    return (
+                      <Link key={i} to={`/search?q=${encodeURIComponent(label)}`} className="group">
+                        <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors border border-border/60 leading-tight">
+                          {label}
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
 
                 <div className="prose-blog text-lg">

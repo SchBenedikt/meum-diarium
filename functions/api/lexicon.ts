@@ -9,6 +9,30 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         'Access-Control-Allow-Origin': '*',
     };
 
+    const parseJsonField = (value: any): any => {
+        if (!value || typeof value !== 'string') return null;
+        try {
+            return JSON.parse(value);
+        } catch (e: any) {
+            console.warn(`⚠️ [Lexicon API] Malformed JSON in field: ${value.substring(0, 50)}...`);
+            return null;
+        }
+    };
+
+    const sanitizeEntry = (entry: any) => {
+        const sanitized: any = {};
+        Object.entries(entry).forEach(([key, value]) => {
+            if (typeof value === 'string') {
+                sanitized[key] = value
+                    .replace(/\x00/g, '')
+                    .replace(/[\x01-\x08\x0B\x0C\x0E-\x1F]/g, '');
+            } else {
+                sanitized[key] = value;
+            }
+        });
+        return sanitized;
+    };
+
     try {
         // Check if D1 database is available
         if (!context.env?.DB) {
@@ -51,7 +75,16 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
             console.log(`✅ [Lexicon API] D1 query successful: Found entry "${result.term}" (${queryTime}ms)`);
 
-            return new Response(JSON.stringify(result), {
+            const parsedResult = {
+                ...result,
+                variants: parseJsonField(result.variants) || [],
+                relatedTerms: parseJsonField(result.relatedTerms) || [],
+                translations: parseJsonField(result.translations) || {},
+            };
+
+            const sanitizedResult = sanitizeEntry(parsedResult);
+
+            return new Response(JSON.stringify(sanitizedResult), {
                 headers: {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
@@ -73,17 +106,6 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             limit: limit
         });
 
-        // Helper function to safely parse JSON fields
-        const parseJsonField = (value: any): any => {
-            if (!value || typeof value !== 'string') return null;
-            try {
-                return JSON.parse(value);
-            } catch (e: any) {
-                console.warn(`⚠️ [Lexicon API] Malformed JSON in field: ${value.substring(0, 50)}...`);
-                return null;
-            }
-        };
-
         // Parse JSON fields manually to handle corrupted/malformed data gracefully
         const parsedResults = results.map((entry: any) => ({
             ...entry,
@@ -96,20 +118,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         console.log(`✅ [Lexicon API] D1 query successful: Fetched ${results.length} entries (${queryTime}ms)`);
 
         // Sanitize each entry to ensure valid JSON serialization with proper UTF-8
-        const sanitizedResults = parsedResults.map((entry: any) => {
-            const sanitized: any = {};
-            Object.entries(entry).forEach(([key, value]) => {
-                if (typeof value === 'string') {
-                    // Properly handle UTF-8 strings - keep umlauts and special chars
-                    sanitized[key] = value
-                        .replace(/\x00/g, '')          // Remove null bytes
-                        .replace(/[\x01-\x08\x0B\x0C\x0E-\x1F]/g, ''); // Remove control chars except \n\r\t
-                } else {
-                    sanitized[key] = value;
-                }
-            });
-            return sanitized;
-        });
+        const sanitizedResults = parsedResults.map((entry: any) => sanitizeEntry(entry));
 
         // Proper UTF-8 JSON serialization with replacer to handle edge cases
         let responseText: string;

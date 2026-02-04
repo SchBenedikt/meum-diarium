@@ -7,7 +7,6 @@ import { CiceroAboutPage } from './about/CiceroAboutPage';
 import { AugustusAboutPage } from './about/AugustusAboutPage';
 import { SenecaAboutPage } from './about/SenecaAboutPage';
 import { CatilinaAboutPage } from './about/CatilinaAboutPage';
-import NotFound from './NotFound';
 
 export default function AboutPage() {
   const { authorId } = useParams<{ authorId: string }>();

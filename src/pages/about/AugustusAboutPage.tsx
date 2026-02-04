@@ -2,27 +2,25 @@ import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
 import { MapPin, BookOpen, ArrowRight, Clock, Award, Sparkles, Crown, Landmark, Sword, Calendar } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Author, AuthorInfo, BlogPost, Work } from '@/types/blog';
+import { Author, BlogPost, Work } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedAuthor, getTranslatedPost, getTranslatedWork } from '@/lib/translator';
+import { getTranslatedWork } from '@/lib/translator';
 import { usePosts } from '@/hooks/use-posts';
 import { Button } from '@/components/ui/button';
-import { PageContent, PageLanguage } from '@/types/page';
+import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 
 export function AugustusAboutPage() {
-  const { setCurrentAuthor } = useAuthor();
+  const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
 
-  const [authorInfo, setAuthorInfo] = useState<AuthorInfo | null>(null);
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
@@ -55,14 +53,9 @@ export function AugustusAboutPage() {
     if (authorId === 'augustus') {
       setCurrentAuthor('augustus' as Author);
       async function translateContent() {
-        const translatedAuthor = await getTranslatedAuthor(language, 'augustus' as Author);
-        setAuthorInfo(translatedAuthor);
-
         if (!postsLoading) {
-          const translatedPosts = await Promise.all(
-            allPosts.filter(p => p.author === 'augustus').slice(0, 3).map(p => getTranslatedPost(language, p.author, p.slug))
-          );
-          setAuthorPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
+          const authorPostsList = allPosts.filter(p => p.author === 'augustus').slice(0, 3);
+          setAuthorPosts(authorPostsList);
         }
 
         const translatedWorks = await Promise.all(
@@ -87,7 +80,11 @@ export function AugustusAboutPage() {
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
 
   if (!authorInfo) {
-    return null;
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
+        Lade Inhalte...
+      </div>
+    );
   }
 
   const details = authorDetails.augustus;
