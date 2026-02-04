@@ -14,12 +14,17 @@ interface BlogSidebarProps {
 
 export function BlogSidebar({ post }: BlogSidebarProps) {
   if (!post) {
+    console.warn('[BlogSidebar] No post provided');
     return null;
   }
 
-  const author = post?.author ? authors[post.author] : null;
   const { t, language } = useLanguage();
   const { posts } = usePosts();
+  const author = post?.author ? authors[post.author] : null;
+
+  if (!author) {
+    console.warn('[BlogSidebar] Author not found for post:', post?.author);
+  }
 
   // Get related posts (same author, different post)
   const relatedPosts = post?.author && post?.slug && Array.isArray(posts)
@@ -42,11 +47,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
 
   const quoteTranslation = getQuoteTranslation();
 
-  if (!author) {
-    console.warn('[BlogSidebar] Author not found for post:', post?.author);
-    return null;
-  }
-
   return (
     <motion.aside
       initial={{ opacity: 0, x: 16 }}
@@ -54,39 +54,47 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       transition={{ delay: 0.12, duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
       className="space-y-5 lg:space-y-6"
     >
-      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 overflow-hidden relative group">
-        <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
-          <div className="flex items-center gap-3">
-            <ImageWithFallback src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
-            <div className="min-w-0">
-              <p className="font-display text-lg font-bold truncate italic group-hover:text-primary transition-colors">{author.name}</p>
-              <p className="text-sm text-muted-foreground truncate">{author.title}</p>
-            </div>
-          </div>
-        </Link>
-      </div>
-
-      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
-        <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-          <Calendar className="h-4 w-4 text-primary" />
-          Historischer Kontext
-        </h3>
-        <div className="space-y-3 text-sm">
-          <div className="flex items-start gap-3">
-            <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
-            <div>
-              <p className="font-medium">Zeit</p>
-              <p className="text-muted-foreground">{post.historicalDate}</p>
-            </div>
-          </div>
-          <Link to={`/${author.id}/about`} className="flex items-start gap-3 group">
-            <Users className="h-4 w-4 text-muted-foreground mt-0.5 group-hover:text-primary transition-colors" />
-            <div>
-              <p className="font-medium group-hover:text-primary transition-colors">Autor</p>
-              <p className="text-muted-foreground">{author.name}</p>
-              <p className="text-xs text-muted-foreground">{author.years}</p>
+      {author && (
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 overflow-hidden relative group">
+          <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
+            <div className="flex items-center gap-3">
+              <ImageWithFallback src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
+              <div className="min-w-0">
+                <p className="font-display text-lg font-bold truncate italic group-hover:text-primary transition-colors">{author.name}</p>
+                <p className="text-sm text-muted-foreground truncate">{author.title}</p>
+              </div>
             </div>
           </Link>
+        </div>
+      )}
+
+      {post.historicalDate && (
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+          <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-primary" />
+            Historischer Kontext
+          </h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex items-start gap-3">
+              <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+              <div>
+                <p className="font-medium">Zeit</p>
+                <p className="text-muted-foreground">{post.historicalDate}</p>
+              </div>
+            </div>
+            {author && (
+              <Link to={`/${author.id}/about`} className="flex items-start gap-3 group">
+                <Users className="h-4 w-4 text-muted-foreground mt-0.5 group-hover:text-primary transition-colors" />
+                <div>
+                  <p className="font-medium group-hover:text-primary transition-colors">Autor</p>
+                  <p className="text-muted-foreground">{author.name}</p>
+                  <p className="text-xs text-muted-foreground">{author.years}</p>
+                </div>
+              </Link>
+            )}
+          </div>
+        </div>
+      )}Link>
         </div>
       </div>
 
@@ -108,23 +116,27 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         </div>
       )}
 
-      <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
-        <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-          <Tags className="h-4 w-4 text-primary" />
-          Themen
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {getPostTags(post, language).map((tag) => (
-            <Link
-              key={tag}
-              to={`/search?category=${encodeURIComponent(tag)}`}
-              className="flex items-center justify-center px-3 py-1 h-7 min-w-[60px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
-            >
-              {tag}
-            </Link>
-          ))}
+      )}
+
+      {getPostTags(post, language).length > 0 && (
+        <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
+          <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
+            <Tags className="h-4 w-4 text-primary" />
+            Themen
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {getPostTags(post, language).map((tag) => (
+              <Link
+                key={tag}
+                to={`/search?category=${encodeURIComponent(tag)}`}
+                className="flex items-center justify-center px-3 py-1 h-7 min-w-[60px] rounded-full bg-primary/12 text-primary text-xs font-medium hover:bg-primary/20 active:bg-primary/25 transition-colors border border-primary/10"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {relatedPosts.length > 0 && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
