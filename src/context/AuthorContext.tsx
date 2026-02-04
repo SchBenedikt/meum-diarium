@@ -1,18 +1,24 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Author } from '@/types/blog';
-import { authors } from '@/data/authors';
 
 interface AuthorContextType {
   currentAuthor: Author | null;
   setCurrentAuthor: (author: Author | null) => void;
-  authorInfo: typeof authors[string] | null;
+  authorInfo: any | null;
+  authorsData: Record<string, any>;
 }
 
 const AuthorContext = createContext<AuthorContextType | undefined>(undefined);
 
-export function AuthorProvider({ children }: { children: ReactNode }) {
+export function AuthorProvider({ children, authorsData = {} }: { children: ReactNode; authorsData?: Record<string, any> }) {
   const [currentAuthor, setCurrentAuthor] = useState<Author | null>(null);
+  const [authors, setAuthors] = useState<Record<string, any>>(authorsData);
+
+  // Sync authorsData prop changes
+  useEffect(() => {
+    setAuthors(authorsData);
+  }, [authorsData]);
 
   const authorInfo = currentAuthor ? authors[currentAuthor] : null;
 
@@ -29,7 +35,7 @@ export function AuthorProvider({ children }: { children: ReactNode }) {
   }, [currentAuthor]);
 
   return (
-    <AuthorContext.Provider value={{ currentAuthor, setCurrentAuthor, authorInfo }}>
+    <AuthorContext.Provider value={{ currentAuthor, setCurrentAuthor, authorInfo, authorsData: authors }}>
       {children}
     </AuthorContext.Provider>
   );

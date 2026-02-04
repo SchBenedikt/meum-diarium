@@ -12,6 +12,7 @@ import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useAuthors } from "@/hooks/use-authors";
 
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -56,6 +57,7 @@ const ScrollToTop = () => {
 
 const AppContent = () => {
   const location = useLocation();
+  const { authors: dbAuthors } = useAuthors();
   const isAuthorRoute = location.pathname.startsWith('/caesar') ||
     location.pathname.startsWith('/cicero') ||
     location.pathname.startsWith('/augustus') ||
@@ -68,15 +70,16 @@ const AppContent = () => {
   );
 
   return (
-    <>
-      <ScrollToTop />
-      {/* The z-index here ensures the header is above the PostPage hero image */}
-      <div className="relative z-50">
-        <Header />
-      </div>
-      <Suspense fallback={<LoadingScreen />}>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
+    <AuthorProvider authorsData={dbAuthors}>
+      <>
+        <ScrollToTop />
+        {/* The z-index here ensures the header is above the PostPage hero image */}
+        <div className="relative z-50">
+          <Header />
+        </div>
+        <Suspense fallback={<LoadingScreen />}>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
             {/* Static routes must come before dynamic :authorId routes */}
             <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
@@ -127,7 +130,8 @@ const AppContent = () => {
           </Routes>
         </AnimatePresence>
       </Suspense>
-    </>
+      </>
+    </AuthorProvider>
   );
 };
 
@@ -151,14 +155,12 @@ const App = () => (
     <TooltipProvider>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <LanguageProvider>
-          <AuthorProvider>
-            <AuthProvider>
-              <Toaster richColors />
-              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                <AppContent />
-              </BrowserRouter>
-            </AuthProvider>
-          </AuthorProvider>
+          <AuthProvider>
+            <Toaster richColors />
+            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+              <AppContent />
+            </BrowserRouter>
+          </AuthProvider>
         </LanguageProvider>
       </ThemeProvider>
     </TooltipProvider>

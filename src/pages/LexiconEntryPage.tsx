@@ -1,7 +1,7 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
-import { ArrowLeft, Newspaper } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { TableOfContents } from '@/components/TableOfContents';
@@ -10,10 +10,11 @@ import NotFound from './NotFound';
 import { useAuthor } from '@/context/AuthorContext';
 import { formatContent } from '@/lib/content-formatter';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedLexiconEntry, getTranslatedPost } from '@/lib/translator';
-import { LexiconEntry, BlogPost } from '@/types/blog';
+import { getTranslatedPost } from '@/lib/translator';
+import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
+import { fetchLexiconEntry } from '@/lib/api';
 
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -30,43 +31,47 @@ export default function LexiconEntryPage() {
   }, [setCurrentAuthor]);
 
   useEffect(() => {
-    async function translateContent() {
-      const translatedEntry = await getTranslatedLexiconEntry(language, slug as string);
-      setEntry(translatedEntry);
+    async function loadEntry() {
+      if (!slug) return;
+      try {
+        const data = await fetchLexiconEntry(slug);
+        setEntry(data || null);
 
-      if (translatedEntry && !postsLoading) {
-        const searchTerms = [translatedEntry.term.toLowerCase(), ...(translatedEntry.variants?.map(v => v.toLowerCase()) || [])];
-        const postsToSearch = allPosts;
-        const foundPosts = [];
-        for (const post of postsToSearch) {
-          const translatedPost = await getTranslatedPost(language, post.author, post.slug);
-          if (translatedPost) {
-            const isRelated = searchTerms.some(term => 
-              translatedPost.title.toLowerCase().includes(term) ||
-              translatedPost.excerpt.toLowerCase().includes(term) ||
-              translatedPost.content.diary.toLowerCase().includes(term) ||
-              translatedPost.content.scientific.toLowerCase().includes(term)
-            );
-            if (isRelated) {
-              foundPosts.push(translatedPost);
+        if (data && !postsLoading) {
+          const searchTerms = [
+            data.term?.toLowerCase(),
+            ...(data.variants?.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || '')) || [])
+          ].filter(Boolean);
+          
+          const foundPosts = [];
+          for (const post of allPosts) {
+            const translatedPost = await getTranslatedPost(language, post.author, post.slug);
+            if (translatedPost) {
+              const isRelated = searchTerms.some(term => 
+                translatedPost.title.toLowerCase().includes(term) ||
+                translatedPost.excerpt?.toLowerCase().includes(term) ||
+                translatedPost.content.diary?.toLowerCase().includes(term) ||
+                translatedPost.content.scientific?.toLowerCase().includes(term)
+              );
+              if (isRelated) {
+                foundPosts.push(translatedPost);
+              }
             }
           }
+          setRelatedPosts(foundPosts.slice(0, 5));
         }
-        setRelatedPosts(foundPosts.slice(0, 5));
+      } catch (error) {
+        console.error('Failed to load lexicon entry:', error);
+        setEntry(null);
       }
     }
-    translateContent();
+    loadEntry();
   }, [language, slug, allPosts, postsLoading]);
 
 
   const handleBackClick = () => {
     navigate('/lexicon');
   };
-
-  const formattedContent = useMemo(() => {
-    if (!entry) return [];
-    return formatContent(entry.definition, t, entry.slug);
-  }, [entry, t]);
 
   if (entry === undefined) {
     return <div className="min-h-screen bg-background" />;
@@ -75,6 +80,8 @@ export default function LexiconEntryPage() {
   if (!entry) {
     return <NotFound />;
   }
+
+  const formattedContent = formatContent(entry.definition, t, entry.slug);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
