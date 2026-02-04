@@ -127,12 +127,12 @@ function PostContent({ post }: { post: BlogPost }) {
       <main className="flex-1">
         <div className="bg-background pb-12">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-24 md:py-28">
-            <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1fr_350px]">
+            <div className="grid grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-[1fr_350px]">
               <motion.article
                 initial={{ y: -40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="prose-blog space-y-7 min-w-0 lg:col-span-1"
+                className="prose-blog space-y-7 min-w-0"
               >
 
                 <header className="space-y-5 pb-8 border-b border-border/40">
@@ -190,8 +190,8 @@ function PostContent({ post }: { post: BlogPost }) {
               </motion.article>
 
               {/* Sidebar - below content on mobile, sticky on desktop */}
-              <aside className="lg:col-span-1 mt-12 lg:mt-0">
-                <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto space-y-6">
+              <aside className="order-last lg:order-none">
+                <div className="lg:sticky lg:top-24 space-y-6">
                   <BlogSidebar post={post} />
                 </div>
               </aside>
