@@ -17,6 +17,18 @@ const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
+// **CRITICAL**: Serve static files from public folder BEFORE API routes
+// This allows /api/works.json, /api/works-details/*.json to be served directly
+const publicDir = path.resolve(__dirname, '../public');
+app.use(express.static(publicDir, {
+    setHeaders: (res, filePath) => {
+        // Set proper content type for JSON files
+        if (filePath.endsWith('.json')) {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        }
+    }
+}));
+
 // Helper to build full URLs
 const buildUrl = (path: string) => `${BASE_URL}${path}`;
 
@@ -213,12 +225,26 @@ app.get('/api/translations/:lang', (_req, res) => {
 
 // Health check
 app.get('/health', (_req, res) => {
-    res.json({ status: 'ok', message: 'Dev server running - using Cloudflare Functions for data' });
+    res.json({ status: 'ok', message: 'Dev server running - using local data files' });
+});
+
+// **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router
+// This must be LAST to catch all deep routes like /caesar/works/:slug
+app.get('*', async (_req, res) => {
+    try {
+        const indexPath = path.resolve(__dirname, '../public/index.html');
+        const html = await fs.readFile(indexPath, 'utf-8');
+        res.type('text/html').send(html);
+    } catch (error) {
+        console.error('Error serving index.html:', error);
+        res.status(500).send('Error loading application');
+    }
 });
 
 // Start server
 app.listen(PORT, () => {
     console.log(`Backend server running on http://localhost:${PORT}`);
-    console.log(`Note: API endpoints return empty data in local dev.`);
-    console.log(`      Deploy to Cloudflare to use D1 database.`);
+    console.log(`✅ Serving static files from public/`);
+    console.log(`✅ SPA fallback enabled for deep routes`);
+    console.log(`✅ API endpoints use local data (JSON files)`);
 });
