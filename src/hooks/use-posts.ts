@@ -16,12 +16,18 @@ export function usePosts() {
       
       const apiStartTime = Date.now();
       const apiPosts = await fetchPosts();
+      const normalizedPosts = Array.isArray(apiPosts)
+        ? apiPosts.map((post: any) => ({
+            ...post,
+            author: post.author ?? post.authorId,
+          }))
+        : [];
       const apiFetchTime = Date.now() - apiStartTime;
       
-      if (apiPosts && apiPosts.length > 0) {
-        console.log(`✅ [usePosts] Loaded ${apiPosts.length} posts from D1 database (${apiFetchTime}ms)`);
+      if (normalizedPosts.length > 0) {
+        console.log(`✅ [usePosts] Loaded ${normalizedPosts.length} posts from D1 database (${apiFetchTime}ms)`);
         console.log('   Data source: Cloudflare D1 via API');
-        return apiPosts;
+        return normalizedPosts;
       }
       
       console.warn('⚠️ [usePosts] D1 database returned empty result');
