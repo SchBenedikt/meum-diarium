@@ -19,49 +19,304 @@ function slugify(text: string): string {
     .trim();
 }
 
-function LexiconTerm({ term, definition, slug, t }: { term: string, definition: string, slug: string, t: (key: TranslationKey) => string }) {
-  const location = useLocation();
+interface TextNode {
+  type: 'text' | 'link' | 'term' | 'code' | 'bold' | 'italic';
+  content: string;
+  href?: string;
+  termType?: 'lexicon' | 'author';
+  definition?: string;
+  slug?: string;
+  children?: TextNode[];
+}
 
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Link
-          to={`/lexicon/${slug}`}
-          state={{ from: location.pathname + location.search }}
-          className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer"
-        >
-          {term}
-        </Link>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-xs">
-        <div className="p-2">
-          <h4 className="font-bold mb-2 flex items-center gap-2">
-            <BookOpen className="h-4 w-4" />
-            {t('navLexicon')}
-          </h4>
-          <p className="text-sm">{definition}</p>
-        </div>
-      </TooltipContent>
-    </Tooltip>
-  );
+type Block = 
+  | { type: 'heading'; level: number; text: string; id: string }
+  | { type: 'paragraph'; content: TextNode[] }
+  | { type: 'list'; ordered: boolean; items: TextNode[][] }
+  | { type: 'blockquote'; content: TextNode[] }
+  | { type: 'code'; language: string; content: string }
+  | { type: 'hr' };
+
+// Parse inline formatting (bold, italic, code, links)
+function parseInlineFormatting(text: string): TextNode[] {
+  const nodes: TextNode[] = [];
+  let currentIndex = 0;
+  
+  // Regex patterns for various inline elements
+  const patterns = [
+    { pattern: /\*\*([^\*]+)\*\*/, type: 'bold' },
+    { pattern: /\*([^\*]+)\*/, type: 'italic' },
+    { pattern: /`([^`]+)`/, type: 'code' },
+    { pattern: /\[([^\]]+)\]\(([^)]+)\)/, type: 'link' },
+  ];
+
+  let lastIndex = 0;
+  let html = text;
+
+  // Process patterns in order: links first, then formatting
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let match;
+  const links = [];
+  while ((match = linkRegex.exec(text)) !== null) {
+    links.push({ start: match.index, end: match.index + match[0].length, text: match[1], url: match[2] });
+  }
+
+  // Remove links from text parts that will be processed
+  let processedText = text;
+  const boldRegex = /\*\*([^\*]+)\*\*/g;
+  const italicRegex = /\*([^\*]+)\*/g;
+  const codeRegex = /`([^`]+)`/g;
+
+  const segments: Array<{ text: string; type: string; value?: string }> = [];
+  lastIndex = 0;
+
+  // Simple approach: split on patterns and identify them
+  const combined = [
+    ...Array.from(text.matchAll(/\*\*([^\*]+)\*\*/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'bold', value: m[1] })),
+    ...Array.from(text.matchAll(/\*([^\*]+)\*/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'italic', value: m[1] })),
+    ...Array.from(text.matchAll(/`([^`]+)`/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'code', value: m[1] })),
+    ...Array.from(text.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)).map(m => ({ index: m.index!, end: m.index! + m[0].length, type: 'link', value: m[1], url: m[2] })),
+  ].sort((a, b) => a.index - b.index);
+
+  lastIndex = 0;
+  for (const match of combined) {
+    // Add text before this match
+    if (lastIndex < match.index) {
+      nodes.push({ type: 'text', content: text.substring(lastIndex, match.index) });
+    }
+
+    if (match.type === 'bold') {
+      nodes.push({ type: 'bold', content: match.value! });
+    } else if (match.type === 'italic') {
+      nodes.push({ type: 'italic', content: match.value! });
+    } else if (match.type === 'code') {
+      nodes.push({ type: 'code', content: match.value! });
+    } else if (match.type === 'link') {
+      nodes.push({ type: 'link', content: match.value!, href: match.url });
+    }
+
+    lastIndex = match.end;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    nodes.push({ type: 'text', content: text.substring(lastIndex) });
+  }
+
+  return nodes.length > 0 ? nodes : [{ type: 'text', content: text }];
+}
+
+// Parse blocks (headings, paragraphs, lists, etc.)
+function parseMarkdown(content: string): Block[] {
+  const lines = content.split('\n');
+  const blocks: Block[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Skip empty lines
+    if (!trimmed) {
+      i++;
+      continue;
+    }
+
+    // Headings
+    const headingMatch = trimmed.match(/^(#{2,4})\s+(.+)$/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const text = headingMatch[2].trim();
+      blocks.push({
+        type: 'heading',
+        level,
+        text,
+        id: slugify(text),
+      });
+      i++;
+      continue;
+    }
+
+    // Horizontal rules
+    if (trimmed.match(/^(-{3,}|\*{3,}|_{3,})$/)) {
+      blocks.push({ type: 'hr' });
+      i++;
+      continue;
+    }
+
+    // Code blocks
+    if (trimmed.startsWith('```')) {
+      const language = trimmed.substring(3).trim();
+      const codeLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      blocks.push({
+        type: 'code',
+        language,
+        content: codeLines.join('\n'),
+      });
+      i++; // Skip closing ```
+      continue;
+    }
+
+    // Blockquotes
+    if (trimmed.startsWith('>')) {
+      const quoteLines: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith('>')) {
+        quoteLines.push(lines[i].trim().substring(1).trim());
+        i++;
+      }
+      blocks.push({
+        type: 'blockquote',
+        content: parseInlineFormatting(quoteLines.join(' ')),
+      });
+      continue;
+    }
+
+    // Unordered lists
+    if (trimmed.match(/^[-•]\s+/)) {
+      const listItems: TextNode[][] = [];
+      while (i < lines.length && lines[i].trim().match(/^[-•]\s+/)) {
+        const itemText = lines[i].trim().substring(1).trim();
+        listItems.push(parseInlineFormatting(itemText));
+        i++;
+      }
+      blocks.push({
+        type: 'list',
+        ordered: false,
+        items: listItems,
+      });
+      continue;
+    }
+
+    // Ordered lists
+    if (trimmed.match(/^\d+\.\s+/)) {
+      const listItems: TextNode[][] = [];
+      while (i < lines.length && lines[i].trim().match(/^\d+\.\s+/)) {
+        const itemText = lines[i].trim().replace(/^\d+\.\s+/, '');
+        listItems.push(parseInlineFormatting(itemText));
+        i++;
+      }
+      blocks.push({
+        type: 'list',
+        ordered: true,
+        items: listItems,
+      });
+      continue;
+    }
+
+    // Paragraphs (consume consecutive non-empty lines)
+    const paragraphLines: string[] = [];
+    while (i < lines.length && lines[i].trim() && 
+           !lines[i].trim().match(/^#{2,4}\s/) &&
+           !lines[i].trim().match(/^[-•]\s+/) &&
+           !lines[i].trim().match(/^\d+\.\s+/) &&
+           !lines[i].trim().match(/^>/) &&
+           !lines[i].trim().match(/^```/) &&
+           !lines[i].trim().match(/^(-{3,}|\*{3,}|_{3,})$/)) {
+      paragraphLines.push(lines[i]);
+      i++;
+    }
+
+    if (paragraphLines.length > 0) {
+      blocks.push({
+        type: 'paragraph',
+        content: parseInlineFormatting(paragraphLines.join(' ')),
+      });
+    }
+  }
+
+  return blocks;
+}
+
+// Render a text node with lexicon linking
+function renderTextNode(node: TextNode, termsMap: Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>, location: ReturnType<typeof useLocation>): React.ReactNode {
+  switch (node.type) {
+    case 'text':
+      // Check if text contains any terms
+      const terms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
+      if (terms.length === 0) return node.content;
+
+      const escapedTerms = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
+
+      const parts: React.ReactNode[] = [];
+      let lastIndex = 0;
+      let match;
+
+      while ((match = regex.exec(node.content)) !== null) {
+        // Add text before match
+        if (lastIndex < match.index) {
+          parts.push(node.content.substring(lastIndex, match.index));
+        }
+
+        const term = match[0];
+        const termInfo = termsMap.get(term.toLowerCase());
+
+        if (termInfo) {
+          const linkPath = termInfo.type === 'author' ? `/${termInfo.slug}` : `/lexicon/${termInfo.slug}`;
+          parts.push(
+            <TermPopover key={match.index} term={term} type={termInfo.type}>
+              <Link
+                to={linkPath}
+                state={{ from: location.pathname + location.search }}
+                className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer hover:border-primary transition-colors"
+              >
+                {term}
+              </Link>
+            </TermPopover>
+          );
+        } else {
+          parts.push(term);
+        }
+
+        lastIndex = match.index + term.length;
+      }
+
+      if (lastIndex < node.content.length) {
+        parts.push(node.content.substring(lastIndex));
+      }
+
+      return <>{parts}</>;
+
+    case 'bold':
+      return <strong>{node.content}</strong>;
+    case 'italic':
+      return <em>{node.content}</em>;
+    case 'code':
+      return <code className="px-1.5 py-0.5 rounded bg-secondary/50 text-sm font-mono">{node.content}</code>;
+    case 'link':
+      return (
+        <a href={node.href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+          {node.content}
+        </a>
+      );
+    default:
+      return node.content;
+  }
+}
+
+function renderTextNodes(nodes: TextNode[], termsMap: Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>, location: ReturnType<typeof useLocation>): React.ReactNode[] {
+  return nodes.map((node, idx) => (
+    <React.Fragment key={idx}>{renderTextNode(node, termsMap, location)}</React.Fragment>
+  ));
 }
 
 export function formatContent(content: string, t: (key: TranslationKey) => string, language: Language, currentSlug?: string): React.ReactNode[] {
-  // 1. Get all relevant terms for the CURRENT language
-  const termsMap = new Map<string, { slug: string, definition: string, type: 'lexicon' | 'author' }>();
+  const location = useLocation();
+  
+  // Build terms map
+  const termsMap = new Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>();
 
-  // Add lexicon terms
   lexicon.forEach(originalEntry => {
     if (originalEntry.slug === currentSlug) return;
-
     const translatedEntry = getTranslatedLexiconEntry(originalEntry, language);
-
-    // Add main term
     if (translatedEntry.term) {
       termsMap.set(translatedEntry.term.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
     }
-
-    // Add variants (now including language-specific ones)
     translatedEntry.variants?.forEach(variant => {
       if (variant) {
         termsMap.set(variant.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
@@ -69,7 +324,6 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     });
   });
 
-  // Add author names
   Object.values(authors).forEach(author => {
     const shortName = author.name.split(' ').pop() || '';
     if (shortName) {
@@ -81,253 +335,64 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     }
   });
 
-  const linkableTerms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
+  // Parse markdown
+  const blocks = parseMarkdown(content);
 
-  if (linkableTerms.length === 0) {
-    return [<p key="line-0">{content}</p>];
-  }
-
-  // Escape special characters in terms for regex
-  const escapedTerms = linkableTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
-
-  // Pre-process content to normalize line breaks and separate lists
-  let processedContent = content
-    // Protect code blocks from processing
-    .replace(/(```[\s\S]*?```)/g, '\n\n$1\n\n')
-    // Ensure markdown headings are on their own line
-    .replace(/([^\n])(#{2,4}\s)/g, '$1\n\n$2')
-    // Ensure horizontal rules are on their own line
-    .replace(/([^\n])(-{3,}|\*{3,}|_{3,})/g, '$1\n\n$2')
-    // Ensure blockquotes are on their own line
-    .replace(/([^\n])(>\s)/g, '$1\n\n$2')
-    // Ensure lists are separated
-    .replace(/([^\n])([-•]\s|\d+\.\s)/g, '$1\n\n$2')
-    // Normalize multiple newlines to double newlines
-    .replace(/\n{3,}/g, '\n\n')
-    // Trim
-    .trim();
-
-  return processedContent.split(/\n\n+/).map((paragraph, pIndex) => {
-    let parts: (string | React.ReactNode)[] = [];
-    let lastIndex = 0;
-
-    // Skip empty paragraphs
-    const trimmedParagraph = paragraph.trim();
-    if (!trimmedParagraph) return null;
-
-    // Handle horizontal rule FIRST (before any other HTML processing)
-    if (trimmedParagraph.match(/^-{3,}$/) || trimmedParagraph.match(/^\*{3,}$/) || trimmedParagraph.match(/^_{3,}$/)) {
-      return <hr key={pIndex} className="my-8 border-border/40" />;
-    }
-
-    // Handle headings BEFORE markdown replacement
-    if (trimmedParagraph.match(/^#{2,3}\s/)) {
-      const level = trimmedParagraph.startsWith('###') ? 3 : 2;
-      const text = trimmedParagraph.replace(/^#{2,3}\s+/, '').trim();
-      // Process markdown in heading
-      const processedText = text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
-      const id = slugify(text);
-      
-      const className = level === 2 
-        ? 'font-display text-2xl sm:text-3xl font-bold leading-tight tracking-tight mt-8 mb-4 scroll-mt-24'
-        : 'font-display text-xl sm:text-2xl font-bold leading-tight tracking-tight mt-6 mb-3 scroll-mt-24';
-      
-      return React.createElement(`h${level}`, { 
-        key: pIndex, 
-        className,
-        'data-heading-id': id,
-        dangerouslySetInnerHTML: { __html: processedText } 
-      });
-    }
-    
-    // Handle headings with ####
-    if (trimmedParagraph.match(/^#{4}\s/)) {
-      const text = trimmedParagraph.replace(/^#{4}\s+/, '').trim();
-      const processedText = text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
-      const id = slugify(text);
-      return <h4 
-        key={pIndex} 
-        className="font-display text-lg sm:text-xl font-bold leading-tight tracking-tight mt-5 mb-2 scroll-mt-24"
-        data-heading-id={id} 
-        dangerouslySetInnerHTML={{ __html: processedText }} 
-      />;
-    }
-    
-    // Handle blockquotes
-    if (trimmedParagraph.match(/^>\s/)) {
-      const text = trimmedParagraph.replace(/^>\s+/, '').trim();
-      const processedText = text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
-      return (
-        <blockquote key={pIndex} className="border-l-4 border-primary/40 pl-4 italic text-muted-foreground my-4">
-          <p dangerouslySetInnerHTML={{ __html: processedText }} />
-        </blockquote>
-      );
-    }
-
-    let htmlParagraph = trimmedParagraph
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-secondary/50 text-sm font-mono">$1</code>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">$1</a>')
-      .replace(/\n/g, '<br />'); // Convert single line breaks to <br />
-
-    // Handle code blocks (triple backticks)
-    if (trimmedParagraph.startsWith('```')) {
-      const lines = trimmedParagraph.split('\n');
-      const language = lines[0].replace(/```/, '').trim();
-      const codeContent = lines.slice(1, -1).join('\n');
-      
-      return (
-        <pre key={pIndex} className="bg-secondary/50 rounded-lg p-4 overflow-x-auto my-4">
-          <code className="text-sm font-mono">{codeContent}</code>
-        </pre>
-      );
-    }
-
-    // Handle unordered lists (lines starting with - or •)
-    if (htmlParagraph.match(/^[-•]\s/) || htmlParagraph.includes('\n-') || htmlParagraph.includes('\n•')) {
-      const lines = htmlParagraph.split('\n');
-      const listItems: React.ReactNode[] = [];
-      
-      lines.forEach((line, idx) => {
-        const trimmed = line.trim();
-        if (trimmed.startsWith('-') || trimmed.startsWith('•')) {
-          const itemText = trimmed.replace(/^[-•]\s*/, '');
-          listItems.push(<li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />);
-        }
-      });
-      
-      if (listItems.length > 0) {
-        return <ul key={pIndex} className="list-disc pl-6 space-y-2 my-4 marker:text-primary">{listItems}</ul>;
-      }
-    }
-
-    // Handle ordered lists (lines starting with numbers)
-    if (htmlParagraph.match(/^\d+\.\s/)) {
-      const lines = htmlParagraph.split('\n');
-      const listItems: React.ReactNode[] = [];
-      
-      lines.forEach((line, idx) => {
-        const trimmed = line.trim();
-        if (trimmed.match(/^\d+\.\s/)) {
-          const itemText = trimmed.replace(/^\d+\.\s*/, '');
-          listItems.push(<li key={`${pIndex}-${idx}`} dangerouslySetInnerHTML={{ __html: itemText }} />);
-        }
-      });
-      
-      if (listItems.length > 0) {
-        return <ol key={pIndex} className="list-decimal pl-6 space-y-2 my-4 marker:text-primary">{listItems}</ol>;
-      }
-    }
-
-    // Handle markdown tables
-    if (htmlParagraph.includes('|')) {
-      const lines = htmlParagraph.split('\n').map(l => l.trim()).filter(l => l);
-      
-      // Check if this looks like a table (has | separators)
-      if (lines.length >= 2 && lines[0].includes('|') && lines[1].includes('---')) {
-        const rows: string[][] = [];
-        let headerFound = false;
+  // Render blocks
+  return blocks.map((block, idx) => {
+    switch (block.type) {
+      case 'heading':
+        const HeadingTag = `h${block.level}` as any;
+        const headingClass = block.level === 2
+          ? 'font-display text-2xl sm:text-3xl font-bold leading-tight tracking-tight mt-8 mb-4 scroll-mt-24'
+          : block.level === 3
+          ? 'font-display text-xl sm:text-2xl font-bold leading-tight tracking-tight mt-6 mb-3 scroll-mt-24'
+          : 'font-display text-lg sm:text-xl font-bold leading-tight tracking-tight mt-5 mb-2 scroll-mt-24';
         
-        lines.forEach((line, idx) => {
-          // Skip separator line
-          const separatorClass = "[" + "-:" + "\\s" + "|" + "]+";
-          const separatorRegex = new RegExp(`^\\|?\\s*${separatorClass}\\s*\\|?\\s*$`);
-          if (separatorRegex.test(line)) {
-            return;
-          }
-          
-          const cells = line
-            .split('|')
-            .map(cell => cell.trim())
-            .filter(cell => cell !== '');
-          
-          if (cells.length > 0) {
-            rows.push(cells);
-          }
-        });
-
-        if (rows.length >= 1) {
-          const headerRow = rows[0];
-          const bodyRows = rows.slice(1);
-
-          return (
-            <div key={pIndex} className="overflow-x-auto my-6">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr>
-                    {headerRow.map((cell, idx) => (
-                      <th 
-                        key={idx}
-                        className="px-4 py-3 text-left font-semibold bg-secondary/50 border border-border text-sm"
-                      >
-                        {cell}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {bodyRows.map((row, rowIdx) => (
-                    <tr key={rowIdx} className="hover:bg-secondary/20 transition-colors">
-                      {row.map((cell, cellIdx) => (
-                        <td 
-                          key={cellIdx}
-                          className="px-4 py-3 border border-border text-sm"
-                        >
-                          {cell}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-      }
-    }
-
-    let tempParagraph = htmlParagraph;
-    let result;
-    while ((result = regex.exec(tempParagraph)) !== null) {
-      if (result.index > lastIndex) {
-        parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex, result.index) }} />);
-      }
-
-      const term = result[0];
-      const match = termsMap.get(term.toLowerCase());
-
-      if (match) {
-        const linkPath = match.type === 'author' ? `/${match.slug}` : `/lexicon/${match.slug}`;
-        parts.push(
-          <TermPopover key={result.index} term={term} type={match.type}>
-            <Link
-              to={linkPath}
-              state={{ from: location.pathname + location.search }}
-              className="inline text-primary border-b border-primary/50 border-dashed cursor-pointer hover:border-primary transition-colors"
-            >
-              {term}
-            </Link>
-          </TermPopover>
+        return (
+          <HeadingTag key={idx} className={headingClass} data-heading-id={block.id}>
+            {block.text}
+          </HeadingTag>
         );
-      } else {
-        parts.push(<span key={result.index} dangerouslySetInnerHTML={{ __html: term }} />);
-      }
 
-      lastIndex = result.index + term.length;
+      case 'paragraph':
+        return (
+          <p key={idx} className="text-base leading-relaxed mb-4">
+            {renderTextNodes(block.content, termsMap, location)}
+          </p>
+        );
+
+      case 'list':
+        const ListTag = block.ordered ? 'ol' : 'ul';
+        return (
+          <ListTag key={idx} className={block.ordered ? 'list-decimal' : 'list-disc'} style={{ paddingLeft: '1.5rem', marginBottom: '1rem', marginTop: '1rem', lineHeight: '1.75' }}>
+            {block.items.map((item, itemIdx) => (
+              <li key={itemIdx}>
+                {renderTextNodes(item, termsMap, location)}
+              </li>
+            ))}
+          </ListTag>
+        );
+
+      case 'blockquote':
+        return (
+          <blockquote key={idx} className="border-l-4 border-primary/40 pl-4 italic text-muted-foreground my-4">
+            <p>{renderTextNodes(block.content, termsMap, location)}</p>
+          </blockquote>
+        );
+
+      case 'code':
+        return (
+          <pre key={idx} className="bg-secondary/50 rounded-lg p-4 overflow-x-auto my-4">
+            <code className="text-sm font-mono">{block.content}</code>
+          </pre>
+        );
+
+      case 'hr':
+        return <hr key={idx} className="my-8 border-border/40" />;
+
+      default:
+        return null;
     }
-
-    if (lastIndex < tempParagraph.length) {
-      parts.push(<span key={lastIndex} dangerouslySetInnerHTML={{ __html: tempParagraph.substring(lastIndex) }} />);
-    }
-
-    return <p key={pIndex} className="text-base leading-relaxed mb-4">{parts}</p>;
   }).filter(Boolean);
 }
