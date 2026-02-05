@@ -99,22 +99,20 @@ export default function WorkPage() {
         setAuthor(translatedAuthor ?? baseAuthor ?? null);
       }
 
-      // Get work - prefer allWorks, fallback to baseWorks
+      // Get work - try baseWorks first (always available), then check allWorks
       let foundWork = null;
       
-      if (allWorks.length > 0) {
-        foundWork = allWorks.find((w: any) => w.slug === slug);
-        console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
+      // First check baseWorks (synchronous, always available)
+      const baseWork = baseWorks[slug as keyof typeof baseWorks];
+      if (baseWork) {
+        foundWork = baseWork;
+        console.log(`✅ [WorkPage] Found work in baseWorks: "${baseWork.title}"`);
       } else {
-        console.log(`🔍 [WorkPage] allWorks is empty, checking baseWorks`);
-      }
-      
-      // If not found in allWorks, try baseWorks as fallback
-      if (!foundWork) {
-        const baseWork = baseWorks[slug as keyof typeof baseWorks];
-        console.log(`🔍 [WorkPage] Searched baseWorks["${slug}"]: found=${!!baseWork}`);
-        if (baseWork) {
-          foundWork = baseWork;
+        console.log(`🔍 [WorkPage] Not in baseWorks, checking allWorks`);
+        // Fallback to allWorks if available
+        if (allWorks.length > 0) {
+          foundWork = allWorks.find((w: any) => w.slug === slug);
+          console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
         }
       }
 
@@ -168,20 +166,26 @@ export default function WorkPage() {
     return () => {
       active = false;
     };
-  }, [slug, language, authorId, allWorks]);
+  }, [slug, language, authorId]);
 
   if (loading || isWorksLoading) {
     return null;
   }
 
   // Don't show NotFound until we're sure the work doesn't exist
-  // Wait for all data to load before rendering NotFound
+  // Check if work exists in baseWorks before showing NotFound
   if (!work || !author) {
     // If details are still loading, keep showing null instead of NotFound
     if (isDetailsLoading) {
       return null;
     }
-    return <NotFound />;
+    // Final check: verify work doesn't exist in baseWorks before showing 404
+    const workExistsInBase = slug && baseWorks[slug as keyof typeof baseWorks];
+    if (!workExistsInBase) {
+      return <NotFound />;
+    }
+    // Work exists in baseWorks but hasn't loaded yet, keep waiting
+    return null;
   }
 
   const detail = details;
