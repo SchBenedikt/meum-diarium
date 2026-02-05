@@ -43,6 +43,7 @@ export function useWorks() {
 
 /**
  * Hook to load work details from static JSON (public/api/works-details/{slug}.json)
+ * Transforms language-organized data into the expected component structure
  */
 export function useWorkDetails(slug: string | undefined) {
   const [details, setDetails] = useState<any | null>(null);
@@ -72,11 +73,33 @@ export function useWorkDetails(slug: string | undefined) {
           return;
         }
 
-        const detailsData = await response.json();
+        const rawData = await response.json();
         const apiFetchTime = Date.now() - apiStartTime;
         
+        // Transform language-organized data into component structure
+        // If data has language keys (de, en, etc.), use the default language (de)
+        const langData = rawData.de || rawData;
+        
+        const transformedDetails = {
+          context: langData.contextTitle ? {
+            title: langData.contextTitle,
+            paragraphs: langData.contextParagraphs || [],
+            timeline: langData.contextTimeline || []
+          } : null,
+          bookChapters: langData.bookChapters || [],
+          sections: langData.sections || [],
+          literaryFeatures: langData.literaryFeatures || [],
+          keyMoments: langData.keyMoments || [],
+          quotes: langData.quotes || [],
+          impact: langData.impact ? {
+            title: langData.impact.title || 'Wirkung und Erbe',
+            paragraphs: langData.impact.paragraphs || [],
+            highlights: langData.impact.highlights || []
+          } : null
+        };
+        
         console.log(`✅ [useWorkDetails] Loaded details for "${slug}" (${apiFetchTime}ms)`);
-        setDetails(detailsData);
+        setDetails(transformedDetails);
       } catch (err) {
         console.error(`❌ [useWorkDetails] Error loading details for "${slug}":`, err);
         setError(err instanceof Error ? err : new Error('Unknown error'));
