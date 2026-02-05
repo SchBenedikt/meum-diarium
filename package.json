@@ -6,18 +6,18 @@
   "scripts": {
     "dev": "concurrently \"vite --host\" \"npm run server\"",
     "debug": "vite --host",
-    "server": "tsx watch server/index.ts",
-    "prebuild": "tsx scripts/generate-sitemap.ts && tsx scripts/export-api-data.ts",
-    "api:export": "tsx scripts/export-api-data.ts",
+    "server": "npx tsx watch server/index.ts",
+    "prebuild": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/export-api-data.ts",
+    "api:export": "npx tsx scripts/export-api-data.ts",
     "build": "vite build",
-    "sitemap:watch": "tsx scripts/watch-sitemap.ts",
-    "sitemap": "tsx scripts/generate-sitemap.ts",
+    "sitemap:watch": "npx tsx scripts/watch-sitemap.ts",
+    "sitemap": "npx tsx scripts/generate-sitemap.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "db:verify": "tsx scripts/verify-database.ts",
-    "db:verify:remote": "tsx scripts/verify-database.ts --remote",
-    "db:check-duplicates": "tsx scripts/check-duplicates.ts"
+    "db:verify": "npx tsx scripts/verify-database.ts",
+    "db:verify:remote": "npx tsx scripts/verify-database.ts --remote",
+    "db:check-duplicates": "npx tsx scripts/check-duplicates.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
