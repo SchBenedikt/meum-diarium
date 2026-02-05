@@ -8,15 +8,12 @@ import { useLanguage } from '@/context/LanguageContext';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-
 export function GeneralAboutPageNew() {
   const { setCurrentAuthor } = useAuthor();
   const { t } = useLanguage();
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   const features = [
     {
       icon: Zap,
@@ -55,14 +52,12 @@ export function GeneralAboutPageNew() {
       gradient: 'from-red-500/20 to-red-500/5',
     },
   ];
-
   const stats = [
     { value: '5', label: t('about.stats.authors') || 'Autoren', icon: Users },
     { value: '92+', label: t('about.stats.entries') || 'Lexikon-Einträge', icon: BookOpen },
     { value: '3', label: t('about.stats.languages') || 'Sprachen', icon: Globe2 },
     { value: '170+', label: t('about.stats.years') || 'Jahre Geschichte', icon: Clock },
   ];
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
@@ -70,7 +65,6 @@ export function GeneralAboutPageNew() {
         description={t('about.pageDescription') || 'Erlebe römische Geschichte durch die Augen ihrer Protagonisten. KI-gestützt, quellenbasiert, interaktiv.'}
         tags={['Römische Geschichte', 'Caesar', 'Cicero', 'Augustus', 'Seneca', 'Catilina', 'Tagebuch', 'Wissenschaft']}
       />
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-24 sm:py-32 overflow-hidden">
@@ -79,7 +73,6 @@ export function GeneralAboutPageNew() {
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px] animate-pulse" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
-
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -91,7 +84,6 @@ export function GeneralAboutPageNew() {
                 <Sparkles className="mr-2 h-4 w-4" />
                 {t('about.badge') || 'Über Das Projekt'}
               </Badge>
-
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter">
                 <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                   {t('about.hero.title1') || 'Geschichte'}
@@ -101,11 +93,9 @@ export function GeneralAboutPageNew() {
                   {t('about.hero.title2') || 'neu erleben'}
                 </span>
               </h1>
-
               <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light mb-12 max-w-3xl mx-auto">
                 {t('about.hero.description') || 'Meum Diarium verbindet persönliche Tagebücher mit wissenschaftlicher Analyse und macht die römische Geschichte durch modernste KI-Technologie erlebbar.'}
               </p>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/caesar">
                   <Button size="lg" className="rounded-full px-8 h-14 text-base">
@@ -123,7 +113,6 @@ export function GeneralAboutPageNew() {
             </motion.div>
           </div>
         </section>
-
         {/* Stats Section */}
         <section className="py-16 bg-gradient-to-b from-background to-secondary/20 border-y border-border">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -149,7 +138,6 @@ export function GeneralAboutPageNew() {
             </div>
           </div>
         </section>
-
         {/* Features Grid */}
         <section className="py-20">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -170,7 +158,6 @@ export function GeneralAboutPageNew() {
                 {t('about.features.subtitle') || 'Eine umfassende Plattform für das Studium der römischen Geschichte'}
               </p>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, i) => (
                 <motion.div
@@ -197,7 +184,6 @@ export function GeneralAboutPageNew() {
             </div>
           </div>
         </section>
-
         {/* Methodology Section */}
         <section className="py-20">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -218,7 +204,6 @@ export function GeneralAboutPageNew() {
                 {t('about.methodology.subtitle') || 'Wissenschaftliche Genauigkeit trifft auf moderne Technologie'}
               </p>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
@@ -257,7 +242,6 @@ export function GeneralAboutPageNew() {
             </div>
           </div>
         </section>
-
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-b from-background to-secondary/20 border-t border-border">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6 text-center">
@@ -274,11 +258,9 @@ export function GeneralAboutPageNew() {
                   {t('about.cta.title') || 'Bereit, Geschichte zu entdecken?'}
                 </h2>
               </div>
-              
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 {t('about.cta.description') || 'Tauche ein in die Welt des antiken Roms und erlebe Geschichte aus erster Hand'}
               </p>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link to="/caesar">
                   <Button size="lg" className="rounded-full px-10 h-16 text-lg">
@@ -297,7 +279,6 @@ export function GeneralAboutPageNew() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

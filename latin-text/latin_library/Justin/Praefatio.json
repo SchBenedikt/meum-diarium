@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "author": "Justin",
+    "work": "Praefatio",
+    "url": "https://www.thelatinlibrary.com/justin/praefatio.html",
+    "verse_count": 2,
+    "title": "Praefatio"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "HISTORIARUM PHILIPPICARUM IN EPITOMEN REDACTI A M. IUNIANO IUSTINO"
+    },
+    "2": {
+      "number": 2,
+      "text": "Cum multi ex Romanis etiam consularis dignitatis viri res Romanas Graeco peregrinoque sermone in historiam contulissent, seu aemulatione gloriae sive varietate et novitate operis delectatus vir priscae eloquentiae, Trogus Pompeius, Graecas et totius orbis historias Latino sermone conposuit, ut, cum nostra Graece, Graeca quoque nostra lingua legi possent, prorsus rem magni et animi et corporis adgressus. Nam cum plerisque auctoribus singulorum regum vel populorum res gestas scribentibus opus suum ardui laboris videatur, nonne nobis Pompeius Herculea audacia orbem terrarum adgressus videri debet, cuius libris omnium saeculorum, regum, nationum populorumque res gestae continentur? Et quae historici Graecorum, prout commodum cuique fuit iter, segregatim occupaverunt, omissis quae sine fructu erant, ea omnia Pompeius divisa temporibus et serie rerum digesta conposuit. Horum igitur quattuor et quadraginta voluminum (nam totidem edidit) per otium, quo in urbe versabamur, cognitione quaeque di..."
+    }
+  }
+}

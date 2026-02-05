@@ -64,7 +64,6 @@ export const de = {
     death: 'Tod',
     event: 'Ereignis',
     work: 'Werk',
-
     filter: 'Filter',
     clearFilters: 'Filter zurücksetzen',
     sources: 'Primärquellen',
@@ -112,7 +111,6 @@ export const de = {
     followUs: 'Folgen Sie uns',
     copyright: '© {{year}} Meum Diarium. Alle Rechte vorbehalten.',
     spqr: 'SPQR · Senatus Populusque Romanus',
-
     morePostsFrom: 'Weitere Beiträge von {{name}}',
     landing: {
         hero: {
@@ -241,7 +239,6 @@ export const de = {
             exploreProfile: 'Profil erkunden',
         }
     },
-
     noEventsFound: 'Keine Ereignisse für diese Filter gefunden',
     births: 'Geburten',
     timePeriod: 'Zeitraum',
@@ -271,7 +268,6 @@ export const de = {
     caesar_timeline_3_event: 'Sieg bei Pharsalus',
     caesar_timeline_4_year: '44 v. Chr.',
     caesar_timeline_4_event: 'Ermordung an den Iden des März',
-
     // Cicero
     cicero_name: 'Marcus Tullius Cicero',
     cicero_latinName: 'Marcus Tullius Cicero',
@@ -291,7 +287,6 @@ export const de = {
     cicero_timeline_2_event: 'Exil in Griechenland',
     cicero_timeline_3_year: '43 v. Chr.',
     cicero_timeline_3_event: 'Ermordung unter dem Triumvirat',
-
     // Augustus
     augustus_name: 'Augustus',
     augustus_latinName: 'Gaius Octavius Thurinus',
@@ -315,7 +310,6 @@ export const de = {
     augustus_timeline_4_event: 'Tod in Nola',
     augustus_timeline_5_year: '14 n. Chr.',
     augustus_timeline_5_event: 'Konsekration zum Divus Augustus',
-
     // Catilina
     catilina_name: 'Lucius Sergius Catilina',
     catilina_latinName: 'Lucius Sergius Catilina',
@@ -336,7 +330,6 @@ export const de = {
     catilina_timeline_3_event: 'Ciceros Rede "In Catilinam" & Flucht aus Rom',
     catilina_timeline_4_year: '62 v. Chr.',
     catilina_timeline_4_event: 'Tod in der Schlacht bei Pistoria',
-
     // Catilina Biography Page
     catilina: {
         snapshots: {
@@ -504,7 +497,6 @@ export const de = {
         },
         viewDiary: 'Zu den Einträgen',
     },
-
     // Seneca
     seneca_name: 'Seneca der Jüngere',
     seneca_latinName: 'Lucius Annaeus Seneca',
@@ -526,7 +518,6 @@ export const de = {
     seneca_timeline_3_event: 'Faktische Leitung der Regierungsgeschäfte',
     seneca_timeline_4_year: '65 n. Chr.',
     seneca_timeline_4_event: 'Erzwungener Selbstmord',
-
     // Seneca Biographie-Seite
     seneca: {
         worksSubtitle: 'Philosophische Werke und Tragödien',
@@ -534,7 +525,6 @@ export const de = {
         viewAll: 'Alle anzeigen',
         readArticle: 'Artikel lesen',
         readEntry: 'Zum Tagebucheintrag',
-
         snapshots: {
             title: 'Auf einen Blick',
             lifespan: 'Lebensspanne',
@@ -544,7 +534,6 @@ export const de = {
             philosophy: 'Philosophie',
             death: 'Tod',
         },
-
         biography: {
             title: 'Lebenslauf',
             subtitle: 'Lebensstationen, Werke und philosophische Beiträge',
@@ -555,7 +544,6 @@ export const de = {
             fullTimeline: 'Vollständige Zeitleiste',
             timelineHint: 'Folgen Sie Senecas Weg von Corduba zu den Höhen römischer Macht',
         },
-
         legacy: {
             title: 'Philosophisches Erbe',
             subtitle: 'Ideen, die das westliche Denken prägten',
@@ -572,7 +560,6 @@ export const de = {
             influence: 'Spätere Wirkung',
             influenceSummary: 'Beeinflusste christliches Denken, Renaissance-Humanismus und moderne Psychologie tiefgreifend. Von der Antike bis heute weitgelesen.',
         },
-
         deepDive: {
             title: 'Werke im Detail',
             subtitle: 'Bedeutende philosophische und literarische Beiträge',
@@ -581,7 +568,6 @@ export const de = {
             tragediesDetail: 'Neun Tragödien sind erhalten: Medea, Phaedra, Oedipus, Thyestes und andere. Anders als die griechische Tragödie betonten Senecas Stücke psychologischen Horror und moralische Korruption. Sie beeinflussten das elisabethanische Drama, besonders Shakespeare, tiefgreifend.',
             impact: 'Wirkung',
         },
-
         polarization: {
             title: 'Eine umstrittene Figur',
             subtitle: 'Warum die Meinungen über Seneca geteilt bleiben',
@@ -602,7 +588,6 @@ export const de = {
                 'Möglicherweise in die Pisonische Verschwörung gegen Nero verwickelt',
             ],
         },
-
         theaters: {
             title: 'Lebensstationen & Orte',
             subtitle: 'Von Hispanien ins Herz des Kaiserreichs',
@@ -611,7 +596,6 @@ export const de = {
             mapTitle: 'Senecas Welt',
             mapDesc: 'Von seiner Geburt in Corduba (heute Córdoba, Spanien) über sein Exil auf Korsika bis nach Rom, wo er als Neros Erzieher und Berater diente.',
         },
-
         locations: {
             corduba: {
                 title: 'Corduba (Hispanien)',
@@ -630,7 +614,6 @@ export const de = {
                 note: 'Kehrte 49 n. Chr. zurück, um den jungen Nero zu unterrichten. Wurde de facto Mitregent Roms (54-62 n. Chr.) mit Burrus während des "Quinquennium Neronis".',
             },
         },
-
         roles: {
             philosopher: {
                 title: 'Stoischer Philosoph',
@@ -663,7 +646,6 @@ export const de = {
                 note: 'Zog sich nach Burrus\' Tod aus dem öffentlichen Leben zurück. Widmete sich der Philosophie und schrieb die Briefe und Naturbetrachtungen.',
             },
         },
-
         works: {
             title: 'Hauptwerke',
             subtitle: 'Philosophie, Drama und Naturwissenschaft',
@@ -704,7 +686,6 @@ export const de = {
                 note: 'Berühmter Essay mit dem Argument, dass das Leben lang genug ist, wenn wir es weise nutzen. Wir verschwenden Zeit mit Trivialitäten.',
             },
         },
-
         rising: {
             title: 'Weg zur Macht',
             subtitle: 'Vom Exil zu den Höhen kaiserlichen Einflusses',
@@ -718,13 +699,11 @@ export const de = {
             exileDesc: 'Des Ehebruchs mit Julia Livilla, Caligulas Schwester, beschuldigt. Aufs karge Korsika verbannt. Schrieb philosophische Trostschriften und kultivierte Geduld.',
             exileTag: 'Wendepunkt',
             exileBtn: 'Über das Exil',
-
             phase2: 'Phase 2: Rückkehr & Einfluss',
             recall: 'Rückruf und Erziehung',
             recallDesc: 'Agrippina rief Seneca zurück, um ihren Sohn Nero zu unterrichten. Er lehrte den künftigen Kaiser Rhetorik, Philosophie und (theoretisch) Milde.',
             quinquennium: 'Die goldenen fünf Jahre',
             quinquenniumDesc: 'Mit dem Prätorianerpräfekten Burrus regierte Seneca faktisch Rom (54-59 n. Chr.). Diese Periode wurde später als aufgeklärte Herrschaft gefeiert.',
-
             phase3: 'Phase 3: Niedergang & Tod',
             burrusDeath: 'Tod des Burrus',
             burrusDeathDate: '62 n. Chr.',
@@ -736,7 +715,6 @@ export const de = {
             deathDate: '65 n. Chr.',
             deathDesc: 'Begegnete dem Tod mit stoischer Ruhe. Öffnete seine Adern und starb umgeben von Freunden, seine letzten Gedanken diktierend. Seine Frau Paulina versuchte, mit ihm zu sterben, wurde aber gerettet.',
         },
-
         quotes: {
             title: 'Zeitlose Weisheit',
             subtitle: 'Worte, die durch die Zeitalter hallen',
@@ -766,7 +744,6 @@ export const de = {
                 meaning: 'Böses entsteht aus dem Vergessen dessen, was wirklich zählt. Die Erinnerung an den Wert der Tugend führt uns natürlich zum Guten.',
             },
         },
-
         philosophy: {
             title: 'Stoische Philosophie',
             subtitle: 'Senecas Beitrag zur antiken Weisheit',
@@ -800,7 +777,6 @@ export const de = {
                 },
             ],
         },
-
         timeline: {
             life: {
                 birth: { title: 'Geburt in Corduba', note: 'Geboren in Hispanien in eine Ritterfamilie. Vater war der berühmte Rhetoriker Seneca der Ältere.' },
@@ -817,7 +793,6 @@ export const de = {
                 death: { title: 'Tod', note: 'Öffnete seine Adern. Starb ruhig, umgeben von Freunden, letzte philosophische Gedanken diktierend.' },
             },
         },
-
         tags: {
             philosophy: 'Philosophie',
             literature: 'Literatur',
@@ -827,14 +802,12 @@ export const de = {
             science: 'Naturwissenschaft',
             stoicism: 'Stoizismus',
         },
-
         horizons: {
             immediate: 'Unmittelbar',
             mediumTerm: 'Mittelfristig',
             longTerm: 'Langanhaltend',
         },
     },
-
     // Weitere UI-Texte
     minutes: 'Min.',
     posts: 'Beiträge',
@@ -866,7 +839,6 @@ export const de = {
     tag_navalBattle: 'Seeschlacht',
     tag_civilWar: 'Bürgerkrieg',
     tag_birth: 'Geburt',
-
     // PWA Installation
     installApp: 'App installieren',
     installAppDescription: 'Installiere Meum Diarium für schnellen Zugriff und ein besseres Erlebnis.',
@@ -886,7 +858,6 @@ export const de = {
     updateAvailableDesc: 'Eine neue Version ist bereit. Jetzt aktualisieren?',
     updateNow: 'Aktualisieren',
     updating: 'Aktualisiere...',
-
     // Feature Section (Landing Page)
     featuresSectionTitle: 'Funktionen entdecken',
     featuresSectionSubtitle: 'Mehr als nur ein Blog – ein umfassendes Lerntool.',
@@ -902,18 +873,15 @@ export const de = {
     featureLexiconDesc: 'Umfangreiches Nachschlagewerk für Begriffe und Personen.',
     featureAuthorsTitle: 'Autoren',
     featureAuthorsDesc: 'Vier einzigartige Perspektiven auf die Geschichte.',
-
     // Landing Page - Hero Section
     landing_tagline: 'ERLEBE DIE ANTIKE IN EINER NEUEN DIMENSION',
     landing_heroSubtitle: 'Wo die Stimmen der Vergangenheit auf die Intelligenz der Zukunft treffen. Tauche ein in die persönlichen Aufzeichnungen der größten Denker Roms.',
     landing_discoverAuthors: 'Autoren entdecken',
     landing_ourMission: 'Unsere Mission',
-
     // Landing Page - Stats
     landing_stat_authors: 'Antike Autoren',
     landing_stat_years: 'Jahre Geschichte',
     landing_stat_perspectives: 'Perspektiven',
-
     // Landing Page - Storytelling Section
     landing_aiReconstruction: 'KI-GESTÜTZTE REKONSTRUKTION',
     landing_historyAlive: 'Geschichte wird',
@@ -923,12 +891,10 @@ export const de = {
     landing_feature_ai: 'KI-Rekonstruktion',
     landing_feature_bilingual: 'Lateinisch & Deutsch',
     landing_feature_dialogs: 'Interaktive Dialoge',
-
     // Landing Page - Authors Section
     landing_protagonists: 'DIE PROTAGONISTEN',
     landing_fourVoices: 'Vier antike Persönlichkeiten',
     landing_authorsDesc: 'Erlebe die Geschichte Roms durch zwei Perspektiven: persönliche Tagebucheinträge und wissenschaftliche Analysen.',
-
     // Landing Page - Demo Chat Section
     landing_chatSimulation: 'KI-CHAT SIMULATION',
     landing_askCaesar: 'Stelle deine Fragen direkt an',
@@ -936,7 +902,6 @@ export const de = {
     landing_chat_feature1: 'Authentische historische Quellen als Basis',
     landing_chat_feature2: 'KI-gestützte Persönlichkeitsmodellierung',
     landing_chat_feature3: 'Lateinische und deutsche Antworten',
-
     // Demo Chat Widget
     chat_placeholder: 'Stelle Caesar eine Frage...',
     chat_demo: 'Interaktive Demo • Probiere es aus!',
@@ -944,7 +909,6 @@ export const de = {
     chat_active: 'Aktiv',
     chat_typing: 'Caesar tippt...',
     chat_greeting: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über den Rubikon, meine Feldzüge in Gallien oder meine Zeit als Diktator.',
-
     // Admin Panel
     admin_title: 'CMS Control Center',
     admin_subtitle: 'Alle Inhalte an einem Ort steuern',
@@ -955,7 +919,6 @@ export const de = {
     admin_recentlyEdited: 'Zuletzt bearbeitet',
     admin_recentlyEditedDesc: 'Schnell zurück in Beiträge, Seiten oder Lexikon-Einträge.',
     admin_newContent: 'Neuer Inhalt',
-
     // Admin Quick Links
     admin_link_posts: 'Beiträge',
     admin_link_posts_desc: 'Artikel verfassen, editieren und veröffentlichen',
@@ -969,7 +932,6 @@ export const de = {
     admin_link_media_desc: 'Bilderbibliothek öffnen und Assets wiederverwenden',
     admin_link_settings: 'Einstellungen',
     admin_link_settings_desc: 'Branding, Sprache und PWA konfigurieren',
-
     // Admin Tabs
     admin_tab_posts: 'Beiträge',
     admin_tab_authors: 'Autoren',
@@ -978,7 +940,6 @@ export const de = {
     admin_tab_pages: 'Seiten',
     admin_tab_translations: 'i18n',
     admin_tab_analytics: 'Analytics',
-
     // Admin Analytics
     admin_analytics_title: 'Analytics Dashboard',
     admin_analytics_desc: 'Übersicht über Besucherstatistiken und Engagement',
@@ -989,7 +950,6 @@ export const de = {
     admin_analytics_topPosts: 'Top Beiträge',
     admin_analytics_authorPerformance: 'Autoren Performance',
     admin_analytics_demo: 'Dies ist eine Demo-Ansicht. Für echte Analytics-Daten kann eine Integration mit Google Analytics, Plausible oder ähnlichen Services eingerichtet werden.',
-
     // Admin Translations
     admin_translations_title: 'Übersetzungen verwalten',
     admin_translations_search: 'Schlüssel oder Text suchen...',
@@ -1003,7 +963,6 @@ export const de = {
     admin_translations_hint1: 'Änderungen werden in de.ts gespeichert und erfordern einen Rebuild',
     admin_translations_hint2: 'Variablen wie {{variable}} müssen in allen Sprachen beibehalten werden',
     admin_translations_hint3: 'HTML-Tags wie <strong> werden unterstützt',
-
     // Common Actions
     action_edit: 'Bearbeiten',
     action_delete: 'Löschen',
@@ -1013,7 +972,6 @@ export const de = {
     action_create: 'Erstellen',
     action_export: 'Exportieren',
     action_import: 'Importieren',
-
     // Common Labels
     label_title: 'Titel',
     label_author: 'Autor',
@@ -1027,7 +985,6 @@ export const de = {
     label_page: 'Seite',
     label_term: 'Begriff',
     label_tag: 'Tag',
-
     // Index / Chat
     index: {
         historicalChat: 'Historisches Gespräch',
@@ -1039,7 +996,6 @@ export const de = {
         suggestionAchievements: 'Die größten Erfolge',
         suggestionEmpire: 'Das Römische Reich',
     },
-
     // Caesar Page
     caesar: {
         worksSubtitle: 'Literarische Werke und Schriften',
@@ -1282,4 +1238,3 @@ export const de = {
         year: 'Jahr',
     }
 };
-

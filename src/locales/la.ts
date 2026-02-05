@@ -268,7 +268,6 @@ export const la = {
     caesar_timeline_3_event: 'Victoria Pharsalica',
     caesar_timeline_4_year: '44 a.C.n.',
     caesar_timeline_4_event: 'Caedes Idibus Martiis',
-
     // Cicero
     cicero_name: 'Marcus Tullius Cicero',
     cicero_latinName: 'Marcus Tullius Cicero',
@@ -288,7 +287,6 @@ export const la = {
     cicero_timeline_2_event: 'Exilium in Graecia',
     cicero_timeline_3_year: '43 a.C.n.',
     cicero_timeline_3_event: 'Caedes sub Triumviratu',
-
     // Augustus
     augustus_name: 'Augustus',
     augustus_latinName: 'Gaius Octavius Thurinus',
@@ -312,7 +310,6 @@ export const la = {
     augustus_timeline_4_event: 'Obitus Nolae',
     augustus_timeline_5_year: '14 p.C.n.',
     augustus_timeline_5_event: 'Consecratio Divus Augustus',
-
     // Catilina
     catilina_name: 'Lucius Sergius Catilina',
     catilina_latinName: 'Lucius Sergius Catilina',
@@ -333,7 +330,6 @@ export const la = {
     catilina_timeline_3_event: 'Oratio Ciceronis "In Catilinam" & fuga ex urbe',
     catilina_timeline_4_year: '62 a.C.n.',
     catilina_timeline_4_event: 'Mors in pugna apud Pistoriam',
-
     // Catilina Biography Page
     catilina: {
         snapshots: {
@@ -501,7 +497,6 @@ export const la = {
         },
         viewDiary: 'Ad Diarium',
     },
-
     // Seneca
     seneca_name: 'Seneca Minor',
     seneca_latinName: 'Lucius Annaeus Seneca',
@@ -523,7 +518,6 @@ export const la = {
     seneca_timeline_3_event: 'Gubernatio Rei Publicae',
     seneca_timeline_4_year: '65 p.C.n.',
     seneca_timeline_4_event: 'Suicidium Coactum',
-
     // Seneca Pagina Biographica
     seneca: {
         worksSubtitle: 'Opera Philosophica et Tragoediae',
@@ -531,7 +525,6 @@ export const la = {
         viewAll: 'Omnes Videre',
         readArticle: 'Legere Commentarium',
         readEntry: 'Ad Commentarium',
-
         snapshots: {
             title: 'Breviter',
             lifespan: 'Vita',
@@ -541,7 +534,6 @@ export const la = {
             philosophy: 'Philosophia',
             death: 'Mors',
         },
-
         biography: {
             title: 'Curriculum Vitae',
             subtitle: 'Stationes vitae, opera et contributiones philosophicae',
@@ -552,7 +544,6 @@ export const la = {
             fullTimeline: 'Temporum Ordo Plenus',
             timelineHint: 'Sequere iter Senecae ab Corduba ad fastigium potestatis Romanae',
         },
-
         legacy: {
             title: 'Hereditas Philosophica',
             subtitle: 'Ideae quae cogitationem Occidentalem formaverunt',
@@ -569,7 +560,6 @@ export const la = {
             influence: 'Influentia Posterior',
             influenceSummary: 'Cogitationem Christianam, humanismum Renascentiae et psychologiam modernam profunde movit. Ab antiquitate ad hodie late lectus.',
         },
-
         deepDive: {
             title: 'Opera in Particulari',
             subtitle: 'Contributiones philosophicae et litterariae magnae',
@@ -578,7 +568,6 @@ export const la = {
             tragediesDetail: 'Novem tragoediae supersunt: Medea, Phaedra, Oedipus, Thyestes et aliae. Dissimiles a tragoedia Graeca, fabulae Senecae horrorem psychologicum et corruptionem moralem emphasizaverunt. Drama Elisabethanum, praesertim Shakespearem, profunde moverunt.',
             impact: 'Effectus',
         },
-
         polarization: {
             title: 'Figura Controversa',
             subtitle: 'Cur opiniones de Seneca divisae manent',
@@ -599,7 +588,6 @@ export const la = {
                 'Fortasse in coniurationem Pisonianam contra Neronem implicatus',
             ],
         },
-
         theaters: {
             title: 'Stationes Vitae et Loca',
             subtitle: 'Ab Hispania ad cor Imperii Romani',
@@ -608,7 +596,6 @@ export const la = {
             mapTitle: 'Mundus Senecae',
             mapDesc: 'A nativitate Cordubae (hodie Córdoba, Hispania) per exilium in Corsica ad Romam ubi doctor et consiliarius Neronis fuit.',
         },
-
         locations: {
             corduba: {
                 title: 'Corduba (Hispania)',
@@ -627,7 +614,6 @@ export const la = {
                 note: 'XLIX p.C.n. rediit ut Neronem iuvenem doceret. Factus est de facto co-gubernator Romae (LIV-LXII p.C.n.) cum Burro tempore "Quinquennii Neroniani".',
             },
         },
-
         roles: {
             philosopher: {
                 title: 'Philosophus Stoicus',
@@ -660,7 +646,6 @@ export const la = {
                 note: 'Post mortem Burri a vita publica secessit. Se philosophiae dedit, Epistulas et Quaestiones Naturales scribens.',
             },
         },
-
         works: {
             title: 'Opera Praecipua',
             subtitle: 'Philosophia, drama et scientia naturalis',
@@ -701,7 +686,6 @@ export const la = {
                 note: 'Tractatus celebris argumentans vitam satis longam esse si prudenter utimur. Tempus in nugis consumimus.',
             },
         },
-
         rising: {
             title: 'Iter ad Potestatem',
             subtitle: 'Ab exilio ad fastigia influentiae imperialis',
@@ -715,13 +699,11 @@ export const la = {
             exileDesc: 'Adulterii cum Iulia Livilla, sorore Caligulae, accusatus. In Corsicam sterilem missus. Consolationes philosophicas scripsit et patientiam colebat.',
             exileTag: 'Punctum Mutationis',
             exileBtn: 'De Exilio',
-
             phase2: 'Pars II: Reditus et Influentia',
             recall: 'Revocatio et Magisterium',
             recallDesc: 'Agrippina Senecam revocavit ut filium Neronem doceret. Futurum imperatorem rhetoricam, philosophiam et (theoria) clementiam docuit.',
             quinquennium: 'Quinque Anni Aurei',
             quinquenniumDesc: 'Cum Praefecto Praetorio Burro, Seneca Romam de facto gubernavit (LIV-LIX p.C.n.). Haec periodus postea ut gubernatio illuminata celebrata est.',
-
             phase3: 'Pars III: Declinatio et Mors',
             burrusDeath: 'Mors Burri',
             burrusDeathDate: 'LXII p.C.n.',
@@ -733,7 +715,6 @@ export const la = {
             deathDate: 'LXV p.C.n.',
             deathDesc: 'Morti cum tranquillitate Stoica occurrit. Venas aperuit et mortuus est amicis circumstantibus, ultimas cogitationes dictans. Uxor eius Paulina cum eo mori conata est sed servata est.',
         },
-
         quotes: {
             title: 'Sapientia Aeterna',
             subtitle: 'Verba quae per aetates resonant',
@@ -763,7 +744,6 @@ export const la = {
                 meaning: 'Malum ex oblivione eorum quae vere important venit. Memoria valoris virtutis naturaliter nos ad bonum ducit.',
             },
         },
-
         philosophy: {
             title: 'Philosophia Stoica',
             subtitle: 'Contributio Senecae ad sapientiam antiquam',
@@ -797,7 +777,6 @@ export const la = {
                 },
             ],
         },
-
         timeline: {
             life: {
                 birth: { title: 'Nativitas Cordubae', note: 'Natus in Hispania in familiam equestrem. Pater fuit rhetor celeberrimus Seneca Maior.' },
@@ -814,7 +793,6 @@ export const la = {
                 death: { title: 'Mors', note: 'Venas aperuit. Tranquille mortuus est, amicis circumstantibus, ultimas cogitationes philosophicas dictans.' },
             },
         },
-
         tags: {
             philosophy: 'Philosophia',
             literature: 'Litterae',
@@ -824,14 +802,12 @@ export const la = {
             science: 'Scientia Naturalis',
             stoicism: 'Stoicismus',
         },
-
         horizons: {
             immediate: 'Immediatus',
             mediumTerm: 'Medius Terminus',
             longTerm: 'Diuturnus',
         },
     },
-
     // Aliae Textus UI
     minutes: 'min.',
     posts: 'Commentarii',
@@ -863,7 +839,6 @@ export const la = {
     tag_navalBattle: 'Proelium Navale',
     tag_civilWar: 'Bellum Civile',
     tag_birth: 'Natus',
-
     // PWA Installation
     installApp: 'App installare',
     installAppDescription: 'Installa Meum Diarium pro accessu celeri et experientia meliore.',
@@ -883,7 +858,6 @@ export const la = {
     updateAvailableDesc: 'Nova versio parata est. Nunc renovare?',
     updateNow: 'Renovare',
     updating: 'Renovans...',
-
     // Feature Section (Landing Page)
     featuresSectionTitle: 'Explora Munera',
     featuresSectionSubtitle: 'Plus quam diarium – instrumentum eruditionis.',
@@ -899,18 +873,15 @@ export const la = {
     featureLexiconDesc: 'Vademecum terminorum et personarum.',
     featureAuthorsTitle: 'Auctores',
     featureAuthorsDesc: 'Quattuor prospectivae unicae de historia.',
-
     // Landing Page - Hero Section
     landing_tagline: 'EXPERIRE ANTIQUITATEM IN DIMENSIONE NOVA',
     landing_heroSubtitle: 'Ubi voces praeteriti occurrunt intellegentiae futuri. Immergere in monumentis personalibus maximorum sapientium Romae.',
     landing_discoverAuthors: 'Auctores Explorare',
     landing_ourMission: 'Missio Nostra',
-
     // Landing Page - Stats
     landing_stat_authors: 'Auctores Antiqui',
     landing_stat_years: 'Anni Historiae',
     landing_stat_perspectives: 'Prospectivae',
-
     // Landing Page - Storytelling Section
     landing_aiReconstruction: 'RESTITUTIO KI-FULTA',
     landing_historyAlive: 'Historia',
@@ -920,12 +891,10 @@ export const la = {
     landing_feature_ai: 'Restitutio KI',
     landing_feature_bilingual: 'Latine & Germanice',
     landing_feature_dialogs: 'Dialogi Interactivi',
-
     // Landing Page - Authors Section
     landing_protagonists: 'PROTAGONISTAE',
     landing_fourVoices: 'Quattuor Voces Antiquitatis',
     landing_authorsDesc: 'Experire historiam Romae per duas prospectivas: commentarios diarii personales et analyses scientificas.',
-
     // Landing Page - Demo Chat Section
     landing_chatSimulation: 'SIMULATIO COLLOQUII KI',
     landing_askCaesar: 'Interroga directe',
@@ -933,7 +902,6 @@ export const la = {
     landing_chat_feature1: 'Fontes historici authentici pro fundamento',
     landing_chat_feature2: 'Fictio personarum KI-fulta',
     landing_chat_feature3: 'Responsa Latine et Germanice',
-
     // Demo Chat Widget
     chat_placeholder: 'Interroga Caesarem...',
     chat_demo: 'Simulatio Interactiva • Tempta!',
@@ -941,7 +909,6 @@ export const la = {
     chat_active: 'Activum',
     chat_typing: 'Caesar scribit...',
     chat_greeting: 'Salve! Ego sum Gaius Iulius Caesar. Interroga me de Rubicone, de bellis in Gallia, aut de tempore meo dictatoris.',
-
     // Admin Panel
     admin_title: 'CMS Control Center',
     admin_subtitle: 'Omnia contenta uno loco regere',
@@ -952,7 +919,6 @@ export const la = {
     admin_recentlyEdited: 'Nuper Editum',
     admin_recentlyEditedDesc: 'Celeriter ad commentarios aut paginas redire.',
     admin_newContent: 'Contentum Novum',
-
     // Admin Quick Links
     admin_link_posts: 'Commentarii',
     admin_link_posts_desc: 'Articulos scribere, edere et publicare',
@@ -966,7 +932,6 @@ export const la = {
     admin_link_media_desc: 'Bibliothecam mediorum aperire',
     admin_link_settings: 'Configurationes',
     admin_link_settings_desc: 'Branding, linguam et PWA configurare',
-
     // Admin Tabs
     admin_tab_posts: 'Commentarii',
     admin_tab_authors: 'Auctores',
@@ -975,7 +940,6 @@ export const la = {
     admin_tab_pages: 'Paginae',
     admin_tab_translations: 'i18n',
     admin_tab_analytics: 'Analytics',
-
     // Admin Analytics
     admin_analytics_title: 'Analytics Dashboard',
     admin_analytics_desc: 'Conspectus statisticarum et usus',
@@ -986,7 +950,6 @@ export const la = {
     admin_analytics_topPosts: 'Top Commentarii',
     admin_analytics_authorPerformance: 'Auctores Optimi',
     admin_analytics_demo: 'Hoc est visus simulationis. Pro datis veris, integratio cum Google Analytics fieri potest.',
-
     // Admin Translations
     admin_translations_title: 'Versiones Administrare',
     admin_translations_search: 'Quaere claves aut textum...',
@@ -1000,7 +963,6 @@ export const la = {
     admin_translations_hint1: 'Mutationes in la.ts servantur et re-formatio opus est',
     admin_translations_hint2: 'Variabilia sicut {{variable}} servanda sunt',
     admin_translations_hint3: 'HTML sicut <strong> licent',
-
     // Common Actions
     action_edit: 'Edere',
     action_delete: 'Delere',
@@ -1010,7 +972,6 @@ export const la = {
     action_create: 'Creare',
     action_export: 'Exportare',
     action_import: 'Importare',
-
     // Common Labels
     label_title: 'Titulus',
     label_author: 'Auctor',
@@ -1024,7 +985,6 @@ export const la = {
     label_page: 'Pagina',
     label_term: 'Terminus',
     label_tag: 'Nota',
-
     // Index / Chat
     index: {
         historicalChat: 'Colloquium Historicum',
@@ -1036,7 +996,6 @@ export const la = {
         suggestionAchievements: 'Res gestae maximae',
         suggestionEmpire: 'Imperium Romanum',
     },
-
     // Caesar Page
     caesar: {
         worksSubtitle: 'Opera Litteraria et Scripta',
@@ -1279,4 +1238,3 @@ export const la = {
         year: 'Annus',
     }
 };
-

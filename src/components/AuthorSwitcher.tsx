@@ -1,4 +1,3 @@
-
 import { useAuthor } from '@/context/AuthorContext';
 import { useAuthors } from '@/hooks/use-authors';
 import { Check, ChevronDown, Loader2 } from 'lucide-react';
@@ -11,11 +10,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 export function AuthorSwitcher() {
   const { currentAuthor, setCurrentAuthor, authorInfo } = useAuthor();
   const { authors, isLoading } = useAuthors();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

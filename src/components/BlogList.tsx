@@ -8,28 +8,23 @@ import { cn } from '@/lib/utils';
 import { BlogPost } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getPostTags } from '@/lib/tag-utils';
-
 type ContentFilter = 'all' | 'diary' | 'scientific';
-
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
   const { posts, isLoading } = usePosts();
   const [searchQuery, setSearchQuery] = useState('');
   const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
   const { language } = useLanguage();
-
   // Helper function to check if a post has content for a specific perspective
   const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
     const content = post?.content?.[perspective];
     return content != null && typeof content === 'string' && content.trim().length > 0;
   };
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return 'Unbekannt';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
   };
-
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
     return posts
@@ -59,7 +54,6 @@ export function BlogList() {
         return ay - by;
       });
   }, [posts, currentAuthor, contentFilter, searchQuery]);
-
   // Group posts by year
   const groupedByYear = useMemo(() => {
     const groups: Record<number, BlogPost[]> = {};
@@ -81,29 +75,24 @@ export function BlogList() {
     });
     return Object.entries(groups).sort((a, b) => Number(b[0]) - Number(a[0]));
   }, [filteredPosts]);
-
   // Count posts with content
   const counts = useMemo(() => {
     if (!posts || posts.length === 0) {
       return { all: 0, diary: 0, scientific: 0 };
     }
-
     const authorPosts = posts.filter(p => p.author === currentAuthor);
     const hasContentMemo = (post: BlogPost, perspective: 'diary' | 'scientific') => {
       const content = post?.content?.[perspective];
       return content != null && typeof content === 'string' && content.trim().length > 0;
     };
-
     const diaryCount = authorPosts.filter(p => hasContentMemo(p, 'diary')).length;
     const scientificCount = authorPosts.filter(p => hasContentMemo(p, 'scientific')).length;
-
     return {
       all: authorPosts.length,
       diary: diaryCount,
       scientific: scientificCount,
     };
   }, [posts, currentAuthor]);
-
   if (!currentAuthor || !authorInfo) return null;
   if (isLoading) {
     return (
@@ -112,7 +101,6 @@ export function BlogList() {
       </div>
     );
   }
-
   return (
     <section className="px-4 sm:px-6">
       <div className="">
@@ -125,7 +113,6 @@ export function BlogList() {
             </div>
             <BookOpen className="h-6 w-6 text-primary/40 shrink-0" />
           </div>
-
           {/* Content Filter Buttons */}
           <div className="flex flex-wrap gap-2">
             {[
@@ -149,7 +136,6 @@ export function BlogList() {
             ))}
           </div>
         </div>
-
         {/* Search Filter */}
         <div className="mb-8">
           <SearchFilter
@@ -158,7 +144,6 @@ export function BlogList() {
             placeholder="Beiträge durchsuchen..."
           />
         </div>
-
         {/* Posts grouped by year */}
         {filteredPosts.length > 0 ? (
           <div className="space-y-12">

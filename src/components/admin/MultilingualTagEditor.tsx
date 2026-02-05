@@ -7,12 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Plus, X, Edit, Check, Globe, Hash, AlertCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 interface MultilingualTagEditorProps {
     tags: TagWithTranslations[];
     onChange: (tags: TagWithTranslations[]) => void;
 }
-
 export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorProps) {
     const [isAddingTag, setIsAddingTag] = useState(false);
     const [editingTagId, setEditingTagId] = useState<string | null>(null);
@@ -21,14 +19,11 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
         en: '',
         la: ''
     });
-
     const handleAddTag = () => {
         if (!newTag.de.trim()) {
             return;
         }
-
         const tagId = newTag.de.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
-        
         const newTagData: TagWithTranslations = {
             id: tagId,
             translations: {
@@ -37,12 +32,10 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                 la: newTag.la.trim() || newTag.de.trim()
             }
         };
-
         onChange([...tags, newTagData]);
         setNewTag({ de: '', en: '', la: '' });
         setIsAddingTag(false);
     };
-
     const handleUpdateTag = (tagId: string) => {
         const updatedTags = tags.map(tag => {
             if (tag.id === tagId) {
@@ -57,16 +50,13 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
             }
             return tag;
         });
-        
         onChange(updatedTags);
         setEditingTagId(null);
         setNewTag({ de: '', en: '', la: '' });
     };
-
     const handleRemoveTag = (tagId: string) => {
         onChange(tags.filter(tag => tag.id !== tagId));
     };
-
     const startEditing = (tag: TagWithTranslations) => {
         setEditingTagId(tag.id);
         setNewTag({
@@ -75,13 +65,11 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
             la: tag.translations.la
         });
     };
-
     const cancelEditing = () => {
         setEditingTagId(null);
         setIsAddingTag(false);
         setNewTag({ de: '', en: '', la: '' });
     };
-
     return (
         <Card>
             <CardHeader>
@@ -135,7 +123,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                         </div>
                     ))}
                 </div>
-
                 {/* Edit Form */}
                 {(isAddingTag || editingTagId) && (
                     <div className="p-4 border border-primary/20 rounded-lg bg-primary/5 space-y-4">
@@ -145,14 +132,12 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                 {editingTagId ? 'Tag bearbeiten' : 'Neues Tag hinzufügen'}
                             </h4>
                         </div>
-
                         <Tabs defaultValue="de" className="w-full">
                             <TabsList className="grid w-full grid-cols-3">
                                 <TabsTrigger value="de">🇩🇪 Deutsch</TabsTrigger>
                                 <TabsTrigger value="en">🇬🇧 English</TabsTrigger>
                                 <TabsTrigger value="la">🏛️ Latinum</TabsTrigger>
                             </TabsList>
-
                             <TabsContent value="de" className="space-y-2">
                                 <Label className="text-xs">Deutscher Tag-Name</Label>
                                 <Input
@@ -167,7 +152,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                     </p>
                                 )}
                             </TabsContent>
-
                             <TabsContent value="en" className="space-y-2">
                                 <Label className="text-xs">English Tag Name</Label>
                                 <Input
@@ -176,7 +160,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                     placeholder="e.g. Warfare, Politics, Philosophy"
                                 />
                             </TabsContent>
-
                             <TabsContent value="la" className="space-y-2">
                                 <Label className="text-xs">Nomen Latinum</Label>
                                 <Input
@@ -186,7 +169,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                 />
                             </TabsContent>
                         </Tabs>
-
                         <div className="flex gap-2 justify-end">
                             <Button
                                 type="button"
@@ -209,7 +191,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                         </div>
                     </div>
                 )}
-
                 {/* Add Button */}
                 {!isAddingTag && !editingTagId && (
                     <Button
@@ -223,7 +204,6 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                         Neues Tag hinzufügen
                     </Button>
                 )}
-
                 {/* Info Box */}
                 <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-sm">
                     <div className="flex gap-2">

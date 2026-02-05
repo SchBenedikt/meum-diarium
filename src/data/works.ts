@@ -6,7 +6,6 @@ import resGestae from '@/content/works/res-gestae';
 import deRePublica from '@/content/works/de-re-publica';
 import deOfficiis from '@/content/works/de-officiis';
 import philippicae from '@/content/works/philippicae';
-
 export const works: Record<string, Work> = {
     'de-bello-gallico': deBelloGallico,
     'de-bello-civili': deBelloCivili,

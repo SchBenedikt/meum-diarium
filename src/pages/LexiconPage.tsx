@@ -21,7 +21,6 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-
 const categoryIcons: Record<string, React.ElementType> = {
   'Politik': Landmark,
   'Recht': Scale,
@@ -32,9 +31,7 @@ const categoryIcons: Record<string, React.ElementType> = {
   'Drama': Drama,
   'Bürgerkrieg': ChevronsRight,
 };
-
 const topCategories = ['Politik', 'Philosophie', 'Militär', 'Bürgerkrieg', 'Gesellschaft'];
-
 export default function LexiconPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,18 +41,14 @@ export default function LexiconPage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const { lexicon = [], isLoading } = useLexicon();
-
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   useEffect(() => {
     const category = searchParams.get('category');
     setActiveCategory(category);
   }, [searchParams]);
-
   const handleCategoryChange = (category: string | null) => {
     setActiveCategory(category);
     if (category) {
@@ -64,10 +57,8 @@ export default function LexiconPage() {
       setSearchParams({});
     }
   };
-
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const allCategories = useMemo(() => [...new Set(lexicon.map(e => e.category))].sort(), [lexicon]);
-
   const filteredLexicon = useMemo(() => {
     return lexicon
       .filter(entry => {
@@ -80,7 +71,6 @@ export default function LexiconPage() {
       })
       .sort((a, b) => (a.term || "").localeCompare(b.term || ""));
   }, [searchTerm, activeCategory, lexicon]);
-
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {
       const firstLetter = entry.term && entry.term.length > 0 ? entry.term[0].toUpperCase() : '?';
@@ -91,7 +81,6 @@ export default function LexiconPage() {
       return acc;
     }, {} as Record<string, LexiconEntry[]>);
   }, [filteredLexicon]);
-
   const handleLetterClick = (letter: string) => {
     const element = document.getElementById(`letter-${letter}`);
     if (element) {
@@ -103,19 +92,15 @@ export default function LexiconPage() {
       setTimeout(() => setActiveLetter(null), 1000);
     }
   };
-
   const handleResetFilters = () => {
     setSearchTerm('');
     handleCategoryChange(null);
   };
-
   const totalEntries = lexicon.length;
   const searchPlaceholder = t('lexiconSearchPlaceholder') || 'In den Annalen suchen...';
-
   return (
     <div className="min-h-screen bg-background selection:bg-primary/10">
       <main className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
-
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div
@@ -134,7 +119,6 @@ export default function LexiconPage() {
               {t('lexiconDescription') || 'Entdecken Sie die Begriffe, die das antike Rom prägten. Von Politik bis Philosophie.'}
             </p>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -153,7 +137,6 @@ export default function LexiconPage() {
             </div>
           </motion.div>
         </div>
-
         {/* Search & Filter Bar */}
         <div className="sticky top-20 z-50 mb-12">
           <motion.div
@@ -171,7 +154,6 @@ export default function LexiconPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-
             <div className="flex items-center gap-2 p-1 md:border-l border-border/40 w-full md:w-auto overflow-x-auto no-scrollbar">
               <Popover open={categoryPopoverOpen} onOpenChange={setCategoryPopoverOpen}>
                 <PopoverTrigger asChild>
@@ -206,7 +188,6 @@ export default function LexiconPage() {
                   </Command>
                 </PopoverContent>
               </Popover>
-
               {(activeCategory || searchTerm) && (
                 <Button
                   variant="ghost"
@@ -220,7 +201,6 @@ export default function LexiconPage() {
             </div>
           </motion.div>
         </div>
-
         {/* Minimalist Alphabet Nav */}
         <div className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 mb-16 text-[10px] font-black uppercase tracking-tighter">
           {alphabet.map(letter => {
@@ -243,7 +223,6 @@ export default function LexiconPage() {
             );
           })}
         </div>
-
         {/* Entries */}
         <div className="space-y-24">
           {Object.keys(groupedLexicon).length > 0 ? (
@@ -255,7 +234,6 @@ export default function LexiconPage() {
                   </span>
                   <div className="h-[1px] flex-1 bg-border/40" />
                 </div>
-
                 <div className="grid gap-px bg-border/40 border border-border/40 rounded-[2rem] overflow-hidden shadow-sm">
                   {groupedLexicon[letter].map(entry => (
                     <Link
@@ -265,7 +243,6 @@ export default function LexiconPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/entry:opacity-100 transition-opacity duration-500" />
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover/entry:scale-y-100 transition-transform duration-500 origin-top" />
-
                       <div className="relative flex flex-col sm:flex-row sm:items-start justify-between gap-6">
                         <div className="space-y-4 flex-1">
                           <div className="flex items-center gap-3">

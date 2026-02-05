@@ -6,20 +6,16 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lock, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
-
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = (location.state as any)?.from?.pathname || '/admin';
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
     if (login(password)) {
       toast.success('Login erfolgreich!');
       navigate(from, { replace: true });
@@ -29,7 +25,6 @@ export default function AdminLoginPage() {
       setPassword('');
     }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-4">
       <Card className="w-full max-w-md">

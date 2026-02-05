@@ -16,7 +16,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
 type BentoCard = {
   title: string;
   description: string;
@@ -26,19 +25,15 @@ type BentoCard = {
   className?: string;
   delay?: number;
 };
-
 // bentoCards removed in favor of FeatureShowcase component
-
 export default function LandingHero() {
   const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
-
   const recentPosts = posts
     ? [...posts]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 6)
     : [];
-
   return (
     <div className="min-h-screen bg-background selection:bg-primary/20">
       {/* Visual Background Elements */}
@@ -46,7 +41,6 @@ export default function LandingHero() {
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
       </div>
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 sm:pt-48 sm:pb-32 overflow-hidden">
         <div className="container relative mx-auto max-w-6xl px-4 sm:px-6">
@@ -60,15 +54,12 @@ export default function LandingHero() {
               <Sparkles className="mr-2 h-3.5 w-3.5" />
               {t('landing.hero.aiPowered') || 'ERLEBE GESCHICHTE NEU'}
             </Badge>
-
             <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl mb-8 text-foreground leading-[1.1] tracking-tighter font-extrabold">
               <span className="text-primary">Meum Diarium</span>
             </h1>
-
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed font-light">
               {t('landing.hero.voicesOfAntiquity') || 'Tauche ein in die Gedankenwelt der größten Persönlichkeiten der Antike.'}
             </p>
-
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link to="/caesar">
                 <Button size="lg" className="rounded-full px-8 h-14 text-base bg-primary transition-transform duration-300">
@@ -86,9 +77,7 @@ export default function LandingHero() {
           </motion.div>
         </div>
       </section>
-
       <FeatureShowcase />
-
       {/* Statistics Section */}
       <section className="py-16 bg-gradient-to-b from-background to-secondary/20 border-y border-border">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
@@ -118,14 +107,12 @@ export default function LandingHero() {
           </motion.div>
         </div>
       </section>
-
       {/* Authors Section */}
       <section id="autoren" className="pt-16 pb-0 bg-background relative border-t border-border">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <AuthorGrid />
         </div>
       </section>
-
       {/* Recent Insights Section */}
       {!isLoading && recentPosts.length > 0 && (
         <section className="pt-32 pb-16 bg-secondary/20 border-t border-border overflow-hidden">
@@ -144,13 +131,11 @@ export default function LandingHero() {
                 </Link>
               </div>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {recentPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} className="bg-background/80 h-full" />
               ))}
             </div>
-
             <div className="flex justify-center mt-8">
               <Link to="/search" className="group">
                 <motion.div
@@ -159,11 +144,9 @@ export default function LandingHero() {
                   className="relative flex items-center gap-6 px-10 py-6 bg-card/40 backdrop-blur-xl border border-border/40 rounded-[2.5rem] premium-glow overflow-hidden transition-all duration-500"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                   <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:rotate-6 transition-all duration-500">
                     <Library className="h-7 w-7 text-primary" />
                   </div>
-
                   <div className="text-left">
                     <h3 className="font-display text-2xl font-bold tracking-tight mb-0.5">
                       Alle Beiträge entdecken
@@ -172,7 +155,6 @@ export default function LandingHero() {
                       Durchstöbere unser gesamtes Archiv
                     </p>
                   </div>
-
                   <div className="ml-4 h-10 w-10 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
                     <ArrowRight className="h-5 w-5" />
                   </div>

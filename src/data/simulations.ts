@@ -1,10 +1,8 @@
-
 export interface SimulationStats {
     welfare: number; // Wohl des Volkes
     influence: number; // Privater Einfluss/Popularität
     power: number; // Politische/Militärische Macht
 }
-
 export interface SimulationChoice {
     id: string;
     text: string;
@@ -16,14 +14,12 @@ export interface SimulationChoice {
     response: string; // Narrative result of this choice
     nextEventId: string | 'END';
 }
-
 export interface SimulationEvent {
     id: string;
     title: string;
     description: string;
     choices: SimulationChoice[];
 }
-
 export interface SimulationScenario {
     id: string;
     authorId: string;
@@ -34,7 +30,6 @@ export interface SimulationScenario {
     events: Record<string, SimulationEvent>;
     startEventId: string;
 }
-
 export const simulations: Record<string, SimulationScenario[]> = {
     caesar: [
         {

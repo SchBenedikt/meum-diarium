@@ -1,20 +1,14 @@
-
-
 export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca' | 'catilina';
-
 export type Perspective = 'diary' | 'scientific';
-
 export interface TagTranslation {
   de: string;
   en: string;
   la: string;
 }
-
 export interface TagWithTranslations {
   id: string; // Unique identifier for the tag
   translations: TagTranslation;
 }
-
 export interface AuthorInfo {
   id: Author;
   name: string;
@@ -54,12 +48,10 @@ export interface AuthorInfo {
     };
   };
 }
-
 export interface SidebarFact {
   label: string;
   value: string;
 }
-
 export interface BlogPostTranslations {
   title?: string; // Kept for backward compatibility
   diaryTitle?: string;
@@ -71,7 +63,6 @@ export interface BlogPostTranslations {
   };
   tags?: string[]; // Legacy: simple string tags for backward compatibility
 }
-
 export interface BlogPost {
   id: string;
   slug: string;
@@ -118,12 +109,10 @@ export interface BlogPost {
     };
   };
 }
-
 export interface TimelineEventTranslations {
   title: string;
   description: string;
 }
-
 export interface TimelineEvent {
   year: number;
   title: string;
@@ -136,7 +125,6 @@ export interface TimelineEvent {
     la?: TimelineEventTranslations;
   };
 }
-
 export interface LexiconEntryTranslations {
   term: string;
   definition: string;
@@ -144,7 +132,6 @@ export interface LexiconEntryTranslations {
   etymology?: string;
   variants?: string[];
 }
-
 export interface LexiconEntry {
   term: string;
   slug: string;
@@ -159,14 +146,12 @@ export interface LexiconEntry {
     la?: LexiconEntryTranslations;
   };
 }
-
 export interface WorkTranslations {
   title: string;
   summary: string;
   takeaway: string;
   structure: { title: string; content: string }[];
 }
-
 export interface Work {
   title: string;
   author: Author;
@@ -180,5 +165,4 @@ export interface Work {
     la?: WorkTranslations;
   };
 }
-
 export type Language = 'de' | 'de-la' | 'en' | 'en-la' | 'la';

@@ -3,14 +3,12 @@ import { MapPin } from 'lucide-react';
 import { AuthorInfo } from '@/types/blog';
 import { PageContent, PageLanguage } from '@/types/page';
 import { useRef } from 'react';
-
 interface AuthorAboutHeroProps {
     authorInfo: AuthorInfo;
     authorPage: PageContent | null;
     language: string;
     birthPlace: string;
 }
-
 export function AuthorAboutHero({
     authorInfo,
     authorPage,
@@ -19,15 +17,12 @@ export function AuthorAboutHero({
 }: AuthorAboutHeroProps) {
     const langKey = language.split('-')[0] as PageLanguage;
     const ref = useRef<HTMLDivElement>(null);
-
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start start", "end start"]
     });
-
     const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5]);
-
     return (
         <section ref={ref} className="relative min-h-screen flex items-end pb-32 pt-32 overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -38,7 +33,6 @@ export function AuthorAboutHero({
                     style={{ y, opacity }}
                 />
             </div>
-
             <div className="container mx-auto relative z-20 px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -57,7 +51,6 @@ export function AuthorAboutHero({
                     <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-display italic mb-4">
                         {authorPage?.translations?.[langKey]?.heroSubtitle || authorPage?.heroSubtitle || authorInfo.title}
                     </p>
-
                     <div className="flex flex-col gap-4">
                         <div className="h-px w-12 bg-primary/30 rounded-full" />
                         <p className="text-sm sm:text-base text-muted-foreground max-w-2xl font-light leading-relaxed">

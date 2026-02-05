@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -8,17 +7,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { BlogPost, Author } from '@/types/blog';
 import { toast } from 'sonner';
-
 interface PostEditorProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     post?: BlogPost; // If provided, edit mode
     onSuccess: () => void;
 }
-
 export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorProps) {
     const [loading, setLoading] = useState(false);
-
     // Simple state for form for now
     const [formData, setFormData] = useState({
         title: post?.title || '',
@@ -37,11 +33,9 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         quoteDate: post?.sidebar?.quote?.date || '',
         quoteSource: post?.sidebar?.quote?.source || '',
     });
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
         try {
             const payload = {
                 id: post?.id || Date.now().toString(), // simplified ID gen
@@ -77,12 +71,10 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                       : undefined,
                 },
             };
-
             // Determine whether this is a create or update
             const isUpdate = !!post;
             const finalSlug = payload.slug;
             const finalAuthor = payload.author;
-
             let res: Response;
             if (isUpdate) {
                 // Update: PUT /api/posts/{author}/{slug}
@@ -99,7 +91,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                     body: JSON.stringify(payload)
                 });
             }
-
             if (res.ok) {
                 toast.success(isUpdate ? 'Post updated' : 'Post created');
                 onSuccess();
@@ -115,14 +106,12 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
             setLoading(false);
         }
     };
-
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>{post ? 'Edit Post' : 'Create New Post'}</DialogTitle>
                 </DialogHeader>
-
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -142,7 +131,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             />
                         </div>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-primary/20 rounded-lg bg-primary/5">
                         <div className="space-y-2">
                             <Label className="text-primary flex items-center gap-2">
@@ -165,7 +153,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             />
                         </div>
                     </div>
-
                     <div className="space-y-2">
                         <Label>Author</Label>
                         <Select
@@ -183,7 +170,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             </SelectContent>
                         </Select>
                     </div>
-
                     <div className="space-y-2">
                         <Label>Excerpt</Label>
                         <Textarea
@@ -192,7 +178,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             placeholder="Kurze Zusammenfassung des Beitrags"
                         />
                     </div>
-
                     <div className="space-y-2">
                         <Label className="flex items-center gap-2">📔 Content (Tagebuch)</Label>
                         <Textarea
@@ -202,7 +187,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             placeholder="Persönlicher Tagebuch-Inhalt..."
                         />
                     </div>
-
                     <div className="space-y-2">
                         <Label className="flex items-center gap-2">📚 Content (Wissenschaftlich)</Label>
                         <Textarea
@@ -212,7 +196,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             placeholder="Wissenschaftlicher Inhalt..."
                         />
                     </div>
-
                     <div className="space-y-3 p-4 border border-border/60 rounded-lg bg-secondary/30">
                         <Label className="font-semibold">Zitat in der Seitenleiste</Label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,7 +263,6 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             </div>
                         </div>
                     </div>
-
                     <DialogFooter>
                         <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
                             Cancel

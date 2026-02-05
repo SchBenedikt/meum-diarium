@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
-
 interface BulkActionsProps {
   selectedItems: string[];
   onSelectAll?: () => void;
@@ -18,7 +17,6 @@ interface BulkActionsProps {
   onExport?: (ids: string[]) => void;
   totalItems: number;
 }
-
 export function BulkActions({
   selectedItems,
   onSelectAll,
@@ -28,18 +26,15 @@ export function BulkActions({
   totalItems,
 }: BulkActionsProps) {
   const [action, setAction] = useState<string>('');
-
   const handleApply = () => {
     if (!action) {
       toast.error('Bitte wähle eine Aktion aus');
       return;
     }
-
     if (selectedItems.length === 0) {
       toast.error('Bitte wähle mindestens ein Element aus');
       return;
     }
-
     switch (action) {
       case 'delete':
         if (window.confirm(`${selectedItems.length} Element(e) wirklich löschen?`)) {
@@ -54,13 +49,10 @@ export function BulkActions({
       default:
         toast.info('Aktion nicht implementiert');
     }
-    
     setAction('');
   };
-
   const allSelected = selectedItems.length === totalItems && totalItems > 0;
   const someSelected = selectedItems.length > 0 && selectedItems.length < totalItems;
-
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 py-2 border-b border-border">
       <div className="flex items-center gap-2">
@@ -85,7 +77,6 @@ export function BulkActions({
           )}
         </span>
       </div>
-
       {selectedItems.length > 0 && (
         <div className="flex items-center gap-2 flex-1">
           <Select value={action} onValueChange={setAction}>

@@ -10,17 +10,14 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { FeatureShowcase } from './home/FeatureShowcase';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 export default function LandingHeroNew() {
   const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
-
   const recentPosts = posts
     ? [...posts]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 6)
     : [];
-
   const features = [
     {
       icon: Zap,
@@ -59,7 +56,6 @@ export default function LandingHeroNew() {
       color: 'from-red-500/20 to-red-500/10',
     },
   ];
-
   return (
     <div className="min-h-screen bg-background selection:bg-primary/20">
       {/* Animated Background */}
@@ -68,7 +64,6 @@ export default function LandingHeroNew() {
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
         <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] rounded-full bg-primary/3 blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
-
       {/* Hero Section - Completely Redesigned */}
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden">
         <div className="container relative mx-auto max-w-7xl px-4 sm:px-6">
@@ -85,7 +80,6 @@ export default function LandingHeroNew() {
                   <Sparkles className="mr-2 h-4 w-4" />
                   {t('landing.hero.badge') || 'Erlebe Geschichte Neu'}
                 </Badge>
-
                 <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground leading-[1.1] tracking-tight">
                   <span className="font-extrabold text-primary tracking-[0.06em] sm:tracking-[0.08em]">
                     {t('landing.hero.title1') || 'Historia'}
@@ -95,11 +89,9 @@ export default function LandingHeroNew() {
                     {t('landing.hero.title2') || 'zum Leben erweckt'}
                   </span>
                 </h1>
-
                 <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light mb-8">
                   {t('landing.hero.description') || 'Tauche ein in die Gedankenwelt der größten Persönlichkeiten des antiken Roms. KI-gestützt. Quellenbasiert. Interaktiv.'}
                 </p>
-
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link to="/caesar">
                     <Button size="lg" className="rounded-full px-8 h-14 text-base bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/50">
@@ -115,7 +107,6 @@ export default function LandingHeroNew() {
                   </Link>
                 </div>
               </div>
-
               {/* Stats Row */}
               <div className="grid grid-cols-4 gap-4 pt-8 border-t border-border/50">
                 {[
@@ -137,7 +128,6 @@ export default function LandingHeroNew() {
                 ))}
               </div>
             </motion.div>
-
             {/* Right Column - Visual Element */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -151,10 +141,7 @@ export default function LandingHeroNew() {
                   alt="Julius Caesar"
                   className="w-full h-auto object-cover"
                 />
-
-
               </div>
-
               {/* Floating Elements */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -163,7 +150,6 @@ export default function LandingHeroNew() {
               >
                 <Award className="w-12 h-12 text-primary" />
               </motion.div>
-
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
@@ -175,7 +161,6 @@ export default function LandingHeroNew() {
           </div>
         </div>
       </section>
-
       {/* Features Grid - Modern Cards */}
       <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -196,7 +181,6 @@ export default function LandingHeroNew() {
               {t('landing.features.subtitle') || 'Eine umfassende Plattform für das Studium der römischen Antike'}
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
               <motion.div
@@ -223,7 +207,6 @@ export default function LandingHeroNew() {
           </div>
         </div>
       </section>
-
       {/* Authors Section with Enhanced Design */}
       <section id="autoren" className="py-20 bg-background border-y border-border">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -244,11 +227,9 @@ export default function LandingHeroNew() {
               {t('landing.authors.subtitle') || 'Entdecke die Tagebücher und Werke der größten römischen Persönlichkeiten'}
             </p>
           </motion.div>
-
           <AuthorGrid />
         </div>
       </section>
-
       {/* Recent Insights - Blog Posts */}
       {!isLoading && recentPosts.length > 0 && (
         <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
@@ -280,7 +261,6 @@ export default function LandingHeroNew() {
                 </Link>
               </div>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {recentPosts.slice(0, 6).map((post, i) => (
                 <motion.div
@@ -297,7 +277,6 @@ export default function LandingHeroNew() {
           </div>
         </section>
       )}
-
       {/* Call to Action Section */}
       <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 text-center">
@@ -314,11 +293,9 @@ export default function LandingHeroNew() {
                 {t('landing.cta.title') || 'Bereit für deine Zeitreise?'}
               </h2>
             </div>
-
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               {t('landing.cta.description') || 'Beginne jetzt deine Reise durch die faszinierende Welt des antiken Roms'}
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link to="/caesar">
                 <Button size="lg" className="rounded-full px-10 h-16 text-lg bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/50">

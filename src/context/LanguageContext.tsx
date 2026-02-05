@@ -1,38 +1,50 @@
-import React, { createContext, useContext, useEffect, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Language } from '@/types/blog';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { de } from '@/locales/de';
 
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (language: Language) => void;
+  language: string;
+  setLanguage: (language: string) => void;
   t: <T = string>(key: string, options?: any) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const { t: i18nT, i18n } = useTranslation();
+// Helper function to get nested property from object using dot notation
+function getNestedProperty(obj: any, path: string): any {
+  return path.split('.').reduce((current, key) => current?.[key], obj);
+}
 
-  const setLanguage = (lang: Language) => {
-    i18n.changeLanguage(lang);
-    // localStorage and document.lang are handled by i18next detection now, 
-    // but for safety/redundancy or specific logic we can keep effects if needed.
-    // i18next-browser-languagedetector handles localStorage.
+// German-only translation context
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const language = 'de';
+  
+  const setLanguage = () => {
+    // No-op - always German
   };
 
-  // Sync document lang
-  useEffect(() => {
-    const baseLang = i18n.language.split('-')[0];
-    document.documentElement.lang = baseLang;
-    document.documentElement.dir = ['ar', 'fa', 'he', 'ur'].includes(baseLang) ? 'rtl' : 'ltr';
-  }, [i18n.language]);
-
   const t = <T = string>(key: string, options?: any): T => {
-    return i18nT(key, options) as T;
+    // Look up the translation in the German translations object
+    const translation = getNestedProperty(de, key);
+    
+    // If translation found, handle variable replacement
+    if (translation) {
+      if (typeof translation === 'string' && options) {
+        // Replace variables like {{minutes}} with actual values
+        let result = translation;
+        Object.keys(options).forEach(optionKey => {
+          result = result.replace(new RegExp(`{{${optionKey}}}`, 'g'), options[optionKey]);
+        });
+        return result as T;
+      }
+      return translation as T;
+    }
+    
+    // Fallback to key if translation not found
+    return key as T;
   };
 
   return (
-    <LanguageContext.Provider value={{ language: i18n.language as Language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

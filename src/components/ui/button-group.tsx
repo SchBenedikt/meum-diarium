@@ -1,7 +1,6 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-
 const buttonGroupVariants = cva(
     "inline-flex items-center rounded-full border border-border bg-surface-container-low p-1",
     {
@@ -16,11 +15,9 @@ const buttonGroupVariants = cva(
         },
     }
 )
-
 interface ButtonGroupProps
     extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof buttonGroupVariants> { }
-
 const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     ({ className, orientation, ...props }, ref) => {
         return (
@@ -33,5 +30,4 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     }
 )
 ButtonGroup.displayName = "ButtonGroup"
-
 export { ButtonGroup, buttonGroupVariants }

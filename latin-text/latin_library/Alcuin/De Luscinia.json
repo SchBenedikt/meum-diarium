@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "author": "Alcuin",
+    "work": "De Luscinia",
+    "url": "https://www.thelatinlibrary.com/alcuin/luscinia.shtml",
+    "verse_count": 1,
+    "title": "De Luscinia"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Quae te dextra mihi rapuit, luscinia, ruscis,\nilla meae fuerat invida laetitiae.\nTu mea dulcisonis implesti pectora musis,\natque animum moestum carmine mellifluo.\nQua propter veniant volucrum simul undique coetus\ncarmine te mecum plangere Pierio.\nSpreta colore tamen fueras non spreta canendo.\nLata sub angusto gutture vox sonuit, \ndulce melos iterans vario modulamine Musae,\natque creatorem semper in ore canens.\nNoctibus in furvis nusquam cessavit ab odis,\nvox veneranda sacris, o decus atque decor.\nQuid mirum, cherubim, seraphim si voce tonantem\nperpetua laudent, dum tua sic potuit?"
+    }
+  }
+}

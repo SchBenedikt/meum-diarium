@@ -9,21 +9,17 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Sparkles, Star, Brain, Target, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 export function AuthorGrid() {
   const { setCurrentAuthor } = useAuthor();
   const { t } = useLanguage();
   const { authors, isLoading } = useAuthors();
-  
   if (isLoading || Object.keys(authors).length === 0) {
     return null;
   }
-
   return (
     <section className="py-24 sm:py-32 bg-background relative overflow-hidden">
       {/* Subtle decoration */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.01)_1px,transparent_1px)] bg-[size:100px_100px] opacity-20 dark:bg-[linear-gradient(rgba(255,255,255,.01)_1px,transparent_1px)]" />
-
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -34,22 +30,18 @@ export function AuthorGrid() {
           className="text-center mb-16 sm:mb-20"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-4">{t('voicesOfAntiquity')}</p>
-
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
             {t('chooseAnAuthor')}
           </h2>
-
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('authorSelectionDesc')}
           </p>
         </motion.div>
-
         {/* Standard Premium Grid - 3 Columns for larger but balanced cards */}
         <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {Object.values(authors).map((author, index) => {
             const translatedInfo = getTranslatedAuthorInfo(author.id, t);
             const isCaesar = author.id === 'caesar';
-
             return (
               <motion.div
                 key={author.id}
@@ -77,7 +69,6 @@ export function AuthorGrid() {
                         alt={translatedInfo.name}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                       />
-
                       {/* Premium Accent Corner */}
                       {isCaesar && (
                         <div className="absolute top-6 left-6">
@@ -86,10 +77,8 @@ export function AuthorGrid() {
                           </Badge>
                         </div>
                       )}
-
                       {/* Floating Arrow removed */}
                     </div>
-
                     {/* Content Section */}
                     <CardContent className="p-8 space-y-4">
                       <div className="space-y-1">
@@ -103,11 +92,9 @@ export function AuthorGrid() {
                           {translatedInfo.years}
                         </p>
                       </div>
-
                       <p className="text-sm text-muted-foreground/80 leading-relaxed line-clamp-3">
                         {translatedInfo.description}
                       </p>
-
                       <div className="pt-2 flex items-center text-xs font-bold text-primary uppercase tracking-widest transition-all">
                         <span>{t('landing.authorGrid.exploreProfile')}</span>
                         <ArrowRight className="ml-1 w-3.5 h-3.5" />
@@ -119,7 +106,6 @@ export function AuthorGrid() {
             );
           })}
         </div>
-
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

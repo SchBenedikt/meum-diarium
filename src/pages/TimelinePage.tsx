@@ -11,18 +11,15 @@ import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline } from '@/lib/translator';
 import { TimelineEvent } from '@/types/blog';
-
 export default function TimelinePage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(staticTimelineEvents);
   const { posts } = usePosts();
   const heroPreview = useMemo(() => timelineEvents.slice(0, 4), [timelineEvents]);
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   useEffect(() => {
     async function translateAndMerge() {
       const translatedStatic = await getTranslatedTimeline(language);
@@ -31,15 +28,12 @@ export default function TimelinePage() {
     }
     translateAndMerge();
   }, [language, posts]);
-
   const formatYear = (year: number) => year > 0 ? `${year} n. Chr.` : `${Math.abs(year)} v. Chr.`;
-
   const stats = useMemo(() => {
     const totalEvents = timelineEvents.length;
     const safeYears = timelineEvents.filter(e => Number.isFinite(e.year)).map(e => e.year);
     const minYear = safeYears.length ? Math.min(...safeYears) : -100;
     const maxYear = safeYears.length ? Math.max(...safeYears) : 100;
-
     return [
       { icon: BookMarked, value: totalEvents.toString(), label: t('events') },
       { icon: Users, value: '4', label: t('personalities') },
@@ -47,7 +41,6 @@ export default function TimelinePage() {
       { icon: Calendar, value: formatYear(maxYear), label: t('end') },
     ];
   }, [timelineEvents, t]);
-
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
       <main className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
@@ -69,7 +62,6 @@ export default function TimelinePage() {
               {t('timelineDescription') || 'Eine chronologische Reise durch die Geschichte Roms. Von der Gründung bis zum Fall.'}
             </p>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -93,7 +85,6 @@ export default function TimelinePage() {
             </div>
           </motion.div>
         </div>
-
         {/* Timeline Content */}
         <div id="timeline-content">
           <Timeline />

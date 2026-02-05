@@ -1,14 +1,11 @@
-
 import { Perspective } from '@/types/blog';
 import { BookOpen, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
-
 interface PerspectiveToggleProps {
   value: Perspective;
   onChange: (value: Perspective) => void;
 }
-
 export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
   const { t } = useLanguage();
   return (

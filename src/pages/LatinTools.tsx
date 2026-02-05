@@ -1,4 +1,3 @@
-
 import { useState, useMemo, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useLexicon } from '@/hooks/use-lexicon';
@@ -24,14 +23,11 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { cn } from '@/lib/utils';
-
 type Mode = 'menu' | 'flashcards' | 'learn' | 'match' | 'test';
-
 export default function LatinTools() {
     const [searchParams, setSearchParams] = useSearchParams();
     const mode = (searchParams.get('mode') as Mode) || 'menu';
     const { lexicon = [] } = useLexicon();
-
     const setMode = (newMode: Mode) => {
         if (newMode === 'menu') {
             setSearchParams({});
@@ -39,39 +35,32 @@ export default function LatinTools() {
             setSearchParams({ mode: newMode });
         }
     };
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [learnedCount, setLearnedCount] = useState(0);
-
     // Filter lexicon to ensure we have Latin translations
     const vocabList = useMemo(() => {
         return lexicon.filter(entry => entry.translations?.la?.term);
     }, []);
-
     const progress = (currentIndex / vocabList.length) * 100;
-
     const handleNext = () => {
         setIsFlipped(false);
         if (currentIndex < vocabList.length - 1) {
             setCurrentIndex(prev => prev + 1);
         }
     };
-
     const handlePrev = () => {
         setIsFlipped(false);
         if (currentIndex > 0) {
             setCurrentIndex(prev => prev - 1);
         }
     };
-
     const reset = () => {
         setCurrentIndex(0);
         setIsFlipped(false);
         setLearnedCount(0);
         setMode('menu');
     };
-
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -92,7 +81,6 @@ export default function LatinTools() {
                             Wähle zwischen klassischen Texten und interaktivem Vokabeltraining.
                         </p>
                     </motion.div>
-
                     {mode !== 'menu' ? (
                         <button
                             onClick={() => setMode('menu')}
@@ -106,7 +94,6 @@ export default function LatinTools() {
                         </Link>
                     )}
                 </div>
-
                 <AnimatePresence mode="wait">
                     {mode === 'menu' && (
                         <motion.div
@@ -123,7 +110,7 @@ export default function LatinTools() {
                                     <p className="text-sm text-muted-foreground/70 font-light">Lies klassische lateinische Werke direkt eingebettet.</p>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-                                    <Link to="/latin/reader" className="contents">
+                                    <Link to="/reader" className="contents">
                                         <ModeCard
                                             icon={Languages}
                                             title="Text-Reader"
@@ -135,7 +122,6 @@ export default function LatinTools() {
                                     </Link>
                                 </div>
                             </div>
-
                             {/* Vokabeln Lernen */}
                             <div className="space-y-4">
                                 <div className="px-2">
@@ -181,7 +167,6 @@ export default function LatinTools() {
                             </div>
                         </motion.div>
                     )}
-
                     {mode === 'flashcards' && (
                         <motion.div
                             key="flashcards"
@@ -197,7 +182,6 @@ export default function LatinTools() {
                                 </div>
                                 <Progress value={progress} className="h-1.5" />
                             </div>
-
                             <div
                                 className="perspective-1000 h-[400px] cursor-pointer"
                                 onClick={() => setIsFlipped(!isFlipped)}
@@ -214,7 +198,6 @@ export default function LatinTools() {
                                         </h2>
                                         <p className="mt-12 text-muted-foreground/30 text-[10px] uppercase tracking-widest animate-pulse font-medium">Klicken zum Wenden</p>
                                     </Card>
-
                                     <Card
                                         className="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-12 card-modern bg-primary/5 border-primary/40 backdrop-blur-md shadow-2xl"
                                         style={{ transform: 'rotateY(180deg)' }}
@@ -231,12 +214,10 @@ export default function LatinTools() {
                                     </Card>
                                 </motion.div>
                             </div>
-
                             <div className="flex items-center justify-between gap-4 py-4 px-2">
                                 <Button variant="ghost" size="icon" onClick={handlePrev} disabled={currentIndex === 0} className="h-14 w-14 rounded-2xl bg-secondary/20 border border-transparent hover:border-border/60 transition-all hover:scale-105 active:scale-95">
                                     <ChevronLeft className="h-6 w-6" />
                                 </Button>
-
                                 <div className="flex gap-4">
                                     <Button variant="outline" onClick={reset} className="rounded-2xl h-14 px-8 border-border/60 hover:bg-card/60">
                                         <RotateCcw className="h-4 w-4 mr-2" /> Menü
@@ -245,22 +226,18 @@ export default function LatinTools() {
                                         Nächste <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                     </Button>
                                 </div>
-
                                 <Button variant="ghost" size="icon" onClick={handleNext} disabled={currentIndex === vocabList.length - 1} className="h-14 w-14 rounded-2xl bg-secondary/20 border border-transparent hover:border-border/60 transition-all hover:scale-105 active:scale-95">
                                     <ChevronRight className="h-6 w-6" />
                                 </Button>
                             </div>
                         </motion.div>
                     )}
-
                     {mode === 'learn' && (
                         <LearnMode vocabList={vocabList} onComplete={reset} />
                     )}
-
                     {mode === 'match' && (
                         <MatchMode vocabList={vocabList} onComplete={reset} />
                     )}
-
                     {mode === 'test' && (
                         <TestMode vocabList={vocabList} onComplete={reset} />
                     )}
@@ -270,7 +247,6 @@ export default function LatinTools() {
         </div>
     );
 }
-
 function ModeCard({ icon: Icon, title, description, onClick, color, count, image }: any) {
     return (
         <motion.div
@@ -291,7 +267,7 @@ function ModeCard({ icon: Icon, title, description, onClick, color, count, image
                         alt={title}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent" />
+                    <div className="absolute inset-0 bg-card/60 backdrop-blur-sm" />
                     <div className={`absolute bottom-4 left-4 h-12 w-12 rounded-xl bg-background/50 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-lg`}>
                         <Icon className={cn("h-6 w-6", color)} />
                     </div>
@@ -301,7 +277,6 @@ function ModeCard({ icon: Icon, title, description, onClick, color, count, image
                         </div>
                     )}
                 </div>
-
                 {/* Content Area */}
                 <div className="flex flex-1 flex-col justify-between p-6 pt-4">
                     <div className="space-y-2">
@@ -312,7 +287,6 @@ function ModeCard({ icon: Icon, title, description, onClick, color, count, image
                             {description}
                         </p>
                     </div>
-
                     <div className="mt-6 flex items-center justify-between border-t border-border/10 pt-4">
                         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary group-hover:translate-x-1 transition-transform inline-flex items-center gap-2">
                             Jetzt starten <ChevronRight className="h-3 w-3" />
@@ -326,18 +300,15 @@ function ModeCard({ icon: Icon, title, description, onClick, color, count, image
         </motion.div>
     );
 }
-
 function LearnMode({ vocabList, onComplete }: any) {
     const [index, setIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [score, setScore] = useState(0);
     const [showResult, setShowResult] = useState(false);
-
     const questionsSubset = useMemo(() => {
         return vocabList.sort(() => 0.5 - Math.random()).slice(0, 10);
     }, [vocabList]);
-
     const options = useMemo(() => {
         if (!questionsSubset[index]) return [];
         const correct = questionsSubset[index].term;
@@ -346,17 +317,14 @@ function LearnMode({ vocabList, onComplete }: any) {
             .sort(() => 0.5 - Math.random())
             .slice(0, 3)
             .map(v => v.term);
-
         return [correct, ...others].sort(() => 0.5 - Math.random());
     }, [index, questionsSubset, vocabList]);
-
     const handleOptionClick = (option: string) => {
         if (selectedOption) return;
         setSelectedOption(option);
         const correct = option === questionsSubset[index].term;
         setIsCorrect(correct);
         if (correct) setScore(s => s + 1);
-
         setTimeout(() => {
             if (index < questionsSubset.length - 1) {
                 setIndex(i => i + 1);
@@ -367,7 +335,6 @@ function LearnMode({ vocabList, onComplete }: any) {
             }
         }, 1200);
     };
-
     if (showResult) {
         return (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-modern p-16 text-center space-y-8 max-w-2xl mx-auto bg-card/40 backdrop-blur-xl border-primary/20 shadow-2xl">
@@ -384,9 +351,7 @@ function LearnMode({ vocabList, onComplete }: any) {
             </motion.div>
         );
     }
-
     if (!questionsSubset[index]) return null;
-
     return (
         <div className="max-w-2xl mx-auto space-y-12 py-4">
             <div className="space-y-4">
@@ -396,14 +361,12 @@ function LearnMode({ vocabList, onComplete }: any) {
                 </div>
                 <Progress value={(index / questionsSubset.length) * 100} className="h-1 bg-primary/5" />
             </div>
-
             <div className="text-center space-y-10">
                 <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground/40">Was bedeutet dieses Wort?</p>
                 <h2 className="text-6xl sm:text-7xl font-display font-bold italic tracking-tighter text-foreground selection:bg-primary/30">
                     {questionsSubset[index].translations?.la?.term}
                 </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
                 {options.map((option) => (
                     <button
@@ -434,26 +397,22 @@ function LearnMode({ vocabList, onComplete }: any) {
         </div>
     );
 }
-
 function MatchMode({ vocabList, onComplete }: any) {
     const [tiles, setTiles] = useState<any[]>([]);
     const [selected, setSelected] = useState<number | null>(null);
     const [matched, setMatched] = useState<number[]>([]);
     const [time, setTime] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
-
     useEffect(() => {
         const subset = vocabList.sort(() => 0.5 - Math.random()).slice(0, 6);
         const latinTiles = subset.map((v, i) => ({ id: i, text: v.translations?.la?.term, pairId: i, type: 'la' }));
         const germanTiles = subset.map((v, i) => ({ id: i + 6, text: v.term, pairId: i, type: 'de' }));
         setTiles([...latinTiles, ...germanTiles].sort(() => 0.5 - Math.random()));
-
         const timer = setInterval(() => {
             if (!isFinished) setTime(t => t + 1);
         }, 1000);
         return () => clearInterval(timer);
     }, [vocabList, isFinished]);
-
     const handleTileClick = (index: number) => {
         if (matched.includes(index) || isFinished) return;
         if (selected === null) {
@@ -475,7 +434,6 @@ function MatchMode({ vocabList, onComplete }: any) {
             }
         }
     };
-
     if (isFinished) {
         return (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-modern p-16 text-center space-y-8 max-w-2xl mx-auto bg-card/40 backdrop-blur-xl border-emerald-500/20 shadow-2xl shadow-emerald-500/5">
@@ -492,7 +450,6 @@ function MatchMode({ vocabList, onComplete }: any) {
             </motion.div>
         );
     }
-
     return (
         <div className="max-w-4xl mx-auto space-y-12 py-4">
             <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground/60 px-1">
@@ -502,7 +459,6 @@ function MatchMode({ vocabList, onComplete }: any) {
                 </div>
                 <div>Gefunden: {matched.length / 2} / 6 Paare</div>
             </div>
-
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {tiles.map((tile, i) => (
                     <motion.button
@@ -525,7 +481,6 @@ function MatchMode({ vocabList, onComplete }: any) {
         </div>
     );
 }
-
 function TestMode({ vocabList, onComplete }: any) {
     const [index, setIndex] = useState(0);
     const [userInput, setUserInput] = useState('');
@@ -533,15 +488,12 @@ function TestMode({ vocabList, onComplete }: any) {
     const [score, setScore] = useState(0);
     const [showResult, setShowResult] = useState(false);
     const [questions] = useState(() => vocabList.sort(() => 0.5 - Math.random()).slice(0, 5));
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (isCorrect !== null || !userInput.trim()) return;
-
         const correct = userInput.toLowerCase().trim() === questions[index].term.toLowerCase().trim();
         setIsCorrect(correct);
         if (correct) setScore(s => s + 1);
-
         setTimeout(() => {
             if (index < questions.length - 1) {
                 setIndex(i => i + 1);
@@ -552,7 +504,6 @@ function TestMode({ vocabList, onComplete }: any) {
             }
         }, 1800);
     };
-
     if (showResult) {
         return (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-modern p-16 text-center space-y-8 max-w-2xl mx-auto bg-card/40 backdrop-blur-xl border-amber-500/20 shadow-2xl">
@@ -569,7 +520,6 @@ function TestMode({ vocabList, onComplete }: any) {
             </motion.div>
         );
     }
-
     return (
         <div className="max-w-xl mx-auto space-y-12 py-4">
             <div className="space-y-4 text-center">
@@ -583,7 +533,6 @@ function TestMode({ vocabList, onComplete }: any) {
                     {questions[index].translations?.la?.term}
                 </motion.h2>
             </div>
-
             <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="relative group">
                     <input
@@ -612,7 +561,6 @@ function TestMode({ vocabList, onComplete }: any) {
                         )}
                     </AnimatePresence>
                 </div>
-
                 <AnimatePresence>
                     {isCorrect === false && (
                         <motion.div
@@ -625,7 +573,6 @@ function TestMode({ vocabList, onComplete }: any) {
                         </motion.div>
                     )}
                 </AnimatePresence>
-
                 <Button type="submit" disabled={!userInput.trim() || isCorrect !== null} className="w-full h-16 rounded-2xl text-lg font-bold uppercase tracking-[0.2em] shadow-xl shadow-primary/10 hover:scale-[1.01] transition-transform active:scale-[0.99]">
                     Antwort prüfen
                 </Button>

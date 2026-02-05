@@ -18,11 +18,9 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedLexicon, getTranslatedPost } from '@/lib/translator';
 import { getPostTags } from '@/lib/tag-utils';
 import { PageHero } from '@/components/layout/PageHero';
-
 type SearchResult =
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry };
-
 const categoryIcons: Record<string, React.ElementType> = {
   'Politik': Landmark,
   'Recht': Scale,
@@ -33,27 +31,21 @@ const categoryIcons: Record<string, React.ElementType> = {
   'Drama': Drama,
   'Bürgerkrieg': ChevronsRight,
 };
-
 const topCategories = ['Politik', 'Philosophie', 'Militär', 'Bürgerkrieg', 'Gesellschaft'];
-
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { language, t } = useLanguage();
   const { posts: basePosts, isLoading } = usePosts();
-
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [activeCategories, setActiveCategories] = useState<string[]>(searchParams.getAll('category') || []);
   const [categoryPopoverOpen, setCategoryPopoverOpen] = useState(false);
   const { setCurrentAuthor } = useAuthor();
   const { lexicon = [] } = useLexicon();
-
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   useEffect(() => {
     async function translateContent() {
       const translatedLexicon = await getTranslatedLexicon(language);
@@ -65,23 +57,19 @@ export default function SearchPage() {
     }
     translateContent();
   }, [language, basePosts, isLoading]);
-
   useEffect(() => {
     setAllCategories([...new Set([
       ...posts.flatMap(p => getPostTags(p, language)),
       ...lexicon.map(l => l.category)
     ])].sort());
   }, [posts, lexicon]);
-
   useEffect(() => {
     setQuery(searchParams.get('q') || '');
     setActiveCategories(searchParams.getAll('category') || []);
   }, [searchParams]);
-
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
-
     const newParams = new URLSearchParams(searchParams);
     if (newQuery) {
       newParams.set('q', newQuery);
@@ -93,29 +81,22 @@ export default function SearchPage() {
     }, 300);
     return () => clearTimeout(handler);
   };
-
   const toggleCategory = (category: string) => {
     const newActiveCategories = activeCategories.includes(category)
       ? activeCategories.filter(c => c !== category)
       : [...activeCategories, category];
-
     setActiveCategories(newActiveCategories);
-
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('category');
     newActiveCategories.forEach(cat => newParams.append('category', cat));
     setSearchParams(newParams, { replace: true });
   }
-
   const results: SearchResult[] = useMemo(() => {
     const searchQuery = (searchParams.get('q') || '').toLowerCase();
     const categoryQuery = searchParams.getAll('category');
-
     if (!searchQuery && categoryQuery.length === 0) return [];
-
     let filteredPosts: BlogPost[] = posts;
     let filteredLexicon: LexiconEntry[] = lexicon;
-
     if (categoryQuery.length > 0) {
       filteredPosts = filteredPosts.filter(post =>
         categoryQuery.some(cat => post.tags.includes(cat))
@@ -124,7 +105,6 @@ export default function SearchPage() {
         categoryQuery.includes(entry.category)
       );
     }
-
     if (searchQuery) {
       filteredPosts = filteredPosts.filter(post =>
         post.title.toLowerCase().includes(searchQuery) ||
@@ -132,20 +112,15 @@ export default function SearchPage() {
         post.content.diary.toLowerCase().includes(searchQuery) ||
         authors[post.author].name.toLowerCase().includes(searchQuery)
       );
-
       filteredLexicon = filteredLexicon.filter(entry =>
         entry.term.toLowerCase().includes(searchQuery) ||
         entry.definition.toLowerCase().includes(searchQuery) ||
         (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery))
       );
     }
-
     return [...filteredPosts.map(p => ({ type: 'post', data: p }) as SearchResult), ...filteredLexicon.map(l => ({ type: 'lexicon', data: l }) as SearchResult)];
-
   }, [searchParams, posts, lexicon]);
-
   const displayQuery = query || activeCategories.join(', ');
-
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
       <main className="flex-1 pt-16 sm:pt-24">
@@ -158,13 +133,11 @@ export default function SearchPage() {
           >
             {/* Subtle background decoration */}
             <div className="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
             <div className="relative z-10 text-center space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.2em]">
                 <Search className="w-3 h-3" />
                 {t('search') || 'Suche'}
               </div>
-
               <div>
                 <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tighter text-foreground mb-4">
                   Finde <span className="text-primary italic">Wissen</span>
@@ -173,7 +146,6 @@ export default function SearchPage() {
                   {t('lexiconDescription') || 'Durchsuche Lexikon, Beiträge und Themen in einem einheitlichen Flow.'}
                 </p>
               </div>
-
               {/* Integrated Search */}
               <div className="max-w-2xl mx-auto pt-4">
                 <div className="glass-card flex items-center gap-3 px-4 py-2 rounded-2xl border-primary/20 focus-within:border-primary/40 transition-all">
@@ -204,7 +176,6 @@ export default function SearchPage() {
             </div>
           </motion.div>
         </div>
-
         <section className="py-14 sm:py-20">
           <div className="container mx-auto max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-10">
@@ -220,7 +191,6 @@ export default function SearchPage() {
                   )
                 })}
               </div>
-
               <div className="flex items-center justify-between">
                 <div className="flex flex-wrap items-center gap-2">
                   {activeCategories.map(cat => (
@@ -251,7 +221,6 @@ export default function SearchPage() {
                 </Popover>
               </div>
             </motion.div>
-
             <div className='max-w-2xl mx-auto'>
               {displayQuery ? (
                 results.length > 0 ? (

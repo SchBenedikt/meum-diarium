@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -15,13 +14,11 @@ import { upsertPage } from '@/lib/cms-store';
 import { PageContent, PageLanguage, PageHighlight, PageTranslation } from '@/types/page';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPage } from '@/lib/api';
-
 const emptyHighlight: PageHighlight = {
   title: '',
   description: '',
   icon: 'BookOpen',
 };
-
 const buildEmptyPage = (slug: string): PageContent => ({
   slug: slug || '',
   heroTitle: '',
@@ -35,7 +32,6 @@ const buildEmptyPage = (slug: string): PageContent => ({
     la: { highlights: [emptyHighlight] },
   },
 });
-
 export default function PageEditorPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -43,13 +39,11 @@ export default function PageEditorPage() {
   const queryClient = useQueryClient();
   const isNewPage = slug === 'new';
   const displaySlug = isNewPage ? 'new' : slug;
-
   const [loading, setLoading] = useState(false);
   const [pageSlug, setPageSlug] = useState(isNewPage ? '' : slug || 'about');
   const [page, setPage] = useState<PageContent>(() => buildEmptyPage(pageSlug));
   const [activeLang, setActiveLang] = useState<PageLanguage>('de');
   const { authors } = useAuthors();
-
   // Fetch page data if editing
   const { data: pageData, isLoading } = useQuery({
     queryKey: ['page', displaySlug],
@@ -59,14 +53,12 @@ export default function PageEditorPage() {
     },
     enabled: !isNewPage && !!slug
   });
-
   useEffect(() => {
     if (pageData) {
       setPage(prev => ({ ...prev, ...pageData, translations: pageData.translations || prev.translations }));
       setPageSlug(pageData.slug);
     }
   }, [pageData]);
-
   // Prefill author "Über" pages if no JSON exists yet
   useEffect(() => {
     if (!isNewPage && slug && slug.startsWith('author-about-') && !pageData && authors) {
@@ -99,21 +91,17 @@ export default function PageEditorPage() {
       }
     }
   }, [isNewPage, slug, pageData, authors]);
-
   const updateBase = (field: keyof PageContent, value: any) => {
     setPage(prev => ({ ...prev, [field]: value }));
   };
-
   const updateHighlight = (index: number, field: keyof PageHighlight, value: string) => {
     setPage(prev => ({
       ...prev,
       highlights: prev.highlights.map((item, i) => (i === index ? { ...item, [field]: value } : item)),
     }));
   };
-
   const addHighlight = () => setPage(prev => ({ ...prev, highlights: [...prev.highlights, { ...emptyHighlight }] }));
   const removeHighlight = (index: number) => setPage(prev => ({ ...prev, highlights: prev.highlights.filter((_, i) => i !== index) }));
-
   const updateTranslation = (lang: PageLanguage, updater: (data: PageTranslation) => PageTranslation) => {
     setPage(prev => ({
       ...prev,
@@ -123,7 +111,6 @@ export default function PageEditorPage() {
       },
     }));
   };
-
   const updateTranslationHighlight = (lang: PageLanguage, index: number, field: keyof PageHighlight, value: string) => {
     updateTranslation(lang, (data) => {
       const currentHighlights = data.highlights || [];
@@ -134,37 +121,30 @@ export default function PageEditorPage() {
       };
     });
   };
-
   const addTranslationHighlight = (lang: PageLanguage) => {
     updateTranslation(lang, (data) => ({
       ...data,
       highlights: [...(data.highlights || []), { ...emptyHighlight }],
     }));
   };
-
   const removeTranslationHighlight = (lang: PageLanguage, index: number) => {
     updateTranslation(lang, (data) => ({
       ...data,
       highlights: (data.highlights || []).filter((_, i) => i !== index),
     }));
   };
-
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
-
     if (!pageSlug) {
       toast.error('Bitte gib einen Slug für die Seite ein');
       return;
     }
-
     setLoading(true);
-
     try {
       const payload: PageContent = {
         ...page,
         slug: pageSlug,
       };
-
       await upsertPage(payload);
       queryClient.invalidateQueries({ queryKey: ['pages'] });
       if (!isNewPage) {
@@ -183,13 +163,10 @@ export default function PageEditorPage() {
       setLoading(false);
     }
   };
-
   const translationTabs: PageLanguage[] = ['en', 'la'];
-
   if (isLoading && !isNewPage) {
     return <div className="min-h-screen pt-20 text-center">Lade Seite...</div>;
   }
-
   return (
     <div className="min-h-screen bg-background pt-16">
       <div className="sticky top-16 z-40 bg-background/95 backdrop-blur-md border-b border-border">
@@ -220,7 +197,6 @@ export default function PageEditorPage() {
           </div>
         </div>
       </div>
-
       <div className="container mx-auto px-4 py-6 max-w-5xl">
         <form onSubmit={handleSubmit} className="space-y-8">
           <Card>
@@ -271,7 +247,6 @@ export default function PageEditorPage() {
               </div>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader>
               <CardTitle>Highlights</CardTitle>
@@ -319,7 +294,6 @@ export default function PageEditorPage() {
               </Button>
             </CardContent>
           </Card>
-
           {/* Translations */}
           {/* Simplified translation UI for brevity in this refactor, but logic is there */}
           <Card>
@@ -348,7 +322,6 @@ export default function PageEditorPage() {
                   Latinum
                 </Button>
               </div>
-
               {activeLang !== 'de' && (
                 <div className="space-y-6">
                   <div className="space-y-2">
@@ -376,7 +349,6 @@ export default function PageEditorPage() {
               )}
             </CardContent>
           </Card>
-
         </form>
       </div>
     </div>

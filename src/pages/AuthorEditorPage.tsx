@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -12,23 +11,18 @@ import { ArrowLeft, Save } from 'lucide-react';
 import { upsertAuthor } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchAuthors } from '@/lib/api';
-
 export default function AuthorEditorPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const isEditMode = !!authorId && authorId !== 'new';
-
     const [loading, setLoading] = useState(false);
-
     // Fetch authors from API
     const { data: authorsMap, isLoading } = useQuery({
         queryKey: ['authors'],
         queryFn: fetchAuthors
     });
-
     const existingAuthor = (isEditMode && authorsMap) ? authorsMap[authorId!] : null;
-
     const [formData, setFormData] = useState({
         id: '',
         name: '',
@@ -51,7 +45,6 @@ export default function AuthorEditorPage() {
             description: ''
         }
     });
-
     useEffect(() => {
         if (existingAuthor) {
             setFormData({
@@ -77,11 +70,9 @@ export default function AuthorEditorPage() {
             });
         }
     }, [existingAuthor]);
-
     const handleSubmit = async (e?: React.FormEvent) => {
         e?.preventDefault();
         setLoading(true);
-
         try {
             const payload = {
                 id: formData.id || formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
@@ -100,7 +91,6 @@ export default function AuthorEditorPage() {
                     la: formData.la
                 }
             };
-
             await upsertAuthor(payload);
             queryClient.invalidateQueries({ queryKey: ['authors'] });
             toast.success(isEditMode ? 'Autor aktualisiert' : 'Autor erstellt');
@@ -112,22 +102,18 @@ export default function AuthorEditorPage() {
             setLoading(false);
         }
     };
-
     const updateField = (field: string, value: any) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
-
     const updateTranslation = (lang: 'en' | 'la', field: string, value: string) => {
         setFormData(prev => ({
             ...prev,
             [lang]: { ...prev[lang], [field]: value }
         }));
     };
-
     if (isLoading && isEditMode) {
         return <div className="min-h-screen pt-20 text-center">Lade Autor...</div>;
     }
-
     return (
         <div className="min-h-screen bg-background pt-16">
             {/* Header */}
@@ -149,7 +135,6 @@ export default function AuthorEditorPage() {
                     </Button>
                 </div>
             </div>
-
             <div className="container mx-auto px-4 py-6 max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Basic Info */}
@@ -194,7 +179,6 @@ export default function AuthorEditorPage() {
                                     />
                                 </div>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div className="space-y-2">
                                     <Label>Zeitraum (Text)</Label>
@@ -221,7 +205,6 @@ export default function AuthorEditorPage() {
                                     />
                                 </div>
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Kurzbeschreibung (DE)</Label>
                                 <Textarea
@@ -232,7 +215,6 @@ export default function AuthorEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Styling */}
                     <Card>
                         <CardHeader>
@@ -276,7 +258,6 @@ export default function AuthorEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Translations */}
                     <Card>
                         <CardHeader>
@@ -303,7 +284,6 @@ export default function AuthorEditorPage() {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="space-y-4">
                                 <h3 className="font-medium text-sm text-muted-foreground border-b pb-1">Latinum</h3>
                                 <div className="grid grid-cols-1 gap-4">

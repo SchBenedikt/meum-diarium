@@ -7,36 +7,27 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 interface BlogSidebarProps {
   post: BlogPost;
 }
-
 export function BlogSidebar({ post }: BlogSidebarProps) {
   if (!post) {
-    console.warn('[BlogSidebar] No post provided');
     return null;
   }
-
   const { t, language } = useLanguage();
   const { posts } = usePosts();
   const author = post?.author ? authors[post.author] : null;
-
   if (!author) {
-    console.warn('[BlogSidebar] Author not found for post:', post?.author);
   }
-
   // Get related posts (same author, different post)
   const relatedPosts = post?.author && post?.slug && Array.isArray(posts)
     ? posts
         .filter(p => p?.author === post.author && p?.slug !== post.slug)
         .slice(0, 3)
     : [];
-
   // Get the appropriate translation for the current language
   const getQuoteTranslation = () => {
     if (!post?.sidebar?.quote?.translations) return null;
-
     // Try to get translation for current language
     const currentLang = language.split('-')[0] as 'de' | 'en' | 'la';
     return post.sidebar.quote.translations[currentLang] ||
@@ -44,9 +35,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
       post.sidebar.quote.translations.en ||
       null;
   };
-
   const quoteTranslation = getQuoteTranslation();
-
   return (
     <motion.aside
       initial={{ opacity: 0, x: 16 }}
@@ -67,7 +56,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </Link>
         </div>
       )}
-
       {post.historicalDate && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
@@ -95,7 +83,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </div>
         </div>
       )}
-
       {post.sidebar?.quote && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <Quote className="h-5 w-5 text-primary mb-3" />
@@ -113,7 +100,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </cite>
         </div>
       )}
-
       {getPostTags(post, language).length > 0 && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
@@ -133,7 +119,6 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </div>
         </div>
       )}
-
       {relatedPosts.length > 0 && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4">

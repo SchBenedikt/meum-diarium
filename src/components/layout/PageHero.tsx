@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ModernBackground } from "@/components/ui/ModernBackground";
 import { cn } from "@/lib/utils";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-
 export type PageHeroProps = {
   eyebrow?: string;
   title: string;
@@ -21,7 +20,6 @@ export type PageHeroProps = {
   className?: string;
   size?: "default" | "compact";
 };
-
 export function PageHero({
   eyebrow,
   title,
@@ -40,7 +38,6 @@ export function PageHero({
   size = "default",
 }: PageHeroProps) {
   const isCompact = size === "compact";
-
   return (
     <section
       className={cn(
@@ -61,9 +58,7 @@ export function PageHero({
           />
         </motion.div>
       )}
-
       {!noBackground && <ModernBackground />}
-
       <div className="relative z-10 container mx-auto max-w-7xl px-4 sm:px-6">
         <div
           className={cn(
@@ -81,7 +76,6 @@ export function PageHero({
               {eyebrow}
             </motion.div>
           )}
-
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,7 +102,6 @@ export function PageHero({
               </span>
             )}
           </motion.h1>
-
           {description && (
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -123,7 +116,6 @@ export function PageHero({
               {description}
             </motion.p>
           )}
-
           {(actions || kicker) && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -142,7 +134,6 @@ export function PageHero({
               )}
             </motion.div>
           )}
-
           {children && (
             <motion.div
               initial={{ opacity: 0, y: 12 }}

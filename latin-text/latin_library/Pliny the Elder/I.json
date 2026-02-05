@@ -1,0 +1,451 @@
+{
+  "metadata": {
+    "author": "Pliny the Elder",
+    "work": "I",
+    "url": "https://www.thelatinlibrary.com/pliny.nh1.html",
+    "verse_count": 110,
+    "title": "I"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "[1]   An finitus sit mundus et an unus\n[2]   de forma eius\n[3]   de motu eius. cur mundus dicatur\n[4]   de elementis\n[5]   de deo\n[6]   de siderum errantium natura\n[7]   de lunae et solis defectibus. de nocte\n[8]   de magnitudine siderum\n[9-10]   quae quis invenerit in observatione caelesti\n[11]   de lunae motu\n[12]   errantium motus et luminum canonica\n[13-14]   quare eadem altior, alias propiora videantur\n[15]   catholica siderum errantium\n[16]   quae ratio colores eorum mutet\n[17]   solis motus. dierum inaequalitatis ratio\n[18]   quare fulmina Iovi adsignentur\n[19]   intervalla siderum\n[20]   de sideribus musica\n[21]   de mundo geometrica\n[22-23]   de repentinis sideribus. de cometis. natura et situs et genera eorum\n[24]   Hipparchea de sideribus agnoscendis\n[25]   de caelstibus prodigiis per exempla historica lampades, bolides\n[26]   trabes caelestes, chasma caeli \n[27]   de caeli coloribus de flamma caelesti\n[28-29]   de coronis caelestibusde circulis repentinis\n[31]   plures sole..."
+    },
+    "2": {
+      "number": 2,
+      "text": "EX AUCTORIBUS\nM. Varrone. Sulpicio Gallo. Tito Caesare Imperatore. Q. Tuberone. Tullione Tirone. L. Pisone. T. Livio. Cornelio Nepote. Seboso. Caelio Antipatro. Fabiano. Antiate. Muciano. Caecina qui de Etrusca disciplina. Tarquitio qui item. Iulio Aquila qui item. Sergio Plauto."
+    },
+    "3": {
+      "number": 3,
+      "text": "EXTERNIS\nHipparcho. Timaeo. Sosigene. Petosiri. Nechepso. Pythagoricis. Posidonio. Anaximandro. Epigene. Eudoxo. Democrito. Critodemo. Thrasyllo. Serapione gnomonico. Euclide. Coearano philosopho. Dicaearcho. Archimede. Onesicrito. Eratosthene. Pythea. Herodoto. Aristotele. Ctesia. Artemidoro Ephesio. Isidoro Characeno. Theopompo."
+    },
+    "4": {
+      "number": 4,
+      "text": "situs, gentes, maria, oppida, portus, montes, flumina, mensurae, populi qui sunt aut fuerunt"
+    },
+    "5": {
+      "number": 5,
+      "text": "[3]   Baeticae\n[4]   Hispaniae citerioris \n[5]   Narbonensis provinciae \n[6-10]   Italiae usque Locros\n[9]   Tiberis, Roma\n[11]   insularum LXIIII, in his Baliarum\n[12]   Corsicae\n[13]   Sardinia\n[14]   Siciliae\n[15-20]   Italiae Locris usque Ravennam\n[20]   de Pado\n[21-22]   Italiae trans Padum\n[23]   Histriae\n[24]   Alpium et gentium Alpinarum\n[25]   Illyrici, Liburniae\n[26]   Dalmatiae\n[27]   Noricorum\n[28]   Pannoniae\n[29]   Moesiae\n[30]   insularum Ionii et Hadriatici\nSumma: oppida et gentes ...\nSumma: flumina clara ...\nSumma: montes clari ...\nSumma: insulae ...\nSumma: quae intercidere oppida aut gentes ...\nSumma: res et historiae et observationes ..."
+    },
+    "6": {
+      "number": 6,
+      "text": "EX AUCTORIBUS\nTurranio Gracile. Cornelio Nepote. T. Livio. Catone censorio. M. Agrippa. M. Varrone. Divo Augusto. Varrone Atacino. Antiate. Hygino. L. Vetere. Pomponio Mela. Curione patre. Caelio. Arruntio. Seboso. Licinio Muciano. Fabricio Tusco. L. Ateio. Ateio Capitone. Verrio Flacco. L. Pisone. Gelliano. Valeriano."
+    },
+    "7": {
+      "number": 7,
+      "text": "EXTERNIS\nArtemidoro. Alexandro polyhistore. Thucydide. Theophrasto. Isidoro. Theopompo. Metrodoro Scepsio. Callicrate. Xenophonte Lampsaceno. Diodoro Syracusano. Nymphodoro. Calliphane. Timagene."
+    },
+    "8": {
+      "number": 8,
+      "text": "situs, gentes, maria, oppida, portus, montes, flumina, mensurae, populi qui sunt aut fuerunt"
+    },
+    "9": {
+      "number": 9,
+      "text": "[1-4]   Epiri\n[5-10]   Achaiae\n[11-13]   Graeciae \n[14-15]   Thessaliae\n[16]   Magnesia\n[17]   Macedoniae\n[18]   Thraciae\n[19-23]   insularum ante eas terras, inter quas \n[20]   Creta\n[21]   Euboea\n[22]   Cyclades\n[23]   Sporades\n[24]   Hellesponti, Ponti, Maeotidis\n[25-26]   Daciae, Sarmatiae, Scythia\n[27]   insularum Ponti\n[28-29]   Germaniae\n[30]   insularum in Gallico oceano XCVI, quas inter Britannia\n[31]   Belgicae Galliae \n[32]   Lugdunensis Galliae \n[33]   Aquitanicae Galliae \n[34]   citerioris Hispaniae ab oceano\n[35]   Lusitaniae\n[36]   insularum in mari Atlantico \n[37]   universae Europae mensura\nSumma: oppida et gentes ...\nSumma: flumina clara ...\nSumma: montes clari ...\nSumma: insulae ...\nSumma: quae intercidere oppida aut gentes ...\nSumma: res et historiae et observationes ..."
+    },
+    "10": {
+      "number": 10,
+      "text": "EX AUCTORIBUS\nCatone censorio. M. Varrone. M. Agrippa. Divo Augusto. Varrone Atacino. Cornelio Nepote. Hygino. L. Vetere. Mela Pomponio. Licinio Muciano. Fabricio Tusco. Ateio Capitone. Ateio philologo."
+    },
+    "11": {
+      "number": 11,
+      "text": "EXTERNIS\nPolybio. Hecataeo. Hellanico. Damaste. Eudoxo. Dicaearcho. Timosthene. Eratosthene. Ephoro. Cratete grammatico. Serapione Antiochense. Callimacho. Artemidoro. Apollodoro. Agathocle. Timaeo Siculo. Myrsilo. Alexandro polyhistore. Thucydide. Dosiade. Anaximandro. Philistide Mallote. Dionysio. Aristide. Callidemo. Menaechmo. Aglaosthene. Anticlide. Heraclide. Philemone. Xenophonte. Pythea. Isidoro. Philonide. Xenagora. Astynomo. Staphylo. Aristocrito. Metrodoro. Cleobulo. Posidonio."
+    },
+    "12": {
+      "number": 12,
+      "text": "[1]   Mauretaniarum\n[2]   Numidiae\n[3]   Africae\n[4]   Syrtium\n[5-6]   Cyrenaicae\n[7]   insularum circa Africam\n[8]   aversorum Africae \n[9-11]   Aegypti \n[12]   Chorae, Thebaidis, Nili Arabiae quae est ad mare Aegyptium\n[13-14]   Idumaeae, Syriae, Palaestines, Samariae\n[15]   Iudaeae\n[17]   Phoenices\n[18-19]   Syriae Coeles, Syriae Antiochiae\n[20-21]   Euphratis\n[22]   Cilicae et iunctarum gentium \n[23]   Isauricae, Omanadum\n[24]   Pisidiae\n[25]   Lycaoniae\n[26]   Pamphyliae\n[27]   Tauri montis \n[28]   Lyciae\n[29]   Cariae\n[31]   Ioniae\n[32]   Aeolidis\n[33]   Troadis et iunctarum gentium \n[34-39]   insularum ante Asiam CCXII. in iis \n[35]   Cypri\n[36]   Rhodi, Coi\n[37]   Sami\n[38]   Chii\n[39]   Lesbi\n[40]   Hellespontus, Mysia\n[41]   Phrygia\n[42]   Galatia et iunctae gentes \n[43]   Bithynia\nSumma: oppida et gentes ...\nSumma: flumina clara ...\nSumma: montium clari ...\nSumma: insulae CXVIII\nSumma: quae intercidere oppida aut gentes ...\nSumma: res et historiae et observationes ..."
+    },
+    "13": {
+      "number": 13,
+      "text": "EX AUCTORIBUS\nAgrippa. Suetonio Paulino. M. Varrone. Varrone Atacino. Cornelio Nepote. Hygino. L. Vetere. Mela. Domitio Corbulone. Licinio Muciano. Claudio Caesare. Arruntio. Livio filio. Seboso. actis triumphorum."
+    },
+    "14": {
+      "number": 14,
+      "text": "EXTERNIS\nIuba rege. Hecataeo. Hellanico. Damaste. Dicaearcho. Baetone. Timosthene. Philonide. Xenagora. Astynomo. Staphylo. Dionysio. Aristotele. Aristocrito. Ephoro. Eratosthene. Hipparcho. Panaetio. Serapione Antiocheno. Callimacho. Agathocle. Polybio. Timaeo mathematico. Herodoto. Myrsilo. Alexandro polyhistore. Metrodoro. Posidonio qui periploun aut perihghsin. Sotade. Pyrrandro. Aristarcho Sicyonio. Eudoxo. Antigene. Callicrate. Xenophonte Lampsaceno. Diodoro Syracusano. Hannone. Himilcone. Nymphodoro. Calliphane. Artemidoro. Megasthene. Isidoro. Cleobulo. Aristocreonte."
+    },
+    "15": {
+      "number": 15,
+      "text": "situs, gentes, maria, oppida, portus, montes, flumina, mensurae, populi qui sunt aut fuerunt"
+    },
+    "16": {
+      "number": 16,
+      "text": "[1]   Ponti, Mariandynorum\n[2]   Paphlagonum\n[3-8]   Cappadocum\n[4]   Themiscyrena regio et in ea gentes. Heniochi \n[5]   regio Colica et gentes. Achaeorum gentes. ceterae eodem tractu gentes \n[6]   Bosporus Cimmerius\n[7]   Maeotis. gentes circa Maeotim\n[9]   Armenia minor, Armenia maior\n[10]   Cyrus fluvius, Araxes fluvius\n[11]   Albania, Hiberia\n[12]   et iunctae portae Caucasiae\n[13]   insulae in Ponto\n[14]   gentes a Scythico oceano\n[15]   Caspium et Hyrcanium mare\n[16]   Adiabene\n[17]   Media, portae Caspiae\n[18]   gentes circa Hyrcanium mare\n[19]   Scytharum gentes \n[20]   situs ab oceano Eoo. Seres\n[21-23]   Indi\n[22]   Ganges\n[23]   Indus\n[24]   Taprobane\n[25]   Ariani et iunctae gentes \n[26]   navigationes in Indiam\n[27]   Carmania\n[28]   sinus Persicus\n[29]   Parthorum regna\n[30-31]   Mesopotamia\n[31]   Tigris\n[32]   Arabia\n[33]   sinus maris Rubri\n[34]   Trogodytice\n[35]   Aethiopia \n[36]   insulae Aethiopici maris\n[37]   de iis Fortunatis\n[38]   terrae per mensuras conparat..."
+    },
+    "17": {
+      "number": 17,
+      "text": "EX AUCTORIBUS\nM. Agrippa. M. Varrone. Varrone Atacino. Cornelio Nepote. Hygino. L. Vetere. Mela Pomponio. Domitio Corbulone. Licinio Muciano. Claudio Caesare. Arruntio. Seboso. Fabricio Tusco. T. Livio filio. Seneca. Nigidio."
+    },
+    "18": {
+      "number": 18,
+      "text": "EXTERNIS\nIuba rege. Hecataeo. Hellanico. Damaste. Eudoxo. Dicaearcho. Baetone. Timosthene. Patrocle. Deomdamante. Clitarcho. Eratosthene. Alexandro Magno. Ephoro. Hipparcho. Panaetio. Callimacho. Artemidoro. Agathocle. Polybio. Timaeo Siculo. Alexandro polyhistore. Isidoro. Amometo. Metrodoro. Posidonio. Onesicrito. Nearcho. Megasthene. Diogneto. Aristocreonte. Bione. Dalione. Simonide minore. Basile. Xenophonte Lampsaceno."
+    },
+    "19": {
+      "number": 19,
+      "text": "[2]   gentium mirabiles figurae \n[3]   prodigiosi partus\n[4]   de homine generando. pariendi tempora per inlustria exempla a mensibus VII ad XIII\n[5]   signa sexus in gravidis pertinentia ante partum\n[6]   monstruosi partus\n[7]   excisi utero\n[8]   qui sint vopisci\n[9]   de conceptu hominum. de generatione hominum \n[10]   similitudinum exempla \n[11]   numerosissimae subolis exempla \n[12]   ad quos annos generatio\n[13]   mensum in feminis miracula \n[14]   quae ratio generandi\n[15]   historica circa dentes. historica circa infantes\n[16]   magnitudinum exempla \n[17]   praeproperi infantes\n[18]   insignia corporum \n[19]   vires eximiae\n[20]   velocitas praecipua \n[21]   visus eximii\n[22]   auditus miraculum \n[23]   patientia corporis \n[24]   memoria \n[25]   vigor animi \n[26]   clementia, animi magnitudo \n[27]   rerum gestarum claritas summa\n[28]   tres summae virtutes in eodem, innocentia summa \n[29]   fortitudo summa\n[30]   ingenia praecipua \n[31]   qui sapientissimi\n[32]   praecepta vita..."
+    },
+    "20": {
+      "number": 20,
+      "text": "EX AUCTORIBUS\nVerrio Flacco. Gnaeo Gellio. Licinio Muciano. Masurio Sabino. Agrippina Claudi. M. Cicerone. Asionio Pollione. M. Varrone. Messala Rufo. Nepote Cornelio. Vergilio. T. Livio. Cordo. Melisso. Seboso. Cornelio Celso. Maximo Valerio. Trogo. Nigidio Figulo. Pomponio Attico. Pediano Asconio. Fabiano. Catone censorio. actis. Fabio Vestale."
+    },
+    "21": {
+      "number": 21,
+      "text": "EXTERNIS\nHerodoto. Aristea. Baetone. Isigono. Cratete. Agatharchide. Calliphane. Aristotele. Nymphodoro. Apollonide. Phylarcho. Damone. Megasthene. Ctesia. Taurone. Eudoxo. Onesicrito. Clitarcho. Duride. Artemidoro. Hippocrate medico. Asclepiade medico. Hesiodo. Anacreonte. Theopompo. Hellanico. Damaste. Ephoro. Epigene. Beroso. Petosiri. Nechepso. Alexandro polyhistore. Xenophonte. Callimacho. Democrito. Diyllo historico. Stratone qui contra Ephori eurhmata scripsit. Heraclide Pontico. Asclepiade qui tragwdoumena. Philostephano. Hegesia. Archemacho. Thucydide. Mnesigitone. Xenagora. Metrodoro Scepsio. Anticlide. Critodemo."
+    },
+    "22": {
+      "number": 22,
+      "text": "[1-11]   de elephantis\n[1]   de sensu eorum \n[2]   quod primum iuncti\n[3]   de docilitate eorum \n[4]   mirabilia in factis eorum \n[5]   de natura ferarum ad pericula sua intellegenda\n[6]   quando primum in Italia visi elephanti\n[7]   pugnae eorum \n[8]   quibus modis capiantur \n[9]   quibus domentur\n[10]   de partu eorum et reliqua natura \n[11]   ubi nascantur. discordia eorum et draconum\n[12]   de sollertia animalium \n[13]   de draconibus\n[14]   mirae magnitudines serpentium \n[15]   de Scythicis animalibus. de septentrionalibus, de bisontibus, uris\n[16]   alce, achli, bonaso\n[17-21]   de leonibus\n[17]   quomodo gignantur\n[18]   quae genera eorum \n[19]   quae propria naturae \n[20]   quis primus leontomachiam Romae, quis plurimos in ea leones donaverit\n[21]   quis primus Romanorum iunxerit. mirabilia in leonum factis\n[22]   a dracone agnitus et servatus\n[23-24]   de pantheris\n[24]   senatusconsultum et leges de Africanis. quis primus Romae Africanas et quando; quis plurimas\n[25]   de tig..."
+    },
+    "23": {
+      "number": 23,
+      "text": "EX AUCTORIBUS\nMuciano. Procilio. Verrio Flacco. L. Pisone. Cornelio Valeriano. Catone censorio. Fenestella. Trogo. actis. Columella. Vergilio. Varrone. Lucilio. Metello Scipione. Cornelio Celso. Nigidio. Trebio Nigro. Pomponio Mela. Mamilio Sura."
+    },
+    "24": {
+      "number": 24,
+      "text": "EXTERNIS\nIuba rege. Polybio. Herodoto. Antipatro. Aristotele. Demetrio physico. Democrito. Theophrasto. Euanthe. Scopa qui OlumpionikaV. Hierone rege. Ctesia. Duride. Philisto. Archyta. Phylarcho. Amphilocho Athenaeo. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Athenaeo. Diodoro Prieneo. Dione Colophonio. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Hegesia Maroneo. Menandris Prieneo et Heracleote. Menecrate poeta. Androtione qui de agricultura scripsit. Aeschrione qui item. Dionysione qui Magonem transtulit. Diophane qui ex Dionysia epitomas fecit. Archelao rege. Nicandro."
+    },
+    "25": {
+      "number": 25,
+      "text": "[1]   aquatilium naturae. quare maxima in mari animalia \n[2]   Indici maris belvae\n[3]   quae in quoque oceano maximae\n[4]   de Tritonum et Nereidum figuris. de elephantorum marinorum figuris\n[5]   debalaenis, de orcis\n[6]   an spirent pisces, an dormiant\n[7-10]   de delphinis\n[8]   quos amaverint\n[9]   quibus in locis societate cum hominibus piscentur\n[10]   alia circa eos mira\n[11]   de thyrsionibus\n[12-13]   de testudinibus\n[12]   quae genera aquatilium testudinum et quo modo capiantur\n[13]   quis primus testudinem secare instituerit\n[14]   digestio aquatilium per species\n[15]   de vitulis marinis sive phocis. quae pilo careant et quo modo pariant\n[16]   quot genera piscium \n[17]   qui maximi pisces \n[18]   cordylae, pelamydes, thynni. membratim ex his salsura. apolecti, cybia\n[19]   amiae, scombri\n[20]   qui non sint pisces in Ponto. qui intrent, qui alia redeant\n[21]   quare pisces extra aquam exiliant. gladius piscis\n[22]   esse auguria ex piscibus \n[23]   in quo genere piscium m..."
+    },
+    "26": {
+      "number": 26,
+      "text": "EX AUCTORIBUS\nTurranio Gracile. Trogo. Maecenate. Alfio Flavo. Cornelio Nepote. Laberio mimographo. Fabiano. Fenestella. Muciano. Aelio Stilone. Seboso. Melisso. Seeca. Cicerone. Macro Aemilio. Messala Corvino. Trebio Nigro. Nigidio."
+    },
+    "27": {
+      "number": 27,
+      "text": "EXTERNIS\nAristotele. Archelao rege. Callimacho. Democrito. Theophrasto. Thrasyllo. Hegesidemo. Sudine. Alexandro polyhistore."
+    },
+    "28": {
+      "number": 28,
+      "text": "[1]   de struthocamelo\n[2]   phoenice\n[3]   aquilarum genera \n[4]   natura earum \n[5]   quando legionum signa esse coeperint\n[6]   de aquila quae in rogum virginis se misit\n[7]   vultur\n[8]   avis sanqualis. inmusulus\n[9-11]   accipitres\n[9]   buteo\n[10]   in quibus locis societate accipitres et homines aucupentur\n[11]   quae avis sola a suo genere interimatur. quae avis singula ova pariat\n[12]   milui\n[13]   digestio avium per genera \n[14]   de inauspicatis avibus. cornices quibus mensibus non sint inauspicatae\n[15]   de corvis\n[16]   de bubone\n[17]   aves quarum vita aut notitita intercidit\n[18]   quae a causa nascantur\n[19]   de noctuis\n[20]   de pico Martio\n[21]   de iis quae uncos ungues habent \n[22-25]   de iis quae digitos habent \n[22]   de pavonibus\n[23]   quis primus pavonem cibi causa occiderit. quis farcire instituerit\n[24]   de gallinaceis\n[25]   quo modo castrentur. de gallinaceo locuto\n[26]   de ansere\n[27]   quis primus iecur anserinum instituerit\n[28]   de Commageno\n[29..."
+    },
+    "29": {
+      "number": 29,
+      "text": "EX AUCTORIBUS\nManilio. Cornelio Valeriano. actis.Umbricio Meliore. Masurio Sabino. Antistio Labeone. Trogo. Cremutio. M. Varrone. Macro Aemilio. Melisso. Muciano. Nepote. Fabio Pictore. T. Lucretio. Cornelio Celso. Horatio. Deculone. Hygino. Sasernis. Nigidio. Mamilio Sura."
+    },
+    "30": {
+      "number": 30,
+      "text": "EXTERNIS\nHomero. Phemonoe. Philemone. Boetho qui ornijogonian. Hyla qui de auguriis. Aristotele. Theophrasto. Callimacho. Aeschylo., Hierone rege. Philometore rege. Archyta Tarentino. Amphilocho Atheniense. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Atheniense. Diodoro Prieneo. Dione Colophonio. Democrito. Diophane Nicaeense. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Iuba. Androtione qui de agricultura. Aeschrione qui item. Lysimacho qui item. Dionysio qui Magonem transtulit. Diophane qui ex Dionysio epitomas fecit. Nicandro. Onesicrito. Phylarcho. Hesiodo."
+    },
+    "31": {
+      "number": 31,
+      "text": "[1]   insectorum animalium genera. subtilitas in his rebus naturae \n[2]   an spirent. an habeant sanguinem \n[3]   de corpore eorum \n[4-23]   de apibus\n[5]   qui ordo in opere earum \n[6]   quid sit in eo commosis. quid sit pissoceros. quid sit propolis\n[7]   quid erithace sive sandaraca sive cerinthos\n[8]   ex quibus floribus opera fiant\n[9]   apium studio capti\n[11]   de fucis\n[12]   quae natura mellis \n[13]   quae optima mella\n[14]   quae genera mellis in singulis locis\n[15]   quomodo probentur. de erice sive tetralice sive sisyro\n[16]   quomo apes generent\n[17]   quae regum in iis ratio\n[18]   aliquando et laetum omen esse examinum\n[19]   genera apium\n[20]   de morbis apium\n[21]   quae iminica apibus \n[22]   de continendis apibus \n[23]   de reparandis\n[24]   de vespis, crabronibus, quae animalia ex alieno suum faciant\n[25-27]   de bombyce Assyria\n[26]   de bombyliis, necydalis. quae prima invenerit bombycinam vestem\n[27]   de bombyce Coa. quo modo conficiatur Coa vestis\n[28-29]   de ..."
+    },
+    "32": {
+      "number": 32,
+      "text": "EX AUCTORIBUS\nM. Varrone. Hygino. Scrofa. Saserna. Celso Cornelio. Aemilio Macro. Vergilio. Columella. Iulio Aquila qui de Etrusca disciplina scripsit. Tarquitio qui item. Umbricio Meliore qui item. Catone censorio. Domitio Calvino. Trogo. Melisso. Fabiano. Muciano. Nigidio. Mamilio. Oppio."
+    },
+    "33": {
+      "number": 33,
+      "text": "EXTERNIS\nAristotele. Democrito. Neoptolemo qui melitourgika. Aristomacho qui item. Philisco qui item. Nicandro. Menecrate. Dionysio qui Magonem transtulit. Empedocle. Callimacho. Attalo rege. Apollodoro qui de bestiis venenatis. Hippocrate. Herophilo. Erasistrato. Asclepiade. Themisone. Posidonio Stoico. Menandris Prieneo et Heracleote. Euphronio Athenaeo. Theophrasto. Hesiodo. Philometore rege."
+    },
+    "34": {
+      "number": 34,
+      "text": "[1-2]   honor earum \n[3-63]   de peregrinis arboribus \n[3-5]   platanus\n[3]   quando primum in Italiam et unde\n[4]   natura earum \n[5]   miracula ex iis \n[6]   chamaeplatani. quis primus viridaria tondere instituerit\n[7]   malum Assyrium. quo modo seratur\n[8-17]   Indiae arbores \n[9]   quando primum hebenus Romae visa. quae genera eius \n[10]   spina Indica\n[11]   ficus Indica\n[12-13]   Indicarum arborum formae sine nominibus. liniferae Indorum arbores. arbor pala. pomum ariera\n[14]   piperis arbores. genera piperis. bregma. zingiberi sive zimpiberi \n[15]   caryophyllon. lycium sive pyxacanthum Chironium \n[16]   machir\n[17]   saccaron\n[18]   arbores Arianae gentis, item Gedrosiae, item Hyrcaniae\n[19]   item Bactriae. bdellium sive brochum sive malachan sive maldacum. scordasti. in omnibus odoribus aut condimentis dicuntur adulterationes, experimenta, pretia \n[20]   Persidis arbores \n[21]   Persici marj insularum arbores. gossypinum arbor \n[22]   cynas arbor. ex quibus arboribus lintea i..."
+    },
+    "35": {
+      "number": 35,
+      "text": "EX AUCTORIBUS\nM. Varrone. Muciano. Vergilio. Fabiano. Seboso. Pomponio Mela. Fabio Proculo. Hygino. Trogo. Claudio Caesare. Cornelio Nepote. Sextio Nigro qui Graece de medicina scripsit. Cassio Hemina. L. Pisone. Tuditano. Antiate."
+    },
+    "36": {
+      "number": 36,
+      "text": "EXTERNIS\nTheophrasto. Herodoto. Callisthene. Isigono. Clitarcho. Anaximene. Duride. Nearcho. Onesicrito. Polyclito. Olympiodoro. Diogneto. Nicobule. Anticlide. Charete Mytilenaeo. Menaechmo. Dorotheo Athenaeo. Lyco. Antaeo. Ephippo. Dinone. Adimanto. Ptolemaeo Lagi. Marsya Macedone. Zoilo item. Democrito. Amphilocho. Aristomacho. Alexandro polyhistore. Iuba. Apollodoro qui de odoribus. Heraclide medico. Botrye medico. Archedemo item. Dionysio item. Democle item. Euphrone item. Mneside item. Diagor item. Iolla item. Heraclide Tarentino. Xenocrate Ephesio."
+    },
+    "37": {
+      "number": 37,
+      "text": "[1-5]   de unguentis\n[1]   quando coeperint\n[2]   genera eorum et conpositiones XXI\n[3]   diapasmata, magmata. probatio unguenti\n[4]   quanta in unguentis luxuria\n[5]   quando primum Romanis in usu\n[6-9]   de palmis\n[7]   de natura earum \n[8]   quo modo serantur\n[9]   genera fructus earum et insignia XLVIIII\n[10]   Syriae arbores. pistacia, cottana, Damascena, myxae\n[11]   cedrus. quae arbores trium annorum fructum pariter habeant\n[12]   terebinthus\n[13]   rhuus\n[14]   Aegypti arbores. ficus Alexandrina\n[15]   ficus Cypria\n[16]   siliqua ceraunia\n[17]   Persica arbor. quibus arboribus assidue subnascuntur fructus \n[18]   cuci \n[19]   spina Aegyptia\n[20]   cummium genera VIII. sarcocolla\n[21-27]   de papyro\n[21]   de charatae usu. quando coeperit\n[22]   quo modo fiat\n[23]   genera eius VIIII\n[24]   probatio chartarum\n[25]   vitia chartarum\n[26]   de glutino chartarum\n[27]   de libris Numae\n[28]   Aethiopiae arbores \n[29]   Atlantica arbor \n[29-31]   de citri arbore \n[29]   de citreis me..."
+    },
+    "38": {
+      "number": 38,
+      "text": "EX AUCTORIBUS\nM. Varrone. Muciano. Vergilio. Fabiano. Seboso. Pomponio Mela. Fabio Proculo. Hygino. Trogo. Claudio Caesare. Cornelio Nepote. Sextio Nigro qui Graece de medicina scripsit. Cassio Hemina. L. Pisone. Tuditano. Antiate."
+    },
+    "39": {
+      "number": 39,
+      "text": "EXTERNIS\nTheophrasto. Herodoto. Callisthene. Isigono. Clitarcho. Anaximene. Duride. Nearcho. Onesicrito. Polyclito. Olympiodoro. Diogneto. Nicobule. Anticlide. Charete Mytilenaeo. Menaechmo. Dorotheo Atheniense. Lyco. Antaeo. Ephippo. Dinone. Adimanto. Ptolemaeo Lagi. Marsya Macedone. Zoilo item. Democrito. Amphilocho. Aristomacho. Alexandro polyhistore. Iuba. Apollodoro qui de odoribus scripsit. Heraclide medico. Botrye item. Archedemo item. Dionysio item. Democle item. Euphrone item. Mneside item. Diagora item. Iolla item. Heraclide Tarentino. Xenocrate Ephesio."
+    },
+    "40": {
+      "number": 40,
+      "text": "[2]   de vitium natura \n[3]   quibus modis serantur. de uvarum natura et cura\n[4]   vitium et uvarum genera XCI\n[5]   insignia culturae et vinearum \n[6]   de inventione mulsi \n[8]   vina generosa L\n[9]   vina generos transmarina XXXVIII\n[16]   de vino Opimiano\n[16]   notabilia circa apothecas\n[7]   de natura vini \n[10]   vini salsi genera VII\n[11]   de passi et hepsematum et dulcium generibus XVII \n[12]   secundari vini genera III\n[13]   quam nuper coeperint vina generosa in Italia \n[14]   de vino observationes a Romulo rege\n[15]   quibus vinis usi antiqui \n[17]   quando primum vini quattuor genera apposita \n[18]   ex labursca usus V. qui frigidissimus natura sucus \n[19]   vini fictici genera LXVI\n[20]   hydromeli sive apomeli sive melicraton \n[21]   oxymeli\n[22]   vini prodigiosa genera XII\n[23]   quibus vinis ad sacra uti fas non sit\n[24-25]   quibus generibus musta condiant\n[25]   de pice, resinis\n[27]   de vasis vinariis\n[26]   de aceto. de faece\n[27]   de cellis\n[28]   de ebrietat..."
+    },
+    "41": {
+      "number": 41,
+      "text": "EX AUCTORIBUS\nCornelio Valeriano. Vergilio. Celso. Catone censorio. Sasernis patre et filio. Scrofa. M. Varrone. D. Silano. Fabio Pictore. Trogo. Hygino. Flacco Verrio. Graecino. Attico Iulio. Columella. Masurio Sabino. Fenestella. Tergilla. Maccio Plauto. Fabio Dossenno. Scaevola. L. Aelio. Ateio Capitone. Cotta Messalino. L. Pisone. Pompeio Lenaeo. Fabiano. Sextio Nigro. Vibio Rufino."
+    },
+    "42": {
+      "number": 42,
+      "text": "EXTERNIS\nHesiodo. Theophrasto. Aristotele. Democrito. Hierone rege. Philometore rege. Attalo rege. Archyta. Xenophonte. Amphilocho Athenaeo. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Atheniense. Cheresto item. Diodoro Prieneo. Dinone Colophonio. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Androtione qui de agricultura scripsit. Aeschrione qui item. Lysimacho qui item. Dionysio qui Magonem transtulit. Diophane qui ex Dionysio epitomas fecit. Asclepiade medico. Erasistrato item. Commiade qui de conditura vini scripsit. Hicesio qui item. Themisone medico. Onesicrito. Iuba rege."
+    },
+    "43": {
+      "number": 43,
+      "text": "[1-8]   de olea\n[2]   quamdiu apud Graecos tantum fuerit. quando primum in Italia, Hispania, Africa esse coeperit\n[3]   de oleo. nationes et bonitates olei\n[2]   quae natura olivae et olei incipientis\n[4]   olivarum genera XV\n[5]   de natura olei\n[6]   cultura olearum. de servandis. quo modo faciendum oleum\n[7]   olei fictici genera XLVIII. cci arbor sive croto sive sibi sive sesamon\n[8]   de amurca\n[9-34]   pomorum omnium genera et natura \n[9]   nucum pinearum genera IIII\n[10]   struthiorum genera IIII. cotoneorum genera IIII\n[11]   Punicorum genera VIIII. Persicorum genera VII\n[12]   prunorum genera XII\n[13]   de persea\n[14]   malorum genera XXX. quo quaeque tempore externa poma venerint in Italiam et unde \n[15]   quae novissime\n[16]   pirorum genera XLI\n[17]   de insitorum varietate et fulgurum piatione\n[18]   de pomis servandis et uvis\n[19]   ficorum genera XXVIIII\n[20]   de ficis historica\n[21]   de caprificatione\n[22]   mespilae genera III\n[23]   sorvorum genera IIII\n[24]   nucum..."
+    },
+    "44": {
+      "number": 44,
+      "text": "EX AUCTORIBUS\nFenestella. Fabiano. Vergilio. Cornelio Valeriano.Celso. Catone censorio. Sasernis patre et filio. Scrofa. M. Varrone. D. Silano. Fabio Pictore. Trogo. Hygino. Flacco Verrio. Graecino. Attico Iulio. Columella. Masurio Sabino. Tergilla. Cotta Messalino. L. Pisone. Pompeio Lenaeo. Maccio Plauto. Fabio Dossenno. Scaevola. L. Aelio. Ateio Capitone. Sextio Nigro. Vibio Rufino."
+    },
+    "45": {
+      "number": 45,
+      "text": "EXTERNIS\nHesiodo. Theophrasto. Aristotele. Democrito. Hierone rege. Philometore rege. Attalo rege. Archyta. Xenophonte. Amphilocho Athenaeo. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Athenaeo. Cheresto item. Diodoro Prieneo. Dinone Colophonio. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Androtione qui de agricultura scripsit. Aeschrione qui item. Lysimacho qui item. Dionysio qui Magonem transtulit. Diophane qui ex Dionysio epitomas fecit. Asclepiade medico. Erasistrato item. Commiade qui de conditura vini scripsit. Aristomacho qui item. Hicesio qui item. Themisone medico. Onesicrito. Iuba rege."
+    },
+    "46": {
+      "number": 46,
+      "text": "[1]   gentes sine arbore \n[2]   miracula in septentrionali regione arborum \n[3-13]   de glandiferis\n[3]   de civica corona\n[4]   de coronarum origine\n[5]   qui frondea corona dontai\n[6]   glandium genera XIII\n[7]   de fago \n[8]   de reliquis glandibus. de carbone\n[9]   de galla\n[10-13]   quam multa praeter glandem ferant eaedem arbores \n[11]   cachrys\n[12]   coccum\n[13]   agaricum\n[14]   quarum arborum cortices in usu\n[15]   de scandulis\n[16]   de pinu\n[17]   pinastro \n[18]   picea, abiete\n[19]   larice, taeda\n[20]   taxo\n[21]   quibus modis fiat pix liquida. quo modo cedrium fiat\n[22]   quibus modis spissa pix fiat. quibus coquatur resina\n[23]   zopissa\n[24-29]   quarum arborum materiae in pretio \n[24]   fraxini genera IIII\n[25]   tiliae genera II\n[26]   aceris genera X\n[27]   bruscum, molluscum, staphylodendron\n[28]   buxi genera III\n[29]   ulmorum genera VI\n[30-31]   arborum natura per situs\n[30]   quae montanae. quae campestres\n[31]   quae siccaneae. quae aquaticae. quae communes\n[..."
+    },
+    "47": {
+      "number": 47,
+      "text": "EX AUCTORIBUS\nM. Varrone. Fetiale. Nigidio. Cornelio Nepote. Hygino. Masurio. Catone. Muciano. L. Pisone. Trogo. Calpurnio Basso. Cremutio. Sextio Nigro. Cornelio Boccho. Vitruvio. Graecino."
+    },
+    "48": {
+      "number": 48,
+      "text": "EXTERNIS\nAlexandro polyhistore. Hesiodo. Theophrasto. Democrito. Homero. Timaeo mathematico."
+    },
+    "49": {
+      "number": 49,
+      "text": "[1]   arborum pretia mirabilia\n[2]   caeli natura ad arbores. quam partem caeli spectare vineae debeant\n[3]   qualis terra optima\n[4]   de terrae, qua Graeci, Britannia et Galliae laetant, generibus VIII\n[5]   de cineris usu\n[6]   de fimo\n[7]   quae sata uberiorem terram faciant, quae urant\n[8]   quibus modis fimo utendum\n[9-21]   quibus modis arbores serantur\n[10]   semine nascentia\n[11]   quae numquam degenerent\n[12]   plantis nascentia\n[13]   avolsione nascentia et surculo \n[14]   de seminariis. de transferendis seminariis\n[15]   de ulmis serendis\n[16]   de scrobibus\n[17]   de intervallis arborum \n[18]   de umbra\n[19]   de stillicids\n[20]   quae tarde crescant, quae celeriter \n[21]   propagine nascentia\n[22-26]   de insitione\n[22]   quo modo inventa sit\n[24]   genera insitionum\n[23]   inoculatio\n[26]   emplastratio\n[25]   de vite inserenda\n[27]   ramo nascentia\n[28]   quae taleis et quo modo serantur\n[29-30]   olearum cultura\n[30]   operum surcularium per tempora anni digestio\n[31] ..."
+    },
+    "50": {
+      "number": 50,
+      "text": "EX AUCTORIBUS\nCornelio Nepote. Catone censorio. M. Varrone. Celso. Vergilio. Hygino. Sasernis patre et filio. Scrofa. Calpurnio Basso. Trogo. Aemilio Macro. Graecino. Columella. Attico Iulio. Fabiano. Mamilio Sura. Dessio Mundo. C. Epidio. L. Pisone."
+    },
+    "51": {
+      "number": 51,
+      "text": "EXTERNIS\nHesiodo. Theophrasto. Aristotele. Democrito. Theopompo. Hierone rege. Philometore rege. Attalo rege. Archelao rege. Archyta. Xenophonte. Amphilocho Athenaeo. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Atheniense. Cheresto item. Diodoro Prieneo. Dinone Colophonio. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Androtione qui de agricultura scripsit. Aeschrione qui item. Lysimacho qui item. Dionysio qui Magonem transtulit. Diophane qui ex Dionysio epitomas fecit. Aristandro qui de portentis scripsit."
+    },
+    "52": {
+      "number": 52,
+      "text": "[1]   antiquorum studium in agricultura\n[2]   quae prima Romae corona. de spicea corona\n[3]   de iugero\n[4]   quotiens et quibus temporibus fuerit summa vilitas annonae\n[5]   qui inlustres de agricultura scripserint\n[6]   quae observanda in agro parando\n[7]   de villarum positione\n[8]   praecepta antiquorum de agro colendo\n[9]   genera frugum\n[10-29]   naturae per genera frumenti\n[11]   de farre\n[12]   tritico\n[13-15, 18]   hordeo\n[14]   polenta\n[15]   ptisana\n[16]   trago\n[17]   amylo\n[20]   siligine, similagine\n[29]   arinca sive olyra. semine sive zea\n[19]   de reliquis in oriente generibus \n[23]   de pisturis\n[22]   de sesima. de erysimo sive irione. de hormino\n[24]   milio\n[25]   panico\n[26]   de fermentis\n[27]   panis faciendi ratio et genera \n[28]   quando pistorum initium Romae \n[30-33, 36]   de leguminibus\n[30]   faba\n[32]   ciceris genera \n[33]   faseoli\n[31]   pisum\n[34]   de rapis\n[35]   napis\n[36]   lupino\n[37-43]   pabularia\n[37]   viia\n[38]   ervum\n[39]   silicia\n[40]   ..."
+    },
+    "53": {
+      "number": 53,
+      "text": "EX AUCTORIBUS\nMasurio Sabino. Cassio Hemina. Verrio Flacco. L. Pisone. Cornelio Celso. Turranio Gracile. D. Silano. M. Varrone. Catone censorio. Scrofa. Sasernis patre et filio. Domitio Calvino. Hygino. Vergilio. Trogo. Ovidio. Graecino. Columella. Tuberone. L. Tarutio qui Graece de astris scripsit. Caesare dictatore qui item. Sergio Plauto. Sabino Fabiano. M. Cicerone. Calpurnio Basso. Ateio Capitone. Mamilio Sura. Attio qui Praxidicam scripsit."
+    },
+    "54": {
+      "number": 54,
+      "text": "EXTERNIS\nHesiodo. Theophrasto. Aristotele. Democrito. Hierone rege. Philometore rege. Attalo rege. Archelao rege. Archyta. Xenophonte. Amphilocho Athenaeo. Anaxipoli Thasio. Apollodoro Lemnio. Aristophane Milesio. Antigono Cymaeo. Agathocle Chio. Apollonio Pergameno. Aristandro Athenaeo. Bacchio Milesio. Bione Solense. Chaerea Atheniense. Cheresto item. Diodoro Prieneo. Dinone Colophonio. Epigene Rhodio. Euagone Thasio. Euphronio Athenaeo. Androtione qui de agricultura scripsit. Aeschrione qui item. Lysimacho qui item. Dionysio qui Magonem transtulit. Diophane qui ex Dionysio epitomas fecit. Thalete. Eudoxo. Philippo. Callippo. Dositheo. Parmenisco. Metone. Critone. Euctemone. Harpalo. Hecataeo. Anaximandro. Sosigene. Hipparcho. Arato. Zoroastre. Archibio."
+    },
+    "55": {
+      "number": 55,
+      "text": "[1-6]   lini natura et miracula \n[2]   genera eius excellentia\n[3]   quo modo seratur et perficiatur\n[6]   quando primum in theatris vela\n[7-9]   de sparti natura \n[8]   quo modo perficiatur\n[9]   quando primum usus eius \n[10]   de eriophoro bulbo\n[11]   quae sine radice nascantur et vivant. quae nascantur et seri non possint\n[12]   misy, iton, geranion\n[13]   de tuberibus\n[14]   pezicae\n[15-16]   de laserpicio et lasere. maspetum. magydaris\n[17]   de rubia\n[18]   de radicula\n[19-20]   hortorum gratia \n[21]   digestio terra enascentium praeter fruges et frutices\n[22-37]   natura et genera et historiae nascentium in hortis rerum \n[31]   de omnium earum radicibus, floribus, foliis. quibus hortensiorum folia cadant\n[35]   quoto quaeque die nascantur\n[36]   seminum natura. quo modo quaeque serantur\n[37]   quorum singula genera, quorum plura sint\n[38-55]   natura et genera et historiae ad condimenta in horto satarum rerum XXIII\n[48]   lacrima sua nascens\n[56]   ferulacea genera IIII. cannab..."
+    },
+    "56": {
+      "number": 56,
+      "text": "EX AUCTORIBUS\nMarcio Plauto. M. Varrone. D. Silano. Catone censorio. Hygino. Vergilio. Muciano. Celso. Columella. Calpurnio Basso. Mamilio Sura. Sabinio Tirone. Licinio Macro. Q. Birrio. Vibio Rufino. Caesennio qui khpourika scripsit. Castritio item. Firmo item. Potito item."
+    },
+    "57": {
+      "number": 57,
+      "text": "EXTERNIS\nHerodoto. Theophrasto. Democrito. Aristomacho. Menandro qui biocrhsta scripsit. Anaxilao."
+    },
+    "58": {
+      "number": 58,
+      "text": "[2]   cucumere silvestri XXVI\n[3]   elaterio XXVII\n[4]   anguino cucumere sive erratico V\n[5]   cucumere sativo VIIII\n[6]   pepone XI\n[7]   curcurbita silvestri sompho I\n[8]   colocynthide XIII\n[9]   rapis VIIII\n[10]   rapo silvestri I\n[11]   napis sive bunio sive buniade V\n[13]   raphano sativo XLIII\n[12]   armoracia I\n[14]   pastinaca. hibisco sive plistolochia sive moloche agria XI\n[15]   staphylino sive pastinaca erratica XXII\n[16]   gingidio I\n[17]   sisere XI\n[18]   sile XII\n[19]   inula XI\n[20]   caepa XXVII\n[21]   porro sectivo XXXII\n[22]   porro capitato XXXVIIII\n[23]   alio LXI\n[24]   lactuca XLII. caprina IIII\n[25]   caesapo I. isati I. lactuca silvatica VII\n[26]   hieracia XVII\n[27]   beta XXIIII\n[28]   limonio sive neuroide IIII\n[29]   intubo quae ambubaia IIII\n[30]   cichorio sive chreste sive pancratio XII\n[31]   hedypnoide IIII\n[32]   seris generibus II medicinae VII\n[33]   brassica LXXXVII\n[335]   cyma\n[36]   brassica silvestri XXVII\n[37]   lapsana I\n[38]   marina bras..."
+    },
+    "59": {
+      "number": 59,
+      "text": "EX AUCTORIBUS\nCatone censorio. M. Varrone. Pompeio Lenaeo. C. Valgio. Hygino. Sextio Nigro qui Graece scripsit. Iulio Basso qui item. Antonio Castore."
+    },
+    "60": {
+      "number": 60,
+      "text": "EXTERNIS\nDemocrito. Theophrasto. Orpheo. Menandro qui biocrhsta scripsit. Pythagora. Nicandro.   MEDICIS Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Dalione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "61": {
+      "number": 61,
+      "text": "[2]   de strophiolis. serta\n[3]   qui invenerint miscere flores. quando primum corollae appellatae et quare \n[4]   quis primus coronas foliis argenteis et aureis dederit. quare corollaria dicta. de lemniscis. quis primus caelaverit eos\n[5]   quantus honor coronarum apud antiquos fuerit\n[6]   severitas antiquorum in coronis\n[7]   quem floribus honoraverit populus Romanus \n[8]   pactiles coronae. de sutilibus coronis. de nardinis. de Sericis\n[9]   Cleopatrae reginae factum in coronis\n[10]   de rosa. gen. eius XII\n[73]   med. XXXII\n[11]   lili gen. III\n[74]   med. XXI\n[11]   lacrima sua nascens\n[12]   naarcissi gen. III\n[75]   med. XVI\n[13]   quorum semen tinguatur, ut infecta nascantur\n[14-37]   quem ad modum quaeque nascantur, serantur, colantur sub singulis generibus \n[14]   violae colores III\n[76]   med. XVII\n[14]   luteae gen. V\n[76]   med. X\n[15]   caltha. regius flos\n[16]   baccar\n[77]   med. XVII\n[16]   combretum\n[77]   med. I\n[17]   crocum\n[81]   med. XX\n[17]   ubi optimi flores...."
+    },
+    "62": {
+      "number": 62,
+      "text": "EX AUCTORIBUS\nCatone censorio. M. Varrone. Masurio. Antiate. Caepione. Vestino. Vibio Rufino. Hygino. Pomponio Mela. Pompeio Lenaeo. Cornelio Celso. Calpurnio Basso. C. Valgio. Licinio Macro. Sextio Nigro qui Graece scripsit. Iulio Basso qui item. Antonio Castore."
+    },
+    "63": {
+      "number": 63,
+      "text": "EXTERNIS\nTheophrasto. Democrito. Orpheo. Pythagora. Magone. Menandro qui biocrhsta scripsit. Nicandro. Homero. Hesiodo. Musaeo. Sophocle. Anaxilao.   MEDICIS Mnesitheo qui de coronis. Callimacho qui item. Phania physico. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Dalione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "64": {
+      "number": 64,
+      "text": "[1-7]   auctoritas herbarum \n[2]   gentes herbis formae gratia uti\n[3]   herbis infici vestes, item pigmento Gallicae cortinae. de sagminibus. de verbenis et clarigatione\n[4]   de corona graminea. de raritate eius \n[5]   qui soli corona ea donati\n[6]   qui solus centurio\n[8-9]   medicinae ex reliquis coronamentis: erynge sive eryngio quae centum capita XXX\n[10]   acano I\n[11]   glycyrriza sive adipso XV. stomatice I\n[12]   tribuli gen. II med. XII\n[13]   stoebe sive pheos\n[14]   hippophaes. gen. II. med. II\n[15]   urtica LXI\n[16]   lamio VII\n[17]   scorpionis gen. II med. I\n[18]   leucacantha quae phyllos sive ischas sive polygonatos IIII\n[19]   helxine XII\n[20]   perdicio sive Parthenio sive siderite quae urceolaris sive astercum XI\n[21]   chamaeleone sive ixia sive ulophyto sive cynozolo, gen. II, med. XII. mastiche\n[22]   coronopode\n[23]   anchusa XIIII\n[24]   pseudoanchusa quae echis sive doris III\n[25]   onochilo sive archebio sive onocheli ssv rhexia sive enchrysa X. cuius radice..."
+    },
+    "65": {
+      "number": 65,
+      "text": "EX AUCTORIBUS\niisdem quibus priore libro et praeter eos Chrysermo. Eratosthene. Alcaeo."
+    },
+    "66": {
+      "number": 66,
+      "text": "[2]   vitibus XX\n[3]   foliis et pampinis vitium XII\n[4]   omphacio vitum XIIII\n[5]   oenanthe XXI\n[6]   uvis recentibus\n[7]   uvarum servatarum generibus med. XI\n[8]   sarmentis uvarum I\n[9]   nucleis acinorum VI\n[10]   vinaceis III\n[11]   uva theriace IIII\n[12]   uva passa sive astaphide XVII\n[13]   astaphide agria sive staphide sive pituitaria XII\n[14]   labrusca sive uva taminia quae et ampelos agria XII\n[15]   salicastro XII\n[16]   vite alba sive ampelo leuce sive staphyle sive melothro sive psilothro sive archezosti sive cedrosti sive mado XXXI\n[17]   vite nigra sive bryonia sive Chironia sive gynaecanthe sive apronia XXXV\n[18]   musto XV\n[20]   Falerno VI. Albano II. Surrentino III\n[21]   Setino I. Statano I. Signino I\n[22]   ceteris vinis XIIII\n[22-23]   observationes circa vina LXI\n[24-26]   quibus aegris danda, quando danda, quomodo danda. observationes circa ea XCI \n[27]   aceto XXXIII\n[28]   aceto scillino XVII\n[29]   oxymelite VII. oxyalme VII\n[30]   sapa VII\n[31]   faece ..."
+    },
+    "67": {
+      "number": 67,
+      "text": "EX AUCTORIBUS\nC. Valgio. Pompeio Lenaeo. Sextio Nigro qui Graece scripsit. Iulio basso qui item. Antonio Castore. M. Varrone. Cornelio Celso. Fabiano."
+    },
+    "68": {
+      "number": 68,
+      "text": "EXTERNIS\nTheophrasto. Democrito. Orpheo. Pythagora. Magone. Menandro qui biocrhsta. Nicandro. Homero. Hesiodo. Musaeo, Sophocle, Anaxilao.   MEDICIS Mnesitheo. Callimacho. Phania physico. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Dalione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "69": {
+      "number": 69,
+      "text": "[2]   loto Italica VI\n[3]   glandibus XIII\n[4]   cocco ilicis III\n[5]   galla XXIII\n[6]   visco IX\n[7]   pilulis glandiferarum I. cerro VIII\n[8]   subere II\n[9]   fago IIII\n[10]   cupresso XXIII\n[11]   cedro XIII\n[12]   cedride X\n[13]   galbano XXVI\n[14]   Hammoniaco XXIIII\n[15]   styrace XII\n[16]   spondylio XVII\n[17]   sphagno sive sphaco sive bryo V\n[18]   terebintho VI\n[19]   picea VIII\n[20]   chamaepity XV\n[21]   pityusa VI\n[22]   resinis XXV\n[23]   pice XXVII\n[24]   pisselaeo sive palimpissa XVI\n[25]   pissasphalto II\n[26]   zopissa I\n[27]   taeda I\n[28]   lentisco XXII\n[29]   platano XV\n[30]   fraxino V\n[31]   acere I\n[32]   populo VIII\n[33]   ulmo XVI\n[34]   tilia V\n[35]   sabuco XV\n[36]   iunipero XXI\n[37]   salice XIIII. Amerina I\n[38]   vitice XXXIII\n[39]   erice I\n[40]   genista V\n[41]   myrice quae et tamarica III\n[43]   virga sanguinea I\n[42]   brya XVIIII\n[44]   silere III\n[45]   ligustro VIII\n[46]   alno I\n[47]   ivyhederis XXXVIIII\n[48]   cisto V\n[49]   cisso erythrano..."
+    },
+    "70": {
+      "number": 70,
+      "text": "EX AUCTORIBUS\nC. Valgio. Pompeio Lenaeo. Sextio Nigro qui Graece scripsit. Iulio basso qui item. Antonio Castore. Cornelio Celso."
+    },
+    "71": {
+      "number": 71,
+      "text": "EXTERNIS\nTheophrasto. Apollodoro. Democrito. Orpheo. Pythagora. Magone. Menandro qui biocrhsta scripsit. Nicandro. Homero. Hesiodo. Musaeo. Sophocle. Anaxilao.   MEDICIS Mnesitheo. Callimacho. Phania physico. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "72": {
+      "number": 72,
+      "text": "[1]   auctoritas herbarum. de origine usus earum \n[2]   qui Latine usus earum scripserint\n[3]   quando ad Romanos ea notitia pervenerint\n[4-5]   qui primi Graecorum de his conposuerint\n[6]   quare minus exerceantur ea remedia. herbae mirabiliter inventae. cynorrodum, med. II. dracunculus caulis I. Britannia V\n[7]   de maximo dolore \n[7-39]   nobilium herbarum inventores\n[8]   moly III\n[9]   dwdeka jewn I\n[10]   paeonia sive pentoboros sive glycysides I\n[11]   panaces Asclepion II\n[12]   panaces Heraclion III\n[13]   panaces Chironion IIII\n[14]   panaces Centaurion sive Pharnacion III\n[15]   Heraclion siderion IIII\n[17]   hyoscyamos quae Apollinaris sive altercum, gen. V. med. IIII\n[18]   linozostis sive parthenion sive Hermu postea quae Mercurialis, gen. II med. XXII\n[19]   Achillea sideritis sive panaces Heracleum quae milifolium aut scopa regia, gen. VI. med. III\n[20]   Teucria sive hermione sive splenios II\n[21]   Melampodum sive elleborum quod veratrum, gen. III. quo modo colligatur..."
+    },
+    "73": {
+      "number": 73,
+      "text": "EX AUCTORIBUS\nC. Valgio. Pompeio Lenaeo. Sextio Nigro qui Graece scripsit. Iulio basso qui item. Antonio Castore. Cornelio Celso. Fabiano."
+    },
+    "74": {
+      "number": 74,
+      "text": "EXTERNIS\nTheophrasto. Apollodoro. Democrito. Iuba. Orpheo. Pythagora. Magone. Menandro qui biocrhsta scripsit. Nicandro. Homero. Hesiodo. Musaeo. Sophocle. Xantho. Anaxilao.   MEDICIS Mnesitheo. Callimacho. Phania physico. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "75": {
+      "number": 75,
+      "text": "[1]   reliquae per gra de novis morbis\n[2]   quid sint lichenes\n[3]   quando primum in Italia coeperint\n[4]   item carbunculus\n[5]   item elephantiasis\n[6]   item colum\n[7]   de nova medicina. de Asclepiade medico\n[8]   qua ratione medicinam veterem mutaverit\n[9]   contra Magos\n[10]   lichen, gen. II. med. V\n[11]   Proserpinaca I\n[13]   bellis II\n[14]   condurdum I\n[16]   bechion sive arcion sive chamaeleuce quae tussilago III\n[17]   bechion quae salvia IIII\n[19]   molon sive syron I. amomon III\n[20]   ephedra sive anabasis III\n[21]   geum III\n[22]   tripolion III\n[23]   gromphaena\n[24]   malundrum II\n[25]   chalcetum I. [molemonium I]\n[26]   halus sive cotonea V\n[27]   chamaerops I. stoechas I\n[29]   astragalus VI\n[30]   ladanum XIII\n[31]   chondris sive pseudodictamnum I. hypocisthis sive orobethron, gen. II. med. VIII\n[32]   laver sive sion\n[33]   potamogiton VIII. statice III\n[34]   ceratia II. leontopodion sive leuceoron sive doripetron sive thorybethron.... lagopus II\n[35]   epit..."
+    },
+    "76": {
+      "number": 76,
+      "text": "EX AUCTORIBUS\nM. Varrone. C. Valgio. Pompeio Lenaeo. Sextio Nigro qui Graece scripsit. Iulio basso qui item. Antonio Castore. Cornelio Celso."
+    },
+    "77": {
+      "number": 77,
+      "text": "EXTERNIS\nTheophrasto. Apollodoro. Democrito. Iuba. Orpheo. Pythagora. Magone. Menandro qui biocrhsta scripsit. Nicandro. Homero. Hesiodo. Musaeo. Sophocle. Xantho. Anaxilao.   MEDICIS Mnesitheo. Callimacho. Phania physico. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "78": {
+      "number": 78,
+      "text": "[2]   aconitum sive thelyphonon sive cammaron sive pardalianches sive scorpion, med. IIII\n[3]   Aethiopis IIII\n[4]   ageraton IIII\n[5]   aloe XXVIIII\n[6]   alcea IIIII\n[7]   alypon I\n[8]   alsine ad eadem quae helxine V\n[9]   androsaces III\n[10]   androsaemon sive ascyron VI\n[11]   ambrosia sive botrys sive Artemisia III\n[12]   anonis sive ononis V\n[13]   anagyros sive acopon VI\n[14]   anonymos V\n[15]   aparine sive omphalocarpos sive philanthropos IIII\n[16]   arction sive arcturon V\n[17]   asplenos sive hemionios II\n[18]   Asclepias II\n[19]   aster sive bubonion III\n[20]   ascyron et ascyroides IIII\n[21]   aphaca III\n[22]   alcibium I\n[23]   alectoros lophos quae crista II\n[24]   alum quod symphyton petraeum XIIII\n[25]   alga rufa I\n[26]   actaea I\n[27]   ampelos agria IIII\n[28]   absinthium, gen. III. med. XLVIIII\n[29]   absinthium marinum sive seriphum II\n[30]   ballote sive porrum nigrum III\n[31]   botrys sive Artemisia I\n[32]   brabilla I\n[33]   bryon marinum V\n[34]   bupleuron I\n..."
+    },
+    "79": {
+      "number": 79,
+      "text": "EX AUCTORIBUS\nC. Valgio. Pompeio Lenaeo. Sextio Nigro qui Graece scripsit. Iulio basso qui item. Antonio Castore. Cornelio Celso."
+    },
+    "80": {
+      "number": 80,
+      "text": "EXTERNIS\nTheophrasto. Apollodoro. Democrito. Aristogitone. Orpheo. Pythagora. Magone. Menandro qui biocrhsta scripsit. Nicandro.   MEDICIS Mnesitheo. Callimacho. Timaristo. Simo. Hippocrate. Chrysippo. Diocle. Ophione. Heraclide. Hicesio. Dionysio. Apollodoro Citiense. Apollodoro Tarentino. Praxagora. Plistonico. Medio. Dieuche. Cleophanto. Philistione. Asclepiade. Crateua. Petronio Diodoto. Iolla. Erasistrato. Diagora. Andrea. Mneside. Epicharmo. Damione. Sosimene. Tlepolemo. Metrodoro. Solone. Lyco. Olympiade Thebana. Philino. Petricho. Miccione. Glaucia. Xenocrate."
+    },
+    "81": {
+      "number": 81,
+      "text": "[3]   an sit in medendo verborum aliqua vis\n[4-5]   ostenta et sanciri et depelli\n[2]   ex homine remedia. contraria Magos\n[6-19]   ex viro medicinae et observations CCXXVI, puero VIII\n[20-23]   muliere LXI\n[24-32]   ex peregrinis animalibus \n[24]   elephanto VIII\n[25]   leone X\n[26]   camelo X\n[27]   hyaena LXXVIIII\n[28]   crocodilo XVIIII. crocodilea XI\n[29]   chamaeleone XV\n[30]   scinco IIII\n[31]   hippopotamio VII\n[32]   lynce V\n[33-41]   medicinae communes ex animalibus feris aut eiusdem generis placidis\n[33]   lactis usus et observations LVII\n[34]   de caseis XII\n[35]   butyro XXV\n[36]   oxygala I\n[37]   adipis usus et observations LII\n[38]   de sebo\n[39]   de medulla\n[40]   de felle\n[41]   de sanguine \n[42-80]   privatae ex animalibus medicinae digestae in morbos \n[71]   ex apro XLIsue LXcervo LIIlupo XXVIIurso XXVIIIIonagro XIIasino LXXVIpolea IIIequifero XIeculei coagulo Iequo XLIIhippace Ibubus feris IIbove LXXXItauro LIIIvitulo LVIIIIlepore LXIIIIvolpe XXmele IIfele Vcapra ..."
+    },
+    "82": {
+      "number": 82,
+      "text": "EX AUCTORIBUS\nM. Varrone. L. Pisone. Antiate. Flacco Verrio. Fabiano. Catone censorio. Servio Sulpicio. Licinio Macro. Celso. Masurio. Sextio Nigro qui Graece scripsit. Bitho Durracheno. Rabirio medico. Ofilio medico. Granio medico."
+    },
+    "83": {
+      "number": 83,
+      "text": "EXTERNIS\nDemocrito. Apollonio qui et Mys. Meleto. Artemone. Sextilio Antaeo. Homero. Theophrasto. Lysimacho. Attalo. Xenocrate. Orpheo qui idiofuh scripsit. Archelao qui item. Demetrio. Sotira. Laide. Elephantide. Salpe. Olympiade Thebana. Diotimo Thebano. Iolla. Andrea. Marcione Smyrnaeo. Aescine medico. Hippocrate. Aristotele. Metrodoro Scepsio. Hicetida medico. Apelle medico. Hesiodo. Bialcone. Caecilio Bione qui peri dunamewn scripsit. Anaxilao. Iuba rege."
+    },
+    "84": {
+      "number": 84,
+      "text": "[1]   de origine medicinae\n[2]   de Hippocrate. quando primum clinice. quod primum iatraliptice\n[3]   de Chrysippo medico. de Erasistrato\n[4]   de empirice\n[5]   de Herophilo. de reliquis inlustribus medicis. quotiens ratio medicinae mutata sit\n[6]   quis primus Romae medicus et quando \n[7]   quid de medicis antiqui Romani iudicaverint\n[8]   vitia mekha \n[9]   remedia ex lanis XXXV et sequenti libro XXV: LX\n[10]   oesypo XXXIII, seq. l. XX: LII\n[11]   ovis XXII, seq. l. XLIII: LXV. quae sitista ova. quo modo fiant tota lutea\n[12]   de serpentium ovis\n[13]   de Commageno conficiendo. medicinae ex eo\n[14-40]   remedia ex animalibus quae placida non sint aut fera\n[38]   ariete V et seq. l. VII: XIIpecude XXII et seq. l. LV: LXXVIImulis I et seq. l. V: VIcaballis I et seq. l. III: IIIIcane XVI et seq. l. XLI: LVIIcane rabioso III et seq. l. II:Vichneumone I. mure XIIII et seq. l. XXVIII: XLIImure araneo IIII et seq. l. I: Vglire II et seq. l. III: Vsorice I et seq. l. III: Vmustela XVIIII ..."
+    },
+    "85": {
+      "number": 85,
+      "text": "EX AUCTORIBUS\nM. Varrone. L. Pisone. Flacco Verrio. Antiate. Nigidio. Cassio Hemina. Cicerone. Plauto. Celso. Sextio Nigro qui Graece scripsit. Caecilio medico. Metello Scipione. Ovidio poeta. Licinio Macro."
+    },
+    "86": {
+      "number": 86,
+      "text": "EXTERNIS\nPalaephato. Homero. Aristotele. Orpheo. Democrito. Anaxilao.   MEDICIS Botrye. Apollodoro. Archedemo. Aristogene. Xenocrate. Democrate. Diodoro. Chrysippo [philosopho]. Oro. Nicandro. Apollonio Pitanaeo."
+    },
+    "87": {
+      "number": 87,
+      "text": "[1]   de origine magices\n[2]   quando et a quo coeperit. a quibus celebrata sit\n[3]   an exercuerit eam Italia. quando primum senatus vetuerit hominem immolari\n[4]   de Galliarum Druidis\n[5]   de generibus magices\n[7]   opinio Magorum de talpis. med. V\n[8-53]   reliquae medicinae per morbos digestae in animalibus quorum genera non sunt placida aut fera\n[15]   pecude LV et priore l. XII: LXXVIIariete VII et pr. l. V: XIIlana XXV et pr. l. XXXV: LXoesypo XX et pr. l. XXXII: LIImulis V et pr. l. I: VIcaballis III et pr. l. I: IIIIcane XLI et pr. l. XVI: LVIIcane rabioso II et pr. l. III: Vviverra Imura araneo I et pr. l. IIII: Vglire III et pr. l. II:Vsorice II et pr. l. I: IIImustela XXV et pr. l. XVIIII: XLIIIIstelione XII et pr. l. IIII: XVIirenaceo XIII et pr. l. V: XVIIIhystrice II et pr. l. I: IIIlacerta XXX et pr. l. XIII: XLIIIsalamandra III et pr. l. I: IIIIcoclea LXIII et pr. l. VI: LXVIIIIakeratwn medicamentum\n[aspide III et pr. l. I: IIIIdracone IIII et pr. l. VI: Xvipera XXI ..."
+    },
+    "88": {
+      "number": 88,
+      "text": "EX AUCTORIBUS\nM. Varrone. Nigidio. M. Cicerone. Sextio Nigro qui Graece scripsit. Licinio Macro."
+    },
+    "89": {
+      "number": 89,
+      "text": "EXTERNIS\nEudoxo. Aristotele. Hermippo. Homero. Apione. Orpheo. Democrito. Anaxilao.   MEDICIS Botrye. Apollodoro. Menandro. Archedemo. Aristogene. Xenocrate. Diodoro. Chrysippo philosopho. Oro. Nicandro. Apollonio Pitanaeo."
+    },
+    "90": {
+      "number": 90,
+      "text": "[1]   aquarum mirabilia\n[2]   aquarum differentiae \n[3-17]   medicinae. observationes CCLXVI\n[3]   quales oculis aquae prosint\n[4]   quales fecunditatem faciant. quales insaniae medeantur\n[5]   quales calculosis\n[6]   quales volneribus\n[7]   quales partem custodiant\n[8]   quales vitiliginem tollant\n[9]   quae colorem lanis faciant\n[10]   quae hominibus \n[11]   quae memoriam, quae oblivionem\n[12]   quae sensus subtilitatem, quae tarditatem, quae canoram vocem\n[13]   quae vini taedium, quae inebrient\n[14]   quae olei vicem praestent\n[15]   quae salsae et amarae\n[16]   saxa egerentes, risum aut ploratum facientes. quae amorem sanare dicantur\n[17]   per triduum calentes haustus\n[18-20]   aquarum miracula \n[18]   in quibus omnia mergantur, in quibus nihil \n[19]   aquae necantes, pisces venenati\n[20]   quae lapideae fiant aut lapidem faciant\n[21]   de salubirtate aquarum \n[22]   de vitiis aquarum \n[23]   probatio aquarum \n[24]   de aqua Marcia\n[25]   de aqua Virgine\n[26]   aquas inveniendi r..."
+    },
+    "91": {
+      "number": 91,
+      "text": "EX AUCTORIBUS\nM. Varrone. Cassio Parmense. Cicerone. Muciano. Caelio. Celso. Trogo. Ovidio. Polybio. Sornatio."
+    },
+    "92": {
+      "number": 92,
+      "text": "EXTERNIS\nCalimacho. Ctesia. Eudico. Theophrasto. Eudoxo. Theopompo. Polyclito. Iuba. Lyco. Apione. Epigene. Pelope. Apelle. Democrito. Thrasyllo. Nicandro. Menandro comoedo. Attalo. Sallustio Dionysio. Andrea. Nicerato. Hippocrate. Anaxilao."
+    },
+    "93": {
+      "number": 93,
+      "text": "[1]   summa naturae vis in antipathia\n[1]   de echenaide II\n[2]   de torpedine VII\n[3]   de lepore marino V\n[4]   mirabilia Rubri maris\n[5-9]   de ingeniis piscium mirabiles\n[8]   ubi responsa dentur ex piscibus \n[7]   ubi ex manu edant\n[8]   ubi vocem agnoscant\n[9]   ubi amari sint, ubi salsi, ubi ducles, ubi non muti. esse et locorum sympathiam vel antipathiam\n[10]   quando marini pisces in usu P. R. esse coeperint. Numae regis constitutio de piscibus \n[11]   de curalio. medicinae et observationes XLIII\n[12]   de discordia inter se marinorum. pastinaca VIIII. galeo, mullo XV\n[13-14]   de iis quibus in aqua et in terra victus est. de castoreis. medicinae et observationes LVI\n[14]   de testudine. medicinae et observationes LXVI\n[16]   aurata IIII. stella marina VII\n[17]   sardis I. cybia\n[18]   rana marina VI. fluviatiles LII. rana rubeta. observationes circa eas XXXII\n[19]   enhydris III.cancri fluviatiles XLV. cancri marini VIIex cocleis fluviatilibus VIIcoracinis IIIIporco pisce II\n..."
+    },
+    "94": {
+      "number": 94,
+      "text": "EX AUCTORIBUS\nLicinio Macro. Trebio Nigro. Sextio Nigro qui Graece scripsit. Ovidio poeta. Cassio Hemina. Maecenate. Iaccho. Sornatio."
+    },
+    "95": {
+      "number": 95,
+      "text": "EXTERNIS\nIuba. Andrea. Salpe. Apione. Pelope. Apelle. Thrasyllo. Nicandro."
+    },
+    "96": {
+      "number": 96,
+      "text": "[2-25]   de auro\n[3]   quae prima commendatio eius \n[4]   de anulorum aureorum origine\n[5]   de modo auri apud antiquos\n[6-9]   de equestri ordine. de iure anulorum aureorum\n[7]   de decuriis\n[9]   quotiens nomen equestris ordinis mutatum\n[10]   de donis militaribus aureis et argenteis\n[11]   quando primum corona aurea data\n[12]   de reliquo usu auri, feminarum \n[13]   de nummo aureo\n[13]   quando primum signatum aes, argentum. urum. antequam ea signarentur, quis mos in aere\n[13]   quae maxima pecunia primi census\n[13]   quotiens et quibus temporibus aucta sit aeris aut nummi signati aestimatio\n[14]   de cupiditate auri\n[15]   qui plurimum auri et argenti possiderint\n[16]   quando primum argenti apparatus in harena, quando in scaena\n[17]   quibus temporibus plurimum in aerario populi Romani auri et argenti fuerit\n[18]   quando primum lacunaria inaurata\n[19]   quibus de causis praecipua auctoritas auro\n[20]   ratio inaurandi\n[21]   de inveniendo auro\n[22]   de auropigmento\n[23]   de ele..."
+    },
+    "97": {
+      "number": 97,
+      "text": "EX AUCTORIBUS\nDomitiano Caesare. Iunio Gracchano. L. Pisone. M. Varrone. Corvino. Attico Pomponio. Calvo Licinio. Cornelio Nepote. Muciano. Boccho. Fetiale. Fenestella. Valerio Maximo. Iulio Basso qui de medicina Graece scripsit. Sextio Nigro qui item."
+    },
+    "98": {
+      "number": 98,
+      "text": "EXTERNIS\nTheophrasto. Democrito. Iuba. Timaeo historico. Qui de medicina metallica scripserunt: Heraclide. Andrea. Diagora. Botrye. Archedemo. Dionysio. Aristogene. Democle. Mneside. Attalo medico. Xenocrate item. Theomnesto. Nymphodoro. Iolla. Apollodoro. Pasitele qui mirabilia opera scripsit. Antigono qui de toreutice scripsit. Menaechmo qui item."
+    },
+    "99": {
+      "number": 99,
+      "text": "[1-38]   aeris metalla\n[2-5]   genera aeris\n[3]   quae Corinthia\n[4]   quae Deliaca\n[5]   quae Aeginetica\n[4, 5, 8]   de tricliniis aeratis\n[6]   de candelabris\n[7]   de templorum ornamentis ex aere\n[9]   quod primum dei simulacrum Romae ex aere factum\n[9]   de origine statuarum et honore\n[10-11]   statuarum genera et figurae. santiquas statuas togatas sine tunicis fuisse \n[11]   quae primae statuae Romae. quibus primum publice postiae, quibus primum in columna, quando rostra\n[12]   quibus externis Romae publice positae\n[13]   quibus Romae mulieribus in publico positae. quae prima Romae statua equestris publice posita\n[14]   quando omnes privatim positae statuae ex publico sublatae\n[15]   quae prima ab externis publice posita\n[16]   fuisse antiquitus et in Italia statuarios\n[17]   de pretiis signorum inmodicis\n[18]   de colossis in urbe celeberrimis\n[19]   nobilitates ex aere operum et artificum CCCLXVI\n[20]   differentiae aeris et mixturae. de pyropo\n[20]   de Campano aere\n[21]   de s..."
+    },
+    "100": {
+      "number": 100,
+      "text": "EX AUCTORIBUS\nL. Pisone. Antiate. Verrio. M. Varrone. Cornelio Nepote. Messala Rufo. Marso poeta. Boccho. Iulio Basso qui de medicina Graece scripsit. Sextio Nigro qui item. Fabio Vestale."
+    },
+    "101": {
+      "number": 101,
+      "text": "EXTERNIS\nDemocrito. Metrodoro Scepsio. Menaechmo qui de toreutice scripsit. Xenocrate qui item. Antigono qui item. Duride qui item. Heliodoro qui Atheniensium anathemata scripsit. Pasitele qui marabilia opera scripsit. Timaeo. Qui de medicina metallica scripserunt: Nymphodoro. Iolla. Apollodoro. Andrea. Heraclide. Diagora. Botrye. Archedemo. Dionysio. Aristogene. Democle. Mneside. Xenocrate Zenonis. Theomnesto."
+    },
+    "102": {
+      "number": 102,
+      "text": "[1]   honos picturae\n[2]   honos imaginum\n[3]   quando primum clupei vice imaginum instituti. quando primum in publico positi\n[4]   quando in domibus\n[5]   de picturae initiis. de monochromatis picturis. de primis pictoribus\n[6]   antiquitas picturarum in Italia \n[7]   de pictoribus Romanis. quando primum dignitas picturae et quibus ex causis Romae. qui victorias suas pictas proposuerint\n[8-10]   quando primum externis picturis dignitas Romae \n[11]   ratio pingendi\n[12-32]   de pigmentis praeter metallica\n[12]   de coloribus facticiis\n[13]   de Sinopide. med. ex ea XI\n[14]   de rubrica. de terra Lemnia. med. ex ea VIIII\n[15]   de Aegyptia terra\n[16]   de ochra. med. ex rubria III\n[17]   leucophorum\n[18]   Paraetonium\n[19]   Melinum. med. ex eo VI\n[20]   cerussa usta\n[21]   Eretria terra. med. ex ea VI\n[22]   sandaraca\n[23]   sandyx\n[24]   Syricum\n[25]   atramentum\n[26]   purpurrissum\n[27]   Indicum. med. ex eo III\n[28]   Armenium. med. ex eo. I\n[29]   viride Appianum\n[30]   anulare\n[31..."
+    },
+    "103": {
+      "number": 103,
+      "text": "EX AUCTORIBUS\nMessala oratore. Messala sene. Fenestella. Attico. M. Varrone. Verrio. Nepote Cornelio. Deculone. Muciano. Melisso. Vitruvio. Cassio Severo. Longulano. Fabio Vestale."
+    },
+    "104": {
+      "number": 104,
+      "text": "EXTERNIS\nQui de pictura scripserunt: Pasitele. Apelle. Melanthio. Asclepiodoro. Euphranore. Heliodoro qui anathemata Atheniensium scripsit. Metrodoro qui de architectonice scripsit. Democrito. Theophrasto. Apione grammatico. Qui de metallica medicina scripserunt: Nymphodoro. Iolla. Apollodoro. Andrea. Heraclide. Diagora. Botrye. Arcehedmo. Dionysio. Aristogene. Democle. Mneside. Xenocrate Zenonis. Theomnesto."
+    },
+    "105": {
+      "number": 105,
+      "text": "[1-3]   luxuria in marmoribus\n[3]   quis primus peregrino marmore columnas habuerit Romae \n[2-3]   quis primus in publicis operibus ostenderit\n[4]   qui primi laudati in marmore scalpendo et quibus temporibus \n[4]   de Mausoleo Cariae\n[4]   nobilitates operum et artificum in marmore CCXXV\n[5]   quando primum marmorum in aedificiis usus\n[6]   qui primi marmora secuerint et quando \n[7]   quis primus Romae crustaverit parietes\n[8]   quibus aetatibus quaeque marmora in usum venerint Romae \n[9]   ratio secandi marmora. de harenis quibus secantur\n[10]   de Naxio. de Armenio\n[11]   de Alexandrinis marmoribus\n[12]   de onyche sive alabastrite. med. ex eo III\n[13]   de lygdino, corallitico, Alabandico, Thebaico, Syenite\n[14-15]   de obeliscis\n[15]   de eo qui pro gnomone in campo Martio est \n[16-23]   opera mirabilia in terris\n[17]   Sphinx Aegyptia. pyramides\n[18]   Pharos\n[19]   labyrinthi\n[20]   pensiles horti. pensile oppidum\n[21]   de templo Ephesiae Dianae\n[22]   aliorum templorum admirab..."
+    },
+    "106": {
+      "number": 106,
+      "text": "EX AUCTORIBUS\nM. Vcarrone. C. Galba. Cincio. Muciano. Nepote Cornelio. L. Pisone. Q. Tuberone. Fabio Vestale. Annio Fetiale. Fabiano. Seneca. Catone censorio. Vitruvio."
+    },
+    "107": {
+      "number": 107,
+      "text": "EXTERNIS\nTheophrasto. Pasitele. Iuba rege. Nicandro. Sotaco. Sudine. Alexandro polyhistore. Apione Plistonice. Duride. Herodoto. Euhemero. Aristagora. Dionysio. Artemidoro. Butorida. Antisthene. Demetrio. Demotele. Lycea."
+    },
+    "108": {
+      "number": 108,
+      "text": "[1]   origo gemmarum\n[2-3]   de Polycratis tyranni gemma, de Pyrrhi regis\n[4]   qui scaptores optimi\n[4]   nobilitates scalpturae\n[5]   quae prima Romae dactyliothece\n[6]   gemmae in Pompei Magni triumpho translatae\n[7]   quando primum myrrhina invecta. luxuria circa ea\n[8]   natura eorum \n[9-10]   de crystallo\n[10]   medicina ex eo. luxuria in crystallo\n[11-12]   de sucino\n[11]   quae mentiti sint auctores de eo\n[12]   gen. eius VII. med. ex his ...\n[13]   lyncurium. med. II\n[15]   de adamante sive anancite. gen. adamantis VI. med. II\n[16-19]   de smaragdis\n[17]   gen. eorum \n[18]   vitia eorum \n[19]   tanos gemma. chalcosmaragdos\n[20]   de beryllis. genera eorum VIII. vitia eorum \n[21-22]   de opalis. genera eorum VII. vitia eorum et experimenta\n[23]   de sardonyche. gen. eius ... vitia eius \n[24]   de onyche. gen. eius ...\n[25-26]   de carbunculis\n[25]   gen. eorum XII\n[26]   vitia eorum et experimenta\n[27]   anthracitis\n[28]   sandastros. sandaresus\n[29]   lychnis. gen. eius IIII\n[..."
+    },
+    "109": {
+      "number": 109,
+      "text": "EX AUCTORIBUS\nM. Varrone. actis triumphorum. Maecenate. Iaccho. Cornelio Boccho."
+    },
+    "110": {
+      "number": 110,
+      "text": "EXTERNIS\nIuba rege. Xenocrate Zenonis. Sudine. Aeschylo. Philoxeno. Euripide. Nicandro. Satyro. Theophrasto. Charete. Philemone. Demostrato. Zenothemi. Metrodoro. Sotaco. Pythea. Timaeo Siculo. Nicia. Theochresto. Asaruba. Mnasea. Theomene. Ctesia. Mithridate. Sophocle. Archelao rege. Callistrato. Democrito. Ismenia. Olympico. Alexandro polyhistore. Apione. Oro. Zoroastre. Zachalia."
+    }
+  }
+}

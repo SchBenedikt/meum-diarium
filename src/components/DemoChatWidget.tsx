@@ -6,15 +6,12 @@ import { Button } from './ui/button';
 import { askAI } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
-
 // Uses Cloudflare Worker via Pages proxy to fetch real AI responses
 const DEFAULT_PERSONA = 'caesar';
-
 export function DemoChatWidget() {
     const [messages, setMessages] = useState<Message[]>([
         { role: 'assistant', content: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über den Rubikon, meine Feldzüge in Gallien oder meine Zeit als Diktator.' }
@@ -22,21 +19,17 @@ export function DemoChatWidget() {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages, isTyping]);
-
     const handleSend = async () => {
         if (!input.trim() || isTyping) return;
-
         const userMessage = input.trim();
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setInput('');
         setIsTyping(true);
-
         try {
             const { text } = await askAI(DEFAULT_PERSONA, userMessage);
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
@@ -47,18 +40,15 @@ export function DemoChatWidget() {
             setIsTyping(false);
         }
     };
-
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSend();
         }
     };
-
     return (
         <div className="relative">
             <div className="absolute -inset-4 bg-primary/10 blur-[100px] rounded-full" />
-
             <div className="relative bg-card/70 backdrop-blur-2xl border border-border/40 rounded-3xl overflow-hidden shadow-2xl">
                 {/* Chat Header */}
                 <div className="flex items-center justify-between border-b border-border/50 px-6 py-4 bg-background/50 backdrop-blur-xl">
@@ -86,7 +76,6 @@ export function DemoChatWidget() {
                         </button>
                     </div>
                 </div>
-
                 {/* Chat Messages */}
                 <div ref={scrollRef} className="space-y-4 p-6 h-[380px] overflow-y-auto">
                     <AnimatePresence mode="popLayout">
@@ -129,7 +118,6 @@ export function DemoChatWidget() {
                             </motion.div>
                         ))}
                     </AnimatePresence>
-
                     {/* Typing Indicator */}
                     <AnimatePresence>
                         {isTyping && (
@@ -154,7 +142,6 @@ export function DemoChatWidget() {
                         )}
                     </AnimatePresence>
                 </div>
-
                 {/* Chat Input */}
                 <div className="border-t border-border/50 px-6 py-4 bg-background/30 backdrop-blur-xl">
                     <div className="flex items-center gap-3">

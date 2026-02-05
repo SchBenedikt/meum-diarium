@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
-
 export function LoadingScreen() {
   const [dotCount, setDotCount] = useState(1);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setDotCount((prev) => (prev % 3) + 1);
     }, 450);
     return () => clearInterval(interval);
   }, []);
-
   const dots = '.'.repeat(dotCount);
-
   return (
     <div className="fixed inset-0 flex min-h-screen items-center justify-center bg-background text-foreground">
       <div className="mx-4 flex max-w-md flex-col items-center gap-6 rounded-[1.25rem] border border-border/60 bg-card px-6 py-8">
@@ -24,12 +20,10 @@ export function LoadingScreen() {
             Memoriam temporis
           </p>
         </div>
-
         {/* Kreis-Spinner */}
         <div className="flex items-center justify-center">
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-muted border-t-primary" />
         </div>
-
         {/* Status-Text */}
         <div className="space-y-1 text-center">
           <p className="text-sm md:text-base text-muted-foreground">

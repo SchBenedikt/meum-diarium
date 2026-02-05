@@ -1,0 +1,863 @@
+{
+  "metadata": {
+    "author": "Horace",
+    "work": "Liber III",
+    "url": "https://www.thelatinlibrary.com/horace/carm3.shtml",
+    "verse_count": 213,
+    "title": "Liber III"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Odi profanum volgus et arceo.\nFavete linguis: carmina non prius\n     audita Musarum sacerdos\n     virginibus puerisque canto."
+    },
+    "2": {
+      "number": 2,
+      "text": "Regum timendorum in proprios greges,               5\nreges in ipsos imperium est Iovis,\n     clari Giganteo triumpho,\n     cuncta supercilio moventis."
+    },
+    "3": {
+      "number": 3,
+      "text": "Est ut viro vir latius ordinet\narbusta sulcis, hic generosior               10\n     descendat in campum petitor,\n     moribus hic meliorque fama"
+    },
+    "4": {
+      "number": 4,
+      "text": "contendat, illi turba clientium\nsit maior: aequa lege Necessitas\n     sortitur insignis et imos,\n     omne capax movet urna nomen.               15"
+    },
+    "5": {
+      "number": 5,
+      "text": "Destrictus ensis cui super impia\ncervice pendet, non Siculae dapes\n     dulcem elaboratum saporem,\n     non avium citharaequecantus               20"
+    },
+    "6": {
+      "number": 6,
+      "text": "Somnum reducent: somnus agrestium\nlenis virorum non humilis domos\n     fastidit umbrosamque ripam,\n     non Zephyris agitata tempe."
+    },
+    "7": {
+      "number": 7,
+      "text": "Desiderantem quod satis est neque               25\ntumultuosum sollicitat mare,\n     nec saevus Arcturi cadentis\n     impetus aut orientis Haedi,"
+    },
+    "8": {
+      "number": 8,
+      "text": "non verberatae grandine vineae\nfundusque mendax, arbore nunc aquas               30\n     culpante, nunc torrentia agros\n     sidera, nunc hiemes iniquas."
+    },
+    "9": {
+      "number": 9,
+      "text": "Contracta pisces aequora sentiunt\niactis in altum molibus: huc frequens\n     caementa demittit redemptor\n     cum famulis dominusque terrae               35"
+    },
+    "10": {
+      "number": 10,
+      "text": "fastidiosus: sed Timor et Minae\nscandunt eodem quo dominus, neque\n     decedit aerata triremi et\n     post equitem sedet atra Cura.               40"
+    },
+    "11": {
+      "number": 11,
+      "text": "Quod si dolentem nec Phrygius lapis\nnec purpurarum sidere clarior\n     delenit usus nec Falerna\n     uitis Achaemeniumque costum,"
+    },
+    "12": {
+      "number": 12,
+      "text": "cur invidendis postibus et novo               45\nsublime ritu moliar atrium?\n     Cur valle permutem Sabina\n     divitias operosiores?"
+    },
+    "13": {
+      "number": 13,
+      "text": "Angustam amice pauperiem pati\nrobustus acri militia puer\n     condiscat et Parthos ferocis\n     vexet eques metuendus hasta"
+    },
+    "14": {
+      "number": 14,
+      "text": "vitamque sub divo et trepidis agat               5\nin rebus. Illum ex moenibus hosticis\n     matrona bellantis tyranni\n     prospiciens et adulta virgo"
+    },
+    "15": {
+      "number": 15,
+      "text": "suspiret, eheu, ne rudis agminum\nsponsus lacessat regius asperum               10\n     tactu leonem, quem cruenta\n     per medias rapit ira caedes."
+    },
+    "16": {
+      "number": 16,
+      "text": "Dulce et decorum est pro patria mori:\nmors et fugacem persequitur virum\n     nec parcit inbellis iuventae\n     poplitibus timidove tergo.               15"
+    },
+    "17": {
+      "number": 17,
+      "text": "Virtus, repulsae nescia sordidae,\nintaminatis fulget honoribus\n     nec sumit aut ponit securis\n     arbitrio popularis aurae.               20"
+    },
+    "18": {
+      "number": 18,
+      "text": "Virtus, recludens inmeritis mori\ncaelum, negata temptat iter via\n     coetusque volgaris et udam\n     spernit humum fugiente pinna."
+    },
+    "19": {
+      "number": 19,
+      "text": "Est et fideli tuta silentio               25\nmerces: vetabo, qui Cereris sacrum\n     volgarit arcanae, sub isdem\n     sit trabibus fragilemque mecum"
+    },
+    "20": {
+      "number": 20,
+      "text": "solvat phaselon; saepe Diespiter\nneglectus incesto addidit integrum,               30\n     raro antecedentem scelestum\n     deservit pede Poena claudo."
+    },
+    "21": {
+      "number": 21,
+      "text": "Iustum et tenacem propositi virum\nnon civium ardor prava iubentium,\n     non voltus instantis tyranni\n     mente quatit solida neque Auster,"
+    },
+    "22": {
+      "number": 22,
+      "text": "dux inquieti turbidus Hadriae,               5\nnec fulminantis magna manus Iovis:\n     si fractus inlabatur orbis,\n     inpavidum ferient ruinae."
+    },
+    "23": {
+      "number": 23,
+      "text": "Hac arte Pollux et vagus Hercules\nenisus arces attigit igneas,               10\n     quos inter Augustus recumbens\n     purpureo bibet ore nectar;"
+    },
+    "24": {
+      "number": 24,
+      "text": "hac te merentem, Bacche pater, tuae\nvexere tigres indocili iugum\n     collo trahentes; hac Quirinus\n     Martis equis Acheronta fugit,               15"
+    },
+    "25": {
+      "number": 25,
+      "text": "gratum elocuta consiliantibus\nIonone divis: 'Ilion, Ilion\n     fatalis incestusque iudex\n     et mulier peregrina vertit               20"
+    },
+    "26": {
+      "number": 26,
+      "text": "in pulverem, ex quo destituit deos\nmercede pacta Laomedon, mihi\n     castaeque damnatum Mineruae\n     cum populo et duce fraudulento."
+    },
+    "27": {
+      "number": 27,
+      "text": "Iam nec Lacaenae splendet adulterae               25\nfamosus hospes nec Priami domus\n     periura pugnaces Achivos\n     Hectoreis opibus refringit"
+    },
+    "28": {
+      "number": 28,
+      "text": "nostrisque ductum seditionibus\nbellum resedit. Protinus et gravis               30\n     irae et invisum nepotem,\n     Troica quem peperit sacerdos,"
+    },
+    "29": {
+      "number": 29,
+      "text": "Marti redonabo; illum ego lucidas\ninire sedes, discere nectaris\n     sucos et adscribi quietis\n     ordinibus patiar deorum.               35"
+    },
+    "30": {
+      "number": 30,
+      "text": "Dum longus inter saeviat Ilion\nRomamque pontus, qualibet exules\n     in parte regnato beati;\n     dum Priami Paridisque busto               40"
+    },
+    "31": {
+      "number": 31,
+      "text": "insultet armentum et catulos ferae\ncelae inultae, stet Capitolium\n     fulgens triumphatisque possit\n     Roma ferox dare iura Medis."
+    },
+    "32": {
+      "number": 32,
+      "text": "Horrenda late nomen in ultimas               45\nextendat oras, qua medius liquor\n     secernit Europen ab Afro,\n     qua tumidus rigat arva Nilus;"
+    },
+    "33": {
+      "number": 33,
+      "text": "aurum inrepertum et sic melius situm,\ncum terra celat, spernere fortior               50\n     quam cogere humanos in usus\n     omne sacrum rapiente dextra,"
+    },
+    "34": {
+      "number": 34,
+      "text": "quicumque mundo terminus obstitit,\nhunc tanget armis, visere gestiens,\n     qua parte debacchentur ignes,\n     qua nebulae pluviique rores.               55"
+    },
+    "35": {
+      "number": 35,
+      "text": "Sed bellicosis fata Quiritibus\nhac lege dico, ne nimium pii\n     rebusque fidentes avitae\n     tecta velint reparare Troiae.               60"
+    },
+    "36": {
+      "number": 36,
+      "text": "Troiae renascens alite lugubri\nfortuna tristi clade iterabitur,\n     ducente victrices catervas\n     coniuge me Iovis et sorore."
+    },
+    "37": {
+      "number": 37,
+      "text": "Ter si resurgat murus aeneus               65\nauctore Phoebo, ter pereat meis\n     excisus Argivis, ter uxor\n     capta virum puerosque ploret.'"
+    },
+    "38": {
+      "number": 38,
+      "text": "Non hoc iocosae conveniet lyrae;\nquo, Musa, tendis? Desine pervicax               70\n     referre sermones deorum et\n     magna modis tenuare parvis."
+    },
+    "39": {
+      "number": 39,
+      "text": "Descende caelo et dic age tibia\nregina longum Calliope melos,\n     seu voce nunc mavis acuta\n     seu fidibus citharave Phoebi."
+    },
+    "40": {
+      "number": 40,
+      "text": "Auditis? An me ludit amabilis               5\ninsania? Audire et videor pios\n     errare per lucos, amoenae\n     quos et aquae subeunt et aurae."
+    },
+    "41": {
+      "number": 41,
+      "text": "Me fabulosae Volture in Apulo\nnutricis extra limina Pulliae               10\n     ludo fatigatumque somno\n     fronde nova puerum palumbes"
+    },
+    "42": {
+      "number": 42,
+      "text": "texere, mirum quod foret omnibus\nquicumque celsae nidum Aceruntiae\n     saltusque Bantinos et aruum\n     pingue tenent humilis Forenti,               15"
+    },
+    "43": {
+      "number": 43,
+      "text": "ut tuto ab atris corpore viperis\ndormirem et ursis, ut premerer sacra\n     lauroque conlataque myrto,\n     non sine dis animosus infans.               20"
+    },
+    "44": {
+      "number": 44,
+      "text": "Vester, Camenae, vester in arduos\ntollor Sabinos, seu mihi frigidum\n     Praeneste seu Tibur supinum\n     seu liquidae placuere Baiae;"
+    },
+    "45": {
+      "number": 45,
+      "text": "vestris amicum fontibus et choris               25\nnon me Philippis versa acies retro,\n     devota non extinxit arbor\n     nec Sicula Palinurus unda."
+    },
+    "46": {
+      "number": 46,
+      "text": "Utcumque mecum vos eritis, libens\ninsanientem navita Bosphorum\n     temptabo et urentis harenas               30\n     litoris Assyrii viator,"
+    },
+    "47": {
+      "number": 47,
+      "text": "Visam Britannos hospitibus feros\net laetum equino sanguine Concanum,\n     visam pharetratos Gelonos               35\n     et Scythicum inviolatus amnem."
+    },
+    "48": {
+      "number": 48,
+      "text": "Vos Caesarem altum, militia simul\nfessas cohortes abdidit oppidis,\n     finire quaerentem labores\n     Pierio recreatis antro;               40"
+    },
+    "49": {
+      "number": 49,
+      "text": "vos lene consilium et datis et dato\ngaudetis, almae. Scimus ut impios\n     Titanas inmanemque turbam\n     fulmine sustulerit caduco,"
+    },
+    "50": {
+      "number": 50,
+      "text": "qui terram inertem, qui mare temperat               45\nventosum et urbes regnaque tristia\n     divosque mortalisque turmas\n     imperio regit unus aequo."
+    },
+    "51": {
+      "number": 51,
+      "text": "Magnum illa terrorem intulerat Iovi\nfidens iuventus horrida bracchiis               50\n     fratresque tendentes opaco\n     Pelion imposuisse Olympo."
+    },
+    "52": {
+      "number": 52,
+      "text": "Sed quid Typhoeus et validus Mimas\naut quid minaci Porphyrion statu,\n     quid Rhoetus evolsisque truncis               55\n     Enceladus iaculator audax"
+    },
+    "53": {
+      "number": 53,
+      "text": "contra sonantem Palladis aegida\npossent ruentes? Hinc avidus stetit\n     Volcanus, hinc matrona Iuno et\n     nunquam umeris positurus arcum,               60"
+    },
+    "54": {
+      "number": 54,
+      "text": "qui rore puro Castaliae lavit\ncrinis solutos, qui Lyciae tenet\n     dumeta natalemque silvam,\n     Delius et Patareus Apollo."
+    },
+    "55": {
+      "number": 55,
+      "text": "Vis consili expers mole ruit sua;               65\nvim temperatam di quoque provehunt\n     in maius; idem odere vires\n     omne nefas animo moventis."
+    },
+    "56": {
+      "number": 56,
+      "text": "Testis mearum centimanus gigas\nsententiarum, notus et integrae               70\n     temptator Orion Dianae,\n     virginea domitus sagitta."
+    },
+    "57": {
+      "number": 57,
+      "text": "Iniecta monstris Terra dolet suis\nmaeretque partus fulmine luridum\n     missos ad Orcum; nec peredit               75\n     impositam celer ignis Aetnen,"
+    },
+    "58": {
+      "number": 58,
+      "text": "incontinentis nec Tityi iecur\nreliquit ales, nequitiae additus\n     custos; amatorem trecentae\n     Pirithoum cohibent catenae.               80"
+    },
+    "59": {
+      "number": 59,
+      "text": "Caelo tonantem credidimus Iovem\nregnare: praesens divus habebitur\n     Augustus adiectis Britannis\n     imperio gravibusque Persis."
+    },
+    "60": {
+      "number": 60,
+      "text": "Milesne Crassi coniuge barbara               5\nturpis maritus vixit et hostium,\n     pro curia inuersique mores!\n     consenuit socerorum in armis"
+    },
+    "61": {
+      "number": 61,
+      "text": "sub rege Medo Marsus et Apulus\nanciliorum et nominis et togae               10\n     oblitus aeternaeque Vestae,\n     incolumi Iove et urbe Roma?"
+    },
+    "62": {
+      "number": 62,
+      "text": "Hoc caverat mens provida Reguli\ndissentientis condicionibus\n     foedis et exemplo trahenti               15\n     perniciem veniens in aevum,"
+    },
+    "63": {
+      "number": 63,
+      "text": "si non periret inmiserabilis\ncaptius pubes: 'Signa ego Punicis\n     adfixa delubris et arma\n     militibus sine caede' dixit               20"
+    },
+    "64": {
+      "number": 64,
+      "text": "'derepta vidi; vidi ego civium\nretorta tergo bracchia libero\n     portasque non clausas et arva\n     Marte coli populata nostro."
+    },
+    "65": {
+      "number": 65,
+      "text": "Auro repensus scilicet acrior               25\nmiles redibit. Flagitio additis\n     damnum. Neque amissos colores\n     lana refert medicata fuco,"
+    },
+    "66": {
+      "number": 66,
+      "text": "nec vera virtus, cum semel excidit,\ncurat reponi deterioribus.               30\n     Si pugnat extricata densis\n     cerva plagis, erit ille fortis,"
+    },
+    "67": {
+      "number": 67,
+      "text": "qui perfidis se credidit hostibus,\net Marte Poenos proteret altero,\n     qui lora restrictis lacertis               35\n     sensit iners timuitque mortem."
+    },
+    "68": {
+      "number": 68,
+      "text": "Hic, unde vitam sumeret inscius,\npacem duello miscuit. O pudor!\n     o magna Carthago, probrosis\n     altior Italiae ruinis!'               40"
+    },
+    "69": {
+      "number": 69,
+      "text": "Fertur pudicae coniugis osculum\nparvosque natos ut capitis minor\n     ab se removisse et virilem\n     toruus humi posuisse voltum,"
+    },
+    "70": {
+      "number": 70,
+      "text": "donec labantis consilio patres               45\nfirmaret auctor nunquam alias dato\n     interque maerentis amicos\n     egregius properaret exul."
+    },
+    "71": {
+      "number": 71,
+      "text": "Atqui sciebat quae sibi barbarus\ntortor pararet; non aliter tamen               50\n     dimovit obstantis propinquos\n     et populum reditus morantem"
+    },
+    "72": {
+      "number": 72,
+      "text": "quam si clientum longa negotia\ndiiudicata lite relinqueret,\n     tendens Venafranos in agros               55\n     aut Lacedaemonium Tarentum."
+    },
+    "73": {
+      "number": 73,
+      "text": "Delicta maiorum inmeritus lues,\nRomane, donec templa refeceris\n     aedisque labentis deorum et\n     foeda nigro simulacra fumo."
+    },
+    "74": {
+      "number": 74,
+      "text": "Dis te minorem quod geris, imperas:               5\nhinc omne principium, huc refer exitum.\n     Di multa neglecti dederunt\n     Hesperiae mala luctuosae."
+    },
+    "75": {
+      "number": 75,
+      "text": "Iam bis Monaeses et Pacori manus\nnon auspicatos contudit impetus               10\n     nostros et adiecisse praedam\n     torquibus exiguis renidet."
+    },
+    "76": {
+      "number": 76,
+      "text": "Paene occupatam seditionibus\ndelevit urbem Dacus et Aethiops,\n     hic classe formidatus, ille               15\n     missilibus melior sagittis."
+    },
+    "77": {
+      "number": 77,
+      "text": "Fecunda culpae saecula nuptias\nprimum inquinavere et genus et domos:\n     hoc fonte derivata clades\n     in patriam populumque fluxit.               20"
+    },
+    "78": {
+      "number": 78,
+      "text": "Motus doceri gaudet Ionicos\nmatura virgo et fingitur artibus,\n     iam nunc et incestos amores\n     de tenero meditatur ungui."
+    },
+    "79": {
+      "number": 79,
+      "text": "Mox iuniores quaerit adulteros               25\ninter mariti vina, neque eligit\n     cui donet inpermissa raptim\n     gaudia luminibus remotis,"
+    },
+    "80": {
+      "number": 80,
+      "text": "sed iussa coram non sine conscio\nsurgit marito, seu vocat institor               30\n     seu navis Hispanae magister,\n     dedecorum pretiosus emptor."
+    },
+    "81": {
+      "number": 81,
+      "text": "Non his iuventus orta parentibus\ninfecit aequor sanguine Punico\n     Pyrrhumque et ingentem cecidit               35\n     Antiochum Hannibalemque dirum;"
+    },
+    "82": {
+      "number": 82,
+      "text": "sed rusticorum mascula militum\nproles, Sabellis docta ligonibus\n     versare glaebas et severae\n     matris ad arbitrium recisos               40"
+    },
+    "83": {
+      "number": 83,
+      "text": "portare fustis, sol ubi montium\nmutaret umbras et iuga demeret\n     bobus fatigatis, amicum\n     tempus agens abeunte curru."
+    },
+    "84": {
+      "number": 84,
+      "text": "Damnosa quid non inminuit dies?               45\naetas parentum, peior avis, tulit\n     nos nequiores, mox daturos\n     progeniem vitiosiorem."
+    },
+    "85": {
+      "number": 85,
+      "text": "Quid fles, Asterie, quem tibi candidi\nprimo restituent vere Favonii\n     Thyna merce beatum,\n     constantis iuvenem fide"
+    },
+    "86": {
+      "number": 86,
+      "text": "Gygen? Ille Notis actus ad Oricum               5\npost insana Caprae sidera frigidas\n     noctes non sine multis\n     insomnis lacrimis agit."
+    },
+    "87": {
+      "number": 87,
+      "text": "Atqui sollicitae nuntius hospitae,\nsuspirare Chloen et miseram tuis               10\n     dicens ignibus uri,\n     temptat mille vafer modis."
+    },
+    "88": {
+      "number": 88,
+      "text": "Ut Proetum mulier perfida credulum\nfalsis inpulerit criminibus nimis\n     casto Bellerophontae               15\n     maturare necem, refert;"
+    },
+    "89": {
+      "number": 89,
+      "text": "narrat paene datum Pelea Tartaro,\nMagnessam Hippolyten dum fugit abstinens,\n     et peccare docentis\n     fallax historias monet.               20"
+    },
+    "90": {
+      "number": 90,
+      "text": "Frustra: nam scopulis surdior Icari\nvocis audit adhuc integer. At tibi\n     ne vicinus Enipeus\n     plus iusto placeat cave;"
+    },
+    "91": {
+      "number": 91,
+      "text": "quamvis non alius flectere equum sciens               25\naeque conspicitur gramine Martio,\n     nec quisquam citus aeque\n     Tusco denatat alveo,"
+    },
+    "92": {
+      "number": 92,
+      "text": "prima nocte domum claude neque in vias\nsub cantu querulae despice tibiae               30\n     et te saepe vocanti\n     duram difficilis mane."
+    },
+    "93": {
+      "number": 93,
+      "text": "Martis caelebs quid agam Kalendis,\nquid velint flores et acerra turis\nplena miraris positusque carbo in\n     caespite vivo,"
+    },
+    "94": {
+      "number": 94,
+      "text": "docte sermones utriusque linguae.               5\nVoveram dulcis epulas et album\nLibero caprum prope funeratus\n     arboris ictu."
+    },
+    "95": {
+      "number": 95,
+      "text": "Hic dies anno redeunte festus\ncorticem adstrictum pice dimovebit               10\namphorae fumum bibere institutae\n     consule Tullo."
+    },
+    "96": {
+      "number": 96,
+      "text": "Sume, Maecenas, cyathos amici\nsospitis centum et vigilis lucernas\nperfer in lucem; procul omnis esto               15\n     clamor et ira."
+    },
+    "97": {
+      "number": 97,
+      "text": "Mitte civilis super urbe curas.\nOccidit Daci Cotisonis agmen,\nMedus infestus sibi luctuosis\n     dissidet armis,               20"
+    },
+    "98": {
+      "number": 98,
+      "text": "servit Hispanae vetus hostis orae\nCantaber sera domitus catena,\niam Scythae laxo meditantur arcu\n     cedere campis."
+    },
+    "99": {
+      "number": 99,
+      "text": "Neglegens ne qua populus laboret,               25\nparce privatus nimium cavere et\ndona praesentis cape laetus horae,\n     linque severa."
+    },
+    "100": {
+      "number": 100,
+      "text": "'Donec gratus eram tibi\nnec quisquam potior bracchia candidae\n     cervici iuvenis dabat,\nPersarum vigui rege beatior.'\n     'Donec non alia magis               5\narsisti neque erat Lydia post Chloen,\n     multi Lydia nominis,\nRomana vigui clarior Ilia.'\n     'Me nunc Thressa Chloe regit,\ndulcis docta modos et citharae sciens,               10\n     pro qua non metuam mori,\nsi parcent animae fata superstiti.'\n     'Me torret face mutua\nThurini Calais filius Ornyti,\n     pro quo bis patiar mori,               15\nsi parcent puero fata superstiti.'\n     'Quid si prisca redit Venus\ndiductosque iugo cogit aeneo,\n     si flava excutitur Chloe\nreiectaeque patet ianua Lydiae?'               20\n     'Quamquam sidere pulchrior\nille est, tu levior cortice et inprobo\n     iracundior Hadria,\ntecum vivere amem, tecum obeam lubens.'"
+    },
+    "101": {
+      "number": 101,
+      "text": "Extremum Tanain si biberes, Lyce,\nsaevo nupta viro, me tamen asperas\nporrectum ante foris obicere incolis\n     plorares Aquilonibus."
+    },
+    "102": {
+      "number": 102,
+      "text": "Audis quo strepitu ianua, quo nemus               5\ninter pulchra satum tecta remugiat\nventis, et positas ut glaciet niues\n     puro numine Iuppiter?"
+    },
+    "103": {
+      "number": 103,
+      "text": "Ingratam Veneri pone superbiam,\nne currente retro funis eat rota:               10\nnon te Penelopen difficilem procis\n     Tyrrhenus genuit parens."
+    },
+    "104": {
+      "number": 104,
+      "text": "O quamvis neque te munera nec preces\nnec tinctus viola pallor amantium\nnec vir Pieria paelice saucius               15\n     curuat, supplicibus tuis"
+    },
+    "105": {
+      "number": 105,
+      "text": "parcas, nec rigida mollior aesculo\nnec Mauris animum mitior anguibus:\nnon hoc semper erit liminis aut aquae\n     caelestis patiens latus.               20"
+    },
+    "106": {
+      "number": 106,
+      "text": "Mercuri, - nam te docilis magistro\nmovit Amphion lapides canendo, -\ntuque testudo resonare septem\n     callida nervis,"
+    },
+    "107": {
+      "number": 107,
+      "text": "nec loquax olim neque grata, nunc et               5\ndivitum mensis et amica templis,\ndic modos, Lyde quibus obstinatas\n     applicet auris,"
+    },
+    "108": {
+      "number": 108,
+      "text": "quae velut latis equa trima campis\nludit exultim metuitque tangi,               10\nnuptiarum expers et adhuc protervo\n     cruda marito."
+    },
+    "109": {
+      "number": 109,
+      "text": "Tu potes tigris comitesque silvas\nducere et rivos celeres morari;\ncessit inmanis tibi blandienti               15\n     ianitor aulae"
+    },
+    "110": {
+      "number": 110,
+      "text": "Cerberus, quamvis furiale centum\nmuniant angues caput eius atque\nspiritus taeter saniesque manet\n     ore trilingui.               20"
+    },
+    "111": {
+      "number": 111,
+      "text": "Quin et Ixion Tityosque voltu\nrisit invito, stetit urna paulum\nsicca, dum grato Danai puellas\n     carmine mulces."
+    },
+    "112": {
+      "number": 112,
+      "text": "Audiat Lyde scelus atque notas               25\nvirginum poenas et inane lymphae\ndolium fundo pereuntis imo\n     seraque fata,"
+    },
+    "113": {
+      "number": 113,
+      "text": "quae manent culpas etiam sub Orco.\nImpiae (nam quid potuere maius?)               30\nimpiae sponsos potuere duro\n     perdere ferro."
+    },
+    "114": {
+      "number": 114,
+      "text": "Una de multis face nuptiali\ndigna periurum fuit in parentem\nsplendide mendax et in omne virgo               35\n     nobilis aevom,"
+    },
+    "115": {
+      "number": 115,
+      "text": "'Surge', quae dixit iuveni marito,\n'surge, ne longus tibi somnus, unde\nnon times, detur; socerum et scelestas\n     falle sorores,               40"
+    },
+    "116": {
+      "number": 116,
+      "text": "quae velut nactae vitulos leaenae\nsingulos eheu lacerant. Ego illis\nmollior nec te feriam neque intra\n     claustra tenebo."
+    },
+    "117": {
+      "number": 117,
+      "text": "Me pater saevis oneret catenis,               45\nquod viro clemens misero peperci,\nme vel extremos Numidarum in agros\n     classe releget."
+    },
+    "118": {
+      "number": 118,
+      "text": "I, pedes quo te rapiunt et aurae,\ndum favet Nox et Venus, i secundo               50\nomine et nostri memorem sepulcro\n     scalpe querellam.'"
+    },
+    "119": {
+      "number": 119,
+      "text": "Miserarum est neque amori dare ludum neque dulci\n     mala vino lavere aut exanimari\n     metuentis patruae verbera linguae."
+    },
+    "120": {
+      "number": 120,
+      "text": "Tibi qualum Cythereae puer ales, tibi telas\n     operosaeque Mineruae studium aufert,               5\n     Neobule, Liparaei nitor Hebri,"
+    },
+    "121": {
+      "number": 121,
+      "text": "simul unctos Tiberinis umeros lavit in undis,\n     eques ipso melior Bellerophonte,\n     neque pugno neque segni pede victus;"
+    },
+    "122": {
+      "number": 122,
+      "text": "catus idem per apertum fugientis agitato               10\n     grege cervos iaculari et celer arto\n     latitantem fruticeto excipere aprum."
+    },
+    "123": {
+      "number": 123,
+      "text": "O fons Bandusiae splendidior vitro,\ndulci digne mero non sine floribus,\n     cras donaberis haedo,\n     cui frons turgida cornibus"
+    },
+    "124": {
+      "number": 124,
+      "text": "primis et venerem et proelia destinat.               5\nFrustra: nam gelidos inficiet tibi\n     rubro sanguine rivos\n     lascivi suboles gregis."
+    },
+    "125": {
+      "number": 125,
+      "text": "Te flagrantis atrox hora Caniculae\nnescit tangere, tu frigus amabile               10\n     fessis vomere tauris\n     praebes et pecori vago."
+    },
+    "126": {
+      "number": 126,
+      "text": "Fies nobilium tu quoque fontium\nme dicente cavis impositam ilicem\n     saxis, unde loquaces               15\n     lymphae desiliunt tuae."
+    },
+    "127": {
+      "number": 127,
+      "text": "Herculis ritu modo dictus, o plebs,\nmorte venalem petiisse laurum,\nCaesar Hispana repetit penatis\n     victor ab ora."
+    },
+    "128": {
+      "number": 128,
+      "text": "Unico gaudens mulier marito               5\nprodeat iustis operata sacris\net soror clari ducis et decorae\n     supplice vitta"
+    },
+    "129": {
+      "number": 129,
+      "text": "virginum matres iuvenumque nuper\nsospitum. Vos, o pueri et puellae ac               10\niam virum expertae, male nominatis\n     parcite verbis."
+    },
+    "130": {
+      "number": 130,
+      "text": "Hic dies vere mihi festus atras\neximet curas; ego nec tumultum\nnec mori per vim metuam tenente               15\n     Caesare terras."
+    },
+    "131": {
+      "number": 131,
+      "text": "I, pete unguentum, puer, et coronas\net cadum Marsi memorem duelli,\nSpartacum si qua potuit vagantem\n     fallere testa.               20"
+    },
+    "132": {
+      "number": 132,
+      "text": "Dic et argutae properet Neaerae\nmurreum nodo cohibere crinem;\nsi per invisum mora ianitorem\n     fiet, abito."
+    },
+    "133": {
+      "number": 133,
+      "text": "Lenit albescens animos capillus               25\nlitium et rixae cupidos protervae;\nnon ego hoc ferrem calidus iuventa\n     consule Planco."
+    },
+    "134": {
+      "number": 134,
+      "text": "Uxor pauperis Ibyci,\ntandem nequitiae fige modum tuae\n     famosisque laboribus;\nmaturo propior desine funeri\n     inter ludere virgines               5\net stellis nebulam spargere candidis.\n     Non, si quid Pholoen satis,\net te, Chlori, decet. Filia rectius\n     expugnat iuvenum domos,\npulso Thyias uti concita tympano.               10\n     Illam cogit amor Nothi\nlasciva similem ludere capreae:\n     te lanae prope nobilem\ntonsae Luceriam, non citharae decent\n     nec flos purpureus rosae               15\nnec poti vetulam faece tenus cadi."
+    },
+    "135": {
+      "number": 135,
+      "text": "Inclusam Danaen turris aenea\nrobustaeque fores et vigilum canum\ntristes excubiae munierant satis\n     nocturnis ab adulteris,"
+    },
+    "136": {
+      "number": 136,
+      "text": "si non Acrisium, virginis abditae               5\ncustodem pavidum, Iuppiter et Venus\nrisissent: fore enim tutum iter et patens\n     converso in pretium deo."
+    },
+    "137": {
+      "number": 137,
+      "text": "Aurum per medios ire satellites\net perrumpere amat saxa potentius               10\nictu fulmineo; concidit auguris\n     Argivi domus ob lucrum"
+    },
+    "138": {
+      "number": 138,
+      "text": "demersa exitio; diffidit urbium\nportas vir Macedo et subruit aemulos\nreges muneribus; munera navium               15\n     saevos inlaqueant duces."
+    },
+    "139": {
+      "number": 139,
+      "text": "Crescentem sequitur cura pecuniam\nmaiorumque fames. Iure perhorrui\nlate conspicuum tollere verticem,\n     Maecenas, equitum decus.               20"
+    },
+    "140": {
+      "number": 140,
+      "text": "Quanto quisque sibi plura negaverit,\nab dis plura feret; nil cupientium\nnudus castra peto et transfuga divitum\n     partis linquere gestio,"
+    },
+    "141": {
+      "number": 141,
+      "text": "contemptae dominus splendidior rei,               25\nquam si quicquid arat inpiger Apulus\noccultare meis dicerer horreis,\n     magnas inter opes inops."
+    },
+    "142": {
+      "number": 142,
+      "text": "Purae rivus aquae silvaque iugerum\npaucorum et segetis certa fides meae               30\nfulgentem imperio fertilis Africae\n     fallit sorte beatior."
+    },
+    "143": {
+      "number": 143,
+      "text": "Quamquam nec Calabrae mella ferunt apes\nnec Laestrygonia Bacchus in amphora\nlanguescit mihi nec pinguia Gallicis               35\n     crescunt vellera pascuis,"
+    },
+    "144": {
+      "number": 144,
+      "text": "inportuna tamen pauperies abest,\nnec, si plura velim, tu dare deneges.\nContracto melius parva cupidine\n     vectigalia porrigam               40"
+    },
+    "145": {
+      "number": 145,
+      "text": "quam si Mygdoniis regnum Alyattei\ncampis continuem. Multa petentibus\ndesunt multa; bene est cui deus obtulit\n     parca quod satis est manu."
+    },
+    "146": {
+      "number": 146,
+      "text": "Aeli vetusto nobilis ab Lamo -\nquando et priores hinc Lamias ferunt\n     denominatos et nepotum\n     per memores genus omne fastos,"
+    },
+    "147": {
+      "number": 147,
+      "text": "auctore ab illo ducis originem,               5\nqui Formiarum moenia dicitur\n     princeps et innantem Maricae\n     litoribus tenuisse Lirim,"
+    },
+    "148": {
+      "number": 148,
+      "text": "late tyrannus, - cras foliis nemus\nmultis et alga litus inutili               10\n     demissa tempestas ab Euro\n     sternet, aquae nisi fallit augur"
+    },
+    "149": {
+      "number": 149,
+      "text": "annosa cornix. Dum potes, aridum\nconpone lignum; cras Genium mero\n     curabis et porco bimenstri               15\n     cum famulis operum solutis."
+    },
+    "150": {
+      "number": 150,
+      "text": "Faune, Nympharum fugientum amator,\nper meos finis et aprica rura\nlenis incedas abeasque parvis\n     aequus alumnis,"
+    },
+    "151": {
+      "number": 151,
+      "text": "si tener pleno cadit haedus anno               5\nlarga nec desunt Veneris sodali\nvina craterae, vetus ara multo\n     fumat odore."
+    },
+    "152": {
+      "number": 152,
+      "text": "Ludit herboso pecus omne campo,\ncum tibi Nonae redeunt Decembres,               10\nfestus in pratis vacat otioso\n     cum bove pagus;"
+    },
+    "153": {
+      "number": 153,
+      "text": "inter audacis lupus errat agnos,\nspargit agrestis tibi silva frondes,\ngaudet invisam pepulisse fossor               15\n     ter pede terram."
+    },
+    "154": {
+      "number": 154,
+      "text": "Quantum distet ab Inacho\nCodrus, pro patria non timidus mori,\n     narras, et genus Aeaci,\net pugnata sacro bella sub Ilio.\n     Quo Chium pretio cadum               5\nmercemur, quis aquam temperet ignibus,\n     quo praebente domum et quota\nPaelignis caream frigoribus, taces.\n     Da lunae propere novae,\nda noctis mediae, da, puer, auguris               10\n     Murenae. Tribus aut novem\nmiscentur cyathis pocula commodis?\n     Qui Musas amat imparis,\nternos ter cyathos attonitus petet\nvates, tris prohibet supra               15\nrixarum metuens tangere Gratia\n     nudis iuncat sororibus.\nInsanire iuvat . . . Cur Berecyntiae\n     cessant flamina tibiae?\nCur pendet tacita fistula cum lyra?               20\n     Parcentis ego dexteras\nodi: sparge rosas; audiat invidus\n     dementem strepitum Lycus,\net vicina seni non habilis Lyco.\n     Spissa te nitidum coma,               25\npuro te similem, Telephe, Vespero\n     tempestiva petit Rhode:\nme lentus Glycerae torret amor meae."
+    },
+    "155": {
+      "number": 155,
+      "text": "Non vides quanto moveas periclo,\nPyrrhe, Gaetulae catulos leaenae?\nDura post paulo fugies inaudax\n     proelia raptor,"
+    },
+    "156": {
+      "number": 156,
+      "text": "cum per obstantis iuvenum catervas               5\nibit insignem repetens Nearchum:\ngrande certamen tibi praeda cedat\n     maior, an illi."
+    },
+    "157": {
+      "number": 157,
+      "text": "Interim, dum tu celeris sagittas\npromis, haec dentes acuit timendos,               10\narbiter pugnae prosuisse nudo\n     sub pede palmam"
+    },
+    "158": {
+      "number": 158,
+      "text": "fertur, et leni recreare vento\nsparsum odoratis umerum capillis,\nqualis aut Nireus fuit aut aquosa               15\n     raptus ab Ida."
+    },
+    "159": {
+      "number": 159,
+      "text": "O nata mecum consule Manlio,\nseu tu querellas sive geris iocos\n     seu rixam et insanos amores\n     seu facilem, pia testa, somnum,"
+    },
+    "160": {
+      "number": 160,
+      "text": "quocumque lectum nomine Massicum               5\nservas, moveri digna bono die,\n     descende, Corvino iubente\n     promere languidiora vina."
+    },
+    "161": {
+      "number": 161,
+      "text": "Non ille, quamquam Socraticis madet\nsermonibus, te negleget horridus:               10\n     narratur et prisci Catonis\n     saepe mero caluisse virtus."
+    },
+    "162": {
+      "number": 162,
+      "text": "Tu lene tormentum ingenio admoves\nplerumque duro; tu sapientium\n     curas et arcanum iocoso               15\n     consilium retegis Lycaeo."
+    },
+    "163": {
+      "number": 163,
+      "text": "Tu spem reducis mentibus anxiis\nviresque et addis cornua pauperi,\n     post te neque iratos trementi\n     regum apices neque militum arma.               20"
+    },
+    "164": {
+      "number": 164,
+      "text": "Te Liber et si laeta aderit Venus\nsegnesque nodum solvere Gratiae\n     vivaeque procucent lucernae,\n     dum rediens fugat astra Phoebus."
+    },
+    "165": {
+      "number": 165,
+      "text": "Montium custos nemorumque virgo,\nquae laborantis utero puellas\nter vocata audis adimisque leto,\n     diva triformis,"
+    },
+    "166": {
+      "number": 166,
+      "text": "inminens villae tua pinus esto,               5\nquam per exactos ego laetus annos\nverris obliquom meditantis ictum\n     sanguine donem."
+    },
+    "167": {
+      "number": 167,
+      "text": "Caelo supinas si tuleris manus\nnascente luna, rustica Phidyle,\n     si ture placaris et horna\n     fruge Lares avidaque porca"
+    },
+    "168": {
+      "number": 168,
+      "text": "nec pestilentem sentiet Africum               5\nfecunda vitis nec sterilem seges\n     robiginem aut dulces alumni\n     pomifero grave tempus anno."
+    },
+    "169": {
+      "number": 169,
+      "text": "Nam quae nivali pascitur Algido\ndevota quercus inter et ilices               10\n     aut crescit Albanis in herbis\n     victima, pontificum securis"
+    },
+    "170": {
+      "number": 170,
+      "text": "cervice tinguet; te nihil attinet\ntemptare multa caede bidentium\n     parvos coronantem marino               15\n     rore deos fragilique myrto."
+    },
+    "171": {
+      "number": 171,
+      "text": "Inmunis aram si tetigit manus,\nnon sumptuosa blandior hostia\n     mollivit aversos Penatis\n     farre pio et saliente mica.               20"
+    },
+    "172": {
+      "number": 172,
+      "text": "Intactis opulentior\nthesauris Arabum et divitis Indiae\n     caementis licet occupes\nterrenum omne tuis et mare publicum:\n     si figit adamantinos               5\nsummis verticibus dira Necessitas\n     clavos, non animum metu,\nnon mortis laqueis expedies caput.\n     Campestres melius Scythae,\nquorum plaustra vagas rite trahunt domos,               10\n     vivunt et rigidi Getae\ninmetata quibus iugera liberas\n     fruges et Cererem ferunt\nnec cultura placet longior annua\n     defunctumque laboribus               15\naequali recreat sorte vicarius.\n     Illic matre carentibus\nprivignis mulier temperat innocens\n     nec dotata regit virum\nconiunx nec nitido fidit adultero;               20\n     dos est magna parentium\nvirtus et metuens alterius viri\n     certo foedere castitas,\net peccare nefas aut pretium est mori.\n     O quisquis volet impias               25\ncaedis et rabiem tollere civicam,\n     si quaeret Pater Urbium\nsuscribi statuis, indomitam audeat\n     refrenare licentiam,\nclarus..."
+    },
+    "173": {
+      "number": 173,
+      "text": "Quo me, Bacche, rapis tui\nplenum? Quae nemora aut quos agor in specus\n     velox mente nova? Quibus\nantris egregii Caesaris audiar\n     aeternum meditans decus               5\nstellis inserere et consilio Iovis?\n     Dicam insigne, recens, adhuc\nindictum ore alio. Non secus in iugis\n     exsomnis stupet Euhias,\nHebrum prospiciens et niue candidam               10\n     Thracen ac pede barbaro\nlustratam Rhodopen, ut mihi devio\n     ripas et vacuum nemus\nmirari libet. O Naiadum potens\n     Baccharumque valentium               15\nproceras manibus vertere fraxinos,\n     nil parvum aut humili modo,\nnil mortale loquar. Dulce periculum est,\n     o Lenaee, sequi deum\ncingentem viridi tempora pampino.               20"
+    },
+    "174": {
+      "number": 174,
+      "text": "Vixi puellis nuper idoneus\net militavi non sine gloria;\n     nunc arma defunctumque bello\n     barbiton hic paries habebit,"
+    },
+    "175": {
+      "number": 175,
+      "text": "laevom marinae qui Veneris latus               5\ncustodit. Hic, hic ponite lucida\n     funalia et vectis et arcus\n     oppositis foribus minacis."
+    },
+    "176": {
+      "number": 176,
+      "text": "O quae beatum diva tenes Cyprum et\nMemphin carentem Sithonia niue               10\n     regina, sublimi flagello\n     tange Chloen semel arrogantem."
+    },
+    "177": {
+      "number": 177,
+      "text": "Impios parrae recinentis omen\nducat et praegnans canis aut ab agro\nrava decurrens lupa Lanuvino\n     fetaque volpes;"
+    },
+    "178": {
+      "number": 178,
+      "text": "rumpat et serpens iter institutum,               5\nsi per obliquom similis sagittae\nterruit mannos: ego cui timebo\n     providus auspex,"
+    },
+    "179": {
+      "number": 179,
+      "text": "antequam stantis repetat paludes\nimbrium divina avis inminentum,               10\noscinem coruum prece suscitabo\n     solis ab ortu."
+    },
+    "180": {
+      "number": 180,
+      "text": "Sis licet felix, ubicumque mavis,\net memor nostri, Galatea, vivas,\nteque nec laeuus vetet ire picus               15\n     nec vaga cornix."
+    },
+    "181": {
+      "number": 181,
+      "text": "Sed vides quanto trepidet tumultu\npronus Orion? Ego quid sit ater\nHadriae novi sinus et quid albus\n     peccet Iapyx.               20"
+    },
+    "182": {
+      "number": 182,
+      "text": "Hostium uxores puerique caecos\nsentiant motus orientis Austri et\naequoris nigri fremitum et trementis\n     verbere ripas."
+    },
+    "183": {
+      "number": 183,
+      "text": "Sic et Europe niueum doloso               25\ncredidit tauro latus et scatentem\nbeluis pontum mediasque fraudes\n     palluit audax."
+    },
+    "184": {
+      "number": 184,
+      "text": "Nuper in pratis studiosa florum et\ndebitae Nymphis opifex coronae               30\nnocte sublustri nihil astra praeter\n     vidit et undas."
+    },
+    "185": {
+      "number": 185,
+      "text": "Quae simul centum tetigit potentem\noppidis Creten: 'Pater, o relictum\nfiliae nomen pietasque' dixit               35\n     'victa furore!"
+    },
+    "186": {
+      "number": 186,
+      "text": "Unde quo veni? Levis una mors est\nvirginum culpae. Vigilansne ploro\nturpe commissum an vitiis carentem\n     ludit imago               40"
+    },
+    "187": {
+      "number": 187,
+      "text": "vana quae porta fugiens eburna\nsomnium ducit? Meliusne fluctus\nire per longos fuit an recentis\n     carpere flores?"
+    },
+    "188": {
+      "number": 188,
+      "text": "Si quis infamen mihi nunc iuvencum               45\ndedat iratae, lacerare ferro et\nfrangere enitar modo multum amati\n     cornua monstri."
+    },
+    "189": {
+      "number": 189,
+      "text": "Impudens liqui patrios Penates,\nimpudens Orcum moror. O deorum               50\nsi quis haec audis, utinam inter errem\n     nuda leones."
+    },
+    "190": {
+      "number": 190,
+      "text": "Antequam turpis macies decentis\noccupet malas teneraeque sucus\ndefluat praedae, speciosa quaero               55\n     pascere tigris."
+    },
+    "191": {
+      "number": 191,
+      "text": "Vilis Europe, pater urget absens:\nquid mori cessas? Potes hac ab orno\npendulum zona bene te secuta\n     laedere collum.               60"
+    },
+    "192": {
+      "number": 192,
+      "text": "Sive te rupes et acuta leto\nsaxa delectant, age te procellae\ncrede veloci, nisi erile mavis\n     carpere pensum"
+    },
+    "193": {
+      "number": 193,
+      "text": "regius sanguis dominaeque tradi               65\nbarbarae paelex.' Aderat querenti\nperfidum ridens Venus et remisso\n     filius arcu."
+    },
+    "194": {
+      "number": 194,
+      "text": "Mox, ubi lusit satis: 'Abstineto'\ndixit 'irarum calidaeque rixae,               70\ncum tibi invisus laceranda reddet\n     cornua taurus."
+    },
+    "195": {
+      "number": 195,
+      "text": "Uxor invicti Iovis esse nescis.\nMitte singultus, bene ferre magnam\ndisce fortunam; tua sectus orbis               75\n     nomina ducet'."
+    },
+    "196": {
+      "number": 196,
+      "text": "Festo quid potius die\nNeptuni faciam? Prome reconditum,\n     Lyde, strenua Caecubum\nmunitaeque adhibe vim sapientiae.\n     Inclinare meridiem               5\nsentis ac, veluti stet volucris dies,\n     parcis deripere horreo\ncessantem Bibuli consulis amphoram?\n     Nos cantabimus invicem\nNeptunum et viridis Nereidum comas,               10\n     tu curua recines lyra\nLatonam et celeris spicula Cynthiae;\n     summo carmine, quae Cnidon\nfulgentisque tenet Cycladas et Paphum\n     iunctis visit oloribus;\ndicetur merita Nox quoque nenia.               15"
+    },
+    "197": {
+      "number": 197,
+      "text": "Tyrrhena regum progenies, tibi\nnon ante verso lene merum cado\n     cum flore, Maecenas, rosarum et\n     pressa tuis balanus capillis"
+    },
+    "198": {
+      "number": 198,
+      "text": "iamdudum apud me est: eripe te morae               5i\nnec semper udum Tibur et Aefulae\n     decliue contempleris arvom et\n     Telegoni iuga parricidae."
+    },
+    "199": {
+      "number": 199,
+      "text": "Fastidiosam desere copiam et\nmolem propinquam nubibus arduis,               10\n     omitte mirari beatae\n     fumum et opes strepitumque Romae."
+    },
+    "200": {
+      "number": 200,
+      "text": "Plerumque gratae divitibus vices\nmundaeque parvo sub lare pauperum\n     cenae sine aulaeis et ostro               15\n     sollicitam explicuere frontem."
+    },
+    "201": {
+      "number": 201,
+      "text": "Iam clarus occultum Andromedae pater\nostendit ignem, iam Procyon furit\n     et stella vesani Leonis\n     sole dies referente siccos;               20"
+    },
+    "202": {
+      "number": 202,
+      "text": "iam pastor umbras cum grege languido\nrivomque fessus quaerit et horridi\n     dumeta Siluani caretque\n     ripa vagis taciturna ventis."
+    },
+    "203": {
+      "number": 203,
+      "text": "Tu civitatem quis deceat status               25\ncuras et urbi sollicitus times\n     quid Seres et regnata Cyro\n     Bactra parent Tanaisque discors."
+    },
+    "204": {
+      "number": 204,
+      "text": "Prudens futuri temporis exitum\ncaliginosa nocte premit deus               30\n     ridetque, si mortalis ultra\n     fas trepidat. Quod adest memento"
+    },
+    "205": {
+      "number": 205,
+      "text": "componere aequus; cetera fluminis\nritu feruntur, nunc medio aequore\n     cum pace delabentis Etruscum               35\n     in mare, nunc lapides adesos"
+    },
+    "206": {
+      "number": 206,
+      "text": "stirpisque raptas et pecus et domos\nvolentis una, non sine montium\n     clamore vicinaeque silvae,\n     cum fera diluvies quietos               40"
+    },
+    "207": {
+      "number": 207,
+      "text": "inritat amnis. Ille potens sui\nlaetusque deget cui licet in diem\n     dixisse: 'Vixi': cras vel atra\n     nube polum Pater occupato"
+    },
+    "208": {
+      "number": 208,
+      "text": "vel sole puro; non tamen inritum,               45\nquodcumque retro est, efficiet neque\n     diffinget infectumque reddet\n     quod fugiens semel hora vexit."
+    },
+    "209": {
+      "number": 209,
+      "text": "Fortuna saevo laeta negotio et\nludum insolentem ludere pertinax               50\n     transmutat incertos honores,\n     nunc mihi, nunc alii benigna."
+    },
+    "210": {
+      "number": 210,
+      "text": "Laudo manentem; si celeris quatit\npinnas, resigno quae dedit et mea\n     virtute me involvo probamque               55\n     pauperiem sine dote quaero."
+    },
+    "211": {
+      "number": 211,
+      "text": "Non est meum, si mugiat Africis\nmalus procellis, ad miseras preces\n     decurrere et votis pacisci,\n     ne Cypriae Tyriaeque merces               60"
+    },
+    "212": {
+      "number": 212,
+      "text": "addant avaro divitias mari;\ntunc me biremis praesidio scaphae\n     tutum per Aegaeos tumultus\n     aura feret geminusque Pollux."
+    },
+    "213": {
+      "number": 213,
+      "text": "Exegi monumentum aere perennius\nregalique situ pyramidum altius,\nquod non imber edax, non Aquilo inpotens\npossit diruere aut innumerabilis\nannorum series et fuga temporum.               5\nNon omnis moriar multaque pars mei\nvitabit Libitinam; usque ego postera\ncrescam laude recens, dum Capitolium\nscandet cum tacita virgine pontifex.\nDicar, qua violens obstrepit Aufidus               10\net qua pauper aquae Daunus agrestium\nregnavit populorum, ex humili potens\nprinceps Aeolium carmen ad Italos\ndeduxisse modos. Sume superbiam\nquaesitam meritis et mihi Delphica               15\nlauro cinge volens, Melpomene, comam."
+    }
+  }
+}

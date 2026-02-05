@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Search, X, BookText, BookMarked, User, CornerDownLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,29 +8,23 @@ import { lexicon, LexiconEntry } from '@/data/lexicon';
 import { BlogPost, Author } from '@/types/blog';
 import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
-
 interface SearchDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
 type SearchResult = 
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry }
   | { type: 'author', data: typeof authors[Author] };
-
 export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
   const { posts, isLoading } = usePosts();
   const { language } = useLanguage();
-
   const results: SearchResult[] = useMemo(() => {
     if (isLoading || !query.trim()) return [];
-    
     const searchTerm = query.toLowerCase();
-
     const postResults: SearchResult[] = posts.filter(post => 
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
@@ -39,23 +32,19 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       authors[post.author].name.toLowerCase().includes(searchTerm) ||
       getPostTags(post, language).some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
-
     const lexiconResults: SearchResult[] = lexicon.filter(entry =>
       entry.term.toLowerCase().includes(searchTerm) ||
       entry.definition.toLowerCase().includes(searchTerm) ||
       entry.category.toLowerCase().includes(searchTerm) ||
       (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(entry => ({ type: 'lexicon', data: entry }));
-    
     const authorResults: SearchResult[] = Object.values(authors).filter(author =>
         author.name.toLowerCase().includes(searchTerm) ||
         author.description.toLowerCase().includes(searchTerm) ||
         author.title.toLowerCase().includes(searchTerm)
     ).map(author => ({type: 'author', data: author}));
-
     return [...postResults, ...lexiconResults, ...authorResults].slice(0, 7);
   }, [query, posts, isLoading]);
-
   const handleNavigation = (index: number) => {
     if (index < 0 || index >= results.length) return;
     const result = results[index];
@@ -63,11 +52,9 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     if (result.type === 'post') path = `/${result.data.author}/${result.data.slug}`;
     if (result.type === 'lexicon') path = `/lexicon/${result.data.slug}`;
     if (result.type === 'author') path = `/${result.data.id}`;
-    
     navigate(path);
     onClose();
   };
-
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
@@ -100,7 +87,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       onClose();
     }
   }, [onClose, results, activeIndex, query, navigate]);
-
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
@@ -109,20 +95,16 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     }
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, handleKeyDown]);
-
   useEffect(() => {
     if (!isOpen) {
       setQuery('');
     }
     setActiveIndex(0);
   }, [isOpen]);
-  
   // This resets the active index when the query changes
   useEffect(() => {
     setActiveIndex(0);
   }, [query]);
-
-
   const groupedResults = useMemo(() => {
     return results.reduce((acc, result) => {
       const key = result.type === 'post' ? 'Tagebücher' : result.type === 'lexicon' ? 'Lexikon' : 'Autoren';
@@ -131,7 +113,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       return acc;
     }, {} as Record<string, SearchResult[]>);
   }, [results]);
-  
   const getGlobalIndex = (groupKey: string, localIndex: number) => {
     let globalIndex = 0;
     for (const key of ['Tagebücher', 'Lexikon', 'Autoren']) {
@@ -143,8 +124,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     }
     return globalIndex;
   };
-
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -156,7 +135,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
             onClick={onClose}
             className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
           />
-
           <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[10vh] sm:pt-[15vh]">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -181,7 +159,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     ESC
                   </kbd>
                 </div>
-
                 <div className="max-h-[60vh] overflow-y-auto">
                   {query.trim() === '' ? (
                     <div className="p-8 text-center">
@@ -260,7 +237,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                     </div>
                   )}
                 </div>
-
                 {query && (
                     <div className="p-2 border-t border-border">
                         <Link 

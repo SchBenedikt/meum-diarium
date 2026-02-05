@@ -18,13 +18,11 @@ import {
   Coffee,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 export default function DesignGuidePage() {
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section mit Caesar-inspiriertem Design */}
@@ -54,7 +52,6 @@ export default function DesignGuidePage() {
           </motion.div>
         </div>
       </section>
-
       <div className="container mx-auto px-4 sm:px-6 py-20">
         {/* Author Themeing Section */}
         <section className="mb-32">
@@ -71,7 +68,6 @@ export default function DesignGuidePage() {
                 Author Themeing
               </h2>
             </div>
-
             <div className="grid md:grid-cols-2 gap-8">
               {/* Caesar Theme */}
               <div className="theme-caesar space-y-6">
@@ -89,7 +85,6 @@ export default function DesignGuidePage() {
                       </p>
                     </div>
                   </div>
-
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-primary rounded-lg" />
@@ -107,7 +102,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 <div className="text-xs text-muted-foreground bg-secondary/30 p-4 rounded-xl">
                   <strong>Implementierung:</strong>
                   <br />
@@ -121,14 +115,12 @@ export default function DesignGuidePage() {
                   </code>
                 </div>
               </div>
-
               {/* Multi-Author Preview */}
               <div className="space-y-6">
                 <div className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                   <h3 className="font-display text-xl font-bold mb-6">
                     Weitere Author-Themes
                   </h3>
-
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       {
@@ -168,7 +160,6 @@ export default function DesignGuidePage() {
                     ))}
                   </div>
                 </div>
-
                 <div className="text-xs text-muted-foreground bg-secondary/30 p-4 rounded-xl">
                   <strong>Dynamisches Theming:</strong>
                   <br />
@@ -179,7 +170,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Glassmorphism Cards */}
         <section className="mb-32">
           <motion.div
@@ -195,7 +185,6 @@ export default function DesignGuidePage() {
                 Glassmorphism Cards
               </h2>
             </div>
-
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Standard Glassmorphism Card */}
               <div className="space-y-4">
@@ -219,13 +208,11 @@ export default function DesignGuidePage() {
                   <strong>Klassen:</strong>
                   <br />
                   <code className="font-mono">
-                    
                     bg-card/60 backdrop-blur-xl rounded-3xl border
                     border-border/40
                   </code>
                 </div>
               </div>
-
               {/* Interactive Chat Card */}
               <div className="space-y-4 lg:col-span-2">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
@@ -245,7 +232,6 @@ export default function DesignGuidePage() {
                         sprechen
                       </h4>
                     </div>
-
                     <div className="bg-secondary/30 p-1.5 rounded-2xl border border-border/60 transition-all hover:bg-secondary/50">
                       <div className="relative flex items-center">
                         <input
@@ -261,7 +247,6 @@ export default function DesignGuidePage() {
                         </div>
                       </div>
                     </div>
-
                     <div className="flex flex-wrap gap-2">
                       {[
                         "Erzähl von deinem Leben",
@@ -286,7 +271,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Typography Section */}
         <section className="mb-32">
           <motion.div
@@ -300,13 +284,11 @@ export default function DesignGuidePage() {
               <Type className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">Typografie</h2>
             </div>
-
             <div className="grid lg:grid-cols-2 gap-12">
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8">
                   Schriftarten & Hierarchie
                 </h3>
-
                 <div className="space-y-8">
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
@@ -319,7 +301,6 @@ export default function DesignGuidePage() {
                       Lora - für große Überschriften und historische Texte
                     </p>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Gradient Text
@@ -331,7 +312,6 @@ export default function DesignGuidePage() {
                       bg-clip-text text-transparent mit gradient
                     </p>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Body Text
@@ -345,7 +325,6 @@ export default function DesignGuidePage() {
                       Inter - für Fließtext und Lesbarkeit
                     </p>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Italic & Emphasis
@@ -364,12 +343,10 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
               </div>
-
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-8">
                   Größen & Gewichte
                 </h3>
-
                 <div className="space-y-6">
                   <div>
                     <h1 className="font-display text-4xl font-bold mb-1">
@@ -379,7 +356,6 @@ export default function DesignGuidePage() {
                       text-4xl-7xl font-bold
                     </p>
                   </div>
-
                   <div>
                     <h2 className="font-display text-2xl font-bold mb-1">
                       Section Title
@@ -388,7 +364,6 @@ export default function DesignGuidePage() {
                       text-2xl-3xl font-bold
                     </p>
                   </div>
-
                   <div>
                     <h3 className="font-display text-xl font-semibold mb-1">
                       Card Title
@@ -397,7 +372,6 @@ export default function DesignGuidePage() {
                       text-xl font-semibold
                     </p>
                   </div>
-
                   <div>
                     <p className="text-lg leading-relaxed mb-1">
                       Large Body Text
@@ -406,12 +380,10 @@ export default function DesignGuidePage() {
                       text-lg leading-relaxed
                     </p>
                   </div>
-
                   <div>
                     <p className="text-base mb-1">Regular Body Text</p>
                     <p className="text-xs text-muted-foreground">text-base</p>
                   </div>
-
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">
                       Small Text & Captions
@@ -420,7 +392,6 @@ export default function DesignGuidePage() {
                       text-sm text-muted-foreground
                     </p>
                   </div>
-
                   <div>
                     <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">
                       SECTION LABELS
@@ -434,7 +405,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Color Palette */}
         <section className="mb-32">
           <motion.div
@@ -448,13 +418,11 @@ export default function DesignGuidePage() {
               <Palette className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">Farbpalette</h2>
             </div>
-
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
                   Primary Colors
                 </h3>
-
                 <div className="space-y-4">
                   <div>
                     <div className="w-full h-20 bg-primary rounded-2xl mb-3 shadow-inner" />
@@ -465,7 +433,6 @@ export default function DesignGuidePage() {
                       Wine Red - CTA, Links, Active States
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-20 bg-primary/20 rounded-2xl mb-3 border border-primary/40" />
                     <p className="font-mono text-xs">
@@ -475,7 +442,6 @@ export default function DesignGuidePage() {
                       Hover States, Backgrounds
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-20 bg-primary/10 rounded-2xl mb-3 border border-primary/20" />
                     <p className="font-mono text-xs">
@@ -487,12 +453,10 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
               </div>
-
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
                   Author Colors
                 </h3>
-
                 <div className="space-y-4">
                   <div>
                     <div className="w-full h-16 bg-author-caesar rounded-2xl mb-3" />
@@ -503,7 +467,6 @@ export default function DesignGuidePage() {
                       Imperial Gold
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-author-cicero rounded-2xl mb-3" />
                     <p className="font-mono text-xs">
@@ -511,7 +474,6 @@ export default function DesignGuidePage() {
                     </p>
                     <p className="text-xs text-muted-foreground">Orator Blue</p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-author-augustus rounded-2xl mb-3" />
                     <p className="font-mono text-xs">
@@ -521,7 +483,6 @@ export default function DesignGuidePage() {
                       Royal Purple
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-author-seneca rounded-2xl mb-3" />
                     <p className="font-mono text-xs">
@@ -533,12 +494,10 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
               </div>
-
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
                   Background System
                 </h3>
-
                 <div className="space-y-4">
                   <div>
                     <div className="w-full h-16 bg-background rounded-2xl mb-3 border border-border/40" />
@@ -547,7 +506,6 @@ export default function DesignGuidePage() {
                       Main Page Background
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-card rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">Card</p>
@@ -555,7 +513,6 @@ export default function DesignGuidePage() {
                       Solid Card Backgrounds
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-card/60 backdrop-blur-xl rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">
@@ -565,7 +522,6 @@ export default function DesignGuidePage() {
                       Glassmorphism Cards
                     </p>
                   </div>
-
                   <div>
                     <div className="w-full h-16 bg-secondary rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">Secondary</p>
@@ -578,7 +534,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Interactive Elements */}
         <section className="mb-32">
           <motion.div
@@ -594,14 +549,12 @@ export default function DesignGuidePage() {
                 Interaktive Elemente
               </h2>
             </div>
-
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Buttons */}
               <div className="space-y-6">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
                   Buttons & Actions
                 </h3>
-
                 <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 space-y-6">
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
@@ -609,7 +562,6 @@ export default function DesignGuidePage() {
                     </p>
                     <Button className="w-full">Caesar's Tagebuch lesen</Button>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Secondary Button
@@ -618,7 +570,6 @@ export default function DesignGuidePage() {
                       Mehr erfahren
                     </Button>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Icon Button
@@ -627,7 +578,6 @@ export default function DesignGuidePage() {
                       <ArrowRight className="h-5 w-5" />
                     </Button>
                   </div>
-
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
                       Link mit Icon
@@ -638,13 +588,11 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
               </div>
-
               {/* Hover Effects */}
               <div className="space-y-6">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
                   Hover-Effekte
                 </h3>
-
                 <div className="space-y-4">
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:border-primary/40 transition-colors duration-300 p-6 text-center group">
                     <Zap className="w-8 h-8 text-primary mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" />
@@ -653,7 +601,6 @@ export default function DesignGuidePage() {
                       duration-300
                     </p>
                   </div>
-
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:border-primary/40 transition-all duration-500 p-6 text-center group">
                     <BookOpen className="w-8 h-8 text-primary mb-3 mx-auto group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500" />
                     <p className="font-semibold">Scale + Rotate</p>
@@ -661,7 +608,6 @@ export default function DesignGuidePage() {
                       duration-500
                     </p>
                   </div>
-
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:bg-card/60 hover:border-primary/50 transition-all duration-700 p-6 text-center">
                     <p className="font-semibold">Background + Border</p>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -673,7 +619,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Spacing & Layout */}
         <section className="mb-32">
           <motion.div
@@ -689,7 +634,6 @@ export default function DesignGuidePage() {
                 Spacing & Layout
               </h2>
             </div>
-
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="grid lg:grid-cols-3 gap-12">
                 <div>
@@ -732,7 +676,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-6">
                     Padding Scale
@@ -764,7 +707,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-6">
                     Grid Layouts
@@ -782,7 +724,6 @@ export default function DesignGuidePage() {
                         md:grid-cols-3
                       </p>
                     </div>
-
                     <div>
                       <p className="text-sm font-semibold mb-2">
                         Content Layout
@@ -801,7 +742,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Motion & Animation */}
         <section className="mb-32">
           <motion.div
@@ -817,7 +757,6 @@ export default function DesignGuidePage() {
                 Motion & Animation
               </h2>
             </div>
-
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="grid lg:grid-cols-2 gap-12">
                 <div>
@@ -832,7 +771,6 @@ export default function DesignGuidePage() {
                         <div>visible: {`{ opacity: 1, y: 0 }`}</div>
                       </div>
                     </div>
-
                     <div>
                       <p className="font-semibold mb-1">Entrance Animation</p>
                       <div className="bg-secondary/30 p-3 rounded-lg font-mono text-xs">
@@ -841,7 +779,6 @@ export default function DesignGuidePage() {
                         <div>transition: {`{ duration: 0.5 }`}</div>
                       </div>
                     </div>
-
                     <div>
                       <p className="font-semibold mb-1">Scroll-triggered</p>
                       <div className="bg-secondary/30 p-3 rounded-lg font-mono text-xs">
@@ -851,7 +788,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
                     Transition Durations
@@ -874,7 +810,6 @@ export default function DesignGuidePage() {
                       <span className="text-primary">700ms</span>
                     </div>
                   </div>
-
                   <div className="mt-8 p-4 bg-amber-50/50 dark:bg-amber-950/20 rounded-xl border border-amber-200/40 dark:border-amber-800/40">
                     <p className="text-xs text-amber-800 dark:text-amber-200">
                       <strong>Performance Tip:</strong> Verwende transform und
@@ -887,7 +822,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* 2026 Component Updates */}
         <section className="mb-32">
           <motion.div
@@ -903,7 +837,6 @@ export default function DesignGuidePage() {
                 2026 Component Updates
               </h2>
             </div>
-
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="space-y-12">
                 {/* LandingHeroNew Component */}
@@ -915,7 +848,6 @@ export default function DesignGuidePage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Vollständig überarbeitete Landing Page mit modernem, ansprechendem Design und verbesserten Animationen.
                     </p>
-                    
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Hauptmerkmale:</p>
                       <ul className="space-y-2 text-sm text-muted-foreground">
@@ -927,7 +859,6 @@ export default function DesignGuidePage() {
                         <li>• <strong>Blog Posts Grid:</strong> Neueste Blog-Einträge in Card-Format</li>
                       </ul>
                     </div>
-
                     <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                       <div className="text-muted-foreground mb-2">// Component Structure</div>
                       <div>{'<div className="bg-gradient-to-br from-background via-secondary/5 to-background">'}</div>
@@ -938,7 +869,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 {/* GeneralAboutPageNew Component */}
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
@@ -948,7 +878,6 @@ export default function DesignGuidePage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Überarbeitete /about Seite mit verbesserter Struktur und visueller Hierarchie.
                     </p>
-                    
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Hauptmerkmale:</p>
                       <ul className="space-y-2 text-sm text-muted-foreground">
@@ -958,7 +887,6 @@ export default function DesignGuidePage() {
                         <li>• <strong>Methodology Section:</strong> Ausführliche Beschreibung der wissenschaftlichen Methodik</li>
                       </ul>
                     </div>
-
                     <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                       <div className="text-muted-foreground mb-2">// Styling Pattern</div>
                       <div>{'bg-card/40 backdrop-blur-xl'}</div>
@@ -967,7 +895,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 {/* Legal Pages */}
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
@@ -977,7 +904,6 @@ export default function DesignGuidePage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Professionelle Rechtsseiten mit GDPR und TMG-Konformität, gestaltet mit klarer visueller Hierarchie.
                     </p>
-                    
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Hauptmerkmale:</p>
                       <ul className="space-y-2 text-sm text-muted-foreground">
@@ -988,7 +914,6 @@ export default function DesignGuidePage() {
                         <li>• <strong>Contact Information:</strong> Prominent platzierte Kontaktdaten</li>
                       </ul>
                     </div>
-
                     <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                       <div className="text-muted-foreground mb-2">// Badge Examples</div>
                       <div>{'<span className="bg-green-500/10 text-green-500 px-3 py-1 rounded-full">'}</div>
@@ -1000,7 +925,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 {/* Catilina Biography Page */}
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
@@ -1010,7 +934,6 @@ export default function DesignGuidePage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Umfassende Biographie über Lucius Sergius Catilina mit über 650 Zeilen historischem Content.
                     </p>
-                    
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Hauptmerkmale:</p>
                       <ul className="space-y-2 text-sm text-muted-foreground">
@@ -1022,7 +945,6 @@ export default function DesignGuidePage() {
                         <li>• <strong>Timeline Integration:</strong> Chronologische Darstellung der Ereignisse</li>
                       </ul>
                     </div>
-
                     <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                       <div className="text-muted-foreground mb-2">// Section Structure</div>
                       <div>{'<section className="bg-card/40 backdrop-blur-xl rounded-3xl p-12">'}</div>
@@ -1034,7 +956,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 {/* Lexicon Expansion */}
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
@@ -1044,7 +965,6 @@ export default function DesignGuidePage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Massive Erweiterung des Lexikons von 35 auf 92 Einträge mit umfassenden Übersetzungen und Erklärungen.
                     </p>
-                    
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Statistiken:</p>
                       <ul className="space-y-2 text-sm text-muted-foreground">
@@ -1056,7 +976,6 @@ export default function DesignGuidePage() {
                         <li>• <strong>Usage Examples:</strong> Praktische Anwendungsbeispiele aus antiken Quellen</li>
                       </ul>
                     </div>
-
                     <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
                       <p className="font-semibold text-sm">Neue Kategorien:</p>
                       <div className="grid grid-cols-2 gap-4 text-sm">
@@ -1092,7 +1011,6 @@ export default function DesignGuidePage() {
                         </div>
                       </div>
                     </div>
-
                     <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                       <div className="text-muted-foreground mb-2">// Lexicon Entry Structure</div>
                       <div>{'{'}</div>
@@ -1106,7 +1024,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 {/* Summary */}
                 <div className="border-t border-border/40 pt-8">
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
@@ -1134,7 +1051,6 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-
         {/* Implementation Examples */}
         <section>
           <motion.div
@@ -1150,7 +1066,6 @@ export default function DesignGuidePage() {
                 Implementierung
               </h2>
             </div>
-
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="grid lg:grid-cols-2 gap-12">
                 <div>
@@ -1169,7 +1084,6 @@ export default function DesignGuidePage() {
                         <div>transition-all duration-500</div>
                       </div>
                     </div>
-
                     <div>
                       <p className="font-semibold mb-2">Interactive Elements</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
@@ -1182,7 +1096,6 @@ export default function DesignGuidePage() {
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
                     Design Tokens
@@ -1197,7 +1110,6 @@ export default function DesignGuidePage() {
                         <div>--border: 40 10% 88%</div>
                       </div>
                     </div>
-
                     <div>
                       <p className="font-semibold mb-2">Typography</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
@@ -1209,7 +1121,6 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
               </div>
-
               <div className="mt-12 pt-8 border-t border-border/40">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
                   Wichtige Prinzipien
@@ -1251,7 +1162,6 @@ export default function DesignGuidePage() {
           </motion.div>
         </section>
       </div>
-
       {/* CTA Section */}
       <section className="py-20 border-t border-border/40 bg-gradient-to-b from-background to-secondary/5">
         <div className="container mx-auto px-4 sm:px-6 text-center">

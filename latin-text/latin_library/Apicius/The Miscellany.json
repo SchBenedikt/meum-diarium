@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "author": "Apicius",
+    "work": "The Miscellany",
+    "url": "https://www.thelatinlibrary.com/misc.html",
+    "verse_count": 1,
+    "title": "The Miscellany"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Anonymus Valesianus\nAmpelius\nApicius\nAppendix Vergiliana\n\n\nAsconius\nAusonius\nAvianus\nAvienus\n\n\nBalbus\nCaecilius Balbus\nCalpurnius Flaccus\nCalpurnius Siculus\n\n\nCarmen Arvale\nCarmen Saliare\nCensorinus\nCinna Helvius\n\n\nClaudii Oratio\nColumella\nDares the Phrygian\nde Ave Phoenice\n\n\nDisticha Catonis\nDonatus\nExurperantius\nFestus\n\n\nFronto\nFulgentius\nGermanicus\nGrattius\n\n\nGregory of Tours\nHistoria Apolloni\nHyginus\nIlias Latina\n\n\nIordanes \nIulius Obsequens \nIulius Paris \nLivius Andronicus\n\n\nManilius\nMarcellinus Comes\nMaximianus\nMinucius Felix\n\n\nNaevius\nNemesianus\nNotitia Dignitatum\nOrosius\n\n\nPaulus Diaconus\nPervigilium Veneris\nPomponius Mela\nPorphyrius\n\n\nPrecatio Terrae\nPriapea\nPublilius Syrus\nReposianus\n\n\nRoman Epitaphs\nRoman Inscriptions\nRutilius Namatianus\nRutilius Lupus\n\n\nSabinus\nSidonius Apollinaris\nSolinus\nTestamentum Porcelli\n\n\nVegetius\nZonaras\nTBD\nTBD"
+    }
+  }
+}

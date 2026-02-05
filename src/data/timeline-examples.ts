@@ -1,8 +1,6 @@
 // BEISPIEL: Timeline-Event mit Übersetzungen
 // Diese Datei zeigt, wie Timeline-Events übersetzt werden können
-
 import { TimelineEvent } from '@/types/blog';
-
 // Beispiel 1: Catilinarische Verschwörung
 export const catilinarischeVerschwörung: TimelineEvent = {
   year: -63,
@@ -25,7 +23,6 @@ export const catilinarischeVerschwörung: TimelineEvent = {
     }
   }
 };
-
 // Beispiel 2: Schlacht bei Alesia
 export const schlachtBeiAlesia: TimelineEvent = {
   year: -52,
@@ -48,7 +45,6 @@ export const schlachtBeiAlesia: TimelineEvent = {
     }
   }
 };
-
 // Beispiel 3: Überschreitung des Rubikon
 export const rubikon: TimelineEvent = {
   year: -49,
@@ -71,7 +67,6 @@ export const rubikon: TimelineEvent = {
     }
   }
 };
-
 // Beispiel 4: Schlacht bei Actium
 export const actium: TimelineEvent = {
   year: -31,
@@ -94,7 +89,6 @@ export const actium: TimelineEvent = {
     }
   }
 };
-
 // Beispiel 5: Geburt
 export const geburtCicero: TimelineEvent = {
   year: -106,
@@ -117,12 +111,9 @@ export const geburtCicero: TimelineEvent = {
     }
   }
 };
-
 /*
   Um diese in timeline.ts zu verwenden:
-  
   import { catilinarischeVerschwörung, schlachtBeiAlesia, ... } from './timeline-examples';
-  
   export const timelineEvents: TimelineEvent[] = [
     catilinarischeVerschwörung,
     schlachtBeiAlesia,

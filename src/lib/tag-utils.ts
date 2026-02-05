@@ -1,6 +1,5 @@
 import { TagWithTranslations } from '@/types/blog';
 import { Language } from '@/types/blog';
-
 /**
  * Gets the translated tag name based on the current language
  * @param tag - The tag with translations
@@ -11,7 +10,6 @@ export function getTranslatedTag(tag: TagWithTranslations, language: Language): 
     const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
     return tag.translations[baseLang] || tag.translations.de;
 }
-
 /**
  * Gets all translated tags for a post based on the current language
  * Handles both legacy string tags and new multilingual tags
@@ -27,11 +25,9 @@ export function getPostTags(
     if (post.tagsWithTranslations && post.tagsWithTranslations.length > 0) {
         return post.tagsWithTranslations.map(tag => getTranslatedTag(tag, language));
     }
-    
     // Fall back to legacy tags
     return post.tags || [];
 }
-
 /**
  * Converts legacy tags to multilingual format
  * @param legacyTags - Array of legacy tag strings
@@ -47,7 +43,6 @@ export function migrateLegacyTags(legacyTags: string[]): TagWithTranslations[] {
         }
     }));
 }
-
 /**
  * Merges legacy and multilingual tags, preferring multilingual ones
  * @param legacyTags - Legacy string tags

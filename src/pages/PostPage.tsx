@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
@@ -22,24 +21,20 @@ import { SEO } from '@/components/SEO';
 import { PostTags } from '@/components/PostTags';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { getApiBase } from '@/lib/api';
-
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
   const wordsPerMinute = 200;
   const wordCount = text.split(/\s+/).length;
   return Math.ceil(wordCount / wordsPerMinute);
 };
-
 function PostContent({ post }: { post: BlogPost }) {
   if (!post) {
     console.error('[PostContent] Post is null/undefined');
     return <NotFound />;
   }
-
   const { t, language } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
-  
   // Safely check for content
   const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
   const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
@@ -51,19 +46,15 @@ function PostContent({ post }: { post: BlogPost }) {
       ? 'diary'
       : defaultPerspective;
   const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
-
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ['start start', 'end start'],
   });
-
   const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
   const contentToDisplay = post?.content?.[perspective];
-
   // Determine which title to display based on perspective
   const getDisplayTitle = () => {
     if (perspective === 'diary' && post?.diaryTitle) {
@@ -73,12 +64,10 @@ function PostContent({ post }: { post: BlogPost }) {
     }
     return post?.title || 'Untitled'; // Fallback
   };
-
   const readingTime = useMemo(() => {
     if (!contentToDisplay) return 0;
     return calculateReadingTime(contentToDisplay);
   }, [contentToDisplay]);
-
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {
     if (!Array.isArray(allPosts) || !post?.author || !post?.slug) {
@@ -89,22 +78,12 @@ function PostContent({ post }: { post: BlogPost }) {
       });
       return [];
     }
-    
     return allPosts
       .filter(p => p?.author === post.author && p?.slug !== post.slug)
       .slice(0, 6);
   }, [allPosts, post?.author, post?.slug]);
-
   const author = post?.author ? authorData[post.author as Author] : null;
   const excerpt = post?.excerpt || contentToDisplay?.substring(0, 160) || '';
-
-  console.log('[PostContent] Rendering post:', { 
-    title: post?.title,
-    slug: post?.slug,
-    author: post?.author,
-    hasContent: !!contentToDisplay
-  });
-
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <SEO
@@ -129,7 +108,6 @@ function PostContent({ post }: { post: BlogPost }) {
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="prose-blog space-y-7 min-w-0"
               >
-
                 <header className="space-y-5 pb-8 border-b border-border/40">
                   <div className="space-y-4">
                     {post.latinTitle && (
@@ -137,16 +115,13 @@ function PostContent({ post }: { post: BlogPost }) {
                         „{post.latinTitle}“
                       </p>
                     )}
-
                     <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
                       {getDisplayTitle()}
                     </h1>
-
                     <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                       {post.excerpt}
                     </p>
                   </div>
-
                   {/* Beitragsbild unter dem Titel */}
                   <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
                     <ImageWithFallback
@@ -155,7 +130,6 @@ function PostContent({ post }: { post: BlogPost }) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-3">
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1.5">
@@ -173,17 +147,13 @@ function PostContent({ post }: { post: BlogPost }) {
                       variant="compact"
                     />
                   </div>
-
                   <PerspectiveToggle value={perspective} onChange={setPerspective} />
                 </header>
-
                 <div className="space-y-8">
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
                   <FormattedContent content={contentToDisplay} language={language} currentSlug={post?.slug} />
                 </div>
-
               </motion.article>
-
               {/* Sidebar - below content on mobile, sticky on desktop */}
               <aside className="order-last lg:order-none">
                 <div className="lg:sticky lg:top-24 space-y-6">
@@ -191,7 +161,6 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
               </aside>
             </div>
-
             {/* Related Articles Section */}
             {relatedPosts.length > 0 && post?.author && (
               <section className="mt-16 pt-10 border-t border-border/40">
@@ -232,8 +201,6 @@ function PostContent({ post }: { post: BlogPost }) {
     </div>
   );
 }
-
-
 export default function PostPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
   const { setCurrentAuthor } = useAuthor();
@@ -241,7 +208,6 @@ export default function PostPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoadingPost, setIsLoadingPost] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   // Load post directly from API by slug
   useEffect(() => {
     if (!slug) {
@@ -249,42 +215,26 @@ export default function PostPage() {
       setIsLoadingPost(false);
       return;
     }
-
     const loadPost = async () => {
       try {
         setIsLoadingPost(true);
         setError(null);
-        
-        console.log(`[PostPage] Loading post with slug: ${slug}`);
-        
         const apiUrl = `${getApiBase()}/posts?slug=${encodeURIComponent(slug)}`;
-        console.log(`[PostPage] API URL: ${apiUrl}`);
-        
         const response = await fetch(apiUrl);
-        
         if (!response.ok) {
-          console.warn(`[PostPage] API returned status ${response.status}`);
           throw new Error(`Post not found (${response.status})`);
         }
-        
         const data = await response.json();
-        console.log(`[PostPage] API Response:`, data);
-        
         if (!data || (Array.isArray(data) && data.length === 0)) {
-          console.warn(`[PostPage] API returned empty data`);
           setPost(null);
           setIsLoadingPost(false);
           return;
         }
-
         // API returns single object for slug query
         const loadedPost = Array.isArray(data) ? data[0] : data;
-        
         if (loadedPost && loadedPost.id) {
-          console.log(`[PostPage] ✅ Post loaded successfully: ${loadedPost.title}`);
           setPost(loadedPost as BlogPost);
         } else {
-          console.warn(`[PostPage] Post data is invalid:`, loadedPost);
           setPost(null);
         }
       } catch (err: any) {
@@ -295,24 +245,18 @@ export default function PostPage() {
         setIsLoadingPost(false);
       }
     };
-
     loadPost();
   }, [slug]);
-
   // Set current author if authorId is available
   useEffect(() => {
     if (authorId && authorData[authorId as Author]) {
-      console.log(`[PostPage] Setting current author: ${authorId}`);
       setCurrentAuthor(authorId as Author);
     } else if (post?.author) {
-      console.log(`[PostPage] Setting current author from post: ${post.author}`);
       setCurrentAuthor(post.author as Author);
     }
   }, [authorId, post?.author, setCurrentAuthor]);
-
   // Determine proper loading state
   const isLoading = isLoadingPost || postsLoading;
-
   // Show loading state
   if (isLoading) {
     return (
@@ -324,18 +268,14 @@ export default function PostPage() {
       </div>
     );
   }
-
   // Show error if post failed to load
   if (error) {
     console.error(`[PostPage] Final error state:`, error);
     return <NotFound />;
   }
-
   // Show 404 if no post was found
   if (!post) {
-    console.warn(`[PostPage] No post found - showing 404`);
     return <NotFound />;
   }
-
   return <PostContent post={post} />;
 }

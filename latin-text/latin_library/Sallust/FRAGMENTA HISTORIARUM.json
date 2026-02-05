@@ -1,0 +1,551 @@
+{
+  "metadata": {
+    "author": "Sallust",
+    "work": "FRAGMENTA HISTORIARUM",
+    "url": "https://www.thelatinlibrary.com/sall.frag.shtml",
+    "verse_count": 135,
+    "title": "FRAGMENTA HISTORIARUM"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Res\npopuli Romani M. Lepido Q. Catulo consulibus, ac deinde militiae et domi gestas\ncomposui."
+    },
+    "2": {
+      "number": 2,
+      "text": "Nam a\nprincipio urbis ad bellum Persi Macedonicum."
+    },
+    "3": {
+      "number": 3,
+      "text": "[Cato]\nRomani generis disertissimus paucis absolvit . . . Fannio veritatem [tradidit\nSallustius]."
+    },
+    "5": {
+      "number": 5,
+      "text": "Nos in\ntanta doctissimorum hominum copia."
+    },
+    "6": {
+      "number": 6,
+      "text": "ADNOTATIO\nSVPER LVCANVM   Quod Cato hic rogatione Clodii missus est Cyprum, ut\ncerneret hereditatem regis Ptolemaei, qui defunctus vita populum Romanum\nheredem fecerat; meminit huius Sallustius in principio libri primi historiae."
+    },
+    "7": {
+      "number": 7,
+      "text": "Neque\nme diversa pars in civilibus armis movit a vero."
+    },
+    "8": {
+      "number": 8,
+      "text": "Nobis\nprimae dissensiones vitio humani ingeni evenere, quod inquies atque indomitum\nsemper in certamine libertatis aut gloriae aut dominationis agit."
+    },
+    "9": {
+      "number": 9,
+      "text": "Res\nRomana plurimum imperio valuit Ser. Sulpicio et M. Marcello consulibus, omni\nGallia cis Rhenum atque inter mare nostrum atque Occanum, nisi qua a paludibus\ninvia fuit, perdomita. Optimis autem moribus et maxima concordia egit inter\nsecundum atque postremum bellum Carthaginiense."
+    },
+    "10": {
+      "number": 10,
+      "text": "At\ndiscordia et avaritia atque ambitio et cetera secundis rebus oriri sueta mala\npost Carthaginis excidium maxime aucta sunt. Nam iniuriae validiorum et ob eas\ndiscessio plebis a patribus aliaeque dissensiones domi fuere iam inde a\nprincipio, neque amplius quam regibus exactis, dum metus a Tarquinio et bellum\ngrave cum Etruria positum est, aequo et modesto iure agitatum. Dein servili\nimperio patres plebem exercere, de vita atque tergo regio more consulere, agro\npellere et, ceteris expertibus, soli in imperio agere. Quibus saevitiis et\nmaxime fenore oppressa plebes cum­ assiduis bellis tributum simul et\nmilitiam toleraret, armata montem sacrum atque Aventinum insedit, tumque\ntribunos plebis et alia sibi iura paravit. Discordiarum et certaminis utrimque\nfinis fuit secundum bellum Punicum."
+    },
+    "11": {
+      "number": 11,
+      "text": "Quietam a bellis civitatem."
+    },
+    "12": {
+      "number": 12,
+      "text": "Postquam remoto metu Punico simultates exercere vacuum fuit, plurimae turbae,\nseditiones et ad postremum bella civilia orta sunt, dum pauci potentes, quorum\nin gratiam plerique concesserant, sub honesto patrum aut plebis nomine\ndominationes affectabant; bonique et mali cives appellati non ob merita in\nrempublicam, omnibus pariter corruptis; sed uti quisque locupletissimus et\niniuria validior, quia praesentia defendebat, pro bono ducebatur."
+    },
+    "13": {
+      "number": 13,
+      "text": "Ex quo\ntempore maiorum mores non paulatim, ut antea, sed torrentis modo praecipitati;\nadeo iuventus luxu atque avaritia corrupta, ut merito dicatur, genitos esse,\nqui neque ipsi habere possent res familiaris, neque alios pati."
+    },
+    "14": {
+      "number": 14,
+      "text": "Omnium\npartium decus in mercedem corruptum erat."
+    },
+    "15": {
+      "number": 15,
+      "text": "AVGVSTINVS\n  Eo quippe tempore disputatur, quo iam unus Gracchorum occisus fuit, a\nquo scribit seditiones graves coepisse Sallustius."
+    },
+    "16": {
+      "number": 16,
+      "text": "Tantum\nantiquitatis curaeque maioribus pro Italica gente fuit."
+    },
+    "17": {
+      "number": 17,
+      "text": "Citra\nPadum omnibus lex Licinia ingrata fuit."
+    },
+    "18": {
+      "number": 18,
+      "text": "Atque\nomnis Italia animis discessit."
+    },
+    "19": {
+      "number": 19,
+      "text": "Post\ndefectionem sociorum et Latii."
+    },
+    "20": {
+      "number": 20,
+      "text": "Quippe\nvasta Italia rapinis, fuga, caedibus."
+    },
+    "21": {
+      "number": 21,
+      "text": "Postremo i­psos colonos per miserias et incerta humani generis orare."
+    },
+    "22": {
+      "number": 22,
+      "text": "Incidit forte per noctem in lenunculum piscantis."
+    },
+    "23": {
+      "number": 23,
+      "text": "Bellum, quibus posset condicionibus, desineret."
+    },
+    "24": {
+      "number": 24,
+      "text": "Nihil\nesse de republica neque libertate populi Romani pactum."
+    },
+    "27": {
+      "number": 27,
+      "text": "Quis\nrebus Sulla suspectis maximeque ferocia regis Mithridatis in tempore bellaturi."
+    },
+    "28": {
+      "number": 28,
+      "text": "Maturaverunt exercitum Dyrrachium cogere."
+    },
+    "29": {
+      "number": 29,
+      "text": "Inde\nortus sermo, percuntantibus utrimque: satin salve, quam grati ducibus suis,\nquantis familiaribus copiis agerent."
+    },
+    "30": {
+      "number": 30,
+      "text": "ADNOTATIO\nSVPER LVCANVM   Sulla de Asia regressus pugnavit cum Mario adulescente,\nqui victus Praeneste fugit. Hic est Marius, qui invita matre Iulia adeptus\nest consulatum, de quo Sallustius meminit."
+    },
+    "31": {
+      "number": 31,
+      "text": "Et\nMarius victus duplicaverat bellum."
+    },
+    "32": {
+      "number": 32,
+      "text": "Apud\nPraeneste locatus."
+    },
+    "33": {
+      "number": 33,
+      "text": "Carbo\nturpi formidine Italiam atque exercitum deseruit."
+    },
+    "34": {
+      "number": 34,
+      "text": "Vt\nSullani fugam in noctem componerent."
+    },
+    "35": {
+      "number": 35,
+      "text": "Vt\nSullae dominatio quam ultum ierat desideratur."
+    },
+    "36": {
+      "number": 36,
+      "text": "Vt in\nM. Mario, cui fracta prius crura, bracchiaque, et oculi effossi, scilicet ut\nper singulos artus exspiraret."
+    },
+    "37": {
+      "number": 37,
+      "text": "Et\nliberis eius avunculus erat."
+    },
+    "39": {
+      "number": 39,
+      "text": "LYDVS\n  The nomenclators, as Aemilius says in his commentary on the Histories\nof Sallustius, are those who indicate and name the Roman citizens."
+    },
+    "40": {
+      "number": 40,
+      "text": "Igitur\nvenditis proscriptorum bonis aut dilargitis."
+    },
+    "41": {
+      "number": 41,
+      "text": "Nihil\nob tantam mercedem sibi abnuituros."
+    },
+    "42": {
+      "number": 42,
+      "text": "Quo\npatefactum est rempublicam praedae, non libertati repetitam."
+    },
+    "43": {
+      "number": 43,
+      "text": "Et\nrelatus inconditae olim vitae mos, ut omne ius in viribus esset."
+    },
+    "44": {
+      "number": 44,
+      "text": "Simulans sibi alvom purgari."
+    },
+    "45": {
+      "number": 45,
+      "text": "Id\nbellum excitabat metus Pompei victoris Hiempsalem in regnum restituentis."
+    },
+    "46": {
+      "number": 46,
+      "text": "Magnis\noperibus perfectis obsidium cepit per L. Catilinam legatum."
+    },
+    "47": {
+      "number": 47,
+      "text": "De\npraefecto urbis quasi possessione reipublicae magna utrimque vi contendebatur."
+    },
+    "48": {
+      "number": 48,
+      "text": "Clementia et probitas vostra, Quirites, quibus per ceteras gentis maxumi et\nclari estis, plurumum timoris mihi faciunt advorsum tyrannidem L. Sullae, ne,\nquae ipsi nefanda aestumatis, ea parum credundo de aliis circumveniamini—praesertim cum illi spes omnis in scelere atque perfidia sit neque se aliter\ntutum putet, quam si peior atque intestabilior metu vostro fuerit, quo captis\nlibertatis curam miseria eximat—aut, si provideritis, in tutandis periculis\nmagis quam ulciscendo teneamini."
+    },
+    "49": {
+      "number": 49,
+      "text": "Nam\nSullae dominationem queri non audebat . . . qua fuit offensus."
+    },
+    "50": {
+      "number": 50,
+      "text": "Mox\ntanta flagitia in tali viro pudet dicere."
+    },
+    "51": {
+      "number": 51,
+      "text": "Vt in\nore gentibus agens."
+    },
+    "52": {
+      "number": 52,
+      "text": "Insanum aliter sua sententia atque aliorum mulierum."
+    },
+    "53": {
+      "number": 53,
+      "text": "PLUTARCH   . . . Sulla . . . was living in lewdness and adultery, as Sallustius\nsays."
+    },
+    "54": {
+      "number": 54,
+      "text": "Idem\nfecere Octavius et Q. Caepio sine gravi cuiusquam expetatione, neque sane\nambiti publice."
+    },
+    "55": {
+      "number": 55,
+      "text": "Quin\nlenones et vinarii laniique, [et] quorum praeterea volgus in dies usum habet,\npretio compositi."
+    },
+    "56": {
+      "number": 56,
+      "text": "Tyrannumque et Cinnam maxima voce appellans."
+    },
+    "57": {
+      "number": 57,
+      "text": "Magna\nvis hominum convenerat agris pulsa aut civitate eiecta."
+    },
+    "58": {
+      "number": 58,
+      "text": "Vti\nLepidus et Catulus decretis exercitibus maturrime proficiscerentur."
+    },
+    "59": {
+      "number": 59,
+      "text": "Tunc\nvero Etrusci cum ceteris eiusdem causae ducem se nanctos rati maximo gaudio\nbellum irritare."
+    },
+    "60": {
+      "number": 60,
+      "text": "Prudens omnium, quae senatus censuerat."
+    },
+    "61": {
+      "number": 61,
+      "text": "Igitur\nsenati decreto serviundumne sit?"
+    },
+    "62": {
+      "number": 62,
+      "text": "Plebei\ntribuniciam potestatem."
+    },
+    "63": {
+      "number": 63,
+      "text": "Lepidum paenitentem consili."
+    },
+    "64": {
+      "number": 64,
+      "text": "Etruria omnis cum Lepido suspecta in tumultum erat."
+    },
+    "65": {
+      "number": 65,
+      "text": "Nam\ntalia incepta, ni in consultorem vertissent, reipublicae pestem factura."
+    },
+    "66": {
+      "number": 66,
+      "text": "[Philippus], qui aetate et consilio ceteros anteibat."
+    },
+    "67": {
+      "number": 67,
+      "text": "Maxume\nvellem, patres conscripti, rem publicam quietam esse aut in periculis a\npromptissumo quoque defendi, denique prava incepta consultoribus noxae esse.\nSed contra seditionibus omnia turbata sunt et ab eis quos prohibere magis\ndecebat; postremo, quae pessumi et stultissumi decrevere, ea bonis et\nsapientibus faciunda sunt. 2 Nam bellum atque arma, quamquam vobis invisa,\ntamen quia Lepido placent, sumunda sunt, nisi forte cui pacem praestare et\nbellum pati consilium est."
+    },
+    "68": {
+      "number": 68,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "69": {
+      "number": 69,
+      "text": "Numeroque\npraestans, privos ipse militiae."
+    },
+    "70": {
+      "number": 70,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "71": {
+      "number": 71,
+      "text": "SERVIVS\n  Cosas, civitas Tusciae, quae numero dicitur singulari secundum\nSallustium."
+    },
+    "72": {
+      "number": 72,
+      "text": "Profectionem festinantes."
+    },
+    "73": {
+      "number": 73,
+      "text": "M.\nLepido cum omnibus copiis Italia pulso, segnior, neque minus gravis et\nmultiplex cura patres exercebat."
+    },
+    "74": {
+      "number": 74,
+      "text": "Ardebat omnis Hispania citerior."
+    },
+    "75": {
+      "number": 75,
+      "text": "Curionem quaesit, uti adulescentior et a populi suffragiis integer aetati\nconcederet Mamerci."
+    },
+    "76": {
+      "number": 76,
+      "text": "Togam\npaludamento mutavit."
+    },
+    "77": {
+      "number": 77,
+      "text": "Magna\ngloria tribunus militum in Hispania T. Didio imperante, magno usui bello\nMarsico paratu militum et armorum fuit, multaque tum ductu eius peracta primo\nper ignobilitatem deinde per invidiam scriptorum incelebrata sunt, quae vivos\nfacie sua ostentabat aliquot adversis cicatricibus et effosso oculo. Neque\nillis anxius, quin ille dehonestamento corporis maxime laetabatur, quia reliqua\ngloriosius retinebat."
+    },
+    "78": {
+      "number": 78,
+      "text": "Et ei\nvoce magna vehementer gratulabantur."
+    },
+    "79": {
+      "number": 79,
+      "text": "Inter\narma civilia aequi boni famas petit."
+    },
+    "80": {
+      "number": 80,
+      "text": "Cui\nnisi pariter obviam iretur."
+    },
+    "81": {
+      "number": 81,
+      "text": "Cuius\nadvorsa voluntate colloquio militibus permisso, corruptio facta paucorum, et\nexercitus Sullae datus est."
+    },
+    "82": {
+      "number": 82,
+      "text": "Hispaniam sibi antiquam patriam esse."
+    },
+    "83": {
+      "number": 83,
+      "text": "Modico\nquoque et eleganti imperio percarus fuit."
+    },
+    "84": {
+      "number": 84,
+      "text": "Salinator in agmine occiditur."
+    },
+    "85": {
+      "number": 85,
+      "text": "HIERONYMVS   . . . qui propter amorem historiarum Sallustii\nCalpurnius cognomento Lanarius sit"
+    },
+    "86": {
+      "number": 86,
+      "text": "Paucos\nsaltum insidentes."
+    },
+    "87": {
+      "number": 87,
+      "text": "Earum\naliae paululum progressae nimio simul et incerto onere, cum pavor corpora\nagitaverat, deprimebantur."
+    },
+    "88": {
+      "number": 88,
+      "text": "Cum\nSertorius neque erumpere tam levi copia navibus."
+    },
+    "89": {
+      "number": 89,
+      "text": "More\nhumanae cupidinis ignara visendi."
+    },
+    "90": {
+      "number": 90,
+      "text": "Quas\nduas insulas propinquas inter se et decem milia stadium procul a Gadibus sitas\nconstabat suopte ingenio alimenta mortalibus gignere."
+    },
+    "91": {
+      "number": 91,
+      "text": "Insulas fortunatas [quas Sallustius ait] inclitas esse Homeri\ncarminibus."
+    },
+    "92": {
+      "number": 92,
+      "text": "Traditur fugam in Oceani longinqua agitavisse."
+    },
+    "93": {
+      "number": 93,
+      "text": "Itaque\nSertorius, levi praesidio relicto in Mauretania, nanctus obscuram noctem aestu\nsecundo furtim aut celeritate vitare proelium in transgressu conatus est."
+    },
+    "94": {
+      "number": 94,
+      "text": "Transgressos omnis recipit mons Belleia praeceptus a Lusitanis."
+    },
+    "95": {
+      "number": 95,
+      "text": "Et mox\nFufidius adveniens cum legionibus, postquam tam altas ripas, unum haud facilem\npugnantibus vadum, cuncta hosti quam suis opportuniora videt."
+    },
+    "96": {
+      "number": 96,
+      "text": "Domitium\nproconsulem ex citeriore Hispania cum omnibus copiis, quas paraverat,\narcessivit."
+    },
+    "97": {
+      "number": 97,
+      "text": "Gens\nraro egressa finis suos."
+    },
+    "98": {
+      "number": 98,
+      "text": "Ac per\nomnem provinciam magnae atque atroces famae erant, cum ex suo quisque terrore\nquinquaginta aut amplius hostium milia, novas immanis formas [e finibus] oceani\nappulsas, corporibus hominum vesci contenderent."
+    },
+    "99": {
+      "number": 99,
+      "text": "Equi\nsine rectoribus exterriti aut saucii consternantur."
+    },
+    "100": {
+      "number": 100,
+      "text": "Sic\nvero quasi formidine attonitus neque animo neque auribus aut lingua competere."
+    },
+    "101": {
+      "number": 101,
+      "text": "Et\nnumeri eorum Metellus per litteras gnarus."
+    },
+    "102": {
+      "number": 102,
+      "text": "Illo\nprofectus vicos castellaque incendere et fuga cultorum deserta igni vastare,\nneque late aut securus nimis, metu gentis ad furta belli peridoneae."
+    },
+    "103": {
+      "number": 103,
+      "text": "Iam\nrepente visus lenire Tagus."
+    },
+    "104": {
+      "number": 104,
+      "text": "Consedit in valle virgulta nemorosaque."
+    },
+    "105": {
+      "number": 105,
+      "text": "Neque\nse recipere aut instruere proelio quivere."
+    },
+    "106": {
+      "number": 106,
+      "text": "Et\nDiponen validam urbem multos dies restantem pugnando vicit."
+    },
+    "107": {
+      "number": 107,
+      "text": "Lusitaniae gravem civitatem."
+    },
+    "108": {
+      "number": 108,
+      "text": "Ille\nConisturgim apud legiones venit."
+    },
+    "109": {
+      "number": 109,
+      "text": "Iussu\nMetelli Celeris cornicines occanuere tubis."
+    },
+    "110": {
+      "number": 110,
+      "text": "Sanctus aliter et ingenio validus."
+    },
+    "111": {
+      "number": 111,
+      "text": "Neque\ndetrusus aliquotiens deterretur."
+    },
+    "112": {
+      "number": 112,
+      "text": "Sertorius, portis turba morantibus et nullo, ut in terrore solet, generis aut\nimperi discrimine, per calonum corpora ad medium quasi, dein super adstantium\nmanibus in murum attollitur."
+    },
+    "113": {
+      "number": 113,
+      "text": "Occupatusque collis editissimus apud Ilerdam et eum multa opera circumdata."
+    },
+    "114": {
+      "number": 114,
+      "text": "Illum\nraptis forum et castra nautica Sertorius mutaverat."
+    },
+    "115": {
+      "number": 115,
+      "text": "Itaque Servilius aegrotum Tarenti collegam prior transgressus."
+    },
+    "116": {
+      "number": 116,
+      "text": "Lyciae Pisidiaeque agros despectantem."
+    },
+    "117": {
+      "number": 117,
+      "text": "Ad\nOlympum atque Phaselida."
+    },
+    "118": {
+      "number": 118,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "119": {
+      "number": 119,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "120": {
+      "number": 120,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "121": {
+      "number": 121,
+      "text": "Repulsus a Lete oppido."
+    },
+    "122": {
+      "number": 122,
+      "text": "Ea\npaucis, quibus peritia et verum ingenium est, abnuentibus."
+    },
+    "123": {
+      "number": 123,
+      "text": "Vacuam istam urbem hominibus militari aetate."
+    },
+    "124": {
+      "number": 124,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "125": {
+      "number": 125,
+      "text": "Obviam ire et commori hostibus."
+    },
+    "126": {
+      "number": 126,
+      "text": "Locum\neditiorem, quam victoribus decebat, capit."
+    },
+    "127": {
+      "number": 127,
+      "text": "Et\nstationes sub vineas removebat."
+    },
+    "128": {
+      "number": 128,
+      "text": "At\ninde nulla munitionis aut requie mora processit ad oppidum."
+    },
+    "129": {
+      "number": 129,
+      "text": "Cum\nmurum hostium successisset, poenas dederat."
+    },
+    "130": {
+      "number": 130,
+      "text": "Nisi\ncum ira belli desenuisset."
+    },
+    "131": {
+      "number": 131,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "132": {
+      "number": 132,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "133": {
+      "number": 133,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "134": {
+      "number": 134,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "135": {
+      "number": 135,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "136": {
+      "number": 136,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "137": {
+      "number": 137,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "138": {
+      "number": 138,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    },
+    "139": {
+      "number": 139,
+      "text": "Cum\narae et alia diis sacrata supplicum sanguine foedarentur."
+    }
+  }
+}

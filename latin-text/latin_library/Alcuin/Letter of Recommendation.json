@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "author": "Alcuin",
+    "work": "Letter of Recommendation",
+    "url": "https://www.thelatinlibrary.com/alcuin/rec.shtml",
+    "verse_count": 3,
+    "title": "Letter of Recommendation"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "ALCUIN: DILECTISSIMO AQUILAE ALBINUS MATRICULARIUS\nPERPETUAE BEATITUDINIS IN CHRISTO SALUTEM"
+    },
+    "2": {
+      "number": 2,
+      "text": "Direxi hoc animal, vitulum enchiridion meum; ut adiuves illi et eripias eum de manibus inimicorum suorum.  Et adiuva, quantum valeas.  Quia venerabilis episcopus multum ardet super nos, id est Teodulfus.  Misi\nquoque in ora pueri huius, quamvis vitulus conta naturam rationale sit\nanimal, quod ipse in auribus sanctitatis vestrae habet mugire."
+    },
+    "3": {
+      "number": 3,
+      "text": "Habeo enim illum ad erudiendum Deo mecum in domo mea.  Et poterit\nproficere, Deo donante, in lectionis studio seu grammaticae artis\ndisciplina in domo sancti Martini.  O Aquila! 'Hi in curribus et hi in equis;\nnos autem in nomine Domini nostri magnificabimur.'\nValeas vigeas semper in aeternum."
+    }
+  }
+}
