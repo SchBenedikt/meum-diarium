@@ -110,7 +110,7 @@ export default function LatinTools() {
                                     <p className="text-sm text-muted-foreground/70 font-light">Lies klassische lateinische Werke direkt eingebettet.</p>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-                                    <Link to="/latin/reader" className="contents">
+                                    <Link to="/reader" className="contents">
                                         <ModeCard
                                             icon={Languages}
                                             title="Text-Reader"
