@@ -81,43 +81,67 @@ export default function WorkPage() {
 
     const load = async () => {
       if (!slug || !authorId) {
-        setLoading(false);
+        console.log(`🚫 [WorkPage] No slug or authorId: slug=${slug}, authorId=${authorId}`);
+        if (active) {
+          setLoading(false);
+          setWork(null);
+          setAuthor(null);
+        }
         return;
       }
 
-      setLoading(true);
-      
-      // Set author
+      console.log(`🔄 [WorkPage] Loading work for slug="${slug}", authorId="${authorId}"`);
+
+      // Set author immediately
       const baseAuthor = baseAuthors[authorId as keyof typeof baseAuthors];
       const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
       if (active) {
         setAuthor(translatedAuthor ?? baseAuthor ?? null);
       }
 
-      // Get work from all works list
-      const foundWork = allWorks.find((w: any) => w.slug === slug);
+      // Get work - prefer allWorks, fallback to baseWorks
+      let foundWork = null;
       
+      if (allWorks.length > 0) {
+        foundWork = allWorks.find((w: any) => w.slug === slug);
+        console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
+      } else {
+        console.log(`🔍 [WorkPage] allWorks is empty, checking baseWorks`);
+      }
+      
+      // If not found in allWorks, try baseWorks as fallback
+      if (!foundWork) {
+        const baseWork = baseWorks[slug as keyof typeof baseWorks];
+        console.log(`🔍 [WorkPage] Searched baseWorks["${slug}"]: found=${!!baseWork}`);
+        if (baseWork) {
+          foundWork = baseWork;
+        }
+      }
+
       if (foundWork) {
+        console.log(`✅ [WorkPage] Found work: "${foundWork.title}"`);
         const lang = language.split('-')[0];
         
         // Try to get translations if they exist
         if (foundWork.translations && foundWork.translations[lang]) {
           const tr = foundWork.translations[lang];
-          setWork({
-            ...foundWork,
-            title: tr.title || foundWork.title,
-            summary: tr.summary || foundWork.summary,
-            takeaway: tr.takeaway || foundWork.takeaway,
-            structure: tr.structure || foundWork.structure,
-          });
+          if (active) {
+            setWork({
+              ...foundWork,
+              title: tr.title || foundWork.title,
+              summary: tr.summary || foundWork.summary,
+              takeaway: tr.takeaway || foundWork.takeaway,
+              structure: tr.structure || foundWork.structure,
+            });
+          }
         } else {
-          setWork(foundWork);
+          if (active) {
+            setWork(foundWork);
+          }
         }
       } else {
-        const baseWork = baseWorks[slug as keyof typeof baseWorks];
-        if (baseWork) {
-          setWork(baseWork);
-        } else {
+        console.log(`❌ [WorkPage] Work not found for slug="${slug}". baseWorks keys: ${Object.keys(baseWorks).join(', ')}`);
+        if (active) {
           setWork(null);
         }
       }
@@ -130,22 +154,33 @@ export default function WorkPage() {
       
       if (active) {
         setOtherWorks(related);
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
+    // Start loading
+    console.log(`⏳ [WorkPage] useEffect triggered: isWorksLoading=${isWorksLoading}, allWorks.length=${allWorks.length}`);
+    setLoading(true);
+    
+    // Always attempt to load
     load();
+
     return () => {
       active = false;
     };
   }, [slug, language, authorId, allWorks]);
 
-  if (loading || isWorksLoading || isDetailsLoading) {
+  if (loading || isWorksLoading) {
     return null;
   }
 
+  // Don't show NotFound until we're sure the work doesn't exist
+  // Wait for all data to load before rendering NotFound
   if (!work || !author) {
+    // If details are still loading, keep showing null instead of NotFound
+    if (isDetailsLoading) {
+      return null;
+    }
     return <NotFound />;
   }
 
