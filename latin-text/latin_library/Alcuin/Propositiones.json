@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "author": "Alcuin",
+    "work": "Propositiones",
+    "url": "https://www.thelatinlibrary.com/alcuin/propos.shtml",
+    "verse_count": 49,
+    "title": "Propositiones"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "PROPOSITIOINES ALCUINI DOCTORIS CAROLI MAGNI IMPERATORIS AD ACUENDOS JUVENES"
+    },
+    "2": {
+      "number": 2,
+      "text": "Limax fuit ab hierundine invitatus ad prandium infra leucam unam. In die autem non\npotuit plus quam unam unicam pedis ambulare. Dicat, qui velit, in quot diebus ad idem\nprandium ipse limax perambulat?"
+    },
+    "3": {
+      "number": 3,
+      "text": "Quidam vir ambulans per viam vidit sibi alios homines obviantes, et dixit eis: Volebam,\nut fuissetis alii tantum, quanti estis; et medietas medietatis; et hujus numeri medietas;\ntunc una mecum fuissetis. Dicat, qui velit, quanti fuerunt, qui in primis ab illo visi\nsunt?"
+    },
+    "4": {
+      "number": 4,
+      "text": "Duo homines ambulantes per viam, videntesque ciconias, dixerunt inter se: Quot sunt?\nQui conferentes numerum dixerunt: Si essent aliae tantae; et ter tantae et medietas\ntertii, adjectis duobus, C essent. Dicat, qui potest, quantae fuerunt, quae imprimis ab\nillis visae sunt?"
+    },
+    "5": {
+      "number": 5,
+      "text": "Quidam homo vidit equos pascentes in campo, optavit dicens: Utinam essetis mei, et\nessetis alii tantum, et medietas medietatis; certe gloriarer super equos C. Discernat, qui\nvult, quot equis imprimis vidt ille homo pascentes?"
+    },
+    "6": {
+      "number": 6,
+      "text": "Dixit quidam emptor: Volo de denariis C porcos emere; sic tamen, ut verres X denariis\nemantur; scrofa autem V denariis; duo vero porcelli denario uno. Dicat, qui intelligit,\nquot verres, quot scorfae, quotve porcelli esse debeant, ut in neutris numerus nec\nsuperabundet, nec minuatur?"
+    },
+    "7": {
+      "number": 7,
+      "text": "VI. PROPOSITIO DE DUOBUS NEGOTIATORIBUS C SOLIDOS HABENTIBUS."
+    },
+    "8": {
+      "number": 8,
+      "text": "Fuerunt duo negatiatores, habentes C solidos communes, quibus emerunt porcos. Emerunt\nautem in solidis duobus porcos V, volentes eos saginare, atque iterum venundare, et in\nsolidis lucrum facere. Cumque vidissent tempus non esse ad saginandos porcos, et ipsi eos\nnon valuissent tempore hiemali pascere, tentavere venundando, si potuissent, lucrum\nfacere, sed non poterunt; quia non valebant eos amplius venundare, nisi ut empti fuerant,\nid est, ut de V porcis duos solidos acciperent. Cum hoc conspexissent, dixerunt ad\ninvicem: Dividamus eos. Dividentes autem et vedentes, sicut emerant, facerunt lucrum.\nDicat, qui valet, imprimis quot porci fuerunt; et dividat ac vendat et lucrum faciat, quod\nfacere de simul venditis non valuit."
+    },
+    "9": {
+      "number": 9,
+      "text": "Est discus qui pensat libras XXX sive solidos DC, habens in se aurum, argentum,\naurichalcum, et stannum. Quantum habet auri, ter tantum habet argenti. Quantum argenti,\nter aurichalci. Quantum aurichalci, ter tantum stanni. Dicat, qui potest, quantum in\nunaquaque specie pensat?"
+    },
+    "10": {
+      "number": 10,
+      "text": "Est cupa una, quae C metretis impletur capientibus singulis modia tria; habens fistulas\nIII. Ex numero modiorum tertia pars et VI per unam fistulam currit: per alteram tertia\npars sola: per tertiam sexta tantum. Dicat nunc, qui vult, quot sextarii per unamquamque,\nfistulam cucurissent."
+    },
+    "11": {
+      "number": 11,
+      "text": "Habeo sagum habentem in longitudine cubitos C, et in latitudine LXXX. Volo exinde per\nportiones sagulos facere, ita ut unaquaeque portio habeat in longitudine cubitos V, et in\nlatitudine cubitos IIII. Dic, rogo, sapiens, quot saguli exinde fieri possint?"
+    },
+    "12": {
+      "number": 12,
+      "text": "Habeo linteamen unum longum cubitorum LX, latum cubitorum XL. Volo ex eo portiones\nfacere, ita ut unaquaeque portio habeat in longitudine cubitos senos, et in latitudine\nquaternos, ut sufficiat ad tunicam consuendam. Dicat, qui vult, quot tunicae exinde fieri\npossint?"
+    },
+    "13": {
+      "number": 13,
+      "text": "XI. PROPOSITIO DE DUOBUS HOMINIBUS\nSORORES ACCIPIENTIBUS."
+    },
+    "14": {
+      "number": 14,
+      "text": "Si duo homines ad invicem, alter alterius sororem in conjugium sumpserit; dic, rogo,\nqua propinquitate filii eorum pertineant?"
+    },
+    "15": {
+      "number": 15,
+      "text": "XII. PROPOSITIO DE QUODAM PATREFAMILIAS ET TRIBUS FILIIS EJUS."
+    },
+    "16": {
+      "number": 16,
+      "text": "Quidam paterfamilias moriens dimisit haereditatem tribus filiis suis, XXX ampullas\nvitreas, quarum decem fuerunt plenae oleo. Aliae decem dimidiae. Tertiae decem vacuae.\nDividat, qui potest, oleum et ampullas, ut unicuique eorum de tribus filiis aequaliter\nobveniat tam de vitro, quam de oleo."
+    },
+    "17": {
+      "number": 17,
+      "text": "Quidam rex jussit famulo suo colligere de XXX villis exercitum, eo modo ut ex unaquaque\nvilla tot homines sumeret quotquot illuc adduxisset. Ipse tamen ad villam primam solus\nvenit; ad secundam cum altero; jam ad tertiam tres venerunt. Dicat, qui potest, quot\nhomines fuissent collecti de XXX villis."
+    },
+    "18": {
+      "number": 18,
+      "text": "Bos qui tota die arat, quot vestigia faciat in ultima riga?"
+    },
+    "19": {
+      "number": 19,
+      "text": "Quaero a te ut dicas mihi quot rigas factas habeat homo in agro suo, quando de utroque\ncapite campi tres versuras factas habuerit?"
+    },
+    "20": {
+      "number": 20,
+      "text": "XVI. PROPOSITIO DE DUOBUS HOMINIBUS BOVES DUCENTIBUS."
+    },
+    "21": {
+      "number": 21,
+      "text": "Duo homines ducebant boves per viam, e quibus unus alteri dixit: Da mihi boves duos; et\nhabeo tot boves quot et tu habes. At ille ait: Da mihi et tu duos boves, et habeo duplum\nquam tu habes. Dicat qui vult, quot boves fuerunt, quot unusquisque habuit."
+    },
+    "22": {
+      "number": 22,
+      "text": "XVII. PROPOSITIO DE TRIBUS FRATRIBUS SINGULAS HABENTIBUS SORORES."
+    },
+    "23": {
+      "number": 23,
+      "text": "Tres fratres erant qui singulas sorores habebant, et fluvium transire debebant (erat\nenim unicuique illorum concupiscientia in sorore proximi sui), qui venientes ad fluvium\nnon invenerunt nisi parvam naviculam, in qua non potuerunt amplius nisi duo ex illis\ntransire. Dicat, qui potest, qualiter fluvium transierunt, ne una quidem earum ex ipsis\nmaculata sit?"
+    },
+    "24": {
+      "number": 24,
+      "text": "Homo quidam debebat ultra flavium transferre lupum, capram, et fasciculum cauli. Et non\npotuit aliam navem invenire, nisi quae duos tantum ex ipsis ferre valebat. Praeceptum\nitaque ei fuerat ut omnia haec ultra illaesa omnino transferret. Dicat, qui potest,\nquomodo eis illaesis transire potuit."
+    },
+    "25": {
+      "number": 25,
+      "text": "De viro et muliere, quorum uterque pondus habebat plaustri onusti, duos habentes\ninfantes inter utrosque plaustrali pondere pensantes fluvium transire debuerunt. Navem\ninvenerunt quae non poterat ferre plus nisi unum pondus plaustri. Transfretari faciat, qui\nse putat posse, ne navis mergatur."
+    },
+    "26": {
+      "number": 26,
+      "text": "De hirtiis masculo et femina habentibus duos natos libram ponderantibus, flumen\ntransire volentibus."
+    },
+    "27": {
+      "number": 27,
+      "text": "Est campus qui habet in longitudine pedes CC, et in latitudine pedes C. Volo ibidem\nmittere oves; sic tamen ut unaquaeque ovis habet in longo pedes V, et in lato pedes IV.\nDicat, rogo, qui valet, quot oves ibidem locari possint?"
+    },
+    "28": {
+      "number": 28,
+      "text": "In leuca una sunt mille quingenti passus; VII pedes, �X�C unicae. Quot unicae, tot\ndies fuerunt, qui faciunt annos CCXLVI, et dies CCX."
+    },
+    "29": {
+      "number": 29,
+      "text": "Qui imprimis ab illo visi sunt, fuerunt XXXVI. Alii tantum LXXII. Medietas medietatis\nXVIII. Et hujus numeri medietas sunt VIIII. Dic ergo sic: LXXII et XVIII fiunt XC. Adde\nVIIII, fiunt XCVIIII. Adde loquentem et habebis C."
+    },
+    "30": {
+      "number": 30,
+      "text": "XXVIII et XVIII, et tertio sic; fiunt LXXXIIII. Et medietas tertii fiunt XIIII. Sunt in\ntotum XCVIII. Adjectis duobus, C apparent."
+    },
+    "31": {
+      "number": 31,
+      "text": "XL equi erant, qui pascebant. Alii tantum fiunt LXXX. Medietas medietatis hujus, id\nest, XX, si addatur, fiunt C."
+    },
+    "32": {
+      "number": 32,
+      "text": "Fac VIIII scorfas et unum verrem in quinquaginta quinque denariis; et LXXX porcellos in\nXL. Ecce porci XC. In residuis V denariis, fac porcellos X, et habebis centenarium numerum\nin utriusque."
+    },
+    "33": {
+      "number": 33,
+      "text": "Imprimis CCL porci erant, qui C solidis sunt comparati, sicut supra dictum est, in\nduobus solidis V porcos: quia sive quinquaies quinos, sive quinquies L dixeris, CCL\nnumerabis. Quibus divisis unus tulit CXXV, alter similiter. Unus vendidit deteriores tres\nsemper in solido; alter meliores duos in solido. Sic evenit, ut is qui deteriores\nvendidit, de CXX porcis XL solidos est consecutus. Qui vero meliores, LX solidos est\nconsecutus; quia de inferioribus XXX semper in X solidis; de melioribus vinginti autem in\nX solidis sunt venundati: et remanserunt utriusque V porci, ex quibus ad lucrum IIII\nsolidos et duos denarios facere potueunt."
+    },
+    "34": {
+      "number": 34,
+      "text": "Aurum pensat uncias novem: argentum ter uncias VIIII, id est, libras duas et tres\nuncias. Aurichalcum pensat ter libras duas et  III uncias, id est, libras VI et VIIII\nuncias. Stannum pensat ter libras VI, et ter uncias VIIII, hoc est, libras XX, et III\nuncias. VIIII unciae, et II librae cum III unciis: et VI librae cum VIIII unciis: et XX\nlibrae cum III unciis adunatae, XXX libras efficiunt."
+    },
+    "35": {
+      "number": 35,
+      "text": "Aurum pensat solidos argenteos XV. Argentum ter XV. id est, XLV. Aurichalcum ter XLV,\nid est, CXXV. Stannum ter CXXXV, hoc est, CCCCV. Junge CCCCV, et CXXXC: et XLV: et XV; et\ninvenies DC, qui sunt librae XXX."
+    },
+    "36": {
+      "number": 36,
+      "text": "Per primam fistulam �I�I�I DC sextarii cucurrerunt. Per secundum �I�I CCCC. Per\ntertiam �I CC."
+    },
+    "37": {
+      "number": 37,
+      "text": "De quadringentis octogesima pars V sunt; et centesima IIII. Sive ergo octuagies V, sive\ncenties IIII duxeris, semper CCCC invenies. Tot sagi erunt."
+    },
+    "38": {
+      "number": 38,
+      "text": "Decima pars sexagenarii VI sunt. Decima vero quadragenarii IIII sunt. Sive ergo decimam\nsexagenarii, sive decimam quadragenarii decies miseris, centum portiones VI cubitorum\nlongas; et IIIIcubitorum latas invenies."
+    },
+    "39": {
+      "number": 39,
+      "text": "Verbi gratia: si ego accipiam sororem socii mei, et ille meam, et ex nobis procreentur\nfilii; ego denique sum patruus filii sororis meae; et illa amita filii mei. Et ea\npropinquitate sibi invecem pertinent."
+    },
+    "40": {
+      "number": 40,
+      "text": "Tres igitur sunt filii, et XXX ampullae. Ampullarum autem quaedam X sunt plenae, et X\nmediae, et X vacue. Duc ter decies; fiunt XXX. Unicuique filio veniunt X ampullae in\nportionem. Divide autem per tertiam partem, hoc est, da primo filio X semis ampullas, ac\ndeinde da secundo V plenas et V vacuas. Similiter dabis tertio, et erit trium aequa\ngermanorum divisio tam in oleo, quam in vitro."
+    },
+    "41": {
+      "number": 41,
+      "text": "In prima igitur mansione duo fuerunt; in secunda IIII, in tertia VIII, in quarta XVI,\nin quinta XXXII, in sexta LXIIII, in septima CXXVIII, in octava CCLVI, in nona DXII, in\ndecima �I XXIIII, in undecima �I�I XLVIII, in duodecima �I�I�I�I XCVI, in quarta\ndecima �X�V�I CCCLXXXIIII. In quinta decima �X�X�X�I�I DCCLXVIII, etc."
+    },
+    "42": {
+      "number": 42,
+      "text": "Nullum omnino vestigium facit bos in ultima riga, eo quod ipse praecedit aratrum, et\nhunc aratrum sequitur. Quotquot enim hic praecedendo in exculta terra vestigia figit, tot\nille subsequens excolendo resolvit. Propterea illius nullum reperitur vestigium in ultima\nriga."
+    },
+    "43": {
+      "number": 43,
+      "text": "Ex uno capite campi III. Ex altero III, quae faciunt rigas versuras VI."
+    },
+    "44": {
+      "number": 44,
+      "text": "Prior, qui dari sibi duos rogavit, boves habebat IIII. At vero, qui rogabatur, habebat\nVIII. Dedit quippe rogatus postulanti duos, et habuerunt uterque sex. Qui enim prius\nacceperat, reddidit duos danti priori, qui habebat sex, et habuit VIII, quod est duplum a\nquatuor, e illi remanserunt IIII, quod est simplum ab VIII."
+    },
+    "45": {
+      "number": 45,
+      "text": "Primo omninum ego et soror mea introissemus in navem et transfretassemus ultra;\ntransfretatoque fluvio dimisissem sororem meam de nave, et reduxissem navem ad ripam. Tunc\nvero introissent sorores duorum virorum, illorum videlicet, qui ad littus remanserant.\nIllis igitur feminis navi egressis, soror mea, intraret, navemque reduceret ad nos. Illa\negrediente foras, duo in navem fratres intrassent, ultraque venissent. Tunc unus ex illis\nuna cum sorore sua navem ingressi ad nos transfretassent. Ego autem et ille, qui\nnavigaverat, sorore mea remanente foras, ultra venissemus. Nosque ad littora vectos, una\nex illis duabus quaelibet mulieribus, ultra navem reduceret, sororque mea secum recepta\npariter ad nos ultra venissent. Et ille, cujus soror ultra remanserat, navem ingressus eam\nsecum reduceret. Et fieret expleta transvectio nullo maculante contagio."
+    },
+    "46": {
+      "number": 46,
+      "text": "Simili namque tenore ducerem prius capram et dimitterem foris lupum et caulum. Tum\ndeinde venirem, lupumque transferrem: lupoque foris misso capram navi receptam ultra\nreducerem; capramque foris missam caulum transveherem ultra; atque iterum remigassem,\ncapramque assumptam ultra duxissem. Sicque faciendo facta erit remigatio salubris, absque\nvoragine lacerationis."
+    },
+    "47": {
+      "number": 47,
+      "text": "Eodem quoque ordine, ut superius. Prius intrassent duo infantes et transissent: unusque\nex illis reduceret navem. Tunc mater navem ingressa transisset. Deinde filius ejus\nreduceret navem. Qua transvecta frater illius navim ingressus ambo ultra transissent,\nrursusque unus ex illis a patrem reduceret navem. Qua reducta, filio foris stante, pater\ntransiret: rursusque filius, qui ante transierat, ingressus navim eamque ad fratrem\nreduceret: jamque reductam ingrediantur ambo et transeant. Tali subremigante ingenio erit\nexpleta navigatio forsitan sine naufragio."
+    },
+    "48": {
+      "number": 48,
+      "text": "Similiter, ut superius, transissent prius duo infantes, et unus ex illis navem\nreduceret; in quam pater ingressus ultra transisset; et ille infans, qui prius cum fratre\ntransierat, navim ad ripam reduceret, in quam frater illius rursus ingressus ambo ultra\nvenissent; unusque propterea ex illis foras egressus; et alter ad matrem reduceret navim:\nin quam mater ingressa ultra venisset: qua egrediente foras, filius ejus, qui ante cum\npatre transierat, navim rursus ingressus eam ad fratrem ultra reduceret; in quam ambo\ningressi ultra venissent, et fieret expleta transvectio nullo formidante naufragio."
+    },
+    "49": {
+      "number": 49,
+      "text": "Ipse campus habet in longitudine pedes CC. Et in latitudine pedes C. Duc bis quinquenos\nde CC, fiunt XL. At deinde C divide per IIII. Quarta pars centenarii XXV. Sive ergo XL\nvicies quinquies; sive XXV quadragies ducti, millenarium implent numerum. Tot ergo ibidem\noves collocari possunt."
+    }
+  }
+}

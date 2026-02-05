@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "author": "Nepos",
+    "work": "FRAGMENTA EX LIBRIS DE VIRIS ILLVSTRIBVS",
+    "url": "https://www.thelatinlibrary.com/nepos/nepos.fragmenta.shtml",
+    "verse_count": 7,
+    "title": "FRAGMENTA EX LIBRIS DE VIRIS ILLVSTRIBVS"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "FRAGMENTA EX LIBRIS DE VIRIS ILLUSTRIBUS CORNELI NEPOTIS"
+    },
+    "2": {
+      "number": 2,
+      "text": "I. Verba ex epistula Corneliae Gracchorum matris ex eodem libro Cornelii Nepotis excerpta."
+    },
+    "3": {
+      "number": 3,
+      "text": "Dices pulchrum esse inimicos ulcisci. Id neque maius neque pulchrius cuiquam atque mihi esse videtur, sed si liceat re publica salva ea persequi. Sed quatenus id fieri non potest, multo tempore multisque partibus inimici nostri non peribunt atque, uti nunc sunt, erunt potius quam res publica profligetur atque pereat."
+    },
+    "4": {
+      "number": 4,
+      "text": "Verbis conceptis deierare ausim, praeterquam qui Tiberium Gracchum necarunt, neminem inimicum tantum molestiae tantumque laboris, quantum te ob has res, mihi tradidisse: quem oportebat omnium eorum, quos antehac habui liberos, partis [eorum] tolerare atque curare, ut quam minimum sollicitudinis in senecta haberem, utique, quaecumque ageres, ea velles maxime mihi placere, atque uti nefas haberes rerum maiorum adversum meam sententiam quicquam facere, praesertim mihi, cui parva pars vitae superest. Ne id quidem tam breve spatium potest opitulari, quin et mihi adversere et rem publicam profliges? Denique quae pausa erit? Ecquando desinet familia nostra insanire? Ecquando modus ei rei haberi poterit? Ecquando desinemus et habentes et praebentes molestiis insistere? Ecquando perpudescet miscenda atque perturbanda re publica? Sed si omnino id fieri non potest, ubi ego mortua ero, petito tribunatum: per me facito quod lubebit, cum ego non sentiam. Ubi mortua ero, parentabis mihi et invocabis ..."
+    },
+    "5": {
+      "number": 5,
+      "text": "II. Cornelius Nepos in libro de historicis Latinis de laude Ciceronis."
+    },
+    "6": {
+      "number": 6,
+      "text": "Non ignorare debes unum hoc genus Latinarum litterarum adhuc non modo non respondere Graeciae, sed omnino rude atque inchoatum morte Ciceronis relictum. Ille enim fuit unus, qui potuerit et etiam debuerit historiam digna voce pronuntiare, quippe qui oratoriam eloquentiam rudem a maioribus acceptam perpoliverit, philosophiam ante eum incomptam Latinam sua conformarit oratione. Ex quo dubito, interitu eius utrum res publica an historia magis doleat. -"
+    },
+    "7": {
+      "number": 7,
+      "text": "Locuples ac divina natura, quo maiorem sui re pareret admirationem ponderatioraque sua essent beneficia, neque uni omnia dare nec rursus cuiquam omnia voluit negare."
+    }
+  }
+}

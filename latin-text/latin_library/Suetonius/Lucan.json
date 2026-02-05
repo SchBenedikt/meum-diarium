@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "author": "Suetonius",
+    "work": "Lucan",
+    "url": "https://www.thelatinlibrary.com/suetonius/suet.lucan.html",
+    "verse_count": 3,
+    "title": "Lucan"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "M. ANNAEUS LUCANUS CORDUBENSIS prima ingenii experimenta in \"Neronis\nlaudibus\" dedit quinquennali certamine, dein \"Civile Bellum,\" quod a\nPompeio et Caesare gestum est, recitavit, ut praefatione quadam aetatem\net initia sua cum Vergilio comparans ausus sit dicere:"
+    },
+    "2": {
+      "number": 2,
+      "text": "Hic initio adolescentiae, cum ob infestum matrimonium patrem suum ruri\nagere longissime cognovisset *** Revocatus Athenis a Nerone cohortique\namicorum additus atque etiam quaestura honoratus, non tamen permansit\nin gratia. Siquidem aegre ferens, recitante se subito ac nulla nisi\nrefrigerandi sui causa indicto senatu recessisse, neque verbis adversus\nprincipem neque factis exstantibus post haec temperavit, adeo ut quondam\nin latrinis publicis clariore cum strepitu ventris emissi hemistichium\nNeronis magna consessorum fuga pronuntiarit:"
+    },
+    "3": {
+      "number": 3,
+      "text": "Sed et famoso carmine cum ipsum tum potentissimos amicorum\ngravissime proscidit. Ad extremum paene signifer Pisonianae\nconiurationis exstitit, multus in gloria tyrannicidarum palam praedicanda\nac plenus minarum, usque eo intemperans ut Caesaris caput proximo\ncuique iactaret. Verum detecta coniuratione nequaquam parem animi\nconstantiam praestitit; facile enim confessus et ad humillimas devolutus\npreces matrem quoque innoxiam inter socios nominavit, sperans\nimpietatem sibi apud parricidam principem profuturam. Impetrato autem\nmortis arbitrio libero codicillos ad patrem corrigendis quibusdam\nversibus suis exaravit, epulatusque largiter brachia ad secandas venas\npraebuit medico. Poemata eius etiam praelegi memini, confici vero ac\nproponi venalia non tantum operose et diligenter sed inepte quoque."
+    }
+  }
+}

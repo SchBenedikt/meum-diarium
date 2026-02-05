@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "author": "Columella",
+    "work": "Liber X",
+    "url": "https://www.thelatinlibrary.com/columella/columella.rr10.shtml",
+    "verse_count": 4,
+    "title": "Liber X"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "L. IUNIUS MODERATUS COLUMELLADE RE RUSTICA LIBER DECIMUS"
+    },
+    "2": {
+      "number": 2,
+      "text": "Faenoris tui, Silvine, quod stipulanti spoponderam tibi, reliquam pensiunculam percipe. Nam superioribus novem libris hac minus parte debitum, quod nunc persolvo, reddideram. Superest ergo cultus hortorum segnis ac neglectus quondam veteribus agricolis, nunc vel celeberrimus. Siquidem cum parcior apud priscos esset frugalitas, largior tamen pauperibus fuit usus epularum, lactis copia ferinaeque ac domesticarum pecudum carne velut aqua frumentoque summis atque humillimis victum tolerantibus."
+    },
+    "3": {
+      "number": 3,
+      "text": "[2] Mox cum sequens et praecipue nostra aetas dapibus libidinosa pretia constituerit cenaeque non naturalibus desideriis sed censibus aestimentur, plebeia paupertas summota pretiosioribus cibis ad vulgares compellitur. [3] Quare cultus hortorum, quorum iam fructus magis in usu est, diligentius nobis, quam tradidere maiores, praecipiendus est, isque, sicut institueram, prorsa oratione prioribus subnecteretur exordiis, nisi propositum meum expugnasset frequens postulatio tua, quae praecepit, ut poeticis numeris explerem georgici carminis omissas partis, quas tamen et ipse Vergilius significaverat posteris se memorandas relinquere. Neque enim aliter istud nobis fuerat audendum quam ex voluntate vatis maxime venerandi; [4] cuius quasi numine instigante pigre sine dubio propter difficultatem operis, verumtamen non sine spe prosperi successus adgressi sumus tenuem admodum et paene viduatam corpore materiam, quae tam exilis est, ut in consummatione quidem totius operis adnumerari veluti parti..."
+    },
+    "4": {
+      "number": 4,
+      "text": "Hortorum quoque te cultus, Silvine, docebo,\natque ea quae quondam spatiis exclusus iniquis,\ncum caneret laetas segetes et munera Bacchi,\net te, magna Pales, necnon caelestia mella,\nVergilius nobis post se memoranda reliquit.                    5\nPrincipio sedem numeroso praebeat horto\npinguis ager putris glebae resolutaque terga\nqui gerit, et fossus gracilis imitatur harenas,\natque habilis natura soli, quae gramine laeto\nparturit, et rutilas ebuli creat uvida bacas.                    10\nNam neque sicca placet, nec quae stagnata palude\nperpetitur querulae semper convicia ranae.\nTum quae sponte sua frondosas educat ulmos\npalmitibusque feris laetatur, et aspera silvis\nachradis, aut pruni lapidosis obruta pomis                    15\ngaudet, et iniussi consternitur ubere mali;\nsed negat elleboros, et noxia carbasa suco,\nnec patitur taxos, nec strenua toxica sudat,\nquamvis semihominis vesano gramine feta\nmandragorae pariat flores maestamque cicutam               20\nnec manibus mitis ferulas..."
+    }
+  }
+}

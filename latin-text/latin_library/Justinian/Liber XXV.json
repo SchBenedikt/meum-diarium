@@ -1,0 +1,771 @@
+{
+  "metadata": {
+    "author": "Justinian",
+    "work": "Liber XXV",
+    "url": "https://www.thelatinlibrary.com/justinian/digest25.shtml",
+    "verse_count": 190,
+    "title": "Liber XXV"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "OMINI NOSTRI SACRATISSIMI PRINCIPIS IUSTINIANI IURIS ENUCLEATI EX OMNI VETERE IURE COLLECTI DIGESTORUM SEU PANDECTARUM"
+    },
+    "2": {
+      "number": 2,
+      "text": "Dig. 25.1.0. De impensis in res dotales factis.\n\nDig. 25.2.0. De actione rerum amotarum.\n\nDig. 25.3.0. De agnoscendis et alendis liberis vel parentibus vel patronis vel libertis.\n\nDig. 25.4.0. De inspiciendo ventre custodiendoque partu.\n\nDig. 25.5.0. Si ventris nomine muliere in possessionem missa eadem possessio dolo malo ad alium translata esse dicatur.\n\nDig. 25.6.0. Si mulier ventris nomine in possessione calumniae causa esse dicetur.\n\nDig. 25.7.0. De concubinis."
+    },
+    "3": {
+      "number": 3,
+      "text": "Impensarum quaedam sunt necessariae, quaedam utiles, quaedam vero voluptariae."
+    },
+    "4": {
+      "number": 4,
+      "text": "Necessariae hae dicuntur, quae habent in se necessitatem impendendi: ceterum si nulla fuit necessitas, alio iure habentur."
+    },
+    "5": {
+      "number": 5,
+      "text": "In necessariis impensis hoc sciendum est eas demum impensas dotem minuere, quae in dotem factae sunt: ceterum si in dotem factae non sint, non habent in se reputationem."
+    },
+    "6": {
+      "number": 6,
+      "text": "Inter necessarias impensas esse labeo ait moles in mare vel flumen proiectas. sed et si pistrinum vel horreum necessario factum sit, in necessariis impensis habendum ait. proinde fulcinius inquit, si aedificium ruens quod habere mulieri utile erat refecerit, aut si oliveta reiecta restauraverit, vel ex stipulatione damni infecti ne committatur praestiterit,"
+    },
+    "7": {
+      "number": 7,
+      "text": "Vel si vites propagaverit vel arbores curaverit vel seminaria pro utilitate agri fecerit, necessarias impensas fecisse videbitur."
+    },
+    "8": {
+      "number": 8,
+      "text": "Nos generaliter definiemus multum interesse, ad perpetuam utilitatem agri vel ad eam quae non ad praesentis temporis pertineat, an vero ad praesentis anni fructum: si in praesentis, cum fructibus hoc compensandum: si vero non fuit ad praesens tantum apta erogatio, necessariis impensis computandum."
+    },
+    "9": {
+      "number": 9,
+      "text": "Et in totum id videtur necessariis impensis contineri, quod si a marito omissum sit, iudex tanti eum damnabit, quanti mulieris interfuerit eas impensas fieri. sed hoc differt, quod factarum ratio habetur, etsi res male gesta est, non factarum ita, si ob id res male gesta est: itaque si fulserit insulam ruentem eaque exusta sit, impensas consequitur, si non fecerit, deusta ea nihil praestabit."
+    },
+    "10": {
+      "number": 10,
+      "text": "Quod dicitur necessarias impensas dotem minuere, sic erit accipiendum, ut et pomponius ait, non ut ipsae res corporaliter deminuantur, ut puta fundus vel quodcumque aliud corpus: etenim absurdum est deminutionem corporis fieri propter pecuniam. ceterum haec res ^ ^ faciet ^ efficiet^ desinere esse fundum dotalem vel partem eius. manebit igitur maritus in rerum detentationem, donec ei satisfiat: non enim ipso iure corporum, sed dotis fit deminutio. ubi ergo admittimus deminutionem dotis ipso iure fieri? ubi non sunt corpora, sed pecunia: nam in pecunia ratio admittit deminutionem fieri. proinde si aestimata corpora in dotem data sint, ipso iure dos deminuetur per impensas necessarias. hoc de his impensis dictum est, quae in dotem ipsam factae sint: ceterum si extrinsecus, non imminuent dotem."
+    },
+    "11": {
+      "number": 11,
+      "text": "Sed si impensis necessariis mulier satisfecerit, utrum dos crescat an vero dicimus ex integro videri dotem? et ego, ubi pecunia est, non dubito dotem videri crevisse."
+    },
+    "12": {
+      "number": 12,
+      "text": "Si dos tota soluta sit non habita ratione impensarum, videndum est, an condici possit id, quod pro impensis necessariis compensari solet. et Marcellus admittit condictioni esse locum: sed etsi plerique negent, tamen propter aequitatem Marcelli sententia admittenda est."
+    },
+    "13": {
+      "number": 13,
+      "text": "Utiles autem impensae sunt, quas maritus utiliter fecit, remque meliorem uxoris fecerit, hoc est dotem,"
+    },
+    "14": {
+      "number": 14,
+      "text": "Veluti si novelletum in fundo factum sit, aut si in domo pistrinum aut tabernam adiecerit, si servos artes docuerit."
+    },
+    "15": {
+      "number": 15,
+      "text": "Voluptariae autem impensae sunt, quas maritus ad voluptatem fecit et quae species exornant. quarum utiles non quidem minuunt ipso iure dotem, verumtamen habent exactionem."
+    },
+    "16": {
+      "number": 16,
+      "text": "Utilium nomine ita faciendam deductionem quidam dicunt, si voluntate mulieris factae sint: iniquum enim esse compelli mulierem rem vendere, ut impensas in eam factas solveret, si aliunde solvere non potest: quod summam habet aequitatis rationem."
+    },
+    "17": {
+      "number": 17,
+      "text": "Pro voluptariis impensis, nisi parata sit mulier pati maritum tollentem, exactionem patitur. nam si vult habere mulier, reddere ea quae impensa sunt debet marito: aut si non vult, pati debet tollentem, si modo recipiant separationem: ceterum si non recipiant, relinquendae sunt: ita enim permittendum est marito auferre ornatum quem posuit, si futurum est eius quod abstulit."
+    },
+    "18": {
+      "number": 18,
+      "text": "Quod si hae res, in quibus impensae factae sunt, promercales fuerint, tales impensae non voluptariae, sed utiles sunt."
+    },
+    "19": {
+      "number": 19,
+      "text": "In voluptariis autem aristo scribit nec si voluntate mulieris factae sunt, exactionem parere."
+    },
+    "20": {
+      "number": 20,
+      "text": "Donationem inter virum et uxorem circa impensas quoque inhibitam vere sabinus scribit."
+    },
+    "21": {
+      "number": 21,
+      "text": "Omnino et in aedificandis aedibus et in reponendis propagandisque vineis et in valetudine mancipiorum modicas impensas non debet arbiter curare: alioquin negotiorum gestorum potius quam de dote iudicium videbitur."
+    },
+    "22": {
+      "number": 22,
+      "text": "Neque stipendium neque tributum ob dotalem fundum praestita exigere vir a muliere potest: onus enim fructuum haec impendia sunt."
+    },
+    "23": {
+      "number": 23,
+      "text": "Impensae necessariae sunt, quibus non factis dos imminuitur, veluti aggeres facere, flumina avertere, aedificia vetera fulcire itemque reficere, arbores in locum mortuarum reponere."
+    },
+    "24": {
+      "number": 24,
+      "text": "Utiles sunt veluti pecora praediis imponere, id est stercorare."
+    },
+    "25": {
+      "number": 25,
+      "text": "Quod dicitur impensas, quae in res dotales necessario factae sunt, dotem deminuere, ita interpretandum est, ut, si quid extra tutelam necessariam in res dotales impensum est, id in ea causa sit: nam tueri res dotales vir suo sumptu debet. alioquin tam cibaria dotalibus mancipiis data et quaevis modica aedificiorum dotalium refectio et agrorum quoque cultura dotem minuent: omnia enim haec in specie necessariarum impensarum sunt. sed ipsae res ita praestare intelleguntur, ut non tam impendas in eas, quam deducto eo minus ex his percepisse videaris. quae autem impendia secundum eam distinctionem ex dote deduci debeant, non tam facile in universum definiri, quam per singula ex genere et magnitudine impendiorum aestimari possunt."
+    },
+    "26": {
+      "number": 26,
+      "text": "Et ante omnia quaecumque impensae quaerendorum fructuum causa factae erunt, quamquam eaedem etiam colendi causa fiant ideoque non solum ad percipiendos fructus, sed etiam ad conservandam ipsam rem speciemque eius necessariae sint, eas vir ex suo facit nec ullam habet eo nomine ex dote deductionem."
+    },
+    "27": {
+      "number": 27,
+      "text": "Rerum amotarum iudicium singulare introductum est adversus eam quae uxor fuit, quia non placuit cum ea furti agere posse: quibusdam existimantibus ne quidem furtum eam facere, ut nerva cassio, quia societas vitae quodammodo dominam eam faceret: aliis, ut sabino et proculo, furto quidem eam facere, sicut filia patri faciat, sed furti non esse actionem constituto iure, in qua sententia et iulianus rectissime est:"
+    },
+    "28": {
+      "number": 28,
+      "text": "Nam in honorem matrimonii turpis actio adversus uxorem negatur:"
+    },
+    "29": {
+      "number": 29,
+      "text": "Et ideo, si post divortium easdem res contrectat, etiam furti tenebitur."
+    },
+    "30": {
+      "number": 30,
+      "text": "Item si servus eius furtum fecerit, furti cum ea agere possumus."
+    },
+    "31": {
+      "number": 31,
+      "text": "Sed et cum uxore furti agere possibile est, si ei cui heredes simus furtum fecit, vel nobis antequam nuberet: tamen propter reverentiam personarum in utroque casu furtivam tantum condictionem competere, non etiam furti actionem dicimus."
+    },
+    "32": {
+      "number": 32,
+      "text": "Item verum est quod ofilius ait etiam eas res, quas divortii tempore mulier comederit vendiderit donaverit qualibet ratione consumpserit, rerum amotarum iudicio contineri."
+    },
+    "33": {
+      "number": 33,
+      "text": "Si filia familias res amoverit, mela fulcinius aiunt de peculio dandam actionem, quia displicuit eam furti obligari: vel in ipsam ob res amotas dari actionem. sed si pater adiuncta filia de dote agat, non aliter ei dandam actionem, quam si filiam rerum amotarum iudicio in solidum et cum satisdatione defendat. sed mortua filia in patrem rerum amotarum actionem dari non oportere proculus ait, nisi quatenus ex ea re pater locupletior sit."
+    },
+    "34": {
+      "number": 34,
+      "text": "Viva quoque filia, quod ad patrem ex rebus amotis pervenit, utili iudicio petendum est."
+    },
+    "35": {
+      "number": 35,
+      "text": "Contra nurum quoque socero hoc iudicium dandum atilicinus et fulcinius aiunt, quotiens filio familias dos data est:"
+    },
+    "36": {
+      "number": 36,
+      "text": "Socerum ob res divortii causa amotas furti agere non posse."
+    },
+    "37": {
+      "number": 37,
+      "text": "Item cum rerum amotarum etiam in virum datur iudicium: si filius familias maritus sit, utrum de peculio an in ipsum actio dari debeat? eadem repetemus, quae de filia familias diximus."
+    },
+    "38": {
+      "number": 38,
+      "text": "Si post divortium maritus decesserit, heres eius rerum amotarum iudicio uti potest."
+    },
+    "39": {
+      "number": 39,
+      "text": "Item heres mulieris ex hac causa tenebitur, sicut condictionis nomine ex causa furtiva."
+    },
+    "40": {
+      "number": 40,
+      "text": "Sed si morte mariti solutum sit matrimonium, heres mariti hereditatis petitione vel ad exhibendum actione eas consequi poterit. aristo et condici ei posse recte putat, quia ex iniusta causa apud eam essent."
+    },
+    "41": {
+      "number": 41,
+      "text": "Quod si mortuo viro amoverit, non facit furtum, quia rei hereditariae nondum possessae non fit furtum: ideoque aut vindicari poterunt aut in hereditatis petitionem venient."
+    },
+    "42": {
+      "number": 42,
+      "text": "Mulier habebit rerum amotarum actionem adversus virum et compensare potest mulier cum actione, qua maritus agere vult ob res amotas."
+    },
+    "43": {
+      "number": 43,
+      "text": "Si, cum dos solveretur mulieri aut satis doti fieret, dictum non esset actum iri rerum amotarum, nihilo minus agi potest: nam et cum dos nulla sit, eadem actio datur."
+    },
+    "44": {
+      "number": 44,
+      "text": "Sabinus ait, si mulier res quas amoverit non reddat, aestimari debere quanti in litem vir iurasset."
+    },
+    "45": {
+      "number": 45,
+      "text": "( non enim aequum est invitum suo pretio res suas vendere)"
+    },
+    "46": {
+      "number": 46,
+      "text": "Ideoque nec debere eum pro evictione promittere, quod ex contumacia mulieris id ita acciderit."
+    },
+    "47": {
+      "number": 47,
+      "text": "Marcellus libro octavo digestorum scribit, sive vir uxorem sive uxor virum domo expulit et res amoverunt, rerum amotarum teneri."
+    },
+    "48": {
+      "number": 48,
+      "text": "Qui rerum amotarum instituit actionem si velit magis iusiurandum deferre, cogitur adversarius iurare nihil divortii causa amotum esse, dum prius de calumnia iuret qui iusiurandum defert."
+    },
+    "49": {
+      "number": 49,
+      "text": "Iurare autem tam vir quam uxor cogetur. pater autem amoventis iurare non cogitur, cum iniquum sit de alieno facto alium iurare: is ergo cogitur iurare, qui amovisse dicitur. et idcirco nec heres eius, qui quaeve amovisse dicetur, iurare cogetur."
+    },
+    "50": {
+      "number": 50,
+      "text": "Si quis delatum sibi iusiurandum referre velit, non videtur praetor permisisse,"
+    },
+    "51": {
+      "number": 51,
+      "text": "Non magis quam si quis ei qui furti agat iusiurandum deferat, an ipse fur sit."
+    },
+    "52": {
+      "number": 52,
+      "text": "Ideo labeo scribit mulieri non esse permittendum referre iusiurandum, et ita edictum ordinatum videtur."
+    },
+    "53": {
+      "number": 53,
+      "text": "De rebus amotis permittendum marito vel uxori de quibusdam rebus iusiurandum deferre, de quibusdam probare."
+    },
+    "54": {
+      "number": 54,
+      "text": "Nihil interest, utrum simul an separatim habitaverunt, cum actio rerum amotarum competat etiam adversus eam, quae ex ea domo subtraxit, in qua non simul cum viro habitavit."
+    },
+    "55": {
+      "number": 55,
+      "text": "Uxor et nurus et pronurus viro et socero et prosocero furtum facere possunt, furti autem non tenentur, nisi forte emancipatus sit filius: tunc enim nurus patri eius et furtum facit et furti tenetur."
+    },
+    "56": {
+      "number": 56,
+      "text": "Ad fiscum mariti bonis devolutis uxor rerum amotarum nomine in simplum convenitur, quamvis alii in quadruplum condemnentur."
+    },
+    "57": {
+      "number": 57,
+      "text": "Si concubina res amoverit, hoc iure utimur, ut furti teneatur: consequenter dicemus, ubicumque cessat matrimonium, ut puta in ea, quae tutori suo nupsit vel contra mandata convenit vel sicubi alibi cessat matrimonium, cessare rerum amotarum actionem, quia competit furti."
+    },
+    "58": {
+      "number": 58,
+      "text": "Divortii causa res amotas dicimus non solum eas, quas mulier amovit, cum divortii consilium inisset, sed etiam eas quas nupta amoverit, si, cum discederet, eas celaverit."
+    },
+    "59": {
+      "number": 59,
+      "text": "Non solum eas res, quae exstant, in rerum amotarum iudicium venire iulianus ait, verum etiam eas, quae in rerum natura esse desierunt: simili modo etiam certi condici eas posse ait."
+    },
+    "60": {
+      "number": 60,
+      "text": "Quae viro suo res pignori datas amoverit, hoc iudicio tenebitur:"
+    },
+    "61": {
+      "number": 61,
+      "text": "Sed et domino condictio competet. sed alterutri agere permittendum est."
+    },
+    "62": {
+      "number": 62,
+      "text": "Sed et si divortii tempore fures in domum mariti induxerit et per eos res amoverit, ita ut ipsa non contrectaverit, rerum amotarum iudicio tenebitur. verum est itaque quod labeo scripsit uxorem rerum amotarum teneri, etiamsi ad eam res non pervenerit."
+    },
+    "63": {
+      "number": 63,
+      "text": "Si rem, quam maritus bona fide emerat, uxor amovit vel opem furi tulit idque fecit divortii causa, rerum amotarum iudicio damnabitur."
+    },
+    "64": {
+      "number": 64,
+      "text": "Si mulier, cum de viri vita desperasset, subreptis quibusdam rebus divortisset, si convaluerit vir, utilis rerum amotarum actio ei danda est."
+    },
+    "65": {
+      "number": 65,
+      "text": "Si servus mulieris iussu dominae divortii causa res amoverit, pedius putat nec furtum eum facere, quoniam nihil lucri sui causa contrectet nec videri furtum facienti opem ferre, cum mulier furtum non faciat, quamvis servus in facinoribus domino dicto audiens esse non debeat: sed rerum amotarum actio erit."
+    },
+    "66": {
+      "number": 66,
+      "text": "At si in dotem servus datus furtum viro fecerit, si quidem mulier talem esse eum scierit, totum damnum viro sarcietur: quod si ignoraverit, tunc non ultra condemnationem noxae multanda erit."
+    },
+    "67": {
+      "number": 67,
+      "text": "Rerum amotarum actio damnum repraesentat etiam si postea dotis exactio competat."
+    },
+    "68": {
+      "number": 68,
+      "text": "Commodi quoque, si quod amotis rebus amiserit vir, ratio habenda est."
+    },
+    "69": {
+      "number": 69,
+      "text": "Haec actio licet ex delicto nascatur, tamen rei persecutionem continet et ideo non anno finitur, sicut et condictio furtiva: praeterea et heredibus competit."
+    },
+    "70": {
+      "number": 70,
+      "text": "Nec viro nec mulieri prodest in hoc iudicio, si facere non possunt: pendet enim id ex furto."
+    },
+    "71": {
+      "number": 71,
+      "text": "Si propter res amotas egero cum muliere et lis aestimata sit, an actio ei danda sit, si amiserit possessionem? movet me, quia dolo adquisiit possessionem. respondi: qui litis aestimationem suffert, emptoris loco habendus est. ideo si mulier, cum qua rerum amotarum actum est, aestimationem litis praestiterit, adversus vindicantem maritum vel heredem mariti exceptionem habet et, si amiserit possessionem, in rem actio ei danda est."
+    },
+    "72": {
+      "number": 72,
+      "text": "Si mulier mortis causa res amoverit, deinde mortuus esset maritus, hereditatis petitione vel actione ad exhibendum consequi poterit heres id quod amotum est."
+    },
+    "73": {
+      "number": 73,
+      "text": "Redintegrato matrimonio si iterum divortium factum erit, ob res amotas prioris divortii causa, item ob impensas donationesque priore matrimonio factas manere actionem existimavit."
+    },
+    "74": {
+      "number": 74,
+      "text": "Ob res amotas vel proprias viri vel etiam dotales tam vindicatio quam condictio viro adversus mulierem competit, et in potestate est, qua velit actione uti."
+    },
+    "75": {
+      "number": 75,
+      "text": "Rerum quidem amotarum iudicium sic habet locum, si divortii consilio res amotae fuerint et secutum divortium fuerit. sed si in matrimonio uxor marito res subtraxerit, licet cessat rerum amotarum actio, tamen ipsas res maritus condicere potest: nam iure gentium condici puto posse res ab his, qui non ex iusta causa possident."
+    },
+    "76": {
+      "number": 76,
+      "text": "Rerum amotarum actio ob adulterii crimen, quo mulier postulata est, non differtur."
+    },
+    "77": {
+      "number": 77,
+      "text": "Si uxor rem viri ei, cui eam vir commodaverit, subripuerit isque conventus sit, habebit furti actionem, quamvis vir habere non possit."
+    },
+    "78": {
+      "number": 78,
+      "text": "Rerum amotarum aestimatio ad tempus quo amotae sunt referri debet: nam veritate furtum fit, et si lenius coercetur mulier. quare nec a bonae fidei possessore ita res amotae usucapiuntur: sed si pluris factae non restituuntur quae amotae sunt, crescit aestimatio, ut in condictione furtivae rei."
+    },
+    "79": {
+      "number": 79,
+      "text": "Cum soluto matrimonio rerum amotarum iudicium contra mulierem instituitur, redintegrato rursus matrimonio solvitur iudicium."
+    },
+    "80": {
+      "number": 80,
+      "text": "Dig. 25.3.0. De agnoscendis et alendis liberis vel parentibus vel patronis vel libertis."
+    },
+    "81": {
+      "number": 81,
+      "text": "Senatus consultum, quod factum est de liberis agnoscendis, duas species complectitur, unam eorum qui agnoscunt, aliam earum quae falsum partum subiciunt."
+    },
+    "82": {
+      "number": 82,
+      "text": "Permittit igitur mulieri parentive in cuius potestate est vel ei cui mandatum ab eis est, si se putet praegnatem, denuntiare intra dies triginta post divortium connumerandos ipsi marito vel parenti in cuius potestate est, aut domum denuntiare, si nullius eorum copiam habeat."
+    },
+    "83": {
+      "number": 83,
+      "text": "Domum accipere debemus hospitium, si in civitate maneat: quod si non sit, sed in villa vel in municipio, illic ubi larem matrimonio collocarent:"
+    },
+    "84": {
+      "number": 84,
+      "text": "Denuntiare autem hoc tantum esse mulierem ex eo praegnantem. non ergo hoc denuntiat, ut mittat custodes maritus: sufficit enim mulieri hoc notum facere, quod sit praegnas. mariti est iam aut mittere custodes aut ei denuntiare, quod non sit ex se praegnas: hoc autem vel ipsi marito vel alii nomine eius facere permittitur."
+    },
+    "85": {
+      "number": 85,
+      "text": "Poena autem mariti ea est, ut, nisi aut custodes praemiserit aut contra denuntiaverit non esse ex se praegnatem, cogatur maritus partum agnoscere: et, si non agnoverit, extra ordinem coercetur. debebit igitur respondere non esse ex se praegnatem aut nomine eius responderi: quod si factum fuerit, non alias necesse habebit agnoscere, nisi vere filius fuerit."
+    },
+    "86": {
+      "number": 86,
+      "text": "Illud notandum est, quod denuntiatio a marito non incipit, sed a muliere:"
+    },
+    "87": {
+      "number": 87,
+      "text": "Sed si maritus ultro custodes offerat et ea non admittat, vel si non denuntiaverit mulier, aut si denuntiaverit quidem, custodes autem arbitrio iudicis non admiserit, liberum est marito parentive eius partum non agnoscere."
+    },
+    "88": {
+      "number": 88,
+      "text": "Si mulier esse se praegnatem intra triginta dies non denuntiaverit, postea denuntians causa cognita audiri debebit."
+    },
+    "89": {
+      "number": 89,
+      "text": "Quin immo et si in totum omiserit denuntiationem, iulianus ait nihil hoc nocere ei quod editur."
+    },
+    "90": {
+      "number": 90,
+      "text": "Dies autem triginta continuos accipere debemus ex die divortii, non utiles."
+    },
+    "91": {
+      "number": 91,
+      "text": "Eleganter autem apud iulianum libro nono decimo digestorum quaeritur, si intra dies triginta mulier marito non denuntiaverit et intra triginta partum ediderit, an senatus consulto locus sit. et ait plancianum senatus consultum cessare, quia de eo partu non videtur sentire, qui intra diem trigesimum nascatur: quippe dies triginta ad denuntiandum praestituit senatus. sed hanc rem non facere praeiudicium partui arbitror."
+    },
+    "92": {
+      "number": 92,
+      "text": "Quemadmodum per contrarium si maritus uxore denuntiante custodes miserit, nullum praeiudicium sibi facit. licebit igitur ei partum editum ex se negare nec ei nocebit, quod ventrem custodierit: et ita Marcellus libro septimo digestorum scripsit: ait enim, sive quis neget uxorem sive ex se praegnatem, sine praeiudicio recte mittet custodes, maxime si missurus id ipsum protestetur."
+    },
+    "93": {
+      "number": 93,
+      "text": "Iulianus libro nono decimo digestorum scripsit: quod senatus consulto comprehensum est, si mulier viro denuntiaverit se ex eo concepisse et is cui denuntiatum erit custodes ad ventrem custodiendum inspiciendumque non miserit neque contestato dixerit eam ex se praegnatem non esse, ut ei id quod editum sit agnoscere sit necesse, non eo pertinet, ut, si quis agnoscere se filium diceret, suum heredem haberet, quamvis ex alio conceptus sit: quandoque enim, inquit, coepit causa agi, grande praeiudicium adfert pro filio confessio patris."
+    },
+    "94": {
+      "number": 94,
+      "text": "Idem per contrarium quoque ait, si mulier divortio facto non fecerit ea, quae senatus consulto praecipiuntur, ut liceat patri non agnoscere, non eo pertinere, ut filius natus suum se dicere non possit, sed ad id tantum, ut ita pater alere eum cogatur, si constiterit eum filium esse."
+    },
+    "95": {
+      "number": 95,
+      "text": "Idem iulianus scribit, si uxore denuntiante se praegnatem maritus non negaverit, non utique suum illi partum effici, cogendum tamen alere: ceterum esse satis iniuriosum ait, si quis longo tempore afuerit et reversus uxorem praegnatem invenerit et idcirco reiecerit, si quid ex his, quae senatus consulto continentur, omiserit, suum heredem ei nasci."
+    },
+    "96": {
+      "number": 96,
+      "text": "Ex his apparet, sive uxor omiserit, quae eam ex senatus consulto observare oportuit, nihil praeiudicare filio, si filius est, non tantum in iure sui, verum ne in alimentis quidem secundum divi pii rescriptum: sive maritus neglexerit facere, quae ex senatus consulto debet, natum cogitur omnimodo alere, ceterum recusare poterit filium."
+    },
+    "97": {
+      "number": 97,
+      "text": "Plane si denuntiante muliere negaverit ex se esse praegnatem, tametsi custodes non miserit, non evitabit, quo minus quaeratur, an ex eo mulier praegnas sit. quae causa si fuerit acta apud iudicem et pronuntiaverit, cum de hoc agetur quod ex eo praegnas fuerit nec ne, in ea causa esse, ut agnosci debeat: sive filius non fuit sive fuit, esse suum."
+    },
+    "98": {
+      "number": 98,
+      "text": "In omnibus causis ( quare et fratribus consanguineus erit):"
+    },
+    "99": {
+      "number": 99,
+      "text": "Sive contra pronuntiaverit, non fore suum, quamvis suus fuerit: placet enim eius rei iudicem ius facere. et ita Marcellus libro septimo digestorum probat, eoque iure utimur."
+    },
+    "100": {
+      "number": 100,
+      "text": "Quia plancianum senatus consultum ad eos partus pertinet qui post divortium eduntur, aliud senatus consultum temporibus divi hadriani factum est, ut, etiamsi constante matrimonio partus sit editus, de agnoscendo eo agatur."
+    },
+    "101": {
+      "number": 101,
+      "text": "Quid ergo, si quis post mortem patris nascatur avo superstite, in cuius potestate recasurus est, ut si ex filio eius susceptus probetur? videndum quid dici debeat. et certe probandum est cum avo praeiudicium de partu agnoscendo similiter agendum."
+    },
+    "102": {
+      "number": 102,
+      "text": "Quid si hoc ipsum in quaestionem veniat, utrum in matrimonio an postea editus sit? dicendum est et super hoc ex senatus consultis agendum."
+    },
+    "103": {
+      "number": 103,
+      "text": "Et quid sit, si an uxor fuerit disceptetur? et iulianus sexto caecilio africano respondit locum esse praeiudicio."
+    },
+    "104": {
+      "number": 104,
+      "text": "Illud tenendum haec senatus consulta post mortem parentis cessare, si is supersit, in cuius potestate recasuri non sunt. quid ergo est? in petitione hereditatis, quam filius intendit, quaeretur, utrum ex eo natus sit cuius hereditatem petit an non. adeo hoc verum est, ut iulianus libro nono decimo digestorum scribat, si vivo patre redditum sit praeiudicium et antequam sententia feratur, pater decesserit, transeundum ad carbonianum edictum."
+    },
+    "105": {
+      "number": 105,
+      "text": "Item haec senatus consulta pertinent ad eos, qui sui heredes adgnascantur: ceterum si forte non sint in potestatem recasuri, verius est senatus consulta cessare."
+    },
+    "106": {
+      "number": 106,
+      "text": "Necare videtur non tantum is qui partum praefocat, sed et is qui abicit et qui alimonia denegat et is qui publicis locis misericordiae causa exponit, quam ipse non habet."
+    },
+    "107": {
+      "number": 107,
+      "text": "Si quis a liberis ali desideret vel si liberi, ut a parente exhibeantur, iudex de ea re cognoscet."
+    },
+    "108": {
+      "number": 108,
+      "text": "Sed utrum eos tantum liberos qui sunt in potestate cogatur quis exhibere, an vero etiam emancipatos vel ex alia causa sui iuris constitutos, videndum est. et magis puto, etiamsi non sunt liberi in potestate, alendos a parentibus et vice mutua alere parentes debere."
+    },
+    "109": {
+      "number": 109,
+      "text": "Utrum autem tantum patrem avumve paternum proavumve paterni avi patrem ceterosque virilis sexus parentes alere cogamur, an vero etiam matrem ceterosque parentes et per illum sexum contingentes cogamur alere, videndum. et magis est, ut utrubique se iudex interponat, quorundam necessitatibus facilius succursurus, quorundam aegritudini: et cum ex aequitate haec res descendat caritateque sanguinis, singulorum desideria perpendere iudicem oportet."
+    },
+    "110": {
+      "number": 110,
+      "text": "Idem in liberis quoque exhibendis a parentibus dicendum est."
+    },
+    "111": {
+      "number": 111,
+      "text": "Ergo et matrem cogemus praesertim volgo quaesitos liberos alere nec non ipsos eam."
+    },
+    "112": {
+      "number": 112,
+      "text": "Item divus pius significat, quasi avus quoque maternus alere compellatur."
+    },
+    "113": {
+      "number": 113,
+      "text": "Idem rescripsit, ut filiam suam pater exhibeat, si constiterit apud iudicium iuste eam procreatam."
+    },
+    "114": {
+      "number": 114,
+      "text": "Sed si filius possit se exhibere, aestimare iudices debent, ne non debeant ei alimenta decernere. denique idem pius ita rescripsit: \" aditi a te competentes iudices ali te a patre tuo iubebunt pro modo facultatium eius, si modo, cum opificem te esse dicas, in ea valetudine es, ut operis sufficere non possis\"."
+    },
+    "115": {
+      "number": 115,
+      "text": "Si vel parens neget filium idcircoque alere se non debere contendat, vel filius neget parentem, summatim iudices oportet super ea re cognoscere. si constiterit filium vel parentem esse, tunc ali iubebunt: ceterum si non constiterit, nec decernent alimenta."
+    },
+    "116": {
+      "number": 116,
+      "text": "Meminisse autem oportet, etsi pronuntiaverint ali oportere, attamen eam rem praeiudicium non facere veritati: nec enim hoc pronuntiatur filium esse, sed ali debere: et ita divus marcus rescripsit."
+    },
+    "117": {
+      "number": 117,
+      "text": "Si quis ex his alere detrectet, pro modo facultatium alimenta constituentur: quod si non praestentur, pignoribus captis et distractis cogetur sententiae satisfacere."
+    },
+    "118": {
+      "number": 118,
+      "text": "Idem iudex aestimare debet, num habeat aliquid parens vel an pater quod merito filios suos nolit alere: trebatio denique marino rescriptum est merito patrem eum nolle alere, quod eum detulerat."
+    },
+    "119": {
+      "number": 119,
+      "text": "Non tantum alimenta, verum etiam cetera quoque onera liberorum patrem ab iudice cogi praebere rescriptis continetur."
+    },
+    "120": {
+      "number": 120,
+      "text": "Si impubes sit filius emancipatus, patrem inopem alere cogetur: iniquissimum enim quis merito dixerit patrem egere, cum filius sit in facultatibus."
+    },
+    "121": {
+      "number": 121,
+      "text": "Si mater alimenta, quae fecit in filium, a patre repetat, cum modo eam audiendam. ita divus marcus rescripsit antoniae montanae in haec verba: \" sed et quantum tibi alimentorum nomine, quibus necessario filiam tuam exhibuisti, a patre eius praestari oporteat, iudices aestimabunt, nec impetrare debes ea, quae exigente materno affectu in filiam tuam erogatura esses, etiamsi a patre suo educaretur\"."
+    },
+    "122": {
+      "number": 122,
+      "text": "A milite quoque filio, qui in facultatibus sit, exhibendos parentes esse pietatis exigit ratio."
+    },
+    "123": {
+      "number": 123,
+      "text": "Parens quamvis ali a filio ratione naturali debeat, tamen aes alienum eius non esse cogendum exsolvere filium rescriptum est."
+    },
+    "124": {
+      "number": 124,
+      "text": "Item rescriptum est heredes filii ad ea praestanda, quae vivus filius ex officio pietatis suae dabit, invitos cogi non oportere, nisi in summam egestatem pater deductus est."
+    },
+    "125": {
+      "number": 125,
+      "text": "Solent iudices cognoscere et inter patronos et libertos, si alendis his agatur: itaque si negent se esse libertos, cognoscere eos oportebit: quod si libertos constiterit, tunc demum decernere, ut alant: nec tamen alimentorum decretum tollet liberto facultatem, quo minus praeiudicio certare possit, si libertum se neget."
+    },
+    "126": {
+      "number": 126,
+      "text": "Alimenta autem pro modo facultatium erunt praebenda, egentibus scilicet patronis: ceterum si sit unde se exhibeant, cessabunt partes iudicis."
+    },
+    "127": {
+      "number": 127,
+      "text": "Utrum autem tantum patroni alendi sint an etiam patronorum liberi, tractari potest. et puto causa cognita iudices et liberos quoque patronorum alendos decernere, non quidem tam facile ut patronos, sed nonnumquam et ipsos: nam et obsequium non solum patronis, verum etiam liberis eorum debere praestari."
+    },
+    "128": {
+      "number": 128,
+      "text": "Si quis a liberti liberto ali se desideret vel ab eo, quem ex causa fideicommissi manumisit quemque suis nummis redemit, non debet audiri, ut et Marcellus scribit, exaequatque eum, qui mercedes exigendo ius libertorum amisit."
+    },
+    "129": {
+      "number": 129,
+      "text": "Sed et patroni filium, qui capitis accusavit libertum paternum, negat exhibendum."
+    },
+    "130": {
+      "number": 130,
+      "text": "De alimentis patroni arbiter solet dari arbitraturus, quantum sit in facultatibus, ut perinde possint alimenta moderari, quae tamdiu praestabuntur, quamdiu liberto supersit, patrono desit."
+    },
+    "131": {
+      "number": 131,
+      "text": "Patrem et matrem patroni, cum patronus et filii eius minime supersint, alere egentes, ipsi si idonei facultatibus sunt, coguntur."
+    },
+    "132": {
+      "number": 132,
+      "text": "Alimenta liberto petente non praestando patronus amissione libertatis causa impositorum et hereditatis liberti punietur: non autem necesse habebit praestare, etiamsi potest."
+    },
+    "133": {
+      "number": 133,
+      "text": "Imperatoris commodi constitutio talis profertur: \" cum probatum sit contumeliis patronos a libertis esse violatos vel illata manu atroci esse pulsatos aut etiam paupertate vel corporis valetudine laborantes relictos, primum eos in potestate patronorum redigi et ministerium dominis praebere cogi: sin autem nec hoc modo admoneantur, vel a praeside emptori addicentur et pretium patronis tribuetur\"."
+    },
+    "134": {
+      "number": 134,
+      "text": "Si neget qui maritus fuisse dicitur matrimonium esse contractum eo, quod eam quae se uxorem fuisse dicit ancillam esse probare paratus sit, alimenta quidem liberis praestare interim compellendum, sin autem constiterit eam servam fuisse, nihil ei, qui pascendos curavit, ex hoc praeiudicium generare respondi."
+    },
+    "135": {
+      "number": 135,
+      "text": "Non quemadmodum masculorum liberorum nostrorum liberi ad onus nostrum pertinent, ita et in feminis est: nam manifestum est id quod filia parit non avo, sed patri suo esse oneri, nisi pater aut non sit superstes aut egens est."
+    },
+    "136": {
+      "number": 136,
+      "text": "In bonis superstitum libertorum nullum omnino ius patroni liberive patronorum habent, nisi si tam esse infirmos tamque pauperes praesidibus probaverint, ut merito menstruis alimentis a libertis suis adiuvari debeant. idque ius ita plurimis principum constitutionibus manifestatur."
+    },
+    "137": {
+      "number": 137,
+      "text": "Dig. 25.4.0. De inspiciendo ventre custodiendoque partu."
+    },
+    "138": {
+      "number": 138,
+      "text": "Temporibus divorum fratrum cum hoc incidisset, ut maritus quidem praegnatem mulierem diceret, uxor negaret, consulti valerio prisciano praetori urbano rescripserunt in haec verba: \" novam rem desiderare rutilius severus videtur, ut uxori, quae ab eo diverterat et se non esse praegnatem profiteatur, custodem apponat, et ideo nemo mirabitur, si nos quoque novum consilium et remedium suggeramus. igitur si perstat in eadem postulatione, commodissimum est eligi honestissimae feminae domum, in qua domitia veniat, et ibi tres obstetrices probatae et artis et fidei, quae a te adsumptae fuerint, eam inspiciant. et si quidem vel omnes vel duae renuntiaverint praegnatem videri, tunc persuadendum mulieri erit, ut perinde custodem admittat atque si ipsa hoc desiderasset: quod si enixa non fuerit, sciat maritus ad invidiam existimationemque suam pertinere, ut non immerito possit videri captasse hoc ad aliquam mulieris iniuriam. si autem vel omnes vel plures non esse gravidam renuntiaverint, nulla ca..."
+    },
+    "139": {
+      "number": 139,
+      "text": "Ex hoc rescripto evidentissime apparet senatus consulta de liberis agnoscendis locum non habuisse, si mulier dissimularet se praegnatem vel etiam negaret, nec immerito: partus enim antequam edatur, mulieris portio est vel viscerum. post editum plane partum a muliere iam potest maritus iure suo filium per interdictum desiderare aut exhiberi sibi aut ducere permitti. extra ordinem igitur princeps in causa necessaria subvenit."
+    },
+    "140": {
+      "number": 140,
+      "text": "Secundum quod rescriptum evocari mulier ad praetorem poterit et apud eum interrogari, an se putet praegnatem, cogendaque erit respondere."
+    },
+    "141": {
+      "number": 141,
+      "text": "Quid ergo, si non responderit aut non veniat ad praetorem? numquid senatus consulti poenam adhibemus, scilicet ut liceat marito non agnoscere? sed finge non esse eo contentum maritum, qui se patrem potius optet quam carere filio velit. cogenda igitur erit remediis praetoris et in ius venire, si venit, respondere: pignoraque eius capienda et distrahenda, si contemnat, vel multis coercenda."
+    },
+    "142": {
+      "number": 142,
+      "text": "Quid ergo, si interrogata dixerit se praegnatem? ordo senatus consultis expositus sequetur. quod si negaverit, tunc secundum hoc rescriptum praetor debebit obstetrices adhibere."
+    },
+    "143": {
+      "number": 143,
+      "text": "Et notandum, quod non permittitur marito vel mulieri obstetricem adhibere, sed omnes a praetore adhibendae sunt."
+    },
+    "144": {
+      "number": 144,
+      "text": "Item praetor domum honestae matronae eligere debet, in qua mulier veniat, ut possit inspici."
+    },
+    "145": {
+      "number": 145,
+      "text": "Quid ergo, si inspici se non patiatur vel ad domum non veniat? aeque praetoris auctoritas interveniet."
+    },
+    "146": {
+      "number": 146,
+      "text": "Si omnes vel plures renuntiaverint praegnatem non esse, an mulier possit iniuriarum experiri ex hac causa? et magis puto agere eam iniuriarum posse, sic tamen, si iniuriae faciendae causa id maritus desideravit: ceterum si non iniuriae faciendae animo, sed quia iuste credidit vel nimio voto liberorum suscipiendorum ductus est vel ipsa eum illexerat ut crederet, quod constante matrimonio hoc fingebat, aequissimum erit ignosci marito."
+    },
+    "147": {
+      "number": 147,
+      "text": "Meminisse autem oportet tempus non esse praestitutum rescripto, quamvis in senatus consultis de liberis agnoscendis triginta dies praestituantur mulieri. quid ergo? semper dicemus marito licere uxorem ad praetorem evocare, an vero et ipsi triginta dies praestituimus? et putem praetorem causa cognita debere maritum et post triginta dies audire."
+    },
+    "148": {
+      "number": 148,
+      "text": "De inspiciendo ventre custodiendoque partu sic praetor ait: \" si mulier mortuo marito praegnatem se esse dicet, his ad quos ea res pertinebit procuratorive eorum bis in mense denuntiandum curet, ut mittant, si velint, quae ventrem inspicient. mittantur autem mulieres liberae dumtaxat quinque haeque simul omnes inspiciant, dum ne qua earum dum inspicit invita muliere ventrem tangat. mulier in domu honestissimae feminae pariat, quam ego constituam. mulier ante dies triginta, quam parituram se putat, denuntiet his ad quos ea res pertinet procuratoribusve eorum, ut mittant, si velint, qui ventrem custodiant. in quo conclavi mulier paritura erit, ibi ne plures aditus sint quam unus: si erunt, ex utraque parte tabulis praefigantur. ante ostium eius conclavis liberi tres et tres liberae cum binis comitibus custodiant. quotienscumque ea mulier in id conclave aliudve quod sive in balineum ibit, custodes, si volent, id ante prospiciant et eos qui introierint excutiant. custodes, qui ante conclav..."
+    },
+    "149": {
+      "number": 149,
+      "text": "Quamvis sit manifestissimum edictum praetoris, attamen non est neglegenda interpretatio eius."
+    },
+    "150": {
+      "number": 150,
+      "text": "Denuntiare igitur mulierem oportet his scilicet, quorum interest partum non edi, vel totam habituris hereditatem vel partem eius sive ab intestato sive ex testamento."
+    },
+    "151": {
+      "number": 151,
+      "text": "Sed et si servus heres institutus fuerit, si nemo natus sit, aristo scribit, huic quoque servo quamvis non omnia, quaedam tamen circa partum custodiendum arbitrio praetoris esse concedenda. quam sententiam puto veram: publice enim interest partus non subici, ut ordinum dignitas familiarumque salva sit: ideoque etiam servus iste, cum sit in spe constitutus successionis, qualisqualis sit, debet audiri rem et publicam et suam gerens."
+    },
+    "152": {
+      "number": 152,
+      "text": "Denuntiari autem oportet his, quos proxima spes successionis contingit, ut puta primo gradu heredi instituto ( non etiam substituto) et, si intestatus pater familias sit, ei qui primum locum ab intestato tenet: si vero plures sint simul successuri, omnibus denuntiandum est."
+    },
+    "153": {
+      "number": 153,
+      "text": "Quod autem praetor ait causa cognita se possessionem non daturum vel actiones denegaturum, eo pertinet, ut, si per rusticitatem aliquid fuerit omissum ex his quae praetor servari voluit, non obsit partui. quale est enim, si quid ex his, quae leviter observanda praetor edixit, non sit factum, partui denegari bonorum possessionem: sed mos regionis inspiciendus est, et secundum eum et observari ventrem et partum et infantem oportet."
+    },
+    "154": {
+      "number": 154,
+      "text": "Edictum de custodiendo partu derogatorium est eius, quod ad carboniani decreti exemplum comparatum est."
+    },
+    "155": {
+      "number": 155,
+      "text": "Sed hoc aliquando remittere praetor debet, si non malitia, sed imperitia mulieris factum fuerit, ne venter inspiceretur aut partus custodiretur."
+    },
+    "156": {
+      "number": 156,
+      "text": "Qui ventri substitutus est vel institutus, si ventrem servare velit, audiendus est."
+    },
+    "157": {
+      "number": 157,
+      "text": "Is a quo, si sine liberis decessisset, quidquid ad eum ex bonis pervenisset, sorori fideicommissum relictum erat, decessit postuma herede instituta et substitutis aliis: quaesitum est, cum uxor defuncti praegnatem se dicat, an sorori procuratorive eius secundum formam edicti ventrem inspicere et partum custodire permittendum sit. respondi in eiusmodi specie, de qua quaereretur, posse videri ad eius, cui fideicommissum datum esset, sollicitudinem perspiciendum idque causa cognita statuendum."
+    },
+    "158": {
+      "number": 158,
+      "text": "Dig. 25.5.0. Si ventris nomine muliere in possessionem missa eadem possessio dolo malo ad alium translata esse dicatur."
+    },
+    "159": {
+      "number": 159,
+      "text": "Hoc edicto rectissime praetor prospexit, ne, dum in favorem partus possessionem polliceatur, aliis praedae occasionem praebeat:"
+    },
+    "160": {
+      "number": 160,
+      "text": "Idcirco constituit actionem in mulierem, quae in alium hanc possessionem dolo malo transtulit. non solum mulierem praetor coercet, verum eum quoque in cuius potestate ea fuerit, scilicet si dolo ipsorum alius in possessionem fuerit admissus, actionemque in tantum pollicetur in eos, quanti interfuit eius qui experitur."
+    },
+    "161": {
+      "number": 161,
+      "text": "Necessario praetor adiecit, ut, qui per dolum venit in possessionem, cogatur decedere: coget autem eum decedere non praetoria potestate vel manu ministrorum, sed melius et civilius faciet, si eum per interdictum ad ius ordinarium remiserit."
+    },
+    "162": {
+      "number": 162,
+      "text": "Interest autem eius qui experitur admissum alium in possessionem non fuisse, cum forte bona fide fructus perceptos consumpserit, aut si praedo venerit in possessionem, a quo fructus consequi non possit, quia solvendo non est."
+    },
+    "163": {
+      "number": 163,
+      "text": "Haec actio etiam post annum dabitur, quia rei habet persecutionem."
+    },
+    "164": {
+      "number": 164,
+      "text": "Et si filia familias sit quae dolo fecit, in patrem dabitur actio, si quid ad eum pervenerit."
+    },
+    "165": {
+      "number": 165,
+      "text": "Dolo facit mulier, non quae in possessionem venientem non prohibet, sed quae circumscribendi alicuius causa clam et per quandam machinationem in possessionem introducat."
+    },
+    "166": {
+      "number": 166,
+      "text": "Si et patris et filiae factum arguetur, in alterum quem actor velit reddenda est actio. quia in id quod agentis interest datur, ideo, si id quod ei abest ab eo qui in potestate est servari possit, praeter sumptus litis causa factos inutilis erit ei haec actio."
+    },
+    "167": {
+      "number": 167,
+      "text": "Dig. 25.6.0. Si mulier ventris nomine in possessione calumniae causa esse dicetur."
+    },
+    "168": {
+      "number": 168,
+      "text": "Si de possessione ventris nomine quaeratur et deferente herede mulier iuraverit praegnatem se esse, servandum est iusiurandum nec tenebitur mulier, quasi calumniae causa fuerit in possessionem missa, nec vis ei facienda est post iusiurandum. si tamen peperit, quaeretur veritas, an ex eo praegnas fuerit: alteri enim nec prodest nec nocet iusiurandum inter alios factum, nec partui igitur nocebit."
+    },
+    "169": {
+      "number": 169,
+      "text": "Et hoc edictum ex eadem causa proficiscitur, qua superius: debet enim praetor, quemadmodum facilis est circa bonorum possessionem dandam mulieri ventris nomine, ita calumniam eius impunitam non relinquere."
+    },
+    "170": {
+      "number": 170,
+      "text": "Per calumniam autem in possessione fuisse videtur, quae sciens prudensque se praegnatem non esse voluit in possessionem venire."
+    },
+    "171": {
+      "number": 171,
+      "text": "Hanc autem actionem praetor intra annum utilem pollicetur, ultra non, videlicet quasi poenalem."
+    },
+    "172": {
+      "number": 172,
+      "text": "Simili autem modo et hic quanti agentis interfuit praetor actionem pollicetur."
+    },
+    "173": {
+      "number": 173,
+      "text": "In parentem etiam praetor actionem pollicetur, si modo per eum factum sit, ut in possessionem per calumniam veniret."
+    },
+    "174": {
+      "number": 174,
+      "text": "Competit autem haec actio ei, cuius interfuit in possessionem missam non esse: ut puta vel coheredi speranti partum, vel si qui substitutus fuit, vel qui ab intestato, si partus non fuisset, succedere potuit."
+    },
+    "175": {
+      "number": 175,
+      "text": "Interesse autem videtur primum de alimentis, quae in ventrem sunt erogata: nec enim alias haec repetuntur, nisi per calumniam in possessionem venit: ceterum si res calumnia caret, nihil praestabit mulier, quae sine causa alta est sub praetextu ventris."
+    },
+    "176": {
+      "number": 176,
+      "text": "Nonnumquam augebitur quod interest, si quis forte dubitans, an praegnas sit, exclusus sit hereditate: nam heredi eius qui exclusus est dandam hanc actionem iulianus ait, siquidem eius quoque interfuit non fuisse calumniae causa in possessione mulierem, quia hoc si non fuisset, adeundo hereditatem institutus heredi suo locupletiorem hereditatem suam relinqueret. sed et hoc imputatur mulieri, quod deminuta sunt multa in hereditate, dum hic contemplatione ventris non attigit hereditatem."
+    },
+    "177": {
+      "number": 177,
+      "text": "Idem iulianus libro decimo nono digestorum sic ait: si substitutus manente muliere in possessione decesserit, heres eius eadem actione pretium hereditatis a muliere exiget."
+    },
+    "178": {
+      "number": 178,
+      "text": "Sed an decedant legata ceteraque onera hereditatis, videndum. et mihi videtur posse dici legatarios potius cum muliere usuros hac actione, quia et ipsorum interfuit adiri hereditatem."
+    },
+    "179": {
+      "number": 179,
+      "text": "Libertati plane subveniendum erit adversus eum, qui propter hereditatem hac actione egit, scilicet ut fideicommissarias cogatur is praestare, qui pretium utique etiam eorum consequitur: sed et directis credo praetorem succurrere oportere, ut interventu suo tueatur eorum libertatem."
+    },
+    "180": {
+      "number": 180,
+      "text": "Si dolus filiae familias intervenerit et particeps doli fuerit pater, suo nomine tenebitur."
+    },
+    "181": {
+      "number": 181,
+      "text": "Quae in concubinatu est, ab invito patrono poterit discedere et alteri se aut in matrimonium aut in concubinatum dare? ego quidem probo in concubina adimendum ei conubium, si patronum invitum deserat, quippe cum honestius sit patrono libertam concubinam quam matrem familias habere."
+    },
+    "182": {
+      "number": 182,
+      "text": "Cum atilicino sentio et puto solas eas in concubinatu habere posse sine metu criminis, in quas stuprum non committitur."
+    },
+    "183": {
+      "number": 183,
+      "text": "Qui autem damnatam adulterii in concubinatu habuit, non puto lege iulia de adulteriis teneri, quamvis, si uxorem eam duxisset, teneretur."
+    },
+    "184": {
+      "number": 184,
+      "text": "Si qua in patroni fuit concubinatu, deinde filii esse coepit vel in nepotis, vel contra, non puto eam recte facere, quia prope nefaria est huiusmodi coniunctio, et ideo huiusmodi facinus prohibendum est."
+    },
+    "185": {
+      "number": 185,
+      "text": "Cuiuscumque aetatis concubinam habere posse palam est, nisi minor annis duodecim sit."
+    },
+    "186": {
+      "number": 186,
+      "text": "Si patronus libertam concubinam habens furere coeperit, in concubinatu eam esse humanius dicitur."
+    },
+    "187": {
+      "number": 187,
+      "text": "In concubinatu potest esse et aliena liberta et ingenua et maxime ea quae obscuro loco nata est vel quaestum corpore fecit. alioquin si honestae vitae et ingenuam mulierem in concubinatum habere maluerit, sine testatione hoc manifestum faciente non conceditur. sed necesse est ei vel uxorem eam habere vel hoc recusantem stuprum cum ea committere:"
+    },
+    "188": {
+      "number": 188,
+      "text": "Nec adulterium per concubinatum ab ipso committitur. nam quia concubinatus per leges nomen assumpsit, extra legis poenam est, ut et Marcellus libro septimo digestorum scripsit."
+    },
+    "189": {
+      "number": 189,
+      "text": "Concubinam ex sola animi destinatione aestimari oportet."
+    },
+    "190": {
+      "number": 190,
+      "text": "Concubinam ex ea provincia, in qua quis aliquid administrat, habere potest."
+    }
+  }
+}

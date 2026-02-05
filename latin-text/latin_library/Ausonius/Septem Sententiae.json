@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "author": "Ausonius",
+    "work": "Septem Sententiae",
+    "url": "https://www.thelatinlibrary.com/aus.sept.sent.html",
+    "verse_count": 9,
+    "title": "Septem Sententiae"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Quaenam summa boni? mens semper conscia recti.\r\nPernicies homni quae maxima? solus homo alter.\r\nQuis dives? qui nil cupiet.  Quis pauper? avarus.\r\nQuae dos matronis pulcherrima? vita pudica.\r\nQuae casta est? de qua mentiri fama veretur.\r\nQuod prudentis opus? cum possis, nolle nocere.\r\nQuid stulti proprium? non posse et velle nocere."
+    },
+    "2": {
+      "number": 2,
+      "text": "Loqui ignorabit, qui tacere nesciet.\r\nBono probari malo, quam multis malis."
+    },
+    "3": {
+      "number": 3,
+      "text": "Demens superbis invidet felicibus.\r\nDemens dolorem ridet infelicium.\r\nPareto legi, quisquis legem sanxeris.\r\nPlures amicos re secunda comparas.\r\nPaucos amicos rebus adversis probas."
+    },
+    "4": {
+      "number": 4,
+      "text": "Quanto plus liceat, tam libeat minus.\r\nFortunae invidiae est inmeritus miser.\r\nFelix criminibus non erit hoc diu.\r\nIgnoscas aliis multa, nihil tibi.\r\nParcit quisque malis, perdere vult bonos.\r\nMalorum meritis gloria non datur.\r\nTurpis saepe datur fama minoribus."
+    },
+    "5": {
+      "number": 5,
+      "text": "Numquam discrepat utile ab decoro.\r\nPlus est sollicitus magis beatus.\r\nMortem optare malum, timere peius.\r\nFaxis, ut libeat, quod est necesse.\r\nMultis terribilis timeto multos.\r\nSi Fortuna iuvat, caveto tolli.\r\nSi fortuna tonat, caveto mergi."
+    },
+    "6": {
+      "number": 6,
+      "text": "Tunc beatum dico vitam, cum peracta fata sunt.\r\nPar pari iugator coniux: quidquid inpar, dissidet.\r\nNon erunt honores umquam fortuiti muneris.\r\nClam coarguas propinquum, propalam laudaveris.\r\nPulchrius multo est parari, quam creari nobilem.\r\nCerta si decreta sors est, quid cavere proderit?\r\nSive sunt incerta cuncta, quid timere convenit?"
+    },
+    "7": {
+      "number": 7,
+      "text": "Nolo minor me timeat despiciatque maior.\r\nVive memor mortis, item vive memor salutis.\r\nTristia cuncta exsuperas aut animo aut amico.\r\nTu bene si quid facias, non meminisse fas est.\r\nQuae bene facta accipias, perpetuo memento.\r\nGrata senectus homini, quae parilis iuventae:\r\nIlla iuventa est gravior, quae similis senectae."
+    },
+    "8": {
+      "number": 8,
+      "text": "Turpe quid ausurus te sine teste time.\r\nVita perit, mortis gloria non moritur."
+    },
+    "9": {
+      "number": 9,
+      "text": "Quod facturus eris, dicere distuleris.\r\nCrux est, si metuas vincere quod nequeas.\r\nCum vere obiurges, sic inimice iuvas;\r\nCum falso laudes, tunc et inimice noces.\r\nNil nimium.  Satis est, ne sit et hoc nimium."
+    }
+  }
+}

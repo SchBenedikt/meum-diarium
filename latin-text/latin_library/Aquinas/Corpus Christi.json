@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "author": "Aquinas",
+    "work": "Corpus Christi",
+    "url": "https://www.thelatinlibrary.com/aquinas/corpuschristi.shtml",
+    "verse_count": 5,
+    "title": "Corpus Christi"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "In mortem a discipulo     Suis tradendus aemulis,Prius in vitae ferculo     Se tradidit discipulis.Quibus sub bina specie     Carnem dedit et sanguinem:Ut duplicis substantiae     Totum cibaret hominem.Se nascens dedit socium,     Convescens in edulium,Se moriens in pretium,     Se regnans dat in praemium.O Salutaris Hostia,     Quae caeli pandis ostium:Bella premunt hostilia,     Da robur, fer auxilium.Uni trinoque Domino     Sit sempiterna gloria,Qui vitam sine termino     Nobis donet in patria.Amen."
+    },
+    "2": {
+      "number": 2,
+      "text": "Quibus sub bina specie     Carnem dedit et sanguinem:Ut duplicis substantiae     Totum cibaret hominem.Se nascens dedit socium,     Convescens in edulium,Se moriens in pretium,     Se regnans dat in praemium.O Salutaris Hostia,     Quae caeli pandis ostium:Bella premunt hostilia,     Da robur, fer auxilium.Uni trinoque Domino     Sit sempiterna gloria,Qui vitam sine termino     Nobis donet in patria.Amen."
+    },
+    "3": {
+      "number": 3,
+      "text": "Se nascens dedit socium,     Convescens in edulium,Se moriens in pretium,     Se regnans dat in praemium.O Salutaris Hostia,     Quae caeli pandis ostium:Bella premunt hostilia,     Da robur, fer auxilium.Uni trinoque Domino     Sit sempiterna gloria,Qui vitam sine termino     Nobis donet in patria.Amen."
+    },
+    "4": {
+      "number": 4,
+      "text": "O Salutaris Hostia,     Quae caeli pandis ostium:Bella premunt hostilia,     Da robur, fer auxilium.Uni trinoque Domino     Sit sempiterna gloria,Qui vitam sine termino     Nobis donet in patria.Amen."
+    },
+    "5": {
+      "number": 5,
+      "text": "Uni trinoque Domino     Sit sempiterna gloria,Qui vitam sine termino     Nobis donet in patria.Amen."
+    }
+  }
+}

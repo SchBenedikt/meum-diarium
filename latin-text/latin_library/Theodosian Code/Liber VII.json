@@ -1,0 +1,955 @@
+{
+  "metadata": {
+    "author": "Theodosian Code",
+    "work": "Liber VII",
+    "url": "https://www.thelatinlibrary.com/theodosius/theod07.shtml",
+    "verse_count": 236,
+    "title": "Liber VII"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "CTh.7.1.0. De re militari \n\nCTh.7.2.0. Quid probare debeant ad quamcumque militiam venientes \n\nCTh.7.3.0. Quis in gradu praeferatur \n\nCTh.7.4.0. De erogatione militaris annonae \n\nCTh.7.5.0. De excoctione et translatione annonarum \n\nCTh.7.6.0. De militari veste \n\nCTh.7.7.0. De pascuis \n\nCTh.7.8.0. De metatis \n\nCTh.7.9.0. De salgamo hospitibus non praebendo \n\nCTh.7.10.0. Ne quis in palatiis maneat \n\nCTh.7.11.0. Ne comitibus et tribunis lavacra praestentur. \n\nCTh.7.12.0. De commeatu \n\nCTh.7.13.0. De tironibus \n\nCTh.7.14.0. De burgariis \n\nCTh.7.15.0. De terris limitaneis \n\nCTh.7.16.0. De litorum et itinerum custodia \n\nCTh.7.17.0. De lusoriis danuvii \n\nCTh.7.18.0. De desertoribus et occultatoribus eorum \n\nCTh.7.19.0. De saturianis et subafrensibus et occultatoribus eorum \n\nCTh.7.20.0. De veteranis \n\nCTh.7.21.0. De testimoniali ex tribunis et protectoribus \n\nCTh.7.22.0. De filiis militarium apparitorum et veteranorum \n\nCTh.7.23.0. De oblatione equorum. \n\nCTh.7.24.0. De oblatione votorum"
+    },
+    "2": {
+      "number": 2,
+      "text": "Imp. constantinus a. et caesar .... si quis barbaris scelerata factione facultatem depraedationis in romanos dederit, vel si quis alio modo\nfactam diviserit, vivus comburatur. dat. iv. kal. mai. severo et rufino coss."
+    },
+    "3": {
+      "number": 3,
+      "text": "interpretatio. si quis cum quibuslibet hostibus praedas egerit aut praedam cum praedonibus diviserit, incendio concremetur"
+    },
+    "4": {
+      "number": 4,
+      "text": "Imp. constantius a. ad silvanum comitem et magistrum equitum et peditum. si quis miles per commeatum dimissus fuerit a tribuno vel\npraeposito aut inconsulto eodem ab obsequio militari signisque discesserit, per singulos milites tribuni et praepositi quina pondo auri\nfisco inferant. dat. vi kal. iun. sirmio limenio et catullino conss. (349 [?] mai. 27)."
+    },
+    "5": {
+      "number": 5,
+      "text": "Idem a. ad titianum praefectum praetorio. quicumque militum ex nostra auctoritate familias suas ad se venire meruerint, non amplius\nquam coniugia liberos, servos etiam de peculio castrensi emptos neque adscriptos censibus ad eosdem excellentia tua dirigi faciat. dat. iii\nkal. iun. limenio et catullino conss. (349 mai. 30)."
+    },
+    "6": {
+      "number": 6,
+      "text": "Idem a. ad cretionem virum clarissimum comitem. quamvis omni tempore opera dari debuerit, ne sacramentis militaribus spretis otio\ntraderentur qui nec stipendiorum numero nec contraria corporis valetudine quiete perfrui debent, tamen prudentiae tuae prosecutione\nadmissa, quae apud nos verbis facta est, praecipimus, ut, qui ante stipendia emensa vel integra corporis valetudine otio mancipati sunt,\nrestituantur pristinis numeris. dat. v kal. iul. sergio et nigriniano conss. (350 iun. 27)."
+    },
+    "7": {
+      "number": 7,
+      "text": "Impp. valentinianus et valens aa. eorum liberos, qui armis inhaeserunt, ad usum bellicum et castra revocantes eis quoque eorum\nstipendiorum copiam deferemus, qui alterius gradus militia salutarem maxime rei publicae operam persecuntur. quod si quosdam aut\ninbecillitas valitudinis aut habitudo corporis aut mediocritas proceritatis ab armatae militiae condicione submoverit, eos iubemus in\nofficiis ceteris militare. nam si post definitam a nobis aetatem ignobile otium adamaverint, curiis obnoxii erunt sine controversia pro\nvirium qualitate, ita ut ii, quos debilitas fortuita aut morbus et corporis valitudo confecta ita enervaverit, ut ad usum castrorum\nmilitiaeque idonei esse non possint, vacationem perpetuam depulsis curialium munerum sollicitudinibus consequantur. et cetera. dat. iii\nk. mai. hadrianopoli divo ioviano at varroniano conss. (364 apr. 29)."
+    },
+    "8": {
+      "number": 8,
+      "text": "Idem aa. mauris sitifensibus. si quis armatae sacramenta militiae impigro quinquennii labore pertulerit, avo licet ac patre sit decurione\nprogenitus, ab omni nexu curiali personam dumtaxat propriam vindicaverit. (? 368? 370? 373? apr. 23)."
+    },
+    "9": {
+      "number": 9,
+      "text": "Diversis autem officiis servientes quinque et viginti annis in militia decursis pari securitate donamus. et cetera. dat. viiii k. mai. treveris\nvalentiniano et valente aa. conss. (? 368? 370? 373? apr. 23)."
+    },
+    "10": {
+      "number": 10,
+      "text": "Idem aa. iovio magistro equitum et peditum. plures de diversis numeris ante impleta stipendia ad indebitos honores suffragiorum\nambitione perveniunt. sive igitur eos purpuram adorasse constabit sive excepisse aliquas dignitates, eo quem ceperint honore solvantur,\nita ut, qui ceteros in labore positos festina cupiditate transierint, nec testimonium quidem emeriti laboris accipiant. quod si aliquibus\nfortasse rationibus adtinentur impliciti, ad eos numeros, de quibus per ambitionem exierant, revertantur. dat. prid. kal. iun. mediolano\nvalentiniano et valente aa. conss. (365 mai. 31)."
+    },
+    "11": {
+      "number": 11,
+      "text": "Idem aa. ad edquitium comitem et magistrum militum. omnibus omnino veteranis auctoritas tua denuntiet, quod, si quis filium suum\narmorum honore condignum non propria voluntate militiae, quam ipse sudarit, obtulerit, nostrae sit legis laqueis implicandus. dat. viii\nkal. oct. heracleae valentiniano et valente aa. conss. (365 sept. 24)."
+    },
+    "12": {
+      "number": 12,
+      "text": "Idem aa. ad iovinum magistrum equitum. tam duces quam etiam comites et quibus rheni est mandata custodia sinceritas tua protinus\nadmonebit, ut neque regalibus neque legatis sua milites iumenta subpeditent. etenim cum propriis animalibus eo usque veniendum est, ubi\nobsequium cursuale succedit. sane sollicitudinem competentem auctoritas tua iubebit adhiberi, ut eorum pecoribus, ubi collocaverint\nmansionem, alimenta non desint. dat. iiii kal. feb. remis lupicino et iovino conss. (367 ian. 29)."
+    },
+    "13": {
+      "number": 13,
+      "text": "Idem aa. ad iovinum magistrum militum. plerique milites secum homines condicionis ingenuae propinquitate simulata vel condicione\nlixarum frequenter abducunt: ideoque, ut numerosissima pube crescat exercitus, moneantur, ut ipsi sponte huiuscemodi homines, quos\npenes se esse meminerint, tribunis suis sive praepositis offerant ad tuum officium dirigendos, aut sciant se non absque devotionis nota et\nmorsu honoris alieni commilitonibus esse postponendos. etenim his, qui occultatores perfidos publicaverint, pro praemio huius indicii\ngradus unus addetur, hi vero ad inferiorem ordinem revolventur, qui castris idoneos iuvenes studio inertis obsequii putaverint occulendos.\ndat. xvi kal. mart. remis lupicino et iovino conss. (367 febr. 14)."
+    },
+    "14": {
+      "number": 14,
+      "text": "Idem aa. ad severum magistrum militum. ii, qui inter adcrescentes matriculis adtinentur, tamdiu alimoniam a parentibus sumant, quoad\ngerendis armis idonei fuerint aestimati, ita ut cesset super eorum nomine praebitio fiscalis annonae. dat. viii kal. mai. treviris modesto et\narintheo conss. (372 apr. 24)."
+    },
+    "15": {
+      "number": 15,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. cynegio praefecto praetorio. tribuni vel milites nullam evagandi per possessiones\nhabeant facultatem; cum signis propriis in mansionibus solitis ac publicis maneant: aut si quis tam necessaria scita contempserit, de eo ac\ntribuno eius ad nostram scientiam rectorum ac defensorum relationibus protinus deferatur. dat. iiii id. april. constantinopoli richomere et\nclearcho conss. (384 apr. 10)."
+    },
+    "16": {
+      "number": 16,
+      "text": "Idem aaa. richomeri comiti et magistro utriusque militiae. cum supra virentes fluminum ripas omnis legionum multitudo consistit, id\nprovida auctoritate decernimus, ut nullus omnino inmundo fimo sordidatis fluentis commune poculum polluat neve abluendo equorum\nsudore deproperus publicos oculos nudatus incestet atque ita et turbido potum caeno misceat et confundat aspectum, sed procul a\ncunctorum obtutibus in inferioribus partibus fluviorum, id est infra tentoria vagos natatus animalium, prouti libitum videtur, exerceat.\nsublimis igitur magnificentia tua id sollicitudinis studio et admonitionis praecepto faciet custodiri, ut unusquisque tribunus agnoscat gravi\nse subdendum esse supplicio, in cuius parte neglectum probabitur quod agnoscit imperatum. dat. vi kal. iun. vincentiae tatiano et\nsymmacho conss. (391 mai. 27)."
+    },
+    "17": {
+      "number": 17,
+      "text": "Imppp. theodosius, arcadius et honorius aaa. theodoto magistro officiorum. quicumque infantes vel pueri militare coeperunt, sterni eos\ninter ultimos iussimus, ita ut ex eo tempore, ex quo parere coeperint, locum sibi incipiant vindicare, ut laborum suffragiis incrementa\nmilitiae consequantur. dat. iii kal. mai. constantinopoli arcadio iii et honorio ii aa. conss. (394 apr. 29)."
+    },
+    "18": {
+      "number": 18,
+      "text": "Impp. arcadius et honorius aa. remistheo duci armeniae. si quis posthac militem in privato obsequio repertus fuerit retinere, quinque\nlibras auri multae nomine feriatur. dat. xii kal. mart. constantinopoli arcadio iiii et honorio iii aa. conss. (396 febr. 18)."
+    },
+    "19": {
+      "number": 19,
+      "text": "Idem aa. theofilo vicario asiae. si quos milites per provincias relictis propriis numeris passim vagari cognoveris, correptos facias\ncustodiri, donec de his clementiae nostrae auribus intimetur et quid fieri oporteat decernamus; ita ut, si quis miles in provincia sine suo\nnumero repertus fuerit ac post elapsus esse nuntiabitur, facultatum suarum, periculo totius officii, condemnatione gravissime vindicetur.\ndat. v kal. feb. constantinopoli honorio a. iiii et eutychiano conss. (398 ian. 28)."
+    },
+    "20": {
+      "number": 20,
+      "text": "Idem aa. romuliano praefecto urbi. si qui miles ex his, qui praesentes divino obsequio nostrae clementiae deputati sunt et qui in hac esse\nurbe praesente comitatu concessi sunt quive de aliis numeris vel legionibus sunt, repertus fuerit vel sibi vacans vel alieno obsequio\ncontentus, nobis ilico nuntietur, ita ut conscii, qui talium praesentiam non praebuerint, viginti libras auri sciant esse se multandos. (398\nfebr. 1)."
+    },
+    "21": {
+      "number": 21,
+      "text": "Sin vero quisquam missus a numero vel a tribuno ad comitatum serenitatis nostrae pervenerit, ilico se viris illustribus comitibus offerre\nfestinet et causas profectionis exponat, ut et responsum caeleste mereatur et citam remeandi accipiat facultatem. dat. kal. feb.\nconstantinopoli honorio a. iiii et eutychiano conss. (398 febr. 1)."
+    },
+    "22": {
+      "number": 22,
+      "text": "Idem aa. stilichoni magistro militum. contra publicam utilitatem nolumus a numeris ad alios numeros milites nostros transferri. sciant\nigitur comites vel duces, quibus regendae militiae cura commissa est, non solum de comitatensibus ac palatinis numeris ad alios numeros\nmilitem transferri non licere, sed ne de ipsis quidem pseudocomitatensibus legionibus seu de ripariensibus castricianis ceterisque cuiquam\neorum transferendi militem copiam adtributam, quia honoris augmentum non ambitione, sed labore ad unumquemque convenit devenire.\nquod si qui contra fecerint, per singulos milites singulas auri libras a se noverint exigendas. dat. xiiii kal. april. mediolano stilichone et\naureliano conss. (400 mart. 19)."
+    },
+    "23": {
+      "number": 23,
+      "text": "CTh.7.2.0. Quid probare debeant ad quamcumque militiam venientes"
+    },
+    "24": {
+      "number": 24,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. postumiano praefecto praetorio. quotiescumque se aliquis militiae crediderit\nofferendum, statim de natalibus ipsius ac de omni vitae condicione examen habeatur, ita ut domum genus non dissimulet et parentes. nec\ntamen huic ipsi rei nisi honestissimorum hominum testimonio adstipulante credatur: ita enim fiet, ut et curias nemo declinet et ad\nmilitiam nullus adspiret, nisi quem penitus liberum aut genere aut vitae condicione inquisitio tam cauta deprehenderit. dat. xiiii kal. aug.\nconstantinopoli merobaude ii et saturnino conss. (383 iul. 19)."
+    },
+    "25": {
+      "number": 25,
+      "text": "Idem aaa. ad neoterium praefectum praetorio. quisquis cinguli sacramenta desiderat, in ea urbe, qua natus est vel in qua domicilium\ncollocat, primitus acta conficiat et se ostendat non patre, non avo esse municipe penitusque ab ordinis necessitatibus alienum, sciturus se\nin perpetuum revocandum nec temporis nec militiae praerogativa, si ita non gesserit, defendendum. ordines etiam urbium noverint, si\ncuiquam praestitisse se gratiam doceantur ac non vera actis promendo per mendacium quemquam abire permiserint, se periculo subiacere.\ndat. vi id. iul. mediolano arcadio a. i et bautone conss. (385 iul. 10)."
+    },
+    "26": {
+      "number": 26,
+      "text": "Imppp. theodosius, arcadius et honorius aaa. rufino praefecto praetorio. in omnibus, qui militiae nomen dederunt, ratio est habenda\nmeritorum, ut is potissimum potiorem adipiscatur gradum, qui meruerit de labore suffragium, nec quaeratur, quis militarit primus, sed\nquis manserit in studio apparitionis adsiduus. dat. prid. id. feb. constantinopoli theodosio a. iii et abundantio v. c. conss. (393 febr. 12)."
+    },
+    "27": {
+      "number": 27,
+      "text": "Impp. honorius et theodosius aa. anthemio praefecto praetorio. cum alios in altiores militiae gradus iugis observatio, nonnullos in eadem\nmilitiae statione caeleste pervexisset oraculum ac tempore provehendae dignitatis exoreretur contentio, quisnam prior incederet quisve\nsubsequeretur, cum uterque pari eiusdem gradus niteretur auspicio, non inmerito placuit, ut, quotiens codicillis vel sacris affatibus ullus\nex alio ad alium gradum cum isdem stipendiis emigrarit, triennio ei postponatur, quem sors militiae in eum progressum duxerit. dat. x kal.\noct. honorio viii et theodosio iii aa. conss. (409 sept. 22)."
+    },
+    "28": {
+      "number": 28,
+      "text": "Imp. constantinus a. have felix karissime nobis. tribunos sive praepositos, qui milites nostros curant, annonas per dies singulos\nscriptionis indicio sibi debitas in horreis derelinquere non oportet, ut procuratores seu susceptores vel praepositi pagorum et horreorum\neam comparent: hinc enim fit, ut a provincialibus non annonas, sed pecunias postulent memorati ipsis etiam speciebus remanentibus\nvitiatis adque corruptis. constituimus igitur derelictae annonae fisco compendium vindicari, subscribendario et optione gladio feriendis,\nquoniam fieri non potest, ut vel provinciales iterata collatione graventur vel militibus corruptae species dividantur detrectantibus\nmemoratis ad diem sumere annonas suae congruas dignitati. in qua culpa si quis fuerit adprehensus, nec personae merito nec honoris\nfastigio defendendus est. dat. xiiii kal. nov. aquis paulino et iuliano conss. (325 oct. 19)."
+    },
+    "29": {
+      "number": 29,
+      "text": "Imp. constantius a. ad taurum. cum militibus per africam constitutis laridum vel recens forsitan caro deinceps erogabitur, ungulas orisque\ntantummodo summitatem praecidi amputarique praecipimus, ne porcina integra separetur, sed erogationi proficiat annonariae. dat. viii id.\napril. arbitione et lolliano conss. (355 apr. 6)."
+    },
+    "30": {
+      "number": 30,
+      "text": "Idem a. et iulianus caes. ad taurum. comes militaris rei per africam constitutus contra vetitum species annonarias de conditis arbitrio suo\ndicitur usurpasse. hoc de cetero citra vicarii arbitrium fieri non potest, si vicarius comitis scriptione conventus didicerit, qui numerus\nannonarum et quibus debet erogari, atque id fieri oportere censuerit. dat. xv kal. ian. sirmio constantio a. viiii et iuliano c. conss. (357 dec.\n18)."
+    },
+    "31": {
+      "number": 31,
+      "text": "Idem a. helpidio. cum in expeditione milites degant, biduo expeditionalem annonam, tertio die panem consequantur ac vinum. dat. iiii kal.\nian. doridae datiano et cereale conss. (358 [360/1] dec. 29)."
+    },
+    "32": {
+      "number": 32,
+      "text": "Idem a. helpidio praefecto praetorio. expeditionalem annonam ex horreis milites viginti dierum debent suscipere, ut eam transvehant\npropriis in expeditione necessitatibus profuturam. dat. prid. id. mart. constantinopoli eusebio et hypatio conss. (359 [360/1?] mart. 14)."
+    },
+    "33": {
+      "number": 33,
+      "text": "Idem a. et iulianus caesar helpidio praefecto praetorio. repetita consuetudo monstravit expeditionis tempore buccellatum ac panem,\nvinum quoque atque acetum, sed et laridum, carnem verbecinam etiam, milites nostros ita solere percipere: biduo buccellatum, tertio die\npanem; uno die vinum, alio die acetum; uno die laridum, biduo carnem verbecinam. dat. xvi kal. iun. hierapoli constantio x et iuliano c. iii\nconss. (360 mai. 17)."
+    },
+    "34": {
+      "number": 34,
+      "text": "Imp. iulianus a. sallustio praefecto praetorio. milites ad vicensimum lapidem capitum petere iussimus. dat. viii id. ian. mamertino et\nnevitta conss. (362 [?] ian. 6)."
+    },
+    "35": {
+      "number": 35,
+      "text": "Idem a. secundo praefecto praetorio. militibus ad kalendas augustas capitatio denegetur, ex kalendis augustis praebeatur. dat. kal. aug.\nnicomediae mamertino et nevitta vv. cc. conss. (362 aug [?] 1)."
+    },
+    "36": {
+      "number": 36,
+      "text": "Imp. iovianus a. secundo praefecto praetorio. e vicensimo non amplius lapide milites sibi iubemus paleas convectare. dat. v kal. oct.\naedesa ioviano et varroniano conss. (364 [?] sept. 27)."
+    },
+    "37": {
+      "number": 37,
+      "text": "Impp. valentinianus et valens aa. ad symmachum praefectum urbi. protectores fori rerum venalium iuxta veteris moris observantiam in\nannonarum suarum conmoda pretia consequantur. dat. x kal. mai. antiochiae divo ioviano et varroniano conss. (364 apr. 22)."
+    },
+    "38": {
+      "number": 38,
+      "text": "Idem aa. ad mamertinum praefectum praetorio. susceptor antequam diurnum pittacium authenticum ab actuariis susceperit, non eroget.\nquod si absque pittacio facta fuerit erogatio, id quod expensum est damnis eius potius subputetur. in qua re officium gravitatis tuae in\nspeculis esse debebit, non sine detrimento propriarum facultatum id futurum sciens, si neglexerit, ut praescriptae formae tenor\ncustodiatur; nec prius de horreis species proferantur et maxime capitationis, quam, ut dictum est, ad diem pittacia authentica fuerint\nprorogata. dat. id. dec. treviris divo ioviano et varroniano conss. (364 [?] dec. 13)."
+    },
+    "39": {
+      "number": 39,
+      "text": "Idem aa. ad victorem magistrum militum. in provinciis statione militum adfici possidentes ursicini comitis suggestione cognovimus, a\nquibus superstatutorum grave atque inusitatum quoddam nomen cenaticorum fuerit introductum. quod magnifica auctoritas tua missis\ncompetentibus litteris in omnibus provinciis iubebit aboleri, ut milites recordentur commoda sua, quae in annonarum perceptione\nadipiscuntur, extrinsecus detrimentis provincialium non esse cumulanda. dat. vi kal. ian. bonamansione divo ioviano et varroniano conss.\n(364 nov. 26 [mai. 27])."
+    },
+    "40": {
+      "number": 40,
+      "text": "Idem aa. ad populum. actuarii per singulos vel ut multum binos dies authentica pittacia prorogent, ut hoc modo inmissis pittaciis species\ncapitum annonarumve ex horreis proferantur. quod nisi fuerit custoditum, actuarius et susceptor, sed et officium iudicantis, quod non\ninstiterit huic iussioni, statutae obnoxium tenebitur. dat. kal. oct. aquileia valentiniano et valente aa. conss. (365 oct. 1)."
+    },
+    "41": {
+      "number": 41,
+      "text": "Idem aa. secundo praefecto praetorio. riparienses milites mensibus novem in ipsa specie consequantur annonam, pro tribus pretia\npercipiant. acc. kal. dec. calchedone valentiniano et valente aa. conss. (365 dec. 1)."
+    },
+    "42": {
+      "number": 42,
+      "text": "Idem aa. ad auxonium praefectum praetorio. sicut fieri per omnes limites salubri prospectione praecipimus, species annonarias a\nvicinioribus limiti provincialibus ordinabis ad castra conferri. et in vicinioribus castris constituti milites duas alimoniarum partes ibidem\nde conditis sumant nec amplius quam tertiam partem ipsi vehere cogantur. dat. v non. mai. marcianopoli valentiniano n. p. et victore\nconss. (369 mai. 3)."
+    },
+    "43": {
+      "number": 43,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad probum praefectum praetorio. actuarii nisi expleto triginta dierum spatio pittacia\nauthentica confestim tradiderint, species, quas ex fiscalibus conditis dissimularint excludere vel numero, cuius ratiocinia pertractant,\nsupersederint erogare, de propriis facultatibus vel militibus ipsis vel fiscalibus horreis adigantur inferre. dat. vi id. april. sirmio\nvalentiniano et valente aa. conss. (370 vel 373 apr. 8)."
+    },
+    "44": {
+      "number": 44,
+      "text": "Idem aaa. ad modestum praefectum praetorio. fortissimi ac devotissimi milites, familiae quoque, sed et ceteri quibuscumque praediti\ndignitatibus annonas et capitum singulis diebus aut certe competenti tempore, id est priusquam annus elabatur, de horreis consequantur,\naut si perceptionem suam ac si debitam studio voluerint protelare, id, quod competenti tempore minime perceperint, fisci nostri\ncommodis vindicetur. dat. prid. non. april. antiochiae gratiano a. iiii et merobaude v. c. conss. (377 apr. 4)."
+    },
+    "45": {
+      "number": 45,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. abundantio, stilichoni et ceteris comitibus et magistris utriusque militiae. ne quis pro\nspeciebus annonariis pretia temptet exigere: vel, si contra legem datam venire temptaverit, nec illud, quod in pretio expetit, permittatur\nexigere nec illud, quod suo tempore accipere in speciebus neglexerit, consequatur. dat. iiii kal. aug. constantinopoli theodosio a. iii et\nabundantio v. c. conss. (393 iul. 29)."
+    },
+    "46": {
+      "number": 46,
+      "text": "Idem aaa. tatiano praefecto praetorio. officiorum annonas dispositione providentissima his provinciis distributas, quae nec transvectioni\npublicae nec arcae possunt aliquod deferre compendium, conprobamus. dat. prid. kal. aug. constantinopoli theodosio a. iii et abundantio\nv. c. conss. (393 [388-392] iul. 31)."
+    },
+    "47": {
+      "number": 47,
+      "text": "Idem aaa. rufino praefecto praetorio. nulli militarium pro his annonis, quae in provinciis delegantur, repudiata ad tempus specierum copia\net inopiae occasione captata pretia liceat postulare, ita ut, si quis propter anni abundantiam suscipere oblata neglexerit ac postea\nimpositis pro necessitate rerum pretiis repudiata taxaverit, neque id, quod contra hanc legem expetit, sinatur exigere neque illud, quod\naccipere dissimulaverit, consequatur. dat. iii kal. aug. constantinopoli theodosio a. iii et abundantio v. c. conss. (393 iul. 30)."
+    },
+    "48": {
+      "number": 48,
+      "text": "Impp. arcadius et honorius aa. caesario praefecto praetorio. si a militaribus provinciales quaelibet damna pertulerint ac non ipsas species,\nquae in provinciis a possessoribus congregantur, fuerint consecuti, ilico interpellato iudice admissum crimen ad nostram clementiam\nperferatur, ut admissum crimen congrue vindicetur. sin vero tantum nefas simili taciturnitate contexerint, praeter eam multam, quam\nrectores officiaque subire conveniet, etiam detrimentorum quantitas in duplum de eorum facultatibus exigetur reddenda ac restituenda his,\nqui dispendia talia pertulerunt. dat. xv kal. mai. arcadio iiii et honorio iii aa. conss. (396 apr. 17)."
+    },
+    "49": {
+      "number": 49,
+      "text": "Idem aa. hilario praefecto praetorio. neque scholae neque vexillationes comitatenses aut palatinae neque legiones ullae neque auxilia,\nqualeslibet ad provincias delegatorias de specierum praebitione pertulerint, audiantur, si pretia poscant ultra ea, quae generali lege divi\npatris senioris valentiniani constituta sunt. nec enim fas est, ut exigendis annonis militum nostrorum servientes nova possessoribus pro\narbitrio proprio indicant. (396 mai. 30)."
+    },
+    "50": {
+      "number": 50,
+      "text": "Sine mentione etiam pretiorum nullam delegationem valere praecipimus. dat. iii kal. iun. mediolano arcadio iiii et honorio iii aa. conss.\n(396 mai. 30)."
+    },
+    "51": {
+      "number": 51,
+      "text": "Idem aa. hilario praefecto praetorio. provincialium commodis nos convenit subvenire. ad omnium utique numerorum sive vexillationum\naut etiam scholarum tribunos per viros illustres comites sublimitas tua faciat pervenire, ut meminerint faenum militibus isdem capitibus\npraestandum iuxta legem divi valentiniani de quinta decima indictione nec tamen ad oppidum deferendum. dat. xvi kal. iul. arcadio iiii et\nhonorio iii aa. conss. (396 iun. 16)."
+    },
+    "52": {
+      "number": 52,
+      "text": "Idem aa. excellentia tua erogationis per susceptores factae modum quantitati brevium conferri perficiat, ita ut, ex quo die numeris datum\nsit, diligentius exploretur ac si quod amplius actuarios vel optiones accepisse constiterit, quam brevium datorum scriniis nostris veritas\ncontinet, memorati in duplum reddere compellantur, susceptoribus ea summa imputanda, quam semel flagitantibus isdem erogasse\nmonstraverint. nam ad illustres quoque magistros utriusque militiae sacri apices cucurrerunt, quibus provida sanctione decrevimus, ut\nbreves ante indictionis principium summa fide ac veritate confecti ad nostra scrinia dirigantur, secundum quos a susceptoribus erogatio\ncelebretur. dat. viii kal. april. constantinopoli honorio a. iiii et eutychiano v. c. conss. (398 mart. 25)."
+    },
+    "53": {
+      "number": 53,
+      "text": "Idem aa. eutychiano praefecto praetorio. quoniam clementia nostra poscenti epifanis ordini consensit, ut novembri mense novellum\nvinum militi praeberetur, propterea quod veteris dispendiosa videtur erogatio, illustris auctoritas tua per omnes provincias cunctis\nnumeris ac militibus a novembri mense de novello vino annonam dari disponat. dat. x kal. iun. constantinopoli honorio a. iiii et\neutychiano v. c. conss. (398 mai. 23)."
+    },
+    "54": {
+      "number": 54,
+      "text": "Idem aa. provincialibus provinciae proconsularis. opinatoribus nullum sit cum provinciali conmercium, ita ut a iudicibus vel officio\nprovinciali omnis summa debiti postuletur intra anni spatium conferenda. dat. prid. kal. april. mediolano vincentio et fravito conss. (401\nmart. 31)."
+    },
+    "55": {
+      "number": 55,
+      "text": "Idem aa. et theodosius a. anthemio praefecto praetorio. nullus protectorum vel domesticorum, cui aut tuitio locorum aut quaedam longior\nest commissa necessitas aut certe iudicum nostrorum praeceptis iussus obtemperat, annonas vel emolumenta percipiat, nisi circumacto\nanni tempore post completum consulatum in alterius anno consulis conmonitorium reparare curaverit. dat. kal. april. constantinopoli\narcadio a. vi et probo v. c. conss. (406 apr. 1)."
+    },
+    "56": {
+      "number": 56,
+      "text": "Imppp. arcadius, honorius et theodosius aaa. anthemio praefecto praetorio. a provinciarum rectoribus caveatur, ut tam numeris quam\nfamiliis nec non et impedimentis praeter eas annonas, quae adaerantur, id tantum in specie praebeatur, quod militis flagitarit inspectio, ne\nactuariorum fraudibus ulla relinquatur superpostulationis occasio, cum per praepositos pistorum et diadotas legis forma caveatur, ut nulli\nomnino nulla in specie praebeatur annona, nisi quem substantem adque in praesenti constitutum postulare constiterit. (406 apr. 9)."
+    },
+    "57": {
+      "number": 57,
+      "text": "Hoc quoque legis auctoritate complexo, ut semper dierum, per quas resistentes tribuni emolumenti gratia sollemniter stillaturae nomine\nconsecuntur species, non aliter adaerentur, nisi ut in foro rerum venalium distrahuntur. dat. v id. april. constantinopoli arcadio a. vi et\nprobo v. c. conss. (406 apr. 9)."
+    },
+    "58": {
+      "number": 58,
+      "text": "Impp. honorius et theodosius aa. anthemio praefecto praetorio. si quas sub gratia donationis a militibus auferunt quam merentur annonas\nduces seu tribuni, iuxta nummaria defixa pretia sine ulla dubitatione percipiant. dat. iiii non. mai. constantinopoli honorio vii et theodosio\nii aa. conss. (407 mai. 4)."
+    },
+    "59": {
+      "number": 59,
+      "text": "Idem aa. anthemio praefecto praetorio. limitanei militis et possessorum utilitate conspecta per primam, secundam ac tertiam palaestinam\nhuiuscemodi norma processit, ut pretiorum certa taxatione depensa specierum intermittatur exactio. sed ducianum officium sub versamini\net moenoeni castri nomine salutaria statuta conatur evertere. ideoque lege repetita censemus, ut, si quis interclusam specierum exactionem\nrefricare temptaverit vel adaerationes statutas ausus fuerit inmutare, tam vir spectabilis dux centum librarum auri quam etiam eius\nofficium pari condemnationis summa quatiatur, adiecta sacrilegii poena, quae divalium scitorum violatores palam insequitur. dat. x kal.\napril. constantinopoli honorio viii et theodosio iii aa. conss. (409 mart. 23)."
+    },
+    "60": {
+      "number": 60,
+      "text": "Idem aa. ad anthemium praefectum praetorio. militaribus commodis prospicientes adaeratarum annonarum, quae familiis apud orientem\nvel aegyptum praeberi consuerunt, certa ac distincta locis et numero pretia statuimus. verum quia in hoc et provincialium nobis habenda\nest cura praecipua, ne nimia festinatione poscendi collatorum vires adteri videantur, certum constitui tempus placet, quo eadem pretia\ndebeant praeberi poscentibus. quapropter uniuscuiusque indictionis annonariam in pretiis rationem transacta ea sequentis indictionis\nmense novembri completo praeberi praecipimus. dat. prid. kal. dec. constantinopoli honorio viii et theodosio iii aa. conss. (409 nov. 30)."
+    },
+    "61": {
+      "number": 61,
+      "text": "Idem aa. leontio viro illustri praefecto illyrici. procuratores curiarum annonarum et cellariensium specierum gratia minime fatigentur, quas\nin dignitatibus constituti, id est rectores provinciarum et comites solent accipere. nam cum adaerationis aestimatio prius per centum et\nviginti capita exactione solidi teneretur, per sexaginta recens redegit aviditas exindeque iam nutrita licentia ad tredecim tributarios non\ndubitavit artare, procuratore damnum, quo ipse subditus fuisset, provincialibus infligente. ideoque per cornicularium cuiuscumque\nprovincialis officii hanc sollicitudinem impleri conveniet, ita ut nulla ab eodem exactionis molestia provincialibus inferatur, sed erogandas\nspecies ex horreis publicis et cellariensium nomine aurum ex titulo manifesto eidem delegatum pro erogationis qualitate suscipiat, etiam\npretium his, qui adaerare voluerint, depensurus iuxta nundinationem, quae aut foro rerum venalium continetur aut amplissimae\npraefecturae est culmini deputata: nec enim quer..."
+    },
+    "62": {
+      "number": 62,
+      "text": "Idem aa. hadriano praefecto praetorio. ne interiecti aequoris tractu querellae provincialium pereant, flavianum et caecilianum viros illl. per\nafricam audientiam cunctis praebere decernimus. militarem quoque annonam, quae intra africam contubernalibus erogatur, eorum\ndiligentia indagari praecipimus, ut nihil his post eorum examen addatur. et cetera. dat. v non. mart. ravenna constantio et constante vv. cc.\nconss. (414 mart. 3)."
+    },
+    "63": {
+      "number": 63,
+      "text": "Idem aa. constantio magistro militum. his scholaribus, quibus laborum intuitu regendos numeros dederimus, de aerariis annonis singulos\nsolidos per opinatores, caballationis quoque rationem pro administrato tempore debitam, quando militibus erogatur, sine mora praeberi\noportet, vel, si quis eorum antequam accipiat in fata concesserit, quod ex utraque causa ei debebatur, heredibus eius restitui. dat. xiii kal.\ndec. constantio et constante vv. cc. conss. (414 nov. 19)."
+    },
+    "64": {
+      "number": 64,
+      "text": "Idem aa. asclepiodoto praefecto praetorio. annonas omnes, quae universis officiis atque sacri palatii ministeriis et sacris scriniis\nceterisque cunctarum adminiculis dignitatum adsolent delegari quasque ii, qui ad earum exactionem mittuntur, pro cupiditate ac libidine\nsua graviter ex provincialium visceribus eruebant, ad similitudinem militum, quibus aerariae praebentur annonae, adaerari praecipimus, ut\nomnibus superius designatis emolumenta debita in pretiis dispositio culminis tui pro publica auctoritate taxatis praecipiat erogari. dat.\nxvi kal. mart. constantinopoli asclepiodoto et mariniano conss. (423 febr. 14)."
+    },
+    "65": {
+      "number": 65,
+      "text": "Idem aa. procopio magistro militiae per orientem. si quando tribuni sive comites vel praepositi numerorum per provincias annonas\nvoluerint, hoc est quas pro dignitate sua consequuntur, in aere percipere, non aliis eas pretiis, nisi quae in foro rerum venalium habeantur,\nadaerandas esse cognoscant. si alias annonas, quae non suae dignitatis erunt, sed alio modo, dum tamen licito, suis commodis adquisitas\nin auro sibi dari duces sive tribuni voluerint, illis pretiis contenti sint, quae in forma aerariarum annonarum universis militibus sollemni\nobservatione praebentur. sanctionis temerator sciat se et administratione simul et dignitate spoliandum et facultatum suarum\npercellendum dispendio. dat. iii non. dec. constantinopoli victore v. c. cons. (424 dec. 3)."
+    },
+    "66": {
+      "number": 66,
+      "text": "Impp. arcadius et honorius aa. stilichoni comiti et magistro utriusque militiae. opinatores, quibus species in diversis provinciis\ndelegantur, ut pretium maiore taxatione deposcant, contra omnem consuetudinem nullis consistentibus familiis excoctionem panis\nefflagitant. illustris igitur auctoritas tua novam usurpationem congrua auctoritate percellat, ut, cum opinatores in provinciis delegantur,\nvetus consuetudo servetur. dat. id. sept. mediolano theodoro v. c. cons. (399 sept. 13)."
+    },
+    "67": {
+      "number": 67,
+      "text": "Idem aa. et theodosius a. ad hadrianum praefectum praetorio. in excoctione buccellati, quod devotissimis militibus convenit praeparari, in\ntranslatione etiam annonae nullius excipiatur persona, videlicet ut ne nostra quidem domus ab his habeatur immunis. et si quisquam, quod\nnon opinamur, implere quae sunt praecepta neglexerit, in procuratorem eius severissime vindicetur, ita ut, si huiusmodi contumaciae\ndominum conscium esse constiterit, quadruplum id, quod pro eius capitatione poscitur, posthabita dilatione solvatur. dat. viiii kal. april.\nromae honorio a. vi et aristaeneto conss. (404 mart. 24)."
+    },
+    "68": {
+      "number": 68,
+      "text": "Impp. valentinianus et valens aa. ad mamertinum praefectum praetorio. sive ex principalium sive ex honoratorum numero susceptor\nvestium nominetur, exceptis videlicet his, qui palatinae militiae privilegiis fulciuntur vel qui officiis ac ministeriis perfuncti merito\nstipendiorum consecuti sunt dignitates, et vir spectabilis proconsul africae moneatur, ut ad excludendas fraudes uno anno, non plus, haec\nnecessitas procuretur, ita tamen ut creationis periculum a proconsulari officio non recedat. dat. xiiii kal. mai. mediolano valentiniano et\nvalente aa. conss. (365 apr. 18)."
+    },
+    "69": {
+      "number": 69,
+      "text": "Idem aa. auxonio praefecto praetorio. omnem canonem vestium ex kalendis sept. ad kal. april. nostris largitionibus tradi praecipimus,\nproposita rectori provinciae vel eius officio condemnationis, quae tuae iustitiae videbitur, poena. dat. xiiii kal. dec. marcianopoli\nvalentiniano et valente conss. (368 nov. 18)."
+    },
+    "70": {
+      "number": 70,
+      "text": "Imppp. valens, gratianus et valentinianus aaa. modesto praefecto praetorio. provinciae thraciarum per viginti iuga seu capita conferant\nvestem: scythia et moesia in triginta iugis seu capitibus interim annua solutione dependant: per aegyptum et orientis partes in triginta\nterrenis iugis, per asianam vero et ponticam dioecesim ad eundem numerum in capitibus seu iugis annua vestis collatio dependatur, ita ut\nper orientem provinciae in titulo auri comparaticii, quod per iugationem redditur, compensationis gratia perfruantur exceptis osroene et\nisauria nam easdem constat aurum comparaticium minime redhibere. dat. v id. aug. hierapoli gratiano a. iiii et merobaude v. c. conss. (377\naug. 9)."
+    },
+    "71": {
+      "number": 71,
+      "text": "Impp. arcadius et honorius aa. martiniano comiti sacrarum largitionum. fortissimis militibus nostris per illyricum non binos tremisses pro\nsingulis chlamydibus, sed singulos solidos dari praecipias. dat. xvi kal. feb. constantinopoli arcadio iiii et honorio iii aa. conss. (396 ian.\n17)."
+    },
+    "72": {
+      "number": 72,
+      "text": "Impp. honorius et theodosius aa. asclepiodoto praefecto praetorio. militaris adaeratio vestis a collatoribus exigatur sacratissimis videlicet\nlargitionibus inferenda, ita ut quinque eius partes fortissimis militibus erogentur in pretio, sexta vero portio a gynaeceariis clementiae\nnostrae absque ulla vel ipsorum vel publica incommoditate pro eadem contextione suscepta iunioribus gregariisque militibus in ipsa,\nquam maxime eos desiderare constitit, specie praebeatur. dat. vii id. mart. constantinopoli asclepiodoto et mariniano conss. (423 mart. 9)."
+    },
+    "73": {
+      "number": 73,
+      "text": "Imppp. valentinianus et valens aa. ad germanianum comitem sacrarum largitionum. dedimus litteras ad viros clarissimos praefectos\npraetorio, ut ab his conventi rectores provinciarum scirent in locis rei privatae augmenta pensionum non esse facienda neque sinerent\npascua animalium ex rebus privatis nostris provincialium licitatione praeberi. dat. v kal. feb. romae valentiniano et valente aa. conss.\n(368? ian. 28)."
+    },
+    "74": {
+      "number": 74,
+      "text": "Idem aa. ad rufinum praefectum praetorio. cum nulla ratio sit, cur in pascuis saltibus rei privatae pensio debeat ampliari, nequaquam pro\nlibidine ordinum augmenta facienda sunt. etenim idcirco graviorem pensionem imponi ab ordinibus accipimus, ut animalia ex rebus\nprivatis nostris a locorum pastibus arceantur, quod fieri non oportere divae memoriae iulianus prorogata iussione constituit. quare\nexcellens auctoritas tua conventis rectoribus provinciarum non eam licitationis necessitatem patiatur inferri, quam repentinam faciunt\ncivitates, sed eam manere decernet, quam statuit antiquitas. dat. viiii kal. oct. luceriae valentiniano et valente aa. conss. (365 sept. 23)."
+    },
+    "75": {
+      "number": 75,
+      "text": "Impp. arcadius et honorius aa. simplicio comiti et magistro utriusque militiae. insignis auctoritas tua hac condicione a publicis pratis\napamenis animalia militum prohiberi praecipiat, ut universi cognoscant de emolumentis eorum tuique officii facultatibus duodecim libras\nauri fisci commodis exigendas, si quisquam posthac memorate prata mutilare temptaverit, non minore decernenda poena, si etiam prata\nprivatorum antiochenorum fuerint devastata, ita tamen, ut sine laesione provincialium provideant curiales, quo pacto animalium\nmilitarium pastui consulatur. dat. v id. mart. constantinopoli honorio a. iiii et eutychiano v. c. conss. (398 mart. 11)."
+    },
+    "76": {
+      "number": 76,
+      "text": "Impp. honorius et theodosius aa. aureliano praefecto praetorio et patricio. possessores nihil plus debent, quam quod nostro arbitrio\nnostrae perennitatis et magnificae sedis tuae dispositione per annos singulos iubentur inferre. nec vero milites aliquid praesumere debent,\nnisi quod largitate nostri numinis consequentur. ideoque possessores vel coloni super pratis nullam molestiam patiantur. dat. non. sept.\ndd. nn. honorio x et theodosio vi aa. conss. (415 sept. 5)."
+    },
+    "77": {
+      "number": 77,
+      "text": "Idem aa. comitibus et magistris militum. prata provincialium nostrorum perniciosum est militum molestia fatigari. ideoque lege ad\namplissimam praefecturam promulgata censuimus, ne hoc deinceps usurpetur. super qua re universos quorum interest convenire tua\nmagnificentia non moretur, ne permittant possessores vel colonos pratorum gratia qualibet importunitate vexari. dat. non. sept. honorio x\net theodosio vi aa. conss. (415 sept. 5)."
+    },
+    "78": {
+      "number": 78,
+      "text": "Imp. constantius a. ad senatum. invitis senatoribus nostris in eorum domibus nullus hospitali iure commaneat. dat. v non. mai. tauro et\nflorentio conss. (361 mai. 3)."
+    },
+    "79": {
+      "number": 79,
+      "text": "Impp. valentinianus et valens aa. remigio magistro officiorum. in synagogam iudaeicae legis hospitii velut merito irruentes iubeas\nemigrare, quos privatorum domus, non religionum loca habitationum merito convenit adtinere. dat. prid. non. mai. treviris valentiniano et\nvalente aa. conss. (368? 370? 373? mai. 6)."
+    },
+    "80": {
+      "number": 80,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. palladio magistro officiorum. ab hospitalitatis munere domum privatorum nullus\nexcuset praeter eos, qui ex praefectis summum sibi fastigium dignitatis agendo pepererunt, et ex magistris equitum ac peditum, quos\ndecursi actus illustrat auctoritas, adque ex comitibus consistorianis, qui participantes augusti pectoris curas agendo claruerunt, ex\npraepositis quoque sacri cubiculi, quos tanta et tam adsidua nostri numinis cura inter primas posuit dignitates; ea tamen lege, ut singulas\ndomos sibi ad manendum quas voluerint teneant, hospitibus vero ceteras solito iure praebeant. dat. xvi kal. oct. constantinopoli\nrichomere et clearcho conss. (384 sept. 16)."
+    },
+    "81": {
+      "number": 81,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. theodoto magistro officiorum. si quis mensorum nostrorum manum, qua deputatas\nsingulis quibusque domus enotant et postibus hospitaturi nomen adscribunt, delere non dubitaverit, ad instar falsi reus ex hac auctoritate\nteneatur. dat. vi kal. nov. constantinopoli d. n. theodosio a. iii et abundantio v. c. conss. (393 oct. 27)."
+    },
+    "82": {
+      "number": 82,
+      "text": "Impp. arcadius et honorius aa. hosio magistro officiorum. in qualibet vel nos ipsi urbe fuerimus vel ii qui nobis militant commorentur,\nomni tam mensorum quam etiam hospitum iniquitate summota duas dominus propriae domus, tertia hospiti deputata, eatenus intrepidus\nac securus possideat portiones, ut in tres domu divisa partes primam eligendi dominus habeat facultatem, secundam hospes quam\nvoluerit exequatur, tertia domino relinquenda. plenum enim aequitate atque iustitia est, ut qui aut successione fruitur aut empto vel\nextructione gaudet electam praecipue iudicio suam rem teneat et relictam. (398 febr. 6)."
+    },
+    "83": {
+      "number": 83,
+      "text": "Ergasteria vero, quae mercimoniis deputantur, ad praedictae divisionis iniuriam non vocentur, sed quieta sint et libera et ab omni\nhospitantium iniuria defensata solis dominis conductoribusque deserviant. sane si stabulum, ut adsolet, militari viro in tertia domus parte\ndefuerit, ex ergasteriis, nisi id dominus qualibet occasione providerit, pro animalium numero vel domus qualitate deputabitur. (398 febr.\n6)."
+    },
+    "84": {
+      "number": 84,
+      "text": "Illustribus sane viris non tertiam partem domus, sed mediam hospitalitatis gratia deputari decernimus ea dumtaxat condicione servata, ut\nalter ex his quilibet quive maluerit divisionem arbitrii aequitate faciat, alter eligendi habeat optionem. (398 febr. 6)."
+    },
+    "85": {
+      "number": 85,
+      "text": "Et firmissimum perpetuo quod iussimus perseveret, ita ut triginta libras auri qui illustri sunt praediti dignitate fisco nostro se illaturos\nesse cognoscant, ceteri vero militia sciant se esse privandos, si generale praeceptum amplius usurpando quam iussimus reprehensibili\ntemeritate violaverint. dat. viii id. feb. constantinopoli honorio iiii et eutychiano conss. (398 febr. 6)."
+    },
+    "86": {
+      "number": 86,
+      "text": "Idem aa. vincentio praefecto praetorio. cunctos iudices scire volumus a praetoriis ordinariorum iudicum his praesentibus abstinendum.\ndat. xvi kal. feb. mediolano stilichone et aureliano vv cc conss. (400 ian. 17)."
+    },
+    "87": {
+      "number": 87,
+      "text": "Idem aa. pompeiano proconsuli africae. praedia ex gildonis hostis publici et satellitum eius bonis sociata domui nostrae ne transeuntes\nhospitii gratia intrent, decernimus, ut sciant omnes a possessoribus nostris penitus abstinendum, quinque auri libras multae nomine\ninferre cogendo, quisquis praedium nostrum manendi causa importunus intraverit. dat. vi id. iun. mediolano stilichone et aureliano conss.\n(400 iun. [ian.?] 8)."
+    },
+    "88": {
+      "number": 88,
+      "text": "Idem aa. aemiliano magistro officiorum. secuti suggestionem tuam a fabricensium domibus omnem molestiam hospitum praecipimus\namoveri. de qua re et ad illustrem virum comitem et magistrum militum per orientem sacras litteras dedimus, ut det antiochenae civitatis\nfabricensibus excusandorum hospitiorum facultatem, absente scilicet sacro comitatu, quo et antiochensibus et ceterarum civitatum\nfabricis similis domorum excusatio praebeatur. dat. xi kal. feb. constantinopoli stilichone et aureliano conss. (400 [405] ian. 22)."
+    },
+    "89": {
+      "number": 89,
+      "text": "Impp. honorius et theodosius aa. sapidiano. licet proxime iusserimus quinque librarum auri condemnatione proposita praedia, quae ex\ngildonis bonis ad nostrum aerarium delata sunt, ab hospitibus excusari, nunc etiam praecipimus, ut omnes domus ex eodem iure\nvenientes, in quibuslibet civitatibus sunt constitutae, ab hospitibus excusentur, quo possint conductores facilius inveniri. si quis igitur\ncontra nostram fecerit iussionem, multa pridem ferietur inflicta. proposita karthagine viii id. aug. honorio viii et theodosio iii aa. conss.\n(409 aug. 6)."
+    },
+    "90": {
+      "number": 90,
+      "text": "Idem aa. iohanni praefecto praetorio. devotum possessorem ab omni inquietudine liberamus. (413 iun. 12)."
+    },
+    "91": {
+      "number": 91,
+      "text": "Primo igitur omnium ad nullum praedium per africam vel publicum vel privatum domus nostrae vel cuiuscumque iuris nullus metator\naccedat, si a quoquam fuerit destinatus. licentiam enim domino actori ipsique plebi serenitas nostra conmisit, ut eum, qui praeparandi\ngratia ad possessionem venerit, multandi expellendi habeat facultatem nec crimen aliquod pertimescat, cum sibi arbitrium ultionis suae\nsciat esse concessum recteque sacrilegium arceat qui primus invenerit. administrantem vero eiusque officii proceres, quorum praecepto\ninhibitam personam ad agrum aliquem destinarit, in tempore proscribi debere censemus. (413 iun. 12)."
+    },
+    "92": {
+      "number": 92,
+      "text": "Solam sane hospitalitatem sub hac observatione concedimus, ut nihil ab hospite, quod vel hominum vel animalium pastui necessarium\ncreditur, postuletur omniumque sit adceleratum iter atque continuum nec ulli liceat residere, ne diuturnitas conmanentium ulla ex parte\npraedium vexet. decem etiam librarum auri multa ferietur, quisquis administrator togatus apparitor ullus aut militans vel iter agens ullo in\nloco aliquid ab hospite postularit. in tantum enim inhiberi sceleratum morem iubemus, ut ipsis quoque praebentibus impunitum esse non\npatiamur, si quid vel sponte contra praeceptum nostrum probati fuerint obtulisse. dat. prid. id. iun. ravenna post cons. honori viiii et\ntheodosii v aa. (413 iun. 12)."
+    },
+    "93": {
+      "number": 93,
+      "text": "Idem aa. probo comiti sacrarum largitionum. post alia: de hospitalitate iudicum et omnium personarum quid sibi etiam ipse possessor\npraesumere debeat quave censura omnia, quae ad sui dispendium pertinebunt, submota sint, iam missa super hac re auctoritas declaravit.\npraelata litteris ad eutychianum praef. urbi die iiii id. ian. constantio et constante vv cc conss. (414 ian. 10)."
+    },
+    "94": {
+      "number": 94,
+      "text": "Idem aa. hadriano praefecto praetorio. africae hoc prospectum est, ut infausta hospitalitatis praebitio tolleretur, nec privatum quisque a\ndomino aedium postulet. et cetera. dat. v non. mart. ravenna constantio et constante conss. (414 mart. 3)."
+    },
+    "95": {
+      "number": 95,
+      "text": "Idem aa. eustathio praefecto praetorio. devotissimos milites ex procinctu redeuntes vel proficiscentes ad bella muri novi sacratissimae\nurbis singulae turres in pedeplanis suis suscipiant. nec aliquis possessorum graviter ferat quasi illa dispositione, quae super publicis\naedificiis processerat, violata, cum privatae quoque domus tertiam partem talis rei gratia soleant exhibere. dat. v non. mart.\nconstantinopoli honorio xiii et theodosio x aa. conss. (422 mart. 3)."
+    },
+    "96": {
+      "number": 96,
+      "text": "Impp. theodosius et valentinianus aa. helioni patricio et magistro officiorum. universi cuiuslibet ordinis, cuiuslibet etiam dignitatis, si\nquidem felicibus pro salute rei publicae expeditionibus occupati aliarum provinciarum aliarumque urbium domiciliis detinemur, propriis\ndomibus nullo vetante pro dignitatibus suis vel praestitis sibi beneficiis perfruantur; si vero secundum communia vota securi intra huius\nflorentissimae urbis tecta residemus, nullius specialiter domum illustrium quoque, etiamsi ad summa conscenderint fastigia dignitatum,\npraeter singulas tantum, in quibus eosdem manere constiterit, excusari ab hospitibus praecipimus cessante omni beneficio principali. dat.\nx kal. iul. constantinopoli hierio et ardabure vv cc conss. (427 iun. 22)."
+    },
+    "97": {
+      "number": 97,
+      "text": "Idem aa. iohanni comiti et magistro officiorum. nemo in hac alma urbe, qui propriae domus possessione laetatur, militari sacramento\nmunitus alterius domum infestare pertemptet, sed aut sua contentus abstineat aliena aut certe in suis recipiat, qui in alterius sibi metatum\nexistimat vindicandum. nec enim videtur esse conveniens, cum illustribus viris unam, in qua ipsi habitant, domum excusare concessum\nsit, alios et suas omnibus domus extruere et alienis aedibus inferre molestiam. dat. viii kal. mart. constantinopoli theodosio a. xiii et qui\nfuerit nuntiatus. (430 febr. 22)."
+    },
+    "98": {
+      "number": 98,
+      "text": "Idem aa. valerio magistro officiorum et ex consule ordinario. consulares viri binas proprias domos in hac alma urbe ab hospitum molestia\nhabeant sibi inmunes. sin vero fati munus expleverint adque ad liberos vel parentes, fratres sororesve, uxores etiam domus eorum fuerint\ndelatae, una e duabus aliena sit a metatorum molestia. sed et si unam quis eorum dereliquerit domum, illa ipsa in memoratorum excusetur\npersonis. (435 mart. 12)."
+    },
+    "99": {
+      "number": 99,
+      "text": "His vero, qui praefecturae dignitatem habent aut ipsius apicis administratione aut actu magisteriae militum potestatis aut quod praepositi\nsacri nostri cubiculi fuerint aut quod honorarios eiusdem praefecturae meruerint codicillos, cum priore lege una domus excusaretur,\nalterius etiam, si habere in hac alma urbe eos contigerit, dimidiam partem nostra liberalitate, dum in vita versantur, ita excusari\ndecernimus, ut de altera parte dimidia pars tertia hospitibus deputetur: post fata vero si ad parentes liberos fratres sorores uxoresve\nfuerint delatae, duas ab una domo partes ipsis electionem habentibus metatorum molestia liberari, tertiae videlicet partis parte tertia\nhospitibus praestanda. aliis sane illustribus viris, quibus una domus honoris excusatur gratia, hoc praebendum esse censemus, ut, si ipsi\ndecesserint et eorum domus ad supra scriptas personas pervenerint, medietatem domus, quam ipsi elegerint, habeant excusatam, altera\nvidelicet parte dimidia hospitiorum praebitioni in part..."
+    },
+    "100": {
+      "number": 100,
+      "text": "Impp. constantius et constans aa. ad provinciales. quicumque propria voluntate eum, quem domum receperit, necessariis rebus, oleo et\nligno aliisve huiusmodi voluerit adiuvare, facultatem sibi istius rei sciat esse concessam. quod si quis contra interdictum nostrum eadem\nipsa a vobis violenter voluerit usurpare, interpellandi praepositum habebitis copiam deque iniuria conquerendi liberam facultatem, ut nec\nspontanea in vobis humanitas retardetur nec contra voluntatem vestram ac patronorum vestrorum familiaris res adteratur. dat. prid. id.\naug., acc. capuae acyndino et proculo conss. (340 aug. 12)."
+    },
+    "101": {
+      "number": 101,
+      "text": "Idem aa. leontio praefecto praetorio. ne quis comitum vel tribunorum aut praepositorum aut militum nomine culcitas lignum oleum a suis\nextorqueat hospitibus nec volentibus, vel magistratibus vel hospitibus in praedictis speciebus aliquid auferant, sed provinciales sint\nnostri ab hac praebitione securi, comitibus tribunis vel certe praepositis militibusque gravi vexationi subiacentibus. dat. v id. oct. ......\nconss. (a. 340/361 oct. 11)."
+    },
+    "102": {
+      "number": 102,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. abundantio, stilichoni et ceteris comitibus utriusque militiae. nemo militum a suo\nhospite salgami aliquid nomine postulet, id est ne lignum aut oleum culcitaeve poscantur. dat. iiii kal. aug. constantinopoli theodosio a. iii\net abundantio v c conss. (393 iul. 29)."
+    },
+    "103": {
+      "number": 103,
+      "text": "Impp. honorius et theodosius aa. aureliano ii praefecto praetorio. nullus eorum, qui per quaslibet aedes habitaculi causa recepti fuerint,\nvel oleum et ligna flagitare contendat, nam et sic militibus nostrae sufficient largitates et collatoribus annua tantummodo semper\nimminebit indictio. dat. vi id. mai. theodosio a. vii et palladio viro clarissimo conss. (416 mai. 10)."
+    },
+    "104": {
+      "number": 104,
+      "text": "Imppp. arcadius, honorius et theodosius aaa. ad anthemium praefectum praetorio. nulli manendi intra palatia nostra in qualibet civitate\nvel mansione facultas pateat, sed ea provinciarum rectores et vicarios illustrissimae praefecturae per dioeceses, quas sortiti sunt, maneat\ncura, ut ab eorum usurpatione, qui in his transeuntes manere consueverant, sacrae domus serventur inmunes, et eorundem provisione\nnulla neglegentia vel senio quatiantur. (405 iul. 10)."
+    },
+    "105": {
+      "number": 105,
+      "text": "Quod nisi omni instantia fuerit observatum, triginta libras a vicariis, xx a consularibus seu praesidibus totidemque ab eorum officiis\nmultae nomine profligentur, ita ut ne curiales quidem a condemnatione se cognoscant inmunes futuros. (405 iul. 10)."
+    },
+    "106": {
+      "number": 106,
+      "text": "Ii quoque, qui huiusmodi sibi mansionem prava temeritate praesumpserint, si vel dignitate aliqua vel fortunis nituntur, xx librarum auri\ncondemnationi subiaceant: qui humilioris fortunae sunt, exilio tradantur. (405 iul. 10)."
+    },
+    "107": {
+      "number": 107,
+      "text": "Equos sane non nostros ab stabulis prohiberi palatiorum supervacuum iudicamus. dat. vi id. iul. ancyrae stilichone ii et anthemio conss.\n(405 iul. 10)."
+    },
+    "108": {
+      "number": 108,
+      "text": "Idem aaa. anthemio praefecto praetorio. ordinarii iudices in remotis ab aggere publico civitatibus, si praetoria non sint, metu legis\nadempto, quae de palatiis lata est, in aedibus, etiamsi palatii nomine nuncupentur, commanendi habeant facultatem. dat. viiii kal. dec.\nconstantinopoli honorio vii et theodosio ii aa. conss. (407 nov. 23)."
+    },
+    "109": {
+      "number": 109,
+      "text": "CTh.7.11.0. Ne comitibus et tribunis lavacra praestentur."
+    },
+    "110": {
+      "number": 110,
+      "text": "Imppp. arcadius, honorius et theodosius aaa. anthemio praefecto praetorio. omnem vel ex pristini severitate decreti vel ex hoc sacro\npraecepto, quod sub eadem poena profertur, inquietudinem a curiis et civitatibus praecipimus prohiberi nec ullas privatas ab his succendi\nbalneas ad tribunorum sive ad minorum comitum usus, sed illustribus tantum viris comitibus ac magistris militum, si tamen id voluerint,\nconcessum esse cognoscant hoc ministerium. dat. v kal. dec. constantinopoli arcadio a. vi et probo v c conss. (406 nov. 27)."
+    },
+    "111": {
+      "number": 111,
+      "text": "Impp. honorius et theodosius aa. monaxio praefecto praetorio. lege dudum lata, quae omnem licentiam exigendi ab provincialibus lavacra\ntribunis et comitibus inferioribus denegavit, duces limitis eufratensis diurnos tremisses pro lignis et balneis exegisse comperimus. ideoque\npraecipimus memorati limitis duces, quos abhinc triennio talia sibi contra legem lucra vindicasse constiterit, in duplum ea redhibere et in\nposterum sub eiusdem poenae metu hanc exactionis licentiam prohiberi. dat. v kal. aug. constantinopoli honorio a. xi et constantio ii v c\nconss. (417 iul. 28)."
+    },
+    "112": {
+      "number": 112,
+      "text": "Imp. constantinus a. et c. ne cui liceat praepositorum vel decurionum vel tribunorum cohortium quocumque genere cuiquam de militibus\na castris atque signis vel his etiam locis, quibus praetendant, discedendi commeatum dare. si quis vero contra legem facere ausus fuerit et\nmilitem contra interdictum commeatu dimiserit atque id temporis nulla eruptio erit, tunc deportatione cum amissione bonorum adficiatur;\nsin vero aliqua barbarorum incursio extiterit et tunc, cum praesentes in castris atque aput signa milites esse debeant, quisquam afuerit,\ncapite vindicetur. dat. iiii kal. mai. severo et rufino conss. (323 apr. 28)."
+    },
+    "113": {
+      "number": 113,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. ad syagrium magistrum officiorum. quicumque de scriniis aut agentibus in rebus vel\netiam ex officiis palatinis, his videlicet, qui sacrarum et privatarum remunerationum comitibus obsecundant, sex mensum spatium supra\ndiem commeatus aut iussionem evectionis afuerit, is in inferiorem locum quinque antelatis posterioribus revolvatur, is vero, qui anni\nvacationem arbitratu proprio iudiciarii praecepti oblitus adsumpserit, a decem post se militantibus transeatur, ac deinde, cum iam aliquis\ndesidia quadriennii officium proprium adire neglexerit, quadraginta de sequentibus postferatur, qui vero ne post quadriennii quidem\ntempus, militantum non inmerito matriculis auferatur. dat. kal. oct. auxonio et olybrio conss. (379 oct. 1)."
+    },
+    "114": {
+      "number": 114,
+      "text": "Impp. arcadius et honorius aa. ad andromachum praefectum urbi. post alia: hi, qui vacationem temporariam, ut saepe adsolet,\nimpetrarint, nihil sibi necessitatis usurpent, nullorum actibus misceantur. quorum si quis post exactum commeatus diem indultum\nbeneficium morando corruperit, nihil agere intra provinciam possit, intellegens se praeterea praecepto rectoris provinciae ea tenendum\nlegis poena, qua desides gradus proprii deminutione puniti sunt. dat. prid. non. iun. mediolano olybrio et probino conss. (395 iun. 4)."
+    },
+    "115": {
+      "number": 115,
+      "text": "Imp. constantius a. ad praefectos praetorio. post alia: quotiens iuniores exhibendi sunt, non ante probentur, nisi praesentibus\ndecurionibus origo eorum quaeratur, ita tamen, ut decurionibus haec fiducia denegetur, ne forte quis fugiens militiam addito nomine\ndecurionis e militia abscedat: de auxiliaribus sane cuneis minime ducibus licentia concedatur, nisi prius certus redditus iudex rescribat,\nutrum minime decurio sit: ita ut ab anno decimo et nono ad militiam eligantur. dat. pridie non. iul. constantio a. vi et c. conss. (353 iul. 6)."
+    },
+    "116": {
+      "number": 116,
+      "text": "Impp. valentinianus et valens aa. ad fortunatianum. domum nostram ad exhibenda tironum corpora per eas provincias, a quibus corpora\nflagitantur, nolumus perurgueri: ceterum sinimus conveniri, in quibus pretia postulantur, ita ut ex certa praebitione redituum vicem\nconcessionis istius repensemus. dat. prid. kal. feb. marcianopoli valentiniano et valente aa. conss. (368? 370? ian. 31)."
+    },
+    "117": {
+      "number": 117,
+      "text": "Idem aa. ad magnum vicarium urbis romae. in quinque pedibus et septem unciis usualibus delectus habeatur. dat. v kal. mai. lupicino et\niovino conss. (367 apr. 27)."
+    },
+    "118": {
+      "number": 118,
+      "text": "Idem aa. ad magnum vicarium urbis romae. eos, qui amputatione digitorum castra fugiunt, secundum divi constantini decretum tua\nsinceritas non sinat manus deformatione defendi, si quidem possint in quacumque rei publicae parte prodesse qui se sponte truncaverunt.\ndat. v kal. mai. lupicino et iovino conss. (367 apr. 27)."
+    },
+    "119": {
+      "number": 119,
+      "text": "Idem aa. ad viventium praefectum praetorio galliarum. si quis ad fugienda sacramenta militiae fuerit inventus truncatione digitorum\ndamnum corporis expedisse, et ipse flammis ultricibus concremetur et dominus eius, qui non prohibet, gravi condemnatione feriatur. dat.\nvi kal. mai. treviris valentiniano et valente aa. conss. (368? 370? 373? apr. 26)."
+    },
+    "120": {
+      "number": 120,
+      "text": "Idem aa. ad modestum praefectum praetorio. si oblatus iunior fuerit, qui censibus tenetur insertus, ex eo tempore, quo militiae\nsacramenta susceperit, proprii census caput excuset ac, si quinquennii tempus fida obsequii devotione compleverit, uxoriam quoque\ncapitationem merito laborum praestet inmunem, ea scilicet servanda ratione, ut, quam sibi uxorem copulaverat affectu et in priore lare\nderelictam memorarit, improbata census sarcinam sustineat. (370 sept. 18)."
+    },
+    "121": {
+      "number": 121,
+      "text": "Nullus vero tironem vagum aut veteranum possit offerre, cum ad spontaneam singuli militiam propositae inmunitatis commodis\ninvitentur. circa eos enim legis iubemus valere beneficium, qui indigenas atque ipsius provinciae finibus innutritos vel adfixos censibus vel\nadcrescentibus suis obtulerint iuniores; neque enim convenit illum inmunitate gaudere, qui vana oblatione vagi atque fugitivi vel veterani\nfilii statum futurae conventionis inviserit. (370 sept. 18)."
+    },
+    "122": {
+      "number": 122,
+      "text": "Quod hactenus decernimus custodiri, ut oblatus numerus ex adcrescentibus primitus reparetur ac, si compensatio non potuerit convenire\nneque ex minoribus modus, qui oblatus fuerit, quiverit reparari, ita demum de publicis fascibus hi, qui ex superfluo veniunt, eximantur.\ndat. xiiii kal. oct. hieropoli valentiniano et valente iii aa. conss. (370 sept. 18)."
+    },
+    "123": {
+      "number": 123,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad modestum praefectum praetorio. tironum praebitio in patrimoniorum viribus potius\nquam in personarum muneribus collocetur, ut proto.. munus, quod provinciarum interna depascitur, ab imis, ut dicitur, radicibus eruatur.\nnam inter reliqua vitia haec duo vel maxime intolerabilia iudicamus, quod aurum saepe pro corporibus inmane deposcitur atque\nadvenarum coemptio iuniorum insolentius quam convenit aestimatur. contra haec sane reperta est et facilitas et commoditas exigendi,\ncum neque excusari quisquam poterit, ut ante privilegio consueta fuerat hominis vindicatio, nec ullus, qui relevandus fuerit, perpetuae\ningravationi addici. (375 iun. 2)."
+    },
+    "124": {
+      "number": 124,
+      "text": "Illud etiam similiter definitum est, ut ii tantum a consortibus segregentur, quorum iugatio ita magna est, ut accipere non possit adiunctum,\ncum pro suo numero in exhibendo tirone solus ipse respondeat. inter quos vero possessionis exiguae necessitas coniunctionem postulat,\nfunctionis annorum et praebitionis vicissitudo servetur, quippe ut senatores ceterique, qui primo anno et suo et consortis nomine\ntironem dederint, insequenti vice habeantur immunes illique in praebitione succedant, a quorum conventione fuerit ante cessatum. quem\nordinem, cum corpora postulantur, conveniet custodiri. sin vero aurum fuerit pro tironibus inferendum, unumquemque pro modo\ncapitationis suae debitum redhibere oportet. (375 iun. 2)."
+    },
+    "125": {
+      "number": 125,
+      "text": "Ne aliquid dubium relinquatur, et solidorum numerum, qui temonario inferendus est, designamus, ut, sive senator honoratus principalis\ndecurio vel plebeius tironem suo ac sociorum nomine ex agro ac domo propria oblaturus est, ita se a coniunctis accepturum solidos\nnoverit, ut integri pretii modus in triginta tantummodo et sex solidis colligatur, ut deducta portione, quae parti ipsius competit, reliquum\nconsequatur, sex tironi gratia vestis ac sumptuum praebiturus. (375 iun. 2)."
+    },
+    "126": {
+      "number": 126,
+      "text": "Ipsorum etiam, qui militaturi sunt, privilegiis accedentibus facilius devotio provocatur, videlicet ut universi, qui militaria sacramenta\nsusceperint, eo anno, quo fuerint numeris adgregati, si tamen in suscepto labore permanserint, inmunes propriis capitibus mox futuri\nsint. completis vero quinque annorum stipendiis qui comitatensibus numeris fuerit sociatus, patris quoque et matris nec non et uxoris\nsuae capitationem meritis suffragantibus excusabit. ii vero, qui in ripa per cuneos auxiliaque fuerint constituti, cum proprio capite uxorem\nsuam tantum post quinque annos, ut dictum est, praestent inmunem, si tamen eos censibus constiterit adtineri. et quia publica utilitas\nquoque cogitanda est, ne sub hac indulgentia insertae capitationis numerus minuatur, ex incensitis adque adcrescentibus in eorum locum,\nqui defensi militia fuerint, alios praecipimus subrogari. dat. iiii non. iun. antiochiae post consulatum gratiani a. iii et equitii viri clarissimi.\n(375 iun. 2)."
+    },
+    "127": {
+      "number": 127,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. edictum ad provinciales. inter optimas lectissimorum militum turmas neminem e\nnumero servorum dandum esse decernimus neve ex caupona ductum vel ex famosarum ministeriis tabernarum aut ex cocorum aut\npistorum numero vel etiam eo, quem obsequii deformitas militia secernit, nec tracta de ergastulis nomina. poenam etenim gravis dispendii\nnulla excusatione fugituri sunt, si hoc cuiusdam indicio illustribus viris magistris equitum peditum fuerit intimatum. sed cum illum\nanimadversio dura damnavit offerentem, tum triplicata nobilioris tironis fatigabit illatio. dat. iiii. kal. feb. constantinopoli gratiano a. v et\ntheodosio a. i conss. (380 ian. 29)."
+    },
+    "128": {
+      "number": 128,
+      "text": "Idem aaa. neoterio praefecto praetorio. ex opportunis regionibus supplementa numeris mansuetudo nostra decrevit agitari: in id delectos\nquosque viros atque ab omni suspicione pravitatis alienos iussimus destinari. in his, si male se gesserint, corrigendis non mediocrem fore\ndenuntiamus severa animadversione sententiam, cum iudices supplicium existimationis extremum et ultio inexpiabilis exceptura videatur,\nne his quidem provincialibus temperatura, quos in officium ministeriumque praedarum vel capiendi ubertas vel formido simulata\ndeduxerit. proposita vi kal. mai. antiochia gratiano v et theodosio i aa. conss. (380 apr. 26)."
+    },
+    "129": {
+      "number": 129,
+      "text": "Idem aaa. eutropio praefecto praetorio. qui spurca amputatione digiti usum declinat armorum, non evadat illa quae vitat, sed insignitus\nmacula ferat impositum militiae laborem qui declinaverit dignitatem. ipsis quin etiam provincialibus, qui ex horum ausis iuniorum saepe\npatiuntur penuriam praebendorum, haec optio inmobilis decernatur, ut tempore dilectus agitandi, ubi conmune coeperint conveniri, duos\nmutilos iuniores pro uno integro eminentiae tuae dispositionibus offerant. dat. non. sept. hadrianopoli eucherio et syagrio conss. (381\nsept. 5)."
+    },
+    "130": {
+      "number": 130,
+      "text": "Idem aaa. quisquis mancipium iuris alieni in tirocinium militiae duxerit offerendum, convictus ac proditus auri libram aerario nostro\ncogatur inferre. dat. id. mai. tyro metropoli, proposita beryto antonio et syagrio conss. (382 mai. 15)."
+    },
+    "131": {
+      "number": 131,
+      "text": "Impp. arcadius et honorius aa. hyperechio comiti rerum privatarum. publica suasit utilitas iuniores in arma conscribere, ideoque ne\npatrimonium quidem nostrum a praestatione praesenti inmune esse patimur. igitur per omnes provincias, per quas res nostra distenditur,\nex patrimonio sacro maturitate qua convenit praeberi volumus iuniores. dat. xv kal. iul. mediolano caesario et attico viris clarissimis\nconss. (397 iun. 17)."
+    },
+    "132": {
+      "number": 132,
+      "text": "Idem aa. theodoro praefecto praetorio. amplissimi ordinis petitionibus adnuit nostra clementia, ut pro tironibus pretia inferantur. damus\nitaque optionem, ut quod conducibile senatui videtur eligendi habeat potestatem, id est aut tirones aptos officiis militaribus praestent aut\npro singulis viginti quinque solidos numerent post initam videlicet sumptuum rationem et vestium et pastus. quod si aurum dare\nmaluerint, mox ad nostrum aerarium deferatur. dat. viii kal. oct. patavi caesario et attico viris clarissimis conss. (397 sept. 24)."
+    },
+    "133": {
+      "number": 133,
+      "text": "Idem aa. minervio comiti rerum privatarum. aeternae urbis merita reverendam nobis amplissimi senatus efficient voluntatem. ideoque pro\ntironibus in corporibus postulatis pretia conferri iubemus ab amplissimo ordine. (397 nov. 12)."
+    },
+    "134": {
+      "number": 134,
+      "text": "Quod in fundis etiam perpetuariis nostrae rei privatae servari praecipimus. dat. prid. id. nov. caesario et attico conss. (397 nov. 12)."
+    },
+    "135": {
+      "number": 135,
+      "text": "Idem aa. decio praefecto urbi. ad collationem iuniorum eos tantum oportet adtineri, quos constat dignitates legitimas beneficiis\nconsecutos, non tamen si iusta privilegia suffragantur. dat. viii id. dec. ravenna arcadio a. v et honorio a. v conss. (402 dec. 6)."
+    },
+    "136": {
+      "number": 136,
+      "text": "Imppp. arcadius, honorius et theodosius aaa. provincialibus. contra hostiles impetus non solas iubemus personas considerari, sed vires,\net licet ingenuos amore patriae credamus incitari, servos etiam huius auctoritate edicti exhortamur, ut quamprimum se bellicis sudoribus\nofferant, praemium libertatis, si apti ad militiam arma susceperint, pulveratici etiam nomine binos solidos accepturi: praecipue sane\neorum servos, quos militia armata detentat, foederatorum nihilo minus et dediticiorum, quoniam ipsos quoque una cum dominis constat\nbella tractare. dat. xv kal. mai. ravenna arcadio a. vi et probo viro clarissimo conss. (406 apr. 17)."
+    },
+    "137": {
+      "number": 137,
+      "text": "Idem aaa. provincialibus. provinciales pro inminentibus necessitatibus omnes invitamus edicto, quos erigit ad militiam innata libertas.\ningenui igitur, qui militiae obtentu arma capiunt amore pacis et patriae, sciant se denos solidos patratis rebus de nostro percepturos\naerario, quibus tamen ternos ex summa supra dicta iam nunc solidos praeberi mandavimus, nam optimos futuros confidimus, quos virtus\net utilitas publica necessitatibus obtulit. dat. xiii kal. mai. ravenna arcadio a. vi et probo conss. (406 apr. 19)."
+    },
+    "138": {
+      "number": 138,
+      "text": "Idem aaa. stilichoni comiti et magistro militum. iuniorum collatione, vel qui proxime in pretio ab honoratis pro rerum necessitate petiti\nsunt vel si umquam tale aliquid rei publicae ratio flagitaverit, inmunes haberi oportere decernimus, qui militiae praerogativa ad tribunatus\npraepositurasve pervenerint. dat. xi kal. april. honorio vii et theodosio ii aa. conss. (407 mart. 22)."
+    },
+    "139": {
+      "number": 139,
+      "text": "Impp. honorius et theodosius aa. comiti sacrarum largitionum. tirones in scholis loco semper posteriore ponantur. nec enim patimur\nquemquam celsiorem gradum obtinere, nisi cui et laborum adsiduitas et stipendiorum prolixitas suffragatur. dat. vii kal. dec. ravenna\nbasso et philippo conss. (408 nov. 25)."
+    },
+    "140": {
+      "number": 140,
+      "text": "Idem aa. macedonio comiti rerum privatarum. tirones tricenis solidis aestimatos ab omnibus officiis iudicum africae, exemplo\npraecedentis temporis, postulamus; quod simul etiam ab honoratis memoratarum provinciarum nec non sardiniae siciliae et corsicae. eos\nsane honores excipi ab his conveniet, quibus aut praesenti tempore publicum munus iniunctum est aut in italiae sive urbis solo barbara\nvastitate depulsi sunt. dat. vi id. feb. ravenna varane v. c. cons. (410 febr. 8)."
+    },
+    "141": {
+      "number": 141,
+      "text": "Idem aa. hadriano praefecto praetorio. tempore tironatus eorum procuratores, qui refugas occultandos putaverint aut non ipsi sponte\nproduxerint, in iudicio praesententur ac poenas veluti rebelles ac decretorum temeratores compellantur exsolvere. dat. iii kal. feb.\ntheodosio a. vii et palladio v. c. conss. (416 [?] ian. 30)."
+    },
+    "142": {
+      "number": 142,
+      "text": "Impp. theodosius et valentinianus aa. volusiano praefecto praetorio. mansura in saeculum auctoritate praecipimus proconsularis\nprovinciae non eandem sacerdotalium, quae est de ceteris, in praebendis tironibus habendam esse rationem. non inique si quidem ea\npotissimum ab hoc officio provincia videtur excepta, quae omnium intra africam provinciarum obtinet principatum cuiusque maioribus\nsacerdotes fatigantur expensis, in quarum solacium indemnem esse convenit dignitatem. dat. v kal. mart. ravenna felice et tauro vv. cc.\nconss. (428 febr. 25)."
+    },
+    "143": {
+      "number": 143,
+      "text": "Impp. arcadius et honorius aa. vincentio praefecto praetorio. post alia: in burgariis eadem volumus observari, quae de mulionibus lex\nnostra praecepit, ut ii quoque, qui intra hispanias vel in quibuscumque locis ausi fuerint burgarios vel sollicitare vel receptare, eodem\nmodo teneantur, similisque eos, qui publicis vestibus deputatos sollicitaverint vel receperint, et de coniunctione et de agnatione et de\npeculiis et de cunctis rebus quas in illis deprehendimus poena cohibeat. dat. xi kal. mart. mediolano honorio a. iiii et eutychiano conss.\n(398 febr. 19)."
+    },
+    "144": {
+      "number": 144,
+      "text": "Impp. honorius et theodosius aa. gaudentio vicario africae. terrarum spatia, quae gentilibus propter curam munitionemque limitis atque\nfossati antiquorum humana fuerant provisione concessa, quoniam comperimus aliquos retinere, si eorum cupiditate vel desiderio\nretinentur, circa curam fossati tuitionemque limitis studio vel labore noverint serviendum ut illi, quos huic operi antiquitas deputarat.\nalioquin sciant haec spatia vel ad gentiles, si potuerint inveniri, vel certe ad veteranos esse non inmerito transferenda, ut hac provisione\nservata fossati limitisque nulla in parte timoris esse possit suspicio. dat. iii kal. mai. ravenna honorio viii et theodosio iii aa. conss. (409\napr. 29)."
+    },
+    "145": {
+      "number": 145,
+      "text": "Idem aa. asclepiodoto praefecto praetorio et consuli ordinario. quicumque castellorum loca quocumque titulo possident, cedant ac\ndeserant, quia ab his tantum fas est possideri castellorum territoria, quibus adscripta sunt et de quibus iudicavit antiquitas. quod si\nulterius vel privatae condicionis quispiam in his locis vel non castellanus miles fuerit detentator inventus, capitali sententia cum bonorum\npublicatione plectatur. dat. non. mart. constantinopoli asclepiodoto et mariniano conss. (423 mart. 7)."
+    },
+    "146": {
+      "number": 146,
+      "text": "Impp. honorius et theodosius aa. theodoro praefecto praetorio. hostis publicus stilicho novum adque insolitum reppererat, ut litora et\nportus crebris vallaret excubiis, ne cuiquam ex oriente ad hanc imperii partem pateret accessus. huius iniquitate rei moti et ne rarior sit\ndiversarum mercium commeatus, praecipimus hac sanctione, ut litorum desistat ac portuum perniciosa custodia et eundi ad redeundi\nlibera sit facultas. dat. iiii id. dec. ravenna basso et philippo conss. (408 dec. 10)."
+    },
+    "147": {
+      "number": 147,
+      "text": "Idem aa. anthemio praefecto praetorio. omnes stationes navium portus litora, omnes abscessus provinciarum, abdita quin etiam loca et\ninsulae tuae magnificentiae dispositione sollerti custodiantur indagine, ut nullus vel vi vel clam, vel aperto vel etiam occulto nostri possit\nimperii regiones irrepere, qui non aut interiectis prohibeatur obicibus aut, cum accesserit, ilico teneatur, nisi sacros apices a domino\npatruo meo honorio ad me perferre apertissima ratione monstraverit: cum eadem diligentia observando, ut, si ad alium quemquam a\nmemorato principe dixerit habere affatus, portitore detento sacrae litterae cum omnibus chartis signatae ad meam clementiam\ntransmittantur. hoc enim et tyrannici furoris et barbaricae feritatis occasio persuadet et inter me domnumque et patruum meum honorium\nvicissim recurrente admonitione convenit. dat. viii kal. mai. constantinopoli varane v c cons. (410 apr. 24)."
+    },
+    "148": {
+      "number": 148,
+      "text": "Idem aa. eustathio praefecto praetorio. saluberrima sanctione decrevimus, ne merces illicitae ad nationes barbaras deferantur, et\nquaecumque naves ex quolibet portu seu litore dimittuntur, nullam concussionem vel damna sustineant, gestis apud defensorem locorum\npraesente protectore seu duciano, qui dispositus est, sub hac observatione confectis, ut, et ad quas partes navigaturi sunt et quod nullam\nconcussionem pertulerunt, apud acta deponant: quorum authenticum nauclerus sive mercator habebit scheda apud defensorem manente.\ndat. xiiii kal. oct. constantinopoli d. n. theodosio a. viiii et qui fuerit nuntiatus. (420 sept. 18)."
+    },
+    "149": {
+      "number": 149,
+      "text": "Impp. honorius et theodosius aa. constanti magistro militum per thracias. nonaginta recenti fabricatione contextas, decem his adiectas ex\nveterum reparatione lusorias limiti mysiaco, centum vero decem novas additis antiquarum instauratione quindecim scythico, qui in latius\ndiffusiusque porrigitur, sub hac deputari condicione sancimus, ut per singulos annos veterum renovatione curanda quattuor iudiciariae in\nmysiaco limite et decem agrarienses, in scythico vero quinque iudiciariae et duodecim agrarienses novae de integro constructae\ninstrumentisque suis universis armatae ducis instantia apparitionisque eius periculo contexantur, ut hoc supplemento per septennium\nintegri numeri constituti reparatio maturetur, sublimitate tua pro sua industria disponente, unde earum contextio vel constructio debeat\nprocurari. quod quidem iam recte credimus constitutum nobisque indicari praecipimus. nam si memoratus lusoriarum numerus cum omni\nsuo instrumento non fuerit apparatus, dux quidem, cuius tempore..."
+    },
+    "150": {
+      "number": 150,
+      "text": "CTh.7.18.0. De desertoribus et occultatoribus eorum"
+    },
+    "151": {
+      "number": 151,
+      "text": "Impp. valentinianus et valens aa. edicta pro per italiam et alpes. unusquisque, apud quem desertor fuerit deprehensus, si plebeiae et\nhumilioris condicionis est, metalli se sciat supplicio puniendum, qui autem superioris cuiuscumque loci dignitatisve sit, media se\nbonorum parte cognoscat esse multandum. in hac poena sit et officium uniuscuiusque iudicis, quod forte desertores in consortio sui\nprobatos habet nec eos prodit. dat. vii kal. april. mediolano valentiniano et valente aa. conss. (365 mart. 26)."
+    },
+    "152": {
+      "number": 152,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. ad hesperium praefectum praetorio. actor eius fundi, in quo alienigena vel idoneus\nmilitiae vel ante iam traditus latuerit, ultima flammarum animadversione consumatur. hoc interim nos constituisse sufficiat, nam si parum\nprofecerit in servos interminatio constituta, in dominos peccatum deinceps emendatura decernet. dat. vi non. iul. aquileia auxonio et\nolybrio vv cc conss. (379 iul. 2/5)."
+    },
+    "153": {
+      "number": 153,
+      "text": "Idem aaa. neoterio praefecto praetorio. si temonarius prodiderit desertorem, protostasiae onere biennio relevetur. proposita iii kal. mai.\nantiochiae gratiano v et theodosio i aa. conss. (380 apr. 29)."
+    },
+    "154": {
+      "number": 154,
+      "text": "Idem aaa. ad syagrium praefectum praetorio. si quis latebram praebuerit desertori, possessionis, in qua latuerit, amissione multatus etiam\ngraviorem sententiam pertimescat. porro actorem flammis subiciendum esse non dubitet, qui in perniciem fortasse domini aut sceleris\nparticipatione confovit aut dissimulatione neglexit. (380 iul. 15)."
+    },
+    "155": {
+      "number": 155,
+      "text": "At vero si desertorem servus prodiderit, libertate donetur si mediocris loci ingenuus, immunitate potiatur. (380 iul. 15)."
+    },
+    "156": {
+      "number": 156,
+      "text": "Neque solum eos loquimur, qui proxime signis felicibus adplicati militiae rudimenta timuerunt, verum qui stipendiis militaribus\ndegenerem latebram praebuisse monstrantur. (380 iul. 15)."
+    },
+    "157": {
+      "number": 157,
+      "text": "Desertor autem habebitur, quisquis belli tempore aberit a signis. horum qui sponte processerit, peccati anterioris supplicium non timebit.\nsin vero flagitiosa ignavia delitescat, per eum, in cuius domo fuerit, invigilantibus forinsecus quoque officiis publicis, ubicumque\ncorreptus severitati iudicis offeratur, degeneri morte gladium subiturus. (380 iul. 15)."
+    },
+    "158": {
+      "number": 158,
+      "text": "Si autem rector provinciae propositam severitatem vel gratia vel dissimulatione distulerit, patrimonii atque existimationis damno\nsubiciatur et in officii primores capitaliter vindicetur. proposita id. iul. romae gratiano v et theodosio i aa. conss. (380 iul. 15)."
+    },
+    "159": {
+      "number": 159,
+      "text": "Idem aaa. neoterio praefecto praetorio. si quis forte desertorem agro tectoque susceperit atque aput se diu passus fuerit delitiscere, actor\nquidem vel procurator loci, qui hoc sciens prudensque conmiserit, capitali supplicio subiugetur, dominus vero, si huius rei conscius\nfuerit, praedii, in quo latuerit desertor, amissione puniatur. dat. xvii kal. feb. eucherio et syagrio viris clarissimis conss. (381 ian. 16)."
+    },
+    "160": {
+      "number": 160,
+      "text": "Idem aaa. ad severum praefectum praetorio. desertorum iugiter pretia vindicamus, quos intra annui temporis metas inter ipsa traditionis\nexordia deseruisse constiterit. ipsorum quippe est providentiae, quos huiusmodi munus amplectitur, militaturis potius quam fugacibus\ninstruere necessaria supplementa. (382 apr. 2)."
+    },
+    "161": {
+      "number": 161,
+      "text": "Si vero in desertoribus occulendis actorum scelus atque conmissum sit, flammis scelera puniantur. si dominum quoque conscientia talis\ninvolverit, praediis, quae latebram praestiterunt, sacro patrimonio vindicatis gravioris exitii dominum quoque casus involvat. proposita\nromae iiii non. april. antonio et syagrio conss. (382 apr. 2)."
+    },
+    "162": {
+      "number": 162,
+      "text": "Idem aaa. constantiano vicario dioecesis ponticae. quisquis in fundo suo desertores vel latrones habere se meminerit, nisi eos ex die\nconstitutionis emissae in sex menses prodiderit aut comprehensos etiam severitati iudiciariae obtulerit, sciat dissimulatione convictus\nfundum ipsum, in quo praedicti postea potuerint inveniri, fisci nostri viribus esse nectendum. (383 iul. 12)."
+    },
+    "163": {
+      "number": 163,
+      "text": "Quod si forte contigerit, ut inscio domino memorati latuisse videantur, pari constituti temporis dimensione servata actores capite\ndamnentur. quam condicionem et circa actores rerum nostrarum volumus custodiri. dat. iiii id. iul. constantinopoli merobaude ii et\nsaturnino conss. (383 iul. 12)."
+    },
+    "164": {
+      "number": 164,
+      "text": "Idem aaa. ad flavianum praefectum praetorio. quisquis desertorem vel a se receptum vel in suo latitantem cognoscit, nisi eum ex die\npublicati huius edicti intra duos menses adhibita inquisitione correptum ordinario iudici offerre curaverit, detectus in crimine pro\nqualitate ordinis atque personae incurrat in legem. et si quidem potuerit corporali iniuriae subiacere, servata ex iure substantia et fustibus\ncoerceatur vel metallo operi publico deputetur et nonnumquam se ulterius erigente censura exilio perpetuae relegationis plectatur. quod si\neiusmodi fortasse fuerit, ut iniuria corporali intuitu generis aut honoris excipiatur, non procrastinata auctoritate sententiae per singula\ncapita eorum, quos contra interdictum retinere atque occultare non timuit, denos iuniores maxime idoneos militiae offerat aut\nquinquaginta pondo argenti restituat. (383 [391?] febr. 27)."
+    },
+    "165": {
+      "number": 165,
+      "text": "Quod si procurator possessionis sive actor vel etiam colonus latebram desertori domino ignorante praestiterit, detectus in crimine capitali\nsupplicio mancipetur. ceteros quoque similis conscientiae exemplum triste deterreat illorum: tantummodo probationibus evidenter\nostensis innoxiis relinquatur habitatio, quos iam dudum fiscus adaeravit. (383 [391?] febr. 27)."
+    },
+    "166": {
+      "number": 166,
+      "text": "Oblati autem iudicibus, nisi in contigua quacumque provincia vel tuae praestantia potestatis vel ii dumtaxat ordinis militaris vir, qui\npossint de capite eorum ferre sententiam, degere videbuntur, interrogati et severitati necessariae subiaceant et ad sinceritatem tuam per\nordinarii iudicis exsecutionem vel officia rectoris dirigantur cum prosecutione. et cetera. dat. iii kal. mart. merobaude ii et saturnino conss.\n(383 [391?] febr. 27)."
+    },
+    "167": {
+      "number": 167,
+      "text": "Impp. arcadius et honorius aa. ad populum. quisquis in domo patrimoniove suo vel qualibet abstrusa et longissime a se possessione\ndiscreta desertorem latere cognoscit, ad eos, quibus cura indagandi mandata est vel, si forte defuerint, ad rectorem provinciae protinus\nspontanea oblatione deducat veniam delicti veteris habiturus. exactis enim quattuor mensibus, postquam edictum nostrum intra eam\nurbem, quam quisque habitat, fuerit publicatum, si quis noluerit moderationi praesentis oboedire praecepti, haec in eum poena\nimponetur, ut et qui occultatus fuerit eruatur et latebrae auctor pro uno desertore vel duas praeter eum auri libras vel duos iuniores\nmilitaris roboris ac staturae cogatur fisco abscisa spe totius defensionis inferre. (396 apr. 26)."
+    },
+    "168": {
+      "number": 168,
+      "text": "Et quoniam plurimos cognovimus, priusquam victricibus aquilis sociarentur, vel illuc, unde electi fuerant, vel quo placuerit abire, alios\nautem litterarum initiatos auspicio, quamquam necdum dicantur meruisse sub signis, praecipimus, ut post tempus definitum quicumque\nex iunioribus fuerit retentus, praeter eum vel duos tiorens per singulos vel duas auri libras malo coactus fisco nostro adnumeret. (396 apr.\n26)."
+    },
+    "169": {
+      "number": 169,
+      "text": "Qui vero causarias vel honestas indepti sunt missiones, ab invidia et formidine desertionis amoveantur, etsi haec sunt tyrannico tempore\nconsecuti, dummodo eos eas meruisse vel peracto militiae labore vel probata debilitate pateat. (396 apr. 26)."
+    },
+    "170": {
+      "number": 170,
+      "text": "Si qui etiam ex servorum numero militiae se sociarunt, quos dominis suis legitima iudicum reformavit auctoritas, sine metu legis ab his,\nquibus recte docentur redditi, tenebuntur. dat. vi kal. mai. mediolano arcadio iiii et honorio iii aa. conss. (396 apr. 26)."
+    },
+    "171": {
+      "number": 171,
+      "text": "Idem aa. vincentio praefecto praetorio galliarum. protectores, qui ad inquisitionem vagorum per provincias diriguntur. nullas in retinendis\nfugitivis dumtaxat indigenis iniurias possessoribus parent, quia hoc illis tantum permittitur, ut desertores veteranorum filios ac vagos et\neos, quos militiae origo consignat, ad dilectum iuniorum provocent. dat. xvi kal. iun. mediolano stilichone et aureliano viris clarissimis\nconss. (400 mai. 17)."
+    },
+    "172": {
+      "number": 172,
+      "text": "Idem aa. et theodosius a. hadriano praefecto praetorio. si qui desertores oberrare in provinciis fuerint comprehensi, eos et comprehendi\nprotinus volumus et ad iudicem deduci, ut auditi, cum de crimine desertionis suae confessi fuerint, carceris custodiae deputentur: de\nquorum nominibus ad tuam sublimitatem subditis confessionibus referatur, ut instructi magistri militum, quid de his fieri oporteat, pro\nsui auctoritate constituant. sin vero inventi resistendum atque armis obtinendum putaverint, tamquam rebelles in ipsis temeritatis suae\nconatibus opprimantur: (403 febr. 24)."
+    },
+    "173": {
+      "number": 173,
+      "text": "Ita tamen, ut provinciarum iudices sollicita cautione disquirant, ne sub falsarum tractoriarum nomine desertionis suae crimen defendere\nmoliantur, ne subpositis aut conmentis epistulis evadendi habeant facultatem. (403 febr. 24)."
+    },
+    "174": {
+      "number": 174,
+      "text": "In desertorum quoque occultatores iuxta promulgatas leges severissime vindicetur. dat. vi kal. mart. ravenna theodosio a. i et rumorido\nconss. (403 febr. 24)."
+    },
+    "175": {
+      "number": 175,
+      "text": "Idem aaa. hadriano praefecto praetorio. si quis militem profugum desertoremque castrorum in praedio suo susceperit, nisi eum ipse\nprodiderit aut comprehensum severitati iudiciariae potestatis obtulerit, sciat, si in dissimulando convictus fuerit, fundum ipsum, in quo\npraedictus postea potuerit inveniri, fisci nostri viribus sociandum. (403 iul. 25)."
+    },
+    "176": {
+      "number": 176,
+      "text": "Quod si forte contigerit, ut inscio domino in eius praediis habitarit, fundo a nexu huius legis exuto actorem conscium severo supplicio\ndamnandum esse censemus. quam condicionem etiam circa actores domus nostrae volumus custodiri. dat. viii kal. aug. ravenna theodosio\na. i et rumorido conss. (403 iul. 25)."
+    },
+    "177": {
+      "number": 177,
+      "text": "Idem aaa. hadriano praefecto praetorio. desertores modis omnibus adtinendos esse censemus. universi igitur provinciales sciant\nopprimendorum sibi desertorum facultatem esse permissam: quibus ne sit tarditas poenae solacio, velox ubicumque iubemus esse\nsupplicium. quod ad notitiam primatium urbium vicorum castellorumque deveniat, quo scire possint etiam occultatores eorum ad\nsubeundam poenam, quae divi genitoris nostri est constituta legibus, adtineri. dat. vi non. oct. theodosio a. i et rumorido conss. (403 oct.\n2)."
+    },
+    "178": {
+      "number": 178,
+      "text": "Idem aaa. hadriano praefecto praetorio. opprimendorum desertorum facultatem provincialibus iure permittimus: qui si resistere ausi\nfuerint, velox ubicumque iubemus esse supplicium. cuncti etenim adversus latrones publicos desertoresque militiae ius sibi sciant pro\nquiete communi exercendae publicae ultionis indultum: (403 oct. 2)."
+    },
+    "179": {
+      "number": 179,
+      "text": "Hac tamen condicione servata, ut ab his iunioribus, qui proxima indictione praesenti tempore conferuntur, supplicio temperetur, quia per\nprovinciales intra praescriptum legibus tempus ad ea signa, quibus destinati fuerant, redhibendi sunt, ne possessores redhibitionis damna\npercellant propter eos, qui necdum paene auspicati militiam fugerunt. (403 oct. 2)."
+    },
+    "180": {
+      "number": 180,
+      "text": "Sed ut in his patientiam tenemus, ita omnes, qui ultra memoratam indictionem et nostrae beneficia sanctionis castra et militiam deseruere,\ncondemnationibus obnoxios esse praecipimus occultatoresque eorum ad subeundam poenam, quae divi genitoris nostri constituta est\nlegibus, volumus retentari. dat. vi non. oct. d. n. theodosio a. i et rumorido viro clarissimo conss. (403 oct. 2)."
+    },
+    "181": {
+      "number": 181,
+      "text": "Idem aaa. longiniano praefecto praetorio. qui relictis militaribus castris se ad depraedationes vel latrocinium contulerint, severitatem\npublicam non evadant. dat. viiii kal. april. ravenna arcadio a. vi et probo v. c. conss. (406 mart. 24)."
+    },
+    "182": {
+      "number": 182,
+      "text": "Impp. honorius et theodosius aa. gaisoni comiti et magistro militum. qui sine conmeatu aliquo annum in penatibus propriis vel in\nquibuslibet locis desidiosa quiete transegerit, decem sequentibus postponatur; in quo vero biennium talis culpa deprehenditur, viginti sibi\nantepositos congemiscat; tertius autem annus triginta praelatos iure deflebit, ita ut quartus exempto matriculae nulli veniam derelinquat.\net cetera. dat. prid. id. iun. ravenna post consulatum honorii viiii et theodosii v aa. (413 iun. 12)."
+    },
+    "183": {
+      "number": 183,
+      "text": "Idem aa. constantio magistro militum. omnes tribunos, qui per africam vagorum et desertorum requirendorum sumpserunt officium, ne\nsub huiusmodi professione vastent provinciam, submoveri praecipimus. in futurum autem istud nequaquam vocabulum vel officium\ninfaustum constituimus per africam esse debere, ita ut, si quis ad condemnatam huius officii qualitatem praedae causa adspirare\ntemptaverit, capitalis in eum severitas exeratur. dat. pridie kal. mart. ravenna honorio viiii et theodosio v aa. conss. (412 febr. 29)."
+    },
+    "184": {
+      "number": 184,
+      "text": "CTh.7.19.0. De saturianis et subafrensibus et occultatoribus eorum"
+    },
+    "185": {
+      "number": 185,
+      "text": "Impp. arcadius et honorius aa. messalae praefecto praetorio. saturianorum coniurationem armis sumus, ut oportuit, persecuti. sed aliquot\nex eis inminentis poenae evitatione ad diversa semet latibula contulerunt, quorum occultatores huic severitati sciant se esse subdendos, ut\nhae possessiones, in quibus latebram collocaverint, fisci nostri corporibus adgregentur, nisi protinus post edicti huius auctoritatem\npoenae ac legibus fuerint restituti. (399 iul. 20)."
+    },
+    "186": {
+      "number": 186,
+      "text": "Simili etiam se condicione retinendum esse cognoscat, si qui e subafrensibus, qui in saturianorum se coniurationem miscuerunt,\nquempiam praeviderit occultandum. quisquis igitur huiusmodi hominem adversus salubris decreti auctoritatem existimaverit latebris\nsubtrahendum, sciat sibi cum eo facinus esse commune, et si eiusmodi personae fuerint, quae multari rerum amissione non possint,\nproprii capitis luendum esse supplicio. (399 iul. 20)."
+    },
+    "187": {
+      "number": 187,
+      "text": "Nec hi sane poenae se exsortes futuros esse credant, qui deprehensos in quolibet rure tantorum scelerum machinatores silentio\npraetermiserint et non statim sub publica testificatione, quibus in locis inventi fuerint, publicaverint. (399 iul. 20)."
+    },
+    "188": {
+      "number": 188,
+      "text": "Id quoque observandum esse censemus, ut ad ea loca, quae a memoratis latronibus tenebantur, diligens dirigatur inspector, oblaturus\nprimitus veteribus dominis, ut, si haec possidere desiderant, ne abductis maereant cultoribus, translatis aliunde familiis rura, quae huc\nusque infructuosa apud eosdem perditorum temeritas fecisse videbatur, exerceant, vel certe, si inconvenientia existimaverint, salva\ntributorum praestatione ad idoneos possessores transferant. dat. xiii kal. aug. theodoro viro clarissimo cons. (399 iul. 20)."
+    },
+    "189": {
+      "number": 189,
+      "text": "Imp. constantinus a. floriano praesidi. veteranis, qui ex die v nonarum iuliarum, cum prima per thraciam victoria universo orbi illuxit, et\nqui postea aput nicomediam nostram missionem meruerunt, certa per edictum indulsimus, quae scribendi tabulis vel encauto et cerussa\nconscribere detur eis licentia. edictum autem continens indulgentiam nostram ad devotionem tuam misimus, ut et tua dicatio et cuncti alii\nrecognoscant, quid praestitimus memoratis. proposita iiii id. april. licinio v et crispo caesare conss. (318 [324] apr. 10)."
+    },
+    "190": {
+      "number": 190,
+      "text": "Idem a. cum introisset principia et salutatus esset a praefectis et tribunis et viris eminentissimis, adclamatum est: auguste constantine, dii\nte nobis servent: vestra salus nostra salus: vere dicimus, iurati dicimus. adunati veterani exclamaverunt: constantine aug, quo nos\nveteranos factos, si nullam indulgentiam habemus? constantinus a. dixit: magis magisque conveteranis meis beatitudinem augere debeo\nquam minuere. victorinus veteranus dixit: muneribus et oneribus universis locis conveniri non sinamur. constantinus a. dixit: apertius\nindica; quae sunt maxime munera, quae vos contumaciter gravant? universi veterani dixerunt: ipse perspicis scilicet. constantinus a. dixit:\niam nunc munificentia mea omnibus veteranis id esse concessum perspicuum sit, ne quis eorum nullo munere civili neque in operibus\npublicis conveniatur neque in nulla collatione neque a magistratibus neque vectigalibus. in quibuscumque nundinis interfuerint, nulla\nproponenda dare debebunt. publicani quoque, ut solent ..."
+    },
+    "191": {
+      "number": 191,
+      "text": "Fisco nostro quoque eadem epistula interdiximus, ut nullum omnino ex his inquietaret, sed liceat eis emere et vendere, ut integra beneficia\neorum sub saeculi nostri otio et pace perfruantur et eorum senectus quiete post labores perfruatur. (320 [?] mart. 1)."
+    },
+    "192": {
+      "number": 192,
+      "text": "Filios quoque eorum defendant decertationes, quae in patris persona fuerunt, quosque optamus florescere sollicitius, ne si contumaces\nsecundum eosdem veteranos comprobari potuerint, decimentur his sententiis, cum praesidali officio adiungentur. probabilius iussionem\nmeam curabunt ergo stationarii milites cuiusque loci cohortis, et parentes eorum desperationem, et ad sanctimoniam conspectus mei sine\nulla deliberatione remittere, ut sint salvi, cum senuas consecuntur poenas indulgentiae. dat. kal. mart. in civitate velovocorum constantino\naug. vi et constantino caes. conss. (320 [?] mart. 1)."
+    },
+    "193": {
+      "number": 193,
+      "text": "Idem a. ad universos veteranos. veterani iuxta nostrum praeceptum vacantes terras accipiant easque perpetuo habeant immunes, et ad\nemenda ruri necessaria pecuniae in nummo viginti quinque milia follium consequantur, boum quoque par et frugum promiscuarum modios\ncentum. qui autem negotii gerendi habuerit voluntatem, huic centum follium summam inmunem habere permittimus. praeter hos ergo, qui\nvel domicillis vel negotiis detinentur, omnes, qui vacatis et nullum negotium geritis, ne inopia laboretis, ad hoc remedium debetis\nconcurrere. dat. iii id. oct. constantinopoli constantino a. vi et constantino caes. conss. (320 oct. 13)."
+    },
+    "194": {
+      "number": 194,
+      "text": "Idem a. ad maximum praefectum urbi. comitatenses et ripenses milites atque protectores suum caput, patris ac matris et uxoris, si tamen\neos superstites habeant, omnes excusent, si censibus inditi habeantur. quod si aliquam ex his personis non habuerint vel nullam habuerint,\ntantum pro suo debent peculio excusare, quantum pro iisdem, si non deessent, excusare potuissent, ita tamen, ut non pactione cum\nalteris facta simulato dominio rem alienam excusent, sed vere proprias facultates. (325 iun. 17)."
+    },
+    "195": {
+      "number": 195,
+      "text": "Veteranos autem post emeritae missionis epistulas tam suum quam uxoris caput excusare sancimus aut, si honestam missionem\nmeruerint, suum caput tantummodo excusare ceteros. omnes veteranos de quocumque exercitu una cum uxore sua unius capitis frui\nexcusatione praecipimus. (325 iun. 17)."
+    },
+    "196": {
+      "number": 196,
+      "text": "Ripensis autem veteranus, qui ex priore lege post viginti quattuor stipendia honesta missione impetrata unius excusatione capitis\nfruebatur, etiam si viginti stipendiis completis honestam missionem meruerit, ad exemplum comitatensium militum unum caput excuset.\nintra viginti etiam stipendia dimissus, quoniam inbecilli et debiles censibus non dedicantur, eodem beneficio utatur. (325 iun. 17)."
+    },
+    "197": {
+      "number": 197,
+      "text": "Alares autem et cohortales dum militant, propria capita excusent, veteranis quoque eadem excusationis solacia habituris. qui quocumque\ntempore in quibuscumque partibus meruerint missionem, si ex comitatensi militia senectutis vel debilitatis causa dimissi fuerint,\nindiscreto stipendiorum numero duo capita excusaturis, id est suum adque uxoris; et ripensibus indiscrete idem privilegium habituris, si\nse ob belli vulnera dimissos probaverint: ita ut, si quis eorum post quindecim stipendia intra viginti et quattuor annos ex militia\ndecesserit, sui tantum capitis excusatione fruatur; uxorem enim ripensis, si militia decesserit post viginti et quattuor annos, excusari\noportet. proposita xv kal. iul. antiochiae paulino et iuliano conss. (325 iun. 17)."
+    },
+    "198": {
+      "number": 198,
+      "text": "Idem a. maximo praefecto praetorio. providendum est, ne veterani protectoria dignitate cumulati aut qui honores varios pro meritis suis\nconsecuti sunt, incongruis pulsentur iniuriis, cum, si quis in hoc crimine fuerit deprehensus, rectores provinciarum conveniat ad tuum\niudicium referre atque ad tuum officium praedictos dirigere, ut factum pro sui qualitate possit facillime coherceri. dat. iiii kal. ian. treviris\nianuarino et iusto conss. (328 [?] dec. 29)."
+    },
+    "199": {
+      "number": 199,
+      "text": "Imp. constantius a. ad helpidium consularem pannoniae. privilegia concessa veteranis, qui stipendia iusta meruerunt, prout se quisque in\nofficiis competentibus militasse declaret, omnia conserventur, corporalium seu personalium munerum vacatione eisdem tribuenda. dat.\nviii kal. iul. sirmio constantio a. vii et constant. a. ii conss. (342 [?] iun. 24)."
+    },
+    "200": {
+      "number": 200,
+      "text": "Idem a evagrio praefecto urbi. quosdam veteranos hoc nomine indignos latrocinia perpetrare comperimus, ideoque praecipimus, ut\nveterani, quibus bona mens est, aut arva versent aut certe in optimis negotiis pecuniam tractent et mercimonia agitent. qui vero neque rus\ncolunt neque utilem vitam commerciis exhibent, mox in ipsos capitaliter exsurgendum. exui enim omnibus privilegiis debent, per quos\npublica quies perturbatur, ita ut, si levissimum aliquid deliquerint, omnibus subiciantur poenis. dat. iii id. aug. constantio a. vi et\nconstante ii conss. (353 [?] aug. 11)."
+    },
+    "201": {
+      "number": 201,
+      "text": "Impp. valentinianus et valens aa. ad universos provinciales. omnibus benemeritis veteranis quam volunt patriam damus et inmunitatem\nperpetuam pollicemur. habeant ex vacantibus sive ex diversis, ubi elegerint, agros et ea lege habeant, ut sibi soli eorundem fructus\ncessuros esse cognoscant; nullum ex his agris stipendium, nullam annuam praestationem postulabimus: amplius addentes, ut etiam ad\nculturam eorundem agrorum et animalia et semina praebeamus, ita ut is, qui ex protectore dimissus erit, duo boum paria et centum\nmodios utriusque frugis consequatur, alii vero, qui honestas missiones sive causarias consequuntur, singula paria boum et quinquaginta\nmodios utriusque frugis accipiant. super quibus praebendis ad competentes iudices scripta congrua destinata sunt. si quos etiam veterani\nservulos familiasve ad agrum duxerint, inmunes perpetuo possideant. dat. xv kal. dec. romae divo ioviano et varroniano conss. (364 nov.\n17)."
+    },
+    "202": {
+      "number": 202,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad dagalaifum magistrum militum. remotis iniuriis iussimus veteranis nostris vel adgnatis\nlicere emere vendere negotiari: quos secundum veterem consuetudinem parentum nostrorum ab omni munere universisque reditibus auri\nargentique, sed et portorii indemnes esse oportet. dat. viii id. dec. veronae gratiano nob p. et dagalaifo conss. (366 dec. 6)."
+    },
+    "203": {
+      "number": 203,
+      "text": "Idem aaa. ad probum praefectum praetorio. si quis praepositus fuerit aut fabricae aut classi aut laetis, identidem si praepositus romanae\nlegionis vel cohortis gesserit tribunatum, aut quicumque his administrationibus, ad quas nonnisi cum certis fideiussoribus singuli quique\nveniunt, fortasse praefuerit, qui non vel intra palatium congruo labore meruisse vel armatam invenitur sudasse militiam, his privilegiis\ncareat quae militaribus palatinisque tribuuntur. dat. x kal. ian. treviris valentiniano nobilissimo puero et victore conss. (369 dec. 23)."
+    },
+    "204": {
+      "number": 204,
+      "text": "Idem aaa. ad iovinum magistrum militum. conmoneat tua sinceritas hac sanctione veteranos, ut loca absentium squalida et situ\ndissimulationis horrentia, de solida fructuum indemnitate securi, quantum vires uniuscuiusque patientur, exerceant. namque decernimus,\nut his, qui soli relicti terras sulcaverint, sine molestia praeiudicioque dominorum proventuum emolumenta quaerantur nihilque illis, qui\nmessium tempus adsolent aucupari, agratici nomine deferatur. dat. xvi kal. feb. valentiniano et valente aa. iiii conss. (373 [365 vel 368]\nian. 17)."
+    },
+    "205": {
+      "number": 205,
+      "text": "Impp. arcadius et honorius aa. stilichoni magistro utriusque militiae. plerique testimonialibus fraude quaesitis fiunt veterani, qui milites\nnon fuerint, nonnulli inter exordia militiae in ipso aetatis flore discedunt. quisquis igitur laetus alamannus sarmata vagus vel filius veterani\naut cuiuslibet corporis dilectui obnoxius et florentissimis legionibus inserendus testimoniales ex protectoribus vel cuiuslibet dignitatis\nobtinuit vel eas, quae nonnumquam comitum auctoritate praestantur, ne delitiscat, tirociniis castrensibus inbuatur. (400 ian. 30)."
+    },
+    "206": {
+      "number": 206,
+      "text": "Si quis praeterea vel prima stipendia vel nondum, ut oportebat, impleta missionis colore deseruit, nihil impetrata valeant, nisi forte\nquempiam aut defessae aetatis aut corporis aegritudo aut gloriosorum vulnerum cicatrices causaria vel honesta missione defendunt,\ndummodo hos ista non adiuvent, qui aetate solida et integro corpore haec occuparunt. (400 ian. 30)."
+    },
+    "207": {
+      "number": 207,
+      "text": "Et quoniam plurimos vel ante militiam vel post inchoatam vel peractam latere obiectu piae religionis agnovimus, dum se quidam vocabulo\nclericorum et infaustis defunctorum obsequiis occupatos non tam observatione cultus quam otii et socordiae amore defendunt, nulli\nomnino tali excusari obiectione permittimus, nisi qui aut fractus senio aut membris debilis aut parvitate deformis indignus consortio\nvirorum fortium repperitur. (400 ian. 30)."
+    },
+    "208": {
+      "number": 208,
+      "text": "Illius quoque sanctionis oportet admoneri, ut, si quis decurionum primipilariorum collegiatorum civilium apparitionum vel aliorum\nnecessitatibus irretitus militiae sacramenta durasset, defendi castrensium stipendiorum excusatione non possit. dat. iii kal. feb. mediolano\nstilichone et aureliano viris clarissimis conss. (400 ian. 30)."
+    },
+    "209": {
+      "number": 209,
+      "text": "Impp. honorius et theodosius aa. stilichoni comiti et magistro utriusque militiae. oportet inter eos, qui ambitu ac suffragiis ad tribunatus\npraepositurasque perveniunt, et eos, qui labore periculis atque ordine militiae decurso huiusmodi dignitates acceperint, esse discretionem.\nquare inmunes eos haberi decernimus, qui militiae praerogativa, ut dignum est, ad tribunatum praeposituramve perveniunt. conmonendi\nautem sunt comites et duces militum, ut et ipsi eos relevatos esse cognoscant neque aliquid hoc nomine ab his flagitandum. de quibus ad\nomnes militares iudices paria scripta direximus. dat. xi kal. april. roma honorio viii et theodosio iii aa. conss. (409 [407] mart. 22)."
+    },
+    "210": {
+      "number": 210,
+      "text": "CTh.7.21.0. De testimoniali ex tribunis et protectoribus"
+    },
+    "211": {
+      "number": 211,
+      "text": "Imp. constantinus a. ad rufinum praefectum praetorio. ferri non potest in titulos militaris laudis irrepere eos, qui nec aciem viderint nec\nsigna perspexerint nec arma tractaverint. ideoque si qui ex protectoribus vel ex praepositis vel ex tribunis epistulas reportaverint, non\nhabeant privilegium, quod merentur qui ordine militiae sub armorum labore decurso ad hunc honorem pervenerint. proposita iiii id. aug.\nsirmio constantino a. iii et licinio iii conss. (?) (313 [352 - 354] aug. 10)."
+    },
+    "212": {
+      "number": 212,
+      "text": "Imp. constantius a. ad praefectos praetorio. post alia: si quis de paganis vel decurionibus ambierit ad honores protectoriae dignitatis, nec\ntempus nec stipendia ei post hanc legem computanda sunt. hoc et circa eos, qui ad praeposituras ambitu pervenerint, custodiri\npraecipimus. et cetera. dat. kal. mai. constantio a. vi et constante ii conss. (353 mai. 1)."
+    },
+    "213": {
+      "number": 213,
+      "text": "Impp. arcadius et honorius aa. florentino praefecto urbi. quicumque ex protectoribus aut domesticis honorarias missiones meruerint, sub\nhac norma penes eos dignitas maneat, ut neque municeps curiam neque collegiatus obsequium propriae urbis effugiat neque negotiator a\npensionis aurariae instituta summa militiae suffragio subtrahatur neque ab ullo postremo officio militia vel corpore talis se impetrati\nquisquam obiectione defendat, sed manente norma solvat omnia, quae ab illo vel condicione nascendi vel iure proprii postulantur officii.\n(396 apr. 18)."
+    },
+    "214": {
+      "number": 214,
+      "text": "De liberis etiam eorum censemus, ne de his editi originis munus per privilegia emendicatae dignitatis effugiant. (396 apr. 18)."
+    },
+    "215": {
+      "number": 215,
+      "text": "Quae quidem omnia officere illis aliquando non patimur, quos emeritos felicibus castris vel honesta interdum adversae valetudinis missio\nvel vulnerum laudabilis excusatio vel emensum sub signis tempus absolvit. dat. xiiii kal. mai. mediolano arcadio iiii et honorio iii aa. conss.\n(396 apr. 18)."
+    },
+    "216": {
+      "number": 216,
+      "text": "Impp. honorius et theodosius aa. theodoro praefecto praetorio. eos, qui testimoniales non suo merito, sed eorum contemplatione sunt\nadepti qui pro his nostram clementiam sunt precati, par severitas persequatur. eos tamen esse in urbe sacratissima non vetamus, qui\nposuerunt illic larem adque domicilium. dat. x kal. dec. ravenna basso et filippo conss. (408 nov. 22)."
+    },
+    "217": {
+      "number": 217,
+      "text": "CTh.7.22.0. De filiis militarium apparitorum et veteranorum"
+    },
+    "218": {
+      "number": 218,
+      "text": "Imp. constantinus a. ad octavianum. veteranorum liberos aptos militiae, quorum quidam ut desides recusant militarium munerum\nfunctionem, quidam adeo ignavi sunt, ut cum dispendio corporis militiae velint necessitatem evadere, iubemus, si ad militiam inutiles\nresectis digitis iudicentur, curialibus sine aliqua ambiguitate muneribus atque obsequiis adgregari. dat. xiiii kal. mart. sirmio, accepta vii id.\napril. regio constantino a. v et licinio c. conss. (319 febr. 16)."
+    },
+    "219": {
+      "number": 219,
+      "text": "Idem a. ad severum. veteranorum filios propter privilegia parentibus eorum indulta vacare non patimur, sed programmate per omnes\ncivitates proposito diligenter quaesitos ad alterutrum compelli iubemus, ut aut decurionatus muneribus obtemperent aut militent,\nobservaturo devotionis tuae officio, ut qui probantur ab annis viginti usque ad viginti et quinque annos aetatem agant. (326 iul. [mart.?]\n30)."
+    },
+    "220": {
+      "number": 220,
+      "text": "Si autem veteranorum filii, qui equestrem militiam toleraverunt, inter equites probari voluerint, habeant facultatem, ita ut cum singulis\nequis idoneis praedicto adgregentur obsequio. (326 iul. [mart.?] 30)."
+    },
+    "221": {
+      "number": 221,
+      "text": "Quod si quis duos equos habeat vel unum idoneum et servum unum, cum circitoria militet dignitate et binas annonas accipiat, qui gradus\npraebetur aliis post laborem. (326 iul. [mart.?] 30)."
+    },
+    "222": {
+      "number": 222,
+      "text": "Singularum autem civitatum decurionibus intimetur, ut veteranorum filios, qui praedictae aetatis sunt, si militare noluerint vel minus\ninveniantur idonei, ad curialia vocare non morentur obsequia, si tamen patrimoniis idonei esse noscuntur. (326 iul. [mart.?] 30)."
+    },
+    "223": {
+      "number": 223,
+      "text": "Ex his autem, qui militare voluerint, si qui minus apti sunt equestri militiae id efficiente calamitate membrorum et legionariae congrui esse\nnoscuntur, deducendi ad nos protectori qui ob hoc missus est consignentur. dat. iii kal. aug. aquileia constantino a. vii et constantio caes.\nconss. (326 iul. [mart.?] 30)."
+    },
+    "224": {
+      "number": 224,
+      "text": "Idem a. ad evagrium. ii, qui ex officialibus quorumcumque officiorum geniti sunt, sive eorundem parentes adhuc sacramento tenentur sive\niam dimissi erunt, in parentum locum procedant. dat. prid. non. aug. basso et ablavio conss. (331 aug. 4)."
+    },
+    "225": {
+      "number": 225,
+      "text": "Idem a. ad leontium praefectum praetorio. iam dudum sanximus, ut veteranorum filii, qui post sedecim annos militiae munus subire non\npossunt vel armis gerendis habiles non extiterint, curiis mancipentur. dat. iii id. april. pacatiano et hilariano conss. (332 [343] apr. 11)."
+    },
+    "226": {
+      "number": 226,
+      "text": "Idem a. ablavio praefecto praetorio. veteranorum filii vel eorum, qui praepositi vel protectores fuerunt, vel ceterorum, qui quemlibet\ngradum militiae tenuerunt, si invalidi et inbecilli sint, curiis adgregentur, ita ut re familiari gaudentes et inaptos militiae curiarum societati\nconiungas. quod etiam nos fecimus sub conspectu nostro his, quos deliciosis nutrimentis enervatos esse perspeximus. qui igitur ex his\npatresfamilias sunt et idonei functionibus publicis, eligantur ad augendum curialium numerum, singularum civitatum ordinibus\ncommonendis, ut quos norunt idoneos nominare non dubitent praeter eos, quos vigor et fortitudo defendendae rei publicae idoneos facit.\nnam et duces singulorum limitum convenimus, ne deinceps veterani filius inutilis sacramento cingatur. eos etiam, qui iam probati sunt,\ndiligenter inspiciant, ut qui minus idonei repperiuntur sacramento soluti ad gravitatem tuam mittantur. dat. et proposita id. nov. dalmatio\net zenofilo conss. (333 nov. 13)."
+    },
+    "227": {
+      "number": 227,
+      "text": "Imp. constantius a. antonio duci mesopotamiae. post alia: observetur, ne veteranorum seu militum filii officiis praesidalibus adgregentur.\ndat. iiii non. feb. limenio et catullino conss. (349 febr. 2)."
+    },
+    "228": {
+      "number": 228,
+      "text": "Impp. valentinianus et valens aa. ad petronium patricium. quicumque castrensi stirpe progeniti diversorum se nexibus officiorum\ntradiderunt, manu iniecta retrahantur sciantque veterani, quibus quies post arma concessa est, liberos suos, quos militaribus aptos\nministeriis insitum robur ostendat, offerendos esse militiae. nam si quis militaris prosapiae degeneri mente officiorum se consortiis\nadgregavit, ita ut fractis viribus grandaevam praeferat senectutem aut debilitatis obtentu bellico operi inconveniens iudicetur, eundem\nignaviae latebris vel sera indagatione protractum curiarum functionibus placuit mancipari. proposita beryti idib. april. valentiniano et\nvalente aa. conss. (365? 368? 370? 373? apr. 13)."
+    },
+    "229": {
+      "number": 229,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad probum praefectum praetorio. filios veteranorum, qui armatae militiae paruissent, si in\nofficiis publicis vel ministerio chartularum atque observatione rationum inveniuntur, sciat tua sinceritas esse revocandos. etenim hi,\nquibus vel corporis robur vel statura defuerit, qui comitatensi digni possint esse militia, ripensi poterunt copulari. proposita romae xv\nkal. mart. modesto et arintheo conss. (372 febr. 15)."
+    },
+    "230": {
+      "number": 230,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. quicumque castrensi stirpe progenitos diversis se officiis indiderunt, etiam manu\niniecta retrahantur, sciantque veterani liberos suos, quos militaribus aptos muniis insitum robur ostendat, aut offerendos esse militiae aut\nobnoxios nostrae legis laqueis iam futuros. scripta petro consulari phoenices damasco pridie id. mai. gratiano a. v et theodosio a. i conss.\n(380 mai. 14)."
+    },
+    "231": {
+      "number": 231,
+      "text": "Idem aaa. ad felicem comitem orientis. non solum in diversis officiis militantes, sed etiam vacantes rebus propriis veteranorum ac militum\nfilios armatae militiae volumus sociari. nulla igitur sit excusationis occasio. dat. viii id. iul. thessalonica gratiano v et theodosio i aa. conss.\n(380 iul. 8)."
+    },
+    "232": {
+      "number": 232,
+      "text": "Idem aa. have, neoteri, karissime nobis. si filii primipilarium reperti fuerint, qui ingressi legitimos annos nullis stipendiis fulciuntur, sed\nanno proximo, quo ad curiam fuerint lacessiti, semet militiae manciparint, ad curiam teneantur, ita ut ne officii quidem, cum transacto\nanno esse coeperint curiales, praepostera audiatur circa eius personam ac sera petitio. (380 sept. 8)."
+    },
+    "233": {
+      "number": 233,
+      "text": "Quod si in eadem domo duo filii erunt et latum adeo felixque patrimonium, quod possit duplicium necessitatum suscipere functiones,\nunum oportebit militiae, unum curiae vindicari. quod servandum pari norma erit, si tres aut quattuor liberi vel etiam plures numero\nfamiliam eiusdem stirpis ornaverint, ut etiam ex numerosis fratribus unus ad curiam devocetur. dat. vi id. sept. sirmio gratiano v et\ntheodosio i aa. conss. (380 sept. 8)."
+    },
+    "234": {
+      "number": 234,
+      "text": "Impp. arcadius et honorius aa. stilichoni comiti et magistro utriusque militiae. quoniam filii veteranorum ad diversa officia se contulerunt,\nhac sanctione praecipimus, ut ab his, qui nunc sunt in officiis occupati, nulli iuniores repetantur, ac deinceps post hoc edictum aditum\nveteranorum filiis militandi per civilia officia esse praeclusum. dat. vi kal. oct. mediolano honorio a. iiii et eutychiano conss. (398 sept.\n26)."
+    },
+    "235": {
+      "number": 235,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad probum praefectum praetorio. quicumque honorariis codicillis habetur ex comite, tres\nprotinus equos, qui digni sunt comprobari, curet offerre, quicumque autem eodem ex praeside factus indulto, duos pari devotione mox\ntradat. ita enim promptius instruitur usus armorum. quod munus in posterum ea lege novetur, ut quinto quoque anno, hoc est magis\naliquando quam saepe, similis recurrat exactio. dat. viii id. iun. sirmio valentiniano nobilissimo puero et victore conss. (369 iun. 6)."
+    },
+    "236": {
+      "number": 236,
+      "text": "Impp. arcadius et honorius aa. basilio praefecto urbi. quando votis conmunibus felix annus aperitur, in una libra auri solidi septuaginta\nduo obryziaci principibus offerendi devotionem animo libenti suscipimus statuentes, ut deinceps sequentibus annis uniuscuiusque\nsedulitas principibus suis talia ingerant semper et deferant. dat. iii non. mart. mediolano olybrio et probino conss. (395 mart. 5)."
+    }
+  }
+}

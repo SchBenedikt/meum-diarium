@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "author": "Suetonius",
+    "work": "Pliny",
+    "url": "https://www.thelatinlibrary.com/suetonius/suet.pliny.html",
+    "verse_count": 2,
+    "title": "Pliny"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "C. SVETONI TRANQVILLVI DE POETISVITA PLINII SECUNDI"
+    },
+    "2": {
+      "number": 2,
+      "text": "PLINIUS SECUNDUS Novocomensis equestribus militiis industrie functus\nprocurationes quoque splendidissimas et continuas summa integritate\nadministravit, et tamen liberalibus studiis tantam operam dedit, ut non\ntemere quis plura in otio scripserit. Itaque bella omnia, quae unquam cum\nGermanis gesta sunt, XX voluminibus comprehendit, itemque \"Naturalis\nHistoriae\" XXXVII libros absolvit. Periit clade Campaniae; cum enim\nMisenensi classi praeesset et flagrante Vesubio ad explorandas propius\ncausas liburnica pertendisset, nec adversantibus ventis remeare posset, vi\npulveris ac favillae oppressus est, vel ut quidam existimant a servo suo\noccisus, quem aestu deficiens ut necem sibi maturaret oraverat."
+    }
+  }
+}
