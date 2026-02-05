@@ -1,0 +1,859 @@
+{
+  "metadata": {
+    "author": "Justinian",
+    "work": "Liber XXII",
+    "url": "https://www.thelatinlibrary.com/justinian/digest22.shtml",
+    "verse_count": 212,
+    "title": "Liber XXII"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "OMINI NOSTRI SACRATISSIMI PRINCIPIS IUSTINIANI IURIS ENUCLEATI EX OMNI VETERE IURE COLLECTI DIGESTORUM SEU PANDECTARUM"
+    },
+    "2": {
+      "number": 2,
+      "text": "Dig. 22.1.0. De usuris et fructibus et causis et omnibus accessionibus et mora.\n\nDig. 22.2.0. De nautico faenore.\n\nDig. 22.3.0. De probationibus et praesumptionibus.\n\nDig. 22.4.0. De fide instrumentorum et amissione eorum.\n\nDig. 22.5.0. De testibus.\n\nDig. 22.6.0. De iuris et facti ignorantia."
+    },
+    "3": {
+      "number": 3,
+      "text": "Dig. 22.1.0. De usuris et fructibus et causis et omnibus accessionibus et mora."
+    },
+    "4": {
+      "number": 4,
+      "text": "Cum iudicio bonae fidei disceptatur, arbitrio iudicis usurarum modus ex more regionis ubi contractum est constituitur, ita tamen, ut legi non offendat."
+    },
+    "5": {
+      "number": 5,
+      "text": "Socius si ideo condemnandus erit, quod pecuniam communem invaserit vel in suos usus converterit, omnimodo etiam mora non interveniente praestabuntur usurae."
+    },
+    "6": {
+      "number": 6,
+      "text": "Nec tamen iudex iudicii bonae fidei recte iubebit interponi cautiones, ut, si tardius sententiae condemnatus paruerit, futuri temporis pendantur usurae, cum in potestate sit actoris iudicatum exigere. paulus notat: quid enim pertinet ad officium iudicis post condemnationem futuri temporis tractatus?"
+    },
+    "7": {
+      "number": 7,
+      "text": "Papinianus: circa tutelae restitutionem pro favore pupillorum latior interpretatio facta est: nemo enim ambigit hodie, sive iudex accipiatur, in diem sententiae, sive sine iudice tutela restituatur, in eum diem quo restituit usuras praestari. plane si tutelae iudicio nolentem experiri tutor ultro convenerit et pecuniam optulerit eamque obsignatam deposuerit, ex eo tempore non praestabit usuras."
+    },
+    "8": {
+      "number": 8,
+      "text": "Volgo receptum est, ut, quamvis in personam actum sit, post litem tamen contestatam causa praestetur: cuius opinionis ratio redditur, quoniam quale est, cum petitur, tale dari debet ac propterea postea captos fructus partumque editum restitui oportet."
+    },
+    "9": {
+      "number": 9,
+      "text": "In fideicommissi persecutione, cum post iudicis sententiam moram fecisset heres, iussit imperator marcus antoninus, intermisso legitimo tempore quod condemnatis praestatur ut usque ad sententiam commoda fideicommissarius accipiat. quod decretum ita accipi oportet, si ante iudicis sententiam mora non intervenit: tametsi non facile evenire possit, ut mora non praecedente perveniatur ad iudicem: sed puta legis falcidiae rationem intervenisse. ceterum si ante, quam ad iudicem perveniretur, in mora heres fuit, exinde fructuum praestandorum necessitate adstrictus qua tandem ratione, quoniam et sententia victus est, legitimi temporis spatio fructibus liberabitur, cum ea temporis intercapedo iudicato dilationem dare, non lucrum adferre debeat?"
+    },
+    "10": {
+      "number": 10,
+      "text": "In his quoque iudiciis, quae non sunt arbitraria nec bonae fidei, post litem contestatam actori causa praestanda est in eum diem, quo sententia dicitur: certe post rem iudicatam tempus a fructibus dependendis immune est."
+    },
+    "11": {
+      "number": 11,
+      "text": "Nonnumquam evenit, ut, quamquam fructus hereditatis aut pecuniae usura nominatim relicta non sit, nihilo minus debeatur. ut puta si quis rogetur post mortem suam quidquid ex bonis supererit titio restituere: ut enim ea quae fide bona deminuta sunt in causa fideicommissi non deprehenduntur, si pro modo ceterorum quoque bonorum deminuantur, ita quod ex fructibus supererit iure voluntatis restitui oportebit."
+    },
+    "12": {
+      "number": 12,
+      "text": "Cum pollidius a propinqua sua heres institutus rogatus fuisset filiae mulieris quidquid ex bonis eius ad se pervenisset, cum certam aetatem puella complesset, restituere, idque sibi mater ideo placuisse testamento comprehendisset, ne filiae tutoribus, sed potius necessitudini res committerentur, eundemque pollidium fundum retinere iussisset: praefectis praetorii suasi fructus, qui bona fide a pollidio ex bonis defunctae percepti essent, restitui debere, sive quod fundum ei tantum praelegaverat sive quod lubrico tutelae fideicommissi remedium mater praetulerat."
+    },
+    "13": {
+      "number": 13,
+      "text": "Si auro vel argento facto per fideicommissum relicto mora intervenerit, an usurarum aestimatio facienda sit, tractari solet. plane si materiam istam ideo relinquit, ut ea distracta pecuniaque refecta fideicommissa solverentur aut alimenta praestarentur, non oportere frustrationem impunitam esse responderi oportet: quod si forte ideo relinquit, ut his vasis uteretur, non sine rubore desiderabuntur usurae ideoque non exigentur."
+    },
+    "14": {
+      "number": 14,
+      "text": "Si stipulatus sis rem dari vacuamque possessionem tradi, fructus postea captos actione incerti ex stipulatu propter inferiora verba consecuturum te ratio suadet. an idem de partu ancillae responderi possit, considerandum est. nam quod ad verba superiora pertinet, sive factum rei promittendi sive effectum per traditionem dominii transferendi continent, partus non continetur: verum si emptor a venditore novandi animo ita stipulatus est, factum tradendi stipulatus intellegitur, quia non est verisimile plus venditorem promisisse, quam iudicio empti praestare compelleretur. sed tamen propter illa verba \" vacuamque possessionem tradi\" potest dici partus quoque rationem committi incerti stipulatione: etenim ancilla tradita partum postea editum in bonis suis reus stipulandi habere potuisset."
+    },
+    "15": {
+      "number": 15,
+      "text": "Si post contractam emptionem ante interpositam stipulationem partus editus aut aliquid per servum venditori adquisitum est, quod ex stipulatu consequi non poterit, iudicio empti consequitur: id enim quod non transfertur in causam novationis iure pristino peti potest."
+    },
+    "16": {
+      "number": 16,
+      "text": "Generaliter observari convenit bonae fidei iudicium non recipere praestationem, quae contra bonos mores desideretur."
+    },
+    "17": {
+      "number": 17,
+      "text": "Cum de in rem verso cum herede patris vel domini ageretur et usurarum quaestio moveretur, imperator antoninus ideo solvendas usuras iudicavit, quod eas ipse dominus vel pater longo tempore praestitisset."
+    },
+    "18": {
+      "number": 18,
+      "text": "Imperator quoque noster severus filiae flavii athenagorae, cuius bona fuerant publicata, de fisco ideo numerari decies centena dotis nomine iussit, quod ea patrem praestitisse dotis usuras allegasset."
+    },
+    "19": {
+      "number": 19,
+      "text": "Debitor usurarius creditori pecuniam optulit et eam, cum accipere noluisset, obsignavit ac deposuit: ex eo die ratio non habebitur usurarum. quod si postea conventus ut solveret moram fecerit, nummi steriles ex eo tempore non erunt."
+    },
+    "20": {
+      "number": 20,
+      "text": "Equis per fideicommissum relictis post moram fetus quoque praestabitur ut fructus, sed fetus secundus ut causa, sicut partus mulieris."
+    },
+    "21": {
+      "number": 21,
+      "text": "Pecuniae faenebris, intra diem certum debito non soluto, dupli stipulatum in altero tanto supra modum legitimae usurae respondi non tenere: quare pro modo cuiuscumque temporis superfluo detracto stipulatio vires habebit."
+    },
+    "22": {
+      "number": 22,
+      "text": "Usurarum stipulatio, quamvis debitor non conveniatur, committitur. nec inutilis legitimae usurae stipulatio videtur sub ea condicione concepta \" si minores ad diem solutae non fuerint\": non enim poena, sed faenus uberius iusta ratione sortis promittitur. si tamen post mortem creditoris nemo fuit cui pecunia solveretur, eius temporis inculpatam esse moram constitit: ideo si maiores usurae prioribus petantur, exceptio doli non inutiliter opponetur."
+    },
+    "23": {
+      "number": 23,
+      "text": "Partum post litem contestatam editum restituere possessor debet: quem non deberet restituere, si, cum mater peteretur, iam natus fuisset, nisi specialiter et pro hoc egisset."
+    },
+    "24": {
+      "number": 24,
+      "text": "Gaius seius qui rem publicam gerebat faeneravit pecuniam publicam sub usuris solitis: fuit autem consuetudo, ut intra certa tempora non illatis usuris graviores infligerentur: quidam debitores cessaverunt in solvendis usuris, quidam plus intulerunt et sic effectum est, ut omne quod usurarum nomine competebat etiam pro his, qui cessaverant in usuris, suppleatur. quaesitum est, an illud, quod amplius ex consuetudine poenae nomine a quibusdam exactum est, ipsi seio proficere deberet an rei publicae lucro cederet. respondi, si gaius seius a debitoribus usuras stipulatus esset, eas solas rei publicae praestari oportere, quae secundum formam ab is exigi solent, etiamsi non omnia nomina idonea sint."
+    },
+    "25": {
+      "number": 25,
+      "text": "Quid si servus publicus obligationem usurarum rei publicae adquisiit? aequum est, quamvis ipso iure usurae rei publicae debeantur, tamen pro defectis nominibus compensationem maiorum usurarum fieri, si non sit parata res publica universorum debitorum fortunam suscipere. eadem fere in tutoribus Marcellus refert."
+    },
+    "26": {
+      "number": 26,
+      "text": "Seia mutuam pecuniam accepit a septicio: de usuris ita convenit: nisi sua quaque die usurae supra scriptae exsolverentur vel post tertium mensem, tunc in maiores usuras seia teneretur, et deinceps per singulas pensiones, si condicione data usurae non solverentur, ea condicio observaretur, donec omnis summa debita hoc nomine exsolveretur. quaero, an haec verba \" et deinceps per singulas pensiones condicione data usurae non solvantur, ea condicio observaretur\" eo pertineant, ut, quamvis commissa sit forte prima stipulatio, non tamen in ampliorem quantitatem usurarum conveniri possit quam eius pensionis nomine, quae egressa est diem praestitutum. paulus respondit plures condiciones continere eam stipulationem, quae de gravioribus usuris praestandis subiecta est, id est ut per singulas pensiones condicio inspectaretur non illatarum suis temporibus leviorum usurarum: et ideo posse evitari poenam sequentium pensionum."
+    },
+    "27": {
+      "number": 27,
+      "text": "Qui semissis usuras promisit, per multos annos minores praestitit: heres creditoris semisses petit. cum per debitorem non steterit, quo minus minores solvat, quaero an exceptio doli vel pacti obstet. respondi, si exsolvendis ex more usuris per tanta tempora mora per debitorem non fuit, posse secundum ea, quae proponerentur obstare exceptionem."
+    },
+    "28": {
+      "number": 28,
+      "text": "Quaesitum est, an iudicio negotiorum gestorum vel mandati pro pecunia otiosa usuras praestare debeat, cum dominus nullam pecuniam faeneravit. respondit, si eam pecuniam positam habuisset idque ex consuetudine mandantis fecisset, non debere quicquam usurarum nomine praestare."
+    },
+    "29": {
+      "number": 29,
+      "text": "Respondit paulus moram in solvendo fideicommisso factam partus quoque ancillarum restituendos."
+    },
+    "30": {
+      "number": 30,
+      "text": "Heres rogatus erat post mortem suam sine reditu hereditatem restituere: quaesitum est, an partus ancillarum etiam vivo herede nati restituendi essent propter verba testamenti, quibus de reditu solo deducendo testator sensit. paulus respondit ante diem fideicommissi cedentem partus ancillarum editos fideicommisso non contineri. neratius libro primo ita refert eum, qui similiter rogatus esset, ut mulierem restitueret, partum eius restituere cogendum non esse, nisi tunc editus esset, cum in fideicommisso restituendo moram fecisset. neque interesse existimo, an ancilla specialiter an hereditas in fideicommisso sit."
+    },
+    "31": {
+      "number": 31,
+      "text": "Respondit neque eorum fructuum, qui post litem contestatam officio iudicis restituendi sunt, usuras praestari oportere, neque eorum, qui prius percepti quasi malae fidei possessori condicuntur."
+    },
+    "32": {
+      "number": 32,
+      "text": "Liberalitatis in rem publicam factae usurae non exiguntur."
+    },
+    "33": {
+      "number": 33,
+      "text": "Cum usurae pretii fundi ab eo qui a fisco emerat peterentur et emptor negaret traditam sibi possessionem, imperator decrevit iniquum esse usuras ab eo exigi, qui fructus non percepisset."
+    },
+    "34": {
+      "number": 34,
+      "text": "Cum quidam cavisset se quotannis quincunces usuras praestaturum et, si quo anno non solvisset, tunc totius pecuniae ex die qua mutuatus est semisses soluturum, et redditis per aliquot annos usuris mox stipulatio commissa esset, divus marcus fortunato ita rescripsit: \" praesidem provinciae adi, qui stipulationem, de cuius iniquitate questus est, ad modum iustae exactionis rediget\". haec constitutio ad finitum modum excedit: quid ergo? sic temperanda res est, ut in futurum dumtaxat ex die cessationis crescat usura."
+    },
+    "35": {
+      "number": 35,
+      "text": "Divus pius ita rescripsit: parum iuste praeteritas usuras petis, quas omisisse te longi temporis intervallum indicat, qui eas a debitore tuo, ut gratior apud eum videlicet esses, petendas non putasti\"."
+    },
+    "36": {
+      "number": 36,
+      "text": "In tacito fideicommisso omne emolumentum heredi auferendum et fisco praestandum divus pius rescripsit: ergo et usurarum emolumentum aufertur heredi."
+    },
+    "37": {
+      "number": 37,
+      "text": "Si pupillo non habenti tutorem fideicommissum solvi non potuit, non videri moram per heredem factam divus pius rescripsit. ergo nec ei debetur, qui quod rei publicae causa afuit vel ex alia causa iusta impeditus, ex qua restitutio indulgetur, petere non potuit: quid enim potest imputari ei, qui solvere, etiamsi vellet, non potuit? nec simile videri posse, quod placuit minoribus etiam in his succurri quae non adquisierunt: usurae enim non propter lucrum petentium, sed propter moram solventium infliguntur."
+    },
+    "38": {
+      "number": 38,
+      "text": "Ex locato qui convenitur, nisi convenerit ut tardius pecuniae illatae usuras deberet, non nisi ex mora usuras praestare debet."
+    },
+    "39": {
+      "number": 39,
+      "text": "Fiscus ex suis contractibus usuras non dat, sed ipse accipit: ut solet a foricariis, qui tardius pecuniam inferunt, item ex vectigalibus. cum autem in loco privati successit, etiam dare solet."
+    },
+    "40": {
+      "number": 40,
+      "text": "Si debitores, qui minores semissibus praestabant usuras, fisci esse coeperunt, postquam ad fiscum transierunt, semisses cogendi sunt praestare."
+    },
+    "41": {
+      "number": 41,
+      "text": "Eos qui ex administratione rerum civitatium conveniuntur usuris obnoxios esse satis notum est. idem observatur in operum curatoribus, si pecunia apud eos remansit. sed in ea quam redemptoribus commiserunt, etiamsi neglegenter dederint, usura eis remittitur: haec autem ita sunt, si nulla fraus arguitur: alioquin etiam usurae applicabuntur."
+    },
+    "42": {
+      "number": 42,
+      "text": "Si dies non sit ab his, qui statuas vel imagines ponendas legaverunt, praefinitus, a praeside tempus statuendum est et nisi posuerint heredes, usuras rei publicae usque ad tertiam centesimae pendent."
+    },
+    "43": {
+      "number": 43,
+      "text": "Evictis agris, si initio convenit, ut venditor pretium restitueret, usurae quoque post evictionem praestabuntur, quamvis emptor post dominii litem inchoatam fructus adversario restituit: nam incommodum medii temporis emptoris damnum est."
+    },
+    "44": {
+      "number": 44,
+      "text": "Post traditam possessionem defuncto venditore, cui successor incertus fuit, medii quoque temporis usurae pretii, quod in causa depositi non fuit, praestabuntur."
+    },
+    "45": {
+      "number": 45,
+      "text": "Videamus, an in omnibus rebus petitis in fructus quoque condemnatur possessor. quid enim si argentum aut vestimentum aliamve similem rem, quid praeterea si usum fructum aut nudam proprietatem, cum alienus usus fructus sit, petierit? neque enim nudae proprietatis, quod ad proprietatis nomen attinet, fructus ullus intellegi potest, neque usus fructus rursus fructus eleganter computabitur. quid igitur, si nuda proprietas petita sit? ex quo perdiderit fructuarius usum fructum, aestimabuntur in petitione fructus. item si usus fructus petitus sit, proculus ait in fructus perceptos condemnari. praeterea gallus aelius putat, si vestimenta aut scyphus petita sint, in fructu haec numeranda esse, quod locata ea re mercedis nomine capi potuerit."
+    },
+    "46": {
+      "number": 46,
+      "text": "Iter quoque et actus si petitus sit, vix est ut fructus ulli possint aestimari, nisi si quis commodum in fructibus numeraret, quod habiturus esset petitor, si statim eo tempore quo petisset ire agere non prohiberetur: quod admittendum est."
+    },
+    "47": {
+      "number": 47,
+      "text": "Usuras illicitas sorti mixtas ipsas tantum non deberi constat, ceterum sortem non vitiare."
+    },
+    "48": {
+      "number": 48,
+      "text": "Sciendum est non omne, quod differendi causa optima ratione fiat, morae adnumerandum: quid enim si amicos adhibendos debitor requirat vel expediendi debiti vel fideiussoribus rogandis? vel exceptio aliqua allegetur? mora facta non videtur,"
+    },
+    "49": {
+      "number": 49,
+      "text": "Sed et si rei publicae causa abesse subito coactus sit, ut defensionem sui mandare non possit, moram facere non videbitur: sive in vinculis hostiumve potestate esse coeperit."
+    },
+    "50": {
+      "number": 50,
+      "text": "Aliquando etiam in re moram esse decerni solet, si forte non exstat qui conveniatur."
+    },
+    "51": {
+      "number": 51,
+      "text": "Si quis solutioni quidem moram fecit, iudicium autem accipere paratus fuit, non videtur fecisse moram: utique si iuste ad iudicium provocavit."
+    },
+    "52": {
+      "number": 52,
+      "text": "Mora videtur creditori fieri, sive ipsi sive ei cui mandaverat sive ei qui negotia eius gerebat mora facta sit: nec hoc casu per liberam personam adquiri videtur, sed officium impleri, sicuti, cum quis furtum mihi facientem deprehendit, negotium meum agens manifesti furti actionem mihi parat: item cum procurator interpellaverit promissorem hominis, perpetuam facit stipulationem."
+    },
+    "53": {
+      "number": 53,
+      "text": "Qui scit fundum sibi cum alio communem esse, fructus, quos ex eo perceperit invito vel ignorante socio, non maiore ex parte suos facit quam ex qua dominus praedii est: nec refert, ipse an socius an uterque eos severit, quia omnis fructus non iure seminis, sed iure soli percipitur: et quemadmodum, si totum fundum alienum quis sciens possideat, nulla ex parte fructus suos faciet, quoquo modo sati fuerint, ita qui communem fundum possidet, non faciet suos fructus pro ea parte, qua fundus ad socium eius pertinebit."
+    },
+    "54": {
+      "number": 54,
+      "text": "In alieno fundo, quem titius bona fide mercatus fuerat, frumentum sevi: an titius bonae fidei emptor perceptos fructus suos faciat? respondi, quod fructus qui ex fundo percipiuntur intellegi debet propius ea accedere, quae servi operis suis adquirunt, quoniam in percipiendis fructibus magis corporis ius ex quo percipiuntur quam seminis, ex quo oriuntur aspicitur: et ideo nemo umquam dubitavit, quin, si in meo fundo frumentum tuum severim, segetes et quod ex messibus collectum fuerit meum fieret. porro bonae fidei possessor in percipiendis fructibus id iuris habet, quod dominis praediorum tributum est. praeterea cum ad fructuarium pertineant fructus a quolibet sati, quanto magis hoc in bonae fidei possessoribus recipiendum est, qui plus iuris in percipiendis fructibus habent? cum fructuarii quidem non fiant, antequam ab eo percipiantur, ad bonae fidei autem possessorem pertineant, quoquo modo a solo separati fuerint, sicut eius qui vectigalem fundum habet fructus fiunt, simul atque solo..."
+    },
+    "55": {
+      "number": 55,
+      "text": "Bonae fidei emptor sevit et antequam fructus perciperet, cognovit fundum alienum esse: an perceptione fructus suos faciat, quaeritur. respondi, bonae fidei emptor quod ad percipiendos fructus intellegi debet, quamdiu evictus fundus non fuerit: nam et servus alienus quem bona fide emero tamdiu mihi ex re mea vel ex operis suis adquiret, quamdiu a me evictus non fuerit."
+    },
+    "56": {
+      "number": 56,
+      "text": "Venationem fructus fundi negavit esse, nisi fructus fundi ex venatione constet."
+    },
+    "57": {
+      "number": 57,
+      "text": "Cum patri familias mora facta sit, iam in herede eius non quaeritur mora: nam tunc heredi proximo hereditario iure ea competet ideoque ad ceteros quoque deinceps transmittitur."
+    },
+    "58": {
+      "number": 58,
+      "text": "In pecudum fructu etiam fetus est sicut lac et pilus et lana: itaque agni et haedi et vituli statim pleno iure sunt bonae fidei possessoris et fructuarii."
+    },
+    "59": {
+      "number": 59,
+      "text": "Partus vero ancillae in fructu non est itaque ad dominum proprietatis pertinet: absurdum enim videbatur hominem in fructu esse, cum omnes fructus rerum natura hominum gratia comparaverit."
+    },
+    "60": {
+      "number": 60,
+      "text": "Placuit, sive supra statutum modum quis usuras stipulatus fuerit sive usurarum usuras, quod illicite adiectum est pro non adiecto haberi et licitas peti posse."
+    },
+    "61": {
+      "number": 61,
+      "text": "Etiam ex nudo pacto debentur civitatibus usurae creditarum ab eis pecuniarum."
+    },
+    "62": {
+      "number": 62,
+      "text": "Quod in stipulatione sic adiectum est: \" et usuras, si quae competierint\", nullius esse momenti, si modus certus non adiciatur."
+    },
+    "63": {
+      "number": 63,
+      "text": "Mora fieri intellegitur non ex re, sed ex persona, id est, si interpellatus oportuno loco non solverit: quod apud iudicem examinabitur: nam, ut et pomponius libro duodecimo epistularum scripsit, difficilis est huius rei definitio. divus quoque pius tullio balbo rescripsit, an mora facta intellegatur, neque constitutione ulla neque iuris auctorum quaestione decidi posse, cum sit magis facti quam iuris."
+    },
+    "64": {
+      "number": 64,
+      "text": "Et non sufficit ad probationem morae, si servo debitoris absentis denuntiatum est a creditore procuratoreve eius, cum etiam si ipsi, inquit, domino denuntiatum est, ceterum postea cum is sui potestatem faceret, omissa esset repetendi debiti instantia, non protinus per debitorem mora facta intellegitur."
+    },
+    "65": {
+      "number": 65,
+      "text": "In bonae fidei contractibus ex mora usurae debentur."
+    },
+    "66": {
+      "number": 66,
+      "text": "Quid ergo: si et filius familias et pater ex persona eius teneatur ( sive iussu eius contractum est sive in rem versum est patris vel in peculium), cuius persona circa moram spectabitur? et si quidem pater dumtaxat convenietur, ex mora sua non tenetur: in filium tamen dabitur actio in hoc, ut quod minus a patre actor consecutus est, filius praestet: quod si filius moram fecerit, tunc actor vel cum ipso in solidum vel cum patre dumtaxat de peculio habebit."
+    },
+    "67": {
+      "number": 67,
+      "text": "Sed si duo rei promittendi sint, alterius mora alteri non nocet."
+    },
+    "68": {
+      "number": 68,
+      "text": "Item si fideiussor solus moram fecerit, non tenetur, sicuti si stichum promissum occiderit: sed utilis actio in hunc dabitur."
+    },
+    "69": {
+      "number": 69,
+      "text": "Si bene collocatae sunt pecuniae publicae, in sortem inquietari debitores non debent et maxime, si parient usuras: si non parient, prospicere rei publicae securitati debet praeses provinciae, dummodo non acerbum se exactorem nec contumeliosum praebeat, sed moderatum et cum efficacia benignum et cum instantia humanum: nam inter insolentiam incuriosam et diligentiam non ambitiosam multum interest."
+    },
+    "70": {
+      "number": 70,
+      "text": "Praeterea prospicere debet, ne pecuniae publicae credantur sive pignoribus idoneis vel hypothecis."
+    },
+    "71": {
+      "number": 71,
+      "text": "Usurae vicem fructuum optinent et merito non debent a fructibus separari: et ita in legatis et fideicommissis et in tutelae actione et in ceteris iudiciis bonae fidei servatur. hoc idem igitur in ceteris obventionibus dicemus."
+    },
+    "72": {
+      "number": 72,
+      "text": "Praediorum urbanorum pensiones pro fructibus accipiuntur."
+    },
+    "73": {
+      "number": 73,
+      "text": "Et in contraria negotiorum gestorum actione usurae veniunt, si mutuatus sum pecuniam, ut creditorem tuum absolvam, quia aut in possessionem mittendus erat bonorum tuorum aut pignora venditurus. quid si domi habens propter eandem causam solvi? puto verum, si liberavi ex magno incommodo, debere dici usuras venire, eas autem, quae in regione frequentantur, ut est in bonae fidei iudiciis constitutum: sed si mutuatus dedi, hae venient usurae quas ipse pendo, utique si plus tibi praestarim commodi, quam usurae istae colligunt."
+    },
+    "74": {
+      "number": 74,
+      "text": "Videamus generali, quando in actione quae est in personam etiam fructus veniant."
+    },
+    "75": {
+      "number": 75,
+      "text": "Et quidem si fundus ob rem datus sit, veluti dotis causa, et renuntiata adfinitas, fructus quoque restituendi sunt, utique hi qui percepti sunt eo tempore quo sperabatur adfinitas, sed et posteriores, si in re mora fuit, ut ab illo, qui reddere debeat, omnimodo restituendi sunt. sed et si per mulierem stetit, quo minus nuptiae contrahantur, magis est, ut debeat fructus recipere: ratio autem haec est, quod, si sponsus non conveniebatur restituere fructus, licuerat ei neglegere fundum."
+    },
+    "76": {
+      "number": 76,
+      "text": "Item si indebitum fundum solvi et repeto, fructus quoque repetere debeo."
+    },
+    "77": {
+      "number": 77,
+      "text": "Idemque est, si mortis causa fundus sit donatus et revaluerit qui donavit atque ita condictio nascatur."
+    },
+    "78": {
+      "number": 78,
+      "text": "In fabiana quoque actione et pauliana, per quam quae in fraudem creditorum alienata sunt revocantur, fructus quoque restituuntur: nam praetor id agit, ut perinde sint omnia, atque si nihil alienatum esset: quod non est iniquum ( nam et verbum \" restituas\", quod in hac re praetor dixit, plenam habet significationem), ut fructus quoque restituantur."
+    },
+    "79": {
+      "number": 79,
+      "text": "Et ideo cum restitui praetor vult, veluti in interdicto unde vi, etiam fructus sunt restituendi."
+    },
+    "80": {
+      "number": 80,
+      "text": "Item si vi metusve causa rem tradam, non aliter mihi restituisse videtur, quam si fructus mihi restituat: nec mora mea mihi aliquid aufert."
+    },
+    "81": {
+      "number": 81,
+      "text": "Si actionem habeam ad id consequendum quod meum non fuit, veluti ex stipulatu, fructus non consequar, etiamsi mora facta sit: quod si acceptum est iudicium, tunc sabinus et cassius ex aequitate fructus quoque post acceptum iudicium praestandos putant, ut causa restituatur, quod puto recte dici."
+    },
+    "82": {
+      "number": 82,
+      "text": "Si possessionem naturalem revocem, proprietas mea manet, videamus de fructibus. et quidem in deposito et commodato fructus quoque praestandi sunt, sicut diximus."
+    },
+    "83": {
+      "number": 83,
+      "text": "In interdicto quoque quod vi aut clam magis est, ut omnis causa et fructus restituantur."
+    },
+    "84": {
+      "number": 84,
+      "text": "Ante matrimonium quoque fructus percepti dotis fiunt et cum ea restituuntur."
+    },
+    "85": {
+      "number": 85,
+      "text": "Item si dividere fundum tecum velim, tu nolis et colam, an fructus dividi debeant post deductionem impensarum? et puto dividendos."
+    },
+    "86": {
+      "number": 86,
+      "text": "In ceteris quoque bonae fidei iudiciis fructus omnimodo praestantur."
+    },
+    "87": {
+      "number": 87,
+      "text": "Si dos praelegata fuerit, ante nuptias percepti fructus in causa legati veniunt."
+    },
+    "88": {
+      "number": 88,
+      "text": "Equis per fideicommissum legatis post moram heredis fetus quoque debentur. equitio autem legato etiamsi mora non intercedat, incremento gregis fetus accedunt."
+    },
+    "89": {
+      "number": 89,
+      "text": "In eum diem, quo creditor pignora distraxit, recte usurae fiet reputatio."
+    },
+    "90": {
+      "number": 90,
+      "text": "Tutor condemnatus per appellationem traxerat exsecutionem sententiae. herennius modestinus respondit eum qui de appellatione cognovit potuisse, si frustratoriam morandi causa appellationem interpositam animadverteret, etiam de usuris medii temporis eum condemnare."
+    },
+    "91": {
+      "number": 91,
+      "text": "Lucius titius cum centum et usuras aliquanti temporis deberet, minorem pecuniam quam debebat obsignavit: quaero, an titius pecuniae quam obsignavit usuras praestare non debeat. modestinus respondit, si non hac lege mutua pecunia data est, uti liceret et particulatim quod acceptum est exsolvere, non retardari totius debiti usurarum praestationem, si, cum creditor paratus esset totum suscipere, debitor, qui in exsolutione totius cessabat, solam partem deposuit."
+    },
+    "92": {
+      "number": 92,
+      "text": "Ab aulo agerio gaius seius mutuam quandam quantitatem accepit hoc chirographo: \" ille scripsi me accepisse et accepi ab illo mutuos et numeratos decem, quos ei reddam kalendis illis proximis cum suis usuris placitis inter nos\": quaero, an ex eo instrumento usurae peti possint et quae. modestinus respondit, si non appareat de quibus usuris conventio facta sit, peti eas non posse."
+    },
+    "93": {
+      "number": 93,
+      "text": "Herennius modestinus respondit fructus, qui post adquisitum ex causa fideicommissi dominium ex terra percipiuntur, ad fideicommissarium pertinere, licet maior pars anni ante diem fideicommissi cedentem praeterisse dicatur."
+    },
+    "94": {
+      "number": 94,
+      "text": "Herennius modestinus respondit eius temporis quod cessit, postquam fiscus debitum percepit, eum, qui mandatis a fisco actionibus experitur, usuras quae in stipulatum deductae non sunt petere non posse."
+    },
+    "95": {
+      "number": 95,
+      "text": "Poenam pro usuris stipulari nemo supra modum usurarum licitum potest."
+    },
+    "96": {
+      "number": 96,
+      "text": "Fructus percipiendo uxor vel vir ex re donata suos facit, illos tamen, quos suis operis adquisierit, veluti serendo: nam si pomum decerpserit vel ex silva caedit, non fit eius, sicuti nec cuiuslibet bonae fidei possessoris, quia non ex facto eius is fructus nascitur."
+    },
+    "97": {
+      "number": 97,
+      "text": "Quod in fructus redigendos impensum est, non ambigitur ipsos fructus deminuere debere."
+    },
+    "98": {
+      "number": 98,
+      "text": "Respondit paratum iudicium accipere, si ab adversario cessatum est, moram facere non videri."
+    },
+    "99": {
+      "number": 99,
+      "text": "Maritus uxori suae usum fructum tertiae partis et, cum liberos habuisset, proprietatem legavit: eam uxorem heredes falsi testamenti et aliorum criminum accusaverunt, qua re impedita est legatorum petitio: interea et filius ei mulieri natus est eoque condicio legati exstitit. quaesitum est, cum testamentum falsum non esse apparuerit, an fructus etiam mulieri praestari debeant. respondit praestandos."
+    },
+    "100": {
+      "number": 100,
+      "text": "Traiecticia ea pecunia est quae trans mare vehitur: ceterum si eodem loci consumatur, non erit traiecticia. sed videndum, an merces ex ea pecunia comparatae in ea causa habentur? et interest, utrum etiam ipsae periculo creditoris navigent: tunc enim traiecticia pecunia fit."
+    },
+    "101": {
+      "number": 101,
+      "text": "Labeo ait, si nemo sit, qui a parte promissoris interpellari traiecticiae pecuniae possit, id ipsum testatione complecti debere, ut pro petitione id cederet."
+    },
+    "102": {
+      "number": 102,
+      "text": "In nautica pecunia ex eo die periculum spectat creditorem, ex quo navem navigare conveniat."
+    },
+    "103": {
+      "number": 103,
+      "text": "Nihil interest, traiecticia pecunia sine periculo creditoris accepta sit an post diem praestitutum et condicionem impletam periculum esse creditoris desierit. utrubique igitur maius legitima usura faenus non debebitur, sed in priore quidem specie semper, in altera vero discusso periculo: nec pignora vel hypothecae titulo maioris usurae tenebuntur."
+    },
+    "104": {
+      "number": 104,
+      "text": "Pro operis servi traiecticiae pecuniae gratia secuti quod in singulos dies in stipulatum deductum est, ad finem centesimae non ultra duplum debetur. in stipulatione faenoris post diem periculi separatim interposita quod in ea legitimae usurae deerit, per alteram stipulationem operarum supplebitur."
+    },
+    "105": {
+      "number": 105,
+      "text": "Periculi pretium est et si condicione quamvis poenali non existente recepturus sis quod dederis et insuper aliquid praeter pecuniam, si modo in aleae speciem non cadat: veluti ea, ex quibus condictiones nasci solent, ut \" si non manumittas\", \" si non illud facias\", \" si non convaluero\" et cetera. nec dubitabis, si piscatori erogaturo in apparatum plurimum pecuniae dederim, ut, si cepisset, redderet, et athletae, unde se exhiberet exerceretque, ut, si vicisset, redderet."
+    },
+    "106": {
+      "number": 106,
+      "text": "In his autem omnibus et pactum sine stipulatione ad augendam obligationem prodest."
+    },
+    "107": {
+      "number": 107,
+      "text": "Faenerator pecuniam usuris maritimis mutuam dando quasdam merces in nave pignori accepit, ex quibus si non potuisset totum debitum exsolvi, aliarum mercium aliis navibus impositarum propriisque faeneratoribus obligatarum si quid superfuisset, pignori accepit. quaesitum est nave propria perempta, ex qua totum solvi potuit, an id damnum ad creditorem pertineat, intra praestitutos dies amissa nave, an ad ceterarum navium superfluum admitti possit. respondi: alias quidem pignoris deminutio ad damnum debitoris, non etiam ad creditoris pertinet: sed cum traiecticia pecunia ita datur, ut non alias petitio eius creditori competat, quam si salva navis intra statuta tempora pervenerit, ipsius crediti obligatio non exsistente condicione defecisse videtur, et ideo pignorum quoque persecutio perempta est etiam eorum, quae non sunt amissa. si navis intra praestitutos dies perisset, et condicionem stipulationis defecisse videri, ideoque sine causa de pignorum persecutione, quae in aliis navibus fueru..."
+    },
+    "108": {
+      "number": 108,
+      "text": "In quibusdam contractibus etiam usurae debentur quemadmodum per stipulationem. nam si dedero decem traiecticia, ut salva nave sortem cum certis usuris recipiam, dicendum est posse me sortem cum usuris recipere."
+    },
+    "109": {
+      "number": 109,
+      "text": "Servius ait pecuniae traiecticiae poenam peti non posse, si per creditorem stetisset, quo minus eam intra certum tempus praestitutum accipiat."
+    },
+    "110": {
+      "number": 110,
+      "text": "Si traiecticiae pecuniae poena ( uti solet) promissa est, quamvis eo die, qui primus solvendae pecuniae fuerit, nemo vixerit, qui eam pecuniam deberet, tamen perinde committi poena potest, ac si fuisset heres debitoris."
+    },
+    "111": {
+      "number": 111,
+      "text": "Quotiens quaereretur, genus vel gentem quis haberet nec ne, eum probare oportet."
+    },
+    "112": {
+      "number": 112,
+      "text": "Cum tacitum fideicommissum ab eo datur, qui tam in primo quam in secundo testamento pro eadem parte vel postea pro maiore heres scribitur, probatio mutatae voluntatis ei debet incumbere qui convenitur, cum secreti suscepti ratio plerumque dominis rerum persuadeat eos ita heredes scribere, quorum fidem elegerunt."
+    },
+    "113": {
+      "number": 113,
+      "text": "Respondit emptorem probare debere, eum servum de quo quaeritur antequam emeret fugisse."
+    },
+    "114": {
+      "number": 114,
+      "text": "Ab ea parte, quae dicit adversarium suum ab aliquo iure prohibitum esse specialiter lege vel constitutione, id probari oportere."
+    },
+    "115": {
+      "number": 115,
+      "text": "Idem respondit, si quis negat emancipationem recte factam, probationem ipsum praestare debere."
+    },
+    "116": {
+      "number": 116,
+      "text": "Patronum manifeste docere debere libertum in fraudem suam aliquid dedisse, ut partem eius quod in fraudem datum esset, posset avocare."
+    },
+    "117": {
+      "number": 117,
+      "text": "Cum probatio prioris fugae deficit, servi quaestioni credendum est: in se enim interrogari, non pro domino aut in dominum videtur."
+    },
+    "118": {
+      "number": 118,
+      "text": "Si filius in potestate patris esse neget, praetor cognoscit, ut prior doceat filius, quia et pro pietate quam patri debet praestare hoc statuendum est et quia se liberum esse quodammodo contendit: ideo enim et qui ad libertatem proclamat, prior docere iubetur."
+    },
+    "119": {
+      "number": 119,
+      "text": "Si pactum factum sit, in quo heredis mentio non fiat, quaeritur, an id actum sit, ut ipsius dumtaxat persona eo statueretur. sed quamvis verum est, quod qui excipit probare debeat quod excipitur, attamen de ipso dumtaxat ac non de herede eius quoque convenisse petitor, non qui excipit probare debet, quia plerumque tam heredibus nostris quam nobismet ipsis cavemus."
+    },
+    "120": {
+      "number": 120,
+      "text": "Census et monumenta publica potiora testibus esse senatus censuit."
+    },
+    "121": {
+      "number": 121,
+      "text": "Non est necesse pupillo probare fideiussores pro tutore datos, cum accipiebantur, idoneos non fuisse: nam probatio exigenda est ab his, quorum officii fuit providere, ut pupillo caveretur."
+    },
+    "122": {
+      "number": 122,
+      "text": "Quingenta testamento tibi legata sunt: idem scriptum est in codicillis postea scriptis: refert, duplicare legatum voluerit an repetere et oblitus se in testamento legasse id fecerit: ab utro ergo probatio eius rei exigenda est? prima fronte aequius videtur, ut petitor probet quod intendit: sed nimirum probationes quaedam a reo exiguntur: nam si creditum petam, ille respondeat solutam esse pecuniam, ipse hoc probare cogendus est. et hic igitur cum petitor duas scripturas ostendit, heres posteriorem inanem esse, ipse heres id adprobare iudici debet."
+    },
+    "123": {
+      "number": 123,
+      "text": "Cum de aetate hominis quaereretur, caesar noster in haec verba rescripsit: \" et durum et iniquum est, cum de statu aetatis alicuius quaereretur et diversae professiones proferuntur, ea potissimum stare, quae nocet: sed causa cognita veritatem excuti oportet et ex eo potissimum annos computari, ex quo praecipuam fidem in ea re constare credibilius videtur\"."
+    },
+    "124": {
+      "number": 124,
+      "text": "Circa eum, qui se ex libertinitate ingenuum dicat, referendum est, quis actoris partibus fungatur. et si quidem in possessionem libertinitatis fuit, sine dubio ipsum oportebit ingenuitatis causam agere docereque se ingenuum esse: sin vero in possessione ingenuitatis sit et libertinus esse dicatur, scilicet eius qui ei controversiam movet, hoc probare debet qui eum dicit libertum suum: quid enim interest, servum suum quis an libertum contendat? si quis autem fiducia ingenuitatis suae ultro in se suscipiat probationes ad hoc, ut sententiam ferat pro ingenuitate facientem, hoc est, ingenuum se esse ut pronuntietur, an obtemperare ei debeat, tractari potest. et non ab re esse opinor morem ei geri probandi se ingenuum et sententiam secundum se dandam, cum nulla captio intercedat iuris."
+    },
+    "125": {
+      "number": 125,
+      "text": "Quidam quasi ex seia susceptus a gaio seio, cum gaius fratres haberet, hereditatem gaii invasit et fratribus eiusdem quasi ex mandatu defuncti fideicommissa solvit, cautionem accepit: qui postea cognito, quod filius fratris eorum non fuisset, quaerebant, an cum eo de hereditate fratris possint, propter emissam manum ab eis quasi filio, agere. modestinus respondit cautione exsoluti fideicommissi statum eius, qui probari potest a fratribus defuncti filius mortui non esse, minime confirmatum esse: sed hoc ipsum a fratribus probari debet."
+    },
+    "126": {
+      "number": 126,
+      "text": "Etiam matris professio filiorum recipitur: sed et avi recipienda est."
+    },
+    "127": {
+      "number": 127,
+      "text": "Cum de lege falcidia quaeritur, heredis probatio est locum habere legem falcidiam: quod dum probare non potest, merito condemnabitur."
+    },
+    "128": {
+      "number": 128,
+      "text": "Quotiens operae quasi a liberto petuntur, probationes ab eo qui se patronum dicit exiguntur: et ideo iulianus scripsit, licet in praeiudicio possessor patronus esse videtur, verum partibus actoris non libertum fungi debere, sed eum qui se patronum esse contendit."
+    },
+    "129": {
+      "number": 129,
+      "text": "Qui dolo dicit factum aliquid, licet in exceptione, docere dolum admissum debet."
+    },
+    "130": {
+      "number": 130,
+      "text": "Interrogationis factae probationem actori imponi debere, id est ei, qui in iure interrogatum dixit respondisse se solum heredem esse. vel si tacuisse dicatur interrogatus, aeque tantundem erit dicendum impositam improbationem non ei qui excepit se non respondisse, sed actori."
+    },
+    "131": {
+      "number": 131,
+      "text": "In exceptionibus dicendum est reum partibus actoris fungi oportere ipsumque exceptionem velut intentionem implere: ut puta si pacti conventi exceptione utatur, docere debet pactum conventum factum esse."
+    },
+    "132": {
+      "number": 132,
+      "text": "Cum quis promisisset iudicio se sisti et rei publicae causa afuisse dicat et ob id non stetisse, vel dolo malo adversarii factum quo minus sisteretur, vel valetudinem sibi impedimento fuisse vel tempestatem, probare eum id oportet."
+    },
+    "133": {
+      "number": 133,
+      "text": "Sed et si procuratoria quis exceptione utatur, eo quod non licuisset adversario dare vel fieri procuratorem, probare id oportet obicientem exceptionem."
+    },
+    "134": {
+      "number": 134,
+      "text": "Idem erit dicendum et si ea pecunia petatur, quae pensata dicitur."
+    },
+    "135": {
+      "number": 135,
+      "text": "Hoc amplius, si iudicatae rei vel iurisiurandi condicio delata dicatur de eo quod nunc petitur, sive in alea gestum esse contendatur, eum implere probationes oportet."
+    },
+    "136": {
+      "number": 136,
+      "text": "Si quis liberum hominem vi rapuerit, in vinculis habuerit, is indignissime commodum possessoris consequeretur, quia probari non poterit hominem eo tempore quo primum lis ordinaretur in libertate fuisse."
+    },
+    "137": {
+      "number": 137,
+      "text": "Verius esse existimo ipsum qui agit, id est legatarium, probare oportere scisse alienam rem vel obligatam legare defunctum, non heredem probare oportere ignorasse alienam vel obligatam, quia semper necessitas probandi incumbit illi qui agit."
+    },
+    "138": {
+      "number": 138,
+      "text": "Eum, qui voluntatem mutatam dicit, probare hoc debere."
+    },
+    "139": {
+      "number": 139,
+      "text": "Ante omnia probandum est, quod inter agentem et debitorem convenit, ut pignori hypothecaeve sit: sed et si hoc probet actor, illud quoque implere debet rem pertinere ad debitorem eo tempore quo convenit de pignore, aut cuius voluntate hypotheca data sit."
+    },
+    "140": {
+      "number": 140,
+      "text": "Si chirographum cancellatum fuerit, licet praesumptione debitor liberatus esse videtur, in eam tamen quantitatem, quam manifestis probationibus creditor sibi adhuc deberi ostenderit, recte debitor convenitur."
+    },
+    "141": {
+      "number": 141,
+      "text": "Cum de indebito quaeritur, quis probare debet non fuisse debitum? res ita temperanda est, ut, si quidem is, qui accepisse dicitur rem vel pecuniam indebitam, hoc negaverit et ipse qui dedit legitimis probationibus solutionem adprobaverit, sine ulla distinctione ipsum, qui negavit sese pecuniam accepisse, si vult audiri, compellendum esse ad probationes praestandas, quod pecuniam debitam accepit: per etenim absurdum est eum, qui ab initio negavit pecuniam suscepisse, postquam fuerit convictus eam accepisse, probationem non debiti ab adversario exigere. sin vero ab initio confiteatur quidem suscepisse pecunias, dicat autem non indebitas ei fuisse solutas, praesumptionem videlicet pro eo esse qui accepit nemo dubitat: qui enim solvit numquam ita resupinus est, ut facile suas pecunias iactet et indebitas effundat, et maxime si ipse qui indebitas dedisse dicit homo diligens est et studiosus pater familias, cuius personam incredibile est in aliquo facile errasse. et ideo eum, qui dicit indeb..."
+    },
+    "142": {
+      "number": 142,
+      "text": "Sin autem is qui indebitum queritur vel pupillus vel minor sit vel mulier vel forte vir quidem perfectae aetatis, sed miles vel agri cultor et forensium rerum expers vel alias simplicitate gaudens et desidia deditus: tunc eum qui accepit pecunias ostendere bene eas accepisse et debitas ei fuisse soltuas et, si non ostenderit, eas redhibere."
+    },
+    "143": {
+      "number": 143,
+      "text": "Sed haec ita, si totam summam indebitam fuisse solutam is qui dedit contendat. sin autem pro parte queritur, quod pars pecuniae solutae debita non est, vel quod ab initio quidem debitum fuit, sed vel dissoluto debito postea ignarus iterum solvit vel exceptione tutus errore eius pecunias dependit: ipsum omnimodo hoc ostendere, quod vel plus debito persolvit vel iam solutam pecuniam per errorem repetita solutione dependit vel tutus exceptione suam nesciens proiecit pecuniam, secundum generalem regulam, quae eos, qui opponendas esse exceptiones adfirmant vel solvisse debita contendunt, haec ostendere exigit."
+    },
+    "144": {
+      "number": 144,
+      "text": "In omnibus autem visionibus quas praeposuimus licentia concedenda est ei, cui onus probationis incumbit, adversario suo rei veritate iusiurandum ferre, prius ipso pro calumnia iurante, ut iudex iuramenti fidem secutus ita suam sententiam possit formare, iure referendae religionis ei servando."
+    },
+    "145": {
+      "number": 145,
+      "text": "Sed haec, ubi de solutione indebiti quaestio est. sin autem cautio indebite exposita esse dicatur et indiscrete loquitur, tunc eum, in quem cautio exposita est, compelli debitum esse ostendere, quod in cautionem deduxit, nisi ipse specialiter qui cautionem exposuit causas explanavit, pro quibus eandem conscripsit: tunc enim stare eum oportet suae confessioni, nisi evidentissimis probationibus in scriptis habitis ostendere paratus sit sese haec indebite promisisse."
+    },
+    "146": {
+      "number": 146,
+      "text": "Procula magnae quantitatis fideicommissum a fratre sibi debitum post mortem eius in ratione cum heredibus compensare vellet, ex diverso autem allegaretur numquam id a fratre quamdiu vixit desideratum, cum variis ex causis saepe rationi fratris pecunias ratio proculae solvisset: divus commodus cum super eo negotio cognosceret, non admisit compensationem, quasi tacite fratri fideicommissum fuisset remissum."
+    },
+    "147": {
+      "number": 147,
+      "text": "Qui testamentum faciebat ei qui usque ad certum modum capere potuerat legavit licitam quantitatem, deinde ita locutus est: \" titio centum do lego, quae mihi pertulit: quae ideo ei non cavi, quod omnem fortunam et substantiam, si quam a matre susceperat in sinu meo habui sine ulla cautione. item eidem titio reddi et solvi volo de substantia mea centum quinquaginta, quae ego ex reditibus praediorum eius ( quorum ipse fructum percepi et distraxi), item de calendario ( si qua a matre receperat titius) in rem meam converti\". quaero, an titius ea exigere potest. respondit, si titius supra scripta ex ratione sua ad testatorem pervenisse probare potuerit, exigi: videtur enim eo, quod ille plus capere non poterat, in fraudem legis haec in testamento adiecisse."
+    },
+    "148": {
+      "number": 148,
+      "text": "Si arbiter animadvertere debeat, an operis facti memoria exstet, hoc ei quaerendum est, an aliquis meminerit id opus factum esse. paulus: immo cum in arbitrio quaeritur, memoria facti operis exstet nec ne, non hoc quaeritur, num aliquis meminerit, quo die aut quo consule factum sit, sed num hoc aliquo modo probari possit, quando id opus factum sit: et hoc ita, quod graece dici solet  en platei. enim potest hoc memoria non teneri: intra annum puta factum, cum interim nemo sit eorum, qui meminerit, quibus consulibus id viderit, sed cum omnium haec est opinio nec audisse nec vidisse, cum id opus fieret, neque ex eis audisse, qui vidissent aut audissent: et hoc infinite similiter susum versum accidet, cum memoria operis facti non exstaret."
+    },
+    "149": {
+      "number": 149,
+      "text": "Imperatores antoninus et verus augusti claudio apolinari ^ apollinari^ rescripserunt in haec verba: \" probationes quae de filiis dantur, non in sola adfirmatione testium consistunt, sed et epistulas, quae uxoribus missae allegarentur, si de fide earum constet, nonnullam vicem instrumentorum optinere decretum est\"."
+    },
+    "150": {
+      "number": 150,
+      "text": "Mulier gravida repudiata, filium enixa, absente marito ut spurium in actis professa est. quaesitum est an is in potestate patris sit et matre intestata mortua iussu eius hereditatem matris adire possit nec obsit professio a matre irata facta. respondit veritati locum superfore."
+    },
+    "151": {
+      "number": 151,
+      "text": "Dig. 22.4.0. De fide instrumentorum et amissione eorum."
+    },
+    "152": {
+      "number": 152,
+      "text": "Instrumentorum nomine ea omnia accipienda sunt, quibus causa instrui potest: et ideo tam testimonia quam personae instrumentorum loco habentur."
+    },
+    "153": {
+      "number": 153,
+      "text": "Quicumque a fisco convenitur, non ex indice et exemplo alicuius scripturae, sed ex authentico conveniendus est et ita, si contractus fides possit ostendi: ceterum calumniosam scripturam vim in iudicio optinere non convenit."
+    },
+    "154": {
+      "number": 154,
+      "text": "Respondit repetita quidem die cautionem interponi non debuisse, sed falsi crimen quantum ad eos, qui in hoc consenserunt, contractum non videri, cum inter praesentes et convenientes res actitata sit magisque debitor quam creditor deliquerit."
+    },
+    "155": {
+      "number": 155,
+      "text": "In re hypothecae nomine obligata ad rem non pertinet, quibus fit verbis, sicuti est et in his obligationibus, quae consensu contrahuntur: et ideo et sine scriptura si convenit, ut hypothecae sit, et probari poterit, res obligata erit de qua conveniunt. fiunt enim de his scripturae, ut quod actum est per eas facilius probari possit: et sine his autem valet quod actum est, si habeat probationem, sicut et nuptiae sunt, licet testatio sine scriptis habita est."
+    },
+    "156": {
+      "number": 156,
+      "text": "Si res gesta sine litterarum quoque consignatione veritate factum suum praebeat, non ideo minus valebit, quod instrumentum nullum de ea intercessit."
+    },
+    "157": {
+      "number": 157,
+      "text": "Si de tabulis testamenti deponendis agatur et dubitetur, cui eas deponi oportet, semper seniorem iuniori et amplioris honoris inferiori et marem feminae et ingenuum libertino praeferemus."
+    },
+    "158": {
+      "number": 158,
+      "text": "Testimoniorum usus frequens ac necessarius est et ab his praecipue exigendus, quorum fides non vacillat."
+    },
+    "159": {
+      "number": 159,
+      "text": "Adhiberi quoque testes possunt non solum in criminalibus causis, sed etiam in pecuniariis litibus sicubi res postulat, ex his quibus non interdicitur testimonium nec ulla lege a dicendo testimonio excusantur."
+    },
+    "160": {
+      "number": 160,
+      "text": "Quamquam quibusdam legibus amplissimus numerus testium definitus sit, tamen ex constitutionibus principum haec licentia ad sufficientem numerum testium coartatur, ut iudices moderentur et eum solum numerum testium, quem necessarium esse putaverint, evocari patiantur, ne effrenata potestate ad vexandos homines superflua multitudo testium protrahatur."
+    },
+    "161": {
+      "number": 161,
+      "text": "In testimoniis autem dignitas fides mores gravitas examinanda est: et ideo testes, qui adversus fidem suae testationis vacillant, audiendi non sunt."
+    },
+    "162": {
+      "number": 162,
+      "text": "Testium fides diligenter examinanda est. ideoque in persona eorum exploranda erunt in primis condicio cuiusque, utrum quis decurio an plebeius sit: et an honestae et inculpatae vitae an vero notatus quis et reprehensibilis: an locuples vel egens sit, ut lucri causa quid facile admittat: vel an inimicus ei sit, adversus quem testimonium fert, vel amicus ei sit, pro quo testimonium dat. nam si careat suspicione testimonium vel propter personam a qua fertur ( quod honesta sit) vel propter causam ( quod neque lucri neque gratiae neque inimicitiae causa fit), admittendus est."
+    },
+    "163": {
+      "number": 163,
+      "text": "Ideoque divus hadrianus vibio varo legato provinciae ciliciae rescripsit eum qui iudicat magis posse scire, quanta fides habenda sit testibus. verba epistulae haec sunt: \" tu magis scire potes, quanta fides habenda sit testibus, qui et cuius dignitatis et cuius existimationis sint, et qui simpliciter visi sint dicere, utrum unum eundemque meditatum sermonem attulerint an ad ea quae interrogaveras ex tempore verisimilia responderint\"."
+    },
+    "164": {
+      "number": 164,
+      "text": "Eiusdem quoque principis exstat rescriptum ad valerium verum de excutienda fide testium in haec verba: \" quae argumenta ad quem modum probandae cuique rei sufficiant, nullo certo modo satis definiri potest. sicut non semper, ita saepe sine publicis monumentis cuiusque rei veritas deprehenditur. alias numerus testium, alias dignitas et auctoritas, alias veluti consentiens fama confirmat rei de qua quaeritur fidem. hoc ergo solum tibi rescribere possum summatim non utique ad unam probationis speciem cognitionem statim alligari debere, sed ex sententia animi tui te aestimare oportere, quid aut credas aut parum probatum tibi opinaris\"."
+    },
+    "165": {
+      "number": 165,
+      "text": "Idem divus hadrianus iunio rufino proconsuli macedoniae rescripsit testibus se, non testimoniis crediturum. verba epistulae ad hanc partem pertinentia haec sunt: \" quod crimina obiecerit apud me alexander apro et quia non probabat nec testes producebat, sed testimoniis uti volebat, quibus apud me locus non est ( nam ipsos interrogare soleo), quem remisi ad provinciae praesidem, ut is de fide testium quaereret et nisi implesset quod intenderat, relegaretur\"."
+    },
+    "166": {
+      "number": 166,
+      "text": "Gabinio quoque maximo idem princeps in haec verba rescripsit: \" alia est auctoritas praesentium testium, alia testimoniorum quae recitari solent: tecum ergo delibera, ut, si retinere eos velis, des eis impendia\"."
+    },
+    "167": {
+      "number": 167,
+      "text": "Lege iulia de vi cavetur, ne hac lege in reum testimonium dicere liceret, qui se ab eo parenteve eius liberaverit, quive impuberes erunt, quique iudicio publico damnatus erit qui eorum in integrum restitutus non erit, quive in vinculis custodiave publica erit, quive ad bestias ut depugnaret se locaverit, quaeve palam quaestum faciet feceritve, quive ob testimonium dicendum vel non dicendum pecuniam accepisse iudicatus vel convictus erit. nam quidam propter reverentiam personarum, quidam propter lubricum consilii sui, alii vero propter notam et infamiam vitae suae admittendi non sunt ad testimonii fidem."
+    },
+    "168": {
+      "number": 168,
+      "text": "Testes non temere evocandi sunt per longum iter et multo minus milites avocandi sunt a signis vel muneribus perhibendi testimonii causa, idque divus hadrianus rescripsit. sed et divi fratres rescripserunt: \" quod ad testes evocandos pertinet, diligentiae iudicantis est explorare, quae consuetudo in ea provincia, in quam iudicat, fuerit\". nam si probabitur saepe in aliam civitatem testimonii gratia plerosque evocatos, non esse dubitandum, quin evocandi sint, quos necessarios in ipsa cognitione deprehenderit qui iudicat."
+    },
+    "169": {
+      "number": 169,
+      "text": "Lege iulia iudiciorum publicorum cavetur, ne invito denuntietur, ut testimonium litis dicat adversus socerum generum, vitricum privignum, sobrinum sobrinam, sobrino sobrina natum, eosve qui priore gradu sint, item ne liberto ipsius, liberorum eius, parentium, viri uxoris, item patroni patronae: et ut ne patroni patronae adversus libertos neque liberti adversus patronum cogantur testimonium dicere."
+    },
+    "170": {
+      "number": 170,
+      "text": "In legibus, quibus excipitur, ne gener aut socer invitus testimonium dicere cogeretur, generi appellatione sponsum quoque filiae contineri placet: item soceri sponsae patrem."
+    },
+    "171": {
+      "number": 171,
+      "text": "Idonei non videntur esse testes, quibus imperari potest ut testes fiant."
+    },
+    "172": {
+      "number": 172,
+      "text": "Servi responso tunc credendum est, cum alia probatio ad eruendam veritatem non est."
+    },
+    "173": {
+      "number": 173,
+      "text": "Inviti testimonium dicere non coguntur senes valetudinarii vel milites vel qui cum magistratu rei publicae causa absunt vel quibus venire non licet."
+    },
+    "174": {
+      "number": 174,
+      "text": "Testis idoneus pater filio aut filius patri non est."
+    },
+    "175": {
+      "number": 175,
+      "text": "Ad fidem rei gestae faciendam etiam non rogatus testis intellegitur."
+    },
+    "176": {
+      "number": 176,
+      "text": "Ubi numerus testium non adicitur, etiam duo sufficient: pluralis enim elocutio duorum numero contenta est."
+    },
+    "177": {
+      "number": 177,
+      "text": "Quaesitum scio, an in publicis iudiciis calumniae damnati testimonium iudicio publico perhibere possunt. sed neque lege remmia prohibentur et iulia lex de vi et repetendarum et peculatus eos homines testimonium dicere non vetuerunt. verumtamen quod legibus omissum est, non omittetur religione iudicantium ad quorum officium pertinet eius quoque testimonii fidem, quod integrae frontis homo dixerit, perpendere."
+    },
+    "178": {
+      "number": 178,
+      "text": "Scio quidem tractatum esse, an ad testamentum faciendum adhiberi possit adulterii damnatus: et sane iuste testimonii officio ei interdicetur. existimo ergo neque iure civili testamentum valere, ad quod huiusmodi testis processit, neque iure praetorio, quod ius civile subsequitur, ut neque hereditas adiri neque bonorum possessio dari possit."
+    },
+    "179": {
+      "number": 179,
+      "text": "Repetundarum damnatus nec ad testamentum nec ad testimonium adhiberi potest."
+    },
+    "180": {
+      "number": 180,
+      "text": "Hermaphroditus an ad testamentum adhiberi possit, qualitas sexus incalescentis ostendit."
+    },
+    "181": {
+      "number": 181,
+      "text": "Qui falso vel varie testimonia dixerunt vel utrique parti prodiderunt, a iudicibus competenter puniuntur."
+    },
+    "182": {
+      "number": 182,
+      "text": "Pater et filius qui in potestate eius est, item duo fratres qui in eiusdem patris potestate sunt testes utrique in eodem testamento vel eodem negotio fieri possunt, quoniam nihil nocet ex una domo plures testes alieno negotio adhiberi."
+    },
+    "183": {
+      "number": 183,
+      "text": "Ex eo, quod prohibet lex iulia de adulteriis testimonium dicere condemnatam mulierem, colligitur etiam mulieres testimonii in iudicio dicendi ius habere."
+    },
+    "184": {
+      "number": 184,
+      "text": "Inviti testimonium non dicunt publicani, item is qui non detractandi testimonii causa aberit, item is qui quid exercitui praebendum conduxerit."
+    },
+    "185": {
+      "number": 185,
+      "text": "In testimonium accusator citare non debet eum, qui iudicio publico reus erit aut qui minor viginti annis erit."
+    },
+    "186": {
+      "number": 186,
+      "text": "Illud quoque incunctabile est, ut, si res exigat, non tantum privati, sed etiam magistratus, si in praesenti sint, testimonium dicant. item senatus censuit praetorem testimonium dare debere in iudicio adulterii causa."
+    },
+    "187": {
+      "number": 187,
+      "text": "Si ea rei condicio sit, ubi harenarium testem vel similem personam admittere cogimur, sine tormentis testimonio eius credendum non est."
+    },
+    "188": {
+      "number": 188,
+      "text": "Si testes omnes eiusdem honestatis et existimationis sint et negotii qualitas ac iudicis motus cum his concurrit, sequenda sunt omnia testimonia: si vero ex his quidam eorum aliud dixerint, licet inpari numero, credendum est id quod naturae negotii convenit et quod inimicitiae aut gratiae suspicione caret, confirmabitque iudex motum animi sui ex argumentis et testimoniis et quae rei aptiora et vero proximiora esse compererit: non enim ad multitudinem respici oportet, sed ad sinceram testimoniorum fidem et testimonia, quibus potius lux veritatis adsistit."
+    },
+    "189": {
+      "number": 189,
+      "text": "Curent magistratus cuiusque loci testari volentibus et se ipsos et alios testes vel signatores praebere, quo facilius negotia explicentur et probatio rerum salva sit."
+    },
+    "190": {
+      "number": 190,
+      "text": "Produci testis is non potest, qui ante in eum reum testimonium dixit."
+    },
+    "191": {
+      "number": 191,
+      "text": "Testes eos, quos accusator de domo produxerit, interrogari non placuit."
+    },
+    "192": {
+      "number": 192,
+      "text": "Mandatis cavetur, ut praesides attendant, ne patroni in causa cui patrocinium praestiterunt testimonium dicant. quod et in exsecutoribus negotiorum observandum est."
+    },
+    "193": {
+      "number": 193,
+      "text": "Nam si quis nesciat decessisse eum, cuius bonorum possessio defertur, non cedit ei tempus: sed si sciat quidem defunctum esse cognatum, nesciat autem proximitatis nomine bonorum possessionem sibi deferri, aut se sciat scriptum heredem, nesciat autem quod scriptis heredibus bonorum possessionem praetor promittit, cedit ei tempus, quia in iure errat. idem est, si frater consanguineus defuncti credat matrem potiorem esse."
+    },
+    "194": {
+      "number": 194,
+      "text": "Si quis nesciat se cognatum esse, interdum in iure, interdum in facto errat. nam si et liberum se esse et ex quibus natus sit sciat, iura autem cognationis habere se nesciat, in iure errat: at si quis ( forte expositus) quorum parentium esset ignoret, fortasse et serviat alicui putans se servum esse, in facto magis quam in iure errat."
+    },
+    "195": {
+      "number": 195,
+      "text": "Item si quis sciat quidem alii delatam esse bonorum possessionem, nesciat autem ei tempus praeterisse bonorum possessionis, in facto errat. idem est, si putet eum bonorum possessionem accepisse. sed si sciat eum non petisse tempusque ei praeterisse, ignoret autem sibi ex successorio capite competere bonorum possessionem, cedet ei tempus, quia in iure errat."
+    },
+    "196": {
+      "number": 196,
+      "text": "Idem dicemus, si ex asse heres institutus non putet se bonorum possessionem petere posse ante apertas tabulas: quod si nesciat esse tabulas, in facto errat."
+    },
+    "197": {
+      "number": 197,
+      "text": "In omni parte error in iure non eodem loco quo facti ignorantia haberi debebit, cum ius finitum et possit esse et debeat, facti interpretatio plerumque etiam prudentissimos fallat."
+    },
+    "198": {
+      "number": 198,
+      "text": "Plurimum interest, utrum quis de alterius causa et facto non sciret an de iure suo ignorat."
+    },
+    "199": {
+      "number": 199,
+      "text": "Sed cassius ignorantiam sabinum ita accipiendam existimasse refert non deperditi et nimium securi hominis."
+    },
+    "200": {
+      "number": 200,
+      "text": "Iuris ignorantiam in usucapione negatur prodesse: facti vero ignorantiam prodesse constat."
+    },
+    "201": {
+      "number": 201,
+      "text": "Iniquissimum videtur cuiquam scientiam alterius quam suam nocere vel ignorantiam alterius alii profuturam."
+    },
+    "202": {
+      "number": 202,
+      "text": "Nec supina ignorantia ferenda est factum ignorantis, ut nec scrupulosa inquisitio exigenda: scientia enim hoc modo aestimanda est, ut neque neglegentia crassa aut nimia securitas satis expedita sit neque delatoria curiositas exigatur."
+    },
+    "203": {
+      "number": 203,
+      "text": "Iuris ignorantia non prodest adquirere volentibus, suum vero petentibus non nocet."
+    },
+    "204": {
+      "number": 204,
+      "text": "Error facti ne maribus quidem in damnis vel compendiis obest, iuris autem error nec feminis in compendiis prodest: ceterum omnibus iuris error in damnis amittendae rei suae non nocet."
+    },
+    "205": {
+      "number": 205,
+      "text": "Regula est iuris quidem ignorantiam cuique nocere, facti vero ignorantiam non nocere. videamus igitur, in quibus speciebus locum habere possit, ante praemisso quod minoribus viginti quinque annis ius ignorare permissum est. quod et in feminis in quibusdam causis propter sexus infirmitatem dicitur: et ideo sicubi non est delictum, sed iuris ignorantia, non laeduntur. hac ratione si minor viginti quinque annis filio familias crediderit, subvenitur ei, ut non videatur filio familias credidisse."
+    },
+    "206": {
+      "number": 206,
+      "text": "Si filius familias miles a commilitone heres institutus nesciat sibi etiam sine patre licere adire per constitutiones principales, ius ignorare potest et ideo ei dies aditionis cedit."
+    },
+    "207": {
+      "number": 207,
+      "text": "Sed facti ignorantia ita demum cuique non nocet, si non ei summa neglegentia obiciatur: quid enim si omnes in civitate sciant, quod ille solus ignorat? et recte labeo definit scientiam neque curiosissimi neque neglegentissimi hominis accipiendam, verum eius, qui cum eam rem ut, diligenter inquirendo notam habere possit."
+    },
+    "208": {
+      "number": 208,
+      "text": "Sed iuris ignorantiam non prodesse labeo ita accipiendum existimat, si iuris consulti copiam haberet vel sua prudentia instructus sit, ut, cui facile sit scire, ei detrimento sit iuris ignorantia: quod raro accipiendum est."
+    },
+    "209": {
+      "number": 209,
+      "text": "Qui ignoravit dominum esse rei venditorem, plus in re est, quam in existimatione mentis: et ideo, tametsi existimet se non a domino emere, tamen, si a domino ei tradatur, dominus efficitur."
+    },
+    "210": {
+      "number": 210,
+      "text": "Si quis ius ignorans lege falcidia usus non sit, nocere ei dicit epistula divi pii. sed et imperatores severus et antoninus in haec verba rescripserunt: \" quod ex causa fideicommissi indebitum datum est, si non per errorem solutum est, repeti non potest. quamobrem gargiliani heredes, qui, cum ex testamento eius pecuniam ad opus aquae ductus rei publicae cirtensium relictam solverint, non solum cautiones non exegerunt, quae interponi solent, ut quod amplius cepissent municipes quam per legem falcidiam licuisset redderent, verum etiam stipulati sunt, ne ea summa in alios usus converteretur et scientes prudentesque passi sunt eam pecuniam in opus aquae ductus impendi, frustra postulant reddi sibi a re publica cirtensium, quasi plus debito dederint, cum sit utrumque iniquum pecuniam, quae ad opus aquae ductus data est, repeti et rem publicam ex corpore patrimonii sui impendere in id opus, quod totum alienae liberalitatis gloriam repraesentet. quod si ideo repetitionem eius pecuniae habere ..."
+    },
+    "211": {
+      "number": 211,
+      "text": "Et licet municipum mentio in hac epistula fiat, tamen et in qualibet persona idem observabitur. sed nec quod in opere aquae ductus relicta esse pecunia proponitur, in hunc solum casum cessare repetitionem dicendum est. nam initium constitutionis generale est: demonstrat enim, si non per errorem solutum sit fideicommissum, quod indebitum fuit, non posse repeti: item et illa pars aeque generalis est, ut qui iuris ignorantia legis falcidiae beneficio usi non sunt, non possint repetere: ut secundum hoc possit dici etiam, si pecunia, quae per fideicommissum relicta est quaeque soluta est, non ad aliquid faciendum relicta sit, et licet consumpta non sit, sed exstet apud eum cui soluta est, cessare repetitionem."
+    },
+    "212": {
+      "number": 212,
+      "text": "Impuberes sine tutore agentes nihil posse vel scire intelleguntur."
+    }
+  }
+}

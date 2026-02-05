@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "author": "Aquinas",
+    "work": "Prologus",
+    "url": "https://www.thelatinlibrary.com/aquinas/prologus.shtml",
+    "verse_count": 1,
+    "title": "Prologus"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "ANGELICI DOCTORIS SANCTI THOMAE AQUINATIS\n\nORDINIS PRAEDICATORUM\n\nPROLOGUS"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "author": "Justinian",
+    "work": "Prooemium",
+    "url": "https://www.thelatinlibrary.com/justinian/institutes.proem.shtml",
+    "verse_count": 3,
+    "title": "Prooemium"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "IN·NOMINE DOMINI NOSTRI IESU CHRISTI.IMPERATOR CAESAR FLAVIUS IUSTINIANUS ALAMANNICUSGOTHICUS FRANCICUS GERMANICUS ANTICUS ALANICUSVANDALICUS AFRICANUS PIUS FELIXINCLITUS VICTOR AC TRIUMPHATORSEMPER AUGUSTUS CUPIDAELEGUM IUVENTUTI"
+    },
+    "2": {
+      "number": 2,
+      "text": "Imperatoriam maiestatem non solum armis decoratam, sed etiam legibus oportet esse armatam, ut utrumque tempus et bellorum et pacis recte possit gubernari et princeps Romanus victor existat non solum in hostilibus proeliis, sed etiam per legitimos tramites calumniantium iniquitates expellens, et fiat tam iuris religiosissimus quam victis hostibus triumphator.      Quorum utramque viam cum summis vigiliis et summa providentia adnuente Deo perfecimus.  et bellicos quidem sudores nostros barbaricae gentes sub iuga nostra deductae cognoscunt et tam Africa quam aliae innumerosae provinciae post tanta temporum spatia nostris victoriis a caelesti numine praestitis iterum dicioni Romanae nostroque additae imperio protestantur.  omnes vero populi legibus iam a nobis vel promulgatis vel compositis reguntur.  Et cum sacratissimas constitutiones antea confusas in luculentam ereximus consonantiam, tunc nostram extendimus curam et ad immensa prudentiae veteris volumina et opus desperatum, quasi per m..."
+    },
+    "3": {
+      "number": 3,
+      "text": "DOMINI NOSTRI IUSTINIANI PERPETUO AUGUSTIINSTITUTIONUM SIVE ELEMENTORUMCOMPOSITORUM PER TRIBONIANUMVIRUM EXCELSUM IURISQUE DOCTISSIMUM MAGISTRUMET EX QUAESTORE SACRI PALATII ETTHEOPHILUM VIRUM MAGNIFICUM IURIS PERITUMET ANTECESSOREM HUIUS ALMAE URBIS ETDOROTHEUM VIRUM MAGNIFICUMQUAESTORIUM IURIS PERITUM ET ANTECESSOREMBERYTENSIUM INCLYTAE CIVITATIS."
+    }
+  }
+}

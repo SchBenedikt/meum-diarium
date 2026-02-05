@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "author": "Justin",
+    "work": "Liber XXX",
+    "url": "https://www.thelatinlibrary.com/justin/30.html",
+    "verse_count": 2,
+    "title": "Liber XXX"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "HISTORIARUM PHILIPPICARUM IN EPITOMEN REDACTI A M. IUNIANO IUSTINO"
+    },
+    "2": {
+      "number": 2,
+      "text": "IV.  Eodem anno inter insulas Theram et Therasiam medio utriusque ripae maris spatio terrae motus fuit, 2 in quo cum admiratione navigantium repente ex profundo cum calidis aquis insula emersit. 3 In Asia quoque eadem die idem motus terrae Rhodum multasque alias civitates gravis ruinarum labe concussit, quasdam solidas absorbuit. 4 Quo prodigio territis omnibus vates cecinere, oriens Romanorum imperium vetus Graecorum ac Macedonum voraturum. 5 Interim a senatu repudiata pace Philippus in societatem belli Nabim tyrannum sollicitat. 6 Atque ita cum in aciem exercitum instructis e diverso hostibus produxisset, hortari suos coepit referendo Persas, Bactros Indosque et omnem Asiam Orientis fine a Macedonibus perdomitam; 7 tantoque hoc bellum fortius quam illa sustinendum, quanto sit imperio libertas carior. 8 Sed et Flamininus, Romanus consul, relatione rerum gestarum recentissime suos stimulabat in proelium, ostendendo hinc Karthaginem cum Sicilia, inde Italiam et Hispaniam Romana virtute ..."
+    }
+  }
+}

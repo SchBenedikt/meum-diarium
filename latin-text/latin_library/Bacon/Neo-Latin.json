@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "author": "Bacon",
+    "work": "Neo-Latin",
+    "url": "https://www.thelatinlibrary.com/neo.html",
+    "verse_count": 1,
+    "title": "Neo-Latin"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "Addison\nBacon\nBalde\nBigges\nBebel\n\n\nBorbonii\nBoskovic\nBoym\nBuchanan\nBultelius\n\n\nCampion\nColumbus\nConradus Celtis\nContemporary\nCotta\n\n\nDescartes\nEpistulae de Priapismo\nErasmus\nFletcher\nForsett\n\n\nGalileo\nGarcilaso de la Vega\nGaudeamus Igitur\nGauss\nGwinne\n\n\nHalley\nHolberg\nJanus Secundus\nKepler\nLandor\n\n\nLaurentius Corvinus\n Lhomond \nLotichius\nLuther\nMarullo\n\n\nMarx\nMay\nMelanchthon\nMilton\nMirandola\n\n\nMontanus\nMore\nNavagero\nNewton\nOwen\n\n\nPascoli\nPasserat\nPatricius\nPetrarch\n Piccolomini\n\n\nPontano\nPoggio Bracciolini \nPoree\nPseudoplatonica\nRitchie's Fabulae Faciles\n\n\nRimbaud\nRuaeus' Aeneid\nSannazaro\nScaliger\nSpinoza\n\n\nTheophanes\nTünger\nVallauri\nVegius\nVico\n\n\nVida\nWaardenburg\nJohann H. Withof\nJohann P. L. Withof\nXylander"
+    }
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "metadata": {
+    "author": "Theodosian Code",
+    "work": "Liber XV",
+    "url": "https://www.thelatinlibrary.com/theodosius/theod15.shtml",
+    "verse_count": 130,
+    "title": "Liber XV"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "IMPERATORI THEODOSIANI CODEX\n\nLIBER QUINTUS DECIMUS"
+    },
+    "2": {
+      "number": 2,
+      "text": "CTh.15.1.0. De operibus publicis \n\nCTh.15.2.0. De aquaeductu \n\nCTh.15.3.0. De itinere muniendo \n\nCTh.15.4.0. De imaginibus imperialibus \n\nCTh.15.5.0. De spectaculis \n\nCTh.15.6.0. De maiuma \n\nCTh.15.7.0. De scaenicis \n\nCTh.15.8.0. De lenonibus \n\nCTh.15.9.0. De expensis ludorum \n\nCTh.15.10.0. De equis curulibus \n\nCTh.15.11.0. De venatione ferarum \n\nCTh.15.12.0. De gladiatoribus \n\nCTh.15.13.0. De usu sellarum \n\nCTh.15.14.0. De infirmandis his, quae sub tyrannis aut barbaris gesta sunt \n\nCTh.15.15.0. Quod armorum usus interdictus est"
+    },
+    "3": {
+      "number": 3,
+      "text": "Imp. constantinus a. ad flavianum proconsulem africae. nemo propriis ornamentis esse privandas existimet civitates: fas si quidem non\nest acceptum a veteribus decus perdere civitatem veluti ad urbis alterius moenia transferendum. dat. iiii non. feb. mediolano, accepta viii\nid. iul. constantino a. et caes. conss. (.... [357] febr. 2)."
+    },
+    "4": {
+      "number": 4,
+      "text": "Idem a. menandro. propter neglegentiam iudicum, qui imperialia praecepta differunt, ad diversas provincias diversos misimus, qui ad\nscientiam nostram referant, quae vel diligentia promota viderint vel desidia corrupta culpaverint. monendi autem iudices sunt, qui\ninstaurare publica opera debent, ut de effectis eis potius quam inchoatis ad nostram scientiam referant, nisi forte iusta ratione petendum\nsit aliquos, si forte defuerint, impensarum titulos provideri. de rebus autem praecipuis maximisque, non de quibuscumque vilissimis\nnostrum debent interpellare consilium. dat. iii id. april. sirmi crispo ii et constantino ii cc. conss. (321 apr. 11)."
+    },
+    "5": {
+      "number": 5,
+      "text": "Idem a. secundo praefecto praetorio. provinciarum iudices commoneri praecipimus, ut nihil se novi operis ordinare ante debere\ncognoscant, quam ea compleverint, quae a decessoribus inchoata sunt, exceptis dumtaxat templorum aedificationibus. dat. iii kal. iul.\nconstantino a. vii et constantio c. conss. (326 [362] iun. 29)."
+    },
+    "6": {
+      "number": 6,
+      "text": "Idem a. have, felix, carissime nobis. omnis intra centum pedes vicinitas, quantum ad horrea pertinet, arceatur ac si quid constructum\nfuerit, diruatur, quoniam experimentis nuperrimis palam factum est aedificiorum, quae horreis adhaerebant, incendiis fiscales copias\nlaborasse. quod si quis aedificandi amore publica damna neglexerit, non solum quod construxit, sed omnes res eius et quidquid in suo iure\nhabuit, fisco adiudicari praecipimus. dat. xi kal. aug. sirmio constantino a. iiii et constantio c. conss. (326 iul. 22)."
+    },
+    "7": {
+      "number": 7,
+      "text": "Impp. constantius et constans aa. have, catulline, karissime nobis. plurimi inmunitates operum publicorum concessione iudicum adepti\nsunt. itaque omnes iubemus inquiri, ut eorum nomina adque etiam privatas indulgentias lenitudo nostra cognoscat. et infra: iam nunc\ntamen iussimus, ut adversus fas elicitas inmunitates per detrimenta comperissent et in lucro habere desistant. in posterum aditus similia\ncupientibus obstruatur. dat. vi kal. aug. sirmi urso et polemio conss. (338 iul. 27)."
+    },
+    "8": {
+      "number": 8,
+      "text": "Idem aa. ad marcellinum comitem orientis. quae operibus publicis impensa constiterit, accepto ferri oportere cognoscas. dat. v non.\noctob. constantinopoli limenio et catullino conss. (349 oct. 3)."
+    },
+    "9": {
+      "number": 9,
+      "text": "Idem aa. ad senatum. quoniam diversi iudices nonnulla opera in quibusdam aestimant urbibus extruenda, ad huiusmodi necessitatem\nsenatorum substantia non vocetur. eos quoque senatores, quibus per diversas provincias fuerit sollicitudo commissa, fretos sanctione\nnostra huiuscemodi temptamentis decet constanter obsistere, ne senatoriae facultates harum rerum contemplatione vexentur. dat. v non.\nmai. tauro et florentio conss. (361 mai. 3)."
+    },
+    "10": {
+      "number": 10,
+      "text": "Idem a. ecdicio praefecto aegypti. oportuit praetoria iudicum et domos iudiciarias publico iuri adque usui vindicari. sed quia salubris\nnostra dispositio dilata est, nunc saltem tradatur effectui. et cetera. proposita iiii non. decemb. antiochiae mamertino et nevitta conss.\n(362 dec. 2)."
+    },
+    "11": {
+      "number": 11,
+      "text": "Imp. iulianus a. ecdicio pf. aegypti. post alia: comperimus, super ergasteria publica, quae ad ius pertinent civitatis, plerosque sibi domos\nexstruxisse. praecipimus ergo, eos inconcusso iure, quae aedificaverunt, possidere. pp. iv. non. dec. antiochiae, mamertino et nevitta\ncoss."
+    },
+    "12": {
+      "number": 12,
+      "text": "interpretatio. si quis in civitate consistens in locis publicis sibi domos forte construxerit, eas sine inquietudine aliqua possideat"
+    },
+    "13": {
+      "number": 13,
+      "text": "Idem a. ad rufinum. quicumque cuiuslibet ordinis dignitatis aliquod opus publicum quoquo genere obscura interpretatione meruerit,\nfructu talis beneficii sine aliqua dubitatione privetur. non solum enim revocamus quod factum est, verum etiam in futurum cavemus, ne\nqua fraude temptetur. dat. vii id. dec. aquileiae mamertino et nevitta conss. (362 dec. 7)."
+    },
+    "14": {
+      "number": 14,
+      "text": "Impp. valentinianus et valens aa. ad symmachum praefectum urbi. intra urbem romam aeternam nullus iudicum novum opus informet,\nquotiens serenitatis nostrae arbitria cessabunt. ea tamen instaurandi, quae iam deformibus ruinis intercidisse dicuntur, universis licentiam\ndamus. dat. viii kal. iun. philippis divo ioviano et varroniano conss. (364 mai. 25)."
+    },
+    "15": {
+      "number": 15,
+      "text": "Idem aa. ad symmachum. horrea fiscalia apud urbem romam nec non etiam portus in usus translata privatos cognovimus. haec ad\npristinum....Inferioribus horreorum frumenta condantur, quae natura loci et umore vitiantur. annonas quoque horreis antiquitus deputatas\nhos redhibere compelles, qui eas in damna publica ausi sunt occupare, quarum substantiam enthecae populi romani proficere praecipies.\nsane quos invenies fabricarum destructionis auctores, ad reparationem necessario tenebis. dat. vi id. iun. naisso divo ioviano et\nvarroniano conss. (364 iun. 8)."
+    },
+    "16": {
+      "number": 16,
+      "text": "Idem aa. tautomedi duci daciae ripensis. in limite gravitati tuae commisso praeter eas turres, quas refici oportet, si forte indigeant\nrefectione, turres administrationis tempore quotannis locis opportunis extrue. quod si huius praecepti auctoritatem neglexeris, finita\nadministratione revocatus in limitem ex propriis facultatibus eam fabricam, quam administrationis tempore adiumentis militum et\nimpensis debueras fabricare, extruere cogeris. dat. xiii kal. iul. mediolano divo ioviano et varroniano conss. (364 [?] iun. 19)."
+    },
+    "17": {
+      "number": 17,
+      "text": "Idem aa. ad mamertinum praefectum praetorio. praesumptionem iudicum ulterius prohibemus, qui in eversionem abditorum oppidorum\nmetropoles vel splendidissimas civitates ornare se fingunt transferendorum signorum vel marmorum vel columnarum materiam\nrequirentes. quod post legem nostram sine poena admittere non licebit, praesertim cum neque novam constitui fabricam iusserimus,\nantequam vetera reformentur, et, si adeo aliquid fuerit inchoandum, ab aliis civitatibus conveniat temperari. dat. kal. ian. mediolano\nvalentiniano et valente conss. (365 ian. 1)."
+    },
+    "18": {
+      "number": 18,
+      "text": "Idem aa. ad dracontium. lex sancientibus nobis rogata est, quae iudices omnes et rectores provinciarum edicto suo adque auctoritate\ncohibet aliquid novi operis adripere, priusquam ea, quae victa senio fatiscerent, repararent. quae nunc etiam credidimus repetenda. dat.\nxiiii kal. mar. mediolano valentiniano et valente aa. conss. (365 feb. 16)."
+    },
+    "19": {
+      "number": 19,
+      "text": "Idem aa. ad mamertinum praefectum praetorio. censura tua hanc iudicibus licentiam penitus amputabit, ne aliquid novellum adgrediantur\nopus veterum illustrium fabricarum reparatione neglecta. in eo sane larga ac benigna his licentia tribuetur, ut ornamenta urbium ac decora\nmarmorum, quae in aliquo senium temporis sentiunt, ad speciem pristinam et usum congruae utilitatis instaurent. ceterum nihil auspicari\nquemquam novi operis patieris exceptis stabulorum fabricis, quae ex usu publico, si ita res tulerit, non prohibemus institui. dat. id. mar.\nsenigallia valentiniano et valente aa. conss. (365 mart. 15)."
+    },
+    "20": {
+      "number": 20,
+      "text": "Idem aa. ad valentinianum consularem piceni. si quid sinceritas tua his urbibus, quibus praeest, putaverit deferendum, instaurare\nantiquum opus rectius poterit quam novum inchoare. sane si quid reparationi alicuius operis postulandum erit, non in pecunia, sed in\nipsis speciebus postulare te par est. si loca aliqua indigent novis stabulis aut horreis, videris exaedificare etiam, si emolumenta publica\nadverteris postulare. dat. prid. non. octob. valentiniano et valente aa. conss. (365 oct. 6)."
+    },
+    "21": {
+      "number": 21,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad probum praefectum praetorio. rectores provinciarum quodcumque opus inchoandum\nesse necessario viderint in aliqua civitate, id arripere non dubitent. si civitatis eius res publica tantum in tertia pensionis parte non\nhabeat, quantum coeptae fabricae poscat impendium, ex aliarum civitatum rei publicae canone praesumant, tertiae videlicet portionis.\nproposita vii kal. feb. sirmio gratiano a. iii et equitio conss. (374 ian. 26)."
+    },
+    "22": {
+      "number": 22,
+      "text": "Imppp. valens, gratianus et valentinianus aaa. ad senatum. post alia: nemo praefectorum urbis aliorumve iudicum, quos potestas in\nexcelso locat, opus aliquod novum in urbe roma inclyta moliatur, sed excolendis veteribus intendat animum. novum quodque opus qui\nvolet in urbe moliri, sua pecunia, suis operibus absolvat, non contractis veteribus emolumentis, non effossis nobilium operum\nsubstructionibus, non redivivis de publico saxis, non marmorum frustis spoliatarum aedium deformatione convulsis. lecta in senatu\nvalente v et valentiniano aa. conss. (376.....)."
+    },
+    "23": {
+      "number": 23,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. iuliano praefecto aegypti. iudex, qui ad provinciam fuerit destinatus, duas partes vel\nincuria vel vetustate collapsas ad statum pristinum nitoris adducat adque tertiam construat novitatis, si tamen famae et propriis cupit\nlaudibus providere. dat. xvi kal. april. thessalonicae gratiano a. v et theodosio a. i conss. (380 mart. 17)."
+    },
+    "24": {
+      "number": 24,
+      "text": "Idem aaa. eutropio praefecto praetorio. singuli quique iudicum primo omnium in tuendis veteribus aedificiis publicis impendant propriae\nsollicitudinis curam, tum adgrediantur nova. adque studio cautae celeritatis, quidquid a superiore reppererint inchoatum, quasi a se\ncoeptum noverint explicandum. dat. xvi kal. septemb. hadrianopoli gratiano a. v et theodosio a. i conss. (380 aug. [?] 17)."
+    },
+    "25": {
+      "number": 25,
+      "text": "Idem aaa. have, procule karissime nobis. praescriptio temporis iuri publico non debet obsistere, sed ne rescripta quidem. adque ideo\ndiruenda sunt omnia, quae per diversas urbes vel in foro vel in quocumque publico loco civitatis extructa noscuntur. dat. iii id. iun.\nconstantinopoli merobaude ii et saturnino conss. (383 iun. 11)."
+    },
+    "26": {
+      "number": 26,
+      "text": "Idem aaa. cynegio praefecto praetorio. ad portus et aquaeductus instaurationem omnes certatim facta operarum collatione instare debent\nneque aliquis ab huiuscemodi consortio dignitatis privilegiis excusari. dat. xv kal. feb. constantinopoli richomere et clearcho conss. (384\nian. 18)."
+    },
+    "27": {
+      "number": 27,
+      "text": "Idem aaa. cynegio praefecto praetorio. omnes, quibus vel cura mandata fuerit operum publicorum vel pecunia ad extructionem solito\nmore decreta, usque ad annos quindecim ab opere perfecto cum suis heredibus teneantur obnoxii, ita ut, si quid vitii in aedificatione intra\npraestitutum tempus provenerit, de eorum patrimonio, exceptis tamen his casibus qui sunt fortuiti, reformetur. dat. iii non. feb.\nconstantinopoli arcadio a. i et bautone conss. (385 febr. 3)."
+    },
+    "28": {
+      "number": 28,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. proculo praefecto urbis constantinopolitanae. turpe est publici splendoris ornatum\nprivatarum aedium adiectione conrumpi et ea, quae conspicuae urbis decori vel nostri temporis vel prioris saeculi aetate creverunt,\naviditate cogendae pecuniae sociari. unde sublimis eminentia tua, quidquid talis astutiae deprehenderit fraude violatum, id, si publicis\nnitoribus faciem aspectus deterioris inducit, sive illud voluntaria praesumptione temeratum est sive expressam coactis adnotationibus\noccasionem fraudis obtinuit, iubebit amoveri. tuo enim arbitrio relinquimus, a quibus temperandum quaeve diruenda diiudices. dat. xvi\nkal. aug. romae timasio et promoto conss. (389 iul. 17)."
+    },
+    "29": {
+      "number": 29,
+      "text": "Idem aaa. polemio praefecto praetorio illyrici et italiae. quotiens clariores urbes per singulas quasque provincias expensis propriis et\nvectigalibus maiorem pecuniam absolvendi cuiuslibet operis necessitate deposcunt, id ex minorum viribus vindicetur, ita ut non ante\nposcatur, quam omnis summa, quae isdem ex suis compendiis quaeri solet, instaurandis aedibus adsumatur. consequens vero erit, ut in\nnotitiam serenitatis nostrae, quotiens habita fuerit haec vectigalium usurpatio, dirigatur, quantum fuerit aliunde praesumptum, per quos\nexpensum, quatenus consummatum. dat. xvii kal. feb. mediolano valentiniano a. iiii et neoterio conss. (390 ian. 16)."
+    },
+    "30": {
+      "number": 30,
+      "text": "Idem aaa. albino praefecto urbis romae. augustae in partibus civitatis magis antiqua reddi convenit quam inchoari supervacua. nosse\nitaque par est officium magnitudinis tuae et ceteros, a quibus sumptus huiusmodi operibus de aerario praebebuntur, accepto omnino non\nferri, si quis per usurpationem opus praeter conscientiam nostram intra aeternam urbem voluerit publica collatione construere. ideoque\nsummam omnem, quae illi contra interdictum forte praebebitur, pecunia sua et propriis facultatibus pendet, sequestrata condemnatione\nlibrarum auri decem, quae plectet sacrilegam contemnentis audaciam. dat. prid. non. april. mediolano valentiniano a. iiii et neoterio conss.\n(390 apr. 4)."
+    },
+    "31": {
+      "number": 31,
+      "text": "Idem aaa. polemio praefecto praetorio illyrici et italiae. si quis novum opus in qualibet civitate sustollere audacius quam consultius\nmolietur, de proprio se collaturum sumptus et perfecturum quod coeperit noscat. nihil quippe dispensatoribus ex hoc usu feremus\naccepto, et contra officium adque ipsum iudicem auri pondo dena constringent, ut saltem metu, quod facere sponte debuerant, reficiendis\nvetustioribus impendant laborem. dat. prid. non. april. mediolano valentiniano a. iiii et neoterio v. c. conss. (390 apr. 4)."
+    },
+    "32": {
+      "number": 32,
+      "text": "Imppp. theodosius, arcadius et honorius aaa. aureliano praefecto urbi. ne quis iudicum nova aedificia moliatur, cum opera nonnulla aut\ncoepta penderent aut neglecta nutarent. dat. iii kal. mar. constantinopoli theodosio a. iii et abundantio conss. (393 febr. 27)."
+    },
+    "33": {
+      "number": 33,
+      "text": "Idem aaa. aureliano praefecto urbi. si quando concessa a nobis licentia fuerit extruendi, id sublimis magnificentia tua sciat esse\nservandum, ut nulla domus inchoandae publicae fabricae gratia diruatur, nisi usque ad quinquaginta libras argenti pretii aestimatione\ntaxabitur. de aedificiis vero maioris meriti ad nostram scientiam referetur, ut, ubi amplior poscitur quantitas, imperialis extet auctoritas.\ndat. iii kal. mart. constantinopoli theodosio a. iii et abundantio conss. (393 febr. 27)."
+    },
+    "34": {
+      "number": 34,
+      "text": "Idem aaa. rufino praefecto praetorio. si qui iudices perfecto operi suum potius nomen quam nostrae perennitatis scripserint, maiestatis\nteneantur obnoxii. (394 iul. 5)."
+    },
+    "35": {
+      "number": 35,
+      "text": "Illud etiam repetita sanctione decernimus, ut nemini iudicum liceat novis molitionibus industriae captare famam. quod si quis in\nadministratione positus sine iussu nostro aedificii alicuius iacere fundamenta temptaverit, is proprio sumptu et iam privatus perficere\ncogetur quod ei non licuerat inchoare, nec provincia permittetur abscedere prius, quam ad perfectam manum coeptum perduxerit et, si\nquid de quibuslibet publicis titulis in ea ipsa fabrica praecepto eius impensum fuerit, reformarit. dat. iii non. iul. constantinopoli arcadio\niii et honorio ii aa. conss. (394 iul. 5)."
+    },
+    "36": {
+      "number": 36,
+      "text": "Impp. arcad. et honor. aa. eusebio comiti sacrarum largitionum. ne splendidissimae urbes vel oppida vetustate labantur, de reditibus\nfundorum iuris rei publicae tertiam partem reparationi publicorum moenium et thermarum subustioni deputamus. dat. xi. kal. iul.\nmediolano, olybrio et probino coss."
+    },
+    "37": {
+      "number": 37,
+      "text": "interpretatio. quoties aedificia vetustate consumpta* necesse fuerit reparari, ad ipsam reparationem tertiam partem de proprio fiscus\nimpendat"
+    },
+    "38": {
+      "number": 38,
+      "text": "Idem aa. have, vincenti, karissime nobis. praecipua nobis cura est, ne aut provinciales nostri superindictionibus praegraventur aut opera\npublica pereant vetustate collapsa. singuli igitur ordines civitatum ad reparationem moenium publicorum nihil sibi amplius noverint\npraesumendum praeter tertiam portionem eius canonis, qui ex locis fundisque rei publicae quotannis conferri solet, sicut divi parentis\nnostri valentiniani senioris deputavit auctoritas. dat. iii non. iul. mediolano olybrio et probino conss. (395 iul. 5)."
+    },
+    "39": {
+      "number": 39,
+      "text": "Idem aa. caesario praefecto praetorio. omnes provinciarum rectores litteris moneantur, ut sciant ordines adque incolas urbium singularum\nmuros vel novos debere facere vel firmius veteres renovare, scilicet hoc pacto impendiis ordinandis, ut adscriptio currat pro viribus\nsingulorum, dein describantur pro aestimatione futuri operis territoria civium, ne plus poscatur aliquid quam necessitas imperaverit neve\nminus, ne instans impediatur effectus. oportet namque per singula iuga certa quaeque distribui, ut par cunctis praebendorum sumptuum\nnecessitas imponatur. dat. viiii kal. april. arcadio iiii et honorio iii aa. conss. (396 mart. 24)."
+    },
+    "40": {
+      "number": 40,
+      "text": "Idem aa. caesario praefecto praetorio. quidquid de palatiis aut praetoriis iudicum aut horreis aut stabulis et receptaculis animalium\npublicorum ruina lapsum fuerit, id rectorum facultatibus reparari praecipimus, qui a primo consulatu divi genitoris nostri usque praesens\ntempus gesserunt iudiciariam potestatem. proposita regio arcadio iiii et honorio iii aa. conss. (396 ....)."
+    },
+    "41": {
+      "number": 41,
+      "text": "Idem aa. asterio comiti orientis. quoniam vias pontes, per quos itinera celebrantur, adque aquaeductus, muros quin etiam iuvari provisis\nsumptibus oportere signasti, cunctam materiam, quae ordinata dicitur ex demolitione templorum, memoratis necessitatibus deputari\ncensemus, quo ad perfectionem cuncta perveniant. dat. kal. nov. caesario et attico conss. (397 nov. 1)."
+    },
+    "42": {
+      "number": 42,
+      "text": "Idem aa. theodoro praefecto praetorio. nemo iudicum in id temeritatis erumpat, ut inconsulta pietate nostra novi aliquid operis existimet\ninchoandum vel ex diversis operibus aeramen aut marmora vel quamlibet speciem, quae fuisse in usu vel ornatu probabitur civitatis,\neripere vel alio transferre sine iussu tuae sublimitatis audeat. etenim si quis contra fecerit, tribus libris auri multabitur. (398 ian. 1)."
+    },
+    "43": {
+      "number": 43,
+      "text": "Similis etiam condemnatio ordines civitatum manebit, nisi ornamentum genitalis patriae decreti huius auctoritate defenderint. horreorum\nautem vel stabulorum fabricas arbitratu proprio provinciarum iudices studio laudandae devotionis adripiant. dat. kal. ian. mediolano\nhonorio a. iiii et eutychiano conss. (398 ian. 1)."
+    },
+    "44": {
+      "number": 44,
+      "text": "Idem aa. eutychiano praefecto praetorio. excellens eminentia tua cuncta privata aedificia, quae coniuncta horreis publicis esse cognoverit,\ndirui ac demoliri praecipiet, ita ut ex quattuor lateribus privatorum consortio separata sint ac libero spatio secernantur, ut a principio\nfuerant fabricata. dat. v non. iul. constantinopoli honorio a. iii et eutychiano conss. (398 iul. [?] 3)."
+    },
+    "45": {
+      "number": 45,
+      "text": "Idem aa. severo praefecto urbi. aedificia, quae vulgi more parapetasia nuncupantur, vel si qua alia opera publicis moeniis vel privatis\nsociata cohaerent, ut ex his incendium vel insidias vicinitas reformidet aut angustentur spatia platearum vel minuatur porticibus latitudo,\ndirui ac prosterni praecipimus. dat. v id. octob. constantinopoli honorio a. iiii et eutychiano conss. (398 oct. 11)."
+    },
+    "46": {
+      "number": 46,
+      "text": "Idem aa. eutychiano praefecto praetorio. si aliquando operum publicorum petitores emergant, non nisi diruta penitusque destructa et\nquae parum sint usui civitatum petitoribus adsignentur. dat. id. dec. honorio a. iiii et eutychiano conss. (398 dec. 13)."
+    },
+    "47": {
+      "number": 47,
+      "text": "Idem aa. hadriano praefecto praetorio. omnia aedificia publica sive iuris templorum intra muros posita vel etiam muris cohaerentia, quae\ntamen nullis censibus patuerit obligata, curiales et collegiati submotis competitoribus teneant adque custodiant, suarum non inmemores\nfortunarum, ita ut eos nullus penitus inquietet, qui aliquem locum publicum aut per sacram adnotationem meruerit aut in areis\nvacantibus, quae nullum usum civitatibus ornatumque praeberent, insinuata auctoritate rescripti propriis sumptibus aedificaverit. si qua\nvero super huiusmodi locis fuerit orta dubitatio, non aliquid municipes sive collegiatos volumus sponte praesumere, sed a rectore\nprovinciae ortam dirimi quaestionem vel sublimem consuli praefecturam, si iudicandi exegerit difficultas. palatina sane officia ab his locis\nabstinere oportet nec praebendae instructionis gratia cuique subripiendi aditum reserari, cum, si quando a quopiam vacans locus aut area\npostulatur, consultius ad ordinarios iudices nostri mitta..."
+    },
+    "48": {
+      "number": 48,
+      "text": "Idem aa. eutychiano praefecto praetorio. eudoxiopolitanae civitatis cives pro oblata no .... suam patriam ergasteria condonamus. ne quis\nigitur ergasteria memorata a nostra serenitate deinceps petere moliatur eaque ratione civium, quorum censum cupimus ampliari, iura\nperturbet. dat. prid. id. iul. constantinopoli honorio a. vi et aristaeneto conss. (404 iul. 14)."
+    },
+    "49": {
+      "number": 49,
+      "text": "Idem aa. hadriano praefecto praetorio. petentibus loca publica ea condicione adnuimus, ne quid usui vel ornatibus aut commodis\ncivitatum auferatur. et quamquam nullum opinemur existere, qui contra commoda vel ornatum propriae civitatis competitorum\nobreptionibus coniveret, adtamen huiuscemodi rescripta ad excellentiam tuam referri praecipimus, scientibus iudicibus, quod, si qui\ndeinceps subrepticia voluerit allegare rescripta, non nisi reprehensione existimationis suae et poena officiorum suorum his aditum\npraebebunt, si in tradendis locis publicis, si qui forte nostra liberalitate fuerint concessi, excellentiae tuae non expectetur auctoritas. dat.\nviii kal. octob. ravennae stilichone ii et anthemio conss. (405 sept. 24)."
+    },
+    "50": {
+      "number": 50,
+      "text": "Idem aaa. aemiliano praefecto urbi. si quando usus exegerit vel porticus vel quaslibet aedes aetatis senio seu fortuitis concussas casibus\nreparari, liceat etiam inconsulta clementia nostra cum reverentia sui imaginem deponere vel nostram vel retro principum reportatamque\npost refecta aedificia loco proprio denuo collocare. dat. v kal. iul. constantinopoli arcadio a. vi et probo conss. (406 iun. 27)."
+    },
+    "51": {
+      "number": 51,
+      "text": "Idem aaa. aemiliano praefecto urbi. omnibus tabulatis tam his, quae intercolumnis adfixa sunt quam his, quae superiores porticus\ndividunt, ad formam pristinam civitatis habitus revocetur, ascensibus etiam his, qui ad superiores porticus ducunt, tam in latiorem\nmodum patentibus quam pro ligneis scalis lapideis gradibus fabricandis. ita enim et pericula incendii aberunt et si qui casus adversi\ntulerint, facile amotis angustiis homines inter incendia discursus ac liberandi sui facultatem invenient. dat. xi kal. novemb. constantinopoli\narcadio a. vi et probo conss. (406 oct. 22)."
+    },
+    "52": {
+      "number": 52,
+      "text": "Idem aaa. aemiliano praefecto urbi. aedificia privatorum publicis aedibus adhaerentia sive superposita destrui tollique praecipimus. et in\nposterum id aperte sancimus, ut, si qui aedificandi iuxta publicas aedes animos dederit, quindecim pedum spatio interiecto inter publica\nac privata aedificia ita sibi noverit fabricandum, ut tali intervallo et publicae aedes a periculo vindicentur et privatus aedificator velut\nperperam fabricati loci destructionis quandoque futurae non timeat detrimentum. dat. xi kal. nov. constantinopoli arcadio a. vi et probo\nconss. (406 oct. 22)."
+    },
+    "53": {
+      "number": 53,
+      "text": "Impp. honorius et theodosius aa. monaxio praefecto urbi. quicumque locus in palatio huius urbis privatis aedificiis incommode\noccupatus est, is quam primum subrutis omnibus quae in eo sunt aedificiis palatio reformetur. quod privatorum non est parietibus\ncoartandum, nam imperio magna ab universis secreta debentur: ut hi tantum locum habeant habitandi, quos legitimus maiestatis nostrae\nusus et rei publicae disciplina delegit, in futurum etiam universis ab huiusmodi usurpatione prohibendis. dat. viiii kal. mar.\nconstantinopoli honorio viii et theodosio iii aa. conss. (409 febr. 21)."
+    },
+    "54": {
+      "number": 54,
+      "text": "Idem aa. bonosiano praefecto urbi. nihil ex his, quae instaurationi ornatibusque singulis deputavit antiquitas, nullius colore occasionis\nauferri volumus. igitur a futuro proximo consulatu universa praedictae urbi debitorum vectigalium illibata augmenta pervaleant. dat. iiii\nkal. decemb. ravennae post cons. varanae v. c. (411 nov. 28)."
+    },
+    "55": {
+      "number": 55,
+      "text": "Idem aa. herculio praefecto praetorio illyrici. constructioni murorum et comparationi transvectionique specierum universi sine ullo\nprivilegio coartentur, ita ut in his dumtaxat titulis universi pro portione suae possessionis et iugationis ad haec munia coartentur, quo ita\ndemum, a summis ad infimos usque sarcina decurrente, ferendi oneris non leve solacium, sed in commune omnibus profuturum communi\nlabore curetur. quod in partibus dumtaxat illyricianis nostram clementiam statuisse tua sublimitas recognoscat. dat. v id. april.\nconstantinopoli dd. nn. honorio viiii et theodosio v aa. conss. (412 apr. 9)."
+    },
+    "56": {
+      "number": 56,
+      "text": "Idem aa. isidoro praefecto urbi. opus coeptum extruatur et porticus thermas honorianas praecurrat acie columnarum, cuius decus tantum\nest, ut privata iuste neglegeretur paulisper utilitas. sed ne census sui quisquam intercepta lucra deploret, sed e contrario cum\npulchritudine civitatis etiam fortunas suas auctas esse laetetur, pro loco quod quisque possederat superaedificandi licentiam habeat. nam\nin locum privati aedificii, quod in usum publicum translatum est, occupationem basilicae iubemus vetustae succedere, ut contractus\nquidam et permutatio facta videatur, cum dominus, qui suum dederat civitati, pro eo habiturus sit ex publico remota omni formidine,\nquod inconcusso robore et ipse habere et quibus velit tradere habebit liberam facultatem. dat. iiii kal. novemb. constantinopoli honorio\nviiii et theodosio v aa. conss. (412 oct. 29)."
+    },
+    "57": {
+      "number": 57,
+      "text": "Idem aa. anthemio praefecto praetorio. turres novi muri, qui ad munitionem splendidissimae urbis extructus est, completo opere\npraecipimus eorum usui deputari, per quorum terras idem murus studio ac provisione tuae magnitudinis ex nostrae serenitatis arbitrio\ncelebratur, eadem lege in perpetuum et condicione servanda, ut annis singulis hi vel ad quorum iura terrulae demigraverint proprio\nsumptu earum instaurationem sibimet intellegant procurandam, earumque usu publico beneficio potientes curam reparationis ac\nsollicitudinem ad se non ambigant pertinere. ita enim et splendor operis et civitatis munitio cum privatorum usu et utilitate servabitur.\ndat. prid. non. april. lucio v c. cons. (413 apr. 4)."
+    },
+    "58": {
+      "number": 58,
+      "text": "Imp. theodosius a. severino praefecto urbi. quia plurimae domus cum officinis suis in porticibus zeuxippi esse memorantur, reditus\nmemoratorum locorum pro quantitate, quae placuit, ad praebenda luminaria et aedificia ac tecta reparanda regiae huius urbis lavacro sine\naliqua iubemus excusatione conferri. dat. v id. ian. victore v. c. cons. (424 ian. 9)."
+    },
+    "59": {
+      "number": 59,
+      "text": "Idem a. et valentinianus caes. constantio praefecto urbi. exsedras, quae septentrionali videntur adhaerere porticui, in quibus tantum\namplitudinis et decoris esse monstratur, ut publicis commodis possint capacitatis ac pulchritudinis suae admiratione sufficere, supra\ndictorum consessibus deputabit. eas vero, quae tam orientali quam occidentali lateri copulantur, quas nulla a platea aditus adque egressus\npatens pervias facit, veterum usibus popinarum iubebit adscribi. his tamen ipsis, quae humiliores aliquanto adque angustiores putantur,\nvicinarum spatia cellularum ex utriusque lateris portione oportet adiungi, ne quid aut ministris eorundem locorum desit aut populis. sane\nsi qui memoratas cellulas probabuntur vel imperatoria largitate vel quacumque alia donatione aut emptione legitima possidere, eos\nmagnificentia tua competens pro isdem de publico pretium iubebit accipere. dat. iii kal. mar. constantinopoli d. n. theodosio a. xi et\nvalentiniano caes. i conss. (425 febr. 27)."
+    },
+    "60": {
+      "number": 60,
+      "text": "Imp. constantinus a. ad maximilianum consularem aquarum. possessores, per quorum fines formarum meatus transeunt, ab\nextraordinariis oneribus volumus esse inmunes, ut eorum opera aquarum ductus sordibus obpleti mundentur, nec ad aliud superindictae\nrei onus isdem possessoribus adtinendis, ne circa res alias occupati repurgium formarum facere non occurrant. quod si neglexerint,\namissione possessionum multabuntur: nam fiscus eius praedium obtinebit, cuius neglegentia perniciem formae congesserit. praeterea\nscire eos oportet, per quorum praedia ductus commeat, ut dextra laevaque de ipsis formis quindecim pedibus intermissis arbores\nhabeant; observante tuo officio, ut, si quo tempore pullulaverint, excidantur, ne earum radices fabricam formae conrumpant. dat. xv kal.\niun. gallicano et symmacho conss. (330 mai. 18)."
+    },
+    "61": {
+      "number": 61,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. fortunatiano comiti rerum privatarum. aquaeductus, qui dafnensi palatio usum aquae\npraestat, quorundam aviditate tenuatur adpositis maioribus fistulis, quam ex imperiali largitate meruerunt. consensu igitur omnium in\ntribus locis conceptacula reparentur et singulorum nomina modusque servandus tabulis adscribatur, et si ultra licitum aliquem usurpasse\nconstiterit, per singulos obolos librae unius auri dispendiis ingravetur. et si sacri tenore rescripti aliqui certum modum aquae meruisse\nnoscetur, non prius eidem accipiendi potestas aliquatenus tribuatur, nisi adito rectore ex ipso conceptaculo quantitatem quam meruit\npossit adipisci. dat. iii kal. nov. antiochiae valentiniano n. p. et victore conss. (369 oct. 30?)."
+    },
+    "62": {
+      "number": 62,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. clearcho praefecto urbi. summas quidem domus, si lavacris lautioribus praesententur,\nbinas non amplius aquae uncias aut, si hoc amplius exegerit ratio dignitatis, supra ternas neutiquam possidere, mediocres vero et\ninferioris meriti domus singulis et semis contentas esse decernimus, si tamen huiuscemodi balneas easdem habere claruerit. ceteros vero,\nqui mansionem spatio angustiore sustentant, ad mediae unciae usum tantum gaudere praecipimus neque obreptionem cuiquam patere, ita\nut quod tibi paret officium sex librarum auri multa feriatur, nisi prodiderit usurpantes et is qui fefellit careat impetrato. dat. x kal. iul.\nconstantinopoli antonio et syagrio conss. (382 [?] iun. 22)."
+    },
+    "63": {
+      "number": 63,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. pancratio praefecto urbi. si quis de cetero vetiti furoris audacia florentissimae urbis\ncommoda voluerit mutilare aquam ad suum fundum ex aquaeductu publico derivando, sciat eundem fundum fiscalis tituli proscriptione\nsignatum privatis rebus nostris adgregandum. dat. viii ... constantinopoli timasio et promoto conss. (389 [?] ...)."
+    },
+    "64": {
+      "number": 64,
+      "text": "Idem aaa. albino praefecto urbis romae. eos, qui aquae copiam vel olim vel nunc per nostra indulta meruerunt, eius usum aut ex castellis\naut ex ipsis formis iubemus elicere neque earum fistularum quas matrices vocant cursum ac soliditatem adtemptare. dat. v kal. septemb.\nromae timasio et promoto conss. (389 aug. 28)."
+    },
+    "65": {
+      "number": 65,
+      "text": "Impp. arcadius et honorius aa. ad africanum praefectum urbi. quicumque ex aquaeductu magis quam ex castellis aquae usum putaverit\nderivandum, etiam id quod prius iure beneficii fuerat consecutus amittat. in eum vero pro condicione personae conveniet severissimo\nsupplicio vindicari, qui adversus statuta huius oraculi avidae cupiditatis noluerit frena cohibere, ut privatis indulti meatus mensura\nfamuletur. proposita iiii kal. iun. constantinopoli olybrio et probino conss. (395 mai. 29)."
+    },
+    "66": {
+      "number": 66,
+      "text": "Idem aa. asterio comiti orientis. post alia: usum aquae veterem longoque dominio constitutum singulis civibus manere censemus nec ulla\nnovatione turbari, ita tamen, ut quantitatem singuli, quam vetere licentia percipiunt, more usque in praesentem diem perdurante\npercipiant: mansura poena in eos, qui ad inrigationes agrorum vel hortorum delicias furtivis aquarum meatibus abutuntur. dat. kal. nov.\ncaesario et attico conss."
+    },
+    "67": {
+      "number": 67,
+      "text": "Idem aa. messalae praefecto praetorio. ex forma, cui nomen augusta est, quae in campania sumptu publico reparata est, nihil privatim\nsingulorum usurpatio praesumat neque cuiquam posthac derivandae aquae copia tribuatur. si quis autem meatum aquae ausus fuerit\navertere, quinque libras auri aerario nostro inferre cogatur. quidquid etiam ob eam fraudem ex rescripto fuerit elicitum vel qualibet arte\ntemptatum, irritum habeatur. dat. v kal. ian. mediolano theodoro v. c. cons. (399 dec. 28)."
+    },
+    "68": {
+      "number": 68,
+      "text": "Idem aa. ad flavianum praefectum urbi. ne quis claudiam interruptis formae lateribus adque perfossis sibi fraude elicita existimet\nvindicandam. si quis contra fecerit, earum protinus aedium et locorum amissione multetur. officium praeterea, cuius ad sollicitudinem\noperis huius custodia pertinebit, hac poena constringimus, ut tot librarum auri illatione multetur, quot uncias claudiae nostrae coniventia\neius usurpatas fuisse constiterit. dat. vi id. nov. mediolano stilichone et aureliano conss. (400 nov. 8)."
+    },
+    "69": {
+      "number": 69,
+      "text": "Imp. constantinus a. ad proculum proconsulem africae. emphyteuticarii possessores, qui mansuetudinis nostrae beneficio ad\nextraordinaria minime devocentur, sicut ceteri provinciales obsequium suum muniendis itineribus impendant. nulla enim ratione debent\nab hoc, quod in commune omnibus profuturum est, esse seiuncti. proposita non. mai. karthagine constantino a. v et licinio caes. conss.\n(319 mai. 7)."
+    },
+    "70": {
+      "number": 70,
+      "text": "Imp. iulianus a. ad avitianum vicarium africae. post alia: in muniendis viis iustissimum aequitatis cursum reliquit auctoritas. singuli enim\nloca debent quaeque sortiri, ut sibi consulant vel neglegentia vel labore. igitur eos loca iuxta morem priscum delegata curare oportebit. et\ncetera. dat. vii kal. nov. iuliano a. iiii et sallustio conss. (363 [362] oct. 26)."
+    },
+    "71": {
+      "number": 71,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. ad eusignium praefectum praetorio. a viarum munitione nullus habeatur inmunis, et\neorum praediorum actores, qui forte iniuncto oneri privilegiorum contemplatione parere minime voluerint, nostrae domui vindicentur.\ndat. iiii kal. mart. valentiniano a. iii et eutropio conss. (387 febr. 26)."
+    },
+    "72": {
+      "number": 72,
+      "text": "Impp. arcadius et honorius aa. messalae praefecto praetorio. dudum quidem fuerat constitutum, ut illustrium patrimonia dignitatum ab\ninstauratione itinerum haberentur excepta. verum propter inmensas vastitates viarum certatim studia cunctorum ad reparationem publici\naggeris conducibili devotione volumus festinare, nulla ad instructum munitionis huiusce dignitate aut privatorum privilegiorum in\nqualibet....Studiosius adpetita. etiam istud adiungimus, ut domos etiam clementiae nostrae, quas vetusta et innumera ab huius oneris\ncuratione privilegia vindicabant, par condicio et sollicitudo constringat, ita tamen, ut in ceteris quae vel illustribus vel patrimonio nostro\npraecedentibus edictis beneficia fuerant adtributa, intemerata permaneant. dat. iii kal. mai. mediolano theodoro v. c. cons. (399 apr. 29)."
+    },
+    "73": {
+      "number": 73,
+      "text": "Impp. honorius et theodosius aa. anthemio praefecto praetorio. antiquatis omnibus vel personalibus rescriptis vel per adnotationes\nelicitis per bithyniam ceterasque provincias possessores et reparationi publici aggeris et ceteris eiusmodi muneribus pro iugorum numero\nvel capitum, quae possidere noscuntur, adstringi cogantur. dat. vii kal. nov. constantinopoli honorio viiii et theodosio v aa. conss. (412\noct. 26)."
+    },
+    "74": {
+      "number": 74,
+      "text": "Idem aa. asclepiodoto praefecto praetorio. absit, ut nos instructionem viae publicae et pontium stratarumque operam titulis magnorum\nprincipum dedicatam inter sordida munera numeremus. igitur ad instructiones reparationesque itinerum pontiumque nullum genus\nhominum nulliusque dignitatis ac venerationis meritis cessare oportet. domos etiam divinas ac venerandas ecclesias tam laudabili titulo\nlibenter adscribimus. quam legem cunctarum provinciarum iudicibus intimari conveniet, ut noverint, quae viis publicis antiquitas\ntribuenda decrevit, sine ullius vel reverentiae vel dignitatis exceptione praestanda. dat. xv kal. mart. constantinopoli asclepiodoto et\nmariniano conss. (423 febr. 15)."
+    },
+    "75": {
+      "number": 75,
+      "text": "Imp. theodosius a. et valentinianus caes. aetio praefecto praetorio. si quando nostrae statuae vel imagines eriguntur seu diebus, ut\nadsolet, festis sive communibus, adsit iudex sine adorationis ambitioso fastigio, ut ornamentum diei vel loco et nostrae recordationi sui\nprobet accessisse praesentiam. (425 mai. 5)."
+    },
+    "76": {
+      "number": 76,
+      "text": "Ludis quoque simulacra proposita tantum in animis concurrentum mentisque secretis nostrum numen et laudes vigere demonstrent;\nexcedens cultura hominum dignitatem superno numini reservetur. dat. iii non. mai. theodosio a. xi et valentiniano caes. conss. (425 mai.\n5)."
+    },
+    "77": {
+      "number": 77,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad probum praefectum praetorio. magistratus et sacerdotiorum editiones, quae aut in\ncivitatibus aut certe in his debent exigi, quas delegit antiquitas, non in potestate iudicum sint, qui plerumque, dum popularem plausum\nalienis spoliationibus aucupantur, ea, quae in competenti loco sollers diligentia praeparavit, ad alteram urbem transferri praecipiunt, sed\nin eorum arbitrio maneant, quorum expensis ac sumptibus procurandae sunt. dat. vii kal. mai. treviris modesto et arinthaeo conss. (372\napr. 25)."
+    },
+    "78": {
+      "number": 78,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. rufino praefectum praetorio. nullus omnino iudicum aut theatralibus ludis aut\ncircensium certaminibus aut ferarum cursibus vacet nisi illis tantum diebus, quibus vel in lucem editi vel imperii sumus sceptra sortiti,\nhisque ut ante meridiem tantum sollemnitati pareant, post epulas vero ad spectaculum redire desistant. (386 [392-395] mai. 20)."
+    },
+    "79": {
+      "number": 79,
+      "text": "In quo tamen omnes, sive iudices sive privati, nihil penitus auri praemio dandum esse cognoscent, quod solis licet consulibus, quibus\nerogandi moderationem vitae meritis permisimus. (386 [392-395] mai. 20)."
+    },
+    "80": {
+      "number": 80,
+      "text": "Illud etiam praemonemus, ne quis in legem nostram, quam dudum tulimus, committat, nullum solis die populo spectaculum praebeat, nec\ndivinam venerationem confecta sollemnitate confundat. dat. xiii kal. iun. heracleae honorio nob. p. et evodio v. c. conss. (386 [392-395]\nmai. 20)."
+    },
+    "81": {
+      "number": 81,
+      "text": "Impp. honorius et theodosius aa. anthemio praefecto praetorio. nemo iudicum ex quacumque civitate in aliud oppidum vel ex provinciae\nsolo equos curules aurigas cives temptet traducere, ne, dum popularibus plausibus intemperate serviunt, et publicarum rerum statum\nfatigent et festivitatem impediant in cunctis oppidis celebrandam, ita ut, si quis hanc violaverit iussionem, poena teneatur ea, quae legum\nviolatores persequitur. dat. viii id. aug. constantinopoli honorio viii et theodosio iii aa. conss. (409 aug. 6)."
+    },
+    "82": {
+      "number": 82,
+      "text": "Imp. theodosius a. isidoro praefecto illyrici. delforum curiae facultates novis damnis frequenter adtritas relatio tui culminis intimavit.\nideoque praeceptis ad universas illyrici civitates iudicesque transmissis notum omnibus faciat nullum penitus spectacula oportere\nsollemnia urbis aeternae populis exhibere, sed unumquemque civium intra propriam civitatem debere solitae devotionis officia, prout\npatrimonii sui vires patiuntur, implere, gravissimae poenae interminatione proposita non solum contra eos, qui huiusmodi functiones\ncrediderint exigendas, sed etiam contra ordinarios ubique rectores. dat. x kal. mai. constantinopoli victore v. c. cons. (424 apr. 22)."
+    },
+    "83": {
+      "number": 83,
+      "text": "Idem a. et valentinianus caes. asclepiodoto praefecto praetorio. dominico, qui septimanae totius primus est dies, et natali adque\nepifaniorum christi, paschae etiam et quinquagesimae diebus, quamdiu caelestis lumen lavacri imitantia novam sancti baptismatis lucem\nvestimenta testantur, quo tempore et commemoratio apostolicae passionis totius christianitatis magistrae a cunctis iure celebratur, omni\ntheatrorum adque circensium voluptate per universas urbes earundem populis denegata totae christianorum ac fidelium mentes dei\ncultibus occupentur. si qui etiamnunc vel iudaeae impietatis amentia vel stolidae paganitatis errore adque insania detinentur, aliud esse\nsupplicationum noverint tempus, aliud voluptatum. ac ne quis existimet in honorem numinis nostri veluti maiore quadam imperialis\nofficii necessitate compelli et, nisi divina religione contempta spectaculis operam praestat, subeundam forsitan sibi nostrae serenitatis\noffensam, si minus circa nos devotionis ostenderit quam solebat, ne..."
+    },
+    "84": {
+      "number": 84,
+      "text": "Impp. arcadius et honorius aa. caesario praefecto praetorio. clementiae nostrae placuit, ut maiumae provincialibus laetitia redderetur, ita\ntamen, ut servetur honestas et verecundia castis moribus perseveret. dat. vii kal. mai. constantinopoli arcadio iiii et honorio iii aa. conss.\n(396 apr. 25)."
+    },
+    "85": {
+      "number": 85,
+      "text": "Idem aa. aureliano praefecto praetorio. post alia: ludicras artes concedimus agitari, ne ex nimia harum restrictione tristitia generetur. illud\nvero quod sibi nomen procax licentia vindicavit, maiumam, foedum adque indecorum spectaculum, denegamus. dat. vi non. octob.\nconstantinopoli theodoro v. c. cons. (399 oct. 2)."
+    },
+    "86": {
+      "number": 86,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad viventium praefectum urbi. scaenici et scaenicae, qui in ultimo vitae ac necessitate\ncogente interitus inminentis ad dei summi sacramenta properarunt, si fortassis evaserint, nulla posthac in theatralis spectaculi\nconventione revocentur. ante omnia tamen diligenti observari ac tueri sanctione iubemus, ut vere et in extremo periculo constituti id pro\nsalute poscentes, si tamen antistites probant, beneficii consequantur. quod ut fideliter fiat, statim eorum ad iudices, si in praesenti sunt,\nvel curatores urbium singularum desiderium perferatur, quod ut inspectoribus missis sedula exploratione quaeratur, an indulgeri his\nnecessitas poscat extrema suffragia. dat. iii id. feb. treviris gratiano a. ii et probo v. c. conss. (371 [367] febr. 11)."
+    },
+    "87": {
+      "number": 87,
+      "text": "Idem aaa. ad iulianum proconsulem africae. ex scaenicis natas, si ita se gesserint, ut probabiles habeantur, tua sinceritas ab inquietantium\nfraude direptionibusque submoveat. eas enim ad scaenam de scaenicis natas aequum est revocari, quas vulgarem vitam conversatione et\nmoribus exercere et exercuisse constabit. dat. viii id. sept. mogontiaci gratiano a. ii et probo conss. (371 sept. 6)."
+    },
+    "88": {
+      "number": 88,
+      "text": "Imppp. valens, gratianus et valentinianus aaa. ad hesperium proconsulem africae. non invidemus, sed potius cohortamur amplectenda\nfelicis populi studia, gymnici ut agonis spectacula reformentur. verumtamen cum primates viri populi studiis ac voluptatibus grati esse\ncupiant, promptius permittimus, ut integra sit voluptas, quae volentium celebretur impensis. dat. vi id. mart. treviris valente v et\nvalentiniano aa. conss. (376 mart. 19)."
+    },
+    "89": {
+      "number": 89,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. ad paulinum praefectum urbi. mulieres, quae ex viliori sorte progenitae spectaculorum\ndebentur obsequiis, si scaenica officia declinarint, ludicris ministeriis deputentur, quas necdum tamen consideratio sacratissimae religionis\net christianae legis reverentia suae fidei mancipavit; eas enim, quas melior vivendi usus vinculo naturalis condicionis evolvit, retrahi\nvetamus. illas etiam feminas liberas a contubernio scaenici praeiudicii durare praecipimus, quae mansuetudinis nostrae beneficio expertes\nmuneris turpioris esse meruerunt. dat. viii kal. mai. mediolano gratiano v et theodosio i aa. conss. (380 apr. 24)."
+    },
+    "90": {
+      "number": 90,
+      "text": "Idem aaa. ad paulinum praefectum urbi. quisquis thymelicam ex urbe venerabili inmemor honestatis abduxerit eandemque in longinqua\ntranstulerit seu etiam intra domum propriam, ita ut voluptatibus publicis non serviat, retentarit, quinque librarum auri illatione multetur.\ndat. v kal. mai. mediolano gratiano v et theodosio i aa. conss. (380 apr. 24)."
+    },
+    "91": {
+      "number": 91,
+      "text": "Idem aaa. ad valerianum praefectum urbi. equos, quos ad sollemne certamen vel mansuetudinis nostrae largitio subministrat vel\ndiversorum ex amplissimo ordine magistratuum, hactenus ad copiam providendos serenitas nostra decrevit, ut, quidquid illud est, quod\npalmarum numero gloriosum et celebratis utrimque victoriis nobile congregatur, spectaculis potius urbanae plebis inserviat quam praedae\nadque compendio deputetur. quisquis igitur ex eo, quod vel serenitas nostra vel ordinarii consules vel praetores in huiuscemodi tribuunt\nvoluptates, quamlibet commodis compendioque privato derivandam duxerit esse iacturam, unius auri librae condemnatione multatus\nlargitionibus nostris cogatur esse munificus. dat. viii kal. mai. treviris eucherio et syagrio conss. (381 apr. [?] 24)."
+    },
+    "92": {
+      "number": 92,
+      "text": "Idem aaa. ad valerianum praefectum urbi. eos qui agitandi munus exercent illustris auctoritas tua nullis praeter circense certamen adfici\nnoverit oportere suppliciis. dat. viii id. mai. eucherio et syagrio conss. (381 mai. 8)."
+    },
+    "93": {
+      "number": 93,
+      "text": "Idem aaa. ad valerianum praefectum urbi. scaenae mulier si vacationem religionis nomine postularit, obtentu quidem petitionis venia ei\nnon desit, verum si post turpibus volutata complexibus et religionem quam expetierit prodidisse et gerere quod officio desierat animo\ntamen scaenica detegetur, retracta in pulpitum sine spe absolutionis ullius ibi eo usque permaneat, donec anus ridicula senectute deformis\nnec tunc quidem absolutione potiatur, cum aliud quam casta esse non possit. dat. viii id. mai. aquileiae syagrio et eucherio conss. (381\nmai. 8)."
+    },
+    "94": {
+      "number": 94,
+      "text": "Idem aaa. herasio proconsuli africae. quaecumque ex huiusmodi faece progenitae scaenica officia declinarint, ludicris ministeriis\ndeputentur, quas necdum tamen sanctissimae religionis et in perenne servandae christianae legis secretorum reverentia suae fidei\nvindicarit. illas etiam feminas liberatas contubernio scaenici praeiudicii durare praecipimus, quae mansuetudinis nostrae beneficio\nexpertes muneris turpioris esse meruerunt. proposita karthagine v kal. septemb. syagrio et eucherio conss. (381 aug. 28)."
+    },
+    "95": {
+      "number": 95,
+      "text": "Idem aaa. cynegio praefecto praetorio. fidicinam nulli liceat vel emere vel docere vel vendere vel conviviis aut spectaculis adhibere. nec\ncuiquam ad delectationis desiderium erudita feminea musicae artis studio liceat habere mancipia. dat. viii kal. iul. constantinopoli arcadio\na. i et bautone v. c. conss. (385 iun. 24)."
+    },
+    "96": {
+      "number": 96,
+      "text": "Imppp. theodosius, arcadius et honorius aaa. rufino praefecto praetorio. nulla mima gemmis, nulla sigillatis sericis aut textis utatur\nauratis. his quoque vestibus noverint abstinendum, quas graeco nomine alethinocrustas vocant, in quibus alio admixtus colori puri rubor\nmuricis inardescit. uti sane isdem scutlatis et variis coloribus sericis auroque sine gemmis collo brachiis cingulo non vetamus. dat. xi kal.\noctob. constantinopoli theodosio a. iii et abundantio conss. (393 sept. 21)."
+    },
+    "97": {
+      "number": 97,
+      "text": "Idem aaa. rufino praefecto praetorio. si qua in publicis porticibus vel in his civitatum locis, in quibus nostrae solent imagines consecrari,\npictura pantomimum veste humili et rugosis sinibus agitatorem aut vilem offerat histrionem, ilico revellatur, neque umquam posthac\nliceat in loco honesto inhonestas adnotare personas; in aditu vero circi vel in theatri proscaeniis ut collocentur, non vetamus. (394 iun.\n29)."
+    },
+    "98": {
+      "number": 98,
+      "text": "His illud adicimus, ut mimae et quae ludibrio corporis sui quaestum faciunt publice habitu earum virginum, quae deo dicatae sunt, non\nutantur, et ut nulla femina nec puer thymelici consortio inbuantur, si christianae religionis esse cognoscitur. dat. iii kal. iul. heracleae\narcadio a. iii et honorio a. ii conss. (394 iun. 29)."
+    },
+    "99": {
+      "number": 99,
+      "text": "Impp. honorius et theodosius aa. diogeniano viro clarissimo tribuno voluptatum. mimas diversis adnotationibus liberatas ad proprium\nofficium summa instantia revocari decernimus, ut voluptatibus populi ac festis diebus solitus ornatus deesse non possit. dat. vi id. feb.\nravennae constantio v. c. cons.; acc. a tribuno voluptatum x kal. feb. karthagine post cons. honorii viiii et theodosii v aa. (413 febr. 8 (?)."
+    },
+    "100": {
+      "number": 100,
+      "text": "Imp. constantius a. ad severum praefectum urbi. si quis feminas, quae se dedicasse venerationi christianae legis sanctissimae dinoscuntur,\nludibriis quibusdam subicere voluerit ac lupanaribus venditas faciat vile ministerium prostituti pudoris explere, nemo alter easdem\ncoemendi habeat facultatem, nisi aut ii, qui ecclesiastici esse noscuntur aut christiani homines demonstrantur, competenti pretio\npersoluto. dat. iiii non. iul. hierapoli placido et romulo conss. (343 iul. 4)."
+    },
+    "101": {
+      "number": 101,
+      "text": "Impp. theodosius et valentinianus aa. florentio praefecto praetorio. lenones patres et dominos, qui suis filiis vel ancillis peccandi\nnecessitatem imponunt, nec iure frui dominii nec tanti criminis patimur libertate gaudere. igitur tali placet eos indignatione subduci, ne\npotestatis iure frui valeant neve quid eis ita possit adquiri. sed ancillis filiabusque, si velint, conductisve pro paupertate personis, quas\nsors damnavit humilior, episcoporum liceat, iudicum etiam defensorumque implorato suffragio omni miseriarum necessitate absolvi, ita\nut, si insistendum eis lenones esse crediderint vel peccandi ingerant necessitatem invitis, non amittant solum eam quam habuerant\npotestatem, sed proscripti poenae mancipentur exilii metallis addicendi publicis, quae minor poena est, quam si praecepto lenonis\ncogatur quispiam coitionis sordes ferre, quas nolit. dat. xi kal. mai. felice et tauro conss. (428 apr. 21)."
+    },
+    "102": {
+      "number": 102,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. ad senatum. nulli privatorum liceat holosericam vestem sub qualibet editione largiri.\nillud etiam constitutione solidamus, ut exceptis consulibus ordinariis nulli prorsus alteri auream sportulam, diptycha ex ebore dandi\nfacultas sit. (384 iul. 25)."
+    },
+    "103": {
+      "number": 103,
+      "text": "Cum publica celebrantur officia, sit sportulis nummus argenteus, alia materia diptychis. nec maiorem argenteum nummum fas sit\nexpendere, quam qui formari solet, cum argenti libra una in argenteos sexaginta dividitur; minorem dare volentibus non solum liberum, sed\netiam honestum esse permittimus. dat. viii kal. aug. heracleae richomere et clearcho conss. (384 iul. 25)."
+    },
+    "104": {
+      "number": 104,
+      "text": "Impp. honorius et theodosius aa. anthemio praefecto urbi. cunctos iudices admonemus, ut ludorum quidem, quibus moris est, intersint\nfestivitati et oblectamentis favorem eliciant populorum, verum expensarum non excedant duorum solidorum librata impendia, nec\ninconsulta plausorum insania curialium vires, fortunas civium, principalium domus, possesorum opes, rei publicae robur evellant:\nexceptis alytarchis syriarchis agonothetis itemque asiarchis et ceteris, quorum nomen votiva festivitatis sollemnitas dedicavit. dat. v kal.\nmartias constantinopoli honorio viii et theodosio iii aa. conss. (409 febr. 25)."
+    },
+    "105": {
+      "number": 105,
+      "text": "Imppp. valentinianus, valens et gratianus aaa. ad ampelium praefectum urbi. palmatis adque hermogenis equis, quos in curulis certaminis\nsorte vel contentionis incertum vel annorum series vel diversa ratio debiles fecit, ex horreis fiscalibus alimoniam praeberi decrevimus,\nequos vero hispani sanguinis vendendi solitam factionariis copiam non negamus. (371 ian. 1)."
+    },
+    "106": {
+      "number": 106,
+      "text": "Illud quoque sinceritas tua praecipiat observari, ne graecorum equorum nomina, qui hinc missi fuerint, commutentur. dat. kal. ian.\ngratiano a. ii et probo conss. (371 ian. 1)."
+    },
+    "107": {
+      "number": 107,
+      "text": "Imppp. gratianus, valentinianus et theodosius aaa. ad valerianum praefectum urbi. equos voluptatibus profuturos nequaquam\ncampanorum populus adsequatur, quam si duo milia modiorum fabae per singulas factiones stabulorum in urbe venerabili necessaria\nantiqua et sollemni praebitione contulerint. dat. x kal. mai. aquileiae syagrio et eucherio conss. (381 apr. 22)."
+    },
+    "108": {
+      "number": 108,
+      "text": "Impp. honorius et theodosius aa. mauriano comiti domesticorum et vices agenti magistri militum. occidendorum leonum cunctis facimus\npotestatem, neque aliquando sinimus quemquam calumniam formidare, cum et salus nostrorum provincialium voluptati nostrae\nnecessario praeponatur et haec ipsa propria voluptas intercludi minime videatur, quandoquidem occidendi feras, non venandi\nvenundandique licentiam dederimus. occidendi igitur memoratas feras, et ducibus et officiis eorum conventis, cunctis licentia tribuatur.\ndat. xiii kal. iun. constantio et constante vv. cc. conss. (414 mai. 20)."
+    },
+    "109": {
+      "number": 109,
+      "text": "Idem aa. monaxio praefecto praetorio. praesidalis officii eufratensis deploratione comperimus eos, qui transductioni ferarum a duciano\nofficio deputantur, pro septem vel octo diebus contra legationum formam tres vel quattuor menses in hieropolitanam urbem residentes\npost expensas tanti temporis etiam caveas exigere, quas nulla praeberi consuetudo permittit. ideoque praecipimus, bestias, quae ad\ncomitatum ab omnibus limitum ducibus transmittuntur, non plus quam septem diebus intra singulas civitates retineri; scientibus ducibus\net eorum officiis, si quid contra haec commissum fuerit, quinas se libras auri fisci viribus illaturos. dat. v kal. octob. constantinopoli d. n.\nhonorio a. xi et constantio ii v. c. conss. (417 sept. 27)."
+    },
+    "110": {
+      "number": 110,
+      "text": "Imp. constantinus a. maximo praefecto praetorio. cruenta spectacula in otio civili et domestica quiete non placent. quapropter, qui\nomnino gladiatores esse prohibemus eos, qui forte delictorum causa hanc condicionem adque sententiam mereri consueverant, metallo\nmagis facies inservire, ut sine sanguine suorum scelerum poenas agnoscant. proposita beryto kal. octob. paulino et iuliano conss. (325\noct. 1)."
+    },
+    "111": {
+      "number": 111,
+      "text": "Imp. constantius a. et iulianus c. ad orfitum praefectum urbi. universi, qui in urbe roma gladiatorium munus impendunt, prohibitum esse\ncognoscant sollicitandi auctorando milites vel eos, qui palatina sunt praediti dignitate, sex auri librarum multa inminente, si quis contra\ntemptaverit. sponte etiam ad munerarium adeuntes per officium sublimitatis tuae ad magistros equitum ac peditum aut eos, qui\ngubernant officia palatina, oneratos ferreis vinculis mitti conveniet, ut huius legis statuto palatii dignitas a gladiatorio detestando nomine\nvindicetur. dat. xvi kal. nov. constantio a. viiii et iuliano caes. ii conss. (357 oct. 17)."
+    },
+    "112": {
+      "number": 112,
+      "text": "Impp. arcadius et honorius aa. ad populum. post alia: si quos e gladiatorio ludo ad servitia senatoria transisse constabit, eos in extremas\nsolitudines amandari decernimus. dat. et proposita romae caesario et attico conss. (397 apr. 7?)."
+    },
+    "113": {
+      "number": 113,
+      "text": "Impp. arcadius et honorius aa. claudio praefecto urbi. exceptis plebeis scaenicis et qui spectaculo sui praebuit populo materiam\nvoluptatis et tabernariis, ceteris omnibus usum sellarum et sedendi ac conveniendi in publicum tribuimus facultatem. dat. viii kal. ian.\nconstantinopoli arcadio iiii et honorio iii aa. conss. (396 dec. 25)."
+    },
+    "114": {
+      "number": 114,
+      "text": "CTh.15.14.0. De infirmandis his, quae sub tyrannis aut barbaris gesta sunt"
+    },
+    "115": {
+      "number": 115,
+      "text": "Imp. constantinus a. ad constantium praefectum praetorio. remotis licini tyranni constitutionibus et legibus omnes sciant veteris iuris et\nstatutorum nostrorum observari debere sanctionem. proposita xvii kal. iun. crispo iii et constantino iii caess. conss. (324 mai. 16)."
+    },
+    "116": {
+      "number": 116,
+      "text": "Idem a. ad universos provinciales. tyranni et iudicum eius gestis infirmatis nemo per calumniam velit quod sponte ipse fecit evertere nec\nquod legitime gestum est. dat. prid. id. feb. paulino et iuliano conss. (325 febr. 12)."
+    },
+    "117": {
+      "number": 117,
+      "text": "Idem a. antiocho praefecto vigilum. quae tyrannus contra ius rescripsit non valere praecipimus, legitimis eius rescriptis minime\nimpugnandis. dat. viii id. iul. romae constantino a. vii et constantio caes. conss. (326 iul. 8)."
+    },
+    "118": {
+      "number": 118,
+      "text": "Idem a. ad senatum. super his, qui ex senatoribus ad navicularium munus a tyranno deiecti sunt ac restitui suis natalibus deprecantur,\nplacuit vestrae sanctitati iudicium examenque mandare, ut vos eligatis, qui splendori vestro patrimonii viribus et honestate vivendi et\nnatalium dignitate respondent. incongruum est enim tantae dignitatis arbitrium alteri potius quam vestris suffragiis sententiisque\nconmittere. eorum autem, quos ut dignos elegeritis, nomina praefectus urbis nobis insinuet, ut vestrum iudicium comprobemus. dat. id.\niul. constantino a. vii et constantio caes. conss. (326 iul. 15)."
+    },
+    "119": {
+      "number": 119,
+      "text": "Imp. constantius a. et constans c. ad universos provinciales et populum. quae tyrannus vel eius iudices contra ius statuerunt, infirmari\niubemus reddita possessione expulsis, ut qui vult ab initio agat. emancipationes autem et manumissiones et pacta sub eo facta et\ntransactiones valere oportet. dat. iii non. nov. mediolano constantio a. v et constante conss. (352 nov. 3)."
+    },
+    "120": {
+      "number": 120,
+      "text": "Imppp. valentinianus, theodosius et arcadius aaa. trifolio praefecto praetorio. nullus sibi honorem audeat vindicare, quem tyrannica\nconcessit audacia, sed ad pristinum statum damnata praesumptio revocetur. dat. x kal. octob. aquileiae theodosio a. ii et cynegio conss.\n(388 sept. 22)."
+    },
+    "121": {
+      "number": 121,
+      "text": "Idem aaa. trifolio praefecto praetorio. omne iudicium, quod vafra mente conceptum iniuriam, non iura reddendo maximus infandissimus\ntyrannorum credidit promulgandum, damnabimus. nullus igitur sibi lege eius, nullus iudicio blandiatur. dat. vi id. octob. mediolano\ntheodosio a. ii et cynegio conss. (388 oct. 10)."
+    },
+    "122": {
+      "number": 122,
+      "text": "Idem aaa. constantiano praefecto praetorio galliarum. omnes, qui tyranni usurpatione provecti cuiuslibet acceperunt nomen illicitum\ndignitatis, codicillos adque epistulas et promere iubemus et reddere. iuris quoque dictionem adque sententias, quas promere nequiverunt\nqui iudicum nomen habere non potuerunt, ex omnibus publicorum monumentorum scriniis iubemus auferri, ut abolita auctoritate\ngestorum nullus his iudicatis conetur inniti, quae et tempore et auctore delentur. exceptis his tantum negotiis adque in sui integra\nfirmitate mansuris, quae conventionibus pactisque finita sunt, si dolo metuve caruerunt: his quoque pariter exceptis, quae donatio\ntranstulit, emancipatio liberavit, contulit manumissio praemia meritae servitutis, quia in his omnibus voluisse sat iuris est. dat. xviiii kal.\nfeb. mediolano timasio et promoto vv. cc. conss. (389 ian. 14)."
+    },
+    "123": {
+      "number": 123,
+      "text": "Impp. arcadius et honorius aa. andromacho praefecto urbi. valeat omnis emancipatio tyrannicis facta temporibus; valeat a dominis\nconcessa libertas; valeat celebrata et actis quibuslibet inserta donatio; valeat deficientium omne iudicium; valeat universa venditio; valeant\nsententiae iudicum privatorum - convelli enim iudicium non oportet - quos partium elegit adsensus et compromissi poena constituit;\nvaleant conceptae sollemniter pactiones; valeant scripturae, quibus aut fides rerum aut ratio probatur aut debitum; valeant apud\nquemlibet habitae spontaneae professiones; valeat deposita super instituenda lite testatio valeat impetratio iuris communium liberorum;\nvaleat procuratio scaevis mandata temporibus; datus tutor vel curator optineat firmitatem; valeat in sponsam perfecta largitio; doli ac vis\net metus inchoata actio in tempus legitimum perseveret; bonorum admissa possessio et adfectus adeundae hereditatis obtineat et\ninterdicti beneficium non amittat; valeat in integrum restitution..."
+    },
+    "124": {
+      "number": 124,
+      "text": "Idem aa. eulogio comiti rerum privatarum. qui tyranni maximi secuti iussionem fundos perpetui iuris non ab ordinariis iudicibus, sed a\nrationalibus acceperunt, eorum amissione plectantur adque ad rem privatam denuo revertantur. dat. vi kal. mai. mediolano olybrio et\nprobino conss. (395 apr. 26)."
+    },
+    "125": {
+      "number": 125,
+      "text": "Idem aa. andromacho praefecto urbi. fas est sequi nos paternae dispositionis arbitrium adque ideo universos cuiuslibet ordinis viros, de\nquibus lex nostra reticuerat, ad veniam volumus pertinere et beneficia inopinantibus ultro deferimus, sancientes hac lege, ne is, qui\ntyranni tempore militavit vel etiam qualibet administratione donatus est aut honoraria dignitate perfunctus vel quicumque in aliquo\nhonore diversis locis aut exactionibus praefuerunt, notam infamiae sustineant, aut deformi vocabulo polluantur. quibus eas tantum\ndignitates valere decernimus, quas ante tyrannicum tempus habuerunt. dat. xv kal. iun. mediolano olybrio et probino conss. (395 mai.\n18)."
+    },
+    "126": {
+      "number": 126,
+      "text": "Idem aa. eusebio praefecto praetorio. his, quos tyrannici temporis labes specie dignitatis infecerat, inustae maculae omnem abolemus\ninfamiam. cunctis igitur statum priorem sine cuiusquam loci aut ordinis exceptione tribuimus, ut utantur omnes iure communi, teneant\nstatum veteris dignitatis, ita ut nihil sibi ex his quos adepti fuerant honoribus blandiantur. dat. xv kal. iul. mediolano olybrio et probino\nconss. (395 iun. 17)."
+    },
+    "127": {
+      "number": 127,
+      "text": "Impp. honorius et theodosius aa. hadriano praefecto praetorio. heracliani vocabulum nec privatim nec publice ulla memoria teneat,\nideoque submovenda esse censemus, quaecumque sub eo gesta esse dicuntur. libertates quoque, quoniam certum est scelere eius\nsollemnitatem consulatus esse pollutam, in melius revocamus, sciatque dominorum voluntas iterandum esse, quod illo auctore advertit\nstare non posse; semel tamen mutatae condicionis beneficium implendum esse praecipimus et ita repeti manumissionum consuetudines\nnunc iubemus, ut nullus sub hac occasione incipiat nolle quod voluit. dat. iii non. aug. ravennae post cons. honorii viiii et theodosii v. aa.\n(413 aug. 3)."
+    },
+    "128": {
+      "number": 128,
+      "text": "Impp. honor. et theodos. aa. constantio comiti et patricio. sub clade barbaricae depopulationis, si qua aut per fugam aut per\ncongregationem infelicium populorum indigne invidioseque commissa sunt, ad invidiam placatarum legum a callidis litigatorum\nobiectionibus non vocentur. habeant omnium criminum impunitatem, qui evadendi forsitan non habuerant facultatem, nisi eos eadem\ncrimina iuvissent; non enim crimen dicitur, quod mortis adegit impulsus. ex quo animadvertere cunctos litigatores congruum est, si quid\ndepraedationis agnoverint, se recepturos, si tamen, in eorum, quos pulsaverint, facultatibus abundare aut residere id, potuerint\ncomprobare. dat. kal. mart. ravenna, d.N. theodos. a. vii. et palladio v. c. coss."
+    },
+    "129": {
+      "number": 129,
+      "text": "interpretatio. quicumque* hostium terrore compulsus, dum mortem timet excipere, ad depraedandum se cum hostibus fortasse\nconiunxerit, non propter hoc vocetur ad crimen, quod pro conservanda vita fecit invitus. sane si quid apud eum de praeda resederit et\nresiduum invenitur, quod evidenter agnoscitur, hoc solum reddere domino sine calumnia compellatur"
+    },
+    "130": {
+      "number": 130,
+      "text": "Impp. valentinianus et valens aa. ad buleforum consularem campaniae. nulli prorsus nobis insciis adque inconsultis quorumlibet armorum\nmovendorum copia tribuatur. dat. iii non. octob. altino divo ioviano et varroniano conss. (364 oct. 5)."
+    }
+  }
+}

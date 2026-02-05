@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "author": "Alcuin",
+    "work": "Sequentia de Sancto Michaele",
+    "url": "https://www.thelatinlibrary.com/alcuin/sequentia.shtml",
+    "verse_count": 8,
+    "title": "Sequentia de Sancto Michaele"
+  },
+  "verses": {
+    "1": {
+      "number": 1,
+      "text": "SEQUENTIA DE SANCTO MICHAELE, QUAM ALCUINUS COMPOSUIT KAROLO IMPERATORI"
+    },
+    "2": {
+      "number": 2,
+      "text": "Sequentia de Sancto Michaele,\nquam Alcuinus composuit Karolo imperatori\nSummi regis archangele\nMichahel,\nintende, quaesumus, nostris\nvocibus."
+    },
+    "3": {
+      "number": 3,
+      "text": "Te namque profitemur esse\nsupernorum principem civium.\nTe deum generi humano\norante diriguntur angeli,"
+    },
+    "4": {
+      "number": 4,
+      "text": "Ne laedere inimici,\nquantum cupiunt, versuti\nfessos unquam mortales praevaleant.\nIdem tenes perpetui\npotentiam paradisi,\nsemper te sancti honorant angeli,"
+    },
+    "5": {
+      "number": 5,
+      "text": "In templo tu dei\nturibulum aureum\nvisus es habuisse manibus.\nInde scandens vapor\naromate plurimo\npervenit ante conspectum dei."
+    },
+    "6": {
+      "number": 6,
+      "text": "Tu crudelem cum draconem forti manu straveras,\nfaucibus illius animas eruisti plurimas.\nHinc maximum agebatur in caelo silentium,\nmillia millium et dicunt 'salus regi domino'."
+    },
+    "7": {
+      "number": 7,
+      "text": "Audi nos, Michalel,\nangele summe,\nhuc parum descende\nde poli sede,\nnobis ferendo opem domini\nlevamen atque indulgentiae."
+    },
+    "8": {
+      "number": 8,
+      "text": "Tu nostros, Gabrihel,\nhostes prosterne,\ntu, Raphael, aegris\naffer medelam,\nmorbos absterge, noxas minue\nnosque fac interesse gaudiis\nbeatorum."
+    }
+  }
+}
