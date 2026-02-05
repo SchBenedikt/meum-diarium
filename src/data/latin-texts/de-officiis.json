@@ -1,0 +1,23 @@
+{
+  "id": "de-officiis",
+  "title": "De Officiis", 
+  "author": "cicero",
+  "books": [
+    {
+      "number": 1,
+      "title": "Buch I: Das Ehrbare (honestum)",
+      "sections": [
+        {
+          "number": 1,
+          "latin": "Quamquam te, Marce fili, annum iam audientem Cratippum idque Athenis, abundare oportet praeceptis institutisque philosophiae, propter summam et doctoris auctoritatem et urbis, quorum alter te scientia augere potest, altera exemplis, tamen, ut ipse feci, semper quidem philosophis, Graecis autem litteris ad nostram non multum datur uti, hortabar, ut idem tu faceres, ne aut in Graecis traduceres aut Latinis deesse videreris.",
+          "translation": "Obwohl du, mein Sohn Marcus, bereits ein Jahr lang Kratippos hörst und das in Athen, solltest du überreich sein an Vorschriften und Grundsätzen der Philosophie, wegen der höchsten Autorität sowohl des Lehrers als auch der Stadt, von denen der eine dich durch Wissen mehren kann, die andere durch Vorbilder, dennoch habe ich, wie ich es selbst tat, immer zwar Philosophen, der griechischen Literatur aber nicht viel Zeit gewährte, ermahnt, dass du dasselbe tust, damit du weder in den griechischen noch in den lateinischen zu fehlen scheinst."
+        },
+        {
+          "number": 2,
+          "latin": "Ego vero, quamquam multa de officiis a philosophis disserantur et de moribus, probabiliter et copiose, tamen, quod mihi tam diu tuenda res publica fuit, cum essem aut in cursu honorum aut iam consularis, has partes non desiderandas, si quid otii nancisci possem, non existimabam.",
+          "translation": "Ich aber, obwohl viel über die Pflichten von den Philosophen und über die Sitten wahrscheinlich und reichlich erörtert wird, dennoch, da mir so lange der Staat zu schützen war, als ich entweder im Lauf der Ämter oder schon konsularisch war, glaubte ich, dass diese Teile nicht zu vermissen seien, wenn ich etwas Muße erlangen könnte."
+        }
+      ]
+    }
+  ]
+}

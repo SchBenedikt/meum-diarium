@@ -7,10 +7,16 @@ import { ArrowLeft, BookOpen, User, Languages, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { works } from '@/data/works';
-import { authors } from '@/data/authors';
 
-// Latin texts will be stored as JSON
-const LATIN_TEXTS: Record<string, { title: string; text: string; }> = {};
+// Import Latin texts
+import deBelloGallicoText from '@/data/latin-texts/de-bello-gallico.json';
+import deOfficiisText from '@/data/latin-texts/de-officiis.json';
+
+// Latin texts registry
+const LATIN_TEXTS: Record<string, any> = {
+  'de-bello-gallico': deBelloGallicoText,
+  'de-officiis': deOfficiisText,
+};
 
 // Step 1: Author selection
 // Step 2: Work selection for that author
@@ -170,10 +176,26 @@ export default function LatinReaderNew() {
               </div>
 
               {latinText ? (
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-lg leading-relaxed text-foreground/90 whitespace-pre-wrap font-serif">
-                    {latinText.text}
-                  </p>
+                <div className="space-y-6">
+                  {latinText.books.map((book: any) => (
+                    <div key={book.number} className="space-y-4">
+                      <h3 className="text-lg font-bold text-primary">{book.title}</h3>
+                      {(book.chapters || book.sections || []).map((chapter: any) => (
+                        <div key={chapter.number} className="space-y-2 pb-4 border-b border-border/50 last:border-0">
+                          <div className="text-sm font-semibold text-muted-foreground">Kapitel {chapter.number}</div>
+                          {!showTranslation ? (
+                            <p className="text-base leading-relaxed font-serif text-foreground/90">
+                              {chapter.latin}
+                            </p>
+                          ) : (
+                            <p className="text-base leading-relaxed text-foreground/80">
+                              {chapter.translation}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <div className="text-center py-12 text-muted-foreground">
