@@ -1,7 +1,6 @@
 import { de } from './de';
 import { en } from './en';
 import { la } from './la';
-
 export const translations = {
   de,
   en,
@@ -25,5 +24,4 @@ export const translations = {
     scientific: 'Scientificum',
   },
 };
-
 export type TranslationKey = keyof typeof de;

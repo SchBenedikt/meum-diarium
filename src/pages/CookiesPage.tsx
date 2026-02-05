@@ -4,16 +4,13 @@ import { Cookie, CheckCircle2, XCircle, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-
 export default function CookiesPage() {
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title="Cookie-Richtlinien - Meum Diarium"
         description="Informationen zur Verwendung von Cookies auf Meum Diarium."
       />
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-20 sm:py-24 overflow-hidden border-b border-border">
@@ -21,7 +18,6 @@ export default function CookiesPage() {
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
           </div>
-
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -33,22 +29,18 @@ export default function CookiesPage() {
                 <Cookie className="mr-2 h-4 w-4" />
                 Cookie-Richtlinien
               </Badge>
-
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
                 Cookie-Richtlinien
               </h1>
-
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Wie wir Cookies auf dieser Website verwenden
               </p>
-
               <p className="text-sm text-muted-foreground mt-4">
                 Stand: {new Date().toLocaleDateString('de-DE')}
               </p>
             </motion.div>
           </div>
         </section>
-
         {/* Content Section */}
         <section className="py-16">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -73,7 +65,6 @@ export default function CookiesPage() {
                   </div>
                 </div>
               </div>
-
               {/* What are Cookies */}
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
@@ -90,13 +81,11 @@ export default function CookiesPage() {
                   Für Meum Diarium bedeutet das: schnelleres Laden, stabile Einstellungen und besseres Verständnis, welche Inhalte besonders hilfreich sind.
                 </p>
               </div>
-
               {/* Cookie Types */}
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold">
                   Welche Cookies verwenden wir?
                 </h2>
-
                 {/* Essential Cookies */}
                 <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                   <div className="flex items-start gap-4 mb-4">
@@ -112,14 +101,12 @@ export default function CookiesPage() {
                       </Badge>
                     </div>
                   </div>
-                  
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     Diese Cookies sind für den Betrieb der Website unbedingt erforderlich und können nicht deaktiviert werden. Sie dienen ausschließlich technischen Zwecken.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     Ohne diese Cookies kann die Seite grundlegende Funktionen wie Sprache oder Layout nicht zuverlässig speichern.
                   </p>
-
                   <div className="mt-6 space-y-4">
                     <div className="p-4 rounded-xl bg-secondary/20">
                       <h4 className="font-semibold mb-2 text-sm">
@@ -132,7 +119,6 @@ export default function CookiesPage() {
                         Speicherort: Browser Local Storage
                       </p>
                     </div>
-
                     <div className="p-4 rounded-xl bg-secondary/20">
                       <h4 className="font-semibold mb-2 text-sm">
                         Session-Cookies
@@ -146,7 +132,6 @@ export default function CookiesPage() {
                     </div>
                   </div>
                 </div>
-
                 {/* No Analytics */}
                 <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                   <div className="flex items-start gap-4 mb-4">
@@ -162,7 +147,6 @@ export default function CookiesPage() {
                       </Badge>
                     </div>
                   </div>
-                  
                   <p className="text-muted-foreground leading-relaxed">
                     Wir verwenden Analyse-Cookies zur Reichweitenmessung und Verbesserung der Inhalte. Erfasst werden z.B. Seitenaufrufe, Verweildauer, Gerätetypen und ungefähre Regionen. Wir suchen Muster, nicht Personen. Caesar zählte Legionen, wir zählen Seitenaufrufe.
                   </p>
@@ -183,7 +167,6 @@ export default function CookiesPage() {
                     </div>
                   </div>
                 </div>
-
                 {/* No Marketing */}
                 <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                   <div className="flex items-start gap-4 mb-4">
@@ -199,7 +182,6 @@ export default function CookiesPage() {
                       </Badge>
                     </div>
                   </div>
-                  
                   <p className="text-muted-foreground leading-relaxed">
                     Wir setzen keine Cookies für Marketingzwecke oder personalisierte Werbung ein. Keine Verfolger, keine Banner-Flut, keine Imperatoren im Werbenetzwerk.
                   </p>
@@ -208,19 +190,16 @@ export default function CookiesPage() {
                   </p>
                 </div>
               </div>
-
               {/* Cookie Control */}
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <Settings className="w-6 h-6 text-primary" />
                   Cookie-Einstellungen verwalten
                 </h2>
-                
                 <div className="space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
                     Sie können Cookies in Ihren Browser-Einstellungen jederzeit verwalten, blockieren oder löschen:
                   </p>
-
                   <ul className="space-y-2 text-muted-foreground list-none">
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
@@ -239,7 +218,6 @@ export default function CookiesPage() {
                       <span><strong>Edge:</strong> Einstellungen → Cookies und Websiteberechtigungen</span>
                     </li>
                   </ul>
-
                   <div className="mt-6 p-4 rounded-xl bg-secondary/20">
                     <p className="text-sm text-muted-foreground">
                       <strong className="text-foreground">Hinweis:</strong>{' '}
@@ -251,7 +229,6 @@ export default function CookiesPage() {
                   </p>
                 </div>
               </div>
-
               {/* Updates */}
               <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40">
                 <h2 className="text-xl font-bold mb-3">
@@ -264,7 +241,6 @@ export default function CookiesPage() {
                   Bei wesentlichen Änderungen ergänzen wir eine kurze Zusammenfassung, damit Sie die wichtigsten Punkte schnell erfassen.
                 </p>
               </div>
-
               {/* Links */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link to="/privacy">
@@ -282,7 +258,6 @@ export default function CookiesPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

@@ -1,5 +1,4 @@
 'use client';
-
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { cn } from '@/lib/utils';
@@ -35,19 +34,16 @@ import {
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
 import { AuthorSwitcher } from '@/components/AuthorSwitcher';
-
 export function Header() {
   const { setCurrentAuthor } = useAuthor();
   const { t, language, setLanguage } = useLanguage();
   const location = useLocation();
-
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isIpad, setIsIpad] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setThemeState] = useState<'light' | 'dark' | 'system'>('system');
   const headerRef = useRef<HTMLDivElement>(null);
-
   // iPad Detection (inkl. iPadOS 13+)
   useEffect(() => {
     const iPad =
@@ -55,7 +51,6 @@ export function Header() {
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     setIsIpad(!!iPad);
   }, []);
-
   // Load theme from localStorage
   useEffect(() => {
     const savedTheme =
@@ -64,40 +59,33 @@ export function Header() {
     setThemeState(savedTheme);
     applyTheme(savedTheme);
   }, []);
-
   const applyTheme = (newTheme: 'light' | 'dark' | 'system') => {
     const htmlElement = document.documentElement;
     let effectiveTheme = newTheme;
-
     if (newTheme === 'system') {
       effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
-
     if (effectiveTheme === 'dark') {
       htmlElement.classList.add('dark');
     } else {
       htmlElement.classList.remove('dark');
     }
   };
-
   const setTheme = (newTheme: 'light' | 'dark' | 'system') => {
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
     applyTheme(newTheme);
   };
-
   // Scroll detection for header styling
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   // Keyboard shortcut for search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -109,26 +97,20 @@ export function Header() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
   const navItems = [
     { href: '/lexicon', label: t('navLexicon'), icon: BookOpen },
-    { href: '/latin', label: t('navLernen'), icon: GraduationCap },
+    { href: '/learn', label: t('navLernen'), icon: GraduationCap },
     { href: '/about', label: t('navAbout'), icon: Info },
   ];
-
   const handleLogoClick = useCallback(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   const handleNavClick = useCallback(() => {
     setMobileMenuOpen(false);
   }, []);
-
   const isActive = (href: string) => location.pathname === href;
-
   // Hilfsflag: iPad soll wie Desktop behandelt werden
   const isDesktopLike = !isIpad; // DU kannst das bei Bedarf anpassen, z.B. immer Desktop auf iPad
-
   return (
     <>
       <header
@@ -157,13 +139,11 @@ export function Header() {
                 {t('appName')}
               </span>
             </Link>
-
             {/* Desktop Navigation (inkl. iPad) */}
             <nav className="hidden md:flex items-center gap-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.href);
-
                 return (
                   <Link
                     key={item.href}
@@ -181,7 +161,6 @@ export function Header() {
                 );
               })}
             </nav>
-
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button */}
@@ -194,11 +173,9 @@ export function Header() {
               >
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
-
               {/* Desktop Controls (inkl. iPad) */}
               <div className="hidden md:flex items-center gap-2">
                 <AuthorSwitcher />
-
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
@@ -234,9 +211,7 @@ export function Header() {
                     >
                       Latine 🏛️
                     </DropdownMenuCheckboxItem>
-
                     <DropdownMenuSeparator className="my-2" />
-
                     <DropdownMenuLabel className="flex items-center gap-2">
                       {theme === 'dark' ? (
                         <Moon className="w-4 h-4" />
@@ -267,7 +242,6 @@ export function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-
               {/* Mobile Menu (nur < md, auch auf iPad im Portrait sinnvoll) */}
               <div className="md:hidden">
                 <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -300,13 +274,11 @@ export function Header() {
                           </span>
                         </Link>
                       </div>
-
                       {/* Mobile Navigation */}
                       <nav className="flex flex-col gap-2 py-6 px-4">
                         {navItems.map((item) => {
                           const Icon = item.icon;
                           const active = isActive(item.href);
-
                           return (
                             <Link
                               key={item.href}
@@ -325,7 +297,6 @@ export function Header() {
                           );
                         })}
                       </nav>
-
                       {/* Mobile Settings */}
                       <div className="mt-auto p-6 border-t border-border/30 space-y-6">
                         {/* Author Selector */}
@@ -336,7 +307,6 @@ export function Header() {
                           </h3>
                           <AuthorSwitcher />
                         </div>
-
                         {/* Language Selector */}
                         <div className="space-y-3">
                           <h3 className="text-sm font-semibold flex items-center gap-2">
@@ -385,7 +355,6 @@ export function Header() {
                             </Button>
                           </div>
                         </div>
-
                         {/* Theme Selector */}
                         <div className="space-y-3">
                           <h3 className="text-sm font-semibold flex items-center gap-2">
@@ -447,8 +416,6 @@ export function Header() {
           </div>
         </div>
       </header>
-
-
       {/* Search Dialog */}
       <SearchDialog
         isOpen={searchOpen}

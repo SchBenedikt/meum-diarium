@@ -10,22 +10,18 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthors } from '@/lib/translator';
 import { PageContent, PageLanguage } from '@/types/page';
 import { SEO } from '@/components/SEO';
-
 export function GeneralAboutPage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const [authors, setAuthors] = useState(baseAuthors);
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
-
   const pageTranslation = useMemo(() => {
     const lang = language as PageLanguage;
     return pageContent?.translations?.[lang];
   }, [language, pageContent]);
-
   const heroTitle = pageTranslation?.heroTitle || pageContent?.heroTitle || t('aboutProject');
   const heroSubtitle = pageTranslation?.heroSubtitle || pageContent?.heroSubtitle || t('interactiveLearning');
   const projectDescription = pageTranslation?.projectDescription || pageContent?.projectDescription || t('projectDescription');
-
   const structuredData = useMemo(() => ([
     {
       '@context': 'https://schema.org',
@@ -70,14 +66,12 @@ export function GeneralAboutPage() {
       ]
     }
   ]), [language, projectDescription]);
-
   const defaultHighlights = useMemo(() => ([
     { icon: BookOpen, title: t('twoPerspectives'), desc: 'Erlebe Geschichte aus zwei radikal unterschiedlichen Blickwinkeln: Die persönliche, oft humorvolle Tagebuchperspektive und die streng wissenschaftliche Analyse mit Quellenangaben und historischer Einordnung.' },
     { icon: Users, title: t('fourAuthors'), desc: 'Vier der einflussreichsten Persönlichkeiten der Antike: Caesar, der Eroberer und Staatsmann. Cicero, der brillante Rhetoriker. Augustus, der Friedensbringer. Seneca, der philosophische Berater.' },
     { icon: Clock, title: '170+ Jahre Geschichte', desc: 'Von Caesars Gallischen Kriegen (58 v. Chr.) bis zu Senecas Selbstmord (65 n. Chr.) – eine Epoche, die unsere Zivilisation prägte. Bürgerkriege, Philosophie, Macht und Moral.' },
     { icon: Scroll, title: t('authentic'), desc: 'Jeder Eintrag basiert auf historischen Quellen: Caesars Commentarii, Ciceros Briefe und Reden, Augustus Res Gestae, Senecas philosophische Schriften. Wissenschaftlich fundiert, literarisch erzählt.' },
   ]), [t]);
-
   const customHighlights = pageTranslation?.highlights || pageContent?.highlights;
   const highlights = customHighlights && customHighlights.length > 0
     ? customHighlights.map((item, index) => ({
@@ -86,11 +80,9 @@ export function GeneralAboutPage() {
       desc: item.description,
     }))
     : defaultHighlights;
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   useEffect(() => {
     async function translate() {
       const translated = await getTranslatedAuthors(language);
@@ -98,7 +90,6 @@ export function GeneralAboutPage() {
     }
     translate();
   }, [language]);
-
   useEffect(() => {
     async function fetchPageContent() {
       try {
@@ -113,7 +104,6 @@ export function GeneralAboutPage() {
     }
     fetchPageContent();
   }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-primary selection:text-primary-foreground">
       <SEO
@@ -140,7 +130,6 @@ export function GeneralAboutPage() {
               className="w-full h-full object-cover scale-110"
             />
           </div>
-
           <div className="container mx-auto relative z-20 px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -155,7 +144,6 @@ export function GeneralAboutPage() {
               </p>
             </motion.div>
           </div>
-
           <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-20" />
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-30">
@@ -164,7 +152,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Highlights Section */}
         <section className="py-32 relative">
           <div className="container mx-auto px-4">
@@ -188,7 +175,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Methodology & Sources */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -221,7 +207,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Features Section */}
         <section className="py-24 bg-surface-container-low/20">
           <div className="container mx-auto px-4">
@@ -257,7 +242,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Explorer CTA */}
         <section className="py-20">
           <div className="container mx-auto px-4">
@@ -280,7 +264,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Authors Showcase */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -320,7 +303,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* FAQ */}
         <section className="py-24 bg-muted/20">
           <div className="container mx-auto px-4">
@@ -357,7 +339,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Statistics Section */}
         <section className="py-24 bg-muted/30">
           <div className="container mx-auto px-4">
@@ -381,7 +362,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Vision & Impact Section */}
         <section className="py-24 bg-gradient-to-b from-background to-muted/20">
           <div className="container mx-auto px-4">
@@ -431,7 +411,6 @@ export function GeneralAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Team Section */}
         <section className="py-24 bg-muted/20">
           <div className="container mx-auto px-4">

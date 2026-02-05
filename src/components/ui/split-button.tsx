@@ -7,13 +7,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-
 interface SplitButtonProps extends ButtonProps {
     onMainClick?: () => void
     menuContent: React.ReactNode
     label: React.ReactNode
 }
-
 const SplitButton = React.forwardRef<HTMLButtonElement, SplitButtonProps>(
     ({ className, onMainClick, menuContent, label, variant = "default", size = "default", ...props }, ref) => {
         return (
@@ -47,5 +45,4 @@ const SplitButton = React.forwardRef<HTMLButtonElement, SplitButtonProps>(
     }
 )
 SplitButton.displayName = "SplitButton"
-
 export { SplitButton }

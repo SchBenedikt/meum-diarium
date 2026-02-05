@@ -3,59 +3,46 @@ import { ChevronDown, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { generateTableOfContents, TocItem } from '@/lib/toc-generator';
 import { useLanguage } from '@/context/LanguageContext';
-
 interface TableOfContentsProps {
   content: string;
   title?: string;
 }
-
 interface TocItemWithExpanded extends TocItem {
   children?: TocItemWithExpanded[];
   isExpanded?: boolean;
 }
-
 export function TableOfContents({ content, title }: TableOfContentsProps) {
   const { t } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [isContentExpanded, setIsContentExpanded] = useState(true);
-
   const flatToc = useMemo(() => generateTableOfContents(content), [content]);
   const hierarchy = useMemo(() => {
     const buildHierarchy = (items: TocItem[]): TocItemWithExpanded[] => {
       const result: TocItemWithExpanded[] = [];
       const stack: TocItemWithExpanded[] = [];
-
       items.forEach(item => {
         const newItem: TocItemWithExpanded = { ...item, children: [], isExpanded: false };
-
         while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
           stack.pop();
         }
-
         if (stack.length > 0) {
           stack[stack.length - 1].children?.push(newItem);
         } else {
           result.push(newItem);
         }
-
         stack.push(newItem);
       });
-
       return result;
     };
-
     return buildHierarchy(flatToc);
   }, [flatToc]);
-
   if (flatToc.length === 0) return null;
-
   const handleLinkClick = (id: string) => {
     const element = document.querySelector(`[data-heading-id="${id}"]`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
     if (newExpanded.has(id)) {
@@ -65,12 +52,10 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
     }
     setExpandedItems(newExpanded);
   };
-
   const TocItemComponent = ({ item, depth = 0 }: { item: TocItemWithExpanded; depth?: number }) => {
     const isExpanded = expandedItems.has(item.id);
     const hasChildren = item.children && item.children.length > 0;
     const isTopLevel = depth === 0;
-
     return (
       <div key={item.id} className={isTopLevel ? 'mb-1' : 'mb-0'}>
         <div className="flex items-center gap-2 group/item">
@@ -88,7 +73,6 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
               </motion.div>
             </button>
           )}
-
           <button
             onClick={() => handleLinkClick(item.id)}
             className={`flex-1 text-left px-3 py-2 rounded-lg transition-all duration-200 ${isTopLevel
@@ -104,7 +88,6 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
             </span>
           </button>
         </div>
-
         <AnimatePresence>
           {hasChildren && isExpanded && (
             <motion.div
@@ -125,7 +108,6 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
       </div>
     );
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -158,7 +140,6 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
           </button>
         </div>
       </div>
-
       {/* Content */}
       <AnimatePresence>
         {isContentExpanded && (

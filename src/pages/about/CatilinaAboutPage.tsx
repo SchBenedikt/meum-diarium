@@ -14,19 +14,15 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
-
 export function CatilinaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
-
   const authorDetails = useAuthorDetails(t);
-
   useEffect(() => {
     if (authorId === 'catilina') {
       setCurrentAuthor('catilina' as Author);
@@ -35,12 +31,10 @@ export function CatilinaAboutPage() {
           const authorPostsList = allPosts.filter(p => p.author === 'catilina').slice(0, 3);
           setAuthorPosts(authorPostsList);
         }
-
         const translatedWorks = await Promise.all(
           Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-
         try {
           const res = await fetch('/api/pages/author-about-catilina');
           if (res.ok) {
@@ -56,7 +50,6 @@ export function CatilinaAboutPage() {
       translateContent();
     }
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
-
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -64,9 +57,7 @@ export function CatilinaAboutPage() {
       </div>
     );
   }
-
   const details = authorDetails.catilina;
-
   const catilinaSnapshots = [
     { label: t('catilina.snapshots.lifespan'), value: '108–62 ' + t('common.bc'), hint: '~46 ' + t('common.years') },
     { label: t('catilina.snapshots.conspiracy'), value: '63 ' + t('common.bc'), hint: t('catilina.snapshots.conspiracyHint') },
@@ -75,7 +66,6 @@ export function CatilinaAboutPage() {
     { label: t('catilina.snapshots.ciceroSpeeches'), value: '4', hint: 'In Catilinam I-IV' },
     { label: t('catilina.snapshots.finalBattle'), value: 'Pistoria', hint: '62 ' + t('common.bc') },
   ];
-
   const catilinaTimeline = [
     {
       year: -108,
@@ -134,7 +124,6 @@ export function CatilinaAboutPage() {
       icon: Sword,
     },
   ];
-
   const catilinaLegacy = [
     {
       title: t('catilina.legacy.symbolOfCorruption'),
@@ -161,7 +150,6 @@ export function CatilinaAboutPage() {
       horizon: t('catilina.horizons.mediumTerm'),
     },
   ];
-
   const catilinaContext = [
     {
       title: t('catilina.context.lateRepublic.title'),
@@ -184,7 +172,6 @@ export function CatilinaAboutPage() {
       period: t('catilina.context.nobilitas.period'),
     },
   ];
-
   const conspiracyPhases = [
     {
       title: t('catilina.conspiracy.firstPlot.title'),
@@ -211,7 +198,6 @@ export function CatilinaAboutPage() {
       outcome: t('catilina.conspiracy.finalStand.outcome'),
     },
   ];
-
   const ciceroSpeeches = [
     {
       title: t('catilina.ciceroSpeeches.first.title'),
@@ -238,17 +224,14 @@ export function CatilinaAboutPage() {
       impact: t('catilina.ciceroSpeeches.fourth.impact'),
     },
   ];
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} ${t('common.bc')}` : `${year} ${t('common.ad')}`;
   };
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <AuthorAboutHero authorInfo={authorInfo} />
-
       <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 py-16">
         {/* Introduction Section */}
         <motion.div
@@ -269,7 +252,6 @@ export function CatilinaAboutPage() {
             </p>
           </div>
         </motion.div>
-
         {/* Quick Facts */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -294,7 +276,6 @@ export function CatilinaAboutPage() {
             ))}
           </div>
         </motion.div>
-
         {/* Historical Context */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -324,7 +305,6 @@ export function CatilinaAboutPage() {
             ))}
           </div>
         </motion.div>
-
         {/* Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -361,7 +341,6 @@ export function CatilinaAboutPage() {
             })}
           </div>
         </motion.div>
-
         {/* The Conspiracy */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -399,7 +378,6 @@ export function CatilinaAboutPage() {
             ))}
           </div>
         </motion.div>
-
         {/* Cicero's Speeches Against Catilina */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -436,7 +414,6 @@ export function CatilinaAboutPage() {
             ))}
           </div>
         </motion.div>
-
         {/* Legacy and Historical Significance */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -464,7 +441,6 @@ export function CatilinaAboutPage() {
             ))}
           </div>
         </motion.div>
-
         {/* Historical Sources Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -487,7 +463,6 @@ export function CatilinaAboutPage() {
             </ul>
           </div>
         </motion.div>
-
         {/* Related Content */}
         {authorPosts.length > 0 && (
           <motion.div
@@ -531,7 +506,6 @@ export function CatilinaAboutPage() {
             </div>
           </motion.div>
         )}
-
         {/* Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -552,7 +526,6 @@ export function CatilinaAboutPage() {
           </Link>
         </motion.div>
       </main>
-
       <Footer />
     </div>
   );

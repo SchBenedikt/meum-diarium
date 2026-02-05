@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import { Play, Users, Crown, Sword } from 'lucide-react';
 import { SimulationScenario } from '@/data/simulations';
-
 interface SimulationCardProps {
     scenario: SimulationScenario;
     onClick: (scenario: SimulationScenario) => void;
 }
-
 export function SimulationCard({ scenario, onClick }: SimulationCardProps) {
     return (
         <motion.div
@@ -23,15 +21,12 @@ export function SimulationCard({ scenario, onClick }: SimulationCardProps) {
                     <Play className="h-4 w-4" />
                 </div>
             </div>
-
             <h3 className="font-display text-2xl font-medium mb-3 group-hover:text-primary transition-colors">
                 {scenario.title}
             </h3>
-
             <p className="text-muted-foreground mb-6 line-clamp-3 flex-1 leading-relaxed text-sm">
                 {scenario.description}
             </p>
-
         </motion.div>
     );
 }

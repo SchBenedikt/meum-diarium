@@ -9,11 +9,9 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { fetchWork, saveWork, deleteWork, fetchWorkDetails, saveWorkDetails, deleteWorkDetails } from '@/lib/api';
 import { toast } from 'sonner';
-
 export default function WorkEditorPage() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug?: string }>();
-
   const [form, setForm] = useState({
     slug: slug || '',
     author: '',
@@ -27,7 +25,6 @@ export default function WorkEditorPage() {
   const [loading, setLoading] = useState(false);
   const [activeLang, setActiveLang] = useState<'de' | 'en' | 'la'>('de');
   const [details, setDetails] = useState<any>({ de: {}, en: {}, la: {} });
-
   useEffect(() => {
     const load = async () => {
       if (!slug) return;
@@ -53,9 +50,7 @@ export default function WorkEditorPage() {
     };
     load();
   }, [slug]);
-
   const update = (key: string, value: any) => setForm(prev => ({ ...prev, [key]: value }));
-
   const onSave = async () => {
     try {
       setLoading(true);
@@ -69,7 +64,6 @@ export default function WorkEditorPage() {
       setLoading(false);
     }
   };
-
   const onDelete = async () => {
     if (!slug) return;
     if (!window.confirm('Werk wirklich löschen?')) return;
@@ -84,7 +78,6 @@ export default function WorkEditorPage() {
       setLoading(false);
     }
   };
-
   return (
     <div className="container mx-auto max-w-4xl px-4 pt-24 sm:pt-28 pb-10">
       <div className="mb-8">
@@ -96,7 +89,6 @@ export default function WorkEditorPage() {
         </div>
         <p className="text-muted-foreground">Bearbeite literarische Werke (Titel, Autor, Jahr, Zusammenfassung, Struktur).</p>
       </div>
-
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>{slug ? 'Werk bearbeiten' : 'Neues Werk'}</CardTitle>
@@ -142,7 +134,6 @@ export default function WorkEditorPage() {
           </div>
         </CardContent>
       </Card>
-
       {/* Details Editor */}
       <Card>
         <CardHeader>
@@ -156,7 +147,6 @@ export default function WorkEditorPage() {
               <TabsTrigger value="en">English</TabsTrigger>
               <TabsTrigger value="la">Latinum</TabsTrigger>
             </TabsList>
-
             {(['de','en','la'] as const).map(lang => (
               <TabsContent key={lang} value={lang} className="space-y-6">
                 {/* Context */}
@@ -176,7 +166,6 @@ export default function WorkEditorPage() {
                     setDetails((prev: any) => ({ ...prev, [lang]: next }));
                   }} />
                 </div>
-
                 {/* Sections */}
                 <div className="space-y-3">
                   <Label>Abschnitte</Label>
@@ -200,7 +189,6 @@ export default function WorkEditorPage() {
                     setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
                   }}>Abschnitt hinzufügen</Button>
                 </div>
-
                 {/* Quotes */}
                 <div className="space-y-3">
                   <Label>Zitate</Label>
@@ -231,7 +219,6 @@ export default function WorkEditorPage() {
                     setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
                   }}>Zitat hinzufügen</Button>
                 </div>
-
                 {/* Key Moments */}
                 <div className="space-y-3">
                   <Label>Schlüsselmomente</Label>
@@ -272,7 +259,6 @@ export default function WorkEditorPage() {
               </TabsContent>
             ))}
           </Tabs>
-
           <div className="flex gap-2 mt-4">
             <Button onClick={async () => { setLoading(true); try { await saveWorkDetails(form.slug, details); toast.success('Werk-Details gespeichert'); } catch { toast.error('Details speichern fehlgeschlagen'); } finally { setLoading(false); }}}>Details speichern</Button>
             <Button variant="outline" className="text-destructive" onClick={async () => { if (!window.confirm('Werk-Details wirklich löschen?')) return; setLoading(true); try { await deleteWorkDetails(form.slug); toast.success('Werk-Details gelöscht'); setDetails({ de: {}, en: {}, la: {} }); } catch { toast.error('Details löschen fehlgeschlagen'); } finally { setLoading(false); }}}>Details löschen</Button>
@@ -282,5 +268,4 @@ export default function WorkEditorPage() {
     </div>
   );
 }
-
 // Additional code for language-tabbed details editor would go here

@@ -1,18 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Scroll, Github, Twitter, Mail, Globe, Sparkles, BookOpen } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-
 export function Footer() {
   const { t } = useLanguage();
-
   const text = (key: string, fallback: string) => {
     const val = t(key);
     return typeof val === 'string' ? val : fallback;
   };
-
   const appName = text('appName', 'Meum Diarium');
   const description = text('footerDescription', 'Experience history through the eyes of the greatest figures of ancient Rome. Diaries and scholarly commentaries.');
-
   const footerLinks = [
     {
       title: text('footerNavigation', 'Navigation'),
@@ -41,16 +37,13 @@ export function Footer() {
       ]
     }
   ];
-
   return (
     <footer className="relative mt-32 border-t border-border bg-card overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
-
       <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
-
           {/* Brand & Mission */}
           <div className="lg:col-span-4 space-y-8">
             <Link to="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02]">
@@ -61,16 +54,13 @@ export function Footer() {
                 {appName}
               </span>
             </Link>
-
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-sm font-light italic">
               "{description}"
             </p>
-
             <div className="pt-4 flex items-center gap-4">
               {/* Minimalist social indicators removal confirmed */}
             </div>
           </div>
-
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12">
             {footerLinks.map((column) => (
               <div key={column.title} className="space-y-8">
@@ -97,7 +87,6 @@ export function Footer() {
             ))}
           </div>
         </div>
-
         {/* Bottom Bar */}
         <div className="mt-20 sm:mt-32 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
@@ -109,7 +98,6 @@ export function Footer() {
               <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Datenschutz</Link>
             </div>
           </div>
-
           <div className="hidden sm:flex items-center gap-8">
             <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-primary/40 font-black italic">
               <Globe className="h-3 w-3" />

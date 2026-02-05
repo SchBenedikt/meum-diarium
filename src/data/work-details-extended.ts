@@ -1,6 +1,5 @@
 // This file contains the additional work details that need to be merged into work-details.ts
 // Contents for: de-re-publica, philippicae, res-gestae
-
 export const extendedWorkDetails = {
   'de-re-publica': {
     sections: [

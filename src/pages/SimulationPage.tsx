@@ -12,23 +12,19 @@ import { Input } from '@/components/ui/input';
 import { SimulationCard } from '@/components/simulation/SimulationCard';
 import { Footer } from '@/components/layout/Footer';
 import { simulateAI } from '@/lib/api';
-
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const { setCurrentAuthor } = useAuthor();
     const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
     const navigate = useNavigate();
     const scrollRef = useRef<HTMLDivElement>(null);
-
     // Get author from D1 database
     const author = authorId && dbAuthors ? dbAuthors[authorId as Author] : null;
-
     // UI State
     const [searchQuery, setSearchQuery] = useState('');
     const [showCustomForm, setShowCustomForm] = useState(false);
     const [customScenarioText, setCustomScenarioText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
     // Game State
     const [activeScenario, setActiveScenario] = useState<SimulationScenario | null>(null);
     const [currentEventId, setCurrentEventId] = useState<string | null>(null);
@@ -37,32 +33,27 @@ export default function SimulationPage() {
     const [currentOptions, setCurrentOptions] = useState<{ id: string, text: string }[]>([]);
     const [gameEnded, setGameEnded] = useState(false);
     const [customInput, setCustomInput] = useState('');
-
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [history, isLoading]);
-
     const allScenarios = authorId && simulations[authorId] ? simulations[authorId] : [];
     const filteredScenarios = allScenarios.filter(s =>
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         s.date.toLowerCase().includes(searchQuery.toLowerCase()) ||
         s.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
     useEffect(() => {
         if (authorId) {
             setCurrentAuthor(authorId as Author);
         }
     }, [authorId, setCurrentAuthor]);
-
     const startGame = async (scenario: SimulationScenario) => {
         setIsLoading(true);
         setActiveScenario(scenario);
         setStats(scenario.initialStats);
         setGameEnded(false);
-
         try {
             const res = await simulateAI(authorId || 'caesar', scenario.title, []);
             setHistory([{
@@ -84,20 +75,15 @@ export default function SimulationPage() {
             setIsLoading(false);
         }
     };
-
     const handleChoice = async (choiceText: string) => {
         if (isLoading || gameEnded) return;
         setIsLoading(true);
-
         const newHistoryRows = [
             ...history.map(h => ({ role: h.role || (h.type === 'choice' ? 'user' : 'assistant'), content: h.text })),
         ];
-
         setHistory(prev => [...prev, { text: choiceText, type: 'choice' as const, role: 'user' as const }]);
-
         try {
             const res = await simulateAI(authorId || 'caesar', activeScenario?.title || '', newHistoryRows, choiceText);
-
             if (res.stats) {
                 setStats(prev => ({
                     welfare: Math.max(0, Math.min(100, prev.welfare + (res.stats.volk || 0))),
@@ -105,12 +91,10 @@ export default function SimulationPage() {
                     power: Math.max(0, Math.min(100, prev.power + (res.stats.macht || 0))),
                 }));
             }
-
             setHistory(prev => [
                 ...prev,
                 { text: res.narrative, type: 'narrative' as const, role: 'assistant' as const }
             ].filter(item => item.text));
-
             setCurrentOptions(res.options || []);
             setGameEnded(res.ended || false);
         } catch (error) {
@@ -121,14 +105,11 @@ export default function SimulationPage() {
             setCustomInput('');
         }
     };
-
     const handleCustomInput = () => {
         if (!customInput.trim()) return;
         handleChoice(customInput);
     };
-
     if (!author) return null;
-
     // --- SCENARIO SELECTION VIEW ---
     if (!activeScenario) {
         const handleCustomSubmit = () => {
@@ -147,7 +128,6 @@ export default function SimulationPage() {
                 setShowCustomForm(false);
             }
         };
-
         return (
             <div className="min-h-screen flex flex-col bg-background">
                 <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -179,7 +159,6 @@ export default function SimulationPage() {
                                 Erlebe die Geschichte aus der Ich-Perspektive. Wähle Szenarien, entscheide und beobachte die Konsequenzen.
                             </p>
                         </motion.div>
-
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -193,7 +172,6 @@ export default function SimulationPage() {
                             </div>
                         </motion.div>
                     </div>
-
                     {/* Search */}
                     <div className="card-modern card-padding-md max-w-xl mb-8">
                         <div className="relative">
@@ -211,7 +189,6 @@ export default function SimulationPage() {
                             )}
                         </div>
                     </div>
-
                     {/* Scenarios Grid */}
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <AnimatePresence mode="wait">
@@ -258,7 +235,6 @@ export default function SimulationPage() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-
                         {filteredScenarios.map(scenario => (
                             <SimulationCard
                                 key={scenario.id}
@@ -266,7 +242,6 @@ export default function SimulationPage() {
                                 onClick={startGame}
                             />
                         ))}
-
                         {filteredScenarios.length === 0 && searchQuery && (
                             <div className="md:col-span-2 lg:col-span-3 card-modern card-padding-lg text-center py-12 text-muted-foreground">
                                 <Search className="h-8 w-8 mx-auto mb-4 opacity-50" />
@@ -284,10 +259,8 @@ export default function SimulationPage() {
             </div>
         );
     }
-
     // --- GAME VIEW ---
     if (!activeScenario || !author) return null;
-    
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -308,7 +281,6 @@ export default function SimulationPage() {
                         <StatDisplay icon={Sword} label="Macht" value={stats.power} color="text-red-500" />
                     </div>
                 </div>
-
                 {/* Game Content */}
                 <div className="card-modern overflow-hidden mb-6">
                     <div ref={scrollRef} className="max-h-[55vh] sm:max-h-[60vh] overflow-auto scroll-smooth px-4 sm:px-6 py-4 space-y-4">
@@ -331,14 +303,12 @@ export default function SimulationPage() {
                                 </div>
                             </motion.div>
                         ))}
-
                         {isLoading && (
                             <div className="flex items-center gap-2 text-muted-foreground italic text-sm py-2">
                                 <RefreshCw className="h-4 w-4 animate-spin text-primary" />
                                 Schicksal wird gewoben...
                             </div>
                         )}
-
                         {gameEnded && (
                             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card-modern card-padding-lg text-center space-y-3 max-w-xl mx-auto">
                                 <Crown className="h-10 w-10 text-primary mx-auto" />
@@ -362,7 +332,6 @@ export default function SimulationPage() {
                         )}
                     </div>
                 </div>
-
                 {/* Choices */}
                 {!gameEnded && (
                     <div className="card-modern card-padding-md space-y-4">
@@ -386,7 +355,6 @@ export default function SimulationPage() {
                                 )
                             )}
                         </div>
-
                         <div className="relative">
                             <Input
                                 placeholder="Eigene Handlung eintippen..."
@@ -413,7 +381,6 @@ export default function SimulationPage() {
         </div>
     );
 }
-
 function StatDisplay({ icon: Icon, label, value, color }: { icon: any, label: string, value: number, color: string }) {
     return (
         <div className="flex flex-col items-center min-w-[60px]">

@@ -12,12 +12,10 @@ import { toast } from 'sonner';
 import { Switch } from '@/components/ui/switch';
 import { SiteSettings, defaultSettings } from '@/types/settings';
 import { getSettings, saveSettings } from '@/lib/cms-store';
-
 export default function SettingsPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
-
   // Offline features state
   const [isCaching, setIsCaching] = useState(false);
   const [cacheComplete, setCacheComplete] = useState(false);
@@ -25,7 +23,6 @@ export default function SettingsPage() {
   const [isError, setIsError] = useState(false);
   const [statusText, setStatusText] = useState('Alle Artikel und das Lexikon offline speichern.');
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
-
   useEffect(() => {
     try {
       const loaded = getSettings();
@@ -33,12 +30,10 @@ export default function SettingsPage() {
     } catch (error) {
       console.error('Failed to load settings', error);
     }
-
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-
     const handleMessage = (event: MessageEvent) => {
       if (event.data && event.data.type === 'PRECACHE_PROGRESS') {
         const { progress: p, status } = event.data.payload;
@@ -58,11 +53,9 @@ export default function SettingsPage() {
         }
       }
     };
-
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener('message', handleMessage);
     }
-
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
@@ -71,7 +64,6 @@ export default function SettingsPage() {
       }
     };
   }, []);
-
   const triggerPrecache = () => {
     if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
       setIsCaching(true);
@@ -84,7 +76,6 @@ export default function SettingsPage() {
       toast.error('Service Worker nicht bereit.');
     }
   };
-
   const clearCache = async () => {
     if ('caches' in window) {
       const keys = await caches.keys();
@@ -93,22 +84,17 @@ export default function SettingsPage() {
       setTimeout(() => window.location.reload(), 1000);
     }
   };
-
   const updateSetting = (key: keyof SiteSettings, value: string | boolean) => {
     setSettings(prev => ({ ...prev, [key]: value }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       await saveSettings(settings);
       toast.success('Einstellungen gespeichert');
-
       // In a real implementation, you would send to API:
       // await fetch('/api/settings', { method: 'POST', ... });
-
     } catch (error) {
       console.error(error);
       toast.error('Fehler beim Speichern');
@@ -116,7 +102,6 @@ export default function SettingsPage() {
       setLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen bg-background pt-16">
       {/* Header */}
@@ -139,7 +124,6 @@ export default function SettingsPage() {
           </Button>
         </div>
       </div>
-
       <div className="container mx-auto px-4 py-6 max-w-5xl">
         <form onSubmit={handleSubmit} className="space-y-8">
           <Tabs defaultValue="general" className="w-full">
@@ -157,7 +141,6 @@ export default function SettingsPage() {
                 <span className="hidden sm:inline">Erweitert</span>
               </TabsTrigger>
             </TabsList>
-
             {/* General Settings */}
             <TabsContent value="general" className="space-y-6">
               <Card>
@@ -194,7 +177,6 @@ export default function SettingsPage() {
                   </div>
                 </CardContent>
               </Card>
-
               <Card>
                 <CardHeader>
                   <CardTitle>Sprachen & Übersetzungen</CardTitle>
@@ -224,7 +206,6 @@ export default function SettingsPage() {
                 </CardContent>
               </Card>
             </TabsContent>
-
             {/* Appearance Settings */}
             <TabsContent value="appearance" className="space-y-6">
               <Card>
@@ -263,7 +244,6 @@ export default function SettingsPage() {
                   </div>
                 </CardContent>
               </Card>
-
               <Card>
                 <CardHeader>
                   <CardTitle>Footer</CardTitle>
@@ -282,7 +262,6 @@ export default function SettingsPage() {
                 </CardContent>
               </Card>
             </TabsContent>
-
             {/* Advanced Settings */}
             <TabsContent value="advanced" className="space-y-6">
               <Card>
@@ -305,7 +284,6 @@ export default function SettingsPage() {
                   </div>
                 </CardContent>
               </Card>
-
               <div className="block md:hidden">
                 <Card>
                   <CardHeader>
@@ -333,7 +311,6 @@ export default function SettingsPage() {
                           <p className="text-xs text-muted-foreground">{statusText}</p>
                         </div>
                       </div>
-
                       <AnimatePresence>
                         {isCaching && (
                           <motion.div
@@ -353,7 +330,6 @@ export default function SettingsPage() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-
                       {!cacheComplete && (
                         <Button
                           type="button"
@@ -365,7 +341,6 @@ export default function SettingsPage() {
                           {isCaching ? "Lädt herunter..." : isError ? "Erneut versuchen" : "Jetzt herunterladen"}
                         </Button>
                       )}
-
                       {cacheComplete && (
                         <Button
                           type="button"
@@ -376,14 +351,12 @@ export default function SettingsPage() {
                           Erneut aktualisieren
                         </Button>
                       )}
-
                       {isOffline && (
                         <p className="text-[10px] text-destructive text-center font-medium">
                           Download nur im Online-Modus möglich
                         </p>
                       )}
                     </div>
-
                     <div className="pt-4 border-t border-border">
                       <Button type="button" onClick={clearCache} variant="ghost" className="w-full text-destructive hover:text-destructive hover:bg-destructive/10">
                         Lokalen Cache leeren

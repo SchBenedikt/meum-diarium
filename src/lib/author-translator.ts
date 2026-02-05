@@ -1,6 +1,5 @@
 import { Author, Language } from '@/types/blog';
 import { TranslationKey } from '@/locales/translations';
-
 /**
  * Gibt die Übersetzungsschlüssel für Autoren-Informationen zurück
  */
@@ -15,7 +14,6 @@ export function getAuthorTranslationKeys(authorId: Author) {
     years: `${authorId}_years` as TranslationKey,
   };
 }
-
 /**
  * Hilfsfunktion für übersetzte Autoren-Informationen
  */
@@ -28,13 +26,11 @@ export interface TranslatedAuthorInfo {
   achievements: string;
   birthplace: string;
 }
-
 export function getTranslatedAuthorInfo(
   authorId: Author,
   t: (key: TranslationKey) => string
 ): TranslatedAuthorInfo {
   const keys = getAuthorTranslationKeys(authorId);
-
   return {
     name: t(keys.name),
     latinName: t(keys.latinName),

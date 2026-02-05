@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, Cpu, BookOpen, GraduationCap, BarChart3, Globe, Code2, Zap } from 'lucide-react';
-
 type EndpointParam = {
     name: string;
     desc: string;
 };
-
 type Endpoint = {
     title: string;
     method: string;
@@ -18,14 +16,11 @@ type Endpoint = {
     notes?: string[];
     isPrivate?: boolean;
 };
-
 const ApiDocsPage = () => {
     useEffect(() => {
         document.title = "Meum Diarium API | Dokumentation";
     }, []);
-
     const primaryBaseUrl = "https://meum-diarium.xn--schchner-2za.de";
-
     const sections = [
         { id: 'info', label: 'Was ist eine API?' },
         { id: 'base', label: 'Basis' },
@@ -34,7 +29,6 @@ const ApiDocsPage = () => {
         { id: 'ai', label: 'KI' },
         { id: 'system', label: 'System' }
     ];
-
     const contentEndpoints: Endpoint[] = [
         {
             title: "Katalog",
@@ -113,7 +107,6 @@ const ApiDocsPage = () => {
 ]`
         }
     ];
-
     const discoveryEndpoints: Endpoint[] = [
         {
             title: "Search Index",
@@ -166,7 +159,6 @@ const ApiDocsPage = () => {
 ]`
         }
     ];
-
     const aiEndpoints: Endpoint[] = [
         {
             title: "KI Chat",
@@ -260,7 +252,6 @@ const ApiDocsPage = () => {
             isPrivate: true
         }
     ];
-
     const systemEndpoints: Endpoint[] = [
         {
             title: "Stats",
@@ -276,13 +267,11 @@ const ApiDocsPage = () => {
 }`
         }
     ];
-
     return (
         <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[380px] sm:h-[500px] bg-gradient-to-b from-primary/5 to-transparent blur-3xl opacity-50" />
             </div>
-
             <div className="container max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 relative">
                 <header className="text-center mb-14 sm:mb-20">
                     <div className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-bold tracking-widest uppercase text-primary mb-6 sm:mb-8 backdrop-blur-md">
@@ -296,7 +285,6 @@ const ApiDocsPage = () => {
                         Fokus auf mobile Lesbarkeit und klaren Einstieg.
                     </p>
                 </header>
-
                 <nav className="sticky top-4 z-20 mb-10 sm:mb-16">
                     <div className="bg-card/90 border border-border rounded-full px-3 py-2 shadow-sm backdrop-blur">
                         <div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
@@ -312,7 +300,6 @@ const ApiDocsPage = () => {
                         </div>
                     </div>
                 </nav>
-
                 <div className="grid gap-16 sm:gap-20">
                     <section id="info" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-12">
@@ -337,7 +324,6 @@ const ApiDocsPage = () => {
                                     die von Programmen verarbeitet werden können.
                                 </p>
                             </div>
-
                             <div className="bg-card border border-border rounded-[24px] p-6 sm:p-8 relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                                     <Shield className="w-24 h-24" />
@@ -355,7 +341,6 @@ const ApiDocsPage = () => {
                                     erlebbar zu machen.
                                 </p>
                             </div>
-
                             <div className="bg-card border border-border rounded-[24px] p-6 sm:p-8 sm:col-span-2">
                                 <h3 className="text-xl font-bold mb-8 flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
@@ -428,7 +413,6 @@ const ApiDocsPage = () => {
                             </div>
                         </div>
                     </section>
-
                     <section id="base" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-10">
                             <h2 className="text-2xl sm:text-3xl font-display font-bold whitespace-nowrap">Basis-URL</h2>
@@ -447,7 +431,6 @@ const ApiDocsPage = () => {
                                 Statische Content-API plus KI-Proxy unter derselben Domain. /api liefert diese Dokumentation.
                             </p>
                         </div>
-
                         <div className="bg-card border border-border rounded-[20px] p-5 sm:p-6">
                             <h3 className="text-lg font-bold mb-4">Schnellstart mit cURL</h3>
                             <p className="text-muted-foreground mb-4 text-sm">
@@ -460,52 +443,44 @@ const ApiDocsPage = () => {
                             </div>
                         </div>
                     </section>
-
                     <section id="content" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-10">
                             <h2 className="text-2xl sm:text-3xl font-display font-bold whitespace-nowrap">Content Endpunkte</h2>
                             <div className="h-px w-full bg-border/50" />
                         </div>
-
                         <div className="grid gap-6 sm:gap-8">
                             {contentEndpoints.map((endpoint, i) => (
                                 <EndpointCard key={endpoint.path} endpoint={endpoint} index={i} baseUrl={primaryBaseUrl} />
                             ))}
                         </div>
                     </section>
-
                     <section id="discovery" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-10">
                             <h2 className="text-2xl sm:text-3xl font-display font-bold whitespace-nowrap">Discovery Endpunkte</h2>
                             <div className="h-px w-full bg-border/50" />
                         </div>
-
                         <div className="grid gap-6 sm:gap-8">
                             {discoveryEndpoints.map((endpoint, i) => (
                                 <EndpointCard key={endpoint.path} endpoint={endpoint} index={i} baseUrl={primaryBaseUrl} />
                             ))}
                         </div>
                     </section>
-
                     <section id="ai" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-10">
                             <h2 className="text-2xl sm:text-3xl font-display font-bold whitespace-nowrap">KI Schnittstellen</h2>
                             <div className="h-px w-full bg-border/50" />
                         </div>
-
                         <div className="grid gap-6 sm:gap-8">
                             {aiEndpoints.map((endpoint, i) => (
                                 <EndpointCard key={endpoint.path} endpoint={endpoint} index={i} baseUrl={primaryBaseUrl} />
                             ))}
                         </div>
                     </section>
-
                     <section id="system" className="scroll-mt-24">
                         <div className="flex items-center gap-6 mb-8 sm:mb-10">
                             <h2 className="text-2xl sm:text-3xl font-display font-bold whitespace-nowrap">System Endpunkte</h2>
                             <div className="h-px w-full bg-border/50" />
                         </div>
-
                         <div className="grid gap-6 sm:gap-8">
                             {systemEndpoints.map((endpoint, i) => (
                                 <EndpointCard key={endpoint.path} endpoint={endpoint} index={i} baseUrl={primaryBaseUrl} />
@@ -513,7 +488,6 @@ const ApiDocsPage = () => {
                         </div>
                     </section>
                 </div>
-
                 <footer className="mt-24 sm:mt-32 pt-10 sm:pt-12 border-t border-border text-center text-muted-foreground text-sm">
                     <p>© 2026 Meum Diarium. Entwickelt fur die romische Ewigkeit.</p>
                     <p className="mt-4 opacity-50">Alle Daten werden via Cloudflare Edge Network ausgeliefert.</p>
@@ -522,7 +496,6 @@ const ApiDocsPage = () => {
         </div>
     );
 };
-
 const EndpointCard = ({ endpoint, index, baseUrl }: { endpoint: Endpoint, index: number, baseUrl: string }) => {
     const fullUrl = `${baseUrl}${endpoint.path}`;
     return (
@@ -539,7 +512,6 @@ const EndpointCard = ({ endpoint, index, baseUrl }: { endpoint: Endpoint, index:
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold">{endpoint.title}</h3>
                 </div>
-
                 {!endpoint.isPrivate ? (
                     <div className="mb-5 text-[11px] sm:text-xs font-mono text-muted-foreground break-all">
                         {fullUrl}
@@ -550,11 +522,9 @@ const EndpointCard = ({ endpoint, index, baseUrl }: { endpoint: Endpoint, index:
                         Interner Endpunkt • Zugriff nur via Frontend-Proxy
                     </div>
                 )}
-
                 <p className="text-muted-foreground mb-6 leading-relaxed max-w-2xl text-sm sm:text-base">
                     {endpoint.desc}
                 </p>
-
                 {endpoint.params && (
                     <div className="mb-6 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-border/50">
                         <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Parameter</h4>
@@ -568,19 +538,15 @@ const EndpointCard = ({ endpoint, index, baseUrl }: { endpoint: Endpoint, index:
                         </div>
                     </div>
                 )}
-
                 {endpoint.requestSchema && (
                     <CodeBlock label="Request Schema" code={endpoint.requestSchema} />
                 )}
-
                 {endpoint.requestExample && !endpoint.isPrivate && (
                     <CodeBlock label="Request Beispiel" code={endpoint.requestExample} />
                 )}
-
                 {endpoint.responseSchema && (
                     <CodeBlock label="Response Format (JSON)" code={endpoint.responseSchema} />
                 )}
-
                 {endpoint.notes && endpoint.notes.length > 0 && (
                     <div className="mt-4 text-sm text-muted-foreground">
                         <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">Hinweise</div>
@@ -598,17 +564,14 @@ const EndpointCard = ({ endpoint, index, baseUrl }: { endpoint: Endpoint, index:
         </div>
     );
 };
-
 const CodeBlock = ({ label, code }: { label: string; code: string }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [copied, setCopied] = useState(false);
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setCollapsed(window.innerWidth < 768);
         }
     }, []);
-
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(code);
@@ -618,7 +581,6 @@ const CodeBlock = ({ label, code }: { label: string; code: string }) => {
             setCopied(false);
         }
     };
-
     return (
         <div className="relative mb-6">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
@@ -650,5 +612,4 @@ const CodeBlock = ({ label, code }: { label: string; code: string }) => {
         </div>
     );
 };
-
 export default ApiDocsPage;

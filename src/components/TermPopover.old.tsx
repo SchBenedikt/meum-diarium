@@ -7,34 +7,27 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { BookOpen, Send, Loader2, Maximize2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-
 interface TermPopoverProps {
   term: string;
   children: React.ReactNode;
   type: 'lexicon' | 'author';
 }
-
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
-
 async function explainTerm(term: string, question?: string, history?: Message[]): Promise<string> {
   const isDev = import.meta.env.DEV;
   const baseUrl = isDev ? 'https://caesar.schaechner.workers.dev' : '/api';
-
   const params = new URLSearchParams();
   params.set('term', term);
   if (question) params.set('question', question);
   if (history && history.length > 0) params.set('history', JSON.stringify(history));
-
   const res = await fetch(`${baseUrl}/explain?${params.toString()}`);
   if (!res.ok) throw new Error(`Failed to explain term: ${res.status}`);
-
   const data = await res.json();
   return data.response?.response || data.response || 'Keine Antwort verfügbar.';
 }
-
 export function TermPopover({ term, children, type }: TermPopoverProps) {
   const [open, setOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -44,7 +37,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (open && !summary && !loading) {
       setLoading(true);
@@ -57,16 +49,13 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
         .finally(() => setLoading(false));
     }
   }, [open, term, summary, loading]);
-
   const handleSend = async () => {
     if (!input.trim() || sending) return;
     const question = input.trim();
     setInput('');
     setSending(true);
-
     const newMessages: Message[] = [...messages, { role: 'user', content: question }];
     setMessages(newMessages);
-
     try {
       const response = await explainTerm(term, question, newMessages);
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
@@ -78,7 +67,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
       setTimeout(() => scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
     }
   };
-
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
@@ -110,7 +98,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
               {type === 'author' ? 'Historische Persönlichkeit' : 'Lexikon-Eintrag'}
             </p>
           </div>
-
           <ScrollArea className="h-56 sm:h-64 p-3 sm:p-4">
             {loading ? (
               <div className="flex items-center justify-center h-full">
@@ -125,7 +112,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                     </ReactMarkdown>
                   </div>
                 )}
-
                 {messages.length > 0 && (
                   <div className="space-y-3 pt-3 border-t border-border/50">
                     {messages.map((msg, i) => (
@@ -150,7 +136,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
               </div>
             )}
           </ScrollArea>
-
           <div className="p-2 sm:p-3 border-t border-border/50 bg-secondary/20">
             <div className="flex items-center gap-2">
               <Input
@@ -176,7 +161,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
           </div>
         </PopoverContent>
       </Popover>
-
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent
           className="max-w-2xl w-[95vw] sm:w-[85vw] md:w-full max-h-[85vh] p-0 flex flex-col overflow-hidden translate-x-[-50%] translate-y-[-50%]"
@@ -194,7 +178,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
               </div>
             </DialogTitle>
           </DialogHeader>
-
           <ScrollArea className="flex-1 px-5 sm:px-8 py-6">
             {loading ? (
               <div className="flex items-center justify-center h-full min-h-[200px]">
@@ -209,7 +192,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
                     </ReactMarkdown>
                   </div>
                 )}
-
                 {messages.length > 0 && (
                   <div className="space-y-4 pt-4 border-t border-border/50">
                     {messages.map((msg, i) => (
@@ -234,7 +216,6 @@ export function TermPopover({ term, children, type }: TermPopoverProps) {
               </div>
             )}
           </ScrollArea>
-
           <div className="p-4 sm:p-6 border-t border-border/50 bg-secondary/20">
             <div className="flex items-center gap-3">
               <Input

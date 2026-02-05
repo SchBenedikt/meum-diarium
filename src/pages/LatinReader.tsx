@@ -1,4 +1,3 @@
-
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -14,25 +13,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import metamorphoses from '@/data/latin/ovid-metamorphoses.json';
 import deBelloGallico from '@/data/latin/caesar-de-bello-gallico.json';
-
 type LineBook = {
     id: number;
     title?: string;
     lines: string[];
 };
-
 type Chapter = {
     id: number;
     title?: string;
     lines: string[];
 };
-
 type ChapterBook = {
     id: number;
     title?: string;
     chapters: Chapter[];
 };
-
 type LinesWork = {
     id: string;
     title: string;
@@ -41,7 +36,6 @@ type LinesWork = {
     defaultRef: string;
     books: LineBook[];
 };
-
 type ChaptersWork = {
     id: string;
     title: string;
@@ -50,31 +44,24 @@ type ChaptersWork = {
     defaultRef: string;
     books: ChapterBook[];
 };
-
 type LatinWork = LinesWork | ChaptersWork;
-
 const CLASSICAL_WORKS: LatinWork[] = [
     metamorphoses as LinesWork,
     deBelloGallico as ChaptersWork
 ];
-
 type AppliedReference = {
     bookId: number;
     start: number;
     end: number;
 };
-
 const parseReference = (work: LatinWork, input: string): AppliedReference | null => {
     const cleaned = input.trim();
     const match = cleaned.match(/^(\d+)(?:\.(\d+))?(?:-(\d+))?$/);
     if (!match) return null;
-
     const bookId = Number(match[1]);
     const primary = match[2] ? Number(match[2]) : null;
     const end = match[3] ? Number(match[3]) : null;
-
     if (Number.isNaN(bookId)) return null;
-
     if (work.type === 'lines') {
         const book = work.books.find((entry) => entry.id === bookId);
         if (!book) return null;
@@ -87,7 +74,6 @@ const parseReference = (work: LatinWork, input: string): AppliedReference | null
             end: Math.min(endLine, book.lines.length)
         };
     }
-
     const book = work.books.find((entry) => entry.id === bookId);
     if (!book) return null;
     const startChapter = primary ?? 1;
@@ -99,26 +85,21 @@ const parseReference = (work: LatinWork, input: string): AppliedReference | null
         end: Math.min(endChapter, book.chapters.length)
     };
 };
-
 const getDefaultReference = (work: LatinWork): AppliedReference | null => {
     return parseReference(work, work.defaultRef);
 };
-
 export default function LatinReader() {
     const [selectedWorkId, setSelectedWorkId] = useState(CLASSICAL_WORKS[0].id);
     const [referenceInput, setReferenceInput] = useState(CLASSICAL_WORKS[0].defaultRef);
     const [appliedReference, setAppliedReference] = useState<AppliedReference | null>(getDefaultReference(CLASSICAL_WORKS[0]));
     const [error, setError] = useState<string | null>(null);
-
     const selectedWork = useMemo(
         () => CLASSICAL_WORKS.find((work) => work.id === selectedWorkId) ?? CLASSICAL_WORKS[0],
         [selectedWorkId]
     );
-
     const selectedBook = useMemo(() => {
         return selectedWork.books.find((book) => book.id === appliedReference?.bookId) ?? selectedWork.books[0];
     }, [selectedWork, appliedReference]);
-
     const applyReference = () => {
         const parsed = parseReference(selectedWork, referenceInput);
         if (!parsed) {
@@ -128,14 +109,12 @@ export default function LatinReader() {
         setError(null);
         setAppliedReference(parsed);
     };
-
     const handleSelectWork = (work: LatinWork) => {
         setSelectedWorkId(work.id);
         setReferenceInput(work.defaultRef);
         setAppliedReference(getDefaultReference(work));
         setError(null);
     };
-
     const handleSelectBook = (bookId: number) => {
         const refBase = `${bookId}.${selectedWork.type === 'lines' ? '1-20' : '1'}`;
         setReferenceInput(refBase);
@@ -143,7 +122,6 @@ export default function LatinReader() {
         setAppliedReference(parsed);
         setError(null);
     };
-
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -164,12 +142,10 @@ export default function LatinReader() {
                             Wähle ein Werk und eine Referenz. Der Originaltext wird direkt eingebettet angezeigt.
                         </p>
                     </motion.div>
-
                     <Link to="/latin" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
                         <ArrowLeft className="h-3.5 w-3.5" /> Zurück zu Tools
                     </Link>
                 </div>
-
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -198,7 +174,6 @@ export default function LatinReader() {
                                     ))}
                                 </div>
                             </div>
-
                             <div className="space-y-4 pt-4 border-t border-border/50">
                                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Buch auswählen</p>
                                 <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
@@ -216,7 +191,6 @@ export default function LatinReader() {
                                     ))}
                                 </div>
                             </div>
-
                             <div className="space-y-4 pt-4 border-t border-border/50">
                                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Navigation</p>
                                 <div className="flex gap-2">
@@ -239,7 +213,6 @@ export default function LatinReader() {
                             </div>
                         </Card>
                     </div>
-
                     <div className="space-y-6 min-h-[500px]">
                         <AnimatePresence mode="wait">
                             {error ? (
@@ -293,7 +266,6 @@ export default function LatinReader() {
                                                     </div>
                                                 </div>
                                             )}
-
                                             {selectedWork.type === 'chapters' && selectedBook && 'chapters' in selectedBook && (
                                                 <div className="space-y-8">
                                                     {selectedBook.chapters

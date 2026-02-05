@@ -33,7 +33,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedWork, getTranslatedAuthor } from '@/lib/translator';
 import { useWorks, useWorkDetails } from '@/hooks/use-works';
 import { PageHero } from '@/components/layout/PageHero';
-
 export default function WorkPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
   const { setCurrentAuthor, authorsData } = useAuthor();
@@ -43,11 +42,9 @@ export default function WorkPage() {
   const [otherWorks, setOtherWorks] = useState<Work[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['context']));
   const [loading, setLoading] = useState(true);
-
   // Load works and details from hooks
   const { works: allWorks, isLoading: isWorksLoading } = useWorks();
   const { details, isLoading: isDetailsLoading } = useWorkDetails(slug);
-
   const toggleSection = (sectionTitle: string) => {
     setExpandedSections(prev => {
       const newSet = new Set(prev);
@@ -59,7 +56,6 @@ export default function WorkPage() {
       return newSet;
     });
   };
-
   const iconMap: Record<string, any> = {
     Award,
     Quote,
@@ -69,19 +65,15 @@ export default function WorkPage() {
     BookOpen,
     Sparkles
   };
-
   useEffect(() => {
     if (authorId) {
       setCurrentAuthor(authorId as Author);
     }
   }, [authorId, setCurrentAuthor]);
-
   useEffect(() => {
     let active = true;
-
     const load = async () => {
       if (!slug || !authorId) {
-        console.log(`🚫 [WorkPage] No slug or authorId: slug=${slug}, authorId=${authorId}`);
         if (active) {
           setLoading(false);
           setWork(null);
@@ -89,37 +81,27 @@ export default function WorkPage() {
         }
         return;
       }
-
-      console.log(`🔄 [WorkPage] Loading work for slug="${slug}", authorId="${authorId}"`);
-
       // Set author from context data (loaded from D1 database)
       const contextAuthor = authorsData[authorId];
       const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
       if (active) {
         setAuthor(translatedAuthor ?? contextAuthor ?? null);
       }
-
       // Get work - try baseWorks first (always available), then check allWorks
       let foundWork = null;
-      
       // First check baseWorks (synchronous, always available)
       const baseWork = baseWorks[slug as keyof typeof baseWorks];
       if (baseWork) {
         foundWork = baseWork;
-        console.log(`✅ [WorkPage] Found work in baseWorks: "${baseWork.title}"`);
       } else {
-        console.log(`🔍 [WorkPage] Not in baseWorks, checking allWorks`);
         // Fallback to allWorks if available
         if (allWorks.length > 0) {
           foundWork = allWorks.find((w: any) => w.slug === slug);
           console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
         }
       }
-
       if (foundWork) {
-        console.log(`✅ [WorkPage] Found work: "${foundWork.title}"`);
         const lang = language.split('-')[0];
-        
         // Try to get translations if they exist
         if (foundWork.translations && foundWork.translations[lang]) {
           const tr = foundWork.translations[lang];
@@ -143,35 +125,27 @@ export default function WorkPage() {
           setWork(null);
         }
       }
-
       // Load related works (from allWorks list)
       const related = allWorks
         .filter((w: any) => w.author === authorId && w.slug !== slug)
         .slice(0, 3)
         .map((w: any) => ({ title: w.title, year: w.year } as Work));
-      
       if (active) {
         setOtherWorks(related);
         setLoading(false);
       }
     };
-
     // Start loading
-    console.log(`⏳ [WorkPage] useEffect triggered: isWorksLoading=${isWorksLoading}, allWorks.length=${allWorks.length}`);
     setLoading(true);
-    
     // Always attempt to load
     load();
-
     return () => {
       active = false;
     };
   }, [slug, language, authorId, authorsData]);
-
   if (loading || isWorksLoading) {
     return null;
   }
-
   // Don't show NotFound until we're sure the work doesn't exist
   // Check if work exists in baseWorks before showing NotFound
   if (!work || !author) {
@@ -187,10 +161,8 @@ export default function WorkPage() {
     // Work exists in baseWorks but hasn't loaded yet, keep waiting
     return null;
   }
-
   const detail = details;
   const translatedAuthor = author;
-
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
@@ -198,7 +170,6 @@ export default function WorkPage() {
         title={work.title}
         subtitle={work.year}
       />
-
       <div className="container max-w-7xl mx-auto px-4 py-12">
         {/* Intro Section - Compact */}
         <motion.section
@@ -215,7 +186,6 @@ export default function WorkPage() {
               </div>
               <p className="text-lg font-bold text-foreground">{work.year}</p>
             </div>
-
             <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
                 <User className="w-4 h-4" />
@@ -223,7 +193,6 @@ export default function WorkPage() {
               </div>
               <p className="text-sm font-bold text-foreground truncate">{translatedAuthor.name}</p>
             </div>
-
             <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
                 <BookOpen className="w-4 h-4" />
@@ -233,7 +202,6 @@ export default function WorkPage() {
                 {work.structure?.length ? `${work.structure.length} Teile` : '—'}
               </p>
             </div>
-
             <div className="bg-card border border-border/50 rounded-2xl p-4 hover:border-primary/50 transition-colors">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
                 <Clock className="w-4 h-4" />
@@ -242,13 +210,11 @@ export default function WorkPage() {
               <p className="text-sm font-bold text-foreground">1. Jh. v. Chr.</p>
             </div>
           </div>
-
           {/* Intro Text - Compact */}
           <div className="bg-card border border-border/50 rounded-3xl p-6 backdrop-blur-xl">
             <p className="text-sm leading-relaxed text-foreground/90">{work.summary}</p>
           </div>
         </motion.section>
-
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
@@ -272,7 +238,6 @@ export default function WorkPage() {
                 </div>
               </motion.div>
             )}
-
             {/* Structure */}
             {work.structure && work.structure.length > 0 && (
               <motion.section
@@ -310,7 +275,6 @@ export default function WorkPage() {
                 </div>
               </motion.section>
             )}
-
             {/* Dynamic Content from work-details.ts */}
             {detail && (
               <>
@@ -341,7 +305,6 @@ export default function WorkPage() {
                         <ChevronDown className="w-5 h-5 text-muted-foreground" />
                       )}
                     </button>
-
                     <AnimatePresence>
                       {expandedSections.has('context') && (
                         <motion.div
@@ -357,7 +320,6 @@ export default function WorkPage() {
                                 {para}
                               </p>
                             ))}
-
                             {detail.context.timeline && detail.context.timeline.length > 0 && (
                               <div className="mt-8 space-y-4 pt-8 border-t border-border/30">
                                 <h3 className="text-lg font-bold flex items-center gap-2">
@@ -387,7 +349,6 @@ export default function WorkPage() {
                     </AnimatePresence>
                   </motion.section>
                 )}
-
                 {/* Book Chapters / Parts Description */}
                 {detail.bookChapters && detail.bookChapters.length > 0 && (
                   <motion.section
@@ -415,7 +376,6 @@ export default function WorkPage() {
                         <ChevronDown className="w-5 h-5 text-muted-foreground" />
                       )}
                     </button>
-
                     <AnimatePresence>
                       {expandedSections.has('bookChapters') && (
                         <motion.div
@@ -468,13 +428,11 @@ export default function WorkPage() {
                     </AnimatePresence>
                   </motion.section>
                 )}
-
                 {/* Other Sections */}
                 {detail.sections.map((section, idx) => {
                   const Icon = iconMap[section.icon] || BookOpen;
                   const sectionKey = section.title;
                   const isExpanded = expandedSections.has(sectionKey);
-
                   return (
                     <motion.section
                       key={idx}
@@ -502,7 +460,6 @@ export default function WorkPage() {
                           <ChevronDown className="w-5 h-5 text-muted-foreground" />
                         )}
                       </button>
-
                       <AnimatePresence>
                         {isExpanded && (
                           <motion.div
@@ -525,7 +482,6 @@ export default function WorkPage() {
                     </motion.section>
                   );
                 })}
-
                 {/* Literary Features */}
                 {detail.literaryFeatures && detail.literaryFeatures.length > 0 && (
                   <motion.section
@@ -571,7 +527,6 @@ export default function WorkPage() {
                     </div>
                   </motion.section>
                 )}
-
                 {/* Key Moments */}
                 {detail.keyMoments && detail.keyMoments.length > 0 && (
                   <motion.section
@@ -617,7 +572,6 @@ export default function WorkPage() {
                     </div>
                   </motion.section>
                 )}
-
                 {/* Quotes */}
                 {detail.quotes && detail.quotes.length > 0 && (
                   <motion.section
@@ -661,7 +615,6 @@ export default function WorkPage() {
                     </div>
                   </motion.section>
                 )}
-
                 {/* Impact */}
                 {detail.impact && (
                   <motion.section
@@ -685,7 +638,6 @@ export default function WorkPage() {
                           {para}
                         </p>
                       ))}
-
                       {detail.impact.highlights && detail.impact.highlights.length > 0 && (
                         <div className="mt-8 pt-6 border-t border-primary/20 space-y-3">
                           {detail.impact.highlights.map((highlight, idx) => (
@@ -705,7 +657,6 @@ export default function WorkPage() {
               </>
             )}
           </div>
-
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             {/* Author Card */}
@@ -739,7 +690,6 @@ export default function WorkPage() {
                   </p>
                 </div>
               </Link>
-
               {/* Related Works */}
               {otherWorks.length > 0 && (
                 <div className="mt-8 pt-6 border-t border-border/50">
@@ -775,7 +725,6 @@ export default function WorkPage() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

@@ -3,7 +3,6 @@ import { SEO } from '@/components/SEO';
 import { Shield, Cookie, Lock, Eye, Mail, Server } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
-
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -11,7 +10,6 @@ export default function PrivacyPage() {
         title="Datenschutzerklärung - Meum Diarium"
         description="Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten bei Meum Diarium."
       />
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-20 sm:py-24 overflow-hidden border-b border-border">
@@ -19,7 +17,6 @@ export default function PrivacyPage() {
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
           </div>
-
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -31,22 +28,18 @@ export default function PrivacyPage() {
                 <Shield className="mr-2 h-4 w-4" />
                 Datenschutz
               </Badge>
-
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
                 Datenschutzerklärung
               </h1>
-
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Informationen zur Erhebung und Verarbeitung personenbezogener Daten
               </p>
-
               <p className="text-sm text-muted-foreground mt-4">
                 Stand: {new Date().toLocaleDateString('de-DE')}
               </p>
             </motion.div>
           </div>
         </section>
-
         {/* Content Section */}
         <section className="py-16">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -72,7 +65,6 @@ export default function PrivacyPage() {
                   </div>
                 </div>
               </div>
-
               {/* Responsible Party */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -89,7 +81,6 @@ export default function PrivacyPage() {
                   </p>
                 </div>
               </div>
-
               {/* Data Collection */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -105,7 +96,6 @@ export default function PrivacyPage() {
                       Bei jedem Zugriff auf unsere Website werden automatisch Informationen in Server-Logfiles gespeichert: IP-Adresse, Datum und Uhrzeit der Anfrage, Browsertyp und -version, verwendetes Betriebssystem, Referrer URL. Diese Daten werden zur Sicherstellung der Systemsicherheit und zur Fehleranalyse verwendet und nach 7 Tagen automatisch gelöscht.
                     </p>
                   </div>
-
                   <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                     <h3 className="text-lg font-semibold mb-3">
                       Lokale Speicherung
@@ -114,7 +104,6 @@ export default function PrivacyPage() {
                       Wir verwenden den Local Storage Ihres Browsers zur Speicherung von Präferenzen (z.B. ausgewählter Autor, Sprache, Theme). Diese Daten werden ausschließlich lokal in Ihrem Browser gespeichert und nicht an unsere Server übertragen.
                     </p>
                   </div>
-
                   <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                     <h3 className="text-lg font-semibold mb-3">
                       Reichweitenmessung
@@ -123,7 +112,6 @@ export default function PrivacyPage() {
                       Wir messen die Nutzung unserer Website, um Inhalte und Performance zu verbessern. Dabei verwenden wir Analyse-Cookies und erfassen z.B. Seitenaufrufe, Verweildauer, verwendete Endgeräte und ungefähre Standortregionen. Wir interessieren uns für Trends, nicht für einzelne Personen.
                     </p>
                   </div>
-
                   <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                     <h3 className="text-lg font-semibold mb-3">
                       Kontakt per E-Mail
@@ -134,7 +122,6 @@ export default function PrivacyPage() {
                   </div>
                 </div>
               </div>
-
               {/* Cookies */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -150,7 +137,6 @@ export default function PrivacyPage() {
                   </p>
                 </div>
               </div>
-
               {/* Third Party Services */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -166,7 +152,6 @@ export default function PrivacyPage() {
                       Wir verwenden Bilder von Unsplash (unsplash.com). Beim Laden dieser Bilder kann Ihre IP-Adresse an Unsplash übermittelt werden. Weitere Informationen finden Sie in der Datenschutzerklärung von Unsplash.
                     </p>
                   </div>
-
                   <div className="p-6 rounded-2xl bg-card/40 border border-border/40">
                     <h3 className="text-lg font-semibold mb-3">
                       Analyse und Statistik
@@ -177,7 +162,6 @@ export default function PrivacyPage() {
                   </div>
                 </div>
               </div>
-
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
                   <Shield className="w-6 h-6 text-primary" />
@@ -195,7 +179,6 @@ export default function PrivacyPage() {
                   </ul>
                 </div>
               </div>
-
               {/* User Rights */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
@@ -222,7 +205,6 @@ export default function PrivacyPage() {
                   </p>
                 </div>
               </div>
-
               {/* Changes */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4">
@@ -241,7 +223,6 @@ export default function PrivacyPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

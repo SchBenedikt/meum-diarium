@@ -14,19 +14,15 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
-
 export function CiceroAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
-
   const authorDetails = useAuthorDetails(t);
-
   useEffect(() => {
     if (authorId === 'cicero') {
       setCurrentAuthor('cicero' as Author);
@@ -35,12 +31,10 @@ export function CiceroAboutPage() {
           const authorPostsList = allPosts.filter(p => p.author === 'cicero').slice(0, 3);
           setAuthorPosts(authorPostsList);
         }
-
         const translatedWorks = await Promise.all(
           Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-
         try {
           const res = await fetch('/api/pages/author-about-cicero');
           if (res.ok) {
@@ -56,7 +50,6 @@ export function CiceroAboutPage() {
       translateContent();
     }
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
-
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -64,9 +57,7 @@ export function CiceroAboutPage() {
       </div>
     );
   }
-
   const details = authorDetails.cicero;
-
   const ciceroSnapshots = [
     { label: 'Lebenszeit', value: '106–43 v. Chr.', hint: '63 Jahre' },
     { label: 'Konsulat', value: '63 v. Chr.', hint: 'Niederschlagung der Catilinarischen Verschwörung' },
@@ -75,7 +66,6 @@ export function CiceroAboutPage() {
     { label: 'Briefe', value: '~900 erhalten', hint: 'Wichtigste Quelle für die Epoche' },
     { label: 'Phil. Werke', value: '13 Schriften', hint: 'Vermittlung griech. Philosophie' },
   ];
-
   const ciceroAchievements = [
     {
       title: 'Rhetorik als Waffe',
@@ -114,7 +104,6 @@ export function CiceroAboutPage() {
       icon: 'BookOpen' as const,
     },
   ];
-
   const ciceroDebate = [
     {
       heading: 'Warum er bewundert wird',
@@ -135,13 +124,11 @@ export function CiceroAboutPage() {
       ],
     },
   ];
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
   };
-
   const ciceroSidebar = {
     karriere: [
       { year: -81, title: 'Erste Prozesse', note: 'Vertretung im Sextus Roscius-Fall' },
@@ -165,7 +152,6 @@ export function CiceroAboutPage() {
       { year: -43, title: 'Proskriptionen', note: 'Zweites Triumvirat; Tod Ciceros' },
     ],
   };
-
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
@@ -175,7 +161,6 @@ export function CiceroAboutPage() {
           language={language}
           birthPlace={details.birthPlace}
         />
-
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
             <div className="lg:col-span-8 space-y-24">
@@ -186,7 +171,6 @@ export function CiceroAboutPage() {
                     <h2 className="font-display text-4xl font-bold">{t('works')}</h2>
                     <div className="h-px flex-1 bg-white/5" />
                   </div>
-
                   <div className="grid gap-6 sm:grid-cols-2">
                     {authorWorks.map((work, i) => (
                       <Link
@@ -212,7 +196,6 @@ export function CiceroAboutPage() {
                   </div>
                 </section>
               )}
-
               {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
@@ -256,7 +239,6 @@ export function CiceroAboutPage() {
                 </section>
               )}
             </div>
-
             {/* Sidebar */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
@@ -278,7 +260,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </div>
-
         {/* Cicero's Achievements */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -306,7 +287,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Rhetorische Meisterwerke */}
         <section className="py-24 bg-surface-container-low/20">
           <div className="container mx-auto px-4">
@@ -370,7 +350,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Lebenslauf & Stationen - Full Width Section */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
@@ -382,7 +361,6 @@ export function CiceroAboutPage() {
                   <p className="text-lg text-muted-foreground mt-2">Karriere, Reden und die Wendepunkte eines Lebens</p>
                 </div>
               </div>
-
               <div className="grid gap-8 lg:grid-cols-3">
                 {/* Karriere & Ämter */}
                 <div className="card-modern card-padding-lg space-y-6">
@@ -409,7 +387,6 @@ export function CiceroAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Reden & Prozesse */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -444,7 +421,6 @@ export function CiceroAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Konflikte & Wendepunkte */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -480,7 +456,6 @@ export function CiceroAboutPage() {
                   </div>
                 </div>
               </div>
-
               {/* Timeline visualization below */}
               <div className="mt-16 pt-12 border-t border-border/40">
                 <p className="text-center text-muted-foreground mb-8">
@@ -499,7 +474,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Warum er polarisiert */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -527,7 +501,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Legendäre Zitate */}
         <section className="py-24">
           <div className="container mx-auto px-4">

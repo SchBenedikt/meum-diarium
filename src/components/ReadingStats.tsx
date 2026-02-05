@@ -1,4 +1,3 @@
-
 import { Book, Users, FileText, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
@@ -9,21 +8,17 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useMemo } from 'react';
 import { fadeUp, staggerContainer, defaultTransition } from '@/lib/motion';
 import { ModernBackground } from './ui/ModernBackground';
-
 export function ReadingStats() {
   const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
-
   const totalReadingTime = useMemo(() => {
     if (!posts) return 0;
     return posts.reduce((acc, post) => acc + post.readingTime, 0)
   }, [posts]);
-
   const uniqueTags = useMemo(() => {
     if (!posts) return [];
     return [...new Set(posts.flatMap(post => post.tags))]
   }, [posts]);
-
   const stats = [
     {
       icon: FileText,
@@ -50,11 +45,9 @@ export function ReadingStats() {
       description: t('historicalEventsStatDesc')
     },
   ];
-
   return (
     <section className="py-32 relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-full -translate-y-1/2" />
-
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           variants={fadeUp()}
@@ -71,7 +64,6 @@ export function ReadingStats() {
             {t('collectionStats') || 'Ein wachsendes Archiv der Antike. Jede Zahl repräsentiert eine Brücke in eine vergangene Welt, bereit für deine Erkundung.'}
           </p>
         </motion.div>
-
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto"
           variants={staggerContainer(0.08)}
@@ -86,12 +78,10 @@ export function ReadingStats() {
               className="group relative p-8 rounded-3xl bg-card/40 backdrop-blur-2xl border border-border/40 transition-all duration-700 hover:border-primary/40 hover:-translate-y-2 overflow-hidden"
             >
               <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/15 transition-colors duration-700" />
-
               <div className="relative z-10">
                 <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
                   <stat.icon className="h-7 w-7 text-primary" />
                 </div>
-
                 <div className="space-y-4">
                   <p className="font-display text-4xl font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
                     {stat.value}
@@ -106,7 +96,6 @@ export function ReadingStats() {
                   </div>
                 </div>
               </div>
-
               {/* Decorative line */}
               <div className="absolute bottom-0 left-0 h-1 w-0 bg-primary group-hover:w-full transition-all duration-700" />
             </motion.div>

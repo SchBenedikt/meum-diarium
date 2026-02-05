@@ -3,17 +3,14 @@ import { Button } from '@/components/ui/button';
 import { RefreshCw, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-
 interface UpdateEventDetail {
   registration: ServiceWorkerRegistration;
 }
-
 export function SWUpdateToast() {
   const { t } = useLanguage();
   const [waitingReg, setWaitingReg] = useState<ServiceWorkerRegistration | null>(null);
   const [visible, setVisible] = useState(false);
   const [updating, setUpdating] = useState(false);
-
   useEffect(() => {
     const onUpdateAvailable = (event: Event) => {
       const custom = event as CustomEvent<UpdateEventDetail>;
@@ -21,7 +18,6 @@ export function SWUpdateToast() {
       setVisible(true);
     };
     window.addEventListener('sw:update-available', onUpdateAvailable as EventListener);
-
     const onControllerChange = () => {
       // Once the new SW controls the page, reload to pick new assets
       window.location.reload();
@@ -31,7 +27,6 @@ export function SWUpdateToast() {
     if (hasSW) {
       navigator.serviceWorker.addEventListener('controllerchange', onControllerChange);
     }
-
     return () => {
       window.removeEventListener('sw:update-available', onUpdateAvailable as EventListener);
       if (hasSW) {
@@ -39,20 +34,16 @@ export function SWUpdateToast() {
       }
     };
   }, []);
-
   const handleUpdate = () => {
     if (!waitingReg?.waiting) return;
     setUpdating(true);
     // Ask waiting SW to become active
     waitingReg.waiting.postMessage({ type: 'SKIP_WAITING' });
   };
-
   const handleDismiss = () => {
     setVisible(false);
   };
-
   if (!visible) return null;
-
   return (
     <AnimatePresence>
       {visible && (

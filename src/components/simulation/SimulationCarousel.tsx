@@ -17,11 +17,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState, useEffect, useRef } from 'react';
-
 interface SimulationCarouselProps {
     authorId: string;
 }
-
 export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
     const navigate = useNavigate();
     const [api, setApi] = useState<CarouselApi>();
@@ -29,11 +27,9 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
     const [customPersonaName, setCustomPersonaName] = useState('');
     const [customScenarioText, setCustomScenarioText] = useState('');
     const allScenarios = simulations[authorId] || [];
-
     // Add wheel support
     useEffect(() => {
         if (!api) return;
-
         const onWheel = (e: WheelEvent) => {
             // Prevent scrolling too fast
             const threshold = 10;
@@ -45,21 +41,16 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
                 }
             }
         };
-
         const rootNode = api.rootNode();
         rootNode.addEventListener('wheel', onWheel, { passive: true });
-
         return () => {
             rootNode.removeEventListener('wheel', onWheel);
         };
     }, [api]);
-
     if (allScenarios.length === 0) return null;
-
     const handleCardClick = (scenario: SimulationScenario) => {
         navigate(`/${authorId}/simulation`);
     };
-
     const handleCustomSubmit = () => {
         if (customScenarioText.trim()) {
             const customData = {
@@ -73,7 +64,6 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
             setShowCustomForm(false);
         }
     };
-
     return (
         <Carousel
             setApi={setApi}
@@ -94,7 +84,6 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
                             <p className="text-sm text-muted-foreground">Wähle ein Szenario und triff deine Entscheidungen</p>
                         </div>
                     </div>
-
                     <div className="hidden sm:flex items-center gap-2">
                         <div className="flex items-center gap-2 mr-2">
                             <CarouselPrevious className="relative left-0 translate-y-0 h-9 w-9 border-border/40" />
@@ -102,7 +91,6 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
                         </div>
                     </div>
                 </div>
-
                 <CarouselContent className="-ml-4">
                     {/* "Create Own" Card at the start */}
                     <CarouselItem className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
@@ -177,13 +165,11 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
                             </AnimatePresence>
                         </div>
                     </CarouselItem>
-
                     {allScenarios.map((scenario) => (
                         <CarouselItem key={scenario.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                             <SimulationCard scenario={scenario} onClick={handleCardClick} />
                         </CarouselItem>
                     ))}
-
                     {/* "See More" Card at the end */}
                     <CarouselItem className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                         <Link to={`/${authorId}/simulation`} className="block h-full">
@@ -204,7 +190,6 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
                         </Link>
                     </CarouselItem>
                 </CarouselContent>
-
                 {/* Mobile Navigation */}
                 <div className="flex sm:hidden items-center justify-center gap-4 mt-6">
                     <CarouselPrevious className="relative left-0 translate-y-0 h-11 w-11 border-border/40" />

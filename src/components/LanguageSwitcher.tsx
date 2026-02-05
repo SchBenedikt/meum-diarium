@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/context/LanguageContext';
 import { Check, Languages, ChevronDown } from 'lucide-react';
 import {
@@ -9,7 +8,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Language } from '@/types/blog';
-
 const languages: { code: Language, name: string, flag: string }[] = [
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
     { code: 'de-la', name: 'Deutsch (Latein)', flag: '🇩🇪' },
@@ -17,12 +15,9 @@ const languages: { code: Language, name: string, flag: string }[] = [
     { code: 'en-la', name: 'English (Latin)', flag: '🇬🇧' },
     { code: 'la', name: 'Latina', flag: '🏛️' },
 ];
-
 export function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
-
   const currentLang = languages.find(l => l.code === language);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

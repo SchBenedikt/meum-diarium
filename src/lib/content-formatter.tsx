@@ -9,7 +9,6 @@ import { Language } from '@/types/blog';
 import { getTranslatedLexiconEntry } from '@/lib/content-translator';
 import { extractHeadingIds } from '@/lib/toc-generator';
 import { TermPopover } from '@/components/TermPopover';
-
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -18,7 +17,6 @@ function slugify(text: string): string {
     .replace(/-+/g, '-')
     .trim();
 }
-
 interface TextNode {
   type: 'text' | 'link' | 'term' | 'code' | 'bold' | 'italic';
   content: string;
@@ -28,7 +26,6 @@ interface TextNode {
   slug?: string;
   children?: TextNode[];
 }
-
 type Block = 
   | { type: 'heading'; level: number; text: string; id: string }
   | { type: 'paragraph'; content: TextNode[] }
@@ -37,11 +34,9 @@ type Block =
   | { type: 'code'; language: string; content: string }
   | { type: 'table'; headers: string[]; rows: string[][] }
   | { type: 'hr' };
-
 // Parse inline formatting (bold, italic, code, links)
 function parseInlineFormatting(text: string): TextNode[] {
   const nodes: TextNode[] = [];
-
   // Collect all matches with their positions
   const matches: Array<{ 
     index: number; 
@@ -50,7 +45,6 @@ function parseInlineFormatting(text: string): TextNode[] {
     value: string;
     url?: string;
   }> = [];
-
   // Bold must be checked BEFORE italic to avoid overlaps
   // **text** should not be parsed as *italic*
   const boldMatches = Array.from(text.matchAll(/\*\*([^\*]+)\*\*/g));
@@ -67,7 +61,6 @@ function parseInlineFormatting(text: string): TextNode[] {
       boldRanges.add(i);
     }
   });
-
   // Italic - only match if NOT inside bold markers
   const italicMatches = Array.from(text.matchAll(/\*([^\*]+)\*/g));
   italicMatches.forEach(m => {
@@ -88,7 +81,6 @@ function parseInlineFormatting(text: string): TextNode[] {
       });
     }
   });
-
   // Code
   const codeMatches = Array.from(text.matchAll(/`([^`]+)`/g));
   codeMatches.forEach(m => {
@@ -99,7 +91,6 @@ function parseInlineFormatting(text: string): TextNode[] {
       value: m[1] 
     });
   });
-
   // Links
   const linkMatches = Array.from(text.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g));
   linkMatches.forEach(m => {
@@ -111,10 +102,8 @@ function parseInlineFormatting(text: string): TextNode[] {
       url: m[2]
     });
   });
-
   // Sort by index
   matches.sort((a, b) => a.index - b.index);
-
   // Remove overlapping matches (keep the first one)
   const finalMatches: typeof matches = [];
   let lastEnd = 0;
@@ -124,7 +113,6 @@ function parseInlineFormatting(text: string): TextNode[] {
       lastEnd = match.end;
     }
   }
-
   // Build nodes
   let lastIndex = 0;
   for (const match of finalMatches) {
@@ -132,7 +120,6 @@ function parseInlineFormatting(text: string): TextNode[] {
     if (lastIndex < match.index) {
       nodes.push({ type: 'text', content: text.substring(lastIndex, match.index) });
     }
-
     if (match.type === 'bold') {
       nodes.push({ type: 'bold', content: match.value });
     } else if (match.type === 'italic') {
@@ -142,34 +129,27 @@ function parseInlineFormatting(text: string): TextNode[] {
     } else if (match.type === 'link') {
       nodes.push({ type: 'link', content: match.value, href: match.url });
     }
-
     lastIndex = match.end;
   }
-
   // Add remaining text
   if (lastIndex < text.length) {
     nodes.push({ type: 'text', content: text.substring(lastIndex) });
   }
-
   return nodes.length > 0 ? nodes : [{ type: 'text', content: text }];
 }
-
 // Parse blocks (headings, paragraphs, lists, etc.)
 function parseMarkdown(content: string): Block[] {
   const lines = content.split('\n');
   const blocks: Block[] = [];
   let i = 0;
-
   while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
-
     // Skip empty lines
     if (!trimmed) {
       i++;
       continue;
     }
-
     // Headings
     const headingMatch = trimmed.match(/^(#{2,4})\s+(.+)$/);
     if (headingMatch) {
@@ -184,14 +164,12 @@ function parseMarkdown(content: string): Block[] {
       i++;
       continue;
     }
-
     // Horizontal rules
     if (trimmed.match(/^(-{3,}|\*{3,}|_{3,})$/)) {
       blocks.push({ type: 'hr' });
       i++;
       continue;
     }
-
     // Code blocks
     if (trimmed.startsWith('```')) {
       const language = trimmed.substring(3).trim();
@@ -209,7 +187,6 @@ function parseMarkdown(content: string): Block[] {
       i++; // Skip closing ```
       continue;
     }
-
     // Tables - must check before lists since tables use |
     if (trimmed.includes('|') && i + 1 < lines.length) {
       const nextLine = lines[i + 1].trim();
@@ -218,28 +195,23 @@ function parseMarkdown(content: string): Block[] {
         const isSeparator = nextLine.split('|')
           .filter(cell => cell.trim())
           .every(cell => cell.trim().match(/^[-:\s]+$/));
-
         if (isSeparator) {
           // Parse table
           const headerCells = trimmed.split('|')
             .map(cell => cell.trim())
             .filter(cell => cell);
-
           const tableRows: string[][] = [];
           i += 2; // Skip header and separator
-
           while (i < lines.length && lines[i].trim().includes('|')) {
             const rowLine = lines[i].trim();
             const rowCells = rowLine.split('|')
               .map(cell => cell.trim())
               .filter(cell => cell);
-            
             if (rowCells.length > 0) {
               tableRows.push(rowCells);
             }
             i++;
           }
-
           if (headerCells.length > 0) {
             blocks.push({
               type: 'table',
@@ -251,7 +223,6 @@ function parseMarkdown(content: string): Block[] {
         }
       }
     }
-
     // Blockquotes
     if (trimmed.startsWith('>')) {
       const quoteLines: string[] = [];
@@ -265,7 +236,6 @@ function parseMarkdown(content: string): Block[] {
       });
       continue;
     }
-
     // Unordered lists
     if (trimmed.match(/^[-•]\s+/)) {
       const listItems: TextNode[][] = [];
@@ -281,7 +251,6 @@ function parseMarkdown(content: string): Block[] {
       });
       continue;
     }
-
     // Ordered lists
     if (trimmed.match(/^\d+\.\s+/)) {
       const listItems: TextNode[][] = [];
@@ -297,7 +266,6 @@ function parseMarkdown(content: string): Block[] {
       });
       continue;
     }
-
     // Paragraphs (consume consecutive non-empty lines)
     const paragraphLines: string[] = [];
     while (i < lines.length && lines[i].trim() && 
@@ -311,7 +279,6 @@ function parseMarkdown(content: string): Block[] {
       paragraphLines.push(lines[i]);
       i++;
     }
-
     if (paragraphLines.length > 0) {
       blocks.push({
         type: 'paragraph',
@@ -319,32 +286,25 @@ function parseMarkdown(content: string): Block[] {
       });
     }
   }
-
   return blocks;
 }
-
 // Render a text node with lexicon linking and formatting
 function renderTextNode(node: TextNode, termsMap: Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>, location: ReturnType<typeof useLocation>): React.ReactNode {
   const renderWithTerms = (text: string): React.ReactNode[] => {
     const terms = Array.from(termsMap.keys()).sort((a, b) => b.length - a.length);
     if (terms.length === 0) return [text];
-
     const escapedTerms = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
     const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi');
-
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     let match;
-
     while ((match = regex.exec(text)) !== null) {
       // Add text before match
       if (lastIndex < match.index) {
         parts.push(text.substring(lastIndex, match.index));
       }
-
       const term = match[0];
       const termInfo = termsMap.get(term.toLowerCase());
-
       if (termInfo) {
         const linkPath = termInfo.type === 'author' ? `/${termInfo.slug}` : `/lexicon/${termInfo.slug}`;
         parts.push(
@@ -361,54 +321,41 @@ function renderTextNode(node: TextNode, termsMap: Map<string, { slug: string; de
       } else {
         parts.push(term);
       }
-
       lastIndex = match.index + term.length;
     }
-
     if (lastIndex < text.length) {
       parts.push(text.substring(lastIndex));
     }
-
     return parts;
   };
-
   switch (node.type) {
     case 'text':
       return <>{renderWithTerms(node.content)}</>;
-
     case 'bold':
       return <strong>{renderWithTerms(node.content)}</strong>;
-    
     case 'italic':
       return <em>{renderWithTerms(node.content)}</em>;
-    
     case 'code':
       return <code className="px-1.5 py-0.5 rounded bg-secondary/50 text-sm font-mono">{node.content}</code>;
-    
     case 'link':
       return (
         <a href={node.href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
           {renderWithTerms(node.content)}
         </a>
       );
-    
     default:
       return node.content;
   }
 }
-
 function renderTextNodes(nodes: TextNode[], termsMap: Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>, location: ReturnType<typeof useLocation>): React.ReactNode[] {
   return nodes.map((node, idx) => (
     <React.Fragment key={idx}>{renderTextNode(node, termsMap, location)}</React.Fragment>
   ));
 }
-
 export function formatContent(content: string, t: (key: TranslationKey) => string, language: Language, currentSlug?: string): React.ReactNode[] {
   const location = useLocation();
-  
   // Build terms map
   const termsMap = new Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>();
-
   lexicon.forEach(originalEntry => {
     if (originalEntry.slug === currentSlug) return;
     const translatedEntry = getTranslatedLexiconEntry(originalEntry, language);
@@ -421,7 +368,6 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       }
     });
   });
-
   Object.values(authors).forEach(author => {
     const shortName = author.name.split(' ').pop() || '';
     if (shortName) {
@@ -432,10 +378,8 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
       termsMap.set(author.latinName.toLowerCase(), { slug: author.id, definition: author.description, type: 'author' });
     }
   });
-
   // Parse markdown
   const blocks = parseMarkdown(content);
-
   // Render blocks
   return blocks.map((block, idx) => {
     switch (block.type) {
@@ -446,20 +390,17 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
           : block.level === 3
           ? 'font-display text-xl sm:text-2xl font-bold leading-tight tracking-tight mt-6 mb-3 scroll-mt-24'
           : 'font-display text-lg sm:text-xl font-bold leading-tight tracking-tight mt-5 mb-2 scroll-mt-24';
-        
         return (
           <HeadingTag key={idx} className={headingClass} data-heading-id={block.id}>
             {block.text}
           </HeadingTag>
         );
-
       case 'paragraph':
         return (
           <p key={idx} className="text-base leading-relaxed mb-4">
             {renderTextNodes(block.content, termsMap, location)}
           </p>
         );
-
       case 'list':
         const ListTag = block.ordered ? 'ol' : 'ul';
         return (
@@ -471,21 +412,18 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
             ))}
           </ListTag>
         );
-
       case 'blockquote':
         return (
           <blockquote key={idx} className="border-l-4 border-primary/40 pl-4 italic text-muted-foreground my-4">
             <p>{renderTextNodes(block.content, termsMap, location)}</p>
           </blockquote>
         );
-
       case 'code':
         return (
           <pre key={idx} className="bg-secondary/50 rounded-lg p-4 overflow-x-auto my-4">
             <code className="text-sm font-mono">{block.content}</code>
           </pre>
         );
-
       case 'table':
         return (
           <div key={idx} className="overflow-x-auto my-6">
@@ -519,10 +457,8 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
             </table>
           </div>
         );
-
       case 'hr':
         return <hr key={idx} className="my-8 border-border/40" />;
-
       default:
         return null;
     }

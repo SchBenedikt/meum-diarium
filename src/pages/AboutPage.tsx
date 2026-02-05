@@ -7,15 +7,12 @@ import { CiceroAboutPage } from './about/CiceroAboutPage';
 import { AugustusAboutPage } from './about/AugustusAboutPage';
 import { SenecaAboutPage } from './about/SenecaAboutPage';
 import { CatilinaAboutPage } from './about/CatilinaAboutPage';
-
 export default function AboutPage() {
   const { authorId } = useParams<{ authorId: string }>();
   const { authors } = useAuthors();
-
   if (!authorId || !authors[authorId as Author]) {
     return <GeneralAboutPageNew />;
   }
-
   switch (authorId) {
     case 'caesar':
       return <CaesarAboutPage />;

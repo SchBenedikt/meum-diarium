@@ -14,17 +14,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image, Link as LinkIcon, Upload, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import { getFallbackImageUrl } from '@/lib/image-utils';
-
 interface MediaLibraryProps {
   onSelect: (url: string) => void;
   trigger?: React.ReactNode;
 }
-
 export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
   const [open, setOpen] = useState(false);
   const [urlInput, setUrlInput] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
   // Sample images - in a real app, these would come from an API
   const sampleImages = [
     'https://images.unsplash.com/photo-1523568129082-c0023f0e9c95',
@@ -34,7 +31,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
     'https://images.unsplash.com/photo-1548264125-86e82ceec6a6',
     'https://images.unsplash.com/photo-1552832230-c0197dd311b5',
   ];
-
   const handleUrlSubmit = () => {
     if (!urlInput) {
       toast.error('Bitte gib eine URL ein');
@@ -45,11 +41,9 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
     setUrlInput('');
     toast.success('Bild-URL übernommen');
   };
-
   const handleImageSelect = (url: string) => {
     setSelectedImage(url);
   };
-
   const handleConfirmSelection = () => {
     if (selectedImage) {
       onSelect(selectedImage);
@@ -58,7 +52,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
       toast.success('Bild ausgewählt');
     }
   };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -76,7 +69,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
             Wähle ein Bild aus oder gib eine URL ein
           </DialogDescription>
         </DialogHeader>
-
         <Tabs defaultValue="library" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="library">
@@ -92,7 +84,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
               Hochladen
             </TabsTrigger>
           </TabsList>
-
           <TabsContent value="library" className="space-y-4 mt-4">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {sampleImages.map((url, index) => (
@@ -129,7 +120,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
               </div>
             )}
           </TabsContent>
-
           <TabsContent value="url" className="space-y-4 mt-4">
             <div className="space-y-2">
               <Label>Bild-URL</Label>
@@ -162,7 +152,6 @@ export function MediaLibrary({ onSelect, trigger }: MediaLibraryProps) {
               </Button>
             </div>
           </TabsContent>
-
           <TabsContent value="upload" className="space-y-4 mt-4">
             <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
               <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />

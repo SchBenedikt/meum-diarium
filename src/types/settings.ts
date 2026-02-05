@@ -9,7 +9,6 @@ export interface SiteSettings {
   accentColor: string;
   footerText: string;
 }
-
 export const defaultSettings: SiteSettings = {
   siteName: 'Meum Diarium',
   siteDescription: 'Eine Reise durch die römische Geschichte',

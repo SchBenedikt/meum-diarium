@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 interface RelatedTopic {
   title: string;
   slug: string;
@@ -9,16 +8,13 @@ interface RelatedTopic {
   excerpt: string;
   category?: string;
 }
-
 interface RelatedTopicsProps {
   topics: RelatedTopic[];
   title?: string;
   description?: string;
 }
-
 export function RelatedTopics({ topics, title = 'Weiterführende Themen', description }: RelatedTopicsProps) {
   if (!topics || topics.length === 0) return null;
-
   return (
     <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-background">
       <CardHeader>

@@ -50,23 +50,5 @@
         "significance": "Die Pax Romana beginnt – 200 Jahre relativen Friedens und Wohlstands im römischen Reich."
       }
     ]
-  },
-  "en": {
-    "contextTitle": "Historical Context",
-    "contextParagraphs": [
-      "The Res Gestae were written by Augustus shortly before his death in 14 AD. They were to be inscribed on two bronze tablets in front of his mausoleum in Rome."
-    ],
-    "sections": [],
-    "quotes": [],
-    "keyMoments": []
-  },
-  "la": {
-    "contextTitle": "Contextus Historicus",
-    "contextParagraphs": [
-      "Res Gestae scriptae sunt ab Augusto paulo ante mortem suam anno 14 p.C.n. In tabulis aeneis duabus ante Mausoleum suum Romae inscribendae erant."
-    ],
-    "sections": [],
-    "quotes": [],
-    "keyMoments": []
   }
 }

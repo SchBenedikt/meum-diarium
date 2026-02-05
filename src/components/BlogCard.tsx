@@ -8,32 +8,25 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getPostTags } from '@/lib/tag-utils';
 import { fadeUp, quickTransition } from '@/lib/motion';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 const cardVariants = fadeUp(0.05, 20);
-
 interface BlogCardProps {
   post: BlogPost;
   className?: string;
   preferredPerspective?: 'diary' | 'scientific';
 }
-
 export function BlogCard({ post, className, preferredPerspective }: BlogCardProps) {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/search?category=${encodeURIComponent(tag)}`);
   };
-
   const readingTime = post.readingTime;
   const displayExcerpt =
     post.excerpt || generateExcerpt(post.content?.diary || post.content?.scientific || '', 150);
-
   const hasDiary = post.content?.diary && post.content.diary.trim().length > 0;
   const hasScientific = post.content?.scientific && post.content.scientific.trim().length > 0;
-
   let displayTitle = post.title;
   if (hasDiary && !hasScientific && post.diaryTitle) {
     displayTitle = post.diaryTitle;
@@ -42,7 +35,6 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
   } else if (hasDiary && hasScientific) {
     displayTitle = post.diaryTitle || post.scientificTitle || post.title;
   }
-
   const year = useMemo(() => {
     // 1. Try to extract any year-like number from historicalDate (handles "59 v. Chr.")
     const yearMatch = post.historicalDate?.match(/\d+/)?.[0];
@@ -50,17 +42,14 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       const suffix = post.historicalDate.includes('v. Chr.') ? ' v. Chr.' : '';
       return `${yearMatch}${suffix}`;
     }
-
     // 2. Use historicalYear if available
     if (post.historicalYear !== undefined) {
       if (post.historicalYear < 0) return `${Math.abs(post.historicalYear)} v. Chr.`;
       return post.historicalYear.toString();
     }
-
     // 3. Fallback to the real-world post date
     return new Date(post.date || "2024-03-24").getFullYear().toString();
   }, [post.historicalDate, post.historicalYear, post.date]);
-
   return (
     <motion.article variants={cardVariants} transition={quickTransition} className="h-full">
       <Link
@@ -79,14 +68,12 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
             className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
           />
         </div>
-
         {/* Content rechts – flexibler, passt sich an */}
         <div className="flex flex-1 flex-col justify-between px-4 py-3 sm:px-5 sm:py-4 gap-2">
           {/* Datum / Jahr oben */}
           <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/80">
             {post.historicalDate}
           </div>
-
           {/* Titel + Excerpt */}
           <div className="space-y-2">
             <h3 className="font-display text-base sm:text-lg md:text-xl font-bold leading-tight line-clamp-2 transition-colors">
@@ -96,7 +83,6 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
               {displayExcerpt}
             </p>
           </div>
-
           {/* Footer: Lesezeit, Kategorien/Tags */}
           <div className="mt-2 flex flex-col gap-2 pt-1 border-t border-border/5">
             <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
@@ -106,7 +92,6 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
                 <span>{t('readingTime', { minutes: (readingTime || 5).toString() })}</span>
               </span>
             </div>
-
             {/* Tag‑Chips darunter als Kategorien/Stichwörter */}
             {((post.tagsWithTranslations && post.tagsWithTranslations.length > 0) || (post.tags && post.tags.length > 0)) && (
               <div className="flex flex-wrap gap-2">
@@ -123,7 +108,6 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
               </div>
             )}
           </div>
-
           {/* Pfeil rechts unten */}
           <div className="mt-1 flex justify-end">
             <ArrowRight className="h-5 w-5 text-muted-foreground transition-colors" />

@@ -1,14 +1,11 @@
-
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { BookOpen, Languages, Quote, History, Database, Users, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { fadeUp, staggerContainer } from '@/lib/motion';
-
 export function FeatureShowcase() {
     const { t } = useLanguage();
-
     const features = [
         {
             icon: BookOpen,
@@ -59,7 +56,6 @@ export function FeatureShowcase() {
             className: 'md:col-span-3 lg:col-span-2'
         }
     ];
-
     return (
         <section className="py-32 bg-background relative overflow-hidden">
             {/* Background elements */}
@@ -67,7 +63,6 @@ export function FeatureShowcase() {
                 <div className="absolute top-[10%] left-[5%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px]" />
                 <div className="absolute bottom-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-secondary/10 blur-[120px]" />
             </div>
-
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <motion.div
                     initial="hidden"
@@ -96,7 +91,6 @@ export function FeatureShowcase() {
                         {t('featuresSectionSubtitle')}
                     </motion.p>
                 </motion.div>
-
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

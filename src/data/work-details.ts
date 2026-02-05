@@ -1,5 +1,4 @@
 import { BookOpen, Award, Lightbulb, Quote, MapPin, Swords, Users, Scroll, Target } from 'lucide-react';
-
 export interface WorkDetail {
   slug: string;
   sections: WorkSection[];
@@ -10,45 +9,38 @@ export interface WorkDetail {
   context: ContextSection;
   bookChapters?: BookChapter[];
 }
-
 export interface WorkSection {
   icon: string;
   title: string;
   content: string[];
   type: 'context' | 'themes' | 'literary' | 'impact' | 'moments' | 'analysis';
 }
-
 export interface WorkQuote {
   latin: string;
   translation: string;
   context: string;
 }
-
 export interface KeyMoment {
   title: string;
   date: string;
   description: string;
   significance: string;
 }
-
 export interface ImpactSection {
   title: string;
   paragraphs: string[];
   highlights: string[];
 }
-
 export interface LiteraryFeature {
   title: string;
   description: string;
   examples?: string[];
 }
-
 export interface ContextSection {
   title: string;
   paragraphs: string[];
   timeline?: { year: string; event: string }[];
 }
-
 export interface BookChapter {
   number: number;
   title: string;
@@ -56,7 +48,6 @@ export interface BookChapter {
   timeframe?: string;
   keyEvents?: string[];
 }
-
 export const workDetails: Record<string, WorkDetail> = {
   'de-bello-gallico': {
     slug: 'de-bello-gallico',

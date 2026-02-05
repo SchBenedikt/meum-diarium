@@ -5,17 +5,13 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-
 export function HeroSection() {
   const { authorInfo, currentAuthor } = useAuthor();
-
   if (!authorInfo || !currentAuthor) return null;
-
   return (
     <section className="relative flex items-center overflow-hidden bg-background pt-20 pb-12 sm:pt-32">
       {/* Decorative background circle */}
       <div className="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="container mx-auto max-w-7xl relative px-4 sm:px-6">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* Text content */}
@@ -30,17 +26,14 @@ export function HeroSection() {
                 <Scroll className="w-3.5 h-3.5 mr-2" />
                 {authorInfo.title}
               </Badge>
-
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold leading-[1.1] tracking-tighter mb-8">
                 <span className="text-foreground block">{authorInfo.name.split(' ')[0]}</span>
                 <span className="text-primary italic">{authorInfo.name.split(' ').slice(1).join(' ')}</span>
               </h1>
-
               <p className="text-xl text-muted-foreground max-w-xl leading-relaxed font-light">
                 {authorInfo.description}
               </p>
             </div>
-
             <div className="flex flex-wrap items-center gap-4">
               <Link to={`/${authorInfo.id}/about`}>
                 <Button size="lg" className="rounded-full px-8 h-14 text-base bg-primary hover:scale-105 transition-transform duration-300 shadow-lg shadow-primary/20">
@@ -51,7 +44,6 @@ export function HeroSection() {
               </Link>
             </div>
           </motion.div>
-
           {/* Hero Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -66,7 +58,6 @@ export function HeroSection() {
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-
             {/* Decortive accent */}
             <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-2 border-b-2 border-primary/20 rounded-bl-3xl -z-10" />
           </motion.div>

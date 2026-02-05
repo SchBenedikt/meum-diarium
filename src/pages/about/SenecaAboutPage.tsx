@@ -14,19 +14,15 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
-
 export function SenecaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
-
   const authorDetails = useAuthorDetails(t);
-
   useEffect(() => {
     if (authorId === 'seneca') {
       setCurrentAuthor('seneca' as Author);
@@ -35,12 +31,10 @@ export function SenecaAboutPage() {
           const authorPostsList = allPosts.filter(p => p.author === 'seneca').slice(0, 3);
           setAuthorPosts(authorPostsList);
         }
-
         const translatedWorks = await Promise.all(
           Object.values(baseWorks).filter(w => w.author === 'seneca').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-
         try {
           const res = await fetch('/api/pages/author-about-seneca');
           if (res.ok) {
@@ -56,7 +50,6 @@ export function SenecaAboutPage() {
       translateContent();
     }
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
-
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -64,9 +57,7 @@ export function SenecaAboutPage() {
       </div>
     );
   }
-
   const details = authorDetails.seneca;
-
   const senecaSnapshots = [
     { label: t('seneca.snapshots.lifespan'), value: 'c. 4 ' + t('common.bc') + ' – 65 ' + t('common.ad'), hint: '~69 ' + t('common.years') },
     { label: t('seneca.snapshots.exile'), value: '41–49 ' + t('common.ad'), hint: 'Corsica, 8 ' + t('common.years') },
@@ -75,7 +66,6 @@ export function SenecaAboutPage() {
     { label: t('seneca.snapshots.philosophy'), value: 'Stoicism', hint: 'Roman Stoicism' },
     { label: t('seneca.snapshots.death'), value: '65 ' + t('common.ad'), hint: 'Forced Suicide' },
   ];
-
   const senecaLegacy = [
     {
       title: t('seneca.legacy.stoicism'),
@@ -114,13 +104,11 @@ export function SenecaAboutPage() {
       horizon: t('seneca.horizons.longTerm'),
     },
   ];
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} ${t('common.bc')}` : `${year} ${t('common.ad')}`;
   };
-
   const senecaSidebar = {
     earlyLife: [
       { year: -4, title: t('seneca.timeline.life.birth.title'), note: t('seneca.timeline.life.birth.note') },
@@ -141,7 +129,6 @@ export function SenecaAboutPage() {
       { year: 65, title: t('seneca.timeline.life.death.title'), note: t('seneca.timeline.life.death.note') },
     ],
   };
-
   const senecaDeepDive = [
     {
       title: t('seneca.legacy.moralLetters'),
@@ -159,7 +146,6 @@ export function SenecaAboutPage() {
       impact: t('seneca.legacy.tragediesSummary'),
     },
   ];
-
   const senecaLocations = [
     {
       title: t('seneca.locations.corduba.title'),
@@ -182,7 +168,6 @@ export function SenecaAboutPage() {
       note: t('seneca.locations.court.note'),
     },
   ];
-
   const senecaRoles = [
     {
       title: t('seneca.roles.philosopher.title'),
@@ -215,7 +200,6 @@ export function SenecaAboutPage() {
       note: t('seneca.roles.retirement.note'),
     },
   ];
-
   const senecaDebate = [
     {
       heading: t('seneca.polarization.admired'),
@@ -226,7 +210,6 @@ export function SenecaAboutPage() {
       points: t('seneca.polarization.criticizedPoints', { returnObjects: true }) as string[],
     },
   ];
-
   const senecaMajorWorks = [
     {
       title: t('seneca.works.moralLetters.title'),
@@ -265,9 +248,7 @@ export function SenecaAboutPage() {
       note: t('seneca.works.shortness.note'),
     },
   ];
-
   const stoicTeachings = t('seneca.philosophy.teachings', { returnObjects: true }) as Array<{ title: string; desc: string }>;
-
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
@@ -277,7 +258,6 @@ export function SenecaAboutPage() {
           language={language}
           birthPlace={details.birthPlace}
         />
-
         {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
@@ -292,7 +272,6 @@ export function SenecaAboutPage() {
                       <p className="text-sm text-muted-foreground mt-1">{t('seneca.worksSubtitle')}</p>
                     </div>
                   </div>
-
                   <div className="grid gap-6 sm:grid-cols-2">
                     {authorWorks.map((work) => (
                       <Link
@@ -320,7 +299,6 @@ export function SenecaAboutPage() {
                   </div>
                 </section>
               )}
-
               {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
@@ -369,7 +347,6 @@ export function SenecaAboutPage() {
                 </section>
               )}
             </div>
-
             {/* Sidebar */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
@@ -391,7 +368,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </div>
-
         {/* Life Stations - Full Width Section */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
@@ -403,7 +379,6 @@ export function SenecaAboutPage() {
                   <p className="text-lg text-muted-foreground mt-2">{t('seneca.biography.subtitle')}</p>
                 </div>
               </div>
-
               <div className="grid gap-8 lg:grid-cols-3">
                 {/* Early Life */}
                 <div className="card-modern card-padding-lg space-y-6">
@@ -421,7 +396,6 @@ export function SenecaAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Nero Years */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -438,7 +412,6 @@ export function SenecaAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Later Life */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -456,7 +429,6 @@ export function SenecaAboutPage() {
                   </div>
                 </div>
               </div>
-
               {/* Timeline visualization below */}
               <div className="mt-16 pt-12 border-t border-border/40">
                 <p className="text-center text-muted-foreground mb-8">
@@ -475,7 +447,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Philosophical Legacy */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -506,7 +477,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Works in Detail */}
         <section className="py-20 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -530,7 +500,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Why He Polarizes */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -558,7 +527,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Locations & Roles */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -566,7 +534,6 @@ export function SenecaAboutPage() {
               <h2 className="font-display text-4xl font-bold mb-4">{t('seneca.theaters.title')}</h2>
               <p className="text-lg text-muted-foreground">{t('seneca.theaters.subtitle')}</p>
             </div>
-
             <div className="max-w-6xl mx-auto space-y-12">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -589,7 +556,6 @@ export function SenecaAboutPage() {
                   ))}
                 </div>
               </div>
-
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">{t('seneca.theaters.rolesTitle')}</span>
@@ -614,7 +580,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Major Works */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -640,7 +605,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Stoic Philosophy */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -670,7 +634,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Path to Power */}
         <section className="py-24 bg-gradient-to-b from-background via-surface-container-low/20 to-background">
           <div className="container mx-auto px-4">
@@ -679,7 +642,6 @@ export function SenecaAboutPage() {
                 <h2 className="font-display text-4xl font-bold mb-4">{t('seneca.rising.title')}</h2>
                 <p className="text-lg text-muted-foreground">{t('seneca.rising.subtitle')}</p>
               </div>
-
               {/* Phase 1 */}
               <div className="mb-16">
                 <div className="flex items-center gap-3 mb-6">
@@ -717,7 +679,6 @@ export function SenecaAboutPage() {
                   </motion.div>
                 </div>
               </div>
-
               {/* Phase 2 - Featured Card */}
               <div className="mb-16">
                 <div className="flex items-center gap-3 mb-6">
@@ -755,7 +716,6 @@ export function SenecaAboutPage() {
                   </motion.div>
                 </div>
               </div>
-
               {/* Phase 3 */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -810,7 +770,6 @@ export function SenecaAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Timeless Wisdom - Quotes */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">

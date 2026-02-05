@@ -1,7 +1,6 @@
 /**
  * Utility functions for image handling
  */
-
 /**
  * Generates a fallback SVG data URL for broken images
  * @param width - Width of the fallback image
@@ -18,10 +17,8 @@ export function getFallbackImageUrl(
     <rect fill="#ddd" width="${width}" height="${height}"/>
     <text fill="#999" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">${text}</text>
   </svg>`;
-  
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
-
 /**
  * Validates if a URL is a valid image URL
  * @param url - URL to validate
@@ -29,7 +26,6 @@ export function getFallbackImageUrl(
  */
 export function isValidImageUrl(url: string): boolean {
   if (!url) return false;
-  
   try {
     new URL(url);
     return true;
@@ -37,7 +33,6 @@ export function isValidImageUrl(url: string): boolean {
     return false;
   }
 }
-
 /**
  * Gets image dimensions from URL (requires image to be loaded)
  * @param url - Image URL

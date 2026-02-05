@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { ImageOff } from 'lucide-react';
-
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     fallbackSrc?: string;
     showIconFallback?: boolean;
 }
-
 export function ImageWithFallback({
     src,
     alt,
@@ -17,19 +15,16 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
     const [error, setError] = useState(false);
     const [imgSrc, setImgSrc] = useState(src);
-
     useEffect(() => {
         setImgSrc(src);
         setError(false);
     }, [src]);
-
     const handleError = () => {
         if (!error) {
             setError(true);
             setImgSrc(fallbackSrc);
         }
     };
-
     if (error && showIconFallback) {
         return (
             <div className={cn("flex items-center justify-center bg-muted text-muted-foreground", className)}>
@@ -37,7 +32,6 @@ export function ImageWithFallback({
             </div>
         );
     }
-
     return (
         <img
             src={imgSrc || fallbackSrc}
