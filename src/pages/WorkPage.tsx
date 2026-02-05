@@ -36,7 +36,7 @@ import { PageHero } from '@/components/layout/PageHero';
 
 export default function WorkPage() {
   const { slug, authorId } = useParams<{ slug: string, authorId: string }>();
-  const { setCurrentAuthor } = useAuthor();
+  const { setCurrentAuthor, authorsData } = useAuthor();
   const { language, t } = useLanguage();
   const [work, setWork] = useState<Work | null>(null);
   const [author, setAuthor] = useState<AuthorInfo | null>(null);
@@ -92,11 +92,11 @@ export default function WorkPage() {
 
       console.log(`🔄 [WorkPage] Loading work for slug="${slug}", authorId="${authorId}"`);
 
-      // Set author immediately
-      const baseAuthor = baseAuthors[authorId as keyof typeof baseAuthors];
+      // Set author from context data (loaded from D1 database)
+      const contextAuthor = authorsData[authorId];
       const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
       if (active) {
-        setAuthor(translatedAuthor ?? baseAuthor ?? null);
+        setAuthor(translatedAuthor ?? contextAuthor ?? null);
       }
 
       // Get work - try baseWorks first (always available), then check allWorks
@@ -166,7 +166,7 @@ export default function WorkPage() {
     return () => {
       active = false;
     };
-  }, [slug, language, authorId]);
+  }, [slug, language, authorId, authorsData]);
 
   if (loading || isWorksLoading) {
     return null;

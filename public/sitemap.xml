@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <title>Meum Diarium</title>
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/lexicon</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <title>Lexikon</title>
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/latin</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <title>Latein-Tools</title>
@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/about</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <title>Über uns</title>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-gallico</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>De Bello Gallico</title>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-civili</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>De Bello Civili</title>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-re-publica</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>De Re Publica</title>
@@ -59,7 +59,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-officiis</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>De Officiis</title>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/in-catilinam</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>In Catilinam</title>
@@ -81,7 +81,7 @@ Die Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und e
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/philippicae</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>Philippicae</title>
@@ -89,7 +89,7 @@ Die Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und e
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/works/res-gestae</loc>
-    <lastmod>2026-02-04T14:52:59.639Z</lastmod>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <title>Res Gestae Divi Augusti</title>
