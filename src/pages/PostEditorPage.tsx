@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -17,17 +16,14 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
 import { useAuthors } from '@/hooks/use-authors';
 import { MultilingualTagEditor } from '@/components/admin/MultilingualTagEditor';
-
 export default function PostEditorPage() {
     const { author, slug } = useParams<{ author: string; slug: string }>();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const isEditMode = !!slug;
     const { authors } = useAuthors();
-
     const [loading, setLoading] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState<'de' | 'en' | 'la'>('de');
-
     // Fetch post data if editing
     const { data: postData, isLoading: isFetching } = useQuery({
         queryKey: ['post', author, slug],
@@ -37,7 +33,6 @@ export default function PostEditorPage() {
         },
         enabled: isEditMode
     });
-
     // Form state definition
     const [formData, setFormData] = useState({
         // Basic info
@@ -82,9 +77,7 @@ export default function PostEditorPage() {
             scientific: ''
         }
     });
-
     const [tagInput, setTagInput] = useState('');
-
     // Populate form when data arrives
     useEffect(() => {
         if (postData) {
@@ -128,17 +121,14 @@ export default function PostEditorPage() {
             });
         }
     }, [postData]);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
         try {
             // Generate legacy tags from multilingual tags for backward compatibility
             const legacyTags = formData.tagsWithTranslations.length > 0
                 ? formData.tagsWithTranslations.map(t => t.translations.de)
                 : formData.tags;
-
             const payload: BlogPost = {
                 id: postData?.id || Date.now().toString(),
                 slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
@@ -194,7 +184,6 @@ export default function PostEditorPage() {
                     }
                 }
             };
-
             await upsertPost(payload);
             queryClient.invalidateQueries({ queryKey: ['posts'] });
             if (isEditMode) {
@@ -209,18 +198,15 @@ export default function PostEditorPage() {
             setLoading(false);
         }
     };
-
     const updateField = (field: string, value: any) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
-
     const updateLanguageField = (lang: 'de' | 'en' | 'la', field: string, value: string) => {
         setFormData(prev => ({
             ...prev,
             [lang]: { ...prev[lang], [field]: value }
         }));
     };
-
     const handleAddTag = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -231,15 +217,12 @@ export default function PostEditorPage() {
             setTagInput('');
         }
     };
-
     const removeTag = (tagToRemove: string) => {
         updateField('tags', formData.tags.filter(t => t !== tagToRemove));
     };
-
     if (isFetching && isEditMode) {
         return <div className="min-h-screen pt-20 text-center">Lade Beitrag...</div>;
     }
-
     return (
         <div className="min-h-screen bg-background pt-16">
             {/* Header */}
@@ -271,7 +254,6 @@ export default function PostEditorPage() {
                     </div>
                 </div>
             </div>
-
             <div className="container mx-auto px-4 py-6 max-w-6xl">
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Basic Info Card */}
@@ -300,7 +282,6 @@ export default function PostEditorPage() {
                                     />
                                 </div>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-primary/20 rounded-lg bg-primary/5">
                                 <div className="space-y-2">
                                     <Label className="text-primary flex items-center gap-2">
@@ -323,7 +304,6 @@ export default function PostEditorPage() {
                                     />
                                 </div>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="space-y-2">
                                     <Label>Slug (URL)</Label>
@@ -360,7 +340,6 @@ export default function PostEditorPage() {
                                     />
                                 </div>
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Kurzbeschreibung (Deutsch)</Label>
                                 <Textarea
@@ -370,7 +349,6 @@ export default function PostEditorPage() {
                                     rows={2}
                                 />
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Cover-Bild URL</Label>
                                 <Input
@@ -381,13 +359,11 @@ export default function PostEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Multilingual Tags Section */}
                     <MultilingualTagEditor
                         tags={formData.tagsWithTranslations}
                         onChange={(tags) => updateField('tagsWithTranslations', tags)}
                     />
-
                     {/* Legacy Tags Section (for backward compatibility) */}
                     {formData.tags.length > 0 && formData.tagsWithTranslations.length === 0 && (
                         <Card className="border-amber-500/30 bg-amber-500/5">
@@ -449,7 +425,6 @@ export default function PostEditorPage() {
                             </CardContent>
                         </Card>
                     )}
-
                     {/* Sidebar Quote Section */}
                     <Card>
                         <CardHeader>
@@ -468,7 +443,6 @@ export default function PostEditorPage() {
                                     rows={3}
                                 />
                             </div>
-                            
                             <div className="space-y-3 p-4 border border-border/60 rounded-lg bg-secondary/20">
                                 <Label className="font-semibold">Übersetzungen (optional)</Label>
                                 <div className="space-y-3">
@@ -507,7 +481,6 @@ export default function PostEditorPage() {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Autor/Quelle</Label>
@@ -536,7 +509,6 @@ export default function PostEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Content Tabs for Languages */}
                     <Card>
                         <CardHeader>
@@ -559,7 +531,6 @@ export default function PostEditorPage() {
                                         🏛️ Latinum
                                     </TabsTrigger>
                                 </TabsList>
-
                                 {/* German Content */}
                                 <TabsContent value="de" className="space-y-6">
                                     <div className="space-y-2">
@@ -581,7 +552,6 @@ export default function PostEditorPage() {
                                         />
                                     </div>
                                 </TabsContent>
-
                                 {/* English Content */}
                                 <TabsContent value="en" className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -621,7 +591,6 @@ export default function PostEditorPage() {
                                         />
                                     </div>
                                 </TabsContent>
-
                                 {/* Latin Content */}
                                 <TabsContent value="la" className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

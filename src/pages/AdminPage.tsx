@@ -26,7 +26,6 @@ import { QuickStats } from '@/components/QuickStats';
 import { SearchFilter } from '@/components/SearchFilter';
 import { TranslationEditor } from '@/components/admin/TranslationEditor';
 import { useQueryClient } from '@tanstack/react-query';
-
 export default function AdminPage() {
     const { t } = useLanguage();
     const { logout } = useAuth();
@@ -37,26 +36,20 @@ export default function AdminPage() {
     const { lexicon: lexiconEntries } = useLexicon();
     const { works } = useWorks();
     const { tags } = useTags();
-
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);
     const [filteredTags, setFilteredTags] = useState<string[]>([]);
-
     useEffect(() => {
         if (posts) setFilteredPosts(sortPostsChronologically(posts));
     }, [posts]);
-
     useEffect(() => {
         if (lexiconEntries) setFilteredLexicon(lexiconEntries);
     }, [lexiconEntries]);
-
     useEffect(() => {
         if (tags) setFilteredTags(tags);
     }, [tags]);
-
     const postRows = posts || [];
-
     const quickLinks = [
         {
             title: 'Beiträge',
@@ -89,14 +82,12 @@ export default function AdminPage() {
             icon: Settings,
         },
     ];
-
     const sortPostsChronologically = (postsToSort: BlogPost[]) => {
         return [...postsToSort].sort((a, b) => {
             // Sort by historical year in descending order (newer dates first: 44 v.Chr. before 100 v.Chr.)
             return (b.historicalYear || 0) - (a.historicalYear || 0);
         });
     };
-
     const handlePostSearch = (query: string) => {
         if (!query) {
             setFilteredPosts(sortPostsChronologically(posts));
@@ -108,7 +99,6 @@ export default function AdminPage() {
         );
         setFilteredPosts(sortPostsChronologically(filtered));
     };
-
     const handleDeleteWork = async (slug: string) => {
         if (!window.confirm('Werk wirklich löschen?')) return;
         try {
@@ -119,7 +109,6 @@ export default function AdminPage() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     const handlePostFilter = (author: string) => {
         if (author === 'all') {
             setFilteredPosts(sortPostsChronologically(posts));
@@ -128,7 +117,6 @@ export default function AdminPage() {
         const filtered = posts.filter(post => post.author === author);
         setFilteredPosts(sortPostsChronologically(filtered));
     };
-
     const handleLexiconSearch = (query: string) => {
         if (!query) {
             setFilteredLexicon(lexiconEntries);
@@ -140,7 +128,6 @@ export default function AdminPage() {
         );
         setFilteredLexicon(filtered);
     };
-
     const handleDeletePost = async (postId: string) => {
         // postId is actually the slug, find post by slug
         const post = posts.find(p => p.slug === postId || p.id === postId);
@@ -149,7 +136,6 @@ export default function AdminPage() {
             return;
         }
         if (!window.confirm(`Beitrag "${post.title}" wirklich löschen?`)) return;
-
         try {
             await removePost(post.author, post.slug);
             toast.success('Beitrag gelöscht');
@@ -158,10 +144,8 @@ export default function AdminPage() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     const handleDeleteAuthor = async (authorId: string) => {
         if (!window.confirm('Autor wirklich löschen? Alle Beiträge bleiben erhalten.')) return;
-
         try {
             await removeAuthor(authorId);
             toast.success('Autor gelöscht');
@@ -170,10 +154,8 @@ export default function AdminPage() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     const handleDeleteLexicon = async (slug: string) => {
         if (!window.confirm('Lexikon-Eintrag wirklich löschen?')) return;
-
         try {
             await removeLexiconEntry(slug);
             toast.success('Eintrag gelöscht');
@@ -182,7 +164,6 @@ export default function AdminPage() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     const handleTagSearch = (query: string) => {
         if (!query) {
             setFilteredTags(tags);
@@ -193,11 +174,9 @@ export default function AdminPage() {
         );
         setFilteredTags(filtered);
     };
-
     const handleRenameTag = async (oldTag: string) => {
         const newTag = window.prompt(`Tag "${oldTag}" umbenennen in:`, oldTag);
         if (!newTag || newTag === oldTag) return;
-
         try {
             await renameTag(oldTag, newTag);
             toast.success(`Tag umbenannt: ${oldTag} -> ${newTag}`);
@@ -207,10 +186,8 @@ export default function AdminPage() {
             toast.error('Fehler beim Umbenennen');
         }
     };
-
     const handleDeleteTag = async (tag: string) => {
         if (!window.confirm(`Tag "${tag}" wirklich aus allen Beiträgen löschen?`)) return;
-
         try {
             await deleteTag(tag);
             toast.success('Tag gelöscht');
@@ -220,7 +197,6 @@ export default function AdminPage() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     return (
         <div className="container mx-auto py-10 px-4 max-w-7xl pt-24 sm:pt-28">
             {/* Header */}
@@ -248,7 +224,6 @@ export default function AdminPage() {
                 </div>
                 <p className="text-muted-foreground">Beiträge, Lexikon, Autoren und Übersetzungen verwalten</p>
             </div>
-
             {/* Stats */}
             <QuickStats stats={[
                 { icon: BookOpenText, label: 'Beiträge', value: postRows.length },
@@ -256,7 +231,6 @@ export default function AdminPage() {
                 { icon: LibraryBig, label: 'Lexikon', value: lexiconEntries?.length || 0 },
                 { icon: Tags, label: 'Tags', value: tags?.length || 0 },
             ]} />
-
             {/* Quick Links */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 my-8">
                 {quickLinks.map((link) => (
@@ -278,7 +252,6 @@ export default function AdminPage() {
                     </Card>
                 ))}
             </div>
-
             <Tabs defaultValue="posts" className="w-full">
                 <TabsList className="grid w-full grid-cols-6 mb-8">
                     <TabsTrigger value="posts">Beiträge</TabsTrigger>
@@ -288,7 +261,6 @@ export default function AdminPage() {
                     <TabsTrigger value="tags">Tags</TabsTrigger>
                     <TabsTrigger value="translations">i18n</TabsTrigger>
                 </TabsList>
-
                 {/* Posts Tab */}
                 <TabsContent value="posts">
                     <Card>
@@ -368,7 +340,6 @@ export default function AdminPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
-
                 {/* Authors Tab */}
                 <TabsContent value="authors">
                     <Card>
@@ -444,7 +415,6 @@ export default function AdminPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
-
                 {/* Works Tab */}
                 <TabsContent value="works">
                     <Card>
@@ -507,7 +477,6 @@ export default function AdminPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
-
                 {/* Lexicon Tab */}
                 <TabsContent value="lexicon">
                     <Card>
@@ -576,7 +545,6 @@ export default function AdminPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
-
                 {/* Tags Tab */}
                 <TabsContent value="tags">
                     <Card>
@@ -623,7 +591,6 @@ export default function AdminPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
-
                 {/* Translations Tab */}
                 <TabsContent value="translations">
                     <TranslationEditor />

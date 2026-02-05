@@ -2,7 +2,6 @@ import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
-
 const quotes: Record<string, { latin: string; de: string; en: string; la: string }> = {
   caesar: {
     latin: "Veni, vidi, vici.",
@@ -29,17 +28,13 @@ const quotes: Record<string, { latin: string; de: string; en: string; la: string
     la: "Non est vivere sed valere vita est."
   },
 };
-
 export function AuthorIntro() {
   const { authorInfo, currentAuthor } = useAuthor();
   const { language } = useLanguage();
-
   if (!currentAuthor || !authorInfo) return null;
-
   const quote = quotes[currentAuthor];
   const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
   const translation = quote[baseLang] || quote.de;
-
   return (
     <section className="py-16 border-t border-border/40">
       <div className="container mx-auto">

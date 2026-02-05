@@ -8,48 +8,37 @@ export function getApiBase(): string {
     }
     return '/api';
 }
-
 // Add request cache for GET requests to avoid redundant network calls
 const requestCache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
 async function cachedFetch(url: string, options?: RequestInit) {
     // Only cache GET requests
     if (!options || options.method === 'GET' || !options.method) {
         const cached = requestCache.get(url);
         if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-            console.log(`💾 [API] Using cached response for ${url}`);
             return Promise.resolve(cached.data);
         }
     }
-
     try {
         const res = await fetch(url, options);
-        
         // Log data source from response headers
         const dataSource = res.headers.get('X-Data-Source');
         const itemCount = res.headers.get('X-Post-Count') || res.headers.get('X-Entry-Count');
-        
         if (!res.ok) {
             console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
             throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
-        
         const data = await res.json();
-
         // Log successful fetch with data source info
         if (dataSource) {
             console.log(`✅ [API] Response from ${dataSource}${itemCount ? ` (${itemCount} items)` : ''}`);
         }
-
         // Cache GET responses
         if (!options || options.method === 'GET' || !options.method) {
             requestCache.set(url, { data, timestamp: Date.now() });
         }
-
         return data;
     } catch (error) {
-        console.warn(`[API] Fetch failed for ${url}, attempting to use cache/fallback`, error);
         // If we are in the browser, the Service Worker might have a cached version even if this fetch failed.
         // However, if we're here, the request already failed. If it was a GET, we might have it in our local memory cache.
         if (!options || options.method === 'GET' || !options.method) {
@@ -59,16 +48,13 @@ async function cachedFetch(url: string, options?: RequestInit) {
         throw error;
     }
 }
-
 export async function fetchPosts() {
     return cachedFetch(`${getApiBase()}/posts`);
 }
-
 export async function fetchPost(author: string, slug: string) {
     // Use author/slug route: /api/posts/{author}/{slug}
     return cachedFetch(`${getApiBase()}/posts/${author}/${slug}`);
 }
-
 export async function createPost(data: any) {
     const res = await fetch(`${getApiBase()}/posts`, {
         method: 'POST',
@@ -80,7 +66,6 @@ export async function createPost(data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function updatePost(author: string, slug: string, data: any) {
     // Use author/slug route: /api/posts/{author}/{slug}
     const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
@@ -93,7 +78,6 @@ export async function updatePost(author: string, slug: string, data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function deletePost(author: string, slug: string) {
     // Use author/slug route: /api/posts/{author}/{slug}
     const res = await fetch(`${getApiBase()}/posts/${author}/${slug}`, {
@@ -104,11 +88,9 @@ export async function deletePost(author: string, slug: string) {
     requestCache.clear();
     return res.json();
 }
-
 export async function fetchAuthors() {
     return cachedFetch(`${getApiBase()}/authors`);
 }
-
 export async function saveAuthor(data: any) {
     // Smart save: if ID exists, try update first, fallback to create
     if (data.id) {
@@ -140,7 +122,6 @@ export async function saveAuthor(data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function updateAuthor(id: string, data: any) {
     const res = await fetch(`${getApiBase()}/authors/${id}`, {
         method: 'PUT',
@@ -151,7 +132,6 @@ export async function updateAuthor(id: string, data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function deleteAuthor(id: string) {
     const res = await fetch(`${getApiBase()}/authors/${id}`, {
         method: 'DELETE'
@@ -160,15 +140,12 @@ export async function deleteAuthor(id: string) {
     requestCache.clear();
     return res.json();
 }
-
 export async function fetchLexicon() {
     return cachedFetch(`${getApiBase()}/lexicon`);
 }
-
 export async function fetchLexiconEntry(slug: string) {
     return cachedFetch(`${getApiBase()}/lexicon?slug=${slug}`);
 }
-
 export async function saveLexiconEntry(data: any) {
     // Smart save: if slug exists, try update first, fallback to create
     if (data.slug) {
@@ -200,7 +177,6 @@ export async function saveLexiconEntry(data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function updateLexiconEntry(slug: string, data: any) {
     const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
         method: 'PUT',
@@ -211,7 +187,6 @@ export async function updateLexiconEntry(slug: string, data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function deleteLexiconEntry(slug: string) {
     const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
         method: 'DELETE'
@@ -220,19 +195,16 @@ export async function deleteLexiconEntry(slug: string) {
     requestCache.clear();
     return res.json();
 }
-
 export async function fetchPages() {
     const res = await fetch(`${getApiBase()}/pages`);
     if (!res.ok) throw new Error('Failed to fetch pages');
     return res.json();
 }
-
 export async function fetchPage(slug: string) {
     const res = await fetch(`${getApiBase()}/pages/${slug}`);
     if (!res.ok) throw new Error('Failed to fetch page');
     return res.json();
 }
-
 export async function savePage(data: any) {
     const res = await fetch(`${getApiBase()}/pages`, {
         method: 'POST',
@@ -242,8 +214,6 @@ export async function savePage(data: any) {
     if (!res.ok) throw new Error('Failed to save page');
     return res.json();
 }
-
-
 export async function deletePage(slug: string) {
     const res = await fetch(`${getApiBase()}/pages/${slug}`, {
         method: 'DELETE'
@@ -251,9 +221,7 @@ export async function deletePage(slug: string) {
     if (!res.ok) throw new Error('Failed to delete page');
     return res.json();
 }
-
 // ============ TAGS API ============
-
 export async function fetchTags() {
     const res = await fetch(`${getApiBase()}/tags`);
     if (!res.ok) throw new Error('Failed to fetch tags');
@@ -263,7 +231,6 @@ export async function fetchTags() {
     }
     return data;
 }
-
 export async function renameTag(oldTag: string, newTag: string) {
     const res = await fetch(`${getApiBase()}/tags`, {
         method: 'PATCH',
@@ -273,7 +240,6 @@ export async function renameTag(oldTag: string, newTag: string) {
     if (!res.ok) throw new Error('Failed to rename tag');
     return res.json();
 }
-
 export async function deleteTag(tag: string) {
     const res = await fetch(`${getApiBase()}/tags/${tag}`, {
         method: 'DELETE'
@@ -281,9 +247,7 @@ export async function deleteTag(tag: string) {
     if (!res.ok) throw new Error('Failed to delete tag');
     return res.json();
 }
-
 // ============ WORKS API ============
-
 export async function fetchWorks() {
     // Try to fetch from static JSON first (more reliable)
     try {
@@ -291,25 +255,20 @@ export async function fetchWorks() {
             headers: { 'Content-Type': 'application/json' } 
         });
         if (res.ok) {
-            console.log('✅ [API] Loaded works from static JSON');
             return await res.json();
         }
     } catch (err) {
-        console.warn('⚠️ [API] Failed to load static works.json, trying API...');
     }
-    
     // Fallback to API if static JSON fails
     try {
         const res = await fetch(`${getApiBase()}/works`);
         if (!res.ok) throw new Error('API returned non-200');
-        console.log('✅ [API] Loaded works from D1 API');
         return await res.json();
     } catch (err) {
         console.error('❌ [API] Failed to fetch works from both sources:', err);
         return [];
     }
 }
-
 export async function fetchWork(slug: string) {
     // Try static works.json first
     try {
@@ -318,18 +277,14 @@ export async function fetchWork(slug: string) {
             const works = await res.json();
             const work = Array.isArray(works) ? works.find((w: any) => w.slug === slug) : null;
             if (work) {
-                console.log(`✅ [API] Found work "${slug}" in static JSON`);
                 return work;
             }
         }
     } catch (err) {
-        console.warn('⚠️ [API] Failed to search static works.json');
     }
-    
     // Fallback to API
     return cachedFetch(`${getApiBase()}/works?slug=${slug}`);
 }
-
 export async function saveWork(data: any) {
     // Smart save: if ID exists, try update first, fallback to create
     if (data.id) {
@@ -361,7 +316,6 @@ export async function saveWork(data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function updateWork(id: string, data: any) {
     const res = await fetch(`${getApiBase()}/works/${id}`, {
         method: 'PUT',
@@ -372,14 +326,12 @@ export async function updateWork(id: string, data: any) {
     requestCache.clear();
     return res.json();
 }
-
 export async function deleteWork(slug: string) {
     const res = await fetch(`${getApiBase()}/works/${slug}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete work');
     requestCache.clear();
     return res.json();
 }
-
 // Work Details (key moments, quotes, etc.) - Load from static JSON first
 export async function fetchWorkDetails(slug: string) {
     // Try static JSON first (static/works-details/{slug}.json)
@@ -388,28 +340,23 @@ export async function fetchWorkDetails(slug: string) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (res.ok) {
-            console.log(`✅ [API] Loaded work details for "${slug}" from static JSON`);
             const data = await res.json();
             // Extract language-specific data if needed
             return data;
         }
     } catch (err) {
-        console.warn(`⚠️ [API] Failed to load static work details for "${slug}"`);
     }
-    
     // Fallback to API
     try {
         const res = await fetch(`${getApiBase()}/works/${slug}/details`);
         if (res.status === 404) return null;
         if (!res.ok) throw new Error('Failed to fetch work details');
-        console.log(`✅ [API] Loaded work details for "${slug}" from D1 API`);
         return res.json();
     } catch (err) {
         console.error(`❌ [API] Failed to fetch work details for "${slug}":`, err);
         return null;
     }
 }
-
 export async function saveWorkDetails(slug: string, details: any) {
     const res = await fetch(`${getApiBase()}/works/${slug}/details`, {
         method: 'POST',
@@ -419,15 +366,12 @@ export async function saveWorkDetails(slug: string, details: any) {
     if (!res.ok) throw new Error('Failed to save work details');
     return res.json();
 }
-
 export async function deleteWorkDetails(slug: string) {
     const res = await fetch(`${getApiBase()}/works/${slug}/details`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete work details');
     return res.json();
 }
-
 // ============ AI (Cloudflare Worker) ============
-
 type AiResource = { title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string };
 export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
@@ -439,7 +383,6 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     url.searchParams.set('ask', question);
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
     if (sitemap) url.searchParams.set('sitemap', sitemap);
-
     const res = await fetch(url.toString(), {
         method: 'GET',
         headers: { 'accept': 'application/json' }
@@ -454,23 +397,19 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const finalText = typeof text === 'string' ? text : String(text);
     return { text: finalText, resources };
 }
-
 export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
     const url = isDev
         ? new URL('https://caesar.schaechner.workers.dev/simulate')
         : new URL('/api/simulate', origin || '');
-
     const res = await fetch(url.toString(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ persona, scenario, history, choice })
     });
-
     if (!res.ok) {
         throw new Error(`Simulation failed: ${res.status}`);
     }
-
     return res.json();
 }

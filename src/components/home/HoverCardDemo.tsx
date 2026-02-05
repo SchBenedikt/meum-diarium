@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Sparkles, MapPin, Quote, Users, Zap, Clock, Shield } from 'lucide-react';
 import { useState } from 'react';
-
 export function HoverCardDemo() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   const demoCards = [
     {
       icon: BookOpen,
@@ -43,7 +41,6 @@ export function HoverCardDemo() {
       color: 'from-yellow-500 to-yellow-600',
     },
   ];
-
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6">
@@ -64,7 +61,6 @@ export function HoverCardDemo() {
             Fahre über die Karten, um die Funktionen zu erkunden. Jede Karte hat einzigartige Effekte.
           </p>
         </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {demoCards.map((card, i) => {
             const Icon = card.icon;
@@ -83,7 +79,6 @@ export function HoverCardDemo() {
                 <div
                   className={`absolute inset-0 opacity-0 bg-gradient-to-br ${card.color} transition-opacity duration-300 group-hover:opacity-10`}
                 />
-
                 {/* Icon container with scale effect */}
                 <div
                   className={`relative p-4 bg-gradient-to-br ${card.color} rounded-[1.2rem] w-fit mb-4 transition-all duration-300 ${
@@ -92,7 +87,6 @@ export function HoverCardDemo() {
                 >
                   <Icon className="h-6 w-6 text-white" />
                 </div>
-
                 {/* Content */}
                 <div className="relative z-10">
                   <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">
@@ -102,12 +96,10 @@ export function HoverCardDemo() {
                     {card.description}
                   </p>
                 </div>
-
                 {/* Animated border on hover */}
                 <div className="absolute inset-0 rounded-[1.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <div className="absolute inset-0 rounded-[1.5rem] border border-primary/50 animate-pulse" />
                 </div>
-
                 {/* Hover indicator dot */}
                 {hoveredIndex === i && (
                   <motion.div
@@ -120,7 +112,6 @@ export function HoverCardDemo() {
             );
           })}
         </div>
-
         {/* Explanation */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}

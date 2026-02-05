@@ -11,18 +11,15 @@ import { BlogPost, Author, LexiconEntry, Work } from '@/types/blog';
 import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
 import slugify from 'slugify';
-
 interface SearchDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
 type SearchResult =
   | { type: 'post', data: BlogPost }
   | { type: 'lexicon', data: LexiconEntry }
   | { type: 'author', data: typeof authors[Author] }
   | { type: 'work', data: Work, authorId: string };
-
 export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,40 +27,33 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   const { posts, isLoading } = usePosts();
   const { lexicon = [] } = useLexicon();
   const { language } = useLanguage();
-
   // Helper function to extract searchable text from work details
   const getWorkSearchableContent = (slug: string): string => {
     const detail = workDetails[slug as keyof typeof workDetails];
     if (!detail) return '';
-
     const parts: string[] = [];
-
     // Add context paragraphs
     if (detail.context?.paragraphs) {
       parts.push(...detail.context.paragraphs);
     }
-
     // Add quotes
     if (detail.quotes) {
       detail.quotes.forEach(q => {
         parts.push(q.latin, q.translation, q.context);
       });
     }
-
     // Add sections
     if (detail.sections) {
       detail.sections.forEach(s => {
         parts.push(s.title, ...s.content);
       });
     }
-
     // Add key moments
     if (detail.keyMoments) {
       detail.keyMoments.forEach(m => {
         parts.push(m.title, m.description, m.significance);
       });
     }
-
     // Add literary features
     if (detail.literaryFeatures) {
       detail.literaryFeatures.forEach(f => {
@@ -71,7 +61,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
         if (f.examples) parts.push(...f.examples);
       });
     }
-
     // Add book chapters
     if (detail.bookChapters) {
       detail.bookChapters.forEach(b => {
@@ -79,22 +68,17 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
         if (b.keyEvents) parts.push(...b.keyEvents);
       });
     }
-
     // Add impact
     if (detail.impact) {
       parts.push(detail.impact.title);
       parts.push(...detail.impact.paragraphs);
       parts.push(...detail.impact.highlights);
     }
-
     return parts.join(' ').toLowerCase();
   };
-
   const results: SearchResult[] = useMemo(() => {
     if (isLoading || !query.trim()) return [];
-
     const searchTerm = query.toLowerCase();
-
     const postResults: SearchResult[] = posts.filter(post =>
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
@@ -102,20 +86,17 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       (authors[post.author]?.name || '').toLowerCase().includes(searchTerm) ||
       getPostTags(post, language).some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
-
     const lexiconResults: SearchResult[] = lexicon.filter(entry =>
       entry.term.toLowerCase().includes(searchTerm) ||
       entry.definition.toLowerCase().includes(searchTerm) ||
       entry.category.toLowerCase().includes(searchTerm) ||
       (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
     ).map(entry => ({ type: 'lexicon', data: entry }));
-
     const authorResults: SearchResult[] = Object.values(authors).filter(author =>
       author.name.toLowerCase().includes(searchTerm) ||
       author.description.toLowerCase().includes(searchTerm) ||
       author.title.toLowerCase().includes(searchTerm)
     ).map(author => ({ type: 'author', data: author }));
-
     const workResults: SearchResult[] = Object.entries(works).filter(([slug, work]) => {
       const searchableText = [
         work.title,
@@ -131,10 +112,8 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       data: work, 
       authorId: work.author as string 
     }));
-
     return [...postResults, ...workResults, ...lexiconResults, ...authorResults].slice(0, 8);
   }, [query, posts, isLoading]);
-
   const handleNavigation = (index: number) => {
     if (index < 0 || index >= results.length) return;
     const result = results[index];
@@ -146,11 +125,9 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       const workSlug = slugify(result.data.title, { lower: true, strict: true });
       path = `/${result.authorId}/works/${workSlug}`;
     }
-
     navigate(path);
     onClose();
   };
-
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
@@ -170,18 +147,15 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       }
     }
   }, [results.length, activeIndex, onClose, handleNavigation]); // Added handleNavigation to dependencies
-
   useEffect(() => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
     }
   }, [isOpen, handleKeyDown]);
-
   useEffect(() => {
     setActiveIndex(0);
   }, [query]);
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -221,26 +195,22 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                 <X className="h-5 w-5" />
               </button>
             </div>
-
             <div className="max-h-96 overflow-y-auto">
               {results.length === 0 && query.trim() && !isLoading && (
                 <div className="p-8 text-center text-muted-foreground text-sm">
                   Keine Ergebnisse gefunden
                 </div>
               )}
-
               {results.length === 0 && !query.trim() && (
                 <div className="p-8 text-center text-muted-foreground text-sm">
                   Gib einen Suchbegriff ein
                 </div>
               )}
-
               {isLoading && (
                 <div className="p-8 text-center text-muted-foreground text-sm">
                   Lädt...
                 </div>
               )}
-
               {results.map((result, index) => (
                 <Link
                   key={index}
@@ -285,7 +255,6 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
                 </Link>
               ))}
             </div>
-
             <div className="px-4 py-3 border-t border-border bg-secondary text-xs text-muted-foreground flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1">

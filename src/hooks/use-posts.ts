@@ -3,24 +3,19 @@ import { useQuery } from '@tanstack/react-query';
 import { BlogPost } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { fetchPosts } from '@/lib/api';
-
 export function usePosts() {
   const { language } = useLanguage();
   const [translatedPosts, setTranslatedPosts] = useState<BlogPost[]>([]);
   const [isTranslating, setIsTranslating] = useState(false);
-
   const { data: posts, isLoading: isFetching, error } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
-      console.log('🔄 [usePosts] Fetching posts from D1 database...');
-      
       const apiStartTime = Date.now();
       const apiPosts = await fetchPosts();
       const normalizedPosts = Array.isArray(apiPosts)
         ? apiPosts.map((post: any) => {
             // Normalize author field (API returns author_id or authorId)
             const authorId = post.author_id ?? post.authorId ?? post.author;
-            console.log(`   Post: ${post.slug} => author: ${authorId}`);
             return {
               ...post,
               author: authorId,
@@ -29,25 +24,18 @@ export function usePosts() {
           })
         : [];
       const apiFetchTime = Date.now() - apiStartTime;
-      
       if (normalizedPosts.length > 0) {
         console.log(`✅ [usePosts] Loaded ${normalizedPosts.length} posts from D1 database (${apiFetchTime}ms)`);
-        console.log('   Data source: Cloudflare D1 via API');
-        console.log('   Sample post:', normalizedPosts[0]);
         return normalizedPosts;
       }
-      
-      console.warn('⚠️ [usePosts] D1 database returned empty result');
       return [];
     },
     retry: 2,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
-
   useEffect(() => {
     async function translateAll() {
       if (!posts) return;
-
       setIsTranslating(true);
       try {
         const translated = await Promise.all(
@@ -62,10 +50,8 @@ export function usePosts() {
         setIsTranslating(false);
       }
     }
-
     translateAll();
   }, [posts, language]);
-
   return { 
     posts: translatedPosts, 
     isLoading: isFetching || isTranslating,

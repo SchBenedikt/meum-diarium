@@ -3,15 +3,11 @@ import { BookOpen, ArrowRight, Map, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuthor } from '@/context/AuthorContext';
 import { authors } from '@/data/authors';
-
 export function OverviewGuide() {
   const { currentAuthor } = useAuthor();
   if (!currentAuthor) return null;
-
   const authorName = authors[currentAuthor].name;
-
   // Only show a refined "Start hier" for author pages (e.g., /caesar)
-
   return (
     <section className="mb-12">
       <motion.div

@@ -21,17 +21,14 @@ import slugify from 'slugify';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline, getTranslatedAuthors } from '@/lib/translator';
 import { buildTimelineEvents } from '@/lib/timeline-builder';
-
 type ContentFilter = 'all' | 'diary' | 'scientific';
 type FilterType = 'all' | 'birth' | 'event' | 'work' | 'death';
-
 const typeIcons = {
   birth: Star,
   death: Skull,
   event: Calendar,
   work: BookOpen,
 };
-
 const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
   const eventSlug = slugify(event.title, { lower: true, strict: true });
   return posts.find(
@@ -41,23 +38,19 @@ const findPostByEvent = (event: TimelineEvent, posts: BlogPost[]) => {
       (p.historicalYear === event.year && p.author === event.author),
   );
 };
-
 const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
   const content = post?.content?.[perspective];
   return content != null && typeof content === 'string' && content.trim().length > 0;
 };
-
 export function Timeline() {
   const { language, t } = useLanguage();
   const { posts } = usePosts();
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(staticTimelineEvents);
   const [authors, setAuthors] = useState<Record<string, AuthorInfo>>(baseAuthors);
-
   const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>('all');
   const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
   const [searchTerm, setSearchTerm] = useState('');
-
   useEffect(() => {
     async function updateTimeline() {
       const translatedStatic = await getTranslatedTimeline(language);
@@ -68,14 +61,12 @@ export function Timeline() {
     }
     updateTimeline();
   }, [language, posts]);
-
   const typeLabels: Record<string, string> = {
     birth: t('birth') || 'Geburt',
     death: t('death') || 'Tod',
     event: t('event') || 'Ereignis',
     work: t('work') || 'Werk',
   };
-
   const filteredEvents = useMemo(() => {
     return timelineEvents
       .slice()
@@ -83,11 +74,9 @@ export function Timeline() {
       .filter((event) => {
         const authorMatch = selectedAuthors.length === 0 || selectedAuthors.includes(event.author);
         const typeMatch = selectedType === 'all' || event.type === selectedType;
-
         const searchMatch = !searchTerm ||
           event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           event.description.toLowerCase().includes(searchTerm.toLowerCase());
-
         let contentMatch = true;
         if (contentFilter !== 'all') {
           const post = findPostByEvent(event, posts);
@@ -97,31 +86,24 @@ export function Timeline() {
             contentMatch = false;
           }
         }
-
         return authorMatch && typeMatch && contentMatch && searchMatch;
       });
   }, [timelineEvents, selectedAuthors, selectedType, contentFilter, posts, searchTerm]);
-
   const clearFilters = () => {
     setSelectedAuthors([]);
     setSelectedType('all');
     setContentFilter('all');
     setSearchTerm('');
   };
-
   const hasFilters = selectedAuthors.length > 0 || selectedType !== 'all' || contentFilter !== 'all' || searchTerm !== '';
-
   const formatYear = (year: number) => {
     if (!Number.isFinite(year)) return '—';
     return year > 0 ? `${year} n. Chr.` : `${Math.abs(year)} v. Chr.`;
   };
-
   const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <div className="min-h-screen bg-background selection:bg-primary/10">
       <div className="container mx-auto px-4 max-w-5xl">
-
         {/* Search & Filter Bar */}
         <div className="sticky top-20 z-50 mb-12">
           <motion.div
@@ -140,7 +122,6 @@ export function Timeline() {
                 className="w-full bg-transparent border-none h-12 pl-11 pr-4 focus-visible:ring-0 text-base placeholder:text-muted-foreground/20 focus:outline-none"
               />
             </div>
-
             <div className="flex items-center gap-2 p-1 md:border-l border-border/40 w-full md:w-auto overflow-x-auto no-scrollbar">
               {/* Type Filter */}
               <div className="flex gap-1">
@@ -165,7 +146,6 @@ export function Timeline() {
                   );
                 })}
               </div>
-
               {/* Clear Filters */}
               {hasFilters && (
                 <button
@@ -178,7 +158,6 @@ export function Timeline() {
             </div>
           </motion.div>
         </div>
-
         {/* Decade Sections (Lexicon Style) */}
         <div className="space-y-24 pb-24">
           <AnimatePresence>
@@ -214,7 +193,6 @@ export function Timeline() {
                 const isBC = decade < 0;
                 const displayDecade = isBC ? Math.abs(decade) : decade;
                 const decadeLabel = isBC ? `${displayDecade}er v. Chr.` : `${displayDecade}er n. Chr.`;
-
                 return (
                   <div key={decadeKey} className="group/section">
                     {/* Decade Header */}
@@ -224,19 +202,16 @@ export function Timeline() {
                       </span>
                       <div className="h-[1px] flex-1 bg-border/40" />
                     </div>
-
                     {/* Events Grid (Lexicon Card Style) */}
                     <div className="grid gap-px bg-border/40 border border-border/40 rounded-[2rem] overflow-hidden shadow-sm">
                       {events.map(({ event }, eventIdx) => {
                         const author = event.author ? authors[event.author] : null;
                         const Icon = typeIcons[event.type as keyof typeof typeIcons];
                         const post = findPostByEvent(event, posts);
-
                         const CardContent = (
                           <>
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/entry:opacity-100 transition-opacity duration-500" />
                             <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover/entry:scale-y-100 transition-transform duration-500 origin-top" />
-
                             <div className="relative flex flex-col sm:flex-row sm:items-start justify-between gap-6">
                               <div className="space-y-4 flex-1">
                                 <div className="flex items-center gap-3">
@@ -253,21 +228,18 @@ export function Timeline() {
                                     {typeLabels[event.type]}
                                   </span>
                                 </div>
-
                                 <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight group-hover/entry:text-primary transition-colors italic">
                                   {event.title}
                                 </h3>
                                 <p className="text-muted-foreground/60 font-light leading-relaxed max-w-2xl text-base group-hover/entry:text-foreground/80 transition-colors">
                                   {event.description}
                                 </p>
-
                                 {author && (
                                   <div className="flex items-center gap-2 mt-2">
                                     <div className="w-4 h-4 rounded-full bg-cover bg-center grayscale opacity-50 group-hover/entry:grayscale-0 group-hover/entry:opacity-100 transition-all" style={{ backgroundImage: `url(${author.heroImage})` }} />
                                     <span className="text-[10px] font-semibold text-muted-foreground/60 group-hover/entry:text-primary/80 transition-colors">{author.name}</span>
                                   </div>
                                 )}
-
                               </div>
                               <div className="flex items-center gap-2 text-primary/0 group-hover/entry:text-primary/100 transition-all duration-500 -translate-x-4 group-hover/entry:translate-x-0 self-end sm:self-center">
                                 {post && (
@@ -280,7 +252,6 @@ export function Timeline() {
                             </div>
                           </>
                         )
-
                         if (post) {
                           return (
                             <Link
@@ -292,7 +263,6 @@ export function Timeline() {
                             </Link>
                           )
                         }
-
                         return (
                           <div
                             key={`${event.year}-${event.title}`}

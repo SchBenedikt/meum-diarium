@@ -1,43 +1,33 @@
-
 import { useState } from 'react';
 import { Share2, Copy, Check, Facebook, Linkedin, Mail, Link2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
-
-
 // Custom Icons for WhatsApp, Telegram and X
 const WhatsAppIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
 );
-
 const TelegramIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"></path></svg>
 );
-
 const XIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
-
-
 interface ShareButtonProps {
   title: string;
   text?: string;
   url?: string;
   variant?: 'default' | 'compact';
 }
-
 export function ShareButton({ title, text, url, variant = 'default' }: ShareButtonProps) {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-
   const shareUrl = url || window.location.href;
   const defaultShareText = text || `Schau mal, was ich gefunden habe: ${shareUrl}`;
-
   const shareLinks = [
     {
       name: 'X',
@@ -76,7 +66,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       color: 'hover:bg-primary/10 hover:text-primary'
     }
   ];
-
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
@@ -87,14 +76,12 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       toast.error("Konnte den Link nicht kopieren.");
     }
   };
-
   const handleNativeShare = async () => {
     const shareData = {
       title: title,
       text: text || t('shareText') || 'Schau dir das mal an!',
       url: shareUrl,
     };
-
     // Check if system share is supported and the data is sharable
     if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
       try {
@@ -103,7 +90,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       } catch (err) {
         // If user cancelled (AbortError), don't show fallback
         if ((err as Error).name === 'AbortError') return;
-
         // Otherwise, fall back to custom menu
         console.error('Sharing failed:', err);
         setIsOpen(true);
@@ -122,7 +108,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
       setIsOpen(true);
     }
   };
-
   return (
     <div className="relative">
       <button
@@ -138,7 +123,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
         <Share2 className="h-4 w-4" />
         {variant !== 'compact' && <span className="text-sm font-medium">{t('share')}</span>}
       </button>
-
       <AnimatePresence>
         {isOpen && (
           <>
@@ -150,7 +134,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 z-40 bg-transparent"
             />
-
             {/* Share Menu */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -10 }}
@@ -163,7 +146,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
                 <p className="text-sm font-medium">{t('share')}</p>
                 <p className="text-xs text-muted-foreground truncate">{title}</p>
               </div>
-
               <div className="p-2">
                 {/* Social Links */}
                 <div className="grid grid-cols-4 gap-1 mb-2">
@@ -184,7 +166,6 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
                     </a>
                   ))}
                 </div>
-
                 {/* Copy Link */}
                 <button
                   onClick={handleCopyLink}

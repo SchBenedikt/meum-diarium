@@ -15,19 +15,15 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
-
 export function CaesarAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
-
   const authorDetails = useAuthorDetails(t);
-
   useEffect(() => {
     if (authorId === 'caesar') {
       setCurrentAuthor('caesar' as Author);
@@ -36,12 +32,10 @@ export function CaesarAboutPage() {
           const authorPostsList = allPosts.filter(p => p.author === 'caesar').slice(0, 3);
           setAuthorPosts(authorPostsList);
         }
-
         const translatedWorks = await Promise.all(
           Object.values(baseWorks).filter(w => w.author === 'caesar').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-
         try {
           const res = await fetch('/api/pages/author-about-caesar');
           if (res.ok) {
@@ -57,7 +51,6 @@ export function CaesarAboutPage() {
       translateContent();
     }
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
-
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -65,9 +58,7 @@ export function CaesarAboutPage() {
       </div>
     );
   }
-
   const details = authorDetails.caesar;
-
   const caesarSnapshots = [
     { label: t('caesar.snapshots.lifespan'), value: '100–44 ' + t('common.bc'), hint: '56 ' + t('common.years') },
     { label: t('caesar.snapshots.consulship'), value: '59 ' + t('common.bc'), hint: t('caesar.snapshots.consulship') },
@@ -76,7 +67,6 @@ export function CaesarAboutPage() {
     { label: t('caesar.snapshots.legions'), value: '9 ' + t('caesar.snapshots.legions'), hint: 'ca. 40–50k' },
     { label: t('caesar.snapshots.campaigns'), value: '4', hint: 'Gallia, Germania, Britannia, Hispania' },
   ];
-
   const caesarReforms = [
     {
       title: t('caesar.legacy.julianCalendar') + ' (46 ' + t('common.bc') + ')',
@@ -115,13 +105,11 @@ export function CaesarAboutPage() {
       horizon: t('caesar.horizons.longTerm'),
     },
   ];
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} ${t('common.bc')}` : `${year} ${t('common.ad')}`;
   };
-
   const caesarSidebar = {
     feldzuege: [
       { year: -58, title: t('caesar.timeline.campaigns.gallicWar.title'), note: t('caesar.timeline.campaigns.gallicWar.note') },
@@ -146,7 +134,6 @@ export function CaesarAboutPage() {
       { year: -45, title: t('caesar.timeline.reforms.veterans.title'), note: t('caesar.timeline.reforms.veterans.note') },
     ],
   };
-
   const caesarReformDeep = [
     {
       title: t('caesar.legacy.julianCalendar'),
@@ -164,7 +151,6 @@ export function CaesarAboutPage() {
       impact: t('caesar.legacy.veteransSummary'),
     },
   ];
-
   const caesarTheaters = [
     {
       title: t('caesar.locations.gallia.title'),
@@ -187,7 +173,6 @@ export function CaesarAboutPage() {
       note: t('caesar.locations.hispania.note'),
     },
   ];
-
   const caesarOffices = [
     {
       title: t('caesar.timeline.offices.pontifex.title'),
@@ -205,7 +190,6 @@ export function CaesarAboutPage() {
       note: t('caesar.officeDetails.dictator.note'),
     },
   ];
-
   const caesarDebate = [
     {
       heading: t('caesar.polarization.admired'),
@@ -216,7 +200,6 @@ export function CaesarAboutPage() {
       points: t('caesar.polarization.fearedPoints', { returnObjects: true }) as string[],
     },
   ];
-
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
@@ -226,7 +209,6 @@ export function CaesarAboutPage() {
           language={language}
           birthPlace={details.birthPlace}
         />
-
         {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
@@ -241,7 +223,6 @@ export function CaesarAboutPage() {
                       <p className="text-sm text-muted-foreground mt-1">{t('caesar.worksSubtitle')}</p>
                     </div>
                   </div>
-
                   <div className="grid gap-6 sm:grid-cols-2">
                     {authorWorks.map((work, i) => (
                       <Link
@@ -283,7 +264,6 @@ export function CaesarAboutPage() {
                   </div>
                 </section>
               )}
-
               {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
@@ -332,7 +312,6 @@ export function CaesarAboutPage() {
                 </section>
               )}
             </div>
-
             {/* Sidebar */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
@@ -354,7 +333,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </div>
-
         {/* Lebenslauf & Stationen - Full Width Section */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
@@ -366,7 +344,6 @@ export function CaesarAboutPage() {
                   <p className="text-lg text-muted-foreground mt-2">{t('caesar.biography.subtitle')}</p>
                 </div>
               </div>
-
               <div className="grid gap-8 lg:grid-cols-3">
                 {/* Feldzüge & Kriege */}
                 <div className="card-modern card-padding-lg space-y-6">
@@ -402,7 +379,6 @@ export function CaesarAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Ämter */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -437,7 +413,6 @@ export function CaesarAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Reformen */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -473,7 +448,6 @@ export function CaesarAboutPage() {
                   </div>
                 </div>
               </div>
-
               {/* Timeline visualization below */}
               <div className="mt-16 pt-12 border-t border-border/40">
                 <p className="text-center text-muted-foreground mb-8">
@@ -492,7 +466,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Reformen, die blieben */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -556,7 +529,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Reformen im Detail */}
         <section className="py-20 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -608,7 +580,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Warum er polarisiert */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -636,7 +607,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Schauplätze & Ämter */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -644,7 +614,6 @@ export function CaesarAboutPage() {
               <h2 className="font-display text-4xl font-bold mb-4">{t('caesar.theaters.title')}</h2>
               <p className="text-lg text-muted-foreground">{t('caesar.theaters.subtitle')}</p>
             </div>
-
             <div className="max-w-6xl mx-auto space-y-12">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -677,7 +646,6 @@ export function CaesarAboutPage() {
                   <CaesarCampaignMap mapHeightClass="h-[520px] lg:h-[620px]" />
                 </div>
               </div>
-
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">{t('caesar.theaters.officesTitle')}</span>
@@ -702,7 +670,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Militärische Meisterleistungen */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -742,7 +709,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Caesars Weg zur Macht */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -795,7 +761,6 @@ export function CaesarAboutPage() {
                   </motion.div>
                 </div>
               </div>
-
               {/* Phase 2 */}
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
@@ -839,7 +804,6 @@ export function CaesarAboutPage() {
                   </div>
                 </motion.div>
               </div>
-
               {/* Phase 3 */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -894,7 +858,6 @@ export function CaesarAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Legendäre Zitate */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">

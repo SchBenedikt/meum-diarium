@@ -13,7 +13,6 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuthors } from "@/hooks/use-authors";
-
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
@@ -39,22 +38,16 @@ const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
-const LatinReader = lazy(() => import('./pages/LatinReader'));
+const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
-
 const queryClient = new QueryClient();
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 };
-
-
 const AppContent = () => {
   const location = useLocation();
   const { authors: dbAuthors } = useAuthors();
@@ -62,13 +55,11 @@ const AppContent = () => {
     location.pathname.startsWith('/cicero') ||
     location.pathname.startsWith('/augustus') ||
     location.pathname.startsWith('/seneca');
-
   const isPostPage = isAuthorRoute && (
     !location.pathname.endsWith('/about') &&
     !location.pathname.includes('/works/') &&
     location.pathname.split('/').length > 2
   );
-
   return (
     <AuthorProvider authorsData={dbAuthors}>
       <>
@@ -93,9 +84,11 @@ const AppContent = () => {
             <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
             <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
-            <Route path="/latin" element={<PageTransition><LatinTools /></PageTransition>} />
-            <Route path="/latin/vocab" element={<Navigate to="/latin" replace />} />
-            <Route path="/latin/reader" element={<PageTransition><LatinReader /></PageTransition>} />
+            <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
+            <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
+            <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
+            <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
+            <Route path="/reader/:authorId/:workSlug" element={<PageTransition><LatinReader /></PageTransition>} />
             {/* Admin routes */}
             <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
             <Route path="/admin" element={<ProtectedRoute><PageTransition><AdminPage /></PageTransition></ProtectedRoute>} />
@@ -134,7 +127,6 @@ const AppContent = () => {
     </AuthorProvider>
   );
 };
-
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
     initial={{ opacity: 0, x: -10 }}
@@ -148,8 +140,6 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
     {children}
   </motion.div>
 );
-
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -166,5 +156,4 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
 export default App;

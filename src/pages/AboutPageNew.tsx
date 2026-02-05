@@ -5,14 +5,11 @@ import { GeneralAboutPage } from './about/GeneralAboutPage';
 import { CaesarAboutPage } from './about/CaesarAboutPage';
 import { CiceroAboutPage } from './about/CiceroAboutPage';
 import { AugustusAboutPage } from './about/AugustusAboutPage';
-
 export default function AboutPage() {
   const { authorId } = useParams<{ authorId: string }>();
-
   if (!authorId || !baseAuthors[authorId as Author]) {
     return <GeneralAboutPage />;
   }
-
   switch (authorId) {
     case 'caesar':
       return <CaesarAboutPage />;

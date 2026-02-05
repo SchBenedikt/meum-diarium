@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
@@ -14,7 +13,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Footer } from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
-
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const [searchParams] = useSearchParams();
@@ -26,24 +24,18 @@ export default function ChatPage() {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const bottomRef = useRef<HTMLDivElement | null>(null);
-
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
-
     const author = authorId ? authors[authorId as Author] : null;
-
     useEffect(() => {
         if (authorId) {
             setCurrentAuthor(authorId as Author);
         }
     }, [authorId, setCurrentAuthor]);
-
     if (!author) return null;
-
     const sendQuestion = async (question: string) => {
         if (!question.trim()) return;
         setMessages(prev => [...prev, { role: 'user', content: question }]);
         setIsTyping(true);
-
         try {
             const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
@@ -64,18 +56,15 @@ export default function ChatPage() {
             setIsTyping(false);
         }
     };
-
     const handleSend = async () => {
         const question = input.trim();
         if (!question) return;
         setInput('');
         await sendQuestion(question);
     };
-
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, isTyping]);
-
     useEffect(() => {
         const q = searchParams.get('q');
         if (q && messages.length === 1 && !isTyping) {
@@ -83,8 +72,6 @@ export default function ChatPage() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
-
-
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -106,7 +93,6 @@ export default function ChatPage() {
                             Stelle gezielte Fragen an {author.name.split(' ')[0]} und erhalte kontextreiche, KI-gestützte Antworten.
                         </p>
                     </motion.div>
-
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -117,7 +103,6 @@ export default function ChatPage() {
                         </Link>
                     </motion.div>
                 </div>
-
                 {/* Chat Content */}
                 <div className="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
                     <div className="card-modern card-padding-md space-y-6 lg:sticky lg:top-24">
@@ -130,11 +115,9 @@ export default function ChatPage() {
                                 <h2 className="font-display text-xl font-semibold">Historischer Dialog</h2>
                             </div>
                         </div>
-
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             Du sprichst mit einer KI, die auf den Werken von <span className="text-foreground font-medium">{author.name}</span> trainiert wurde. Stelle präzise historische Fragen.
                         </p>
-
                         <div className="space-y-3">
                             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Kontext & Ressourcen</p>
                             {resources.length > 0 ? (
@@ -161,7 +144,6 @@ export default function ChatPage() {
                             )}
                         </div>
                     </div>
-
                     <div className="card-modern p-0 overflow-hidden">
                         <div className="flex items-center justify-between border-b border-border/50 px-4 sm:px-5 py-4 bg-background/70 backdrop-blur-xl">
                             <div className="flex items-center gap-3">
@@ -183,12 +165,10 @@ export default function ChatPage() {
                                 <span className="px-2 py-1 rounded-md text-[10px] font-semibold tracking-wide bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">BETA</span>
                             </div>
                         </div>
-
                         <div className="px-4 sm:px-5 py-2 bg-amber-500/10 border-b border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
                             <Sparkles className="h-3.5 w-3.5" />
                             <span>Experimenteller KI-Chat (Beta) – Antworten können ungenau sein.</span>
                         </div>
-
                         <ScrollArea className="h-[55vh] sm:h-[60vh] p-4 sm:p-6">
                             <div className="max-w-3xl mx-auto space-y-5 pb-2">
                                 {messages.map((msg, i) => (
@@ -224,7 +204,6 @@ export default function ChatPage() {
                                         </div>
                                     </motion.div>
                                 ))}
-
                                 <AnimatePresence>
                                     {isTyping && (
                                         <motion.div
@@ -247,11 +226,9 @@ export default function ChatPage() {
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
-
                                 <div ref={bottomRef} />
                             </div>
                         </ScrollArea>
-
                         <div className="border-t border-border/50 bg-background/80 backdrop-blur-xl px-4 sm:px-5 py-4">
                             <div className="max-w-3xl mx-auto relative flex items-center gap-2">
                                 <Input

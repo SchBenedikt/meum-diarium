@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/select';
 import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-
 interface SearchFilterProps {
   value?: string;
   onChange: (query: string) => void;
@@ -18,7 +17,6 @@ interface SearchFilterProps {
   filters?: Array<{ value: string; label: string }>;
   placeholder?: string;
 }
-
 export function SearchFilter({
   value: externalValue,
   onChange,
@@ -28,22 +26,18 @@ export function SearchFilter({
 }: SearchFilterProps) {
   const [searchQuery, setSearchQuery] = useState(externalValue || '');
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
-
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     onChange(value);
   };
-
   const handleFilterChange = (value: string) => {
     setSelectedFilter(value);
     onFilter?.(value);
   };
-
   const clearSearch = () => {
     setSearchQuery('');
     onChange('');
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}

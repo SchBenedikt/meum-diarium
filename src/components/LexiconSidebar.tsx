@@ -1,24 +1,18 @@
-
 import { Link } from 'react-router-dom';
 import { useLexicon } from '@/hooks/use-lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { BookCopy, Link as LinkIcon, BookMarked, Tags } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-
 interface LexiconSidebarProps {
   entry: LexiconEntry;
 }
-
 export function LexiconSidebar({ entry }: LexiconSidebarProps) {
   const { language, t } = useLanguage();
   const { lexicon = [] } = useLexicon();
-
-
   const relatedTerms = entry.relatedTerms
     ? lexicon.filter(e => entry.relatedTerms?.includes(e.slug))
     : [];
-
   return (
     <motion.aside
       initial={{ opacity: 0, x: 16 }}
@@ -38,7 +32,6 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           </p>
         </div>
       )}
-
       {/* Category */}
       <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
         <h3 className="font-display text-lg font-medium mb-3 flex items-center gap-2">
@@ -52,7 +45,6 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           {entry.category}
         </Link>
       </div>
-
       {/* Related Terms */}
       {relatedTerms.length > 0 && (
         <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
@@ -73,7 +65,6 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
           </div>
         </div>
       )}
-
       {/* Go to Lexicon */}
       <div className="rounded-[1.25rem] border border-border/40 bg-card p-5 lg:p-6">
         <Link to="/lexicon" className="group">

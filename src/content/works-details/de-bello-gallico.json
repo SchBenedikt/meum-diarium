@@ -56,82 +56,92 @@
         "title": "Die Helvetier und der Aufbau Galliens",
         "description": "Caesar stellt Gallien geographisch dar und beginnt seinen Feldzug gegen die wandernden Helvetier, die via Gallien nach Westen ziehen. Dieser erste Feldzug endet mit einer entscheidenden Schlacht an der Saône.",
         "timeframe": "58 v. Chr.",
-        "keyEvents": ["Gallia est omnis divisa in partes tres", "Helvetier überschreiten das römische Territorium", "Schlacht an der Saône"]
+        "keyEvents": [
+          "Gallia est omnis divisa in partes tres",
+          "Helvetier überschreiten das römische Territorium",
+          "Schlacht an der Saône"
+        ]
       },
       {
         "number": 2,
         "title": "Ariovistus und die germanische Bedrohung",
         "description": "Nach der Vertreibung der Helvetier wendet sich Caesar gegen Ariovistus, den König der Germanen, der Gallien bedroht. Die Schlacht gegen die Germanen zeigt Caesars militärisches Genie gegen eine numerisch überlegene Streitmacht.",
         "timeframe": "58 v. Chr.",
-        "keyEvents": ["Verhandlungen mit Ariovistus", "1. Gefecht im Elsass", "2. Schlacht gegen die Germanen"]
+        "keyEvents": [
+          "Verhandlungen mit Ariovistus",
+          "1. Gefecht im Elsass",
+          "2. Schlacht gegen die Germanen"
+        ]
       },
       {
         "number": 3,
         "title": "Belgien und die nördlichen Stämme",
         "description": "Caesar marschiert nach Norden und unterwirft die Belgier und andere nördliche Stämme. Dieses Buch enthält ethnographische Beobachtungen über belgische Sitten und Kriege gegen Belger.",
         "timeframe": "57 v. Chr.",
-        "keyEvents": ["Unterwerfung der Belgier", "Beschreibung belgischer Sitten", "Kampagnen gegen Nervii und Aduatuci"]
+        "keyEvents": [
+          "Unterwerfung der Belgier",
+          "Beschreibung belgischer Sitten",
+          "Kampagnen gegen Nervii und Aduatuci"
+        ]
       },
       {
         "number": 4,
         "title": "Expeditionen nach Germanien und Britannien",
         "description": "Caesar unternimmt spektakuläre Expeditionen über den Rhein nach Germanien und überquert den Ärmelkanal nach Britannien. Diese Unternehmungen sind militärisch begrenzter Erfolg, aber großes Prestige in Rom.",
         "timeframe": "55-54 v. Chr.",
-        "keyEvents": ["Bau der Rheinbrücke", "Expedition nach Germanien", "Erste Invasion in Britannien", "Zweite Invasion in Britannien"]
+        "keyEvents": [
+          "Bau der Rheinbrücke",
+          "Expedition nach Germanien",
+          "Erste Invasion in Britannien",
+          "Zweite Invasion in Britannien"
+        ]
       },
       {
         "number": 5,
         "title": "Guerilla-Kriege und britische Widerstände",
         "description": "Caesar beschreibt schwierige Kämpfe mit britischen Stämmen unter Cassivellaunus. Das Buch zeigt auch technische Details über schiffbau, Gezeiten und britische Kriegstaktiken.",
         "timeframe": "54-53 v. Chr.",
-        "keyEvents": ["Kämpfe gegen Cassivellaunus", "Überquerung der Themse", "Sturm zerstört Schiffe", "Rückzug aus Britannien"]
+        "keyEvents": [
+          "Kämpfe gegen Cassivellaunus",
+          "Überquerung der Themse",
+          "Sturm zerstört Schiffe",
+          "Rückzug aus Britannien"
+        ]
       },
       {
         "number": 6,
         "title": "Das zweite Gallische Jahr und ethnographische Digression",
         "description": "Caesar unterdrückt Aufstände in Gallien. Dieses Buch ist berühmt für seine ausführliche ethnographische Beschreibung der gallischen und germanischen Kulturen – Sitten, Religion (Druiden), Kriegsführung.",
         "timeframe": "53 v. Chr.",
-        "keyEvents": ["Ethnographische Beschreibung der Druiden", "Beschreibung der Germanen", "Kampagnen gegen neue Aufständische"]
+        "keyEvents": [
+          "Ethnographische Beschreibung der Druiden",
+          "Beschreibung der Germanen",
+          "Kampagnen gegen neue Aufständische"
+        ]
       },
       {
         "number": 7,
         "title": "Der große Aufstand und Vercingetorix",
         "description": "Der Höhepunkt des Krieges: Die vereinigten gallischen Stämme unter Vercingetorix erheben sich gegen Rom. Caesar beschreibt die Belagerung von Alesia – eine der größten militärischen Operationen der Antike.",
         "timeframe": "52 v. Chr.",
-        "keyEvents": ["Aufstand unter Vercingetorix", "Schlacht von Gergovia", "Doppelbelagerung von Alesia", "Niederlage und Gefangennahme des Vercingetorix"]
+        "keyEvents": [
+          "Aufstand unter Vercingetorix",
+          "Schlacht von Gergovia",
+          "Doppelbelagerung von Alesia",
+          "Niederlage und Gefangennahme des Vercingetorix"
+        ]
       },
       {
         "number": 8,
         "title": "Pacifizierung Galliens",
         "description": "Nach Alesia reduziert Caesar die letzten Widerstände in Gallien. Dieses Buch wurde möglicherweise von Aulus Hirtius (nicht Caesar selbst) geschrieben und beschließt die vollständige Unterwerfung Galliens.",
         "timeframe": "51-50 v. Chr.",
-        "keyEvents": ["Belagerung von Uxellodunum", "Belagerung von Alesia", "Endgültige Unterwerfung Galliens"]
-      }
-    ]
-  },
-  "en": {
-    "contextTitle": "Historical Context",
-    "contextParagraphs": [
-      "The work was created during and after Caesar's eight-year campaign in Gaul (58–50 BC). It served not only as a military report but above all as a political instrument to justify his actions in Rome and strengthen his position."
-    ],
-    "sections": [
-      {
-        "title": "Literary Significance",
-        "content": [
-          "Caesar's De Bello Gallico is a masterpiece of Latin prose. The clear, precise language makes it an ideal text for Latin learners – but this simplicity is calculated."
+        "keyEvents": [
+          "Belagerung von Uxellodunum",
+          "Belagerung von Alesia",
+          "Endgültige Unterwerfung Galliens"
         ]
       }
-    ],
-    "quotes": [],
-    "keyMoments": []
-  },
-  "la": {
-    "contextTitle": "Contextus Historicus",
-    "contextParagraphs": [
-      "Opus conditum est durante et post Caesar octo annorum expeditionem in Gallia (58–50 a.C.n.). Non solum ut relatio militaris sed praecipue ut instrumentum politicum serviebat ad facta sua Romae iustificanda et positionem suam confirmandam."
-    ],
-    "sections": [],
-    "quotes": [],
-    "keyMoments": []
+    ]
   }
 }

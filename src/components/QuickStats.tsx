@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/motion';
-
 interface Stat {
   icon: LucideIcon;
   label: string;
@@ -13,11 +12,9 @@ interface Stat {
   };
   href?: string;
 }
-
 interface QuickStatsProps {
   stats: Stat[];
 }
-
 export function QuickStats({ stats }: QuickStatsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

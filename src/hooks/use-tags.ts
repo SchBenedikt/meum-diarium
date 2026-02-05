@@ -1,7 +1,5 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { fetchTags } from '@/lib/api';
-
 export function useTags() {
     const {
         data: tags = [],
@@ -12,7 +10,6 @@ export function useTags() {
         queryKey: ['tags'],
         queryFn: fetchTags,
     });
-
     return {
         tags,
         isLoading,

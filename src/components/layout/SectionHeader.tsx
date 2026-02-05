@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-
 interface SectionHeaderProps {
   label?: string | ReactNode;
   labelIcon?: React.ComponentType<{ className?: string }>;
@@ -11,7 +10,6 @@ interface SectionHeaderProps {
   className?: string;
   subtitleClassName?: string;
 }
-
 export function SectionHeader({
   label,
   labelIcon: LabelIcon,
@@ -22,7 +20,6 @@ export function SectionHeader({
   subtitleClassName,
 }: SectionHeaderProps) {
   const alignment = align === 'left' ? 'items-start text-left' : 'items-center text-center';
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -37,11 +34,9 @@ export function SectionHeader({
           <span>{label}</span>
         </div>
       )}
-
       <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
         {title}
       </h1>
-
       {subtitle && (
         <p
           className={cn(

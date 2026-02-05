@@ -15,7 +15,6 @@ import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthorInfo } from '@/lib/author-translator';
-
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
   const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
@@ -23,7 +22,6 @@ const Index = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
-
   useEffect(() => {
     if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
@@ -31,19 +29,15 @@ const Index = () => {
       setCurrentAuthor(null);
     }
   }, [authorId, dbAuthors, setCurrentAuthor]);
-
   // const showTimelineCard = currentAuthor !== 'caesar'; // Removed as no longer used
-
   if (authorId && !dbAuthors[authorId as Author]) {
     if (authorsLoading) {
       return null; // Show loading state
     }
     return <NotFound />;
   }
-
   const author = currentAuthor ? dbAuthors[currentAuthor] : null;
   const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t as any) : null;
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
@@ -55,7 +49,6 @@ const Index = () => {
         {currentAuthor ? (
           <div>
             <HeroSection />
-
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-16 relative z-10 pb-12">
               {/* Primary Feature - AI Chat */}
               <div className="mb-16">
@@ -72,11 +65,9 @@ const Index = () => {
                         </h2>
                       </div>
                     </div>
-
                     <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mb-8 font-light">
                       {t('index.chatDescription', { name: translatedAuthor?.name })}
                     </p>
-
                     <div className="space-y-6 max-w-3xl">
                       <div className="relative">
                         <div className="relative bg-secondary/50 backdrop-blur-md p-1.5 rounded-full border border-border group focus-within:border-primary/30 transition-all duration-300">
@@ -106,7 +97,6 @@ const Index = () => {
                           </div>
                         </div>
                       </div>
-
                       <div className="flex flex-wrap gap-2">
                         {[
                           t('index.suggestionLife'),
@@ -126,14 +116,10 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-
               {/* Minimal Tools Row */}
               <div className="mb-12 relative z-20">
                 <SimulationCarousel authorId={currentAuthor} />
               </div>
-
-
-
               {/* Content Sections */}
               <div className="space-y-16 border-t border-border/30 pt-12">
                 <BlogList />
@@ -148,5 +134,4 @@ const Index = () => {
     </div >
   );
 };
-
 export default Index;

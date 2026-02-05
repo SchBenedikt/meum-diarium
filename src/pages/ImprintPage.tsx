@@ -4,16 +4,13 @@ import { Building2, Mail, Phone, Globe, Shield, Scale } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-
 export default function ImprintPage() {
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title="Impressum - Meum Diarium"
         description="Rechtliche Informationen und Kontaktdaten von Meum Diarium."
       />
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-20 sm:py-24 overflow-hidden border-b border-border">
@@ -21,7 +18,6 @@ export default function ImprintPage() {
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px]" />
           </div>
-
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -33,18 +29,15 @@ export default function ImprintPage() {
                 <Building2 className="mr-2 h-4 w-4" />
                 Impressum
               </Badge>
-
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
                 Impressum
               </h1>
-
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Angaben gemäß § 5 TMG
               </p>
             </motion.div>
           </div>
         </section>
-
         {/* Content Section */}
         <section className="py-16">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -85,7 +78,6 @@ export default function ImprintPage() {
                   <p className="text-sm">Die Anschrift geben wir auf Anfrage an, um Privatsphäre und Sicherheit zu wahren.</p>
                 </div>
               </div>
-
               {/* Contact */}
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
@@ -116,14 +108,12 @@ export default function ImprintPage() {
                   </p>
                 </div>
               </div>
-
               {/* Disclaimer */}
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <Shield className="w-6 h-6 text-primary" />
                   Haftungsausschluss
                 </h2>
-                
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold mb-3">
@@ -136,7 +126,6 @@ export default function ImprintPage() {
                       Sollten Ihnen Fehler auffallen, freuen wir uns über einen Hinweis, damit wir nachbessern können.
                     </p>
                   </div>
-
                   <div>
                     <h3 className="text-lg font-semibold mb-3">
                       Haftung für Links
@@ -148,7 +137,6 @@ export default function ImprintPage() {
                       Links werden sorgfältig ausgewählt, können sich aber jederzeit ändern.
                     </p>
                   </div>
-
                   <div>
                     <h3 className="text-lg font-semibold mb-3">
                       Urheberrecht
@@ -162,7 +150,6 @@ export default function ImprintPage() {
                   </div>
                 </div>
               </div>
-
               {/* Educational Purpose */}
               <div className="p-8 rounded-2xl bg-card/60 backdrop-blur-xl border border-border/40">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
@@ -179,7 +166,6 @@ export default function ImprintPage() {
                   Das Angebot richtet sich an Lernende, Lehrende und alle, die römische Geschichte verständlich und gut aufbereitet erleben möchten.
                 </p>
               </div>
-
               {/* EU Dispute Resolution */}
               <div className="p-6 rounded-2xl bg-secondary/20 border border-border/40">
                 <h2 className="text-xl font-bold mb-3">
@@ -200,7 +186,6 @@ export default function ImprintPage() {
                   Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
                 </p>
               </div>
-
               {/* Links */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link to="/privacy">
@@ -220,7 +205,6 @@ export default function ImprintPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

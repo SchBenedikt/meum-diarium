@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CircleMarker, MapContainer, Polyline, Popup, ScaleControl, TileLayer, Tooltip, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
-
 interface MarkerPoint {
   title: string;
   note: string;
   position: [number, number];
   tone?: 'core' | 'sea' | 'siege';
 }
-
 interface RouteSegment {
   id: string;
   label: string;
@@ -16,12 +14,10 @@ interface RouteSegment {
   points: [number, number][];
   dashed?: boolean;
 }
-
 interface CaesarCampaignMapProps {
   className?: string;
   mapHeightClass?: string;
 }
-
 const markerPoints: MarkerPoint[] = [
   // Gallischer Krieg (58-50 v. Chr.)
   { title: 'Helvetier-Schlacht', note: '58 v. Chr.\nErster großer Sieg\n130.000 Feinde aufgehalten', position: [46.2, 6.1] },
@@ -31,7 +27,6 @@ const markerPoints: MarkerPoint[] = [
   { title: 'Avaricum', note: '52 v. Chr.\n25 Tage Belagerung\n40.000 Tote', position: [47.08, 2.4], tone: 'siege' },
   { title: 'Gergovia', note: '52 v. Chr.\nCaesars Niederlage\n700 Legionäre gefallen', position: [45.77, 3.1] },
   { title: 'Alesia', note: '52 v. Chr.\nWendepunkt\n11 km Doppelwall, Vercingetorix gefangen', position: [47.52, 4.34], tone: 'siege' },
-  
   // Bürgerkrieg (49-45 v. Chr.)
   { title: 'Ilerda', note: '49 v. Chr.\nStrategisches Manöver\nSicherung Hispaniens', position: [41.62, -0.62] },
   { title: 'Massilia', note: '49 v. Chr.\nSeeblockade\nPompeianische Flotte besiegt', position: [43.29, 5.37], tone: 'sea' },
@@ -43,7 +38,6 @@ const markerPoints: MarkerPoint[] = [
   { title: 'Thapsus', note: '46 v. Chr.\nTriumph in Afrika\n10.000 Feinde gefallen', position: [36.4, 10.6], tone: 'core' },
   { title: 'Munda', note: '45 v. Chr.\nLetzte Schlacht\nHärtester Kampf, 30.000 Tote', position: [37.3, -4.9], tone: 'core' },
 ];
-
 const routeSegments: RouteSegment[] = [
   // Gallischer Krieg (58-50 v. Chr.) - Rot/Orange
   {
@@ -78,7 +72,6 @@ const routeSegments: RouteSegment[] = [
     ],
     dashed: true,
   },
-  
   // Bürgerkrieg (49-45 v. Chr.) - Blau/Violett
   {
     id: 'civil-hispania',
@@ -121,16 +114,12 @@ const routeSegments: RouteSegment[] = [
     ],
   },
 ];
-
 export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-[420px]' }: CaesarCampaignMapProps) {
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
   }, []);
-
   const legend = useMemo(() => routeSegments.map((segment) => ({ id: segment.id, label: segment.label, color: segment.color, dashed: segment.dashed })), []);
-
   const mapBounds = useMemo(() => {
     const coords: [number, number][] = [];
     markerPoints.forEach((p) => coords.push(p.position));
@@ -143,11 +132,9 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
       [Math.max(...lats) + 2, Math.max(...lngs) + 4],
     ] as L.LatLngBoundsExpression;
   }, []);
-
   if (!isClient) {
     return <div className={`${mapHeightClass} w-full rounded-3xl bg-card/60 border border-border/40 animate-pulse`} />;
   }
-
   return (
     <div className={`card-modern card-hover-primary overflow-hidden ${className}`}>
       <MapContainer
@@ -237,7 +224,6 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
               ))}
             </div>
           </div>
-          
           {/* Markierungs-Typen */}
           <div>
             <div className="text-xs font-bold text-foreground/70 mb-2 uppercase tracking-wide">Ereignisse</div>
@@ -257,7 +243,6 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
             </div>
           </div>
         </div>
-        
         <div className="mt-3 text-[11px] text-foreground/50 text-right">Karte: OSM/Carto</div>
       </div>
     </div>

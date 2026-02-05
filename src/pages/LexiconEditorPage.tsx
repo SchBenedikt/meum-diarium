@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -13,15 +12,12 @@ import { ArrowLeft, Save, Plus, X } from 'lucide-react';
 import { upsertLexiconEntry } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchLexiconEntry } from '@/lib/api';
-
 export default function LexiconEditorPage() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const isEditMode = !!slug && slug !== 'new';
-
     const [loading, setLoading] = useState(false);
-
     // Fetch entry
     const { data: existingEntry, isLoading } = useQuery({
         queryKey: ['lexicon', slug],
@@ -31,7 +27,6 @@ export default function LexiconEditorPage() {
         },
         enabled: isEditMode
     });
-
     const [formData, setFormData] = useState({
         term: '',
         slug: '',
@@ -57,12 +52,10 @@ export default function LexiconEditorPage() {
             variants: [] as string[]
         }
     });
-
     const [newVariant, setNewVariant] = useState('');
     const [newRelated, setNewRelated] = useState('');
     const [newEnVariant, setNewEnVariant] = useState('');
     const [newLaVariant, setNewLaVariant] = useState('');
-
     useEffect(() => {
         if (existingEntry) {
             setFormData({
@@ -90,11 +83,9 @@ export default function LexiconEditorPage() {
             });
         }
     }, [existingEntry]);
-
     const handleSubmit = async (e?: React.FormEvent) => {
         e?.preventDefault();
         setLoading(true);
-
         try {
             const payload = {
                 term: formData.term,
@@ -109,7 +100,6 @@ export default function LexiconEditorPage() {
                     la: formData.la
                 }
             };
-
             await upsertLexiconEntry(payload);
             queryClient.invalidateQueries({ queryKey: ['lexicon'] }); // List view
             if (isEditMode) {
@@ -124,54 +114,43 @@ export default function LexiconEditorPage() {
             setLoading(false);
         }
     };
-
     const updateField = (field: string, value: any) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
-
     const addVariant = () => {
         if (newVariant.trim()) {
             setFormData(prev => ({ ...prev, variants: [...prev.variants, newVariant.trim()] }));
             setNewVariant('');
         }
     };
-
     const removeVariant = (index: number) => {
         setFormData(prev => ({ ...prev, variants: prev.variants.filter((_, i) => i !== index) }));
     };
-
     const addRelatedTerm = () => {
         if (newRelated.trim()) {
             setFormData(prev => ({ ...prev, relatedTerms: [...prev.relatedTerms, newRelated.trim()] }));
             setNewRelated('');
         }
     };
-
     const removeRelatedTerm = (index: number) => {
         setFormData(prev => ({ ...prev, relatedTerms: prev.relatedTerms.filter((_, i) => i !== index) }));
     };
-
     const updateLangField = (lang: 'en' | 'la', field: string, value: any) => {
         setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
     };
-
     const addLangVariant = (lang: 'en' | 'la') => {
         const val = lang === 'en' ? newEnVariant.trim() : newLaVariant.trim();
         if (!val) return;
         setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], variants: [...(prev[lang].variants || []), val] } }));
         if (lang === 'en') setNewEnVariant(''); else setNewLaVariant('');
     };
-
     const removeLangVariant = (lang: 'en' | 'la', index: number) => {
         setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], variants: (prev[lang].variants || []).filter((_, i) => i !== index) } }));
     };
-
     const categories = ['Politik', 'Militär', 'Religion', 'Gesellschaft', 'Philosophie', 'Recht'];
-
     if (isLoading && isEditMode) {
         return <div className="min-h-screen pt-20 text-center">Lade Eintrag...</div>;
     }
-
     return (
         <div className="min-h-screen bg-background pt-16">
             {/* Header */}
@@ -193,7 +172,6 @@ export default function LexiconEditorPage() {
                     </Button>
                 </div>
             </div>
-
             <div className="container mx-auto px-4 py-6 max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <Card>
@@ -225,7 +203,6 @@ export default function LexiconEditorPage() {
                                     </Select>
                                 </div>
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Slug (URL)</Label>
                                 <Input
@@ -234,7 +211,6 @@ export default function LexiconEditorPage() {
                                     placeholder="auto-generated"
                                 />
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Definition</Label>
                                 <Textarea
@@ -243,7 +219,6 @@ export default function LexiconEditorPage() {
                                     className="min-h-[100px]"
                                 />
                             </div>
-
                             <div className="space-y-2">
                                 <Label>Etymologie & Hintergrund</Label>
                                 <Textarea
@@ -254,7 +229,6 @@ export default function LexiconEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Variants & Relations */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <Card>
@@ -285,7 +259,6 @@ export default function LexiconEditorPage() {
                                 </div>
                             </CardContent>
                         </Card>
-
                         <Card>
                             <CardHeader>
                                 <CardTitle>Verwandte Begriffe</CardTitle>
@@ -315,7 +288,6 @@ export default function LexiconEditorPage() {
                             </CardContent>
                         </Card>
                     </div>
-
                     {/* Translations */}
                     <Card>
                         <CardHeader>
@@ -383,7 +355,6 @@ export default function LexiconEditorPage() {
                             </div>
                         </CardContent>
                     </Card>
-
                     <Card>
                         <CardHeader>
                             <CardTitle>Latein</CardTitle>

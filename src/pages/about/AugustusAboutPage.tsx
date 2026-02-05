@@ -14,19 +14,15 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
-
 export function AugustusAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
-
   const authorDetails = useAuthorDetails(t);
-
   // Additional Augustus works (fictional but historically based)
   const augustusAdditionalWorks: Work[] = [
     {
@@ -48,7 +44,6 @@ export function AugustusAboutPage() {
       year: '30–14 v. Chr.',
     },
   ];
-
   useEffect(() => {
     if (authorId === 'augustus') {
       setCurrentAuthor('augustus' as Author);
@@ -57,12 +52,10 @@ export function AugustusAboutPage() {
           const authorPostsList = allPosts.filter(p => p.author === 'augustus').slice(0, 3);
           setAuthorPosts(authorPostsList);
         }
-
         const translatedWorks = await Promise.all(
           Object.values(baseWorks).filter(w => w.author === 'augustus').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-
         try {
           const res = await fetch('/api/pages/author-about-augustus');
           if (res.ok) {
@@ -78,7 +71,6 @@ export function AugustusAboutPage() {
       translateContent();
     }
   }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
-
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -86,10 +78,8 @@ export function AugustusAboutPage() {
       </div>
     );
   }
-
   const details = authorDetails.augustus;
   const allWorks = [...authorWorks, ...augustusAdditionalWorks];
-
   const augustusSnapshots = [
     { label: 'Lebenszeit', value: '63 v. Chr. – 14 n. Chr.', hint: '76 Jahre' },
     { label: 'Herrschaft', value: '27 v. Chr. – 14 n. Chr.', hint: '41 Jahre als Princeps' },
@@ -98,7 +88,6 @@ export function AugustusAboutPage() {
     { label: 'Bauprojekte', value: '82 Tempel', hint: 'Plus Forum, Theater, Aquädukte' },
     { label: 'Titel', value: 'Pater Patriae', hint: 'Vater des Vaterlandes (2 v. Chr.)' },
   ];
-
   const augustusAchievements = [
     {
       title: 'Pax Romana',
@@ -137,7 +126,6 @@ export function AugustusAboutPage() {
       icon: 'Crown' as const,
     },
   ];
-
   const augustusDebate = [
     {
       heading: 'Warum er bewundert wird',
@@ -158,13 +146,11 @@ export function AugustusAboutPage() {
       ],
     },
   ];
-
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
   };
-
   const augustusSidebar = {
     kriege: [
       { year: -43, title: 'Mutina', note: 'Sieg gegen Antonius, Konsulat mit Hirtius/Pansa' },
@@ -188,7 +174,6 @@ export function AugustusAboutPage() {
       { year: -13, title: 'Ara Pacis & Bauprogramm', note: 'Propaganda der Pax Augusta' },
     ],
   };
-
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
@@ -198,7 +183,6 @@ export function AugustusAboutPage() {
           language={language}
           birthPlace={details.birthPlace}
         />
-
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
             <div className="lg:col-span-8 space-y-24">
@@ -209,7 +193,6 @@ export function AugustusAboutPage() {
                     <h2 className="font-display text-4xl font-bold">{t('works')}</h2>
                     <div className="h-px flex-1 bg-white/5" />
                   </div>
-
                   <div className="grid gap-6 sm:grid-cols-2">
                     {allWorks.map((work, i) => (
                       <Link
@@ -235,7 +218,6 @@ export function AugustusAboutPage() {
                   </div>
                 </section>
               )}
-
               {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
@@ -279,7 +261,6 @@ export function AugustusAboutPage() {
                 </section>
               )}
             </div>
-
             {/* Sidebar */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
@@ -301,7 +282,6 @@ export function AugustusAboutPage() {
             </div>
           </div>
         </div>
-
         {/* Augustus' Achievements */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -329,7 +309,6 @@ export function AugustusAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Das Prinzipat-System */}
         <section className="py-24 bg-gradient-to-b from-background to-surface-container-low/20">
           <div className="container mx-auto px-4">
@@ -390,7 +369,6 @@ export function AugustusAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Lebenslauf & Stationen - Full Width Section */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
@@ -402,7 +380,6 @@ export function AugustusAboutPage() {
                   <p className="text-lg text-muted-foreground mt-2">Kriege, Ämter und die Reformen einer Ära</p>
                 </div>
               </div>
-
               <div className="grid gap-8 lg:grid-cols-3">
                 {/* Bürgerkriege & Schlachten */}
                 <div className="card-modern card-padding-lg space-y-6">
@@ -429,7 +406,6 @@ export function AugustusAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Ämter & Titel */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -464,7 +440,6 @@ export function AugustusAboutPage() {
                     ))}
                   </div>
                 </div>
-
                 {/* Reformen & Bauprogramm */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
@@ -500,7 +475,6 @@ export function AugustusAboutPage() {
                   </div>
                 </div>
               </div>
-
               {/* Timeline visualization below */}
               <div className="mt-16 pt-12 border-t border-border/40">
                 <p className="text-center text-muted-foreground mb-8">
@@ -519,7 +493,6 @@ export function AugustusAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Warum er polarisiert */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -547,7 +520,6 @@ export function AugustusAboutPage() {
             </div>
           </div>
         </section>
-
         {/* Legendäre Zitate */}
         <section className="py-24">
           <div className="container mx-auto px-4">

@@ -5,13 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Edit, Save, X, Languages, Globe, Check, Loader2, Plus, AlertCircle, Filter, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-
 interface TranslationData {
     de: Record<string, string>;
     en: Record<string, string>;
     la: Record<string, string>;
 }
-
 export function TranslationEditor() {
     const [translations, setTranslations] = useState<TranslationData | null>(null);
     const [loading, setLoading] = useState(true);
@@ -20,7 +18,6 @@ export function TranslationEditor() {
     const [editingKey, setEditingKey] = useState<string | null>(null);
     const [editValues, setEditValues] = useState<{ de: string; en: string; la: string }>({ de: '', en: '', la: '' });
     const [saving, setSaving] = useState(false);
-
     // Fetch translations from API
     useEffect(() => {
         const fetchTranslations = async () => {
@@ -38,7 +35,6 @@ export function TranslationEditor() {
         };
         fetchTranslations();
     }, []);
-
     // Get all unique keys from all languages (Transparency overhaul: include EVERYTHING)
     const allKeys = useMemo(() => {
         if (!translations) return [];
@@ -46,13 +42,10 @@ export function TranslationEditor() {
         Object.keys(translations.de || {}).forEach(k => keys.add(k));
         Object.keys(translations.en || {}).forEach(k => keys.add(k));
         Object.keys(translations.la || {}).forEach(k => keys.add(k));
-
         return Array.from(keys).sort();
     }, [translations]);
-
     const filteredKeys = useMemo(() => {
         let keys = allKeys;
-
         if (filterMissing && translations) {
             keys = keys.filter(key => {
                 const hasDe = !!translations.de?.[key];
@@ -61,7 +54,6 @@ export function TranslationEditor() {
                 return !hasDe || !hasEn || !hasLa;
             });
         }
-
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             keys = keys.filter(key => {
@@ -74,10 +66,8 @@ export function TranslationEditor() {
                     laVal.toLowerCase().includes(query);
             });
         }
-
         return keys;
     }, [allKeys, searchQuery, filterMissing, translations]);
-
     const handleEdit = (key: string) => {
         setEditingKey(key);
         setEditValues({
@@ -86,37 +76,31 @@ export function TranslationEditor() {
             la: translations?.la?.[key] || '',
         });
     };
-
     const handleSave = async () => {
         if (!editingKey) return;
         setSaving(true);
-
         try {
             const updates = [
                 { lang: 'de', value: editValues.de },
                 { lang: 'en', value: editValues.en },
                 { lang: 'la', value: editValues.la },
             ];
-
             for (const { lang, value } of updates) {
                 const res = await fetch(`/api/translations/${lang}/${editingKey}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ value }),
                 });
-
                 if (!res.ok) {
                     const err = await res.json();
                     throw new Error(err.error || 'Failed to save');
                 }
             }
-
             setTranslations(prev => prev ? {
                 de: { ...prev.de, [editingKey]: editValues.de },
                 en: { ...prev.en, [editingKey]: editValues.en },
                 la: { ...prev.la, [editingKey]: editValues.la },
             } : null);
-
             toast.success(`"${editingKey}" gespeichert`);
             setEditingKey(null);
         } catch (error: any) {
@@ -125,21 +109,17 @@ export function TranslationEditor() {
             setSaving(false);
         }
     };
-
     const handleCancel = () => {
         setEditingKey(null);
         setEditValues({ de: '', en: '', la: '' });
     };
-
     const handleDeleteKey = async (key: string) => {
         if (!window.confirm(`Schlüssel "${key}" wirklich in ALLEN Sprachen löschen?`)) return;
-
         try {
             const langs = ['de', 'en', 'la'];
             for (const lang of langs) {
                 await fetch(`/api/translations/${lang}/${key}`, { method: 'DELETE' });
             }
-
             setTranslations(prev => {
                 if (!prev) return null;
                 const newDe = { ...prev.de }; delete newDe[key];
@@ -152,19 +132,16 @@ export function TranslationEditor() {
             toast.error('Fehler beim Löschen');
         }
     };
-
     const getStatusColor = (key: string) => {
         if (!translations) return '';
         const missing = [];
         if (!translations.de?.[key]) missing.push('DE');
         if (!translations.en?.[key]) missing.push('EN');
         if (!translations.la?.[key]) missing.push('LA');
-
         if (missing.length === 0) return 'bg-green-500/10 text-green-600 border-green-500/20';
         if (missing.length === 3) return 'bg-destructive/10 text-destructive border-destructive/20';
         return 'bg-amber-500/10 text-amber-600 border-amber-500/20';
     };
-
     if (loading) {
         return (
             <Card>
@@ -174,7 +151,6 @@ export function TranslationEditor() {
             </Card>
         );
     }
-
     return (
         <Card className="border-none shadow-none bg-transparent">
             <CardHeader className="px-0 pb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -209,7 +185,6 @@ export function TranslationEditor() {
                         className="pl-9 h-11 bg-card/50"
                     />
                 </div>
-
                 <div className="overflow-x-auto rounded-xl border border-border bg-card/30 backdrop-blur-sm">
                     <Table>
                         <TableHeader>
@@ -241,7 +216,6 @@ export function TranslationEditor() {
                                                 </div>
                                             </div>
                                         </TableCell>
-
                                         {editingKey === key ? (
                                             <>
                                                 <TableCell>
@@ -335,7 +309,6 @@ export function TranslationEditor() {
                         </TableBody>
                     </Table>
                 </div>
-
                 <div className="mt-8 p-6 rounded-2xl bg-primary/5 border border-primary/10">
                     <h4 className="font-display font-bold text-base mb-3 flex items-center gap-2 text-primary">
                         <AlertCircle className="h-5 w-5" />

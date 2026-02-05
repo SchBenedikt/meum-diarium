@@ -1,4 +1,3 @@
-
 import { useMemo } from 'react';
 import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -6,18 +5,15 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { useLanguage } from '@/context/LanguageContext';
 import { Skeleton } from './ui/skeleton';
-
 export function FeaturedPost() {
   const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
-
   const featuredPost = useMemo(() => {
     if (isLoading || posts.length === 0) return null;
     const today = new Date();
     const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
     return posts[dayOfYear % posts.length];
   }, [posts, isLoading]);
-
   return (
     <section className="py-16 sm:py-24">
       <div className="container mx-auto px-4 sm:px-6">
@@ -43,7 +39,6 @@ export function FeaturedPost() {
             {t('featuredPostDesc')}
           </p>
         </motion.div>
-
         <div className="max-w-xl mx-auto">
           {isLoading || !featuredPost ? (
             <div className="bg-card/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-0 overflow-hidden border border-border/40">

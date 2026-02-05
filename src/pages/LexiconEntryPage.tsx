@@ -14,35 +14,29 @@ import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
 import { fetchLexiconEntry } from '@/lib/api';
-
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
-
   const [entry, setEntry] = useState<LexiconEntry | null | undefined>(undefined);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
-
   useEffect(() => {
     async function loadEntry() {
       if (!slug) return;
       try {
         const data = await fetchLexiconEntry(slug);
         setEntry(data || null);
-
         if (data && !postsLoading) {
           const variantsList = Array.isArray(data.variants) ? data.variants : [];
           const searchTerms = [
             data.term?.toLowerCase(),
             ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
           ].filter(Boolean);
-          
           const foundPosts = [];
           for (const post of allPosts) {
             const isRelated = searchTerms.some(term => 
@@ -64,20 +58,15 @@ export default function LexiconEntryPage() {
     }
     loadEntry();
   }, [language, slug, allPosts, postsLoading]);
-
-
   const handleBackClick = () => {
     navigate('/lexicon');
   };
-
   if (entry === undefined) {
     return <div className="min-h-screen bg-background" />;
   }
-
   if (!entry) {
     return <NotFound />;
   }
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 pb-16">
@@ -94,7 +83,6 @@ export default function LexiconEntryPage() {
             </button>
           }
         />
-
         <section className="section-shell -mt-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-[1fr_320px] gap-12">
@@ -122,12 +110,10 @@ export default function LexiconEntryPage() {
                     );
                   })}
                 </div>
-
                 <div className="prose-blog text-lg">
                   <TableOfContents content={entry.definition} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
                   <FormattedContent content={entry.definition} language={language} currentSlug={entry.slug} />
                 </div>
-
                 {relatedPosts.length > 0 && (
                   <div className="pt-4 border-t border-border/50">
                     <div className="flex items-center gap-3 mb-6">
@@ -143,7 +129,6 @@ export default function LexiconEntryPage() {
                 )}
               </motion.div>
               </article>
-              
               <aside className="hidden lg:block">
                 <div className="sticky top-28">
                   <LexiconSidebar entry={entry} />
