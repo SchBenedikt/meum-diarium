@@ -1,0 +1,23 @@
+{
+  "id": "de-bello-gallico",
+  "title": "De Bello Gallico",
+  "author": "caesar",
+  "books": [
+    {
+      "number": 1,
+      "title": "Buch I: Die Helvetier und Ariovistus",
+      "chapters": [
+        {
+          "number": 1,
+          "latin": "Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur. Hi omnes lingua, institutis, legibus inter se differunt. Gallos ab Aquitanis Garumna flumen, a Belgis Matrona et Sequana dividit.",
+          "translation": "Ganz Gallien ist in drei Teile geteilt, von denen den einen die Belger bewohnen, den anderen die Aquitanier, den dritten diejenigen, die in ihrer eigenen Sprache Kelten, in unserer Gallier genannt werden. Diese alle sind nach Sprache, Einrichtungen und Gesetzen voneinander verschieden. Die Gallier werden von den Aquitaniern durch den Fluss Garonne, von den Belgern durch Marne und Seine getrennt."
+        },
+        {
+          "number": 2,
+          "latin": "Horum omnium fortissimi sunt Belgae, propterea quod a cultu atque humanitate provinciae longissime absunt, minimeque ad eos mercatores saepe commeant atque ea quae ad effeminandos animos pertinent important, proximique sunt Germanis, qui trans Rhenum incolunt, quibuscum continenter bellum gerunt.",
+          "translation": "Von all diesen sind die Belger die tapfersten, weil sie am weitesten von der Kultur und Zivilisation der Provinz entfernt sind und am wenigsten zu ihnen Kaufleute häufig kommen und solche Dinge einführen, die zur Verweichlichung der Gemüter dienen, und sie sind den Germanen am nächsten, die jenseits des Rheins wohnen, mit denen sie ununterbrochen Krieg führen."
+        }
+      ]
+    }
+  ]
+}
