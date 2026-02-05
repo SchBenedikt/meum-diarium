@@ -177,6 +177,10 @@ export default function SettingsPage() {
                   </div>
                 </CardContent>
               </Card>
-              {/* Translation settings disabled - German only
-              {/* <Card>
-                              <CardHeader>
+            </TabsContent>
+          </Tabs>
+        </form>
+      </div>
+    </div>
+  );
+}
