@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ReactNode } from 'react';
+import { de } from '@/locales/de';
 
 interface LanguageContextType {
   language: string;
@@ -8,7 +9,12 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Simplified stub - always returns German, no actual translation
+// Helper function to get nested property from object using dot notation
+function getNestedProperty(obj: any, path: string): any {
+  return path.split('.').reduce((current, key) => current?.[key], obj);
+}
+
+// German-only translation context
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const language = 'de';
   
@@ -17,7 +23,23 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   const t = <T = string>(key: string, options?: any): T => {
-    // Return key as fallback
+    // Look up the translation in the German translations object
+    const translation = getNestedProperty(de, key);
+    
+    // If translation found, handle variable replacement
+    if (translation) {
+      if (typeof translation === 'string' && options) {
+        // Replace variables like {{minutes}} with actual values
+        let result = translation;
+        Object.keys(options).forEach(optionKey => {
+          result = result.replace(new RegExp(`{{${optionKey}}}`, 'g'), options[optionKey]);
+        });
+        return result as T;
+      }
+      return translation as T;
+    }
+    
+    // Fallback to key if translation not found
     return key as T;
   };
 
