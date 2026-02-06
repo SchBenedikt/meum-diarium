@@ -1,9 +1,15 @@
-name = "meum-diarium"  # Dein Pages-Projektname
-main = "dist/index.js"
+name = "meum-diarium"
+main = "dist/index-js"
 compatibility_date = "2025-12-08"
-
+# Dein Pages-Projektname
 [[d1_databases]]
 binding = "DB"
 database_name = "meum-diarium"
 database_id = "0cf71203-f07c-46b2-8f52-765929a25d24"
 migrations_dir = "drizzle"
+[[d1_databases]]
+# < Zweiter Block für vocab
+binding = "vocab"
+database_name = "vocab"
+database_id = "6743a774-21c1-4c0c-a17a-086eae15d3f5"
+migrations_dir = "drizzle" # Optional, falls du Vocab-Migrationen willst
