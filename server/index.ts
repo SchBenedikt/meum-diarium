@@ -278,223 +278,73 @@ app.get('/api/vocab/:vokId', async (req, res) => {
     
     try {
         const db = getLocalVocabDb();
+        const { grammar, form } = await import('../functions/db/vocab-schema.js');
         
-        // Get the vocabulary entry with all its forms
+        // Get the vocabulary entry
         const entry = await db.query.voc.findFirst({
             where: eq(voc.vokId, vokId),
-            with: {
-                forms: true,
-                grammarForms: true,
-            }
         });
 
         if (!entry) {
             return res.status(404).json({ error: 'Vocabulary not found' });
         }
 
-        // Helper function to parse grammatical descriptions
-const parseGrammaticalDescription = (description: string) => {
-    if (!description) return [];
-    
-    return description.split(',').map(part => {
-        const trimmed = part.trim();
-        const match = trimmed.match(/^(Nom|Gen|Dat|Akk|Abl|Vok)\.\s+(Sg|Pl)\.?$/);
-        if (match) {
-            return {
-                case: match[1],
-                number: match[2]
-            };
-        }
-        return null;
-    }).filter(Boolean);
-};
+        // Get all grammar forms for this vocabulary entry
+        const grammarForms = await db.select()
+            .from(grammar)
+            .where(eq(grammar.vokId, vokId))
+            .all();
 
-// Helper function to generate description from parsed grammatical info
-const generateDescription = (caseInfo: Array<{case: string, number: string}>) => {
-    if (!caseInfo || caseInfo.length === 0) return null;
-    
-    const caseMap: Record<string, string> = {
-        'Nom': 'Nominative',
-        'Gen': 'Genitive', 
-        'Dat': 'Dative',
-        'Akk': 'Accusative',
-        'Abl': 'Ablative',
-        'Vok': 'Vocative'
-    };
-    
-    const numberMap: Record<string, string> = {
-        'Sg': 'Singular',
-        'Pl': 'Plural'
-    };
-    
-    return caseInfo.map(info => `${caseMap[info.case]} ${numberMap[info.number]}`).join(', ');
-};
+        // Get all form descriptions for this vocabulary entry
+        const formDescriptions = await db.select()
+            .from(form)
+            .where(eq(form.vokId, vokId))
+            .all();
 
-// Helper function to recognize Latin grammatical patterns
-const recognizeLatinPattern = (form: string, existingForms: Array<{form: string, bestimmung: string}>, entry: any) => {
-    if (!form || form.length < 3) return null;
-    
-    // Strategy 1: Try to find exact match first (highest priority)
-    const exactMatch = existingForms.find(f => f.form === form);
-    if (exactMatch) {
-        return exactMatch.bestimmung;
-    }
-    
-    // Strategy 2: Try case-insensitive match
-    const caseInsensitiveMatch = existingForms.find(f => 
-        f.form && f.form.toLowerCase() === form.toLowerCase()
-    );
-    if (caseInsensitiveMatch) {
-        return caseInsensitiveMatch.bestimmung;
-    }
-    
-    // Strategy 3: Handle forms with alternatives like "Achillis/Achillei"
-    if (form && form.includes('/')) {
-        const alternatives = form.split('/');
-        for (const alt of alternatives) {
-            const found = existingForms.find(f => f.form === alt);
-            if (found) {
-                return found.bestimmung;
-            }
-        }
-    }
-    
-    // Strategy 4: Smart gender inference from existing forms
-    if (existingForms.length > 0) {
-        // Analyze existing forms to determine word type and patterns
-        const hasFeminine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('fem.'));
-        const hasMasculine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('mask.'));
-        const hasNeuter = existingForms.some(f => f.bestimmung && f.bestimmung.includes('neut.'));
-        
-        // Smart pattern recognition based on existing forms
-        if (form.endsWith('iorum') && hasFeminine) {
-            return 'Gen. Pl. mask.';
-        }
-        if (form.endsWith('ios') && hasFeminine) {
-            return 'Akk. Pl. mask.';
-        }
-        if (form.endsWith('orum') && hasFeminine) {
-            return 'Gen. Pl. mask.';
-        }
-        if (form.endsWith('is') && hasFeminine) {
-            return 'Dat. Pl. mask., Abl. Pl. mask.';
-        }
-        if (form.endsWith('os') && hasFeminine) {
-            return 'Akk. Pl. mask.';
-        }
-        if (form.endsWith('us') && hasFeminine) {
-            return 'Nom. Sg. mask.';
-        }
-        if (form.endsWith('i') && hasFeminine) {
-            return 'Gen. Sg. mask.';
-        }
-        if (form.endsWith('o') && hasFeminine) {
-            return 'Dat. Sg. mask.';
-        }
-        if (form.endsWith('e') && hasFeminine) {
-            return 'Abl. Sg. mask.';
-        }
-        
-        // Handle specific ambiguous endings (check longer patterns first)
-        if (form.endsWith('um') && hasFeminine) {
-            // Only apply to shorter forms that are likely accusative singular
-            if (form.length <= 6) {
-                return 'Akk. Sg. mask.';
-            }
-        }
-    }
-    
-    // Strategy 5: Try partial matching (form contains existing form)
-    const partialMatch = existingForms.find(f => 
-        f.form && form.includes(f.form)
-    );
-    if (partialMatch) {
-        return partialMatch.bestimmung;
-    }
-    
-    // Strategy 6: Try partial matching (existing form contains form)
-    const reversePartialMatch = existingForms.find(f => 
-        f.form && f.form.includes(form)
-    );
-    if (reversePartialMatch) {
-        return reversePartialMatch.bestimmung;
-    }
-    
-    // No pattern generation - return null if no match found
-    return null;
-};
-
-// Enhance grammar forms with descriptions from FORM table
-        const enhancedGrammarForms = entry.grammarForms.map(grammarForm => {
-            let matchingForm = null;
-            let generatedDescription = null;
-            
-            // Strategy 1: Exact match (highest priority)
-            matchingForm = entry.forms.find(form => form.form === grammarForm.form);
-            
-            // Strategy 2: Handle forms with alternatives like "Achillis/Achillei"
-            if (!matchingForm && grammarForm.form && grammarForm.form.includes('/')) {
-                const alternatives = grammarForm.form.split('/');
-                for (const alt of alternatives) {
-                    const found = entry.forms.find(form => form.form === alt);
-                    if (found) {
-                        matchingForm = found;
-                        break;
-                    }
+        // Create a map of form -> bestimmung for quick lookup
+        const formDescriptionMap = new Map<string, string[]>();
+        for (const formDesc of formDescriptions) {
+            if (formDesc.form) {
+                const normalizedForm = formDesc.form.toLowerCase().trim();
+                if (!formDescriptionMap.has(normalizedForm)) {
+                    formDescriptionMap.set(normalizedForm, []);
+                }
+                if (formDesc.bestimmung) {
+                    formDescriptionMap.get(normalizedForm)!.push(formDesc.bestimmung);
                 }
             }
+        }
+
+        // Enrich grammar forms with their descriptions from the FORM table
+        const enrichedGrammarForms = grammarForms.map(gf => {
+            let bestimmung: string | null = null;
             
-            // Strategy 3: Case-insensitive match
-            if (!matchingForm && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && form.form.toLowerCase() === grammarForm.form.toLowerCase()
-                );
-            }
-            
-            // Strategy 4: Pattern recognition for Latin forms
-            if (!matchingForm && grammarForm.form) {
-                generatedDescription = recognizeLatinPattern(grammarForm.form, entry.forms, entry);
-            }
-            
-            // Strategy 5: Partial match (grammar form contains FORM entry)
-            if (!matchingForm && !generatedDescription && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && grammarForm.form.includes(form.form)
-                );
-            }
-            
-            // Strategy 6: Partial match (FORM entry contains grammar form)
-            if (!matchingForm && !generatedDescription && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && form.form.includes(grammarForm.form)
-                );
-            }
-            
-            // Log matching results for debugging
-            if (grammarForm.form) {
-                let matchType = 'NOT FOUND';
-                let description = 'null';
+            if (gf.form) {
+                const normalizedForm = gf.form.toLowerCase().trim();
+                const descriptions = formDescriptionMap.get(normalizedForm);
                 
-                if (matchingForm) {
-                    matchType = 'EXACT MATCH';
-                    description = matchingForm.bestimmung || 'null';
-                } else if (generatedDescription) {
-                    matchType = 'PATTERN RECOGNITION';
-                    description = generatedDescription;
+                if (descriptions && descriptions.length > 0) {
+                    // Join multiple descriptions with comma if there are multiple
+                    bestimmung = descriptions.join(', ');
                 }
-                
-                console.log(`[Form Matching] ${matchType}: "${grammarForm.form}" -> "${description}"`);
             }
-            
+
             return {
-                ...grammarForm,
-                bestimmung: matchingForm?.bestimmung || generatedDescription || null
+                id: gf.id,
+                vokId: gf.vokId,
+                nr: gf.nr,
+                form: gf.form,
+                bestimmung: bestimmung,
             };
         });
 
+        // Return the entry with enriched grammar forms
+        // We use enrichedGrammarForms as the primary source of forms since it contains
+        // all forms from GRAMMAR table with matched descriptions from FORM table
         res.json({
             ...entry,
-            grammarForms: enhancedGrammarForms
+            forms: enrichedGrammarForms, // Use enriched grammar forms as the main forms array
+            grammarForms: enrichedGrammarForms, // Keep for backward compatibility
         });
     } catch (error) {
         console.error('Vocab Detail API Error:', error);
