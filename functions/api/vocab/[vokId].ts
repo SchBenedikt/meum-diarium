@@ -140,19 +140,29 @@ export const onRequest = async (context: any) => {
             };
         });
 
-        // Also include standalone FORM entries that might not have corresponding GRAMMAR entries
-        const standaloneForms = formDescriptions
-            .filter(fd => !grammarForms.some(gf => gf.form === fd.form))
-            .map(fd => ({
-                id: fd.id,
-                vokId: fd.vokId,
-                nr: null,
-                form: fd.form,
-                bestimmung: fd.bestimmung,
-            }));
+        // Include ALL FORM entries, even if they have corresponding GRAMMAR entries
+        // This ensures we don't miss any forms
+        const allFormEntries = formDescriptions.map(fd => ({
+            id: fd.id,
+            vokId: fd.vokId,
+            nr: null,
+            form: fd.form,
+            bestimmung: fd.bestimmung,
+        }));
 
-        // Combine all forms
-        const allForms = [...enrichedGrammarForms, ...standaloneForms];
+        // Combine enriched grammar forms with all form entries
+        // Remove duplicates based on form content
+        const combinedForms = [...enrichedGrammarForms, ...allFormEntries];
+        const uniqueForms = combinedForms.filter((form, index, self) => 
+            index === self.findIndex(f => f.form === form.form)
+        );
+
+        // Sort forms by form content for better readability
+        const allForms = uniqueForms.sort((a, b) => {
+            if (!a.form) return 1;
+            if (!b.form) return -1;
+            return a.form.localeCompare(b.form);
+        });
 
         // Return the entry with enriched grammar forms
         const response = {
