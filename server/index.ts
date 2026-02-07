@@ -223,20 +223,206 @@ app.get('/api/translations/:lang', (_req, res) => {
     res.json({});
 });
 
-// Vocabulary API - Stub for local development (use Cloudflare Functions in production)
-app.get('/api/vocab', (_req, res) => {
-    console.log('📚 [Dev] GET /api/vocab - using stub data (Cloudflare Functions in production)');
-    res.json({
-        results: [],
-        count: 0,
-        limit: 50,
-        offset: 0
-    });
+// Vocabulary API - Local development with real database
+app.get('/api/vocab', async (req, res) => {
+    console.log('📚 [Dev] GET /api/vocab - using local database');
+    
+    try {
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc } = await import('../functions/db/vocab-schema');
+        const { like, or, desc } = await import('drizzle-orm');
+        
+        const db = getLocalVocabDb();
+        const searchQuery = req.query.q as string;
+        const limit = parseInt(req.query.limit as string || '50');
+        const offset = parseInt(req.query.offset as string || '0');
+
+        let results;
+
+        if (searchQuery) {
+            // Search in latin, desc (German), and key fields
+            const searchPattern = `%${searchQuery}%`;
+            results = await db.query.voc.findMany({
+                where: or(
+                    like(voc.latin, searchPattern),
+                    like(voc.desc, searchPattern),
+                    like(voc.key, searchPattern)
+                ),
+                limit: limit,
+                offset: offset,
+                orderBy: [desc(voc.id)]
+            });
+        } else {
+            // Return recent entries if no search query
+            results = await db.query.voc.findMany({
+                limit: limit,
+                offset: offset,
+                orderBy: [desc(voc.id)]
+            });
+        }
+
+        res.json({
+            results,
+            count: results.length,
+            limit,
+            offset
+        });
+    } catch (error) {
+        console.error('Vocabulary API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
 });
 
-app.get('/api/vocab/:vokId', (_req, res) => {
-    console.log('📚 [Dev] GET /api/vocab/:vokId - using stub data (Cloudflare Functions in production)');
-    res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+app.get('/api/vocab/:vokId', async (req, res) => {
+    console.log('📚 [Dev] GET /api/vocab/:vokId - using local database');
+    
+    try {
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc, grammar, form } = await import('../functions/db/vocab-schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const db = getLocalVocabDb();
+        const { vokId } = req.params;
+
+        if (!vokId || typeof vokId !== 'string') {
+            return res.status(400).json({ error: 'Invalid vocabulary ID' });
+        }
+
+        // First, find the actual vok_id from the VOC table using the numeric ID
+        let actualVokId: string;
+        
+        // Try to find by vokId field first (in case it's already the real vok_id)
+        const entryByVokId = await db.query.voc.findFirst({
+            where: eq(voc.vokId, vokId),
+        });
+
+        if (entryByVokId) {
+            actualVokId = entryByVokId.vokId;
+        } else {
+            // Try to find by id field (numeric ID)
+            const entryById = await db.query.voc.findFirst({
+                where: eq(voc.id, parseInt(vokId)),
+            });
+            
+            if (!entryById) {
+                return res.status(404).json({ error: 'Vocabulary not found' });
+            }
+            
+            actualVokId = entryById.vokId;
+        }
+
+        // Get the vocabulary entry using the actual vok_id
+        const entry = entryByVokId || await db.query.voc.findFirst({
+            where: eq(voc.vokId, actualVokId),
+        });
+
+        if (!entry) {
+            return res.status(404).json({ error: 'Vocabulary not found' });
+        }
+
+        // Get all grammar forms for this vocabulary entry
+        const grammarForms = await db.select()
+            .from(grammar)
+            .where(eq(grammar.vokId, actualVokId))
+            .all();
+
+        // Get all form descriptions for this vocabulary entry
+        const formDescriptions = await db.select()
+            .from(form)
+            .where(eq(form.vokId, actualVokId))
+            .all();
+
+        // Create a map of form -> bestimmung for quick lookup
+        const formDescriptionMap = new Map<string, string[]>();
+        for (const formDesc of formDescriptions) {
+            if (formDesc.form) {
+                const normalizedForm = formDesc.form.toLowerCase().trim();
+                if (!formDescriptionMap.has(normalizedForm)) {
+                    formDescriptionMap.set(normalizedForm, []);
+                }
+                if (formDesc.bestimmung) {
+                    const descriptions = formDescriptionMap.get(normalizedForm)!;
+                    descriptions.push(formDesc.bestimmung);
+                }
+            }
+        }
+
+        // Helper function to find best matching description
+        const findBestDescription = (grammarForm: string): string | null => {
+            const normalizedGrammarForm = grammarForm.toLowerCase().trim();
+            
+            // First try exact match
+            if (formDescriptionMap.has(normalizedGrammarForm)) {
+                const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
+                return descriptions.join(', ');
+            }
+            
+            // Try to find exact matches with common morphological variations
+            for (const [formKey, descriptions] of formDescriptionMap.entries()) {
+                // Check for exact matches with common ending variations
+                if (normalizedGrammarForm === formKey) {
+                    return descriptions.join(', ');
+                }
+                
+                // Check for very close matches (minor differences)
+                if (Math.abs(normalizedGrammarForm.length - formKey.length) <= 2 &&
+                    (normalizedGrammarForm.includes(formKey) || formKey.includes(normalizedGrammarForm))) {
+                    return descriptions.join(', ');
+                }
+            }
+            
+            return null;
+        };
+
+        // Enrich grammar forms with their descriptions from the FORM table
+        const enrichedGrammarForms = grammarForms.map(gf => {
+            let bestimmung: string | null = null;
+            
+            if (gf.form) {
+                bestimmung = findBestDescription(gf.form);
+            }
+
+            return {
+                id: gf.id,
+                vokId: gf.vokId,
+                nr: gf.nr,
+                form: gf.form,
+                bestimmung: bestimmung,
+            };
+        });
+
+        // Also include standalone FORM entries that might not have corresponding GRAMMAR entries
+        const standaloneForms = formDescriptions
+            .filter(fd => !grammarForms.some(gf => gf.form === fd.form))
+            .map(fd => ({
+                id: fd.id,
+                vokId: fd.vokId,
+                nr: null,
+                form: fd.form,
+                bestimmung: fd.bestimmung,
+            }));
+
+        // Combine all forms
+        const allForms = [...enrichedGrammarForms, ...standaloneForms];
+
+        // Return the entry with enriched grammar forms
+        const response = {
+            ...entry,
+            forms: allForms,
+            grammarForms: enrichedGrammarForms,
+        };
+
+        res.json(response);
+    } catch (error) {
+        console.error('Vocabulary Detail API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
 });
 
 // Health check

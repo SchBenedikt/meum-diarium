@@ -1,10 +1,11 @@
 import { getVocabDb } from '../../db/vocab-client';
 import { voc } from '../../db/vocab-schema';
 import { like, or, desc } from 'drizzle-orm';
+import type { PagesContext } from '../../types';
 
-export const onRequest = async (context: any) => {
+export const onRequest = async (context: PagesContext): Promise<Response> => {
     console.log('🔍 [Vocab API] Starting request');
-    console.log('🔍 [Vocab API] Environment keys:', Object.keys(context.env || {}));
+    console.log('🔍 [Vocab API] Environment keys:', Object.keys(context.env));
     console.log('🔍 [Vocab API] Vocab binding available:', !!context.env?.vocab);
     
     // Check if D1 database is available
