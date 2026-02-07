@@ -1,5 +1,5 @@
-import { getVocabDb } from '../../db/vocab-client.ts';
-import { voc, grammar, form } from '../../db/vocab-schema.ts';
+import { getVocabDb } from '../../db/vocab-client';
+import { voc, grammar, form } from '../../db/vocab-schema';
 import { eq } from 'drizzle-orm';
 import type { PagesContext } from '../../types';
 
