@@ -1,6 +1,9 @@
+import type { D1Database } from '@cloudflare/workers-types';
+
 // Type definitions for Cloudflare Pages Functions
 export interface Env {
     DB: D1Database;
+    vocab: D1Database;
     [key: string]: any;
 }
 

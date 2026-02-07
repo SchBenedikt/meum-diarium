@@ -1,9 +1,24 @@
 import { getVocabDb } from '../../db/vocab-client';
 import { voc, grammar, form } from '../../db/vocab-schema';
 import { eq } from 'drizzle-orm';
-import type { PagesContext } from '../../types';
 
-export const onRequest = async (context: PagesContext): Promise<Response> => {
+export const onRequest = async (context: any) => {
+    console.log('🔍 [Vocab Detail API] Starting request for vokId:', context.params.vokId);
+    console.log('🔍 [Vocab Detail API] Environment keys:', Object.keys(context.env || {}));
+    console.log('🔍 [Vocab Detail API] Vocab binding available:', !!context.env?.vocab);
+    
+    // Check if D1 database is available
+    if (!context.env?.vocab) {
+        console.error('❌ [Vocab Detail API] D1 vocab database not available');
+        return new Response(JSON.stringify({ 
+            error: 'Database not configured',
+            message: 'D1 vocab database binding not found'
+        }), {
+            status: 503,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+        });
+    }
+
     const db = getVocabDb(context.env);
     const { vokId } = context.params;
 
