@@ -1,7 +1,7 @@
-import { getVocabDb } from '../../db/vocab-client';
-import { voc, grammar, form } from '../../db/vocab-schema';
+import { getVocabDb } from '../../db/vocab-client.ts';
+import { voc, grammar, form } from '../../db/vocab-schema.ts';
 import { eq } from 'drizzle-orm';
-import type { PagesContext } from '../../types';
+import type { PagesContext } from '../../types.ts';
 
 export const onRequest = async (context: PagesContext): Promise<Response> => {
     const db = getVocabDb(context.env);
