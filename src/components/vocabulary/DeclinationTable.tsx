@@ -22,14 +22,20 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
         if (!form.bestimmung) return;
         
         const bestimmung = form.bestimmung;
+        
+        // Check each case
         for (const caseName of cases) {
             if (bestimmung.includes(caseName)) {
                 if (!formsByCase[caseName]) {
                     formsByCase[caseName] = {};
                 }
+                
+                // Handle both singular and plural
                 if (bestimmung.includes('Sg.')) {
                     formsByCase[caseName].sg = form.form;
-                } else if (bestimmung.includes('Pl.')) {
+                } 
+                // Handle combined descriptions like "Nom. Pl., Akk. Pl."
+                else if (bestimmung.includes('Pl.')) {
                     formsByCase[caseName].pl = form.form;
                 }
                 break;
@@ -50,18 +56,17 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                 <TableBody>
                     {cases.map(caseName => {
                         const caseData = formsByCase[caseName];
-                        if (!caseData) return null;
-                        
+                        // Show row even if no data to indicate the case exists
                         return (
                             <TableRow key={caseName}>
                                 <TableCell className="font-semibold text-muted-foreground">
                                     {caseName.replace('.', '')}
                                 </TableCell>
                                 <TableCell className="text-primary font-medium">
-                                    {caseData.sg || '—'}
+                                    {caseData?.sg || '—'}
                                 </TableCell>
                                 <TableCell className="text-primary font-medium">
-                                    {caseData.pl || '—'}
+                                    {caseData?.pl || '—'}
                                 </TableCell>
                             </TableRow>
                         );

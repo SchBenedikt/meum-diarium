@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Loader2, BookOpen, Table as TableIcon } from 'lucide-react';
 import { DeclinationTable } from './DeclinationTable';
 import { ConjugationTable } from './ConjugationTable';
+import { ParticipleTable } from './ParticipleTable';
 
 interface Form {
     id: number;
@@ -17,6 +18,7 @@ interface GrammarForm {
     vokId: string;
     nr: string | null;
     form: string | null;
+    bestimmung?: string | null; // Added description field
 }
 
 interface VocEntryDetail {
@@ -86,6 +88,35 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
     const isAdjective = entry.grammar?.toLowerCase().includes('adj') ||
                         (entry.typnr && entry.typnr >= 301 && entry.typnr <= 399);
 
+    // Categorize grammar forms
+    const participleForms = entry.grammarForms?.filter(form => 
+        form.bestimmung?.includes('PPA') || 
+        form.bestimmung?.includes('PPP') || 
+        form.bestimmung?.includes('PDFA')
+    ) || [];
+
+    const conjugationForms = entry.grammarForms?.filter(form => 
+        (form.bestimmung?.includes('Präs.') || 
+         form.bestimmung?.includes('Perf.') || 
+         form.bestimmung?.includes('Impf.') ||
+         form.bestimmung?.includes('Plusq.') ||
+         form.bestimmung?.includes('Fut.')) &&
+        !form.bestimmung?.includes('PPA') &&
+        !form.bestimmung?.includes('PPP') &&
+        !form.bestimmung?.includes('PDFA')
+    ) || [];
+
+    const otherForms = entry.grammarForms?.filter(form => 
+        !form.bestimmung?.includes('PPA') && 
+        !form.bestimmung?.includes('PPP') && 
+        !form.bestimmung?.includes('PDFA') &&
+        !form.bestimmung?.includes('Präs.') && 
+        !form.bestimmung?.includes('Perf.') && 
+        !form.bestimmung?.includes('Impf.') &&
+        !form.bestimmung?.includes('Plusq.') &&
+        !form.bestimmung?.includes('Fut.')
+    ) || [];
+
     return (
         <div className="space-y-8">
             {/* Header Card */}
@@ -125,7 +156,7 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
                     <div className="flex items-center gap-2 mb-6">
                         <TableIcon className="h-5 w-5 text-primary" />
                         <h2 className="text-2xl font-bold">
-                            {isVerb ? 'Konjugationstabelle' : isNoun || isAdjective ? 'Deklinationstabelle' : 'Formen'}
+                            {isVerb ? 'Deklinationstabelle' : isNoun || isAdjective ? 'Deklinationstabelle' : 'Formen'}
                         </h2>
                     </div>
                     
@@ -151,22 +182,51 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
                 </Card>
             )}
 
-            {/* Grammar Forms Section */}
-            {entry.grammarForms && entry.grammarForms.length > 0 && (
+            {/* Participle Forms Section */}
+            {participleForms && participleForms.length > 0 && (
                 <Card className="p-8">
-                    <h2 className="text-2xl font-bold mb-6">Grammatikformen</h2>
+                    <ParticipleTable forms={participleForms.map(form => ({
+                        form: form.form,
+                        bestimmung: form.bestimmung
+                    }))} />
+                </Card>
+            )}
+
+            {/* Other Grammar Forms Section */}
+            {conjugationForms && conjugationForms.length > 0 && (
+                <Card className="p-8">
+                    <div className="flex items-center gap-2 mb-6">
+                        <TableIcon className="h-5 w-5 text-primary" />
+                        <h2 className="text-2xl font-bold">Konjugationstabelle</h2>
+                    </div>
+                    <ConjugationTable forms={conjugationForms.map(form => ({
+                        form: form.form,
+                        bestimmung: form.bestimmung
+                    }))} />
+                </Card>
+            )}
+
+            {/* Remaining Forms Section */}
+            {otherForms && otherForms.length > 0 && (
+                <Card className="p-8">
+                    <h2 className="text-2xl font-bold mb-6">Weitere Formen</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {entry.grammarForms.map((grammarForm, index) => (
+                        {otherForms.map((form, index) => (
                             <div 
                                 key={index}
                                 className="p-3 rounded-lg border border-border bg-card/50"
                             >
-                                {grammarForm.nr && (
-                                    <div className="text-xs text-muted-foreground mb-1">#{grammarForm.nr}</div>
+                                {form.nr && (
+                                    <div className="text-xs text-muted-foreground mb-1">#{form.nr}</div>
                                 )}
                                 <div className="font-semibold text-primary">
-                                    {grammarForm.form || 'N/A'}
+                                    {form.form || 'N/A'}
                                 </div>
+                                {form.bestimmung && (
+                                    <div className="text-sm text-muted-foreground mt-1">
+                                        {form.bestimmung}
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

@@ -3,6 +3,9 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
+import { getLocalVocabDb } from './db/local-vocab-client';
+import { voc } from '../functions/db/vocab-schema';
+import { like, or, desc, eq } from 'drizzle-orm';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -221,6 +224,285 @@ app.get('/api/pages/:slug', (_req, res) => {
 
 app.get('/api/translations/:lang', (_req, res) => {
     res.json({});
+});
+
+// Vocabulary API - Real database connection for local development
+app.get('/api/vocab', async (req, res) => {
+    const query = req.query.q as string || '';
+    const limit = parseInt(req.query.limit as string || '50');
+    const offset = parseInt(req.query.offset as string || '0');
+    
+    try {
+        const db = getLocalVocabDb();
+        let results;
+
+        if (query) {
+            // Search in latin, desc (German), and key fields
+            const searchPattern = `%${query}%`;
+            results = await db.query.voc.findMany({
+                where: or(
+                    like(voc.latin, searchPattern),
+                    like(voc.desc, searchPattern),
+                    like(voc.key, searchPattern)
+                ),
+                limit: limit,
+                offset: offset,
+                orderBy: [desc(voc.id)]
+            });
+        } else {
+            // Return recent entries if no search query
+            results = await db.query.voc.findMany({
+                limit: limit,
+                offset: offset,
+                orderBy: [desc(voc.id)]
+            });
+        }
+
+        res.json({
+            results,
+            count: results.length,
+            limit,
+            offset
+        });
+    } catch (error) {
+        console.error('Vocab API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+app.get('/api/vocab/:vokId', async (req, res) => {
+    const { vokId } = req.params;
+    
+    try {
+        const db = getLocalVocabDb();
+        
+        // Get the vocabulary entry with all its forms
+        const entry = await db.query.voc.findFirst({
+            where: eq(voc.vokId, vokId),
+            with: {
+                forms: true,
+                grammarForms: true,
+            }
+        });
+
+        if (!entry) {
+            return res.status(404).json({ error: 'Vocabulary not found' });
+        }
+
+        // Helper function to parse grammatical descriptions
+const parseGrammaticalDescription = (description: string) => {
+    if (!description) return [];
+    
+    return description.split(',').map(part => {
+        const trimmed = part.trim();
+        const match = trimmed.match(/^(Nom|Gen|Dat|Akk|Abl|Vok)\.\s+(Sg|Pl)\.?$/);
+        if (match) {
+            return {
+                case: match[1],
+                number: match[2]
+            };
+        }
+        return null;
+    }).filter(Boolean);
+};
+
+// Helper function to generate description from parsed grammatical info
+const generateDescription = (caseInfo: Array<{case: string, number: string}>) => {
+    if (!caseInfo || caseInfo.length === 0) return null;
+    
+    const caseMap: Record<string, string> = {
+        'Nom': 'Nominative',
+        'Gen': 'Genitive', 
+        'Dat': 'Dative',
+        'Akk': 'Accusative',
+        'Abl': 'Ablative',
+        'Vok': 'Vocative'
+    };
+    
+    const numberMap: Record<string, string> = {
+        'Sg': 'Singular',
+        'Pl': 'Plural'
+    };
+    
+    return caseInfo.map(info => `${caseMap[info.case]} ${numberMap[info.number]}`).join(', ');
+};
+
+// Helper function to recognize Latin grammatical patterns
+const recognizeLatinPattern = (form: string, existingForms: Array<{form: string, bestimmung: string}>, entry: any) => {
+    if (!form || form.length < 3) return null;
+    
+    // Strategy 1: Try to find exact match first (highest priority)
+    const exactMatch = existingForms.find(f => f.form === form);
+    if (exactMatch) {
+        return exactMatch.bestimmung;
+    }
+    
+    // Strategy 2: Try case-insensitive match
+    const caseInsensitiveMatch = existingForms.find(f => 
+        f.form && f.form.toLowerCase() === form.toLowerCase()
+    );
+    if (caseInsensitiveMatch) {
+        return caseInsensitiveMatch.bestimmung;
+    }
+    
+    // Strategy 3: Handle forms with alternatives like "Achillis/Achillei"
+    if (form && form.includes('/')) {
+        const alternatives = form.split('/');
+        for (const alt of alternatives) {
+            const found = existingForms.find(f => f.form === alt);
+            if (found) {
+                return found.bestimmung;
+            }
+        }
+    }
+    
+    // Strategy 4: Smart gender inference from existing forms
+    if (existingForms.length > 0) {
+        // Analyze existing forms to determine word type and patterns
+        const hasFeminine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('fem.'));
+        const hasMasculine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('mask.'));
+        const hasNeuter = existingForms.some(f => f.bestimmung && f.bestimmung.includes('neut.'));
+        
+        // Smart pattern recognition based on existing forms
+        if (form.endsWith('iorum') && hasFeminine) {
+            return 'Gen. Pl. mask.';
+        }
+        if (form.endsWith('ios') && hasFeminine) {
+            return 'Akk. Pl. mask.';
+        }
+        if (form.endsWith('orum') && hasFeminine) {
+            return 'Gen. Pl. mask.';
+        }
+        if (form.endsWith('is') && hasFeminine) {
+            return 'Dat. Pl. mask., Abl. Pl. mask.';
+        }
+        if (form.endsWith('os') && hasFeminine) {
+            return 'Akk. Pl. mask.';
+        }
+        if (form.endsWith('us') && hasFeminine) {
+            return 'Nom. Sg. mask.';
+        }
+        if (form.endsWith('i') && hasFeminine) {
+            return 'Gen. Sg. mask.';
+        }
+        if (form.endsWith('o') && hasFeminine) {
+            return 'Dat. Sg. mask.';
+        }
+        if (form.endsWith('e') && hasFeminine) {
+            return 'Abl. Sg. mask.';
+        }
+        
+        // Handle specific ambiguous endings (check longer patterns first)
+        if (form.endsWith('um') && hasFeminine) {
+            // Only apply to shorter forms that are likely accusative singular
+            if (form.length <= 6) {
+                return 'Akk. Sg. mask.';
+            }
+        }
+    }
+    
+    // Strategy 5: Try partial matching (form contains existing form)
+    const partialMatch = existingForms.find(f => 
+        f.form && form.includes(f.form)
+    );
+    if (partialMatch) {
+        return partialMatch.bestimmung;
+    }
+    
+    // Strategy 6: Try partial matching (existing form contains form)
+    const reversePartialMatch = existingForms.find(f => 
+        f.form && f.form.includes(form)
+    );
+    if (reversePartialMatch) {
+        return reversePartialMatch.bestimmung;
+    }
+    
+    // No pattern generation - return null if no match found
+    return null;
+};
+
+// Enhance grammar forms with descriptions from FORM table
+        const enhancedGrammarForms = entry.grammarForms.map(grammarForm => {
+            let matchingForm = null;
+            let generatedDescription = null;
+            
+            // Strategy 1: Exact match (highest priority)
+            matchingForm = entry.forms.find(form => form.form === grammarForm.form);
+            
+            // Strategy 2: Handle forms with alternatives like "Achillis/Achillei"
+            if (!matchingForm && grammarForm.form && grammarForm.form.includes('/')) {
+                const alternatives = grammarForm.form.split('/');
+                for (const alt of alternatives) {
+                    const found = entry.forms.find(form => form.form === alt);
+                    if (found) {
+                        matchingForm = found;
+                        break;
+                    }
+                }
+            }
+            
+            // Strategy 3: Case-insensitive match
+            if (!matchingForm && grammarForm.form) {
+                matchingForm = entry.forms.find(form => 
+                    form.form && form.form.toLowerCase() === grammarForm.form.toLowerCase()
+                );
+            }
+            
+            // Strategy 4: Pattern recognition for Latin forms
+            if (!matchingForm && grammarForm.form) {
+                generatedDescription = recognizeLatinPattern(grammarForm.form, entry.forms, entry);
+            }
+            
+            // Strategy 5: Partial match (grammar form contains FORM entry)
+            if (!matchingForm && !generatedDescription && grammarForm.form) {
+                matchingForm = entry.forms.find(form => 
+                    form.form && grammarForm.form.includes(form.form)
+                );
+            }
+            
+            // Strategy 6: Partial match (FORM entry contains grammar form)
+            if (!matchingForm && !generatedDescription && grammarForm.form) {
+                matchingForm = entry.forms.find(form => 
+                    form.form && form.form.includes(grammarForm.form)
+                );
+            }
+            
+            // Log matching results for debugging
+            if (grammarForm.form) {
+                let matchType = 'NOT FOUND';
+                let description = 'null';
+                
+                if (matchingForm) {
+                    matchType = 'EXACT MATCH';
+                    description = matchingForm.bestimmung || 'null';
+                } else if (generatedDescription) {
+                    matchType = 'PATTERN RECOGNITION';
+                    description = generatedDescription;
+                }
+                
+                console.log(`[Form Matching] ${matchType}: "${grammarForm.form}" -> "${description}"`);
+            }
+            
+            return {
+                ...grammarForm,
+                bestimmung: matchingForm?.bestimmung || generatedDescription || null
+            };
+        });
+
+        res.json({
+            ...entry,
+            grammarForms: enhancedGrammarForms
+        });
+    } catch (error) {
+        console.error('Vocab Detail API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
 });
 
 // Health check

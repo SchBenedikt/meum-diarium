@@ -39,6 +39,7 @@ export default function VocabularyPage() {
     const [results, setResults] = useState<VocEntry[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [selectedEntry, setSelectedEntry] = useState<VocEntry | null>(null);
 
     const fetchVocabulary = useCallback(async () => {
         setLoading(true);
@@ -74,11 +75,13 @@ export default function VocabularyPage() {
         }
     };
 
-    const handleSelectEntry = (vokId: string) => {
-        setSearchParams({ id: vokId, q: searchQuery });
+    const handleSelectEntry = (entry: VocEntry) => {
+        setSelectedEntry(entry);
+        setSearchParams({ id: entry.vokId, q: searchQuery });
     };
 
-    const handleBackToList = () => {
+    const handleClearSelection = () => {
+        setSelectedEntry(null);
         if (searchQuery) {
             setSearchParams({ q: searchQuery });
         } else {
@@ -86,19 +89,24 @@ export default function VocabularyPage() {
         }
     };
 
-    if (selectedVokId) {
+    // Initialize selected entry from URL params
+    useEffect(() => {
+        if (selectedVokId && results.length > 0) {
+            const entry = results.find(e => e.vokId === selectedVokId);
+            setSelectedEntry(entry || null);
+        } else {
+            setSelectedEntry(null);
+        }
+    }, [selectedVokId, results]);
+
+    if (selectedVokId && !selectedEntry) {
+        // Show loading state while we find the entry
         return (
             <div className="min-h-screen flex flex-col bg-background">
                 <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
-                    <div className="mb-8">
-                        <button
-                            onClick={handleBackToList}
-                            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors"
-                        >
-                            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zur Liste
-                        </button>
+                    <div className="flex items-center justify-center py-20">
+                        <Loader2 className="h-8 w-8 animate-spin text-primary" />
                     </div>
-                    <VocabularyDetail vokId={selectedVokId} />
                 </main>
                 <Footer />
             </div>
@@ -109,7 +117,7 @@ export default function VocabularyPage() {
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 px-2">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -135,7 +143,7 @@ export default function VocabularyPage() {
                 </div>
 
                 {/* Search */}
-                <div className="mb-12 max-w-3xl mx-auto">
+                <div className="mb-8 max-w-3xl mx-auto">
                     <form onSubmit={handleSearch} className="relative">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                         <Input
@@ -148,64 +156,102 @@ export default function VocabularyPage() {
                     </form>
                 </div>
 
-                {/* Results */}
-                <div className="max-w-5xl mx-auto">
-                    {loading ? (
-                        <div className="flex items-center justify-center py-20">
-                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                {/* Two Column Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                    {/* Left Column - Vocabulary List */}
+                    <div className="space-y-3">
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-semibold text-foreground">
+                                Vokabeln {results.length > 0 && `(${results.length})`}
+                            </h2>
+                            {selectedEntry && (
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleClearSelection}
+                                    className="text-muted-foreground hover:text-primary"
+                                >
+                                    <ArrowLeft className="h-4 w-4 mr-1" />
+                                    Auswahl aufheben
+                                </Button>
+                            )}
                         </div>
-                    ) : error ? (
-                        <Card className="p-8 text-center">
-                            <p className="text-red-500">{error}</p>
-                        </Card>
-                    ) : results.length === 0 ? (
-                        <Card className="p-12 text-center">
-                            <BookOpen className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
-                            <p className="text-lg text-muted-foreground">
-                                {searchQuery 
-                                    ? `Keine Ergebnisse für "${searchQuery}"`
-                                    : 'Suche nach einem Wort, um zu beginnen'}
-                            </p>
-                        </Card>
-                    ) : (
-                        <div className="space-y-3">
-                            <AnimatePresence mode="popLayout">
-                                {results.map((entry, index) => (
-                                    <motion.div
-                                        key={entry.vokId}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }}
-                                        transition={{ delay: index * 0.05 }}
-                                    >
-                                        <Card
-                                            className="p-6 hover:shadow-lg transition-all cursor-pointer hover:border-primary/50"
-                                            onClick={() => handleSelectEntry(entry.vokId)}
+                        
+                        {loading ? (
+                            <div className="flex items-center justify-center py-20">
+                                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                            </div>
+                        ) : error ? (
+                            <Card className="p-8 text-center">
+                                <p className="text-red-500">{error}</p>
+                            </Card>
+                        ) : results.length === 0 ? (
+                            <Card className="p-12 text-center">
+                                <BookOpen className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
+                                <p className="text-lg text-muted-foreground">
+                                    {searchQuery 
+                                        ? `Keine Ergebnisse für "${searchQuery}"`
+                                        : 'Suche nach einem Wort, um zu beginnen'}
+                                </p>
+                            </Card>
+                        ) : (
+                            <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+                                <AnimatePresence mode="popLayout">
+                                    {results.map((entry, index) => (
+                                        <motion.div
+                                            key={entry.vokId}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ delay: index * 0.05 }}
                                         >
-                                            <div className="flex items-start justify-between gap-4">
-                                                <div className="flex-1">
-                                                    <div className="flex items-center gap-3 mb-2">
-                                                        <h3 className="text-xl font-semibold text-primary">
-                                                            {entry.latin || entry.key}
-                                                        </h3>
-                                                        {entry.grammar && (
-                                                            <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
-                                                                {entry.grammar}
-                                                            </span>
-                                                        )}
+                                            <Card
+                                                className={`p-4 cursor-pointer transition-all hover:shadow-lg ${
+                                                    selectedEntry?.vokId === entry.vokId 
+                                                        ? 'border-primary bg-primary/5' 
+                                                        : 'hover:border-primary/50'
+                                                }`}
+                                                onClick={() => handleSelectEntry(entry)}
+                                            >
+                                                <div className="flex items-start justify-between gap-4">
+                                                    <div className="flex-1">
+                                                        <div className="flex items-center gap-3 mb-2">
+                                                            <h3 className="text-lg font-semibold text-primary">
+                                                                {entry.latin || entry.key}
+                                                            </h3>
+                                                            {entry.grammar && (
+                                                                <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                                                                    {entry.grammar}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <p className="text-sm text-muted-foreground line-clamp-2">
+                                                            {entry.desc || 'Keine Beschreibung verfügbar'}
+                                                        </p>
                                                     </div>
-                                                    <p className="text-muted-foreground">
-                                                        {entry.desc || 'Keine Beschreibung verfügbar'}
-                                                    </p>
+                                                    <Languages className="h-4 w-4 text-muted-foreground/50 flex-shrink-0" />
                                                 </div>
-                                                <Languages className="h-5 w-5 text-muted-foreground/50 flex-shrink-0" />
-                                            </div>
-                                        </Card>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </div>
-                    )}
+                                            </Card>
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Right Column - Selected Word Details */}
+                    <div className="lg:sticky lg:top-32 lg:h-fit">
+                        {selectedEntry ? (
+                            <VocabularyDetail vokId={selectedEntry.vokId} />
+                        ) : (
+                            <Card className="p-8 text-center">
+                                <BookOpen className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
+                                <p className="text-lg text-muted-foreground">
+                                    Wähle eine Vokabel aus der Liste aus, um Details zu sehen
+                                </p>
+                            </Card>
+                        )}
+                    </div>
                 </div>
             </main>
             <Footer />
