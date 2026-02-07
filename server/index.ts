@@ -3,9 +3,6 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
-import { getLocalVocabDb } from './db/local-vocab-client';
-import { voc } from '../functions/db/vocab-schema';
-import { like, or, desc, eq } from 'drizzle-orm';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -226,19 +223,25 @@ app.get('/api/translations/:lang', (_req, res) => {
     res.json({});
 });
 
-// Vocabulary API - Real database connection for local development
+// Vocabulary API - Local development with real database
 app.get('/api/vocab', async (req, res) => {
-    const query = req.query.q as string || '';
-    const limit = parseInt(req.query.limit as string || '50');
-    const offset = parseInt(req.query.offset as string || '0');
+    console.log('📚 [Dev] GET /api/vocab - using local database');
     
     try {
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc } = await import('../functions/db/vocab-schema');
+        const { like, or, desc } = await import('drizzle-orm');
+        
         const db = getLocalVocabDb();
+        const searchQuery = req.query.q as string;
+        const limit = parseInt(req.query.limit as string || '50');
+        const offset = parseInt(req.query.offset as string || '0');
+
         let results;
 
-        if (query) {
+        if (searchQuery) {
             // Search in latin, desc (German), and key fields
-            const searchPattern = `%${query}%`;
+            const searchPattern = `%${searchQuery}%`;
             results = await db.query.voc.findMany({
                 where: or(
                     like(voc.latin, searchPattern),
@@ -265,7 +268,7 @@ app.get('/api/vocab', async (req, res) => {
             offset
         });
     } catch (error) {
-        console.error('Vocab API Error:', error);
+        console.error('Vocabulary API Error:', error);
         res.status(500).json({ 
             error: 'Internal Error', 
             message: error instanceof Error ? error.message : 'Unknown error'
@@ -274,230 +277,157 @@ app.get('/api/vocab', async (req, res) => {
 });
 
 app.get('/api/vocab/:vokId', async (req, res) => {
-    const { vokId } = req.params;
+    console.log('📚 [Dev] GET /api/vocab/:vokId - using local database');
     
     try {
-        const db = getLocalVocabDb();
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc, grammar, form } = await import('../functions/db/vocab-schema');
+        const { eq } = await import('drizzle-orm');
         
-        // Get the vocabulary entry with all its forms
-        const entry = await db.query.voc.findFirst({
+        const db = getLocalVocabDb();
+        const { vokId } = req.params;
+
+        if (!vokId || typeof vokId !== 'string') {
+            return res.status(400).json({ error: 'Invalid vocabulary ID' });
+        }
+
+        // First, find the actual vok_id from the VOC table using the numeric ID
+        let actualVokId: string;
+        
+        // Try to find by vokId field first (in case it's already the real vok_id)
+        const entryByVokId = await db.query.voc.findFirst({
             where: eq(voc.vokId, vokId),
-            with: {
-                forms: true,
-                grammarForms: true,
+        });
+
+        if (entryByVokId) {
+            actualVokId = entryByVokId.vokId;
+        } else {
+            // Try to find by id field (numeric ID)
+            const entryById = await db.query.voc.findFirst({
+                where: eq(voc.id, parseInt(vokId)),
+            });
+            
+            if (!entryById) {
+                return res.status(404).json({ error: 'Vocabulary not found' });
             }
+            
+            actualVokId = entryById.vokId;
+        }
+
+        // Get the vocabulary entry using the actual vok_id
+        const entry = entryByVokId || await db.query.voc.findFirst({
+            where: eq(voc.vokId, actualVokId),
         });
 
         if (!entry) {
             return res.status(404).json({ error: 'Vocabulary not found' });
         }
 
-        // Helper function to parse grammatical descriptions
-const parseGrammaticalDescription = (description: string) => {
-    if (!description) return [];
-    
-    return description.split(',').map(part => {
-        const trimmed = part.trim();
-        const match = trimmed.match(/^(Nom|Gen|Dat|Akk|Abl|Vok)\.\s+(Sg|Pl)\.?$/);
-        if (match) {
-            return {
-                case: match[1],
-                number: match[2]
-            };
-        }
-        return null;
-    }).filter(Boolean);
-};
+        // Get all grammar forms for this vocabulary entry
+        const grammarForms = await db.select()
+            .from(grammar)
+            .where(eq(grammar.vokId, actualVokId))
+            .all();
 
-// Helper function to generate description from parsed grammatical info
-const generateDescription = (caseInfo: Array<{case: string, number: string}>) => {
-    if (!caseInfo || caseInfo.length === 0) return null;
-    
-    const caseMap: Record<string, string> = {
-        'Nom': 'Nominative',
-        'Gen': 'Genitive', 
-        'Dat': 'Dative',
-        'Akk': 'Accusative',
-        'Abl': 'Ablative',
-        'Vok': 'Vocative'
-    };
-    
-    const numberMap: Record<string, string> = {
-        'Sg': 'Singular',
-        'Pl': 'Plural'
-    };
-    
-    return caseInfo.map(info => `${caseMap[info.case]} ${numberMap[info.number]}`).join(', ');
-};
+        // Get all form descriptions for this vocabulary entry
+        const formDescriptions = await db.select()
+            .from(form)
+            .where(eq(form.vokId, actualVokId))
+            .all();
 
-// Helper function to recognize Latin grammatical patterns
-const recognizeLatinPattern = (form: string, existingForms: Array<{form: string, bestimmung: string}>, entry: any) => {
-    if (!form || form.length < 3) return null;
-    
-    // Strategy 1: Try to find exact match first (highest priority)
-    const exactMatch = existingForms.find(f => f.form === form);
-    if (exactMatch) {
-        return exactMatch.bestimmung;
-    }
-    
-    // Strategy 2: Try case-insensitive match
-    const caseInsensitiveMatch = existingForms.find(f => 
-        f.form && f.form.toLowerCase() === form.toLowerCase()
-    );
-    if (caseInsensitiveMatch) {
-        return caseInsensitiveMatch.bestimmung;
-    }
-    
-    // Strategy 3: Handle forms with alternatives like "Achillis/Achillei"
-    if (form && form.includes('/')) {
-        const alternatives = form.split('/');
-        for (const alt of alternatives) {
-            const found = existingForms.find(f => f.form === alt);
-            if (found) {
-                return found.bestimmung;
+        // Create a map of form -> bestimmung for quick lookup
+        const formDescriptionMap = new Map<string, string[]>();
+        for (const formDesc of formDescriptions) {
+            if (formDesc.form) {
+                const normalizedForm = formDesc.form.toLowerCase().trim();
+                if (!formDescriptionMap.has(normalizedForm)) {
+                    formDescriptionMap.set(normalizedForm, []);
+                }
+                if (formDesc.bestimmung) {
+                    const descriptions = formDescriptionMap.get(normalizedForm)!;
+                    descriptions.push(formDesc.bestimmung);
+                }
             }
         }
-    }
-    
-    // Strategy 4: Smart gender inference from existing forms
-    if (existingForms.length > 0) {
-        // Analyze existing forms to determine word type and patterns
-        const hasFeminine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('fem.'));
-        const hasMasculine = existingForms.some(f => f.bestimmung && f.bestimmung.includes('mask.'));
-        const hasNeuter = existingForms.some(f => f.bestimmung && f.bestimmung.includes('neut.'));
-        
-        // Smart pattern recognition based on existing forms
-        if (form.endsWith('iorum') && hasFeminine) {
-            return 'Gen. Pl. mask.';
-        }
-        if (form.endsWith('ios') && hasFeminine) {
-            return 'Akk. Pl. mask.';
-        }
-        if (form.endsWith('orum') && hasFeminine) {
-            return 'Gen. Pl. mask.';
-        }
-        if (form.endsWith('is') && hasFeminine) {
-            return 'Dat. Pl. mask., Abl. Pl. mask.';
-        }
-        if (form.endsWith('os') && hasFeminine) {
-            return 'Akk. Pl. mask.';
-        }
-        if (form.endsWith('us') && hasFeminine) {
-            return 'Nom. Sg. mask.';
-        }
-        if (form.endsWith('i') && hasFeminine) {
-            return 'Gen. Sg. mask.';
-        }
-        if (form.endsWith('o') && hasFeminine) {
-            return 'Dat. Sg. mask.';
-        }
-        if (form.endsWith('e') && hasFeminine) {
-            return 'Abl. Sg. mask.';
-        }
-        
-        // Handle specific ambiguous endings (check longer patterns first)
-        if (form.endsWith('um') && hasFeminine) {
-            // Only apply to shorter forms that are likely accusative singular
-            if (form.length <= 6) {
-                return 'Akk. Sg. mask.';
-            }
-        }
-    }
-    
-    // Strategy 5: Try partial matching (form contains existing form)
-    const partialMatch = existingForms.find(f => 
-        f.form && form.includes(f.form)
-    );
-    if (partialMatch) {
-        return partialMatch.bestimmung;
-    }
-    
-    // Strategy 6: Try partial matching (existing form contains form)
-    const reversePartialMatch = existingForms.find(f => 
-        f.form && f.form.includes(form)
-    );
-    if (reversePartialMatch) {
-        return reversePartialMatch.bestimmung;
-    }
-    
-    // No pattern generation - return null if no match found
-    return null;
-};
 
-// Enhance grammar forms with descriptions from FORM table
-        const enhancedGrammarForms = entry.grammarForms.map(grammarForm => {
-            let matchingForm = null;
-            let generatedDescription = null;
+        // Helper function to find best matching description
+        const findBestDescription = (grammarForm: string): string | null => {
+            const normalizedGrammarForm = grammarForm.toLowerCase().trim();
             
-            // Strategy 1: Exact match (highest priority)
-            matchingForm = entry.forms.find(form => form.form === grammarForm.form);
+            // First try exact match
+            if (formDescriptionMap.has(normalizedGrammarForm)) {
+                const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
+                return descriptions.join(', ');
+            }
             
-            // Strategy 2: Handle forms with alternatives like "Achillis/Achillei"
-            if (!matchingForm && grammarForm.form && grammarForm.form.includes('/')) {
-                const alternatives = grammarForm.form.split('/');
-                for (const alt of alternatives) {
-                    const found = entry.forms.find(form => form.form === alt);
-                    if (found) {
-                        matchingForm = found;
-                        break;
-                    }
+            // Try to find exact matches with common morphological variations
+            for (const [formKey, descriptions] of formDescriptionMap.entries()) {
+                // Check for exact matches with common ending variations
+                if (normalizedGrammarForm === formKey) {
+                    return descriptions.join(', ');
+                }
+                
+                // Check for very close matches (minor differences)
+                if (Math.abs(normalizedGrammarForm.length - formKey.length) <= 2 &&
+                    (normalizedGrammarForm.includes(formKey) || formKey.includes(normalizedGrammarForm))) {
+                    return descriptions.join(', ');
                 }
             }
             
-            // Strategy 3: Case-insensitive match
-            if (!matchingForm && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && form.form.toLowerCase() === grammarForm.form.toLowerCase()
-                );
-            }
+            return null;
+        };
+
+        // Enrich grammar forms with their descriptions from the FORM table
+        const enrichedGrammarForms = grammarForms.map(gf => {
+            let bestimmung: string | null = null;
             
-            // Strategy 4: Pattern recognition for Latin forms
-            if (!matchingForm && grammarForm.form) {
-                generatedDescription = recognizeLatinPattern(grammarForm.form, entry.forms, entry);
+            if (gf.form) {
+                bestimmung = findBestDescription(gf.form);
             }
-            
-            // Strategy 5: Partial match (grammar form contains FORM entry)
-            if (!matchingForm && !generatedDescription && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && grammarForm.form.includes(form.form)
-                );
-            }
-            
-            // Strategy 6: Partial match (FORM entry contains grammar form)
-            if (!matchingForm && !generatedDescription && grammarForm.form) {
-                matchingForm = entry.forms.find(form => 
-                    form.form && form.form.includes(grammarForm.form)
-                );
-            }
-            
-            // Log matching results for debugging
-            if (grammarForm.form) {
-                let matchType = 'NOT FOUND';
-                let description = 'null';
-                
-                if (matchingForm) {
-                    matchType = 'EXACT MATCH';
-                    description = matchingForm.bestimmung || 'null';
-                } else if (generatedDescription) {
-                    matchType = 'PATTERN RECOGNITION';
-                    description = generatedDescription;
-                }
-                
-                console.log(`[Form Matching] ${matchType}: "${grammarForm.form}" -> "${description}"`);
-            }
-            
+
             return {
-                ...grammarForm,
-                bestimmung: matchingForm?.bestimmung || generatedDescription || null
+                id: gf.id,
+                vokId: gf.vokId,
+                nr: gf.nr,
+                form: gf.form,
+                bestimmung: bestimmung,
             };
         });
 
-        res.json({
+        // Include ALL FORM entries, even if they have corresponding GRAMMAR entries
+        // This ensures we don't miss any forms
+        const allFormEntries = formDescriptions.map(fd => ({
+            id: fd.id,
+            vokId: fd.vokId,
+            nr: null,
+            form: fd.form,
+            bestimmung: fd.bestimmung,
+        }));
+
+        // Combine enriched grammar forms with all form entries
+        // Remove duplicates based on form content
+        const combinedForms = [...enrichedGrammarForms, ...allFormEntries];
+        const uniqueForms = combinedForms.filter((form, index, self) => 
+            index === self.findIndex(f => f.form === form.form)
+        );
+
+        // Sort forms by form content for better readability
+        const allForms = uniqueForms.sort((a, b) => {
+            if (!a.form) return 1;
+            if (!b.form) return -1;
+            return a.form.localeCompare(b.form);
+        });
+
+        // Return the entry with enriched grammar forms
+        const response = {
             ...entry,
-            grammarForms: enhancedGrammarForms
-        });
+            forms: allForms,
+            grammarForms: enrichedGrammarForms,
+        };
+
+        res.json(response);
     } catch (error) {
-        console.error('Vocab Detail API Error:', error);
+        console.error('Vocabulary Detail API Error:', error);
         res.status(500).json({ 
             error: 'Internal Error', 
             message: error instanceof Error ? error.message : 'Unknown error'

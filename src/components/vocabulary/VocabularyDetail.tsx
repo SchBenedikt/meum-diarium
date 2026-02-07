@@ -88,34 +88,54 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
     const isAdjective = entry.grammar?.toLowerCase().includes('adj') ||
                         (entry.typnr && entry.typnr >= 301 && entry.typnr <= 399);
 
-    // Categorize grammar forms
-    const participleForms = entry.grammarForms?.filter(form => 
+    // Use the enriched forms (forms now contains all GRAMMAR forms with FORM descriptions)
+    const allForms = entry.forms || [];
+
+    // Categorize forms into different types based on their descriptions
+    const participleForms = allForms.filter(form => 
         form.bestimmung?.includes('PPA') || 
         form.bestimmung?.includes('PPP') || 
-        form.bestimmung?.includes('PDFA')
-    ) || [];
+        form.bestimmung?.includes('PDFA') ||
+        form.bestimmung?.includes('Part.')
+    );
 
-    const conjugationForms = entry.grammarForms?.filter(form => 
-        (form.bestimmung?.includes('Präs.') || 
-         form.bestimmung?.includes('Perf.') || 
-         form.bestimmung?.includes('Impf.') ||
-         form.bestimmung?.includes('Plusq.') ||
-         form.bestimmung?.includes('Fut.')) &&
-        !form.bestimmung?.includes('PPA') &&
-        !form.bestimmung?.includes('PPP') &&
-        !form.bestimmung?.includes('PDFA')
-    ) || [];
+    const conjugationForms = allForms.filter(form => 
+        form.bestimmung && (
+            form.bestimmung.includes('Präs.') || 
+            form.bestimmung.includes('Perf.') || 
+            form.bestimmung.includes('Impf.') ||
+            form.bestimmung.includes('Plusq.') ||
+            form.bestimmung.includes('Fut.')
+        ) &&
+        !form.bestimmung.includes('PPA') &&
+        !form.bestimmung.includes('PPP') &&
+        !form.bestimmung.includes('PDFA') &&
+        !form.bestimmung.includes('Part.')
+    );
 
-    const otherForms = entry.grammarForms?.filter(form => 
-        !form.bestimmung?.includes('PPA') && 
-        !form.bestimmung?.includes('PPP') && 
-        !form.bestimmung?.includes('PDFA') &&
-        !form.bestimmung?.includes('Präs.') && 
-        !form.bestimmung?.includes('Perf.') && 
-        !form.bestimmung?.includes('Impf.') &&
-        !form.bestimmung?.includes('Plusq.') &&
-        !form.bestimmung?.includes('Fut.')
-    ) || [];
+    // Declension forms (for nouns and adjectives)
+    const declensionForms = allForms.filter(form =>
+        form.bestimmung && (
+            form.bestimmung.includes('Nom.') ||
+            form.bestimmung.includes('Gen.') ||
+            form.bestimmung.includes('Dat.') ||
+            form.bestimmung.includes('Akk.') ||
+            form.bestimmung.includes('Abl.') ||
+            form.bestimmung.includes('Vok.')
+        ) &&
+        !form.bestimmung.includes('PPA') &&
+        !form.bestimmung.includes('PPP') &&
+        !form.bestimmung.includes('PDFA') &&
+        !form.bestimmung.includes('Part.') &&
+        !form.bestimmung.includes('Präs.') &&
+        !form.bestimmung.includes('Perf.') &&
+        !form.bestimmung.includes('Impf.') &&
+        !form.bestimmung.includes('Plusq.') &&
+        !form.bestimmung.includes('Fut.')
+    );
+
+    // Forms without descriptions (from GRAMMAR table that didn't match FORM table)
+    const formsWithoutDescriptions = allForms.filter(form => !form.bestimmung);
 
     return (
         <div className="space-y-8">
@@ -150,68 +170,44 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
                 </div>
             </Card>
 
-            {/* Forms Section */}
-            {entry.forms && entry.forms.length > 0 && (
+            {/* Declension Table - for Nouns and Adjectives */}
+            {(isNoun || isAdjective) && declensionForms.length > 0 && (
                 <Card className="p-8">
                     <div className="flex items-center gap-2 mb-6">
                         <TableIcon className="h-5 w-5 text-primary" />
-                        <h2 className="text-2xl font-bold">
-                            {isVerb ? 'Deklinationstabelle' : isNoun || isAdjective ? 'Deklinationstabelle' : 'Formen'}
-                        </h2>
+                        <h2 className="text-2xl font-bold">Deklinationstabelle</h2>
                     </div>
-                    
-                    {isVerb ? (
-                        <ConjugationTable forms={entry.forms} />
-                    ) : (isNoun || isAdjective) ? (
-                        <DeclinationTable forms={entry.forms} />
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {entry.forms.map((form, index) => (
-                                <div 
-                                    key={index}
-                                    className="p-3 rounded-lg border border-border bg-card/50 hover:bg-card transition-colors"
-                                >
-                                    <div className="font-semibold text-primary">{form.form}</div>
-                                    {form.bestimmung && (
-                                        <div className="text-sm text-muted-foreground">{form.bestimmung}</div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    <DeclinationTable forms={declensionForms} />
                 </Card>
             )}
 
-            {/* Participle Forms Section */}
-            {participleForms && participleForms.length > 0 && (
-                <Card className="p-8">
-                    <ParticipleTable forms={participleForms.map(form => ({
-                        form: form.form,
-                        bestimmung: form.bestimmung
-                    }))} />
-                </Card>
-            )}
-
-            {/* Other Grammar Forms Section */}
-            {conjugationForms && conjugationForms.length > 0 && (
+            {/* Conjugation Table - for Verbs */}
+            {isVerb && conjugationForms.length > 0 && (
                 <Card className="p-8">
                     <div className="flex items-center gap-2 mb-6">
                         <TableIcon className="h-5 w-5 text-primary" />
                         <h2 className="text-2xl font-bold">Konjugationstabelle</h2>
                     </div>
-                    <ConjugationTable forms={conjugationForms.map(form => ({
-                        form: form.form,
-                        bestimmung: form.bestimmung
-                    }))} />
+                    <ConjugationTable forms={conjugationForms} />
                 </Card>
             )}
 
-            {/* Remaining Forms Section */}
-            {otherForms && otherForms.length > 0 && (
+            {/* Participle Forms Section */}
+            {participleForms.length > 0 && (
+                <Card className="p-8">
+                    <ParticipleTable forms={participleForms} />
+                </Card>
+            )}
+
+            {/* Forms without descriptions - only show if there are any */}
+            {formsWithoutDescriptions.length > 0 && (
                 <Card className="p-8">
                     <h2 className="text-2xl font-bold mb-6">Weitere Formen</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {otherForms.map((form, index) => (
+                    <div className="text-sm text-muted-foreground mb-4">
+                        Diese Formen haben keine grammatikalische Beschreibung in der Datenbank.
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        {formsWithoutDescriptions.map((form, index) => (
                             <div 
                                 key={index}
                                 className="p-3 rounded-lg border border-border bg-card/50"
@@ -222,11 +218,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
                                 <div className="font-semibold text-primary">
                                     {form.form || 'N/A'}
                                 </div>
-                                {form.bestimmung && (
-                                    <div className="text-sm text-muted-foreground mt-1">
-                                        {form.bestimmung}
-                                    </div>
-                                )}
                             </div>
                         ))}
                     </div>

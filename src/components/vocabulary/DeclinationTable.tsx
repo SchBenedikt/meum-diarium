@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface Form {
     form: string;
@@ -12,10 +13,121 @@ interface DeclinationTableProps {
 export function DeclinationTable({ forms }: DeclinationTableProps) {
     // Parse declension forms into a structured table
     // Forms typically have bestimmung like "Nom. Sg.", "Gen. Sg.", "Dat. Sg.", etc.
+    // For adjectives, they may also have gender indicators like "mask.", "fem.", "neut."
     
     const cases = ['Nom.', 'Gen.', 'Dat.', 'Akk.', 'Abl.', 'Vok.'];
-    const numbers = ['Sg.', 'Pl.'];
+    const genders = ['mask.', 'fem.', 'neut.'];
     
+    // Check if we have forms with gender indicators
+    const hasGenderForms = forms.some(f => 
+        f.bestimmung && genders.some(g => f.bestimmung!.includes(g))
+    );
+    
+    if (hasGenderForms) {
+        // Multi-gender declension table (for adjectives)
+        const formsByGender: Record<string, Record<string, { sg?: string; pl?: string }>> = {};
+        
+        forms.forEach(form => {
+            if (!form.bestimmung) return;
+            
+            const bestimmung = form.bestimmung;
+            
+            // Determine gender
+            let gender = 'mask.'; // default
+            for (const g of genders) {
+                if (bestimmung.includes(g)) {
+                    gender = g;
+                    break;
+                }
+            }
+            
+            if (!formsByGender[gender]) {
+                formsByGender[gender] = {};
+            }
+            
+            // Check each case
+            for (const caseName of cases) {
+                if (bestimmung.includes(caseName)) {
+                    if (!formsByGender[gender][caseName]) {
+                        formsByGender[gender][caseName] = {};
+                    }
+                    
+                    // Handle both singular and plural
+                    if (bestimmung.includes('Sg.')) {
+                        formsByGender[gender][caseName].sg = form.form;
+                    } else if (bestimmung.includes('Pl.')) {
+                        formsByGender[gender][caseName].pl = form.form;
+                    }
+                    break;
+                }
+            }
+        });
+        
+        const availableGenders = Object.keys(formsByGender);
+        
+        if (availableGenders.length === 0) {
+            return <div className="text-muted-foreground">Keine Deklinationsformen verfügbar</div>;
+        }
+        
+        const genderLabels: Record<string, string> = {
+            'mask.': 'Maskulinum',
+            'fem.': 'Femininum',
+            'neut.': 'Neutrum'
+        };
+        
+        // Determine grid columns based on number of genders
+        const gridColsClass = availableGenders.length === 1 ? 'grid-cols-1' :
+                              availableGenders.length === 2 ? 'grid-cols-2' :
+                              'grid-cols-3';
+        
+        return (
+            <Tabs defaultValue={availableGenders[0]} className="w-full">
+                <TabsList className={`grid w-full ${gridColsClass} mb-6`}>
+                    {availableGenders.map(gender => (
+                        <TabsTrigger key={gender} value={gender}>
+                            {genderLabels[gender] || gender}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+                
+                {availableGenders.map(gender => (
+                    <TabsContent key={gender} value={gender}>
+                        <div className="overflow-x-auto">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="font-bold">Kasus</TableHead>
+                                        <TableHead className="font-bold">Singular</TableHead>
+                                        <TableHead className="font-bold">Plural</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {cases.map(caseName => {
+                                        const caseData = formsByGender[gender][caseName];
+                                        return (
+                                            <TableRow key={caseName}>
+                                                <TableCell className="font-semibold text-muted-foreground">
+                                                    {caseName.replace('.', '')}
+                                                </TableCell>
+                                                <TableCell className="text-primary font-medium">
+                                                    {caseData?.sg || '—'}
+                                                </TableCell>
+                                                <TableCell className="text-primary font-medium">
+                                                    {caseData?.pl || '—'}
+                                                </TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </TabsContent>
+                ))}
+            </Tabs>
+        );
+    }
+    
+    // Single-gender declension table (for nouns)
     const formsByCase: Record<string, { sg?: string; pl?: string }> = {};
     
     forms.forEach(form => {
