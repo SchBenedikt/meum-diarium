@@ -48,7 +48,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                     formDescriptionMap.set(normalizedForm, []);
                 }
                 if (formDesc.bestimmung) {
-                    formDescriptionMap.get(normalizedForm)!.push(formDesc.bestimmung);
+                    const descriptions = formDescriptionMap.get(normalizedForm)!;
+                    descriptions.push(formDesc.bestimmung);
                 }
             }
         }

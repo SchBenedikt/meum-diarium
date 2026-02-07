@@ -75,9 +75,14 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
             'neut.': 'Neutrum'
         };
         
+        // Determine grid columns based on number of genders
+        const gridColsClass = availableGenders.length === 1 ? 'grid-cols-1' :
+                              availableGenders.length === 2 ? 'grid-cols-2' :
+                              'grid-cols-3';
+        
         return (
             <Tabs defaultValue={availableGenders[0]} className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
+                <TabsList className={`grid w-full ${gridColsClass} mb-6`}>
                     {availableGenders.map(gender => (
                         <TabsTrigger key={gender} value={gender}>
                             {genderLabels[gender] || gender}
