@@ -1,5 +1,5 @@
 import { getVocabDb } from '../../db/vocab-client';
-import { voc } from '../../db/vocab-schema';
+import { voc, grammar, form } from '../../db/vocab-schema';
 import { eq } from 'drizzle-orm';
 import type { PagesContext } from '../../types';
 
@@ -15,13 +15,9 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
     }
 
     try {
-        // Get the vocabulary entry with all its forms
+        // Get the vocabulary entry
         const entry = await db.query.voc.findFirst({
             where: eq(voc.vokId, vokId),
-            with: {
-                forms: true,
-                grammarForms: true,
-            }
         });
 
         if (!entry) {
@@ -31,7 +27,65 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             });
         }
 
-        return new Response(JSON.stringify(entry), {
+        // Get all grammar forms for this vocabulary entry
+        const grammarForms = await db.select()
+            .from(grammar)
+            .where(eq(grammar.vokId, vokId))
+            .all();
+
+        // Get all form descriptions for this vocabulary entry
+        const formDescriptions = await db.select()
+            .from(form)
+            .where(eq(form.vokId, vokId))
+            .all();
+
+        // Create a map of form -> bestimmung for quick lookup
+        const formDescriptionMap = new Map<string, string[]>();
+        for (const formDesc of formDescriptions) {
+            if (formDesc.form) {
+                const normalizedForm = formDesc.form.toLowerCase().trim();
+                if (!formDescriptionMap.has(normalizedForm)) {
+                    formDescriptionMap.set(normalizedForm, []);
+                }
+                if (formDesc.bestimmung) {
+                    formDescriptionMap.get(normalizedForm)!.push(formDesc.bestimmung);
+                }
+            }
+        }
+
+        // Enrich grammar forms with their descriptions from the FORM table
+        const enrichedGrammarForms = grammarForms.map(gf => {
+            let bestimmung: string | null = null;
+            
+            if (gf.form) {
+                const normalizedForm = gf.form.toLowerCase().trim();
+                const descriptions = formDescriptionMap.get(normalizedForm);
+                
+                if (descriptions && descriptions.length > 0) {
+                    // Join multiple descriptions with comma if there are multiple
+                    bestimmung = descriptions.join(', ');
+                }
+            }
+
+            return {
+                id: gf.id,
+                vokId: gf.vokId,
+                nr: gf.nr,
+                form: gf.form,
+                bestimmung: bestimmung,
+            };
+        });
+
+        // Return the entry with enriched grammar forms
+        // We use enrichedGrammarForms as the primary source of forms since it contains
+        // all forms from GRAMMAR table with matched descriptions from FORM table
+        const response = {
+            ...entry,
+            forms: enrichedGrammarForms, // Use enriched grammar forms as the main forms array
+            grammarForms: enrichedGrammarForms, // Keep for backward compatibility
+        };
+
+        return new Response(JSON.stringify(response), {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Access-Control-Allow-Origin': '*',
