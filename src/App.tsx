@@ -38,9 +38,11 @@ const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
+const LatinGrammarPage = lazy(() => import('./pages/LatinGrammarPage'));
 const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const VocabularyPage = lazy(() => import('./pages/VocabularyPage'));
+const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -86,7 +88,9 @@ const AppContent = () => {
             <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
             <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
+            <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
             <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
+            <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
             <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
             <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
             <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />

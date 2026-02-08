@@ -100,7 +100,7 @@ export default function LexiconPage() {
   const searchPlaceholder = t('lexiconSearchPlaceholder') || 'In den Annalen suchen...';
   return (
     <div className="min-h-screen bg-background selection:bg-primary/10">
-      <main className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
+      <main className="container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div

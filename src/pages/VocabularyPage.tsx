@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -40,13 +40,20 @@ export default function VocabularyPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [selectedEntry, setSelectedEntry] = useState<VocEntry | null>(null);
+    const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    const fetchVocabulary = useCallback(async () => {
+    const fetchVocabulary = useCallback(async (query: string) => {
+        if (!query.trim()) {
+            setResults([]);
+            setError(null);
+            setLoading(false);
+            return;
+        }
+
         setLoading(true);
         setError(null);
         try {
-            const q = searchParams.get('q') || '';
-            const response = await fetch(`/api/vocab?q=${encodeURIComponent(q)}&limit=20`);
+            const response = await fetch(`/api/vocab?q=${encodeURIComponent(query)}&limit=20`);
             if (!response.ok) {
                 throw new Error('Failed to fetch vocabulary');
             }
@@ -58,18 +65,41 @@ export default function VocabularyPage() {
         } finally {
             setLoading(false);
         }
-    }, [searchParams]);
+    }, []);
+
+    // Debounced search function
+    const debouncedSearch = useCallback((query: string) => {
+        if (debounceTimeoutRef.current) {
+            clearTimeout(debounceTimeoutRef.current);
+        }
+        
+        debounceTimeoutRef.current = setTimeout(() => {
+            fetchVocabulary(query);
+        }, 300); // 300ms delay
+    }, [fetchVocabulary]);
 
     useEffect(() => {
         if (!selectedVokId) {
-            fetchVocabulary();
+            debouncedSearch(searchQuery);
         }
-    }, [searchParams, selectedVokId, fetchVocabulary]);
+    }, [searchQuery, selectedVokId, debouncedSearch]);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             setSearchParams({ q: searchQuery });
+        } else {
+            setSearchParams({});
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+        
+        // Update URL params immediately for live search
+        if (value.trim()) {
+            setSearchParams({ q: value });
         } else {
             setSearchParams({});
         }
@@ -150,7 +180,7 @@ export default function VocabularyPage() {
                             type="text"
                             placeholder="Suche nach lateinischen oder deutschen Wörtern..."
                             value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onChange={handleInputChange}
                             className="pl-12 pr-4 py-6 text-lg"
                         />
                     </form>

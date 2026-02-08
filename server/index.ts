@@ -240,25 +240,59 @@ app.get('/api/vocab', async (req, res) => {
         let results;
 
         if (searchQuery) {
-            // Search in latin, desc (German), and key fields
+            // Normalize search query by removing diacritical marks
+            const normalizeString = (str: string) => {
+                return str
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '') // Remove diacritical marks
+                    .toLowerCase();
+            };
+            
+            const normalizedSearchQuery = normalizeString(searchQuery);
             const searchPattern = `%${searchQuery}%`;
-            results = await db.query.voc.findMany({
-                where: or(
-                    like(voc.latin, searchPattern),
-                    like(voc.desc, searchPattern),
-                    like(voc.key, searchPattern)
-                ),
-                limit: limit,
-                offset: offset,
-                orderBy: [desc(voc.id)]
+            
+            // Get all vocabulary entries and filter them manually for diacritic-insensitive search
+            const allEntries = await db.query.voc.findMany({
+                limit: 10000, // Get more entries to filter from
+                orderBy: [voc.id] // Order by ID ascending to get the actual amāre entry
             });
+            
+            // Filter entries with diacritic-insensitive search and rank by relevance
+            results = allEntries
+                .map(entry => {
+                    const normalizedLatin = normalizeString(entry.latin || '');
+                    const normalizedDesc = normalizeString(entry.desc || '');
+                    const normalizedKey = normalizeString(entry.key || '');
+                    
+                    // Calculate relevance score
+                    let score = 0;
+                    
+                    // Exact match in latin gets highest score
+                    if (normalizedLatin === normalizedSearchQuery) score += 100;
+                    // Starts with search query gets high score
+                    else if (normalizedLatin.startsWith(normalizedSearchQuery)) score += 80;
+                    // Contains search query gets medium score
+                    else if (normalizedLatin.includes(normalizedSearchQuery)) score += 60;
+                    
+                    // Exact match in desc gets good score
+                    if (normalizedDesc === normalizedSearchQuery) score += 40;
+                    // Contains in desc gets lower score
+                    else if (normalizedDesc.includes(normalizedSearchQuery)) score += 20;
+                    
+                    // Original pattern matching (for diacritic-sensitive search)
+                    if (entry.latin?.includes(searchPattern)) score += 30;
+                    if (entry.desc?.includes(searchPattern)) score += 15;
+                    if (entry.key?.includes(searchPattern)) score += 10;
+                    
+                    return { entry, score };
+                })
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score) // Sort by relevance score (descending)
+                .map(item => item.entry)
+                .slice(0, limit); // Apply limit after sorting
         } else {
-            // Return recent entries if no search query
-            results = await db.query.voc.findMany({
-                limit: limit,
-                offset: offset,
-                orderBy: [desc(voc.id)]
-            });
+            // Return empty results if no search query
+            results = [];
         }
 
         res.json({
@@ -337,6 +371,18 @@ app.get('/api/vocab/all', async (req, res) => {
                         if (formDescriptionMap.has(normalizedGrammarForm)) {
                             const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
                             return descriptions.join(', ');
+                        }
+                        
+                        // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+                        if (normalizedGrammarForm.includes('/')) {
+                            const parts = normalizedGrammarForm.split('/');
+                            for (const part of parts) {
+                                const trimmedPart = part.trim();
+                                if (formDescriptionMap.has(trimmedPart)) {
+                                    const descriptions = formDescriptionMap.get(trimmedPart)!;
+                                    return descriptions.join(', ');
+                                }
+                            }
                         }
                         
                         // Try to find exact matches with common morphological variations
@@ -518,6 +564,18 @@ app.get('/api/vocab/:vokId', async (req, res) => {
                 return descriptions.join(', ');
             }
             
+            // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+            if (normalizedGrammarForm.includes('/')) {
+                const parts = normalizedGrammarForm.split('/');
+                for (const part of parts) {
+                    const trimmedPart = part.trim();
+                    if (formDescriptionMap.has(trimmedPart)) {
+                        const descriptions = formDescriptionMap.get(trimmedPart)!;
+                        return descriptions.join(', ');
+                    }
+                }
+            }
+            
             // Try to find exact matches with common morphological variations
             for (const [formKey, descriptions] of formDescriptionMap.entries()) {
                 // Check for exact matches with common ending variations
@@ -654,6 +712,18 @@ app.get('/api/vocab/all', async (req, res) => {
                         if (formDescriptionMap.has(normalizedGrammarForm)) {
                             const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
                             return descriptions.join(', ');
+                        }
+                        
+                        // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+                        if (normalizedGrammarForm.includes('/')) {
+                            const parts = normalizedGrammarForm.split('/');
+                            for (const part of parts) {
+                                const trimmedPart = part.trim();
+                                if (formDescriptionMap.has(trimmedPart)) {
+                                    const descriptions = formDescriptionMap.get(trimmedPart)!;
+                                    return descriptions.join(', ');
+                                }
+                            }
                         }
                         
                         // Try to find exact matches with common morphological variations

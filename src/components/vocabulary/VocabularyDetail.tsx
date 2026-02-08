@@ -75,7 +75,9 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
 
     useEffect(() => {
         const fetchAdditionalForms = async () => {
-            const formsWithoutDescriptions = entry?.forms?.filter((form: Form) => !form.bestimmung) || [];
+            if (!entry?.forms) return;
+            
+            const formsWithoutDescriptions = entry.forms.filter((form: Form) => !form.bestimmung);
             
             if (formsWithoutDescriptions.length === 0) return;
             
@@ -105,10 +107,8 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
             setAdditionalForms(results);
         };
 
-        if (entry?.forms) {
-            fetchAdditionalForms();
-        }
-    }, [entry?.forms, vokId]);
+        fetchAdditionalForms();
+    }, [vokId, entry?.forms?.length]);
 
     if (loading) {
         return (
@@ -186,39 +186,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
     // Forms without descriptions (from GRAMMAR table that didn't match FORM table)
     const formsWithoutDescriptions = allForms.filter(form => !form.bestimmung);
     console.log('❓ [VocabularyDetail] Forms without descriptions:', formsWithoutDescriptions);
-    
-    useEffect(() => {
-        const fetchAdditionalForms = async () => {
-            const results = await Promise.all(
-                formsWithoutDescriptions.map(async (form) => {
-                    try {
-                        console.log(`🔍 [VocabularyDetail] Fetching additional info for form: ${form.form}`);
-                        const response = await fetch(`/api/vocab/${vokId}/form/${encodeURIComponent(form.form)}`);
-                        if (response.ok) {
-                            const data = await response.json();
-                            return {
-                                form: form.form,
-                                description: data.bestimmung || 'Keine Beschreibung gefunden',
-                                loading: false
-                            };
-                        }
-                    } catch (error) {
-                        console.log(`❌ [VocabularyDetail] Failed to fetch info for ${form.form}:`, error);
-                    }
-                    return {
-                        form: form.form,
-                        description: 'Keine Beschreibung verfügbar',
-                        loading: false
-                    };
-                })
-            );
-            setAdditionalForms(results);
-        };
-
-        if (formsWithoutDescriptions.length > 0) {
-            fetchAdditionalForms();
-        }
-    }, [formsWithoutDescriptions, vokId]);
 
     return (
         <div className="space-y-8">
