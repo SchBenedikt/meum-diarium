@@ -6,7 +6,7 @@ import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
 import { authors as authorData } from '@/data/authors';
 import { usePosts } from '@/hooks/use-posts';
-import { Author, Perspective, BlogPost } from '@/types/blog';
+import { Author, Perspective, BlogPost, Language } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, Clock, BookText } from 'lucide-react';
 import NotFound from './NotFound';
@@ -28,24 +28,10 @@ const calculateReadingTime = (text: string): number => {
   return Math.ceil(wordCount / wordsPerMinute);
 };
 function PostContent({ post }: { post: BlogPost }) {
-  if (!post) {
-    console.error('[PostContent] Post is null/undefined');
-    return <NotFound />;
-  }
   const { t, language } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
-  // Safely check for content
-  const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
-  const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
-  const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
-  const requested = (searchParams.get('p') as Perspective | null);
-  const initialPerspective: Perspective = requested === 'scientific' && hasScientific
-    ? 'scientific'
-    : requested === 'diary' && hasDiary
-      ? 'diary'
-      : defaultPerspective;
-  const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
+  const [perspective, setPerspective] = useState<Perspective>('diary');
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -54,20 +40,14 @@ function PostContent({ post }: { post: BlogPost }) {
   const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const contentToDisplay = post?.content?.[perspective];
-  // Determine which title to display based on perspective
-  const getDisplayTitle = () => {
-    if (perspective === 'diary' && post?.diaryTitle) {
-      return post.diaryTitle;
-    } else if (perspective === 'scientific' && post?.scientificTitle) {
-      return post.scientificTitle;
-    }
-    return post?.title || 'Untitled'; // Fallback
-  };
+  
+  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post, perspective]);
+  
   const readingTime = useMemo(() => {
     if (!contentToDisplay) return 0;
     return calculateReadingTime(contentToDisplay);
   }, [contentToDisplay]);
+  
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {
     if (!Array.isArray(allPosts) || !post?.author || !post?.slug) {
@@ -82,6 +62,41 @@ function PostContent({ post }: { post: BlogPost }) {
       .filter(p => p?.author === post.author && p?.slug !== post.slug)
       .slice(0, 6);
   }, [allPosts, post?.author, post?.slug]);
+  
+  // Determine which title to display based on perspective
+  const getDisplayTitle = useCallback(() => {
+    if (perspective === 'diary' && post?.diaryTitle) {
+      return post.diaryTitle;
+    } else if (perspective === 'scientific' && post?.scientificTitle) {
+      return post.scientificTitle;
+    }
+    return post?.title || 'Untitled'; // Fallback
+  }, [perspective, post]);
+  
+  // Update perspective based on URL params and content availability
+  useEffect(() => {
+    if (!post) return;
+    
+    const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
+    const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
+    const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
+    const requested = (searchParams.get('p') as Perspective | null);
+    const initialPerspective: Perspective = requested === 'scientific' && hasScientific
+      ? 'scientific'
+      : requested === 'diary' && hasDiary
+        ? 'diary'
+        : defaultPerspective;
+    
+    if (perspective !== initialPerspective) {
+      setPerspective(initialPerspective);
+    }
+  }, [post, searchParams, perspective]);
+  
+  if (!post) {
+    console.error('[PostContent] Post is null/undefined');
+    return <NotFound />;
+  }
+  
   const author = post?.author ? authorData[post.author as Author] : null;
   const excerpt = post?.excerpt || contentToDisplay?.substring(0, 160) || '';
   return (
@@ -151,7 +166,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </header>
                 <div className="space-y-8">
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
-                  <FormattedContent content={contentToDisplay} language={language} currentSlug={post?.slug} />
+                  <FormattedContent content={contentToDisplay} language={language as Language} currentSlug={post?.slug} />
                 </div>
               </motion.article>
               {/* Sidebar - below content on mobile, sticky on desktop */}
@@ -237,9 +252,9 @@ export default function PostPage() {
         } else {
           setPost(null);
         }
-      } catch (err: any) {
-        console.error(`[PostPage] Error loading post:`, err.message);
-        setError(err.message || 'Failed to load post');
+      } catch (err: unknown) {
+        console.error(`[PostPage] Error loading post:`, err instanceof Error ? err.message : String(err));
+        setError(err instanceof Error ? err.message : 'Failed to load post');
         setPost(null);
       } finally {
         setIsLoadingPost(false);

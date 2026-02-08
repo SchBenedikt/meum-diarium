@@ -77,17 +77,23 @@ const AppContent = () => {
             <Route path="/" element={<PageTransition><Index /></PageTransition>} />
             {/* Static routes must come before dynamic :authorId routes */}
             <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+            <Route path="/über" element={<PageTransition><AboutPage /></PageTransition>} />
             <Route path="/api" element={<PageTransition><ApiDocsPage /></PageTransition>} />
             <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
             <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
+            <Route path="/lexikon" element={<PageTransition><LexiconPage /></PageTransition>} />
             <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
             <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
             <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
             <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+            <Route path="/datenschutz" element={<PageTransition><PrivacyPage /></PageTransition>} />
             <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
+            <Route path="/impressum" element={<PageTransition><ImprintPage /></PageTransition>} />
             <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
+            <Route path="/cookie-richtlinien" element={<PageTransition><CookiesPage /></PageTransition>} />
             <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
             <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
+            <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
             <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
             <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
             <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />

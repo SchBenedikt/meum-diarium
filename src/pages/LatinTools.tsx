@@ -8,7 +8,8 @@ import {
     MessageSquare,
     ChevronRight,
     BookOpen,
-    GraduationCap
+    GraduationCap,
+    AlertTriangle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
@@ -60,6 +61,28 @@ export default function LatinTools() {
                         </Link>
                     )}
                 </div>
+
+                {/* Beta Notice */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-12"
+                >
+                    <Card className="p-4 bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
+                        <div className="flex items-center gap-3">
+                            <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0" />
+                            <div>
+                                <p className="text-sm font-medium text-red-800 dark:text-red-200">
+                                    Beta-Version
+                                </p>
+                                <p className="text-xs text-red-700 dark:text-red-300">
+                                    Diese Lernfunktionen befinden sich in der Testphase und werden noch überarbeitet. 
+                                    Es können Fehler auftreten und Funktionen sich ändern.
+                                </p>
+                            </div>
+                        </div>
+                    </Card>
+                </motion.div>
                 <AnimatePresence mode="wait">
                     {mode === 'menu' && (
                         <motion.div

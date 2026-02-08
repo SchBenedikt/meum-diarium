@@ -16,6 +16,45 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
 import { useAuthors } from '@/hooks/use-authors';
 import { MultilingualTagEditor } from '@/components/admin/MultilingualTagEditor';
+interface PostFormData {
+    title: string;
+    diaryTitle: string;
+    scientificTitle: string;
+    latinTitle: string;
+    slug: string;
+    author: Author;
+    excerpt: string;
+    historicalDate: string;
+    historicalYear: number;
+    tags: string[];
+    tagsWithTranslations: TagWithTranslations[];
+    coverImage: string;
+    readingTime: number;
+    quoteText: string;
+    quoteTranslationDe: string;
+    quoteTranslationEn: string;
+    quoteTranslationLa: string;
+    quoteAuthor: string;
+    quoteDate: string;
+    quoteSource: string;
+    de: {
+        diary: string;
+        scientific: string;
+    };
+    en: {
+        title: string;
+        excerpt: string;
+        diary: string;
+        scientific: string;
+    };
+    la: {
+        title: string;
+        excerpt: string;
+        diary: string;
+        scientific: string;
+    };
+}
+
 export default function PostEditorPage() {
     const { author, slug } = useParams<{ author: string; slug: string }>();
     const navigate = useNavigate();
@@ -198,7 +237,7 @@ export default function PostEditorPage() {
             setLoading(false);
         }
     };
-    const updateField = (field: string, value: any) => {
+    const updateField = (field: keyof PostFormData, value: PostFormData[keyof PostFormData]) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
     const updateLanguageField = (lang: 'de' | 'en' | 'la', field: string, value: string) => {
@@ -325,7 +364,7 @@ export default function PostEditorPage() {
                                         <SelectContent>
                                             {Object.entries(authors || {}).map(([id, a]) => (
                                                 <SelectItem key={id} value={id as Author}>
-                                                    {(a as any).name || id}
+                                                    {a.name || id}
                                                 </SelectItem>
                                             ))}
                                         </SelectContent>
@@ -519,7 +558,7 @@ export default function PostEditorPage() {
                             <CardDescription>Bearbeite den Inhalt in allen verfügbaren Sprachen</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <Tabs value={activeLanguage} onValueChange={(v) => setActiveLanguage(v as any)}>
+                            <Tabs value={activeLanguage} onValueChange={(v: 'de' | 'en' | 'la') => setActiveLanguage(v)}>
                                 <TabsList className="grid w-full grid-cols-3 mb-6">
                                     <TabsTrigger value="de" className="gap-2">
                                         🇩🇪 Deutsch

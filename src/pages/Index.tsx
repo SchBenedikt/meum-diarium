@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
+import LandingHeroMinimal from '@/components/LandingHeroMinimal';
 import LandingHeroNew from '@/components/LandingHeroNew';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
@@ -37,7 +38,7 @@ const Index = () => {
     return <NotFound />;
   }
   const author = currentAuthor ? dbAuthors[currentAuthor] : null;
-  const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t as any) : null;
+  const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t) : null;
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO

@@ -151,11 +151,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                     status: 201,
                     headers: corsHeaders
                 });
-            } catch (err: any) {
-                console.error('❌ [Authors API] POST failed:', err.message);
+            } catch (err: unknown) {
+                const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+                console.error('❌ [Authors API] POST failed:', errorMessage);
                 return new Response(JSON.stringify({ 
                     error: 'Failed to create author',
-                    message: err.message
+                    message: errorMessage
                 }), {
                     status: 400,
                     headers: corsHeaders
@@ -221,11 +222,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 }), {
                     headers: corsHeaders
                 });
-            } catch (err: any) {
-                console.error('❌ [Authors API] PUT failed:', err.message);
+            } catch (err: unknown) {
+                const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+                console.error('❌ [Authors API] PUT failed:', errorMessage);
                 return new Response(JSON.stringify({ 
                     error: 'Failed to update author',
-                    message: err.message
+                    message: errorMessage
                 }), {
                     status: 400,
                     headers: corsHeaders
@@ -272,11 +274,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 }), {
                     headers: corsHeaders
                 });
-            } catch (err: any) {
-                console.error('❌ [Authors API] DELETE failed:', err.message);
+            } catch (err: unknown) {
+                const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+                console.error('❌ [Authors API] DELETE failed:', errorMessage);
                 return new Response(JSON.stringify({ 
                     error: 'Failed to delete author',
-                    message: err.message
+                    message: errorMessage
                 }), {
                     status: 400,
                     headers: corsHeaders
@@ -291,13 +294,14 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             headers: corsHeaders
         });
 
-    } catch (err: any) {
+    } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         const queryTime = Date.now() - startTime;
-        console.error(`❌ [Authors API] Error (${queryTime}ms):`, err.message);
+        console.error(`❌ [Authors API] Error (${queryTime}ms):`, errorMessage);
         
         return new Response(JSON.stringify({ 
             error: 'Server error', 
-            message: err.message
+            message: errorMessage
         }), {
             status: 500,
             headers: corsHeaders
@@ -306,7 +310,23 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 };
 
 // Helper function to normalize author results
-function normalizeAuthorResult(author: any) {
+interface AuthorResult {
+    id: string;
+    name: string | null;
+    latinName: string | null;
+    title: string | null;
+    years: string | null;
+    birthYear: number | null;
+    deathYear: number | null;
+    description: string | null;
+    heroImage: string | null;
+    theme: string | null;
+    color: string | null;
+    highlights: unknown;
+    [key: string]: unknown;
+}
+
+function normalizeAuthorResult(author: AuthorResult) {
     return {
         ...author,
         highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],

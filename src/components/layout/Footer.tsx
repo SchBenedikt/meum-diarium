@@ -96,6 +96,7 @@ export function Footer() {
             <div className="flex items-center gap-6 text-[10px] uppercase tracking-widest font-bold">
               <Link to="/legal" className="text-muted-foreground hover:text-primary transition-colors">Impressum</Link>
               <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Datenschutz</Link>
+              <Link to="/cookies" className="text-muted-foreground hover:text-primary transition-colors">Cookies</Link>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-8">

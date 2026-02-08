@@ -123,7 +123,7 @@ export default function SimulationPage() {
                     initialStats: { welfare: 50, influence: 50, power: 50 },
                     startEventId: 'start',
                     events: {}
-                } as any);
+                } as SimulationScenario);
                 setCustomScenarioText('');
                 setShowCustomForm(false);
             }
@@ -381,7 +381,7 @@ export default function SimulationPage() {
         </div>
     );
 }
-function StatDisplay({ icon: Icon, label, value, color }: { icon: any, label: string, value: number, color: string }) {
+function StatDisplay({ icon: Icon, label, value, color }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>, label: string, value: number, color: string }) {
     return (
         <div className="flex flex-col items-center min-w-[60px]">
             <div className="flex items-center gap-1.5 mb-1 opacity-80">

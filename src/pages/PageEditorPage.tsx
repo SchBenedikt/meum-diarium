@@ -17,15 +17,13 @@ import { fetchPage } from '@/lib/api';
 const emptyHighlight: PageHighlight = {
   title: '',
   description: '',
-  icon: 'BookOpen',
 };
 const buildEmptyPage = (slug: string): PageContent => ({
   slug: slug || '',
   heroTitle: '',
   heroSubtitle: '',
+  projectDescription: '',
   heroImage: '',
-  introText: '',
-  sections: [],
   highlights: [emptyHighlight],
   translations: {
     en: { highlights: [emptyHighlight] },
@@ -63,7 +61,7 @@ export default function PageEditorPage() {
   useEffect(() => {
     if (!isNewPage && slug && slug.startsWith('author-about-') && !pageData && authors) {
       const authorId = slug.replace('author-about-', '') as keyof typeof authors;
-      const author = (authors as any)[authorId];
+      const author = authors[authorId];
       if (author) {
         setPage(prev => ({
           ...prev,
@@ -71,18 +69,18 @@ export default function PageEditorPage() {
           heroTitle: author.name || prev.heroTitle,
           heroSubtitle: author.title || prev.heroSubtitle,
           heroImage: author.heroImage || prev.heroImage,
-          introText: author.description || prev.introText,
+          projectDescription: author.description || prev.projectDescription,
           translations: {
             en: {
               heroTitle: author.translations?.en?.name || '',
               heroSubtitle: author.translations?.en?.title || '',
-              introText: author.translations?.en?.description || '',
+              projectDescription: author.translations?.en?.description || '',
               highlights: prev.translations?.en?.highlights || [emptyHighlight],
             },
             la: {
               heroTitle: author.translations?.la?.name || '',
               heroSubtitle: author.translations?.la?.title || '',
-              introText: author.translations?.la?.description || '',
+              projectDescription: author.translations?.la?.description || '',
               highlights: prev.translations?.la?.highlights || [emptyHighlight],
             },
           },
@@ -91,7 +89,7 @@ export default function PageEditorPage() {
       }
     }
   }, [isNewPage, slug, pageData, authors]);
-  const updateBase = (field: keyof PageContent, value: any) => {
+  const updateBase = (field: keyof PageContent, value: PageContent[keyof PageContent]) => {
     setPage(prev => ({ ...prev, [field]: value }));
   };
   const updateHighlight = (index: number, field: keyof PageHighlight, value: string) => {
@@ -240,8 +238,8 @@ export default function PageEditorPage() {
               <div className="space-y-2">
                 <Label>Einleitungstext</Label>
                 <Textarea
-                  value={page.introText}
-                  onChange={e => updateBase('introText', e.target.value)}
+                  value={page.projectDescription}
+                  onChange={e => updateBase('projectDescription', e.target.value)}
                   rows={4}
                 />
               </div>
@@ -269,23 +267,16 @@ export default function PageEditorPage() {
                       <Input
                         value={item.title}
                         onChange={e => updateHighlight(index, 'title', e.target.value)}
+                        placeholder="Titel"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Icon Name</Label>
-                      <Input
-                        value={item.icon || ''}
-                        onChange={e => updateHighlight(index, 'icon', e.target.value)}
-                        placeholder="BookOpen"
+                      <Label>Beschreibung</Label>
+                      <Textarea
+                        value={item.description}
+                        onChange={e => updateHighlight(index, 'description', e.target.value)}
                       />
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Beschreibung</Label>
-                    <Textarea
-                      value={item.description}
-                      onChange={e => updateHighlight(index, 'description', e.target.value)}
-                    />
                   </div>
                 </div>
               ))}
@@ -339,10 +330,10 @@ export default function PageEditorPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>Einleitung ({activeLang})</Label>
+                    <Label>Beschreibung ({activeLang})</Label>
                     <Textarea
-                      value={page.translations?.[activeLang]?.introText || ''}
-                      onChange={e => updateTranslation(activeLang, data => ({ ...data, introText: e.target.value }))}
+                      value={page.translations?.[activeLang]?.projectDescription || ''}
+                      onChange={e => updateTranslation(activeLang, data => ({ ...data, projectDescription: e.target.value }))}
                     />
                   </div>
                 </div>

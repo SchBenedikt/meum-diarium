@@ -58,8 +58,8 @@ export function HeroSection() {
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-            {/* Decortive accent */}
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-2 border-b-2 border-primary/20 rounded-bl-3xl -z-10" />
+            {/* Decorative accent */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l-2 border-b-2 border-primary/20 rounded-bl-3xl" />
           </motion.div>
         </div>
       </div>

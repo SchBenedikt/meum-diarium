@@ -13,7 +13,7 @@ function escape(str: string | undefined | null): string {
     if (str === undefined || str === null) return 'NULL';
     return "'" + str.replace(/'/g, "''").replace(/\n/g, '\\n') + "'";
 }
-function json(obj: any): string {
+function json(obj: unknown): string {
     if (obj === undefined || obj === null) return 'NULL';
     return "'" + JSON.stringify(obj).replace(/'/g, "''") + "'";
 }
@@ -31,8 +31,8 @@ async function executeSqlStatement(sql: string, description: string) {
         const escapedSql = escapeShellArg(sql.trim());
         // 
         await execAsync(`npx wrangler d1 execute meum-diarium --remote --command "${escapedSql}" --yes`);
-    } catch (e: any) {
-        console.error(`❌ Failed: ${description}`, e.message);
+    } catch (e: unknown) {
+        console.error(`❌ Failed: ${description}`, e instanceof Error ? e.message : String(e));
         // Retry
         try {
             await delay(2000);
@@ -57,7 +57,7 @@ async function executeSqlStatement(sql: string, description: string) {
     let worksSql = '';
     for (const key in works) {
         const work = works[key];
-        worksSql += `REPLACE INTO works (id, title, author_id, description, type, date, cover_image, content) VALUES (${escape(key)}, ${escape(work.title)}, ${escape(work.author)}, ${escape((work as any).description)}, 'work', NULL, NULL, ${json(work)});`;
+        worksSql += `REPLACE INTO works (id, title, author_id, description, type, date, cover_image, content) VALUES (${escape(key)}, ${escape(work.title)}, ${escape(work.author)}, ${escape((work as { description?: string }).description || '')}, 'work', NULL, NULL, ${json(work)});`;
     }
     await executeSqlStatement(worksSql, 'Works');
     await delay(1000);
@@ -81,7 +81,7 @@ async function executeSqlStatement(sql: string, description: string) {
             if (!post) continue;
             const id = post.slug;
             const historicalYear = parseInt(post.historicalDate?.match(/-?\d+/)?.[0] || '0');
-            let postSql = `REPLACE INTO posts (id, slug, author_id, title, excerpt, historical_date, historical_year, date, reading_time, tags, cover_image, content, translations) VALUES (${escape(id)}, ${escape(post.slug)}, ${escape(post.author)}, ${escape(post.title)}, ${escape(post.excerpt)}, ${escape(post.historicalDate)}, ${historicalYear}, ${escape(post.date)}, ${parseInt(post.readingTime) || 0}, ${json(post.tags)}, ${escape(post.image)}, ${json(post.content)}, ${json(post.translations)});`;
+            const postSql = `REPLACE INTO posts (id, slug, author_id, title, excerpt, historical_date, historical_year, date, reading_time, tags, cover_image, content, translations) VALUES (${escape(id)}, ${escape(post.slug)}, ${escape(post.author)}, ${escape(post.title)}, ${escape(post.excerpt)}, ${escape(post.historicalDate)}, ${historicalYear}, ${escape(post.date)}, ${parseInt(post.readingTime) || 0}, ${json(post.tags)}, ${escape(post.image)}, ${json(post.content)}, ${json(post.translations)});`;
             await executeSqlStatement(postSql, `Post ${i + 1}/${postFiles.length}: ${post.slug}`);
             await delay(1000);
         } catch (e) {

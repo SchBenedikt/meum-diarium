@@ -207,29 +207,6 @@ export default function LandingHeroNew() {
           </div>
         </div>
       </section>
-      {/* Authors Section with Enhanced Design */}
-      <section id="autoren" className="py-20 bg-background border-y border-border">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <Badge variant="outline" className="mb-4 py-2 px-4 text-xs uppercase tracking-[0.2em]">
-              {t('landing.authors.badge') || 'Persönlichkeiten'}
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-              {t('landing.authors.title') || 'Die Stimmen der Antike'}
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('landing.authors.subtitle') || 'Entdecke die Tagebücher und Werke der größten römischen Persönlichkeiten'}
-            </p>
-          </motion.div>
-          <AuthorGrid />
-        </div>
-      </section>
       {/* Recent Insights - Blog Posts */}
       {!isLoading && recentPosts.length > 0 && (
         <section className="py-20 bg-gradient-to-b from-background to-secondary/20">

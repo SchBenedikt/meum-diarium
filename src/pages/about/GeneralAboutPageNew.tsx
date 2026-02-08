@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { BookOpen, Users, Clock, Sparkles, Globe2, Zap, Shield, Target, Code, BookMarked, Palette } from 'lucide-react';
+import { BookOpen, Users, Clock, Sparkles, Globe2, Zap, Shield, Target, Code, BookMarked, Palette, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
@@ -65,54 +65,45 @@ export function GeneralAboutPageNew() {
         description={t('about.pageDescription') || 'Erlebe römische Geschichte durch die Augen ihrer Protagonisten. KI-gestützt, quellenbasiert, interaktiv.'}
         tags={['Römische Geschichte', 'Caesar', 'Cicero', 'Augustus', 'Seneca', 'Catilina', 'Tagebuch', 'Wissenschaft']}
       />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative py-24 sm:py-32 overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px] animate-pulse" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <Badge variant="outline" className="mb-8 py-2 px-4 text-xs uppercase tracking-[0.2em] bg-background/50 backdrop-blur-sm border-primary/30 text-primary">
-                <Sparkles className="mr-2 h-4 w-4" />
-                {t('about.badge') || 'Über Das Projekt'}
-              </Badge>
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter">
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                  {t('about.hero.title1') || 'Geschichte'}
-                </span>
-                <br />
-                <span className="text-foreground">
-                  {t('about.hero.title2') || 'neu erleben'}
-                </span>
-              </h1>
-              <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-light mb-12 max-w-3xl mx-auto">
-                {t('about.hero.description') || 'Meum Diarium verbindet persönliche Tagebücher mit wissenschaftlicher Analyse und macht die römische Geschichte durch modernste KI-Technologie erlebbar.'}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/caesar">
-                  <Button size="lg" className="rounded-full px-8 h-14 text-base">
-                    {t('about.hero.startExploring') || 'Jetzt erkunden'}
-                    <Sparkles className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/design">
-                  <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base">
-                    <Palette className="mr-2 h-5 w-5" />
-                    {t('about.hero.designGuide') || 'Design-Guide'}
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-4"
+          >
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-primary/30" />
+              ÜBER DAS PROJEKT
+            </div>
+            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+              Geschichte <span className="text-primary italic">neu erleben</span>
+            </h1>
+            <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+              Meum Diarium verbindet persönliche Tagebücher mit wissenschaftlicher Analyse
+            </p>
+          </motion.div>
+          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
+            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Start
+          </Link>
+        </div>
+        
+        {/* Hero Actions */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Link to="/caesar">
+            <Button size="lg" className="rounded-full px-8 h-14 text-base">
+              {t('about.hero.startExploring') || 'Jetzt erkunden'}
+              <Sparkles className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/design">
+            <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base">
+              <Palette className="mr-2 h-5 w-5" />
+              {t('about.hero.designGuide') || 'Design-Guide'}
+            </Button>
+          </Link>
+        </div>
+
         {/* Stats Section */}
         <section className="py-16 bg-gradient-to-b from-background to-secondary/20 border-y border-border">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -138,6 +129,7 @@ export function GeneralAboutPageNew() {
             </div>
           </div>
         </section>
+
         {/* Features Grid */}
         <section className="py-20">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">

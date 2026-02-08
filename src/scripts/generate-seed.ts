@@ -14,7 +14,7 @@ function escape(str: string | undefined | null): string {
     if (str === undefined || str === null) return 'NULL';
     return "'" + str.replace(/'/g, "''").replace(/\n/g, '\\n') + "'";
 }
-function json(obj: any): string {
+function json(obj: unknown): string {
     if (obj === undefined || obj === null) return 'NULL';
     return "'" + JSON.stringify(obj).replace(/'/g, "''") + "'";
 }
@@ -38,7 +38,7 @@ for (const key in works) {
     // Let's assume 'key' is the ID.
     // We need to adapt this based on actual work object structure which I need to check more closely.
     // But for now:
-    sql += `INSERT INTO works (id, title, author_id, description, type, date, cover_image, content) VALUES (${escape(key)}, ${escape(work.title)}, ${escape(work.author)}, ${escape((work as any).description)}, 'work', NULL, NULL, ${json(work)});\n`;
+    sql += `INSERT INTO works (id, title, author_id, description, type, date, cover_image, content) VALUES (${escape(key)}, ${escape(work.title)}, ${escape(work.author)}, ${escape((work as { description?: string }).description || '')}, 'work', NULL, NULL, ${json(work)});\n`;
 }
 // Authors & Works
 fs.writeFileSync('seed_authors_works.sql', sql);

@@ -9,22 +9,81 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { fetchWork, saveWork, deleteWork, fetchWorkDetails, saveWorkDetails, deleteWorkDetails } from '@/lib/api';
 import { toast } from 'sonner';
+
+interface WorkTranslation {
+  title?: string;
+  summary?: string;
+  takeaway?: string;
+}
+
+interface WorkTranslations {
+  de?: WorkTranslation;
+  en?: WorkTranslation;
+  la?: WorkTranslation;
+}
+
+interface WorkSection {
+  title: string;
+  content: string[];
+}
+
+interface WorkContext {
+  title?: string;
+  paragraphs?: string[];
+}
+
+interface WorkDetails {
+  context?: WorkContext;
+  sections?: WorkSection[];
+  quotes?: WorkQuote[];
+  keyMoments?: WorkKeyMoment[];
+}
+
+interface WorkQuote {
+  latin: string;
+  translation: string;
+  context: string;
+}
+
+interface WorkKeyMoment {
+  date: string;
+  title: string;
+  description: string;
+  significance: string;
+}
+
+interface LanguageWorkDetails {
+  de?: WorkDetails;
+  en?: WorkDetails;
+  la?: WorkDetails;
+}
+
+interface WorkForm {
+  slug: string;
+  author: string;
+  title: string;
+  year: string;
+  summary: string;
+  takeaway: string;
+  structure: WorkSection[];
+  translations: WorkTranslations;
+}
 export default function WorkEditorPage() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug?: string }>();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<WorkForm>({
     slug: slug || '',
     author: '',
     title: '',
     year: '',
     summary: '',
     takeaway: '',
-    structure: [] as Array<{ title: string; content: string }>,
-    translations: {} as any,
+    structure: [] as WorkSection[],
+    translations: {} as WorkTranslations,
   });
   const [loading, setLoading] = useState(false);
   const [activeLang, setActiveLang] = useState<'de' | 'en' | 'la'>('de');
-  const [details, setDetails] = useState<any>({ de: {}, en: {}, la: {} });
+  const [details, setDetails] = useState<LanguageWorkDetails>({ de: {}, en: {}, la: {} });
   useEffect(() => {
     const load = async () => {
       if (!slug) return;
@@ -46,11 +105,13 @@ export default function WorkEditorPage() {
       try {
         const det = await fetchWorkDetails(slug);
         if (det) setDetails(det);
-      } catch {}
+      } catch {
+        // Silent fail for work details
+      }
     };
     load();
   }, [slug]);
-  const update = (key: string, value: any) => setForm(prev => ({ ...prev, [key]: value }));
+  const update = (key: keyof WorkForm, value: WorkForm[keyof WorkForm]) => setForm(prev => ({ ...prev, [key]: value }));
   const onSave = async () => {
     try {
       setLoading(true);
@@ -141,7 +202,7 @@ export default function WorkEditorPage() {
           <CardDescription>Kontext, Abschnitte, Zitate und Schlüsselmomente</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs value={activeLang} onValueChange={(v) => setActiveLang(v as any)}>
+          <Tabs value={activeLang} onValueChange={(v: 'de' | 'en' | 'la') => setActiveLang(v)}>
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="de">Deutsch</TabsTrigger>
               <TabsTrigger value="en">English</TabsTrigger>
@@ -155,7 +216,7 @@ export default function WorkEditorPage() {
                   <Input value={details?.[lang]?.context?.title || ''} onChange={e => {
                     const next = { ...(details?.[lang] || {}) };
                     next.context = { ...(next.context || {}), title: e.target.value };
-                    setDetails((prev: any) => ({ ...prev, [lang]: next }));
+                    setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: next }));
                   }} />
                 </div>
                 <div className="space-y-2">
@@ -163,52 +224,52 @@ export default function WorkEditorPage() {
                   <Textarea rows={5} value={(details?.[lang]?.context?.paragraphs || []).join('\n')} onChange={e => {
                     const next = { ...(details?.[lang] || {}) };
                     next.context = { ...(next.context || {}), paragraphs: e.target.value.split('\n') };
-                    setDetails((prev: any) => ({ ...prev, [lang]: next }));
+                    setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: next }));
                   }} />
                 </div>
                 {/* Sections */}
                 <div className="space-y-3">
                   <Label>Abschnitte</Label>
-                  {Array.isArray(details?.[lang]?.sections) && details[lang].sections.length > 0 ? details[lang].sections.map((sec: any, i: number) => (
+                  {Array.isArray(details?.[lang]?.sections) && details[lang].sections.length > 0 ? details[lang].sections.map((sec: WorkSection, i: number) => (
                     <div key={i} className="space-y-2 border rounded p-3">
                       <Input value={sec.title || ''} onChange={e => {
                         const arr = [...(details?.[lang]?.sections || [])];
                         arr[i] = { ...arr[i], title: e.target.value };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
                       }} placeholder="Titel" />
                       <Textarea rows={4} value={(sec.content || []).join('\n')} onChange={e => {
                         const arr = [...(details?.[lang]?.sections || [])];
                         arr[i] = { ...arr[i], content: e.target.value.split('\n') };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
                       }} placeholder="Inhalt (Zeilen = Absätze)" />
                     </div>
                   )) : null}
                   <Button variant="outline" size="sm" onClick={() => {
                     const arr = [...(details?.[lang]?.sections || [])];
                     arr.push({ title: '', content: [] });
-                    setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
+                    setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), sections: arr } }));
                   }}>Abschnitt hinzufügen</Button>
                 </div>
                 {/* Quotes */}
                 <div className="space-y-3">
                   <Label>Zitate</Label>
-                  {Array.isArray(details?.[lang]?.quotes) && details[lang].quotes.length > 0 ? details[lang].quotes.map((q: any, i: number) => (
+                  {Array.isArray(details?.[lang]?.quotes) && details[lang].quotes.length > 0 ? details[lang].quotes.map((q: WorkQuote, i: number) => (
                     <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-3 border rounded p-3">
                       <Input value={q.latin || ''} onChange={e => {
                         const arr = [...(details?.[lang]?.quotes || [])];
                         arr[i] = { ...arr[i], latin: e.target.value };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
                       }} placeholder="Lateinisches Zitat" />
                       <Input value={q.translation || ''} onChange={e => {
                         const arr = [...(details?.[lang]?.quotes || [])];
                         arr[i] = { ...arr[i], translation: e.target.value };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
                       }} placeholder="Übersetzung" />
                       <div className="sm:col-span-2">
                         <Textarea rows={3} value={q.context || ''} onChange={e => {
                           const arr = [...(details?.[lang]?.quotes || [])];
                           arr[i] = { ...arr[i], context: e.target.value };
-                          setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
+                          setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
                         }} placeholder="Kontext" />
                       </div>
                     </div>
@@ -216,36 +277,36 @@ export default function WorkEditorPage() {
                   <Button variant="outline" size="sm" onClick={() => {
                     const arr = [...(details?.[lang]?.quotes || [])];
                     arr.push({ latin: '', translation: '', context: '' });
-                    setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
+                    setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), quotes: arr } }));
                   }}>Zitat hinzufügen</Button>
                 </div>
                 {/* Key Moments */}
                 <div className="space-y-3">
                   <Label>Schlüsselmomente</Label>
-                  {Array.isArray(details?.[lang]?.keyMoments) && details[lang].keyMoments.length > 0 ? details[lang].keyMoments.map((km: any, i: number) => (
+                  {Array.isArray(details?.[lang]?.keyMoments) && details[lang].keyMoments.length > 0 ? details[lang].keyMoments.map((km: WorkKeyMoment, i: number) => (
                     <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-3 border rounded p-3">
                       <Input value={km.date || ''} onChange={e => {
                         const arr = [...(details?.[lang]?.keyMoments || [])];
                         arr[i] = { ...arr[i], date: e.target.value };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
                       }} placeholder="Datum" />
                       <Input value={km.title || ''} onChange={e => {
                         const arr = [...(details?.[lang]?.keyMoments || [])];
                         arr[i] = { ...arr[i], title: e.target.value };
-                        setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
+                        setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
                       }} placeholder="Titel" />
                       <div className="sm:col-span-2">
                         <Textarea rows={3} value={km.description || ''} onChange={e => {
                           const arr = [...(details?.[lang]?.keyMoments || [])];
                           arr[i] = { ...arr[i], description: e.target.value };
-                          setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
+                          setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
                         }} placeholder="Beschreibung" />
                       </div>
                       <div className="sm:col-span-2">
                         <Textarea rows={2} value={km.significance || ''} onChange={e => {
                           const arr = [...(details?.[lang]?.keyMoments || [])];
                           arr[i] = { ...arr[i], significance: e.target.value };
-                          setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
+                          setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
                         }} placeholder="Bedeutung" />
                       </div>
                     </div>
@@ -253,7 +314,7 @@ export default function WorkEditorPage() {
                   <Button variant="outline" size="sm" onClick={() => {
                     const arr = [...(details?.[lang]?.keyMoments || [])];
                     arr.push({ date: '', title: '', description: '', significance: '' });
-                    setDetails((prev: any) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
+                    setDetails((prev: LanguageWorkDetails) => ({ ...prev, [lang]: { ...(prev[lang] || {}), keyMoments: arr } }));
                   }}>Moment hinzufügen</Button>
                 </div>
               </TabsContent>

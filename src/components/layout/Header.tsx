@@ -98,9 +98,9 @@ export function Header() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
   const navItems = [
-    { href: '/lexicon', label: t('navLexicon'), icon: BookOpen },
-    { href: '/learn', label: t('navLernen'), icon: GraduationCap },
-    { href: '/about', label: t('navAbout'), icon: Info },
+    { href: '/lexikon', label: t('navLexicon'), icon: BookOpen },
+    { href: '/lernen', label: t('navLernen'), icon: GraduationCap },
+    { href: '/über', label: t('navAbout'), icon: Info },
   ];
   const handleLogoClick = useCallback(() => {
     setCurrentAuthor(null);
@@ -108,7 +108,12 @@ export function Header() {
   const handleNavClick = useCallback(() => {
     setMobileMenuOpen(false);
   }, []);
-  const isActive = (href: string) => location.pathname === href;
+  const isActive = (href: string) => {
+    if (href === '/lexikon') return location.pathname === '/lexikon' || location.pathname === '/lexicon';
+    if (href === '/lernen') return location.pathname === '/lernen' || location.pathname === '/learn';
+    if (href === '/über') return location.pathname === '/über' || location.pathname === '/about';
+    return location.pathname === href;
+  };
   // Hilfsflag: iPad soll wie Desktop behandelt werden
   const isDesktopLike = !isIpad; // DU kannst das bei Bedarf anpassen, z.B. immer Desktop auf iPad
   return (

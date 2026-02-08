@@ -8,7 +8,9 @@ import {
     ArrowLeft, 
     BookOpen, 
     Languages,
-    Loader2
+    Loader2,
+    ExternalLink,
+    Info
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
@@ -30,6 +32,12 @@ interface SearchResults {
     count: number;
     limit: number;
     offset: number;
+    source?: {
+        name: string;
+        url: string;
+        license: string;
+        entries: number;
+    };
 }
 
 export default function VocabularyPage() {
@@ -40,7 +48,25 @@ export default function VocabularyPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [selectedEntry, setSelectedEntry] = useState<VocEntry | null>(null);
+    const [source, setSource] = useState<SearchResults['source']>(null);
     const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const fetchSourceInfo = useCallback(async () => {
+        try {
+            const response = await fetch('/api/vocab?limit=1');
+            if (response.ok) {
+                const data: SearchResults = await response.json();
+                setSource(data.source || null);
+            }
+        } catch (err) {
+            console.error('Error fetching source info:', err);
+        }
+    }, []);
+
+    // Fetch source info on component mount
+    useEffect(() => {
+        fetchSourceInfo();
+    }, [fetchSourceInfo]);
 
     const fetchVocabulary = useCallback(async (query: string) => {
         if (!query.trim()) {
@@ -185,6 +211,40 @@ export default function VocabularyPage() {
                         />
                     </form>
                 </div>
+
+                {/* Source Attribution - Always Show */}
+                {source && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-8"
+                    >
+                        <Card className="p-4 bg-secondary/20 border-border/50">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <Info className="h-4 w-4 text-primary" />
+                                    <div>
+                                        <p className="text-sm text-muted-foreground">
+                                            Datenquelle: <span className="font-medium text-foreground">{source.name}</span>
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                            {source.entries.toLocaleString()} Einträge • Lizenz: {source.license}
+                                        </p>
+                                    </div>
+                                </div>
+                                <a
+                                    href={source.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors"
+                                >
+                                    <ExternalLink className="h-3 w-3" />
+                                    GitHub
+                                </a>
+                            </div>
+                        </Card>
+                    </motion.div>
+                )}
 
                 {/* Two Column Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">

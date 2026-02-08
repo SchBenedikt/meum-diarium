@@ -19,8 +19,8 @@ async function executeSqlStatement(sql: string, description: string) {
     try {
         const escapedSql = escapeShellArg(sql.trim());
         await execAsync(`npx wrangler d1 execute meum-diarium --remote --command "${escapedSql}" --yes`);
-    } catch (e: any) {
-        console.error(`❌ Failed: ${description}`, e.message);
+    } catch (e: unknown) {
+        console.error(`❌ Failed: ${description}`, e instanceof Error ? e.message : String(e));
         try {
             await delay(2000);
             const escapedSql = escapeShellArg(sql.trim());
@@ -44,7 +44,6 @@ async function executeSqlStatement(sql: string, description: string) {
     // --- Caesar ---
     // Caesar structure: book -> chapters -> lines
     for (const book of caesar.books) {
-        // @ts-ignore - The type definition in my head matches JSON but let's be safe
         if (!book.chapters) continue;
         for (const chapter of book.chapters) {
             for (let i = 0; i < chapter.lines.length; i++) {
