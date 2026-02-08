@@ -129,6 +129,17 @@ export default function LatinTools() {
                                     <p className="text-sm text-muted-foreground/70 font-light">Interaktive Modi im Quizlet-Stil für effektives Lernen.</p>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <Link to="/vocab" className="contents">
+                                        <ModeCard
+                                            icon={Languages}
+                                            title="Vokabel-Wörterbuch"
+                                            description="Durchsuche über 36.000 lateinische Vokabeln mit Deklinationen und Konjugationen."
+                                            color="text-indigo-500"
+                                            onClick={() => { }}
+                                            count="36.000+"
+                                            image="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=800&auto=format&fit=crop"
+                                        />
+                                    </Link>
                                     <ModeCard
                                         icon={Layers}
                                         title="Flashcards"

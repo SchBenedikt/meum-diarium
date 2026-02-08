@@ -18,32 +18,26 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
         { 
             key: 'ppa', 
             label: 'PPA (Participium Praesentis Activi)', 
-            patterns: ['PPA'] 
-        },
-        { 
-            key: 'ppa', 
-            label: 'PPA (Participium Praesentis Activi)', 
-            patterns: ['Part.', 'Praes.'] 
+            patterns: ['PPA'], 
+            priority: 1
         },
         { 
             key: 'ppp', 
             label: 'PPP (Participium Perfecti Passivi)', 
-            patterns: ['PPP'] 
-        },
-        { 
-            key: 'ppp', 
-            label: 'PPP (Participium Perfecti Passivi)', 
-            patterns: ['Part.', 'Perf.', 'Pass.'] 
+            patterns: ['PPP'], 
+            priority: 2
         },
         { 
             key: 'pdfa', 
             label: 'PDFA (Participium Futuri Activi)', 
-            patterns: ['PDFA'] 
+            patterns: ['PDFA'], 
+            priority: 3
         },
         { 
-            key: 'pdfa', 
-            label: 'PDFA (Participium Futuri Activi)', 
-            patterns: ['Part.', 'Fut.'] 
+            key: 'part', 
+            label: 'Partizipien (Allgemein)', 
+            patterns: ['Part.'], 
+            priority: 4
         }
     ];
     
@@ -53,23 +47,35 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
     
     const groupedForms: Record<string, Record<string, Record<string, string>>> = {};
     
+    console.log('📊 [ParticipleTable] Received forms:', forms);
+    console.log('🔢 [ParticipleTable] Forms count:', forms.length);
+    
     // Group forms by participle type, gender, case, and number
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
         const bestimmung = form.bestimmung;
+        console.log(`🔍 [ParticipleTable] Processing form: ${form.form} -> ${bestimmung}`);
         
-        for (const participleType of participleTypes) {
-            const matchesAll = participleType.patterns.every(pattern => 
+        // Sort participle types by priority to ensure most specific matches first
+        const sortedTypes = [...participleTypes].sort((a, b) => {
+            // More specific patterns should come first (lower priority number = higher priority)
+            return a.priority - b.priority;
+        });
+        
+        for (const participleType of sortedTypes) {
+            const matchesAny = participleType.patterns.some(pattern => 
                 bestimmung.includes(pattern)
             );
             
-            if (matchesAll) {
+            if (matchesAny) {
                 if (!groupedForms[participleType.key]) {
                     groupedForms[participleType.key] = {};
                 }
                 
-                // Parse gender, case, and number from the description
+                console.log(`✅ [ParticipleTable] Form ${form.form} matches type ${participleType.label} (priority ${participleType.priority})`);
+                
+                // Parse gender, case, and number from description
                 // Examples: "PPA (Nom. Sg. mask.)", "PPP (Gen. Pl. fem.)"
                 const genderPattern = /(mask\.|fem\.|neutr\.)/;
                 const casePattern = /(Nom\.|Gen\.|Dat\.|Akk\.|Abl\.)/;
@@ -90,11 +96,14 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
                     
                     const cellKey = `${caseName}${number === 'Sg.' ? 'sg' : 'pl'}`;
                     groupedForms[participleType.key][gender][cellKey] = form.form;
+                    console.log(`✅ [ParticipleTable] Added ${participleType.key} ${gender} ${caseName} ${number}: ${form.form}`);
                 }
-                break;
+                break; // Found matching type, stop checking other types
             }
         }
     });
+    
+    console.log('🗂️ [ParticipleTable] Grouped forms:', groupedForms);
     
     // If we have forms grouped by participle type, show tabs
     const availableTypes = participleTypes.filter(type => groupedForms[type.key]);

@@ -15,12 +15,12 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
     // Forms typically have bestimmung like "Präs. Ind. Akt. 1. Sg.", "Perf. Ind. Akt. 3. Pl.", etc.
     
     const tenses = [
-        { key: 'praes', label: 'Präsens', patterns: ['Präs.', 'Ind.', 'Akt.'] },
-        { key: 'impf', label: 'Imperfekt', patterns: ['Impf.', 'Ind.', 'Akt.'] },
-        { key: 'perf', label: 'Perfekt', patterns: ['Perf.', 'Ind.', 'Akt.'] },
-        { key: 'plusq', label: 'Plusquamperfekt', patterns: ['Plusq.', 'Ind.', 'Akt.'] },
-        { key: 'fut1', label: 'Futur I', patterns: ['Fut.', 'I', 'Ind.', 'Akt.'] },
-        { key: 'fut2', label: 'Futur II', patterns: ['Fut.', 'II', 'Ind.', 'Akt.'] },
+        { key: 'praes', label: 'Präsens', patterns: ['Präs.'], priority: 1 },
+        { key: 'impf', label: 'Imperfekt', patterns: ['Impf.'], priority: 2 },
+        { key: 'perf', label: 'Perfekt', patterns: ['Perf.'], priority: 3 },
+        { key: 'plusq', label: 'Plusquamperfekt', patterns: ['Plusq.'], priority: 4 },
+        { key: 'fut1', label: 'Futur I', patterns: ['Fut.', 'I'], priority: 5 },
+        { key: 'fut2', label: 'Futur II', patterns: ['Fut.', 'II'], priority: 6 },
     ];
     
     const persons = [
@@ -35,31 +35,52 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
-        for (const tense of tenses) {
-            const matchesAll = tense.patterns.every(pattern => 
+        console.log(`🔍 [ConjugationTable] Processing form: ${form.form} -> ${form.bestimmung}`);
+        
+        // Sort tenses by priority to ensure most specific matches first
+        const sortedTenses = [...tenses].sort((a, b) => a.priority - b.priority);
+        
+        for (const tense of sortedTenses) {
+            // Check if this form matches the tense pattern
+            const matchesTense = tense.patterns.some(pattern => 
                 form.bestimmung!.includes(pattern)
             );
             
-            if (matchesAll) {
+            if (matchesTense) {
                 if (!groupedForms[tense.key]) {
                     groupedForms[tense.key] = {};
                 }
                 
+                console.log(`✅ [ConjugationTable] Form ${form.form} matches tense ${tense.label} (priority ${tense.priority})`);
+                
                 // Determine person and number
                 for (let i = 1; i <= 3; i++) {
-                    if (form.bestimmung.includes(`${i}. Sg.`)) {
+                    // Check for exact person and number matches
+                    const personSgPattern = new RegExp(`${i}\\.?\\s*Pers\\.?\\s*Sg\\.`);
+                    const personPlPattern = new RegExp(`${i}\\.?\\s*Pers\\.?\\s*Pl\\.`);
+                    
+                    if (personSgPattern.test(form.bestimmung!)) {
                         groupedForms[tense.key][`${i}sg`] = form.form;
-                    } else if (form.bestimmung.includes(`${i}. Pl.`)) {
+                        console.log(`✅ [ConjugationTable] Added ${i}. Sg.: ${form.form}`);
+                        break; // Found right person, stop searching
+                    } else if (personPlPattern.test(form.bestimmung!)) {
                         groupedForms[tense.key][`${i}pl`] = form.form;
+                        console.log(`✅ [ConjugationTable] Added ${i}. Pl.: ${form.form}`);
+                        break; // Found right person, stop searching
                     }
                 }
-                break;
+                break; // Found matching tense, stop checking other tenses
             }
         }
     });
     
+    console.log('📊 [ConjugationTable] Received forms:', forms);
+    console.log('🔢 [ConjugationTable] Forms count:', forms.length);
+    
     // If we have forms grouped by tense, show tabs
     const availableTenses = tenses.filter(t => groupedForms[t.key]);
+    console.log('📋 [ConjugationTable] Available tenses:', availableTenses);
+    console.log('🗂️ [ConjugationTable] Grouped forms:', groupedForms);
     
     if (availableTenses.length > 0) {
         return (

@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 interface Form {
     form: string;
     bestimmung: string | null;
+    nr?: string | null;
 }
 
 interface DeclinationTableProps {
@@ -11,6 +12,9 @@ interface DeclinationTableProps {
 }
 
 export function DeclinationTable({ forms }: DeclinationTableProps) {
+    console.log('📊 [DeclinationTable] Received forms:', forms);
+    console.log('🔢 [DeclinationTable] Forms count:', forms.length);
+    
     // Parse declension forms into a structured table
     // Forms typically have bestimmung like "Nom. Sg.", "Gen. Sg.", "Dat. Sg.", etc.
     // For adjectives, they may also have gender indicators like "mask.", "fem.", "neut."
@@ -22,15 +26,17 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
     const hasGenderForms = forms.some(f => 
         f.bestimmung && genders.some(g => f.bestimmung!.includes(g))
     );
+    console.log('🏷️ [DeclinationTable] Has gender forms:', hasGenderForms);
     
     if (hasGenderForms) {
         // Multi-gender declension table (for adjectives)
-        const formsByGender: Record<string, Record<string, { sg?: string; pl?: string }>> = {};
+        const formsByGender: Record<string, Record<string, { sg?: string[]; pl?: string[] }>> = {};
         
         forms.forEach(form => {
             if (!form.bestimmung) return;
             
             const bestimmung = form.bestimmung;
+            console.log(`🔍 [DeclinationTable] Processing form: ${form.form} -> ${bestimmung}`);
             
             // Determine gender
             let gender = 'mask.'; // default
@@ -52,16 +58,28 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                         formsByGender[gender][caseName] = {};
                     }
                     
-                    // Handle both singular and plural
+                    // Handle both singular and plural - support multiple forms
                     if (bestimmung.includes('Sg.')) {
-                        formsByGender[gender][caseName].sg = form.form;
-                    } else if (bestimmung.includes('Pl.')) {
-                        formsByGender[gender][caseName].pl = form.form;
+                        if (!formsByGender[gender][caseName].sg) {
+                            formsByGender[gender][caseName].sg = [];
+                        }
+                        formsByGender[gender][caseName].sg!.push(form.form);
+                        console.log(`✅ [DeclinationTable] Added ${gender} ${caseName} Sg: ${form.form}`);
+                    } 
+                    // Handle combined descriptions like "Nom. Pl., Akk. Pl."
+                    if (bestimmung.includes('Pl.')) {
+                        if (!formsByGender[gender][caseName].pl) {
+                            formsByGender[gender][caseName].pl = [];
+                        }
+                        formsByGender[gender][caseName].pl!.push(form.form);
+                        console.log(`✅ [DeclinationTable] Added ${gender} ${caseName} Pl: ${form.form}`);
                     }
-                    break;
+                    // Don't break here - continue checking for other cases in same description
                 }
             }
         });
+        
+        console.log('📋 [DeclinationTable] Forms by gender:', formsByGender);
         
         const availableGenders = Object.keys(formsByGender);
         
@@ -110,10 +128,30 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                                                     {caseName.replace('.', '')}
                                                 </TableCell>
                                                 <TableCell className="text-primary font-medium">
-                                                    {caseData?.sg || '—'}
+                                                    {caseData?.sg && caseData.sg.length > 0 
+                                                        ? <div className="space-y-1">
+                                                            {caseData.sg.map((form, index) => (
+                                                                <div key={index} className="flex items-center gap-2">
+                                                                    <span>{form}</span>
+                                                                    {index < caseData.sg.length - 1 && <span className="text-xs text-muted-foreground">/</span>}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                        : '—'
+                                                    }
                                                 </TableCell>
                                                 <TableCell className="text-primary font-medium">
-                                                    {caseData?.pl || '—'}
+                                                    {caseData?.pl && caseData.pl.length > 0 
+                                                        ? <div className="space-y-1">
+                                                            {caseData.pl.map((form, index) => (
+                                                                <div key={index} className="flex items-center gap-2">
+                                                                    <span>{form}</span>
+                                                                    {index < caseData.pl.length - 1 && <span className="text-xs text-muted-foreground">/</span>}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                        : '—'
+                                                    }
                                                 </TableCell>
                                             </TableRow>
                                         );
@@ -128,12 +166,15 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
     }
     
     // Single-gender declension table (for nouns)
-    const formsByCase: Record<string, { sg?: string; pl?: string }> = {};
+    const formsByCase: Record<string, { sg?: string[]; pl?: string[] }> = {};
+    
+    console.log('📝 [DeclinationTable] Processing single-gender forms...');
     
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
         const bestimmung = form.bestimmung;
+        console.log(` [DeclinationTable] Processing form: ${form.form} -> ${bestimmung}`);
         
         // Check each case
         for (const caseName of cases) {
@@ -142,18 +183,28 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                     formsByCase[caseName] = {};
                 }
                 
-                // Handle both singular and plural
+                // Handle both singular and plural - support multiple forms
                 if (bestimmung.includes('Sg.')) {
-                    formsByCase[caseName].sg = form.form;
+                    if (!formsByCase[caseName].sg) {
+                        formsByCase[caseName].sg = [];
+                    }
+                    formsByCase[caseName].sg!.push(form.form);
+                    console.log(` [DeclinationTable] Added ${caseName} Sg: ${form.form}`);
                 } 
                 // Handle combined descriptions like "Nom. Pl., Akk. Pl."
-                else if (bestimmung.includes('Pl.')) {
-                    formsByCase[caseName].pl = form.form;
+                if (bestimmung.includes('Pl.')) {
+                    if (!formsByCase[caseName].pl) {
+                        formsByCase[caseName].pl = [];
+                    }
+                    formsByCase[caseName].pl!.push(form.form);
+                    console.log(` [DeclinationTable] Added ${caseName} Pl: ${form.form}`);
                 }
-                break;
+                // Don't break here - continue checking for other cases in the same description
             }
         }
     });
+
+    console.log(' [DeclinationTable] Final forms by case:', formsByCase);
 
     return (
         <div className="overflow-x-auto">
@@ -168,17 +219,37 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                 <TableBody>
                     {cases.map(caseName => {
                         const caseData = formsByCase[caseName];
-                        // Show row even if no data to indicate the case exists
+                        // Show row even if no data to indicate case exists
                         return (
                             <TableRow key={caseName}>
                                 <TableCell className="font-semibold text-muted-foreground">
                                     {caseName.replace('.', '')}
                                 </TableCell>
                                 <TableCell className="text-primary font-medium">
-                                    {caseData?.sg || '—'}
+                                    {caseData?.sg && caseData.sg.length > 0 
+                                        ? <div className="space-y-1">
+                                            {caseData.sg.map((form, index) => (
+                                                <div key={index} className="flex items-center gap-2">
+                                                    <span>{form}</span>
+                                                    {index < caseData.sg.length - 1 && <span className="text-xs text-muted-foreground">/</span>}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        : '—'
+                                    }
                                 </TableCell>
                                 <TableCell className="text-primary font-medium">
-                                    {caseData?.pl || '—'}
+                                    {caseData?.pl && caseData.pl.length > 0 
+                                        ? <div className="space-y-1">
+                                            {caseData.pl.map((form, index) => (
+                                                <div key={index} className="flex items-center gap-2">
+                                                    <span>{form}</span>
+                                                    {index < caseData.pl.length - 1 && <span className="text-xs text-muted-foreground">/</span>}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        : '—'
+                                    }
                                 </TableCell>
                             </TableRow>
                         );
