@@ -34,7 +34,7 @@ const ApiDocsPage = () => {
             title: "Katalog",
             method: "GET",
             path: "/api/catalog",
-            desc: "Gibt eine Ubersicht uber die gesamte Datenbank zuruck, inklusive Beitragszahlen und verfugbaren Autoren.",
+            desc: "Gibt eine Übersicht über die gesamte Datenbank zurück, inklusive Beitragszahlen und verfügbaren Autoren.",
             responseSchema: `{
   "timestamp": "YYYY-MM-DD",
   "counts": { "posts": number, "lexicon": number, "works": number, "authors": number },
@@ -42,10 +42,10 @@ const ApiDocsPage = () => {
 }`
         },
         {
-            title: "Beitrage",
+            title: "Beiträge",
             method: "GET",
             path: "/api/posts",
-            desc: "Listet alle verfugbaren Beitrage mit Slugs, Titeln und Autoren auf.",
+            desc: "Listet alle verfügbaren Beiträge mit Slugs, Titeln und Autoren auf.",
             responseSchema: `[
   { "slug": string, "title": string, "author": string, "excerpt": string }
 ]`
@@ -54,7 +54,7 @@ const ApiDocsPage = () => {
             title: "Beitrags-Details",
             method: "GET",
             path: "/api/posts/{author}/{slug}",
-            desc: "Gibt den vollstandigen Inhalt eines spezifischen Beitrags zuruck.",
+            desc: "Gibt den vollständigen Inhalt eines spezifischen Beitrags zurück.",
             params: [
                 { name: "author", desc: "Autor-Id (caesar, cicero, augustus, catilina, seneca)." },
                 { name: "slug", desc: "Slug des Beitrags." }
@@ -68,10 +68,111 @@ const ApiDocsPage = () => {
 }`
         },
         {
+            title: "Vokabeln (Suche)",
+            method: "GET",
+            path: "/api/vocab",
+            desc: "Durchsucht die Vokabel-Datenbank nach lateinischen oder deutschen Begriffen.",
+            params: [
+                { name: "q", desc: "Suchbegriff (optional)." },
+                { name: "limit", desc: "Anzahl der Ergebnisse (Standard: 50)." },
+                { name: "offset", desc: "Offset für Pagination (Standard: 0)." }
+            ],
+            responseSchema: `{
+  "results": [
+    {
+      "id": number,
+      "vokId": string,
+      "latin": string,
+      "desc": string,
+      "key": string,
+      "grammar": string,
+      "typnr": number
+    }
+  ],
+  "count": number,
+  "limit": number,
+  "offset": number
+}`,
+            notes: ["Durchsucht lateinische Wörter, deutsche Übersetzungen und Schlüsselbegriffe."]
+        },
+        {
+            title: "Vokabel-Details",
+            method: "GET",
+            path: "/api/vocab/{vokId}",
+            desc: "Gibt alle Details zu einer Vokabel inklusive aller grammatikalischen Formen zurück.",
+            params: [
+                { name: "vokId", desc: "Vokabel-ID (entweder numerische ID oder vokId)." }
+            ],
+            responseSchema: `{
+  "id": number,
+  "vokId": string,
+  "latin": string,
+  "desc": string,
+  "key": string,
+  "grammar": string,
+  "typnr": number,
+  "forms": [
+    {
+      "id": number,
+      "vokId": string,
+      "nr": number,
+      "form": string,
+      "bestimmung": string
+    }
+  ],
+  "grammarForms": Array
+}`,
+            notes: ["Enthält Deklinationen, Konjugationen und grammatikalische Beschreibungen."]
+        },
+        {
+            title: "ALLE Vokabeln (mit Formen)",
+            method: "GET",
+            path: "/api/vocab/all",
+            desc: "Gibt ALLE Vokabeln mit ALLEN grammatikalischen Formen zurück. Für umfassende Datenanalyse.",
+            params: [
+                { name: "limit", desc: "Anzahl der Ergebnisse (Standard: 100)." },
+                { name: "offset", desc: "Offset für Pagination (Standard: 0)." },
+                { name: "includeForms", desc: "Formen einbeziehen (Standard: true)." }
+            ],
+            responseSchema: `{
+  "results": [
+    {
+      "id": number,
+      "vokId": string,
+      "latin": string,
+      "desc": string,
+      "key": string,
+      "grammar": string,
+      "typnr": number,
+      "forms": [
+        {
+          "id": number,
+          "vokId": string,
+          "nr": number,
+          "form": string,
+          "bestimmung": string
+        }
+      ],
+      "grammarForms": Array
+    }
+  ],
+  "count": number,
+  "total": number,
+  "limit": number,
+  "offset": number,
+  "includeForms": boolean
+}`,
+            notes: [
+                "Enthält über 36.000 Vokabeln mit vollständigen Formen.",
+                "Optimiert für Batch-Verarbeitung und Datenanalyse.",
+                "IncludeForms=false für schnellere Ladezeiten bei reiner Vokabelliste."
+            ]
+        },
+        {
             title: "Lexikon",
             method: "GET",
             path: "/api/lexicon",
-            desc: "Gibt eine Liste aller historischen Begriffe und Definitionen zuruck.",
+            desc: "Gibt eine Liste aller historischen Begriffe und Definitionen zurück.",
             responseSchema: `[
   { "term": string, "definition": string, "slug": string }
 ]`
@@ -89,7 +190,7 @@ const ApiDocsPage = () => {
             title: "Werk-Details",
             method: "GET",
             path: "/api/works-details/{slug}",
-            desc: "Gibt den vollstandigen Inhalt eines Werks zuruck.",
+            desc: "Gibt den vollständigen Inhalt eines Werks zurück.",
             params: [{ name: "slug", desc: "Slug des Werks." }],
             responseSchema: `{
   "slug": string,

@@ -5,7 +5,7 @@ export const de = {
     },
     navTimeline: 'Zeitstrahl',
     navLexicon: 'Lexikon',
-    navLernen: 'Trainer',
+    navLernen: 'Lernen',
     navAbout: 'Über',
     lexiconSearchPlaceholder: 'Lexikon durchsuchen...',
     lexiconGlossary: 'Das Glossar',

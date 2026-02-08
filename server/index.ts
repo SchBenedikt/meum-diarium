@@ -240,25 +240,59 @@ app.get('/api/vocab', async (req, res) => {
         let results;
 
         if (searchQuery) {
-            // Search in latin, desc (German), and key fields
+            // Normalize search query by removing diacritical marks
+            const normalizeString = (str: string) => {
+                return str
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '') // Remove diacritical marks
+                    .toLowerCase();
+            };
+            
+            const normalizedSearchQuery = normalizeString(searchQuery);
             const searchPattern = `%${searchQuery}%`;
-            results = await db.query.voc.findMany({
-                where: or(
-                    like(voc.latin, searchPattern),
-                    like(voc.desc, searchPattern),
-                    like(voc.key, searchPattern)
-                ),
-                limit: limit,
-                offset: offset,
-                orderBy: [desc(voc.id)]
+            
+            // Get all vocabulary entries and filter them manually for diacritic-insensitive search
+            const allEntries = await db.query.voc.findMany({
+                limit: 10000, // Get more entries to filter from
+                orderBy: [voc.id] // Order by ID ascending to get the actual amāre entry
             });
+            
+            // Filter entries with diacritic-insensitive search and rank by relevance
+            results = allEntries
+                .map(entry => {
+                    const normalizedLatin = normalizeString(entry.latin || '');
+                    const normalizedDesc = normalizeString(entry.desc || '');
+                    const normalizedKey = normalizeString(entry.key || '');
+                    
+                    // Calculate relevance score
+                    let score = 0;
+                    
+                    // Exact match in latin gets highest score
+                    if (normalizedLatin === normalizedSearchQuery) score += 100;
+                    // Starts with search query gets high score
+                    else if (normalizedLatin.startsWith(normalizedSearchQuery)) score += 80;
+                    // Contains search query gets medium score
+                    else if (normalizedLatin.includes(normalizedSearchQuery)) score += 60;
+                    
+                    // Exact match in desc gets good score
+                    if (normalizedDesc === normalizedSearchQuery) score += 40;
+                    // Contains in desc gets lower score
+                    else if (normalizedDesc.includes(normalizedSearchQuery)) score += 20;
+                    
+                    // Original pattern matching (for diacritic-sensitive search)
+                    if (entry.latin?.includes(searchPattern)) score += 30;
+                    if (entry.desc?.includes(searchPattern)) score += 15;
+                    if (entry.key?.includes(searchPattern)) score += 10;
+                    
+                    return { entry, score };
+                })
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score) // Sort by relevance score (descending)
+                .map(item => item.entry)
+                .slice(0, limit); // Apply limit after sorting
         } else {
-            // Return recent entries if no search query
-            results = await db.query.voc.findMany({
-                limit: limit,
-                offset: offset,
-                orderBy: [desc(voc.id)]
-            });
+            // Return empty results if no search query
+            results = [];
         }
 
         res.json({
@@ -269,6 +303,176 @@ app.get('/api/vocab', async (req, res) => {
         });
     } catch (error) {
         console.error('Vocabulary API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+// Vocabulary API - Get ALL vocabulary with ALL forms
+app.get('/api/vocab/all', async (req, res) => {
+    console.log('📚 [Dev] GET /api/vocab/all - using local database');
+    
+    try {
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc, grammar, form } = await import('../functions/db/vocab-schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const db = getLocalVocabDb();
+        const limit = parseInt(req.query.limit as string || '100');
+        const offset = parseInt(req.query.offset as string || '0');
+        const includeForms = req.query.includeForms !== 'false';
+
+        // Get all vocabulary entries with pagination
+        const vocabEntries = await db.query.voc.findMany({
+            limit: limit,
+            offset: offset,
+            orderBy: [voc.id]
+        });
+
+        let enrichedEntries = vocabEntries;
+
+        if (includeForms) {
+            enrichedEntries = await Promise.all(vocabEntries.map(async (entry) => {
+                try {
+                    // Get all grammar forms for this vocabulary entry
+                    const grammarForms = await db.select()
+                        .from(grammar)
+                        .where(eq(grammar.vokId, entry.vokId))
+                        .all();
+
+                    // Get all form descriptions for this vocabulary entry
+                    const formDescriptions = await db.select()
+                        .from(form)
+                        .where(eq(form.vokId, entry.vokId))
+                        .all();
+
+                    // Create a map of form -> bestimmung for quick lookup
+                    const formDescriptionMap = new Map<string, string[]>();
+                    for (const formDesc of formDescriptions) {
+                        if (formDesc.form) {
+                            const normalizedForm = formDesc.form.toLowerCase().trim();
+                            if (!formDescriptionMap.has(normalizedForm)) {
+                                formDescriptionMap.set(normalizedForm, []);
+                            }
+                            if (formDesc.bestimmung) {
+                                const descriptions = formDescriptionMap.get(normalizedForm)!;
+                                descriptions.push(formDesc.bestimmung);
+                            }
+                        }
+                    }
+
+                    // Helper function to find best matching description
+                    const findBestDescription = (grammarForm: string): string | null => {
+                        const normalizedGrammarForm = grammarForm.toLowerCase().trim();
+                        
+                        // First try exact match
+                        if (formDescriptionMap.has(normalizedGrammarForm)) {
+                            const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
+                            return descriptions.join(', ');
+                        }
+                        
+                        // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+                        if (normalizedGrammarForm.includes('/')) {
+                            const parts = normalizedGrammarForm.split('/');
+                            for (const part of parts) {
+                                const trimmedPart = part.trim();
+                                if (formDescriptionMap.has(trimmedPart)) {
+                                    const descriptions = formDescriptionMap.get(trimmedPart)!;
+                                    return descriptions.join(', ');
+                                }
+                            }
+                        }
+                        
+                        // Try to find exact matches with common morphological variations
+                        for (const [formKey, descriptions] of formDescriptionMap.entries()) {
+                            // Check for exact matches with common ending variations
+                            if (normalizedGrammarForm === formKey) {
+                                return descriptions.join(', ');
+                            }
+                            
+                            // Check for very close matches (minor differences)
+                            if (Math.abs(normalizedGrammarForm.length - formKey.length) <= 2 &&
+                                (normalizedGrammarForm.includes(formKey) || formKey.includes(normalizedGrammarForm))) {
+                                return descriptions.join(', ');
+                            }
+                        }
+                        
+                        return null;
+                    };
+
+                    // Enrich grammar forms with their descriptions from the FORM table
+                    const enrichedGrammarForms = grammarForms.map(gf => {
+                        let bestimmung: string | null = null;
+                        
+                        if (gf.form) {
+                            bestimmung = findBestDescription(gf.form);
+                        }
+
+                        return {
+                            id: gf.id,
+                            vokId: gf.vokId,
+                            nr: gf.nr,
+                            form: gf.form,
+                            bestimmung: bestimmung,
+                        };
+                    });
+
+                    // Include ALL FORM entries, even if they have corresponding GRAMMAR entries
+                    // This ensures we don't miss any forms
+                    const allFormEntries = formDescriptions.map(fd => ({
+                        id: fd.id,
+                        vokId: fd.vokId,
+                        nr: null,
+                        form: fd.form,
+                        bestimmung: fd.bestimmung,
+                    }));
+
+                    // Combine enriched grammar forms with all form entries
+                    // Remove duplicates based on form content
+                    const combinedForms = [...enrichedGrammarForms, ...allFormEntries];
+                    const uniqueForms = combinedForms.filter((form, index, self) => 
+                        index === self.findIndex(f => f.form === form.form)
+                    );
+
+                    // Sort forms by form content for better readability
+                    const allForms = uniqueForms.sort((a, b) => {
+                        if (!a.form) return 1;
+                        if (!b.form) return -1;
+                        return a.form.localeCompare(b.form);
+                    });
+
+                    return {
+                        ...entry,
+                        forms: allForms,
+                        grammarForms: enrichedGrammarForms,
+                    };
+                } catch (error) {
+                    console.error(`Error processing entry ${entry.vokId}:`, error);
+                    // Return entry without forms if there's an error
+                    return {
+                        ...entry,
+                        forms: [],
+                        grammarForms: [],
+                    };
+                }
+            }));
+        }
+
+        // Get total count for pagination
+        const totalCount = await db.select().from(voc).all();
+
+        res.json({
+            results: enrichedEntries,
+            count: enrichedEntries.length,
+            total: totalCount.length,
+            limit,
+            offset,
+            includeForms
+        });
+    } catch (error) {
+        console.error('Vocabulary All API Error:', error);
         res.status(500).json({ 
             error: 'Internal Error', 
             message: error instanceof Error ? error.message : 'Unknown error'
@@ -360,6 +564,18 @@ app.get('/api/vocab/:vokId', async (req, res) => {
                 return descriptions.join(', ');
             }
             
+            // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+            if (normalizedGrammarForm.includes('/')) {
+                const parts = normalizedGrammarForm.split('/');
+                for (const part of parts) {
+                    const trimmedPart = part.trim();
+                    if (formDescriptionMap.has(trimmedPart)) {
+                        const descriptions = formDescriptionMap.get(trimmedPart)!;
+                        return descriptions.join(', ');
+                    }
+                }
+            }
+            
             // Try to find exact matches with common morphological variations
             for (const [formKey, descriptions] of formDescriptionMap.entries()) {
                 // Check for exact matches with common ending variations
@@ -428,6 +644,176 @@ app.get('/api/vocab/:vokId', async (req, res) => {
         res.json(response);
     } catch (error) {
         console.error('Vocabulary Detail API Error:', error);
+        res.status(500).json({ 
+            error: 'Internal Error', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+// Vocabulary API - Get ALL vocabulary with ALL forms
+app.get('/api/vocab/all', async (req, res) => {
+    console.log('📚 [Dev] GET /api/vocab/all - using local database');
+    
+    try {
+        const { getLocalVocabDb } = await import('./db/local-vocab-client');
+        const { voc, grammar, form } = await import('../functions/db/vocab-schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const db = getLocalVocabDb();
+        const limit = parseInt(req.query.limit as string || '100');
+        const offset = parseInt(req.query.offset as string || '0');
+        const includeForms = req.query.includeForms !== 'false';
+
+        // Get all vocabulary entries with pagination
+        const vocabEntries = await db.query.voc.findMany({
+            limit: limit,
+            offset: offset,
+            orderBy: [voc.id]
+        });
+
+        let enrichedEntries = vocabEntries;
+
+        if (includeForms) {
+            enrichedEntries = await Promise.all(vocabEntries.map(async (entry) => {
+                try {
+                    // Get all grammar forms for this vocabulary entry
+                    const grammarForms = await db.select()
+                        .from(grammar)
+                        .where(eq(grammar.vokId, entry.vokId))
+                        .all();
+
+                    // Get all form descriptions for this vocabulary entry
+                    const formDescriptions = await db.select()
+                        .from(form)
+                        .where(eq(form.vokId, entry.vokId))
+                        .all();
+
+                    // Create a map of form -> bestimmung for quick lookup
+                    const formDescriptionMap = new Map<string, string[]>();
+                    for (const formDesc of formDescriptions) {
+                        if (formDesc.form) {
+                            const normalizedForm = formDesc.form.toLowerCase().trim();
+                            if (!formDescriptionMap.has(normalizedForm)) {
+                                formDescriptionMap.set(normalizedForm, []);
+                            }
+                            if (formDesc.bestimmung) {
+                                const descriptions = formDescriptionMap.get(normalizedForm)!;
+                                descriptions.push(formDesc.bestimmung);
+                            }
+                        }
+                    }
+
+                    // Helper function to find best matching description
+                    const findBestDescription = (grammarForm: string): string | null => {
+                        const normalizedGrammarForm = grammarForm.toLowerCase().trim();
+                        
+                        // First try exact match
+                        if (formDescriptionMap.has(normalizedGrammarForm)) {
+                            const descriptions = formDescriptionMap.get(normalizedGrammarForm)!;
+                            return descriptions.join(', ');
+                        }
+                        
+                        // Handle slash notation (e.g., "amabaris/amabare" -> try both "amabaris" and "amabare")
+                        if (normalizedGrammarForm.includes('/')) {
+                            const parts = normalizedGrammarForm.split('/');
+                            for (const part of parts) {
+                                const trimmedPart = part.trim();
+                                if (formDescriptionMap.has(trimmedPart)) {
+                                    const descriptions = formDescriptionMap.get(trimmedPart)!;
+                                    return descriptions.join(', ');
+                                }
+                            }
+                        }
+                        
+                        // Try to find exact matches with common morphological variations
+                        for (const [formKey, descriptions] of formDescriptionMap.entries()) {
+                            // Check for exact matches with common ending variations
+                            if (normalizedGrammarForm === formKey) {
+                                return descriptions.join(', ');
+                            }
+                            
+                            // Check for very close matches (minor differences)
+                            if (Math.abs(normalizedGrammarForm.length - formKey.length) <= 2 &&
+                                (normalizedGrammarForm.includes(formKey) || formKey.includes(normalizedGrammarForm))) {
+                                return descriptions.join(', ');
+                            }
+                        }
+                        
+                        return null;
+                    };
+
+                    // Enrich grammar forms with their descriptions from the FORM table
+                    const enrichedGrammarForms = grammarForms.map(gf => {
+                        let bestimmung: string | null = null;
+                        
+                        if (gf.form) {
+                            bestimmung = findBestDescription(gf.form);
+                        }
+
+                        return {
+                            id: gf.id,
+                            vokId: gf.vokId,
+                            nr: gf.nr,
+                            form: gf.form,
+                            bestimmung: bestimmung,
+                        };
+                    });
+
+                    // Include ALL FORM entries, even if they have corresponding GRAMMAR entries
+                    // This ensures we don't miss any forms
+                    const allFormEntries = formDescriptions.map(fd => ({
+                        id: fd.id,
+                        vokId: fd.vokId,
+                        nr: null,
+                        form: fd.form,
+                        bestimmung: fd.bestimmung,
+                    }));
+
+                    // Combine enriched grammar forms with all form entries
+                    // Remove duplicates based on form content
+                    const combinedForms = [...enrichedGrammarForms, ...allFormEntries];
+                    const uniqueForms = combinedForms.filter((form, index, self) => 
+                        index === self.findIndex(f => f.form === form.form)
+                    );
+
+                    // Sort forms by form content for better readability
+                    const allForms = uniqueForms.sort((a, b) => {
+                        if (!a.form) return 1;
+                        if (!b.form) return -1;
+                        return a.form.localeCompare(b.form);
+                    });
+
+                    return {
+                        ...entry,
+                        forms: allForms,
+                        grammarForms: enrichedGrammarForms,
+                    };
+                } catch (error) {
+                    console.error(`Error processing entry ${entry.vokId}:`, error);
+                    // Return entry without forms if there's an error
+                    return {
+                        ...entry,
+                        forms: [],
+                        grammarForms: [],
+                    };
+                }
+            }));
+        }
+
+        // Get total count for pagination
+        const totalCount = await db.select().from(voc).all();
+
+        res.json({
+            results: enrichedEntries,
+            count: enrichedEntries.length,
+            total: totalCount.length,
+            limit,
+            offset,
+            includeForms
+        });
+    } catch (error) {
+        console.error('Vocabulary All API Error:', error);
         res.status(500).json({ 
             error: 'Internal Error', 
             message: error instanceof Error ? error.message : 'Unknown error'
