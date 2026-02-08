@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { useLexicon } from '@/hooks/use-lexicon';
-import { Author, BlogPost, LexiconEntry, Language } from '@/types/blog';
+import { BlogPost, LexiconEntry, Language } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { authors } from '@/data/authors';
 import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';

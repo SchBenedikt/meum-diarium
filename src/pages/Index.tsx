@@ -1,7 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
-import LandingHeroMinimal from '@/components/LandingHeroMinimal';
 import LandingHeroNew from '@/components/LandingHeroNew';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';

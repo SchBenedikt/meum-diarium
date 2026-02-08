@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -9,7 +8,6 @@ import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 
 export default function LandingHeroMinimal() {
-  const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
   const recentPosts = posts
     ? [...posts]

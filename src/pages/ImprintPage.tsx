@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { SEO } from '@/components/SEO';
-import { Building2, Mail, Phone, Globe, Shield, Scale, ArrowLeft } from 'lucide-react';
+import { Building2, Mail, Globe, Shield, Scale, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';

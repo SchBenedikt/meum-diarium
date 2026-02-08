@@ -51,23 +51,7 @@ export default function VocabularyPage() {
     const [source, setSource] = useState<SearchResults['source']>(null);
     const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    const fetchSourceInfo = useCallback(async () => {
-        try {
-            const response = await fetch('/api/vocab?limit=1');
-            if (response.ok) {
-                const data: SearchResults = await response.json();
-                setSource(data.source || null);
-            }
-        } catch (err) {
-            console.error('Error fetching source info:', err);
-        }
-    }, []);
-
-    // Fetch source info on component mount
-    useEffect(() => {
-        fetchSourceInfo();
-    }, [fetchSourceInfo]);
-
+    
     const fetchVocabulary = useCallback(async (query: string) => {
         if (!query.trim()) {
             setResults([]);
@@ -85,6 +69,10 @@ export default function VocabularyPage() {
             }
             const data: SearchResults = await response.json();
             setResults(data.results);
+            // Set source info from the first search response
+            if (data.source && !source) {
+                setSource(data.source);
+            }
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Unknown error');
             console.error('Error fetching vocabulary:', err);
