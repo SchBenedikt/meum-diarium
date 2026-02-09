@@ -1,28 +1,42 @@
 import { getDb } from '../../db/client';
 import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-import { createHash, randomBytes } from 'crypto';
 import type { PagesContext } from '../../types';
 
-// Helper function to hash passwords
-function hashPassword(password: string): string {
-    const salt = randomBytes(16).toString('hex');
-    const hash = createHash('sha256');
-    hash.update(password + salt);
-    return salt + ':' + hash.digest('hex');
+// Helper function to hash passwords using Web Crypto API
+async function hashPassword(password: string): Promise<string> {
+    const salt = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+    
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + salt);
+    
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return salt + ':' + hashHex;
 }
 
-// Helper function to verify passwords
-function verifyPassword(password: string, hashedPassword: string): boolean {
+// Helper function to verify passwords using Web Crypto API
+async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
     const [salt, hash] = hashedPassword.split(':');
-    const verifyHash = createHash('sha256');
-    verifyHash.update(password + salt);
-    return verifyHash.digest('hex') === hash;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + salt);
+    
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return hashHex === hash;
 }
 
 // Helper function to generate user ID
 function generateUserId(): string {
-    return 'user_' + randomBytes(16).toString('hex');
+    return 'user_' + Array.from(crypto.getRandomValues(new Uint8Array(16)))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
 }
 
 // Helper function to validate email
@@ -99,7 +113,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
 
         // Create new user
         const userId = generateUserId();
-        const passwordHash = hashPassword(password);
+        const passwordHash = await hashPassword(password);
         const now = new Date().toISOString();
 
         const newUser = {

@@ -1,15 +1,19 @@
 import { getDb } from '../../db/client';
 import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-import { createHash } from 'crypto';
 import type { PagesContext } from '../../types';
 
-// Helper function to verify passwords
-function verifyPassword(password: string, hashedPassword: string): boolean {
+// Helper function to verify passwords using Web Crypto API
+async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
     const [salt, hash] = hashedPassword.split(':');
-    const verifyHash = createHash('sha256');
-    verifyHash.update(password + salt);
-    return verifyHash.digest('hex') === hash;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + salt);
+    
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return hashHex === hash;
 }
 
 // Helper function to generate JWT token (simplified version)
@@ -62,7 +66,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         }
 
         // Verify password
-        if (!verifyPassword(password, user.passwordHash)) {
+        if (!(await verifyPassword(password, user.passwordHash))) {
             return new Response(
                 JSON.stringify({ error: 'Invalid email or password' }),
                 { status: 401, headers: { 'Content-Type': 'application/json' } }
