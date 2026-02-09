@@ -241,173 +241,204 @@ export function SenecaAboutPage() {
       date: t('seneca.works.clemency.date'),
       note: t('seneca.works.clemency.note'),
     },
-    {
-      title: t('seneca.works.shortness.title'),
-      subtitle: t('seneca.works.shortness.subtitle'),
-      date: t('seneca.works.shortness.date'),
-      note: t('seneca.works.shortness.note'),
-                <section>
-                  <div className="flex items-center gap-4 mb-12">
-                    <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
-                    <div>
-                      <h2 className="font-display text-3xl font-bold">{t('works')}</h2>
-                      <p className="text-sm text-muted-foreground mt-1">{t('seneca.worksSubtitle')}</p>
-                    </div>
                   </div>
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    {authorWorks.map((work) => (
-                      <Link
-                        key={work.slug || work.title}
-                        to={`/seneca/works/${slugify(work.title, { lower: true, strict: true })}`}
-                        className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
-                      >
-                        <div className="relative z-10">
-                          <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
-                            <BookOpen className="h-5 w-5 text-primary" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {authorWorks.map((work, index) => (
+                    <div key={index} className="group relative overflow-hidden rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:bg-card">
+                      <div className="p-6">
+                        <div className="flex items-start justify-between gap-4 mb-4">
+                          <div>
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              {getTranslatedWork(work, language).title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                              {getTranslatedWork(work, language).date}
+                            </p>
                           </div>
-                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                            {work.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                            {work.summary}
-                          </p>
-                          <div className="flex items-center text-xs font-semibold text-primary gap-2">
-                            <span>{t('seneca.readArticle')}</span>
-                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                          <Button variant="outline" size="sm" asChild>
+                            <Link to={`/works/${work.slug}`}>
+                              <ArrowRight className="h-4 w-4" />
+                              {t('readMore')}
+                            </Link>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Philosophy Section */}
+            {details.philosophy && (
+              <section>
+                <div className="flex items-center gap-4 mb-12">
+                  <Brain className="h-6 w-6 text-primary" />
+                  <h2 className="font-display text-3xl font-bold">{t('seneca.philosophy')}</h2>
+                </div>
+                <div className="space-y-6">
+                  {details.philosophy.map((concept, index) => (
+                    <div key={index} className="p-6 rounded-lg border border-border/50 bg-card/50">
+                      <h3 className="text-lg font-semibold mb-4 text-foreground">{concept.title}</h3>
+                      <p className="text-muted-foreground mb-4">{concept.description}</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {concept.points.map((point, pointIndex) => (
+                          <li key={pointIndex} className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center justify-center">
+                              {pointIndex + 1}
+                            </div>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Shortness of Life Section */}
+            {details.shortness && (
+              <section>
+                <div className="flex items-center gap-4 mb-12">
+                  <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
+                  <div>
+                    <h2 className="font-display text-3xl font-bold">{t('seneca.works.shortness.title')}</h2>
+                    <p className="text-sm text-muted-foreground mt-1">{t('seneca.worksSubtitle')}</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {details.shortness.map((work, index) => (
+                    <div key={index} className="p-6 rounded-lg border border-border/50 bg-card/50">
+                      <h3 className="text-lg font-semibold mb-4 text-foreground">{work.title}</h3>
+                      <p className="text-muted-foreground mb-4">{work.subtitle}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{work.description}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{work.date}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{work.note}</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {work.points.map((point, pointIndex) => (
+                          <li key={pointIndex} className="flex items-start gap-2">
+                            <div className="w-2 h-2 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center justify-center">
+                              {pointIndex + 1}
+                            </div>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Legacy Section */}
+            {details.legacy && (
+              <section>
+                <div className="flex items-center gap-4 mb-12">
+                  <Crown className="h-6 w-6 text-primary" />
+                  <h2 className="font-display text-3xl font-bold">{t('seneca.legacy')}</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {details.legacy.map((item, index) => (
+                    <div key={index} className="p-6 rounded-lg border border-border/50 bg-card/50">
+                      <h3 className="text-lg font-semibold mb-4 text-foreground">{item.title}</h3>
+                      <p className="text-muted-foreground mb-4">{item.description}</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {item.points.map((point, pointIndex) => (
+                          <li key={pointIndex} className="flex items-start gap-2">
+                            <Sparkles className="w-4 h-4 text-primary/50 flex-shrink-0 mt-0.5" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Related Posts */}
+            {authorPosts.length > 0 && (
+              <section>
+                <div className="flex items-center gap-4 mb-12">
+                  <BookMarked className="h-6 w-6 text-primary" />
+                  <h2 className="font-display text-3xl font-bold">{t('recentPosts')}</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {authorPosts.map((post) => (
+                    <div key={post.slug} className="group">
+                      <Link to={`/posts/${post.author}/${post.slug}`} className="block">
+                        <div className="p-6 rounded-lg border border-border/50 bg-card/50 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:bg-card">
+                          <div className="flex items-start justify-between gap-4 mb-4">
+                            <div>
+                              <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                                {post.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {post.excerpt}
+                              </p>
+                            </div>
+                            <Button variant="outline" size="sm">
+                              <ArrowRight className="h-4 w-4" />
+                              {t('readMore')}
+                            </Button>
                           </div>
                         </div>
                       </Link>
-                    ))}
-                  </div>
-                </section>
-              )}
-              {/* Recent Entries */}
-              {authorPosts.length > 0 && (
-                <section>
-                  <div className="flex items-center justify-between gap-4 mb-12 flex-wrap">
-                    <div className="flex items-center gap-4">
-                      <Scroll className="h-6 w-6 text-primary flex-shrink-0" />
-                      <div>
-                        <h2 className="font-display text-3xl font-bold">{t('diaryEntries')}</h2>
-                        <p className="text-sm text-muted-foreground mt-1">{t('seneca.diaryRecent')}</p>
-                      </div>
                     </div>
-                    <Button asChild variant="secondary" className="text-xs uppercase tracking-widest font-bold">
-                      <Link to="/seneca">
-                        {t('viewAllEntries')} <ArrowRight className="h-3 w-3 ml-2" />
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+          <aside className="hidden lg:block lg:col-span-4">
+            <div className="sticky top-28 space-y-6">
+              {/* Quick Actions */}
+              <div className="bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 p-6">
+                <h3 className="text-lg font-semibold mb-4">{t('quickActions')}</h3>
+                <div className="space-y-3">
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link to="/chat">
+                      <Users className="h-4 w-4" />
+                      {t('chatWithSeneca')}
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link to="/simulation">
+                      <Landmark className="h-4 w-4" />
+                      {t('timeTravel')}
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Author Navigation */}
+              <div className="bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 p-6">
+                <h3 className="text-lg font-semibold mb-4">{t('otherAuthors')}</h3>
+                <div className="space-y-2">
+                  {['caesar', 'cicero', 'augustus', 'catilina'].map((author) => (
+                    <Button
+                      key={author}
+                      variant={authorId === author ? "default" : "outline"}
+                      className="w-full justify-start"
+                      asChild
+                    >
+                      <Link to={`/about/${author}`}>
+                        {t(author)}
                       </Link>
                     </Button>
-                  </div>
-                  <div className="grid gap-6">
-                    {authorPosts.map((post) => (
-                      <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
-                        <article className="card-modern card-hover-primary card-padding-lg relative h-full overflow-hidden flex flex-col">
-                          <div className="mb-4">
-                            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                              {post.historicalDate}
-                            </span>
-                          </div>
-                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                            {post.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
-                            {post.excerpt}
-                          </p>
-                          <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <span className="inline-flex items-center gap-2">
-                              <Clock className="h-3 w-3" />
-                              {post.readingTime ? `${post.readingTime} min` : '5 min'}
-                            </span>
-                            <span className="inline-flex items-center text-primary font-semibold gap-1 group-hover:gap-2 transition-all">
-                              {t('seneca.readArticle')} <ArrowRight className="h-3 w-3" />
-                            </span>
-                          </div>
-                        </article>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              )}
-            </div>
-            {/* Sidebar */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-32 space-y-8">
-                <div className="card-modern card-padding-md">
-                  <h3 className="font-display text-2xl font-bold mb-5 text-primary">{t('seneca.snapshots.title')}</h3>
-                  <div className="space-y-3 text-sm text-foreground/80">
-                    {senecaSnapshots.map((item) => (
-                      <div key={item.label} className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 last:border-0 last:pb-0">
-                        <span className="font-semibold">{item.label}</span>
-                        <div className="text-right space-y-0.5">
-                          <p className="font-medium text-foreground">{item.value}</p>
-                          <p className="text-xs text-muted-foreground">{item.hint}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
-        {/* Life Stations - Full Width Section */}
-        <section className="py-24 border-t border-border/40">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-4 mb-12">
-                <Clock className="h-8 w-8 text-primary" />
-                <div>
-                  <h2 className="font-display text-4xl font-bold">{t('seneca.biography.title')}</h2>
-                  <p className="text-lg text-muted-foreground mt-2">{t('seneca.biography.subtitle')}</p>
-                </div>
-              </div>
-              <div className="grid gap-8 lg:grid-cols-3">
-                {/* Early Life */}
-                <div className="card-modern card-padding-lg space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Feather className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">{t('seneca.biography.earlyLife')}</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {senecaSidebar.earlyLife.map((item) => (
-                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
-                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-xs text-muted-foreground">{item.note}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Nero Years */}
-                <div className="card-modern card-padding-lg space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Landmark className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">{t('seneca.biography.neroYears')}</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {senecaSidebar.neroYears.map((item) => (
-                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
-                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-xs text-muted-foreground">{item.note}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Later Life */}
-                <div className="card-modern card-padding-lg space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Brain className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">{t('seneca.biography.laterWorks')}</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {senecaSidebar.laterLife.map((item) => (
-                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
-                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-xs text-muted-foreground">{item.note}</p>
-                      </div>
-                    ))}
+      </div>
+      <Footer />
+    </div>
+  );
+}
                   </div>
                 </div>
               </div>
