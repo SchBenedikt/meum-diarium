@@ -104,7 +104,7 @@ export function CommentForm({
       <div className="flex items-center justify-between">
         <p className="text-xs text-muted-foreground">
           {showGuestFields 
-            ? "Ihr Name und E-Mail werden mit dem Kommentar angezeigt. Die E-Mail wird nicht veröffentlicht."
+            ? "Ihr Name wird mit dem Kommentar angezeigt. Ihre E-Mail-Adresse wird nicht veröffentlicht."
             : "Ihr Kommentar wird mit Ihrem Benutzernamen veröffentlicht."
           }
         </p>
