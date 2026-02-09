@@ -69,7 +69,15 @@ export function CaesarAboutPage() {
     if (postsLoading) {
       return <div className="min-h-screen bg-background" />;
     }
-    return <NotFound />;
+    return <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">Seite nicht gefunden</h1>
+        <p className="text-muted-foreground">Der angeforderte Autor wurde nicht gefunden.</p>
+        <Button onClick={() => navigate('/about')} className="mt-4">
+          Zurück zur Übersicht
+        </Button>
+      </div>
+    </div>;
   }
 
   const details = authorDetails;
@@ -279,7 +287,6 @@ export function CaesarAboutPage() {
                   </div>
                 </section>
               )}
-            </div>
             </div>
             <aside className="hidden lg:block lg:col-span-4">
               <div className="sticky top-28 space-y-6">
