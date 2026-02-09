@@ -106,26 +106,26 @@ export const latinTexts = sqliteTable('latin_texts', {
 
 // Comments Table (with user support)
 export const comments = sqliteTable('comments', {
-    id: text('id').primaryKey(),
-    postId: text('post_id').notNull().references(() => posts.id),
-    userId: text('user_id').references(() => users.id),
-    parentId: text('parent_id').references(() => comments.id), // For threaded comments
-    content: text('content').notNull(),
-    createdAt: text('created_at').notNull().default(new Date().toISOString()),
-    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
-    isEdited: integer('is_edited', { mode: 'boolean' }).default(false),
-    isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),
-    likesCount: integer('likes_count').default(0),
+  id: text('id').primaryKey(),
+  postId: text('post_id').notNull().references(() => posts.id),
+  userId: text('user_id').references(() => users.id),
+  parentId: text('parent_id').references(() => comments.id), // For threaded comments
+  content: text('content').notNull(),
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+  isEdited: integer('is_edited', { mode: 'boolean' }).default(false),
+  isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),
+  likesCount: integer('likes_count').default(0),
 });
 
 // User Commenting Activity Table (for tracking)
 export const userCommentingActivity = sqliteTable('user_commenting_activity', {
-    id: text('id').primaryKey(),
-    userId: text('user_id').notNull().references(() => users.id),
-    commentId: text('comment_id').notNull().references(() => comments.id),
-    action: text('action').notNull(), // 'created', 'edited', 'deleted', 'liked'
-    createdAt: text('created_at').notNull().default(new Date().toISOString()),
-    metadata: text('metadata', { mode: 'json' }), // Additional data like previous content
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  commentId: text('comment_id').notNull().references(() => comments.id),
+  action: text('action').notNull(), // 'created', 'edited', 'deleted', 'liked'
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  metadata: text('metadata', { mode: 'json' }), // Additional data like previous content
 });
 
 // Relations
