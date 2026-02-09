@@ -502,21 +502,6 @@ export function SenecaAboutPage() {
                   >
                     <Calendar className="h-4 w-4" />
                     {t('seneca.biography.fullTimeline')}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Philosophical Legacy */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">{t('seneca.legacy.title')}</h2>
-              <p className="text-lg text-muted-foreground">{t('seneca.legacy.subtitle')}</p>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
-              {senecaLegacy.map((item) => (
                 <div
                   key={item.title}
                   className="card-modern card-hover-primary card-padding-lg"
