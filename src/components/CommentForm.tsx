@@ -11,6 +11,8 @@ interface CommentFormProps {
   placeholder?: string;
   showGuestFields?: boolean;
   onCancel?: () => void;
+  submitButtonText?: string;
+  showCancel?: boolean;
 }
 
 export function CommentForm({ 
@@ -18,7 +20,9 @@ export function CommentForm({
   isSubmitting, 
   placeholder = "Schreiben Sie Ihren Kommentar...",
   showGuestFields = false,
-  onCancel
+  onCancel,
+  submitButtonText = "Kommentieren",
+  showCancel = false
 }: CommentFormProps) {
   const [content, setContent] = useState('');
   const [guestName, setGuestName] = useState('');
@@ -106,7 +110,7 @@ export function CommentForm({
         </p>
         
         <div className="flex items-center gap-2">
-          {onCancel && (
+          {(showCancel || onCancel) && (
             <Button
               type="button"
               variant="outline"
@@ -132,7 +136,7 @@ export function CommentForm({
             ) : (
               <>
                 <Send className="h-4 w-4" />
-                Kommentieren
+                {submitButtonText}
               </>
             )}
           </Button>
