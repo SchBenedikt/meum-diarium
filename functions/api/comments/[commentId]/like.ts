@@ -1,6 +1,6 @@
 import { getDb } from '../../../db/client';
 import { comments, userCommentingActivity } from '../../../db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import type { PagesContext } from '../../../types';
 
 // Helper function to verify JWT token (simplified version)
@@ -68,9 +68,11 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
             .select()
             .from(userCommentingActivity)
             .where(
-                eq(userCommentingActivity.userId, userId) && 
-                eq(userCommentingActivity.commentId, commentId) &&
-                eq(userCommentingActivity.action, 'liked')
+                and(
+                    eq(userCommentingActivity.userId, userId),
+                    eq(userCommentingActivity.commentId, commentId),
+                    eq(userCommentingActivity.action, 'liked')
+                )
             )
             .limit(1);
 
@@ -79,9 +81,11 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         if (isLiked) {
             // Unlike: remove the like activity and decrement count
             await db.delete(userCommentingActivity).where(
-                eq(userCommentingActivity.userId, userId) && 
-                eq(userCommentingActivity.commentId, commentId) &&
-                eq(userCommentingActivity.action, 'liked')
+                and(
+                    eq(userCommentingActivity.userId, userId),
+                    eq(userCommentingActivity.commentId, commentId),
+                    eq(userCommentingActivity.action, 'liked')
+                )
             );
 
             await db

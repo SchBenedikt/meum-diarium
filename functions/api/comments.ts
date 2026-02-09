@@ -1,5 +1,5 @@
 import { getDb } from '../db/client';
-import { comments, users } from '../db/schema';
+import { comments, users, userCommentingActivity } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
 import type { PagesContext } from '../types';
 
@@ -142,6 +142,23 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         };
 
         await db.insert(comments).values(newComment);
+
+        // Track comment activity for authenticated users
+        if (userId) {
+            const activityId = 'activity_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            await db.insert(userCommentingActivity).values({
+                id: activityId,
+                userId,
+                commentId,
+                action: 'created',
+                createdAt: now,
+                metadata: JSON.stringify({ 
+                    postId,
+                    parentId: parentId || null,
+                    isGuest: false
+                })
+            });
+        }
 
         // Return comment with user info
         let commentResponse: any = {

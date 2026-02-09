@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuth } from '@/context/AuthContext';
 import { authors as authorData } from '@/data/authors';
 import { usePosts } from '@/hooks/use-posts';
 import { Author, Perspective, BlogPost, Language } from '@/types/blog';
@@ -30,10 +31,13 @@ const calculateReadingTime = (text: string): number => {
 };
 function PostContent({ post }: { post: BlogPost }) {
   const { t, language } = useLanguage();
+  const { user, token } = useAuth();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
   const [perspective, setPerspective] = useState<Perspective>('diary');
   const targetRef = useRef<HTMLDivElement>(null);
+  const startTimeRef = useRef<number>(Date.now());
+  const lastProgressRef = useRef<number>(0);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ['start start', 'end start'],
@@ -41,6 +45,67 @@ function PostContent({ post }: { post: BlogPost }) {
   const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  
+  // Track reading progress
+  const trackReadingProgress = useCallback(async () => {
+    if (!user || !token || !post?.id) return;
+    
+    const currentTime = Date.now();
+    const readingTimeSeconds = Math.floor((currentTime - startTimeRef.current) / 1000);
+    const progressPercentage = Math.round(scrollYProgress.get() * 100);
+    
+    // Only track if there's meaningful progress or time spent
+    if (readingTimeSeconds > 5 || progressPercentage > lastProgressRef.current) {
+      try {
+        await fetch('/api/reading-progress', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            postId: post.id,
+            readingTimeSeconds: Math.max(0, readingTimeSeconds),
+            progressPercentage,
+            lastPosition: Math.round(progressPercentage * 100), // Store as 0-10000 for more precision
+          }),
+        });
+        
+        lastProgressRef.current = progressPercentage;
+        startTimeRef.current = currentTime; // Reset start time for next tracking
+      } catch (error) {
+        console.error('Error tracking reading progress:', error);
+      }
+    }
+  }, [user, token, post?.id, scrollYProgress]);
+
+  // Track progress on scroll and on unmount
+  useEffect(() => {
+    const handleScroll = () => {
+      trackReadingProgress();
+    };
+
+    const handleBeforeUnload = () => {
+      trackReadingProgress();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      trackReadingProgress(); // Final progress update
+    };
+  }, [trackReadingProgress]);
+
+  // Track completion when reaching 100%
+  useEffect(() => {
+    const progress = Math.round(scrollYProgress.get() * 100);
+    if (progress === 100 && lastProgressRef.current < 100) {
+      trackReadingProgress();
+    }
+  }, [scrollYProgress, trackReadingProgress]);
   
   const contentToDisplay = useMemo(() => post?.content?.[perspective], [post, perspective]);
   

@@ -1,6 +1,6 @@
 import { getDb } from '../../db/client';
 import { comments, userReadingProgress, userCommentingActivity } from '../../db/schema';
-import { eq, desc, sum, count } from 'drizzle-orm';
+import { eq, desc, sum, count, and } from 'drizzle-orm';
 import type { PagesContext } from '../../types';
 
 // Helper function to verify JWT token (simplified version)
@@ -56,8 +56,10 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
             })
             .from(userReadingProgress)
             .where(
-                eq(userReadingProgress.userId, userId) && 
-                eq(userReadingProgress.isCompleted, true)
+                and(
+                    eq(userReadingProgress.userId, userId),
+                    eq(userReadingProgress.isCompleted, true)
+                )
             );
 
         // Get user's comment stats
@@ -67,7 +69,12 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 totalLikes: sum(comments.likesCount)
             })
             .from(comments)
-            .where(eq(comments.userId, userId) && eq(comments.isDeleted, false));
+            .where(
+                and(
+                    eq(comments.userId, userId),
+                    eq(comments.isDeleted, false)
+                )
+            );
 
         // Get recent reading activity
         const recentReading = await db
@@ -92,7 +99,12 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 likesCount: comments.likesCount
             })
             .from(comments)
-            .where(eq(comments.userId, userId) && eq(comments.isDeleted, false))
+            .where(
+                and(
+                    eq(comments.userId, userId),
+                    eq(comments.isDeleted, false)
+                )
+            )
             .orderBy(desc(comments.createdAt))
             .limit(5);
 
