@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+
 export interface SEOProps {
   title?: string;
   description?: string;
@@ -13,24 +14,42 @@ export interface SEOProps {
   tags?: string[];
   noIndex?: boolean;
   structuredData?: Record<string, any> | Record<string, any>[];
+  canonical?: string;
 }
+
 const defaultMeta = {
   de: {
     title: 'Meum Diarium – Das antike Rom erleben',
     description: 'Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen.',
-    siteName: 'Meum Diarium'
+    siteName: 'Meum Diarium',
+    keywords: 'Römisches Reich, Latein, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, Kommentare, Zeitreisen',
+    author: 'Meum Diarium Team',
+    publisher: 'Meum Diarium',
+    contact: 'info@meum-diarium.de',
+    type: 'website'
   },
   en: {
     title: 'Meum Diarium – Experience Ancient Rome',
-    description: 'Experience the history of Rome through the eyes of great personalities: Caesar, Cicero, Augustus and Seneca. Diary entries, scholarly commentary and interactive time travel.',
-    siteName: 'Meum Diarium'
+    description: 'Experience history of Rome through the eyes of great personalities: Caesar, Cicero, Augustus and Seneca. Diary entries, scholarly commentary and interactive time travel.',
+    siteName: 'Meum Diarium',
+    keywords: 'Roman Empire, Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, commentary, time travel',
+    author: 'Meum Diarium Team',
+    publisher: 'Meum Diarium',
+    contact: 'info@meum-diarium.de',
+    type: 'website'
   },
   la: {
     title: 'Meum Diarium – Roma Antiqua',
     description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, eruditi et interactivae peregrinationes temporales.',
-    siteName: 'Meum Diarium'
+    siteName: 'Meum Diarium',
+    keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, commentarii, peregrinationes',
+    author: 'Meum Diarium Team',
+    publisher: 'Meum Diarium',
+    contact: 'info@meum-diarium.de',
+    type: 'website'
   }
 };
+
 export function SEO({
   title,
   description,
@@ -41,24 +60,62 @@ export function SEO({
   modifiedTime,
   section,
   tags = [],
-  noIndex,
+  noIndex = false,
   structuredData,
+  canonical
 }: SEOProps) {
   const location = useLocation();
   const { language } = useLanguage();
-  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
   const currentUrl = `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`;
   const defaults = defaultMeta[language] || defaultMeta.de;
   const finalTitle = title ? `${title} | ${defaults.siteName}` : defaults.title;
   const finalDescription = description || defaults.description;
   const finalImage = image || `${baseUrl}/images/caesar-hero.jpg`;
+  
+  // Create JSON-LD structured data once
+  const jsonLdData = useMemo(() => {
+    const baseData = {
+      "@context": `https://schema.org`,
+      "@type": "WebSite",
+      "name": defaults.siteName,
+      "url": baseUrl,
+      "description": finalDescription,
+      "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+        },
+        "query-input": "required"
+      }
+    };
+
+    // Add structured data if provided
+    if (structuredData && Object.keys(structuredData).length > 0) {
+      baseData.mainEntity = structuredData.map(data => ({
+        "@type": type === 'article' ? "BlogPosting" : "WebPage",
+        "headline": data.headline || title,
+        "description": data.description || description,
+        "image": data.image || image,
+        "author": data.author || author,
+        "datePublished": data.datePublished || publishedTime,
+        "dateModified": data.dateModified || modifiedTime,
+        "url": data.url || currentUrl
+      }));
+    }
+
+    return baseData;
+  }, [language, defaults, finalDescription, structuredData, currentUrl, type, publishedTime, modifiedTime, author, image]);
+
   useEffect(() => {
     // Update document title
     document.title = finalTitle;
+    
     // Update or create meta tags
     const updateMetaTag = (property: string, content: string, isProperty = false) => {
-      const selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
-      let element = document.querySelector(selector);
+      let element = document.querySelector(`meta[${isProperty ? 'property' : 'name'}="${property}"]`) as HTMLMetaElement;
       if (!element) {
         element = document.createElement('meta');
         if (isProperty) {
@@ -70,18 +127,45 @@ export function SEO({
       }
       element.setAttribute('content', content);
     };
+
+    // Remove existing meta tags to avoid duplicates
+    const removeMetaTag = (property: string, isProperty = false) => {
+      const elements = document.querySelectorAll(`meta[${isProperty ? 'property' : 'name'}="${property}"]`);
+      elements.forEach(el => el.remove());
+    };
+
     // Basic meta tags
+    removeMetaTag('description');
+    removeMetaTag('author');
+    removeMetaTag('robots');
+    removeMetaTag('keywords');
+    removeMetaTag('og:title');
+    removeMetaTag('og:description');
+    removeMetaTag('og:type');
+    removeMetaTag('og:url');
+    removeMetaTag('og:image');
+    removeMetaTag('og:image:alt');
+    removeMetaTag('og:site_name');
+    removeMetaTag('og:locale');
+    removeMetaTag('twitter:card');
+    removeMetaTag('twitter:title');
+    removeMetaTag('twitter:description');
+    removeMetaTag('twitter:image');
+    removeMetaTag('twitter:image:alt');
+    removeMetaTag('twitter:site');
+    removeMetaTag('twitter:creator');
+    removeMetaTag('theme-color');
+    removeMetaTag('mobile-web-app-capable');
+    removeMetaTag('apple-mobile-web-app-capable');
+    removeMetaTag('apple-mobile-web-app-status-bar-style');
+    removeMetaTag('canonical');
+    
+    // Add new meta tags
     updateMetaTag('description', finalDescription);
-    updateMetaTag('author', author || 'Meum Diarium');
-    // Robots
-    if (noIndex) {
-      updateMetaTag('robots', 'noindex, nofollow');
-    } else {
-      updateMetaTag('robots', 'index, follow');
-    }
-    if (tags.length > 0) {
-      updateMetaTag('keywords', tags.join(', '));
-    }
+    updateMetaTag('author', author || defaults.author);
+    updateMetaTag('robots', noIndex ? 'noindex, nofollow' : 'index, follow');
+    updateMetaTag('keywords', defaults.keywords);
+    
     // Open Graph
     updateMetaTag('og:title', finalTitle, true);
     updateMetaTag('og:description', finalDescription, true);
@@ -91,94 +175,69 @@ export function SEO({
     updateMetaTag('og:image:alt', title || defaults.siteName, true);
     updateMetaTag('og:site_name', defaults.siteName, true);
     updateMetaTag('og:locale', language === 'de' ? 'de_DE' : language === 'en' ? 'en_US' : 'la', true);
-    Object.keys(defaultMeta)
-      .filter(loc => loc !== language)
-      .forEach(loc => updateMetaTag('og:locale:alternate', loc === 'en' ? 'en_US' : loc === 'de' ? 'de_DE' : 'la', true));
-    // Article-specific Open Graph tags
-    if (type === 'article') {
-      if (author) {
-        updateMetaTag('article:author', author, true);
-      }
-      if (publishedTime) {
-        updateMetaTag('article:published_time', publishedTime, true);
-      }
-      if (modifiedTime) {
-        updateMetaTag('article:modified_time', modifiedTime, true);
-      }
-      if (section) {
-        updateMetaTag('article:section', section, true);
-      }
-      if (tags.length > 0) {
-        // For multiple tags, we should create multiple meta tags
-        // Remove existing article:tag tags first
-        document.querySelectorAll('meta[property="article:tag"]').forEach(el => el.remove());
-        tags.forEach(tag => {
-          const tagElement = document.createElement('meta');
-          tagElement.setAttribute('property', 'article:tag');
-          tagElement.setAttribute('content', tag);
-          document.head.appendChild(tagElement);
-        });
-      }
-    }
-    updateMetaTag('twitter:card', 'summary_large_image');
+    
+    // Twitter Card
+    updateMetaTag('twitter:card', 'summary_large_image', true);
     updateMetaTag('twitter:title', finalTitle);
     updateMetaTag('twitter:description', finalDescription);
     updateMetaTag('twitter:image', finalImage);
     updateMetaTag('twitter:image:alt', title || defaults.siteName);
     updateMetaTag('twitter:site', '@meumdiarium');
-    updateMetaTag('twitter:creator', author || '@meumdiarium');
-    // Update canonical link
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = currentUrl;
-    // Update html lang attribute
-    document.documentElement.lang = language;
-    // hreflang alternates
-    const existingAlternates = document.querySelectorAll('link[rel="alternate"][hreflang]');
-    existingAlternates.forEach(el => el.remove());
-    Object.keys(defaultMeta).forEach(loc => {
-      const linkEl = document.createElement('link');
-      linkEl.rel = 'alternate';
-      linkEl.hreflang = loc === 'en' ? 'en' : loc === 'de' ? 'de' : 'la';
-      linkEl.href = `${baseUrl}${location.pathname}`;
-      document.head.appendChild(linkEl);
-    });
-    // theme-color for mobile UI polish
+    updateMetaTag('twitter:creator', author || defaults.author);
+    
+    // Mobile and PWA
     updateMetaTag('theme-color', '#5a0f1f');
     updateMetaTag('mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
-    // Structured data (JSON-LD)
+    
+    // Tags
+    if (tags.length > 0) {
+      updateMetaTag('keywords', tags.join(', '));
+    }
+    
+    // Canonical URL
+    if (canonical) {
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = canonical;
+    } else {
+      const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (canonical) {
+        canonical.href = currentUrl;
+      }
+    }
+    
+    // Update html lang attribute
+    document.documentElement.lang = language;
+    
+    // hreflang alternates
+    const existingAlternates = document.querySelectorAll('link[rel="alternate"][hreflang]');
+    existingAlternates.forEach(el => el.remove());
+    Object.keys(defaultMeta).forEach(loc => {
+      if (loc !== language) {
+        const linkEl = document.createElement('link');
+        linkEl.rel = 'alternate';
+        linkEl.hreflang = loc === 'en' ? 'en' : loc === 'de' ? 'de' : loc === 'la' ? 'la' : 'en';
+        linkEl.href = `${baseUrl}${location.pathname}`;
+        document.head.appendChild(linkEl);
+      }
+    });
+    
+    // JSON-LD structured data
     const existingLd = document.querySelectorAll('script[data-managed="seo-ld"]');
     existingLd.forEach(el => el.remove());
-    let blocks = Array.isArray(structuredData) ? [...structuredData] : structuredData ? [structuredData] : [];
-    // Add default Article schema if it's an article and no schema provided
-    if (type === 'article' && blocks.length === 0) {
-      blocks.push({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: title || finalTitle,
-        description: finalDescription,
-        image: finalImage,
-        datePublished: publishedTime,
-        dateModified: modifiedTime || publishedTime,
-        author: {
-          '@type': 'Person',
-          name: author || 'Meum Diarium'
-        }
-      });
-    }
-    blocks.forEach(block => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.dataset.managed = 'seo-ld';
-      script.text = JSON.stringify(block);
-      document.head.appendChild(script);
-    });
-  }, [finalTitle, finalDescription, finalImage, currentUrl, language, author, type, publishedTime, modifiedTime, section, tags, noIndex, structuredData]);
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.dataset.managed = 'seo-ld';
+    script.text = JSON.stringify(jsonLdData);
+    document.head.appendChild(script);
+  }, [finalTitle, finalDescription, finalImage, currentUrl, language, author, type, publishedTime, modifiedTime, section, tags, noIndex, structuredData, canonical]);
+  
   return null;
 }

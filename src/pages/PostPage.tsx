@@ -96,20 +96,35 @@ function PostContent({ post }: { post: BlogPost }) {
   }
   
   const author = post?.author ? authorData[post.author as Author] : null;
-  const excerpt = post?.excerpt || contentToDisplay?.substring(0, 160) || '';
+  const excerpt = contentToDisplay?.substring(0, 160) || '';
+  const baseUrl = 'https://example.com'; // Replace with your base URL
+  const finalImage = 'https://example.com/default-image.jpg'; // Replace with your default image
+  const currentUrl = window.location.href;
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <SEO
         title={getDisplayTitle()}
         description={excerpt}
-        author={author?.name}
-        image={post?.coverImage}
+        author={post?.author}
+        image={post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage}
         type="article"
         publishedTime={post?.date}
-        section={perspective === 'diary' ? 'Tagebuch' : 'Wissenschaftlich'}
-        tags={post?.tagsWithTranslations && post.tagsWithTranslations.length > 0
-          ? post.tagsWithTranslations.map(t => t.translations.de)
-          : (post?.tags || [])}
+        section={post?.historicalYear ? 'ancient-history' : post?.category}
+        tags={post?.tags}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": getDisplayTitle(),
+          "description": excerpt,
+          "image": post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage,
+          "author": {
+            "@type": "Person",
+            "name": post?.author
+          },
+          "datePublished": post?.date,
+          "url": currentUrl
+        }}
+        canonical={currentUrl}
       />
       <main className="flex-1">
         <div className="bg-background pb-12">

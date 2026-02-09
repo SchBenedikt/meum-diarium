@@ -154,6 +154,28 @@ export function CiceroAboutPage() {
   };
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
+      <SEO
+        title={authorInfo ? `${authorInfo.name} – ${t('cicero.speechesRecent')}` : t('cicero.speechesRecent')}
+        description={authorInfo?.description}
+        author={authorInfo?.name}
+        image={`${baseUrl}/images/cicero-hero.jpg`}
+        type="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Meum Diarium",
+          "url": `${baseUrl}/authors/cicero`,
+          "description": authorInfo?.description,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+            },
+            "query-input": "required"
+          }
+        }}
+      />
       <main className="flex-1">
         <AuthorAboutHero
           authorInfo={authorInfo}

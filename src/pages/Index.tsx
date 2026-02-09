@@ -41,9 +41,26 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : undefined}
+        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : t('meumDiarium')}
         description={translatedAuthor?.description}
         author={translatedAuthor?.name}
+        image={`${baseUrl}/images/caesar-hero.jpg`}
+        type="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Meum Diarium",
+          "url": baseUrl,
+          "description": translatedAuthor?.description,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+            },
+            "query-input": "required"
+          }
+        }}
       />
       <main className="flex-1">
         {currentAuthor ? (

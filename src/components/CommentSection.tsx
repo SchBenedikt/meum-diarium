@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { CommentForm } from './CommentForm';
-import { CommentList } from './CommentList';
+import { CommentForm } from '@/components/CommentForm';
+import { CommentList } from '@/components/CommentList';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageSquare, Users, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,6 +36,19 @@ export function CommentSection({ postId, title = "Kommentare" }: CommentSectionP
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showGuestForm, setShowGuestForm] = useState(false);
+  const [readingStartTime] = useState<number>(Date.now());
+
+  // Track reading time on mount and unmount
+  useEffect(() => {
+    const startTime = Date.now();
+    
+    return () => {
+      const readingTimeSeconds = Math.floor((Date.now() - startTime) / 1000);
+      if (readingTimeSeconds > 5) { // Only track if user read for more than 5 seconds
+        trackReadingTime(postId, readingTimeSeconds);
+      }
+    };
+  }, [postId]);
 
   // Fetch comments
   const fetchComments = async () => {
@@ -44,11 +57,36 @@ export function CommentSection({ postId, title = "Kommentare" }: CommentSectionP
       if (response.ok) {
         const data = await response.json();
         setComments(data.comments || []);
+      } else {
+        console.error('Error fetching comments:', response.status, response.statusText);
+        setComments([]);
       }
     } catch (error) {
       console.error('Error fetching comments:', error);
+      setComments([]);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // Track reading time
+  const trackReadingTime = async (postId: string, readingTimeSeconds: number) => {
+    try {
+      await fetch('/api/reading-progress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token ? `Bearer ${token}` : '',
+          'X-User-ID': user?.id || '',
+        },
+        body: JSON.stringify({
+          postId,
+          readingTimeSeconds,
+          progressPercentage: 100, // Mark as 100% when user leaves
+        }),
+      });
+    } catch (error) {
+      console.error('Error tracking reading time:', error);
     }
   };
 

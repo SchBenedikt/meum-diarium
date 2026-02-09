@@ -246,24 +246,6 @@ export function SenecaAboutPage() {
       subtitle: t('seneca.works.shortness.subtitle'),
       date: t('seneca.works.shortness.date'),
       note: t('seneca.works.shortness.note'),
-    },
-  ];
-  const stoicTeachings = t('seneca.philosophy.teachings', { returnObjects: true }) as Array<{ title: string; desc: string }>;
-  return (
-    <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
-      <main className="flex-1">
-        <AuthorAboutHero
-          authorInfo={authorInfo}
-          authorPage={authorPage}
-          language={language}
-          birthPlace={details.birthPlace}
-        />
-        {/* Main Content */}
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
-          <div className="grid gap-20 lg:grid-cols-12">
-            <div className="lg:col-span-8 space-y-24">
-              {/* Works Section */}
-              {authorWorks.length > 0 && (
                 <section>
                   <div className="flex items-center gap-4 mb-12">
                     <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />

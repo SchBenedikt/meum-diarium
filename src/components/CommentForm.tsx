@@ -31,13 +31,26 @@ export function CommentForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!content.trim()) return;
+    if (!content.trim()) {
+      console.error('Comment content is empty');
+      return;
+    }
     
     if (showGuestFields) {
       if (!guestName.trim() || !guestEmail.trim()) {
+        console.error('Guest name and email are required');
         return;
       }
       
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(guestEmail.trim())) {
+        console.error('Invalid email format');
+        return;
+      }
+    }
+    
+    if (showGuestFields) {
       onSubmit(content, { name: guestName.trim(), email: guestEmail.trim() });
     } else {
       onSubmit(content);

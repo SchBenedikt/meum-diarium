@@ -203,6 +203,28 @@ export function CaesarAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
+        <SEO
+          title={authorInfo.name}
+          description={authorInfo.description}
+          author={authorInfo.name}
+          image={`${baseUrl}/images/caesar-hero.jpg`}
+          type="website"
+          structuredData={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Meum Diarium",
+            "url": `${baseUrl}/authors/caesar`,
+            "description": authorInfo.description,
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+              },
+              "query-input": "required"
+            }
+          }}
+        />
         <AuthorAboutHero
           authorInfo={authorInfo}
           authorPage={authorPage}
