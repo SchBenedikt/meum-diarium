@@ -1,7 +1,7 @@
-import { getDb } from '../../db/client';
-import { users } from '../../db/schema';
+import { getDb } from '../db/client';
+import { users } from '../db/schema';
 import { eq } from 'drizzle-orm';
-import type { PagesContext } from '../../types';
+import type { PagesContext } from '../types';
 
 // Helper function to verify JWT token (simplified version)
 function verifyToken(token: string): string | null {
