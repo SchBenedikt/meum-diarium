@@ -14,6 +14,7 @@ import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
 import { fetchLexiconEntry } from '@/lib/api';
+import { SEO } from '@/components/SEO';
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -69,6 +70,44 @@ export default function LexiconEntryPage() {
   }
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title={`${entry.term} - ${t('lexicon')} | Meum Diarium`}
+        description={`${entry.term}: ${entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt'}`}
+        image={`https://meum-diarium.xn--schner-2za.de/images/${entry.category}.jpg`}
+        type="article"
+        section="lexicon"
+        tags={[entry.category, 'Latein', 'antike Geschichte', 'römisches Reich']}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": entry.term,
+          "description": entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt',
+          "image": `https://meum-diarium.xn--schner-2za.de/images/${entry.category}.jpg`,
+          "author": {
+            "@type": "Organization",
+            "name": "Meum Diarium",
+            "url": "https://meum-diarium.xn--schner-2za.de"
+          },
+          "datePublished": new Date().toISOString(),
+          "dateModified": new Date().toISOString(),
+          "url": `https://meum-diarium.xn--schner-2za.de/lexicon/${entry.slug}`,
+          "mainEntityOfPage": {
+            "@type": "DefinedTerm",
+            "name": entry.term,
+            "description": entry.definition?.substring(0, 500) || '',
+            "inDefinedTermSet": entry.category,
+            "termCode": entry.slug
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": entry.category,
+              "description": `${entry.category} in der antiken römischen Welt`
+            }
+          ]
+        }}
+        canonical={`https://meum-diarium.xn--schner-2za.de/lexicon/${entry.slug}`}
+      />
       <main className="flex-1 pb-16">
         <PageHero
           eyebrow={entry.category}

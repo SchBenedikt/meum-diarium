@@ -12,6 +12,7 @@ import { useLexicon } from '@/hooks/use-lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { Button } from '@/components/ui/button';
 import { PageHero } from '@/components/layout/PageHero';
+import { SEO } from '@/components/SEO';
 import {
   Command,
   CommandEmpty,
@@ -99,8 +100,43 @@ export default function LexiconPage() {
   const totalEntries = lexicon.length;
   const searchPlaceholder = t('lexiconSearchPlaceholder') || 'In den Annalen suchen...';
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/10">
-      <main className="container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+    <div className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title={`${t('lexicon')} | Meum Diarium`}
+        description={t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.'}
+        keywords="Latein, Lexikon, antike Geschichte, römisches Reich, Begriffe, Definitionen, Etymologie, Caesar, Cicero, Seneca, Augustus"
+        image="https://meum-diarium.xn--schner-2za.de/images/lexicon-hero.jpg"
+        type="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": `${t('lexicon')} - Meum Diarium`,
+          "description": t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.',
+          "url": "https://meum-diarium.xn--schner-2za.de/lexicon",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://meum-diarium.xn--schner-2za.de/lexicon?q={search_term_string}"
+            },
+            "query-input": "required"
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": "Lateinisches Lexikon",
+              "description": "Antike römische Begriffe und Definitionen"
+            },
+            {
+              "@type": "Thing", 
+              "name": "Römisches Reich",
+              "description": "Historisches Imperium und seine Kultur"
+            }
+          ]
+        }}
+        canonical="https://meum-diarium.xn--schner-2za.de/lexicon"
+      />
+      <main className="flex-1 pb-16 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div

@@ -104,25 +104,42 @@ function PostContent({ post }: { post: BlogPost }) {
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <SEO
         title={getDisplayTitle()}
-        description={excerpt}
+        description={contentToDisplay?.substring(0, 160)}
         author={post?.author}
         image={post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage}
         type="article"
         publishedTime={post?.date}
-        section={post?.historicalYear ? 'ancient-history' : post?.category}
-        tags={post?.tags}
+        section={post?.historicalYear ? 'ancient-history' : 'roman-literature'}
+        tags={post?.tags || ['Latein', 'antike Geschichte', 'römisches Reich']}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": getDisplayTitle(),
-          "description": excerpt,
+          "description": contentToDisplay?.substring(0, 160),
           "image": post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage,
           "author": {
             "@type": "Person",
             "name": post?.author
           },
           "datePublished": post?.date,
-          "url": currentUrl
+          "dateModified": post?.date,
+          "url": currentUrl,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "name": `${post?.author} - ${getDisplayTitle()}`,
+            "description": contentToDisplay?.substring(0, 500)
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": post?.historicalYear ? "Antike Geschichte" : "Römische Literatur",
+              "description": post?.historicalYear 
+                ? `Historischer Kontext aus dem Jahr ${post.historicalYear}`
+                : "Literarische Analyse und Interpretation"
+            }
+          ],
+          "keywords": post?.tags || ["Latein", "Antike Geschichte", "Römisches Reich"],
+          "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la'
         }}
         canonical={currentUrl}
       />

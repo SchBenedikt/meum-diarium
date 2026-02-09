@@ -1,6 +1,5 @@
 import CaesarCampaignMap from '@/components/CaesarCampaignMap';
 import { Footer } from '@/components/layout/Footer';
-import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight, Sword, Map, Trophy, Landmark, Crown, Sparkles } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
@@ -15,6 +14,8 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import { SEO } from '@/components/SEO';
+
 export function CaesarAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -202,17 +203,37 @@ export function CaesarAboutPage() {
   ];
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
-      <main className="flex-1">
-        <SEO
-          title={authorInfo.name}
-          description={authorInfo.description}
-          author={authorInfo.name}
-          image={`${baseUrl}/images/caesar-hero.jpg`}
-          type="website"
-          structuredData={{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Meum Diarium",
+      <SEO
+        title={authorInfo.name}
+        description={authorInfo.description}
+        author="Meum Diarium"
+        image={`${baseUrl}/images/caesar-hero.jpg`}
+        type="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": `${authorInfo.name} - Meum Diarium`,
+          "description": authorInfo.description,
+          "url": `${baseUrl}/authors/caesar`,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+            },
+            "query-input": "required"
+          },
+          "about": [
+            {
+              "@type": "Person",
+              "name": "Gaius Julius Caesar",
+              "description": "Römischer Feldherr und Staatsmann",
+              "url": `${baseUrl}/authors/caesar`
+            },
+            {
+              "@type": "Thing",
+              "name": "Römisches Reich",
+              "description": "Das Imperium Romanum unter Caesar"
             "url": `${baseUrl}/authors/caesar`,
             "description": authorInfo.description,
             "potentialAction": {

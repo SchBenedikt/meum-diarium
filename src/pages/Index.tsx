@@ -50,8 +50,8 @@ const Index = () => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Meum Diarium",
-          "url": baseUrl,
-          "description": translatedAuthor?.description,
+          "description": translatedAuthor?.description || "Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen.",
+          "url": `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`,
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
@@ -59,7 +59,19 @@ const Index = () => {
               "urlTemplate": `${baseUrl}/search?q={search_term_string}`
             },
             "query-input": "required"
-          }
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": "Antikes Rom",
+              "description": "Historische Persönlichkeiten und ihre Werke"
+            },
+            {
+              "@type": "Thing",
+              "name": "Lateinische Literatur",
+              "description": "Werke von Caesar, Cicero, Seneca und Augustus"
+            }
+          ]
         }}
       />
       <main className="flex-1">
