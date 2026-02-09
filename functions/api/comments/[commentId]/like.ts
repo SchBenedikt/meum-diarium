@@ -143,6 +143,18 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
 
     } catch (error) {
         console.error('Like comment error:', error);
+        
+        // Check if it's a database table not found error
+        if (error instanceof Error && error.message.includes('no such table')) {
+            return new Response(
+                JSON.stringify({ 
+                    error: 'Database tables not yet created. Please run database migrations.',
+                    details: 'The user_commenting_activity table may not exist in your D1 database.'
+                }),
+                { status: 503, headers: { 'Content-Type': 'application/json' } }
+            );
+        }
+        
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
             { status: 500, headers: { 'Content-Type': 'application/json' } }
