@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 import { Footer } from '@/components/layout/Footer';
 import { SEO } from '@/components/SEO';
 import { 
@@ -15,12 +17,17 @@ import {
   BarChart3,
   Loader2,
   Heart,
-  Edit
+  Edit,
+  Star,
+  Trophy,
+  Target,
+  Flame
 } from 'lucide-react';
 
 export default function DashboardPage() {
   const { user, logout, token } = useAuth();
   const [stats, setStats] = useState<any>(null);
+  const [xpData, setXpData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch dashboard stats
@@ -38,14 +45,32 @@ export default function DashboardPage() {
       }
     } catch (error) {
       console.error('Error fetching dashboard stats:', error);
-    } finally {
-      setIsLoading(false);
+    }
+  };
+
+  // Fetch XP data
+  const fetchXpData = async () => {
+    try {
+      const response = await fetch('/api/user/xp', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setXpData(data);
+      }
+    } catch (error) {
+      console.error('Error fetching XP data:', error);
     }
   };
 
   useEffect(() => {
     if (token) {
-      fetchStats();
+      Promise.all([fetchStats(), fetchXpData()]).finally(() => {
+        setIsLoading(false);
+      });
     }
   }, [token]);
 
@@ -113,6 +138,92 @@ export default function DashboardPage() {
                     <span className="text-sm">Letzte Anmeldung {new Date(user.lastLoginAt).toLocaleDateString('de-DE')}</span>
                   </div>
                 )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* XP Progress Section */}
+          <Card className="mb-8 bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Trophy className="w-8 h-8 text-amber-600" />
+                  <div>
+                    <CardTitle className="text-xl font-bold text-amber-900">Level {xpData?.level || 1}</CardTitle>
+                    <CardDescription className="text-amber-700">
+                      {xpData?.totalXp || 0} Gesamt XP
+                    </CardDescription>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => window.location.href = '/achievements'}
+                  className="border-amber-300 text-amber-700 hover:bg-amber-100"
+                >
+                  <Star className="w-4 h-4 mr-2" />
+                  Erfolge
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {/* Level Progress */}
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="font-medium text-amber-900">Fortschritt zum nächsten Level</span>
+                    <span className="text-amber-700">
+                      {xpData?.currentLevelXp || 0} / {xpData?.xpToNextLevel || 100} XP
+                    </span>
+                  </div>
+                  <Progress 
+                    value={xpData ? (xpData.currentLevelXp / xpData.xpToNextLevel) * 100 : 0}
+                    className="h-3 bg-amber-100"
+                  />
+                </div>
+
+                {/* XP Stats Grid */}
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-amber-600">
+                      {xpData?.totalXp || 0}
+                    </div>
+                    <p className="text-xs text-amber-700">Gesamt XP</p>
+                  </div>
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-green-600">
+                      {xpData?.stats?.achievementsUnlocked || 0}
+                    </div>
+                    <p className="text-xs text-green-700">Erfolge</p>
+                  </div>
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-red-600">
+                      {xpData?.streakDays || 0}
+                    </div>
+                    <p className="text-xs text-red-700">Tage Serie</p>
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="flex gap-2 pt-2">
+                  <Button 
+                    size="sm" 
+                    className="flex-1 bg-amber-600 hover:bg-amber-700"
+                    onClick={() => window.location.href = '/learn'}
+                  >
+                    <Target className="w-4 h-4 mr-2" />
+                    Lernen
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex-1 border-amber-300 text-amber-700"
+                    onClick={() => window.location.href = '/vocab'}
+                  >
+                    <Award className="w-4 h-4 mr-2" />
+                    Vokabeln
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>

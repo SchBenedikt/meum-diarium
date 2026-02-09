@@ -177,10 +177,17 @@ export const postsRelations = relations(posts, ({ one, many }) => ({
     readingProgress: many(userReadingProgress),
 }));
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ many, one }) => ({
     comments: many(comments),
     readingProgress: many(userReadingProgress),
     commentingActivity: many(userCommentingActivity),
+    achievements: many(userAchievements),
+    xp: one(userXp),
+    savedArticles: many(userSavedArticles),
+    readArticles: many(userReadArticles),
+    sentFriendRequests: many(friendships, { relationName: 'sentRequests' }),
+    receivedFriendRequests: many(friendships, { relationName: 'receivedRequests' }),
+    activities: many(activityFeed),
 }));
 
 export const commentsRelations = relations(comments, ({ one, many }) => ({
@@ -224,3 +231,138 @@ export const userCommentingActivityRelations = relations(userCommentingActivity,
         references: [comments.id],
     }),
 }));
+
+// Achievements Table
+export const achievements = sqliteTable('achievements', {
+    id: text('id').primaryKey(),
+    title: text('title').notNull(),
+    description: text('description').notNull(),
+    icon: text('icon').notNull(), // Icon name or emoji
+    category: text('category').notNull(), // 'reading', 'vocabulary', 'grammar', 'social', 'streak'
+    xpReward: integer('xp_reward').notNull().default(0),
+    requirementType: text('requirement_type').notNull(), // 'posts_read', 'words_learned', 'streak_days', 'friends_count'
+    requirementValue: integer('requirement_value').notNull(),
+    isHidden: integer('is_hidden', { mode: 'boolean' }).default(false),
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+});
+
+// User Achievements Table
+export const userAchievements = sqliteTable('user_achievements', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    achievementId: text('achievement_id').notNull().references(() => achievements.id),
+    unlockedAt: text('unlocked_at').notNull().default(new Date().toISOString()),
+    progress: integer('progress').default(0), // For partial progress tracking
+});
+
+// User XP Table
+export const userXp = sqliteTable('user_xp', {
+    userId: text('user_id').primaryKey().references(() => users.id),
+    totalXp: integer('total_xp').default(0),
+    level: integer('level').default(1),
+    currentLevelXp: integer('current_level_xp').default(0),
+    xpToNextLevel: integer('xp_to_next_level').default(100),
+    streakDays: integer('streak_days').default(0),
+    lastActivityDate: text('last_activity_date'),
+    longestStreak: integer('longest_streak').default(0),
+    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
+// User Saved Articles Table
+export const userSavedArticles = sqliteTable('user_saved_articles', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    postId: text('post_id').notNull().references(() => posts.id),
+    savedAt: text('saved_at').notNull().default(new Date().toISOString()),
+});
+
+// User Read Articles Table
+export const userReadArticles = sqliteTable('user_read_articles', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    postId: text('post_id').notNull().references(() => posts.id),
+    readAt: text('read_at').notNull().default(new Date().toISOString()),
+});
+
+// Friendships Table
+export const friendships = sqliteTable('friendships', {
+    id: text('id').primaryKey(),
+    requesterId: text('requester_id').notNull().references(() => users.id),
+    addresseeId: text('addressee_id').notNull().references(() => users.id),
+    status: text('status').notNull().default('pending'), // 'pending', 'accepted', 'declined'
+    requestedAt: text('requested_at').notNull().default(new Date().toISOString()),
+    respondedAt: text('responded_at'),
+});
+
+// Activity Feed Table
+export const activityFeed = sqliteTable('activity_feed', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    activityType: text('activity_type').notNull(), // 'achievement_unlocked', 'level_up', 'streak_milestone'
+    activityData: text('activity_data').notNull(), // JSON with activity details
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+});
+
+// Relations for new tables
+export const achievementsRelations = relations(achievements, ({ many }) => ({
+    userAchievements: many(userAchievements),
+}));
+
+export const userAchievementsRelations = relations(userAchievements, ({ one }) => ({
+    user: one(users, {
+        fields: [userAchievements.userId],
+        references: [users.id],
+    }),
+    achievement: one(achievements, {
+        fields: [userAchievements.achievementId],
+        references: [achievements.id],
+    }),
+}));
+
+export const userXpRelations = relations(userXp, ({ one }) => ({
+    user: one(users, {
+        fields: [userXp.userId],
+        references: [users.id],
+    }),
+}));
+
+export const userSavedArticlesRelations = relations(userSavedArticles, ({ one }) => ({
+    user: one(users, {
+        fields: [userSavedArticles.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [userSavedArticles.postId],
+        references: [posts.id],
+    }),
+}));
+
+export const userReadArticlesRelations = relations(userReadArticles, ({ one }) => ({
+    user: one(users, {
+        fields: [userReadArticles.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [userReadArticles.postId],
+        references: [posts.id],
+    }),
+}));
+
+export const friendshipsRelations = relations(friendships, ({ one }) => ({
+    requester: one(users, {
+        fields: [friendships.requesterId],
+        references: [users.id],
+    }),
+    addressee: one(users, {
+        fields: [friendships.addresseeId],
+        references: [users.id],
+    }),
+}));
+
+export const activityFeedRelations = relations(activityFeed, ({ one }) => ({
+    user: one(users, {
+        fields: [activityFeed.userId],
+        references: [users.id],
+    }),
+}));
+
