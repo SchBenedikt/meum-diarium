@@ -129,27 +129,27 @@ export default function AchievementsPage() {
         title="Erfolge - Meum Diarium" 
         description="Deine Latein-Lern Erfolge und Errungenschaften"
       />
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
-              <Trophy className="w-12 h-12 text-amber-600 mr-3" />
-              <h1 className="text-4xl font-bold text-gray-900">Deine Erfolge</h1>
+              <Trophy className="w-12 h-12 text-amber-600 dark:text-amber-400 mr-3" />
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Deine Erfolge</h1>
             </div>
-            <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
               {achievementsData.stats.unlocked} von {achievementsData.stats.total} Erfolgen freigeschaltet
             </p>
             
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
-              <Card className="bg-white/80 backdrop-blur-sm border-amber-200">
+              <Card className="bg-white/80 backdrop-blur-sm border-amber-200 dark:bg-gray-800/80 dark:border-amber-700">
                 <CardContent className="pt-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-amber-600 mb-2">
+                    <div className="text-3xl font-bold text-amber-600 dark:text-amber-400 mb-2">
                       {achievementsData.stats.percentage}%
                     </div>
-                    <p className="text-sm text-gray-600">Fortschritt</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Fortschritt</p>
                     <Progress 
                       value={achievementsData.stats.percentage} 
                       className="mt-3 h-2"
@@ -158,24 +158,24 @@ export default function AchievementsPage() {
                 </CardContent>
               </Card>
               
-              <Card className="bg-white/80 backdrop-blur-sm border-amber-200">
+              <Card className="bg-white/80 backdrop-blur-sm border-amber-200 dark:bg-gray-800/80 dark:border-amber-700">
                 <CardContent className="pt-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600 mb-2">
+                    <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
                       {achievementsData.stats.unlocked}
                     </div>
-                    <p className="text-sm text-gray-600">Freigeschaltet</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Freigeschaltet</p>
                   </div>
                 </CardContent>
               </Card>
               
-              <Card className="bg-white/80 backdrop-blur-sm border-amber-200">
+              <Card className="bg-white/80 backdrop-blur-sm border-amber-200 dark:bg-gray-800/80 dark:border-amber-700">
                 <CardContent className="pt-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">
+                    <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                       {achievementsData.stats.total - achievementsData.stats.unlocked}
                     </div>
-                    <p className="text-sm text-gray-600">Verbleibend</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Verbleibend</p>
                   </div>
                 </CardContent>
               </Card>
@@ -205,8 +205,8 @@ export default function AchievementsPage() {
                 key={achievement.id} 
                 className={`relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105 ${
                   achievement.isUnlocked 
-                    ? 'bg-gradient-to-br from-amber-100 to-yellow-100 border-amber-300' 
-                    : 'bg-gray-100 border-gray-300 opacity-75'
+                    ? 'bg-gradient-to-br from-amber-100 to-yellow-100 border-amber-300 dark:from-amber-900/50 dark:to-yellow-900/50 dark:border-amber-600' 
+                    : 'bg-gray-100 border-gray-300 opacity-75 dark:bg-gray-800 dark:border-gray-600'
                 }`}
               >
                 {/* Lock/Unlock Status */}
@@ -233,7 +233,7 @@ export default function AchievementsPage() {
                     </Badge>
                   </div>
                   <CardTitle className={`text-lg ${
-                    achievement.isUnlocked ? 'text-gray-900' : 'text-gray-600'
+                    achievement.isUnlocked ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'
                   }`}>
                     {achievement.title}
                   </CardTitle>
@@ -241,16 +241,16 @@ export default function AchievementsPage() {
                 
                 <CardContent>
                   <CardDescription className={`text-center mb-4 ${
-                    achievement.isUnlocked ? 'text-gray-700' : 'text-gray-500'
+                    achievement.isUnlocked ? 'text-gray-700 dark:text-gray-300' : 'text-gray-500 dark:text-gray-500'
                   }`}>
                     {achievement.description}
                   </CardDescription>
                   
                   {/* XP Reward */}
                   <div className="flex items-center justify-center mb-3">
-                    <Award className="w-4 h-4 text-amber-600 mr-1" />
+                    <Award className="w-4 h-4 text-amber-600 dark:text-amber-400 mr-1" />
                     <span className={`font-semibold ${
-                      achievement.isUnlocked ? 'text-amber-600' : 'text-gray-500'
+                      achievement.isUnlocked ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-500'
                     }`}>
                       {achievement.xpReward} XP
                     </span>
@@ -259,7 +259,7 @@ export default function AchievementsPage() {
                   {/* Progress */}
                   {!achievement.isUnlocked && (
                     <div className="space-y-2">
-                      <div className="flex justify-between text-sm text-gray-600">
+                      <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
                         <span>Fortschritt</span>
                         <span>{achievement.progressPercentage}%</span>
                       </div>
@@ -269,7 +269,7 @@ export default function AchievementsPage() {
 
                   {/* Unlocked Date */}
                   {achievement.isUnlocked && achievement.unlockedAt && (
-                    <div className="text-center text-sm text-green-600 mt-3">
+                    <div className="text-center text-sm text-green-600 dark:text-green-400 mt-3">
                       <CheckCircle className="w-4 h-4 inline mr-1" />
                       Freigeschaltet am {new Date(achievement.unlockedAt).toLocaleDateString('de-DE')}
                     </div>
@@ -282,11 +282,11 @@ export default function AchievementsPage() {
           {/* Empty State */}
           {filteredAchievements.length === 0 && (
             <div className="text-center py-12">
-              <Crown className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              <Crown className="w-16 h-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
                 Keine Erfolge in dieser Kategorie
               </h3>
-              <p className="text-gray-500">
+              <p className="text-gray-500 dark:text-gray-500">
                 {selectedCategory === 'all' 
                   ? 'Noch keine Erfolge freigeschaltet. Beginne mit dem Latein lernen!'
                   : 'Keine Erfolge in dieser Kategorie verfügbar.'

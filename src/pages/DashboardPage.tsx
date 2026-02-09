@@ -143,14 +143,14 @@ export default function DashboardPage() {
           </Card>
 
           {/* XP Progress Section */}
-          <Card className="mb-8 bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200">
+          <Card className="mb-8 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 border-amber-200 dark:border-gray-600">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Trophy className="w-8 h-8 text-amber-600" />
+                  <Trophy className="w-8 h-8 text-amber-600 dark:text-amber-400" />
                   <div>
-                    <CardTitle className="text-xl font-bold text-amber-900">Level {xpData?.level || 1}</CardTitle>
-                    <CardDescription className="text-amber-700">
+                    <CardTitle className="text-xl font-bold text-amber-900 dark:text-amber-100">Level {xpData?.level || 1}</CardTitle>
+                    <CardDescription className="text-amber-700 dark:text-amber-300">
                       {xpData?.totalXp || 0} Gesamt XP
                     </CardDescription>
                   </div>
@@ -159,7 +159,7 @@ export default function DashboardPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => window.location.href = '/achievements'}
-                  className="border-amber-300 text-amber-700 hover:bg-amber-100"
+                  className="border-amber-300 dark:border-amber-600 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/20"
                 >
                   <Star className="w-4 h-4 mr-2" />
                   Erfolge
@@ -171,36 +171,36 @@ export default function DashboardPage() {
                 {/* Level Progress */}
                 <div>
                   <div className="flex justify-between text-sm mb-2">
-                    <span className="font-medium text-amber-900">Fortschritt zum nächsten Level</span>
-                    <span className="text-amber-700">
+                    <span className="font-medium text-amber-900 dark:text-amber-100">Fortschritt zum nächsten Level</span>
+                    <span className="text-amber-700 dark:text-amber-300">
                       {xpData?.currentLevelXp || 0} / {xpData?.xpToNextLevel || 100} XP
                     </span>
                   </div>
                   <Progress 
                     value={xpData ? (xpData.currentLevelXp / xpData.xpToNextLevel) * 100 : 0}
-                    className="h-3 bg-amber-100"
+                    className="h-3 bg-amber-100 dark:bg-amber-900/50"
                   />
                 </div>
 
                 {/* XP Stats Grid */}
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <div className="text-2xl font-bold text-amber-600">
+                  <div className="bg-white/60 dark:bg-gray-900/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                       {xpData?.totalXp || 0}
                     </div>
-                    <p className="text-xs text-amber-700">Gesamt XP</p>
+                    <p className="text-xs text-amber-700 dark:text-amber-300">Gesamt XP</p>
                   </div>
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <div className="text-2xl font-bold text-green-600">
+                  <div className="bg-white/60 dark:bg-gray-900/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                       {xpData?.stats?.achievementsUnlocked || 0}
                     </div>
-                    <p className="text-xs text-green-700">Erfolge</p>
+                    <p className="text-xs text-green-700 dark:text-green-300">Erfolge</p>
                   </div>
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <div className="text-2xl font-bold text-red-600">
+                  <div className="bg-white/60 dark:bg-gray-900/60 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-red-600 dark:text-red-400">
                       {xpData?.streakDays || 0}
                     </div>
-                    <p className="text-xs text-red-700">Tage Serie</p>
+                    <p className="text-xs text-red-700 dark:text-red-300">Tage Serie</p>
                   </div>
                 </div>
 
@@ -208,7 +208,7 @@ export default function DashboardPage() {
                 <div className="flex gap-2 pt-2">
                   <Button 
                     size="sm" 
-                    className="flex-1 bg-amber-600 hover:bg-amber-700"
+                    className="flex-1 bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600"
                     onClick={() => window.location.href = '/learn'}
                   >
                     <Target className="w-4 h-4 mr-2" />
@@ -217,11 +217,20 @@ export default function DashboardPage() {
                   <Button 
                     size="sm" 
                     variant="outline" 
-                    className="flex-1 border-amber-300 text-amber-700"
+                    className="flex-1 border-amber-300 dark:border-amber-600 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/20"
                     onClick={() => window.location.href = '/vocab'}
                   >
                     <Award className="w-4 h-4 mr-2" />
                     Vokabeln
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="border-amber-300 dark:border-amber-600 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/20"
+                    onClick={() => window.location.href = '/leaderboard'}
+                  >
+                    <Trophy className="w-4 h-4 mr-2" />
+                    Leaderboard
                   </Button>
                 </div>
               </div>
@@ -247,6 +256,28 @@ export default function DashboardPage() {
                   {stats?.readingStats?.postsRead > 0 
                     ? `${stats.readingStats.postsRead} Beiträge gelesen`
                     : 'Noch keine Beiträge gelesen'
+                  }
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Lesezeit</CardTitle>
+                <Clock className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">
+                  {isLoading ? (
+                    <Loader2 className="h-6 w-6 animate-spin" />
+                  ) : (
+                    `${Math.floor((stats?.readingStats?.totalReadingTime || 0) / 60)}m`
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {stats?.readingStats?.totalReadingTime > 0 
+                    ? `${(stats.readingStats.totalReadingTime % 60)}s Gesamt`
+                    : 'Noch keine Lesezeit'
                   }
                 </p>
               </CardContent>

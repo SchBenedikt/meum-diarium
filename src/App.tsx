@@ -55,6 +55,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
@@ -127,6 +128,7 @@ const AppContent = () => {
             <Route path="/dashboard" element={<ProtectedRoute requireUser={true}><PageTransition><DashboardPage /></PageTransition></ProtectedRoute>} />
             <Route path="/profile/edit" element={<ProtectedRoute requireUser={true}><PageTransition><ProfileEditPage /></PageTransition></ProtectedRoute>} />
             <Route path="/achievements" element={<ProtectedRoute requireUser={true}><PageTransition><AchievementsPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/leaderboard" element={<ProtectedRoute requireUser={true}><PageTransition><LeaderboardPage /></PageTransition></ProtectedRoute>} />
             {/* Legal pages */}
             <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
             <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
