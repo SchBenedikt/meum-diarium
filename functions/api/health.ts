@@ -1,25 +1,13 @@
-import { getDb } from '../../db/client';
-import { users } from '../../db/schema';
-import type { PagesContext } from '../../types';
-
-export const onRequestGet = async (context: PagesContext): Promise<Response> => {
+export const onRequestGet = async (context: any) => {
     try {
-        const db = getDb(context.env);
-        
-        // Test basic database connection
-        console.log('Testing database connection...');
-        
-        // Try to query users table
-        const result = await db.select().from(users).limit(1);
-        
         return new Response(JSON.stringify({
             status: 'success',
-            message: 'Database connection working',
-            databaseBindings: {
-                DB: !!context.env.DB,
-                vocab: !!context.env.vocab
+            message: 'Cloudflare Pages Functions working',
+            environment: {
+                hasDB: !!context.env?.DB,
+                hasVocab: !!context.env?.vocab,
+                envKeys: Object.keys(context.env || {})
             },
-            userCount: result.length,
             timestamp: new Date().toISOString()
         }), {
             status: 200,
@@ -27,16 +15,12 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
         });
         
     } catch (error) {
-        console.error('Database test error:', error);
+        console.error('Health check error:', error);
         
         return new Response(JSON.stringify({
             status: 'error',
-            message: 'Database connection failed',
+            message: 'Health check failed',
             error: error instanceof Error ? error.message : 'Unknown error',
-            databaseBindings: {
-                DB: !!context.env.DB,
-                vocab: !!context.env.vocab
-            },
             timestamp: new Date().toISOString()
         }), {
             status: 500,
