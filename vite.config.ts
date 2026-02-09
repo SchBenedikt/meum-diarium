@@ -26,20 +26,21 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    compression({
-      verbose: true,
-      disable: false,
-      threshold: 5120,
-      algorithm: 'gzip',
-      ext: '.gz',
-    }),
-    compression({
-      verbose: true,
-      disable: false,
-      threshold: 5120,
-      algorithm: 'brotliCompress',
-      ext: '.br',
-    })
+    // Temporarily disable compression for Cloudflare Pages
+    // compression({
+    //   verbose: true,
+    //   disable: false,
+    //   threshold: 5120,
+    //   algorithm: 'gzip',
+    //   ext: '.gz',
+    // }),
+    // compression({
+    //   verbose: true,
+    //   disable: false,
+    //   threshold: 5120,
+    //   algorithm: 'brotliCompress',
+    //   ext: '.br',
+    // })
   ].filter(Boolean),
   resolve: {
     alias: {
