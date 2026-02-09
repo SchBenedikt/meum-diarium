@@ -495,13 +495,6 @@ export function SenecaAboutPage() {
     </div>
   );
 }
-                </div>
-              </div>
-              {/* Timeline visualization below */}
-              <div className="mt-16 pt-12 border-t border-border/40">
-                <p className="text-center text-muted-foreground mb-8">
-                  {t('seneca.biography.timelineHint')}
-                </p>
                 <div className="flex justify-center gap-4">
                   <Link
                     to="/timeline"
