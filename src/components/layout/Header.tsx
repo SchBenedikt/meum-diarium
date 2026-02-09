@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuth } from '@/context/AuthContext';
 import {
   Sheet,
   SheetContent,
@@ -16,6 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
+  DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import {
@@ -30,6 +32,11 @@ import {
   Info,
   Users,
   GraduationCap,
+  User,
+  LogIn,
+  LogOut,
+  UserPlus,
+  BarChart3,
 
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
@@ -37,6 +44,7 @@ import { AuthorSwitcher } from '@/components/AuthorSwitcher';
 export function Header() {
   const { setCurrentAuthor } = useAuthor();
   const { t } = useLanguage();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -181,6 +189,68 @@ export function Header() {
               {/* Desktop Controls (inkl. iPad) */}
               <div className="hidden md:flex items-center gap-2">
                 <AuthorSwitcher />
+                
+                {/* User Authentication */}
+                {user ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg"
+                        aria-label="User Menu"
+                      >
+                        <User className="h-4 w-4 sm:h-5 sm:w-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <DropdownMenuLabel className="flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        {user.displayName}
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link to="/dashboard" className="flex items-center gap-2">
+                          <BarChart3 className="w-4 h-4" />
+                          Dashboard
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={logout} className="flex items-center gap-2">
+                        <LogOut className="w-4 h-4" />
+                        Abmelden
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-10 px-3"
+                      >
+                        <LogIn className="h-4 w-4" />
+                        <span className="hidden sm:inline ml-2">Login</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem asChild>
+                        <Link to="/login" className="flex items-center gap-2">
+                          <LogIn className="w-4 h-4" />
+                          Anmelden
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/register" className="flex items-center gap-2">
+                          <UserPlus className="w-4 h-4" />
+                          Registrieren
+                        </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+                
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
@@ -280,6 +350,61 @@ export function Header() {
                       </nav>
                       {/* Mobile Settings */}
                       <div className="mt-auto p-6 border-t border-border/30 space-y-6">
+                        {/* User Authentication */}
+                        <div className="space-y-3">
+                          <h3 className="text-sm font-semibold flex items-center gap-2">
+                            <User className="w-4 h-4" />
+                            Konto
+                          </h3>
+                          {user ? (
+                            <div className="space-y-2">
+                              <div className="px-3 py-2 bg-muted rounded-lg">
+                                <p className="font-medium text-sm">{user.displayName}</p>
+                                <p className="text-xs text-muted-foreground">{user.email}</p>
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="w-full justify-start"
+                                asChild
+                                onClick={handleNavClick}
+                              >
+                                <Link to="/dashboard" className="flex items-center gap-2">
+                                  <BarChart3 className="w-4 h-4" />
+                                  Dashboard
+                                </Link>
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="w-full justify-start"
+                                onClick={() => {
+                                  logout();
+                                  handleNavClick();
+                                }}
+                              >
+                                <LogOut className="w-4 h-4 mr-2" />
+                                Abmelden
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="space-y-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="w-full justify-start"
+                                asChild
+                                onClick={handleNavClick}
+                              >
+                                <Link to="/login" className="flex items-center gap-2">
+                                  <LogIn className="w-4 h-4" />
+                                  Anmelden / Registrieren
+                                </Link>
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                        
                         {/* Author Selector */}
                         <div className="space-y-3">
                           <h3 className="text-sm font-semibold flex items-center gap-2">
@@ -287,7 +412,9 @@ export function Header() {
                             {t('author')}
                           </h3>
                           <AuthorSwitcher />
-                        </div>{/* Theme Selector */}
+                        </div>
+                        
+                        {/* Theme Selector */}
                         <div className="space-y-3">
                           <h3 className="text-sm font-semibold flex items-center gap-2">
                             {theme === 'dark' ? (

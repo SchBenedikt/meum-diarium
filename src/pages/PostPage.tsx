@@ -20,6 +20,7 @@ import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
 import { PostTags } from '@/components/PostTags';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
+import { CommentSection } from '@/components/CommentSection';
 import { getApiBase } from '@/lib/api';
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
@@ -176,6 +177,10 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
               </aside>
             </div>
+            
+            {/* Comments Section */}
+            <CommentSection postId={post.id} />
+            
             {/* Related Articles Section */}
             {relatedPosts.length > 0 && post?.author && (
               <section className="mt-16 pt-10 border-t border-border/40">

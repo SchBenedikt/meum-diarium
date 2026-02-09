@@ -39,10 +39,21 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
 const LatinGrammarPage = lazy(() => import('./pages/LatinGrammarPage'));
+const SubstantivePage = lazy(() => import('./pages/grammar/SubstantivePage'));
+const VerbenPage = lazy(() => import('./pages/grammar/VerbenPage'));
+const AdjektivePage = lazy(() => import('./pages/grammar/AdjektivePage'));
+const PronomenPage = lazy(() => import('./pages/grammar/PronomenPage'));
+const AdverbienPage = lazy(() => import('./pages/grammar/AdverbienPage'));
+const SyntaxPage = lazy(() => import('./pages/grammar/SyntaxPage'));
+const PartizipienPage = lazy(() => import('./pages/grammar/PartizipienPage'));
 const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const VocabularyPage = lazy(() => import('./pages/VocabularyPage'));
 const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const AgbPage = lazy(() => import('./pages/AgbPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -95,26 +106,40 @@ const AppContent = () => {
             <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
             <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
             <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
+            <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
+            <Route path="/learn/grammar/verben/:topic?" element={<PageTransition><VerbenPage /></PageTransition>} />
+            <Route path="/learn/grammar/adjektive/:topic?" element={<PageTransition><AdjektivePage /></PageTransition>} />
+            <Route path="/learn/grammar/pronomen/:topic?" element={<PageTransition><PronomenPage /></PageTransition>} />
+            <Route path="/learn/grammar/adverbien/:topic?" element={<PageTransition><AdverbienPage /></PageTransition>} />
+            <Route path="/learn/grammar/syntax/:topic?" element={<PageTransition><SyntaxPage /></PageTransition>} />
+            <Route path="/learn/grammar/partizipien/:topic?" element={<PageTransition><PartizipienPage /></PageTransition>} />
             <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
             <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
             <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
             <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
             <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
             <Route path="/reader/:authorId/:workSlug" element={<PageTransition><LatinReader /></PageTransition>} />
+            {/* User auth routes */}
+            <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
+            <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
+            <Route path="/dashboard" element={<ProtectedRoute requireUser={true}><PageTransition><DashboardPage /></PageTransition></ProtectedRoute>} />
+            {/* Legal pages */}
+            <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
+            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
             {/* Admin routes */}
             <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
-            <Route path="/admin" element={<ProtectedRoute><PageTransition><AdminPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/post/new" element={<ProtectedRoute><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/post/:author/:slug" element={<ProtectedRoute><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/author/new" element={<ProtectedRoute><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/author/:authorId" element={<ProtectedRoute><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/lexicon/new" element={<ProtectedRoute><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/lexicon/:slug" element={<ProtectedRoute><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/work/new" element={<ProtectedRoute><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/work/:slug" element={<ProtectedRoute><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/pages/new" element={<ProtectedRoute><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/pages/:slug" element={<ProtectedRoute><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/settings" element={<ProtectedRoute><PageTransition><SettingsPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin" element={<ProtectedRoute requireAdmin={true}><PageTransition><AdminPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/post/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/post/:author/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/author/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/author/:authorId" element={<ProtectedRoute requireAdmin={true}><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/lexicon/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/lexicon/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/work/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/work/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/pages/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/pages/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin/settings" element={<ProtectedRoute requireAdmin={true}><PageTransition><SettingsPage /></PageTransition></ProtectedRoute>} />
             {/* Dynamic author routes - must come after static routes */}
             <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />

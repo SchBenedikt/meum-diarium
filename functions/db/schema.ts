@@ -100,6 +100,61 @@ export const latinTexts = sqliteTable('latin_texts', {
     annotations: text('annotations', { mode: 'json' }), // Grammar explanations etc.
 });
 
+// Users Table
+export const users = sqliteTable('users', {
+    id: text('id').primaryKey(),
+    email: text('email').notNull().unique(),
+    username: text('username').notNull().unique(),
+    passwordHash: text('password_hash').notNull(),
+    displayName: text('display_name'),
+    bio: text('bio'),
+    avatarUrl: text('avatar_url'),
+    preferences: text('preferences', { mode: 'json' }), // User preferences
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+    lastLoginAt: text('last_login_at'),
+    isActive: integer('is_active', { mode: 'boolean' }).default(true),
+});
+
+// Comments Table
+export const comments = sqliteTable('comments', {
+    id: text('id').primaryKey(),
+    postId: text('post_id').notNull().references(() => posts.id),
+    userId: text('user_id').notNull().references(() => users.id),
+    parentId: text('parent_id').references(() => comments.id), // For threaded comments
+    content: text('content').notNull(),
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+    isEdited: integer('is_edited', { mode: 'boolean' }).default(false),
+    isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),
+    likesCount: integer('likes_count').default(0),
+});
+
+// User Reading Progress Table
+export const userReadingProgress = sqliteTable('user_reading_progress', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    postId: text('post_id').notNull().references(() => posts.id),
+    startedAt: text('started_at').notNull().default(new Date().toISOString()),
+    completedAt: text('completed_at'), // null if not completed
+    readingTimeSeconds: integer('reading_time_seconds').default(0),
+    progressPercentage: integer('progress_percentage').default(0), // 0-100
+    lastPosition: integer('last_position').default(0), // Character position in text
+    isCompleted: integer('is_completed', { mode: 'boolean' }).default(false),
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
+// User Commenting Activity Table
+export const userCommentingActivity = sqliteTable('user_commenting_activity', {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => users.id),
+    commentId: text('comment_id').notNull().references(() => comments.id),
+    action: text('action').notNull(), // 'created', 'edited', 'deleted', 'liked'
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+    metadata: text('metadata', { mode: 'json' }), // Additional data like previous content
+});
+
 // Relations
 export const worksRelations = relations(works, ({ one }) => ({
     author: one(authors, {
@@ -113,9 +168,59 @@ export const authorsRelations = relations(authors, ({ many }) => ({
     posts: many(posts),
 }));
 
-export const postsRelations = relations(posts, ({ one }) => ({
+export const postsRelations = relations(posts, ({ one, many }) => ({
     author: one(authors, {
         fields: [posts.authorId],
         references: [authors.id],
+    }),
+    comments: many(comments),
+    readingProgress: many(userReadingProgress),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+    comments: many(comments),
+    readingProgress: many(userReadingProgress),
+    commentingActivity: many(userCommentingActivity),
+}));
+
+export const commentsRelations = relations(comments, ({ one, many }) => ({
+    post: one(posts, {
+        fields: [comments.postId],
+        references: [posts.id],
+    }),
+    user: one(users, {
+        fields: [comments.userId],
+        references: [users.id],
+    }),
+    parent: one(comments, {
+        fields: [comments.parentId],
+        references: [comments.id],
+        relationName: 'commentReplies',
+    }),
+    replies: many(comments, {
+        relationName: 'commentReplies',
+    }),
+    activity: many(userCommentingActivity),
+}));
+
+export const userReadingProgressRelations = relations(userReadingProgress, ({ one }) => ({
+    user: one(users, {
+        fields: [userReadingProgress.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [userReadingProgress.postId],
+        references: [posts.id],
+    }),
+}));
+
+export const userCommentingActivityRelations = relations(userCommentingActivity, ({ one }) => ({
+    user: one(users, {
+        fields: [userCommentingActivity.userId],
+        references: [users.id],
+    }),
+    comment: one(comments, {
+        fields: [userCommentingActivity.commentId],
+        references: [comments.id],
     }),
 }));
