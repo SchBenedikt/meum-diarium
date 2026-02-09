@@ -14,7 +14,8 @@ import {
   Award,
   BarChart3,
   Loader2,
-  Heart
+  Heart,
+  Edit
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -76,39 +77,42 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* User Info Card */}
+          {/* User Profile Card */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                Profilinformationen
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <User className="h-8 w-8 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold">{user.displayName || user.username}</h2>
+                    <p className="text-muted-foreground">{user.email}</p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => window.location.href = '/profile/edit'}
+                  className="flex items-center gap-2"
+                >
+                  <Edit className="h-4 w-4" />
+                  Profil bearbeiten
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm text-muted-foreground">Benutzername</p>
-                  <p className="font-medium">{user.username}</p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">Mitglied seit {new Date(user.createdAt).toLocaleDateString('de-DE')}</span>
                 </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">E-Mail</p>
-                  <p className="font-medium">{user.email}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Mitglied seit</p>
-                  <p className="font-medium">
-                    {new Date(user.createdAt).toLocaleDateString('de-DE')}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Letzter Login</p>
-                  <p className="font-medium">
-                    {user.lastLoginAt 
-                      ? new Date(user.lastLoginAt).toLocaleDateString('de-DE')
-                      : 'Erster Login'
-                    }
-                  </p>
-                </div>
+                {user.lastLoginAt && (
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Letzte Anmeldung {new Date(user.lastLoginAt).toLocaleDateString('de-DE')}</span>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
