@@ -227,6 +227,15 @@ export default function DashboardPage() {
                     size="sm" 
                     variant="outline" 
                     className="border-amber-300 dark:border-amber-600 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/20"
+                    onClick={() => window.location.href = '/saved-articles'}
+                  >
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    Gespeichert
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="border-amber-300 dark:border-amber-600 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/20"
                     onClick={() => window.location.href = '/leaderboard'}
                   >
                     <Trophy className="w-4 h-4 mr-2" />
