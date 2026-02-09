@@ -10,8 +10,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthorHeader } from "./components/layout/AuthorHeader";
 import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
-import { AuthProvider } from "./context/AuthContext";
-import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuthors } from "@/hooks/use-authors";
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
@@ -50,13 +48,6 @@ const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const VocabularyPage = lazy(() => import('./pages/VocabularyPage'));
 const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
-const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
-const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage'));
-const SavedArticlesPage = lazy(() => import('./pages/SavedArticlesPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
@@ -123,31 +114,23 @@ const AppContent = () => {
             <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
             <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
             <Route path="/reader/:authorId/:workSlug" element={<PageTransition><LatinReader /></PageTransition>} />
-            {/* User auth routes */}
-            <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
-            <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
-            <Route path="/dashboard" element={<ProtectedRoute requireUser={true}><PageTransition><DashboardPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/profile/edit" element={<ProtectedRoute requireUser={true}><PageTransition><ProfileEditPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/achievements" element={<ProtectedRoute requireUser={true}><PageTransition><AchievementsPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/leaderboard" element={<ProtectedRoute requireUser={true}><PageTransition><LeaderboardPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/saved-articles" element={<ProtectedRoute requireUser={true}><PageTransition><SavedArticlesPage /></PageTransition></ProtectedRoute>} />
             {/* Legal pages */}
             <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
             <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
             {/* Admin routes */}
             <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
-            <Route path="/admin" element={<ProtectedRoute requireAdmin={true}><PageTransition><AdminPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/post/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/post/:author/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><PostEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/author/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/author/:authorId" element={<ProtectedRoute requireAdmin={true}><PageTransition><AuthorEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/lexicon/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/lexicon/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><LexiconEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/work/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/work/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><WorkEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/pages/new" element={<ProtectedRoute requireAdmin={true}><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/pages/:slug" element={<ProtectedRoute requireAdmin={true}><PageTransition><PageEditorPage /></PageTransition></ProtectedRoute>} />
-            <Route path="/admin/settings" element={<ProtectedRoute requireAdmin={true}><PageTransition><SettingsPage /></PageTransition></ProtectedRoute>} />
+            <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
+            <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
+            <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+            <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
+            <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
             {/* Dynamic author routes - must come after static routes */}
             <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />
@@ -190,12 +173,10 @@ const App = () => (
     <TooltipProvider>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <LanguageProvider>
-          <AuthProvider>
-            <Toaster richColors />
-            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-              <AppContent />
-            </BrowserRouter>
-          </AuthProvider>
+          <Toaster richColors />
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <AppContent />
+          </BrowserRouter>
         </LanguageProvider>
       </ThemeProvider>
     </TooltipProvider>

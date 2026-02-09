@@ -1,22 +1,11 @@
 import { getDb } from '../db/client';
-import { comments, users, userCommentingActivity } from '../db/schema';
+import { comments } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
 import type { PagesContext } from '../types';
 
 // Helper function to generate comment ID
 function generateCommentId(): string {
     return 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-}
-
-// Helper function to verify JWT token (simplified version)
-function verifyToken(token: string): string | null {
-    try {
-        const [, payload] = token.split('.');
-        const decoded = JSON.parse(atob(payload));
-        return decoded.userId;
-    } catch {
-        return null;
-    }
 }
 
 export const onRequestGet = async (context: PagesContext): Promise<Response> => {
@@ -34,27 +23,20 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
     try {
         const db = getDb(env);
 
-        // Get comments for the post with user info
+        // Get comments for the post
         const commentsData = await db
             .select({
                 id: comments.id,
                 postId: comments.postId,
-                userId: comments.userId,
-                parentId: comments.parentId,
+                authorName: comments.authorName,
                 content: comments.content,
                 createdAt: comments.createdAt,
                 updatedAt: comments.updatedAt,
                 isEdited: comments.isEdited,
                 isDeleted: comments.isDeleted,
                 likesCount: comments.likesCount,
-                user: {
-                    displayName: users.displayName,
-                    username: users.username,
-                    avatarUrl: users.avatarUrl,
-                }
             })
             .from(comments)
-            .leftJoin(users, eq(comments.userId, users.id))
             .where(eq(comments.postId, postId) && eq(comments.isDeleted, false))
             .orderBy(desc(comments.createdAt));
 
@@ -79,18 +61,23 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     const { request, env } = context;
     
     try {
-        const { postId, content, parentId, authorName, authorEmail } = await request.json() as {
+        const { postId, content, authorName } = await request.json() as {
             postId: string;
             content: string;
-            parentId?: string;
             authorName?: string;
-            authorEmail?: string;
         };
 
         // Validation
         if (!postId || !content || content.trim().length === 0) {
             return new Response(
                 JSON.stringify({ error: 'Post ID and content are required' }),
+                { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+        }
+
+        if (!authorName || authorName.trim().length === 0) {
+            return new Response(
+                JSON.stringify({ error: 'Author name is required' }),
                 { status: 400, headers: { 'Content-Type': 'application/json' } }
             );
         }
@@ -103,27 +90,6 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         }
 
         const db = getDb(env);
-        let userId: string | null = null;
-
-        // Check if user is authenticated
-        const authHeader = request.headers.get('Authorization');
-        if (authHeader && authHeader.startsWith('Bearer ')) {
-            const token = authHeader.substring(7);
-            userId = verifyToken(token);
-        }
-
-        // For non-authenticated users, require name and email
-        if (!userId && (!authorName || !authorEmail)) {
-            return new Response(
-                JSON.stringify({ 
-                    error: 'Name and email are required for guest comments',
-                    requiresAuth: false,
-                    needsGuestInfo: true
-                }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
-            );
-        }
-
         const commentId = generateCommentId();
         const now = new Date().toISOString();
 
@@ -131,8 +97,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         const newComment = {
             id: commentId,
             postId,
-            userId: userId || ('guest_' + commentId), // Use special guest ID
-            parentId: parentId || undefined,
+            authorName: authorName.trim(),
             content: content.trim(),
             createdAt: now,
             updatedAt: now,
@@ -143,51 +108,10 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
 
         await db.insert(comments).values(newComment);
 
-        // Track comment activity for authenticated users
-        if (userId) {
-            const activityId = 'activity_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            await db.insert(userCommentingActivity).values({
-                id: activityId,
-                userId,
-                commentId,
-                action: 'created',
-                createdAt: now,
-                metadata: JSON.stringify({ 
-                    postId,
-                    parentId: parentId || null,
-                    isGuest: false
-                })
-            });
-        }
-
-        // Return comment with user info
-        let commentResponse: any = {
-            ...newComment,
-            user: userId ? null : {
-                displayName: authorName,
-                username: 'guest',
-                avatarUrl: null,
-            }
-        };
-
-        // If authenticated user, get user info
-        if (userId) {
-            const userRecords = await db.select().from(users).where(eq(users.id, userId)).limit(1);
-            if (userRecords.length > 0) {
-                const user = userRecords[0];
-                commentResponse.user = {
-                    displayName: user.displayName,
-                    username: user.username,
-                    avatarUrl: user.avatarUrl,
-                };
-            }
-        }
-
         return new Response(
             JSON.stringify({
                 message: 'Comment created successfully',
-                comment: commentResponse,
-                isGuest: !userId
+                comment: newComment
             }),
             { 
                 status: 201, 
