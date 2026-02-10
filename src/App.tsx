@@ -139,6 +139,13 @@ const AppContent = () => {
             <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
             <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
             <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
+            {/* Author about page redirects */}
+            <Route path="/caesar/about" element={<Navigate to="/about/caesar" replace />} />
+            <Route path="/cicero/about" element={<Navigate to="/about/cicero" replace />} />
+            <Route path="/augustus/about" element={<Navigate to="/about/augustus" replace />} />
+            <Route path="/seneca/about" element={<Navigate to="/about/seneca" replace />} />
+            <Route path="/catilina/about" element={<Navigate to="/about/catilina" replace />} />
+            
             {/* Dynamic author routes - must come after static routes */}
             <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
             <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />

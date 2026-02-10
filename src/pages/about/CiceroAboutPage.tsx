@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import { SEO } from '@/components/SEO';
 export function CiceroAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -23,6 +24,7 @@ export function CiceroAboutPage() {
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
   const authorDetails = useAuthorDetails(t);
+  const baseUrl = 'https://meum-diarium.xn--schner-2za.de';
   useEffect(() => {
     if (authorId === 'cicero') {
       setCurrentAuthor('cicero' as Author);
@@ -32,7 +34,7 @@ export function CiceroAboutPage() {
           setAuthorPosts(authorPostsList);
         }
         const translatedWorks = await Promise.all(
-          Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
+          Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language as any, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
         try {
