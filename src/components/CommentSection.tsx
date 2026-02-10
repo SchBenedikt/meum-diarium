@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageSquare, Users, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { getApiBase } from '@/lib/api';
 
 interface Comment {
   id: string;
@@ -53,7 +54,7 @@ export function CommentSection({ postId, title = "Kommentare" }: CommentSectionP
   // Fetch comments
   const fetchComments = async () => {
     try {
-      const response = await fetch(`/api/comments?postId=${postId}`);
+      const response = await fetch(`${getApiBase()}/api/comments?postId=${postId}`);
       if (response.ok) {
         const data = await response.json();
         setComments(data.comments || []);
@@ -72,7 +73,7 @@ export function CommentSection({ postId, title = "Kommentare" }: CommentSectionP
   // Track reading time
   const trackReadingTime = async (postId: string, readingTimeSeconds: number) => {
     try {
-      await fetch('/api/reading-progress', {
+      await fetch(`${getApiBase()}/api/reading-progress`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +115,7 @@ export function CommentSection({ postId, title = "Kommentare" }: CommentSectionP
         body.authorEmail = guestData.email;
       }
 
-      const response = await fetch('/api/comments', {
+      const response = await fetch(`${getApiBase()}/api/comments`, {
         method: 'POST',
         headers,
         body: JSON.stringify(body),

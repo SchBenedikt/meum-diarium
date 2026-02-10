@@ -57,6 +57,7 @@ const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage')
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
@@ -127,6 +128,7 @@ const AppContent = () => {
               <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
               <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
               <Route path="/dashboard" element={<PageTransition><DashboardPage /></PageTransition>} />
+              <Route path="/profile/edit" element={<PageTransition><ProfileEditPage /></PageTransition>} />
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
