@@ -43,6 +43,16 @@ export default {
             return handleStats();
         }
 
+        // Route: /comments - proxy to backend
+        if (pathname.endsWith('/comments')) {
+            return handleComments(request, env, url, body);
+        }
+
+        // Route: /reading-progress - proxy to backend
+        if (pathname.endsWith('/reading-progress')) {
+            return handleReadingProgress(request, env, url, body);
+        }
+
         // Persona extraction and Documentation check
         let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
         let question = url.searchParams.get("ask") || body?.ask;
@@ -640,6 +650,88 @@ KRITISCH WICHTIG:
             ended: false
         }), {
             headers: corsHeaders(),
+        });
+    }
+}
+
+// =======================================
+// Comments endpoint - proxy to backend
+// =======================================
+async function handleComments(request, env, url, body) {
+    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+
+    try {
+        const headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        };
+
+        // Forward Authorization header if present
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            headers['Authorization'] = authHeader;
+        }
+
+        const response = await fetch(proxyUrl.toString(), {
+            method: request.method,
+            headers: headers,
+            body: request.method === "POST" ? JSON.stringify(body) : null
+        });
+
+        const data = await response.json();
+        return new Response(JSON.stringify(data), {
+            headers: corsHeaders(),
+            status: response.status
+        });
+    } catch (e) {
+        console.error('[Worker] Comments proxy error:', e);
+        return new Response(JSON.stringify({ error: "Comments API Error", details: e.message }), {
+            status: 502,
+            headers: corsHeaders()
+        });
+    }
+}
+
+// =======================================
+// Reading Progress endpoint - proxy to backend
+// =======================================
+async function handleReadingProgress(request, env, url, body) {
+    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+
+    try {
+        const headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        };
+
+        // Forward Authorization and X-User-ID headers if present
+        const authHeader = request.headers.get('Authorization');
+        const userIdHeader = request.headers.get('X-User-ID');
+        if (authHeader) {
+            headers['Authorization'] = authHeader;
+        }
+        if (userIdHeader) {
+            headers['X-User-ID'] = userIdHeader;
+        }
+
+        const response = await fetch(proxyUrl.toString(), {
+            method: request.method,
+            headers: headers,
+            body: request.method === "POST" ? JSON.stringify(body) : null
+        });
+
+        const data = await response.json();
+        return new Response(JSON.stringify(data), {
+            headers: corsHeaders(),
+            status: response.status
+        });
+    } catch (e) {
+        console.error('[Worker] Reading progress proxy error:', e);
+        return new Response(JSON.stringify({ error: "Reading Progress API Error", details: e.message }), {
+            status: 502,
+            headers: corsHeaders()
         });
     }
 }
