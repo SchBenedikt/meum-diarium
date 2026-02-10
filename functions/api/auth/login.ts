@@ -3,6 +3,15 @@ import { users } from '../../db/schema';
 import { eq } from 'drizzle-orm';
 import type { PagesContext } from '../../types';
 
+// CORS headers
+const corsHeaders = {
+    'Access-Control-Allow-Origin': 'https://4ae78071.meum-diarium.pages.dev',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Max-Age': '86400', // 24 hours
+    'Content-Type': 'application/json'
+};
+
 // Helper function to generate JWT token
 function generateToken(userId: string): string {
   const header = { alg: 'HS256', typ: 'JWT' };
@@ -22,9 +31,25 @@ async function hashPassword(password: string): Promise<string> {
     .join('');
 }
 
-export const onRequestPost = async (context: PagesContext): Promise<Response> => {
+export const onRequest = async (context: PagesContext): Promise<Response> => {
     const { request, env } = context;
-    
+    const method = request.method;
+
+    // Handle OPTIONS preflight requests
+    if (method === 'OPTIONS') {
+        return new Response(null, {
+            status: 200,
+            headers: corsHeaders
+        });
+    }
+
+    if (method !== 'POST') {
+        return new Response(
+            JSON.stringify({ error: 'Method not allowed' }),
+            { status: 405, headers: corsHeaders }
+        );
+    }
+
     try {
         const { email, password } = await request.json() as {
             email: string;
@@ -35,7 +60,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         if (!email || !password) {
             return new Response(
                 JSON.stringify({ error: 'Email and password are required' }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
+                { status: 400, headers: corsHeaders }
             );
         }
 
@@ -51,7 +76,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         if (userRecords.length === 0) {
             return new Response(
                 JSON.stringify({ error: 'Invalid email or password' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' } }
+                { status: 401, headers: corsHeaders }
             );
         }
 
@@ -90,7 +115,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
             }),
             { 
                 status: 200, 
-                headers: { 'Content-Type': 'application/json' } 
+                headers: corsHeaders 
             }
         );
 
@@ -98,7 +123,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         console.error('Login error:', error);
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
+            { status: 500, headers: corsHeaders }
         );
     }
 };
