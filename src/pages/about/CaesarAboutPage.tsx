@@ -25,7 +25,7 @@ export function CaesarAboutPage() {
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
-  const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
+  const [authorWorks, setAuthorWorks] = useState<Record<string, Work>>({});
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
   const authorDetails = useAuthorDetails(t);
   const baseUrl = 'https://meum-diarium.xn--schner-2za.de';
@@ -52,7 +52,9 @@ export function CaesarAboutPage() {
             setAuthorPosts(filtered.slice(0, 6));
           }
           // Filter works by this author
-          const filteredWorks = baseWorks.filter(work => work.author === authorId);
+          const filteredWorks = Object.fromEntries(
+            Object.entries(baseWorks).filter(([key, work]) => work.author === authorId)
+          );
           setAuthorWorks(filteredWorks);
         }
       } catch (error) {
@@ -134,15 +136,15 @@ export function CaesarAboutPage() {
           <div className="grid gap-20 lg:grid-cols-12">
             <div className="lg:col-span-8 space-y-24">
               {/* Works Section */}
-              {authorWorks.length > 0 && (
+              {Object.keys(authorWorks).length > 0 && (
                 <section>
                   <div className="flex items-center gap-4 mb-12">
                     <BookOpen className="h-6 w-6 text-primary" />
                     <h2 className="font-display text-3xl font-bold">{t('works')}</h2>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {authorWorks.map((work, index) => (
-                      <div key={index} className="group relative overflow-hidden rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:bg-card">
+                    {Object.entries(authorWorks).map(([key, work]) => (
+                      <div key={key} className="group relative overflow-hidden rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:bg-card">
                         <div className="p-6">
                           <div className="flex items-start justify-between gap-4 mb-4">
                             <div>
@@ -154,7 +156,7 @@ export function CaesarAboutPage() {
                               </p>
                             </div>
                             <Button variant="outline" size="sm" asChild>
-                              <Link to={`/works/${work.id}`}>
+                              <Link to={`/works/${key}`}>
                                 <ArrowRight className="h-4 w-4" />
                                 {t('readMore')}
                               </Link>
@@ -190,8 +192,8 @@ export function CaesarAboutPage() {
                 </section>
               )}
 
-              {/* Polarization Section */}
-              {details.polarization && (
+              {/* Polarization Section - Currently not implemented */}
+              {/* {details.polarization && (
                 <section>
                   <div className="flex items-center gap-4 mb-12">
                     <Users className="h-6 w-6 text-primary" />
@@ -215,10 +217,10 @@ export function CaesarAboutPage() {
                     ))}
                   </div>
                 </section>
-              )}
+              )} */}
 
-              {/* Campaigns Section */}
-              {details.campaigns && (
+              {/* Campaigns Section - Currently not implemented */}
+              {/* {details.campaigns && (
                 <section>
                   <div className="flex items-center gap-4 mb-12">
                     <Sword className="h-6 w-6 text-primary" />
@@ -228,10 +230,10 @@ export function CaesarAboutPage() {
                     <CaesarCampaignMap />
                   </div>
                 </section>
-              )}
+              )} */}
 
-              {/* Legacy Section */}
-              {details.legacy && (
+              {/* Legacy Section - Currently not implemented */}
+              {/* {details.legacy && (
                 <section>
                   <div className="flex items-center gap-4 mb-12">
                     <Crown className="h-6 w-6 text-primary" />
@@ -254,7 +256,7 @@ export function CaesarAboutPage() {
                     ))}
                   </div>
                 </section>
-              )}
+              )} */}
 
               {/* Related Posts */}
               {authorPosts.length > 0 && (
