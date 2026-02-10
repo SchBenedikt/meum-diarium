@@ -53,6 +53,21 @@ export function SenecaAboutPage() {
           // Filter works by this author
           const filteredWorks = Object.values(baseWorks).filter((work: Work) => work.author === authorId);
           setAuthorWorks(filteredWorks);
+        } else {
+          console.warn('⚠️ API failed, using fallback data for Seneca');
+          // Fallback data
+          setAuthorPage({
+            slug: 'seneca',
+            heroTitle: 'Seneca',
+            heroSubtitle: 'Stoischer Philosoph und Staatsmann',
+            heroImage: '/images/seneca-hero.jpg',
+            projectDescription: 'Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.',
+            highlights: [],
+            translations: {
+              en: { heroTitle: 'Seneca' },
+              la: { heroTitle: 'Seneca' }
+            }
+          });
         }
       } catch (error) {
         console.error('Failed to load author page:', error);
