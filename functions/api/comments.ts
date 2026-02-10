@@ -24,10 +24,18 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
     const url = new URL(request.url);
     const postId = url.searchParams.get('postId');
 
+    // CORS headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Content-Type': 'application/json'
+    };
+
     if (!postId) {
         return new Response(
             JSON.stringify({ error: 'Post ID is required' }),
-            { status: 400, headers: { 'Content-Type': 'application/json' } }
+            { status: 400, headers: corsHeaders }
         );
     }
 
@@ -62,7 +70,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
             JSON.stringify({ comments: commentsData }),
             { 
                 status: 200, 
-                headers: { 'Content-Type': 'application/json' } 
+                headers: corsHeaders
             }
         );
 
@@ -70,13 +78,21 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
         console.error('Get comments error:', error);
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
+            { status: 500, headers: corsHeaders }
         );
     }
 };
 
 export const onRequestPost = async (context: PagesContext): Promise<Response> => {
     const { request, env } = context;
+    
+    // CORS headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Content-Type': 'application/json'
+    };
     
     try {
         const { postId, content, parentId, authorName, authorEmail } = await request.json() as {
@@ -91,14 +107,14 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         if (!postId || !content || content.trim().length === 0) {
             return new Response(
                 JSON.stringify({ error: 'Post ID and content are required' }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
+                { status: 400, headers: corsHeaders }
             );
         }
 
         if (content.length > 2000) {
             return new Response(
                 JSON.stringify({ error: 'Comment too long (max 2000 characters)' }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
+                { status: 400, headers: corsHeaders }
             );
         }
 
@@ -120,7 +136,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
                     requiresAuth: false,
                     needsGuestInfo: true
                 }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
+                { status: 400, headers: corsHeaders }
             );
         }
 
@@ -191,7 +207,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
             }),
             { 
                 status: 201, 
-                headers: { 'Content-Type': 'application/json' } 
+                headers: corsHeaders
             }
         );
 
@@ -199,7 +215,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
         console.error('Create comment error:', error);
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
+            { status: 500, headers: corsHeaders }
         );
     }
 };

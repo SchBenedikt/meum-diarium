@@ -17,13 +17,21 @@ function verifyToken(token: string): string | null {
 export const onRequestPut = async (context: PagesContext): Promise<Response> => {
     const { request, env } = context;
     
+    // CORS headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Content-Type': 'application/json'
+    };
+    
     try {
         // Verify authentication
         const authHeader = request.headers.get('Authorization');
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return new Response(
                 JSON.stringify({ error: 'Authentication required' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' } }
+                { status: 401, headers: corsHeaders }
             );
         }
 
@@ -33,7 +41,7 @@ export const onRequestPut = async (context: PagesContext): Promise<Response> => 
         if (!userId) {
             return new Response(
                 JSON.stringify({ error: 'Invalid token' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' } }
+                { status: 401, headers: corsHeaders }
             );
         }
 
@@ -47,7 +55,7 @@ export const onRequestPut = async (context: PagesContext): Promise<Response> => 
         if (!displayName && !bio && !avatarUrl) {
             return new Response(
                 JSON.stringify({ error: 'At least one field must be provided' }),
-                { status: 400, headers: { 'Content-Type': 'application/json' } }
+                { status: 400, headers: corsHeaders }
             );
         }
 
@@ -92,7 +100,7 @@ export const onRequestPut = async (context: PagesContext): Promise<Response> => 
             }),
             { 
                 status: 200, 
-                headers: { 'Content-Type': 'application/json' } 
+                headers: corsHeaders
             }
         );
 
@@ -100,7 +108,7 @@ export const onRequestPut = async (context: PagesContext): Promise<Response> => 
         console.error('Profile update error:', error);
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
+            { status: 500, headers: corsHeaders }
         );
     }
 };
@@ -108,13 +116,21 @@ export const onRequestPut = async (context: PagesContext): Promise<Response> => 
 export const onRequestGet = async (context: PagesContext): Promise<Response> => {
     const { request, env } = context;
     
+    // CORS headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Content-Type': 'application/json'
+    };
+    
     try {
         // Verify authentication
         const authHeader = request.headers.get('Authorization');
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return new Response(
                 JSON.stringify({ error: 'Authentication required' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' } }
+                { status: 401, headers: corsHeaders }
             );
         }
 
@@ -124,7 +140,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
         if (!userId) {
             return new Response(
                 JSON.stringify({ error: 'Invalid token' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' } }
+                { status: 401, headers: corsHeaders }
             );
         }
 
@@ -151,7 +167,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
         if (!user) {
             return new Response(
                 JSON.stringify({ error: 'User not found' }),
-                { status: 404, headers: { 'Content-Type': 'application/json' } }
+                { status: 404, headers: corsHeaders }
             );
         }
 
@@ -159,7 +175,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
             JSON.stringify({ user }),
             { 
                 status: 200, 
-                headers: { 'Content-Type': 'application/json' } 
+                headers: corsHeaders
             }
         );
 
@@ -167,7 +183,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
         console.error('Profile get error:', error);
         return new Response(
             JSON.stringify({ error: 'Internal server error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
+            { status: 500, headers: corsHeaders }
         );
     }
 };
