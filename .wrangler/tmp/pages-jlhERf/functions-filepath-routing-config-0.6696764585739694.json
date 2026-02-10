@@ -1,0 +1,245 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/vocab/:vokId/form/:form",
+      "mountPath": "/api/vocab/:vokId/form/:form",
+      "method": "",
+      "module": [
+        "api/vocab/[vokId]/form/[form]/index.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/posts/:author/:slug",
+      "mountPath": "/api/posts/:author",
+      "method": "",
+      "module": [
+        "api/posts/[author]/[slug].ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/auth/login",
+      "mountPath": "/api/auth",
+      "method": "POST",
+      "module": [
+        "api/auth/login.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/auth/register",
+      "mountPath": "/api/auth",
+      "method": "POST",
+      "module": [
+        "api/auth/register.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/dashboard/stats",
+      "mountPath": "/api/dashboard",
+      "method": "GET",
+      "module": [
+        "api/dashboard/stats.ts:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/vocab/all",
+      "mountPath": "/api/vocab/all",
+      "method": "",
+      "module": [
+        "api/vocab/all/index.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/vocab/:vokId",
+      "mountPath": "/api/vocab",
+      "method": "",
+      "module": [
+        "api/vocab/[vokId].ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/health",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/health.ts:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/reading-progress",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/reading-progress.ts:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/reading-progress",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/reading-progress.ts:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/about",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/about.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/ask",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/ask.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/authors",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/authors.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/catalog",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/catalog.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/comments",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/comments.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/debug",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/debug.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/debug-bindings",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/debug-bindings.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/explain",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/explain.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/latin-texts",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/latin-texts.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/lexicon",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/lexicon.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/pages",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/pages.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/posts",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/posts.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/posts-json",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/posts-json.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/profile",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/profile.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/simulate",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/simulate.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/stats",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/stats.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/tags",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/tags.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/vocab",
+      "mountPath": "/api/vocab",
+      "method": "",
+      "module": [
+        "api/vocab/index.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/vocabulary",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/vocabulary.ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/api/works",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/works.ts:onRequest"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}
