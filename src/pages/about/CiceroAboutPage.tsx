@@ -15,6 +15,7 @@ import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import { SEO } from '@/components/SEO';
+import ciceroPageData from '@/content/pages/author-about-cicero.json';
 export function CiceroAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -37,43 +38,9 @@ export function CiceroAboutPage() {
           Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language as any, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-        try {
-          const res = await fetch('/api/pages/cicero');
-          if (res.ok) {
-            const data: PageContent = await res.json();
-            setAuthorPage(data);
-          } else {
-            console.warn('⚠️ API failed, using fallback data for Cicero');
-            // Fallback data
-            setAuthorPage({
-              slug: 'cicero',
-              heroTitle: 'Marcus Tullius Cicero',
-              heroSubtitle: 'Römischer Redner, Politiker und Philosoph',
-              heroImage: '/images/cicero-hero.jpg',
-              projectDescription: 'Einer der berühmtesten Redner Roms und ein einflussreicher Politiker der späten Republik.',
-              highlights: [],
-              translations: {
-                en: { heroTitle: 'Marcus Tullius Cicero' },
-                la: { heroTitle: 'Marcus Tullius Cicero' }
-              }
-            });
-          }
-        } catch (error) {
-          console.warn('⚠️ API error, using fallback data for Cicero:', error);
-          // Fallback data
-          setAuthorPage({
-            slug: 'cicero',
-            heroTitle: 'Marcus Tullius Cicero',
-            heroSubtitle: 'Römischer Redner, Politiker und Philosoph',
-            heroImage: '/images/cicero-hero.jpg',
-            projectDescription: 'Einer der berühmtesten Redner Roms und ein einflussreicher Politiker der späten Republik.',
-            highlights: [],
-            translations: {
-              en: { heroTitle: 'Marcus Tullius Cicero' },
-              la: { heroTitle: 'Marcus Tullius Cicero' }
-            }
-          });
-        }
+
+        // Use local JSON data directly
+        setAuthorPage(ciceroPageData as PageContent);
       }
       translateContent();
     }

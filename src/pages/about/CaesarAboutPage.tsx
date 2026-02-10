@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import caesarPageData from '@/content/pages/author-about-caesar.json';
 export function CaesarAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -36,43 +37,9 @@ export function CaesarAboutPage() {
           Object.values(baseWorks).filter(w => w.author === 'caesar').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-        try {
-          const res = await fetch('/api/pages/caesar');
-          if (res.ok) {
-            const data: PageContent = await res.json();
-            setAuthorPage(data);
-          } else {
-            console.warn('⚠️ API failed, using fallback data for Caesar');
-            // Fallback data
-            setAuthorPage({
-              slug: 'caesar',
-              heroTitle: 'Gaius Julius Caesar',
-              heroSubtitle: 'Dictator Perpetuo',
-              heroImage: '/images/caesar-hero.jpg',
-              projectDescription: 'Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.',
-              highlights: [],
-              translations: {
-                en: { heroTitle: 'Gaius Julius Caesar' },
-                la: { heroTitle: 'Gaius Iulius Caesar' }
-              }
-            });
-          }
-        } catch (error) {
-          console.warn('⚠️ API error, using fallback data for Caesar:', error);
-          // Fallback data
-          setAuthorPage({
-            slug: 'caesar',
-            heroTitle: 'Gaius Julius Caesar',
-            heroSubtitle: 'Dictator Perpetuo',
-            heroImage: '/images/caesar-hero.jpg',
-            projectDescription: 'Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.',
-            highlights: [],
-            translations: {
-              en: { heroTitle: 'Gaius Julius Caesar' },
-              la: { heroTitle: 'Gaius Iulius Caesar' }
-            }
-          });
-        }
+
+        // Use local JSON data directly
+        setAuthorPage(caesarPageData as PageContent);
       }
       translateContent();
     }

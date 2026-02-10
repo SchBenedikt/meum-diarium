@@ -13,8 +13,10 @@ export interface PageContent {
   slug: string;
   heroTitle: string;
   heroSubtitle: string;
-  projectDescription: string;
+  projectDescription?: string;
+  introText?: string;
   heroImage?: string;
   highlights: PageHighlight[];
+  sections?: any[];
   translations?: Partial<Record<PageLanguage, PageTranslation>>;
 }
