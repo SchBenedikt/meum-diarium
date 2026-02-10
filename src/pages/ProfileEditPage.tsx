@@ -11,7 +11,7 @@ import { Footer } from '@/components/layout/Footer';
 import { SEO } from '@/components/SEO';
 import { ArrowLeft, Save, User, Mail, Edit3 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getApiBase } from '@/lib/api';
+import { getUserApiBase } from '@/lib/api';
 
 export default function ProfileEditPage() {
   const { user, token, logout } = useAuth();
@@ -28,7 +28,7 @@ export default function ProfileEditPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${getApiBase()}/api/profile`, {
+      const response = await fetch(`${getUserApiBase()}/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

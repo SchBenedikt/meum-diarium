@@ -946,6 +946,153 @@ app.get('/api/vocab/all', async (req, res) => {
     }
 });
 
+// ========== COMMENTS API ==========
+
+// Helper function to generate comment ID
+function generateCommentId(): string {
+    return 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Helper function to verify JWT token (simplified version)
+function verifyToken(token: string): string | null {
+    try {
+        const [, payload] = token.split('.');
+        const decoded = JSON.parse(atob(payload));
+        return decoded.userId;
+    } catch {
+        return null;
+    }
+}
+
+// In-memory comment storage for development
+const comments: any[] = [];
+const users: any[] = [
+    {
+        id: 'user_1',
+        displayName: 'Test User',
+        username: 'testuser',
+        avatarUrl: null,
+        email: 'test@example.com'
+    }
+];
+
+// GET comments for a post
+app.get('/api/comments', (req, res) => {
+    const { postId } = req.query;
+    
+    if (!postId) {
+        return res.status(400).json({ error: 'Post ID is required' });
+    }
+
+    try {
+        // Filter comments by postId and join with user data
+        const commentsData = comments
+            .filter(comment => comment.postId === postId && !comment.isDeleted)
+            .map(comment => {
+                const user = users.find(u => u.id === comment.userId);
+                return {
+                    ...comment,
+                    user: user || {
+                        displayName: 'Guest User',
+                        username: 'guest',
+                        avatarUrl: null,
+                    }
+                };
+            })
+            .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+        res.json({ comments: commentsData });
+    } catch (error) {
+        console.error('Get comments error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// POST create a new comment
+app.post('/api/comments', (req, res) => {
+    try {
+        const { postId, content, parentId, authorName, authorEmail } = req.body;
+
+        // Validation
+        if (!postId || !content || content.trim().length === 0) {
+            return res.status(400).json({ error: 'Post ID and content are required' });
+        }
+
+        if (content.length > 2000) {
+            return res.status(400).json({ error: 'Comment too long (max 2000 characters)' });
+        }
+
+        let userId: string | null = null;
+
+        // Check if user is authenticated
+        const authHeader = req.headers.authorization;
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            const token = authHeader.substring(7);
+            userId = verifyToken(token);
+        }
+
+        // For non-authenticated users, require name and email
+        if (!userId && (!authorName || !authorEmail)) {
+            return res.status(400).json({ 
+                error: 'Name and email are required for guest comments',
+                requiresAuth: false,
+                needsGuestInfo: true
+            });
+        }
+
+        const commentId = generateCommentId();
+        const now = new Date().toISOString();
+
+        // Create comment
+        const newComment = {
+            id: commentId,
+            postId,
+            userId: userId || ('guest_' + commentId), // Use special guest ID
+            parentId: parentId || undefined,
+            content: content.trim(),
+            createdAt: now,
+            updatedAt: now,
+            isEdited: false,
+            isDeleted: false,
+            likesCount: 0,
+        };
+
+        comments.push(newComment);
+
+        // Return comment with user info
+        let commentResponse: any = {
+            ...newComment,
+            user: userId ? null : {
+                displayName: authorName,
+                username: 'guest',
+                avatarUrl: null,
+            }
+        };
+
+        // If authenticated user, get user info
+        if (userId) {
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                commentResponse.user = {
+                    displayName: user.displayName,
+                    username: user.username,
+                    avatarUrl: user.avatarUrl,
+                };
+            }
+        }
+
+        res.status(201).json({
+            message: 'Comment created successfully',
+            comment: commentResponse,
+            isGuest: !userId
+        });
+
+    } catch (error) {
+        console.error('Create comment error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Health check
 app.get('/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Dev server running - using local data files' });
