@@ -143,8 +143,48 @@ app.get('/sitemap.xml', async (_req, res) => {
 // These return empty data since we're using D1 in Cloudflare Functions
 // In production, these won't be hit - Cloudflare Functions handle /api/*
 
-app.get('/api/posts', (_req, res) => {
-    res.json([]);
+app.get('/api/posts', async (_req, res) => {
+    console.log('📝 [Dev] GET /api/posts - serving from JSON files');
+    
+    try {
+        const postsDir = path.resolve(__dirname, '../public/api/posts');
+        const authorDirs = await fs.readdir(postsDir);
+        
+        let allPosts: any[] = [];
+        
+        for (const authorDir of authorDirs) {
+            const authorPath = path.join(postsDir, authorDir);
+            const stat = await fs.stat(authorPath);
+            
+            if (stat.isDirectory()) {
+                const postFiles = await fs.readdir(authorPath);
+                
+                for (const file of postFiles) {
+                    if (file.endsWith('.json')) {
+                        const filePath = path.join(authorPath, file);
+                        const content = await fs.readFile(filePath, 'utf-8');
+                        const post = JSON.parse(content);
+                        
+                        // Ensure author field is set
+                        post.author = authorDir;
+                        post.authorId = authorDir;
+                        
+                        allPosts.push(post);
+                    }
+                }
+            }
+        }
+        
+        // Sort by date (newest first)
+        allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+        
+        console.log(`✅ [Dev] Served ${allPosts.length} posts from JSON files`);
+        res.json(allPosts);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Error serving posts from JSON:', error);
+        res.json([]);
+    }
 });
 
 app.post('/api/posts', (req, res) => {
@@ -157,8 +197,33 @@ app.post('/api/posts', (req, res) => {
     });
 });
 
-app.get('/api/posts/:author/:slug', (_req, res) => {
-    res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+app.get('/api/posts/:author/:slug', async (req, res) => {
+    const { author, slug } = req.params;
+    console.log(`📝 [Dev] GET /api/posts/${author}/${slug} - serving from JSON files`);
+    
+    try {
+        const postPath = path.resolve(__dirname, '../public/api/posts', author, `${slug}.json`);
+        
+        try {
+            const content = await fs.readFile(postPath, 'utf-8');
+            const post = JSON.parse(content);
+            
+            // Ensure author field is set
+            post.author = author;
+            post.authorId = author;
+            
+            console.log(`✅ [Dev] Served post: ${post.title}`);
+            res.json(post);
+            
+        } catch (fileError) {
+            console.log(`⚠️ [Dev] Post not found: ${author}/${slug}`);
+            res.status(404).json({ error: 'Not found', message: `Post ${author}/${slug} not found` });
+        }
+        
+    } catch (error) {
+        console.error('❌ [Dev] Error serving post:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 app.put('/api/posts/:author/:slug', (req, res) => {
