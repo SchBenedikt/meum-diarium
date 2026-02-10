@@ -647,7 +647,7 @@ KRITISCH WICHTIG:
 function corsHeaders() {
     return {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://4ae78071.meum-diarium.pages.dev",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Accept",
     };
