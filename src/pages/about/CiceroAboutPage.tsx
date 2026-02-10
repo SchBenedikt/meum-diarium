@@ -18,7 +18,6 @@ import { SEO } from '@/components/SEO';
 import ciceroPageData from '@/content/pages/author-about-cicero.json';
 export function CiceroAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
-  const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
@@ -27,24 +26,24 @@ export function CiceroAboutPage() {
   const authorDetails = useAuthorDetails(t);
   const baseUrl = 'https://meum-diarium.xn--schner-2za.de';
   useEffect(() => {
-    if (authorId === 'cicero') {
-      setCurrentAuthor('cicero' as Author);
-      async function translateContent() {
-        if (!postsLoading) {
-          const authorPostsList = allPosts.filter(p => p.author === 'cicero').slice(0, 3);
-          setAuthorPosts(authorPostsList);
-        }
-        const translatedWorks = await Promise.all(
-          Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language as any, slugify(w.title, { lower: true, strict: true })))
-        );
-        setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
+    setCurrentAuthor('cicero' as Author);
 
-        // Use local JSON data directly
-        setAuthorPage(ciceroPageData as PageContent);
+    async function translateContent() {
+      // Use local JSON data directly
+      setAuthorPage(ciceroPageData as PageContent);
+
+      if (!postsLoading && allPosts.length > 0) {
+        const authorPostsList = allPosts.filter(p => p.author === 'cicero').slice(0, 3);
+        setAuthorPosts(authorPostsList);
       }
-      translateContent();
+
+      const translatedWorks = await Promise.all(
+        Object.values(baseWorks).filter(w => w.author === 'cicero').map(w => getTranslatedWork(language as any, slugify(w.title, { lower: true, strict: true })))
+      );
+      setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
     }
-  }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
+    translateContent();
+  }, [setCurrentAuthor, language, allPosts, postsLoading]);
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">

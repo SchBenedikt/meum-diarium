@@ -20,7 +20,6 @@ import senecaPageData from '@/content/pages/author-about-seneca.json';
 
 export function SenecaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
-  const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
@@ -31,27 +30,20 @@ export function SenecaAboutPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authorId === 'seneca') {
-      setCurrentAuthor('seneca' as Author);
-    } else {
-      setCurrentAuthor(null);
-    }
-  }, [authorId, setCurrentAuthor]);
+    setCurrentAuthor('seneca' as Author);
 
-  useEffect(() => {
     async function loadAuthorContent() {
-      if (!authorId) return;
       try {
         // Use local JSON data directly
         setAuthorPage(senecaPageData as PageContent);
 
         // Filter posts by this author
-        if (Array.isArray(allPosts) && !postsLoading) {
-          const filtered = allPosts.filter(post => post.author === authorId);
+        if (Array.isArray(allPosts) && !postsLoading && allPosts.length > 0) {
+          const filtered = allPosts.filter(post => post.author === 'seneca');
           setAuthorPosts(filtered.slice(0, 6));
         }
         // Filter works by this author
-        const filteredWorks = Object.values(baseWorks).filter((work: Work) => work.author === authorId);
+        const filteredWorks = Object.values(baseWorks).filter((work: Work) => work.author === 'seneca');
         setAuthorWorks(filteredWorks);
       } catch (error) {
         console.error('Failed to load author page:', error);
@@ -59,13 +51,14 @@ export function SenecaAboutPage() {
       }
     }
     loadAuthorContent();
-  }, [authorId, allPosts, postsLoading]);
+  }, [setCurrentAuthor, allPosts, postsLoading]);
+
 
   const handleBackClick = () => {
     navigate('/about');
   };
 
-  if (!authorId || !authors[authorId as Author]) {
+  if (!authorInfo || authorInfo.id !== 'seneca') {
     if (postsLoading) {
       return <div className="min-h-screen bg-background" />;
     }
