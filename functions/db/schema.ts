@@ -128,6 +128,21 @@ export const userCommentingActivity = sqliteTable('user_commenting_activity', {
   metadata: text('metadata', { mode: 'json' }), // Additional data like previous content
 });
 
+// User Reading Progress Table (for tracking reading activity)
+export const userReadingProgress = sqliteTable('user_reading_progress', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  postId: text('post_id').notNull().references(() => posts.id),
+  startedAt: text('started_at').notNull().default(new Date().toISOString()),
+  completedAt: text('completed_at'),
+  readingTimeSeconds: integer('reading_time_seconds').default(0),
+  progressPercentage: integer('progress_percentage').default(0),
+  lastPosition: integer('last_position').default(0),
+  isCompleted: integer('is_completed', { mode: 'boolean' }).default(false),
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
 // Relations
 export const worksRelations = relations(works, ({ one, many }) => ({
     author: one(authors, {
@@ -149,11 +164,13 @@ export const postsRelations = relations(posts, ({ one, many }) => ({
         references: [authors.id],
     }),
     comments: many(comments),
+    readingProgress: many(userReadingProgress),
 }));
 
 export const usersRelations = relations(users, ({ many }) => ({
     comments: many(comments),
     commentingActivities: many(userCommentingActivity),
+    readingProgress: many(userReadingProgress),
 }));
 
 export const commentsRelations = relations(comments, ({ one, many }) => ({
@@ -191,5 +208,16 @@ export const latinTextsRelations = relations(latinTexts, ({ one }) => ({
     work: one(works, {
         fields: [latinTexts.workId],
         references: [works.id],
+    }),
+}));
+
+export const userReadingProgressRelations = relations(userReadingProgress, ({ one }) => ({
+    user: one(users, {
+        fields: [userReadingProgress.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [userReadingProgress.postId],
+        references: [posts.id],
     }),
 }));

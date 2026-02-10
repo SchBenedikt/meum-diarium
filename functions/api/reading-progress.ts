@@ -34,7 +34,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 postId: userReadingProgress.postId,
                 readingTimeSeconds: userReadingProgress.readingTimeSeconds,
                 progressPercentage: userReadingProgress.progressPercentage,
-                lastReadAt: userReadingProgress.lastReadAt,
+                lastReadAt: userReadingProgress.updatedAt,
                 createdAt: userReadingProgress.createdAt,
                 updatedAt: userReadingProgress.updatedAt,
             })
@@ -113,7 +113,6 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
                 .set({
                     readingTimeSeconds: existingProgress.readingTimeSeconds + readingTimeSeconds,
                     progressPercentage: Math.min(100, existingProgress.progressPercentage + (progressPercentage || 0)),
-                    lastReadAt: now,
                     updatedAt: now,
                 })
                 .where(and(
@@ -128,7 +127,6 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
                 postId,
                 readingTimeSeconds: readingTimeSeconds || 0,
                 progressPercentage: progressPercentage || 0,
-                lastReadAt: now,
                 createdAt: now,
                 updatedAt: now,
             });
