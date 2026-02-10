@@ -219,6 +219,60 @@ app.get('/api/pages/:slug', (_req, res) => {
     res.status(404).json({ error: 'Not found' });
 });
 
+// Author-specific endpoints
+app.get('/api/authors/:authorId', (req, res) => {
+    const { authorId } = req.params;
+    if (!AUTHOR_IDS.includes(authorId)) {
+        return res.status(404).json({ error: 'Author not found' });
+    }
+    
+    // Return basic author info for development
+    res.json({
+        id: authorId,
+        name: authorId.charAt(0).toUpperCase() + authorId.slice(1),
+        description: `Development data for ${authorId}`,
+        content: `This is development content for ${authorId}. In production, this would contain rich content about the author.`
+    });
+});
+
+// Page content endpoints for about pages
+app.get('/api/pages/about', (_req, res) => {
+    res.json({
+        title: 'Über Meum Diarium',
+        content: 'Development content for the general about page.',
+        heroTitle: 'Meum Diarium',
+        heroSubtitle: 'Development subtitle',
+        projectDescription: 'Development description'
+    });
+});
+
+app.get('/api/pages/author-about-cicero', (_req, res) => {
+    res.json({
+        title: 'Über Cicero',
+        content: 'Development content for Cicero about page.',
+        heroTitle: 'Marcus Tullius Cicero',
+        heroSubtitle: 'Römischer Redner, Politiker und Philosoph'
+    });
+});
+
+app.get('/api/pages/author-about-augustus', (_req, res) => {
+    res.json({
+        title: 'Über Augustus',
+        content: 'Development content for Augustus about page.',
+        heroTitle: 'Augustus',
+        heroSubtitle: 'Erster römischer Kaiser'
+    });
+});
+
+app.get('/api/pages/author-about-catilina', (_req, res) => {
+    res.json({
+        title: 'Über Catilina',
+        content: 'Development content for Catilina about page.',
+        heroTitle: 'Lucius Sergius Catilina',
+        heroSubtitle: 'Römischer Senator und Verschwörer'
+    });
+});
+
 app.get('/api/translations/:lang', (_req, res) => {
     res.json({});
 });
