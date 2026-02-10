@@ -18,6 +18,11 @@ const WorkPage = lazy(() => import("./pages/WorkPage"));
 const ChatPage = lazy(() => import("./pages/ChatPage"));
 const SimulationPage = lazy(() => import("./pages/SimulationPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const CaesarAboutPage = lazy(() => import("./pages/about/CaesarAboutPage").then(m => ({ default: m.CaesarAboutPage })));
+const CiceroAboutPage = lazy(() => import("./pages/about/CiceroAboutPage").then(m => ({ default: m.CiceroAboutPage })));
+const AugustusAboutPage = lazy(() => import("./pages/about/AugustusAboutPage").then(m => ({ default: m.AugustusAboutPage })));
+const SenecaAboutPage = lazy(() => import("./pages/about/SenecaAboutPage").then(m => ({ default: m.SenecaAboutPage })));
+const CatilinaAboutPage = lazy(() => import("./pages/about/CatilinaAboutPage").then(m => ({ default: m.CatilinaAboutPage })));
 const TimelinePage = lazy(() => import("./pages/TimelinePage"));
 const LexiconPage = lazy(() => import("./pages/LexiconPage"));
 const LexiconEntryPage = lazy(() => import("./pages/LexiconEntryPage"));
@@ -84,88 +89,89 @@ const AppContent = () => {
         <Suspense fallback={<LoadingScreen />}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-            {/* Static routes must come before dynamic :authorId routes */}
-            <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
-            <Route path="/über" element={<PageTransition><AboutPage /></PageTransition>} />
-            <Route path="/api" element={<PageTransition><ApiDocsPage /></PageTransition>} />
-            <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
-            <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
-            <Route path="/lexikon" element={<PageTransition><LexiconPage /></PageTransition>} />
-            <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
-            <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
-            <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
-            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
-            <Route path="/datenschutz" element={<PageTransition><PrivacyPage /></PageTransition>} />
-            <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
-            <Route path="/impressum" element={<PageTransition><ImprintPage /></PageTransition>} />
-            <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
-            <Route path="/cookie-richtlinien" element={<PageTransition><CookiesPage /></PageTransition>} />
-            <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
-            <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
-            <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
-            <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
-            <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
-            <Route path="/learn/grammar/verben/:topic?" element={<PageTransition><VerbenPage /></PageTransition>} />
-            <Route path="/learn/grammar/adjektive/:topic?" element={<PageTransition><AdjektivePage /></PageTransition>} />
-            <Route path="/learn/grammar/pronomen/:topic?" element={<PageTransition><PronomenPage /></PageTransition>} />
-            <Route path="/learn/grammar/adverbien/:topic?" element={<PageTransition><AdverbienPage /></PageTransition>} />
-            <Route path="/learn/grammar/syntax/:topic?" element={<PageTransition><SyntaxPage /></PageTransition>} />
-            <Route path="/learn/grammar/partizipien/:topic?" element={<PageTransition><PartizipienPage /></PageTransition>} />
-            <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
-            <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
-            <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
-            <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
-            <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
-            <Route path="/reader/:authorId/:workSlug" element={<PageTransition><LatinReader /></PageTransition>} />
-            {/* User auth routes */}
-            <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
-            <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
-            <Route path="/dashboard" element={<PageTransition><DashboardPage /></PageTransition>} />
-            {/* Legal pages */}
-            <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
-            <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
-            {/* Admin routes */}
-            <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
-            <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
-            <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
-            <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
-            <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-            <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-            <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-            <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-            <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-            <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-            <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
-            <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
-            <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
-            {/* Author about page redirects */}
-            <Route path="/caesar/about" element={<Navigate to="/about/caesar" replace />} />
-            <Route path="/cicero/about" element={<Navigate to="/about/cicero" replace />} />
-            <Route path="/augustus/about" element={<Navigate to="/about/augustus" replace />} />
-            <Route path="/seneca/about" element={<Navigate to="/about/seneca" replace />} />
-            <Route path="/catilina/about" element={<Navigate to="/about/catilina" replace />} />
-            
-            {/* Dynamic author routes - must come after static routes */}
-            <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
-            <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />
-            <Route path="/:authorId/works/:slug" element={<PageTransition><WorkPage /></PageTransition>} />
-            <Route path="/:authorId/chat" element={
-              <Suspense fallback={<LoadingScreen />}>
-                <PageTransition><ChatPage /></PageTransition>
-              </Suspense>
-            } />
-            <Route path="/:authorId/simulation" element={
-              <Suspense fallback={<LoadingScreen />}>
-                <PageTransition><SimulationPage /></PageTransition>
-              </Suspense>
-            } />
-            <Route path="/:authorId/:slug" element={<PageTransition><PostPage /></PageTransition>} />
-            {/* 404 must be last */}
-            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-          </Routes>
-        </AnimatePresence>
-      </Suspense>
+              <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+              {/* Static routes must come before dynamic :authorId routes */}
+              <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+              <Route path="/über" element={<PageTransition><AboutPage /></PageTransition>} />
+              <Route path="/api" element={<PageTransition><ApiDocsPage /></PageTransition>} />
+              <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
+              <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
+              <Route path="/lexikon" element={<PageTransition><LexiconPage /></PageTransition>} />
+              <Route path="/lexicon/:slug" element={<PageTransition><LexiconEntryPage /></PageTransition>} />
+              <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
+              <Route path="/design" element={<PageTransition><DesignGuidePage /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+              <Route path="/datenschutz" element={<PageTransition><PrivacyPage /></PageTransition>} />
+              <Route path="/legal" element={<PageTransition><ImprintPage /></PageTransition>} />
+              <Route path="/impressum" element={<PageTransition><ImprintPage /></PageTransition>} />
+              <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
+              <Route path="/cookie-richtlinien" element={<PageTransition><CookiesPage /></PageTransition>} />
+              <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+              <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
+              <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
+              <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
+              <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
+              <Route path="/learn/grammar/verben/:topic?" element={<PageTransition><VerbenPage /></PageTransition>} />
+              <Route path="/learn/grammar/adjektive/:topic?" element={<PageTransition><AdjektivePage /></PageTransition>} />
+              <Route path="/learn/grammar/pronomen/:topic?" element={<PageTransition><PronomenPage /></PageTransition>} />
+              <Route path="/learn/grammar/adverbien/:topic?" element={<PageTransition><AdverbienPage /></PageTransition>} />
+              <Route path="/learn/grammar/syntax/:topic?" element={<PageTransition><SyntaxPage /></PageTransition>} />
+              <Route path="/learn/grammar/partizipien/:topic?" element={<PageTransition><PartizipienPage /></PageTransition>} />
+              <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
+              <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
+              <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
+              <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
+              <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
+              <Route path="/reader/:authorId/:workSlug" element={<PageTransition><LatinReader /></PageTransition>} />
+              {/* User auth routes */}
+              <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
+              <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
+              <Route path="/dashboard" element={<PageTransition><DashboardPage /></PageTransition>} />
+              {/* Legal pages */}
+              <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+              {/* Admin routes */}
+              <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
+              <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
+              <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
+              <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
+              <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+              <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
+              <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+              <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
+              <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+              <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
+              <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
+              <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
+              <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
+
+              {/* Direct author about page routes */}
+              <Route path="/caesar/about" element={<PageTransition><CaesarAboutPage /></PageTransition>} />
+              <Route path="/cicero/about" element={<PageTransition><CiceroAboutPage /></PageTransition>} />
+              <Route path="/augustus/about" element={<PageTransition><AugustusAboutPage /></PageTransition>} />
+              <Route path="/seneca/about" element={<PageTransition><SenecaAboutPage /></PageTransition>} />
+              <Route path="/catilina/about" element={<PageTransition><CatilinaAboutPage /></PageTransition>} />
+
+              {/* Dynamic author routes - must come after static routes */}
+              <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
+              <Route path="/:authorId/about" element={<PageTransition><AboutPage /></PageTransition>} />
+              <Route path="/:authorId/works/:slug" element={<PageTransition><WorkPage /></PageTransition>} />
+              <Route path="/:authorId/chat" element={
+                <Suspense fallback={<LoadingScreen />}>
+                  <PageTransition><ChatPage /></PageTransition>
+                </Suspense>
+              } />
+              <Route path="/:authorId/simulation" element={
+                <Suspense fallback={<LoadingScreen />}>
+                  <PageTransition><SimulationPage /></PageTransition>
+                </Suspense>
+              } />
+              <Route path="/:authorId/:slug" element={<PageTransition><PostPage /></PageTransition>} />
+              {/* 404 must be last */}
+              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+            </Routes>
+          </AnimatePresence>
+        </Suspense>
       </>
     </AuthorProvider>
   );
