@@ -16,6 +16,7 @@ import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import { SEO } from '@/components/SEO';
 import { authors } from '@/data/authors';
+import senecaPageData from '@/content/pages/author-about-seneca.json';
 
 export function SenecaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
@@ -41,34 +42,17 @@ export function SenecaAboutPage() {
     async function loadAuthorContent() {
       if (!authorId) return;
       try {
-        const response = await fetch(`/api/authors/${authorId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setAuthorPage(data);
-          // Filter posts by this author
-          if (Array.isArray(allPosts) && !postsLoading) {
-            const filtered = allPosts.filter(post => post.author === authorId);
-            setAuthorPosts(filtered.slice(0, 6));
-          }
-          // Filter works by this author
-          const filteredWorks = Object.values(baseWorks).filter((work: Work) => work.author === authorId);
-          setAuthorWorks(filteredWorks);
-        } else {
-          console.warn('⚠️ API failed, using fallback data for Seneca');
-          // Fallback data
-          setAuthorPage({
-            slug: 'seneca',
-            heroTitle: 'Seneca',
-            heroSubtitle: 'Stoischer Philosoph und Staatsmann',
-            heroImage: '/images/seneca-hero.jpg',
-            projectDescription: 'Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.',
-            highlights: [],
-            translations: {
-              en: { heroTitle: 'Seneca' },
-              la: { heroTitle: 'Seneca' }
-            }
-          });
+        // Use local JSON data directly
+        setAuthorPage(senecaPageData as PageContent);
+
+        // Filter posts by this author
+        if (Array.isArray(allPosts) && !postsLoading) {
+          const filtered = allPosts.filter(post => post.author === authorId);
+          setAuthorPosts(filtered.slice(0, 6));
         }
+        // Filter works by this author
+        const filteredWorks = Object.values(baseWorks).filter((work: Work) => work.author === authorId);
+        setAuthorWorks(filteredWorks);
       } catch (error) {
         console.error('Failed to load author page:', error);
         setAuthorPage(null);
@@ -137,7 +121,7 @@ export function SenecaAboutPage() {
       />
       <main className="flex-1">
         <AuthorAboutHero authorInfo={authorInfo} authorPage={authorPage} language={language} birthPlace={details.seneca.birthPlace} />
-        
+
         {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -150,21 +134,21 @@ export function SenecaAboutPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Lucius Annaeus Seneca, bekannt als Seneca der Jüngere, wurde um 4 v. Chr. in Córdoba, Hispanien, geboren. 
-                    Als einer der bedeutendsten stoischen Philosophen und Dramatiker des römischen Reiches prägte er das 
+                    Lucius Annaeus Seneca, bekannt als Seneca der Jüngere, wurde um 4 v. Chr. in Córdoba, Hispanien, geboren.
+                    Als einer der bedeutendsten stoischen Philosophen und Dramatiker des römischen Reiches prägte er das
                     philosophische Denken seiner Zeit nachhaltig.
                   </p>
                   <p>
-                    Seneca war Berater des Kaisers Nero und erlebte die politischen Intrigen Roms aus nächster Nähe. 
-                    Seine Werke über Ethik, Moral und das menschliche Leiden sind bis heute von relevanter Bedeutung für 
+                    Seneca war Berater des Kaisers Nero und erlebte die politischen Intrigen Roms aus nächster Nähe.
+                    Seine Werke über Ethik, Moral und das menschliche Leiden sind bis heute von relevanter Bedeutung für
                     die moderne Philosophie und Psychologie.
                   </p>
                   <p>
-                    65 n. Chr. wurde Seneca von Nero zum Selbstmord gezwungen, ein Ende, das er mit stoischer Gelassenheit 
+                    65 n. Chr. wurde Seneca von Nero zum Selbstmord gezwungen, ein Ende, das er mit stoischer Gelassenheit
                     annahm und damit seine philosophischen Überzeugungen bis zum letzten Augenblick bewies.
                   </p>
                 </div>
-                
+
                 <div className="mt-8 flex justify-center gap-4">
                   <Link
                     to="/timeline"
@@ -195,7 +179,7 @@ export function SenecaAboutPage() {
                     </div>
                     <h3 className="font-display text-xl font-bold mb-2">Tugend und Moral</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      Seneca lehrte, dass wahres Glück in der Tugend liegt und nicht in äußeren Gütern. 
+                      Seneca lehrte, dass wahres Glück in der Tugend liegt und nicht in äußeren Gütern.
                       Die stoische Ethik fordert ein Leben im Einklang mit der Natur und der Vernunft.
                     </p>
                   </motion.div>
@@ -213,7 +197,7 @@ export function SenecaAboutPage() {
                     </div>
                     <h3 className="font-display text-xl font-bold mb-2">Bewältigung des Leids</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      Seine Schriften über Angst, Zorn und Trauer bieten praktische Anleitungen zur 
+                      Seine Schriften über Angst, Zorn und Trauer bieten praktische Anleitungen zur
                       Bewältigung menschlicher Emotionen und zur Erreichung innerer Ruhe.
                     </p>
                   </motion.div>

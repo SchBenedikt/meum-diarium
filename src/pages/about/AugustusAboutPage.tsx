@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import augustusPageData from '@/content/pages/author-about-augustus.json';
 export function AugustusAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -56,43 +57,9 @@ export function AugustusAboutPage() {
           Object.values(baseWorks).filter(w => w.author === 'augustus').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-        try {
-          const res = await fetch('/api/pages/augustus');
-          if (res.ok) {
-            const data: PageContent = await res.json();
-            setAuthorPage(data);
-          } else {
-            console.warn('⚠️ API failed, using fallback data for Augustus');
-            // Fallback data
-            setAuthorPage({
-              slug: 'augustus',
-              heroTitle: 'Augustus',
-              heroSubtitle: 'Erster römischer Kaiser',
-              heroImage: '/images/augustus-hero.jpg',
-              projectDescription: 'Begründer des römischen Kaiserreichs und Initiator der Pax Augusta.',
-              highlights: [],
-              translations: {
-                en: { heroTitle: 'Augustus' },
-                la: { heroTitle: 'Augustus' }
-              }
-            });
-          }
-        } catch (error) {
-          console.warn('⚠️ API error, using fallback data for Augustus:', error);
-          // Fallback data
-          setAuthorPage({
-            slug: 'augustus',
-            heroTitle: 'Augustus',
-            heroSubtitle: 'Erster römischer Kaiser',
-            heroImage: '/images/augustus-hero.jpg',
-            projectDescription: 'Begründer des römischen Kaiserreichs und Initiator der Pax Augusta.',
-            highlights: [],
-            translations: {
-              en: { heroTitle: 'Augustus' },
-              la: { heroTitle: 'Augustus' }
-            }
-          });
-        }
+
+        // Use local JSON data directly
+        setAuthorPage(augustusPageData as PageContent);
       }
       translateContent();
     }

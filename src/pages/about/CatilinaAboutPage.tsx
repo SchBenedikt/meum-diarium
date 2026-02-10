@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import catilinaPageData from '@/content/pages/author-about-catilina.json';
 export function CatilinaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
@@ -35,43 +36,9 @@ export function CatilinaAboutPage() {
           Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-        try {
-          const res = await fetch('/api/pages/catilina');
-          if (res.ok) {
-            const data: PageContent = await res.json();
-            setAuthorPage(data);
-          } else {
-            console.warn('⚠️ API failed, using fallback data for Catilina');
-            // Fallback data
-            setAuthorPage({
-              slug: 'catilina',
-              heroTitle: 'Lucius Sergius Catilina',
-              heroSubtitle: 'Römischer Senator und Verschwörer',
-              heroImage: '/images/catilina-hero.jpg',
-              projectDescription: 'Anführer der berüchtigten Catilinarischen Verschwörung gegen die Römische Republik.',
-              highlights: [],
-              translations: {
-                en: { heroTitle: 'Lucius Sergius Catilina' },
-                la: { heroTitle: 'Lucius Sergius Catilina' }
-              }
-            });
-          }
-        } catch (error) {
-          console.warn('⚠️ API error, using fallback data for Catilina:', error);
-          // Fallback data
-          setAuthorPage({
-            slug: 'catilina',
-            heroTitle: 'Lucius Sergius Catilina',
-            heroSubtitle: 'Römischer Senator und Verschwörer',
-            heroImage: '/images/catilina-hero.jpg',
-            projectDescription: 'Anführer der berüchtigten Catilinarischen Verschwörung gegen die Römische Republik.',
-            highlights: [],
-            translations: {
-              en: { heroTitle: 'Lucius Sergius Catilina' },
-              la: { heroTitle: 'Lucius Sergius Catilina' }
-            }
-          });
-        }
+
+        // Use local JSON data directly
+        setAuthorPage(catilinaPageData as PageContent);
       }
       translateContent();
     }
