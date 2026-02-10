@@ -8,6 +8,11 @@ import compression from 'vite-plugin-compression';
 export default defineConfig(({ mode }) => ({
   server: {
     port: 9002,
+    host: true,
+    hmr: {
+      port: 9002,
+      host: 'localhost'
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3001',

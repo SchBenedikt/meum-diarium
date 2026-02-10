@@ -75,7 +75,7 @@ export function SEO({
   
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {
-    const baseData = {
+    const baseData: Record<string, any> = {
       "@context": `https://schema.org`,
       "@type": "WebSite",
       "name": defaults.siteName,
@@ -93,17 +93,31 @@ export function SEO({
     };
 
     // Add structured data if provided
-    if (structuredData && Object.keys(structuredData).length > 0) {
-      baseData.mainEntity = structuredData.map(data => ({
-        "@type": type === 'article' ? "BlogPosting" : "WebPage",
-        "headline": data.headline || title,
-        "description": data.description || description,
-        "image": data.image || image,
-        "author": data.author || author,
-        "datePublished": data.datePublished || publishedTime,
-        "dateModified": data.dateModified || modifiedTime,
-        "url": data.url || currentUrl
-      }));
+    if (structuredData) {
+      if (Array.isArray(structuredData)) {
+        baseData.mainEntity = structuredData.map(data => ({
+          "@type": type === 'article' ? "BlogPosting" : "WebPage",
+          "headline": data.headline || title,
+          "description": data.description || description,
+          "image": data.image || image,
+          "author": data.author || author,
+          "datePublished": data.datePublished || publishedTime,
+          "dateModified": data.dateModified || modifiedTime,
+          "url": data.url || currentUrl
+        }));
+      } else {
+        // Handle single structured data object
+        baseData.mainEntity = [{
+          "@type": type === 'article' ? "BlogPosting" : "WebPage",
+          "headline": structuredData.headline || title,
+          "description": structuredData.description || description,
+          "image": structuredData.image || image,
+          "author": structuredData.author || author,
+          "datePublished": structuredData.datePublished || publishedTime,
+          "dateModified": structuredData.dateModified || modifiedTime,
+          "url": structuredData.url || currentUrl
+        }];
+      }
     }
 
     return baseData;
@@ -198,17 +212,17 @@ export function SEO({
     
     // Canonical URL
     if (canonical) {
-      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.rel = 'canonical';
-        document.head.appendChild(canonical);
+      let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
       }
-      canonical.href = canonical;
+      canonicalLink.href = canonical;
     } else {
-      const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (canonical) {
-        canonical.href = currentUrl;
+      const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (canonicalLink) {
+        canonicalLink.remove();
       }
     }
     

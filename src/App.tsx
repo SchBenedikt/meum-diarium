@@ -176,20 +176,22 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
     {children}
   </motion.div>
 );
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-        <LanguageProvider>
-          <AuthProvider>
-            <Toaster richColors />
-            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-              <AppContent />
-            </BrowserRouter>
-          </AuthProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+          <LanguageProvider>
+            <AuthProvider>
+              <Toaster richColors />
+              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <AppContent />
+              </BrowserRouter>
+            </AuthProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 export default App;

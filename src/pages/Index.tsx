@@ -22,6 +22,7 @@ const Index = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
   useEffect(() => {
     if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
