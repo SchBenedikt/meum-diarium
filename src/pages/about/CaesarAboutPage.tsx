@@ -1,6 +1,6 @@
 import CaesarCampaignMap from '@/components/CaesarCampaignMap';
 import { Footer } from '@/components/layout/Footer';
-import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight, Sword, Map, Trophy, Landmark, Crown, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight, Sword, Map, Trophy, Landmark, Crown, Sparkles, BookMarked } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
@@ -16,10 +16,12 @@ import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import { SEO } from '@/components/SEO';
 import { authors } from '@/data/authors';
+import { useAuthor } from '@/context/AuthorContext';
 
 export function CaesarAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { authorId } = useParams<{ authorId: string }>();
+  const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
@@ -50,7 +52,7 @@ export function CaesarAboutPage() {
             setAuthorPosts(filtered.slice(0, 6));
           }
           // Filter works by this author
-          const filteredWorks = baseWorks.filter(work => work.authorId === authorId);
+          const filteredWorks = baseWorks.filter(work => work.author === authorId);
           setAuthorWorks(filteredWorks);
         }
       } catch (error) {
@@ -80,7 +82,7 @@ export function CaesarAboutPage() {
     </div>;
   }
 
-  const details = authorDetails;
+  const details = authorDetails['caesar'];
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
@@ -145,14 +147,14 @@ export function CaesarAboutPage() {
                           <div className="flex items-start justify-between gap-4 mb-4">
                             <div>
                               <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                                {getTranslatedWork(work, language).title}
+                                {work.title}
                               </h3>
                               <p className="text-sm text-muted-foreground">
-                                {getTranslatedWork(work, language).date}
+                                {work.year}
                               </p>
                             </div>
                             <Button variant="outline" size="sm" asChild>
-                              <Link to={`/works/${work.slug}`}>
+                              <Link to={`/works/${work.id}`}>
                                 <ArrowRight className="h-4 w-4" />
                                 {t('readMore')}
                               </Link>
@@ -179,8 +181,8 @@ export function CaesarAboutPage() {
                           {event.year}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
-                          <p className="text-muted-foreground">{event.description}</p>
+                          <h3 className="text-lg font-semibold mb-2">{event.event}</h3>
+                          <p className="text-muted-foreground">{event.year}</p>
                         </div>
                       </div>
                     ))}
