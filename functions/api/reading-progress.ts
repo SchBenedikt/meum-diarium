@@ -1,7 +1,7 @@
-import { getDb } from '../../db/client';
-import { userReadingProgress } from '../../db/schema';
+import { getDb } from '../db/client';
+import { userReadingProgress } from '../db/schema';
 import { eq, and, desc } from 'drizzle-orm';
-import type { PagesContext } from '../../types';
+import type { PagesContext } from '../types';
 
 // Helper function to verify JWT token (simplified version)
 function verifyToken(token: string): string | null {
@@ -34,7 +34,7 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 postId: userReadingProgress.postId,
                 readingTimeSeconds: userReadingProgress.readingTimeSeconds,
                 progressPercentage: userReadingProgress.progressPercentage,
-                lastReadAt: userReadingProgress.lastReadAt,
+                lastReadAt: userReadingProgress.updatedAt,
                 createdAt: userReadingProgress.createdAt,
                 updatedAt: userReadingProgress.updatedAt,
             })
@@ -50,7 +50,6 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 averageReadingTime: progressRecords.length > 0 
                     ? progressRecords.reduce((sum, record) => sum + record.readingTimeSeconds, 0) / progressRecords.length 
                     : 0
-            }),
             }),
             { 
                 status: 200, 
@@ -114,7 +113,6 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
                 .set({
                     readingTimeSeconds: existingProgress.readingTimeSeconds + readingTimeSeconds,
                     progressPercentage: Math.min(100, existingProgress.progressPercentage + (progressPercentage || 0)),
-                    lastReadAt: now,
                     updatedAt: now,
                 })
                 .where(and(
@@ -129,7 +127,6 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
                 postId,
                 readingTimeSeconds: readingTimeSeconds || 0,
                 progressPercentage: progressPercentage || 0,
-                lastReadAt: now,
                 createdAt: now,
                 updatedAt: now,
             });
