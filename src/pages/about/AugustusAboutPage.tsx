@@ -62,10 +62,36 @@ export function AugustusAboutPage() {
             const data: PageContent = await res.json();
             setAuthorPage(data);
           } else {
-            setAuthorPage(null);
+            console.warn('⚠️ API failed, using fallback data for Augustus');
+            // Fallback data
+            setAuthorPage({
+              slug: 'augustus',
+              heroTitle: 'Augustus',
+              heroSubtitle: 'Erster römischer Kaiser',
+              heroImage: '/images/augustus-hero.jpg',
+              projectDescription: 'Begründer des römischen Kaiserreichs und Initiator der Pax Augusta.',
+              highlights: [],
+              translations: {
+                en: { heroTitle: 'Augustus' },
+                la: { heroTitle: 'Augustus' }
+              }
+            });
           }
-        } catch {
-          setAuthorPage(null);
+        } catch (error) {
+          console.warn('⚠️ API error, using fallback data for Augustus:', error);
+          // Fallback data
+          setAuthorPage({
+            slug: 'augustus',
+            heroTitle: 'Augustus',
+            heroSubtitle: 'Erster römischer Kaiser',
+            heroImage: '/images/augustus-hero.jpg',
+            projectDescription: 'Begründer des römischen Kaiserreichs und Initiator der Pax Augusta.',
+            highlights: [],
+            translations: {
+              en: { heroTitle: 'Augustus' },
+              la: { heroTitle: 'Augustus' }
+            }
+          });
         }
       }
       translateContent();

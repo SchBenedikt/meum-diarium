@@ -1,13 +1,6 @@
-interface CloudflareContext {
-    request: Request;
-    env: {
-        ASSETS: {
-            fetch: (request: Request) => Promise<Response>;
-        };
-    };
-}
+import { PagesContext } from '../types';
 
-export const onRequest = async (context: CloudflareContext) => {
+export const onRequest = async (context: PagesContext) => {
     const url = new URL(context.request.url);
     const pathSegments = url.pathname.split('/').filter(Boolean);
     
@@ -55,28 +48,47 @@ export const onRequest = async (context: CloudflareContext) => {
                 });
             }
             
-            const assetUrl = new URL(`/api/pages/${fileName}`, url.origin);
-            const response = await context.env.ASSETS.fetch(new Request(assetUrl.toString()));
-
-            if (!response.ok) {
-                console.log(`⚠️ [Pages API] File not found: ${fileName}`);
-                return new Response(JSON.stringify({
-                    error: 'Page not found',
-                    message: `Static file not found: ${fileName}`
-                }), {
-                    status: 404,
-                    headers: corsHeaders
-                });
+            // Try to fetch from static assets first
+            try {
+                const assetUrl = new URL(`/api/pages/${fileName}`, url.origin);
+                const staticResponse = await fetch(assetUrl.toString());
+                
+                if (staticResponse.ok) {
+                    const data = await staticResponse.json();
+                    console.log(`✅ [Pages API] Served page from static assets: ${slug}`);
+                    
+                    return new Response(JSON.stringify(data), {
+                        headers: {
+                            ...corsHeaders,
+                            'Cache-Control': 'public, max-age=3600',
+                            'X-Data-Source': 'static-files'
+                        }
+                    });
+                }
+            } catch (staticError) {
+                console.log(`⚠️ [Pages API] Static file not accessible: ${fileName}`);
             }
-
-            const data = await response.json();
-            console.log(`✅ [Pages API] Served page: ${slug}`);
             
-            return new Response(JSON.stringify(data), {
+            // Fallback: return basic data
+            console.log(`⚠️ [Pages API] Using fallback data for: ${slug}`);
+            const fallbackData = {
+                slug: slug,
+                heroTitle: slug.charAt(0).toUpperCase() + slug.slice(1),
+                heroSubtitle: 'Historische Persönlichkeit',
+                introText: `Informationen über ${slug.charAt(0).toUpperCase() + slug.slice(1)}`,
+                sections: [],
+                highlights: [],
+                translations: {
+                    en: { heroTitle: slug.charAt(0).toUpperCase() + slug.slice(1) },
+                    la: { heroTitle: slug.charAt(0).toUpperCase() + slug.slice(1) }
+                }
+            };
+            
+            return new Response(JSON.stringify(fallbackData), {
                 headers: {
                     ...corsHeaders,
-                    'Cache-Control': 'public, max-age=3600',
-                    'X-Data-Source': 'json-files'
+                    'Cache-Control': 'public, max-age=300',
+                    'X-Data-Source': 'fallback-data'
                 }
             });
             

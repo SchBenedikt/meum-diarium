@@ -43,10 +43,36 @@ export function CiceroAboutPage() {
             const data: PageContent = await res.json();
             setAuthorPage(data);
           } else {
-            setAuthorPage(null);
+            console.warn('⚠️ API failed, using fallback data for Cicero');
+            // Fallback data
+            setAuthorPage({
+              slug: 'cicero',
+              heroTitle: 'Marcus Tullius Cicero',
+              heroSubtitle: 'Römischer Redner, Politiker und Philosoph',
+              heroImage: '/images/cicero-hero.jpg',
+              projectDescription: 'Einer der berühmtesten Redner Roms und ein einflussreicher Politiker der späten Republik.',
+              highlights: [],
+              translations: {
+                en: { heroTitle: 'Marcus Tullius Cicero' },
+                la: { heroTitle: 'Marcus Tullius Cicero' }
+              }
+            });
           }
-        } catch {
-          setAuthorPage(null);
+        } catch (error) {
+          console.warn('⚠️ API error, using fallback data for Cicero:', error);
+          // Fallback data
+          setAuthorPage({
+            slug: 'cicero',
+            heroTitle: 'Marcus Tullius Cicero',
+            heroSubtitle: 'Römischer Redner, Politiker und Philosoph',
+            heroImage: '/images/cicero-hero.jpg',
+            projectDescription: 'Einer der berühmtesten Redner Roms und ein einflussreicher Politiker der späten Republik.',
+            highlights: [],
+            translations: {
+              en: { heroTitle: 'Marcus Tullius Cicero' },
+              la: { heroTitle: 'Marcus Tullius Cicero' }
+            }
+          });
         }
       }
       translateContent();

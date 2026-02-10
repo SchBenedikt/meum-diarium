@@ -42,10 +42,36 @@ export function CaesarAboutPage() {
             const data: PageContent = await res.json();
             setAuthorPage(data);
           } else {
-            setAuthorPage(null);
+            console.warn('⚠️ API failed, using fallback data for Caesar');
+            // Fallback data
+            setAuthorPage({
+              slug: 'caesar',
+              heroTitle: 'Gaius Julius Caesar',
+              heroSubtitle: 'Dictator Perpetuo',
+              heroImage: '/images/caesar-hero.jpg',
+              projectDescription: 'Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.',
+              highlights: [],
+              translations: {
+                en: { heroTitle: 'Gaius Julius Caesar' },
+                la: { heroTitle: 'Gaius Iulius Caesar' }
+              }
+            });
           }
-        } catch {
-          setAuthorPage(null);
+        } catch (error) {
+          console.warn('⚠️ API error, using fallback data for Caesar:', error);
+          // Fallback data
+          setAuthorPage({
+            slug: 'caesar',
+            heroTitle: 'Gaius Julius Caesar',
+            heroSubtitle: 'Dictator Perpetuo',
+            heroImage: '/images/caesar-hero.jpg',
+            projectDescription: 'Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.',
+            highlights: [],
+            translations: {
+              en: { heroTitle: 'Gaius Julius Caesar' },
+              la: { heroTitle: 'Gaius Iulius Caesar' }
+            }
+          });
         }
       }
       translateContent();

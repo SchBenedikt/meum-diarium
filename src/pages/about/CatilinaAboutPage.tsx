@@ -41,10 +41,36 @@ export function CatilinaAboutPage() {
             const data: PageContent = await res.json();
             setAuthorPage(data);
           } else {
-            setAuthorPage(null);
+            console.warn('⚠️ API failed, using fallback data for Catilina');
+            // Fallback data
+            setAuthorPage({
+              slug: 'catilina',
+              heroTitle: 'Lucius Sergius Catilina',
+              heroSubtitle: 'Römischer Senator und Verschwörer',
+              heroImage: '/images/catilina-hero.jpg',
+              projectDescription: 'Anführer der berüchtigten Catilinarischen Verschwörung gegen die Römische Republik.',
+              highlights: [],
+              translations: {
+                en: { heroTitle: 'Lucius Sergius Catilina' },
+                la: { heroTitle: 'Lucius Sergius Catilina' }
+              }
+            });
           }
-        } catch {
-          setAuthorPage(null);
+        } catch (error) {
+          console.warn('⚠️ API error, using fallback data for Catilina:', error);
+          // Fallback data
+          setAuthorPage({
+            slug: 'catilina',
+            heroTitle: 'Lucius Sergius Catilina',
+            heroSubtitle: 'Römischer Senator und Verschwörer',
+            heroImage: '/images/catilina-hero.jpg',
+            projectDescription: 'Anführer der berüchtigten Catilinarischen Verschwörung gegen die Römische Republik.',
+            highlights: [],
+            translations: {
+              en: { heroTitle: 'Lucius Sergius Catilina' },
+              la: { heroTitle: 'Lucius Sergius Catilina' }
+            }
+          });
         }
       }
       translateContent();
