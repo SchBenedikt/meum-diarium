@@ -36,7 +36,7 @@ export function CatilinaAboutPage() {
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
         try {
-          const res = await fetch('/api/pages/author-about-catilina');
+          const res = await fetch('/api/pages/catilina');
           if (res.ok) {
             const data: PageContent = await res.json();
             setAuthorPage(data);

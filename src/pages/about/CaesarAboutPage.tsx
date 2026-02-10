@@ -37,7 +37,7 @@ export function CaesarAboutPage() {
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
         try {
-          const res = await fetch('/api/pages/author-about-caesar');
+          const res = await fetch('/api/pages/caesar');
           if (res.ok) {
             const data: PageContent = await res.json();
             setAuthorPage(data);

@@ -57,7 +57,7 @@ export function AugustusAboutPage() {
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
         try {
-          const res = await fetch('/api/pages/author-about-augustus');
+          const res = await fetch('/api/pages/augustus');
           if (res.ok) {
             const data: PageContent = await res.json();
             setAuthorPage(data);

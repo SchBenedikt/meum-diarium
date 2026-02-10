@@ -38,7 +38,7 @@ export function CiceroAboutPage() {
         );
         setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
         try {
-          const res = await fetch('/api/pages/author-about-cicero');
+          const res = await fetch('/api/pages/cicero');
           if (res.ok) {
             const data: PageContent = await res.json();
             setAuthorPage(data);
