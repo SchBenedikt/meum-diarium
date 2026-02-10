@@ -51,7 +51,6 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                     ? progressRecords.reduce((sum, record) => sum + record.readingTimeSeconds, 0) / progressRecords.length 
                     : 0
             }),
-            }),
             { 
                 status: 200, 
                 headers: { 'Content-Type': 'application/json' } 
