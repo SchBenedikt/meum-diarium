@@ -59,6 +59,8 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
+const OERPage = lazy(() => import('./pages/OERPage'));
+const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -131,6 +133,8 @@ const AppContent = () => {
               <Route path="/profile/edit" element={<PageTransition><ProfileEditPage /></PageTransition>} />
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
+              <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
+              <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} />
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes */}
               <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />

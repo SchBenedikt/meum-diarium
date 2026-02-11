@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Scroll, Github, Twitter, Mail, Globe, Sparkles, BookOpen } from 'lucide-react';
+import { Scroll, Github, Twitter, Mail, Globe, Sparkles, BookOpen, Download, Users, HelpCircle, FileText, MessageCircle, Award, Library } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 export function Footer() {
   const { t } = useLanguage();
@@ -11,13 +11,23 @@ export function Footer() {
   const description = text('footerDescription', 'Experience history through the eyes of the greatest figures of ancient Rome. Diaries and scholarly commentaries.');
   const footerLinks = [
     {
-      title: text('footerNavigation', 'Navigation'),
+      title: 'Navigation',
       links: [
-        { label: t('authors'), href: '/' },
-        { label: t('navTimeline'), href: '/timeline' },
-        { label: t('navLexicon'), href: '/lexicon' },
-        { label: t('navAbout'), href: '/about' },
-        { label: 'API', href: '/api' },
+        { label: 'Startseite', href: '/' },
+        { label: 'Zeitleiste', href: '/timeline' },
+        { label: 'Lexikon', href: '/lexicon' },
+        { label: 'Über uns', href: '/about' },
+        { label: 'API-Dokumentation', href: '/api' },
+      ]
+    },
+    {
+      title: 'Lernen',
+      links: [
+        { label: 'Latein Tools', href: '/learn', icon: BookOpen },
+        { label: 'Grammatik', href: '/learn/grammar', icon: FileText },
+        { label: 'Vokabeltrainer', href: '/vocab', icon: Library },
+        { label: 'Text Reader', href: '/reader', icon: BookOpen },
+        { label: 'OER Ressourcen', href: '/oer', icon: Download },
       ]
     },
     {
@@ -32,8 +42,9 @@ export function Footer() {
     {
       title: 'Interaktiv',
       links: [
+        { label: 'KI-Gespräche', href: '/caesar/chat', icon: Sparkles },
         { label: 'Zeitreise Simulation', href: '/caesar/simulation', icon: Sparkles },
-        { label: 'Sententia Diei', href: '/', icon: BookOpen },
+        { label: 'Rhetorik Übungen', href: '/learn/rhetoric', icon: Award },
       ]
     }
   ];
@@ -61,7 +72,7 @@ export function Footer() {
               {/* Minimalist social indicators removal confirmed */}
             </div>
           </div>
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {footerLinks.map((column) => (
               <div key={column.title} className="space-y-8">
                 <h4 className="font-display text-xs uppercase tracking-[0.3em] font-bold text-primary">
@@ -97,6 +108,7 @@ export function Footer() {
               <Link to="/legal" className="text-muted-foreground hover:text-primary transition-colors">Impressum</Link>
               <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Datenschutz</Link>
               <Link to="/cookies" className="text-muted-foreground hover:text-primary transition-colors">Cookies</Link>
+              <Link to="/agb" className="text-muted-foreground hover:text-primary transition-colors">AGB</Link>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-8">

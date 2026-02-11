@@ -1,4 +1,5 @@
 @import "leaflet/dist/leaflet.css";
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -444,6 +445,28 @@
 
   .gradient-text {
     @apply text-primary;
+  }
+
+  .font-bricolage {
+    font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  }
+
+  .hand-drawn-underline {
+    position: relative;
+  }
+
+  .hand-drawn-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-0.8deg) scaleY(1.5);
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary));
+    border-radius: 50% 40% 60% 30% / 30% 40% 60% 70%;
+    opacity: 0.8;
+    filter: blur(0.5px);
   }
 }
 

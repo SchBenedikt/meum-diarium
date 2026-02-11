@@ -45,27 +45,50 @@ const ApiDocsPage = () => {
             title: "Beiträge",
             method: "GET",
             path: "/api/posts",
-            desc: "Listet alle verfügbaren Beiträge mit Slugs, Titeln und Autoren auf.",
+            desc: "Listet alle verfügbaren Beiträge mit Slugs, Titeln und Autoren auf. Unterstützt Filterung nach Tags.",
+            params: [
+                { name: "tag", desc: "Filter nach Tag (optional)." },
+                { name: "slug", desc: "Einzelnen Beitrag abrufen (optional)." }
+            ],
             responseSchema: `[
-  { "slug": string, "title": string, "author": string, "excerpt": string }
+  { 
+    "id": string,
+    "slug": string, 
+    "title": string, 
+    "author": string, 
+    "authorId": string,
+    "excerpt": string,
+    "date": string,
+    "tags": string[],
+    "content": { "diary": string, "scientific": string }
+  }
 ]`
         },
         {
             title: "Beitrags-Details",
-            method: "GET",
+            method: "GET | PUT | DELETE",
             path: "/api/posts/{author}/{slug}",
-            desc: "Gibt den vollständigen Inhalt eines spezifischen Beitrags zurück.",
+            desc: "GET: Gibt den vollständigen Inhalt eines spezifischen Beitrags zurück. PUT: Aktualisiert Beitrag. DELETE: Löscht Beitrag.",
             params: [
                 { name: "author", desc: "Autor-Id (caesar, cicero, augustus, catilina, seneca)." },
                 { name: "slug", desc: "Slug des Beitrags." }
             ],
+            requestSchema: `{
+  "title": string,
+  "excerpt": string,
+  "content": { "diary": string, "scientific": string },
+  "tags": string[]
+}`,
             responseSchema: `{
+  "id": string,
   "slug": string,
   "title": string,
   "author": string,
+  "authorId": string,
   "content": { "diary": string, "scientific": string },
   "tags": string[]
-}`
+}`,
+            notes: ["PUT/DELETE erfordern passende Berechtigungen."]
         },
         {
             title: "Vokabeln (Suche)",
@@ -91,7 +114,11 @@ const ApiDocsPage = () => {
   ],
   "count": number,
   "limit": number,
-  "offset": number
+  "offset": number,
+  "source": {
+    "name": "Latin-GermanDictionary",
+    "entries": 36140
+  }
 }`,
             notes: ["Durchsucht lateinische Wörter, deutsche Übersetzungen und Schlüsselbegriffe."]
         },
@@ -119,144 +146,92 @@ const ApiDocsPage = () => {
       "form": string,
       "bestimmung": string
     }
-  ],
-  "grammarForms": Array
+  ]
 }`,
             notes: ["Enthält Deklinationen, Konjugationen und grammatikalische Beschreibungen."]
         },
         {
-            title: "ALLE Vokabeln (mit Formen)",
-            method: "GET",
-            path: "/api/vocab/all",
-            desc: "Gibt ALLE Vokabeln mit ALLEN grammatikalischen Formen zurück. Für umfassende Datenanalyse.",
-            params: [
-                { name: "limit", desc: "Anzahl der Ergebnisse (Standard: 100)." },
-                { name: "offset", desc: "Offset für Pagination (Standard: 0)." },
-                { name: "includeForms", desc: "Formen einbeziehen (Standard: true)." }
-            ],
-            responseSchema: `{
-  "results": [
-    {
-      "id": number,
-      "vokId": string,
-      "latin": string,
-      "desc": string,
-      "key": string,
-      "grammar": string,
-      "typnr": number,
-      "forms": [
-        {
-          "id": number,
-          "vokId": string,
-          "nr": number,
-          "form": string,
-          "bestimmung": string
-        }
-      ],
-      "grammarForms": Array
-    }
-  ],
-  "count": number,
-  "total": number,
-  "limit": number,
-  "offset": number,
-  "includeForms": boolean
-}`,
-            notes: [
-                "Enthält über 36.000 Vokabeln mit vollständigen Formen.",
-                "Optimiert für Batch-Verarbeitung und Datenanalyse.",
-                "IncludeForms=false für schnellere Ladezeiten bei reiner Vokabelliste."
-            ]
-        },
-        {
             title: "Lexikon",
-            method: "GET",
+            method: "GET | POST | PUT | DELETE",
             path: "/api/lexicon",
-            desc: "Gibt eine Liste aller historischen Begriffe und Definitionen zurück.",
-            responseSchema: `[
-  { "term": string, "definition": string, "slug": string }
-]`
-        },
-        {
-            title: "Werke",
-            method: "GET",
-            path: "/api/works",
-            desc: "Listet alle Werke/Schriften mit Basis-Metadaten auf.",
-            responseSchema: `[
-  { "slug": string, "title": string, "author"?: string, "year"?: string }
-]`
-        },
-        {
-            title: "Werk-Details",
-            method: "GET",
-            path: "/api/works-details/{slug}",
-            desc: "Gibt den vollständigen Inhalt eines Werks zurück.",
-            params: [{ name: "slug", desc: "Slug des Werks." }],
-            responseSchema: `{
+            desc: "GET: Liste aller historischen Begriffe. POST: Neuen Eintrag erstellen. PUT: Eintrag aktualisieren. DELETE: Eintrag löschen.",
+            params: [
+                { name: "slug", desc: "Slug für spezifischen Eintrag (GET/PUT/DELETE)." },
+                { name: "search", desc: "Suche in Begriffen und Definitionen (GET)." },
+                { name: "limit", desc: "Anzahl der Ergebnisse (Standard: 100)." }
+            ],
+            requestSchema: `{
   "slug": string,
-  "title": string,
-  "content": string
-}`
+  "term": string,
+  "definition": string,
+  "variants": string[],
+  "category": string,
+  "etymology": string,
+  "relatedTerms": string[],
+  "translations": object
+}`,
+            responseSchema: `[
+  { 
+    "slug": string,
+    "term": string, 
+    "definition": string,
+    "variants": string[],
+    "category": string,
+    "etymology": string,
+    "relatedTerms": string[],
+    "translations": object
+  }
+]`
         },
         {
-            title: "About-Seiten",
-            method: "GET",
-            path: "/api/about",
-            desc: "Liefert statische Infoseiten (z.B. Impressum, Datenschutz).",
+            title: "Autoren",
+            method: "GET | POST | PUT | DELETE",
+            path: "/api/authors",
+            desc: "GET: Liste aller Autoren. POST: Neuen Autor erstellen. PUT: Autor aktualisieren. DELETE: Autor löschen.",
+            params: [
+                { name: "id", desc: "Autor-ID für spezifischen Autor (GET/PUT/DELETE)." }
+            ],
+            requestSchema: `{
+  "id": string,
+  "name": string,
+  "latinName": string,
+  "title": string,
+  "years": string,
+  "birthYear": number,
+  "deathYear": number,
+  "description": string,
+  "heroImage": string,
+  "theme": string,
+  "color": string,
+  "highlights": array
+}`,
             responseSchema: `[
-  { "slug": string, "title": string, "content": string }
-]`
+  {
+    "id": string,
+    "name": string,
+    "latinName": string,
+    "title": string,
+    "years": string,
+    "birthYear": number,
+    "deathYear": number,
+    "description": string,
+    "heroImage": string,
+    "theme": string,
+    "color": string,
+    "highlights": array
+  }
+]`,
+            notes: ["PUT/DELETE erfordern passende Berechtigungen."]
         }
     ];
     const discoveryEndpoints: Endpoint[] = [
         {
-            title: "Search Index",
-            method: "GET",
-            path: "/api/search",
-            desc: "Multilinguale Such-Index-Daten fur Posts, Lexikon, Autoren und Werke. Client-seitig filtern.",
-            responseSchema: `{
-  "generatedAt": string,
-  "items": Array<{ "type": string, "title"?: string, "excerpt"?: string }>
-}`
-        },
-        {
-            title: "Autoren",
-            method: "GET",
-            path: "/api/authors",
-            desc: "Ubersicht aller Autoren inklusive Highlights und Ubersetzungen.",
-            responseSchema: `[
-  { "id": string, "name": string, "title": string, "years": string }
-]`
-        },
-        {
-            title: "Autor-Details",
-            method: "GET",
-            path: "/api/authors/{id}",
-            desc: "Detaildaten zu einem Autor inkl. Beschreibungen und Highlights.",
-            params: [{ name: "id", desc: "Autor-Id (z.B. caesar)." }],
-            responseSchema: `{
-  "id": string,
-  "name": string,
-  "description": string,
-  "highlights": Array<any>
-}`
-        },
-        {
             title: "Tags",
             method: "GET",
             path: "/api/tags",
-            desc: "Tag-Liste mit Ubersetzungen und Haufigkeit.",
+            desc: "Gibt alle verfügbaren Tags zurück.",
             responseSchema: `[
-  { "id": string, "translations": { "de": string, "en": string, "la": string }, "count": number }
-]`
-        },
-        {
-            title: "Timeline",
-            method: "GET",
-            path: "/api/timeline",
-            desc: "Chronologische Ereignisse aus Posts und statischen Timeline-Events.",
-            responseSchema: `[
-  { "year": number, "title": string, "description": string, "type": string }
+  { "id": string, "name": string, "count": number }
 ]`
         }
     ];
@@ -265,12 +240,12 @@ const ApiDocsPage = () => {
             title: "KI Chat",
             method: "GET | POST",
             path: "/api/ask",
-            desc: "Kommuniziere direkt mit einer historischen Persona. GET fur kurze Abfragen, POST fur langere Inhalte und History.",
+            desc: "Kommuniziere direkt mit einer historischen Persona. Forwarded to external AI service.",
             params: [
                 { name: "persona", desc: "Name der Figur (caesar, cicero, augustus, catilina, seneca)." },
                 { name: "ask", desc: "Die Nachricht oder Frage an die KI." },
                 { name: "history", desc: "Optionaler Chat-Verlauf als JSON-Array {role, content}." },
-                { name: "sitemap", desc: "Optional: URL zur Sitemap fur Quellenvorschlage." }
+                { name: "sitemap", desc: "Optional: URL zur Sitemap für Quellenvorschlage." }
             ],
             requestSchema: `{
   "persona"?: string,
@@ -282,26 +257,24 @@ const ApiDocsPage = () => {
   -H "Content-Type: application/json" \
   -d '{
     "persona": "caesar",
-    "ask": "Warum uberschreitetest du den Rubikon?",
+    "ask": "Warum überschreitest du den Rubikon?",
     "history": [
       { "role": "user", "content": "Sei kurz." }
     ]
   }'`,
             responseSchema: `{
-  "persona": string,
-  "inputs": { "messages": Array<any> },
   "response": { "response": string },
   "resources": Array<{ "title": string, "type": string, "link": string }>,
   "format": "markdown"
 }`,
-            notes: ["Antworten sind als Markdown formatiert."],
+            notes: ["Antworten sind als Markdown formatiert.", "External service proxy."],
             isPrivate: true
         },
         {
-            title: "Begriff erklaren",
+            title: "Begriff erklären",
             method: "GET | POST",
             path: "/api/explain",
-            desc: "Erklart einen Begriff kurz und historisch korrekt. Optional kann eine konkrete Frage gestellt werden.",
+            desc: "Erklärt einen Begriff kurz und historisch korrekt. Optional kann eine konkrete Frage gestellt werden.",
             params: [
                 { name: "term", desc: "Begriff (z.B. Rubikon)." },
                 { name: "question", desc: "Optionale Frage zur Vertiefung." },
@@ -318,6 +291,7 @@ const ApiDocsPage = () => {
   "response": { "response": string },
   "format": "markdown"
 }`,
+            notes: ["External service proxy."],
             isPrivate: true
         },
         {
@@ -326,7 +300,7 @@ const ApiDocsPage = () => {
             path: "/api/simulate",
             desc: "Startet ein interaktives Rollenspiel-Szenario und liefert JSON mit Optionen und Statuswerten.",
             params: [
-                { name: "persona", desc: "Persona fur die Simulation (caesar, cicero, augustus)." },
+                { name: "persona", desc: "Persona für die Simulation (caesar, cicero, augustus)." },
                 { name: "scenario", desc: "Kurzbeschreibung des Szenarios." },
                 { name: "choice", desc: "Optional: Entscheidung aus vorheriger Runde." },
                 { name: "history", desc: "Optionaler Verlauf als Array {role, content}." }
@@ -341,7 +315,7 @@ const ApiDocsPage = () => {
   -H "Content-Type: application/json" \
   -d '{
     "persona": "caesar",
-    "scenario": "Die Uberquerung des Rubikon",
+    "scenario": "Die Überquerung des Rubikon",
     "choice": "Wir werden angreifen!"
   }'`,
             responseSchema: `{
@@ -350,6 +324,7 @@ const ApiDocsPage = () => {
   "options": [{ "id": string, "text": string }],
   "ended": boolean
 }`,
+            notes: ["External service proxy."],
             isPrivate: true
         }
     ];
@@ -358,14 +333,22 @@ const ApiDocsPage = () => {
             title: "Stats",
             method: "GET",
             path: "/api/stats",
-            desc: "Dynamische Kennzahlen fur Reichweite, Inhalte und Lesezeit.",
+            desc: "Dynamische Kennzahlen für Beiträge, Autoren und Lesezeit aus der Datenbank.",
             responseSchema: `{
-  "generatedAt": string,
-  "counts": { "posts": number, "lexicon": number, "works": number, "authors": number },
-  "yearRange": { "min": number | null, "max": number | null },
-  "coverageYears": number | null,
-  "readingTime": { "minutes": number, "hours": number, "days": number, "words": number }
-}`
+  "posts": number,
+  "authors": number,
+  "tags": number,
+  "totalReadingTime": number,
+  "averageReadingTime": number,
+  "postsByAuthor": {
+    "[authorId]": number
+  },
+  "topTags": [
+    { "tag": string, "count": number }
+  ],
+  "generatedAt": string
+}`,
+            notes: ["Berechnet Kennzahlen in Echtzeit aus der D1 Datenbank."]
         }
     ];
     return (

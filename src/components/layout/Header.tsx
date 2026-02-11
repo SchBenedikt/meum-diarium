@@ -176,12 +176,12 @@ export function Header() {
             </nav>
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* Search Button */}
+              {/* Search Button - Hidden on mobile, moved to sheet menu */}
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setSearchOpen(true)}
-                className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg border border-transparent touch-manipulation"
+                className="hidden md:flex h-10 w-10 sm:h-11 sm:w-11 rounded-lg border border-transparent touch-manipulation"
                 aria-label={t('search')}
               >
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -325,6 +325,20 @@ export function Header() {
                           </span>
                         </Link>
                       </div>
+                      {/* Search Section - Mobile Only */}
+                      <div className="px-4 py-3 border-b border-border/30">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setSearchOpen(true);
+                            setMobileMenuOpen(false);
+                          }}
+                          className="w-full justify-start gap-3 h-12 px-4"
+                        >
+                          <Search className="h-5 w-5" />
+                          {t('search') || 'Suchen'}
+                        </Button>
+                      </div>
                       {/* Mobile Navigation */}
                       <nav className="flex flex-col gap-2 py-6 px-4">
                         {navItems.map((item) => {
@@ -398,7 +412,19 @@ export function Header() {
                               >
                                 <Link to="/login" className="flex items-center gap-2">
                                   <LogIn className="w-4 h-4" />
-                                  Anmelden / Registrieren
+                                  Anmelden
+                                </Link>
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="w-full justify-start"
+                                asChild
+                                onClick={handleNavClick}
+                              >
+                                <Link to="/register" className="flex items-center gap-2">
+                                  <UserPlus className="w-4 h-4" />
+                                  Registrieren
                                 </Link>
                               </Button>
                             </div>
@@ -411,7 +437,9 @@ export function Header() {
                             <Users className="w-4 h-4" />
                             {t('author')}
                           </h3>
-                          <AuthorSwitcher />
+                          <div className="md:hidden">
+                            <AuthorSwitcher />
+                          </div>
                         </div>
                         
                         {/* Theme Selector */}
