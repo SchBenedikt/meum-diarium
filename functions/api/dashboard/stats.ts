@@ -1,5 +1,5 @@
 import { getDb } from '../../db/client';
-import { comments, users } from '../../db/schema';
+import { comments, users, posts } from '../../db/schema';
 import { eq, and, desc, count } from 'drizzle-orm';
 import type { PagesContext } from '../../types';
 
@@ -54,9 +54,11 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
                 id: comments.id,
                 content: comments.content,
                 createdAt: comments.createdAt,
-                postTitle: comments.postId // We'll need to join with posts for actual titles
+                postTitle: posts.title,
+                postSlug: posts.slug
             })
             .from(comments)
+            .leftJoin(posts, eq(comments.postId, posts.id))
             .where(and(
                 eq(comments.userId, userId),
                 eq(comments.isDeleted, false)
@@ -104,7 +106,8 @@ export const onRequestGet = async (context: PagesContext): Promise<Response> => 
             },
             recentComments: recentCommentsResult.map((comment: any) => ({
                 ...comment,
-                postTitle: `Beitrag ${comment.id.substring(0, 8)}` // Simplified title
+                postTitle: comment.postTitle || `Beitrag ${comment.id.substring(0, 8)}`,
+                postSlug: comment.postSlug
             }))
         };
 

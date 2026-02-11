@@ -120,6 +120,18 @@ export const userReadingProgress = sqliteTable('user_reading_progress', {
   updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
 });
 
+// Comments Table
+export const comments = sqliteTable('comments', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  postId: text('post_id').notNull().references(() => posts.id),
+  content: text('content').notNull(),
+  parentId: text('parent_id'), // For threaded comments
+  isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
 // Relations
 export const worksRelations = relations(works, ({ one, many }) => ({
     author: one(authors, {
@@ -141,10 +153,28 @@ export const postsRelations = relations(posts, ({ one, many }) => ({
         references: [authors.id],
     }),
     readingProgress: many(userReadingProgress),
+    comments: many(comments),
 }));
 
 export const usersRelations = relations(users, ({ many }) => ({
     readingProgress: many(userReadingProgress),
+    comments: many(comments),
+}));
+
+export const commentsRelations = relations(comments, ({ one, many }) => ({
+    user: one(users, {
+        fields: [comments.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [comments.postId],
+        references: [posts.id],
+    }),
+    parent: one(comments, {
+        fields: [comments.parentId],
+        references: [comments.id],
+    }),
+    replies: many(comments),
 }));
 
 

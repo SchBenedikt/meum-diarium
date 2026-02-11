@@ -18,6 +18,12 @@ const PRECACHE_ASSETS = [
   '/images/augustus-hero.jpg',
   '/images/seneca-hero.jpg',
   '/images/catilina-hero.jpg',
+  // Core learning pages
+  '/learn',
+  '/learn/grammar',
+  '/vocab',
+  '/reader',
+  '/lexicon'
 ];
 
 // Install event - precache essential UI assets

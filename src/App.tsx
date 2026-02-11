@@ -54,13 +54,14 @@ const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const VocabularyPage = lazy(() => import('./pages/VocabularyPage'));
 const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage'));
+const SentenceAnalysisPage = lazy(() => import('./pages/SentenceAnalysisPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
-const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
+// const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -122,6 +123,7 @@ const AppContent = () => {
               <Route path="/learn/grammar/partizipien/:topic?" element={<PageTransition><PartizipienPage /></PageTransition>} />
               <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
               <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
+              <Route path="/learn/sentence-analysis" element={<PageTransition><SentenceAnalysisPage /></PageTransition>} />
               <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
               <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
               <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
@@ -134,7 +136,7 @@ const AppContent = () => {
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
               <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
-              <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} />
+              {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes */}
               <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />

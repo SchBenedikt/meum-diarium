@@ -31,21 +31,21 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    // Temporarily disable compression for Cloudflare Pages
-    // compression({
-    //   verbose: true,
-    //   disable: false,
-    //   threshold: 5120,
-    //   algorithm: 'gzip',
-    //   ext: '.gz',
-    // }),
-    // compression({
-    //   verbose: true,
-    //   disable: false,
-    //   threshold: 5120,
-    //   algorithm: 'brotliCompress',
-    //   ext: '.br',
-    // })
+    // Enable compression for better performance
+    compression({
+      verbose: true,
+      disable: false,
+      threshold: 5120,
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+    compression({
+      verbose: true,
+      disable: false,
+      threshold: 5120,
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    })
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -70,15 +70,17 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'query-vendor': ['@tanstack/react-query'],
-          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
+          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select', '@radix-ui/react-accordion', '@radix-ui/react-alert-dialog'],
           'motion': ['framer-motion'],
-          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
-          'icons': ['lucide-react']
+          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority', 'date-fns'],
+          'icons': ['lucide-react'],
+          'leaflet': ['leaflet', 'react-leaflet']
         }
       }
     },
     chunkSizeWarningLimit: 500,
     cssCodeSplit: true,
     sourcemap: mode === 'production' ? false : 'inline',
+    reportCompressedSize: true,
   }
 }));
