@@ -54,7 +54,6 @@ const LatinReader = lazy(() => import('./pages/LatinReaderNew'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const VocabularyPage = lazy(() => import('./pages/VocabularyPage'));
 const RhetoricalDevicesPage = lazy(() => import('./pages/RhetoricalDevicesPage'));
-const SentenceAnalysisPage = lazy(() => import('./pages/SentenceAnalysisPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
@@ -123,7 +122,6 @@ const AppContent = () => {
               <Route path="/learn/grammar/partizipien/:topic?" element={<PageTransition><PartizipienPage /></PageTransition>} />
               <Route path="/learn/vocab" element={<Navigate to="/learn" replace />} />
               <Route path="/learn/rhetoric" element={<PageTransition><RhetoricalDevicesPage /></PageTransition>} />
-              <Route path="/learn/sentence-analysis" element={<PageTransition><SentenceAnalysisPage /></PageTransition>} />
               <Route path="/vocab" element={<PageTransition><VocabularyPage /></PageTransition>} />
               <Route path="/reader" element={<PageTransition><LatinReader /></PageTransition>} />
               <Route path="/reader/:authorId" element={<PageTransition><LatinReader /></PageTransition>} />
