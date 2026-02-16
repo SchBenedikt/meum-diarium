@@ -40,6 +40,52 @@ Caesar beschreibt das keltische Druidentum, die Rolle der Adelsklasse, Opferbrä
       content: `Von Aulus Hirtius verfasst, um Caesars Kommentare zu vervollständigen.  Das Buch beschreibt die endgültige Pazifizierung Galliens nach Vercingetorix' Niederlage.  Letzte Aufstände werden niedergeschlagen, insbesondere in Uxellodunum, wo Caesar den Verteidigern exemplarisch die Hände abhacken lässt.` 
     }
   ],
-  translations: {}
+  translations: {
+    de: {
+      title: 'De Bello Gallico',
+      summary: 'Caesars Bericht über die Eroberung Galliens (58-50 v. Chr.). Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa.',
+      takeaway: 'Rechtfertigung einer Eroberung als Notwendigkeit. Caesar präsentiert die Unterwerfung Galliens als defensive Maßnahme zum Schutz Roms.',
+      structure: [
+        { title: 'Buch I (58 v. Chr.)', content: 'Der Helvetierkrieg eröffnet Caesars Feldzüge.' },
+        { title: 'Buch II (57 v. Chr.)', content: 'Die Unterwerfung der Belgier im Nordosten Galliens.' },
+        { title: 'Buch III (56 v. Chr.)', content: 'Feldzüge an der Atlantikküste gegen die Veneter.' },
+        { title: 'Buch IV (55 v. Chr.)', content: 'Caesars spektakuläre Propaganda-Aktionen: der erste Rheinübergang und die erste Expedition nach Britannien.' },
+        { title: 'Buch V (54 v. Chr.)', content: 'Die zweite, besser vorbereitete Britannien-Expedition mit fünf Legionen.' },
+        { title: 'Buch VI (53 v. Chr.)', content: 'Der zweite Rheinübergang und Strafexpeditionen gegen aufständische Stämme.' },
+        { title: 'Buch VII (52 v. Chr.)', content: 'Der Höhepunkt des Werkes: Der große gallische Aufstand unter Vercingetorix.' },
+        { title: 'Buch VIII (51-50 v. Chr.)', content: 'Von Aulus Hirtius verfasst, um Caesars Kommentare zu vervollständigen.' }
+      ]
+    },
+    en: {
+      title: 'Commentary on the Gallic War',
+      summary: 'Caesar\'s account of the conquest of Gaul (58-50 BC). A masterpiece of war reporting and political propaganda in crystal-clear prose.',
+      takeaway: 'Justification of a conquest as necessity. Caesar presents the subjugation of Gaul as a defensive measure to protect Rome.',
+      structure: [
+        { title: 'Book I (58 BC)', content: 'The Helvetian War begins Caesar\'s campaigns.' },
+        { title: 'Book II (57 BC)', content: 'The subjugation of the Belgae in northeastern Gaul.' },
+        { title: 'Book III (56 BC)', content: 'Campaigns on the Atlantic coast against the Veneti.' },
+        { title: 'Book IV (55 BC)', content: 'Caesar\'s spectacular propaganda actions: the first Rhine crossing and the first expedition to Britain.' },
+        { title: 'Book V (54 BC)', content: 'The second, better-prepared British expedition with five legions.' },
+        { title: 'Book VI (53 BC)', content: 'The second Rhine crossing and punitive expeditions against rebellious tribes.' },
+        { title: 'Book VII (52 BC)', content: 'The climax of the work: The great Gallic revolt under Vercingetorix.' },
+        { title: 'Book VIII (51-50 BC)', content: 'Written by Aulus Hirtius to complete Caesar\'s commentaries.' }
+      ]
+    },
+    la: {
+      title: 'De Bello Gallico',
+      summary: 'Commentarius Caesaris de Galliae expugnatione (58-50 a.C.n.). Magistrum bellorum nuntiorum et politicae propaganda perspicua oratione.',
+      takeaway: 'Expugnationis necessitatis defensio. Caesar Galliae subiectionem ut mensuram defensivam ad Romam protegendam praesentat.',
+      structure: [
+        { title: 'Liber I (58 a.C.n.)', content: 'Bellum Helveticum Caesaris expeditiones initiat.' },
+        { title: 'Liber II (57 a.C.n.)', content: 'Belgarum subiectio in Gallia septentrionali-orientali.' },
+        { title: 'Liber III (56 a.C.n.)', content: 'Expeditiones litore Atlantico contra Venetos.' },
+        { title: 'Liber IV (55 a.C.n.)', content: 'Caesaris spectacula propagandistica: primum Rhenum transgressum et primam expeditionem in Britanniam.' },
+        { title: 'Liber V (54 a.C.n.)', content: 'Secunda, melius parata Britannica expeditio cum quinque legionibus.' },
+        { title: 'Liber VI (53 a.C.n.)', content: 'Secundum Rhenum transgressum et expeditiones punitivas contra tribus rebellantes.' },
+        { title: 'Liber VII (52 a.C.n.)', content: 'Culmen operis: Magna Gallica rebellio sub Vercingetorige.' },
+        { title: 'Liber VIII (51-50 a.C.n.)', content: 'Aulo Hirtio scriptum ut Caesaris commentarios compleat.' }
+      ]
+    }
+  }
 };
 export default work;

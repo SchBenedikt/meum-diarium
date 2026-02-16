@@ -6,7 +6,7 @@ export default {
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: corsHeaders() });
         }
-        if (!["GET", "POST"].includes(request.method)) {
+        if (!["GET", "POST", "PUT", "DELETE"].includes(request.method)) {
             return new Response(JSON.stringify({ error: "Method not allowed" }), {
                 status: 405,
                 headers: corsHeaders(),
@@ -48,6 +48,11 @@ export default {
             return handleComments(request, env, url, body);
         }
 
+        // Route: /api/translations/works - handle work translations
+        if (pathname.startsWith('/api/translations/works/')) {
+            return handleWorkTranslations(request, env, url, body, pathname);
+        }
+
         // Persona extraction and Documentation check
         let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
         let question = url.searchParams.get("ask") || body?.ask;
@@ -57,31 +62,44 @@ export default {
         // Route: /api - Only proxy write operations or specific AI queries.
         // Standard content GET requests should fall through to Pages (static assets or Functions).
         if (pathname.startsWith('/api') && (["POST", "PUT", "DELETE"].includes(request.method) || question)) {
-            const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
-            const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+            // Skip work translations as they are handled separately
+            if (pathname.startsWith('/api/translations/works/')) {
+                // Already handled above, continue to next route
+            } else {
+                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+                const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
-            // Safety: Don't proxy back to self to avoid infinite loops
-            if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
-                try {
-                    const response = await fetch(proxyUrl.toString(), {
-                        method: request.method,
-                        headers: {
+                // Safety: Don't proxy back to self to avoid infinite loops
+                if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
+                    try {
+                        const headers = {
                             "Content-Type": "application/json",
                             "Accept": "application/json"
-                        },
-                        body: request.method === "POST" ? JSON.stringify(body) : null
-                    });
+                        };
 
-                    const data = await response.json();
-                    return new Response(JSON.stringify(data), {
-                        headers: corsHeaders(),
-                        status: response.status
-                    });
-                } catch (e) {
-                    return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
-                        status: 502,
-                        headers: corsHeaders()
-                    });
+                        // Forward Authorization header if present
+                        const authHeader = request.headers.get('Authorization');
+                        if (authHeader) {
+                            headers['Authorization'] = authHeader;
+                        }
+
+                        const response = await fetch(proxyUrl.toString(), {
+                            method: request.method,
+                            headers: headers,
+                            body: ["POST", "PUT", "DELETE"].includes(request.method) ? JSON.stringify(body) : null
+                        });
+
+                        const data = await response.json();
+                        return new Response(JSON.stringify(data), {
+                            headers: corsHeaders(),
+                            status: response.status
+                        });
+                    } catch (e) {
+                        return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
+                            status: 502,
+                            headers: corsHeaders()
+                        });
+                    }
                 }
             }
         }
@@ -689,11 +707,104 @@ async function handleComments(request, env, url, body) {
     }
 }
 
+// =======================================
+// Work Translations endpoint
+// =======================================
+async function handleWorkTranslations(request, env, url, body, pathname) {
+    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    
+    // Extract work ID and language from pathname
+    // Pattern: /api/translations/works/:workId or /api/translations/works/:workId/:lang
+    const pathParts = pathname.split('/').filter(Boolean);
+    const workId = pathParts[3]; // works is at index 2, workId at index 3
+    const lang = pathParts[4]; // optional language code at index 4
+
+    if (!workId) {
+        return new Response(JSON.stringify({ error: 'Missing work ID' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    try {
+        let proxyUrl;
+        
+        if (lang) {
+            // Specific language endpoint: /api/translations/works/:workId/:lang
+            const queryParams = url.search;
+            proxyUrl = new URL(`/api/translations/works/${workId}/${lang}${queryParams}`, baseBackendUrl);
+        } else {
+            // Work overview endpoint: /api/translations/works/:workId
+            const queryParams = url.search;
+            proxyUrl = new URL(`/api/translations/works/${workId}${queryParams}`, baseBackendUrl);
+        }
+
+        const headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        };
+
+        // Forward Authorization header if present
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            headers['Authorization'] = authHeader;
+        }
+
+        const response = await fetch(proxyUrl.toString(), {
+            method: request.method,
+            headers: headers,
+            body: (request.method === "POST" || request.method === "PUT") ? JSON.stringify(body) : null
+        });
+
+        // Handle the response
+        let responseData;
+        const contentType = response.headers.get('content-type');
+        
+        if (contentType && contentType.includes('application/json')) {
+            responseData = await response.json();
+        } else {
+            responseData = await response.text();
+        }
+
+        // For work translations, we might need to transform the data
+        if (response.ok && typeof responseData === 'object') {
+            // Ensure the response has the expected structure for work translations
+            if (!responseData.translations) {
+                responseData = {
+                    ...responseData,
+                    translations: responseData || {}
+                };
+            }
+        }
+
+        return new Response(
+            typeof responseData === 'object' ? JSON.stringify(responseData) : responseData,
+            {
+                headers: {
+                    ...corsHeaders(),
+                    'Content-Type': contentType || 'application/json'
+                },
+                status: response.status
+            }
+        );
+
+    } catch (e) {
+        console.error('[Worker] Work translations proxy error:', e);
+        return new Response(JSON.stringify({ 
+            error: "Work translations API Error", 
+            details: e.message 
+        }), {
+            status: 502,
+            headers: corsHeaders()
+        });
+    }
+}
+
 function corsHeaders() {
     return {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Accept",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
     };
 }
