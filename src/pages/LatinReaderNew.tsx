@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, BookOpen, User, Minimize2, Maximize2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { works } from '@/data/works';
@@ -28,7 +28,6 @@ export default function LatinReaderNew() {
   const [selectedSentence, setSelectedSentence] = useState<string>('');
   const [selectedSentenceIndex, setSelectedSentenceIndex] = useState<number | null>(null);
   const [selectedSentenceKey, setSelectedSentenceKey] = useState<string>('');
-  const [isTextMinimized, setIsTextMinimized] = useState(false);
   const textAreaRef = useRef<HTMLDivElement>(null);
 
   // Get available authors with works
@@ -48,7 +47,6 @@ export default function LatinReaderNew() {
     setSelectedSentence(sentence);
     setSelectedSentenceIndex(index);
     setSelectedSentenceKey(key);
-    setIsTextMinimized(true);
   };
 
 
@@ -58,7 +56,6 @@ export default function LatinReaderNew() {
     setSelectedSentence('');
     setSelectedSentenceIndex(null);
     setSelectedSentenceKey('');
-    setIsTextMinimized(false);
   };
 
   // Step 1: Author Selection
@@ -181,32 +178,20 @@ export default function LatinReaderNew() {
           {/* Latin Text */}
           <Card className="p-8">
             <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-xl bg-primary/10">
-                    <BookOpen className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="font-bold text-xl">Lateinischer Text</h2>
-                    <p className="text-sm text-muted-foreground">{selectedWork?.title}</p>
-                  </div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 rounded-xl bg-primary/10">
+                  <BookOpen className="w-6 h-6 text-primary" />
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsTextMinimized(!isTextMinimized)}
-                  className="hover:bg-primary/10"
-                >
-                  {isTextMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
-                </Button>
+                <div>
+                  <h2 className="font-bold text-xl">Lateinischer Text</h2>
+                  <p className="text-sm text-muted-foreground">{selectedWork?.title}</p>
+                </div>
               </div>
             </div>
 
             {latinText ? (
-              <div className="space-y-8">
-                {!isTextMinimized && (
-                  <div className="space-y-6">
-                    {latinText.books.map((book: any) => (
+              <div className="space-y-6">
+                {latinText.books.map((book: any) => (
                       <div key={book.number} className="space-y-4">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
@@ -256,20 +241,6 @@ export default function LatinReaderNew() {
                         ))}
                       </div>
                     ))}
-                  </div>
-                )}
-                
-                {isTextMinimized && (
-                  <div className="text-center py-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-sm text-primary mb-4">
-                      <BookOpen className="w-4 h-4" />
-                      <span>Text fokussiert</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Text ist minimiert für bessere Konzentration auf die Analyse
-                    </p>
-                  </div>
-                )}
               </div>
             ) : (
               <div className="text-center py-12 text-muted-foreground">
