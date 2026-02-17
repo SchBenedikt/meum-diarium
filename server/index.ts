@@ -951,6 +951,116 @@ app.get('/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Dev server running - using local data files' });
 });
 
+// =======================================
+// Latin Translation endpoint (Development)
+// =======================================
+app.post('/api/latin/translate', async (req, res) => {
+    console.log('🔤 [Dev] POST /api/latin/translate - AI translation request');
+    
+    try {
+        const { sentence, type = 'literal' } = req.body;
+        
+        if (!sentence) {
+            return res.status(400).json({ error: 'Missing sentence parameter' });
+        }
+
+        // In development, we'll provide mock translations with some variety
+        const mockTranslations: Record<string, Record<string, string>> = {
+            'Gallia est omnis divisa in partes tres': {
+                literal: 'Gallien ist ganz geteilt in drei Teile',
+                meaningful: 'Ganz Gallien ist in drei Teile gegliedert'
+            },
+            'Hi omnes lingua institutis legibus inter se differunt': {
+                literal: 'Diese alle Sprache Einrichtungen Gesetzen unter sich unterscheiden',
+                meaningful: 'Diese alle unterscheiden sich durch Sprache, Einrichtungen und Gesetze untereinander'
+            }
+        };
+
+        const translation = mockTranslations[sentence]?.[type] || 
+            (type === 'meaningful' 
+                ? `Sinnhafte Übersetzung von: ${sentence}`
+                : `Wörtliche Übersetzung von: ${sentence}`
+            );
+
+        const result = {
+            sentence,
+            type,
+            translation,
+            format: 'text',
+            source: 'development-mock'
+        };
+
+        console.log(`✅ [Dev] Translation completed for: "${sentence.substring(0, 50)}..."`);
+        res.json(result);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Translation error:', error);
+        res.status(500).json({ 
+            error: 'Translation failed', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+// =======================================
+// Latin Grammatical Analysis endpoint (Development)
+// =======================================
+app.post('/api/latin/analyze', async (req, res) => {
+    console.log('📝 [Dev] POST /api/latin/analyze - AI analysis request');
+    
+    try {
+        const { sentence } = req.body;
+        
+        if (!sentence) {
+            return res.status(400).json({ error: 'Missing sentence parameter' });
+        }
+
+        // In development, create mock grammatical analysis
+        const words = sentence.replace(/[.,;:!?]/g, '').split(' ').filter(w => w.length > 0);
+        
+        const grammaticalCases = ['Nominativ', 'Akkusativ', 'Dativ', 'Genitiv', 'Ablativ'];
+        const genders = ['maskulin', 'feminin', 'neutral'];
+        const numbers = ['Singular', 'Plural'];
+        const persons = ['1. Person', '2. Person', '3. Person'];
+        const tenses = ['Präsens', 'Perfekt', 'Futur'];
+        const moods = ['Indikativ', 'Konjunktiv', 'Imperativ'];
+        const voices = ['Aktiv', 'Passiv'];
+        const roles = ['Subjekt', 'Objekt', 'Prädikat', 'Adverbiale Bestimmung'];
+
+        const analysis = words.map((word, index) => ({
+            word: word,
+            grammaticalInfo: {
+                case: grammaticalCases[index % grammaticalCases.length],
+                gender: genders[index % genders.length],
+                number: numbers[index % numbers.length],
+                person: persons[index % persons.length],
+                tense: tenses[index % tenses.length],
+                mood: moods[index % moods.length],
+                voice: voices[index % voices.length],
+                role: roles[index % roles.length]
+            },
+            highlighted: Math.random() > 0.5
+        }));
+
+        const result = {
+            sentence,
+            analysis,
+            format: 'json',
+            source: 'development-mock'
+        };
+
+        console.log(`✅ [Dev] Analysis completed for: "${sentence.substring(0, 50)}..."`);
+        res.json(result);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Analysis error:', error);
+        res.status(500).json({ 
+            error: 'Analysis failed', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
 // **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router
 // This must be LAST to catch all deep routes like /caesar/works/:slug
 app.get(/^(?!\/api\/)/, async (_req, res) => {

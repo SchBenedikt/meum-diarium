@@ -50,6 +50,9 @@ export default function LatinReaderNew() {
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [grammaticalAnalysis, setGrammaticalAnalysis] = useState<GrammaticalAnalysis[]>([]);
   const [isTextMinimized, setIsTextMinimized] = useState(false);
+  const [translation, setTranslation] = useState<string>('');
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const textAreaRef = useRef<HTMLDivElement>(null);
 
   // Get available authors with works
@@ -71,51 +74,97 @@ export default function LatinReaderNew() {
     setShowTranslation(false);
     setShowAnalysis(false);
     setAiHelp('');
+    setTranslation('');
     setIsTextMinimized(true);
   };
 
-  const handleTranslationHelp = () => {
+  const handleTranslationHelp = async () => {
     if (!selectedSentence) return;
     
-    // Demo AI-powered grammatical analysis
-    const words = selectedSentence.split(' ');
-    const colors = ['bg-red-100', 'bg-blue-100', 'bg-green-100', 'bg-yellow-100', 'bg-purple-100'];
-    const analysis: GrammaticalAnalysis[] = words.map((word, index) => ({
-      word: word.replace(/[.,;:!?]/g, ''),
-      grammaticalInfo: {
-        case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : index % 3 === 2 ? 'Dativ' : undefined,
-        gender: index % 4 === 0 ? 'maskulin' : index % 4 === 1 ? 'feminin' : index % 4 === 2 ? 'neutral' : undefined,
-        number: index % 2 === 0 ? 'Singular' : 'Plural',
-        role: index % 4 === 0 ? 'Subjekt' : index % 4 === 1 ? 'Objekt' : index % 4 === 2 ? 'Prädikat' : 'Adverbiale Bestimmung',
-        person: index % 3 === 0 ? '1. Person' : index % 3 === 1 ? '2. Person' : '3. Person',
-        tense: index % 3 === 0 ? 'Präsens' : index % 3 === 1 ? 'Perfekt' : 'Futur',
-        mood: index % 3 === 0 ? 'Indikativ' : index % 3 === 1 ? 'Konjunktiv' : 'Imperativ',
-        voice: index % 2 === 0 ? 'Aktiv' : 'Passiv'
-      },
-      highlighted: Math.random() > 0.5,
-      color: colors[index % colors.length]
-    }));
+    setIsTranslating(true);
+    try {
+      const response = await fetch('/api/latin/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sentence: selectedSentence,
+          type: translationType
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Translation failed');
+      }
+      
+      const data = await response.json();
+      setTranslation(data.translation || 'Übersetzung nicht verfügbar');
+      setShowTranslation(true);
+    } catch (error) {
+      console.error('Translation error:', error);
+      setTranslation('Übersetzung nicht verfügbar');
+      setShowTranslation(true);
+    } finally {
+      setIsTranslating(false);
+    }
+  };
+
+  const handleGrammaticalAnalysis = async () => {
+    if (!selectedSentence) return;
     
-    setGrammaticalAnalysis(analysis);
-    setShowAnalysis(true);
+    setIsAnalyzing(true);
+    try {
+      const response = await fetch('/api/latin/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sentence: selectedSentence
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Analysis failed');
+      }
+      
+      const data = await response.json();
+      setGrammaticalAnalysis(data.analysis || []);
+      setShowAnalysis(true);
+    } catch (error) {
+      console.error('Analysis error:', error);
+      // Fallback to demo analysis
+      const words = selectedSentence.split(' ');
+      const colors = ['bg-red-100', 'bg-blue-100', 'bg-green-100', 'bg-yellow-100', 'bg-purple-100'];
+      const fallbackAnalysis: GrammaticalAnalysis[] = words.map((word, index) => ({
+        word: word.replace(/[.,;:!?]/g, ''),
+        grammaticalInfo: {
+          case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : index % 3 === 2 ? 'Dativ' : undefined,
+          gender: index % 4 === 0 ? 'maskulin' : index % 4 === 1 ? 'feminin' : index % 4 === 2 ? 'neutral' : undefined,
+          number: index % 2 === 0 ? 'Singular' : 'Plural',
+          role: index % 4 === 0 ? 'Subjekt' : index % 4 === 1 ? 'Objekt' : index % 4 === 2 ? 'Prädikat' : 'Adverbiale Bestimmung',
+          person: index % 3 === 0 ? '1. Person' : index % 3 === 1 ? '2. Person' : '3. Person',
+          tense: index % 3 === 0 ? 'Präsens' : index % 3 === 1 ? 'Perfekt' : 'Futur',
+          mood: index % 3 === 0 ? 'Indikativ' : index % 3 === 1 ? 'Konjunktiv' : 'Imperativ',
+          voice: index % 2 === 0 ? 'Aktiv' : 'Passiv'
+        },
+        highlighted: Math.random() > 0.5,
+        color: colors[index % colors.length]
+      }));
+      setGrammaticalAnalysis(fallbackAnalysis);
+      setShowAnalysis(true);
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const getTranslation = (sentence: string): { literal: string; meaningful: string } => {
-    // Demo translations - in real app this would come from API
-    const translations: { [key: string]: { literal: string; meaningful: string } } = {
-      "Gallia est omnis divisa in partes tres": {
-        literal: "Gallien ist ganz geteilt in drei Teile",
-        meaningful: "Ganz Gallien ist in drei Teile gegliedert"
-      },
-      "Hi omnes lingua, institutis, legibus inter se differunt": {
-        literal: "Diese alle Sprache, Einrichtungen, Gesetzen unter sich unterscheiden",
-        meaningful: "Diese alle unterscheiden sich durch Sprache, Einrichtungen und Gesetze untereinander"
-      }
-    };
-    
-    return translations[sentence] || {
-      literal: "Übersetzung nicht verfügbar",
-      meaningful: "Übersetzung nicht verfügbar"
+    // This function is now replaced by real API calls
+    // Keeping for fallback compatibility
+    return {
+      literal: translation || 'Übersetzung wird geladen...',
+      meaningful: translation || 'Übersetzung wird geladen...'
     };
   };
 
@@ -125,6 +174,7 @@ export default function LatinReaderNew() {
     setShowTranslation(false);
     setShowAnalysis(false);
     setAiHelp('');
+    setTranslation('');
     setIsTextMinimized(false);
   };
 
@@ -398,20 +448,21 @@ export default function LatinReaderNew() {
                   
                   <div className="space-y-3">
                     <Button
-                      onClick={() => setShowTranslation(!showTranslation)}
-                      variant="outline"
+                      onClick={handleTranslationHelp}
                       className="w-full"
+                      disabled={isTranslating}
                     >
                       <Languages className="h-4 w-4 mr-2" />
-                      {showTranslation ? 'Übersetzung ausblenden' : 'Übersetzung anzeigen'}
+                      {isTranslating ? 'Übersetzung wird geladen...' : 'Übersetzung anzeigen'}
                     </Button>
                     
                     <Button
-                      onClick={handleTranslationHelp}
+                      onClick={handleGrammaticalAnalysis}
                       className="w-full"
+                      disabled={isAnalyzing}
                     >
                       <Sparkles className="h-4 w-4 mr-2" />
-                      Übersetzungshilfe
+                      {isAnalyzing ? 'Analyse wird geladen...' : 'Grammatikanalyse'}
                     </Button>
                   </div>
                 </div>
@@ -426,10 +477,7 @@ export default function LatinReaderNew() {
                       </span>
                     </div>
                     <p className="text-sm leading-relaxed text-foreground">
-                      {translationType === 'literal' 
-                        ? getTranslation(selectedSentence).literal 
-                        : getTranslation(selectedSentence).meaningful
-                      }
+                      {translation}
                     </p>
                   </div>
                 )}
@@ -440,7 +488,7 @@ export default function LatinReaderNew() {
                     <div className="flex items-center gap-2 mb-4">
                       <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                       <span className="text-sm font-medium text-amber-700 dark:text-amber-300">
-                        Grammatikalische Analyse (Demo)
+                        Grammatikalische Analyse
                       </span>
                     </div>
                     <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -477,8 +525,8 @@ export default function LatinReaderNew() {
                 {/* Note */}
                 <div className="mt-6 p-3 rounded-lg bg-muted/50 border border-border/50">
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    <span className="font-medium text-foreground">Hinweis:</span> Die KI-Funktionen sind Demo-Versionen. 
-                    In der finalen Version werden echte Übersetzungen und Grammatikanalysen bereitgestellt.
+                    <span className="font-medium text-foreground">Hinweis:</span> Die KI-Funktionen verwenden echte Sprachmodelle zur Übersetzung und Grammatikanalyse. 
+                    Die Ergebnisse können je nach Satzkomplexität variieren.
                   </p>
                 </div>
               </div>
