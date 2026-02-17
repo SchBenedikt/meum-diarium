@@ -44,6 +44,7 @@ export default function LatinReaderNew() {
   const navigate = useNavigate();
   const [selectedSentence, setSelectedSentence] = useState<string>('');
   const [selectedSentenceIndex, setSelectedSentenceIndex] = useState<number | null>(null);
+  const [selectedSentenceKey, setSelectedSentenceKey] = useState<string>('');
   const [showTranslation, setShowTranslation] = useState(false);
   const [translationType, setTranslationType] = useState<'literal' | 'meaningful'>('literal');
   const [aiHelp, setAiHelp] = useState<string>('');
@@ -68,9 +69,10 @@ export default function LatinReaderNew() {
   const latinText = selectedWork && LATIN_TEXTS[workSlug || ''];
 
   // Helper functions
-  const handleSentenceSelect = (sentence: string, index: number) => {
+  const handleSentenceSelect = (sentence: string, index: number, key: string) => {
     setSelectedSentence(sentence);
     setSelectedSentenceIndex(index);
+    setSelectedSentenceKey(key);
     setShowTranslation(false);
     setShowAnalysis(false);
     setAiHelp('');
@@ -171,6 +173,7 @@ export default function LatinReaderNew() {
   const resetSelection = () => {
     setSelectedSentence('');
     setSelectedSentenceIndex(null);
+    setSelectedSentenceKey('');
     setShowTranslation(false);
     setShowAnalysis(false);
     setAiHelp('');
@@ -342,12 +345,14 @@ export default function LatinReaderNew() {
                             
                             {/* Sentences */}
                             <div className="space-y-2 ml-8">
-                              {chapter.latin.split(/[.!?]+/).filter((sentence: string) => sentence.trim().length > 0).map((sentence: string, index: number) => (
+                              {chapter.latin.split(/[.!?]+/).filter((sentence: string) => sentence.trim().length > 0).map((sentence: string, index: number) => {
+                                const sentenceKey = `book-${book.number}-chapter-${chapter.number}-sentence-${index}`;
+                                return (
                                 <div
-                                  key={`chapter-${chapter.number}-sentence-${index}`}
-                                  onClick={() => handleSentenceSelect(sentence.trim() + '.', index)}
+                                  key={sentenceKey}
+                                  onClick={() => handleSentenceSelect(sentence.trim() + '.', index, sentenceKey)}
                                   className={`group cursor-pointer rounded-xl border transition-all duration-300 ${
-                                    selectedSentenceIndex === index
+                                    selectedSentenceKey === sentenceKey
                                       ? 'bg-primary/10 border-primary/40 shadow-sm'
                                       : 'bg-secondary/5 border-border hover:border-primary/30 hover:bg-primary/5'
                                   } p-4`}
@@ -359,12 +364,13 @@ export default function LatinReaderNew() {
                                     <p className="text-sm leading-relaxed font-serif text-foreground/90 group-hover:text-primary/90 transition-colors flex-1">
                                       {sentence.trim() + '.'}
                                     </p>
-                                    {selectedSentenceIndex === index && (
+                                    {selectedSentenceKey === sentenceKey && (
                                       <div className="w-2 h-2 rounded-full bg-primary mt-2" />
                                     )}
                                   </div>
                                 </div>
-                              ))}
+                                );
+                              })}
                             </div>
                           </div>
                         ))}
