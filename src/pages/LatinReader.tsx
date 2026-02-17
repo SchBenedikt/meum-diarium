@@ -8,11 +8,7 @@ import {
     ChevronRight,
     Search,
     XCircle,
-    BookOpen,
-    Languages,
-    Sparkles,
-    Eye,
-    EyeOff
+    BookOpen
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
@@ -59,10 +55,6 @@ export default function LatinReader() {
     const [selectedBook, setSelectedBook] = useState<Book>(deBelloGallico.books[0]);
     const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
     const [selectedSentence, setSelectedSentence] = useState<Sentence | null>(null);
-    const [showTranslation, setShowTranslation] = useState(false);
-    const [translationType, setTranslationType] = useState<'literal' | 'meaningful'>('literal');
-    const [showAnalysis, setShowAnalysis] = useState(false);
-    const [grammaticalAnalysis, setGrammaticalAnalysis] = useState<GrammaticalAnalysis[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [bookSearchQuery, setBookSearchQuery] = useState('');
 
@@ -100,52 +92,9 @@ export default function LatinReader() {
 
     const handleSentenceSelect = (sentence: string, index: number) => {
         setSelectedSentence({ text: sentence, index });
-        setShowTranslation(false);
-        setShowAnalysis(false);
     };
 
-    const handleTranslationHelp = () => {
-        if (!selectedSentence) return;
-        
-        // Demo AI-powered grammatical analysis
-        const words = selectedSentence.text.split(' ');
-        const analysis: GrammaticalAnalysis[] = words.map((word, index) => ({
-            word: word.replace(/[.,;:!?]/g, ''),
-            grammaticalInfo: {
-                case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : index % 3 === 2 ? 'Dativ' : undefined,
-                gender: index % 4 === 0 ? 'maskulin' : index % 4 === 1 ? 'feminin' : index % 4 === 2 ? 'neutral' : undefined,
-                number: index % 2 === 0 ? 'Singular' : 'Plural',
-                role: index % 4 === 0 ? 'Subjekt' : index % 4 === 1 ? 'Objekt' : index % 4 === 2 ? 'Prädikat' : 'Adverbiale Bestimmung',
-                person: index % 3 === 0 ? '1. Person' : index % 3 === 1 ? '2. Person' : '3. Person',
-                tense: index % 3 === 0 ? 'Präsens' : index % 3 === 1 ? 'Perfekt' : 'Futur',
-                mood: index % 3 === 0 ? 'Indikativ' : index % 3 === 1 ? 'Konjunktiv' : 'Imperativ',
-                voice: index % 2 === 0 ? 'Aktiv' : 'Passiv'
-            },
-            highlighted: Math.random() > 0.5 // Demo: random highlighting
-        }));
-        
-        setGrammaticalAnalysis(analysis);
-        setShowAnalysis(true);
-    };
 
-    const getTranslation = (sentence: string): { literal: string; meaningful: string } => {
-        // Demo translations - in real app this would come from API
-        const translations: { [key: string]: { literal: string; meaningful: string } } = {
-            "Gallia est omnis divisa in partes tres": {
-                literal: "Gallien ist ganz geteilt in drei Teile",
-                meaningful: "Ganz Gallien ist in drei Teile gegliedert"
-            },
-            "Hi omnes lingua, institutis, legibus inter se differunt": {
-                literal: "Diese alle Sprache, Einrichtungen, Gesetzen unter sich unterscheiden",
-                meaningful: "Diese alle unterscheiden sich durch Sprache, Einrichtungen und Gesetze untereinander"
-            }
-        };
-        
-        return translations[sentence] || {
-            literal: "Übersetzung nicht verfügbar",
-            meaningful: "Übersetzung nicht verfügbar"
-        };
-    };
 
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
@@ -165,7 +114,7 @@ export default function LatinReader() {
                             De Bello <span className="text-primary italic">Gallico</span>
                         </h1>
                         <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
-                            Wähle einen Satz für detaillierte Analyse und Übersetzungshilfen.
+                            Wähle einen Satz zum Lesen und Analysieren.
                         </p>
                     </motion.div>
                     <Link to="/latin" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
@@ -254,8 +203,6 @@ export default function LatinReader() {
                                             onClick={() => {
                                                 setSelectedChapter(chapter);
                                                 setSelectedSentence(null);
-                                                setShowTranslation(false);
-                                                setShowAnalysis(false);
                                             }}
                                             className={`w-full text-left px-4 py-2 rounded-xl text-xs transition-all border ${
                                                 selectedChapter?.number === chapter.number
@@ -282,25 +229,6 @@ export default function LatinReader() {
                                         </p>
                                     </div>
                                     
-                                    {/* Translation Options */}
-                                    <div className="space-y-3">
-                                        <Button
-                                            onClick={() => setShowTranslation(!showTranslation)}
-                                            variant="outline"
-                                            className="w-full rounded-xl bg-background border-border hover:bg-secondary/50"
-                                        >
-                                            <Languages className="h-4 w-4 mr-2" />
-                                            {showTranslation ? 'Übersetzung ausblenden' : 'Übersetzung anzeigen'}
-                                        </Button>
-                                        
-                                        <Button
-                                            onClick={handleTranslationHelp}
-                                            className="w-full rounded-xl bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
-                                        >
-                                            <Sparkles className="h-4 w-4 mr-2" />
-                                            Übersetzungshilfe
-                                        </Button>
-                                    </div>
                                 </div>
                             )}
                         </Card>
@@ -358,145 +286,7 @@ export default function LatinReader() {
                                         </div>
                                     </Card>
 
-                                    {/* Translation Panel */}
-                                    <AnimatePresence>
-                                        {showTranslation && selectedSentence && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -20 }}
-                                                className="space-y-4"
-                                            >
-                                                <Card className="card-modern border-border/40 bg-card/30 backdrop-blur-xl">
-                                                    <div className="px-8 py-4 border-b border-white/5 bg-secondary/5 flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <Languages className="h-4 w-4 text-primary" />
-                                                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/80">ÜBERSETZUNG</span>
-                                                        </div>
-                                                        <div className="flex gap-2">
-                                                            <Button
-                                                                size="sm"
-                                                                variant={translationType === 'literal' ? 'default' : 'outline'}
-                                                                onClick={() => setTranslationType('literal')}
-                                                                className="text-xs rounded-xl"
-                                                            >
-                                                                Wörtlich
-                                                            </Button>
-                                                            <Button
-                                                                size="sm"
-                                                                variant={translationType === 'meaningful' ? 'default' : 'outline'}
-                                                                onClick={() => setTranslationType('meaningful')}
-                                                                className="text-xs rounded-xl"
-                                                            >
-                                                                Sinnhaft
-                                                            </Button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="p-6 space-y-4">
-                                                        <div className="space-y-3">
-                                                            <div>
-                                                                <p className="text-sm font-semibold text-primary mb-2">Wörtliche Übersetzung:</p>
-                                                                <p className="text-sm leading-relaxed">
-                                                                    {getTranslation(selectedSentence.text).literal}
-                                                                </p>
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-sm font-semibold text-primary mb-2">Sinnhafte Übersetzung:</p>
-                                                                <p className="text-sm leading-relaxed">
-                                                                    {getTranslation(selectedSentence.text).meaningful}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
 
-                                    {/* Grammatical Analysis Panel */}
-                                    <AnimatePresence>
-                                        {showAnalysis && selectedSentence && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -20 }}
-                                                className="space-y-4"
-                                            >
-                                                <Card className="card-modern border-border/40 bg-card/30 backdrop-blur-xl">
-                                                    <div className="px-8 py-4 border-b border-white/5 bg-secondary/5 flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <Sparkles className="h-4 w-4 text-primary" />
-                                                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary/80">GRAMMATIKALYSE (DEMO)</span>
-                                                        </div>
-                                                        <Button
-                                                            size="sm"
-                                                            variant="outline"
-                                                            onClick={() => setShowAnalysis(false)}
-                                                            className="text-xs rounded-xl"
-                                                        >
-                                                            <EyeOff className="h-3 w-3 mr-1" />
-                                                            Ausblenden
-                                                        </Button>
-                                                    </div>
-                                                    <div className="p-6">
-                                                        <div className="space-y-2">
-                                                            {grammaticalAnalysis.map((analysis, index) => (
-                                                                <div
-                                                                    key={index}
-                                                                    className={`p-3 rounded-lg border ${
-                                                                        analysis.highlighted
-                                                                            ? 'bg-primary/10 border-primary/30'
-                                                                            : 'bg-secondary/10 border-border/40'
-                                                                    }`}
-                                                                >
-                                                                    <div className="flex items-center gap-3 mb-2">
-                                                                        <span className="font-semibold text-lg">{analysis.word}</span>
-                                                                        {analysis.highlighted && (
-                                                                            <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">
-                                                                                Hervorgehoben
-                                                                            </span>
-                                                                        )}
-                                                                    </div>
-                                                                    <div className="grid grid-cols-2 gap-2 text-xs">
-                                                                        {analysis.grammaticalInfo.case && (
-                                                                            <div><span className="font-medium">Kasus:</span> {analysis.grammaticalInfo.case}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.gender && (
-                                                                            <div><span className="font-medium">Genus:</span> {analysis.grammaticalInfo.gender}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.number && (
-                                                                            <div><span className="font-medium">Numerus:</span> {analysis.grammaticalInfo.number}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.person && (
-                                                                            <div><span className="font-medium">Person:</span> {analysis.grammaticalInfo.person}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.tense && (
-                                                                            <div><span className="font-medium">Tempus:</span> {analysis.grammaticalInfo.tense}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.mood && (
-                                                                            <div><span className="font-medium">Modus:</span> {analysis.grammaticalInfo.mood}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.voice && (
-                                                                            <div><span className="font-medium">Genus Verbi:</span> {analysis.grammaticalInfo.voice}</div>
-                                                                        )}
-                                                                        {analysis.grammaticalInfo.role && (
-                                                                            <div><span className="font-medium">Funktion:</span> {analysis.grammaticalInfo.role}</div>
-                                                                        )}
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                        <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                                                            <p className="text-xs text-amber-700 dark:text-amber-300">
-                                                                <strong>Hinweis:</strong> Dies ist eine Demo-Analyse mit KI-generierten grammatischen Informationen. 
-                                                                In der finalen Version würde dies durch ein echtes Sprachmodell bereitgestellt.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
                                 </motion.div>
                             ) : (
                                 <motion.div

@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { ArrowLeft, BookOpen, User, Languages, Sparkles, Minimize2, Maximize2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, User, Minimize2, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { works } from '@/data/works';
@@ -12,22 +11,6 @@ import { works } from '@/data/works';
 import deBelloGallicoText from '@/data/latin/caesar-de-bello-gallico.json';
 import deOfficiisText from '@/data/latin-texts/de-officiis.json';
 
-// Types for grammatical analysis
-type GrammaticalAnalysis = {
-  word: string;
-  grammaticalInfo: {
-    case?: string;
-    gender?: string;
-    number?: string;
-    person?: string;
-    tense?: string;
-    mood?: string;
-    voice?: string;
-    role?: string;
-  };
-  highlighted: boolean;
-  color?: string;
-};
 
 // Latin texts registry
 const LATIN_TEXTS: Record<string, any> = {
@@ -37,7 +20,7 @@ const LATIN_TEXTS: Record<string, any> = {
 
 // Step 1: Author selection
 // Step 2: Work selection for that author
-// Step 3: Show Latin text with AI helper
+// Step 3: Show Latin text for reading
 
 export default function LatinReaderNew() {
   const { authorId, workSlug } = useParams<{ authorId?: string; workSlug?: string }>();
@@ -45,15 +28,7 @@ export default function LatinReaderNew() {
   const [selectedSentence, setSelectedSentence] = useState<string>('');
   const [selectedSentenceIndex, setSelectedSentenceIndex] = useState<number | null>(null);
   const [selectedSentenceKey, setSelectedSentenceKey] = useState<string>('');
-  const [showTranslation, setShowTranslation] = useState(false);
-  const [translationType, setTranslationType] = useState<'literal' | 'meaningful'>('literal');
-  const [aiHelp, setAiHelp] = useState<string>('');
-  const [showAnalysis, setShowAnalysis] = useState(false);
-  const [grammaticalAnalysis, setGrammaticalAnalysis] = useState<GrammaticalAnalysis[]>([]);
   const [isTextMinimized, setIsTextMinimized] = useState(false);
-  const [translation, setTranslation] = useState<string>('');
-  const [isTranslating, setIsTranslating] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const textAreaRef = useRef<HTMLDivElement>(null);
 
   // Get available authors with works
@@ -73,111 +48,16 @@ export default function LatinReaderNew() {
     setSelectedSentence(sentence);
     setSelectedSentenceIndex(index);
     setSelectedSentenceKey(key);
-    setShowTranslation(false);
-    setShowAnalysis(false);
-    setAiHelp('');
-    setTranslation('');
     setIsTextMinimized(true);
   };
 
-  const handleTranslationHelp = async () => {
-    if (!selectedSentence) return;
-    
-    setIsTranslating(true);
-    try {
-      const response = await fetch('/api/latin/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sentence: selectedSentence,
-          type: translationType
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Translation failed');
-      }
-      
-      const data = await response.json();
-      setTranslation(data.translation || 'Übersetzung nicht verfügbar');
-      setShowTranslation(true);
-    } catch (error) {
-      console.error('Translation error:', error);
-      setTranslation('Übersetzung nicht verfügbar');
-      setShowTranslation(true);
-    } finally {
-      setIsTranslating(false);
-    }
-  };
 
-  const handleGrammaticalAnalysis = async () => {
-    if (!selectedSentence) return;
-    
-    setIsAnalyzing(true);
-    try {
-      const response = await fetch('/api/latin/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sentence: selectedSentence
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Analysis failed');
-      }
-      
-      const data = await response.json();
-      setGrammaticalAnalysis(data.analysis || []);
-      setShowAnalysis(true);
-    } catch (error) {
-      console.error('Analysis error:', error);
-      // Fallback to demo analysis
-      const words = selectedSentence.split(' ');
-      const colors = ['bg-red-100', 'bg-blue-100', 'bg-green-100', 'bg-yellow-100', 'bg-purple-100'];
-      const fallbackAnalysis: GrammaticalAnalysis[] = words.map((word, index) => ({
-        word: word.replace(/[.,;:!?]/g, ''),
-        grammaticalInfo: {
-          case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : index % 3 === 2 ? 'Dativ' : undefined,
-          gender: index % 4 === 0 ? 'maskulin' : index % 4 === 1 ? 'feminin' : index % 4 === 2 ? 'neutral' : undefined,
-          number: index % 2 === 0 ? 'Singular' : 'Plural',
-          role: index % 4 === 0 ? 'Subjekt' : index % 4 === 1 ? 'Objekt' : index % 4 === 2 ? 'Prädikat' : 'Adverbiale Bestimmung',
-          person: index % 3 === 0 ? '1. Person' : index % 3 === 1 ? '2. Person' : '3. Person',
-          tense: index % 3 === 0 ? 'Präsens' : index % 3 === 1 ? 'Perfekt' : 'Futur',
-          mood: index % 3 === 0 ? 'Indikativ' : index % 3 === 1 ? 'Konjunktiv' : 'Imperativ',
-          voice: index % 2 === 0 ? 'Aktiv' : 'Passiv'
-        },
-        highlighted: Math.random() > 0.5,
-        color: colors[index % colors.length]
-      }));
-      setGrammaticalAnalysis(fallbackAnalysis);
-      setShowAnalysis(true);
-    } finally {
-      setIsAnalyzing(false);
-    }
-  };
 
-  const getTranslation = (sentence: string): { literal: string; meaningful: string } => {
-    // This function is now replaced by real API calls
-    // Keeping for fallback compatibility
-    return {
-      literal: translation || 'Übersetzung wird geladen...',
-      meaningful: translation || 'Übersetzung wird geladen...'
-    };
-  };
 
   const resetSelection = () => {
     setSelectedSentence('');
     setSelectedSentenceIndex(null);
     setSelectedSentenceKey('');
-    setShowTranslation(false);
-    setShowAnalysis(false);
-    setAiHelp('');
-    setTranslation('');
     setIsTextMinimized(false);
   };
 
@@ -304,7 +184,7 @@ export default function LatinReaderNew() {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="p-3 rounded-xl bg-primary/10">
-                    <Languages className="w-6 h-6 text-primary" />
+                    <BookOpen className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h2 className="font-bold text-xl">Lateinischer Text</h2>
@@ -400,144 +280,6 @@ export default function LatinReaderNew() {
             )}
           </Card>
 
-          {/* AI Helper - Beautiful Card Design */}
-          {selectedSentence && (
-            <Card className="sticky top-24">
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 rounded-xl bg-primary/10">
-                    <Sparkles className="w-6 h-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">KI-Übersetzungshilfe</h3>
-                    <p className="text-sm text-muted-foreground">Satz {selectedSentenceIndex !== null ? selectedSentenceIndex + 1 : ''}</p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={resetSelection}
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    ×
-                  </Button>
-                </div>
-                
-                {/* Selected Sentence */}
-                <div className="mb-6">
-                  <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                    <p className="text-sm leading-relaxed font-serif text-foreground">
-                      {selectedSentence}
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Translation Options */}
-                <div className="space-y-4">
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant={translationType === 'literal' ? 'default' : 'outline'}
-                      onClick={() => setTranslationType('literal')}
-                      className="flex-1"
-                    >
-                      Wörtlich
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant={translationType === 'meaningful' ? 'default' : 'outline'}
-                      onClick={() => setTranslationType('meaningful')}
-                      className="flex-1"
-                    >
-                      Sinnhaft
-                    </Button>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Button
-                      onClick={handleTranslationHelp}
-                      className="w-full"
-                      disabled={isTranslating}
-                    >
-                      <Languages className="h-4 w-4 mr-2" />
-                      {isTranslating ? 'Übersetzung wird geladen...' : 'Übersetzung anzeigen'}
-                    </Button>
-                    
-                    <Button
-                      onClick={handleGrammaticalAnalysis}
-                      className="w-full"
-                      disabled={isAnalyzing}
-                    >
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      {isAnalyzing ? 'Analyse wird geladen...' : 'Grammatikanalyse'}
-                    </Button>
-                  </div>
-                </div>
-                
-                {/* Translation Display */}
-                {showTranslation && (
-                  <div className="mt-6 p-4 rounded-xl bg-secondary/50 border border-border">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Languages className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium text-foreground">
-                        {translationType === 'literal' ? 'Wörtliche Übersetzung' : 'Sinnhafte Übersetzung'}
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-foreground">
-                      {translation}
-                    </p>
-                  </div>
-                )}
-                
-                {/* AI Analysis Display */}
-                {showAnalysis && (
-                  <div className="mt-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                      <span className="text-sm font-medium text-amber-700 dark:text-amber-300">
-                        Grammatikalische Analyse
-                      </span>
-                    </div>
-                    <div className="space-y-3 max-h-64 overflow-y-auto">
-                      {grammaticalAnalysis.map((analysis, index) => (
-                        <div
-                          key={`analysis-${analysis.word}-${index}`}
-                          className="p-3 rounded-lg bg-background border border-border/50"
-                        >
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-semibold text-sm">{analysis.word}</span>
-                            {analysis.highlighted && (
-                              <span className="text-xs bg-amber-200/80 dark:bg-amber-800/80 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full font-medium">
-                                {analysis.grammaticalInfo.role}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex flex-wrap gap-x-2 gap-y-1">
-                            {analysis.grammaticalInfo.case && (
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Kasus: {analysis.grammaticalInfo.case}</span>
-                            )}
-                            {analysis.grammaticalInfo.gender && (
-                              <span className="text-xs bg-secondary/10 text-secondary-foreground px-2 py-1 rounded">Genus: {analysis.grammaticalInfo.gender}</span>
-                            )}
-                            {analysis.grammaticalInfo.number && (
-                              <span className="text-xs bg-accent/10 text-accent-foreground px-2 py-1 rounded">Numerus: {analysis.grammaticalInfo.number}</span>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {/* Note */}
-                <div className="mt-6 p-3 rounded-lg bg-muted/50 border border-border/50">
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    <span className="font-medium text-foreground">Hinweis:</span> Die KI-Funktionen verwenden echte Sprachmodelle zur Übersetzung und Grammatikanalyse. 
-                    Die Ergebnisse können je nach Satzkomplexität variieren.
-                  </p>
-                </div>
-              </div>
-            </Card>
-          )}
         </div>
       </main>
       <Footer />

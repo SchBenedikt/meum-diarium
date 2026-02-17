@@ -72,10 +72,8 @@ export default {
         // Route: /api - Only proxy write operations or specific AI queries.
         // Standard content GET requests should fall through to Pages (static assets or Functions).
         if (pathname.startsWith('/api') && (["POST", "PUT", "DELETE"].includes(request.method) || question)) {
-            // Skip work translations and Latin endpoints as they are handled separately
-            if (pathname.startsWith('/api/translations/works/') || 
-                pathname.endsWith('/api/latin/translate') || 
-                pathname.endsWith('/api/latin/analyze')) {
+            // Skip work translations as they are handled separately
+            if (pathname.startsWith('/api/translations/works/')) {
                 // Already handled above, continue to next route
             } else {
                 const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
