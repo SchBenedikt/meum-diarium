@@ -22,6 +22,7 @@ const Index = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
   useEffect(() => {
     if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
@@ -37,13 +38,42 @@ const Index = () => {
     return <NotFound />;
   }
   const author = currentAuthor ? dbAuthors[currentAuthor] : null;
-  const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t as any) : null;
+  const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t) : null;
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : undefined}
+        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : t('meumDiarium')}
         description={translatedAuthor?.description}
         author={translatedAuthor?.name}
+        image={`${baseUrl}/images/caesar-hero.jpg`}
+        type="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Meum Diarium",
+          "description": translatedAuthor?.description || "Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen.",
+          "url": `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+            },
+            "query-input": "required"
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": "Antikes Rom",
+              "description": "Historische Persönlichkeiten und ihre Werke"
+            },
+            {
+              "@type": "Thing",
+              "name": "Lateinische Literatur",
+              "description": "Werke von Caesar, Cicero, Seneca und Augustus"
+            }
+          ]
+        }}
       />
       <main className="flex-1">
         {currentAuthor ? (

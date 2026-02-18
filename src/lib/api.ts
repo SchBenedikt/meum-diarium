@@ -1,12 +1,26 @@
 // Determine API base URL based on environment
 export function getApiBase(): string {
     if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
-        return 'http://localhost:3001/api';
+        // In development, use relative URL since Vite proxy handles /api routing
+        return '';
     }
     if (typeof window !== 'undefined') {
         return `${window.location.origin}/api`;
     }
     return '/api';
+}
+
+// Specialized function for user-generated content APIs (comments, profile, etc.)
+export function getUserApiBase(): string {
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
+        // In development, use relative URL since Vite proxy handles /api routing
+        return '';
+    }
+    if (typeof window !== 'undefined') {
+        // In production, use Cloudflare Workers URL (without /api suffix)
+        return 'https://caesar.schaechner.workers.dev';
+    }
+    return '';
 }
 // Add request cache for GET requests to avoid redundant network calls
 const requestCache = new Map<string, { data: any; timestamp: number }>();

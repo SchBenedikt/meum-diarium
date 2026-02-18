@@ -1,0 +1,41 @@
+{
+    "slug": "author-about-seneca",
+    "heroTitle": "Lucius Annaeus Seneca",
+    "heroSubtitle": "Stoischer Philosoph und Staatsmann",
+    "heroImage": "/images/seneca-hero.jpg",
+    "introText": "Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.",
+    "sections": [],
+    "highlights": [
+        {
+            "title": "",
+            "description": "",
+            "icon": "BookOpen"
+        }
+    ],
+    "translations": {
+        "en": {
+            "heroTitle": "Lucius Annaeus Seneca",
+            "heroSubtitle": "Stoic Philosopher and Statesman",
+            "introText": "One of the most influential Stoic philosophers and advisor to Emperor Nero.",
+            "highlights": [
+                {
+                    "title": "",
+                    "description": "",
+                    "icon": "BookOpen"
+                }
+            ]
+        },
+        "la": {
+            "heroTitle": "Lucius Annaeus Seneca",
+            "heroSubtitle": "Philosophus Stoicus et Vir Publicus",
+            "introText": "Unus ex philosophis Stoicis maxime illustribus et consiliarius Neronis Imperatoris.",
+            "highlights": [
+                {
+                    "title": "",
+                    "description": "",
+                    "icon": "BookOpen"
+                }
+            ]
+        }
+    }
+}

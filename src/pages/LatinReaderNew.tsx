@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { ArrowLeft, BookOpen, User, Languages, Sparkles } from 'lucide-react';
+import { ArrowLeft, BookOpen, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { works } from '@/data/works';
 
 // Import Latin texts
-import deBelloGallicoText from '@/data/latin-texts/de-bello-gallico.json';
+import deBelloGallicoText from '@/data/latin/caesar-de-bello-gallico.json';
 import deOfficiisText from '@/data/latin-texts/de-officiis.json';
+
 
 // Latin texts registry
 const LATIN_TEXTS: Record<string, any> = {
@@ -20,14 +20,15 @@ const LATIN_TEXTS: Record<string, any> = {
 
 // Step 1: Author selection
 // Step 2: Work selection for that author
-// Step 3: Show Latin text with AI helper
+// Step 3: Show Latin text for reading
 
 export default function LatinReaderNew() {
   const { authorId, workSlug } = useParams<{ authorId?: string; workSlug?: string }>();
   const navigate = useNavigate();
   const [selectedSentence, setSelectedSentence] = useState<string>('');
-  const [showTranslation, setShowTranslation] = useState(false);
-  const [aiHelp, setAiHelp] = useState<string>('');
+  const [selectedSentenceIndex, setSelectedSentenceIndex] = useState<number | null>(null);
+  const [selectedSentenceKey, setSelectedSentenceKey] = useState<string>('');
+  const textAreaRef = useRef<HTMLDivElement>(null);
 
   // Get available authors with works
   const availableAuthors = ['caesar', 'cicero', 'augustus', 'seneca'];
@@ -40,6 +41,22 @@ export default function LatinReaderNew() {
   // Get selected work text
   const selectedWork = workSlug ? works[workSlug as keyof typeof works] : null;
   const latinText = selectedWork && LATIN_TEXTS[workSlug || ''];
+
+  // Helper functions
+  const handleSentenceSelect = (sentence: string, index: number, key: string) => {
+    setSelectedSentence(sentence);
+    setSelectedSentenceIndex(index);
+    setSelectedSentenceKey(key);
+  };
+
+
+
+
+  const resetSelection = () => {
+    setSelectedSentence('');
+    setSelectedSentenceIndex(null);
+    setSelectedSentenceKey('');
+  };
 
   // Step 1: Author Selection
   if (!authorId) {
@@ -59,9 +76,9 @@ export default function LatinReaderNew() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {availableAuthors.map((author) => (
+            {availableAuthors.map((author, index: number) => (
               <motion.div
-                key={author}
+                key={`author-${author}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -4 }}
@@ -110,9 +127,9 @@ export default function LatinReaderNew() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {authorWorks.map((work: any) => (
+            {authorWorks.map((work: any, index: number) => (
               <motion.div
-                key={work.slug || work.title}
+                key={`work-${work.slug || work.title || index}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -4 }}
@@ -157,107 +174,83 @@ export default function LatinReaderNew() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           {/* Latin Text */}
-          <div className="lg:col-span-2">
-            <Card className="p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl font-bold flex items-center gap-2">
-                  <Languages className="w-5 h-5 text-primary" />
-                  Lateinischer Text
-                </h2>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowTranslation(!showTranslation)}
-                >
-                  {showTranslation ? 'Original anzeigen' : 'Übersetzung anzeigen'}
-                </Button>
-              </div>
-
-              {latinText ? (
-                <div className="space-y-6">
-                  {latinText.books.map((book: any) => (
-                    <div key={book.number} className="space-y-4">
-                      <h3 className="text-lg font-bold text-primary">{book.title}</h3>
-                      {(book.chapters || book.sections || []).map((chapter: any) => (
-                        <div key={chapter.number} className="space-y-2 pb-4 border-b border-border/50 last:border-0">
-                          <div className="text-sm font-semibold text-muted-foreground">Kapitel {chapter.number}</div>
-                          {!showTranslation ? (
-                            <p className="text-base leading-relaxed font-serif text-foreground/90">
-                              {chapter.latin}
-                            </p>
-                          ) : (
-                            <p className="text-base leading-relaxed text-foreground/80">
-                              {chapter.translation}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
+          <Card className="p-8">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 rounded-xl bg-primary/10">
+                  <BookOpen className="w-6 h-6 text-primary" />
                 </div>
-              ) : (
-                <div className="text-center py-12 text-muted-foreground">
-                  <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>Text wird geladen...</p>
-                  <p className="text-sm mt-2">Bald verfügbar: Vollständiger lateinischer Originaltext</p>
-                </div>
-              )}
-            </Card>
-          </div>
-
-          {/* AI Helper Sidebar */}
-          <div className="lg:col-span-1">
-            <Card className="p-6 sticky top-24">
-              <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-primary" />
-                KI-Übersetzungshilfe
-              </h3>
-
-              <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">
-                    Markiere einen Satz oder Abschnitt:
-                  </label>
-                  <Textarea
-                    placeholder="Füge hier den lateinischen Text ein, den du verstehen möchtest..."
-                    value={selectedSentence}
-                    onChange={(e) => setSelectedSentence(e.target.value)}
-                    className="min-h-[100px]"
-                  />
-                </div>
-
-                <Button
-                  className="w-full"
-                  onClick={() => {
-                    setAiHelp('Diese Funktion wird bald verfügbar sein. Die KI wird dir helfen, den Text zu übersetzen und zu verstehen.');
-                  }}
-                  disabled={!selectedSentence}
-                >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Übersetzen & Erklären
-                </Button>
-
-                {aiHelp && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-primary/5 rounded-lg border border-primary/20"
-                  >
-                    <p className="text-sm">{aiHelp}</p>
-                  </motion.div>
-                )}
-
-                <div className="pt-4 border-t">
-                  <p className="text-xs text-muted-foreground">
-                    <strong>Hinweis:</strong> Die KI-Funktionen werden in Kürze aktiviert. 
-                    Sie helfen dir beim Verstehen der Grammatik, Übersetzung und des historischen Kontexts.
-                  </p>
+                  <h2 className="font-bold text-xl">Lateinischer Text</h2>
+                  <p className="text-sm text-muted-foreground">{selectedWork?.title}</p>
                 </div>
               </div>
-            </Card>
-          </div>
+            </div>
+
+            {latinText ? (
+              <div className="space-y-6">
+                {latinText.books.map((book: any) => (
+                      <div key={book.number} className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="text-sm font-bold text-primary">{book.number}</span>
+                          </div>
+                          <h3 className="text-lg font-bold text-foreground">{book.title}</h3>
+                        </div>
+                        {(Array.isArray(book.chapters) ? book.chapters : book.sections || []).map((chapter: any) => (
+                          <div key={`book-${book.number}-chapter-${chapter.number}`} className="ml-11 space-y-3">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-lg bg-secondary/50 flex items-center justify-center">
+                                <span className="text-xs font-semibold text-muted-foreground">{chapter.number}</span>
+                              </div>
+                              <span className="text-sm font-medium text-muted-foreground">Kapitel</span>
+                            </div>
+                            
+                            {/* Sentences */}
+                            <div className="space-y-2 ml-8">
+                              {chapter.latin.split(/[.!?]+/).filter((sentence: string) => sentence.trim().length > 0).map((sentence: string, index: number) => {
+                                const sentenceKey = `book-${book.number}-chapter-${chapter.number}-sentence-${index}`;
+                                return (
+                                <div
+                                  key={sentenceKey}
+                                  onClick={() => handleSentenceSelect(sentence.trim() + '.', index, sentenceKey)}
+                                  className={`group cursor-pointer rounded-xl border transition-all duration-300 ${
+                                    selectedSentenceKey === sentenceKey
+                                      ? 'bg-primary/10 border-primary/40 shadow-sm'
+                                      : 'bg-secondary/5 border-border hover:border-primary/30 hover:bg-primary/5'
+                                  } p-4`}
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <span className="font-mono text-primary/60 text-sm w-6 text-right pt-1">
+                                      {index + 1}
+                                    </span>
+                                    <p className="text-sm leading-relaxed font-serif text-foreground/90 group-hover:text-primary/90 transition-colors flex-1">
+                                      {sentence.trim() + '.'}
+                                    </p>
+                                    {selectedSentenceKey === sentenceKey && (
+                                      <div className="w-2 h-2 rounded-full bg-primary mt-2" />
+                                    )}
+                                  </div>
+                                </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-muted-foreground">
+                <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <p>Text wird geladen...</p>
+                <p className="text-sm mt-2">Bald verfügbar: Vollständiger lateinischer Originaltext</p>
+              </div>
+            )}
+          </Card>
+
         </div>
       </main>
       <Footer />

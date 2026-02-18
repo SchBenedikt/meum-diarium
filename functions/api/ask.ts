@@ -1,3 +1,11 @@
+interface RequestBody {
+  persona?: string;
+  ask?: string;
+  history?: unknown;
+  sitemap?: unknown;
+  [key: string]: unknown;
+}
+
 export const onRequest = async ({ request }: { request: Request }) => {
   if (request.method === 'OPTIONS') {
     return new Response(null, {
@@ -18,7 +26,7 @@ export const onRequest = async ({ request }: { request: Request }) => {
 
   const url = new URL(request.url);
   const target = new URL('https://caesar.schaechner.workers.dev/');
-  let body: any = null;
+  let body: RequestBody | null = null;
 
   if (request.method === 'POST') {
     try {
@@ -52,8 +60,8 @@ export const onRequest = async ({ request }: { request: Request }) => {
         'Access-Control-Allow-Origin': '*'
       }
     });
-  } catch (err: any) {
-    const message = err?.message || 'Upstream request failed';
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Upstream request failed';
     return new Response(JSON.stringify({ error: message }), {
       status: 502,
       headers: {

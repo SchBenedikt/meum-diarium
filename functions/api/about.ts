@@ -1,4 +1,13 @@
-export const onRequest = async (context: any) => {
+interface CloudflareContext {
+    request: Request;
+    env: {
+        ASSETS: {
+            fetch: (request: Request) => Promise<Response>;
+        };
+    };
+}
+
+export const onRequest = async (context: CloudflareContext) => {
     const url = new URL(context.request.url);
     const assetUrl = new URL('/api/about.json', url.origin);
 
@@ -23,8 +32,9 @@ export const onRequest = async (context: any) => {
                 'Cache-Control': 'public, max-age=3600'
             }
         });
-    } catch (err: any) {
-        return new Response(JSON.stringify({ error: 'Internal Error', message: err.message }), {
+    } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        return new Response(JSON.stringify({ error: 'Internal Error', message: errorMessage }), {
             status: 500,
             headers: { 'content-type': 'application/json' }
         });

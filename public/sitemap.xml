@@ -26,12 +26,92 @@
     <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
   </url>
   <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/learn</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <title>Latein-Tools</title>
+    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/lernen</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <title>Latein-Tools</title>
+    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/lexikon</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <title>Lexikon</title>
+    <excerpt>Das Glossar der römischen Antike.</excerpt>
+  </url>
+  <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/about</loc>
     <lastmod>2026-02-05T13:00:01.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <title>Über uns</title>
     <excerpt>Wer wir sind und was wir machen.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/über</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <title>Über uns</title>
+    <excerpt>Wer wir sind und was wir machen.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/privacy</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Datenschutz</title>
+    <excerpt>Datenschutzerklärung und Informationen zur Datenverarbeitung.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/datenschutz</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Datenschutz</title>
+    <excerpt>Datenschutzerklärung und Informationen zur Datenverarbeitung.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/legal</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Impressum</title>
+    <excerpt>Rechtliche Informationen und Kontaktdaten.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/impressum</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Impressum</title>
+    <excerpt>Rechtliche Informationen und Kontaktdaten.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/cookies</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Cookie-Richtlinien</title>
+    <excerpt>Informationen zur Verwendung von Cookies.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/cookie-richtlinien</loc>
+    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <title>Cookie-Richtlinien</title>
+    <excerpt>Informationen zur Verwendung von Cookies.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-gallico</loc>

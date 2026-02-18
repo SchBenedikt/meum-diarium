@@ -11,6 +11,38 @@ import { ArrowLeft, Save } from 'lucide-react';
 import { upsertAuthor } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchAuthors } from '@/lib/api';
+import { Author } from '@/types/blog';
+interface AuthorTranslation {
+    title: string;
+    description: string;
+}
+
+interface AuthorFormData {
+    id: string;
+    name: string;
+    latinName: string;
+    title: string;
+    years: string;
+    birthYear: number;
+    deathYear: number;
+    description: string;
+    heroImage: string;
+    theme: string;
+    color: string;
+    en: AuthorTranslation;
+    la: AuthorTranslation;
+}
+
+interface ExistingAuthor {
+    translations?: {
+        en?: AuthorTranslation;
+        la?: AuthorTranslation;
+    };
+    theme?: string;
+    color?: string;
+    [key: string]: unknown;
+}
+
 export default function AuthorEditorPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const navigate = useNavigate();
@@ -60,12 +92,12 @@ export default function AuthorEditorPage() {
                 theme: existingAuthor.theme || 'theme-caesar',
                 color: existingAuthor.color || 'hsl(25, 95%, 53%)',
                 en: {
-                    title: (existingAuthor as any).translations?.en?.title || '',
-                    description: (existingAuthor as any).translations?.en?.description || ''
+                    title: (existingAuthor as ExistingAuthor).translations?.en?.title || '',
+                    description: (existingAuthor as ExistingAuthor).translations?.en?.description || ''
                 },
                 la: {
-                    title: (existingAuthor as any).translations?.la?.title || '',
-                    description: (existingAuthor as any).translations?.la?.description || ''
+                    title: (existingAuthor as ExistingAuthor).translations?.la?.title || '',
+                    description: (existingAuthor as ExistingAuthor).translations?.la?.description || ''
                 }
             });
         }
@@ -75,7 +107,7 @@ export default function AuthorEditorPage() {
         setLoading(true);
         try {
             const payload = {
-                id: formData.id || formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+                id: (formData.id || formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')) as Author,
                 name: formData.name,
                 latinName: formData.latinName,
                 title: formData.title,
@@ -102,7 +134,7 @@ export default function AuthorEditorPage() {
             setLoading(false);
         }
     };
-    const updateField = (field: string, value: any) => {
+    const updateField = (field: keyof AuthorFormData, value: AuthorFormData[keyof AuthorFormData]) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
     const updateTranslation = (lang: 'en' | 'la', field: string, value: string) => {

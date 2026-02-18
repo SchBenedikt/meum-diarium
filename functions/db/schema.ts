@@ -1,5 +1,5 @@
-import { sqliteTable, text, integer, blob } from 'drizzle-orm/sqlite-core';
-import { sql, relations } from 'drizzle-orm';
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { relations } from 'drizzle-orm';
 
 // Authors Table
 export const authors = sqliteTable('authors', {
@@ -42,12 +42,24 @@ export const posts = sqliteTable('posts', {
     readingTime: integer('reading_time'),
     tags: text('tags', { mode: 'json' }),
     coverImage: text('cover_image'),
-
-    // Content stored as JSON to keep structure (diary vs scientific)
     content: text('content', { mode: 'json' }).notNull(), // { diary: "...", scientific: "..." }
-
-    // Translations
     translations: text('translations', { mode: 'json' }), // { en: { ... }, la: { ... } }
+});
+
+// Users Table
+export const users = sqliteTable('users', {
+    id: text('id').primaryKey(),
+    email: text('email').notNull().unique(),
+    username: text('username').notNull().unique(),
+    passwordHash: text('password_hash').notNull(),
+    displayName: text('display_name'),
+    bio: text('bio'),
+    avatarUrl: text('avatar_url'),
+    preferences: text('preferences', { mode: 'json' }), // User preferences
+    createdAt: text('created_at').notNull().default(new Date().toISOString()),
+    updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+    lastLoginAt: text('last_login_at'),
+    isActive: integer('is_active', { mode: 'boolean' }).default(true),
 });
 
 // Lexicon Table
@@ -68,19 +80,13 @@ export const vocabulary = sqliteTable('vocabulary', {
     latin: text('latin').notNull(),
     german: text('german').notNull(),
     english: text('english'),
-
-    // Grammar info
     type: text('type'), // noun, verb, adjective, etc.
     gender: text('gender'), // m, f, n
     conjugation: text('conjugation'), // a-konj, e-konj, etc.
     declination: text('declination'), // a-dekl, o-dekl, etc.
-
-    // Detailed forms (JSON)
     forms: text('forms', { mode: 'json' }), // { genitive: "...", perfect: "..." }
-
     exampleSentence: text('example_sentence'),
     exampleTranslation: text('example_translation'),
-
     tags: text('tags', { mode: 'json' }), // e.g. ["Grundwortschatz", "Krieg"]
 });
 
@@ -92,20 +98,48 @@ export const latinTexts = sqliteTable('latin_texts', {
     chapter: integer('chapter'),
     section: integer('section'),
     verse: integer('verse'),
-
     latinText: text('latin_text').notNull(),
     germanTranslation: text('german_translation'),
     englishTranslation: text('english_translation'),
-
     annotations: text('annotations', { mode: 'json' }), // Grammar explanations etc.
 });
 
+
+// User Reading Progress Table (for tracking reading activity)
+export const userReadingProgress = sqliteTable('user_reading_progress', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  postId: text('post_id').notNull().references(() => posts.id),
+  startedAt: text('started_at').notNull().default(new Date().toISOString()),
+  completedAt: text('completed_at'),
+  readingTimeSeconds: integer('reading_time_seconds').default(0),
+  progressPercentage: integer('progress_percentage').default(0),
+  lastPosition: integer('last_position').default(0),
+  isCompleted: integer('is_completed', { mode: 'boolean' }).default(false),
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
+// Comments Table
+export const comments = sqliteTable('comments', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  postId: text('post_id').notNull().references(() => posts.id),
+  content: text('content').notNull(),
+  parentId: text('parent_id'), // For threaded comments
+  isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),
+  createdAt: text('created_at').notNull().default(new Date().toISOString()),
+  updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
+});
+
 // Relations
-export const worksRelations = relations(works, ({ one }) => ({
+export const worksRelations = relations(works, ({ one, many }) => ({
     author: one(authors, {
         fields: [works.authorId],
         references: [authors.id],
     }),
+    posts: many(posts),
+    latinTexts: many(latinTexts),
 }));
 
 export const authorsRelations = relations(authors, ({ many }) => ({
@@ -113,9 +147,51 @@ export const authorsRelations = relations(authors, ({ many }) => ({
     posts: many(posts),
 }));
 
-export const postsRelations = relations(posts, ({ one }) => ({
+export const postsRelations = relations(posts, ({ one, many }) => ({
     author: one(authors, {
         fields: [posts.authorId],
         references: [authors.id],
+    }),
+    readingProgress: many(userReadingProgress),
+    comments: many(comments),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+    readingProgress: many(userReadingProgress),
+    comments: many(comments),
+}));
+
+export const commentsRelations = relations(comments, ({ one, many }) => ({
+    user: one(users, {
+        fields: [comments.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [comments.postId],
+        references: [posts.id],
+    }),
+    parent: one(comments, {
+        fields: [comments.parentId],
+        references: [comments.id],
+    }),
+    replies: many(comments),
+}));
+
+
+export const latinTextsRelations = relations(latinTexts, ({ one }) => ({
+    work: one(works, {
+        fields: [latinTexts.workId],
+        references: [works.id],
+    }),
+}));
+
+export const userReadingProgressRelations = relations(userReadingProgress, ({ one }) => ({
+    user: one(users, {
+        fields: [userReadingProgress.userId],
+        references: [users.id],
+    }),
+    post: one(posts, {
+        fields: [userReadingProgress.postId],
+        references: [posts.id],
     }),
 }));

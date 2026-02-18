@@ -16,8 +16,10 @@ import {
   Star,
   Heart,
   Coffee,
+  ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 export default function DesignGuidePage() {
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -25,34 +27,28 @@ export default function DesignGuidePage() {
   };
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section mit Caesar-inspiriertem Design */}
-      <section className="py-20 border-b border-border/40 bg-gradient-to-b from-secondary/5 to-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-4 opacity-[0.03]">
-          <Crown className="w-96 h-96 text-primary" />
-        </div>
-        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
+      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-4"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="p-4 bg-primary/10 rounded-3xl border border-primary/20">
-                <Palette className="w-12 h-12 text-primary" />
-              </div>
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-primary/30" />
+              DESIGN SYSTEM
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-              Meum Diarium Design System
+            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+              Design <span className="text-primary italic">Guidelines</span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Ein umfassendes Design-System inspiriert von der römischen
-              Ästhetik mit modernen Glassmorphism-Effekten, Author-Themeing und
-              interaktiven Elementen für historische Persönlichkeiten.
+            <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+              Ein umfassendes Design-System inspiriert von der römischen Ästhetik
             </p>
           </motion.div>
+          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
+            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Start
+          </Link>
         </div>
-      </section>
-      <div className="container mx-auto px-4 sm:px-6 py-20">
         {/* Author Themeing Section */}
         <section className="mb-32">
           <motion.div
@@ -88,9 +84,9 @@ export default function DesignGuidePage() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-primary rounded-lg" />
-                      <p className="font-mono text-sm">hsl(30, 100%, 55%)</p>
+                      <p className="font-mono text-sm">hsl(345, 60%, 35%)</p>
                       <p className="text-xs text-muted-foreground">
-                        Imperial Gold
+                        Karmesinrot
                       </p>
                     </div>
                     <Button className="w-full">Caesar's Tagebuch lesen</Button>
@@ -111,7 +107,7 @@ export default function DesignGuidePage() {
                   <br />
                   CSS Variable:{" "}
                   <code className="font-mono">
-                    --author-caesar: 30 100% 55%
+                    --author-caesar: 345 60% 35%
                   </code>
                 </div>
               </div>
@@ -125,19 +121,19 @@ export default function DesignGuidePage() {
                     {[
                       {
                         name: "Cicero",
-                        color: "hsl(210, 90%, 60%)",
+                        color: "hsl(215, 45%, 35%)",
                         class: "theme-cicero",
                         icon: BookOpen,
                       },
                       {
                         name: "Augustus",
-                        color: "hsl(280, 80%, 60%)",
+                        color: "hsl(45, 65%, 35%)",
                         class: "theme-augustus",
                         icon: Star,
                       },
                       {
                         name: "Seneca",
-                        color: "hsl(150, 85%, 40%)",
+                        color: "hsl(165, 40%, 30%)",
                         class: "theme-seneca",
                         icon: Coffee,
                       },
@@ -822,7 +818,8 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-        {/* 2026 Component Updates */}
+        
+        {/* Page Header Structure */}
         <section className="mb-32">
           <motion.div
             initial="hidden"
@@ -832,218 +829,122 @@ export default function DesignGuidePage() {
             className="mb-12"
           >
             <div className="flex items-center gap-3 mb-8">
-              <Sparkles className="w-8 h-8 text-primary" />
+              <Grid3x3 className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">
-                2026 Component Updates
+                Page Header Structure
               </h2>
             </div>
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
-              <div className="space-y-12">
-                {/* LandingHeroNew Component */}
+              <div className="space-y-8">
                 <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    LandingHeroNew Component
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
+                    Standard Header Layout
                   </h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      Vollständig überarbeitete Landing Page mit modernem, ansprechendem Design und verbesserten Animationen.
-                    </p>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li>• <strong>Two-Column Layout:</strong> Hero-Bereich mit dynamischem Text und Call-to-Action</li>
-                        <li>• <strong>Animated Backgrounds:</strong> Subtile Hintergrundanimationen mit Framer Motion</li>
-                        <li>• <strong>Statistics Showcase:</strong> Interaktive Statistikkarten mit Hover-Effekten</li>
-                        <li>• <strong>Feature Grid:</strong> 3-spaltige Grid-Darstellung der Hauptfunktionen</li>
-                        <li>• <strong>Author Section:</strong> Prominente Darstellung des Autors mit Bild und Beschreibung</li>
-                        <li>• <strong>Blog Posts Grid:</strong> Neueste Blog-Einträge in Card-Format</li>
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                      <div className="text-muted-foreground mb-2">// Component Structure</div>
-                      <div>{'<div className="bg-gradient-to-br from-background via-secondary/5 to-background">'}</div>
-                      <div className="ml-4">{'<motion.div variants={fadeIn}>'}</div>
-                      <div className="ml-8">{'// Hero content with statistics'}</div>
-                      <div className="ml-4">{'</motion.div>'}</div>
-                      <div>{'</div>'}</div>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Konsistente Header-Struktur für Seiten wie /lexicon, /learn, /about, /privacy, /cookies, /legal
+                  </p>
+                  <div className="bg-secondary/30 p-4 rounded-xl">
+                    <div className="font-mono text-xs space-y-2">
+                      <div className="text-muted-foreground mb-2">// Hauptstruktur</div>
+                      <div>{'<main className="container mx-auto px-4 pt-32 pb-24 max-w-7xl">'}</div>
+                      <div>{'  <div className="flex flex-col md:flex-row md:items-end justify-between">'}</div>
+                      <div>{'    // Links: Titel & Beschreibung'}</div>
+                      <div>{'    // Rechts: Zurück-Link'}</div>
+                      <div>{'  </div>'}</div>
+                      <div>{'</main>'}</div>
                     </div>
                   </div>
                 </div>
-                {/* GeneralAboutPageNew Component */}
+                
                 <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    GeneralAboutPageNew Component
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
+                    Wichtige Komponenten
                   </h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      Überarbeitete /about Seite mit verbesserter Struktur und visueller Hierarchie.
-                    </p>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li>• <strong>Hero with Animations:</strong> Großflächiger Hero-Bereich mit Scroll-Animationen</li>
-                        <li>• <strong>Statistics Section:</strong> Zahlen und Fakten in ansprechenden Cards</li>
-                        <li>• <strong>Features Grid:</strong> Übersichtliche Darstellung der Plattform-Features</li>
-                        <li>• <strong>Methodology Section:</strong> Ausführliche Beschreibung der wissenschaftlichen Methodik</li>
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                      <div className="text-muted-foreground mb-2">// Styling Pattern</div>
-                      <div>{'bg-card/40 backdrop-blur-xl'}</div>
-                      <div>{'rounded-3xl border border-border/40'}</div>
-                      <div>{'hover:border-primary/40 transition-colors'}</div>
-                    </div>
-                  </div>
-                </div>
-                {/* Legal Pages */}
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Legal Pages (Privacy, Imprint, Cookies)
-                  </h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      Professionelle Rechtsseiten mit GDPR und TMG-Konformität, gestaltet mit klarer visueller Hierarchie.
-                    </p>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li>• <strong>GDPR & TMG Compliant:</strong> Vollständige rechtliche Konformität</li>
-                        <li>• <strong>Icon-Based Headers:</strong> Shield, FileText, Cookie Icons für visuelle Orientierung</li>
-                        <li>• <strong>Color-Coded Badges:</strong> Grüne Badges für erlaubt/empfohlen, rote für verboten/kritisch</li>
-                        <li>• <strong>Structured Sections:</strong> Klare Gliederung mit Cards und Accordion-Elementen</li>
-                        <li>• <strong>Contact Information:</strong> Prominent platzierte Kontaktdaten</li>
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                      <div className="text-muted-foreground mb-2">// Badge Examples</div>
-                      <div>{'<span className="bg-green-500/10 text-green-500 px-3 py-1 rounded-full">'}</div>
-                      <div className="ml-4">Empfohlen</div>
-                      <div>{'</span>'}</div>
-                      <div className="mt-2">{'<span className="bg-red-500/10 text-red-500 px-3 py-1 rounded-full">'}</div>
-                      <div className="ml-4">Abgelehnt</div>
-                      <div>{'</span>'}</div>
-                    </div>
-                  </div>
-                </div>
-                {/* Catilina Biography Page */}
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Catilina Biography Page
-                  </h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      Umfassende Biographie über Lucius Sergius Catilina mit über 650 Zeilen historischem Content.
-                    </p>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Hauptmerkmale:</p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li>• <strong>650+ Lines:</strong> Ausführliche biografische Darstellung</li>
-                        <li>• <strong>Historical Context:</strong> Einordnung in die politische Situation der späten Republik</li>
-                        <li>• <strong>Conspiracy Analysis:</strong> Detaillierte Analyse der catilinarischen Verschwörung</li>
-                        <li>• <strong>Cicero's Speeches:</strong> Einbindung und Analyse der Catilinarischen Reden</li>
-                        <li>• <strong>Source Criticism:</strong> Kritische Auseinandersetzung mit antiken Quellen</li>
-                        <li>• <strong>Timeline Integration:</strong> Chronologische Darstellung der Ereignisse</li>
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                      <div className="text-muted-foreground mb-2">// Section Structure</div>
-                      <div>{'<section className="bg-card/40 backdrop-blur-xl rounded-3xl p-12">'}</div>
-                      <div className="ml-4">{'<h2 className="font-display text-3xl font-bold mb-6">'}</div>
-                      <div className="ml-8">Early Life & Background</div>
-                      <div className="ml-4">{'</h2>'}</div>
-                      <div className="ml-4">{'// Historical content with citations'}</div>
-                      <div>{'</section>'}</div>
-                    </div>
-                  </div>
-                </div>
-                {/* Lexicon Expansion */}
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Lexicon Expansion
-                  </h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      Massive Erweiterung des Lexikons von 35 auf 92 Einträge mit umfassenden Übersetzungen und Erklärungen.
-                    </p>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Statistiken:</p>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li>• <strong>35 → 92 Entries:</strong> +57 neue Einträge (+163% Wachstum)</li>
-                        <li>• <strong>Categories:</strong> Military, Political, Philosophical, Cultural, Geographical</li>
-                        <li>• <strong>2000-3500 Characters:</strong> Ausführliche Beschreibungen pro Eintrag</li>
-                        <li>• <strong>Complete Translations:</strong> Vollständige DE/EN/LA Übersetzungen</li>
-                        <li>• <strong>Historical Context:</strong> Einordnung in historischen Kontext</li>
-                        <li>• <strong>Usage Examples:</strong> Praktische Anwendungsbeispiele aus antiken Quellen</li>
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/30 p-6 rounded-xl space-y-3">
-                      <p className="font-semibold text-sm">Neue Kategorien:</p>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p className="font-medium text-primary mb-2">Militär (Military)</p>
-                          <ul className="text-muted-foreground space-y-1 text-xs">
-                            <li>• Aquilifer, Centurio, Cohors</li>
-                            <li>• Contubernium, Hastati</li>
-                            <li>• Impedimenta, Legio, Primus Pilus</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="font-medium text-primary mb-2">Politik (Political)</p>
-                          <ul className="text-muted-foreground space-y-1 text-xs">
-                            <li>• Censor, Cursus honorum</li>
-                            <li>• Fasces, Imperium, Lex</li>
-                            <li>• Senatus consultum, SPQR</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="font-medium text-primary mb-2">Philosophie (Philosophical)</p>
-                          <ul className="text-muted-foreground space-y-1 text-xs">
-                            <li>• Ataraxia, Logos, Summum bonum</li>
-                            <li>• Virtus, Memento mori</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="font-medium text-primary mb-2">Kultur (Cultural)</p>
-                          <ul className="text-muted-foreground space-y-1 text-xs">
-                            <li>• Aedilis, Forum, Thermae</li>
-                            <li>• Triclinium, Villa rustica</li>
-                          </ul>
-                        </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-secondary/30 p-4 rounded-xl">
+                      <h4 className="font-semibold text-sm mb-2">Eyebrow Element</h4>
+                      <div className="font-mono text-xs">
+                        <div>{'text-primary font-bold text-[10px] uppercase'}</div>
+                        <div>{'w-8 h-[1px] bg-primary/30'}</div>
                       </div>
                     </div>
-                    <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                      <div className="text-muted-foreground mb-2">// Lexicon Entry Structure</div>
-                      <div>{'{'}</div>
-                      <div className="ml-4">id: "centurio",</div>
-                      <div className="ml-4">latin: "Centurio",</div>
-                      <div className="ml-4">{'translations: { de: "...", en: "...", la: "..." },'}</div>
-                      <div className="ml-4">{'description: { de: "...", en: "..." },'}</div>
-                      <div className="ml-4">category: "military",</div>
-                      <div className="ml-4">length: 2500 // characters</div>
-                      <div>{'}'}</div>
+                    <div className="bg-secondary/30 p-4 rounded-xl">
+                      <h4 className="font-semibold text-sm mb-2">Titel mit Highlight</h4>
+                      <div className="font-mono text-xs">
+                        <div>{'font-display text-5xl font-bold'}</div>
+                        <div>{'text-primary italic'}</div>
+                      </div>
+                    </div>
+                    <div className="bg-secondary/30 p-4 rounded-xl">
+                      <h4 className="font-semibold text-sm mb-2">Zurück-Link</h4>
+                      <div className="font-mono text-xs">
+                        <div>{'text-xs uppercase tracking-[0.25em]'}</div>
+                        <div>{'ArrowLeft h-3.5 w-3.5'}</div>
+                      </div>
+                    </div>
+                    <div className="bg-secondary/30 p-4 rounded-xl">
+                      <h4 className="font-semibold text-sm mb-2">Animation</h4>
+                      <div className="font-mono text-xs">
+                        <div>{'opacity: 0, x: -20 → opacity: 1, x: 0'}</div>
+                        <div>{'duration: 0.6s'}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                {/* Summary */}
-                <div className="border-t border-border/40 pt-8">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Zusammenfassung
+                
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
+                    Visuelle Vorschau
                   </h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
-                      <div className="text-3xl font-bold text-primary mb-2">5</div>
-                      <p className="text-sm font-semibold">Neue Components</p>
-                      <p className="text-xs text-muted-foreground mt-1">Landing, About, Legal Pages</p>
+                  <div className="space-y-6">
+                    {/* Preview of the header structure */}
+                    <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8">
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                          className="space-y-4"
+                        >
+                          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+                            <div className="w-8 h-[1px] bg-primary/30" />
+                            SEITENKATEGORIE
+                          </div>
+                          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight">
+                            Seiten<span className="text-primary italic">Titel</span>
+                          </h1>
+                          <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                            Seitenbeschreibungstext mit korrektem Abstand und Typografie
+                          </p>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
+                            <ArrowLeft className="h-3.5 w-3.5" />
+                            Zurück zum Start
+                          </Link>
+                        </motion.div>
+                      </div>
                     </div>
-                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
-                      <div className="text-3xl font-bold text-primary mb-2">+163%</div>
-                      <p className="text-sm font-semibold">Lexikon Wachstum</p>
-                      <p className="text-xs text-muted-foreground mt-1">35 → 92 Einträge</p>
-                    </div>
-                    <div className="bg-primary/5 rounded-xl p-6 border border-primary/10">
-                      <div className="text-3xl font-bold text-primary mb-2">650+</div>
-                      <p className="text-sm font-semibold">Zeilen Content</p>
-                      <p className="text-xs text-muted-foreground mt-1">Catilina Biographie</p>
+                    
+                    <div className="bg-secondary/30 p-6 rounded-xl">
+                      <h4 className="font-semibold text-sm mb-3 text-primary">Live Vorschau</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        So sieht der Header auf den tatsächlichen Seiten aus. Das Layout ist responsiv mit linksbündigem Inhalt auf Desktop und vertikaler Stapelung auf Mobile. Das Eyebrow-Element bietet visuelle Hierarchie, während der Back-Link einfache Navigation ermöglicht.
+                      </p>
+                      <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
+                        <div className="bg-primary/5 rounded-lg p-3 border border-primary/10">
+                          <div className="font-semibold text-primary mb-1">Desktop</div>
+                          <div className="text-muted-foreground">Horizontale Ausrichtung mit Links-/Rechts-Layout</div>
+                        </div>
+                        <div className="bg-primary/5 rounded-lg p-3 border border-primary/10">
+                          <div className="font-semibold text-primary mb-1">Mobile</div>
+                          <div className="text-muted-foreground">Vertikale Stapelung mit voller Breite</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1113,8 +1014,8 @@ export default function DesignGuidePage() {
                     <div>
                       <p className="font-semibold mb-2">Typography</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
-                        <div>font-family: 'Lora', serif</div>
-                        <div>font-family: 'Inter', sans-serif</div>
+                        <div>font-family: 'Bricolage Grotesque', sans-serif</div>
+                        <div>font-weight: 300-900</div>
                         <div>--radius: 1.5rem</div>
                       </div>
                     </div>
@@ -1161,33 +1062,299 @@ export default function DesignGuidePage() {
             </div>
           </motion.div>
         </section>
-      </div>
-      {/* CTA Section */}
-      <section className="py-20 border-t border-border/40 bg-gradient-to-b from-background to-secondary/5">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+        
+        {/* Typography System */}
+        <section className="mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
+            variants={fadeUp}
+            className="mb-12"
           >
-            <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
-              Fragen zum Design System?
-            </h2>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Diese Richtlinien bilden die Grundlage für alle Komponenten im
-              Meum Diarium Projekt. Von Caesar's imperialem Gold bis zu modernen
-              Glassmorphism-Effekten.
-            </p>
-            <Button asChild size="lg" className="group">
-              <a href="/">
-                Zurück zur Startseite
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+            <div className="flex items-center gap-3 mb-8">
+              <Type className="w-8 h-8 text-primary" />
+              <h2 className="font-display text-4xl font-bold">
+                Typography System
+              </h2>
+            </div>
+            <div className="space-y-12">
+              {/* Font Families */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Schriftfamilien
+                </h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-semibold mb-4">Display & Body Font - Bricolage Grotesque</h4>
+                    <div className="space-y-4">
+                      <div className="font-sans text-6xl font-bold">Meum Diarium</div>
+                      <div className="font-sans text-2xl font-light">Moderne Grotesk für Überschriften und Fließtexte</div>
+                      <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                        <div>font-family: 'Bricolage Grotesque', sans-serif</div>
+                        <div>font-weight: 300-900</div>
+                        <div>Verwendung: Alle Texte (Display & Body)</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-4">System Fallback</h4>
+                    <div className="space-y-4">
+                      <div className="font-mono text-lg">system-ui, -apple-system</div>
+                      <div className="text-sm text-muted-foreground">System-Schriften als Fallback</div>
+                      <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
+                        <div>system-ui</div>
+                        <div>-apple-system</div>
+                        <div>sans-serif</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Type Scale */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Typografie-Skalierung
+                </h3>
+                <div className="space-y-6">
+                  {[
+                    { size: 'text-7xl', text: 'Römische Geschichte', usage: 'Hero H1' },
+                    { size: 'text-5xl', text: 'Große Überschriften', usage: 'H2, Section Titles' },
+                    { size: 'text-3xl', text: 'Mittelgroße Titel', usage: 'H3, Card Titles' },
+                    { size: 'text-xl', text: 'Untertitel & Beschreibungen', usage: 'H4, Lead Text' },
+                    { size: 'text-base', text: 'Normaler Fließtext', usage: 'Body Content' },
+                    { size: 'text-sm', text: 'Kleinere Texte', usage: 'Captions, Labels' },
+                    { size: 'text-xs', text: 'Metadaten & Navigation', usage: 'Badges, Nav' },
+                  ].map((type, i) => (
+                    <div key={i} className="flex items-center justify-between p-4 bg-secondary/20 rounded-xl">
+                      <div className="flex-1">
+                        <div className={`${type.size} font-display font-bold ${i < 2 ? 'tracking-tighter' : ''}`}>
+                          {type.text}
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-1">{type.usage}</div>
+                      </div>
+                      <div className="font-mono text-xs text-muted-foreground bg-background px-3 py-1 rounded-lg">
+                        {type.size}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
-        </div>
-      </section>
+        </section>
+
+        {/* Color System */}
+        <section className="mb-32">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Palette className="w-8 h-8 text-primary" />
+              <h2 className="font-display text-4xl font-bold">
+                Color System
+              </h2>
+            </div>
+            <div className="space-y-12">
+              {/* Primary Colors */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Hauptfarben
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[
+                    { name: 'Primary', hsl: '345 60% 35%', hex: '#8B2F5C', usage: 'Branding, Links, Accents' },
+                    { name: 'Primary Light', hsl: '345 60% 55%', hex: '#D6478F', usage: 'Highlights, States' },
+                    { name: 'Primary Dark', hsl: '345 60% 25%', hex: '#5A1F3D', usage: 'Hover States, Depth' },
+                    { name: 'Background', hsl: '40 20% 98%', hex: '#FCFAF5', usage: 'Page Background' },
+                  ].map((color, i) => (
+                    <div key={i} className="space-y-3">
+                      <div 
+                        className="w-full h-24 rounded-2xl border border-border/40"
+                        style={{ backgroundColor: `hsl(${color.hsl})` }}
+                      />
+                      <div>
+                        <div className="font-semibold text-sm">{color.name}</div>
+                        <div className="font-mono text-xs text-muted-foreground">{color.hsl}</div>
+                        <div className="font-mono text-xs text-muted-foreground">{color.hex}</div>
+                        <div className="text-xs text-muted-foreground mt-1">{color.usage}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Author Themes */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Author Themes
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[
+                    { name: 'Caesar', hsl: '345 60% 35%', hex: '#8B2F5C', description: 'Karmesinrot' },
+                    { name: 'Cicero', hsl: '215 45% 35%', hex: '#5B3A8C', description: 'Senatsblau' },
+                    { name: 'Augustus', hsl: '45 65% 35%', hex: '#8B6941', description: 'Goldbronze' },
+                    { name: 'Seneca', hsl: '165 40% 30%', hex: '#2E5A47', description: 'Salbeigrün' },
+                  ].map((theme, i) => (
+                    <div key={i} className="space-y-3">
+                      <div 
+                        className="w-full h-24 rounded-2xl border border-border/40"
+                        style={{ backgroundColor: `hsl(${theme.hsl})` }}
+                      />
+                      <div>
+                        <div className="font-semibold text-sm">{theme.name}</div>
+                        <div className="font-mono text-xs text-muted-foreground">{theme.hsl}</div>
+                        <div className="text-xs text-muted-foreground mt-1">{theme.description}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Spacing System */}
+        <section className="mb-32">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Grid3x3 className="w-8 h-8 text-primary" />
+              <h2 className="font-display text-4xl font-bold">
+                Spacing System
+              </h2>
+            </div>
+            <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                Abstands-Skalierung
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                {[
+                  { size: '1', value: '0.25rem', px: '4px', usage: 'Micro spacing' },
+                  { size: '2', value: '0.5rem', px: '8px', usage: 'Small gaps' },
+                  { size: '3', value: '0.75rem', px: '12px', usage: 'Default padding' },
+                  { size: '4', value: '1rem', px: '16px', usage: 'Standard spacing' },
+                  { size: '6', value: '1.5rem', px: '24px', usage: 'Section spacing' },
+                  { size: '8', value: '2rem', px: '32px', usage: 'Large spacing' },
+                  { size: '12', value: '3rem', px: '48px', usage: 'Hero spacing' },
+                  { size: '16', value: '4rem', px: '64px', usage: 'Page sections' },
+                ].map((space, i) => (
+                  <div key={i} className="text-center">
+                    <div className={`h-${space.size} bg-primary/20 rounded mb-2`}></div>
+                    <div className="font-mono text-xs">{space.value}</div>
+                    <div className="text-xs text-muted-foreground">{space.px}</div>
+                    <div className="text-xs text-muted-foreground">{space.usage}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Component Library */}
+        <section className="mb-32">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <BookOpen className="w-8 h-8 text-primary" />
+              <h2 className="font-display text-4xl font-bold">
+                Component Library
+              </h2>
+            </div>
+            <div className="space-y-12">
+              {/* Buttons */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Buttons
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Primary Button</h4>
+                    <Button className="w-full">Primary Action</Button>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>Button variant="default"</div>
+                      <div>bg-primary text-primary-foreground</div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Secondary Button</h4>
+                    <Button variant="outline" className="w-full">Secondary Action</Button>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>Button variant="outline"</div>
+                      <div>border border-input bg-background</div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Ghost Button</h4>
+                    <Button variant="ghost" className="w-full">Ghost Action</Button>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>Button variant="ghost"</div>
+                      <div>hover:bg-accent hover:text-accent-foreground</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cards */}
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-8">
+                  Cards
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Standard Card</h4>
+                    <div className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-6">
+                      <h5 className="font-semibold mb-2">Card Title</h5>
+                      <p className="text-sm text-muted-foreground">Card description text</p>
+                    </div>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>bg-card/60 backdrop-blur-xl</div>
+                      <div>rounded-3xl border border-border/40</div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Interactive Card</h4>
+                    <div className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-6 hover:border-primary/50 transition-all cursor-pointer group">
+                      <h5 className="font-semibold mb-2 group-hover:text-primary">Interactive Card</h5>
+                      <p className="text-sm text-muted-foreground">Hover me!</p>
+                    </div>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>hover:border-primary/50</div>
+                      <div>transition-all duration-300</div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold">Glass Card</h4>
+                    <div className="bg-primary/10 backdrop-blur-xl rounded-3xl border border-primary/20 p-6">
+                      <h5 className="font-semibold mb-2 text-primary">Glass Card</h5>
+                      <p className="text-sm text-muted-foreground">Transparent effect</p>
+                    </div>
+                    <div className="font-mono text-xs bg-secondary/30 p-3 rounded-xl">
+                      <div>bg-primary/10 backdrop-blur-xl</div>
+                      <div>border border-primary/20</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      </main>
     </div>
   );
 }

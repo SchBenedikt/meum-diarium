@@ -2,9 +2,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { useLexicon } from '@/hooks/use-lexicon';
-import { LexiconEntry } from '@/types/blog';
+import { BlogPost, LexiconEntry, Language } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
-import { BlogPost } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { BookMarked, Search, ArrowRight, BookText, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -48,10 +47,8 @@ export default function SearchPage() {
   }, [setCurrentAuthor]);
   useEffect(() => {
     async function translateContent() {
-      const translatedLexicon = await getTranslatedLexicon(language);
-      setLexicon(translatedLexicon);
       if (!isLoading) {
-        const translatedPosts = await Promise.all(basePosts.map(p => getTranslatedPost(language, p.author, p.slug)));
+        const translatedPosts = await Promise.all(basePosts.map(p => getTranslatedPost(language as Language, p.author, p.slug)));
         setPosts(translatedPosts.filter((p): p is BlogPost => p !== null));
       }
     }
@@ -59,10 +56,10 @@ export default function SearchPage() {
   }, [language, basePosts, isLoading]);
   useEffect(() => {
     setAllCategories([...new Set([
-      ...posts.flatMap(p => getPostTags(p, language)),
+      ...posts.flatMap(p => getPostTags(p, language as Language)),
       ...lexicon.map(l => l.category)
     ])].sort());
-  }, [posts, lexicon]);
+  }, [posts, lexicon, language]);
   useEffect(() => {
     setQuery(searchParams.get('q') || '');
     setActiveCategories(searchParams.getAll('category') || []);

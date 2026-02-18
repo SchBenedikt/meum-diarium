@@ -25,12 +25,30 @@ export default function ChatPage() {
     const [isTyping, setIsTyping] = useState(false);
     const bottomRef = useRef<HTMLDivElement | null>(null);
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
+    
     const author = authorId ? authors[authorId as Author] : null;
+    
+    // Set current author when authorId changes
     useEffect(() => {
         if (authorId) {
             setCurrentAuthor(authorId as Author);
         }
     }, [authorId, setCurrentAuthor]);
+    
+    // Auto-scroll to bottom when messages change
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages, isTyping]);
+    
+    // Handle initial question from URL params
+    useEffect(() => {
+        const q = searchParams.get('q');
+        if (q && messages.length === 1 && !isTyping && author) {
+            setInput(q);
+            setTimeout(() => sendQuestion(q), 500);
+        }
+    }, [searchParams, messages, isTyping, author]);
+    
     if (!author) return null;
     const sendQuestion = async (question: string) => {
         if (!question.trim()) return;
@@ -49,8 +67,8 @@ export default function ChatPage() {
                     return merged;
                 });
             }
-        } catch (err: any) {
-            const msg = err?.message || 'Fehler beim Abruf der KI-Antwort.';
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : 'Fehler beim Abruf der KI-Antwort.';
             setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
         } finally {
             setIsTyping(false);
@@ -62,16 +80,6 @@ export default function ChatPage() {
         setInput('');
         await sendQuestion(question);
     };
-    useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages, isTyping]);
-    useEffect(() => {
-        const q = searchParams.get('q');
-        if (q && messages.length === 1 && !isTyping) {
-            sendQuestion(q);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchParams]);
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">

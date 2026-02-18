@@ -12,7 +12,7 @@ export default function AdminLoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = (location.state as any)?.from?.pathname || '/admin';
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname || '/admin';
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');

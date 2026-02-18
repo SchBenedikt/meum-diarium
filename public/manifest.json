@@ -57,6 +57,42 @@
   },
   "shortcuts": [
     {
+      "name": "Vokabeltrainer",
+      "short_name": "Vokabeln",
+      "description": "Lateinische Vokabeln lernen",
+      "url": "/vocab",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Grammatik",
+      "short_name": "Grammatik",
+      "description": "Lateinische Grammatik üben",
+      "url": "/learn/grammar",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Texte lesen",
+      "short_name": "Lesen",
+      "description": "Antike lateinische Texte lesen",
+      "url": "/reader",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
       "name": "Zeitstrahl",
       "short_name": "Timeline",
       "description": "Interaktive Chronologie der Antike",

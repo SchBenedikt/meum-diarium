@@ -57,7 +57,7 @@ export function buildTimelineEvents(language: Language, posts: BlogPost[], base:
     const type = classifyPost(post);
     const titleForEvent = post.title; // Display title
     const description = post.excerpt;
-    const normalizedYear = normalizeYear((post as any).historicalYear, post.historicalDate);
+    const normalizedYear = normalizeYear(post.historicalYear, post.historicalDate);
     const translations = post.translations ? {
       de: post.translations.de ? { title: post.translations.de.title, description: post.translations.de.excerpt } : undefined,
       en: post.translations.en ? { title: post.translations.en.title, description: post.translations.en.excerpt } : undefined,

@@ -1,20 +1,20 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-    ArrowLeft,
-    ChevronLeft,
-    ChevronRight,
-    CheckCircle2,
-    Search,
-    Badge,
-    MessageSquare,
-    Sparkles,
-    Crown,
-    X
+import { Badge } from '@/components/ui/badge';
+import { 
+    ArrowLeft, 
+    ChevronRight, 
+    Search, 
+    Sparkles, 
+    X, 
+    CheckCircle2, 
+    Eye, 
+    Shuffle, 
+    RefreshCw
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 import rhetoricalDevicesData from '@/data/rhetorical-devices.json';
@@ -44,20 +44,48 @@ interface LatinRiddle {
     author?: string;
 }
 
+interface ExerciseQuestion {
+    id: string;
+    type: 'multiple-choice' | 'identification' | 'translation' | 'creation' | 'analysis' | 'matching';
+    latin: string;
+    question: string;
+    options?: string[];
+    correctAnswer: number | string;
+    device: string;
+    wirkung: string;
+    explanation: string;
+    author?: string;
+    translation?: string;
+    hints?: string[];
+}
+
+interface MatchingItem {
+    latin: string;
+    german: string;
+    device: string;
+}
+
 export default function RhetoricalDevicesPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [selectedDevice, setSelectedDevice] = useState<RhetoricalDevice | null>(null);
-    const [activeTab, setActiveTab] = useState<'devices' | 'riddles'>('devices');
-    const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
-    const [selectedAnswers, setSelectedAnswers] = useState<{[key: string]: number}>({});
+    const [activeTab, setActiveTab] = useState<'devices' | 'exercises'>('devices');
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+    const [selectedAnswers, setSelectedAnswers] = useState<{[key: string]: string | number}>({});
     const [showResults, setShowResults] = useState<{[key: string]: boolean}>({});
+    const [exerciseType, setExerciseType] = useState<'multiple-choice' | 'identification'>('multiple-choice');
+    const [shuffledExercises, setShuffledExercises] = useState<ExerciseQuestion[]>([]);
+    const [score, setScore] = useState(0);
+    const [totalAttempts, setTotalAttempts] = useState(0);
 
     const rhetoricalDevices: RhetoricalDevice[] = rhetoricalDevicesData as RhetoricalDevice[];
 
-    const latinRiddles: LatinRiddle[] = [
+    // Comprehensive exercise database with multiple types
+    const allExercises: ExerciseQuestion[] = [
+        // Multiple Choice Exercises
         {
-            id: 'riddle1',
+            id: 'mc1',
+            type: 'multiple-choice',
             latin: 'Alea iacta est.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
             options: ['Metapher', 'Hyperbel', 'Personifikation', 'Alliteration'],
@@ -68,7 +96,8 @@ export default function RhetoricalDevicesPage() {
             author: 'Caesar'
         },
         {
-            id: 'riddle2',
+            id: 'mc2',
+            type: 'multiple-choice',
             latin: 'Veni, vidi, vici.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
             options: ['Parallelismus', 'Alliteration', 'Anapher', 'Hyperbel'],
@@ -79,7 +108,8 @@ export default function RhetoricalDevicesPage() {
             author: 'Caesar'
         },
         {
-            id: 'riddle3',
+            id: 'mc3',
+            type: 'multiple-choice',
             latin: 'Carthago delenda est.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
             options: ['Metapher', 'Hyperbel', 'Euphemismus', 'Ironie'],
@@ -90,7 +120,8 @@ export default function RhetoricalDevicesPage() {
             author: 'Cato'
         },
         {
-            id: 'riddle4',
+            id: 'mc4',
+            type: 'multiple-choice',
             latin: 'Dulce et decorum est pro patria mori.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
             options: ['Euphemismus', 'Personifikation', 'Apostrophe', 'Oxymoron'],
@@ -101,78 +132,99 @@ export default function RhetoricalDevicesPage() {
             author: 'Horaz'
         },
         {
-            id: 'riddle5',
+            id: 'mc5',
+            type: 'multiple-choice',
             latin: 'Ave Caesar, morituri te salutant.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
             options: ['Apostrophe', 'Rhetorische Frage', 'Parallelismus', 'Ironie'],
             correctAnswer: 0,
             device: 'Apostrophe',
-            wirkung: 'Erzeugt emotionale Verbindung',
-            explanation: 'Die Gladiatoren grüßen Caesar direkt, obwohl er nicht anwesend ist. Dies ist eine direkte Anrede (Apostrophe).',
+            wirkung: 'Spricht jemanden direkt an',
+            explanation: 'Die Gladiatoren sprechen Caesar direkt an - eine klassische Apostrophe.',
             author: 'Sueton'
         },
+        
+        // Identification Exercises
         {
-            id: 'riddle6',
-            latin: 'Quid enim, o homines, quod hora non sit.',
-            question: 'Welches rhetorische Mittel wird hier verwendet?',
-            options: ['Ironie', 'Rhetorische Frage', 'Personifikation', 'Oxymoron'],
-            correctAnswer: 1,
-            device: 'Rhetorische Frage',
-            wirkung: 'Regt zum Nachdenken an',
-            explanation: 'Cicero stellt eine Frage, deren Antwort offensichtlich ist, um seine Zuhörer zum Nachdenken zu bringen.',
-            author: 'Cicero'
+            id: 'ident1',
+            type: 'identification',
+            latin: 'Arma virumque cano, Troiae qui primus ab oris.',
+            question: 'Welches rhetorische Mittel erkennst du?',
+            correctAnswer: 'Alliteration',
+            device: 'Alliteration',
+            wirkung: 'Erzeugt rhythmische Wirkung',
+            explanation: 'Virgil eröffnet die Aeneis mit der Wiederholung des "a"-Lautes, was einen epischen, musikalischen Rhythmus erzeugt.',
+            author: 'Virgil',
+            hints: ['Achte auf die Klangwirkung', 'Welche Laute werden wiederholt?']
         },
         {
-            id: 'riddle7',
-            latin: 'Gallia est omnis divisa in partes tres.',
+            id: 'ident2',
+            type: 'identification',
+            latin: 'Alea iacta est.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
-            options: ['Antithese', 'Parallelismus', 'Alliteration', 'Metapher'],
-            correctAnswer: 1,
-            device: 'Parallelismus',
-            wirkung: 'Schafft Klarheit und Struktur',
-            explanation: 'Caesar beginnt sein Werk mit einer klaren, parallelen Struktur, die Gallien in drei Teile gliedert.',
-            author: 'Caesar'
+            correctAnswer: 'Metapher',
+            device: 'Metapher',
+            wirkung: 'Schafft bildhafte Vorstellungen',
+            explanation: 'Die wörtliche Übersetzung "Der Würfel ist gefallen" enthält die Metapher der Unumkehrbarkeit.',
+            author: 'Caesar',
+            hints: ['Wird etwas bildhaft ausgedrückt?', 'Denke an die Bedeutung']
         },
         {
-            id: 'riddle8',
-            latin: 'Senatus Populusque Romanus.',
-            question: 'Welches rhetorische Mittel wird hier verwendet?',
-            options: ['Alliteration', 'Hyperbel', 'Hendiadyoin', 'Metapher'],
-            correctAnswer: 2,
-            device: 'Hendiadyoin',
-            wirkung: 'Verbindet Konzepte eng miteinander',
-            explanation: 'Die Verbindung von "Senatus" und "Populus" durch "que" ist ein klassisches Hendiadyoin, das zwei eng verbundene Konzepte verbindet.',
-            author: 'Cicero'
-        },
-        {
-            id: 'riddle9',
-            latin: 'Arma virumque cano.',
-            question: 'Welches rhetorische Mittel wird hier verwendet?',
-            options: ['Alliteration', 'Hyperbel', 'Metapher', 'Personifikation'],
-            correctAnswer: 0,
+            id: 'ident3',
+            type: 'identification',
+            latin: 'Veni, vidi, vici.',
+            question: 'Welches rhetorische Mittel erkennst du?',
+            correctAnswer: 'Alliteration',
             device: 'Alliteration',
             wirkung: 'Erzeugt musikalischen Rhythmus',
             explanation: 'Virgil eröffnet die Aeneis mit der Wiederholung des "a"-Lautes, was einen epischen, musikalischen Rhythmus erzeugt.',
-            author: 'Virgil'
+            author: 'Virgil',
+            hints: ['Achte auf die Klangwirkung', 'Welche Laute werden wiederholt?']
         },
         {
-            id: 'riddle10',
-            latin: 'O tempora, o mores!',
+            id: 'ident4',
+            type: 'identification',
+            latin: 'Dulce et decorum est pro patria mori.',
             question: 'Welches rhetorische Mittel wird hier verwendet?',
-            options: ['Apostrophe', 'Alliteration', 'Hyperbel', 'Euphemismus'],
-            correctAnswer: 0,
-            device: 'Apostrophe',
-            wirkung: 'Drückt Emotionen aus',
-            explanation: 'Cicero ruft direkt die "Zeiten" und "Sitten" an, um seinen Frust über den moralischen Verfall auszudrücken.',
-            author: 'Cicero'
+            correctAnswer: 'Hyperbel',
+            device: 'Hyperbel',
+            wirkung: 'Intensiviert die Aussage',
+            explanation: 'Horace übertriebt die Schönheit des Todes für das Vaterland, um patriotische Gefühle zu stärken.',
+            author: 'Horace',
+            hints: ['Wird etwas übertrieben?', 'Denke an die Intensität']
         }
     ];
+
+    // Shuffle exercises on component mount and when exercise type changes
+    useEffect(() => {
+        const filtered = exerciseType === 'multiple-choice' 
+            ? allExercises.filter(ex => ex.type === exerciseType) 
+            : allExercises.filter(ex => ex.type === 'identification');
+        
+        const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+        setShuffledExercises(shuffled);
+        setCurrentExerciseIndex(0);
+        resetAllAnswers();
+    }, [exerciseType]);
+
+    // Shuffle current exercises
+    const shuffleCurrentExercises = () => {
+        const shuffled = [...shuffledExercises].sort(() => Math.random() - 0.5);
+        setShuffledExercises(shuffled);
+        setCurrentExerciseIndex(0);
+        resetAllAnswers();
+    };
 
     const categories = [
         { id: 'figuren', name: 'Figuren', color: 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300' },
         { id: 'strukturen', name: 'Strukturen', color: 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300' },
-        { id: 'wirkungen', name: 'Wirkungen', color: 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300' },
+        { id: 'wendungen', name: 'Wirkungen', color: 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300' },
         { id: 'argumente', name: 'Argumente', color: 'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300' }
+    ];
+
+    const exerciseTypes = [
+        { id: 'multiple-choice', name: 'Multiple Choice', icon: CheckCircle2, color: 'bg-blue-500' },
+        { id: 'identification', name: 'Erkennung', icon: Eye, color: 'bg-emerald-500' },
     ];
 
     const filteredDevices = rhetoricalDevices.filter(device => {
@@ -185,50 +237,69 @@ export default function RhetoricalDevicesPage() {
         return matchesSearch && matchesCategory;
     });
 
-    const filteredRiddles = latinRiddles.filter(riddle => {
-        const matchesSearch = !searchQuery || 
-            riddle.latin.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            riddle.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            riddle.device.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredExercises = useMemo(() => {
+        return allExercises.filter(exercise => {
+          const matchesType = exercise.type === exerciseType;
+          const matchesSearch = !searchQuery || 
+            exercise.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            exercise.latin?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            exercise.device.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchesType && matchesSearch;
+        });
+      }, [exerciseType, searchQuery]);
 
-        return matchesSearch;
-    });
+    const currentExercise = filteredExercises[currentExerciseIndex];
+    const hasNextExercise = currentExerciseIndex < filteredExercises.length - 1;
+    const hasPreviousExercise = currentExerciseIndex > 0;
 
-    const currentRiddle = filteredRiddles[currentRiddleIndex];
-    const hasNextRiddle = currentRiddleIndex < filteredRiddles.length - 1;
-    const hasPreviousRiddle = currentRiddleIndex > 0;
-
-    const handleAnswerSelect = (riddleId: string, optionIndex: number) => {
-        setSelectedAnswers(prev => ({ ...prev, [riddleId]: optionIndex }));
-        // Automatically check answer when option is selected
-        setShowResults(prev => ({ ...prev, [riddleId]: true }));
+    const resetAllAnswers = () => {
+        setSelectedAnswers({});
+        setShowResults({});
     };
 
-    const resetRiddle = (riddleId: string) => {
+    const resetExercise = (exerciseId: string) => {
         setSelectedAnswers(prev => {
             const newAnswers = { ...prev };
-            delete newAnswers[riddleId];
+            delete newAnswers[exerciseId];
             return newAnswers;
         });
         setShowResults(prev => {
             const newResults = { ...prev };
-            delete newResults[riddleId];
+            delete newResults[exerciseId];
             return newResults;
         });
     };
 
-    const goToNextRiddle = () => {
-        if (hasNextRiddle) {
-            setCurrentRiddleIndex(prev => prev + 1);
-            resetRiddle(currentRiddle?.id || '');
+    const handleAnswerSelect = (exerciseId: string, answer: string | number) => {
+        setSelectedAnswers(prev => ({ ...prev, [exerciseId]: answer }));
+        setShowResults(prev => ({ ...prev, [exerciseId]: true }));
+        
+        // Update score
+        setTotalAttempts(prev => prev + 1);
+        if (currentExercise && answer === currentExercise.correctAnswer) {
+            setScore(prev => prev + 1);
         }
     };
 
-    const goToPreviousRiddle = () => {
-        if (hasPreviousRiddle) {
-            setCurrentRiddleIndex(prev => prev - 1);
-            resetRiddle(currentRiddle?.id || '');
+    const goToNextExercise = () => {
+        if (hasNextExercise) {
+            setCurrentExerciseIndex(prev => prev + 1);
+            resetExercise(currentExercise?.id || '');
         }
+    };
+
+    const goToPreviousExercise = () => {
+        if (hasPreviousExercise) {
+            setCurrentExerciseIndex(prev => prev - 1);
+            resetExercise(currentExercise?.id || '');
+        }
+    };
+
+    const resetProgress = () => {
+        setScore(0);
+        setTotalAttempts(0);
+        resetAllAnswers();
+        shuffleCurrentExercises();
     };
 
     return (
@@ -249,7 +320,7 @@ export default function RhetoricalDevicesPage() {
                             Lateinische <span className="text-primary italic">Rhetorik</span>
                         </h1>
                         <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
-                            Entdecke die wichtigsten rhetorischen Figuren der römischen Antike.
+                            Entdecke die wichtigsten rhetorischen Figuren mit interaktiven Übungen.
                         </p>
                     </motion.div>
                     <motion.div
@@ -264,9 +335,18 @@ export default function RhetoricalDevicesPage() {
                             </div>
                             <div className="w-px h-6 bg-border/40" />
                             <div className="flex flex-col items-end">
-                                <span className="text-foreground">{latinRiddles.length}</span>
+                                <span className="text-foreground">{allExercises.length}</span>
                                 <span>Übungen</span>
                             </div>
+                            {totalAttempts > 0 && (
+                                <>
+                                    <div className="w-px h-6 bg-border/40" />
+                                    <div className="flex flex-col items-end">
+                                        <span className="text-foreground">{Math.round((score / totalAttempts) * 100)}%</span>
+                                        <span>Trefferquote</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
                         <Link to="/learn" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
                             <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Lernen
@@ -307,8 +387,8 @@ export default function RhetoricalDevicesPage() {
                                 Stilmittel
                             </Button>
                             <Button
-                                variant={activeTab === 'riddles' ? 'default' : 'outline'}
-                                onClick={() => setActiveTab('riddles')}
+                                variant={activeTab === 'exercises' ? 'default' : 'outline'}
+                                onClick={() => setActiveTab('exercises')}
                                 className="px-6 py-3 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
                             >
                                 <Sparkles className="w-4 h-4 mr-2" />
@@ -327,7 +407,7 @@ export default function RhetoricalDevicesPage() {
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
                                 <Search className="h-4 w-4 text-primary/60" />
                                 <span className="text-sm font-medium text-primary">
-                                    {filteredDevices.length} Ergebnisse gefunden
+                                    {activeTab === 'devices' ? filteredDevices.length : filteredExercises.length} Ergebnisse gefunden
                                 </span>
                             </div>
                         </motion.div>
@@ -359,6 +439,57 @@ export default function RhetoricalDevicesPage() {
                                     {category.name}
                                 </Button>
                             ))}
+                        </motion.div>
+                    )}
+
+                    {/* Exercise Type Filter */}
+                    {activeTab === 'exercises' && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-4 mt-6"
+                        >
+                            <div className="flex flex-wrap gap-3 justify-center">
+                                {exerciseTypes.map(type => {
+                                    const Icon = type.icon;
+                                    return (
+                                        <Button
+                                            key={type.id}
+                                            variant={exerciseType === type.id ? 'default' : 'outline'}
+                                            onClick={() => setExerciseType(type.id as any)}
+                                            size="sm"
+                                            className="rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                                        >
+                                            <Icon className="w-4 h-4 mr-2" />
+                                            {type.name}
+                                        </Button>
+                                    );
+                                })}
+                            </div>
+                            
+                            {/* Exercise Controls */}
+                            <div className="flex justify-center gap-4">
+                                <Button
+                                    onClick={shuffleCurrentExercises}
+                                    variant="outline"
+                                    size="sm"
+                                    className="rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                                >
+                                    <Shuffle className="w-4 h-4 mr-2" />
+                                    Übungen mischen
+                                </Button>
+                                {totalAttempts > 0 && (
+                                    <Button
+                                        onClick={resetProgress}
+                                        variant="outline"
+                                        size="sm"
+                                        className="rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                                    >
+                                        <RefreshCw className="w-4 h-4 mr-2" />
+                                        Fortschritt zurücksetzen
+                                    </Button>
+                                )}
+                            </div>
                         </motion.div>
                     )}
                 </div>
@@ -477,99 +608,193 @@ export default function RhetoricalDevicesPage() {
                         </motion.div>
                     ) : (
                         <motion.div
-                            key="riddles"
+                            key="exercises"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             className="max-w-4xl mx-auto"
                         >
-                            {currentRiddle && (
+                            {currentExercise && (
                                 <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                                     <div className="text-center mb-8">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
                                             <Sparkles className="w-5 h-5 text-primary" />
                                             <span className="text-sm font-semibold text-primary">
-                                                Übung {currentRiddleIndex + 1} von {filteredRiddles.length}
+                                                Übung {currentExerciseIndex + 1} von {filteredExercises.length}
                                             </span>
                                         </div>
                                         
-                                        <div className="bg-secondary/30 rounded-2xl p-6 mb-6 border border-border/40">
-                                            <p className="text-2xl font-mono text-center mb-4 text-primary">
-                                                {currentRiddle.latin}
-                                            </p>
-                                            {currentRiddle.author && (
-                                                <p className="text-sm text-muted-foreground">— {currentRiddle.author}</p>
-                                            )}
+                                        {/* Exercise Type Badge */}
+                                        <div className="mb-6">
+                                            {(() => {
+                                                const exerciseTypeInfo = exerciseTypes.find(t => t.id === currentExercise.type);
+                                                const Icon = exerciseTypeInfo?.icon || CheckCircle2;
+                                                return (
+                                                    <Badge className={`${exerciseTypeInfo?.color || 'bg-gray-500'} text-white px-4 py-2 rounded-full text-sm`}>
+                                                <Icon className="w-4 h-4 mr-2" />
+                                                {exerciseTypeInfo?.name || currentExercise.type}
+                                            </Badge>
+                                                );
+                                            })()}
                                         </div>
+                                        
+                                        {/* Latin Text (if available) */}
+                                        {currentExercise.latin && (
+                                            <div className="bg-secondary/30 rounded-2xl p-6 mb-6 border border-border/40">
+                                                <p className="text-2xl font-mono text-left mb-4 text-primary">
+                                                    {currentExercise.latin}
+                                                </p>
+                                                {currentExercise.author && (
+                                                    <p className="text-sm text-muted-foreground text-left">— {currentExercise.author}</p>
+                                                )}
+                                            </div>
+                                        )}
                                         
                                         <h3 className="text-xl font-semibold mb-6">
-                                            {currentRiddle.question}
+                                            {currentExercise.question}
                                         </h3>
                                         
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                                            {currentRiddle.options.map((option, index) => (
-                                                <Button
-                                                    key={index}
-                                                    variant={selectedAnswers[currentRiddle.id] === index ? 'default' : 'outline'}
-                                                    onClick={() => handleAnswerSelect(currentRiddle.id, index)}
-                                                    className={`p-4 h-auto text-left justify-start rounded-2xl transition-all duration-300 ${
-                                                        selectedAnswers[currentRiddle.id] === index
-                                                            ? index === currentRiddle.correctAnswer
-                                                                ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500'
-                                                                : 'bg-red-500 hover:bg-red-600 text-white border-red-500'
-                                                            : 'hover:border-primary/50'
-                                                    }`}
-                                                    disabled={showResults[currentRiddle.id]}
-                                                >
-                                                    <div className="flex items-center justify-between">
-                                                        <span>{option}</span>
-                                                        {showResults[currentRiddle.id] && (
-                                                            <span className="ml-2">
-                                                                {index === currentRiddle.correctAnswer ? (
-                                                                    <CheckCircle2 className="h-5 w-5" />
-                                                                ) : (
-                                                                    <span className="text-xs">✗</span>
-                                                                )}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                </Button>
-                                            ))}
-                                        </div>
+                                        {/* Hints for creation/analysis exercises */}
+                                        {currentExercise.hints && currentExercise.hints.length > 0 && (
+                                            <div className="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 mb-6 border border-amber-200 dark:border-amber-800">
+                                                <div className="text-center mb-2">
+                                                    <div className="text-sm font-medium text-amber-700 dark:text-amber-300">Hinweise:</div>
+                                                </div>
+                                                <ul className="space-y-1">
+                                                    {currentExercise.hints.map((hint, idx) => (
+                                                        <li key={idx} className="text-sm text-amber-600 dark:text-amber-400 flex items-center gap-2">
+                                                            <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                                                            {hint}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
                                         
-                                        {showResults[currentRiddle.id] && (
+                                        {/* Multiple Choice Exercises */}
+                                        {currentExercise.type === 'multiple-choice' && currentExercise.options && (
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                                {currentExercise.options.map((option, index) => (
+                                                    <Button
+                                                        key={index}
+                                                        variant={selectedAnswers[currentExercise.id] === index ? 'default' : 'outline'}
+                                                        onClick={() => handleAnswerSelect(currentExercise.id, index)}
+                                                        className={`p-4 h-auto text-left justify-start rounded-2xl transition-all duration-300 ${
+                                                            selectedAnswers[currentExercise.id] === index
+                                                                ? index === currentExercise.correctAnswer
+                                                                    ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500'
+                                                                    : 'bg-red-500 hover:bg-red-600 text-white border-red-500'
+                                                                : 'hover:border-primary/50'
+                                                        }`}
+                                                        disabled={showResults[currentExercise.id]}
+                                                    >
+                                                        <div className="flex items-center justify-between">
+                                                            <span>{option}</span>
+                                                            {showResults[currentExercise.id] && (
+                                                                <span className="ml-2">
+                                                                    {index === currentExercise.correctAnswer ? (
+                                                                        <CheckCircle2 className="h-5 w-5" />
+                                                                    ) : (
+                                                                        <span className="text-xs">✗</span>
+                                                                    )}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </Button>
+                                                ))}
+                                            </div>
+                                        )}
+                                        
+                                        {/* Text Input Exercises (Identification only) */}
+                                        {currentExercise.type === 'identification' && (
+                                            <div className="mb-8">
+                                                <Input
+                                                    placeholder="Deine Antwort..."
+                                                    value={(selectedAnswers[currentExercise.id] as string) || ''}
+                                                    onChange={(e) => setSelectedAnswers(prev => ({ ...prev, [currentExercise.id]: e.target.value }))}
+                                                    className="text-center text-lg p-4 rounded-2xl border-2 border-border/40 focus:border-primary/50"
+                                                    disabled={showResults[currentExercise.id]}
+                                                />
+                                                {!showResults[currentExercise.id] && (
+                                                    <div className="text-center mt-4">
+                                                        <Button
+                                                            onClick={() => handleAnswerSelect(currentExercise.id, (selectedAnswers[currentExercise.id] as string) || '')}
+                                                            className="px-8 py-3 rounded-2xl"
+                                                            disabled={!selectedAnswers[currentExercise.id]}
+                                                        >
+                                                            Antwort prüfen
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                        
+                                        {/* Results Section */}
+                                        {showResults[currentExercise.id] && (
                                             <motion.div
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 className="space-y-6 border-t border-border/40 pt-6"
                                             >
                                                 <div className="text-center mb-4">
-                                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-full">
+                                                    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${
+                                                        (() => {
+                                                            const userAnswer = selectedAnswers[currentExercise.id];
+                                                            const isCorrect = currentExercise.type === 'multiple-choice' 
+                                                                ? userAnswer === currentExercise.correctAnswer
+                                                                : typeof currentExercise.correctAnswer === 'string'
+                                                                    ? (userAnswer as string)?.toLowerCase().includes((currentExercise.correctAnswer as string).toLowerCase())
+                                                                    : false;
+                                                            return isCorrect ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white';
+                                                        })()
+                                                    }`}>
                                                         <CheckCircle2 className="h-5 w-5" />
                                                         <span className="text-sm font-bold">
-                                                            {selectedAnswers[currentRiddle.id] === currentRiddle.correctAnswer ? 'Richtig!' : 'Falsch'}
+                                                            {(() => {
+                                                                const userAnswer = selectedAnswers[currentExercise.id];
+                                                                const isCorrect = currentExercise.type === 'multiple-choice' 
+                                                                    ? userAnswer === currentExercise.correctAnswer
+                                                                    : typeof currentExercise.correctAnswer === 'string'
+                                                                        ? (userAnswer as string)?.toLowerCase().includes((currentExercise.correctAnswer as string).toLowerCase())
+                                                                        : false;
+                                                                return isCorrect ? 'Richtig!' : 'Falsch';
+                                                            })()}
                                                         </span>
                                                     </div>
                                                 </div>
 
-                                                {/* Only show "Richtiges Stilmittel" if answer was wrong */}
-                                                {selectedAnswers[currentRiddle.id] !== currentRiddle.correctAnswer && (
-                                                    <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800">
-                                                        <div className="text-center mb-3">
-                                                            <div className="text-sm font-medium text-emerald-700 dark:text-emerald-300 mb-1">Richtiges Stilmittel</div>
-                                                            <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300">
-                                                                {currentRiddle.device}
-                                                            </p>
+                                                {/* Only show correct answer if answer was wrong */}
+                                                {(() => {
+                                                    const userAnswer = selectedAnswers[currentExercise.id];
+                                                    const isCorrect = currentExercise.type === 'multiple-choice' 
+                                                        ? userAnswer === currentExercise.correctAnswer
+                                                        : typeof currentExercise.correctAnswer === 'string'
+                                                            ? (userAnswer as string)?.toLowerCase().includes((currentExercise.correctAnswer as string).toLowerCase())
+                                                            : false;
+                                                    
+                                                    return !isCorrect && (
+                                                        <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800">
+                                                            <div className="text-center mb-3">
+                                                                <div className="text-sm font-medium text-emerald-700 dark:text-emerald-300 mb-1">
+                                                                    {currentExercise.type === 'multiple-choice' ? 'Richtige Antwort:' : 'Richtiges Stilmittel:'}
+                                                                </div>
+                                                                <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300">
+                                                                    {currentExercise.type === 'multiple-choice' 
+                                                                        ? currentExercise.options?.[currentExercise.correctAnswer as number]
+                                                                        : currentExercise.correctAnswer}
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
+                                                    );
+                                                })()}
 
+                                                
                                                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800">
                                                     <div className="text-center mb-3">
                                                         <div className="text-sm font-medium text-blue-700 dark:text-blue-300 mb-1">Wirkung</div>
                                                     </div>
                                                     <p className="text-sm text-blue-600 dark:text-blue-400 leading-relaxed">
-                                                        {currentRiddle.wirkung}
+                                                        {currentExercise.wirkung}
                                                     </p>
                                                 </div>
 
@@ -578,11 +803,11 @@ export default function RhetoricalDevicesPage() {
                                                         <div className="text-sm font-medium text-amber-700 dark:text-amber-300 mb-1">Erklärung</div>
                                                     </div>
                                                     <p className="text-sm text-amber-600 dark:text-amber-400 leading-relaxed">
-                                                        {currentRiddle.explanation}
+                                                        {currentExercise.explanation}
                                                     </p>
-                                                    {currentRiddle.author && (
+                                                    {currentExercise.author && (
                                                         <p className="text-xs text-muted-foreground mt-2">
-                                                            Quelle: {currentRiddle.author}
+                                                            Quelle: {currentExercise.author}
                                                         </p>
                                                     )}
                                                 </div>
@@ -590,27 +815,25 @@ export default function RhetoricalDevicesPage() {
                                                 <div className="flex justify-center">
                                                     <Button
                                                         onClick={() => {
-                                                            resetRiddle(currentRiddle.id);
-                                                            if (hasNextRiddle) {
-                                                                goToNextRiddle();
+                                                            resetExercise(currentExercise.id);
+                                                            if (hasNextExercise) {
+                                                                goToNextExercise();
                                                             }
                                                         }}
                                                         variant="outline"
                                                         className="px-6 py-2 border-border/60 hover:bg-card/60 rounded-2xl"
                                                     >
-                                                        <>
-                                                            {hasNextRiddle ? (
-                                                                <>
-                                                                    <span className="mr-2">Nächste Frage</span>
-                                                                    <ChevronRight className="h-4 w-4" />
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <span className="mr-2">Zurück zur Übersicht</span>
-                                                                    <ArrowLeft className="h-4 w-4" />
-                                                                </>
-                                                            )}
-                                                        </>
+                                                        {hasNextExercise ? (
+                                                            <>
+                                                                <span className="mr-2">Nächste Frage</span>
+                                                                <ChevronRight className="h-4 w-4" />
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="mr-2">Zurück zur Übersicht</span>
+                                                                <ArrowLeft className="h-4 w-4" />
+                                                            </>
+                                                        )}
                                                     </Button>
                                                 </div>
                                             </motion.div>

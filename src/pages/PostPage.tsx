@@ -4,9 +4,10 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuth } from '@/context/AuthContext';
 import { authors as authorData } from '@/data/authors';
 import { usePosts } from '@/hooks/use-posts';
-import { Author, Perspective, BlogPost } from '@/types/blog';
+import { Author, Perspective, BlogPost, Language } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import { Calendar, Clock, BookText } from 'lucide-react';
 import NotFound from './NotFound';
@@ -28,24 +29,11 @@ const calculateReadingTime = (text: string): number => {
   return Math.ceil(wordCount / wordsPerMinute);
 };
 function PostContent({ post }: { post: BlogPost }) {
-  if (!post) {
-    console.error('[PostContent] Post is null/undefined');
-    return <NotFound />;
-  }
   const { t, language } = useLanguage();
+  const { user, token } = useAuth();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
-  // Safely check for content
-  const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
-  const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
-  const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
-  const requested = (searchParams.get('p') as Perspective | null);
-  const initialPerspective: Perspective = requested === 'scientific' && hasScientific
-    ? 'scientific'
-    : requested === 'diary' && hasDiary
-      ? 'diary'
-      : defaultPerspective;
-  const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
+  const [perspective, setPerspective] = useState<Perspective>('diary');
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -54,20 +42,9 @@ function PostContent({ post }: { post: BlogPost }) {
   const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const contentToDisplay = post?.content?.[perspective];
-  // Determine which title to display based on perspective
-  const getDisplayTitle = () => {
-    if (perspective === 'diary' && post?.diaryTitle) {
-      return post.diaryTitle;
-    } else if (perspective === 'scientific' && post?.scientificTitle) {
-      return post.scientificTitle;
-    }
-    return post?.title || 'Untitled'; // Fallback
-  };
-  const readingTime = useMemo(() => {
-    if (!contentToDisplay) return 0;
-    return calculateReadingTime(contentToDisplay);
-  }, [contentToDisplay]);
+
+  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post, perspective]);
+  
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {
     if (!Array.isArray(allPosts) || !post?.author || !post?.slug) {
@@ -82,21 +59,88 @@ function PostContent({ post }: { post: BlogPost }) {
       .filter(p => p?.author === post.author && p?.slug !== post.slug)
       .slice(0, 6);
   }, [allPosts, post?.author, post?.slug]);
+  
+  // Determine which title to display based on perspective
+  const getDisplayTitle = useCallback(() => {
+    if (perspective === 'diary' && post?.diaryTitle) {
+      return post.diaryTitle;
+    } else if (perspective === 'scientific' && post?.scientificTitle) {
+      return post.scientificTitle;
+    }
+    return post?.title || 'Untitled'; // Fallback
+  }, [perspective, post]);
+  
+  // Update perspective based on URL params and content availability
+  useEffect(() => {
+    if (!post) return;
+    
+    const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
+    const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
+    const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
+    const requested = (searchParams.get('p') as Perspective | null);
+    const initialPerspective: Perspective = requested === 'scientific' && hasScientific
+      ? 'scientific'
+      : requested === 'diary' && hasDiary
+        ? 'diary'
+        : defaultPerspective;
+    
+    if (perspective !== initialPerspective) {
+      setPerspective(initialPerspective);
+    }
+  }, [post, searchParams, perspective]);
+  
+  if (!post) {
+    console.error('[PostContent] Post is null/undefined');
+    return <NotFound />;
+  }
+  
   const author = post?.author ? authorData[post.author as Author] : null;
-  const excerpt = post?.excerpt || contentToDisplay?.substring(0, 160) || '';
+  const excerpt = contentToDisplay?.substring(0, 160) || '';
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+  const finalImage = `${baseUrl}/images/caesar-hero.jpg`;
+  const currentUrl = window.location.href;
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <SEO
         title={getDisplayTitle()}
-        description={excerpt}
-        author={author?.name}
-        image={post?.coverImage}
+        description={contentToDisplay?.substring(0, 160)}
+        author={post?.author}
+        image={post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage}
         type="article"
         publishedTime={post?.date}
-        section={perspective === 'diary' ? 'Tagebuch' : 'Wissenschaftlich'}
-        tags={post?.tagsWithTranslations && post.tagsWithTranslations.length > 0
-          ? post.tagsWithTranslations.map(t => t.translations.de)
-          : (post?.tags || [])}
+        section={post?.historicalYear ? 'ancient-history' : 'roman-literature'}
+        tags={post?.tags || ['Latein', 'antike Geschichte', 'römisches Reich']}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": getDisplayTitle(),
+          "description": contentToDisplay?.substring(0, 160),
+          "image": post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage,
+          "author": {
+            "@type": "Person",
+            "name": post?.author
+          },
+          "datePublished": post?.date,
+          "dateModified": post?.date,
+          "url": currentUrl,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "name": `${post?.author} - ${getDisplayTitle()}`,
+            "description": contentToDisplay?.substring(0, 500)
+          },
+          "about": [
+            {
+              "@type": "Thing",
+              "name": post?.historicalYear ? "Antike Geschichte" : "Römische Literatur",
+              "description": post?.historicalYear 
+                ? `Historischer Kontext aus dem Jahr ${post.historicalYear}`
+                : "Literarische Analyse und Interpretation"
+            }
+          ],
+          "keywords": post?.tags || ["Latein", "Antike Geschichte", "Römisches Reich"],
+          "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la'
+        }}
+        canonical={currentUrl}
       />
       <main className="flex-1">
         <div className="bg-background pb-12">
@@ -138,7 +182,7 @@ function PostContent({ post }: { post: BlogPost }) {
                       </span>
                       <span className="flex items-center gap-1.5">
                         <Clock className="h-4 w-4" />
-                        {readingTime} min
+                        {calculateReadingTime(contentToDisplay)} min
                       </span>
                     </div>
                     <ShareButton
@@ -151,7 +195,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </header>
                 <div className="space-y-8">
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
-                  <FormattedContent content={contentToDisplay} language={language} currentSlug={post?.slug} />
+                  <FormattedContent content={contentToDisplay} language={language as Language} currentSlug={post?.slug} />
                 </div>
               </motion.article>
               {/* Sidebar - below content on mobile, sticky on desktop */}
@@ -161,6 +205,7 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
               </aside>
             </div>
+            
             {/* Related Articles Section */}
             {relatedPosts.length > 0 && post?.author && (
               <section className="mt-16 pt-10 border-t border-border/40">
@@ -237,9 +282,9 @@ export default function PostPage() {
         } else {
           setPost(null);
         }
-      } catch (err: any) {
-        console.error(`[PostPage] Error loading post:`, err.message);
-        setError(err.message || 'Failed to load post');
+      } catch (err: unknown) {
+        console.error(`[PostPage] Error loading post:`, err instanceof Error ? err.message : String(err));
+        setError(err instanceof Error ? err.message : 'Failed to load post');
         setPost(null);
       } finally {
         setIsLoadingPost(false);

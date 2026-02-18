@@ -8,6 +8,11 @@ import compression from 'vite-plugin-compression';
 export default defineConfig(({ mode }) => ({
   server: {
     port: 9002,
+    host: true,
+    hmr: {
+      port: 9002,
+      host: 'localhost'
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
@@ -26,6 +31,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
+    // Enable compression for better performance
     compression({
       verbose: true,
       disable: false,
@@ -64,15 +70,17 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'query-vendor': ['@tanstack/react-query'],
-          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
+          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select', '@radix-ui/react-accordion', '@radix-ui/react-alert-dialog'],
           'motion': ['framer-motion'],
-          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
-          'icons': ['lucide-react']
+          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority', 'date-fns'],
+          'icons': ['lucide-react'],
+          'leaflet': ['leaflet', 'react-leaflet']
         }
       }
     },
     chunkSizeWarningLimit: 500,
     cssCodeSplit: true,
     sourcemap: mode === 'production' ? false : 'inline',
+    reportCompressedSize: true,
   }
 }));

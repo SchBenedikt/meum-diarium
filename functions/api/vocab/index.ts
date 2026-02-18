@@ -55,7 +55,13 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             results,
             count: results.length,
             limit,
-            offset
+            offset,
+            source: {
+                name: 'Latin-GermanDictionary',
+                url: 'https://github.com/hackerpschorr/Latin-GermanDictionary',
+                license: 'GPL-3.0',
+                entries: 36140
+            }
         }), {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',

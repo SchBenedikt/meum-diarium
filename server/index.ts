@@ -143,8 +143,48 @@ app.get('/sitemap.xml', async (_req, res) => {
 // These return empty data since we're using D1 in Cloudflare Functions
 // In production, these won't be hit - Cloudflare Functions handle /api/*
 
-app.get('/api/posts', (_req, res) => {
-    res.json([]);
+app.get('/api/posts', async (_req, res) => {
+    console.log('📝 [Dev] GET /api/posts - serving from JSON files');
+    
+    try {
+        const postsDir = path.resolve(__dirname, '../public/api/posts');
+        const authorDirs = await fs.readdir(postsDir);
+        
+        let allPosts: any[] = [];
+        
+        for (const authorDir of authorDirs) {
+            const authorPath = path.join(postsDir, authorDir);
+            const stat = await fs.stat(authorPath);
+            
+            if (stat.isDirectory()) {
+                const postFiles = await fs.readdir(authorPath);
+                
+                for (const file of postFiles) {
+                    if (file.endsWith('.json')) {
+                        const filePath = path.join(authorPath, file);
+                        const content = await fs.readFile(filePath, 'utf-8');
+                        const post = JSON.parse(content);
+                        
+                        // Ensure author field is set
+                        post.author = authorDir;
+                        post.authorId = authorDir;
+                        
+                        allPosts.push(post);
+                    }
+                }
+            }
+        }
+        
+        // Sort by date (newest first)
+        allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+        
+        console.log(`✅ [Dev] Served ${allPosts.length} posts from JSON files`);
+        res.json(allPosts);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Error serving posts from JSON:', error);
+        res.json([]);
+    }
 });
 
 app.post('/api/posts', (req, res) => {
@@ -157,8 +197,33 @@ app.post('/api/posts', (req, res) => {
     });
 });
 
-app.get('/api/posts/:author/:slug', (_req, res) => {
-    res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+app.get('/api/posts/:author/:slug', async (req, res) => {
+    const { author, slug } = req.params;
+    console.log(`📝 [Dev] GET /api/posts/${author}/${slug} - serving from JSON files`);
+    
+    try {
+        const postPath = path.resolve(__dirname, '../public/api/posts', author, `${slug}.json`);
+        
+        try {
+            const content = await fs.readFile(postPath, 'utf-8');
+            const post = JSON.parse(content);
+            
+            // Ensure author field is set
+            post.author = author;
+            post.authorId = author;
+            
+            console.log(`✅ [Dev] Served post: ${post.title}`);
+            res.json(post);
+            
+        } catch (fileError) {
+            console.log(`⚠️ [Dev] Post not found: ${author}/${slug}`);
+            res.status(404).json({ error: 'Not found', message: `Post ${author}/${slug} not found` });
+        }
+        
+    } catch (error) {
+        console.error('❌ [Dev] Error serving post:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 app.put('/api/posts/:author/:slug', (req, res) => {
@@ -217,6 +282,60 @@ app.get('/api/tags', (_req, res) => {
 
 app.get('/api/pages/:slug', (_req, res) => {
     res.status(404).json({ error: 'Not found' });
+});
+
+// Author-specific endpoints
+app.get('/api/authors/:authorId', (req, res) => {
+    const { authorId } = req.params;
+    if (!AUTHOR_IDS.includes(authorId)) {
+        return res.status(404).json({ error: 'Author not found' });
+    }
+    
+    // Return basic author info for development
+    res.json({
+        id: authorId,
+        name: authorId.charAt(0).toUpperCase() + authorId.slice(1),
+        description: `Development data for ${authorId}`,
+        content: `This is development content for ${authorId}. In production, this would contain rich content about the author.`
+    });
+});
+
+// Page content endpoints for about pages
+app.get('/api/pages/about', (_req, res) => {
+    res.json({
+        title: 'Über Meum Diarium',
+        content: 'Development content for the general about page.',
+        heroTitle: 'Meum Diarium',
+        heroSubtitle: 'Development subtitle',
+        projectDescription: 'Development description'
+    });
+});
+
+app.get('/api/pages/author-about-cicero', (_req, res) => {
+    res.json({
+        title: 'Über Cicero',
+        content: 'Development content for Cicero about page.',
+        heroTitle: 'Marcus Tullius Cicero',
+        heroSubtitle: 'Römischer Redner, Politiker und Philosoph'
+    });
+});
+
+app.get('/api/pages/author-about-augustus', (_req, res) => {
+    res.json({
+        title: 'Über Augustus',
+        content: 'Development content for Augustus about page.',
+        heroTitle: 'Augustus',
+        heroSubtitle: 'Erster römischer Kaiser'
+    });
+});
+
+app.get('/api/pages/author-about-catilina', (_req, res) => {
+    res.json({
+        title: 'Über Catilina',
+        content: 'Development content for Catilina about page.',
+        heroTitle: 'Lucius Sergius Catilina',
+        heroSubtitle: 'Römischer Senator und Verschwörer'
+    });
 });
 
 app.get('/api/translations/:lang', (_req, res) => {
@@ -299,7 +418,13 @@ app.get('/api/vocab', async (req, res) => {
             results,
             count: results.length,
             limit,
-            offset
+            offset,
+            source: {
+                name: 'Latin-GermanDictionary',
+                url: 'https://github.com/hackerpschorr/Latin-GermanDictionary',
+                license: 'GPL-3.0',
+                entries: 36140
+            }
         });
     } catch (error) {
         console.error('Vocabulary API Error:', error);
@@ -824,6 +949,116 @@ app.get('/api/vocab/all', async (req, res) => {
 // Health check
 app.get('/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Dev server running - using local data files' });
+});
+
+// =======================================
+// Latin Translation endpoint (Development)
+// =======================================
+app.post('/api/latin/translate', async (req, res) => {
+    console.log('🔤 [Dev] POST /api/latin/translate - AI translation request');
+    
+    try {
+        const { sentence, type = 'literal' } = req.body;
+        
+        if (!sentence) {
+            return res.status(400).json({ error: 'Missing sentence parameter' });
+        }
+
+        // In development, we'll provide mock translations with some variety
+        const mockTranslations: Record<string, Record<string, string>> = {
+            'Gallia est omnis divisa in partes tres': {
+                literal: 'Gallien ist ganz geteilt in drei Teile',
+                meaningful: 'Ganz Gallien ist in drei Teile gegliedert'
+            },
+            'Hi omnes lingua institutis legibus inter se differunt': {
+                literal: 'Diese alle Sprache Einrichtungen Gesetzen unter sich unterscheiden',
+                meaningful: 'Diese alle unterscheiden sich durch Sprache, Einrichtungen und Gesetze untereinander'
+            }
+        };
+
+        const translation = mockTranslations[sentence]?.[type] || 
+            (type === 'meaningful' 
+                ? `Sinnhafte Übersetzung von: ${sentence}`
+                : `Wörtliche Übersetzung von: ${sentence}`
+            );
+
+        const result = {
+            sentence,
+            type,
+            translation,
+            format: 'text',
+            source: 'development-mock'
+        };
+
+        console.log(`✅ [Dev] Translation completed for: "${sentence.substring(0, 50)}..."`);
+        res.json(result);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Translation error:', error);
+        res.status(500).json({ 
+            error: 'Translation failed', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+// =======================================
+// Latin Grammatical Analysis endpoint (Development)
+// =======================================
+app.post('/api/latin/analyze', async (req, res) => {
+    console.log('📝 [Dev] POST /api/latin/analyze - AI analysis request');
+    
+    try {
+        const { sentence } = req.body;
+        
+        if (!sentence) {
+            return res.status(400).json({ error: 'Missing sentence parameter' });
+        }
+
+        // In development, create mock grammatical analysis
+        const words = sentence.replace(/[.,;:!?]/g, '').split(' ').filter(w => w.length > 0);
+        
+        const grammaticalCases = ['Nominativ', 'Akkusativ', 'Dativ', 'Genitiv', 'Ablativ'];
+        const genders = ['maskulin', 'feminin', 'neutral'];
+        const numbers = ['Singular', 'Plural'];
+        const persons = ['1. Person', '2. Person', '3. Person'];
+        const tenses = ['Präsens', 'Perfekt', 'Futur'];
+        const moods = ['Indikativ', 'Konjunktiv', 'Imperativ'];
+        const voices = ['Aktiv', 'Passiv'];
+        const roles = ['Subjekt', 'Objekt', 'Prädikat', 'Adverbiale Bestimmung'];
+
+        const analysis = words.map((word, index) => ({
+            word: word,
+            grammaticalInfo: {
+                case: grammaticalCases[index % grammaticalCases.length],
+                gender: genders[index % genders.length],
+                number: numbers[index % numbers.length],
+                person: persons[index % persons.length],
+                tense: tenses[index % tenses.length],
+                mood: moods[index % moods.length],
+                voice: voices[index % voices.length],
+                role: roles[index % roles.length]
+            },
+            highlighted: Math.random() > 0.5
+        }));
+
+        const result = {
+            sentence,
+            analysis,
+            format: 'json',
+            source: 'development-mock'
+        };
+
+        console.log(`✅ [Dev] Analysis completed for: "${sentence.substring(0, 50)}..."`);
+        res.json(result);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Analysis error:', error);
+        res.status(500).json({ 
+            error: 'Analysis failed', 
+            message: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
 });
 
 // **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router

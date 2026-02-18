@@ -12,6 +12,26 @@ import { ArrowLeft, Save, Plus, X } from 'lucide-react';
 import { upsertLexiconEntry } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchLexiconEntry } from '@/lib/api';
+interface LexiconTranslation {
+    term: string;
+    definition: string;
+    etymology: string;
+    category: string;
+    variants: string[];
+}
+
+interface LexiconFormData {
+    term: string;
+    slug: string;
+    category: string;
+    definition: string;
+    etymology: string;
+    variants: string[];
+    relatedTerms: string[];
+    en: LexiconTranslation;
+    la: LexiconTranslation;
+}
+
 export default function LexiconEditorPage() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
@@ -114,7 +134,7 @@ export default function LexiconEditorPage() {
             setLoading(false);
         }
     };
-    const updateField = (field: string, value: any) => {
+    const updateField = (field: keyof LexiconFormData, value: LexiconFormData[keyof LexiconFormData]) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
     const addVariant = () => {
@@ -135,7 +155,7 @@ export default function LexiconEditorPage() {
     const removeRelatedTerm = (index: number) => {
         setFormData(prev => ({ ...prev, relatedTerms: prev.relatedTerms.filter((_, i) => i !== index) }));
     };
-    const updateLangField = (lang: 'en' | 'la', field: string, value: any) => {
+    const updateLangField = (lang: 'en' | 'la', field: keyof LexiconTranslation, value: LexiconTranslation[keyof LexiconTranslation]) => {
         setFormData(prev => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
     };
     const addLangVariant = (lang: 'en' | 'la') => {

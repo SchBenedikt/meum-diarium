@@ -12,7 +12,8 @@ import {
     ChevronRight,
     Hash,
     List,
-    PenTool
+    PenTool,
+    Calendar
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
@@ -60,10 +61,18 @@ const grammarTopics = [
     {
         id: 'syntax',
         title: 'Syntax',
-        description: 'Die Satzstruktur und Wortstellung im Latein.',
+        description: 'Die Satzstruktur und Wortstellung im Lateinischen.',
         icon: List,
         color: 'bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300',
         topics: ['Satzbau', 'Wortstellung', 'Satzgliederung']
+    },
+    {
+        id: 'partizipien',
+        title: 'Partizipien',
+        description: 'Die Verbformen und ihre Verwendung.',
+        icon: Calendar,
+        color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300',
+        topics: ['PPA', 'PPP', 'PFA', 'Infinitiv', 'Gerundium']
     }
 ];
 
@@ -134,6 +143,7 @@ export default function LatinGrammarPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
+                            onClick={() => navigate(`/learn/grammar/${t.id}`)}
                         >
                             <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full">
                                 <div className="flex items-start justify-between mb-4">

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { authors as baseAuthors } from '@/data/authors';
 import { works as baseWorks } from '@/data/works';
-import { Author, Work, AuthorInfo } from '@/types/blog';
+import { Author, Work, AuthorInfo, Language } from '@/types/blog';
 import { useAuthor } from '@/context/AuthorContext';
 import {
   Calendar,
@@ -56,7 +56,7 @@ export default function WorkPage() {
       return newSet;
     });
   };
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
     Award,
     Quote,
     Target,
@@ -83,7 +83,7 @@ export default function WorkPage() {
       }
       // Set author from context data (loaded from D1 database)
       const contextAuthor = authorsData[authorId];
-      const translatedAuthor = await getTranslatedAuthor(language, authorId as Author);
+      const translatedAuthor = await getTranslatedAuthor(language as Language, authorId as Author);
       if (active) {
         setAuthor(translatedAuthor ?? contextAuthor ?? null);
       }
@@ -96,12 +96,16 @@ export default function WorkPage() {
       } else {
         // Fallback to allWorks if available
         if (allWorks.length > 0) {
-          foundWork = allWorks.find((w: any) => w.slug === slug);
+          foundWork = allWorks.find((w: Work) => {
+            // Since Work doesn't have slug, we need to match by title or create a slug from title
+            const workSlug = slugify(w.title, { lower: true, strict: true });
+            return workSlug === slug;
+          });
           console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
         }
       }
       if (foundWork) {
-        const lang = language.split('-')[0];
+        const lang = language.split('-')[0] as 'de' | 'en' | 'la';
         // Try to get translations if they exist
         if (foundWork.translations && foundWork.translations[lang]) {
           const tr = foundWork.translations[lang];
@@ -127,9 +131,9 @@ export default function WorkPage() {
       }
       // Load related works (from allWorks list)
       const related = allWorks
-        .filter((w: any) => w.author === authorId && w.slug !== slug)
+        .filter((w: Work) => w.author === authorId && slugify(w.title, { lower: true, strict: true }) !== slug)
         .slice(0, 3)
-        .map((w: any) => ({ title: w.title, year: w.year } as Work));
+        .map((w: Work) => ({ title: w.title, year: w.year } as Work));
       if (active) {
         setOtherWorks(related);
         setLoading(false);
@@ -142,7 +146,7 @@ export default function WorkPage() {
     return () => {
       active = false;
     };
-  }, [slug, language, authorId, authorsData]);
+  }, [slug, language, authorId, authorsData, allWorks]);
   if (loading || isWorksLoading) {
     return null;
   }
@@ -168,7 +172,7 @@ export default function WorkPage() {
       <ScrollProgress />
       <PageHero
         title={work.title}
-        subtitle={work.year}
+        description={work.year}
       />
       <div className="container max-w-7xl mx-auto px-4 py-12">
         {/* Intro Section - Compact */}

@@ -14,9 +14,9 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import catilinaPageData from '@/content/pages/author-about-catilina.json';
 export function CatilinaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
-  const { authorId } = useParams<{ authorId: string }>();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [authorPosts, setAuthorPosts] = useState<BlogPost[]>([]);
@@ -24,32 +24,24 @@ export function CatilinaAboutPage() {
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
   const authorDetails = useAuthorDetails(t);
   useEffect(() => {
-    if (authorId === 'catilina') {
-      setCurrentAuthor('catilina' as Author);
-      async function translateContent() {
-        if (!postsLoading) {
-          const authorPostsList = allPosts.filter(p => p.author === 'catilina').slice(0, 3);
-          setAuthorPosts(authorPostsList);
-        }
-        const translatedWorks = await Promise.all(
-          Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
-        );
-        setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
-        try {
-          const res = await fetch('/api/pages/author-about-catilina');
-          if (res.ok) {
-            const data: PageContent = await res.json();
-            setAuthorPage(data);
-          } else {
-            setAuthorPage(null);
-          }
-        } catch {
-          setAuthorPage(null);
-        }
+    setCurrentAuthor('catilina' as Author);
+
+    async function translateContent() {
+      // Use local JSON data directly
+      setAuthorPage(catilinaPageData as PageContent);
+
+      if (!postsLoading && allPosts.length > 0) {
+        const authorPostsList = allPosts.filter(p => p.author === 'catilina').slice(0, 3);
+        setAuthorPosts(authorPostsList);
       }
-      translateContent();
+
+      const translatedWorks = await Promise.all(
+        Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
+      );
+      setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
     }
-  }, [authorId, setCurrentAuthor, language, allPosts, postsLoading]);
+    translateContent();
+  }, [setCurrentAuthor, language, allPosts, postsLoading]);
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">

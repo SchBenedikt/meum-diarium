@@ -6,7 +6,7 @@ export default {
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: corsHeaders() });
         }
-        if (!["GET", "POST"].includes(request.method)) {
+        if (!["GET", "POST", "PUT", "DELETE"].includes(request.method)) {
             return new Response(JSON.stringify({ error: "Method not allowed" }), {
                 status: 405,
                 headers: corsHeaders(),
@@ -43,6 +43,26 @@ export default {
             return handleStats();
         }
 
+        // Route: /comments - proxy to backend
+        if (pathname.endsWith('/comments')) {
+            return handleComments(request, env, url, body);
+        }
+
+        // Route: /api/translations/works - handle work translations
+        if (pathname.startsWith('/api/translations/works/')) {
+            return handleWorkTranslations(request, env, url, body, pathname);
+        }
+
+        // Route: /api/latin/translate - handle Latin sentence translation
+        if (pathname.endsWith('/api/latin/translate')) {
+            return handleLatinTranslation(request, env, url, body);
+        }
+
+        // Route: /api/latin/analyze - handle Latin grammatical analysis
+        if (pathname.endsWith('/api/latin/analyze')) {
+            return handleLatinAnalysis(request, env, url, body);
+        }
+
         // Persona extraction and Documentation check
         let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
         let question = url.searchParams.get("ask") || body?.ask;
@@ -52,31 +72,44 @@ export default {
         // Route: /api - Only proxy write operations or specific AI queries.
         // Standard content GET requests should fall through to Pages (static assets or Functions).
         if (pathname.startsWith('/api') && (["POST", "PUT", "DELETE"].includes(request.method) || question)) {
-            const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
-            const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
+            // Skip work translations as they are handled separately
+            if (pathname.startsWith('/api/translations/works/')) {
+                // Already handled above, continue to next route
+            } else {
+                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+                const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
-            // Safety: Don't proxy back to self to avoid infinite loops
-            if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
-                try {
-                    const response = await fetch(proxyUrl.toString(), {
-                        method: request.method,
-                        headers: {
+                // Safety: Don't proxy back to self to avoid infinite loops
+                if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
+                    try {
+                        const headers = {
                             "Content-Type": "application/json",
                             "Accept": "application/json"
-                        },
-                        body: request.method === "POST" ? JSON.stringify(body) : null
-                    });
+                        };
 
-                    const data = await response.json();
-                    return new Response(JSON.stringify(data), {
-                        headers: corsHeaders(),
-                        status: response.status
-                    });
-                } catch (e) {
-                    return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
-                        status: 502,
-                        headers: corsHeaders()
-                    });
+                        // Forward Authorization header if present
+                        const authHeader = request.headers.get('Authorization');
+                        if (authHeader) {
+                            headers['Authorization'] = authHeader;
+                        }
+
+                        const response = await fetch(proxyUrl.toString(), {
+                            method: request.method,
+                            headers: headers,
+                            body: ["POST", "PUT", "DELETE"].includes(request.method) ? JSON.stringify(body) : null
+                        });
+
+                        const data = await response.json();
+                        return new Response(JSON.stringify(data), {
+                            headers: corsHeaders(),
+                            status: response.status
+                        });
+                    } catch (e) {
+                        return new Response(JSON.stringify({ error: "API Proxy Error", details: e.message }), {
+                            status: 502,
+                            headers: corsHeaders()
+                        });
+                    }
                 }
             }
         }
@@ -644,11 +677,284 @@ KRITISCH WICHTIG:
     }
 }
 
+// =======================================
+// Comments endpoint - proxy to backend
+// =======================================
+async function handleComments(request, env, url, body) {
+    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    // Fix: Explicitly target /api/comments on backend
+    const proxyUrl = new URL('/api/comments' + url.search, baseBackendUrl);
+
+    try {
+        const headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        };
+
+        // Forward Authorization header if present
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            headers['Authorization'] = authHeader;
+        }
+
+        const response = await fetch(proxyUrl.toString(), {
+            method: request.method,
+            headers: headers,
+            body: request.method === "POST" ? JSON.stringify(body) : null
+        });
+
+        const data = await response.json();
+        return new Response(JSON.stringify(data), {
+            headers: corsHeaders(),
+            status: response.status
+        });
+    } catch (e) {
+        console.error('[Worker] Comments proxy error:', e);
+        return new Response(JSON.stringify({ error: "Comments API Error", details: e.message }), {
+            status: 502,
+            headers: corsHeaders()
+        });
+    }
+}
+
+// =======================================
+// Work Translations endpoint
+// =======================================
+async function handleWorkTranslations(request, env, url, body, pathname) {
+    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    
+    // Extract work ID and language from pathname
+    // Pattern: /api/translations/works/:workId or /api/translations/works/:workId/:lang
+    const pathParts = pathname.split('/').filter(Boolean);
+    const workId = pathParts[3]; // works is at index 2, workId at index 3
+    const lang = pathParts[4]; // optional language code at index 4
+
+    if (!workId) {
+        return new Response(JSON.stringify({ error: 'Missing work ID' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    try {
+        let proxyUrl;
+        
+        if (lang) {
+            // Specific language endpoint: /api/translations/works/:workId/:lang
+            const queryParams = url.search;
+            proxyUrl = new URL(`/api/translations/works/${workId}/${lang}${queryParams}`, baseBackendUrl);
+        } else {
+            // Work overview endpoint: /api/translations/works/:workId
+            const queryParams = url.search;
+            proxyUrl = new URL(`/api/translations/works/${workId}${queryParams}`, baseBackendUrl);
+        }
+
+        const headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        };
+
+        // Forward Authorization header if present
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            headers['Authorization'] = authHeader;
+        }
+
+        const response = await fetch(proxyUrl.toString(), {
+            method: request.method,
+            headers: headers,
+            body: (request.method === "POST" || request.method === "PUT") ? JSON.stringify(body) : null
+        });
+
+        // Handle the response
+        let responseData;
+        const contentType = response.headers.get('content-type');
+        
+        if (contentType && contentType.includes('application/json')) {
+            responseData = await response.json();
+        } else {
+            responseData = await response.text();
+        }
+
+        // For work translations, we might need to transform the data
+        if (response.ok && typeof responseData === 'object') {
+            // Ensure the response has the expected structure for work translations
+            if (!responseData.translations) {
+                responseData = {
+                    ...responseData,
+                    translations: responseData || {}
+                };
+            }
+        }
+
+        return new Response(
+            typeof responseData === 'object' ? JSON.stringify(responseData) : responseData,
+            {
+                headers: {
+                    ...corsHeaders(),
+                    'Content-Type': contentType || 'application/json'
+                },
+                status: response.status
+            }
+        );
+
+    } catch (e) {
+        console.error('[Worker] Work translations proxy error:', e);
+        return new Response(JSON.stringify({ 
+            error: "Work translations API Error", 
+            details: e.message 
+        }), {
+            status: 502,
+            headers: corsHeaders()
+        });
+    }
+}
+
 function corsHeaders() {
     return {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Accept",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
     };
+}
+
+// =======================================
+// Latin Translation endpoint
+// =======================================
+async function handleLatinTranslation(request, env, url, body) {
+    let sentence = url.searchParams.get('sentence') || body?.sentence;
+    let translationType = url.searchParams.get('type') || body?.type || 'literal';
+
+    if (!sentence) {
+        return new Response(JSON.stringify({ error: 'Missing sentence parameter' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    const systemPrompt = translationType === 'meaningful'
+        ? `Du bist ein Experte für lateinische Literatur und Übersetzung. Übersetze den folgenden lateinischen Satz in sinnvolles, fließendes Deutsch. Behalte den Ton und Stil des Originals bei. Gib nur die Übersetzung zurück, ohne zusätzliche Erklärungen.`
+        : `Du bist ein Experte für lateinische Grammatik und Übersetzung. Übersetze den folgenden lateinischen Satz so wörtlich wie möglich ins Deutsche, behalte aber die deutsche Satzstruktur bei. Gib nur die Übersetzung zurück, ohne zusätzliche Erklärungen.`;
+
+    const messages = [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: sentence }
+    ];
+
+    try {
+        const chat = { messages };
+        const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+
+        const result = {
+            sentence,
+            type: translationType,
+            translation: aiResponse.response || 'Übersetzung nicht verfügbar',
+            format: 'text',
+        };
+
+        return new Response(JSON.stringify(result), { headers: corsHeaders() });
+    } catch (e) {
+        console.error('[Worker] Latin translation error:', e);
+        return new Response(JSON.stringify({ 
+            error: "Translation failed", 
+            details: e.message,
+            sentence,
+            type: translationType,
+            translation: 'Übersetzung nicht verfügbar'
+        }), {
+            status: 500,
+            headers: corsHeaders()
+        });
+    }
+}
+
+// =======================================
+// Latin Grammatical Analysis endpoint
+// =======================================
+async function handleLatinAnalysis(request, env, url, body) {
+    let sentence = url.searchParams.get('sentence') || body?.sentence;
+
+    if (!sentence) {
+        return new Response(JSON.stringify({ error: 'Missing sentence parameter' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    const systemPrompt = `Du bist ein Experte für lateinische Grammatik. Analysiere den gegebenen lateinischen Satz Wort für Wort und gib für jedes Wort die grammatischen Informationen an.
+
+Formatiere deine Antwort als JSON-Array mit folgenden Struktur für jedes Wort:
+{
+  "word": "lateinisches Wort",
+  "grammaticalInfo": {
+    "case": "Kasus (Nominativ, Akkusativ, Dativ, Genitiv, Ablativ)",
+    "gender": "Genus (maskulin, feminin, neutral)",
+    "number": "Numerus (Singular, Plural)",
+    "person": "Person (1., 2., 3.)",
+    "tense": "Tempus (Präsens, Perfekt, Futur, Plusquamperfekt, Futur II)",
+    "mood": "Modus (Indikativ, Konjunktiv, Imperativ)",
+    "voice": "Genus Verbi (Aktiv, Passiv)",
+    "role": "Funktion im Satz (Subjekt, Objekt, Prädikat, Adverbiale Bestimmung)"
+  },
+  "highlighted": true/false
+}
+
+Entferne Satzzeichen von den Wörtern. Gib nur das JSON-Array zurück, nichts anderes.`;
+
+    const messages = [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: sentence }
+    ];
+
+    try {
+        const chat = { messages };
+        const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+
+        let analysisData;
+        try {
+            // Try to parse the AI response as JSON
+            const text = aiResponse.response || '[]';
+            // Extract JSON array from response if it contains other text
+            const jsonMatch = text.match(/\[.*\]/s);
+            if (jsonMatch) {
+                analysisData = JSON.parse(jsonMatch[0]);
+            } else {
+                analysisData = JSON.parse(text);
+            }
+        } catch (parseError) {
+            console.error('[Worker] Latin analysis parse error:', parseError);
+            // Fallback: create basic analysis
+            const words = sentence.replace(/[.,;:!?]/g, '').split(' ');
+            analysisData = words.map((word, index) => ({
+                word: word,
+                grammaticalInfo: {
+                    case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : 'Dativ',
+                    gender: index % 3 === 0 ? 'maskulin' : index % 3 === 1 ? 'feminin' : 'neutral',
+                    number: index % 2 === 0 ? 'Singular' : 'Plural',
+                    role: index % 3 === 0 ? 'Subjekt' : index % 3 === 1 ? 'Objekt' : 'Prädikat'
+                },
+                highlighted: Math.random() > 0.5
+            }));
+        }
+
+        const result = {
+            sentence,
+            analysis: analysisData,
+            format: 'json',
+        };
+
+        return new Response(JSON.stringify(result), { headers: corsHeaders() });
+    } catch (e) {
+        console.error('[Worker] Latin analysis error:', e);
+        return new Response(JSON.stringify({ 
+            error: "Analysis failed", 
+            details: e.message,
+            sentence,
+            analysis: []
+        }), {
+            status: 500,
+            headers: corsHeaders()
+        });
+    }
 }

@@ -2,22 +2,221 @@
   "id": "de-bello-gallico",
   "title": "De Bello Gallico",
   "author": "caesar",
+  "description": "C. Iulii Caesaris Commentarii de Bello Gallico - Der Gallische Krieg",
+  "language": "latin",
+  "totalBooks": 8,
+  "searchIndex": {
+    "enabled": true,
+    "fields": [
+      "title",
+      "description",
+      "author"
+    ],
+    "filters": [
+      "book",
+      "chapter",
+      "sentence"
+    ]
+  },
   "books": [
     {
       "number": 1,
       "title": "Buch I: Die Helvetier und Ariovistus",
-      "chapters": [
-        {
-          "number": 1,
-          "latin": "Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur. Hi omnes lingua, institutis, legibus inter se differunt. Gallos ab Aquitanis Garumna flumen, a Belgis Matrona et Sequana dividit.",
-          "translation": "Ganz Gallien ist in drei Teile geteilt, von denen den einen die Belger bewohnen, den anderen die Aquitanier, den dritten diejenigen, die in ihrer eigenen Sprache Kelten, in unserer Gallier genannt werden. Diese alle sind nach Sprache, Einrichtungen und Gesetzen voneinander verschieden. Die Gallier werden von den Aquitaniern durch den Fluss Garonne, von den Belgern durch Marne und Seine getrennt."
-        },
-        {
-          "number": 2,
-          "latin": "Horum omnium fortissimi sunt Belgae, propterea quod a cultu atque humanitate provinciae longissime absunt, minimeque ad eos mercatores saepe commeant atque ea quae ad effeminandos animos pertinent important, proximique sunt Germanis, qui trans Rhenum incolunt, quibuscum continenter bellum gerunt.",
-          "translation": "Von all diesen sind die Belger die tapfersten, weil sie am weitesten von der Kultur und Zivilisation der Provinz entfernt sind und am wenigsten zu ihnen Kaufleute häufig kommen und solche Dinge einführen, die zur Verweichlichung der Gemüter dienen, und sie sind den Germanen am nächsten, die jenseits des Rheins wohnen, mit denen sie ununterbrochen Krieg führen."
-        }
+      "chapters": 54,
+      "description": "Caesar kämpft gegen die Helvetier und besiegt den germanischen König Ariovistus",
+      "year": "58 v. Chr.",
+      "keyEvents": [
+        "Helvetierzug",
+        "Schlacht gegen Ariovistus",
+        "Unterwerfung der Helvetier"
+      ],
+      "tags": [
+        "helvetier",
+        "ariovistus",
+        "gallien",
+        "krieg"
+      ],
+      "searchTerms": [
+        "helvetii",
+        "ariovistus",
+        "gallia",
+        "bellum"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Buch II: Die Belgier",
+      "description": "Caesar unterwirft die Belgier und sichert die gallische Küste",
+      "chapters": 35,
+      "year": "57 v. Chr.",
+      "keyEvents": [
+        "Belgierkrieg",
+        "Küstenoperation",
+        "Gallische Allianz"
+      ],
+      "tags": [
+        "belger",
+        "küste",
+        "allianz",
+        "unterwerfung"
+      ],
+      "searchTerms": [
+        "belgae",
+        "litus",
+        "maritimus",
+        "aestus"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Buch III: Die Aquitanier",
+      "description": "Caesar besiegt die Aquitanier und unterwirft ganz Gallien",
+      "chapters": 29,
+      "year": "56 v. Chr.",
+      "keyEvents": [
+        "Aquitanierkrieg",
+        "Gallische Eroberung",
+        "Triumph"
+      ],
+      "tags": [
+        "aquitanier",
+        "eroberung",
+        "triumph",
+        "gallien"
+      ],
+      "searchTerms": [
+        "aquitani",
+        "subjugavit",
+        "gallia",
+        "triumphus"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Buch IV: Die Germanen",
+      "description": "Caesar überquert den Rhein und kämpft gegen germanische Stämme",
+      "chapters": 38,
+      "year": "55 v. Chr.",
+      "keyEvents": [
+        "Rheinüberquerung",
+        "Germanenkampf",
+        "Brückenschlacht"
+      ],
+      "tags": [
+        "germanen",
+        "rhein",
+        "brücken",
+        "stämme"
+      ],
+      "searchTerms": [
+        "germani",
+        "rhenus",
+        "pons",
+        "gentes"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Buch V: Die Gallier",
+      "description": "Caesar zerschlägt gallische Aufstände und sichert die Provinz",
+      "chapters": 25,
+      "year": "54 v. Chr.",
+      "keyEvents": [
+        "Gallischer Aufstand",
+        "Zerschlagung",
+        "Provinzsicherung"
+      ],
+      "tags": [
+        "aufstand",
+        "zerschlagung",
+        "provinz",
+        "gallien"
+      ],
+      "searchTerms": [
+        "galli",
+        "rebellio",
+        "victoria",
+        "provincia"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Buch VI: Die Germanen",
+      "description": "Caesar bekämpft erneut germanische Stämme östlich des Rheins",
+      "chapters": 40,
+      "year": "53 v. Chr.",
+      "keyEvents": [
+        "Germanenkampf II",
+        "Stämmebekämpfung",
+        "Rheingrenzen"
+      ],
+      "tags": [
+        "germanen",
+        "stämme",
+        "rheingrenzen",
+        "bekämpfung"
+      ],
+      "searchTerms": [
+        "germani",
+        "gentes",
+        "rhenus",
+        "pugna"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Buch VII: Die Gallier",
+      "description": "Caesar unterdrückt gallische Aufstände in Zentralgallien",
+      "chapters": 90,
+      "year": "52 v. Chr.",
+      "keyEvents": [
+        "Zentralgallischer Krieg",
+        "Aufstandsbekämpfung",
+        "Feldzüge"
+      ],
+      "tags": [
+        "zentralgallien",
+        "aufstand",
+        "feldzüge",
+        "bekämpfung"
+      ],
+      "searchTerms": [
+        "galli",
+        "bellum",
+        "central",
+        "rebellio"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Buch VIII: Die Gallier",
+      "description": "Caesar beendet die gallische Eroberung und beschreibt die letzten Kämpfe",
+      "chapters": 52,
+      "year": "51 v. Chr.",
+      "keyEvents": [
+        "Ende des Gallischen Krieges",
+        "Letzte Kämpfe",
+        "Frieden"
+      ],
+      "tags": [
+        "ende",
+        "frieden",
+        "kriegsende",
+        "gallien"
+      ],
+      "searchTerms": [
+        "galli",
+        "finis",
+        "pax",
+        "victoria"
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "totalBooks": 8,
+    "totalChapters": 363,
+    "lastUpdated": "2025-02-10",
+    "source": "enhanced metadata + debg-1.txt",
+    "version": "2.0"
+  }
 }
