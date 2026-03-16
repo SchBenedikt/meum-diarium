@@ -182,7 +182,7 @@ export default function LandingPageNew() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-xl sm:text-2xl text-foreground/90 max-w-2xl mx-auto font-light"
+                className="text-xl sm:text-2xl text-white max-w-2xl mx-auto font-light"
               >
                 Die antike Welt neu entdecken
               </motion.p>
@@ -209,11 +209,11 @@ export default function LandingPageNew() {
                   </Button>
                 </Link>
                 <div className="text-center">
-                  <p className="text-sm text-foreground/80">
+                  <p className="text-sm text-white/80">
                     Oder beginne direkt mit: 
-                    <Link to="/cicero" className="text-primary hover:underline ml-1">Cicero</Link> • 
-                    <Link to="/augustus" className="text-primary hover:underline ml-1">Augustus</Link> • 
-                    <Link to="/seneca" className="text-primary hover:underline ml-1">Seneca</Link>
+                    <Link to="/cicero" className="text-white hover:underline ml-1">Cicero</Link> • 
+                    <Link to="/augustus" className="text-white hover:underline ml-1">Augustus</Link> • 
+                    <Link to="/seneca" className="text-white hover:underline ml-1">Seneca</Link>
                   </p>
                 </div>
               </motion.div>
