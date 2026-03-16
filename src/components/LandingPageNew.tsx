@@ -182,7 +182,7 @@ export default function LandingPageNew() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-xl sm:text-2xl text-foreground max-w-2xl mx-auto font-light"
+                className="text-xl sm:text-2xl text-foreground/90 max-w-2xl mx-auto font-light"
               >
                 Die antike Welt neu entdecken
               </motion.p>
