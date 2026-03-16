@@ -138,35 +138,13 @@ export default function LandingPageNew() {
           className="absolute inset-0 z-0"
           style={{ y: yImage }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/85 to-background/75" />
           <img 
             src="/images/caesar-hero.jpg" 
             alt="Antikes Rom" 
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-50"
           />
         </motion.div>
-
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 50 - 25, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
