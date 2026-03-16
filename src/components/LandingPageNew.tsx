@@ -154,21 +154,6 @@ export default function LandingPageNew() {
             transition={{ duration: 1.2 }}
             className="text-center space-y-8"
           >
-            {/* Animated Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex"
-            >
-              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 backdrop-blur-sm">
-                <ScrollText className="h-3 w-3 mr-2" />
-                <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  Einzigartige Lernerfahrung
-                </span>
-              </Badge>
-            </motion.div>
-
             {/* Main Title with glitch effect */}
             <motion.h1
               style={{ y: yText }}
