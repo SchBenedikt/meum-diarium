@@ -185,8 +185,11 @@ export default function LandingPageNew() {
                 className="text-xl sm:text-2xl max-w-2xl mx-auto font-light"
                 style={{ 
                   color: '#ffffff',
-                  textDecoration: 'none',
-                  textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                  textDecoration: 'none !important',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                  textDecorationLine: 'none',
+                  textDecorationStyle: 'solid',
+                  textDecorationThickness: '0px'
                 }}
               >
                 Die antike Welt neu entdecken
