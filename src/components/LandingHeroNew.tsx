@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles, ArrowRight, BookOpen, Globe, Clock, Brain, Shield,
@@ -19,7 +19,7 @@ function useTypewriter(words: string[], speed = 80, pause = 2000) {
 
   // Simple interval-based approach kept compact
   const [displayed, setDisplayed] = useState('');
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       if (!deleting && subIndex < words[index].length) {
         setDisplayed(words[index].slice(0, subIndex + 1));
@@ -35,7 +35,7 @@ function useTypewriter(words: string[], speed = 80, pause = 2000) {
       }
     }, deleting ? speed / 2 : speed);
     return () => clearInterval(interval);
-  });
+  }, [index, subIndex, deleting, words, speed, pause]);
 
   return displayed;
 }
@@ -93,16 +93,10 @@ function ChatMockup() {
       {/* Advance button */}
       <div className="p-3 border-t border-border">
         <button
-          onClick={() => setVisible(v => Math.min(v + 1, chatMessages.length))}
+          onClick={() => visible >= chatMessages.length ? setVisible(1) : setVisible(v => v + 1)}
           className="w-full text-xs text-primary hover:text-primary/80 text-center transition-colors"
         >
           {visible < chatMessages.length ? '▶ Weiter' : '↺ Neu starten'}
-          {visible >= chatMessages.length && (
-            <span
-              className="ml-1 cursor-pointer"
-              onClick={(e) => { e.stopPropagation(); setVisible(1); }}
-            />
-          )}
         </button>
       </div>
     </div>

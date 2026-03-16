@@ -55,11 +55,14 @@ const USER_PROFILE_KEY = 'meum_diarium_user_profile';
 
 /** Convert a FirebaseUser to our User shape */
 function toAppUser(fbUser: FirebaseUser, extra?: Partial<User>): User {
+  const defaultName = fbUser.email?.split('@')[0] ?? 'user';
+  const username = extra?.username ?? fbUser.displayName ?? defaultName;
+  const displayName = fbUser.displayName ?? username;
   return {
     id: fbUser.uid,
     email: fbUser.email ?? '',
-    username: extra?.username ?? fbUser.displayName ?? fbUser.email?.split('@')[0] ?? 'user',
-    displayName: fbUser.displayName ?? extra?.username ?? fbUser.email?.split('@')[0] ?? 'User',
+    username,
+    displayName,
     avatarUrl: fbUser.photoURL ?? undefined,
     createdAt: fbUser.metadata.creationTime ?? new Date().toISOString(),
     updatedAt: new Date().toISOString(),
