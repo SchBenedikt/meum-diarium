@@ -45,17 +45,17 @@ export default function RegisterPage() {
       return;
     }
 
-    const success = await register({
+    const result = await register({
       email: formData.email,
       username: formData.username,
       password: formData.password,
       displayName: formData.displayName || undefined,
     });
 
-    if (success) {
+    if (result.success) {
       navigate('/dashboard');
     } else {
-      setError('Registrierung fehlgeschlagen. Bitte versuchen Sie es später erneut.');
+      setError(result.error ?? 'Registrierung fehlgeschlagen. Bitte versuchen Sie es später erneut.');
     }
   };
 

@@ -28,9 +28,16 @@ import { TranslationEditor } from '@/components/admin/TranslationEditor';
 import { useQueryClient } from '@tanstack/react-query';
 export default function AdminPage() {
     const { t } = useLanguage();
-    const { logout } = useAuth();
+    const { adminLogout, isAdminAuthenticated } = useAuth();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+
+    // Redirect to login if not authenticated
+    useEffect(() => {
+        if (!isAdminAuthenticated) {
+            navigate('/admin/login', { replace: true });
+        }
+    }, [isAdminAuthenticated, navigate]);
     const { posts } = usePosts();
     const { authors: authorEntries } = useAuthors();
     const { lexicon: lexiconEntries } = useLexicon();
@@ -212,7 +219,7 @@ export default function AdminPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => {
-                            logout();
+                            adminLogout();
                             navigate('/admin/login');
                             toast.success('Erfolgreich abgemeldet');
                         }}

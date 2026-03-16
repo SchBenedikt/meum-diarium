@@ -1,4 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  type User as FirebaseUser,
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 // Types
 export interface User {
@@ -16,17 +25,18 @@ export interface User {
 }
 
 interface AuthContextType {
-  // Admin auth (existing)
+  // Admin auth (password-protected CMS access)
   isAdminAuthenticated: boolean;
   adminLogin: (password: string) => boolean;
   adminLogout: () => void;
-  
-  // User auth (new)
+
+  // User auth via Firebase
   user: User | null;
+  firebaseUser: FirebaseUser | null;
   token: string | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  logout: () => void;
+  logout: () => Promise<void>;
   register: (userData: {
     email: string;
     username: string;
@@ -41,36 +51,64 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Constants
 const ADMIN_PASSWORD = 'benedikt';
 const ADMIN_AUTH_KEY = 'meum_diarium_admin_auth';
-const USER_AUTH_KEY = 'meum_diarium_user_auth';
-const USER_TOKEN_KEY = 'meum_diarium_user_token';
+const USER_PROFILE_KEY = 'meum_diarium_user_profile';
 
-// Helper functions
-const verifyToken = (token: string): string | null => {
-  try {
-    const [, payload] = token.split('.');
-    const decoded = JSON.parse(atob(payload));
-    return decoded.userId;
-  } catch {
-    return null;
-  }
-};
+/** Convert a FirebaseUser to our User shape */
+function toAppUser(fbUser: FirebaseUser, extra?: Partial<User>): User {
+  return {
+    id: fbUser.uid,
+    email: fbUser.email ?? '',
+    username: extra?.username ?? fbUser.displayName ?? fbUser.email?.split('@')[0] ?? 'user',
+    displayName: fbUser.displayName ?? extra?.username ?? fbUser.email?.split('@')[0] ?? 'User',
+    avatarUrl: fbUser.photoURL ?? undefined,
+    createdAt: fbUser.metadata.creationTime ?? new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    lastLoginAt: fbUser.metadata.lastSignInTime ?? undefined,
+    isActive: true,
+    ...extra,
+  };
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Admin auth state
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
-    const stored = localStorage.getItem(ADMIN_AUTH_KEY);
-    return stored === 'true';
+    return localStorage.getItem(ADMIN_AUTH_KEY) === 'true';
   });
 
-  // User auth state
-  const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem(USER_AUTH_KEY);
-    return stored ? JSON.parse(stored) : null;
-  });
-  const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem(USER_TOKEN_KEY);
-  });
-  const [isLoading, setIsLoading] = useState(false);
+  // Firebase user state
+  const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Listen to Firebase auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
+      if (fbUser) {
+        const idToken = await fbUser.getIdToken();
+        setFirebaseUser(fbUser);
+        setToken(idToken);
+
+        // Merge stored username if available
+        const stored = localStorage.getItem(USER_PROFILE_KEY);
+        const extra: Partial<User> = stored ? JSON.parse(stored) : {};
+        const appUser = toAppUser(fbUser, extra);
+        setUser(appUser);
+      } else {
+        setFirebaseUser(null);
+        setUser(null);
+        setToken(null);
+      }
+      setIsLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  // Sync admin auth state to localStorage
+  useEffect(() => {
+    localStorage.setItem(ADMIN_AUTH_KEY, isAdminAuthenticated.toString());
+  }, [isAdminAuthenticated]);
 
   // Admin auth functions
   const adminLogin = (password: string): boolean => {
@@ -86,47 +124,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(ADMIN_AUTH_KEY);
   };
 
-  // User auth functions
+  // Firebase auth functions
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setUser(data.user);
-        setToken(data.token);
-        localStorage.setItem(USER_AUTH_KEY, JSON.stringify(data.user));
-        localStorage.setItem(USER_TOKEN_KEY, data.token);
-        return { success: true };
-      } else {
-        return { success: false, error: data.error || 'Login failed' };
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      return { success: false, error: 'Network error' };
+      await signInWithEmailAndPassword(auth, email, password);
+      return { success: true };
+    } catch (error: any) {
+      const code: string = error?.code ?? '';
+      const messages: Record<string, string> = {
+        'auth/user-not-found': 'Kein Konto mit dieser E-Mail-Adresse gefunden.',
+        'auth/wrong-password': 'Falsches Passwort.',
+        'auth/invalid-email': 'Ungültige E-Mail-Adresse.',
+        'auth/user-disabled': 'Dieses Konto wurde deaktiviert.',
+        'auth/too-many-requests': 'Zu viele Versuche. Bitte warte einen Moment.',
+        'auth/invalid-credential': 'Ungültige Anmeldedaten.',
+      };
+      return { success: false, error: messages[code] ?? 'Anmeldung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem(USER_AUTH_KEY);
-    localStorage.removeItem(USER_TOKEN_KEY);
-    
-    // Call logout endpoint to invalidate token on server
-    fetch('/api/auth/logout', { method: 'POST' }).catch(() => {
-      // Ignore errors during logout
-    });
+  const logout = async (): Promise<void> => {
+    await signOut(auth);
   };
 
   const register = async (userData: {
@@ -137,26 +158,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
+      const credential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+      const displayName = userData.displayName?.trim() || userData.username;
 
-      const data = await response.json();
+      // Set displayName in Firebase profile
+      await updateProfile(credential.user, { displayName });
 
-      if (response.ok) {
-        // Auto-login after successful registration
-        const loginResult = await login(userData.email, userData.password);
-        return loginResult;
-      } else {
-        return { success: false, error: data.error || 'Registration failed' };
-      }
-    } catch (error) {
-      console.error('Registration error:', error);
-      return { success: false, error: 'Network error' };
+      // Store username locally (Firebase doesn't have a username field)
+      const profileExtra: Partial<User> = { username: userData.username };
+      localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
+
+      return { success: true };
+    } catch (error: any) {
+      const code: string = error?.code ?? '';
+      const messages: Record<string, string> = {
+        'auth/email-already-in-use': 'Diese E-Mail-Adresse wird bereits verwendet.',
+        'auth/invalid-email': 'Ungültige E-Mail-Adresse.',
+        'auth/weak-password': 'Das Passwort ist zu schwach (mind. 6 Zeichen).',
+        'auth/operation-not-allowed': 'E-Mail/Passwort-Registrierung ist nicht aktiviert.',
+      };
+      return { success: false, error: messages[code] ?? 'Registrierung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
@@ -166,45 +187,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (user) {
       const updatedUser = { ...user, ...userData };
       setUser(updatedUser);
-      localStorage.setItem(USER_AUTH_KEY, JSON.stringify(updatedUser));
+      // Persist extra profile info
+      const profileExtra: Partial<User> = {
+        username: updatedUser.username,
+        bio: updatedUser.bio,
+        preferences: updatedUser.preferences,
+      };
+      localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
     }
   };
-
-  // Verify token on mount
-  useEffect(() => {
-    const verifyStoredToken = async () => {
-      if (token && !user) {
-        try {
-          const response = await fetch('/api/auth/me', {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            setUser(data.user);
-            localStorage.setItem(USER_AUTH_KEY, JSON.stringify(data.user));
-          } else {
-            // Token invalid, clear it
-            setToken(null);
-            localStorage.removeItem(USER_TOKEN_KEY);
-          }
-        } catch (error) {
-          console.error('Token verification error:', error);
-          setToken(null);
-          localStorage.removeItem(USER_TOKEN_KEY);
-        }
-      }
-    };
-
-    verifyStoredToken();
-  }, [token, user]);
-
-  // Sync admin auth state to localStorage
-  useEffect(() => {
-    localStorage.setItem(ADMIN_AUTH_KEY, isAdminAuthenticated.toString());
-  }, [isAdminAuthenticated]);
 
   return (
     <AuthContext.Provider value={{
@@ -212,6 +203,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       adminLogin,
       adminLogout,
       user,
+      firebaseUser,
       token,
       isLoading,
       login,

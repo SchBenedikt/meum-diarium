@@ -9,14 +9,14 @@ import { toast } from 'sonner';
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const { adminLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: { pathname: string } })?.from?.pathname || '/admin';
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (login(password)) {
+    if (adminLogin(password)) {
       toast.success('Login erfolgreich!');
       navigate(from, { replace: true });
     } else {
