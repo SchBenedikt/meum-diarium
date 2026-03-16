@@ -138,11 +138,11 @@ export default function LandingPageNew() {
           className="absolute inset-0 z-0"
           style={{ y: yImage }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/85 to-background/75" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/70 to-background/60" />
           <img 
             src="/images/caesar-hero.jpg" 
             alt="Antikes Rom" 
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover opacity-70"
           />
         </motion.div>
 
@@ -233,7 +233,6 @@ export default function LandingPageNew() {
           >
             <div className="w-1 h-2 bg-primary/50 rounded-full" />
           </motion.div>
-          <p className="text-xs text-muted-foreground mt-2">Scrollen</p>
         </motion.div>
       </section>
 
