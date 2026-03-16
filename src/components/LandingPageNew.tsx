@@ -138,11 +138,10 @@ export default function LandingPageNew() {
           className="absolute inset-0 z-0"
           style={{ y: yImage }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/70 to-background/60" />
           <img 
             src="/images/caesar-hero.jpg" 
             alt="Antikes Rom" 
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 
@@ -154,68 +153,71 @@ export default function LandingPageNew() {
             transition={{ duration: 1.2 }}
             className="text-center space-y-8"
           >
-            {/* Main Title with glitch effect */}
-            <motion.h1
-              style={{ y: yText }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative"
-            >
-              <span className="relative">
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                  Meum Diarium
-                </span>
-                {/* Animated underline */}
-                <motion.div
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-transparent"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 1, delay: 1 }}
-                />
-              </span>
-            </motion.h1>
-
-            {/* Static Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto font-light"
-            >
-              Die antike Welt neu entdecken
-            </motion.p>
-
-            {/* Enhanced CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="space-y-4"
-            >
-              <Link to="/caesar">
-                <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground group relative overflow-hidden">
-                  <span className="relative z-10 flex items-center">
-                    Entdecken
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            {/* Text Container with blurred background */}
+            <div className="backdrop-blur-md bg-background/20 rounded-3xl p-12 border border-white/10 shadow-2xl">
+              {/* Main Title with glitch effect */}
+              <motion.h1
+                style={{ y: yText }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative"
+              >
+                <span className="relative">
+                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                    Meum Diarium
                   </span>
-                  {/* Button shine effect */}
+                  {/* Animated underline */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                    animate={{ x: ['-100%', '100%'] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-transparent"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 1, delay: 1 }}
                   />
-                </Button>
-              </Link>
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">
-                  Oder beginne direkt mit: 
-                  <Link to="/cicero" className="text-primary hover:underline ml-1">Cicero</Link> • 
-                  <Link to="/augustus" className="text-primary hover:underline ml-1">Augustus</Link> • 
-                  <Link to="/seneca" className="text-primary hover:underline ml-1">Seneca</Link>
-                </p>
-              </div>
-            </motion.div>
+                </span>
+              </motion.h1>
+
+              {/* Static Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-xl sm:text-2xl text-foreground max-w-2xl mx-auto font-light"
+              >
+                Die antike Welt neu entdecken
+              </motion.p>
+
+              {/* Enhanced CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="space-y-4 pt-4"
+              >
+                <Link to="/caesar">
+                  <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground group relative overflow-hidden">
+                    <span className="relative z-10 flex items-center">
+                      Entdecken
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    {/* Button shine effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+                    />
+                  </Button>
+                </Link>
+                <div className="text-center">
+                  <p className="text-sm text-foreground/80">
+                    Oder beginne direkt mit: 
+                    <Link to="/cicero" className="text-primary hover:underline ml-1">Cicero</Link> • 
+                    <Link to="/augustus" className="text-primary hover:underline ml-1">Augustus</Link> • 
+                    <Link to="/seneca" className="text-primary hover:underline ml-1">Seneca</Link>
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
