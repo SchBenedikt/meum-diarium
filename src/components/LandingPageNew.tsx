@@ -23,24 +23,7 @@ export default function LandingPageNew() {
       gradientY.set(Math.random() * 100);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Typewriter effect for subtitle
-  const [typedText, setTypedText] = useState('');
-  const subtitle = "Die antike Welt neu entdecken";
-  
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= subtitle.length) {
-        setTypedText(subtitle.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-    return () => clearInterval(timer);
-  }, []);
+  });
 
   // Interactive hover states
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
@@ -230,21 +213,14 @@ export default function LandingPageNew() {
               </span>
             </motion.h1>
 
-            {/* Typewriter Subtitle */}
+            {/* Static Subtitle */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto font-light h-8"
+              className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto font-light"
             >
-              {typedText}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-                className="text-primary"
-              >
-                |
-              </motion.span>
+              Die antike Welt neu entdecken
             </motion.p>
 
             {/* Enhanced CTA Button */}
