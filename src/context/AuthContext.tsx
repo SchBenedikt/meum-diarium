@@ -1,13 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
-  type User as FirebaseUser,
-} from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import React, { createContext, useContext, useState } from 'react';
 
 // Types
 export interface User {
@@ -30,9 +21,8 @@ interface AuthContextType {
   adminLogin: (password: string) => boolean;
   adminLogout: () => void;
 
-  // User auth via Firebase
+  // User auth (simplified)
   user: User | null;
-  firebaseUser: FirebaseUser | null;
   token: string | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
@@ -53,22 +43,18 @@ const ADMIN_PASSWORD = 'benedikt';
 const ADMIN_AUTH_KEY = 'meum_diarium_admin_auth';
 const USER_PROFILE_KEY = 'meum_diarium_user_profile';
 
-/** Convert a FirebaseUser to our User shape */
-function toAppUser(fbUser: FirebaseUser, extra?: Partial<User>): User {
-  const defaultName = fbUser.email?.split('@')[0] ?? 'user';
-  const username = extra?.username ?? fbUser.displayName ?? defaultName;
-  const displayName = fbUser.displayName ?? username;
+/** Create a mock user */
+function createMockUser(email: string, username?: string, displayName?: string): User {
+  const now = new Date().toISOString();
+  const defaultName = email.split('@')[0] ?? 'user';
   return {
-    id: fbUser.uid,
-    email: fbUser.email ?? '',
-    username,
-    displayName,
-    avatarUrl: fbUser.photoURL ?? undefined,
-    createdAt: fbUser.metadata.creationTime ?? new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    lastLoginAt: fbUser.metadata.lastSignInTime ?? undefined,
+    id: 'mock-user-' + Math.random().toString(36).substr(2, 9),
+    email,
+    username: username ?? defaultName,
+    displayName: displayName ?? username ?? defaultName,
+    createdAt: now,
+    updatedAt: now,
     isActive: true,
-    ...extra,
   };
 }
 
@@ -78,40 +64,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return localStorage.getItem(ADMIN_AUTH_KEY) === 'true';
   });
 
-  // Firebase user state
-  const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
+  // Mock user state
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Listen to Firebase auth state changes
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
-      if (fbUser) {
-        const idToken = await fbUser.getIdToken();
-        setFirebaseUser(fbUser);
-        setToken(idToken);
-
-        // Merge stored username if available
-        const stored = localStorage.getItem(USER_PROFILE_KEY);
-        const extra: Partial<User> = stored ? JSON.parse(stored) : {};
-        const appUser = toAppUser(fbUser, extra);
-        setUser(appUser);
-      } else {
-        setFirebaseUser(null);
-        setUser(null);
-        setToken(null);
-      }
-      setIsLoading(false);
-    });
-
-    return unsubscribe;
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Sync admin auth state to localStorage
-  useEffect(() => {
+  useState(() => {
     localStorage.setItem(ADMIN_AUTH_KEY, isAdminAuthenticated.toString());
-  }, [isAdminAuthenticated]);
+  });
 
   // Admin auth functions
   const adminLogin = (password: string): boolean => {
@@ -127,30 +88,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(ADMIN_AUTH_KEY);
   };
 
-  // Firebase auth functions
+  // Mock auth functions
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      return { success: true };
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock validation
+      if (email && password.length >= 6) {
+        const mockUser = createMockUser(email);
+        setUser(mockUser);
+        setToken('mock-token-' + Math.random().toString(36).substr(2, 9));
+        return { success: true };
+      } else {
+        return { success: false, error: 'Ungültige Anmeldedaten.' };
+      }
     } catch (error: any) {
-      const code: string = error?.code ?? '';
-      const messages: Record<string, string> = {
-        'auth/user-not-found': 'Kein Konto mit dieser E-Mail-Adresse gefunden.',
-        'auth/wrong-password': 'Falsches Passwort.',
-        'auth/invalid-email': 'Ungültige E-Mail-Adresse.',
-        'auth/user-disabled': 'Dieses Konto wurde deaktiviert.',
-        'auth/too-many-requests': 'Zu viele Versuche. Bitte warte einen Moment.',
-        'auth/invalid-credential': 'Ungültige Anmeldedaten.',
-      };
-      return { success: false, error: messages[code] ?? 'Anmeldung fehlgeschlagen.' };
+      return { success: false, error: 'Anmeldung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
   };
 
   const logout = async (): Promise<void> => {
-    await signOut(auth);
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem(USER_PROFILE_KEY);
   };
 
   const register = async (userData: {
@@ -161,26 +125,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      const credential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-      const displayName = userData.displayName?.trim() || userData.username;
-
-      // Set displayName in Firebase profile
-      await updateProfile(credential.user, { displayName });
-
-      // Store username locally (Firebase doesn't have a username field)
-      const profileExtra: Partial<User> = { username: userData.username };
-      localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
-
-      return { success: true };
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock validation
+      if (userData.email && userData.username && userData.password.length >= 6) {
+        const mockUser = createMockUser(userData.email, userData.username, userData.displayName);
+        setUser(mockUser);
+        setToken('mock-token-' + Math.random().toString(36).substr(2, 9));
+        
+        // Store extra profile info
+        const profileExtra = { username: userData.username, displayName: userData.displayName };
+        localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
+        
+        return { success: true };
+      } else {
+        return { success: false, error: 'Das Passwort ist zu schwach (mind. 6 Zeichen).' };
+      }
     } catch (error: any) {
-      const code: string = error?.code ?? '';
-      const messages: Record<string, string> = {
-        'auth/email-already-in-use': 'Diese E-Mail-Adresse wird bereits verwendet.',
-        'auth/invalid-email': 'Ungültige E-Mail-Adresse.',
-        'auth/weak-password': 'Das Passwort ist zu schwach (mind. 6 Zeichen).',
-        'auth/operation-not-allowed': 'E-Mail/Passwort-Registrierung ist nicht aktiviert.',
-      };
-      return { success: false, error: messages[code] ?? 'Registrierung fehlgeschlagen.' };
+      return { success: false, error: 'Registrierung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
@@ -188,10 +151,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const updateUser = (userData: Partial<User>) => {
     if (user) {
-      const updatedUser = { ...user, ...userData };
+      const updatedUser = { ...user, ...userData, updatedAt: new Date().toISOString() };
       setUser(updatedUser);
       // Persist extra profile info
-      const profileExtra: Partial<User> = {
+      const profileExtra = {
         username: updatedUser.username,
         bio: updatedUser.bio,
         preferences: updatedUser.preferences,
@@ -206,7 +169,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       adminLogin,
       adminLogout,
       user,
-      firebaseUser,
       token,
       isLoading,
       login,
