@@ -3,6 +3,8 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
+import { getLocalPostsDb } from './db/local-posts-client';
+import { posts } from './db/posts-schema';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -144,46 +146,63 @@ app.get('/sitemap.xml', async (_req, res) => {
 // In production, these won't be hit - Cloudflare Functions handle /api/*
 
 app.get('/api/posts', async (_req, res) => {
-    console.log('📝 [Dev] GET /api/posts - serving from JSON files');
+    console.log('📝 [Dev] GET /api/posts - serving from local posts database');
     
     try {
-        const postsDir = path.resolve(__dirname, '../public/api/posts');
-        const authorDirs = await fs.readdir(postsDir);
+        const db = getLocalPostsDb();
         
-        let allPosts: any[] = [];
+        // Get all posts from the database
+        // Note: This assumes there's a posts table in the database
+        // We'll need to adjust this based on the actual schema
+        const allPosts = await db.select().from(posts).all();
         
-        for (const authorDir of authorDirs) {
-            const authorPath = path.join(postsDir, authorDir);
-            const stat = await fs.stat(authorPath);
-            
-            if (stat.isDirectory()) {
-                const postFiles = await fs.readdir(authorPath);
-                
-                for (const file of postFiles) {
-                    if (file.endsWith('.json')) {
-                        const filePath = path.join(authorPath, file);
-                        const content = await fs.readFile(filePath, 'utf-8');
-                        const post = JSON.parse(content);
-                        
-                        // Ensure author field is set
-                        post.author = authorDir;
-                        post.authorId = authorDir;
-                        
-                        allPosts.push(post);
-                    }
-                }
-            }
-        }
-        
-        // Sort by date (newest first)
-        allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
-        
-        console.log(`✅ [Dev] Served ${allPosts.length} posts from JSON files`);
+        console.log(`✅ [Dev] Served ${allPosts.length} posts from local database`);
         res.json(allPosts);
         
     } catch (error) {
-        console.error('❌ [Dev] Error serving posts from JSON:', error);
-        res.json([]);
+        console.error('❌ [Dev] Error serving posts from database:', error);
+        
+        // Fallback to JSON files if database fails
+        console.log('🔄 [Dev] Falling back to JSON files...');
+        try {
+            const postsDir = path.resolve(__dirname, '../public/api/posts');
+            const authorDirs = await fs.readdir(postsDir);
+            
+            let allPosts: any[] = [];
+            
+            for (const authorDir of authorDirs) {
+                const authorPath = path.join(postsDir, authorDir);
+                const stat = await fs.stat(authorPath);
+                
+                if (stat.isDirectory()) {
+                    const postFiles = await fs.readdir(authorPath);
+                    
+                    for (const file of postFiles) {
+                        if (file.endsWith('.json')) {
+                            const filePath = path.join(authorPath, file);
+                            const content = await fs.readFile(filePath, 'utf-8');
+                            const post = JSON.parse(content);
+                            
+                            // Ensure author field is set
+                            post.author = authorDir;
+                            post.authorId = authorDir;
+                            
+                            allPosts.push(post);
+                        }
+                    }
+                }
+            }
+            
+            // Sort by date (newest first)
+            allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+            
+            console.log(`✅ [Dev] Fallback: Served ${allPosts.length} posts from JSON files`);
+            res.json(allPosts);
+            
+        } catch (fallbackError) {
+            console.error('❌ [Dev] Fallback also failed:', fallbackError);
+            res.json([]);
+        }
     }
 });
 
