@@ -146,40 +146,18 @@ export default function LandingPageNew() {
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2 }}
-            className="text-center space-y-8"
-          >
+          <div className="text-center space-y-8">
             {/* Text Container with blurred background */}
             <div className="backdrop-blur-md bg-background/20 rounded-3xl p-12 border border-white/10 shadow-2xl">
-              {/* Main Title with glitch effect */}
-              <motion.h1
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative"
-              >
-                <span className="relative">
-                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                    Meum Diarium
-                  </span>
-                  {/* Animated underline */}
-                  <motion.div
-                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-transparent"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1, delay: 1 }}
-                  />
+              {/* Main Title */}
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative">
+                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                  Meum Diarium
                 </span>
-              </motion.h1>
+              </h1>
 
               {/* Static Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+              <p
                 className="text-xl sm:text-2xl max-w-2xl mx-auto font-light"
                 style={{ 
                   color: '#ffffff',
@@ -191,15 +169,10 @@ export default function LandingPageNew() {
                 }}
               >
                 Die antike Welt neu entdecken
-              </motion.p>
+              </p>
 
-              {/* Enhanced CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                className="space-y-4 pt-4"
-              >
+              {/* CTA Button */}
+              <div className="space-y-4 pt-4">
                 <Link to="/caesar">
                   <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground group relative overflow-hidden">
                     <span className="relative z-10 flex items-center">
@@ -222,26 +195,17 @@ export default function LandingPageNew() {
                     <Link to="/seneca" className="ml-1" style={{ color: '#ffffff' }}>Seneca</Link>
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Enhanced Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1"
-          >
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1">
             <div className="w-1 h-2 bg-primary/50 rounded-full" />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* STATS SECTION */}
