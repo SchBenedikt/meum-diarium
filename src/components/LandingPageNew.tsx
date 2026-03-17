@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 
 export default function LandingPageNew() {
   const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 500], [0, -100]);
   const yImage = useTransform(scrollY, [0, 500], [0, 50]);
   
   // Animated gradient background
@@ -157,7 +156,6 @@ export default function LandingPageNew() {
             <div className="backdrop-blur-md bg-background/20 rounded-3xl p-12 border border-white/10 shadow-2xl">
               {/* Main Title with glitch effect */}
               <motion.h1
-                style={{ y: yText }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.3 }}
