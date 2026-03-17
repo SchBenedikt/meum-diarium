@@ -25,55 +25,49 @@ export default function LandingPageNew() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 
   const features = [
-    {
-      icon: MessageSquare,
-      title: 'KI-Gespräche',
-      description: 'Dialoge mit Caesar, Cicero, Augustus & Seneca',
-      details: 'Wissenschaftlich fundierte KI-Gespräche basierend auf echten historischen Quellen',
-      quote: '"Alea iacta est!" - Julius Caesar',
-      color: 'from-blue-500 to-purple-600'
-    },
-    {
-      icon: Clock,
-      title: 'Zeitstrahl',
-      description: '170+ Jahre römischer Geschichte entdecken',
-      details: 'Interaktive Navigation durch wichtige Ereignisse und Wendepunkte',
-      quote: '"Tempus fugit" - Die Zeit fliegt',
-      color: 'from-purple-500 to-pink-600'
-    },
-    {
-      icon: Library,
-      title: 'Lexikon',
-      description: '92+ Einträge zu Personen & Orten',
-      details: 'Umfassende Enzyklopädie mit Etymologie und historischem Kontext',
-      quote: '"Vox populi, vox dei" - Die Stimme des Volkes',
-      color: 'from-amber-500 to-orange-600'
-    },
-    {
-      icon: BookOpen,
-      title: 'Grammatik',
-      description: 'Interaktive Latein-Übungen',
-      details: 'Systematische Grammatik mit praktischen Beispielen und Tests',
-      quote: '"Docendo discimus" - Indem wir lehren, lernen wir',
-      color: 'from-green-500 to-teal-600'
-    },
-    {
-      icon: Brain,
-      title: 'Vokabeln',
-      description: '36.000+ lateinische Wörter',
-      details: 'Intelligenter Vokabeltrainer mit Spaced-Repetition-System',
-      quote: '"Verba volant, scripta manent" - Worte fliegen, Schrift bleibt',
-      color: 'from-red-500 to-rose-600'
-    },
-    {
-      icon: Globe,
-      title: 'Mehrsprachig',
-      description: 'Deutsch, Englisch & Latein',
-      details: 'Barrierefreier Zugang zu antiken Texten in modernen Sprachen',
-      quote: '"Lingua latina, non mortua" - Latein ist nicht tot',
-      color: 'from-indigo-500 to-blue-600'
-    }
-  ];
+  {
+    icon: MessageSquare,
+    title: 'KI-Gespräche',
+    description: 'Dialoge mit Caesar, Cicero, Augustus & Seneca',
+    details: 'Wissenschaftlich fundierte KI-Gespräche basierend auf echten historischen Quellen',
+    color: 'from-primary/10 to-primary/5'
+  },
+  {
+    icon: Clock,
+    title: 'Zeitstrahl',
+    description: '170+ Jahre römischer Geschichte entdecken',
+    details: 'Interaktive Navigation durch wichtige Ereignisse und Wendepunkte',
+    color: 'from-primary/10 to-primary/5'
+  },
+  {
+    icon: Library,
+    title: 'Lexikon',
+    description: '92+ Einträge zu Personen & Orten',
+    details: 'Umfassende Enzyklopädie mit Etymologie und historischem Kontext',
+    color: 'from-primary/10 to-primary/5'
+  },
+  {
+    icon: BookOpen,
+    title: 'Grammatik',
+    description: 'Interaktive Latein-Übungen',
+    details: 'Systematische Grammatik mit praktischen Beispielen und Tests',
+    color: 'from-primary/10 to-primary/5'
+  },
+  {
+    icon: Brain,
+    title: 'Vokabeln',
+    description: '36.000+ lateinische Wörter',
+    details: 'Intelligenter Vokabeltrainer mit Spaced-Repetition-System',
+    color: 'from-primary/10 to-primary/5'
+  },
+  {
+    icon: Globe,
+    title: 'Mehrsprachig',
+    description: 'Deutsch, Englisch & Latein',
+    details: 'Barrierefreier Zugang zu antiken Texten in modernen Sprachen',
+    color: 'from-primary/10 to-primary/5'
+  }
+];
 
   const authors = [
     {
@@ -310,10 +304,10 @@ export default function LandingPageNew() {
                   onMouseLeave={() => setHoveredFeature(null)}
                 >
                   <div className="bg-card border border-border rounded-2xl p-8 hover:border-primary/40 hover:shadow-lg transition-all duration-300 h-full relative overflow-hidden">
-                    {/* Animated gradient background on hover */}
+                    {/* Hover background */}
                     <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0`}
-                      animate={{ opacity: hoveredFeature === i ? 0.05 : 0 }}
+                      className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0"
+                      animate={{ opacity: hoveredFeature === i ? 1 : 0 }}
                       transition={{ duration: 0.3 }}
                     />
                     
@@ -323,18 +317,7 @@ export default function LandingPageNew() {
                       </div>
                       <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
-                      <p className="text-sm text-muted-foreground/70 leading-relaxed mb-4">{feature.details}</p>
-                      
-                      {/* Latin Quote */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: hoveredFeature === i ? 1 : 0.7, y: hoveredFeature === i ? 0 : 10 }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-start gap-2 pt-4 border-t border-border/50"
-                      >
-                        <Quote className="h-4 w-4 text-primary/50 mt-1 flex-shrink-0" />
-                        <p className="text-xs text-primary/70 italic leading-relaxed">{feature.quote}</p>
-                      </motion.div>
+                      <p className="text-sm text-muted-foreground/70 leading-relaxed">{feature.details}</p>
                     </div>
                   </div>
                 </motion.div>
