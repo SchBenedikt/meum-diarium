@@ -61,6 +61,10 @@ const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
+import { AdminLayout } from '@/components/admin/AdminLayout';
+import { AdminDashboard } from '@/components/admin/AdminDashboard';
+import { AdminPostEditor } from '@/components/admin/AdminPostEditor';
+
 const queryClient = new QueryClient();
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -81,14 +85,18 @@ const AppContent = () => {
     !location.pathname.includes('/works/') &&
     location.pathname.split('/').length > 2
   );
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <AuthorProvider authorsData={dbAuthors}>
       <>
         <ScrollToTop />
-        {/* The z-index here ensures the header is above the PostPage hero image */}
-        <div className="relative z-50">
-          <Header />
-        </div>
+        {/* Hide main header for admin routes */}
+        {!isAdminRoute && (
+          <div className="relative z-50">
+            <Header />
+          </div>
+        )}
         <Suspense fallback={<LoadingScreen />}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
@@ -136,20 +144,14 @@ const AppContent = () => {
               <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
-              {/* Admin routes */}
+              {/* Admin routes - Notion Style */}
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="posts/new" element={<AdminPostEditor />} />
+                <Route path="posts/:author/:slug" element={<AdminPostEditor />} />
+                <Route path="settings" element={<SettingsPage />} />
+              </Route>
               <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
-              <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
-              <Route path="/admin/post/new" element={<PageTransition><PostEditorPage /></PageTransition>} />
-              <Route path="/admin/post/:author/:slug" element={<PageTransition><PostEditorPage /></PageTransition>} />
-              <Route path="/admin/author/new" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-              <Route path="/admin/author/:authorId" element={<PageTransition><AuthorEditorPage /></PageTransition>} />
-              <Route path="/admin/lexicon/new" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-              <Route path="/admin/lexicon/:slug" element={<PageTransition><LexiconEditorPage /></PageTransition>} />
-              <Route path="/admin/work/new" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-              <Route path="/admin/work/:slug" element={<PageTransition><WorkEditorPage /></PageTransition>} />
-              <Route path="/admin/pages/new" element={<PageTransition><PageEditorPage /></PageTransition>} />
-              <Route path="/admin/pages/:slug" element={<PageTransition><PageEditorPage /></PageTransition>} />
-              <Route path="/admin/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
 
               {/* Direct author about page routes */}
               <Route path="/caesar/about" element={<PageTransition><CaesarAboutPage /></PageTransition>} />

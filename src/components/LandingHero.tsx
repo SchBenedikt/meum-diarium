@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
 import { FeatureShowcase } from './home/FeatureShowcase';
+import { HeroImageGallery } from './HeroImageGallery';
 import {
   Carousel,
   CarouselContent,
@@ -77,6 +78,40 @@ export default function LandingHero() {
           </motion.div>
         </div>
       </section>
+      
+      {/* Hero Image Gallery */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Badge variant="outline" className="mb-6 py-2 px-4 text-xs uppercase tracking-[0.2em] bg-background/50 backdrop-blur-sm border-primary/20 text-primary">
+              <Sparkles className="mr-2 h-3.5 w-3.5" />
+              Entdecke die Persönlichkeiten
+            </Badge>
+            <h2 className="font-display text-4xl sm:text-6xl font-bold mb-6 tracking-tight">
+              Die <span className="italic text-primary">Größten</span> der Antike
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Klicke dich durch die Bilder und entdecke die berühmtesten Persönlichkeiten der römischen Geschichte.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <HeroImageGallery />
+          </motion.div>
+        </div>
+      </section>
+      
       <FeatureShowcase />
       {/* Statistics Section */}
       <section className="py-16 bg-gradient-to-b from-background to-secondary/20 border-y border-border">

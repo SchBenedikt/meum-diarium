@@ -50,6 +50,10 @@ export function AuthorGrid() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
+                whileHover={{ 
+                  rotate: 1,
+                  scale: 1.02
+                }}
               >
                 <Link
                   to={`/${author.id}`}
@@ -64,11 +68,25 @@ export function AuthorGrid() {
                   >
                     {/* Image Section */}
                     <div className="relative aspect-[4/5] overflow-hidden">
-                      <ImageWithFallback
-                        src={author.heroImage}
-                        alt={translatedInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                      />
+                      <motion.div
+                        className="w-full h-full"
+                        initial={{ rotate: 0 }}
+                        whileHover={{ 
+                          rotate: 2,
+                          scale: 1.05
+                        }}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 300, 
+                          damping: 30 
+                        }}
+                      >
+                        <ImageWithFallback
+                          src={author.heroImage}
+                          alt={translatedInfo.name}
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                        />
+                      </motion.div>
                       {/* Premium Accent Corner */}
                       {isCaesar && (
                         <div className="absolute top-6 left-6">
