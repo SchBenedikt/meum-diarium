@@ -113,7 +113,7 @@ export default function LandingPageNew() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* HERO SECTION WITH FIXED BACKGROUND */}
+      {/* HERO SECTION WITH ENHANCED EFFECTS */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated gradient background */}
         <motion.div 
@@ -123,78 +123,158 @@ export default function LandingPageNew() {
           }}
         />
         
-        {/* Fixed Background Image - only for hero section */}
+        {/* Fixed Background Image with subtle zoom effect */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <motion.img 
             src="/image.png" 
             alt="Antikes Rom" 
             className="w-full h-full object-cover"
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
           />
         </div>
 
+        {/* Floating geometric shapes */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute border border-primary/20"
+            style={{
+              width: Math.random() * 60 + 20,
+              height: Math.random() * 60 + 20,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              borderRadius: Math.random() > 0.5 ? '50%' : '10%',
+            }}
+            animate={{
+              rotate: [0, 360],
+              x: [0, Math.random() * 100 - 50],
+              y: [0, Math.random() * 100 - 50],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 15,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
-          <div className="text-center space-y-8">
-            {/* Text Container with blurred background */}
-            <div className="backdrop-blur-md bg-black/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
-              {/* Main Title */}
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="text-center space-y-8"
+          >
+            {/* Text Container with enhanced glassmorphism */}
+            <motion.div 
+              className="backdrop-blur-xl bg-white/5 rounded-3xl p-12 border border-white/30 shadow-2xl"
+              whileHover={{ 
+                scale: 1.02,
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                borderColor: 'rgba(255, 255, 255, 0.4)'
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Main Title with glow effect */}
+              <motion.h1 
+                className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative"
+                animate={{ 
+                  textShadow: [
+                    "0 0 20px rgba(255,255,255,0.5)",
+                    "0 0 40px rgba(255,255,255,0.3)",
+                    "0 0 20px rgba(255,255,255,0.5)"
+                  ]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
                 <span style={{ color: '#ffffff' }}>
                   Meum Diarium
                 </span>
-              </h1>
+              </motion.h1>
 
               {/* Static Subtitle */}
-              <p
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.5 }}
                 className="text-xl sm:text-2xl max-w-2xl mx-auto font-light"
                 style={{ 
                   color: '#ffffff',
                   textDecoration: 'none !important',
-                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   textDecorationLine: 'none',
                   textDecorationStyle: 'solid',
                   textDecorationThickness: '0px'
                 }}
               >
                 Die antike Welt neu entdecken
-              </p>
+              </motion.p>
 
-              {/* CTA Button */}
-              <div className="space-y-4 pt-4">
+              {/* Enhanced CTA Button */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="space-y-4 pt-4"
+              >
                 <Link to="/caesar">
-                  <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground group relative overflow-hidden">
-                    <span className="relative z-10 flex items-center">
-                      Entdecken
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                    {/* Button shine effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: 2 }}
-                    />
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 group relative overflow-hidden">
+                      <span className="relative z-10 flex items-center">
+                        Entdecken
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      {/* Enhanced button shine effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                        animate={{ x: ['-200%', '200%'] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    </Button>
+                  </motion.div>
                 </Link>
-                <div className="text-center">
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 1.2 }}
+                  className="text-center"
+                >
                   <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                     Oder beginne direkt mit: 
-                    <Link to="/cicero" className="ml-1" style={{ color: '#ffffff' }}>Cicero</Link> • 
-                    <Link to="/augustus" className="ml-1" style={{ color: '#ffffff' }}>Augustus</Link> • 
-                    <Link to="/seneca" className="ml-1" style={{ color: '#ffffff' }}>Seneca</Link>
+                    <Link to="/cicero" className="ml-1 hover:text-white transition-colors" style={{ color: '#ffffff' }}>Cicero</Link> • 
+                    <Link to="/augustus" className="ml-1 hover:text-white transition-colors" style={{ color: '#ffffff' }}>Augustus</Link> • 
+                    <Link to="/seneca" className="ml-1 hover:text-white transition-colors" style={{ color: '#ffffff' }}>Seneca</Link>
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-primary/50 rounded-full" />
-          </div>
-        </div>
+        {/* Enhanced Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+            className="w-6 h-12 rounded-full border-2 border-white/40 flex items-start justify-center p-1"
+          >
+            <motion.div
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              className="w-1 h-3 bg-white/60 rounded-full"
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* STATS SECTION */}
