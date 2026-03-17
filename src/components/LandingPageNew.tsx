@@ -119,7 +119,7 @@ export default function LandingPageNew() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* HERO SECTION WITH ENHANCED PARALLAX */}
+      {/* HERO SECTION WITH FIXED BACKGROUND */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated gradient background */}
         <motion.div 
@@ -129,13 +129,13 @@ export default function LandingPageNew() {
           }}
         />
         
-        {/* Fixed Background Image */}
+        {/* Fixed Background Image - only for hero section */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/image.png" 
             alt="Antikes Rom" 
-            className="w-full h-full object-cover fixed"
-            style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}
+            className="w-full h-full object-cover"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
           />
         </div>
 
