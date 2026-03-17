@@ -140,7 +140,7 @@ export default function LandingPageNew() {
             <div className="backdrop-blur-md bg-black/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
               {/* Main Title */}
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative">
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                <span style={{ color: '#ffffff' }}>
                   Meum Diarium
                 </span>
               </h1>
