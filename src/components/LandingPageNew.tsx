@@ -9,9 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { useState, useEffect } from 'react';
 
 export default function LandingPageNew() {
-  const { scrollY } = useScroll();
-  const yImage = useTransform(scrollY, [0, 500], [0, 50]);
-  
   // Animated gradient background
   const gradientX = useSpring(0);
   const gradientY = useSpring(0);
@@ -132,17 +129,15 @@ export default function LandingPageNew() {
           }}
         />
         
-        {/* Parallax Background Image */}
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ y: yImage }}
-        >
+        {/* Fixed Background Image */}
+        <div className="absolute inset-0 z-0">
           <img 
             src="/image.png" 
             alt="Antikes Rom" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover fixed"
+            style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}
           />
-        </motion.div>
+        </div>
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
