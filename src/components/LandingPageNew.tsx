@@ -138,7 +138,7 @@ export default function LandingPageNew() {
           style={{ y: yImage }}
         >
           <img 
-            src="/images/caesar-hero.jpg" 
+            src="/image.png" 
             alt="Antikes Rom" 
             className="w-full h-full object-cover"
           />
