@@ -1,40 +1,91 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Info, X } from 'lucide-react';
 
 interface HeroImage {
   id: string;
   src: string;
   alt: string;
   name: string;
+  description: string;
+  details: string[];
 }
 
 const heroImages: HeroImage[] = [
-  { id: 'image', src: '/image.png', alt: 'Antikes Rom', name: 'Antikes Rom' },
-  { id: 'landing-hero', src: '/landing-hero.png', alt: 'Meum Diarium Hero', name: 'Meum Diarium' },
-  { id: 'augustus', src: '/images/augustus-hero.jpg', alt: 'Augustus', name: 'Augustus' },
-  { id: 'caesar', src: '/images/caesar-hero.jpg', alt: 'Caesar', name: 'Caesar' },
-  { id: 'catilina', src: '/images/catilina-hero.jpg', alt: 'Catilina', name: 'Catilina' },
-  { id: 'cicero', src: '/images/cicero-hero.jpg', alt: 'Cicero', name: 'Cicero' },
-  { id: 'seneca', src: '/images/seneca-hero.jpg', alt: 'Seneca', name: 'Seneca' },
+  { 
+    id: 'image', 
+    src: '/image.png', 
+    alt: 'Antikes Rom', 
+    name: 'Antikes Rom',
+    description: 'Die majestätische Welt des antiken Roms',
+    details: ['Hauptstadt des Römischen Reiches', 'Zentrum von Kultur und Politik', 'Grundlage westlicher Zivilisation']
+  },
+  { 
+    id: 'landing-hero', 
+    src: '/landing-hero.png', 
+    alt: 'Meum Diarium Hero', 
+    name: 'Meum Diarium',
+    description: 'Dein persönliches Tagebuch der Antike',
+    details: ['KI-gestützte Gespräche', 'Interaktiver Zeitstrahl', 'Umfangreiches Lexikon', 'Lateinische Grammatik']
+  },
+  { 
+    id: 'augustus', 
+    src: '/images/augustus-hero.jpg', 
+    alt: 'Augustus', 
+    name: 'Augustus',
+    description: 'Erster Kaiser des Römischen Reiches',
+    details: ['63 v.Chr.–14 n.Chr.', 'Großneffe von Julius Caesar', 'Pax Romana - 200 Jahre Frieden']
+  },
+  { 
+    id: 'caesar', 
+    src: '/images/caesar-hero.jpg', 
+    alt: 'Caesar', 
+    name: 'Caesar',
+    description: 'Feldherr, Diktator und Schriftsteller',
+    details: ['100–44 v.Chr.', 'Eroberer Galliens', 'Berühmte Reden und Schriften']
+  },
+  { 
+    id: 'catilina', 
+    src: '/images/catilina-hero.jpg', 
+    alt: 'Catilina', 
+    name: 'Catilina',
+    description: 'Verschwörer gegen die Republik',
+    details: ['108–62 v.Chr.', 'Catilinarische Verschwörung', 'Gegner von Cicero']
+  },
+  { 
+    id: 'cicero', 
+    src: '/images/cicero-hero.jpg', 
+    alt: 'Cicero', 
+    name: 'Cicero',
+    description: 'Größter Redner der Antike',
+    details: ['106–43 v.Chr.', 'Philosoph und Staatsmann', 'Vater der Rhetorik']
+  },
+  { 
+    id: 'seneca', 
+    src: '/images/seneca-hero.jpg', 
+    alt: 'Seneca', 
+    name: 'Seneca',
+    description: 'Stoischer Philosoph und Dramatiker',
+    details: ['4 v.Chr.–65 n.Chr.', 'Lehrer von Nero', 'Einfluss auf christliche Ethik']
+  },
 ];
 
 export function HeroImageGallery() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [showInfo, setShowInfo] = useState(false);
 
   const handleImageClick = (index: number) => {
     setSelectedIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
   };
 
-  const handlePreviousClick = (e: React.MouseEvent) => {
+  const handleInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelectedIndex((prevIndex) => (prevIndex - 1 + heroImages.length) % heroImages.length);
+    setShowInfo(true);
   };
 
-  const handleNextClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setSelectedIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+  const handleCloseInfo = () => {
+    setShowInfo(false);
   };
 
   return (
@@ -93,26 +144,24 @@ export function HeroImageGallery() {
                   }}
                 >
                   <h3 className="text-2xl font-bold mb-2">{image.name}</h3>
+                  {isSelected && (
+                    <motion.button
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      onClick={handleInfoClick}
+                      className="mt-2 px-3 py-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-xs font-medium flex items-center gap-1 transition-all duration-300"
+                    >
+                      <Info className="h-3 w-3" />
+                      Mehr Informationen
+                    </motion.button>
+                  )}
                 </motion.div>
               </div>
             </motion.div>
           );
         })}
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={handlePreviousClick}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 z-20"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
-        onClick={handleNextClick}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 z-20"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
 
       {/* Navigation dots */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
@@ -129,6 +178,64 @@ export function HeroImageGallery() {
           />
         ))}
       </div>
+
+      {/* Information Panel */}
+      <AnimatePresence>
+        {showInfo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-30"
+            onClick={handleCloseInfo}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="bg-card border border-border rounded-2xl p-6 max-w-md mx-4 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="text-xl font-bold text-foreground">{heroImages[selectedIndex].name}</h3>
+                <button
+                  onClick={handleCloseInfo}
+                  className="p-1 hover:bg-secondary rounded-full transition-colors"
+                >
+                  <X className="h-4 w-4 text-muted-foreground" />
+                </button>
+              </div>
+              
+              <p className="text-muted-foreground mb-4">{heroImages[selectedIndex].description}</p>
+              
+              <div className="space-y-2">
+                <h4 className="font-semibold text-foreground text-sm">Besondere Merkmale:</h4>
+                <ul className="space-y-1">
+                  {heroImages[selectedIndex].details.map((detail, index) => (
+                    <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {heroImages[selectedIndex].id !== 'image' && heroImages[selectedIndex].id !== 'landing-hero' && (
+                <div className="mt-6 pt-4 border-t border-border">
+                  <a
+                    href={`/${heroImages[selectedIndex].id}`}
+                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                  >
+                    Zur Seite von {heroImages[selectedIndex].name}
+                    <Info className="h-3 w-3" />
+                  </a>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

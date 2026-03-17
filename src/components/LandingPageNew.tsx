@@ -115,7 +115,15 @@ export default function LandingPageNew() {
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* HERO SECTION WITH FIXED BACKGROUND */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Fixed Background Image */}
+        {/* Animated gradient background */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{
+            background: `radial-gradient(circle at ${gradientX}% ${gradientY}%, hsl(var(--primary) / 0.1) 0%, transparent 50%)`,
+          }}
+        />
+        
+        {/* Fixed Background Image - only for hero section */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/image.png" 
@@ -125,20 +133,66 @@ export default function LandingPageNew() {
           />
         </div>
 
-        {/* Hero Content - Full Screen */}
-        <div className="relative z-10 h-screen flex items-center justify-center">
-          {/* Main Title */}
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight">
-            <span style={{ color: '#f4e4c1' }}>
-              Meum Diarium
-            </span>
-          </h1>
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
+          <div className="text-center space-y-8">
+            {/* Text Container with blurred background */}
+            <div className="backdrop-blur-md bg-black/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
+              {/* Main Title */}
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative">
+                <span style={{ color: '#ffffff' }}>
+                  Meum Diarium
+                </span>
+              </h1>
+
+              {/* Static Subtitle */}
+              <p
+                className="text-xl sm:text-2xl max-w-2xl mx-auto font-light"
+                style={{ 
+                  color: '#ffffff',
+                  textDecoration: 'none !important',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                  textDecorationLine: 'none',
+                  textDecorationStyle: 'solid',
+                  textDecorationThickness: '0px'
+                }}
+              >
+                Die antike Welt neu entdecken
+              </p>
+
+              {/* CTA Button */}
+              <div className="space-y-4 pt-4">
+                <Link to="/caesar">
+                  <Button size="lg" className="rounded-full px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground group relative overflow-hidden">
+                    <span className="relative z-10 flex items-center">
+                      Entdecken
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    {/* Button shine effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+                    />
+                  </Button>
+                </Link>
+                <div className="text-center">
+                  <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+                    Oder beginne direkt mit: 
+                    <Link to="/cicero" className="ml-1" style={{ color: '#ffffff' }}>Cicero</Link> • 
+                    <Link to="/augustus" className="ml-1" style={{ color: '#ffffff' }}>Augustus</Link> • 
+                    <Link to="/seneca" className="ml-1" style={{ color: '#ffffff' }}>Seneca</Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-white/50 rounded-full" />
+          <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1">
+            <div className="w-1 h-2 bg-primary/50 rounded-full" />
           </div>
         </div>
       </section>
