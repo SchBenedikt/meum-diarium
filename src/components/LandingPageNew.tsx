@@ -148,7 +148,7 @@ export default function LandingPageNew() {
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24">
           <div className="text-center space-y-8">
             {/* Text Container with blurred background */}
-            <div className="backdrop-blur-md bg-background/20 rounded-3xl p-12 border border-white/10 shadow-2xl">
+            <div className="backdrop-blur-md bg-black/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
               {/* Main Title */}
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight relative">
                 <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
