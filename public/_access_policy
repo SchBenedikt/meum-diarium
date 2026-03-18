@@ -1,0 +1,47 @@
+{
+  "version": "1",
+  "rules": [
+    {
+      "type": "public",
+      "name": "Public API access",
+      "description": "Allow public access to API endpoints",
+      "include": [
+        "/api/*"
+      ]
+    },
+    {
+      "type": "public", 
+      "name": "Public assets access",
+      "description": "Allow public access to static assets",
+      "include": [
+        "/images/*",
+        "/icons/*",
+        "/sw.js",
+        "/manifest.json"
+      ]
+    },
+    {
+      "type": "public",
+      "name": "Public pages access", 
+      "description": "Allow public access to main pages",
+      "include": [
+        "/",
+        "/caesar",
+        "/seneca", 
+        "/cicero",
+        "/catilina",
+        "/augustus",
+        "/about",
+        "/about/*",
+        "/oer",
+        "/privacy",
+        "/search",
+        "/timeline",
+        "/vocabulary",
+        "/verben",
+        "/substantive",
+        "/*"
+      ]
+    }
+  ]
+}

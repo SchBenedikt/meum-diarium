@@ -23,3 +23,7 @@ migrations_dir = "drizzle"
 # Environment variables for Pages
 [vars]
 ENVIRONMENT = "production"
+
+# Cloudflare Access bypass for API endpoints
+[compatibility_flags]
+nodejs_compat = true
