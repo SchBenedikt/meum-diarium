@@ -1,14 +1,11 @@
 // Determine API base URL based on environment
 export function getApiBase(): string {
-    // Always use production API for admin operations to connect to real Cloudflare D1
-    if (typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')) {
-        return 'https://caesar.schaechner.workers.dev';
-    }
     if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
         // In development, use relative URL since Vite proxy handles /api routing
         return '';
     }
     if (typeof window !== 'undefined') {
+        // In production, use Pages Functions under current domain
         return `${window.location.origin}/api`;
     }
     return '/api';
@@ -21,8 +18,8 @@ export function getUserApiBase(): string {
         return '';
     }
     if (typeof window !== 'undefined') {
-        // In production, use Cloudflare Workers URL (without /api suffix)
-        return 'https://caesar.schaechner.workers.dev';
+        // In production, use Pages Functions under current domain
+        return `${window.location.origin}/api`;
     }
     return '';
 }
