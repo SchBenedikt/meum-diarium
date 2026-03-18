@@ -23,6 +23,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         slug: post?.slug || '',
         author: post?.author || 'caesar',
         excerpt: post?.excerpt || '',
+        coverImage: post?.coverImage || '',
         contentDiary: post?.content.diary || '',
         contentScientific: post?.content.scientific || '',
         quoteText: post?.sidebar?.quote?.text || '',
@@ -45,6 +46,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 diaryTitle: formData.diaryTitle,
                 scientificTitle: formData.scientificTitle,
                 excerpt: formData.excerpt,
+                coverImage: formData.coverImage,
                 content: {
                     diary: formData.contentDiary,
                     scientific: formData.contentScientific
@@ -177,6 +179,17 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
                             placeholder="Kurze Zusammenfassung des Beitrags"
                         />
+                    </div>
+                    <div className="space-y-2">
+                        <Label>Cover Image URL</Label>
+                        <Input
+                            value={formData.coverImage}
+                            onChange={e => setFormData({ ...formData, coverImage: e.target.value })}
+                            placeholder="https://example.com/image.jpg oder /images/local-image.jpg"
+                        />
+                        <p className="text-xs text-muted-foreground">
+                            URL zum Cover-Bild. Kann eine externe URL oder ein lokaler Pfad sein.
+                        </p>
                     </div>
                     <div className="space-y-2">
                         <Label className="flex items-center gap-2">📔 Content (Tagebuch)</Label>
