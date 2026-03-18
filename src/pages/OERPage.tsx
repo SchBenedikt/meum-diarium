@@ -31,113 +31,122 @@ const OERPage = () => {
       category: "Texte & Inhalte",
       icon: FileText,
       items: [
-        { 
-          title: "Tagebucheinträge", 
-          description: "KI-generierte Tagebucheinträge historischer Persönlichkeiten", 
-          license: "CC BY-SA 4.0", 
+        {
+          title: "Tagebucheinträge",
+          description: "KI-generierte Tagebucheinträge historischer Persönlichkeiten",
+          license: "CC BY-SA 4.0",
           format: "HTML, JSON",
           link: "/caesar"
         },
-        { 
-          title: "Lexikon-Einträge", 
-          description: "92+ Einträge zur römischen Antike mit Übersetzungen", 
-          license: "CC BY 4.0", 
-          format: "HTML, JSON",
+        {
+          title: "Lexikon",
+          description: "Umfassende Enzyklopädie zur römischen Antike",
+          license: "CC BY-SA 4.0",
+          format: "HTML, API",
           link: "/lexicon"
         },
-        { 
-          title: "Grammatik-Lektionen", 
-          description: "Interaktive Latein-Grammatik Übungen", 
-          license: "CC BY-SA 4.0", 
-          format: "HTML",
+        {
+          title: "Grammatik",
+          description: "Lateinische Grammatik mit Übungen",
+          license: "CC BY-SA 4.0",
+          format: "HTML, PDF",
           link: "/learn/grammar"
-        },
+        }
       ]
     },
     {
-      category: "Lernwerkzeuge",
-      icon: BookOpen,
+      category: "Multimedia",
+      icon: Video,
       items: [
-        { 
-          title: "Vokabeltrainer", 
-          description: "36.140 lateinische Vokabeln mit deutschen Übersetzungen", 
-          license: "CC BY-SA 4.0", 
-          format: "Web App",
-          link: "/vocab"
+        {
+          title: "Bildmaterial",
+          description: "Historische Abbildungen und Rekonstruktionen",
+          license: "CC BY-SA 4.0",
+          format: "JPG, PNG",
+          link: "/images"
         },
-        { 
-          title: "Text Reader", 
-          description: "Interaktiver Reader für lateinische Texte", 
-          license: "CC BY-SA 4.0", 
-          format: "Web App",
-          link: "/reader"
+        {
+          title: "Audio-Inhalte",
+          description: "Ausspracheübungen und Hörtexte",
+          license: "CC BY-SA 4.0",
+          format: "MP3, WAV",
+          link: "/audio"
         },
-        { 
-          title: "KI-Gespräche", 
-          description: "Dialoge mit historischen Persönlichkeiten", 
-          license: "CC BY-NC 4.0", 
-          format: "Web App",
-          link: "/caesar/chat"
-        },
+        {
+          title: "Video-Tutorials",
+          description: "Lernvideos zur lateinischen Sprache",
+          license: "CC BY-SA 4.0",
+          format: "MP4, WebM",
+          link: "/videos"
+        }
       ]
     },
     {
       category: "Technische Ressourcen",
       icon: Code,
       items: [
-        { 
-          title: "API-Dokumentation", 
-          description: "RESTful API für Entwickler und Forscher", 
-          license: "MIT", 
-          format: "JSON, OpenAPI",
+        {
+          title: "API-Dokumentation",
+          description: "RESTful API für Entwickler",
+          license: "MIT",
+          format: "JSON, Swagger",
           link: "/api"
         },
-        { 
-          title: "Vokabeldatenbank", 
-          description: "SQLite Datenbank mit lateinischen Vokabeln", 
-          license: "ODbL", 
-          format: "SQLite, CSV",
-          link: "https://github.com/meum-diarium/vocab-data"
+        {
+          title: "Quellcode",
+          description: "Open Source Projekt auf GitHub",
+          license: "MIT",
+          format: "TypeScript, React",
+          link: "https://github.com/meum-diarium"
         },
+        {
+          title: "Datenbank",
+          description: "Exportierbare Daten und Dumps",
+          license: "ODbL",
+          format: "SQL, CSV",
+          link: "/data"
+        }
       ]
     }
   ];
 
   const licenses = [
     {
-      name: "Creative Commons",
-      short: "CC BY-SA 4.0",
-      description: "Namensnennung - Weitergabe unter gleichen Bedingungen",
+      name: "CC BY-SA 4.0",
+      short: "Creative Commons",
+      description: "Namensnennung, Weitergabe unter gleichen Bedingungen",
       icon: Share2,
       color: "bg-green-50 text-green-700 border-green-200"
     },
     {
-      name: "Creative Commons",
-      short: "CC BY 4.0", 
-      description: "Nur Namensnennung erforderlich",
-      icon: Globe,
+      name: "MIT",
+      short: "MIT License",
+      description: "Freie Nutzung, Modifikation und Verbreitung",
+      icon: Code,
       color: "bg-blue-50 text-blue-700 border-blue-200"
     },
     {
-      name: "Creative Commons",
-      short: "CC BY-NC 4.0",
-      description: "Nicht-kommerzielle Nutzung",
-      icon: Users,
+      name: "ODbL",
+      short: "Open Database License",
+      description: "Freie Nutzung von Datenbankinhalten",
+      icon: Globe,
       color: "bg-purple-50 text-purple-700 border-purple-200"
     },
     {
-      name: "MIT License",
-      short: "MIT",
-      description: "Permissive Software-Lizenz",
-      icon: Code,
+      name: "CC0",
+      short: "Public Domain",
+      description: "Keine Rechtevorbehalte, gemeinfrei",
+      icon: Star,
       color: "bg-gray-50 text-gray-700 border-gray-200"
     }
   ];
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const stats = [
+    { value: "92+", label: "Lexikon-Einträge", color: "from-primary to-blue-500" },
+    { value: "36.140", label: "Vokabeln", color: "from-blue-500 to-green-500" },
+    { value: "4", label: "Historiker", color: "from-green-500 to-orange-500" },
+    { value: "6", label: "Lektionen", color: "from-orange-500 to-red-500" }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,7 +167,7 @@ const OERPage = () => {
             variants={staggerContainer(0.1)}
             className="text-center space-y-8"
           >
-            <motion.div variants={fadeUp(0)}>
+            <motion.div variants={fadeUp()}>
               <div className="flex justify-center gap-3 mb-6">
                 <Badge variant="secondary" className="px-4 py-2 text-xs font-medium">
                   <Globe className="mr-2 h-3 w-3" />
@@ -180,7 +189,7 @@ const OERPage = () => {
               </p>
             </motion.div>
             
-            <motion.div variants={fadeUp(0.2)} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={fadeUp()} className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/learn">
                 <Button 
                   size="lg" 
@@ -205,20 +214,42 @@ const OERPage = () => {
         </div>
       </section>
 
-          {/* Stats - Based on actual data */}
+      {/* Stats - Based on actual data */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <motion.div
-            variants={fadeUp(0.4)}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer(0.1)}
+            className="text-center mb-16"
           >
-            {[
-              { value: "92+", label: "Lexikon-Einträge", color: "from-primary to-blue-500" },
-              { value: "36.140", label: "Vokabeln", color: "from-blue-500 to-green-500" },
-              { value: "4", label: "Historiker", color: "from-green-500 to-orange-500" },
-              { value: "6", label: "Lektionen", color: "from-orange-500 to-red-500" }
-            ].map((stat, i) => (
+            <motion.div variants={fadeUp()}>
+              <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
+                <div className="w-8 h-[1px] bg-primary/30" />
+                STATISTIKEN
+                <div className="w-8 h-[1px] bg-primary/30" />
+              </div>
+              <h2 className="font-bricolage text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+                Unsere Ressourcen in Zahlen
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Ein umfassendes Angebot für das Studium der römischen Antike
+              </p>
+            </motion.div>
+          </motion.div>
+          
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer(0.1)}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {stats.map((stat, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp(0.6 + i * 0.1)}
+                variants={fadeUp()}
                 className="relative group"
               >
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm">
@@ -243,7 +274,7 @@ const OERPage = () => {
             variants={staggerContainer(0.1)}
             className="text-center mb-16"
           >
-            <motion.div variants={fadeUp(0)}>
+            <motion.div variants={fadeUp()}>
               <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
                 <div className="w-8 h-[1px] bg-primary/30" />
                 VERFÜGBARE RESSOURCEN
@@ -268,7 +299,7 @@ const OERPage = () => {
                 variants={staggerContainer(0.1)}
               >
                 <motion.div 
-                  variants={fadeUp(0)}
+                  variants={fadeUp()}
                   className="flex items-center gap-3 mb-6"
                 >
                   <div className="p-3 bg-primary/10 rounded-xl">
@@ -286,7 +317,7 @@ const OERPage = () => {
                   {category.items.map((item, j) => (
                     <motion.div
                       key={j}
-                      variants={fadeUp(j * 0.1)}
+                      variants={fadeUp()}
                       className="group"
                     >
                       <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm hover:-translate-y-1">
@@ -331,7 +362,7 @@ const OERPage = () => {
             variants={staggerContainer(0.1)}
             className="text-center mb-16"
           >
-            <motion.div variants={fadeUp(0)}>
+            <motion.div variants={fadeUp()}>
               <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
                 <div className="w-8 h-[1px] bg-primary/30" />
                 OFFENE LIZENZEN
@@ -357,7 +388,7 @@ const OERPage = () => {
             {licenses.map((license, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp(i * 0.1)}
+                variants={fadeUp()}
                 className="group"
               >
                 <Card className={`h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${license.color} hover:-translate-y-1`}>
@@ -384,7 +415,7 @@ const OERPage = () => {
             variants={staggerContainer(0.1)}
             className="space-y-8"
           >
-            <motion.div variants={fadeUp(0)}>
+            <motion.div variants={fadeUp()}>
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-green-500/20 blur-xl rounded-full" />
                 <h2 className="relative font-bricolage text-4xl sm:text-5xl font-bold tracking-tight">
@@ -393,12 +424,12 @@ const OERPage = () => {
               </div>
             </motion.div>
             
-            <motion.p variants={fadeUp(0.2)} className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <motion.p variants={fadeUp()} className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Werde Teil unserer OER-Community und trage zur freien Bildung bei. 
               Nutze unsere Materialien für deinen Unterricht oder deine Forschung.
             </motion.p>
             
-            <motion.div variants={fadeUp(0.4)} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={fadeUp()} className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/learn">
                 <Button size="lg" className="rounded-full px-8 h-16 text-lg bg-primary hover:bg-primary/90">
                   <BookOpen className="mr-2 h-5 w-5" />
