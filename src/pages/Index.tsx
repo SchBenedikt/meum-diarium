@@ -1,7 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { BlogList } from '@/components/BlogList';
-import LandingPageModern from '@/components/LandingPageModern';
+import LandingHeroNew from '@/components/LandingHeroNew';
 import { FeatureShowcase } from '@/components/home/FeatureShowcase';
 import { useAuthor } from '@/context/AuthorContext';
 import { useAuthors } from '@/hooks/use-authors';
@@ -157,7 +157,7 @@ const Index = () => {
             </div>
           </div>
         ) : (
-          <LandingPageModern />
+          <LandingHeroNew />
         )}
       </main >
       <Footer />

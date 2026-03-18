@@ -1,476 +1,281 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Sparkles, ArrowRight, BookOpen, Globe, Clock, Brain, Shield,
-  Star, ChevronRight, Play, MessageSquare, Scroll, Library,
-  Zap, Users, Award, TrendingUp, Check,
-} from 'lucide-react';
+import type { ElementType } from 'react';
+import { Sparkles, MessageCircle, BookOpen, Map, Library, ArrowRight, Users, Bookmark, ChevronRight, Globe, Clock, Award, Zap, Shield, Scroll, Cpu, Play, Star, TrendingUp, Heart, Brain, Calendar, User } from 'lucide-react';
+import { AuthorGrid } from './AuthorGrid';
+import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from './ui/badge';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/context/LanguageContext';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
 import { BlogCard } from './BlogCard';
+import { FeatureShowcase } from './home/FeatureShowcase';
+import { ImageWithFallback } from './ui/ImageWithFallback';
+import ParallaxHero from './ParallaxHero';
+import { useState, useEffect } from 'react';
+import { Author } from '@/types/blog';
 
-// ─── Typewriter helper ───────────────────────────────────────────────────────
-function useTypewriter(words: string[], speed = 80, pause = 2000) {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-
-  // Simple interval-based approach kept compact
-  const [displayed, setDisplayed] = useState('');
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!deleting && subIndex < words[index].length) {
-        setDisplayed(words[index].slice(0, subIndex + 1));
-        setSubIndex(s => s + 1);
-      } else if (deleting && subIndex > 0) {
-        setDisplayed(words[index].slice(0, subIndex - 1));
-        setSubIndex(s => s - 1);
-      } else if (!deleting && subIndex === words[index].length) {
-        setTimeout(() => setDeleting(true), pause);
-      } else if (deleting && subIndex === 0) {
-        setDeleting(false);
-        setIndex(i => (i + 1) % words.length);
-      }
-    }, deleting ? speed / 2 : speed);
-    return () => clearInterval(interval);
-  }, [index, subIndex, deleting, words, speed, pause]);
-
-  return displayed;
-}
-
-// ─── Interactive UI Mockup (chat simulation) ─────────────────────────────────
-const chatMessages = [
-  { role: 'user', text: 'Was denkst du über den Rubikon?' },
-  { role: 'caesar', text: 'Der Würfel ist gefallen! Als ich den Rubikon überschritt, wusste ich – es gibt kein Zurück mehr. Alea iacta est.' },
-  { role: 'user', text: 'Hattest du keine Angst vor dem Senat?' },
-  { role: 'caesar', text: 'Der Senat fürchtete mich, nicht ich ihn. Macht folgt dem Mutigen.' },
-];
-
-function ChatMockup() {
-  const [visible, setVisible] = useState(1);
-
-  return (
-    <div className="relative bg-card border border-border rounded-2xl shadow-2xl overflow-hidden w-full max-w-sm">
-      {/* Header */}
-      <div className="flex items-center gap-3 p-4 border-b border-border bg-secondary/40">
-        <div className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white text-sm font-bold">C</div>
-        <div>
-          <p className="text-sm font-semibold">Julius Caesar</p>
-          <p className="text-xs text-green-500 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />Online</p>
-        </div>
-      </div>
-      {/* Messages */}
-      <div className="p-4 space-y-3 min-h-[200px]">
-        <AnimatePresence>
-          {chatMessages.slice(0, visible).map((msg, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              <div className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed ${
-                msg.role === 'user'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary text-foreground'
-              }`}>
-                {msg.text}
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-        {visible < chatMessages.length && (
-          <div className="flex justify-start">
-            <div className="bg-secondary rounded-xl px-3 py-2 text-xs text-muted-foreground animate-pulse">
-              Caesar schreibt…
-            </div>
-          </div>
-        )}
-      </div>
-      {/* Advance button */}
-      <div className="p-3 border-t border-border">
-        <button
-          onClick={() => visible >= chatMessages.length ? setVisible(1) : setVisible(v => v + 1)}
-          className="w-full text-xs text-primary hover:text-primary/80 text-center transition-colors"
-        >
-          {visible < chatMessages.length ? '▶ Weiter' : '↺ Neu starten'}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ─── Timeline Mockup ──────────────────────────────────────────────────────────
-const timelineEvents = [
-  { year: '100 v.Chr.', event: 'Geburt Caesars in Rom' },
-  { year: '63 v.Chr.', event: 'Caesar wird Pontifex Maximus' },
-  { year: '58 v.Chr.', event: 'Beginn des Gallischen Krieges' },
-  { year: '49 v.Chr.', event: 'Caesar überschreitet den Rubikon' },
-  { year: '44 v.Chr.', event: 'Ermordung Caesars an den Iden des März' },
-];
-
-function TimelineMockup() {
-  const [active, setActive] = useState(3);
-  return (
-    <div className="bg-card border border-border rounded-2xl shadow-2xl p-4 w-full max-w-xs">
-      <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Zeitstrahl · Caesar</p>
-      <div className="relative">
-        <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-border" />
-        <div className="space-y-3">
-          {timelineEvents.map((ev, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className="flex items-start gap-3 w-full text-left group"
-            >
-              <div className={`relative z-10 mt-1 w-2.5 h-2.5 rounded-full flex-shrink-0 transition-all duration-200 ${
-                active === i ? 'bg-primary ring-2 ring-primary/30 scale-125' : 'bg-muted-foreground/40 group-hover:bg-primary/60'
-              }`} />
-              <div>
-                <p className={`text-xs font-medium transition-colors ${active === i ? 'text-primary' : 'text-muted-foreground'}`}>{ev.year}</p>
-                <p className={`text-xs transition-colors ${active === i ? 'text-foreground font-medium' : 'text-muted-foreground/70'}`}>{ev.event}</p>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Vocabulary Mockup ────────────────────────────────────────────────────────
-const vocabCards = [
-  { latin: 'alea', german: 'Würfel', type: 'Nomen' },
-  { latin: 'iacere', german: 'werfen', type: 'Verb' },
-  { latin: 'fortis', german: 'tapfer', type: 'Adjektiv' },
-  { latin: 'victoria', german: 'Sieg', type: 'Nomen' },
-];
-
-function VocabMockup() {
-  const [current, setCurrent] = useState(0);
-  const [revealed, setRevealed] = useState(false);
-
-  const next = () => {
-    setCurrent(c => (c + 1) % vocabCards.length);
-    setRevealed(false);
-  };
-
-  const card = vocabCards[current];
-
-  return (
-    <div className="bg-card border border-border rounded-2xl shadow-2xl p-5 w-full max-w-xs">
-      <div className="flex items-center justify-between mb-3">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Vokabeltrainer</p>
-        <Badge variant="secondary" className="text-xs">{card.type}</Badge>
-      </div>
-      <div
-        className="cursor-pointer select-none"
-        onClick={() => setRevealed(r => !r)}
-      >
-        <div className="text-center py-6 rounded-xl bg-secondary/40 hover:bg-secondary/60 transition-colors">
-          <p className="text-2xl font-bold text-foreground mb-2">{card.latin}</p>
-          <AnimatePresence>
-            {revealed ? (
-              <motion.p
-                key="german"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                className="text-primary font-semibold"
-              >
-                {card.german}
-              </motion.p>
-            ) : (
-              <p className="text-muted-foreground text-sm">Tippe zum Aufdecken</p>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-      <div className="flex gap-2 mt-3">
-        {revealed && (
-          <>
-            <button onClick={next} className="flex-1 text-xs py-1.5 rounded-lg bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:opacity-80 transition">
-              Nochmal
-            </button>
-            <button onClick={next} className="flex-1 text-xs py-1.5 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 hover:opacity-80 transition">
-              Gewusst ✓
-            </button>
-          </>
-        )}
-        {!revealed && (
-          <button onClick={() => setRevealed(true)} className="w-full text-xs py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition">
-            Antwort zeigen
-          </button>
-        )}
-      </div>
-      <p className="text-xs text-center text-muted-foreground mt-2">{current + 1} / {vocabCards.length}</p>
-    </div>
-  );
-}
-
-// ─── Main Landing Page Component ─────────────────────────────────────────────
 export default function LandingHeroNew() {
+  const { t } = useLanguage();
   const { posts, isLoading } = usePosts();
+  const [selectedAuthor, setSelectedAuthor] = useState<Author>('caesar');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
   const recentPosts = posts
-    ? [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3)
+    ? [...posts]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6)
     : [];
 
-  const features = [
-    { icon: MessageSquare, title: 'KI-Chat', desc: 'Unterhalte dich mit Caesar, Cicero, Augustus und Seneca – gestützt auf echte historische Quellen.', color: 'text-blue-500', bg: 'bg-blue-100 dark:bg-blue-900/20' },
-    { icon: Clock, title: 'Zeitstrahl', desc: 'Navigiere durch 170+ Jahre römischer Geschichte mit interaktivem Zeitstrahl.', color: 'text-purple-500', bg: 'bg-purple-100 dark:bg-purple-900/20' },
-    { icon: Library, title: 'Lexikon', desc: '92+ Einträge zu Personen, Orten und Begriffen der Antike – mit Etymologie.', color: 'text-amber-500', bg: 'bg-amber-100 dark:bg-amber-900/20' },
-    { icon: BookOpen, title: 'Grammatik', desc: 'Strukturierte Latein-Grammatik mit interaktiven Übungen und Erklärungen.', color: 'text-green-500', bg: 'bg-green-100 dark:bg-green-900/20' },
-    { icon: Brain, title: 'Vokabeltrainer', desc: '36.000+ lateinische Vokabeln mit intelligentem Spaced-Repetition-System.', color: 'text-pink-500', bg: 'bg-pink-100 dark:bg-pink-900/20' },
-    { icon: Globe, title: 'Mehrsprachig', desc: 'Inhalte auf Deutsch, Englisch und Latein – ideal für den Unterricht.', color: 'text-teal-500', bg: 'bg-teal-100 dark:bg-teal-900/20' },
-  ];
-
-  const stats = [
-    { value: '4', label: 'Historische Autoren' },
-    { value: '36K+', label: 'Vokabeln' },
-    { value: '92+', label: 'Lexikon-Einträge' },
-    { value: '170+', label: 'Jahre Geschichte' },
-  ];
-
   const authors = [
-    { id: 'caesar', name: 'Julius Caesar', role: 'Feldherr & Diktator', years: '100–44 v.Chr.', color: 'from-red-600 to-orange-600', letter: 'C' },
-    { id: 'cicero', name: 'Marcus Cicero', role: 'Redner & Philosoph', years: '106–43 v.Chr.', color: 'from-blue-600 to-indigo-600', letter: 'M' },
-    { id: 'augustus', name: 'Augustus', role: 'Erster Römischer Kaiser', years: '63 v.Chr.–14 n.Chr.', color: 'from-amber-600 to-yellow-600', letter: 'A' },
-    { id: 'seneca', name: 'Lucius Seneca', role: 'Stoischer Philosoph', years: '4 v.Chr.–65 n.Chr.', color: 'from-green-600 to-teal-600', letter: 'S' },
+    { 
+      id: 'caesar' as Author, 
+      name: 'Julius Caesar', 
+      full: 'Gaius Iulius Caesar',
+      role: 'Feldherr & Staatsmann', 
+      years: '100–44 v. Chr.', 
+      description: 'Der berühmte römische Feldherr und Diktator, der den Rubikon überschritt und Rom als Alleinherrscher regierte.',
+      image: '/images/caesar-hero.jpg',
+      quote: 'Veni, vidi, vici.',
+      color: 'from-red-600 to-orange-600'
+    },
+    { 
+      id: 'cicero' as Author, 
+      name: 'Marcus Cicero', 
+      full: 'Marcus Tullius Cicero',
+      role: 'Redner & Philosoph', 
+      years: '106–43 v. Chr.', 
+      description: 'Der größte römische Redner und Philosoph, bekannt für seine Reden gegen Catilina und seine philosophischen Werke.',
+      image: '/images/cicero-hero.jpg',
+      quote: 'O tempora, o mores.',
+      color: 'from-blue-600 to-indigo-600'
+    },
+    { 
+      id: 'augustus' as Author, 
+      name: 'Augustus', 
+      full: 'Gaius Octavius Augustus',
+      role: 'Erster Kaiser Roms', 
+      years: '63 v. Chr.–14 n. Chr.', 
+      description: 'Der erste römische Kaiser, der nach Caesars Tod das Reich befriedete und die Pax Romana einleitete.',
+      image: '/images/augustus-hero.jpg',
+      quote: 'Festina lente.',
+      color: 'from-amber-600 to-yellow-600'
+    },
+    { 
+      id: 'seneca' as Author, 
+      name: 'Lucius Seneca', 
+      full: 'Lucius Annaeus Seneca',
+      role: 'Stoischer Philosoph', 
+      years: '4 v. Chr.–65 n. Chr.', 
+      description: 'Der bedeutende stoische Philosoph, Lehrer Neros und Verfasser zahlreicher philosophischer Schriften und Dramen.',
+      image: '/images/seneca-hero.jpg',
+      quote: 'Dum differtur vita transcurrit.',
+      color: 'from-green-600 to-teal-600'
+    },
+  ];
+
+  const currentAuthorData = authors.find(a => a.id === selectedAuthor);
+  const authorPosts = posts
+    ? posts
+        .filter(post => post.author === selectedAuthor)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3)
+    : [];
+
+  const handleAuthorSelect = (authorId: Author) => {
+    if (authorId === selectedAuthor) return;
+    
+    setIsTransitioning(true);
+    
+    // Add a small delay for smooth transition
+    setTimeout(() => {
+      setSelectedAuthor(authorId);
+      setIsTransitioning(false);
+    }, 150);
+  };
+  const features = [
+    {
+      icon: Zap,
+      title: t('landing.features.aiChat') || 'KI-Gespräche',
+      description: t('landing.features.aiChatDesc') || 'Historische Dialoge mit römischen Persönlichkeiten',
+      bgColor: 'bg-blue-100 dark:bg-blue-900/20',
+      iconColor: 'text-blue-500'
+    },
+    {
+      icon: Library,
+      title: t('landing.features.lexiconTitle') || 'Lexikon',
+      description: t('landing.features.lexiconDesc') || '92+ Einträge zur römischen Antike',
+      bgColor: 'bg-amber-100 dark:bg-amber-900/20',
+      iconColor: 'text-amber-500'
+    },
+    {
+      icon: Globe,
+      title: t('landing.features.multilingual') || 'Mehrsprachig',
+      description: t('landing.features.multilingualDesc') || 'Deutsch, Englisch und Latein',
+      bgColor: 'bg-green-100 dark:bg-green-900/20',
+      iconColor: 'text-green-500'
+    },
+    {
+      icon: Clock,
+      title: t('landing.features.timelineTitle') || 'Zeitstrahl',
+      description: t('landing.features.timelineDesc') || '170+ Jahre römische Geschichte',
+      bgColor: 'bg-purple-100 dark:bg-purple-900/20',
+      iconColor: 'text-purple-500'
+    },
+    {
+      icon: Scroll,
+      title: t('landing.features.works') || 'Werke',
+      description: t('landing.features.worksDesc') || 'Originalwerke und Analysen',
+      bgColor: 'bg-orange-100 dark:bg-orange-900/20',
+      iconColor: 'text-orange-500'
+    },
+    {
+      icon: Brain,
+      title: 'Intelligente Lernhilfe',
+      description: 'Personalisierte Lernpfade und adaptive Übungen',
+      bgColor: 'bg-pink-100 dark:bg-pink-900/20',
+      iconColor: 'text-pink-500'
+    },
+  ];
+
+  
+  const stats = [
+    { value: '4', label: 'Historische Persönlichkeiten' },
+    { value: '36K', label: 'Vokabeln' },
+    { value: '50', label: 'Artikel' },
+    { value: '92+', label: 'Lexikon-Einträge' },
   ];
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-
-      {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text */}
+    <div className="min-h-screen bg-background selection:bg-primary/20">
+      {/* Hero Section with Parallax Effect */}
+      <ParallaxHero />
+      
+      {/* Stats Section */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5 relative z-10">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap gap-2 mb-6"
-            >
-              <Badge className="bg-primary/20 text-primary border-primary/30 px-3 py-1">
-                <Sparkles className="h-3 w-3 mr-1.5" />
-                KI-gestützt
-              </Badge>
-              <Badge className="bg-white/10 text-white/80 border-white/20 px-3 py-1">
-                <Shield className="h-3 w-3 mr-1.5" />
-                Kostenlos
-              </Badge>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
-            >
-              <span className="text-white">Meum</span>
-              <br />
-              <span className="bg-gradient-to-r from-primary via-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Diarium
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg sm:text-xl text-white/70 max-w-lg mb-8 leading-relaxed"
-            >
-              Erlebe das antike Rom durch die Augen von Caesar, Cicero, Augustus und Seneca.
-              KI-Gespräche, interaktive Zeitreisen und moderne Lernwerkzeuge.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link to="/caesar">
-                <Button size="lg" className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all duration-300">
-                  <Play className="mr-2 h-4 w-4" />
-                  Jetzt starten
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button size="lg" variant="outline" className="rounded-full px-8 border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300">
-                  Mehr erfahren
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="flex items-center gap-6 mt-10 text-white/50 text-sm"
-            >
-              <div className="flex items-center gap-1.5">
-                <Check className="h-4 w-4 text-green-400" />
-                <span>Keine Anmeldung nötig</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Check className="h-4 w-4 text-green-400" />
-                <span>Alle Inhalte kostenlos</span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right: Interactive Chat Mockup */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <ChatMockup />
-            <p className="text-white/40 text-xs">← Interaktiv – klicke auf „Weiter"</p>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-5 h-8 rounded-full border-2 border-white/30 flex items-start justify-center p-1"
-          >
-            <div className="w-1 h-2 bg-white/50 rounded-full" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ── STATS ─────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-secondary/30 border-y border-border">
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-4xl sm:text-5xl font-bricolage font-bold text-primary mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted-foreground font-medium">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Blog Overview Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bricolage font-bold text-foreground mb-4">
+              Neueste Tagebucheinträge
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Tauche ein in die Gedanken und Erlebnisse historischer Persönlichkeiten
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {recentPosts.slice(0, 6).map((post, i) => (
+              <motion.div
+                key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <p className="text-4xl sm:text-5xl font-bold text-primary mb-1">{stat.value}</p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
+                <Card className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+                  <Link to={`/${post.author}/${post.slug}`} className="block">
+                    <div className="flex gap-6 p-6">
+                      {/* Left Column - Image */}
+                      <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                        <ImageWithFallback
+                          src={`/images/${post.author}-hero.jpg`}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      
+                      {/* Right Column - Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge variant="secondary" className="text-xs font-medium">
+                            {authors.find(a => a.id === post.author)?.name || post.author}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(post.date).toLocaleDateString('de-DE', { 
+                              day: 'numeric', 
+                              month: 'short', 
+                              year: 'numeric' 
+                            })}
+                          </span>
+                        </div>
+                        
+                        <h3 className="font-bricolage text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                          {post.title}
+                        </h3>
+                        
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                          {post.excerpt || (post.content?.diary || '').substring(0, 120) + '...'}
+                        </p>
+                        
+                        <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
+                          <Clock className="w-3 h-3" />
+                          <span>{Math.ceil((post.content?.diary || '').length / 1000)} Min. Lesezeit</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </Card>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── INTERACTIVE MOCKUPS ───────────────────────────────────────────── */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          {/* View All Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-12"
           >
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-              <Zap className="h-3 w-3 mr-1.5" />
-              Interaktive Vorschau
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Entdecke die Features
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Probiere die wichtigsten Tools direkt aus – live und interaktiv.
-            </p>
+            <Link to="/caesar">
+              <Button variant="outline" className="rounded-full px-8 py-3">
+                Alle Tagebucheinträge anzeigen
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            {/* Chat Mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col items-center gap-4"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <MessageSquare className="h-5 w-5 text-blue-500" />
-                <h3 className="font-semibold text-foreground">KI-Gespräch</h3>
-              </div>
-              <ChatMockup />
-              <Link to="/caesar/chat" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
-                Echtes Gespräch starten <ArrowRight className="h-3 w-3" />
-              </Link>
-            </motion.div>
-
-            {/* Timeline Mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col items-center gap-4"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="h-5 w-5 text-purple-500" />
-                <h3 className="font-semibold text-foreground">Zeitstrahl</h3>
-              </div>
-              <TimelineMockup />
-              <Link to="/timeline" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
-                Vollständiger Zeitstrahl <ArrowRight className="h-3 w-3" />
-              </Link>
-            </motion.div>
-
-            {/* Vocab Mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col items-center gap-4"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Brain className="h-5 w-5 text-pink-500" />
-                <h3 className="font-semibold text-foreground">Vokabeltrainer</h3>
-              </div>
-              <VocabMockup />
-              <Link to="/vocab" className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
-                Alle Vokabeln lernen <ArrowRight className="h-3 w-3" />
-              </Link>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* ── AUTHORS ───────────────────────────────────────────────────────── */}
-      <section className="py-24 bg-secondary/20 border-y border-border">
+      {/* Enhanced Features Grid */}
+      <section className="py-20 bg-background">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -479,82 +284,38 @@ export default function LandingHeroNew() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-amber-100 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800">
-              <Scroll className="h-3 w-3 mr-1.5" />
-              Historische Persönlichkeiten
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Lerne die Größten des antiken Roms kennen
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Tauche in die Gedanken und das Leben von vier außergewöhnlichen Persönlichkeiten ein.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {authors.map((author, i) => (
-              <motion.div
-                key={author.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Link to={`/${author.id}`} className="group block">
-                  <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/40 hover:shadow-lg transition-all duration-300 text-center h-full">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${author.color} flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      {author.letter}
-                    </div>
-                    <h3 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{author.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{author.role}</p>
-                    <p className="text-xs text-muted-foreground/60">{author.years}</p>
-                    <div className="mt-4 flex items-center justify-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      Entdecken <ArrowRight className="h-3 w-3" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FEATURES GRID ─────────────────────────────────────────────────── */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bricolage font-bold text-foreground mb-4">
               Alles für dein Latein-Erlebnis
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Moderne Tools und Inhalte, die das Lernen erleichtern und begeistern.
+              Moderne Tools und Inhalte, die das Lernen erleichtern und begeistern
             </p>
           </motion.div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feat, i) => {
-              const Icon = feat.icon;
+            {features.map((feature, i) => {
+              const Icon = feature.icon;
               return (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 hover:shadow-md transition-all duration-300 h-full">
-                    <div className={`w-12 h-12 rounded-xl ${feat.bg} flex items-center justify-center mb-4`}>
-                      <Icon className={`h-6 w-6 ${feat.color}`} />
+                  <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className={`p-3 rounded-lg ${feature.bgColor}`}>
+                        <Icon className={`h-8 w-8 ${feature.iconColor}`} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2">{feat.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
-                  </div>
+                  </Card>
                 </motion.div>
               );
             })}
@@ -562,9 +323,260 @@ export default function LandingHeroNew() {
         </div>
       </section>
 
-      {/* ── RECENT POSTS ──────────────────────────────────────────────────── */}
+            {/* Historical Personalities Section - Two Column Layout */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bricolage-grotesque font-bold text-foreground mb-4">
+              Historische Persönlichkeiten
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Entdecke die größten Denker und Herrscher des antiken Roms
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Column - Selected Author Details */}
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                {currentAuthorData && (
+                  <motion.div
+                    key={selectedAuthor}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    <Card className="p-8 h-full">
+                      <div className="space-y-6">
+                        {/* Author Header */}
+                        <motion.div 
+                          className="flex items-start gap-6"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 }}
+                        >
+                          <div className="w-20 h-20 rounded-xl bg-secondary/50 overflow-hidden flex-shrink-0">
+                            <ImageWithFallback
+                              src={currentAuthorData.image}
+                              alt={currentAuthorData.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <motion.h3 
+                              className="text-2xl font-bold text-foreground mb-1"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              {currentAuthorData.full}
+                            </motion.h3>
+                            <motion.p 
+                              className="text-muted-foreground mb-2"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.25 }}
+                            >
+                              {currentAuthorData.role}
+                            </motion.p>
+                            <motion.div 
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3 }}
+                            >
+                              <Calendar className="h-4 w-4" />
+                              <span>{currentAuthorData.years}</span>
+                            </motion.div>
+                          </div>
+                        </motion.div>
+
+                        {/* Quote */}
+                        <motion.blockquote 
+                          className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.35 }}
+                        >
+                          "{currentAuthorData.quote}"
+                        </motion.blockquote>
+
+                        {/* Description */}
+                        <motion.p 
+                          className="text-muted-foreground leading-relaxed"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4 }}
+                        >
+                          {currentAuthorData.description}
+                        </motion.p>
+
+                        {/* Action Buttons */}
+                        <motion.div 
+                          className="flex gap-3 pt-4"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.45 }}
+                        >
+                          <Link to={`/${currentAuthorData.id}`}>
+                            <Button className="rounded-full">
+                              <User className="mr-2 h-4 w-4" />
+                              Profil besuchen
+                            </Button>
+                          </Link>
+                          <Link to={`/${currentAuthorData.id}/chat`}>
+                            <Button variant="outline" className="rounded-full">
+                              <MessageCircle className="mr-2 h-4 w-4" />
+                              Chat starten
+                            </Button>
+                          </Link>
+                        </motion.div>
+
+                        {/* Recent Blog Posts */}
+                        {authorPosts.length > 0 && (
+                          <motion.div 
+                            className="pt-6 border-t border-border"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                          >
+                            <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                              <BookOpen className="h-5 w-5 text-primary" />
+                              Neueste Beiträge
+                              <Badge variant="secondary" className="text-xs">
+                                {authorPosts.length}
+                              </Badge>
+                            </h4>
+                            <div className="space-y-3">
+                              {authorPosts.map((post, i) => (
+                                <motion.div
+                                  key={post.id}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.6 + i * 0.1 }}
+                                >
+                                  <Link to={`/${currentAuthorData.id}/${post.slug}`}>
+                                    <div className="p-3 rounded-lg bg-card/50 hover:bg-card border border-border/50 hover:border-primary/30 transition-all duration-200 cursor-pointer group">
+                                      <h5 className="font-medium text-foreground group-hover:text-primary transition-colors mb-1">
+                                        {post.diaryTitle || post.title}
+                                      </h5>
+                                      <p className="text-sm text-muted-foreground line-clamp-2">
+                                        {post.excerpt}
+                                      </p>
+                                      <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                                        <Calendar className="h-3 w-3" />
+                                        <span>{new Date(post.date).toLocaleDateString('de-DE')}</span>
+                                        {post.readingTime && (
+                                          <>
+                                            <span>•</span>
+                                            <span>{post.readingTime} Min. Lesezeit</span>
+                                          </>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </Link>
+                                </motion.div>
+                              ))}
+                            </div>
+                            {authorPosts.length >= 3 && (
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.9 }}
+                              >
+                                <Link to={`/${currentAuthorData.id}`} className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 mt-3 transition-colors">
+                                  Alle Beiträge ansehen
+                                  <ArrowRight className="h-3 w-3" />
+                                </Link>
+                              </motion.div>
+                            )}
+                          </motion.div>
+                        )}
+
+                        {/* No posts state */}
+                        {!isLoading && authorPosts.length === 0 && (
+                          <motion.div 
+                            className="pt-6 border-t border-border text-center"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                          >
+                            <BookOpen className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
+                            <p className="text-muted-foreground">Noch keine Beiträge von {currentAuthorData.name} verfügbar.</p>
+                          </motion.div>
+                        )}
+                      </div>
+                    </Card>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
+              {/* Loading overlay */}
+              {isTransitioning && (
+                <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+              )}
+            </div>
+
+            {/* Right Column - Author Selection */}
+            <div>
+              <h3 className="text-xl font-semibold text-foreground mb-4">
+                Wähle eine Persönlichkeit
+              </h3>
+              <div className="space-y-4">
+                {authors.filter(a => a.id !== selectedAuthor).map((author) => (
+                  <div key={author.id}>
+                    <button
+                      onClick={() => handleAuthorSelect(author.id)}
+                      disabled={isTransitioning}
+                      className="w-full text-left group disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Card className={`p-4 transition-all duration-300 cursor-pointer ${
+                        isTransitioning 
+                          ? 'opacity-50 cursor-not-allowed' 
+                          : 'hover:shadow-lg hover:border-primary/50'
+                      }`}>
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-16 rounded-lg bg-secondary/50 overflow-hidden flex-shrink-0">
+                            <ImageWithFallback
+                              src={author.image}
+                              alt={author.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
+                              {author.name}
+                            </h4>
+                            <p className="text-sm text-muted-foreground mb-1">{author.role}</p>
+                            <p className="text-xs text-muted-foreground">{author.years}</p>
+                          </div>
+                          <div className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-sm font-medium">Auswählen</span>
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </Card>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Insights - Blog Posts */}
       {!isLoading && recentPosts.length > 0 && (
-        <section className="py-24 bg-secondary/20 border-t border-border">
+        <section className="py-20 bg-background">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -573,25 +585,25 @@ export default function LandingHeroNew() {
               transition={{ duration: 0.6 }}
               className="flex flex-col sm:flex-row justify-between items-end mb-12 gap-6"
             >
-              <div>
-                <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">
-                  <TrendingUp className="h-3 w-3 mr-1.5" />
-                  Neueste Einträge
-                </Badge>
-                <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                  Aus den Tagebüchern
+              <div className="max-w-2xl">
+                <h2 className="text-3xl sm:text-4xl font-bricolage-grotesque font-bold text-foreground mb-4">
+                  Neuste Einträge
                 </h2>
+                <p className="text-muted-foreground text-lg">
+                  Die neuesten Beiträge aus den Tagebüchern
+                </p>
               </div>
-              <Link to="/search">
-                <Button variant="ghost" className="text-primary group">
-                  Alle anzeigen
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link to="/search">
+                  <Button variant="ghost" className="text-primary hover:text-primary/80 group text-lg h-auto px-0 hover:bg-transparent">
+                    Alle anzeigen
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recentPosts.map((post, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {recentPosts.slice(0, 6).map((post, i) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -606,60 +618,50 @@ export default function LandingHeroNew() {
           </div>
         </section>
       )}
-
-      {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative z-10 container mx-auto max-w-4xl px-4 sm:px-6 text-center text-white">
+      {/* Enhanced Call to Action Section */}
+      <section className="py-24 bg-gradient-to-br from-primary/10 to-secondary/10 border-t border-border">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
             className="space-y-8"
           >
             <div className="space-y-4">
-              <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-2">
-                <Star className="h-4 w-4 mr-2" />
-                Bereit für deine Reise?
+              <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-2 text-sm font-medium">
+                <Heart className="mr-2 h-4 w-4" />
+                Made with Love for Latin Learners
               </Badge>
-              <h2 className="text-4xl sm:text-5xl font-bold">
-                Tauche ein in die
-                <br />
-                <span className="bg-gradient-to-r from-primary to-amber-400 bg-clip-text text-transparent">
-                  Antike
-                </span>
+              <h2 className="text-4xl sm:text-5xl font-bricolage-grotesque font-bold text-foreground">
+                Bereit für deine Zeitreise?
               </h2>
-              <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-                Wähle deinen historischen Begleiter und beginne noch heute deine interaktive Zeitreise ins antike Rom.
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Beginne jetzt deine Reise durch die faszinierende Welt des antiken Roms und entdecke Latein wie nie zuvor.
               </p>
             </div>
-
-            <div className="flex flex-wrap gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
               <Link to="/caesar">
-                <Button size="lg" className="rounded-full px-10 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:scale-105 transition-all duration-300">
+                <Button size="lg" className="rounded-full px-12 py-4 text-lg bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                   <Sparkles className="mr-2 h-5 w-5" />
-                  Mit Caesar beginnen
+                  Jetzt starten
                 </Button>
               </Link>
-              <Link to="/cicero">
-                <Button size="lg" variant="outline" className="rounded-full px-10 border-white/20 text-white hover:bg-white/10">
-                  Cicero kennenlernen
+              <Link to="/about">
+                <Button size="lg" variant="outline" className="rounded-full px-12 py-4 text-lg bg-background text-foreground border-border hover:bg-secondary/50 transition-all duration-300">
+                  Mehr erfahren
+                  <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
+            
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-12">
               {[
                 { icon: BookOpen, label: 'Kostenlos' },
-                { icon: Shield, label: 'Datenschutz' },
+                { icon: Shield, label: 'Sicher' },
                 { icon: Users, label: 'Community' },
-                { icon: Award, label: 'Qualitätsinhalte' },
+                { icon: Award, label: 'Qualität' }
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -667,12 +669,12 @@ export default function LandingHeroNew() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex flex-col items-center gap-2"
+                  className="flex flex-col items-center space-y-2"
                 >
-                  <div className="p-3 bg-white/10 rounded-xl">
-                    <item.icon className="h-5 w-5 text-white/80" />
+                  <div className="p-3 bg-background/80 rounded-xl">
+                    <item.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <span className="text-sm text-white/60">{item.label}</span>
+                  <span className="text-sm font-medium text-foreground">{item.label}</span>
                 </motion.div>
               ))}
             </div>

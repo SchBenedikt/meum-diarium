@@ -104,9 +104,24 @@ export default function LatinGrammarPage() {
                         <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
                             Lateinische <span className="text-primary italic">Grammatik</span>
                         </h1>
-                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed mb-4">
                             Meistere die Grundlagen der lateinischen Sprache mit interaktiven Lektionen.
                         </p>
+                        
+                        {/* AI Disclaimer */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="max-w-md bg-amber-50/80 dark:bg-amber-900/20 border border-amber-200/50 dark:border-amber-800/30 rounded-xl p-3 backdrop-blur-sm"
+                        >
+                            <div className="flex items-start gap-2">
+                                <div className="w-4 h-4 rounded-full bg-amber-400 dark:bg-amber-600 mt-0.5 flex-shrink-0" />
+                                <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
+                                    <strong>Hinweis:</strong> Diese Lernmaterialien wurden mit KI-Unterstützung erstellt und wurden zwar geprüft, können aber dennoch Fehler enthalten. Bitte bei Unklarheiten zusätzliche Quellen konsultieren.
+                                </p>
+                            </div>
+                        </motion.div>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
