@@ -169,8 +169,17 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip cross-origin requests
-  if (url.origin !== location.origin) return;
+  // Handle cross-origin requests - allow them to pass through
+  if (url.origin !== location.origin) {
+    // For Cloudflare Insights and other external services, let them pass through
+    if (url.hostname.includes('cloudflareinsights.com') || 
+        url.hostname.includes('cloudflare.com') ||
+        url.pathname.includes('/cdn-cgi/rum')) {
+      return; // Don't intercept, let browser handle it
+    }
+    // For other cross-origin requests, don't intercept
+    return;
+  }
 
   // Handle images separately with longer cache duration
   if (request.destination === 'image' || /\.(jpg|jpeg|png|gif|svg|webp|ico)$/i.test(url.pathname)) {
