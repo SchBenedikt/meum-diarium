@@ -182,98 +182,7 @@ export default function LandingHeroNew() {
         </div>
       </section>
 
-      {/* Blog Overview Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bricolage font-bold text-foreground mb-4">
-              Neueste Tagebucheinträge
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Tauche ein in die Gedanken und Erlebnisse historischer Persönlichkeiten
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {recentPosts.slice(0, 6).map((post, i) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Card className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
-                  <Link to={`/${post.author}/${post.slug}`} className="block">
-                    <div className="flex gap-6 p-6">
-                      {/* Left Column - Image */}
-                      <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                        <ImageWithFallback
-                          src={`/images/${post.author}-hero.jpg`}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      
-                      {/* Right Column - Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="secondary" className="text-xs font-medium">
-                            {authors.find(a => a.id === post.author)?.name || post.author}
-                          </Badge>
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(post.date).toLocaleDateString('de-DE', { 
-                              day: 'numeric', 
-                              month: 'short', 
-                              year: 'numeric' 
-                            })}
-                          </span>
-                        </div>
-                        
-                        <h3 className="font-bricolage text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h3>
-                        
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                          {post.excerpt || (post.content?.diary || '').substring(0, 120) + '...'}
-                        </p>
-                        
-                        <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
-                          <Clock className="w-3 h-3" />
-                          <span>{Math.ceil((post.content?.diary || '').length / 1000)} Min. Lesezeit</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* View All Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Link to="/caesar">
-              <Button variant="outline" className="rounded-full px-8 py-3">
-                Alle Tagebucheinträge anzeigen
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
+      
       {/* Enhanced Features Grid */}
       <section className="py-20 bg-background">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
@@ -576,33 +485,24 @@ export default function LandingHeroNew() {
 
       {/* Recent Insights - Blog Posts */}
       {!isLoading && recentPosts.length > 0 && (
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-gradient-to-b from-background to-muted/20">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col sm:flex-row justify-between items-end mb-12 gap-6"
+              className="text-center mb-16"
             >
-              <div className="max-w-2xl">
-                <h2 className="text-3xl sm:text-4xl font-bricolage-grotesque font-bold text-foreground mb-4">
-                  Neuste Einträge
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  Die neuesten Beiträge aus den Tagebüchern
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <Link to="/search">
-                  <Button variant="ghost" className="text-primary hover:text-primary/80 group text-lg h-auto px-0 hover:bg-transparent">
-                    Alle anzeigen
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
-                  </Button>
-                </Link>
-              </div>
+              <h2 className="text-3xl sm:text-4xl font-bricolage font-bold text-foreground mb-4">
+                Neueste Tagebucheinträge
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Tauche ein in die Gedanken und Erlebnisse historischer Persönlichkeiten
+              </p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {recentPosts.slice(0, 6).map((post, i) => (
                 <motion.div
                   key={post.id}
@@ -611,10 +511,68 @@ export default function LandingHeroNew() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <BlogCard post={post} className="h-full" />
+                  <Card className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+                    <Link to={`/${post.author}/${post.slug}`} className="block">
+                      <div className="flex gap-6 p-6">
+                        {/* Left Column - Image */}
+                        <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                          <ImageWithFallback
+                            src={`/images/${post.author}-hero.jpg`}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        
+                        {/* Right Column - Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="secondary" className="text-xs font-medium">
+                              {authors.find(a => a.id === post.author)?.name || post.author}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">
+                              {new Date(post.date).toLocaleDateString('de-DE', { 
+                                day: 'numeric', 
+                                month: 'short', 
+                                year: 'numeric' 
+                              })}
+                            </span>
+                          </div>
+                          
+                          <h3 className="font-bricolage text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                            {post.title}
+                          </h3>
+                          
+                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                            {post.excerpt || (post.content?.diary || '').substring(0, 120) + '...'}
+                          </p>
+                          
+                          <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
+                            <Clock className="w-3 h-3" />
+                            <span>{Math.ceil((post.content?.diary || '').length / 1000)} Min. Lesezeit</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Card>
                 </motion.div>
               ))}
             </div>
+
+            {/* View All Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center mt-12"
+            >
+              <Link to="/caesar">
+                <Button variant="outline" className="rounded-full px-8 py-3">
+                  Alle Tagebucheinträge anzeigen
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </section>
       )}
