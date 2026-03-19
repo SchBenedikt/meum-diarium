@@ -13,6 +13,10 @@ export interface TocItem {
  * @returns Array von TOC-Items mit ID und Text
  */
 export function generateTableOfContents(content: string): TocItem[] {
+  if (!content || typeof content !== 'string') {
+    return [];
+  }
+  
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   const toc: TocItem[] = [];
   let match;

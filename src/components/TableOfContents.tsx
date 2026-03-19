@@ -15,7 +15,11 @@ export function TableOfContents({ content, title }: TableOfContentsProps) {
   const { t } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [isContentExpanded, setIsContentExpanded] = useState(true);
-  const flatToc = useMemo(() => generateTableOfContents(content), [content]);
+  if (!content || typeof content !== 'string') {
+    return null;
+  }
+  
+  const flatToc = useMemo(() => generateTableOfContents(content || ''), [content]);
   const hierarchy = useMemo(() => {
     const buildHierarchy = (items: TocItem[]): TocItemWithExpanded[] => {
       const result: TocItemWithExpanded[] = [];
