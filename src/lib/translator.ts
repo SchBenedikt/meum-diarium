@@ -1,4 +1,5 @@
-import { Language, Author, BlogPost, LexiconEntry, Work, AuthorInfo, TimelineEvent } from '@/types/blog';
+import { BlogPost, TimelineEvent, LexiconEntry, Work, Language, Author, AuthorInfo } from '@/types/blog';
+import { safeLanguageSplit } from './language-utils';
 import { authors } from '@/data/authors';
 import { lexicon as baseLexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
@@ -31,7 +32,7 @@ export async function translatePostInPlace(post: BlogPost, lang: Language): Prom
     const manuallyTranslated = getManuallyTranslatedPost(post, lang);
     // Wenn manuelle Übersetzungen existieren, verwende diese
     if (post.translations) {
-        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        const baseLang = safeLanguageSplit(lang);
         if (post.translations[baseLang]) {
             // Check if title is not empty (sometimes it might be an empty string in the file)
             if (manuallyTranslated.title && manuallyTranslated.title.trim() !== '') {
@@ -64,7 +65,7 @@ export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry
     const manuallyTranslated = getManuallyTranslatedLexiconEntries(lexicon, lang);
     // Prüfe ob manuelle Übersetzungen vorhanden sind
     const hasManualTranslations = lexicon.some(entry => {
-        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        const baseLang = safeLanguageSplit(lang);
         return entry.translations && entry.translations[baseLang];
     });
     // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
@@ -72,7 +73,7 @@ export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry
         return Promise.all(
             manuallyTranslated.map(async (entry, index) => {
                 const original = lexicon[index];
-                const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+                const baseLang = safeLanguageSplit(lang);
                 // Wenn dieser Eintrag manuelle Übersetzungen hat, verwende sie
                 if (original.translations && original.translations[baseLang]) {
                     return entry;
@@ -103,7 +104,7 @@ export async function getTranslatedLexiconEntry(lang: Language, slug: string): P
     // Verwende zuerst manuelle Übersetzung
     const manuallyTranslated = getManuallyTranslatedLexiconEntry(entry, lang);
     // Wenn manuelle Übersetzung existiert, verwende sie
-    const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+    const baseLang = safeLanguageSplit(lang);
     if (entry.translations && entry.translations[baseLang]) {
         return manuallyTranslated;
     }
@@ -136,7 +137,7 @@ export async function getTranslatedWork(lang: Language, slug: string): Promise<W
     // Verwende zuerst manuelle Übersetzung
     const manuallyTranslated = getManuallyTranslatedWork(work, lang);
     // Wenn manuelle Übersetzung existiert, verwende sie
-    const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+    const baseLang = safeLanguageSplit(lang);
     if (work.translations && work.translations[baseLang]) {
         return manuallyTranslated;
     }
@@ -157,7 +158,7 @@ export async function getTranslatedTimeline(lang: Language): Promise<TimelineEve
     const manuallyTranslated = getManuallyTranslatedTimelineEvents(timelineEvents, lang);
     // Prüfe ob manuelle Übersetzungen vorhanden sind
     const hasManualTranslations = timelineEvents.some(event => {
-        const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+        const baseLang = safeLanguageSplit(lang);
         return event.translations && event.translations[baseLang];
     });
     // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
@@ -165,7 +166,7 @@ export async function getTranslatedTimeline(lang: Language): Promise<TimelineEve
         return Promise.all(
             manuallyTranslated.map(async (event, index) => {
                 const original = timelineEvents[index];
-                const baseLang = lang.split('-')[0] as 'de' | 'en' | 'la';
+                const baseLang = safeLanguageSplit(lang);
                 // Wenn dieses Event manuelle Übersetzungen hat, verwende sie
                 if (original.translations && original.translations[baseLang]) {
                     return event;

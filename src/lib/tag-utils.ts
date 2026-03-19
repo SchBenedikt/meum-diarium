@@ -1,13 +1,14 @@
-import { TagWithTranslations } from '@/types/blog';
-import { Language } from '@/types/blog';
+import { TagWithTranslations, Language } from '@/types/blog';
+import { safeLanguageSplit } from './language-utils';
+
 /**
- * Gets the translated tag name based on the current language
+ * Gets of translated tag name based on current language
  * @param tag - The tag with translations
  * @param language - The current language (de, en, la)
  * @returns The translated tag name
  */
 export function getTranslatedTag(tag: TagWithTranslations, language: Language): string {
-    const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
+    const baseLang = safeLanguageSplit(language);
     return tag.translations[baseLang] || tag.translations.de;
 }
 /**

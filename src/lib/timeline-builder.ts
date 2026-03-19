@@ -1,4 +1,5 @@
 import { BlogPost, TimelineEvent, Language } from '@/types/blog';
+import { safeLanguageSplit } from './language-utils';
 import slugify from 'slugify';
 // Known work slugs to classify posts as 'work'
 const WORK_SLUGS = new Set([
@@ -18,7 +19,7 @@ function classifyPost(post: BlogPost): TimelineEvent['type'] {
   return 'event';
 }
 function baseLanguage(lang: Language): 'de' | 'en' | 'la' {
-  return (lang.split('-')[0] as 'de' | 'en' | 'la');
+  return safeLanguageSplit(lang);
 }
 export interface BuildTimelineOptions {
   deduplicate?: boolean; // skip if same year+slugified title already present

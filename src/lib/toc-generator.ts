@@ -22,7 +22,7 @@ export function generateTableOfContents(content: string): TocItem[] {
   let match;
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length; // ## = 2, ### = 3, #### = 4
-    const text = match[2].trim();
+    const text = match[2] ? match[2].trim() : '';
     const id = slugify(text);
     toc.push({
       id,
@@ -47,6 +47,10 @@ export function generateTableOfContents(content: string): TocItem[] {
  * Konvertiert Text in einen URL-freundlichen Slug
  */
 function slugify(text: string): string {
+  if (!text || typeof text !== 'string') {
+    return '';
+  }
+  
   return text
     .toLowerCase()
     .replace(/[^\w\s-]/g, '') // Entferne Sonderzeichen
@@ -60,16 +64,24 @@ function slugify(text: string): string {
  * @returns Text mit IDs in den Headings
  */
 export function injectHeadingIds(content: string): string {
+  if (!content || typeof content !== 'string') {
+    return content || '';
+  }
+  
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   return content.replace(headingRegex, (match, hashes, text) => {
     const id = slugify(text.trim());
-    return `${hashes} ${text}\n{#${id}}`; // Setext-style ID (wird später vom Formatter benutzt)
+    return `${hashes} ${text}\n{#${id}`; // Setext-style ID (wird später vom Formatter benutzt)
   });
 }
 /**
  * Extrahiert Heading-IDs aus Content für Scroll-Linking
  */
 export function extractHeadingIds(content: string): Map<string, string> {
+  if (!content || typeof content !== 'string') {
+    return new Map();
+  }
+  
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   const ids = new Map<string, string>();
   let match;

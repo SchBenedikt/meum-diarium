@@ -1,9 +1,11 @@
 import { TimelineEvent, LexiconEntry, Work, Language } from '@/types/blog';
+import { safeLanguageSplit } from './language-utils';
+
 /**
  * Gibt ein übersetztes Timeline-Event zurück
  */
 export function getTranslatedTimelineEvent(event: TimelineEvent, language: Language): TimelineEvent {
-  const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
+  const baseLang = safeLanguageSplit(language);
   // Wenn keine Übersetzungen vorhanden sind oder die Sprache Deutsch ist, gib das Original zurück
   if (!event.translations || baseLang === 'de') {
     return event;
@@ -30,7 +32,7 @@ export function getTranslatedTimelineEvents(events: TimelineEvent[], language: L
  * Gibt einen übersetzten Lexikon-Eintrag zurück
  */
 export function getTranslatedLexiconEntry(entry: LexiconEntry, language: Language): LexiconEntry {
-  const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
+  const baseLang = safeLanguageSplit(language);
   // Wenn keine Übersetzungen vorhanden sind oder die Sprache Deutsch ist, gib das Original zurück
   if (!entry.translations || baseLang === 'de') {
     return entry;
@@ -61,7 +63,7 @@ export function getTranslatedLexiconEntries(entries: LexiconEntry[], language: L
  * Gibt ein übersetztes Werk zurück
  */
 export function getTranslatedWork(work: Work, language: Language): Work {
-  const baseLang = language.split('-')[0] as 'de' | 'en' | 'la';
+  const baseLang = safeLanguageSplit(language);
   // Wenn keine Übersetzungen vorhanden sind oder die Sprache Deutsch ist, gib das Original zurück
   if (!work.translations || baseLang === 'de') {
     return work;
