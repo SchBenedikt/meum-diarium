@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,15 +7,95 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { BlogPost, Author, TagWithTranslations } from '@/types/blog';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Eye, Globe, X, Hash } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Globe, X, Hash, Bold, Italic, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Code, Minus } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { upsertPost } from '@/lib/cms-store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
 import { useAuthors } from '@/hooks/use-authors';
 import { MultilingualTagEditor } from '@/components/admin/MultilingualTagEditor';
+
+// Markdown to HTML converter for preview
+const markdownToHtml = (markdown: string): string => {
+    if (!markdown) return '<p class="text-muted-foreground italic">Noch kein Inhalt...</p>';
+    if (markdown.trim().startsWith('<')) return markdown;
+    
+    return markdown
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`(.+?)`/g, '<code>$1</code>')
+        .replace(/```\n?([\s\S]*?)\n?```/g, '<pre><code>$1</code></pre>')
+        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>\n?)+/gs, '<ul>$&</ul>')
+        .split('\n\n')
+        .map(p => p.trim())
+        .filter(p => p && !p.match(/^<[houbp]/))
+        .map(p => `<p>${p}</p>`)
+        .join('\n');
+};
+
+// Helper to insert markdown formatting
+const insertMarkdown = (
+    textarea: HTMLTextAreaElement | null,
+    before: string,
+    after: string = ''
+) => {
+    if (!textarea) return;
+    
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    const selected = text.substring(start, end);
+    
+    const newText = text.substring(0, start) + before + selected + after + text.substring(end);
+    
+    // Update value and restore selection
+    textarea.value = newText;
+    textarea.setSelectionRange(start + before.length, end + before.length);
+    textarea.focus();
+    
+    // Trigger change event
+    textarea.dispatchEvent(new Event('change', { bubbles: true }));
+};
+
+// Formatting toolbar component
+const FormattingToolbar = ({ textareaRef }: { textareaRef: React.RefObject<HTMLTextAreaElement> }) => {
+    const buttons = [
+        { icon: Bold, title: 'Fett', action: () => insertMarkdown(textareaRef.current, '**', '**') },
+        { icon: Italic, title: 'Kursiv', action: () => insertMarkdown(textareaRef.current, '*', '*') },
+        { icon: Heading1, title: 'Überschrift 1', action: () => insertMarkdown(textareaRef.current, '# ') },
+        { icon: Heading2, title: 'Überschrift 2', action: () => insertMarkdown(textareaRef.current, '## ') },
+        { icon: Heading3, title: 'Überschrift 3', action: () => insertMarkdown(textareaRef.current, '### ') },
+        { icon: List, title: 'Liste', action: () => insertMarkdown(textareaRef.current, '- ') },
+        { icon: ListOrdered, title: 'Nummerierung', action: () => insertMarkdown(textareaRef.current, '1. ') },
+        { icon: Quote, title: 'Zitat', action: () => insertMarkdown(textareaRef.current, '> ') },
+        { icon: Code, title: 'Code', action: () => insertMarkdown(textareaRef.current, '`', '`') },
+        { icon: Minus, title: 'Trennlinie', action: () => insertMarkdown(textareaRef.current, '\n---\n') },
+    ];
+
+    return (
+        <div className="flex items-center gap-1 px-2 py-1.5 bg-muted border-b">
+            {buttons.map((btn) => (
+                <button
+                    key={btn.title}
+                    type="button"
+                    onClick={btn.action}
+                    title={btn.title}
+                    className="px-2 py-1 text-xs font-medium rounded hover:bg-accent hover:text-accent-foreground transition-colors min-w-[28px]"
+                >
+                    <btn.icon className="w-3 h-3" />
+                </button>
+            ))}
+        </div>
+    );
+};
 interface PostFormData {
     title: string;
     diaryTitle: string;
@@ -99,6 +179,12 @@ export default function PostEditorPage() {
     });
     
     console.log('📊 [PostEditorPage] Post data:', { postData, isFetching, postError });
+    
+    // State for preview functionality
+    const [showPreview, setShowPreview] = useState(true);
+    const diaryTextareaRef = useRef<HTMLTextAreaElement>(null);
+    const scientificTextareaRef = useRef<HTMLTextAreaElement>(null);
+    
     // Form state definition
     const [formData, setFormData] = useState({
         // Basic info
@@ -344,6 +430,19 @@ export default function PostEditorPage() {
                         <Button onClick={handleSubmit} disabled={loading} size="sm">
                             <Save className="h-4 w-4 sm:mr-2" />
                             <span className="hidden sm:inline">{loading ? 'Speichern...' : 'Speichern'}</span>
+                        </Button>
+                        {/* Preview Toggle Button */}
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setShowPreview(!showPreview)}
+                            className="ml-auto"
+                        >
+                            <Eye className="w-3 h-3" />
+                            <span className="hidden sm:inline ml-1">
+                                {showPreview ? 'Editor' : 'Vorschau'}
+                            </span>
                         </Button>
                     </div>
                 </div>
@@ -627,14 +726,51 @@ export default function PostEditorPage() {
                                 </TabsList>
                                 {/* German Content */}
                                 <TabsContent value="de" className="space-y-6">
-                                    <div className="space-y-2">
-                                        <Label>Tagebuch-Inhalt</Label>
-                                        <Textarea
-                                            className="min-h-[300px] font-mono text-sm"
-                                            value={formData.de.diary}
-                                            onChange={e => updateLanguageField('de', 'diary', e.target.value)}
-                                            placeholder="Der persönliche Tagebucheintrag aus Sicht des Autors..."
-                                        />
+                                    <div className="flex gap-4 h-[600px]">
+                                        {/* Left: Raw Markdown Editor */}
+                                        <div className="flex-1 flex flex-col border rounded-lg overflow-hidden">
+                                            <div className="px-3 py-2 bg-muted border-b text-xs font-medium text-muted-foreground flex items-center gap-2">
+                                                Markdown
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={() => setShowPreview(!showPreview)}
+                                                    className="ml-auto"
+                                                >
+                                                    <Eye className="w-3 h-3" />
+                                                </Button>
+                                            </div>
+                                            <FormattingToolbar textareaRef={diaryTextareaRef} />
+                                            <Textarea
+                                                ref={diaryTextareaRef}
+                                                onChange={e => updateLanguageField('de', 'diary', e.target.value)}
+                                                placeholder="# Überschrift\n\nHier Markdown eingeben...\n\n**Fett** *Kursiv*\n- Listenpunkt 1\n- Listenpunkt 2"
+                                                className="flex-1 w-full p-4 font-mono text-sm resize-none focus:outline-none bg-white dark:bg-[#1a1a1a]"
+                                                spellCheck={false}
+                                            />
+                                        </div>
+                                        {/* Right: Live Preview */}
+                                        <div className="flex-1 flex flex-col border rounded-lg overflow-hidden bg-[#f7f6f3] dark:bg-[#1a1a1a]">
+                                            <div className="px-3 py-2 bg-white dark:bg-[#191919] border-b text-xs font-medium text-muted-foreground flex items-center gap-2">
+                                                <Eye className="w-3 h-3" />
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={() => setShowPreview(!showPreview)}
+                                                    className="ml-auto"
+                                                >
+                                                    Markdown
+                                                </Button>
+                                            </div>
+                                            <ScrollArea className="flex-1">
+                                                <div 
+                                                    className="prose prose-sm dark:prose-invert max-w-none p-4"
+                                                    dangerouslySetInnerHTML={{ __html: markdownToHtml(formData.de.diary || '') }}
+                                                />
+                                            </ScrollArea>
+                                        </div>
                                     </div>
                                     <div className="space-y-2">
                                         <Label>Wissenschaftlicher Kommentar</Label>
