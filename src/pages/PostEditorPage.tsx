@@ -318,9 +318,9 @@ export default function PostEditorPage() {
         </div>;
     }
     return (
-        <div className="min-h-screen bg-background pt-16">
+        <div className="bg-background">
             {/* Header */}
-            <div className="sticky top-16 z-40 bg-background/95 backdrop-blur-md border-b border-border">
+            <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border">
                 <div className="container mx-auto px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <Link to="/admin" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">

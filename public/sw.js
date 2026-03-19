@@ -227,7 +227,8 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(async () => {
+        .catch(async (error) => {
+          console.warn('[SW] Navigation request failed, trying fallback:', error);
           // Offline fallback
           const cachedResponse = await caches.match(request);
           if (cachedResponse) return cachedResponse;
@@ -253,10 +254,15 @@ self.addEventListener('fetch', (event) => {
           if (request.method === 'GET' || request.method === 'HEAD' || request.method === 'OPTIONS') {
             caches.open(RUNTIME_CACHE).then(cache => {
               cache.put(request, responseClone);
+            }).catch(error => {
+              console.warn('[SW] Failed to cache static asset:', error);
             });
           }
         }
         return response;
+      }).catch(error => {
+        console.warn('[SW] Failed to fetch static asset:', error);
+        return new Response('Offline', { status: 503 });
       });
     })
   );

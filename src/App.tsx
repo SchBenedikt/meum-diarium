@@ -64,7 +64,6 @@ const OERPage = lazy(() => import('./pages/OERPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
-import { AdminPostEditor } from '@/components/admin/AdminPostEditor';
 
 const queryClient = new QueryClient();
 const ScrollToTop = () => {

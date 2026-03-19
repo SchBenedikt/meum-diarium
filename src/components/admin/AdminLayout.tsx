@@ -20,7 +20,7 @@ export function AdminLayout() {
         isCollapsed={isCollapsed}
         onToggleCollapse={toggleSidebar}
       />
-      <main className="flex-1 overflow-hidden w-full">
+      <main className="flex-1 overflow-auto w-full h-full">
         {/* Collapse/Expand Button */}
         <Button
           variant="outline"
@@ -30,7 +30,9 @@ export function AdminLayout() {
         >
           {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
-        <Outlet />
+        <div className="h-full overflow-auto">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
