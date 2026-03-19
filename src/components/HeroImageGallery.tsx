@@ -55,7 +55,7 @@ const heroImages: HeroImage[] = [
   },
   { 
     id: 'cicero', 
-    src: '/images/cicero-hero.jpg', 
+    src: '/images/cicero-hero.png', 
     alt: 'Cicero', 
     name: 'Cicero',
     description: 'Größter Redner der Antike',

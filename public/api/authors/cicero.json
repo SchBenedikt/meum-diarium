@@ -7,7 +7,7 @@
   "birthYear": -106,
   "deathYear": -43,
   "description": "Der bedeutendste Redner Roms, Staatsmann, Philosoph und Verteidiger der Republik. Prägte die lateinische Prosa und die abendländische Rhetorik.",
-  "heroImage": "/images/cicero-hero.jpg",
+  "heroImage": "/images/cicero-hero.png",
   "theme": "theme-cicero",
   "color": "hsl(210, 80%, 50%)",
   "highlights": [

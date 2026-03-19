@@ -152,7 +152,7 @@ export function CiceroAboutPage() {
         title={authorInfo ? `${authorInfo.name} – ${t('cicero.speechesRecent')}` : t('cicero.speechesRecent')}
         description={authorInfo?.description}
         author={authorInfo?.name}
-        image={`${baseUrl}/images/cicero-hero.jpg`}
+        image={`${baseUrl}/images/cicero-hero.png`}
         type="website"
         structuredData={{
           "@context": "https://schema.org",

@@ -46,7 +46,7 @@ export default function LandingHeroNew() {
       role: 'Redner & Philosoph', 
       years: '106–43 v. Chr.', 
       description: 'Der größte römische Redner und Philosoph, bekannt für seine Reden gegen Catilina und seine philosophischen Werke.',
-      image: '/images/cicero-hero.jpg',
+      image: '/images/cicero-hero.png',
       quote: 'O tempora, o mores.',
       color: 'from-blue-600 to-indigo-600'
     },

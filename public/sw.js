@@ -14,7 +14,7 @@ const PRECACHE_ASSETS = [
   '/icons/icon-512x512.png',
   // Hero images for authors
   '/images/caesar-hero.jpg',
-  '/images/cicero-hero.jpg',
+  '/images/cicero-hero.png',
   '/images/augustus-hero.jpg',
   '/images/seneca-hero.jpg',
   '/images/catilina-hero.jpg',
