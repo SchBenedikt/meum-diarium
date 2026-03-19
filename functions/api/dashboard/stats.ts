@@ -5,6 +5,10 @@ import type { PagesContext } from '../../types';
 
 // Helper function to verify JWT token (simplified version)
 function verifyToken(token: string): string | null {
+    if (!token || typeof token !== 'string') {
+        return null;
+    }
+    
     try {
         const [, payload] = token.split('.');
         const decoded = JSON.parse(atob(payload));
