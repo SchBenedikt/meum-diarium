@@ -31,6 +31,26 @@ export async function clearApiCaches(): Promise<void> {
   }
 }
 
+export async function unregisterServiceWorker(): Promise<void> {
+  if ('serviceWorker' in navigator) {
+    try {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(
+        registrations.map(registration => registration.unregister())
+      );
+      console.log('✅ [SW] Service worker unregistered');
+      
+      // Also clear caches after unregistering
+      await clearServiceWorkerCaches();
+      
+      // Force reload to ensure clean state
+      window.location.reload();
+    } catch (error) {
+      console.error('❌ [SW] Failed to unregister service worker:', error);
+    }
+  }
+}
+
 export async function getCacheInfo(): Promise<{name: string, size?: number}[]> {
   if ('caches' in window) {
     try {
@@ -65,14 +85,42 @@ export function setupDevelopmentCacheClearing(): void {
     // Clear caches on page load in development
     clearApiCaches();
     
-    // Add global function for manual cache clearing
+    // Add global functions for manual cache clearing
     (window as any).clearCaches = clearServiceWorkerCaches;
     (window as any).clearApiCaches = clearApiCaches;
+    (window as any).unregisterSW = unregisterServiceWorker;
     (window as any).getCacheInfo = getCacheInfo;
     
     console.log('🔧 [Dev] Cache management functions available in console:');
     console.log('  - clearCaches() - Clear all service worker caches');
     console.log('  - clearApiCaches() - Clear only API caches');
+    console.log('  - unregisterSW() - Unregister service worker and reload');
     console.log('  - getCacheInfo() - Show cache information');
+    
+    // Auto-fix for common JSON parsing errors
+    window.addEventListener('error', (event) => {
+      if (event.error instanceof SyntaxError && 
+          event.error.message.includes('JSON') && 
+          event.error.message.includes('<!doctype')) {
+        console.warn('🚨 [Auto-Fix] Detected JSON parsing error - clearing API caches...');
+        clearApiCaches();
+      }
+    });
   }
+}
+
+// Force refresh function that bypasses cache
+export function forceRefresh(): void {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      registrations.forEach(registration => {
+        registration.active?.postMessage({ type: 'SKIP_WAITING' });
+      });
+    });
+  }
+  
+  // Clear all caches and reload
+  clearServiceWorkerCaches().then(() => {
+    window.location.reload();
+  });
 }

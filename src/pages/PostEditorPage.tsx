@@ -295,12 +295,20 @@ export default function PostEditorPage() {
             {postError instanceof SyntaxError && postError.message.includes('JSON') && (
                 <div className="max-w-md mx-auto space-y-4 p-4 border border-amber-200 bg-amber-50 rounded-lg">
                     <div className="text-amber-800">
-                        <p className="font-semibold">🔍 Dies ist wahrscheinlich ein Caching-Problem:</p>
-                        <ul className="text-sm mt-2 space-y-1">
-                            <li>• Öffne die Browser-Konsole (F12)</li>
-                            <li>• Gib ein: <code className="bg-amber-100 px-1 rounded">clearApiCaches()</code></li>
-                            <li>• Lade die Seite neu</li>
-                        </ul>
+                        <p className="font-semibold">🔍 Dies ist ein Caching-Problem:</p>
+                        <div className="text-sm mt-2 space-y-2">
+                            <p><strong>Option 1 (Empfohlen):</strong></p>
+                            <ul className="ml-4 space-y-1">
+                                <li>• Öffne die Browser-Konsole (F12)</li>
+                                <li>• Gib ein: <code className="bg-amber-100 px-1 rounded">unregisterSW()</code></li>
+                                <li>• Seite wird automatisch neu geladen</li>
+                            </ul>
+                            <p><strong>Option 2 (Manuell):</strong></p>
+                            <ul className="ml-4 space-y-1">
+                                <li>• Browser schließen und neu öffnen</li>
+                                <li>• Oder: Hard-Refresh mit Ctrl+Shift+R (Cmd+Shift+R)</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             )}
