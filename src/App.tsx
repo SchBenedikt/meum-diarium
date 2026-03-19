@@ -32,7 +32,6 @@ const PostEditorPage = lazy(() => import("./pages/PostEditorPage"));
 const AuthorEditorPage = lazy(() => import("./pages/AuthorEditorPage"));
 const LexiconEditorPage = lazy(() => import("./pages/LexiconEditorPage"));
 const PageEditorPage = lazy(() => import("./pages/PageEditorPage"));
-const WorkEditorPage = lazy(() => import("./pages/WorkEditorPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const DesignGuidePage = lazy(() => import("./pages/DesignGuidePage"));
 const LoadingDemoPage = lazy(() => import("./pages/LoadingDemoPage"));
@@ -158,8 +157,6 @@ const AppContent = () => {
                 <Route path="lexicon/:slug" element={<LexiconEditorPage />} />
                 <Route path="author/new" element={<AuthorEditorPage />} />
                 <Route path="author/:id" element={<AuthorEditorPage />} />
-                <Route path="work/new" element={<WorkEditorPage />} />
-                <Route path="work/:id" element={<WorkEditorPage />} />
               </Route>
               {/* Standalone admin page for direct access */}
               <Route path="/admin/overview" element={<PageTransition><AdminPage /></PageTransition>} />

@@ -10,7 +10,6 @@ import {
   ExternalLink,
   Users,
   Library,
-  BookMarked,
   LogOut,
   Scroll,
 } from 'lucide-react';
@@ -43,7 +42,6 @@ const NAV_SECTIONS = [
     items: [
       { to: '/admin/lexicon', icon: Library, label: 'Lexikon' },
       { to: '/admin/author/new', icon: Users, label: 'Autor anlegen' },
-      { to: '/admin/work/new', icon: BookMarked, label: 'Werk anlegen' },
     ],
   },
   {
@@ -122,7 +120,7 @@ export function AdminSidebar({ width = 256, onWidthChange, isCollapsed = false, 
   }
 
   return (
-    <div className="bg-[#f7f6f3] dark:bg-[#191919] border-r border-border h-screen flex flex-col" style={{ width: `${width}px` }}>
+    <div className="bg-[#f7f6f3] dark:bg-[#191919] border-r border-border h-screen flex flex-col flex-shrink-0 overflow-hidden" style={{ width: `${width}px`, minWidth: `${width}px` }}>
       {/* Logo / Header */}
       <div className="flex items-center gap-2.5 px-4 py-4 border-b border-border/50">
         <div className="p-1.5 rounded-md bg-primary/10">
