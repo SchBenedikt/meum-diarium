@@ -260,7 +260,7 @@ export default function LexiconEditorPage() {
                                         ref={definitionRef}
                                         value={formData.definition}
                                         onChange={e => updateField('definition', e.target.value)}
-                                        placeholder={"**Konsul** war das höchste Amt in der römischen Republik...\n\n- Amtszeit: 1 Jahr\n- Immer zwei Konsuln gleichzeitig"}
+                                        placeholder="**Konsul** war das höchste Amt in der römischen Republik...\n\n- Amtszeit: 1 Jahr\n- Immer zwei Konsuln gleichzeitig"
                                         className="flex-1 w-full p-4 font-mono text-sm resize-none focus:outline-none bg-white dark:bg-[#1a1a1a]"
                                         spellCheck={false}
                                     />

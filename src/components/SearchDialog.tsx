@@ -90,7 +90,10 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
       entry.term.toLowerCase().includes(searchTerm) ||
       entry.definition.toLowerCase().includes(searchTerm) ||
       entry.category.toLowerCase().includes(searchTerm) ||
-      (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm))
+      (entry.etymology && entry.etymology.toLowerCase().includes(searchTerm)) ||
+      (Array.isArray(entry.variants) && entry.variants.some((v: any) =>
+        (typeof v === 'string' ? v : v?.term || '').toLowerCase().includes(searchTerm)
+      ))
     ).map(entry => ({ type: 'lexicon', data: entry }));
     const authorResults: SearchResult[] = Object.values(authors).filter(author =>
       author.name.toLowerCase().includes(searchTerm) ||

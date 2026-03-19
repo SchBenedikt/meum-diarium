@@ -157,27 +157,7 @@ export async function fetchLexiconEntry(slug: string) {
     return cachedFetch(`${getApiBase()}/lexicon?slug=${slug}`);
 }
 export async function saveLexiconEntry(data: any) {
-    // Smart save: if slug exists, try update first, fallback to create
-    if (data.slug) {
-        try {
-            const res = await fetch(`${getApiBase()}/lexicon/${data.slug}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            if (res.ok) {
-                requestCache.clear();
-                return res.json();
-            }
-            if (res.status !== 404) {
-                throw new Error('Failed to update entry');
-            }
-            // 404 = doesn't exist, try create
-        } catch (err) {
-            // Continue to create
-        }
-    }
-    // Create new
+    // Create new entry
     const res = await fetch(`${getApiBase()}/lexicon`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -188,7 +168,8 @@ export async function saveLexiconEntry(data: any) {
     return res.json();
 }
 export async function updateLexiconEntry(slug: string, data: any) {
-    const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
+    // Use query param so /api/lexicon handler receives it (no dynamic path function exists)
+    const res = await fetch(`${getApiBase()}/lexicon?slug=${encodeURIComponent(slug)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -198,7 +179,8 @@ export async function updateLexiconEntry(slug: string, data: any) {
     return res.json();
 }
 export async function deleteLexiconEntry(slug: string) {
-    const res = await fetch(`${getApiBase()}/lexicon/${slug}`, {
+    // Use query param so /api/lexicon handler receives it (no dynamic path function exists)
+    const res = await fetch(`${getApiBase()}/lexicon?slug=${encodeURIComponent(slug)}`, {
         method: 'DELETE'
     });
     if (!res.ok) throw new Error('Failed to delete lexicon entry');

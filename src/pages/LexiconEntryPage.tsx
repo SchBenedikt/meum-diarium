@@ -45,33 +45,35 @@ export default function LexiconEntryPage() {
       try {
         const data = await fetchLexiconEntry(slug);
         setEntry(data || null);
-        if (data && !postsLoading) {
-          const variantsList = Array.isArray(data.variants) ? data.variants : [];
-          const searchTerms = [
-            data.term?.toLowerCase(),
-            ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
-          ].filter(Boolean);
-          const foundPosts = [];
-          for (const post of allPosts) {
-            const isRelated = searchTerms.some(term => 
-              post.title.toLowerCase().includes(term) ||
-              post.excerpt?.toLowerCase().includes(term) ||
-              post.content.diary?.toLowerCase().includes(term) ||
-              post.content.scientific?.toLowerCase().includes(term)
-            );
-            if (isRelated) {
-              foundPosts.push(post);
-            }
-          }
-          setRelatedPosts(foundPosts.slice(0, 5));
-        }
       } catch (error) {
         console.error('Failed to load lexicon entry:', error);
         setEntry(null);
       }
     }
     loadEntry();
-  }, [language, slug, allPosts, postsLoading]);
+  }, [slug]);
+
+  // Compute related posts whenever entry or posts change
+  useEffect(() => {
+    if (!entry || postsLoading || allPosts.length === 0) {
+      setRelatedPosts([]);
+      return;
+    }
+    const variantsList = Array.isArray(entry.variants) ? entry.variants : [];
+    const searchTerms = [
+      entry.term?.toLowerCase(),
+      ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
+    ].filter(Boolean);
+    const foundPosts = allPosts.filter(post =>
+      searchTerms.some(term =>
+        post.title.toLowerCase().includes(term) ||
+        post.excerpt?.toLowerCase().includes(term) ||
+        post.content.diary?.toLowerCase().includes(term) ||
+        post.content.scientific?.toLowerCase().includes(term)
+      )
+    );
+    setRelatedPosts(foundPosts.slice(0, 5));
+  }, [entry, allPosts, postsLoading]);
   const handleBackClick = () => {
     navigate('/lexicon');
   };

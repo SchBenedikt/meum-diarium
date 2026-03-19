@@ -105,14 +105,18 @@ export default function SearchPage() {
     if (searchQuery) {
       filteredPosts = filteredPosts.filter(post =>
         post.title.toLowerCase().includes(searchQuery) ||
-        post.excerpt.toLowerCase().includes(searchQuery) ||
-        post.content.diary.toLowerCase().includes(searchQuery) ||
-        authors[post.author].name.toLowerCase().includes(searchQuery)
+        post.excerpt?.toLowerCase().includes(searchQuery) ||
+        post.content.diary?.toLowerCase().includes(searchQuery) ||
+        post.content.scientific?.toLowerCase().includes(searchQuery) ||
+        authors[post.author]?.name.toLowerCase().includes(searchQuery)
       );
       filteredLexicon = filteredLexicon.filter(entry =>
         entry.term.toLowerCase().includes(searchQuery) ||
         entry.definition.toLowerCase().includes(searchQuery) ||
-        (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery))
+        (entry.etymology && entry.etymology.toLowerCase().includes(searchQuery)) ||
+        (Array.isArray(entry.variants) && entry.variants.some((v: any) =>
+          (typeof v === 'string' ? v : v?.term || '').toLowerCase().includes(searchQuery)
+        ))
       );
     }
     return [...filteredPosts.map(p => ({ type: 'post', data: p }) as SearchResult), ...filteredLexicon.map(l => ({ type: 'lexicon', data: l }) as SearchResult)];
