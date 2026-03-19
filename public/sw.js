@@ -211,6 +211,16 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then(response => {
           if (response.ok) {
+            // For API requests, validate that we're getting JSON, not HTML
+            if (url.pathname.startsWith('/api/')) {
+              const contentType = response.headers.get('content-type');
+              if (!contentType || !contentType.includes('application/json')) {
+                console.warn(`[SW] API request returned non-JSON content: ${request.url}`, contentType);
+                // Don't cache non-JSON responses for API endpoints
+                return response;
+              }
+            }
+            
             const responseClone = response.clone();
             // Only cache GET requests - POST, PUT, DELETE will bypass cache
             // Cache API spec only supports GET/HEAD/OPTIONS
@@ -226,7 +236,20 @@ self.addEventListener('fetch', (event) => {
         .catch(async () => {
           // Offline fallback
           const cachedResponse = await caches.match(request);
-          if (cachedResponse) return cachedResponse;
+          if (cachedResponse) {
+            // For API requests, validate cached response is JSON
+            if (url.pathname.startsWith('/api/')) {
+              const contentType = cachedResponse.headers.get('content-type');
+              if (!contentType || !contentType.includes('application/json')) {
+                console.warn(`[SW] Cached API response is not JSON: ${request.url}`, contentType);
+                return new Response(JSON.stringify({ error: 'Invalid cached response', offline: true }), {
+                  status: 503,
+                  headers: { 'Content-Type': 'application/json' }
+                });
+              }
+            }
+            return cachedResponse;
+          }
 
           if (request.mode === 'navigate') {
             const rootCache = await caches.match('/');

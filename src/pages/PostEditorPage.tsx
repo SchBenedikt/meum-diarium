@@ -63,15 +63,42 @@ export default function PostEditorPage() {
     const { authors } = useAuthors();
     const [loading, setLoading] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState<'de' | 'en' | 'la'>('de');
+    
+    console.log('🔍 [PostEditorPage] Params:', { author, slug, isEditMode });
+    
     // Fetch post data if editing
-    const { data: postData, isLoading: isFetching } = useQuery({
+    const { data: postData, isLoading: isFetching, error: postError } = useQuery({
         queryKey: ['post', author, slug],
-        queryFn: () => {
-            if (!isEditMode || !author || !slug) return null;
-            return fetchPost(author, slug);
+        queryFn: async () => {
+            console.log('🔄 [PostEditorPage] Fetching post data...');
+            if (!isEditMode || !author || !slug) {
+                console.log('⚠️ [PostEditorPage] Missing params for edit mode');
+                return null;
+            }
+            
+            try {
+                const result = await fetchPost(author, slug);
+                console.log('✅ [PostEditorPage] Successfully fetched post data:', result);
+                return result;
+            } catch (error) {
+                console.error('❌ [PostEditorPage] Error fetching post:', error);
+                
+                // Check if error is a JSON parsing error
+                if (error instanceof SyntaxError && error.message.includes('JSON')) {
+                    console.error('🚨 [PostEditorPage] JSON parsing error - likely received HTML instead of JSON');
+                    console.error('🔍 [PostEditorPage] This usually indicates a service worker caching issue');
+                    console.error('💡 [PostEditorPage] Try clearing caches with: clearApiCaches() in console');
+                }
+                
+                throw error;
+            }
         },
-        enabled: isEditMode
+        enabled: isEditMode,
+        staleTime: 0, // Disable caching to always fetch fresh data
+        refetchOnWindowFocus: true // Refetch when window gains focus
     });
+    
+    console.log('📊 [PostEditorPage] Post data:', { postData, isFetching, postError });
     // Form state definition
     const [formData, setFormData] = useState({
         // Basic info
@@ -261,6 +288,26 @@ export default function PostEditorPage() {
     };
     if (isFetching && isEditMode) {
         return <div className="min-h-screen pt-20 text-center">Lade Beitrag...</div>;
+    }
+    if (postError) {
+        return <div className="min-h-screen pt-20 text-center">
+            <div className="text-destructive mb-4">Fehler beim Laden: {postError.message}</div>
+            {postError instanceof SyntaxError && postError.message.includes('JSON') && (
+                <div className="max-w-md mx-auto space-y-4 p-4 border border-amber-200 bg-amber-50 rounded-lg">
+                    <div className="text-amber-800">
+                        <p className="font-semibold">🔍 Dies ist wahrscheinlich ein Caching-Problem:</p>
+                        <ul className="text-sm mt-2 space-y-1">
+                            <li>• Öffne die Browser-Konsole (F12)</li>
+                            <li>• Gib ein: <code className="bg-amber-100 px-1 rounded">clearApiCaches()</code></li>
+                            <li>• Lade die Seite neu</li>
+                        </ul>
+                    </div>
+                </div>
+            )}
+            <Button onClick={() => navigate('/admin')} className="mt-4">
+                Zurück zum Admin
+            </Button>
+        </div>;
     }
     return (
         <div className="min-h-screen bg-background pt-16">

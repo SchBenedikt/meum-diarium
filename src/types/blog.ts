@@ -153,6 +153,7 @@ export interface WorkTranslations {
   structure: { title: string; content: string }[];
 }
 export interface Work {
+  slug: string;
   title: string;
   author: Author;
   year: string;

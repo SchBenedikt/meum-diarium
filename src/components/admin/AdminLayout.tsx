@@ -1,11 +1,35 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AdminSidebar } from './AdminSidebar';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function AdminLayout() {
+  const [sidebarWidth, setSidebarWidth] = useState(256);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+  
   return (
     <div className="flex h-screen w-screen bg-white dark:bg-[#191919]">
-      <AdminSidebar />
+      <AdminSidebar 
+        width={isCollapsed ? 60 : sidebarWidth} 
+        onWidthChange={setSidebarWidth}
+        isCollapsed={isCollapsed}
+        onToggleCollapse={toggleSidebar}
+      />
       <main className="flex-1 overflow-hidden w-full">
+        {/* Collapse/Expand Button */}
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleSidebar}
+          className="fixed left-4 top-4 z-50 bg-white dark:bg-[#191919] border border-border shadow-md"
+        >
+          {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+        </Button>
         <Outlet />
       </main>
     </div>

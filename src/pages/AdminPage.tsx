@@ -19,7 +19,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, Settings, LayoutDashboard, ArrowUpRight, Tags, Hash, Eye, BookMarked, LogOut } from 'lucide-react';
+import { Edit, Trash2, Plus, Users, BookOpenText, LibraryBig, Settings, LayoutDashboard, ArrowUpRight, Tags, Hash, Eye, BookMarked, LogOut, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { BlogPost, LexiconEntry } from '@/types/blog';
 import { QuickStats } from '@/components/QuickStats';
@@ -38,7 +38,7 @@ export default function AdminPage() {
             navigate('/admin/login', { replace: true });
         }
     }, [isAdminAuthenticated, navigate]);
-    const { posts } = usePosts();
+    const { posts, isLoading, error } = usePosts();
     const { authors: authorEntries } = useAuthors();
     const { lexicon: lexiconEntries } = useLexicon();
     const { works } = useWorks();
@@ -48,7 +48,11 @@ export default function AdminPage() {
     const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);
     const [filteredTags, setFilteredTags] = useState<string[]>([]);
     useEffect(() => {
-        if (posts) setFilteredPosts(sortPostsChronologically(posts));
+        if (posts) {
+            console.log(`🔍 [AdminPage] Received ${posts.length} posts from usePosts hook`);
+            console.log('🔍 [AdminPage] Sample post:', posts[0]);
+            setFilteredPosts(sortPostsChronologically(posts));
+        }
     }, [posts]);
     useEffect(() => {
         if (lexiconEntries) setFilteredLexicon(lexiconEntries);
@@ -105,6 +109,14 @@ export default function AdminPage() {
             post.author.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredPosts(sortPostsChronologically(filtered));
+    };
+    const handleRefreshPosts = async () => {
+        try {
+            await queryClient.invalidateQueries({ queryKey: ['posts'] });
+            toast.success('Beiträge neu geladen');
+        } catch (error) {
+            toast.error('Fehler beim Neuladen');
+        }
     };
     const handleDeleteWork = async (slug: string) => {
         if (!window.confirm('Werk wirklich löschen?')) return;
@@ -274,13 +286,18 @@ export default function AdminPage() {
                         <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div>
                                 <CardTitle>Blog-Beiträge</CardTitle>
-                                <CardDescription>{filteredPosts.length} von {postRows.length} Beiträgen</CardDescription>
+                                <CardDescription>{filteredPosts.length} von {postRows.length} Beiträgen aus D1-Datenbank</CardDescription>
                             </div>
-                            <Button asChild>
-                                <Link to="/admin/post/new">
-                                    <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
-                                </Link>
-                            </Button>
+                            <div className="flex gap-2">
+                                <Button variant="outline" onClick={handleRefreshPosts}>
+                                    <RefreshCw className="mr-2 h-4 w-4" /> Neu laden
+                                </Button>
+                                <Button asChild>
+                                    <Link to="/admin/post/new">
+                                        <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
+                                    </Link>
+                                </Button>
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <SearchFilter
@@ -306,7 +323,27 @@ export default function AdminPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {filteredPosts.length === 0 ? (
+                                        {isLoading ? (
+                                            <TableRow>
+                                                <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                                                    <div className="flex flex-col items-center gap-2">
+                                                        <RefreshCw className="h-4 w-4 animate-spin" />
+                                                        <div>Lade Beiträge von D1-Datenbank...</div>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : error ? (
+                                            <TableRow>
+                                                <TableCell colSpan={4} className="text-center py-8">
+                                                    <div className="flex flex-col items-center gap-2">
+                                                        <div className="text-destructive">Fehler beim Laden: {error.message}</div>
+                                                        <Button onClick={handleRefreshPosts} size="sm">
+                                                            <RefreshCw className="mr-2 h-4 w-4" /> Erneut versuchen
+                                                        </Button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : filteredPosts.length === 0 ? (
                                             <TableRow>
                                                 <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
                                                     Keine Beiträge gefunden

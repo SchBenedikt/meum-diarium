@@ -1,6 +1,10 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import './index.css';
+import { setupDevelopmentCacheClearing } from './lib/cache-utils';
+
+// Setup development cache management
+setupDevelopmentCacheClearing();
 
 // Register service worker for offline support - deferred to avoid blocking initial render
 if ('serviceWorker' in navigator) {
@@ -16,7 +20,7 @@ if ('serviceWorker' in navigator) {
   if ('requestIdleCallback' in window) {
     requestIdleCallback(registerSW);
   } else {
-    window.addEventListener('load', registerSW, { once: true });
+    (window as any).addEventListener('load', registerSW, { once: true });
   }
 }
 

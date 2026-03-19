@@ -148,11 +148,14 @@ const AppContent = () => {
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="posts/new" element={<AdminPostEditor />} />
-                <Route path="posts/:author/:slug" element={<AdminPostEditor />} />
+                <Route index element={<AdminPage />} />
+                <Route path="posts/new" element={<PostEditorPage />} />
+                <Route path="posts/:author/:slug" element={<PostEditorPage />} />
+                <Route path="post/:author/:slug" element={<PostEditorPage />} />
                 <Route path="settings" element={<SettingsPage />} />
               </Route>
+              {/* Standalone admin page for direct access */}
+              <Route path="/admin/overview" element={<PageTransition><AdminPage /></PageTransition>} />
               <Route path="/admin/login" element={<PageTransition><AdminLoginPage /></PageTransition>} />
 
               {/* Direct author about page routes */}

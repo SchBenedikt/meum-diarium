@@ -10,6 +10,7 @@ export function usePosts() {
   const { data: posts, isLoading: isFetching, error } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
+      console.log('🔄 [usePosts] Starting to fetch posts from API...');
       const apiStartTime = Date.now();
       const apiPosts = await fetchPosts();
       const normalizedPosts = Array.isArray(apiPosts)
@@ -26,8 +27,10 @@ export function usePosts() {
       const apiFetchTime = Date.now() - apiStartTime;
       if (normalizedPosts.length > 0) {
         console.log(`✅ [usePosts] Loaded ${normalizedPosts.length} posts from D1 database (${apiFetchTime}ms)`);
+        console.log('🔍 [usePosts] Sample post data:', normalizedPosts[0]);
         return normalizedPosts;
       }
+      console.warn('⚠️ [usePosts] No posts received from API');
       return [];
     },
     retry: 2,
@@ -39,7 +42,7 @@ export function usePosts() {
       setIsTranslating(true);
       try {
         const translated = await Promise.all(
-          posts.map(post => import('@/lib/translator').then(mod => mod.translatePostInPlace(post, language)))
+          posts.map(post => import('@/lib/translator').then(mod => mod.translatePostInPlace(post, language as any)))
         );
         setTranslatedPosts(translated);
       } catch (error) {
