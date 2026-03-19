@@ -24,12 +24,18 @@ export function isValidLanguage(language: string | undefined | null): language i
   if (!language || typeof language !== 'string') {
     return false;
   }
-  return ['de', 'en', 'la'].includes(language.split('-')[0] as SupportedLanguage);
+  const baseLang = language.split('-')[0];
+  return ['de', 'en', 'la'].includes(baseLang);
 }
 
 /**
  * Gibt sicheren Language String zurück mit Fallback
  */
 export function getSafeLanguage(language: string | undefined | null): SupportedLanguage {
-  return isValidLanguage(language) ? language.split('-')[0] as SupportedLanguage : 'de';
+  if (!language || typeof language !== 'string') {
+    return 'de';
+  }
+  
+  const baseLang = language.split('-')[0];
+  return ['de', 'en', 'la'].includes(baseLang) ? baseLang as SupportedLanguage : 'de';
 }
