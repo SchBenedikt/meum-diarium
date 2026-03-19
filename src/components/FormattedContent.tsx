@@ -287,7 +287,7 @@ export function FormattedContent({ content, language, currentSlug }: FormattedCo
         type: 'lexicon' 
       });
     }
-    translatedEntry.variants?.forEach((variant: string) => {
+    (Array.isArray(translatedEntry.variants) ? translatedEntry.variants : []).forEach((variant: string) => {
       if (variant) {
         termsMap.set(variant.toLowerCase(), { 
           slug: originalEntry.slug, 

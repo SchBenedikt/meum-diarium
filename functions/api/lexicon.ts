@@ -28,6 +28,17 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         }
     };
 
+    const parseJsonArray = (value: any): string[] => {
+        const parsed = parseJsonField(value);
+        return Array.isArray(parsed) ? parsed : [];
+    };
+
+    const serializeJsonField = (value: any): string | null => {
+        if (value === undefined || value === null) return null;
+        if (typeof value === 'string') return value;
+        return JSON.stringify(value);
+    };
+
     const sanitizeEntry = (entry: any) => {
         const sanitized: any = {};
         Object.entries(entry).forEach(([key, value]) => {
@@ -91,8 +102,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
                 const parsedResult = {
                     ...result,
-                    variants: parseJsonField(result.variants) || [],
-                    relatedTerms: parseJsonField(result.relatedTerms) || [],
+                    variants: parseJsonArray(result.variants),
+                    relatedTerms: parseJsonArray(result.relatedTerms),
                     translations: parseJsonField(result.translations) || {},
                 };
 
@@ -123,8 +134,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             // Parse JSON fields manually
             const parsedResults = results.map((entry: any) => ({
                 ...entry,
-                variants: parseJsonField(entry.variants) || [],
-                relatedTerms: parseJsonField(entry.relatedTerms) || [],
+                variants: parseJsonArray(entry.variants),
+                relatedTerms: parseJsonArray(entry.relatedTerms),
                 translations: parseJsonField(entry.translations) || {},
             }));
 
@@ -191,12 +202,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 const newEntry = {
                     slug: body.slug,
                     term: body.term,
-                    variants: body.variants || [],
+                    variants: serializeJsonField(body.variants || []),
                     definition: body.definition,
                     category: body.category || '',
                     etymology: body.etymology || '',
-                    relatedTerms: body.relatedTerms || [],
-                    translations: body.translations || {}
+                    relatedTerms: serializeJsonField(body.relatedTerms || []),
+                    translations: serializeJsonField(body.translations || {})
                 };
 
                 await db.insert(lexicon).values(newEntry);
@@ -256,12 +267,12 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 // Update entry
                 const updatedData = {
                     term: body.term ?? existing.term,
-                    variants: body.variants ?? existing.variants,
+                    variants: body.variants !== undefined ? serializeJsonField(body.variants) : existing.variants,
                     definition: body.definition ?? existing.definition,
                     category: body.category ?? existing.category,
                     etymology: body.etymology ?? existing.etymology,
-                    relatedTerms: body.relatedTerms ?? existing.relatedTerms,
-                    translations: body.translations ?? existing.translations
+                    relatedTerms: body.relatedTerms !== undefined ? serializeJsonField(body.relatedTerms) : existing.relatedTerms,
+                    translations: body.translations !== undefined ? serializeJsonField(body.translations) : existing.translations
                 };
 
                 await db.update(lexicon)

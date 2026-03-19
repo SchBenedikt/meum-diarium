@@ -48,7 +48,7 @@ export function getTranslatedLexiconEntry(entry: LexiconEntry, language: Languag
     definition: translation.definition && translation.definition.trim() !== "" ? translation.definition : entry.definition,
     category: translation.category && translation.category.trim() !== "" ? translation.category : entry.category,
     etymology: translation.etymology && translation.etymology.trim() !== "" ? translation.etymology : entry.etymology,
-    variants: translation.variants && translation.variants.length > 0 ? translation.variants : entry.variants,
+    variants: Array.isArray(translation.variants) && translation.variants.length > 0 ? translation.variants : (Array.isArray(entry.variants) ? entry.variants : []),
   };
 }
 /**
