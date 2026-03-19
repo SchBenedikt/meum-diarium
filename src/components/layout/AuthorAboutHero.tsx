@@ -27,7 +27,7 @@ export function AuthorAboutHero({
         <section ref={ref} className="relative min-h-screen flex items-end pb-32 pt-32 overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <motion.img
-                    src={authorInfo.heroImage}
+                    src={authorPage?.heroImage || authorInfo.heroImage}
                     alt={authorInfo.name}
                     className="w-full h-full object-cover scale-105"
                     style={{ y, opacity }}
