@@ -318,13 +318,43 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
 // Helper function to normalize post results
 function normalizePostResult(post: any) {
+    // Handle tags - ensure it's always an array
+    let normalizedTags = [];
+    if (post.tags) {
+        if (typeof post.tags === 'string') {
+            try {
+                const parsed = JSON.parse(post.tags);
+                normalizedTags = Array.isArray(parsed) ? parsed : [];
+            } catch {
+                // If JSON parsing fails, try to handle common string formats
+                if (post.tags.includes('[') && post.tags.includes(']')) {
+                    // It might be a stringified array with issues
+                    try {
+                        const cleanTags = post.tags
+                            .replace(/[\[\]"]/g, '')
+                            .replace(/,\s*/g, ',')
+                            .trim();
+                        normalizedTags = cleanTags ? cleanTags.split(',') : [];
+                    } catch {
+                        normalizedTags = [];
+                    }
+                } else if (post.tags.trim()) {
+                    // Split by commas if it's a comma-separated string
+                    normalizedTags = post.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean);
+                }
+            }
+        } else if (Array.isArray(post.tags)) {
+            normalizedTags = post.tags;
+        }
+    }
+    
     return {
         ...post,
         author: post.authorId ?? post.author_id,
         authorId: post.authorId ?? post.author_id,
         author_id: post.authorId ?? post.author_id,
         content: typeof post.content === 'string' ? JSON.parse(post.content) : post.content,
-        tags: typeof post.tags === 'string' ? JSON.parse(post.tags) : post.tags,
+        tags: normalizedTags,
         translations: typeof post.translations === 'string' ? JSON.parse(post.translations) : post.translations,
     };
 }

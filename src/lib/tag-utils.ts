@@ -18,7 +18,7 @@ export function getTranslatedTag(tag: TagWithTranslations, language: Language): 
  * @returns Array of translated tag names
  */
 export function getPostTags(
-    post: { tags: string[]; tagsWithTranslations?: TagWithTranslations[] },
+    post: { tags: string[] | string; tagsWithTranslations?: TagWithTranslations[] },
     language: Language
 ): string[] {
     // Prefer multilingual tags if available
@@ -26,7 +26,20 @@ export function getPostTags(
         return post.tagsWithTranslations.map(tag => getTranslatedTag(tag, language));
     }
     // Fall back to legacy tags
-    return post.tags || [];
+    // Handle both array and string formats
+    if (Array.isArray(post.tags)) {
+        return post.tags;
+    } else if (typeof post.tags === 'string') {
+        try {
+            // Try to parse if it's a JSON string representation of an array
+            const parsed = JSON.parse(post.tags);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch {
+            // If parsing fails, return empty array
+            return [];
+        }
+    }
+    return [];
 }
 /**
  * Converts legacy tags to multilingual format
