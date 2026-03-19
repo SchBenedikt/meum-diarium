@@ -123,8 +123,7 @@ async function triggerDeepPrecache() {
     // Works
     if (works && Array.isArray(works)) {
       works.forEach(work => {
-        detailTasks.push(`/api/works/${work.slug}`);
-        detailTasks.push(`/api/works/${work.slug}/details`);
+        detailTasks.push(`/api/works/${work.id}`);
       });
     }
 
