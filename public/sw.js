@@ -35,7 +35,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate event - clean up old caches and trigger deep precache
+// Activate event - clean up old caches and claim clients
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     Promise.all([
@@ -51,11 +51,13 @@ self.addEventListener('activate', (event) => {
             .map(name => caches.delete(name))
         );
       }),
-      self.clients.claim(),
-      // Trigger background pre-caching of all content
-      triggerDeepPrecache()
+      self.clients.claim()
     ])
   );
+  // Trigger background pre-caching without blocking SW activation.
+  // Running outside event.waitUntil() lets the SW become active immediately
+  // so it can start serving requests while content is cached in the background.
+  triggerDeepPrecache().catch(err => console.error('[SW] Deep pre-cache error:', err));
 });
 
 // Helper to send progress to all clients
