@@ -1,13 +1,12 @@
 // Determine API base URL based on environment
 export function getApiBase(): string {
+    // Use Cloudflare Workers for all API calls to avoid Access issues
     if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
         // In development, use relative URL since Vite proxy handles /api routing
         return '';
     }
-    if (typeof window !== 'undefined') {
-        return `${window.location.origin}/api`;
-    }
-    return '/api';
+    // In production, use Cloudflare Workers URL with /api prefix
+    return 'https://caesar.schaechner.workers.dev/api';
 }
 
 // Specialized function for user-generated content APIs (comments, profile, etc.)
@@ -16,11 +15,8 @@ export function getUserApiBase(): string {
         // In development, use relative URL since Vite proxy handles /api routing
         return '';
     }
-    if (typeof window !== 'undefined') {
-        // In production, use Cloudflare Workers URL (without /api suffix)
-        return 'https://caesar.schaechner.workers.dev';
-    }
-    return '';
+    // In production, use Cloudflare Workers URL with /api prefix
+    return 'https://caesar.schaechner.workers.dev/api';
 }
 // Add request cache for GET requests to avoid redundant network calls
 const requestCache = new Map<string, { data: any; timestamp: number }>();

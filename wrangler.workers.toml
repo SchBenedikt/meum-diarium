@@ -1,25 +1,19 @@
-name = "meum-diarium"
+name = "caesar"
+main = "functions/api/worker.js"
 compatibility_date = "2025-12-08"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
-
-# Pages Functions configuration
-[functions]
-# The functions directory is automatically detected by Cloudflare Pages
 
 # D1 Database bindings
 [[d1_databases]]
 binding = "DB"
 database_name = "meum-diarium"
 database_id = "0cf71203-f07c-46b2-8f52-765929a25d24"
-migrations_dir = "drizzle"
 
 [[d1_databases]]
 binding = "vocab"
 database_name = "vocab"
 database_id = "6743a774-21c1-4c0c-a17a-086eae15d3f5"
-migrations_dir = "drizzle"
 
-# Environment variables for Pages
+# Environment variables
 [vars]
 ENVIRONMENT = "production"

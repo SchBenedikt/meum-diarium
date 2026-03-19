@@ -1,0 +1,33 @@
+# Allow cross-origin requests for all API endpoints
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept, Origin
+  Access-Control-Allow-Credentials: true
+  Access-Control-Max-Age: 86400
+
+# Allow Cloudflare Workers API endpoints
+https://caesar.schaechner.workers.dev/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept, Origin
+  Access-Control-Allow-Credentials: true
+
+# Allow Cloudflare Insights
+https://cloudflareinsights.com/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: *
+
+# Allow all CDN-CGI requests
+/cdn-cgi/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: *
+
+# Security headers for all pages
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Types
 export interface User {
@@ -16,17 +16,17 @@ export interface User {
 }
 
 interface AuthContextType {
-  // Admin auth (existing)
+  // Admin auth (password-protected CMS access)
   isAdminAuthenticated: boolean;
   adminLogin: (password: string) => boolean;
   adminLogout: () => void;
-  
-  // User auth (new)
+
+  // User auth (simplified)
   user: User | null;
   token: string | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  logout: () => void;
+  logout: () => Promise<void>;
   register: (userData: {
     email: string;
     username: string;
@@ -41,36 +41,38 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Constants
 const ADMIN_PASSWORD = 'benedikt';
 const ADMIN_AUTH_KEY = 'meum_diarium_admin_auth';
-const USER_AUTH_KEY = 'meum_diarium_user_auth';
-const USER_TOKEN_KEY = 'meum_diarium_user_token';
+const USER_PROFILE_KEY = 'meum_diarium_user_profile';
 
-// Helper functions
-const verifyToken = (token: string): string | null => {
-  try {
-    const [, payload] = token.split('.');
-    const decoded = JSON.parse(atob(payload));
-    return decoded.userId;
-  } catch {
-    return null;
-  }
-};
+/** Create a mock user */
+function createMockUser(email: string, username?: string, displayName?: string): User {
+  const now = new Date().toISOString();
+  const defaultName = email.split('@')[0] ?? 'user';
+  return {
+    id: 'mock-user-' + Math.random().toString(36).substr(2, 9),
+    email,
+    username: username ?? defaultName,
+    displayName: displayName ?? username ?? defaultName,
+    createdAt: now,
+    updatedAt: now,
+    isActive: true,
+  };
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Admin auth state
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
-    const stored = localStorage.getItem(ADMIN_AUTH_KEY);
-    return stored === 'true';
+    return localStorage.getItem(ADMIN_AUTH_KEY) === 'true';
   });
 
-  // User auth state
-  const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem(USER_AUTH_KEY);
-    return stored ? JSON.parse(stored) : null;
-  });
-  const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem(USER_TOKEN_KEY);
-  });
+  // Mock user state
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Sync admin auth state to localStorage
+  useState(() => {
+    localStorage.setItem(ADMIN_AUTH_KEY, isAdminAuthenticated.toString());
+  });
 
   // Admin auth functions
   const adminLogin = (password: string): boolean => {
@@ -86,47 +88,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(ADMIN_AUTH_KEY);
   };
 
-  // User auth functions
+  // Mock auth functions
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setUser(data.user);
-        setToken(data.token);
-        localStorage.setItem(USER_AUTH_KEY, JSON.stringify(data.user));
-        localStorage.setItem(USER_TOKEN_KEY, data.token);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock validation
+      if (email && password.length >= 6) {
+        const mockUser = createMockUser(email);
+        setUser(mockUser);
+        setToken('mock-token-' + Math.random().toString(36).substr(2, 9));
         return { success: true };
       } else {
-        return { success: false, error: data.error || 'Login failed' };
+        return { success: false, error: 'Ungültige Anmeldedaten.' };
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      return { success: false, error: 'Network error' };
+    } catch (error: any) {
+      return { success: false, error: 'Anmeldung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
+  const logout = async (): Promise<void> => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem(USER_AUTH_KEY);
-    localStorage.removeItem(USER_TOKEN_KEY);
-    
-    // Call logout endpoint to invalidate token on server
-    fetch('/api/auth/logout', { method: 'POST' }).catch(() => {
-      // Ignore errors during logout
-    });
+    localStorage.removeItem(USER_PROFILE_KEY);
   };
 
   const register = async (userData: {
@@ -137,26 +125,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Auto-login after successful registration
-        const loginResult = await login(userData.email, userData.password);
-        return loginResult;
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock validation
+      if (userData.email && userData.username && userData.password.length >= 6) {
+        const mockUser = createMockUser(userData.email, userData.username, userData.displayName);
+        setUser(mockUser);
+        setToken('mock-token-' + Math.random().toString(36).substr(2, 9));
+        
+        // Store extra profile info
+        const profileExtra = { username: userData.username, displayName: userData.displayName };
+        localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
+        
+        return { success: true };
       } else {
-        return { success: false, error: data.error || 'Registration failed' };
+        return { success: false, error: 'Das Passwort ist zu schwach (mind. 6 Zeichen).' };
       }
-    } catch (error) {
-      console.error('Registration error:', error);
-      return { success: false, error: 'Network error' };
+    } catch (error: any) {
+      return { success: false, error: 'Registrierung fehlgeschlagen.' };
     } finally {
       setIsLoading(false);
     }
@@ -164,47 +151,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const updateUser = (userData: Partial<User>) => {
     if (user) {
-      const updatedUser = { ...user, ...userData };
+      const updatedUser = { ...user, ...userData, updatedAt: new Date().toISOString() };
       setUser(updatedUser);
-      localStorage.setItem(USER_AUTH_KEY, JSON.stringify(updatedUser));
+      // Persist extra profile info
+      const profileExtra = {
+        username: updatedUser.username,
+        bio: updatedUser.bio,
+        preferences: updatedUser.preferences,
+      };
+      localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profileExtra));
     }
   };
-
-  // Verify token on mount
-  useEffect(() => {
-    const verifyStoredToken = async () => {
-      if (token && !user) {
-        try {
-          const response = await fetch('/api/auth/me', {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            setUser(data.user);
-            localStorage.setItem(USER_AUTH_KEY, JSON.stringify(data.user));
-          } else {
-            // Token invalid, clear it
-            setToken(null);
-            localStorage.removeItem(USER_TOKEN_KEY);
-          }
-        } catch (error) {
-          console.error('Token verification error:', error);
-          setToken(null);
-          localStorage.removeItem(USER_TOKEN_KEY);
-        }
-      }
-    };
-
-    verifyStoredToken();
-  }, [token, user]);
-
-  // Sync admin auth state to localStorage
-  useEffect(() => {
-    localStorage.setItem(ADMIN_AUTH_KEY, isAdminAuthenticated.toString());
-  }, [isAdminAuthenticated]);
 
   return (
     <AuthContext.Provider value={{

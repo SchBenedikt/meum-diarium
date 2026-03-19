@@ -25,11 +25,11 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    const success = await login(email, password);
-    if (success) {
+    const result = await login(email, password);
+    if (result.success) {
       navigate(from, { replace: true });
     } else {
-      setError('Login fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Ihr Passwort.');
+      setError(result.error ?? 'Login fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Ihr Passwort.');
     }
   };
 
