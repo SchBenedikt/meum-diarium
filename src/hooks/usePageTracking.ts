@@ -83,7 +83,7 @@ export function useManualTracking() {
   const { user } = useAuth();
 
   const track = (options: Omit<UsePageTrackingOptions, 'itemId'> & { itemId?: string }) => {
-    if (!user) return;
+    if (!user || !user.id) return;
 
     trackProgress({
       userId: user.id,
