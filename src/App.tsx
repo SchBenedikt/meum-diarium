@@ -149,9 +149,17 @@ const AppContent = () => {
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminPage />} />
                 <Route path="posts/new" element={<PostEditorPage />} />
+                <Route path="post/new" element={<PostEditorPage />} />
                 <Route path="posts/:author/:slug" element={<PostEditorPage />} />
                 <Route path="post/:author/:slug" element={<PostEditorPage />} />
                 <Route path="settings" element={<SettingsPage />} />
+                <Route path="lexicon" element={<LexiconEditorPage />} />
+                <Route path="lexicon/new" element={<LexiconEditorPage />} />
+                <Route path="lexicon/:slug" element={<LexiconEditorPage />} />
+                <Route path="author/new" element={<AuthorEditorPage />} />
+                <Route path="author/:id" element={<AuthorEditorPage />} />
+                <Route path="work/new" element={<WorkEditorPage />} />
+                <Route path="work/:id" element={<WorkEditorPage />} />
               </Route>
               {/* Standalone admin page for direct access */}
               <Route path="/admin/overview" element={<PageTransition><AdminPage /></PageTransition>} />

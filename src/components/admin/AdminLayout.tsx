@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function AdminLayout() {
-  const [sidebarWidth, setSidebarWidth] = useState(256);
   const [isCollapsed, setIsCollapsed] = useState(false);
   
   const toggleSidebar = () => {
@@ -15,8 +14,7 @@ export function AdminLayout() {
   return (
     <div className="flex h-screen w-screen bg-white dark:bg-[#191919]">
       <AdminSidebar 
-        width={isCollapsed ? 60 : sidebarWidth} 
-        onWidthChange={setSidebarWidth}
+        width={isCollapsed ? 60 : 256} 
         isCollapsed={isCollapsed}
         onToggleCollapse={toggleSidebar}
       />
