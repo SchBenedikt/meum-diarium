@@ -5,8 +5,8 @@ export function getApiBase(): string {
         // In development, use relative URL since Vite proxy handles /api routing
         return '';
     }
-    // In production, use Cloudflare Workers URL with /api prefix
-    return 'https://caesar.schaechner.workers.dev/api';
+    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    return '/api';
 }
 
 // Specialized function for user-generated content APIs (comments, profile, etc.)
@@ -15,8 +15,8 @@ export function getUserApiBase(): string {
         // In development, use relative URL since Vite proxy handles /api routing
         return '';
     }
-    // In production, use Cloudflare Workers URL with /api prefix
-    return 'https://caesar.schaechner.workers.dev/api';
+    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    return '/api';
 }
 // Add request cache for GET requests to avoid redundant network calls
 const requestCache = new Map<string, { data: any; timestamp: number }>();

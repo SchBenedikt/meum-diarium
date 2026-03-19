@@ -6,6 +6,7 @@
 import { useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { trackProgress } from '@/lib/user-progress';
+import { getSafeLanguage } from '@/lib/language-utils';
 
 interface UsePageTrackingOptions {
   type: 'post' | 'lexicon' | 'grammar' | 'vocab' | 'simulation' | 'chat';
@@ -20,7 +21,7 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
   const hasTracked = useRef(false);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || !user.id) return;
 
     // Cleanup-Funktion, die beim Verlassen der Seite ausgeführt wird
     const handlePageLeave = () => {
