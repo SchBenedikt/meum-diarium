@@ -362,7 +362,7 @@ export function formatContent(content: string, t: (key: TranslationKey) => strin
     if (translatedEntry.term) {
       termsMap.set(translatedEntry.term.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
     }
-    translatedEntry.variants?.forEach(variant => {
+    (Array.isArray(translatedEntry.variants) ? translatedEntry.variants : []).forEach(variant => {
       if (variant) {
         termsMap.set(variant.toLowerCase(), { slug: originalEntry.slug, definition: translatedEntry.definition, type: 'lexicon' });
       }

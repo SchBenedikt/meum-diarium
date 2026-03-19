@@ -84,21 +84,21 @@ export default function LexiconEditorPage() {
                 category: existingEntry.category,
                 definition: existingEntry.definition,
                 etymology: existingEntry.etymology || '',
-                variants: existingEntry.variants || [],
-                relatedTerms: existingEntry.relatedTerms || [],
+                variants: Array.isArray(existingEntry.variants) ? existingEntry.variants : [],
+                relatedTerms: Array.isArray(existingEntry.relatedTerms) ? existingEntry.relatedTerms : [],
                 en: {
                     term: existingEntry.translations?.en?.term || '',
                     definition: existingEntry.translations?.en?.definition || '',
                     etymology: existingEntry.translations?.en?.etymology || '',
                     category: existingEntry.translations?.en?.category || '',
-                    variants: existingEntry.translations?.en?.variants || []
+                    variants: Array.isArray(existingEntry.translations?.en?.variants) ? existingEntry.translations?.en?.variants : []
                 },
                 la: {
                     term: existingEntry.translations?.la?.term || '',
                     definition: existingEntry.translations?.la?.definition || '',
                     etymology: existingEntry.translations?.la?.etymology || '',
                     category: existingEntry.translations?.la?.category || '',
-                    variants: existingEntry.translations?.la?.variants || []
+                    variants: Array.isArray(existingEntry.translations?.la?.variants) ? existingEntry.translations?.la?.variants : []
                 }
             });
         }
