@@ -170,13 +170,14 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Handle cross-origin requests - allow them to pass through
+  // Handle cross-origin requests - block Cloudflare Insights completely
   if (url.origin !== location.origin) {
-    // For Cloudflare Insights and other external services, let them pass through
+    // Block Cloudflare Insights and other analytics
     if (url.hostname.includes('cloudflareinsights.com') || 
         url.hostname.includes('cloudflare.com') ||
         url.pathname.includes('/cdn-cgi/rum')) {
-      return; // Don't intercept, let browser handle it
+      event.respondWith(new Response(null, { status: 204 }));
+      return;
     }
     // For other cross-origin requests, don't intercept
     return;

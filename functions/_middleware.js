@@ -1,6 +1,14 @@
 export async function onRequest(context) {
   const { request, next, env } = context;
   
+  // Block Cloudflare Insights requests completely
+  const url = new URL(request.url);
+  if (url.hostname.includes('cloudflareinsights.com') || 
+      url.pathname.includes('/cdn-cgi/rum') ||
+      url.hostname.includes('cloudflare.com')) {
+    return new Response(null, { status: 204 });
+  }
+  
   // Add CORS headers to all responses
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -17,7 +25,6 @@ export async function onRequest(context) {
     });
   }
 
-  const url = new URL(request.url);
   const pathname = url.pathname;
   
   // Completely bypass Cloudflare Access for static assets
