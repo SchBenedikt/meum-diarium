@@ -22,6 +22,7 @@ import { SEO } from '@/components/SEO';
 import { PostTags } from '@/components/PostTags';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { getApiBase } from '@/lib/api';
+import { usePageTracking } from '@/hooks/usePageTracking';
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
   const wordsPerMinute = 200;
@@ -44,6 +45,18 @@ function PostContent({ post }: { post: BlogPost }) {
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const contentToDisplay = useMemo(() => post?.content?.[perspective], [post, perspective]);
+  
+  // Page Tracking
+  usePageTracking({
+    type: 'post',
+    itemId: post.slug,
+    title: post.title,
+    metadata: {
+      author: post.author,
+      perspective: perspective,
+      readingTime: calculateReadingTime(contentToDisplay)
+    }
+  });
   
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {

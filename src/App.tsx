@@ -58,6 +58,7 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
@@ -138,6 +139,7 @@ const AppContent = () => {
               <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
               <Route path="/register" element={<PageTransition><RegisterPage /></PageTransition>} />
               <Route path="/dashboard" element={<PageTransition><DashboardPage /></PageTransition>} />
+              <Route path="/profile" element={<PageTransition><ProfilePage /></PageTransition>} />
               <Route path="/profile/edit" element={<PageTransition><ProfileEditPage /></PageTransition>} />
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />

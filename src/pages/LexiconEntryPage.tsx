@@ -15,6 +15,7 @@ import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
 import { fetchLexiconEntry } from '@/lib/api';
 import { SEO } from '@/components/SEO';
+import { usePageTracking } from '@/hooks/usePageTracking';
 export default function LexiconEntryPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -26,6 +27,18 @@ export default function LexiconEntryPage() {
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
+  
+  // Page Tracking
+  usePageTracking({
+    type: 'lexicon',
+    itemId: slug || '',
+    title: entry?.term || 'Lexikon-Eintrag',
+    metadata: {
+      category: entry?.category,
+      language: language as any
+    }
+  });
+  
   useEffect(() => {
     async function loadEntry() {
       if (!slug) return;
