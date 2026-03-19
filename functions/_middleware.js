@@ -29,6 +29,7 @@ export async function onRequest(context) {
   
   // Completely bypass Cloudflare Access for static assets
   if (pathname.startsWith('/assets/') || 
+      pathname.startsWith('/images/') ||  // <-- ADD THIS LINE
       pathname.endsWith('.js') || 
       pathname.endsWith('.css') || 
       pathname.endsWith('.json') || 
