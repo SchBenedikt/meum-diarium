@@ -43,6 +43,9 @@ export default function AdminPage() {
     const { lexicon: lexiconEntries } = useLexicon();
     const { works } = useWorks();
     const { tags } = useTags();
+    
+    // Debug logging
+    console.log('🔍 [AdminPage] usePosts returned:', { posts: posts?.length, isLoading, error });
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);

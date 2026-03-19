@@ -13,13 +13,131 @@ const app = express();
 const PORT = 3001;
 const BASE_URL = (process.env.SITE_URL || 'https://meum-diarium.xn--schchner-2za.de').replace(/\/$/, '');
 
+// Enable strict routing to prevent automatic redirects
+app.enable('strict routing');
+
 // Known author IDs
 const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
-// **CRITICAL**: Serve static files from public folder BEFORE API routes
+// **IMPORTANT**: API routes must be defined BEFORE static file serving
+// to prevent static directories from intercepting API requests
+
+// API Posts endpoint
+app.get('/api/posts', async (_req, res) => {
+    console.log('📝 [Dev] GET /api/posts - serving from local posts database');
+    
+    try {
+        const db = getLocalPostsDb();
+        
+        // Get all posts from the database
+        const allPosts = await db.select().from(posts).all();
+        
+        // Normalize tags from database text to arrays
+        const normalizedPosts = allPosts.map((post: any) => {
+            const normalizedPost: any = { ...post };
+            
+            // Parse tags from text to array
+            if (typeof normalizedPost.tags === 'string') {
+                try {
+                    const parsed = JSON.parse(normalizedPost.tags);
+                    normalizedPost.tags = Array.isArray(parsed) ? parsed : [];
+                } catch {
+                    // If it's not valid JSON, try to split by common delimiters
+                    if (normalizedPost.tags.includes('[') && normalizedPost.tags.includes(']')) {
+                        // It might be a stringified array that had issues
+                        try {
+                            // Clean up the string and parse again
+                            const cleanTags = normalizedPost.tags
+                                .replace(/[\[\]"]/g, '')
+                                .replace(/,\s*/g, ',')
+                                .trim();
+                            normalizedPost.tags = cleanTags ? cleanTags.split(',') : [];
+                        } catch {
+                            normalizedPost.tags = [];
+                        }
+                    } else if (normalizedPost.tags.trim()) {
+                        // Split by commas if it's a comma-separated string
+                        normalizedPost.tags = normalizedPost.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean);
+                    } else {
+                        normalizedPost.tags = [];
+                    }
+                }
+            }
+            
+            // Ensure tags is always an array
+            if (!Array.isArray(normalizedPost.tags)) {
+                normalizedPost.tags = [];
+            }
+            
+            return normalizedPost;
+        });
+        
+        console.log(`✅ [Dev] Served ${normalizedPosts.length} posts from local database`);
+        res.json(normalizedPosts);
+        
+    } catch (error) {
+        console.error('❌ [Dev] Error serving posts from database:', error);
+        
+        // Fallback to JSON files if database fails
+        console.log('🔄 [Dev] Falling back to JSON files...');
+        try {
+            const postsDir = path.resolve(__dirname, '../public/api/posts');
+            const authorDirs = await fs.readdir(postsDir);
+            
+            let allPosts: any[] = [];
+            
+            for (const authorDir of authorDirs) {
+                const authorPath = path.join(postsDir, authorDir);
+                const stat = await fs.stat(authorPath);
+                
+                if (stat.isDirectory()) {
+                    const postFiles = await fs.readdir(authorPath);
+                    
+                    for (const file of postFiles) {
+                        if (file.endsWith('.json')) {
+                            const filePath = path.join(authorPath, file);
+                            const content = await fs.readFile(filePath, 'utf-8');
+                            const post = JSON.parse(content);
+                            
+                            // Normalize data structure
+                            post.author = authorDir;
+                            post.authorId = authorDir;
+                            
+                            // Ensure tags is always an array, not a string
+                            if (typeof post.tags === 'string') {
+                                try {
+                                    post.tags = JSON.parse(post.tags);
+                                } catch {
+                                    post.tags = [];
+                                }
+                            }
+                            if (!Array.isArray(post.tags)) {
+                                post.tags = [];
+                            }
+                            
+                            allPosts.push(post);
+                        }
+                    }
+                }
+            }
+            
+            // Sort by date (newest first)
+            allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+            
+            console.log(`✅ [Dev] Fallback: Served ${allPosts.length} posts from JSON files`);
+            res.json(allPosts);
+            
+        } catch (fallbackError) {
+            console.error('❌ [Dev] Fallback also failed:', fallbackError);
+            res.json([]);
+        }
+    }
+});
+
+// **CRITICAL**: Serve static files from public folder AFTER API routes
 // This allows /api/works.json, /api/works-details/*.json to be served directly
 const publicDir = path.resolve(__dirname, '../public');
 app.use(express.static(publicDir, {
