@@ -1,41 +1,41 @@
 {
-    "slug": "author-about-seneca",
-    "heroTitle": "Lucius Annaeus Seneca",
-    "heroSubtitle": "Stoischer Philosoph und Staatsmann",
-    "heroImage": "/images/seneca-hero.jpg",
-    "introText": "Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.",
-    "sections": [],
-    "highlights": [
-        {
-            "title": "",
-            "description": "",
-            "icon": "BookOpen"
-        }
-    ],
-    "translations": {
-        "en": {
-            "heroTitle": "Lucius Annaeus Seneca",
-            "heroSubtitle": "Stoic Philosopher and Statesman",
-            "introText": "One of the most influential Stoic philosophers and advisor to Emperor Nero.",
-            "highlights": [
-                {
-                    "title": "",
-                    "description": "",
-                    "icon": "BookOpen"
-                }
-            ]
-        },
-        "la": {
-            "heroTitle": "Lucius Annaeus Seneca",
-            "heroSubtitle": "Philosophus Stoicus et Vir Publicus",
-            "introText": "Unus ex philosophis Stoicis maxime illustribus et consiliarius Neronis Imperatoris.",
-            "highlights": [
-                {
-                    "title": "",
-                    "description": "",
-                    "icon": "BookOpen"
-                }
-            ]
-        }
+  "slug": "author-about-seneca",
+  "heroTitle": "Lucius Annaeus Seneca",
+  "heroSubtitle": "Stoischer Philosoph und Staatsmann",
+  "heroImage": "/images/seneca-hero.jpg",
+  "projectDescription": "Einer der bedeutendsten stoischen Philosophen der Antike, Berater Kaiser Neros und Verfasser zahlreicher philosophischer Schriften, die bis heute Gültigkeit haben.",
+  "introText": "Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.",
+  "sections": [],
+  "highlights": [
+    {
+      "title": "Epistulae Morales",
+      "description": "124 Briefe an Lucilius – die tiefgründigste Sammlung stoischer Lebensweisheit.",
+      "icon": "BookOpen"
+    },
+    {
+      "title": "De Brevitate Vitae",
+      "description": "Über die Kürze des Lebens – ein zeitloser Essay über Zeit und Sinn.",
+      "icon": "Clock"
     }
+  ],
+  "translations": {
+    "de": {
+      "heroTitle": "Lucius Annaeus Seneca",
+      "heroSubtitle": "Stoischer Philosoph und Staatsmann",
+      "projectDescription": "Einer der bedeutendsten stoischen Philosophen der Antike, Berater Kaiser Neros und Verfasser zahlreicher philosophischer Schriften, die bis heute Gültigkeit haben.",
+      "introText": "Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero."
+    },
+    "en": {
+      "heroTitle": "Lucius Annaeus Seneca",
+      "heroSubtitle": "Stoic Philosopher and Statesman",
+      "projectDescription": "One of the most important Stoic philosophers of antiquity, advisor to Emperor Nero and author of numerous philosophical works that remain relevant today.",
+      "introText": "One of the most influential Stoic philosophers and advisor to Emperor Nero."
+    },
+    "la": {
+      "heroTitle": "Lucius Annaeus Seneca",
+      "heroSubtitle": "Philosophus Stoicus et Vir Publicus",
+      "projectDescription": "Unus ex praecipuis philosophis Stoicis antiquitatis, consiliarius Neronis imperatoris et scriptor operum philosophicorum.",
+      "introText": "Unus ex philosophis Stoicis maximi momenti et consiliarius imperatoris Neronis."
+    }
+  }
 }

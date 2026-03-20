@@ -14,7 +14,7 @@ import NotFound from './NotFound';
 import { FormattedContent } from '@/components/FormattedContent';
 import { PerspectiveToggle } from '@/components/PerspectiveToggle';
 import { TableOfContents } from '@/components/TableOfContents';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { BlogCard } from '@/components/BlogCard';
@@ -36,18 +36,11 @@ function PostContent({ post }: { post: BlogPost }) {
   const [searchParams] = useSearchParams();
   const [perspective, setPerspective] = useState<Perspective>('diary');
   const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['start start', 'end start'],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['9vh', '0%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post?.content?.diary, post?.content?.scientific, perspective]);
+  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post?.content, perspective]);
   
   // Calculate reading time separately to avoid dependency issues
-  const readingTime = useMemo(() => calculateReadingTime(contentToDisplay), [contentToDisplay]);
+  const readingTime = useMemo(() => calculateReadingTime(contentToDisplay ?? ''), [contentToDisplay]);
   
   // Page Tracking
   usePageTracking({

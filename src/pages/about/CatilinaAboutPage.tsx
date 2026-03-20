@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, Award, ArrowRight, Clock, Sword, Users, Scroll, AlertTriangle, Shield, Flame } from 'lucide-react';
+import { MapPin, BookOpen, Award, ArrowRight, Clock, Sword, Users, Scroll, AlertTriangle, Shield, Flame, Landmark } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
@@ -223,7 +223,7 @@ export function CatilinaAboutPage() {
   };
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <AuthorAboutHero authorInfo={authorInfo} />
+      <AuthorAboutHero authorInfo={authorInfo} authorPage={authorPage} language={language} birthPlace={details.birthPlace} />
       <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 py-16">
         {/* Introduction Section */}
         <motion.div

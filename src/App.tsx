@@ -78,7 +78,8 @@ const AppContent = () => {
   const isAuthorRoute = location.pathname.startsWith('/caesar') ||
     location.pathname.startsWith('/cicero') ||
     location.pathname.startsWith('/augustus') ||
-    location.pathname.startsWith('/seneca');
+    location.pathname.startsWith('/seneca') ||
+    location.pathname.startsWith('/catilina');
   const isPostPage = isAuthorRoute && (
     !location.pathname.endsWith('/about') &&
     !location.pathname.includes('/works/') &&
