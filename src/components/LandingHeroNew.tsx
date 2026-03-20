@@ -14,6 +14,7 @@ import { ImageWithFallback } from './ui/ImageWithFallback';
 import ParallaxHero from './ParallaxHero';
 import { useState, useEffect } from 'react';
 import { Author } from '@/types/blog';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function LandingHeroNew() {
   const { t } = useLanguage();
@@ -140,10 +141,10 @@ export default function LandingHeroNew() {
 
   
   const stats = [
-    { value: '4', label: 'Historische Persönlichkeiten' },
-    { value: '36K', label: 'Vokabeln' },
-    { value: '50', label: 'Artikel' },
-    { value: '92+', label: 'Lexikon-Einträge' },
+    { value: '4', label: 'Historische Persönlichkeiten', delay: 0 },
+    { value: '36000', label: 'Vokabeln', delay: 0.2 },
+    { value: '50', label: 'Artikel', delay: 0.4 },
+    { value: '92+', label: 'Lexikon-Einträge', delay: 0.6 },
   ];
 
   return (
@@ -162,21 +163,12 @@ export default function LandingHeroNew() {
             className="grid grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {stats.map((stat, i) => (
-              <motion.div
+              <AnimatedCounter
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-4xl sm:text-5xl font-bricolage font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
+                endValue={stat.value}
+                label={stat.label}
+                delay={stat.delay}
+              />
             ))}
           </motion.div>
         </div>
