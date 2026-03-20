@@ -13,11 +13,11 @@ const PRECACHE_ASSETS = [
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
   // Hero images for authors
-  '/images/caesar-hero.jpg',
+  '/images/caesar-hero.png',
   '/images/cicero-hero.png',
-  '/images/augustus-hero.jpg',
-  '/images/seneca-hero.jpg',
-  '/images/catilina-hero.jpg',
+  '/images/augustus-hero.png',
+  '/images/seneca-hero.png',
+  '/images/catilina-hero.png',
   // Core learning pages
   '/learn',
   '/learn/grammar',

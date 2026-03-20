@@ -92,16 +92,16 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 }
                 // Also fix other authors if needed
                 else if (author.id === 'caesar') {
-                    heroImagePath = '/images/caesar-hero.jpg';
+                    heroImagePath = '/images/caesar-hero.png';
                 }
                 else if (author.id === 'augustus') {
-                    heroImagePath = '/images/augustus-hero.jpg';
+                    heroImagePath = '/images/augustus-hero.png';
                 }
                 else if (author.id === 'seneca') {
-                    heroImagePath = '/images/seneca-hero.jpg';
+                    heroImagePath = '/images/seneca-hero.png';
                 }
                 else if (author.id === 'catilina') {
-                    heroImagePath = '/images/catilina-hero.jpg';
+                    heroImagePath = '/images/catilina-hero.png';
                 }
                 
                 const result = {
@@ -378,16 +378,16 @@ function normalizeAuthorResult(author: any) {
         heroImagePath = '/images/cicero-hero.png';
     }
     else if (author.id === 'caesar') {
-        heroImagePath = '/images/caesar-hero.jpg';
+        heroImagePath = '/images/caesar-hero.png';
     }
     else if (author.id === 'augustus') {
-        heroImagePath = '/images/augustus-hero.jpg';
+        heroImagePath = '/images/augustus-hero.png';
     }
     else if (author.id === 'seneca') {
-        heroImagePath = '/images/seneca-hero.jpg';
+        heroImagePath = '/images/seneca-hero.png';
     }
     else if (author.id === 'catilina') {
-        heroImagePath = '/images/catilina-hero.jpg';
+        heroImagePath = '/images/catilina-hero.png';
     }
     
     const result = {

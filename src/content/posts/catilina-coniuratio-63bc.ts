@@ -11,7 +11,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   date: '2024-10-27',
   readingTime: 10,
   tags: ['verschwörung', 'cicero', 'republik', 'krise', 'catilina', 'rom'],
-  image: '/images/catilina-hero.jpg',
+  image: '/images/catilina-hero.png',
   content: {
     diary: `Sie haben mein Lager umzingelt. Die Truppen des Konsuls Antonius nähern sich. Ich weiß, dass dies mein Ende ist.
 

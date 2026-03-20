@@ -11,7 +11,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   date: '2024-09-02',
   readingTime: 7,
   tags: ['actium', 'bürgerkrieg', 'antonius', 'kleopatra', 'seeschlacht'],
-  image: '/images/augustus-hero.jpg',
+  image: '/images/augustus-hero.png',
   content: {
     diary: `Das Meer vor Actium spiegelt heute die aufgehende Sonne, als wären die Götter selbst Zeuge meines Triumphs. Marcus Agrippa, mein treuster Feldherr, hat alles gegeben – seine Schiffe, seine Strategie, sein Genie.
 

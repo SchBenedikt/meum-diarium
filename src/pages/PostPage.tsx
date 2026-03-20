@@ -112,7 +112,7 @@ function PostContent({ post }: { post: BlogPost }) {
   const author = post?.author ? authorData[post.author as Author] : null;
   const excerpt = contentToDisplay?.substring(0, 160) || '';
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
-  const finalImage = `${baseUrl}/images/caesar-hero.jpg`;
+  const finalImage = `${baseUrl}/images/caesar-hero.png`;
   const currentUrl = window.location.href;
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">

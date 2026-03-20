@@ -11,7 +11,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   date: '2024-02-01',
   readingTime: 6,
   tags: ['epistulae morales', 'lucilius', 'stoizismus', 'zeit', 'freiheit'],
-  image: '/images/seneca-hero.jpg',
+  image: '/images/seneca-hero.png',
   content: {
     diary: `Lucilius, mein Freund,
 

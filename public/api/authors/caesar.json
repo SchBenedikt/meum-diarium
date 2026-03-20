@@ -7,7 +7,7 @@
   "birthYear": -100,
   "deathYear": -44,
   "description": "Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.",
-  "heroImage": "/images/caesar-hero.jpg",
+  "heroImage": "/images/caesar-hero.png",
   "theme": "theme-caesar",
   "color": "hsl(25, 95%, 53%)",
   "highlights": [

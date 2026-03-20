@@ -13,7 +13,7 @@ export const authors: Record<string, AuthorInfo> = {
     deathYear: -44,
     description:
       'Feldherr, Staatsmann und Schriftsteller. Caesars Feldzüge in Gallien, sein Bürgerkrieg gegen Pompeius und seine Diktatur veränderten die römische Republik für immer.',
-    heroImage: '/images/caesar-hero.jpg',
+    heroImage: '/images/caesar-hero.png',
     theme: 'caesar',
     color: '#B91C1C',
     highlights: [
@@ -93,7 +93,7 @@ export const authors: Record<string, AuthorInfo> = {
     deathYear: 14,
     description:
       'Großneffe und Adoptivsohn Caesars. Begründer des Römischen Kaiserreichs (Prinzipat), der nach Jahrzehnten des Bürgerkriegs die Pax Romana einleitete und Rom in Marmor verwandelte.',
-    heroImage: '/images/augustus-hero.jpg',
+    heroImage: '/images/augustus-hero.png',
     theme: 'augustus',
     color: '#B45309',
     highlights: [
@@ -133,7 +133,7 @@ export const authors: Record<string, AuthorInfo> = {
     deathYear: 65,
     description:
       'Einer der bedeutendsten stoischen Philosophen der Antike, Berater Kaiser Neros und Verfasser zahlreicher philosophischer Schriften, Tragödien und Briefe, die bis heute Gültigkeit haben.',
-    heroImage: '/images/seneca-hero.jpg',
+    heroImage: '/images/seneca-hero.png',
     theme: 'seneca',
     color: '#065F46',
     highlights: [
@@ -173,7 +173,7 @@ export const authors: Record<string, AuthorInfo> = {
     deathYear: -62,
     description:
       'Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik. Durch Ciceros Reden für immer in die Geschichte eingegangen.',
-    heroImage: '/images/catilina-hero.jpg',
+    heroImage: '/images/catilina-hero.png',
     theme: 'catilina',
     color: '#7C3AED',
     highlights: [

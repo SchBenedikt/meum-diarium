@@ -35,7 +35,7 @@ export default function LandingHeroNew() {
       role: 'Feldherr & Staatsmann', 
       years: '100–44 v. Chr.', 
       description: 'Der berühmte römische Feldherr und Diktator, der den Rubikon überschritt und Rom als Alleinherrscher regierte.',
-      image: '/images/caesar-hero.jpg',
+      image: '/images/caesar-hero.png',
       quote: 'Veni, vidi, vici.',
       color: 'from-red-600 to-orange-600'
     },
@@ -57,7 +57,7 @@ export default function LandingHeroNew() {
       role: 'Erster Kaiser Roms', 
       years: '63 v. Chr.–14 n. Chr.', 
       description: 'Der erste römische Kaiser, der nach Caesars Tod das Reich befriedete und die Pax Romana einleitete.',
-      image: '/images/augustus-hero.jpg',
+      image: '/images/augustus-hero.png',
       quote: 'Festina lente.',
       color: 'from-amber-600 to-yellow-600'
     },
@@ -68,7 +68,7 @@ export default function LandingHeroNew() {
       role: 'Stoischer Philosoph', 
       years: '4 v. Chr.–65 n. Chr.', 
       description: 'Der bedeutende stoische Philosoph, Lehrer Neros und Verfasser zahlreicher philosophischer Schriften und Dramen.',
-      image: '/images/seneca-hero.jpg',
+      image: '/images/seneca-hero.png',
       quote: 'Dum differtur vita transcurrit.',
       color: 'from-green-600 to-teal-600'
     },

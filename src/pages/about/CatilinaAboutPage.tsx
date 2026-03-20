@@ -222,301 +222,287 @@ export function CatilinaAboutPage() {
     return year < 0 ? `${Math.abs(year)} ${t('common.bc')}` : `${year} ${t('common.ad')}`;
   };
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <AuthorAboutHero authorInfo={authorInfo} authorPage={authorPage} language={language} birthPlace={details.birthPlace} />
-      <main className="flex-1 container mx-auto max-w-7xl px-4 sm:px-6 py-16">
-        {/* Introduction Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-xl leading-relaxed text-muted-foreground">
-              {t('catilina.intro.paragraph1')}
-            </p>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              {t('catilina.intro.paragraph2')}
-            </p>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              {t('catilina.intro.paragraph3')}
-            </p>
-          </div>
-        </motion.div>
-        {/* Quick Facts */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-8">{t('catilina.quickFacts.title')}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {catilinaSnapshots.map((snapshot, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
-                className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors"
-              >
-                <div className="text-sm text-muted-foreground mb-1">{snapshot.label}</div>
-                <div className="text-lg font-bold text-foreground mb-1">{snapshot.value}</div>
-                <div className="text-xs text-muted-foreground">{snapshot.hint}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        {/* Historical Context */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-8">{t('catilina.historicalContext.title')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {catilinaContext.map((context, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className="bg-card rounded-xl p-6 border border-border"
-              >
-                <div className="flex items-start gap-3 mb-3">
-                  <Clock className="w-5 h-5 text-primary mt-1" />
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">{context.title}</h3>
-                    <div className="text-sm text-primary">{context.period}</div>
+    <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
+      <main className="flex-1">
+        <AuthorAboutHero authorInfo={authorInfo} authorPage={authorPage} language={language} birthPlace={details.birthPlace} />
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
+          <div className="grid gap-20 lg:grid-cols-12">
+            <div className="lg:col-span-8 space-y-24">
+              {authorWorks.length > 0 && (
+                <section>
+                  <div className="flex items-center gap-6 mb-12">
+                    <h2 className="font-display text-4xl font-bold">{t('works')}</h2>
+                    <div className="h-px flex-1 bg-white/5" />
                   </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">{context.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-8">{t('catilina.timeline.title')}</h2>
-          <div className="space-y-4">
-            {catilinaTimeline.map((event, index) => {
-              const Icon = event.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.05 }}
-                  className="flex gap-4 items-start"
-                >
-                  <div className="flex-shrink-0 w-24 text-right">
-                    <div className="text-lg font-bold text-primary">{formatYear(event.year)}</div>
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    {authorWorks.map((work, i) => (
+                      <Link
+                        key={i}
+                        to={`/catilina/works/${slugify(work.title, { lower: true, strict: true })}`}
+                        className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
+                      >
+                        <div className="relative z-10">
+                          <BookOpen className="h-8 w-8 text-primary mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
+                          <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                            {work.title}
+                          </h3>
+                          <p className="text-muted-foreground line-clamp-3 mb-8 italic">
+                            {work.summary}
+                          </p>
+                          <div className="flex items-center text-sm font-bold uppercase tracking-widest text-primary gap-2">
+                            <span>{t('readMore')}</span>
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
+                </section>
+              )}
+
+              {authorPosts.length > 0 && (
+                <section>
+                  <div className="flex items-center justify-between mb-12">
+                    <h2 className="font-display text-4xl font-bold">{t('diaryEntries')}</h2>
+                    <Button asChild variant="ghost" className="text-primary hover:text-primary/80 uppercase tracking-widest font-bold text-xs">
+                      <Link to="/catilina">
+                        {t('viewAllEntries')} <ArrowRight className="h-4 w-4 ml-2" />
+                      </Link>
+                    </Button>
                   </div>
-                  <div className="flex-1 bg-card rounded-xl p-4 border border-border">
-                    <h3 className="text-lg font-bold mb-2">{event.title}</h3>
-                    <p className="text-muted-foreground">{event.description}</p>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    {authorPosts.map((post) => (
+                      <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
+                        <article className="card-modern card-hover-primary card-padding-md relative h-full overflow-hidden">
+                          <div className="relative flex items-center justify-between gap-3 mb-4">
+                            <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
+                              {post.title}
+                            </h3>
+                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                              {post.historicalDate}
+                            </span>
+                          </div>
+                          <p className="relative text-base text-foreground/85 leading-relaxed line-clamp-3 mb-5">
+                            {post.excerpt}
+                          </p>
+                          <div className="relative flex items-center justify-between text-xs text-muted-foreground">
+                            <span className="inline-flex items-center gap-2">
+                              <span className="h-2 w-2 rounded-full bg-primary/60" />
+                              {post.readingTime ? `${post.readingTime} min` : '5 min'} Lesedauer
+                            </span>
+                            <span className="inline-flex items-center text-primary font-semibold text-sm">
+                              Weiterlesen
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </span>
+                          </div>
+                        </article>
+                      </Link>
+                    ))}
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-        {/* The Conspiracy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-8">{t('catilina.conspiracy.title')}</h2>
-          <div className="space-y-6">
-            {conspiracyPhases.map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="bg-card rounded-xl p-6 border border-border"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0">
-                    <AlertTriangle className="w-8 h-8 text-destructive" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold">{phase.title}</h3>
-                      <span className="text-sm text-primary font-semibold">{phase.year}</span>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed mb-3">{phase.description}</p>
-                    <div className="bg-secondary/50 rounded-lg p-3">
-                      <div className="text-sm font-semibold text-foreground mb-1">{t('catilina.conspiracy.outcome')}:</div>
-                      <div className="text-sm text-muted-foreground">{phase.outcome}</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        {/* Cicero's Speeches Against Catilina */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-4">{t('catilina.ciceroSpeeches.title')}</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            {t('catilina.ciceroSpeeches.description')}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {ciceroSpeeches.map((speech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="bg-card rounded-xl p-6 border border-border"
-              >
-                <div className="flex items-start gap-3 mb-4">
-                  <Scroll className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-bold mb-1">{speech.title}</h3>
-                    <div className="text-sm text-primary">{speech.date}</div>
-                  </div>
-                </div>
-                <p className="text-muted-foreground mb-3 leading-relaxed">{speech.summary}</p>
-                <div className="bg-primary/5 rounded-lg p-3">
-                  <div className="text-sm font-semibold text-foreground mb-1">{t('catilina.ciceroSpeeches.impactLabel')}:</div>
-                  <div className="text-sm text-muted-foreground">{speech.impact}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        {/* Legacy and Historical Significance */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold mb-8">{t('catilina.legacy.title')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {catilinaLegacy.map((legacy, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                className="bg-card rounded-xl p-6 border border-border"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">{legacy.tag}</span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-secondary text-secondary-foreground">{legacy.horizon}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-3">{legacy.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{legacy.summary}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        {/* Historical Sources Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="mb-16"
-        >
-          <div className="bg-secondary/30 rounded-xl p-6 border-l-4 border-primary">
-            <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-primary" />
-              {t('catilina.sources.title')}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed mb-3">
-              {t('catilina.sources.description')}
-            </p>
-            <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-              <li>{t('catilina.sources.cicero')}</li>
-              <li>{t('catilina.sources.sallust')}</li>
-              <li>{t('catilina.sources.note')}</li>
-            </ul>
-          </div>
-        </motion.div>
-        {/* Related Content */}
-        {authorPosts.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-8">{t('catilina.relatedContent.title')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {authorPosts.map((post, index) => (
-                <Link
-                  key={post.slug}
-                  to={`/${post.author}/${post.slug}`}
-                  className="group"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
-                  >
-                    {post.coverImage && (
-                      <div className="aspect-video overflow-hidden">
-                        <img
-                          src={post.coverImage}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                </section>
+              )}
+            </div>
+
+            <div className="lg:col-span-4">
+              <div className="sticky top-32 space-y-8">
+                <div className="card-modern card-padding-md">
+                  <h3 className="font-display text-2xl font-bold mb-5 text-primary">Kurzfakten</h3>
+                  <div className="space-y-3 text-sm text-foreground/80">
+                    {catilinaSnapshots.map((item) => (
+                      <div key={item.label} className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 last:border-0 last:pb-0">
+                        <span className="font-semibold">{item.label}</span>
+                        <div className="text-right space-y-0.5">
+                          <p className="font-medium text-foreground">{item.value}</p>
+                          <p className="text-xs text-muted-foreground">{item.hint}</p>
+                        </div>
                       </div>
-                    )}
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
-                    </div>
-                  </motion.div>
-                </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.historicalContext.title')}</h2>
+              <p className="text-lg text-muted-foreground">Politische und soziale Spannungen in der späten Republik als Nährboden der Verschwörung.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
+              {catilinaContext.map((context, index) => (
+                <div key={index} className="card-modern card-hover-primary card-padding-lg">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Kontext</span>
+                    <span className="text-xs font-semibold text-primary/70">{context.period}</span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{context.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{context.description}</p>
+                </div>
               ))}
             </div>
-          </motion.div>
-        )}
-        {/* Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="flex justify-between items-center"
-        >
-          <Link to="/about">
-            <Button variant="outline" className="gap-2">
-              {t('backToAuthorOverview')}
-            </Button>
-          </Link>
-          <Link to={`/${authorInfo.id}`}>
-            <Button className="gap-2">
-              {t('catilina.viewDiary')}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
-        </motion.div>
+          </div>
+        </section>
+
+        <section className="py-24 border-t border-border/40">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-4 mb-12">
+                <Clock className="h-8 w-8 text-primary" />
+                <div>
+                  <h2 className="font-display text-4xl font-bold">{t('catilina.timeline.title')}</h2>
+                  <p className="text-lg text-muted-foreground mt-2">Wendepunkte von Aufstieg, Verschwörung und Untergang.</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                {catilinaTimeline.map((event, index) => {
+                  const Icon = event.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.06 }}
+                      className="flex gap-4 items-start"
+                    >
+                      <div className="flex-shrink-0 w-24 text-right pt-3">
+                        <div className="text-sm font-bold text-primary">{formatYear(event.year)}</div>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-2">
+                          <Icon className="w-5 h-5 text-primary" />
+                        </div>
+                      </div>
+                      <div className="flex-1 bg-card rounded-2xl p-4 border border-border">
+                        <h3 className="font-bold mb-1">{event.title}</h3>
+                        <p className="text-sm text-muted-foreground">{event.description}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <div className="mt-16 pt-12 border-t border-border/40">
+                <p className="text-center text-muted-foreground mb-8">Für eine detaillierte Chronologie aller Ereignisse:</p>
+                <div className="flex justify-center gap-4">
+                  <Link
+                    to="/timeline"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
+                  >
+                    <Clock className="h-4 w-4" />
+                    Zur vollständigen Chronologie
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.conspiracy.title')}</h2>
+              <p className="text-lg text-muted-foreground">Die Verschwörung in Phasen, Akteuren und Folgen.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
+              {conspiracyPhases.map((phase, index) => (
+                <div key={index} className="card-modern card-hover-primary card-padding-lg">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <AlertTriangle className="h-3.5 w-3.5" /> Phase
+                    </span>
+                    <span className="text-xs font-semibold text-primary/70">{phase.year}</span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{phase.title}</h3>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-4">{phase.description}</p>
+                  <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
+                    <span className="font-semibold text-primary">{t('catilina.conspiracy.outcome')}:</span> {phase.outcome}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.ciceroSpeeches.title')}</h2>
+              <p className="text-lg text-muted-foreground">{t('catilina.ciceroSpeeches.description')}</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
+              {ciceroSpeeches.map((speech, index) => (
+                <div key={index} className="card-modern card-hover-primary card-padding-lg">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Rede</span>
+                    <span className="text-xs font-semibold text-primary/70">{speech.date}</span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{speech.title}</h3>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-4">{speech.summary}</p>
+                  <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
+                    <span className="font-semibold text-primary">{t('catilina.ciceroSpeeches.impactLabel')}:</span> {speech.impact}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.legacy.title')}</h2>
+              <p className="text-lg text-muted-foreground">Historische Wirkung der Catilinarischen Verschwörung auf Republik, Rhetorik und politische Kultur.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
+              {catilinaLegacy.map((legacy, index) => (
+                <div key={index} className="card-modern card-hover-primary card-padding-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">{legacy.tag}</span>
+                    <span className="text-xs px-2 py-1 rounded-full bg-secondary text-secondary-foreground">{legacy.horizon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{legacy.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{legacy.summary}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="bg-secondary/30 rounded-xl p-6 border-l-4 border-primary">
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-primary" />
+                  {t('catilina.sources.title')}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-3">
+                  {t('catilina.sources.description')}
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                  <li>{t('catilina.sources.cicero')}</li>
+                  <li>{t('catilina.sources.sallust')}</li>
+                  <li>{t('catilina.sources.note')}</li>
+                </ul>
+              </div>
+              <div className="mt-12 flex justify-between items-center">
+                <Link to="/about">
+                  <Button variant="outline" className="gap-2">
+                    {t('backToAuthorOverview')}
+                  </Button>
+                </Link>
+                <Link to={`/${authorInfo.id}`}>
+                  <Button className="gap-2">
+                    {t('catilina.viewDiary')}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

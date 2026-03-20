@@ -71,7 +71,7 @@ export function SEO({
   const defaults = defaultMeta[language] || defaultMeta.de;
   const finalTitle = title ? `${title} | ${defaults.siteName}` : defaults.title;
   const finalDescription = description || defaults.description;
-  const finalImage = image || `${baseUrl}/images/caesar-hero.jpg`;
+  const finalImage = image || `${baseUrl}/images/caesar-hero.png`;
   
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {

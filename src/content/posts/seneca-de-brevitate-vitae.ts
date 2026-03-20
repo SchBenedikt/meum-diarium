@@ -11,7 +11,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   date: '2024-01-15',
   readingTime: 9,
   tags: ['stoizismus', 'zeit', 'leben', 'philosophie', 'de brevitate vitae'],
-  image: '/images/seneca-hero.jpg',
+  image: '/images/seneca-hero.png',
   content: {
     diary: `Es ist wieder Morgen. Das Licht fällt durch das Fenster meines Arbeitszimmers in Corduba – nein, ich bin in Rom, natürlich. Die Gewohnheit des Geistes täuscht mich, wenn ich an die Kindheit denke.
 
