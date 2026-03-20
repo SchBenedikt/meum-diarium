@@ -91,6 +91,7 @@ export default {
           cicero: "hsl(var(--author-cicero))",
           augustus: "hsl(var(--author-augustus))",
           seneca: "hsl(var(--author-seneca))",
+          catilina: "hsl(var(--author-catilina))",
         },
       },
       borderRadius: {

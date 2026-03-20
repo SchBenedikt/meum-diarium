@@ -116,6 +116,8 @@
     /* Golden Bronze */
     --author-seneca: 165 40% 30%;
     /* Sage Green */
+    --author-catilina: 15 70% 40%;
+    /* Dark Orange/Rust */
   }
 
   .dark {
@@ -157,6 +159,7 @@
     --author-cicero: 215 50% 60%;
     --author-augustus: 45 60% 55%;
     --author-seneca: 165 35% 50%;
+    --author-catilina: 15 65% 60%;
   }
 
   /* Author Theme Overrides */
@@ -238,6 +241,26 @@
     --surface-container-low: 165 8% 13.5%;
     --surface-container: 165 8% 14%;
     --card: 165 6% 14.5%;
+  }
+
+  .theme-catilina {
+    --primary: var(--author-catilina);
+    --accent: var(--author-catilina);
+    --ring: var(--author-catilina);
+    --background: 15 10% 97.5%;
+    --surface-container-low: 15 6% 98.5%;
+    --surface-container: 15 6% 99%;
+    --card: 15 4% 99.5%;
+  }
+
+  .dark.theme-catilina {
+    --primary: var(--author-catilina);
+    --accent: var(--author-catilina);
+    --ring: var(--author-catilina);
+    --background: 15 14% 11%;
+    --surface-container-low: 15 10% 13%;
+    --surface-container: 15 10% 13.5%;
+    --card: 15 8% 14%;
   }
 
   * {

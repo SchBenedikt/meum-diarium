@@ -409,6 +409,170 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
+
+        {/* Meisterleistungen */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Meisterleistungen</h2>
+              <p className="text-lg text-muted-foreground">Rhetorik, Philosophie und Staatstheorie auf höchstem Niveau.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {ciceroAchievements.map((achievement) => {
+                const IconComponent = achievement.icon === 'Users' ? Users : achievement.icon === 'BookOpen' ? BookOpen : achievement.icon === 'Award' ? Award : Scroll;
+                return (
+                  <div
+                    key={achievement.title}
+                    className="card-modern card-hover-primary card-padding-lg"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{achievement.tag}</span>
+                      <IconComponent className="h-6 w-6 text-primary opacity-60" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold mb-2">{achievement.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">{achievement.summary}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Ciceros Weg zur Macht */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="font-display text-4xl font-bold mb-4">Ciceros Weg zur Macht</h2>
+              <p className="text-lg text-muted-foreground">Vom Provinzler zum berühmtesten Redner Roms.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              {/* Phase 1 */}
+              <div className="mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Aufstieg (81–63 v. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group h-full"
+                  >
+                    <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">70 v. Chr.</span>
+                    <h3 className="font-display text-2xl font-bold mb-3">Prozess gegen Verres</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Brillante Anklage gegen den korrupten Statthalter Siziliens. Durchbruch als Redner - schlägt Hortensius, den berühmtesten Anwalt Roms.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
+                  >
+                    <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Crown className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">63 v. Chr.</span>
+                    <h3 className="font-display text-2xl font-bold mb-3">Konsulat</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Als homo novus zum Konsul gewählt - ohne aristokratische Vorfahren. Größter Erfolg seiner Karriere durch rhetorisches Genie.</p>
+                  </motion.div>
+                </div>
+              </div>
+              {/* Phase 2 */}
+              <div className="mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Catilina (63 v. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="relative p-10 rounded-3xl border-2 border-primary/40 bg-gradient-to-br from-primary/5 via-card/60 to-card/40 backdrop-blur-xl overflow-hidden group"
+                >
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-6">
+                      <div>
+                        <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">8. November 63 v. Chr.</span>
+                        <h3 className="font-display text-3xl font-bold mb-2">In Catilinam</h3>
+                        <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Wendepunkt in Rom</p>
+                      </div>
+                      <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                        <Sparkles className="h-8 w-8 text-primary" />
+                      </div>
+                    </div>
+                    <p className="text-base text-foreground/90 leading-relaxed mb-4">Die vier Reden gegen Catilina retten die Republik vor der Verschwörung. „Quo usque tandem..." wird zum berühmtesten Redeauftakt der Antike.</p>
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex items-center gap-2 text-xs text-primary/80">
+                        <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                        <span className="font-semibold">Ciceros größter Triumph</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+              {/* Phase 3 */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Kampf gegen Tyrannen (44–43 v. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Scroll className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">44 v. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Philippicae</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">14 flammende Reden gegen Marcus Antonius. Verteidigung der Republik gegen die neue Tyrannis.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Award className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">43 v. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Proskriptionen</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Octavian opfert Cicero im Zweiten Triumvirat. Sein Name steht auf der Todesliste.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Clock className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">7. Dez. 43 v. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Tod</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Ermordet auf der Flucht. Kopf und Hände auf dem Forum ausgestellt - Strafe für seine Worte.</p>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Legendäre Zitate */}
         <section className="py-24">
           <div className="container mx-auto px-4">
