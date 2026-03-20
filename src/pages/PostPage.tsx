@@ -44,7 +44,10 @@ function PostContent({ post }: { post: BlogPost }) {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post, perspective]);
+  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post?.content?.diary, post?.content?.scientific, perspective]);
+  
+  // Calculate reading time separately to avoid dependency issues
+  const readingTime = useMemo(() => calculateReadingTime(contentToDisplay), [contentToDisplay]);
   
   // Page Tracking
   usePageTracking({
@@ -54,7 +57,7 @@ function PostContent({ post }: { post: BlogPost }) {
     metadata: {
       author: post.author,
       perspective: perspective,
-      readingTime: calculateReadingTime(contentToDisplay)
+      readingTime: readingTime
     }
   });
   
