@@ -81,7 +81,32 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             const queryTime = Date.now() - startTime;
             console.log(`✅ [Authors API] GET fetched ${results.length} authors (${queryTime}ms)`);
 
-            const normalized = results.map(normalizeAuthorResult);
+            const normalized = results.map((author: any) => {
+                console.log('🔧 [Authors API] Processing author:', author.id);
+                const result = {
+                    id: author.id,
+                    name: author.name,
+                    latinName: author.latin_name,
+                    title: author.title,
+                    years: author.years,
+                    birthYear: author.birth_year,
+                    deathYear: author.death_year,
+                    description: author.description,
+                    heroImage: author.hero_image,
+                    theme: author.theme,
+                    color: author.color,
+                    highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],
+                    testField: 'processed', // Debug field
+                };
+                
+                // Special fix for cicero
+                if (author.id === 'cicero') {
+                    console.log('🔧 [Authors API] Fixing cicero hero image');
+                    result.heroImage = '/images/cicero-hero.png';
+                }
+                
+                return result;
+            });
             
             return new Response(JSON.stringify(normalized), {
                 headers: {
@@ -329,10 +354,7 @@ interface AuthorResult {
 }
 
 function normalizeAuthorResult(author: any) {
-    console.log('🔧 [Authors API] Normalizing author:', author.id, 'current hero_image:', author.hero_image);
-    const heroImage = author.id === 'cicero' ? '/images/cicero-hero.png' : author.hero_image;
-    
-    return {
+    const result = {
         id: author.id,
         name: author.name,
         latinName: author.latin_name,
@@ -341,9 +363,17 @@ function normalizeAuthorResult(author: any) {
         birthYear: author.birth_year,
         deathYear: author.death_year,
         description: author.description,
-        heroImage: heroImage,
+        heroImage: author.hero_image,
         theme: author.theme,
         color: author.color,
         highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],
+        testField: 'normalize-called', // Debug field
     };
+    
+    // Special fix for cicero
+    if (author.id === 'cicero') {
+        result.heroImage = '/images/cicero-hero.png';
+    }
+    
+    return result;
 }
