@@ -3,7 +3,7 @@
  * Verfolgt die Verweildauer auf Seiten und speichert den Fortschritt
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { trackProgress } from '@/lib/user-progress';
 import { getSafeLanguage } from '@/lib/language-utils';
@@ -19,6 +19,9 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
   const { user } = useAuth();
   const startTime = useRef<number>(Date.now());
   const hasTracked = useRef(false);
+
+  // Memoize metadata to prevent infinite re-renders
+  const memoizedMetadata = useMemo(() => metadata, [JSON.stringify(metadata || {})]);
 
   useEffect(() => {
     if (!user || !user.id) return;
@@ -37,7 +40,7 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
           itemId,
           title,
           duration,
-          metadata
+          metadata: memoizedMetadata
         });
         hasTracked.current = true;
       }
@@ -73,7 +76,7 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
       // Final tracking attempt
       handlePageLeave();
     };
-  }, [user, type, itemId, title, metadata]);
+  }, [user, type, itemId, title, memoizedMetadata]);
 }
 
 /**

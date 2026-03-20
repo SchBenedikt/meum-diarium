@@ -1,11 +1,17 @@
 export async function onRequest(context) {
   const { request, next, env } = context;
   
-  // Block Cloudflare Insights requests completely
+  // Block ALL analytics and tracking requests
   const url = new URL(request.url);
-  if (url.hostname.includes('cloudflareinsights.com') || 
-      url.pathname.includes('/cdn-cgi/rum') ||
-      url.hostname.includes('cloudflare.com')) {
+  const pathname = url.pathname;
+  const hostname = url.hostname;
+  
+  // Block Cloudflare Insights and any analytics requests
+  if (hostname.includes('cloudflareinsights.com') || 
+      hostname.includes('cloudflare.com') ||
+      pathname.includes('/cdn-cgi/rum') ||
+      pathname.includes('/cdn-cgi/analytics') ||
+      pathname.includes('/cdn-cgi/trace')) {
     return new Response(null, { status: 204 });
   }
   
@@ -24,12 +30,10 @@ export async function onRequest(context) {
       headers: corsHeaders,
     });
   }
-
-  const pathname = url.pathname;
   
   // Completely bypass Cloudflare Access for static assets
   if (pathname.startsWith('/assets/') || 
-      pathname.startsWith('/images/') ||  // <-- ADD THIS LINE
+      pathname.startsWith('/images/') || 
       pathname.endsWith('.js') || 
       pathname.endsWith('.css') || 
       pathname.endsWith('.json') || 

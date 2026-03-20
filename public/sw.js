@@ -170,12 +170,16 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Handle cross-origin requests - block Cloudflare Insights completely
+  // Handle cross-origin requests - block ALL analytics and tracking
   if (url.origin !== location.origin) {
-    // Block Cloudflare Insights and other analytics
+    // Block ALL analytics, tracking, and external service requests
     if (url.hostname.includes('cloudflareinsights.com') || 
         url.hostname.includes('cloudflare.com') ||
-        url.pathname.includes('/cdn-cgi/rum')) {
+        url.hostname.includes('analytics') ||
+        url.hostname.includes('tracking') ||
+        url.pathname.includes('/cdn-cgi/rum') ||
+        url.pathname.includes('/cdn-cgi/analytics') ||
+        url.pathname.includes('/cdn-cgi/trace')) {
       event.respondWith(new Response(null, { status: 204 }));
       return;
     }
