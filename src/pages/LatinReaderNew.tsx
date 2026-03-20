@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, BookOpen, User } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, BookOpen, Library, User } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { works } from '@/data/works';
 
@@ -11,52 +11,72 @@ import { works } from '@/data/works';
 import deBelloGallicoText from '@/data/latin/caesar-de-bello-gallico.json';
 import deOfficiisText from '@/data/latin-texts/de-officiis.json';
 
-
 // Latin texts registry
 const LATIN_TEXTS: Record<string, any> = {
   'de-bello-gallico': deBelloGallicoText,
   'de-officiis': deOfficiisText,
 };
 
-// Step 1: Author selection
-// Step 2: Work selection for that author
-// Step 3: Show Latin text for reading
+const AUTHOR_LABELS: Record<string, string> = {
+  caesar: 'Julius Caesar',
+  cicero: 'Marcus Tullius Cicero',
+  augustus: 'Kaiser Augustus',
+  seneca: 'Seneca',
+  catilina: 'Lucius Sergius Catilina',
+};
+
+const FONT_SCALES = [
+  { label: 'A-', value: 'text-base' },
+  { label: 'A', value: 'text-lg' },
+  { label: 'A+', value: 'text-xl' },
+];
 
 export default function LatinReaderNew() {
   const { authorId, workSlug } = useParams<{ authorId?: string; workSlug?: string }>();
   const navigate = useNavigate();
-  const [selectedSentence, setSelectedSentence] = useState<string>('');
-  const [selectedSentenceIndex, setSelectedSentenceIndex] = useState<number | null>(null);
-  const [selectedSentenceKey, setSelectedSentenceKey] = useState<string>('');
-  const textAreaRef = useRef<HTMLDivElement>(null);
+  const [selectedBookNumber, setSelectedBookNumber] = useState<number | null>(null);
+  const [selectedSectionNumber, setSelectedSectionNumber] = useState<number | null>(null);
+  const [fontScale, setFontScale] = useState(FONT_SCALES[1].value);
 
-  // Get available authors with works
-  const availableAuthors = ['caesar', 'cicero', 'augustus', 'seneca'];
+  const availableAuthors = useMemo(
+    () => Array.from(new Set(Object.values(works).map((work: any) => work.author))),
+    [],
+  );
 
-  // Get works for selected author
-  const authorWorks = authorId
-    ? Object.values(works).filter((work: any) => work.author === authorId)
-    : [];
+  const authorWorks = useMemo(
+    () => (authorId ? Object.values(works).filter((work: any) => work.author === authorId) : []),
+    [authorId],
+  );
 
-  // Get selected work text
   const selectedWork = workSlug ? works[workSlug as keyof typeof works] : null;
-  const latinText = selectedWork && LATIN_TEXTS[workSlug || ''];
+  const latinText = workSlug ? LATIN_TEXTS[workSlug] : null;
 
-  // Helper functions
-  const handleSentenceSelect = (sentence: string, index: number, key: string) => {
-    setSelectedSentence(sentence);
-    setSelectedSentenceIndex(index);
-    setSelectedSentenceKey(key);
-  };
+  const books = useMemo(() => latinText?.books || [], [latinText]);
+  const selectedBook = useMemo(
+    () => books.find((book: any) => book.number === selectedBookNumber) || books[0],
+    [books, selectedBookNumber],
+  );
+  const sections = useMemo(() => {
+    if (!selectedBook) return [];
+    return Array.isArray(selectedBook.chapters) ? selectedBook.chapters : selectedBook.sections || [];
+  }, [selectedBook]);
 
+  const selectedSection = useMemo(
+    () => sections.find((section: any) => section.number === selectedSectionNumber) || sections[0],
+    [sections, selectedSectionNumber],
+  );
 
+  useEffect(() => {
+    if (books.length > 0) {
+      setSelectedBookNumber(books[0].number);
+    }
+  }, [workSlug, books]);
 
-
-  const resetSelection = () => {
-    setSelectedSentence('');
-    setSelectedSentenceIndex(null);
-    setSelectedSentenceKey('');
-  };
+  useEffect(() => {
+    if (sections.length > 0) {
+      setSelectedSectionNumber(sections[0].number);
+    }
+  }, [selectedBookNumber, sections]);
 
   // Step 1: Author Selection
   if (!authorId) {
@@ -71,7 +91,7 @@ export default function LatinReaderNew() {
               Lateinische <span className="text-primary">Texte</span> lesen
             </h1>
             <p className="text-muted-foreground max-w-2xl">
-              Wähle einen Autor, um dessen lateinische Originalwerke zu lesen.
+              Ein fokussierter Reader für antike Originaltexte. Wähle einen Autor und lies ohne Ablenkung im reinen Lesemodus.
             </p>
           </div>
 
@@ -93,7 +113,7 @@ export default function LatinReaderNew() {
                       <User className="w-8 h-8 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg capitalize">{author}</h3>
+                      <h3 className="font-bold text-lg">{AUTHOR_LABELS[author] || author}</h3>
                       <p className="text-sm text-muted-foreground mt-1">
                         {Object.values(works).filter((w: any) => w.author === author).length} Werke
                       </p>
@@ -119,10 +139,10 @@ export default function LatinReaderNew() {
               <ArrowLeft className="h-4 w-4" /> Zurück zur Autorwahl
             </Link>
             <h1 className="font-display text-5xl sm:text-6xl font-bold tracking-tight mb-4 capitalize">
-              Werke von <span className="text-primary">{authorId}</span>
+              Werke von <span className="text-primary">{AUTHOR_LABELS[authorId] || authorId}</span>
             </h1>
             <p className="text-muted-foreground max-w-2xl">
-              Wähle ein Werk zum Lesen.
+              Wähle ein Werk. Verfügbare Texte öffnen direkt im Reader, nicht verfügbare Texte werden als „bald verfügbar" markiert.
             </p>
           </div>
 
@@ -146,6 +166,9 @@ export default function LatinReaderNew() {
                     <div className="flex-1">
                       <h3 className="font-bold text-lg mb-2">{work.title}</h3>
                       <p className="text-sm text-muted-foreground">{work.year}</p>
+                      <p className="text-xs mt-2 font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+                        {LATIN_TEXTS[work.slug] ? 'Text verfügbar' : 'Bald verfügbar'}
+                      </p>
                     </div>
                   </div>
                 </Card>
@@ -158,7 +181,7 @@ export default function LatinReaderNew() {
     );
   }
 
-  // Step 3: Text Display with AI Helper
+  // Step 3: Pure Reader Mode
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -170,88 +193,93 @@ export default function LatinReaderNew() {
             {selectedWork?.title}
           </h1>
           <p className="text-muted-foreground">
-            {selectedWork?.year} • <span className="capitalize">{authorId}</span>
+            {selectedWork?.year} • <span>{AUTHOR_LABELS[authorId || ''] || authorId}</span>
           </p>
         </div>
 
-        <div className="space-y-8">
-          {/* Latin Text */}
+        {!latinText ? (
           <Card className="p-8">
-            <div className="mb-8">
+            <div className="text-center py-8 text-muted-foreground">
+              <Library className="w-12 h-12 mx-auto mb-4 opacity-50" />
+              <p>Für dieses Werk liegt aktuell noch kein vollständig aufbereiteter Reader-Text vor.</p>
+              <p className="text-sm mt-2">Bitte wähle ein anderes Werk oder komme später erneut vorbei.</p>
+            </div>
+          </Card>
+        ) : (
+          <div className="space-y-6">
+            <Card className="p-4 sm:p-6 sticky top-20 z-20 bg-background/95 backdrop-blur border-border/60">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-semibold">Buch</label>
+                  <select
+                    value={selectedBook?.number || ''}
+                    onChange={(event) => setSelectedBookNumber(Number(event.target.value))}
+                    className="mt-2 w-full rounded-xl border border-border bg-card px-3 py-2 text-sm"
+                  >
+                    {books.map((book: any) => (
+                      <option key={book.number} value={book.number}>
+                        {book.title || `Buch ${book.number}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-semibold">Abschnitt</label>
+                  <select
+                    value={selectedSection?.number || ''}
+                    onChange={(event) => setSelectedSectionNumber(Number(event.target.value))}
+                    className="mt-2 w-full rounded-xl border border-border bg-card px-3 py-2 text-sm"
+                  >
+                    {sections.map((section: any) => (
+                      <option key={section.number} value={section.number}>
+                        Kapitel {section.number}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-semibold">Schriftgröße</p>
+                  <div className="mt-2 flex items-center gap-2">
+                    {FONT_SCALES.map((size) => (
+                      <Button
+                        key={size.label}
+                        variant={fontScale === size.value ? 'default' : 'outline'}
+                        size="sm"
+                        className="rounded-xl"
+                        onClick={() => setFontScale(size.value)}
+                      >
+                        {size.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 sm:p-10">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 rounded-xl bg-primary/10">
                   <BookOpen className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h2 className="font-bold text-xl">Lateinischer Text</h2>
-                  <p className="text-sm text-muted-foreground">{selectedWork?.title}</p>
+                  <h2 className="font-bold text-xl">Lesemodus</h2>
+                  <p className="text-sm text-muted-foreground">Originaltext ohne Interaktionselemente</p>
                 </div>
               </div>
-            </div>
 
-            {latinText ? (
-              <div className="space-y-6">
-                {latinText.books.map((book: any) => (
-                      <div key={book.number} className="space-y-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <span className="text-sm font-bold text-primary">{book.number}</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-foreground">{book.title}</h3>
-                        </div>
-                        {(Array.isArray(book.chapters) ? book.chapters : book.sections || []).map((chapter: any) => (
-                          <div key={`book-${book.number}-chapter-${chapter.number}`} className="ml-11 space-y-3">
-                            <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-secondary/50 flex items-center justify-center">
-                                <span className="text-xs font-semibold text-muted-foreground">{chapter.number}</span>
-                              </div>
-                              <span className="text-sm font-medium text-muted-foreground">Kapitel</span>
-                            </div>
-                            
-                            {/* Sentences */}
-                            <div className="space-y-2 ml-8">
-                              {chapter.latin.split(/[.!?]+/).filter((sentence: string) => sentence.trim().length > 0).map((sentence: string, index: number) => {
-                                const sentenceKey = `book-${book.number}-chapter-${chapter.number}-sentence-${index}`;
-                                return (
-                                <div
-                                  key={sentenceKey}
-                                  onClick={() => handleSentenceSelect(sentence.trim() + '.', index, sentenceKey)}
-                                  className={`group cursor-pointer rounded-xl border transition-all duration-300 ${
-                                    selectedSentenceKey === sentenceKey
-                                      ? 'bg-primary/10 border-primary/40 shadow-sm'
-                                      : 'bg-secondary/5 border-border hover:border-primary/30 hover:bg-primary/5'
-                                  } p-4`}
-                                >
-                                  <div className="flex items-start gap-3">
-                                    <span className="font-mono text-primary/60 text-sm w-6 text-right pt-1">
-                                      {index + 1}
-                                    </span>
-                                    <p className="text-sm leading-relaxed font-serif text-foreground/90 group-hover:text-primary/90 transition-colors flex-1">
-                                      {sentence.trim() + '.'}
-                                    </p>
-                                    {selectedSentenceKey === sentenceKey && (
-                                      <div className="w-2 h-2 rounded-full bg-primary mt-2" />
-                                    )}
-                                  </div>
-                                </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-              </div>
-            ) : (
-              <div className="text-center py-12 text-muted-foreground">
-                <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p>Text wird geladen...</p>
-                <p className="text-sm mt-2">Bald verfügbar: Vollständiger lateinischer Originaltext</p>
-              </div>
-            )}
-          </Card>
-
-        </div>
+              {selectedSection ? (
+                <article className={`${fontScale} leading-9 text-foreground/95 font-serif`}> 
+                  <h3 className="font-display text-2xl font-bold mb-5 not-italic">
+                    {selectedBook?.title || `Buch ${selectedBook?.number}`}, Kapitel {selectedSection.number}
+                  </h3>
+                  <p>{selectedSection.latin}</p>
+                </article>
+              ) : (
+                <p className="text-muted-foreground">Kein Abschnitt gefunden.</p>
+              )}
+            </Card>
+          </div>
+        )}
       </main>
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Scroll, Sparkles, BookOpen, Download, FileText, MessageCircle, Award, Library } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+
 export function Footer() {
   const { t } = useLanguage();
   const text = (key: string, fallback: string) => {
@@ -33,10 +34,11 @@ export function Footer() {
     {
       title: 'Persönlichkeiten',
       links: [
-        { label: 'Julius Caesar', href: '/caesar' },
-        { label: 'Marcus Cicero', href: '/cicero' },
-        { label: 'Kaiser Augustus', href: '/augustus' },
-        { label: 'Seneca der Jüngere', href: '/seneca' },
+        { label: 'Julius Caesar', href: '/caesar', icon: Scroll },
+        { label: 'Marcus Cicero', href: '/cicero', icon: MessageCircle },
+        { label: 'Kaiser Augustus', href: '/augustus', icon: Award },
+        { label: 'Seneca der Jüngere', href: '/seneca', icon: BookOpen },
+        { label: 'Catilina', href: '/catilina', icon: Sparkles },
       ]
     },
     {
@@ -49,7 +51,7 @@ export function Footer() {
     }
   ];
   return (
-    <footer className="relative mt-32 border-t border-border bg-card">
+    <footer className="relative border-t border-border bg-card">
       <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Brand & Mission */}

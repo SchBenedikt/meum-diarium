@@ -1,7 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { Timeline } from '@/components/Timeline';
-import { ShareButton } from '@/components/ShareButton';
-import { Calendar, Clock, Users, BookMarked, ChevronDown } from 'lucide-react';
+import { Calendar, Clock, Users, BookMarked } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { timelineEvents as staticTimelineEvents } from '@/data/timeline';
 import { useEffect, useState, useMemo } from 'react';
@@ -16,7 +15,6 @@ export default function TimelinePage() {
   const { language, t } = useLanguage();
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>(staticTimelineEvents);
   const { posts } = usePosts();
-  const heroPreview = useMemo(() => timelineEvents.slice(0, 4), [timelineEvents]);
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
@@ -43,7 +41,7 @@ export default function TimelinePage() {
   }, [timelineEvents, t]);
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
-      <main className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
+      <main className="flex-1 pb-16 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div

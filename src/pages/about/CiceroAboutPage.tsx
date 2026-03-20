@@ -382,11 +382,11 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </section>
-        {/* Warum er polarisiert */}
+        {/* Warum er polarisierte */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">Warum er polarisiert</h2>
+              <h2 className="font-display text-4xl font-bold mb-4">Warum er polarisierte</h2>
               <p className="text-lg text-muted-foreground">Zwischen brillanter Rhetorik und politischem Opportunismus.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">

@@ -42,6 +42,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
 const LatinGrammarPage = lazy(() => import('./pages/LatinGrammarPage'));
+const LearnPracticePage = lazy(() => import('./pages/LearnPracticePage'));
 const SubstantivePage = lazy(() => import('./pages/grammar/SubstantivePage'));
 const VerbenPage = lazy(() => import('./pages/grammar/VerbenPage'));
 const AdjektivePage = lazy(() => import('./pages/grammar/AdjektivePage'));
@@ -121,6 +122,7 @@ const AppContent = () => {
               <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
+              <Route path="/learn/practice" element={<PageTransition><LearnPracticePage /></PageTransition>} />
               <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
               <Route path="/learn/grammar/verben/:topic?" element={<PageTransition><VerbenPage /></PageTransition>} />
               <Route path="/learn/grammar/adjektive/:topic?" element={<PageTransition><AdjektivePage /></PageTransition>} />

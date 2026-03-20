@@ -1046,7 +1046,7 @@ export const de = {
             impact: 'Folge',
         },
         polarization: {
-            title: 'Warum er polarisiert',
+            title: 'Warum er polarisierte',
             subtitle: 'Zwischen Genie und Gefahr – die zwei Lesarten von Caesars Karriere.',
             admired: 'Gründe für Bewunderung',
             feared: 'Gründe für Furcht',
