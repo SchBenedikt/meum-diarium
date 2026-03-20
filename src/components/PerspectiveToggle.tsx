@@ -2,12 +2,20 @@ import { Perspective } from '@/types/blog';
 import { BookOpen, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+
 interface PerspectiveToggleProps {
   value: Perspective;
   onChange: (value: Perspective) => void;
+  hasDiary?: boolean;
+  hasScientific?: boolean;
 }
-export function PerspectiveToggle({ value, onChange }: PerspectiveToggleProps) {
+
+export function PerspectiveToggle({ value, onChange, hasDiary = true, hasScientific = true }: PerspectiveToggleProps) {
   const { t } = useLanguage();
+
+  // If only one perspective has content, don't render the toggle at all.
+  if (!hasDiary || !hasScientific) return null;
+
   return (
     <div className="inline-flex p-1 rounded-lg bg-secondary/50 border border-border/50">
       <button

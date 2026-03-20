@@ -34,13 +34,19 @@ function PostContent({ post }: { post: BlogPost }) {
   const { user, token } = useAuth();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
-  const [perspective, setPerspective] = useState<Perspective>('diary');
+  // Compute content availability once; used for initial perspective and the toggle visibility.
+  const hasDiary = Boolean(post?.content?.diary?.trim().length);
+  const hasScientific = Boolean(post?.content?.scientific?.trim().length);
+
+  // Initialise perspective to the first available content type so the first
+  // render is never shown an empty/null content string (which would crash).
+  const [perspective, setPerspective] = useState<Perspective>(hasDiary ? 'diary' : 'scientific');
   const targetRef = useRef<HTMLDivElement>(null);
 
-  const contentToDisplay = useMemo(() => post?.content?.[perspective], [post?.content, perspective]);
+  const contentToDisplay = useMemo(() => post?.content?.[perspective] ?? '', [post?.content, perspective]);
   
   // Calculate reading time separately to avoid dependency issues
-  const readingTime = useMemo(() => calculateReadingTime(contentToDisplay ?? ''), [contentToDisplay]);
+  const readingTime = useMemo(() => calculateReadingTime(contentToDisplay), [contentToDisplay]);
   
   // Page Tracking
   usePageTracking({
@@ -200,7 +206,7 @@ function PostContent({ post }: { post: BlogPost }) {
                       variant="compact"
                     />
                   </div>
-                  <PerspectiveToggle value={perspective} onChange={setPerspective} />
+                  <PerspectiveToggle value={perspective} onChange={setPerspective} hasDiary={hasDiary} hasScientific={hasScientific} />
                 </header>
                 <div className="space-y-8">
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />

@@ -1,191 +1,43 @@
-import { BlogPost, TimelineEvent, LexiconEntry, Work, Language, Author, AuthorInfo } from '@/types/blog';
-import { safeLanguageSplit } from './language-utils';
+import { BlogPost, TimelineEvent, LexiconEntry, Work, Author, AuthorInfo } from '@/types/blog';
 import { authors } from '@/data/authors';
 import { lexicon as baseLexicon } from '@/data/lexicon';
 import { works } from '@/data/works';
 import { timelineEvents } from '@/data/timeline';
 import { getAllPosts } from '@/data/posts';
 import { getPostsWithOverrides } from '@/lib/cms-store';
-import { getTranslatedPost as getManuallyTranslatedPost } from '@/lib/post-translator';
-import {
-    getTranslatedTimelineEvents as getManuallyTranslatedTimelineEvents,
-    getTranslatedLexiconEntries as getManuallyTranslatedLexiconEntries,
-    getTranslatedLexiconEntry as getManuallyTranslatedLexiconEntry,
-    getTranslatedWork as getManuallyTranslatedWork
-} from '@/lib/content-translator';
 import { getLexiconWithOverrides, getAuthorsWithOverrides } from '@/lib/cms-store';
-// Simple in-memory cache to avoid re-translating the same text within a session.
-const translationCache = new Map<string, string>();
-async function translateText(text: string, to: Language): Promise<string> {
-    // API translations are disabled: always return original text
-    if (!text) return text;
-    const cacheKey = `${to}:${text}`;
-    translationCache.set(cacheKey, text);
-    return text;
+
+export async function translatePostInPlace(post: BlogPost): Promise<BlogPost> {
+    return post;
 }
-async function translateArray(arr: string[], to: Language): Promise<string[]> {
-    return Promise.all(arr.map(item => translateText(item, to)));
-}
-export async function translatePostInPlace(post: BlogPost, lang: Language): Promise<BlogPost> {
-    if (lang.startsWith('de')) return post;
-    // Verwende zuerst manuelle Übersetzungen, wenn vorhanden
-    const manuallyTranslated = getManuallyTranslatedPost(post, lang);
-    // Wenn manuelle Übersetzungen existieren, verwende diese
-    if (post.translations) {
-        const baseLang = safeLanguageSplit(lang);
-        if (post.translations[baseLang]) {
-            // Check if title is not empty (sometimes it might be an empty string in the file)
-            if (manuallyTranslated.title && manuallyTranslated.title.trim() !== '') {
-                return manuallyTranslated;
-            }
-        }
-    }
-    // Fallback auf API-Übersetzung für Posts ohne manuelle Übersetzungen
-    return {
-        ...post,
-        title: await translateText(post.title, lang),
-        excerpt: await translateText(post.excerpt, lang),
-        tags: await translateArray(post.tags, lang),
-        content: {
-            diary: await translateText(post.content.diary, lang),
-            scientific: await translateText(post.content.scientific, lang),
-        },
-    };
-}
-export async function getTranslatedPost(lang: Language, authorId: Author, slug: string): Promise<BlogPost | null> {
+
+export async function getTranslatedPost(_lang: string, authorId: Author, slug: string): Promise<BlogPost | null> {
     const allPosts = getPostsWithOverrides(await getAllPosts());
-    const post = allPosts.find(p => p.author === authorId && p.slug === slug);
-    if (!post) return null;
-    return translatePostInPlace(post, lang);
+    return allPosts.find(p => p.author === authorId && p.slug === slug) ?? null;
 }
-export async function getTranslatedLexicon(lang: Language): Promise<LexiconEntry[]> {
+
+export async function getTranslatedLexicon(): Promise<LexiconEntry[]> {
+    return getLexiconWithOverrides(baseLexicon);
+}
+
+export async function getTranslatedLexiconEntry(_lang: string, slug: string): Promise<LexiconEntry | null> {
     const lexicon = getLexiconWithOverrides(baseLexicon);
-    if (lang.startsWith('de')) return lexicon;
-    // Verwende zuerst manuelle Übersetzungen
-    const manuallyTranslated = getManuallyTranslatedLexiconEntries(lexicon, lang);
-    // Prüfe ob manuelle Übersetzungen vorhanden sind
-    const hasManualTranslations = lexicon.some(entry => {
-        const baseLang = safeLanguageSplit(lang);
-        return entry.translations && entry.translations[baseLang];
-    });
-    // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
-    if (hasManualTranslations) {
-        return Promise.all(
-            manuallyTranslated.map(async (entry, index) => {
-                const original = lexicon[index];
-                const baseLang = safeLanguageSplit(lang);
-                // Wenn dieser Eintrag manuelle Übersetzungen hat, verwende sie
-                if (original.translations && original.translations[baseLang]) {
-                    return entry;
-                }
-                // Sonst verwende API-Übersetzung
-                return {
-                    ...original,
-                    definition: await translateText(original.definition, lang),
-                    category: await translateText(original.category, lang),
-                };
-            })
-        );
-    }
-    // Fallback auf API-Übersetzung für alle Einträge
-    return Promise.all(
-        lexicon.map(async (entry) => ({
-            ...entry,
-            definition: await translateText(entry.definition, lang),
-            category: await translateText(entry.category, lang),
-        }))
-    );
+    return lexicon.find(e => e.slug === slug) ?? null;
 }
-export async function getTranslatedLexiconEntry(lang: Language, slug: string): Promise<LexiconEntry | null> {
-    const lexicon = getLexiconWithOverrides(baseLexicon);
-    const entry = lexicon.find(e => e.slug === slug);
-    if (!entry) return null;
-    if (lang.startsWith('de')) return entry;
-    // Verwende zuerst manuelle Übersetzung
-    const manuallyTranslated = getManuallyTranslatedLexiconEntry(entry, lang);
-    // Wenn manuelle Übersetzung existiert, verwende sie
-    const baseLang = safeLanguageSplit(lang);
-    if (entry.translations && entry.translations[baseLang]) {
-        return manuallyTranslated;
-    }
-    // Fallback auf API-Übersetzung
-    return {
-        ...entry,
-        definition: await translateText(entry.definition, lang),
-        category: await translateText(entry.category, lang),
-        etymology: entry.etymology ? await translateText(entry.etymology, lang) : undefined,
-    }
-}
-export async function getTranslatedAuthor(lang: Language, authorId: Author): Promise<AuthorInfo | null> {
+
+export async function getTranslatedAuthor(_lang: string, authorId: Author): Promise<AuthorInfo | null> {
     const authorMap = getAuthorsWithOverrides(authors);
-    const author = authorMap[authorId];
-    if (!author) return null;
-    if (lang.startsWith('de')) return author;
-    // Autoren-Übersetzungen werden jetzt über die zentrale Übersetzungsfunktion t() abgerufen
-    // Diese Funktion ist hauptsächlich für Kompatibilität vorhanden
-    return author;
+    return authorMap[authorId] ?? null;
 }
-export async function getTranslatedAuthors(lang: Language): Promise<Record<string, AuthorInfo>> {
-    // Autoren-Übersetzungen werden jetzt über die zentrale Übersetzungsfunktion t() abgerufen
-    // Diese Funktion ist hauptsächlich für Kompatibilität vorhanden
+
+export async function getTranslatedAuthors(): Promise<Record<string, AuthorInfo>> {
     return getAuthorsWithOverrides(authors);
 }
-export async function getTranslatedWork(lang: Language, slug: string): Promise<Work | null> {
-    const work = works[slug];
-    if (!work) return null;
-    if (lang.startsWith('de')) return work;
-    // Verwende zuerst manuelle Übersetzung
-    const manuallyTranslated = getManuallyTranslatedWork(work, lang);
-    // Wenn manuelle Übersetzung existiert, verwende sie
-    const baseLang = safeLanguageSplit(lang);
-    if (work.translations && work.translations[baseLang]) {
-        return manuallyTranslated;
-    }
-    // Fallback auf API-Übersetzung
-    return {
-        ...work,
-        summary: await translateText(work.summary, lang),
-        takeaway: await translateText(work.takeaway, lang),
-        structure: await Promise.all(work.structure.map(async (part) => ({
-            title: await translateText(part.title, lang),
-            content: await translateText(part.content, lang),
-        }))),
-    };
+
+export async function getTranslatedWork(_lang: string, slug: string): Promise<Work | null> {
+    return works[slug] ?? null;
 }
-export async function getTranslatedTimeline(lang: Language): Promise<TimelineEvent[]> {
-    if (lang.startsWith('de')) return timelineEvents;
-    // Verwende zuerst manuelle Übersetzungen
-    const manuallyTranslated = getManuallyTranslatedTimelineEvents(timelineEvents, lang);
-    // Prüfe ob manuelle Übersetzungen vorhanden sind
-    const hasManualTranslations = timelineEvents.some(event => {
-        const baseLang = safeLanguageSplit(lang);
-        return event.translations && event.translations[baseLang];
-    });
-    // Wenn manuelle Übersetzungen existieren, verwende gemischten Ansatz
-    if (hasManualTranslations) {
-        return Promise.all(
-            manuallyTranslated.map(async (event, index) => {
-                const original = timelineEvents[index];
-                const baseLang = safeLanguageSplit(lang);
-                // Wenn dieses Event manuelle Übersetzungen hat, verwende sie
-                if (original.translations && original.translations[baseLang]) {
-                    return event;
-                }
-                // Sonst verwende API-Übersetzung
-                return {
-                    ...original,
-                    title: await translateText(original.title, lang),
-                    description: await translateText(original.description, lang),
-                };
-            })
-        );
-    }
-    // Fallback auf API-Übersetzung für alle Events
-    return Promise.all(
-        timelineEvents.map(async (event) => ({
-            ...event,
-            title: await translateText(event.title, lang),
-            description: await translateText(event.description, lang),
-        }))
-    );
+
+export async function getTranslatedTimeline(): Promise<TimelineEvent[]> {
+    return timelineEvents;
 }
