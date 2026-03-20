@@ -142,13 +142,30 @@ export function AugustusAboutPage() {
   ];
 
   const augustusSidebar = {
-    reformList: [
-      { year: -27, note: 'Neuordnung der Provinzen (Senats- vs. Kaiserprov.)' },
-      { year: -23, note: 'Tribunizische Gewalt auf Lebenszeit' },
-      { year: -18, note: 'Moralgesetzgebung (Ehegesetze, lex Iulia)' },
-      { year: -13, note: 'Pontifex Maximus (religiöse Obergewalt)' },
-      { year: -12, note: 'Ara Pacis Augustae geweiht' },
-      { year: -2, note: 'Pater Patriae – Titel "Vater des Vaterlandes"' },
+    feldzuegeEroberungen: [
+      { year: -31, title: 'Sieg bei Actium', note: 'Entscheidungsschlacht gegen Antonius und Kleopatra' },
+      { year: -30, title: 'Ägypten erobert', note: 'Ägypten wird römische Provinz' },
+      { year: -25, title: 'Hispanienfeldzug', note: 'Feldzug nach Nordspanien' },
+      { year: -20, title: 'Partherfeldzug', note: 'Rückgewinnung der Legionen' },
+      { year: -16, title: 'Alpenfeldzug', note: 'Eroberung der Alpenregion' },
+    ],
+    aemterTitel: [
+      { year: -44, title: 'Caesars Erbe', note: 'Adoption und Erbschaft' },
+      { year: -43, title: 'Zweites Triumvirat', note: 'Bündnis mit Antonius und Lepidus' },
+      { year: -31, title: 'Alleinherrschaft', note: 'Sieg über alle Konkurrenten' },
+      { year: -27, title: 'Prinzipat begründet', note: 'Formelle Übergabe der Macht' },
+      { year: -23, title: 'Tribunizische Gewalt', note: 'Machtbasis auf Lebenszeit' },
+      { year: -12, title: 'Pontifex Maximus', note: 'Religiöse Oberhoheit' },
+      { year: -2, title: 'Pater Patriae', note: 'Vater des Vaterlandes' },
+    ],
+    reformenBauprojekte: [
+      { year: -27, title: 'Provinzreform', note: 'Neuordnung der Verwaltung' },
+      { year: -23, title: 'Heeresreform', note: 'Berufsarmee geschaffen' },
+      { year: -18, title: 'Moralgesetze', note: 'Ehe- und Familienrecht reformiert' },
+      { year: -13, title: 'Währungsreform', note: 'Denar neu bewertet' },
+      { year: -12, title: 'Ara Pacis', note: 'Friedensaltar geweiht' },
+      { year: -9, title: 'Forum Augustum', note: 'Neues Zentrum erbaut' },
+      { year: -2, title: 'Marodepanzer', note: 'Feuerwache in Rom eingerichtet' },
     ],
   };
 
@@ -312,39 +329,94 @@ export function AugustusAboutPage() {
                 <Clock className="h-8 w-8 text-primary" />
                 <div>
                   <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
-                  <p className="text-lg text-muted-foreground mt-2">Vom Erben Caesars zum ersten Princeps.</p>
+                  <p className="text-lg text-muted-foreground mt-2">Feldzüge, Ämter und Reformen</p>
                 </div>
               </div>
-              <div className="space-y-4">
-                {augustusTimeline.map((event, i) => {
-                  const Icon = event.icon;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.06 }}
-                      className="flex gap-4 items-start"
-                    >
-                      <div className="flex-shrink-0 w-24 text-right pt-3">
-                        <div className="text-sm font-bold text-primary">{formatYear(event.year)}</div>
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Feldzüge & Eroberungen */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Award className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Feldzüge & Eroberungen</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.feldzuegeEroberungen.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 0 && (
+                          <Link
+                            to="/augustus/actium"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-2">
-                          <Icon className="w-5 h-5 text-primary" />
-                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Ämter & Titel */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Ämter & Titel</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.aemterTitel.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 2 && (
+                          <Link
+                            to="/augustus/prinzipat"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                      <div className="flex-1 bg-card rounded-2xl p-4 border border-border">
-                        <h3 className="font-bold mb-1">{event.title}</h3>
-                        <p className="text-sm text-muted-foreground">{event.description}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Reformen & Bauprojekte */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Landmark className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Reformen & Bauprojekte</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {augustusSidebar.reformenBauprojekte.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 0 && (
+                          <Link
+                            to="/augustus/provinzreform"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    ))}
+                  </div>
+                </div>
               </div>
+
+              {/* Timeline visualization below */}
               <div className="mt-16 pt-12 border-t border-border/40">
-                <p className="text-center text-muted-foreground mb-8">Für eine detaillierte Chronologie aller Ereignisse:</p>
+                <p className="text-center text-muted-foreground mb-8">
+                  Für eine detaillierte Chronologie aller Ereignisse:
+                </p>
                 <div className="flex justify-center gap-4">
                   <Link
                     to="/timeline"
@@ -386,22 +458,169 @@ export function AugustusAboutPage() {
           </div>
         </section>
 
+        {/* Augustus' Vermächtnis */}
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">Reformlinien des Prinzipats</h2>
-              <p className="text-lg text-muted-foreground">Institutionelle Eingriffe, die das Imperium langfristig prägten.</p>
+              <h2 className="font-display text-4xl font-bold mb-4">Augustus' Vermächtnis</h2>
+              <p className="text-lg text-muted-foreground">Der Begründer des Römischen Kaiserreichs und sein bleibendes Erbe.</p>
             </div>
-            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
-              {augustusSidebar.reformList.map((item, i) => (
-                <div key={i} className="card-modern card-hover-primary card-padding-md">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {[
+                {
+                  title: 'Res Gestae Divi Augusti',
+                  summary: 'Sein autobiographischer Rechenschaftsbericht. Ein Meisterwerk der Propaganda, das seine Taten und Reformen dokumentiert.',
+                  tag: 'Autobiographie',
+                  years: '14 n. Chr.'
+                },
+                {
+                  title: 'Pax Augusta',
+                  summary: 'Die Augusteische Friedensordnung. 200 Jahre relativen Friedens nach einem Jahrhundert der Bürgerkriege.',
+                  tag: 'Friedenspolitik',
+                  years: '27 v. Chr.–14 n. Chr.'
+                },
+                {
+                  title: 'Prinzipat',
+                  summary: 'Die neue Regierungsform. Verschleierung der Monarchie durch republikanische Formen und Begriffe.',
+                  tag: 'Regierungssystem',
+                  years: '27 v. Chr.–14 n. Chr.'
+                },
+                {
+                  title: 'Julianischer Kalender',
+                  summary: 'Kalenderreform zur Korrektur des Schaltjahres. Die Grundlage unseres heutigen Kalendersystems.',
+                  tag: 'Verwaltung',
+                  years: '46 v. Chr.'
+                },
+                {
+                  title: 'Bauprogramm',
+                  summary: 'Umfassende Modernisierung Roms. Forum Augustum, Ara Pacis, Marodepanzer und Tempel.',
+                  tag: 'Architektur',
+                  years: '28 v. Chr.–14 n. Chr.'
+                },
+                {
+                  title: 'Kulturelles Goldenes Zeitalter',
+                  summary: 'Förderung von Vergil, Horaz, Ovid und Livius. Die augusteische Literaturblüte.',
+                  tag: 'Kultur',
+                  years: '27 v. Chr.–14 n. Chr.'
+                }
+              ].map((work, i) => (
+                <div
+                  key={work.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
+                    <BookOpen className="h-6 w-6 text-primary opacity-60" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
+                    {i === 0 && (
+                      <Link
+                        to="/augustus/works/res-gestae"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Werk lesen
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Augustus in der Debatte */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Augustus in der Debatte</h2>
+              <p className="text-lg text-muted-foreground">Zwischen Friedensbringer und verschleierter Alleinherrscher.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              {[
+                {
+                  heading: 'Warum er bewundert wird',
+                  points: [
+                    'Beendete ein Jahrhundert der Bürgerkriege und schuf 200 Jahre Frieden (Pax Augusta).',
+                    'War ein brillanter Administrator und Modernisierer des Reiches.',
+                    'Schuf ein stabiles Regierungssystem, das 300 Jahre funktionierte.',
+                    'Fördererte ein kulturelles Goldenes Zeitalter mit Vergil und Horaz.',
+                    'Modernisierte Rom zur Welthauptstadt mit monumentaler Architektur.'
+                  ]
+                },
+                {
+                  heading: 'Warum er kritisiert wird',
+                  points: [
+                    'Beendete die Republik und etablierte die Monarchie unter republikanischem Deckmantel.',
+                    'Proskriptionslisten von 43 v. Chr.: Tausende Morde zur Machtsicherung.',
+                    'Verbannte Ovid und kontrollierte die Kunst im Interesse der Staatsräson.',
+                    'Verschleierte seine wahre Macht durch geschickte Propaganda und Titelsammlung.'
+                  ]
+                }
+              ].map((block) => (
+                <div
+                  key={block.heading}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
+                  <div className="space-y-3">
+                    {block.points.map((point, i) => (
+                      <div key={i} className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed">
+                        <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Legendäre Zitate */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+              <p className="text-lg text-muted-foreground">Worte, die das Prinzipat prägten.</p>
+            </div>
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  quote: 'Inveni, si quid est in rebus in humanis, id quod mihi nomen est, homo sum.',
+                  translation: 'Ich fand, dass, wenn es etwas im menschlichen Wesen gibt, was mir den Namen gibt, dann bin ich ein Mensch.',
+                  when: 'Bei der Ankunft in Rom',
+                  meaning: 'Selbstdefinition als Grundlage seiner politischen Identität und Mission.'
+                },
+                {
+                  quote: 'Memento audere semper esse quod dicas.',
+                  translation: 'Denke immer daran, dass du ein Sterblicher bist.',
+                  when: 'An Tiberius',
+                  meaning: 'Erinnerung an die eigene Sterblichkeit trotz aller Macht.'
+                },
+                {
+                  quote: 'Velut longa, quae procul a nobis conspicitur, etiam si praesens, longa est.',
+                  translation: 'Wie eine lange Schlange, die aus der Ferne gesehen wird, auch wenn sie nahe ist, ist sie lang.',
+                  when: 'Über seine Macht',
+                  meaning: 'Beschreibung seiner Autorität als unausweichlich und überwältigend.'
+                }
+              ].map((item) => (
+                <div
+                  key={item.quote}
+                  className="card-modern card-hover-primary card-padding-md"
+                >
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles className="h-3.5 w-3.5" /> Reform
+                      <Sparkles className="h-3.5 w-3.5" /> Weisheit
                     </span>
-                    <span className="text-xs font-semibold text-primary/70">{formatYear(item.year)}</span>
+                    <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                   </div>
-                  <p className="text-sm text-foreground/85 leading-relaxed">{item.note}</p>
+                  <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                  <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                  <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                 </div>
               ))}
             </div>

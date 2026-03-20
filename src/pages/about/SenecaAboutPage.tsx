@@ -70,16 +70,31 @@ export function SenecaAboutPage() {
     { label: 'Tod', value: '65 n. Chr.', hint: 'Zwang zum Selbstmord' },
   ];
 
-  const senecaTimeline = [
-    { year: -4, title: 'Geburt in Corduba', description: 'Als Sohn des Rhetorikers Seneca d. Ä. in der hispanischen Provinz Baetica geboren.', icon: Users },
-    { year: 1, title: 'Ausbildung in Rom', description: 'Philosophische Studien bei Stoikern, Pythagoräern und Attalus. Frühe rhetorische Ausbildung.', icon: BookOpen },
-    { year: 37, title: 'Erste Erfolge', description: 'Berühmter Redner und Schriftsteller unter Kaiser Caligula. Fast auf Geheiß Caligulas getötet.', icon: Award },
-    { year: 41, title: 'Verbannung auf Korsika', description: 'Auf Betreiben von Messalina verbannt – 8 Jahre auf Korsika. Schreibt Consolationes.', icon: MapPin },
-    { year: 49, title: 'Rückkehr als Erzieher Neros', description: 'Agrippina holt ihn zurück als Lehrer ihres Sohnes Nero. Aufstieg zur Macht.', icon: Landmark },
-    { year: 54, title: 'Berater Kaiser Neros', description: 'Mit Burrus gemeinsam führende Kraft im Prinzipat. Schreibt De Clementia.', icon: Award },
-    { year: 62, title: 'Rückzug aus der Politik', description: 'Verliert Einfluss, zieht sich zurück. Verfasst die Epistulae Morales und Naturales Quaestiones.', icon: Scroll },
-    { year: 65, title: 'Erzwungener Tod', description: 'Nach der Pisonischen Verschwörung zum Selbstmord gezwungen. Starb gelassen als Stoiker.', icon: Clock },
-  ];
+  const senecaSidebar = {
+    philosophischeWerke: [
+      { year: -4, title: 'Geburt', note: 'In Corduba, Hispanien' },
+      { year: 37, title: 'Erste Schriften', note: 'Rhetorische und philosophische Werke' },
+      { year: 41, title: 'Consolationes', note: 'Trostbriefe in der Verbannung' },
+      { year: 49, title: 'Naturales Quaestiones', note: 'Naturphilosophische Untersuchungen' },
+      { year: 54, title: 'De Clementia', note: 'Über Milde an Nero gerichtet' },
+      { year: 62, title: 'Epistulae Morales', note: '124 Briefe an Lucilius' },
+    ],
+    politischeAemter: [
+      { year: 37, title: 'Senator', note: 'Unter Caligula' },
+      { year: 41, title: 'Verbannung', note: 'Auf Korsika geschickt' },
+      { year: 49, title: 'Prätor', note: 'Rückkehr nach Rom' },
+      { year: 49, title: 'Erzieher Neros', note: 'Zusammen mit Burrus' },
+      { year: 54, title: 'Berater', note: 'Führender Einfluss auf Nero' },^
+      { year: 62, title: 'Rückzug', note: 'Verlust des politischen Einflusses' },
+    ],
+    stoischeLehren: [
+      { year: 41, title: 'Tugendlehre', note: 'Die vier Kardinaltugenden' },
+      { year: 49, title: 'Seelenruhe', note: 'Ataraxia als Lebensziel' },
+      { year: 54, title: 'Zeitphilosophie', note: 'De Brevitate Vitae' },
+      { year: 62, title: 'Lebensführung', note: 'Philosophie als Praxis' },
+      { year: 65, title: 'Todesstoizismus', note: 'Gelassener Selbstmord' },
+    ],
+  };
 
   const senecaAchievements = [
     {
@@ -301,36 +316,87 @@ export function SenecaAboutPage() {
                 <Clock className="h-8 w-8 text-primary" />
                 <div>
                   <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
-                  <p className="text-lg text-muted-foreground mt-2">Verbannung, Hofpolitik und philosophischer Rückzug.</p>
+                  <p className="text-lg text-muted-foreground mt-2">Philosophische Werke, politische Ämter und stoische Lehren</p>
                 </div>
               </div>
-              <div className="space-y-4">
-                {senecaTimeline.map((event, i) => {
-                  const Icon = event.icon;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.06 }}
-                      className="flex gap-4 items-start"
-                    >
-                      <div className="flex-shrink-0 w-24 text-right pt-3">
-                        <div className="text-sm font-bold text-primary">{formatYear(event.year)}</div>
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Philosophische Werke */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Philosophische Werke</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {senecaSidebar.philosophischeWerke.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 5 && (
+                          <Link
+                            to="/seneca/works/epistulae-morales"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-2">
-                          <Icon className="w-5 h-5 text-primary" />
-                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Politische Ämter */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Landmark className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Politische Ämter</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {senecaSidebar.politischeAemter.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 3 && (
+                          <Link
+                            to="/seneca/erzieher-neros"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                      <div className="flex-1 bg-card rounded-2xl p-4 border border-border">
-                        <h3 className="font-bold mb-1">{event.title}</h3>
-                        <p className="text-sm text-muted-foreground">{event.description}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Stoische Lehren */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Award className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Stoische Lehren</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {senecaSidebar.stoischeLehren.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                        {idx === 2 && (
+                          <Link
+                            to="/seneca/works/de-brevitate-vitae"
+                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <ArrowRight className="h-3 w-3" />
+                            {t('caesar.readArticle')}
+                          </Link>
+                        )}
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="mt-16 pt-12 border-t border-border/40">
                 <p className="text-center text-muted-foreground mb-8">Für eine detaillierte Chronologie aller Ereignisse:</p>
@@ -348,14 +414,108 @@ export function SenecaAboutPage() {
           </div>
         </section>
 
+        {/* Stoische Lebensweisheit */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Stoische Lebensweisheit</h2>
+              <p className="text-lg text-muted-foreground">Senecas Beitrag zur praktischen Philosophie und ethischen Lebensführung.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {[
+                {
+                  title: 'Epistulae Morales',
+                  summary: '124 Briefe an Lucilius über stoische Lebensführung. Seneca zeigt, wie man Zeit, Tod, Freundschaft und Tugend meistert.',
+                  tag: 'Briefliteratur',
+                  years: '62–65 n. Chr.'
+                },
+                {
+                  title: 'De Brevitate Vitae',
+                  summary: '"Das Leben ist kurz, aber wir machen es noch kürzer." Praktische Anweisungen zur Zeitnutzung und Lebensoptimierung.',
+                  tag: 'Lebenskunst',
+                  years: '49 n. Chr.'
+                },
+                {
+                  title: 'De Tranquillitate Animi',
+                  summary: 'Von der Seelenruhe. Wie man innere Gelassenheit erreicht und äussere Störungen abwehrt.',
+                  tag: 'Seelenfrieden',
+                  years: '50 n. Chr.'
+                },
+                {
+                  title: 'De Constantia Sapientis',
+                  summary: 'Von der Beständigkeit der Weisheit. Tugend als feste Haltung gegenüber dem Wechsel des Schicksals.',
+                  tag: 'Tugendlehre',
+                  years: '55 n. Chr.'
+                },
+                {
+                  title: 'De Beneficiis',
+                  summary: 'Von den Wohltaten. Analyse von Freundschaft, Dankbarkeit und sozialen Verpflichtungen.',
+                  tag: 'Sozialethik',
+                  years: '56 n. Chr.'
+                },
+                {
+                  title: 'De Vita Beata',
+                  summary: 'Vom glücklichen Leben. Verbindung von stoischer Philosophie mit römischer Lebenspraxis.',
+                  tag: 'Glücksethik',
+                  years: '58 n. Chr.'
+                }
+              ].map((work, i) => (
+                <div
+                  key={work.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
+                    <BookOpen className="h-6 w-6 text-primary opacity-60" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
+                    {i === 0 && (
+                      <Link
+                        to="/seneca/works/epistulae-morales"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Werk lesen
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Seneca in der Debatte */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="font-display text-4xl font-bold mb-4">Seneca in der Debatte</h2>
-              <p className="text-lg text-muted-foreground">Zwischen moralischer Autorität und politischem Widerspruch.</p>
+              <p className="text-lg text-muted-foreground">Zwischen stoischer Weisheit und politischem Widerspruch.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-              {senecaDebate.map((block) => (
+              {[
+                {
+                  heading: 'Warum er bewundert wird',
+                  points: [
+                    'Einer der tiefgründigsten Moralphilosophen der Antike – seine Weisheit hat universelle Gültigkeit.',
+                    'Meisterhafter Stilist: Sein "neuer Stil" (genus humile) revolutionierte die lateinische Prosa.',
+                    'Verband abstrakte Philosophie mit konkreter Lebensführung: Philosophie als ars vivendi.',
+                    'Trotz Verbannung und politischem Druck blieb er produktiv und geistig ungebrochen.'
+                  ]
+                },
+                {
+                  heading: 'Warum er kritisiert wird',
+                  points: [
+                    'Widerspruch zwischen Lehre und Leben: Predigte Armut, häufte aber ein gigantisches Vermögen an.',
+                    'Mitschuld am Tod der Britannicus und Agrippina – bis heute historisch umstritten.',
+                    'Schrieb schmeichelhafte Werke für Claudius und Nero, um sich Gunst zu sichern.',
+                    'Rückzug statt Widerstand: Verließ lieber die Politik, als Nero offen entgegenzutreten.'
+                  ]
+                }
+              ].map((block) => (
                 <div
                   key={block.heading}
                   className="card-modern card-hover-primary card-padding-lg"
@@ -369,6 +529,53 @@ export function SenecaAboutPage() {
                       </div>
                     ))}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Legendäre Zitate */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+              <p className="text-lg text-muted-foreground">Worte, die Jahrtausende überdauerten.</p>
+            </div>
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  quote: 'Non est ad auctorem mollis, nec ad impetum, quicquid in rebus magni et difficillibus vim suam impertit.',
+                  translation: 'Es gehört nicht zur Art eines sanften Mannes, noch zur eines hitzköpfigen, dass er in großen und schwierigen Dingen seine Kraft einsetzt.',
+                  when: 'De Clementia',
+                  meaning: 'Forderung nach Entschlossenheit und Mut in der Politik.'
+                },
+                {
+                  quote: 'Dum loquimur, fugit aetas.',
+                  translation: 'Während wir reden, flieht die Zeit.',
+                  when: 'De Brevitate Vitae',
+                  meaning: 'Mahnung zur bewussten Zeitnutzung und zum Handeln.'
+                },
+                {
+                  quote: 'Vitae non est vivere, sed valere.',
+                  translation: 'Leben heißt nicht atmen, sondern Kraft haben.',
+                  when: 'Epistulae Morales',
+                  meaning: 'Definition des wahren Lebens als aktive Entfaltung der eigenen Fähigkeiten.'
+                }
+              ].map((item) => (
+                <div
+                  key={item.quote}
+                  className="card-modern card-hover-primary card-padding-md"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <Sparkles className="h-3.5 w-3.5" /> Impact
+                    </span>
+                    <span className="text-xs font-semibold text-primary/70">{item.when}</span>
+                  </div>
+                  <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                  <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                  <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                 </div>
               ))}
             </div>

@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, Award, ArrowRight, Clock, Sword, Users, Scroll, AlertTriangle, Shield, Flame, Landmark } from 'lucide-react';
+import { MapPin, BookOpen, Award, ArrowRight, Clock, Sword, Users, Scroll, AlertTriangle, Shield, Flame, Landmark, Sparkles } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
@@ -500,6 +500,168 @@ export function CatilinaAboutPage() {
                   </Button>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Catilinas Vermächtnis */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Catilinas Vermächtnis</h2>
+              <p className="text-lg text-muted-foreground">Der Verschwörer, der zum Symbol für Korruption und Staatsfeind wurde.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {[
+                {
+                  title: 'Die Verschwörung',
+                  summary: 'Catilinas Plan zur Machtübernahme durch Mord an führende Politiker und Brandstiftung in Rom.',
+                  tag: 'Staatsstreich',
+                  years: '63 v. Chr.'
+                },
+                {
+                  title: 'Ciceros Reden',
+                  summary: 'Die vier Catilinarischen Reden, die Catilinas Plan enthüllten und seine Flucht erzwangen.',
+                  tag: 'Rhetorik',
+                  years: '63 v. Chr.'
+                },
+                {
+                  title: 'Historische Bedeutung',
+                  summary: 'Catilina als Symbol für politische Korruption und die Gefahren der späten Republik.',
+                  tag: 'Geschichtsschreibung',
+                  years: '63 v. Chr.–62 v. Chr.'
+                },
+                {
+                  title: 'Archäologische Funde',
+                  summary: 'Die Catilinarischen Verschwörungsbriefe und ihre Bedeutung für die moderne Forschung.',
+                  tag: 'Quellenkritik',
+                  years: 'Entdeckt 1937'
+                },
+                {
+                  title: 'Rezeption in Literatur',
+                  summary: 'Catilina in Shakespeares "Julius Caesar" und Ben Jonsons "Catiline" als politischer Bösewicht.',
+                  tag: 'Literaturgeschichte',
+                  years: '16.–21. Jahrhundert'
+                }
+              ].map((work, i) => (
+                <div
+                  key={work.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
+                    <Scroll className="h-6 w-6 text-primary opacity-60" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
+                    {i === 1 && (
+                      <Link
+                        to="/cicero/works/in-catilinam"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Reden lesen
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Catilina in der Debatte */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Catilina in der Debatte</h2>
+              <p className="text-lg text-muted-foreground">Zwischen Verschwörer und politischer Märtyrer.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              {[
+                {
+                  heading: 'Warum er als Staatsfeind gilt',
+                  points: [
+                    'Plan zur Ermordung von Konsuln und anderen führenden Politikern.',
+                    'Brandstiftung in Rom, um Chaos zu schaffen und die Macht zu übernehmen.',
+                    'Bündnis mit Galliern und Sklaven für den Bürgerkrieg.',
+                    'Drohung gegen die Grundlagen der Römischen Republik.'
+                  ]
+                },
+                {
+                  heading: 'Warum er als Opfer Ciceros gilt',
+                  points: [
+                    'Wurde von Cicero als Sündenbock für die Krisen der Republik dargestellt.',
+                    'Seine Verbannung und spätere Hinrichtung ohne ordentliches Gerichtsverfahren.',
+                    'Ausnutzung als politisches Werkzeug zur Machtkonsolidierung.',
+                    'Sein Tod als Symbol für den Sieg der Republik über die inneren Feinde.'
+                  ]
+                }
+              ].map((block) => (
+                <div
+                  key={block.heading}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
+                  <div className="space-y-3">
+                    {block.points.map((point, i) => (
+                      <div key={i} className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed">
+                        <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Legendäre Zitate */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
+              <p className="text-lg text-muted-foreground">Worte, die Catilinas Schicksal besiegelten.</p>
+            </div>
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  quote: 'Quo usque tandem abutere, Catilina, patientia nostra?',
+                  translation: 'Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?',
+                  when: 'Cicero, 1. Catilinaria',
+                  meaning: 'Die berühmte Eröffnung von Ciceros erster Rede gegen Catilina.'
+                },
+                {
+                  quote: 'O tempora, o mores!',
+                  translation: 'O Zeiten, o Sitten!',
+                  when: 'Cicero, 2. Catilinaria', 
+                  meaning: 'Klage über den moralischen Verfall Roms und die Gefahr für die Republik.'
+                },
+                {
+                  quote: 'Catilina, hostis ad salutem populi Romani, dux aciem feriet.',
+                  translation: 'Catilina, der dem Heil des römischen Volkes den Rücken kehrt und das Schwert zieht.',
+                  when: 'Sallust, Bellum Catilinae',
+                  meaning: 'Beschreibung von Catilinas Verrat und militärischer Bedrohung für Rom.'
+                }
+              ].map((item) => (
+                <div
+                  key={item.quote}
+                  className="card-modern card-hover-primary card-padding-md"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <Sparkles className="h-3.5 w-3.5" /> Wirkung
+                    </span>
+                    <span className="text-xs font-semibold text-primary/70">{item.when}</span>
+                  </div>
+                  <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                  <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                  <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

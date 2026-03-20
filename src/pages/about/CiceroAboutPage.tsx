@@ -124,26 +124,26 @@ export function CiceroAboutPage() {
     return year < 0 ? `${Math.abs(year)} v. Chr.` : `${year} n. Chr.`;
   };
   const ciceroSidebar = {
-    karriere: [
-      { year: -81, title: 'Erste Prozesse', note: 'Vertretung im Sextus Roscius-Fall' },
-      { year: -63, title: 'Konsul', note: 'Catilina aufgedeckt, Concordia ordinis' },
-      { year: -58, title: 'Exil', note: 'Wegen Hinrichtungen der Verschwörer' },
-      { year: -57, title: 'Rückkehr aus Exil', note: 'Senatsbeschluss, Applaus' },
-      { year: -51, title: 'Statthalter Kilikien', note: 'Militärischer Erfolg, „Imperator“-Ausruf' },
-      { year: -44, title: 'Philippicae', note: 'Angriff auf Antonius' },
-    ],
-    reden: [
-      { year: -70, title: 'In Verrem', note: 'Korruption Sizilien' },
+    redenSchriften: [
+      { year: -70, title: 'In Verrem', note: 'Anklage gegen Statthalter wegen Korruption' },
       { year: -66, title: 'Pro Lege Manilia', note: 'Unterstützung für Pompeius' },
       { year: -63, title: 'In Catilinam', note: 'Vier Reden gegen Catilina' },
-      { year: -52, title: 'Pro Milone', note: 'Verteidigung Milos' },
+      { year: -52, title: 'Pro Milone', note: 'Verteidigung eines Freundes' },
       { year: -43, title: 'Philippicae', note: '14 Reden gegen Antonius' },
     ],
-    konflikte: [
-      { year: -58, title: 'Clodius & Exil', note: 'Politische Fehde, Verbannung' },
-      { year: -49, title: 'Zwischen Caesar & Pompeius', note: 'Unentschiedenheit, später Pompeius' },
-      { year: -47, title: 'Versöhnung mit Caesar', note: 'Rückkehr in Politik' },
-      { year: -43, title: 'Proskriptionen', note: 'Zweites Triumvirat; Tod Ciceros' },
+    aemterTitel: [
+      { year: -81, title: 'Erste Prozesse', note: 'Anwaltliche Tätigkeit beginnt' },
+      { year: -63, title: 'Konsul', note: 'Catilina aufgedeckt, Rettung der Republik' },
+      { year: -58, title: 'Exil', note: 'Wegen Hinrichtung der Verschwörer' },
+      { year: -57, title: 'Rückkehr', note: 'Senatsbeschluss, triumphale Wiederkehr' },
+      { year: -51, title: 'Statthalter', note: 'Kilikien, militärischer Erfolg' },
+    ],
+    philosophischeBeitraege: [
+      { year: -45, title: 'De Re Publica', note: 'Staatstheorie über die beste Verfassung' },
+      { year: -44, title: 'De Officiis', note: 'Pflichtenlehre für seinen Sohn' },
+      { year: -44, title: 'De Finibus', note: 'Erkenntnistheorie der epikureischen Philosophie' },
+      { year: -43, title: 'De Natura Deorum', note: 'Theologie der griechischen Philosophie' },
+      { year: -41, title: 'Tusculanae', note: 'Philosophie des glücklichen Lebens' },
     ],
   };
   return (
@@ -276,96 +276,6 @@ export function CiceroAboutPage() {
             </div>
           </div>
         </div>
-        {/* Cicero's Achievements */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">Seine bleibenden Leistungen</h2>
-              <p className="text-lg text-muted-foreground">Rhetorik, Philosophie und Politik – Ciceros Erbe für die westliche Zivilisation.</p>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-              {ciceroAchievements.map((achievement) => {
-                const IconComponent = achievement.icon === 'Users' ? Users : achievement.icon === 'BookOpen' ? BookOpen : achievement.icon === 'Award' ? Award : Scroll;
-                return (
-                  <div
-                    key={achievement.title}
-                    className="card-modern card-hover-primary card-padding-lg"
-                  >
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{achievement.tag}</span>
-                      <IconComponent className="h-6 w-6 text-primary opacity-60" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-2">{achievement.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{achievement.summary}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-        {/* Rhetorische Meisterwerke */}
-        <section className="py-24 bg-surface-container-low/20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">Rhetorische Meisterwerke</h2>
-              <p className="text-lg text-muted-foreground">Die Reden, die Rom bewegten und die Rhetorik für immer prägten.</p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-              <div className="card-modern card-hover-primary card-padding-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Scroll className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold">In Catilinam (63 v. Chr.)</h3>
-                    <span className="text-xs text-primary font-semibold">Gegen die Verschwörung</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Vier Reden gegen Catilina, der einen Umsturz plante. Die erste beginnt mit den berühmtesten Worten der lateinischen Literatur. Direkte Ansprache, dramatische Steigerung, moralische Empörung – Rhetorik als Staatsrettung.</p>
-                <div className="text-xs text-muted-foreground italic">"Quo usque tandem abutere, Catilina, patientia nostra?"</div>
-              </div>
-              <div className="card-modern card-hover-primary card-padding-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Scroll className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold">In Verrem (70 v. Chr.)</h3>
-                    <span className="text-xs text-primary font-semibold">Gegen Korruption</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Anklage gegen Verres, den korrupten Statthalter Siziliens. Sieben Reden voller Details über Raub, Folter und Machtmissbrauch. Der Durchbruch des jungen Cicero – Verres floh ins Exil, bevor das Urteil fiel.</p>
-                <div className="text-xs text-muted-foreground italic">Der Prozess, der Ciceros Karriere begründete.</div>
-              </div>
-              <div className="card-modern card-hover-primary card-padding-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Scroll className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold">Philippicae (44–43 v. Chr.)</h3>
-                    <span className="text-xs text-primary font-semibold">Gegen Antonius</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/85 leading-relaxed mb-3">14 feurige Reden gegen Marcus Antonius, benannt nach Demosthenes’ Reden gegen Philipp von Makedonien. Ciceros letzter Kampf für die Republik. Antonius ließ ihn dafür ermorden – Kopf und Hände wurden auf dem Forum ausgestellt.</p>
-                <div className="text-xs text-muted-foreground italic">Sein politisches Vermächtnis – und sein Todesurteil.</div>
-              </div>
-              <div className="card-modern card-hover-primary card-padding-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Scroll className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold">Pro Milone (52 v. Chr.)</h3>
-                    <span className="text-xs text-primary font-semibold">Verteidigung eines Freundes</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/85 leading-relaxed mb-3">Verteidigung des Milo, der Clodius getötet hatte. Obwohl Cicero die Rede unter Einschüchterung hielt und verlor, gilt die schriftliche Fassung als rhetorisches Meisterwerk – perfekt strukturiert, emotional packend.</p>
-                <div className="text-xs text-muted-foreground italic">Die schönste Rede, die nie gehalten wurde (zumindest nicht so).</div>
-              </div>
-            </div>
-          </div>
-        </section>
         {/* Lebenslauf & Stationen - Full Width Section */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
@@ -374,97 +284,79 @@ export function CiceroAboutPage() {
                 <Clock className="h-8 w-8 text-primary" />
                 <div>
                   <h2 className="font-display text-4xl font-bold">Lebenslauf & Stationen</h2>
-                  <p className="text-lg text-muted-foreground mt-2">Karriere, Reden und die Wendepunkte eines Lebens</p>
+                  <p className="text-lg text-muted-foreground mt-2">Reden, Ämter und philosophisches Erbe</p>
                 </div>
               </div>
               <div className="grid gap-8 lg:grid-cols-3">
-                {/* Karriere & Ämter */}
+                {/* Reden & Schriften */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Reden & Schriften</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {ciceroSidebar.redenSchriften.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Ämter & Titel */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
                     <Crown className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">Karriere</h3>
+                    <h3 className="font-display text-2xl font-bold">Ämter & Titel</h3>
                   </div>
                   <div className="space-y-4">
-                    {ciceroSidebar.karriere.map((item, idx) => (
+                    {ciceroSidebar.aemterTitel.map((item, idx) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
                         {idx === 1 && (
                           <Link
-                            to="/cicero/konsul-und-catilina"
+                            to="/cicero/konsulat-und-catilina"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
                             <ArrowRight className="h-3 w-3" />
-                            Artikel lesen
+                            {t('caesar.readArticle')}
                           </Link>
                         )}
                       </div>
                     ))}
                   </div>
                 </div>
-                {/* Reden & Prozesse */}
-                <div className="card-modern card-padding-lg space-y-6">
-                  <div className="flex items-center gap-3">
-                    <BookOpen className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">Reden</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {ciceroSidebar.reden.map((item, idx) => (
-                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
-                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-xs text-muted-foreground">{item.note}</p>
-                        {idx === 2 && (
-                          <Link
-                            to="/cicero/in-catilinam"
-                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
-                          >
-                            <ArrowRight className="h-3 w-3" />
-                            Artikel lesen
-                          </Link>
-                        )}
-                        {idx === 4 && (
-                          <Link
-                            to="/cicero/philippicae"
-                            className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
-                          >
-                            <ArrowRight className="h-3 w-3" />
-                            Artikel lesen
-                          </Link>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Konflikte & Wendepunkte */}
+                {/* Philosophische Beiträge */}
                 <div className="card-modern card-padding-lg space-y-6">
                   <div className="flex items-center gap-3">
                     <Landmark className="h-6 w-6 text-primary" />
-                    <h3 className="font-display text-2xl font-bold">Wendepunkte</h3>
+                    <h3 className="font-display text-2xl font-bold">Philosophische Beiträge</h3>
                   </div>
                   <div className="space-y-4">
-                    {ciceroSidebar.konflikte.map((item, idx) => (
+                    {ciceroSidebar.philosophischeBeitraege.map((item, idx) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
                         {idx === 0 && (
                           <Link
-                            to="/cicero/exil-und-rückkehr"
+                            to="/cicero/works/de-re-publica"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
                             <ArrowRight className="h-3 w-3" />
-                            Artikel lesen
+                            {t('caesar.readArticle')}
                           </Link>
                         )}
-                        {idx === 3 && (
+                        {idx === 1 && (
                           <Link
-                            to="/cicero/tod-und-vermächtnis"
+                            to="/cicero/works/de-officiis"
                             className="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                           >
                             <ArrowRight className="h-3 w-3" />
-                            Artikel lesen
+                            {t('caesar.readArticle')}
                           </Link>
                         )}
                       </div>
