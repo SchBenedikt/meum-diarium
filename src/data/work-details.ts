@@ -609,21 +609,92 @@ export const workDetails: Record<string, WorkDetail> = {
     sections: [
       {
         icon: 'Award',
-        title: 'Politische Theorie',
+        title: 'Literarische Bedeutung',
         content: [
-          'Cicero definiert den Staat (res publica) als das Gemeinwesen des Volkes: »Res publica est res populi« – ein Staat, der nicht Gewalt ist, sondern Konsens.',
-          'Die »gemischte Verfassung« (constitutio mixta): Rom vereint die beste Monarchie (Konsulate), Aristokratie (Senat) und Demokratie (Volksversammlungen).',
-          'Ein Staat ohne Gerechtigkeit ist kein wahrer Staat – eine radikale These, die die Rechtfertigbarkeit von Gemeinschaften infrage stellt.'
+          'De Re Publica ist Ciceros Meisterwerk der politischen Philosophie. Obwohl größtenteils verloren, zeigen die Fragmente einen Dialog von höchster literarischer Qualität.',
+          'Der Dialogform gibt Cicero die Möglichkeit, verschiedene Perspektiven zu präsentieren. Scipio Aemilianus, Laelius, Philus und andere historische Figuren diskutieren über die beste Staatsform.',
+          'Das Werk verbindet griechische Philosophie (Platon, Aristoteles) mit römischer Praxis. Cicero adaptiert die Ideen, macht sie aber für römische Leser verständlich und relevant.'
         ],
         type: 'literary'
-      }    ],
-    quotes: [],
-    literaryFeatures: [],
-    keyMoments: [],
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Theoretische Grundlegung: Cicero wollte eine umfassende Theorie des idealen Staates entwickeln, die auf römischen Werten basiert.',
+          'Politische Intervention: Durch die historische Distanz konnte er Kritik an der aktuellen politischen Situation üben, ohne direkt anzugreifen.',
+          'Bildungsziel: Das Werk sollte römische Eliten über politische Theorie und ethische Führung aufklären.',
+          'Vermächtnis: Cicero wollte ein bleibendes Werk schaffen, das seine politischen Überzeugungen für die Nachwelt festhält.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Dialogform als Mittel',
+        description: 'Cicero nutzt den philosophischen Dialog, um komplexe Ideen zugänglich zu machen. Die Gesprächsform erlaubt es, verschiedene Standpunkte zu präsentieren und schrittweise zu einer Lösung zu kommen.',
+        examples: [
+          'Historische Figuren als Gesprächspartner erhöhen Authentizität',
+          'Sokratische Methode: Fragen und Antworten führen zur Erkenntnis',
+          'Dramatische Elemente machen die Theorie lebendig'
+        ]
+      },
+      {
+        title: 'Römische Adaptation',
+        description: 'Cicero übernimmt griechische Konzepte, aber "romanisiert" sie. Er zeigt, dass die römische Verfassung bereits die ideale Form verwirklicht.',
+        examples: [
+          'Die gemischte Verfassung als römische Erfindung',
+          'Stoische Ethik wird zu römischer Tugendlehre',
+          'Platons Ideen werden mit römischer Geschichte verbunden'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Definition des Staates',
+        date: 'Buch I',
+        description: 'Cicero definiert den Staat als "res populi" - Sache des Volkes. Diese Definition betont, dass ein Staat ohne Volkswillen keine wahre Gemeinschaft ist.',
+        significance: 'Grundlegende Neudefinition des Staatsbegriffs, die über die Antike hinauswirkt und moderne Demokratietheorien beeinflusst.'
+      },
+      {
+        title: 'Der Traum von Scipio',
+        date: 'Buch VI',
+        description: 'Ciceros berühmtester Abschnitt: Scipio Aemilianus träumt vom Kosmos und vom Platz des Menschen im Universum. Er sieht die Erde als winzigen Teil des Universums.',
+        significance: 'Eines der einflussreichsten Texte der mittelalterlichen Philosophie. Verbindet politische Theorie mit Kosmologie und Ethik.'
+      },
+      {
+        title: 'Kritik an Tyrannen',
+        date: 'Buch II-III',
+        description: 'Durch die Figur des Philus lässt Cicero Argumente für Tyrannis vortragen, nur um sie dann zu widerlegen. Dies zeigt seine rhetorische Meisterschaft.',
+        significance: 'Systematische Widerlegung von Tyrannei-Theorien. Bietet intellektuelle Waffen gegen politische Extreme.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Res publica est res populi.',
+        translation: 'Der Staat ist die Sache des Volkes.',
+        context: 'Ciceros berühmte Definition des Staates in Buch I. Diese einfache Formel fasst seine gesamte politische Philosophie zusammen.'
+      },
+      {
+        latin: 'Salus populi suprema lex esto.',
+        translation: 'Das Wohl des Volkes sei das oberste Gesetz.',
+        context: 'Grundsatz aus dem Traum von Scipio. Formuliert den Kern legitimer politischer Herrschaft.'
+      }
+    ],
     impact: {
-      title: 'Vermächtnis',
-      paragraphs: [],
-      highlights: []
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'De Re Publica wurde zum Fundament der westlichen politischen Theorie. Obwohl größtenteils verloren, beeinflussten die Fragmente Augustinus, Thomas von Aquin und die Renaissance.',
+        'Die Definition des Staates als "res populi" wurde zur Grundlage moderner Demokratietheorien. Die Idee der gemischten Verfassung beeinflusste die amerikanische und französische Verfassung.',
+        'Der "Traum von Scipio" wurde im Mittelalter als eigenständiges Werk gelesen und beeinflusste die kosmologischen Vorstellungen des Christentums.',
+        'Ciceros Verbindung von Ethik und Politik prägte das abendländische Denken über gute Herrschaft und Staatsräson bis in die Neuzeit.'
+      ],
+      highlights: [
+        'Grundlage der westlichen politischen Philosophie',
+        'Beeinflussung von Verfassungsdenken in Europa und Amerika',
+        'Vermittlung antiker politischer Ideen an das Mittelalter',
+        'Verbindung von Ethik und Politik als Leitprinzip'
+      ]
     }
   }
 };
