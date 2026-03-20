@@ -696,5 +696,542 @@ export const workDetails: Record<string, WorkDetail> = {
         'Verbindung von Ethik und Politik als Leitprinzip'
       ]
     }
+  },
+  'de-ira': {
+    slug: 'de-ira',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'De Ira wurde um 55 n. Chr. von Seneca dem Jüngeren verfasst, während er als Berater des jungen Nero tätig war. Das Werk entstand in einer Zeit politischer Spannungen und persönlicher Herausforderungen.',
+        'Die Abhandlung über den Zorn ist Teil von Senecas moralphilosophischen Schriften, die sich mit der Beherrschung der Affekte beschäftigen. Sie richtet sich an seinen Bruder Novatus und an alle, die nach einem tugendhaften Leben streben.',
+        'Das Werk reflektiert stoische Philosophie in praktischer Form. Seneca will zeigen, dass Zorn nicht nur moralisch verwerflich, sondern auch schädlich für den Verstand und den Körper ist.'
+      ],
+      timeline: [
+        { year: '54 n. Chr.', event: 'Seneca wird Berater Neros' },
+        { year: '55 n. Chr.', event: 'Verfassung von De Ira' },
+        { year: '59 n. Chr.', event: 'Agrippina wird ermordet - politische Instabilität' },
+        { year: '62 n. Chr.', event: 'Seneca verliert politischen Einfluss' },
+        { year: '65 n. Chr.', event: 'Seneca wird zum Selbstmord gezwungen' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Bedeutung',
+        content: [
+          'De Ira ist ein Meisterwerk der römischen Moralphilosophie. Seneca verbindet theoretische Reflexion mit praktischer Lebenshilfe in einer Weise, die für die Antike neuartig war.',
+          'Das Werk zeigt Senecas meisterhafte Beherrschung der lateinischen Sprache. Die Sätze sind prägnant, die Argumente klar, die Beispiele lebendig.',
+          'Die psychologische Tiefe der Analyse ist bemerkenswert. Seneca beschreibt nicht nur, was Zorn ist, sondern wie er entsteht, wie er sich im Körper äußert und wie man ihn bekämpfen kann.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Praktische Ethik: Seneca will keine abstrakte Theorie, sondern konkrete Hilfestellung für das tägliche Leben.',
+          'Politische Relevanz: In einer Zeit wachsender Tyrannei zeigt Seneca, wie man emotionale Stabilität bewahrt.',
+          'Selbstdisziplin: Das Werk ist auch an Seneca selbst gerichtet - er muss seine eigenen Affekte kontrollieren, um als Berater zu überleben.',
+          'Philosophische Vermittlung: Stoische Lehren sollen einem breiteren Publikum zugänglich gemacht werden.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Psychologische Analyse',
+        description: 'Seneca analysiert den Zorn wie ein moderner Psychologe. Er untersucht Ursachen, Symptome und Behandlungsmethoden mit großer Präzision.',
+        examples: [
+          'Beschreibung körperlicher Symptome: Erröten, Zittern, Hitze',
+          'Analyse von Auslösern: Beleidigungen, Ungerechtigkeit, Übermüdung',
+          'Differenzierung zwischen berechtigtem und unberechtigtem Zorn'
+        ]
+      },
+      {
+        title: 'Praktische Ratschläge',
+        description: 'Das Werk ist voll konkreter Empfehlungen. Seneca gibt nicht nur Theorie, sondern Handlungsanweisungen für kritische Momente.',
+        examples: [
+          'Zähle bis zehn bevor du reagierst',
+          'Atme tief durch, bevor du sprichst',
+          'Unterbrich die Kettenreaktion negativer Gedanken',
+          'Vermeide Situationen, die dich wütend machen'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Definition des Zorns',
+        date: 'Buch I',
+        description: 'Seneca definiert Zorn als "kurzen Wahnsinn" - eine vorübergehende Geistesstörung, die den Verstand trübt.',
+        significance: 'Grundlegende Definition, die das gesamte Werk prägt. Zorn ist keine natürliche Emotion, sondern eine Form der Unvernunft.'
+      },
+      {
+        title: 'Die drei Ursachen',
+        date: 'Buch II',
+        description: 'Seneca identifiziert drei Hauptursachen: wahrgenommene Beleidigungen, Ungerechtigkeit, und der Eindruck, man könnte sich rächen.',
+        significance: 'Systematische Analyse hilft, Zorn im Vorfeld zu erkennen und zu vermeiden.'
+      },
+      {
+        title: 'Präventive Maßnahmen',
+        date: 'Buch III',
+        description: 'Seneca schlägt konkrete Techniken vor: Vermeidung von Zornauslösern, Vorbereitung auf Provokationen, philosophische Schulung.',
+        significance: 'Der Übergang von Theorie zur Praxis. Seneca zeigt, wie man ein zornfreies Leben führen kann.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Ira brevis est, at in belua longa est.',
+        translation: 'Der Zorn ist kurz, aber die Bestie ist lang.',
+        context: 'Seneca warnt davor, dass auch kurze Wutanfälle langfristige Konsequenzen haben können.'
+      },
+      {
+        latin: 'Quamuis enim adfectus non sunt in nostra potestate, voluntas tamen est.',
+        translation: 'Obwohl die Affekte nicht in unserer Macht stehen, steht es doch in unserer Macht.',
+        context: 'Seneca betont die menschliche Fähigkeit zur Selbstkontrolle trotz emotionaler Herausforderungen.'
+      }
+    ],
+    impact: {
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'De Ira wurde zum einflussreichsten antiken Werk über Emotionsregulation. Es beeinflusste nicht nur die Philosophie, sondern auch die christliche Ethik und die moderne Psychologie.',
+        'Das Werk zeigt die Relevanz stoischer Philosophie für das moderne Leben. Senecas Ratschläge zur Stressbewältigung und Wutkontrolle sind heute aktueller denn je.',
+        'De Ira etablierte ein neues Genre: die praktische philosophische Selbsthilfe. Es beweist, dass antike Weisheit konkret und anwendbar sein kann.'
+      ],
+      highlights: [
+        'Grundlage für moderne Emotionsregulationstheorien',
+        'Einfluss auf christliche Tugendlehren',
+        'Vorbild für psychologische Ratgeberliteratur',
+        'Zeitlose Relevanz für Stressmanagement und Selbstkontrolle'
+      ]
+    }
+  },
+  'epistulae-morales': {
+    slug: 'epistulae-morales',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'Die Epistulae Morales wurden von Seneca zwischen 62 und 65 n. Chr. verfasst, als er sich zunehmend aus der Politik zurückzog. Die Briefe sind an Lucilius Junior gerichtet, einen Freund und Schüler.',
+        'Die Sammlung umfasst 124 Briefe, die sich mit philosophischen und ethischen Themen befassen. Sie entstanden in einer Zeit persönlicher Reflexion nach dem Verlust politischen Einflusses.',
+        'Das Werk ist einzigartig in der antiken Literatur: philosophische Lehren in Briefform. Diese Form macht die Inhalte persönlicher, zugänglicher und direkt anwendbar.'
+      ],
+      timeline: [
+        { year: '62 n. Chr.', event: 'Seneca verliert politischen Einfluss' },
+        { year: '62-65 n. Chr.', event: 'Verfassung der Epistulae Morales' },
+        { year: '65 n. Chr.', event: 'Seneca wird zum Selbstmord gezwungen' },
+        { year: '1. Jh. n. Chr.', event: 'Briefe werden gesammelt und verbreitet' },
+        { year: 'Mittelalter', event: 'Einfluss auf christliche Briefliteratur' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Bedeutung',
+        content: [
+          'Die Epistulae Morales sind ein Meisterwerk der antiken Briefform. Seneca verbindet persönliche Nähe mit philosophischer Tiefe in einzigartiger Weise.',
+          'Das Werk etablierte ein neues Genre: den philosophischen Brief. Statt trockener Abhandlungen bietet Seneca lebendige, persönliche Unterweisungen.',
+          'Die sprachliche Meisterschaft ist bemerkenswert. Seneca schreibt klar, elegant und überzeugend - beweist, dass Philosophie schön sein kann.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Persönliche Unterweisung: Seneca will Lucilius nicht nur belehren, sondern ihn zu einem besseren Menschen formen.',
+          'Philosophische Popularisierung: Komplexe stoische Lehren sollen einem breiteren Publikum zugänglich gemacht werden.',
+          'Selbstreflexion: Die Briefe sind auch an Seneca selbst gerichtet - er festigt seine eigene philosophische Überzeugung.',
+          'Ethik im Alltag: Philosophie soll nicht abstrakt sein, sondern konkret im Leben helfen.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Briefform als Mittel',
+        description: 'Die Briefform macht Philosophie persönlich und direkt. Seneca spricht Lucilius wie einen Freund an, nicht wie einen Schüler.',
+        examples: [
+          'Persönliche Anreden: "Mein lieber Lucilius"',
+          'Konkrete Lebenssituationen als Ausgangspunkt',
+          'Dialogischer Charakter trotz Einseitigkeit'
+        ]
+      },
+      {
+        title: 'Praktische Weisheit',
+        description: 'Seneca gibt keine abstrakten Theorien, sondern konkrete Ratschläge für tägliche Herausforderungen.',
+        examples: [
+          'Umgang mit Reichtum und Armut',
+          'Bewältigung von Krankheit und Alter',
+          'Strategien gegen Angst und Sorgen',
+          'Kunst des richtigen Lebens'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Brief über die Freundschaft',
+        date: 'Brief III',
+        description: 'Seneca reflektiert über wahre Freundschaft und wie man sie pflegt. Freundschaft als höchstes Gut.',
+        significance: 'Grundlegende Reflexion über menschliche Beziehungen. Freundschaft als philosophische Praxis und ethische Verpflichtung.'
+      },
+      {
+        title: 'Brief über die Zeit',
+        date: 'Brief I',
+        description: 'Seneca rät Lucilius, die Zeit zu nutzen und nicht zu verschwenden. "Lebe eilig" als Leitprinzip.',
+        significance: 'Einflussreicher Rat zur Lebensführung. Zeit als kostbarstes Gut, das bewusst eingesetzt werden muss.'
+      },
+      {
+        title: 'Brief über den Tod',
+        date: 'Brief IV',
+        description: 'Seneca behandelt die Angst vor dem Tod und argumentiert, dass ein philosophisch vorbereiteter Mensch keine Furcht zu haben braucht.',
+        significance: 'Zeigt stoische Haltung zur Endlichkeit. Der Tod als natürlicher Teil des Lebens, nicht als Schrecken.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Vivere, Lucili, non est necesse, sed bene vivere est necesse.',
+        translation: 'Zu leben, Lucilius, ist nicht notwendig, aber gut zu leben ist notwendig.',
+        context: 'Seneca betont die Qualität über die Quantität des Lebens. Ein kurzes, aber tugendhaftes Leben ist besser als ein langes, aber schlechtes.'
+      },
+      {
+        latin: 'Non est ad aetatem mordendum, sed ad adulescentiam.',
+        translation: 'Nicht an das Alter, sondern an die Jugend soll man sich gewöhnen.',
+        context: 'Seneca rät, tugendhaft zu leben, unabhängig vom Alter. Moralische Entwicklung ist lebenslang.'
+      }
+    ],
+    impact: {
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'Die Epistulae Morales wurden zum einflussreichsten philosophischen Werk der römischen Kaiserzeit. Sie prägten das abendländische Denken über Ethik und Lebensführung.',
+        'Das Werk beeinflusste nicht nur die Philosophie, sondern auch die christliche Spiritualität. Die Briefform wurde zum Vorbild für spätere geistliche Literatur.',
+        'Heute sind die Briefe aktueller denn je. Senecas Ratschläge zu Stress, Zeitmanagement und Lebensführung sprechen moderne Leser direkt an.'
+      ],
+      highlights: [
+        'Grundlage der abendländischen Lebensphilosophie',
+        'Einfluss auf christliche Briefliteratur',
+        'Vorbild für moderne Selbsthilfeliteratur',
+        'Zeitlose Relevanz für persönliche Entwicklung'
+      ]
+    }
+  },
+  'philippicae': {
+    slug: 'philippicae',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'Die Philippicae sind eine Serie von 14 Reden, die Cicero zwischen 44 und 43 v. Chr. gegen Marcus Antonius hielt. Der Name bezieht sich auf Demosthenes\' Philippicae gegen Philipp II. von Makedonien.',
+        'Nach Caesars Ermordung versuchte Antonius, Caesars Erbe anzutreten und die Macht zu übernehmen. Cicero sah in ihm eine Bedrohung für die Republik und wurde zu seinem entschiedensten Gegner.',
+        'Die Reden sind Ciceros letztes politisches Bekenntnis. Sie zeigen seine Verzweiflung über die Zukunft der Republik und seinen Mut, sich dem mächtigsten Mann Roms zu stellen.'
+      ],
+      timeline: [
+        { year: '15. März 44 v. Chr.', event: 'Caesars Ermordung' },
+        { year: 'Sommer 44 v. Chr.', event: 'Beginn der Philippicae' },
+        { year: 'September 44 v. Chr.', event: 'Erste Philippica im Senat' },
+        { year: 'Januar 43 v. Chr.', event: 'Cicero flieht aus Rom' },
+        { year: '7. Dezember 43 v. Chr.', event: 'Ciceros Hinrichtung auf Antonius\' Befehl' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Bedeutung',
+        content: [
+          'Die Philippicae sind Ciceros rhetorisches Meisterwerk. Sie zeigen seine Fähigkeit, komplexe politische Argumente in überzeugende Sprache zu fassen.',
+          'Das Werk ist einzigartig als Beispiel politischer Rede in der Krise. Cicero verbindet persönliche Leidenschaft mit rationaler Argumentation.',
+          'Die Reden zeigen die Entwicklung von Ciceros Stil: von der Hoffnung auf Rettung der Republik zur resignierten Erkenntnis ihres Untergangs.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Politische Mobilisierung: Cicero will den Senat und das Volk gegen Antonius aufbringen.',
+          'Moralische Delegitimierung: Antonius soll als Tyrann und Feind der Republik dargestellt werden.',
+          'Historische Verantwortung: Cicero fühlt sich verpflichtet, für die Republik zu kämpfen, auch wenn es aussichtslos ist.',
+          'Persönliches Vermächtnis: Die Reden sollen Ciceros Rolle als Verteidiger der Republik für die Nachwelt festhalten.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Emotionale Rhetorik',
+        description: 'Cicero setzt alle rhetorischen Mittel ein, um seine Zuhörer zu bewegen. Die Reden sind voller Leidenschaft und moralischer Empörung.',
+        examples: [
+          'Direkte Anreden an Antonius als "Feind des Vaterlandes"',
+          'Dramatische Schilderungen von Antonius\' Gräueltaten',
+          'Appelle an die Tradition und die Vorfahren'
+        ]
+      },
+      {
+        title: 'Historische Argumentation',
+        description: 'Cicero nutzt historische Beispiele, um seine Argumente zu untermauern. Er zeigt Parallelen zu früheren Krisen der Republik.',
+        examples: [
+          'Vergleiche mit Catilina und anderen Staatsfeinden',
+          'Beispiele aus der römischen Geschichte für Tyrannenbekämpfung',
+          ' Berufung auf die Gründerväter und ihre Ideale'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Erste Philippica',
+        date: '2. September 44 v. Chr.',
+        description: 'Cicero hält seine erste Rede gegen Antonius im Senat. Er kritisiert dessen Verhalten nach Caesars Tod.',
+        significance: 'Der Beginn des offenen Konflikts. Cicero positioniert sich als führender Gegner Antonius\'.'
+      },
+      {
+        title: 'Dritte Philippica',
+        date: 'Dezember 44 v. Chr.',
+        description: 'Cicero enthüllt Antonius\' Pläne, die Verfassung zu ändern und sich zum Diktator zu machen.',
+        significance: 'Enthüllung der tyrannischen Ambitionen. Cicero zeigt, dass Antonius die Republik zerstören will.'
+      },
+      {
+        title: 'Letzte Philippica',
+        date: 'April 43 v. Chr.',
+        description: 'Ciceros letzte Rede. Er erkennt die Aussichtslosigkeit, aber kämpft weiter für seine Überzeugungen.',
+        significance: 'Das heroische Ende eines großen Republikaners. Cicero weiß um seinen Tod, bleibt aber standhaft.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'O tempora! O mores!',
+        translation: 'O Zeiten! O Sitten!',
+        context: 'Ciceros berühmter Klageausdruck über den moralischen Verfall seiner Zeit. Aus der ersten Philippica.'
+      },
+      {
+        latin: 'Non est enim mihi cum istis turpibus, quorum ista est aetas, non solum dissensio, sed etiam bellum.',
+        translation: 'Denn mit diesen Schurken, deren Alter dieses ist, habe ich nicht nur Meinungsverschiedenheit, sondern sogar Krieg.',
+        context: 'Ciceros radikale Positionierung gegen Antonius und seine Anhänger.'
+      }
+    ],
+    impact: {
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'Die Philippicae wurden zum Symbol des Widerstands gegen Tyrannen. Sie beeinflussten spätere Redner und politische Denker.',
+        'Obwohl Cicero scheiterte, wurden seine Reden zum Vorbild für zivilen Ungehorsam und politischen Mut.',
+        'Das Werk zeigt die Macht der Sprache in politischen Krisen. Ciceros Reden sind ein Lehrstück für politische Rhetorik und moralisches Handeln.'
+      ],
+      highlights: [
+        'Symbol des Widerstands gegen Tyrannen',
+        'Vorbild für politische Redekunst',
+        'Einfluss auf abendländische politische Tradition',
+        'Zeugnis höchster ziviler Tapferkeit'
+      ]
+    }
+  },
+  'res-gestae': {
+    slug: 'res-gestae',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'Die Res Gestae Divi Augusti sind Augustus\' autobiografische Inschrift, die vor seinem Tod 14 n. Chr. in Bronze gegossen und vor seinem Mausoleum in Rom aufgestellt wurde.',
+        'Das Werk ist einzigartig als offizielle Selbstdarstellung eines römischen Kaisers. Augustus präsentiert seine Taten in bescheidener Form, aber mit klarem politischen Ziel.',
+        'Die Inschrift sollte das Bild des Princeps für die Nachwelt festhalten: nicht als Tyrann, sondern als Wiederhersteller der Republik und erster Bürger Roms.'
+      ],
+      timeline: [
+        { year: '31 v. Chr.', event: 'Sieg bei Actium - Ende der Bürgerkriege' },
+        { year: '27 v. Chr.', event: 'Erhalt des Augustus-Titels' },
+        { year: '14 n. Chr.', event: 'Augustus\' Tod und Aufstellung der Inschrift' },
+        { year: 'Mittelalter', event: 'Inschrift wird kopiert und tradiert' },
+        { year: '1555', event: 'Wiederentdeckung in Ankara' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Bedeutung',
+        content: [
+          'Die Res Gestae sind ein Meisterwerk politischer Propaganda. Augustus beherrscht die Kunst der Selbstdarstellung wie kein anderer römischer Kaiser.',
+          'Das Werk ist einzigartig als autobiografische Inschrift. Es verbindet persönliche Geschichte mit politischer Rechtfertigung.',
+          'Die sprachliche Präzision und formale Vollkommenheit machen die Inschrift zum Vorbild römischer Epigraphik.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Politische Legitimation: Augustus will seine Herrschaft als rechtmäßig und notwendig darstellen.',
+          'Historisches Vermächtnis: Seine Taten sollen für die Nachwelt in bestem Licht festgehalten werden.',
+          'Institutionalisierung: Das Werk soll das Prinzipat als neue Regierungsform etablieren.',
+          'Moralisches Beispiel: Augustus will sich als Vorbild für zukünftige Herrscher präsentieren.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Bescheidene Sprache',
+        description: 'Augustus verwendet bewusst einfachen, sachlichen Stil. Er vermeidet prunkvolle Worte und imperialen Ton.',
+        examples: [
+          'Kurze, präzise Sätze ohne rhetorische Ausschmückung',
+          'Verwendung der dritten Person für objektive Darstellung',
+          'Wiederholung von "Ich habe" statt imperiale Ansprüche'
+        ]
+      },
+      {
+        title: 'Numerische Präzision',
+        description: 'Augustus untermauert seine Taten mit exakten Zahlen und Daten. Dies schafft den Eindruck von Wahrheit und Genauigkeit.',
+        examples: [
+          'Angaben über besiegte Feinde und eroberte Völker',
+          'Präzise Zahlen für Geldspenden und Bauprojekte',
+          'Exakte Datierung aller politischen Akte'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Machtergreifung',
+        date: 'Kapitel 1',
+        description: 'Augustus beschreibt, wie er mit 19 Jahren Soldaten auf seine Seite zog und die Republik "befreite".',
+        significance: 'Rechtfertigung seiner Machtübernahme. Dargestellt als Notwendigkeit zur Rettung des Staates.'
+      },
+      {
+        title: 'Triumph und Frieden',
+        date: 'Kapitel 12-13',
+        description: 'Augustus zählt seine Triumphe und schließt drei Siegestore. Er betont die Wiederherstellung des Friedens.',
+        significance: 'Darstellung als Friedensbringer. Der Triumph als Symbol militärischen Erfolgs und göttlicher Gunst.'
+      },
+      {
+        title: 'Machtübergabe',
+        date: 'Kapitel 34-35',
+        description: 'Augustus beschreibt, wie er seine Macht an Senat und Volk "zurückgab" - aber nur formal.',
+        significance: 'Meisterstück politischer Inszenierung. Scheinbare Wiederherstellung der Republik bei tatsächlicher Machterhaltung.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'In senatu autem in potestate fui, princeps senatus fui.',
+        translation: 'Im Senat aber hatte ich Macht, ich war Fürst des Senats.',
+        context: 'Augustus\' präzise Beschreibung seiner Position - nicht König, aber führender Senator.'
+      },
+      {
+        latin: 'Republica constituta a me restituta est.',
+        translation: 'Die Republik, die von mir errichtet wurde, ist wiederhergestellt.',
+        context: 'Augustus\' berühmter Anspruch, die Republik wiederhergestellt zu haben.'
+      }
+    ],
+    impact: {
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'Die Res Gestae wurden zum Vorbild für kaiserliche Selbstdarstellung. Spätere Kaiser versuchten, Augustus\' Stil zu imitieren.',
+        'Das Werk beeinflusste das Bild des Prinzipats in der Nachwelt. Augustus etablierte das Ideal des "ersten Bürgers".',
+        'Die Inschrift ist eine unschätzbare historische Quelle. Sie bietet Einblicke in augusteische Propaganda und die Entstehung des Kaisertums.'
+      ],
+      highlights: [
+        'Vorbild für kaiserliche Propaganda',
+        'Grundlage für das Bild des "guten Kaisers"',
+        'Einfluss auf spätere Herrscherdarstellungen',
+        'Unverzichtbare Quelle für augusteische Zeitgeschichte'
+      ]
+    }
+  },
+  'catilinae-coniuratio': {
+    slug: 'catilinae-coniuratio',
+    context: {
+      title: 'Historischer Kontext',
+      paragraphs: [
+        'Sallusts Catilinae Coniuratio wurde um 50-45 v. Chr. verfasst, Jahrzehnte nach der eigentlichen Verschwörung. Das Werk ist eine historische Monografie über Catilinas Komplott.',
+        'Sallust war ein Zeitgenosse der Ereignisse, aber kein direkter Teilnehmer. Er nutzt seine Erfahrung als Politiker, um die Ursachen der Krise zu analysieren.',
+        'Das Werk ist einzigartig in der römischen Historiografie: Sallust kombiniert politische Analyse mit moralischer Reflexion über den Verfall der Republik.'
+      ],
+      timeline: [
+        { year: '67 v. Chr.', event: 'Sallusts Prätur - politische Karriere beginnt' },
+        { year: '63 v. Chr.', event: 'Catilinarische Verschwörung' },
+        { year: '50-45 v. Chr.', event: 'Verfassung der Catilinae Coniuratio' },
+        { year: '40 v. Chr.', event: 'Sallusts Rückzug aus der Politik' },
+        { year: 'Antike', event: 'Werk wird als historische Quelle geschätzt' }
+      ]
+    },
+    sections: [
+      {
+        icon: 'Award',
+        title: 'Literarische Bedeutung',
+        content: [
+          'Die Catilinae Coniuratio ist ein Meisterwerk der römischen Geschichtsschreibung. Sallust etablierte neue Standards für historische Analyse.',
+          'Das Werk zeigt Sallusts meisterhafte Beherrschung der lateinischen Sprache. Der Stil ist prägnant, die Charakterzeichnung lebendig.',
+          'Sallust verbindet politische Geschichte mit moralischer Philosophie. Er fragt nicht nur "was" geschah, sondern "warum" es geschah.'
+        ],
+        type: 'literary'
+      },
+      {
+        icon: 'Target',
+        title: 'Strategische Ziele',
+        content: [
+          'Historische Analyse: Sallust will die wahren Ursachen der Krise untersuchen, nicht nur die Ereignisse beschreiben.',
+          'Moralische Kritik: Das Werk ist eine Anklage gegen den moralischen Verfall der römischen Elite.',
+          'Politische Lehre: Sallust will aus der Geschichte Lehren für die Gegenwart ziehen.',
+          'Persönliches Vermächtnis: Der Autor will sich als kritischer Historiker und moralischer Autorität etablieren.'
+        ],
+        type: 'analysis'
+      }
+    ],
+    literaryFeatures: [
+      {
+        title: 'Psychologische Charakteristik',
+        description: 'Sallust zeichnet seine Figuren mit psychologischer Tiefe. Catilina ist nicht nur Bösewicht, sondern komplexe Persönlichkeit.',
+        examples: [
+          'Catilina als "ambitiös, aber fähig"',
+          'Cicero als "tüchtig, aber eitel"',
+          'Die Senatoren als "korrupt und gierig"'
+        ]
+      },
+      {
+        title: 'Moralische Analyse',
+        description: 'Sallust geht über reine Ereignisgeschichte hinaus. Er analysiert die moralischen Ursachen politischer Krisen.',
+        examples: [
+          'Kritik am Reichtum als Ursache des Verfalls',
+          'Analyse von Ehrgeiz und Machtgier',
+          'Untersuchung der politischen Korruption'
+        ]
+      }
+    ],
+    keyMoments: [
+      {
+        title: 'Catilinas Charakter',
+        date: 'Kapitel 5-14',
+        description: 'Sallust analysiert Catilinas Persönlichkeit: adlig, aber verschuldet; ehrgeizig, aber fähig.',
+        significance: 'Nuancierte Darstellung des "Helden". Catilina ist nicht einfach böse, sondern Produkt seiner Zeit.'
+      },
+      {
+        title: 'Die Verschwörung',
+        date: 'Kapitel 15-30',
+        description: 'Detaillierte Schilderung des Komplotts: Pläne, Versammlungen, Vorbereitungen.',
+        significance: 'Meisterhafte historische Rekonstruktion. Sallust zeigt, wie eine Verschwörung funktioniert.'
+      },
+      {
+        title: 'Ciceros Rolle',
+        date: 'Kapitel 31-58',
+        description: 'Sallust analysiert Ciceros Handeln: schnell, entschlossen, aber auch selbstgefällig.',
+        significance: 'Kritische Würdigung des "Helden". Sallust zeigt auch Ciceros Schwächen.'
+      }
+    ],
+    quotes: [
+      {
+        latin: 'Omnis homines, qui sese student praestare ceteris, humilitate opprimuntur.',
+        translation: 'Alle Menschen, die sich über andere erheben wollen, werden durch Demut gedrückt.',
+        context: 'Sallusts Reflexion über Ehrgeiz und dessen Gefahren.'
+      },
+      {
+        latin: 'Nam id quod initio non est, finem saepe habet difficiliorem.',
+        translation: 'Denn was am Anfang nicht ist, hat oft am Ende ein schwierigeres.',
+        context: 'Sallusts Beobachtung über politische Entwicklungen und ihre Konsequenzen.'
+      }
+    ],
+    impact: {
+      title: 'Historische Wirkung',
+      paragraphs: [
+        'Die Catilinae Coniuratio wurde zum Vorbild für römische Geschichtsschreibung. Sallust beeinflusste Tacitus und spätere Historiker.',
+        'Das Werk etablierte neue Standards für historische Kritik. Sallust zeigte, dass Geschichte mehr als Chronologie sein kann.',
+        'Heute ist das Werk eine unschätzbare Quelle für die späte Republik. Sallusts Analyse bleibt aktuell und anregend.'
+      ],
+      highlights: [
+        'Vorbild für römische Historiografie',
+        'Einfluss auf Tacitus und spätere Geschichtsschreiber',
+        'Grundlage für historisch-politische Analyse',
+        'Zeitlose Relevanz für Krisenforschung'
+      ]
+    }
   }
 };
