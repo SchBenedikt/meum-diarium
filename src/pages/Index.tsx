@@ -45,7 +45,7 @@ const Index = () => {
         title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : t('meumDiarium')}
         description={translatedAuthor?.description}
         author={translatedAuthor?.name}
-        image={`${baseUrl}/images/caesar-hero.jpg`}
+        image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.jpg`}
         type="website"
         structuredData={{
           "@context": "https://schema.org",

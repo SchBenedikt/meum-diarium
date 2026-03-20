@@ -315,22 +315,35 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 interface AuthorResult {
     id: string;
     name: string | null;
-    latinName: string | null;
+    latin_name: string | null; // database field name
     title: string | null;
     years: string | null;
-    birthYear: number | null;
-    deathYear: number | null;
+    birth_year: number | null; // database field name
+    death_year: number | null; // database field name
     description: string | null;
-    heroImage: string | null;
+    hero_image: string | null; // database field name
     theme: string | null;
     color: string | null;
     highlights: unknown;
     [key: string]: unknown;
 }
 
-function normalizeAuthorResult(author: AuthorResult) {
+function normalizeAuthorResult(author: any) {
+    console.log('🔧 [Authors API] Normalizing author:', author.id, 'current hero_image:', author.hero_image);
+    const heroImage = author.id === 'cicero' ? '/images/cicero-hero.png' : author.hero_image;
+    
     return {
-        ...author,
+        id: author.id,
+        name: author.name,
+        latinName: author.latin_name,
+        title: author.title,
+        years: author.years,
+        birthYear: author.birth_year,
+        deathYear: author.death_year,
+        description: author.description,
+        heroImage: heroImage,
+        theme: author.theme,
+        color: author.color,
         highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],
     };
 }
