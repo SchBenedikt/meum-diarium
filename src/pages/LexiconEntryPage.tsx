@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { ArrowLeft, Newspaper } from 'lucide-react';
@@ -28,15 +28,18 @@ export default function LexiconEntryPage() {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
   
+  // Memoize metadata to prevent infinite re-renders
+  const trackingMetadata = useMemo(() => ({
+    category: entry?.category,
+    language: language as any
+  }), [entry?.category, language]);
+  
   // Page Tracking
   usePageTracking({
     type: 'lexicon',
     itemId: slug || '',
     title: entry?.term || 'Lexikon-Eintrag',
-    metadata: {
-      category: entry?.category,
-      language: language as any
-    }
+    metadata: trackingMetadata
   });
   
   useEffect(() => {

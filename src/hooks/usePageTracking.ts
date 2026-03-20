@@ -37,7 +37,7 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
           itemId,
           title,
           duration,
-          metadata
+          metadata: {} // Leeres metadata object um Probleme zu vermeiden
         });
         hasTracked.current = true;
       }
@@ -73,7 +73,7 @@ export function usePageTracking({ type, itemId, title, metadata }: UsePageTracki
       // Final tracking attempt
       handlePageLeave();
     };
-  }, [user, type, itemId, title]); // metadata entfernt von dependencies!
+  }, [user, type, itemId, title]); // metadata komplett entfernt!
 }
 
 /**
