@@ -268,7 +268,10 @@ self.addEventListener('fetch', (event) => {
         return response;
       }).catch(error => {
         console.warn('[SW] Failed to fetch static asset:', error);
-        return new Response('Offline', { status: 503 });
+        // Don't return 503, instead try to fetch from network directly
+        return fetch(request).catch(() => {
+          return new Response('Offline', { status: 503 });
+        });
       });
     })
   );
