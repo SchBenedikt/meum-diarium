@@ -82,7 +82,28 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
             console.log(`✅ [Authors API] GET fetched ${results.length} authors (${queryTime}ms)`);
 
             const normalized = results.map((author: any) => {
-                console.log('🔧 [Authors API] Processing author:', author.id);
+                console.log('🔧 [Authors API] Processing author:', author.id, 'hero_image:', author.hero_image);
+                
+                // Special fix for cicero - override hero image immediately
+                let heroImagePath = author.hero_image;
+                if (author.id === 'cicero') {
+                    console.log('🔧 [Authors API] FIXING cicero hero image to /images/cicero-hero.png');
+                    heroImagePath = '/images/cicero-hero.png';
+                }
+                // Also fix other authors if needed
+                else if (author.id === 'caesar') {
+                    heroImagePath = '/images/caesar-hero.jpg';
+                }
+                else if (author.id === 'augustus') {
+                    heroImagePath = '/images/augustus-hero.jpg';
+                }
+                else if (author.id === 'seneca') {
+                    heroImagePath = '/images/seneca-hero.jpg';
+                }
+                else if (author.id === 'catilina') {
+                    heroImagePath = '/images/catilina-hero.jpg';
+                }
+                
                 const result = {
                     id: author.id,
                     name: author.name,
@@ -92,19 +113,13 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                     birthYear: author.birth_year,
                     deathYear: author.death_year,
                     description: author.description,
-                    heroImage: author.hero_image,
+                    heroImage: heroImagePath,
                     theme: author.theme,
                     color: author.color,
                     highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],
-                    testField: 'processed', // Debug field
                 };
                 
-                // Special fix for cicero
-                if (author.id === 'cicero') {
-                    console.log('🔧 [Authors API] Fixing cicero hero image');
-                    result.heroImage = '/images/cicero-hero.png';
-                }
-                
+                console.log('🔧 [Authors API] Final heroImage for', author.id, ':', result.heroImage);
                 return result;
             });
             
@@ -354,6 +369,27 @@ interface AuthorResult {
 }
 
 function normalizeAuthorResult(author: any) {
+    console.log('🔧 [Authors API] normalizeAuthorResult processing:', author.id, 'hero_image:', author.hero_image);
+    
+    // Special fix for hero images
+    let heroImagePath = author.hero_image;
+    if (author.id === 'cicero') {
+        console.log('🔧 [Authors API] normalizeAuthorResult FIXING cicero hero image to /images/cicero-hero.png');
+        heroImagePath = '/images/cicero-hero.png';
+    }
+    else if (author.id === 'caesar') {
+        heroImagePath = '/images/caesar-hero.jpg';
+    }
+    else if (author.id === 'augustus') {
+        heroImagePath = '/images/augustus-hero.jpg';
+    }
+    else if (author.id === 'seneca') {
+        heroImagePath = '/images/seneca-hero.jpg';
+    }
+    else if (author.id === 'catilina') {
+        heroImagePath = '/images/catilina-hero.jpg';
+    }
+    
     const result = {
         id: author.id,
         name: author.name,
@@ -363,17 +399,12 @@ function normalizeAuthorResult(author: any) {
         birthYear: author.birth_year,
         deathYear: author.death_year,
         description: author.description,
-        heroImage: author.hero_image,
+        heroImage: heroImagePath,
         theme: author.theme,
         color: author.color,
         highlights: typeof author.highlights === 'string' ? JSON.parse(author.highlights) : author.highlights || [],
-        testField: 'normalize-called', // Debug field
     };
     
-    // Special fix for cicero
-    if (author.id === 'cicero') {
-        result.heroImage = '/images/cicero-hero.png';
-    }
-    
+    console.log('🔧 [Authors API] normalizeAuthorResult final heroImage for', author.id, ':', result.heroImage);
     return result;
 }
