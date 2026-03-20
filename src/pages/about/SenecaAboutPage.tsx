@@ -84,7 +84,7 @@ export function SenecaAboutPage() {
       { year: 41, title: 'Verbannung', note: 'Auf Korsika geschickt' },
       { year: 49, title: 'Prätor', note: 'Rückkehr nach Rom' },
       { year: 49, title: 'Erzieher Neros', note: 'Zusammen mit Burrus' },
-      { year: 54, title: 'Berater', note: 'Führender Einfluss auf Nero' },^
+      { year: 54, title: 'Berater', note: 'Führender Einfluss auf Nero' },
       { year: 62, title: 'Rückzug', note: 'Verlust des politischen Einflusses' },
     ],
     stoischeLehren: [
