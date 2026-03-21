@@ -17,6 +17,7 @@ import {
   Heart,
   Coffee,
   ArrowLeft,
+  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -25,29 +26,70 @@ export default function DesignGuidePage() {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-background/80">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+        />
+      </div>
+
+      <main className="relative flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+        {/* Header Section */}
+        <div className="mb-20 px-2">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-4"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
-              <div className="w-8 h-[1px] bg-primary/30" />
-              DESIGN SYSTEM
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
+              <Layers className="h-4 w-4 text-primary" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                Design System
+              </span>
             </div>
-            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
               Design <span className="text-primary italic">Guidelines</span>
             </h1>
-            <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
-              Ein umfassendes Design-System inspiriert von der römischen Ästhetik
+            <p className="text-lg text-muted-foreground/70 max-w-2xl font-light leading-relaxed">
+              Ein durchdachtes Design-System inspiriert von der römischen Ästhetik. Modern, elegant und zeitlos.
             </p>
+            <div className="flex items-center gap-4 pt-4">
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-card hover:bg-card/80 border border-border/40 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
+              >
+                <ArrowLeft className="h-4 w-4" /> 
+                Zurück zum Start
+              </Link>
+            </div>
           </motion.div>
-          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
-            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Start
-          </Link>
         </div>
         {/* Author Themeing Section */}
         <section className="mb-32">
