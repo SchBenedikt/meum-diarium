@@ -221,16 +221,37 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
     if (sitemapUrl) {
         try {
             console.log(`[AI Chat] 🔍 Generating resources for persona="${persona}", question="${question.substring(0, 50)}..."`);
-            // Try D1 first (more reliable), fall back to sitemap
-            resources = await suggestResourcesFromD1(env, persona, question, aiResponse.response || "");
-            console.log(`[AI Chat] D1 returned ${resources.length} resources`);
             
-            if (resources.length === 0) {
-                console.log(`[AI Chat] ⚠️ D1 returned no resources, trying sitemap fallback...`);
-                resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
-                console.log(`[AI Chat] Sitemap fallback returned ${resources.length} resources`);
+            // Try both D1 and Sitemap in parallel for better coverage
+            console.log(`[AI Chat] Attempting resource generation from D1 and Sitemap...`);
+            const [d1Resources, sitemapResources] = await Promise.all([
+                suggestResourcesFromD1(env, persona, question, aiResponse.response || ""),
+                suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "")
+            ]);
+            
+            console.log(`[AI Chat] D1 returned ${d1Resources.length} resources`);
+            console.log(`[AI Chat] Sitemap returned ${sitemapResources.length} resources`);
+            
+            // Merge results, removing duplicates, prefer D1 (better quality)
+            const seen = new Set();
+            resources = [];
+            
+            for (const r of d1Resources) {
+                if (!seen.has(r.link)) {
+                    resources.push(r);
+                    seen.add(r.link);
+                }
             }
-            console.log(`[AI Chat] ✓ Generated total ${resources.length} resources`);
+            
+            for (const r of sitemapResources) {
+                if (!seen.has(r.link)) {
+                    resources.push(r);
+                    seen.add(r.link);
+                }
+            }
+            
+            resources = resources.slice(0, 5);
+            console.log(`[AI Chat] ✓ Generated total ${resources.length} resources (merged from both sources)`);
         } catch (e) {
             console.error(`[AI Chat] ❌ Error generating resources: ${e.message}`, e);
         }
