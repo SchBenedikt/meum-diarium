@@ -368,6 +368,90 @@ export default function ApiDocsPage() {
           </Card>
         </header>
 
+        <section className="space-y-6">
+          <div className="space-y-4">
+            <h2 className="font-display text-3xl font-bold flex items-center gap-3"><Code2 className="h-8 w-8 text-primary" />Was ist eine API?</h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Eine <strong>API (Application Programming Interface)</strong> ist eine standardisierte Schnittstelle, die es Computerprogrammen ermöglicht, miteinander zu kommunizieren. Statt dass ein Mensch eine Website mit der Maus bedient, verfrag ein Programm die API um Daten zu erhalten oder Operationen durchzuführen.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card className="card-modern border-border/50 bg-secondary/5">
+              <CardContent className="p-5 space-y-3">
+                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">Alltagsbeispiel</p>
+                <p className="text-sm text-muted-foreground">
+                  Wenn du in einem Restaurant bestellst, gibst du dem Kellner (API) deine Bestellung. Der Kellner geht in die Küche (Backend), gibt die Bestellung weiter, wartet auf das Ergebnis und bringt dir das fertige Gericht. Du musst nicht selbst in die Küche gehen.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-modern border-border/50 bg-primary/5">
+              <CardContent className="p-5 space-y-3">
+                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">In dieser Software</p>
+                <p className="text-sm text-muted-foreground">
+                  Die API erlaubt es dir, Beiträge zu suchen, Lexikon-Inhalte abzurufen, mit historischen Personen zu chatten und vieles mehr – ohne die Website manuell zu bedienen.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="space-y-4 bg-secondary/30 border border-border/50 rounded-lg p-5">
+            <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">Wie funktioniert eine API?</p>
+            <ol className="space-y-3 text-sm text-muted-foreground">
+              <li><strong>1. Request:</strong> Ein Programm sendet eine strukturierte Anfrage (Request) an die API. Z. B.: „Gib mir alle Beiträge zum Thema Caesar".</li>
+              <li><strong>2. Verarbeitung:</strong> Der Server empfängt die Anfrage, validiert sie, führt die notwendigen Operationen durch (z. B. Datenbankabfrage).</li>
+              <li><strong>3. Response:</strong> Der Server schickt strukturierte Daten zurück (meist im JSON-Format), z. B. eine Liste von Beiträgen mit Titel, Text und Metadaten.</li>
+              <li><strong>4. Verarbeitung durch den Client:</strong> Das anfragende Programm (z. B. diese Website) empfängt die Daten und zeigt sie dem Benutzer an.</li>
+            </ol>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            <Card className="card-modern border-border/50">
+              <CardContent className="p-5 space-y-3">
+                <p className="text-sm font-semibold text-primary">Content-APIs</p>
+                <p className="text-sm text-muted-foreground">
+                  Abrufen von Beiträgen, Lexikon-Einträgen, Werken und Autoren. Ideal für Inhaltssuche und Browsing.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-modern border-border/50">
+              <CardContent className="p-5 space-y-3">
+                <p className="text-sm font-semibold text-primary">KI/Chat-APIs</p>
+                <p className="text-sm text-muted-foreground">
+                  Stelle Fragen an historische Personen, bekomme Erklärungen, führe interaktive Szenarien durch.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-modern border-border/50">
+              <CardContent className="p-5 space-y-3">
+                <p className="text-sm font-semibold text-primary">Lern-APIs</p>
+                <p className="text-sm text-muted-foreground">
+                  Vokabelsuche, Grammatik-Daten, lateinische Texte und Discovery von Lernmaterialien.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="space-y-4 bg-primary/10 border border-primary/20 rounded-lg p-5">
+            <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary flex items-center gap-2"><Code2 className="h-4 w-4" />Praktisches Beispiel: Vokabeln abfragen</p>
+            <pre className="text-xs bg-background/80 border border-border/50 rounded p-3 overflow-x-auto">{`// Anfrage (Request)
+GET /api/vocab?q=amare&limit=5
+
+// Server antwortet (Response)
+{
+  "results": [
+    { "word": "amare", "type": "verb", "meaning": "to love" },
+    { "word": "amamus", "type": "verb_form", "meaning": "we love" }
+  ],
+  "count": 2
+}`}</pre>
+            <p className="text-sm text-muted-foreground">Früher musstest du ein Lateinwörterbuch von Hand durchblättern. Mit der API brauchst du als Programm nur eine Zeile Code.</p>
+          </div>
+        </section>
+
         <section className="grid md:grid-cols-2 gap-4">
           <Card className="card-modern border-border/50">
             <CardContent className="p-5">
