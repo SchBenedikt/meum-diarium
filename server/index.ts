@@ -152,6 +152,18 @@ app.use(express.static(publicDir, {
 // Helper to build full URLs
 const buildUrl = (path: string) => `${BASE_URL}${path}`;
 
+const escapeXml = (value: string) => value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+
+const parseSitemapLocs = (xml: string): string[] => {
+    const matches = [...xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)];
+    return matches.map((m) => String(m[1] || '').trim()).filter(Boolean);
+};
+
 // ========== ROBOTS & SEO ENDPOINTS ==========
 
 // Serve robots.txt with dynamic sitemap reference
@@ -251,8 +263,38 @@ app.get('/sitemap-index.html', async (_req, res) => {
 app.get('/sitemap.xml', async (_req, res) => {
     try {
         const sitemapPath = path.resolve(__dirname, '../public/sitemap.xml');
-        const sitemap = await fs.readFile(sitemapPath, 'utf-8');
-        res.type('application/xml').send(sitemap);
+        const staticSitemap = await fs.readFile(sitemapPath, 'utf-8');
+        const staticLocs = parseSitemapLocs(staticSitemap);
+
+        // Add all blog/article URLs from DB so search engines can index everything.
+        const db = getLocalPostsDb();
+        const allPosts = await db.select({
+            slug: posts.slug,
+            author: posts.author,
+            date: posts.date,
+        }).from(posts).all();
+
+        const postEntries = allPosts
+            .filter((p: any) => p?.slug)
+            .map((p: any) => {
+                const slug = String(p.slug).replace(/^\/+|\/+$/g, '');
+                const author = String(p.author || '').toLowerCase().replace(/^\/+|\/+$/g, '');
+                const url = author ? buildUrl(`/${author}/${slug}`) : buildUrl(`/${slug}`);
+                const lastmod = p.date ? new Date(p.date).toISOString().split('T')[0] : null;
+                return { url, lastmod };
+            });
+
+        const merged = new Map<string, { url: string; lastmod: string | null }>();
+        for (const loc of staticLocs) merged.set(loc, { url: loc, lastmod: null });
+        for (const entry of postEntries) merged.set(entry.url, entry);
+
+        const urls = Array.from(merged.values()).sort((a, b) => a.url.localeCompare(b.url));
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+            .map((entry) => `  <url>\n    <loc>${escapeXml(entry.url)}</loc>${entry.lastmod ? `\n    <lastmod>${entry.lastmod}</lastmod>` : ''}\n  </url>`)
+            .join('\n')}\n</urlset>`;
+
+        res.type('application/xml').send(xml);
     } catch (error) {
         console.error('Error loading sitemap:', error);
         res.status(500).send('Error loading sitemap');
