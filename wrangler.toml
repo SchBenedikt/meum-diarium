@@ -3,14 +3,6 @@ compatibility_date = "2025-12-08"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
-# Disable Cloudflare Analytics
-[analytics]
-enabled = false
-
-# Pages Functions configuration
-[functions]
-# The functions directory is automatically detected by Cloudflare Pages
-
 # D1 Database bindings
 [[d1_databases]]
 binding = "DB"
@@ -27,18 +19,3 @@ migrations_dir = "drizzle"
 # Environment variables for Pages
 [vars]
 ENVIRONMENT = "production"
-
-[observability]
-enabled = false
-head_sampling_rate = 1
-
-[observability.logs]
-enabled = true
-head_sampling_rate = 1
-persist = true
-invocation_logs = true
-
-[observability.traces]
-enabled = true
-persist = true
-head_sampling_rate = 1
