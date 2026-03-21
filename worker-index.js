@@ -256,6 +256,9 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
                 }
             }
             
+            // Keep a larger candidate pool and let AI pick the most relevant items for the current chat topic.
+            resources = resources.slice(0, 20);
+            resources = await rerankResourcesWithAI(env, question, persona, resources);
             resources = resources.slice(0, 5);
             console.log(`[AI Chat] ✓ Generated total ${resources.length} resources (merged from both sources)`);
         } catch (e) {
@@ -272,6 +275,80 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
         resources,
         format: "markdown",
     };
+}
+
+async function rerankResourcesWithAI(env, question, persona, resources) {
+    if (!Array.isArray(resources) || resources.length <= 5) return resources || [];
+
+    const ai = resolveAiBinding(env);
+    if (!ai) return resources.slice(0, 5);
+
+    const candidates = resources.slice(0, 20).map((r, idx) => ({
+        id: idx + 1,
+        title: String(r?.title || ''),
+        type: String(r?.type || 'text'),
+        description: String(r?.description || ''),
+        link: String(r?.link || ''),
+    }));
+
+    const system = `Du bist ein strenger Relevanz-Ranker fuer Ressourcen.
+Aufgabe: Waehle genau 5 Ressourcen, die am besten zur Frage passen.
+Regeln:
+- Bevorzuge konkrete inhaltliche Treffer, nicht nur allgemeine Rom-Begriffe.
+- Ignoriere generische Uebereinstimmungen (z.B. "ihre", "fuer", "alle", "des").
+- Nutze Titel + Beschreibung + Link als Kontext.
+- Antworte NUR als JSON im Format: {"selected":[id1,id2,id3,id4,id5]}.
+- Keine Erklaerung, kein Markdown.`;
+
+    const user = `Persona: ${persona}\nFrage: ${question}\nKandidaten:\n${JSON.stringify(candidates)}`;
+
+    try {
+        const aiResp = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
+            messages: [
+                { role: 'system', content: system },
+                { role: 'user', content: user },
+            ],
+        });
+
+        const text = String(aiResp?.response || '').trim();
+        const firstBrace = text.indexOf('{');
+        const lastBrace = text.lastIndexOf('}');
+        if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
+            return resources.slice(0, 5);
+        }
+
+        const jsonText = text.slice(firstBrace, lastBrace + 1);
+        const parsed = JSON.parse(jsonText);
+        const selected = Array.isArray(parsed?.selected) ? parsed.selected : [];
+        const validIds = [];
+        const seen = new Set();
+
+        for (const id of selected) {
+            const n = Number(id);
+            if (!Number.isInteger(n) || n < 1 || n > candidates.length || seen.has(n)) continue;
+            seen.add(n);
+            validIds.push(n);
+            if (validIds.length >= 5) break;
+        }
+
+        const reranked = [];
+        for (const id of validIds) {
+            reranked.push(resources[id - 1]);
+        }
+
+        if (reranked.length < 5) {
+            for (const r of resources) {
+                if (reranked.includes(r)) continue;
+                reranked.push(r);
+                if (reranked.length >= 5) break;
+            }
+        }
+
+        return reranked;
+    } catch (e) {
+        console.warn(`[AI Chat] Reranking failed, using heuristic order: ${e?.message || e}`);
+        return resources.slice(0, 5);
+    }
 }
 
 
@@ -614,7 +691,6 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 matchCount: matchedKeywords.length,
                             });
                             seen.add(link);
-                            console.log(`[D1Resources]     ✓ Added post: ${post.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
                         }
                     } else {
                         console.log(`[D1Resources]     ⚠️ Post: ${post.slug} had no keyword matches`);
@@ -672,7 +748,6 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 matchCount: matchedKeywords.length,
                             });
                             seen.add(link);
-                            console.log(`[D1Resources]   ✓ Added lexicon: ${entry.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
                         }
                     }
                 }
@@ -827,7 +902,7 @@ function extractKeywords(text, persona) {
     const words = text
         .replace(/[^a-zA-ZäöüÄÖÜß\-\s0-9]/g, ' ')
         .split(/\s+/)
-        .filter(w => w.length > 3)
+        .filter(w => w.length > 2)
         .map(w => w.toLowerCase());
 
     // Remove common stop words
@@ -836,15 +911,30 @@ function extractKeywords(text, persona) {
         'ein', 'eine', 'einer', 'eines', 'einem', 'einen',
         'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
         'mein', 'dein', 'sein', 'ihr', 'unser', 'euer',
+        'meine', 'deine', 'seine', 'unsere', 'eure', 'ihre',
+        'jeder', 'jede', 'jedes', 'allen', 'alles', 'alle',
+        'dies', 'diese', 'dieser', 'dieses',
         'dem', 'den', 'mit', 'von', 'für', 'auf', 'über', 'unter', 'durch', 'nach', 'vor',
         'was', 'wie', 'warum', 'wieso', 'weshalb',
-        'hast', 'hat', 'haben', 'sein', 'tun', 'machen', 'auch', 'dann', 'noch', 'mehr'
+        'hast', 'hat', 'haben', 'sein', 'tun', 'machen', 'auch', 'dann', 'noch', 'mehr',
+        'kann', 'kannst', 'koennen', 'konnte', 'wurde', 'worden', 'bin', 'bist', 'seid',
+        'please', 'tell', 'about', 'with', 'from', 'into', 'that', 'this', 'those', 'these',
+        'their', 'there', 'where', 'which', 'what', 'when', 'your', 'ours'
     ];
     const filtered = words.filter(w => !stopwords.includes(w));
 
+    // Keep only meaningful topic terms and a few short domain exceptions.
+    const allowShortDomainTokens = new Set(['rom', 'krieg']);
+    const meaningful = filtered.filter((w) => {
+        const normalized = normalizeToken(w);
+        if (!normalized) return false;
+        if (allowShortDomainTokens.has(normalized)) return true;
+        return normalized.length >= 4;
+    });
+
     // Expand with synonyms and normalized forms
     const expanded = new Set();
-    for (const w of filtered) {
+    for (const w of meaningful) {
         for (const v of expandKeyword(w)) {
             expanded.add(v);
         }
