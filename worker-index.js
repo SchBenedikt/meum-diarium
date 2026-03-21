@@ -133,107 +133,16 @@ export default {
         }
 
         // Route: Root / or /api or PersonaChat - let fall through to SPA for premium React docs
-        if (pathname === "" || pathname === "/personachat") {
+        if (pathname === "" || pathname === "/api" || pathname === "/personachat") {
             // On workers.dev there is no Pages origin to fall through to; avoid recursive self-fetch.
             if (isWorkersDevHost) {
                 return new Response(JSON.stringify({
                     service: 'meum-diarium-worker',
                     status: 'ok',
-                    message: 'Besuche https://meum-diarium.xn--schner-2za.de/api für Dokumentation'
+                    routes: ['/', '/explain', '/simulate', '/stats', '/api/ask', '/api/explain', '/api/simulate']
                 }), { headers: corsHeaders() });
             }
             return fetch(request);
-        }
-
-        // Route: /api - comprehensive documentation
-        if (pathname === "/api") {
-            const documentation = {
-                service: 'meum-diarium-worker',
-                status: 'ok',
-                language: 'de',
-                documentation: {
-                    title: 'Meum Diarium API – Dokumentation',
-                    what_is_api: {
-                        summary: 'Eine API (Application Programming Interface) ist eine Schnittstelle für strukturierte Kommunikation zwischen Anwendungen.',
-                        details: 'APIs ermöglichen es, spezifische Daten oder Funktionen anzufordern, ohne die innere Implementierung des Servers zu kennen. Statt Webseiten zu laden, senden Clients strukturierte Anfragen und erhalten JSON-Daten zurück.'
-                    },
-                    how_it_works: {
-                        summary: 'HTTP-basierte Kommunikation mit JSON-Daten',
-                        steps: [
-                            '1. Client sendet HTTP-Anfrage (GET/POST) an einen Endpoint mit Parametern',
-                            '2. Server verarbeitet die Anfrage (Datenbank-Abfragen, KI-Inferenz, etc.)',
-                            '3. Server antwortet mit JSON-formatierter Antwort',
-                            '4. Client nutzt die Daten (anzeigen, weiterverarbeiten, speichern)'
-                        ],
-                        example_flow: 'GET /api/ask?ask=Was%20ist%20der%20Rubikon&persona=caesar → 200 OK {response: "...", resources: [...]}'
-                    },
-                    use_cases: {
-                        summary: 'Einsatzgebiete in meum-diarium',
-                        applications: [
-                            'Historische Konversationen: Fragen an römische Persönlichkeiten stellen (Caesar, Cicero, etc.)',
-                            'Begriffserklärungen: Lateinische und römische Begriffe erklären lassen',
-                            'Historische Simulation: Interaktive Szenarien und Rollenspiele',
-                            'Inhaltsabruf: Zugriff auf Texte, Werke, Lexikon-Einträge',
-                            'Statistiken: Metadaten und Übersichts-Daten',
-                            'Datenintegration: Externe Anwendungen können auf Inhalte zugreifen'
-                        ]
-                    },
-                    available_endpoints: [
-                        {
-                            method: 'GET/POST',
-                            path: '/api/ask',
-                            description: 'Frage an eine historische Persönlichkeit stellen',
-                            parameters: 'ask (string), persona (caesar|augustus|cicero|catilina), history (array), sitemap (url)',
-                            response: '{response: string, resources: [{title, type, link, description}], ...}'
-                        },
-                        {
-                            method: 'GET/POST',
-                            path: '/api/explain',
-                            description: 'Einen historischen oder lateinischen Begriff erklären lassen',
-                            parameters: 'term (string), question (optional string), history (array)',
-                            response: '{term: string, response: {response: string}, format: "markdown"}'
-                        },
-                        {
-                            method: 'GET/POST',
-                            path: '/api/simulate',
-                            description: 'Ein historisches Szenario als interaktives Rollenspiel spielen',
-                            parameters: 'persona (string), scenario (string), choice (optional), history (array)',
-                            response: '{narrative: string, stats: {volk, einfluss, macht}, options: [...], ended: boolean}'
-                        },
-                        {
-                            method: 'GET',
-                            path: '/api/stats',
-                            description: 'Statistiken über verfügbare Inhalte',
-                            parameters: 'keine',
-                            response: '{counts: {...}, readingTime: {...}, yearRange: {...}, coverageYears: number}'
-                        }
-                    ],
-                    integration_examples: {
-                        chatbot: 'Verwende /api/ask um Fragen zu historischen Themen in einem Chatbot zu beantworten.',
-                        mobile_app: 'Rufe /api/explain auf um ein Glossar historischer Begriffe automatisch zu generieren.',
-                        external_service: 'Integriere /api/ask in deine eigene Anwendung für historisches Knowledge',
-                        education: 'Nutze /api/simulate für interaktives historisches Lernen'
-                    },
-                    best_practices: [
-                        'Verwende persona-Parameter um Antworten in charakteristischem Stil zu bekommen',
-                        'Nutze history-Array um Konversationskontext aufzubauen',
-                        'Parsiere Responses immer auf Fehler (error-Field)',
-                        'Respektiere Rate-Limits durch sinnvolle Anfrage-Abstände'
-                    ],
-                    notes: {
-                        format: 'Alle Responses sind gültiges JSON mit korrektem Content-Type',
-                        encoding: 'UTF-8 für Umlaute und Sonderzeichen',
-                        cors: 'CORS-Header sind aktiviert für Cross-Origin Requests',
-                        markdown: 'Viele Responses enthalten GitHub-Flavored Markdown'
-                    }
-                }
-            };
-            return new Response(JSON.stringify(documentation, null, 2), {
-                headers: {
-                    ...corsHeaders(),
-                    'Content-Type': 'application/json; charset=utf-8'
-                }
-            });
         }
 
         // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
