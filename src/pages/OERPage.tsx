@@ -63,20 +63,6 @@ const OERPage = () => {
           format: 'JPG, PNG',
           link: '/images',
         },
-        {
-          title: 'Audio-Inhalte',
-          description: 'Ausspracheuebungen und Hoertexte fuer Lateinunterricht und Selbststudium.',
-          license: 'CC BY-SA 4.0',
-          format: 'MP3, WAV',
-          link: '/audio',
-        },
-        {
-          title: 'Video-Tutorials',
-          description: 'Lernvideos zur Sprache, Literatur und Kultur des antiken Rom.',
-          license: 'CC BY-SA 4.0',
-          format: 'MP4, WebM',
-          link: '/videos',
-        },
       ],
     },
     {
