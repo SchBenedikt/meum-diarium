@@ -10,11 +10,13 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Author } from '@/types/blog';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthorInfo } from '@/lib/author-translator';
+import { AnimatePresence, motion } from 'framer-motion';
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
   const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
@@ -22,7 +24,34 @@ const Index = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
+  const [showFloatingComposer, setShowFloatingComposer] = useState(false);
+  const [isFloatingExpanded, setIsFloatingExpanded] = useState(false);
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowFloatingComposer(window.scrollY > 700);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!showFloatingComposer) {
+      setIsFloatingExpanded(false);
+    }
+  }, [showFloatingComposer]);
+
+  const openChatFromComposer = () => {
+    const q = question.trim();
+    if (!currentAuthor) return;
+    if (q.length > 0) {
+      navigate(`/${currentAuthor}/chat?q=${encodeURIComponent(q)}`);
+      return;
+    }
+    navigate(`/${currentAuthor}/chat`);
+  };
   useEffect(() => {
     if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
@@ -160,6 +189,74 @@ const Index = () => {
           <LandingHeroNew />
         )}
       </main >
+
+      <AnimatePresence>
+        {currentAuthor && showFloatingComposer && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 24 }}
+            transition={{ duration: 0.2 }}
+            className={isFloatingExpanded
+              ? 'fixed inset-x-4 bottom-4 z-[90] md:inset-x-8'
+              : 'fixed inset-x-4 bottom-4 z-[90]'}
+          >
+            {!isFloatingExpanded ? (
+              <button
+                type="button"
+                onClick={() => setIsFloatingExpanded(true)}
+                className="w-full max-w-sm mx-auto rounded-2xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/45 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Zap className="h-4 w-4 text-primary" />
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">Schnell in den KI-Chat</p>
+                </div>
+                <div className="rounded-xl border border-border/60 bg-secondary/30 px-3 py-2.5 text-sm text-muted-foreground">
+                  Nachricht schreiben...
+                </div>
+              </button>
+            ) : (
+              <div className="mx-auto max-w-4xl rounded-3xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4">
+                <div className="flex items-center justify-between gap-3 mb-2 px-1">
+                  <div className="flex items-center gap-2">
+                    <Zap className="h-4 w-4 text-primary" />
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">Schnell in den KI-Chat</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsFloatingExpanded(false)}
+                    className="h-7 w-7 rounded-md inline-flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/70 transition-colors"
+                    aria-label="Eingabefeld minimieren"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="relative flex items-center gap-2">
+                  <Input
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') openChatFromComposer();
+                      if (e.key === 'Escape') setIsFloatingExpanded(false);
+                    }}
+                    placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
+                    className="pr-12 py-2 text-base bg-secondary/40 border-primary/10 focus-visible:ring-primary/30 rounded-xl"
+                    autoFocus
+                  />
+                  <Button
+                    size="icon"
+                    onClick={openChatFromComposer}
+                    className="absolute right-1.5 h-9 w-9 rounded-xl"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Footer />
     </div >
   );

@@ -1,0 +1,126 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Die Epistulae Morales ad Lucilium gehören zu Senecas Spätwerk und entstanden in seinen letzten Lebensjahren (ca. 62-65 n. Chr.), als er sich weitgehend aus der Hofpolitik zurückzog.",
+      "Adressat ist Lucilius, doch die Briefe sind bewusst für eine breitere Leserschaft komponiert: Philosophie wird als tägliche Praxis der Selbstprüfung und Charakterbildung vorgeführt.",
+      "Die Sammlung dokumentiert nicht nur stoische Lehre, sondern auch die literarische Form einer personalen Ethik: Denken, Schreiben und Leben sollen übereinstimmen."
+    ],
+    "contextTimeline": [
+      { "year": "62 n. Chr.", "event": "Beginn der späten Briefproduktion an Lucilius" },
+      { "year": "63-64 n. Chr.", "event": "Ausbau zentraler Themen: Zeit, Tod, Freiheit, Freundschaft" },
+      { "year": "65 n. Chr.", "event": "Senecas Tod nach Neros Befehl; Briefe werden als philosophisches Vermächtnis gelesen" }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Briefe 1-29 - Einstieg in die Lebenspraxis",
+        "description": "Frühe Briefe legen Grundhaltungen fest: Zeitökonomie, innere Unabhängigkeit, Umgang mit Ablenkung und soziale Selbstdisziplin.",
+        "timeframe": "Frühphase",
+        "keyEvents": [
+          "Zeit als nicht ersetzbare Ressource",
+          "Selbstprüfung statt Fremdvergleich",
+          "Philosophie als tägliche Übung"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Briefe 30-65 - Tugend, Affekt und Gemeinschaft",
+        "description": "In der mittleren Gruppe vertieft Seneca Fragen der Tugend, des Umgangs mit Schmerz, Schicksal und Freundschaft sowie der Verantwortung gegenüber anderen.",
+        "timeframe": "Mittelphase",
+        "keyEvents": [
+          "Verhältnis von sapientia und politischer Welt",
+          "Affektkontrolle ohne Gefühllosigkeit",
+          "Freundschaft als moralische Schule"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Briefe 66-124 - Reife Ethik und letzte Fragen",
+        "description": "Die späten Briefe diskutieren radikale Themen wie Tod, Freiheit unter Zwang, Würde des Alters und die Einheit von Denken und Handeln.",
+        "timeframe": "Spätphase",
+        "keyEvents": [
+          "Meditation über Endlichkeit",
+          "Konsistenz von Theorie und Biographie",
+          "Philosophie als Vorbereitung auf Verlust"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "Philosophie als Lebenskunst",
+        "content": [
+          "Die Epistulae lehren keine abstrakte Systemphilosophie, sondern eine trainierbare Kunst des Lebens unter realen Belastungen.",
+          "Seneca fordert eine Ethik der Wiederholung: Kleine tägliche Korrekturen formen den Charakter stärker als seltene heroische Akte.",
+          "Damit verbindet der Text normativen Anspruch mit psychologischer Plausibilität und bleibt für Lernende besonders zugänglich."
+        ]
+      },
+      {
+        "title": "Zeit, Tod und Freiheit",
+        "content": [
+          "Zentral ist die Frage, wie endliche Zeit sinnvoll gestaltet werden kann, ohne in Aktivismus oder Resignation zu verfallen.",
+          "Der Tod erscheint nicht als bloßes Ende, sondern als Maßstab für Prioritäten: Wer sterblich denkt, lebt entschiedener.",
+          "Innere Freiheit bedeutet für Seneca nicht Flucht aus der Welt, sondern Unabhängigkeit des Urteils inmitten äußerer Zwänge."
+        ]
+      }
+    ],
+    "literaryFeatures": [
+      {
+        "title": "Epistolare Didaktik",
+        "description": "Die Briefform erzeugt Nähe und Verbindlichkeit. Argumente erscheinen als Gespräch, nicht als Lehrbefehl.",
+        "examples": [
+          "Anrede an Lucilius als dialogische Lernsituation",
+          "Kombination aus Maxime, Beispiel und Übung",
+          "Rhythmus aus Ermutigung und kritischer Selbstprüfung"
+        ]
+      },
+      {
+        "title": "Sentenzen und Verdichtung",
+        "description": "Seneca nutzt prägnante Formeln, die als Merksätze funktionieren und komplexe Ethik memorierbar machen.",
+        "examples": [
+          "Aussagen mit hoher aphoristischer Dichte",
+          "Kontrastierende Formulierungen zur Schärfung des Urteils",
+          "Kurze Bilder für langfristige Lebensfragen"
+        ]
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Zeit als Eigentum des Lebens",
+        "date": "Ep. 1",
+        "description": "Der Auftaktbrief etabliert Zeit als zentrale ethische Kategorie und ruft zu radikaler Selbstverantwortung auf.",
+        "significance": "Er setzt den Ton des gesamten Werkes: Philosophie beginnt bei der Verwaltung des eigenen Tages."
+      },
+      {
+        "title": "Philosophische Reifung im Dialog",
+        "date": "Mittel- und Spätbriefe",
+        "description": "Die Briefe zeigen, wie moralische Einsicht über Jahre hinweg durch Selbstkorrektur wächst.",
+        "significance": "Das Werk wird zum Prototyp einer prozessorientierten Ethik statt starrer Moralkataloge."
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Non exiguum temporis habemus, sed multum perdidimus.",
+        "translation": "Wir haben nicht wenig Zeit, sondern wir verlieren viel davon.",
+        "context": "Leitthese der frühen Briefe zur Zeitethik."
+      },
+      {
+        "latin": "Vivere militare est.",
+        "translation": "Leben heißt kämpfen.",
+        "context": "Verdichtete Formel für die stoische Übung unter Alltagsdruck."
+      }
+    ],
+    "impact": {
+      "title": "Wirkung und Erbe",
+      "paragraphs": [
+        "Die Epistulae Morales wurden zu einem der einflussreichsten Ethiktexte Europas und prägten monastische Praxis, humanistische Bildung und moderne Selbstsorge-Diskurse.",
+        "Bis heute gelten die Briefe als Brücke zwischen antiker Philosophie und persönlicher Lebensführung - besonders dort, wo Theorie praktisch werden muss."
+      ],
+      "highlights": [
+        "Kanonischer Text der angewandten Stoa",
+        "Vorbild für dialogische Ethikvermittlung",
+        "Anhaltende Relevanz in Bildung, Psychologie und Lebensberatung"
+      ]
+    }
+  }
+}

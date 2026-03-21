@@ -51,8 +51,8 @@ export default function AboutPageNew() {
     },
     {
       icon: Globe2,
-      title: t('about.features.trilingual') || 'Dreisprachig',
-      description: t('about.features.trilingualDesc') || 'Deutsch, Englisch und Latein vollständig verfügbar',
+      title: t('about.features.learningPlatform') || 'Lernplattform',
+      description: t('about.features.learningPlatformDesc') || 'Grammatik, Rhetorik, Reader und Übungen in einer Oberfläche',
       gradient: 'from-green-500/20 to-green-500/5',
       color: 'text-green-500',
       bg: 'bg-green-500/10'
@@ -86,7 +86,7 @@ export default function AboutPageNew() {
   const stats = [
     { value: '5', label: t('about.stats.authors') || 'Autoren', icon: Users },
     { value: '92+', label: t('about.stats.entries') || 'Lexikon-Einträge', icon: BookOpen },
-    { value: '3', label: t('about.stats.languages') || 'Sprachen', icon: Globe2 },
+    { value: '2', label: t('about.stats.perspectives') || 'Perspektiven', icon: Globe2 },
     { value: '170+', label: t('about.stats.years') || 'Jahre Geschichte', icon: Clock },
   ];
 

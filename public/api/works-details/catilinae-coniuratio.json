@@ -1,0 +1,126 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Die Catilinarische Verschwörung (63 v. Chr.) fällt in die tiefste Krise der späten Republik: Schulden, Patronagekämpfe, Gewalt im Wahlprozess und Polarisierung zwischen Senatsaristokratie und popularem Lager.",
+      "Catilina erscheint in den Quellen zugleich als radikaler Umstürzler und als Symptom struktureller Spannungen. Unsere Sicht ist stark von Ciceros Reden und Sallusts Deutung geprägt.",
+      "Catilinae Coniuratio steht deshalb nicht nur für einen Putschversuch, sondern für die Frage, wie legitimierte Ordnung auf soziale Destabilisierung und politische Kommunikationskrisen reagiert."
+    ],
+    "contextTimeline": [
+      { "year": "64 v. Chr.", "event": "Catilina scheitert bei der Konsulwahl und radikalisiert seine Strategie" },
+      { "year": "63 v. Chr.", "event": "Cicero deckt die Verschwörung auf; Senat beschließt Notstandsmaßnahmen" },
+      { "year": "62 v. Chr.", "event": "Niederlage Catilinas bei Pistoria; Nachwirkungen in Recht und Politik" }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Vorgeschichte und soziale Sprenglage",
+        "description": "Ökonomischer Druck, Elitekonflikte und enttäuschte Aufstiegserwartungen bilden den Resonanzraum der Verschwörung.",
+        "timeframe": "64-63 v. Chr.",
+        "keyEvents": [
+          "Wahlkampfkonflikte und Schuldenkrise",
+          "Netzwerkbildung um Catilina",
+          "Polarisierung von Senat und Volkslager"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Entdeckung und rhetorische Eskalation",
+        "description": "Cicero nutzt Senat und Öffentlichkeit als Bühne, um Catilina politisch zu isolieren und Handlungsspielräume zu öffnen.",
+        "timeframe": "63 v. Chr.",
+        "keyEvents": [
+          "Erste Catilinaria im Senat",
+          "Öffentliche Mobilisierung gegen die Verschwörer",
+          "Verhaftung zentraler Mitverschwörer in Rom"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Notstandsrecht, Exekution und Schlacht",
+        "description": "Der Umgang mit den Gefangenen führt zur Grundsatzdebatte über Recht, Sicherheit und Staatsraison; anschließend endet der Aufstand militärisch bei Pistoria.",
+        "timeframe": "63-62 v. Chr.",
+        "keyEvents": [
+          "Senatsdebatte über die Strafe",
+          "Hinrichtung der Gefangenen ohne reguläres Verfahren",
+          "Tod Catilinas in der Endschlacht"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "Republikanische Krisendiagnose",
+        "content": [
+          "Die Verschwörung zeigt, wie stark politische Ordnung von Vertrauen in Verfahren abhängt. Wo Legitimität erodiert, gewinnen außerinstitutionelle Strategien an Attraktivität.",
+          "Catilina ist deshalb weniger Ausnahmefigur als Brennspiegel republikanischer Dysfunktion: soziale Härte, klientelistische Konkurrenz und moralische Überhitzung.",
+          "Gerade diese Gemengelage erklärt, warum die Episode in der römischen Erinnerung so dauerhaft wirksam blieb."
+        ]
+      },
+      {
+        "title": "Rhetorik und Macht",
+        "content": [
+          "Ciceros Erfolg beruht nicht nur auf Informationen, sondern auf Deutungsmacht: Er übersetzt diffuse Bedrohung in ein klares politisches Narrativ.",
+          "Die Catilinarien zeigen, wie Sprache institutionelles Handeln beschleunigt - und zugleich Gegner moralisch delegitimiert.",
+          "Damit wird der Fall zu einem Schlüsselbeispiel für das Zusammenspiel von Sicherheitsrhetorik und Notstandsentscheidungen."
+        ]
+      }
+    ],
+    "literaryFeatures": [
+      {
+        "title": "Dramatisierung der Bedrohung",
+        "description": "Die Überlieferung arbeitet mit zugespitzten Kontrasten (Retter vs. Feind der Republik), um politische Fronten zu klären.",
+        "examples": [
+          "Szenische Senatsauftritte mit hoher emotionaler Dichte",
+          "Moralische Typisierung Catilinas als Gegenfigur republikanischer Ordnung",
+          "Verdichtung komplexer Ursachen auf personenzentrierte Schuld"
+        ]
+      },
+      {
+        "title": "Historische Selbstinszenierung",
+        "description": "Sowohl bei Cicero als auch bei Sallust wird das Ereignis als Epochenbruch erzählt; Autoren positionieren sich als Deuter der Republikkrise.",
+        "examples": [
+          "Cicero als consularer Wächter der civitas",
+          "Sallusts Moralkritik des republikanischen Verfalls",
+          "Narrative Verbindung von Innenpolitik und Staatsuntergang"
+        ]
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "'Quo usque tandem' im Senat",
+        "date": "8. November 63 v. Chr.",
+        "description": "Cicero eröffnet die erste Catilinaria mit einer direkten Attacke auf Catilina und zwingt die Krise in den öffentlichen Raum.",
+        "significance": "Der Moment wird zum ikonischen Beispiel politischer Krisenrhetorik in der europäischen Tradition."
+      },
+      {
+        "title": "Debatte über die Todesstrafe",
+        "date": "Dezember 63 v. Chr.",
+        "description": "Im Senat kollidieren Sicherheitsargument und Rechtsprinzipien bei der Frage nach dem Umgang mit den Gefangenen.",
+        "significance": "Die Entscheidung zugunsten sofortiger Exekution bleibt ein Schlüsselproblem republikanischer Rechtsstaatlichkeit."
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Quo usque tandem abutere, Catilina, patientia nostra?",
+        "translation": "Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?",
+        "context": "Auftakt der ersten Catilinaria; markiert den performativen Start der politischen Gegenoffensive."
+      },
+      {
+        "latin": "O tempora, o mores!",
+        "translation": "O Zeiten, o Sitten!",
+        "context": "Ciceros Klage über moralischen Verfall als Deutungsrahmen der Verschwörung."
+      }
+    ],
+    "impact": {
+      "title": "Wirkung und Erbe",
+      "paragraphs": [
+        "Catilinae Coniuratio wurde zum Schultext der Republikkrise: Sie prägt bis heute das Verständnis von politischem Extremismus, Notstandsrecht und öffentlicher Feindmarkierung.",
+        "Die Episode beeinflusste europäische Rhetoriktraditionen, Staatsrechtsdebatten und historische Romane - als warnendes Beispiel für das fragile Gleichgewicht von Sicherheit und Recht."
+      ],
+      "highlights": [
+        "Klassischer Referenzfall für politische Radikalisierung",
+        "Leittext für Debatten über Ausnahmezustand und Rechtsgrenzen",
+        "Dauerhafte Wirkung in Historiographie und politischer Theorie"
+      ]
+    }
+  }
+}

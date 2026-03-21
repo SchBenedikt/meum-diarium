@@ -12,6 +12,7 @@ import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuthors } from "@/hooks/use-authors";
+import { CookieBanner } from "@/components/CookieBanner";
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
@@ -61,6 +62,7 @@ const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
+const StatisticsPage = lazy(() => import('./pages/StatisticsPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
@@ -145,6 +147,8 @@ const AppContent = () => {
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
               <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
+              <Route path="/stats" element={<PageTransition><StatisticsPage /></PageTransition>} />
+              <Route path="/statistik" element={<PageTransition><StatisticsPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}
@@ -192,6 +196,7 @@ const AppContent = () => {
             </Routes>
           </AnimatePresence>
         </Suspense>
+        <CookieBanner />
       </>
     </AuthorProvider>
   );

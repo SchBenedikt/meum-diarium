@@ -1,34 +1,69 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { AdminSidebar } from './AdminSidebar';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, PanelLeftClose, PanelLeftOpen, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export function AdminLayout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const location = useLocation();
   
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  const sectionTitle = (() => {
+    if (location.pathname === '/admin' || location.pathname === '/admin/overview') return 'Dashboard';
+    if (location.pathname.includes('/admin/post')) return 'Beiträge';
+    if (location.pathname.includes('/admin/lexicon')) return 'Lexikon';
+    if (location.pathname.includes('/admin/settings')) return 'Einstellungen';
+    if (location.pathname.includes('/admin/author')) return 'Autoren';
+    return 'Verwaltung';
+  })();
   
   return (
-    <div className="flex h-screen w-screen bg-white dark:bg-[#191919]">
+    <div className="flex h-screen w-screen bg-gradient-to-br from-background via-background to-secondary/20">
       <AdminSidebar 
         width={isCollapsed ? 60 : 256} 
         isCollapsed={isCollapsed}
         onToggleCollapse={toggleSidebar}
       />
-      <main className="flex-1 overflow-auto w-full h-full">
-        {/* Collapse/Expand Button */}
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={toggleSidebar}
-          className="fixed left-4 top-4 z-50 bg-white dark:bg-[#191919] border border-border shadow-md"
-        >
-          {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </Button>
-        <div className="h-full overflow-auto">
+      <main className="flex-1 min-w-0 h-full flex flex-col">
+        <header className="h-16 border-b border-border/60 bg-background/85 backdrop-blur-xl sticky top-0 z-40">
+          <div className="h-full px-4 sm:px-6 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={toggleSidebar}
+                className="h-9 w-9 shrink-0"
+                title={isCollapsed ? 'Sidebar einblenden' : 'Sidebar ausblenden'}
+              >
+                {isCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
+              </Button>
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">Admin</p>
+                <h1 className="text-sm sm:text-base font-semibold truncate">{sectionTitle}</h1>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Link to="/admin/post/new">
+                <Button size="sm" className={cn('rounded-full px-4', isCollapsed ? 'hidden sm:inline-flex' : '')}>
+                  Neuer Beitrag
+                </Button>
+              </Link>
+              <Link to="/" target="_blank" rel="noreferrer">
+                <Button variant="ghost" size="icon" className="h-9 w-9" title="Website öffnen">
+                  <ExternalLink className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        <div className="flex-1 overflow-auto">
           <Outlet />
         </div>
       </main>

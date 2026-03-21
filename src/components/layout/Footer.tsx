@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Scroll, Sparkles, BookOpen, Download, FileText, MessageCircle, Award, Library } from 'lucide-react';
+import { Scroll, Sparkles, BookOpen, Download, FileText, MessageCircle, Award, Library, Home, Clock3, Search, Info, BarChart3, Code2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export function Footer() {
@@ -14,11 +14,12 @@ export function Footer() {
     {
       title: 'Navigation',
       links: [
-        { label: 'Startseite', href: '/' },
-        { label: 'Zeitleiste', href: '/timeline' },
-        { label: 'Lexikon', href: '/lexicon' },
-        { label: 'Über uns', href: '/about' },
-        { label: 'API-Dokumentation', href: '/api' },
+        { label: 'Startseite', href: '/', icon: Home },
+        { label: 'Zeitleiste', href: '/timeline', icon: Clock3 },
+        { label: 'Lexikon', href: '/lexicon', icon: Search },
+        { label: 'Über uns', href: '/about', icon: Info },
+        { label: 'Statistik', href: '/stats', icon: BarChart3 },
+        { label: 'API-Dokumentation', href: '/api', icon: Code2 },
       ]
     },
     {
