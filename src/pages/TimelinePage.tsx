@@ -41,7 +41,7 @@ export default function TimelinePage() {
   }, [timelineEvents, t]);
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
-      <main className="flex-1 pb-16 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <motion.div

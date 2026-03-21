@@ -2,6 +2,16 @@ export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca' | 'catilina';
 export type Perspective = 'diary' | 'scientific';
 export type Language = 'de';
 
+export interface TagWithTranslations {
+  id: string;
+  translations: {
+    de: string;
+    en?: string;
+    la?: string;
+    [key: string]: string | undefined;
+  };
+}
+
 export interface AuthorInfo {
   id: Author;
   name: string;
@@ -20,6 +30,7 @@ export interface AuthorInfo {
     link: string;
     icon: string;
   }[];
+  translations?: Record<string, { title?: string; description?: string; name?: string }>;
 }
 
 export interface SidebarFact {

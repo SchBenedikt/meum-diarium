@@ -238,7 +238,7 @@ export default function StatisticsPage() {
                 <strong>{CODEBASE_SNAPSHOT.totalLoc.toLocaleString('de-DE')}</strong>
               </div>
               <p className="text-xs text-muted-foreground pt-1 inline-flex items-center gap-1.5">
-                <Clock3 className="h-3.5 w-3.5" /> Gemessen am {CODEBASE_SNAPSHOT.measuredAt}
+                <Clock3 className="h-3.5 w-3.5" /> Statische Momentaufnahme vom {CODEBASE_SNAPSHOT.measuredAt} – Näherungswerte
               </p>
             </CardContent>
           </Card>

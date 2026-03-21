@@ -10,7 +10,7 @@ export function useAuthors() {
             const authorsMap: Record<string, any> = {};
             // Deep-clone fallback data to avoid mutation
             Object.keys(fallbackAuthors).forEach(key => {
-                authorsMap[key] = { ...fallbackAuthors[key as keyof typeof fallbackAuthors] };
+                authorsMap[key] = structuredClone(fallbackAuthors[key as keyof typeof fallbackAuthors]);
             });
 
             try {

@@ -375,15 +375,14 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
     if (sitemap) primaryUrl.searchParams.set('sitemap', sitemap);
 
-    console.log(`[Frontend] askAI request: persona=${persona}, question="${question.substring(0, 40)}..."${sitemap ? ', with sitemap' : ''}`);
-
+    if (import.meta.env.DEV) console.log(`[Frontend] askAI request: persona=${persona}, question="${question.substring(0, 40)}..."${sitemap ? ', with sitemap' : ''}`);
     let res = await fetch(primaryUrl.toString(), {
         method: 'GET',
         headers: { 'accept': 'application/json' }
     });
 
     if (!res.ok && (res.status === 404 || res.status >= 500)) {
-        console.warn(`[Frontend] Primary URL failed (${res.status}), trying fallback...`);
+        if (import.meta.env.DEV) console.warn(`[Frontend] Primary URL failed (${res.status}), trying fallback...`);
         const fallbackUrl = new URL('/', 'https://caesar.schaechner.workers.dev');
         fallbackUrl.searchParams.set('persona', persona);
         fallbackUrl.searchParams.set('ask', question);
@@ -400,7 +399,7 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     }
     
     const json = await res.json();
-    console.log(`[Frontend] AI response received:`, {
+    if (import.meta.env.DEV) console.log(`[Frontend] AI response received:`, {
         hasResponse: !!json?.response,
         hasResources: !!json?.resources,
         resourceCount: json?.resources?.length || 0
@@ -410,10 +409,12 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const text = json?.response?.response ?? json?.response ?? JSON.stringify(json);
     const resources: AiResource[] | undefined = json?.resources;
     
-    if (resources && resources.length > 0) {
-        console.log(`[Frontend] Resources available:`, resources.map(r => ({ title: r.title, link: r.link, type: r.type })));
-    } else {
-        console.warn(`[Frontend] No resources returned from worker`);
+    if (import.meta.env.DEV) {
+        if (resources && resources.length > 0) {
+            console.log(`[Frontend] Resources available:`, resources.map(r => ({ title: r.title, link: r.link, type: r.type })));
+        } else {
+            console.warn(`[Frontend] No resources returned from worker`);
+        }
     }
     
     const finalText = typeof text === 'string' ? text : String(text);

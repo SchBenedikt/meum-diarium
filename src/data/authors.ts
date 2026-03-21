@@ -175,7 +175,7 @@ export const authors: Record<string, AuthorInfo> = {
       'Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik. Durch Ciceros Reden für immer in die Geschichte eingegangen.',
     heroImage: '/images/catilina-hero.png',
     theme: 'catilina',
-    color: '#7C3AED',
+    color: '#B94820',
     highlights: [
       {
         title: 'Catilinarische Verschwörung',

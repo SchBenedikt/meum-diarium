@@ -39,8 +39,8 @@ function PostContent({ post }: { post: BlogPost }) {
   const [searchParams] = useSearchParams();
   const [chatQuestion, setChatQuestion] = useState('');
   // Compute content availability once; used for initial perspective and the toggle visibility.
-  const hasDiary = Boolean(post?.content?.diary?.trim().length);
-  const hasScientific = Boolean(post?.content?.scientific?.trim().length);
+  const hasDiary = Boolean(post?.content?.diary?.trim()?.length);
+  const hasScientific = Boolean(post?.content?.scientific?.trim()?.length);
 
   // Initialise perspective to the first available content type so the first
   // render is never shown an empty/null content string (which would crash).

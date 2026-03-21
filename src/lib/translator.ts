@@ -7,7 +7,7 @@ import { getAllPosts } from '@/data/posts';
 import { getPostsWithOverrides } from '@/lib/cms-store';
 import { getLexiconWithOverrides, getAuthorsWithOverrides } from '@/lib/cms-store';
 
-export async function translatePostInPlace(post: BlogPost): Promise<BlogPost> {
+export async function translatePostInPlace(post: BlogPost, _lang?: string): Promise<BlogPost> {
     return post;
 }
 

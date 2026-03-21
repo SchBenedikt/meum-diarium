@@ -145,7 +145,7 @@ export function CookieBanner() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-sm font-semibold">Notwendige Cookies</p>
-                        <p className="text-xs text-muted-foreground">Immer aktiv fur Sprache, Theme und Kernfunktionen.</p>
+                        <p className="text-xs text-muted-foreground">Immer aktiv für Sprache, Theme und Kernfunktionen.</p>
                       </div>
                       <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
                         <ShieldCheck className="h-3.5 w-3.5" /> Aktiv
@@ -155,7 +155,7 @@ export function CookieBanner() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-sm font-semibold">Analyse-Cookies</p>
-                        <p className="text-xs text-muted-foreground">Anonyme Nutzungstrends, damit wir Inhalte verbessern konnen.</p>
+                        <p className="text-xs text-muted-foreground">Anonyme Nutzungstrends, damit wir Inhalte verbessern können.</p>
                       </div>
                       <Switch
                         checked={analyticsEnabled}

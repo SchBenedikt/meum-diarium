@@ -60,26 +60,26 @@ export default function ChatPage() {
         setMessages(prev => [...prev, { role: 'user', content: question }]);
         setIsTyping(true);
         try {
-            console.log(`[ChatPage] Sending question to AI...`);
+            if (import.meta.env.DEV) console.log(`[ChatPage] Sending question to AI...`);
             const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
-            console.log(`[ChatPage] AI response received with ${suggested?.length || 0} resources`);
+            if (import.meta.env.DEV) console.log(`[ChatPage] AI response received with ${suggested?.length || 0} resources`);
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
             if (suggested && suggested.length) {
-                console.log(`[ChatPage] Processing ${suggested.length} suggested resources...`);
+                if (import.meta.env.DEV) console.log(`[ChatPage] Processing ${suggested.length} suggested resources...`);
                 setResources(prev => {
                     const existingLinks = new Set(prev.map(r => r.link));
                     const merged = [...prev];
                     for (const s of suggested) {
                         if (!existingLinks.has(s.link)) {
                             merged.push(s);
-                            console.log(`[ChatPage] Added resource: ${s.title} (${s.link})`);
+                            if (import.meta.env.DEV) console.log(`[ChatPage] Added resource: ${s.title} (${s.link})`);
                         }
                     }
-                    console.log(`[ChatPage] Resources state now has ${merged.length} items`);
+                    if (import.meta.env.DEV) console.log(`[ChatPage] Resources state now has ${merged.length} items`);
                     return merged;
                 });
             } else {
-                console.warn(`[ChatPage] No resources returned from AI`);
+                if (import.meta.env.DEV) console.warn(`[ChatPage] No resources returned from AI`);
             }
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : 'Fehler beim Abruf der KI-Antwort.';
