@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Shield, Code2, Database, Bot, Activity, AlertTriangle, Search } from 'lucide-react';
+import { Shield, Code2, Database, Bot, Activity, AlertTriangle, Search, BookOpen, Zap, Beaker, Puzzle, Lightbulb, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -20,6 +20,8 @@ type EndpointGroup = {
   icon: React.ElementType;
   endpoints: Endpoint[];
 };
+
+type TabId = 'intro' | 'basis' | 'content' | 'learning' | 'ai' | 'system';
 
 const BASE_URL = 'https://meum-diarium.xn--schner-2za.de';
 
@@ -205,13 +207,6 @@ const systemEndpoints: Endpoint[] = [
     response: '{ status, message, environment, timestamp }',
   },
   {
-    method: 'GET',
-    path: '/api/dashboard/stats',
-    title: 'Dashboard-Stats',
-    description: 'Nutzer-/Kommentarstatistik fuer Dashboard (auth-gebunden).',
-    response: 'DashboardStats',
-  },
-  {
     method: 'GET, POST',
     path: '/api/reading-progress',
     title: 'Lese-Fortschritt',
@@ -219,20 +214,44 @@ const systemEndpoints: Endpoint[] = [
     notes: ['Erfordert X-User-ID Header.'],
     response: '{ readingProgress, totalReadingTime, ... }',
   },
+];
+
+const useCases = [
   {
-    method: 'GET, POST, PUT, DELETE',
-    path: '/api/profile',
-    title: 'Profil',
-    description: 'Profilverwaltung ueber Bearer-Token.',
-    notes: ['Authorization: Bearer <token> erforderlich.'],
-    response: 'UserProfile',
+    icon: BookOpen,
+    label: 'BILDUNG & LEHRE',
+    title: 'Entwickle interaktive Lernplattformen',
+    description: 'Nutze unsere kuratierten Inhalte und historischen Quellen um eigene Lehrinhalte und Lernplattformen zu erstellen.',
   },
   {
-    method: 'GET',
-    path: '/api/debug, /api/debug-bindings',
-    title: 'Debug-Endpunkte',
-    description: 'Diagnoseinformationen fuer Entwicklung/Deployment.',
-    notes: ['Nicht fuer produktive Client-Nutzung vorgesehen.'],
+    icon: Zap,
+    label: 'DATENANALYSE',
+    title: 'Quantitative Analysen römischer Geschichte',
+    description: 'Nutze den gesamten Katalog für quantitative Analysen römischer Geschichte oder für Natural Language Processing.',
+  },
+  {
+    icon: Beaker,
+    label: 'FORSCHUNGSTOOLS',
+    title: 'Integriere historische Fakten in deine Forschung',
+    description: 'Integriere historische Fakten und Glossareinträge direkt in wissenschaftliche Anwendungen oder Zitationssysteme.',
+  },
+  {
+    icon: Puzzle,
+    label: 'INTEGRATIONEN',
+    title: 'Baue Browser-Extensions oder Mobile Apps',
+    description: 'Baue Browser-Extensions oder Mobile Apps, die unseren "Sententia Diei" oder die Timeline als Widget anzeigen.',
+  },
+  {
+    icon: Lightbulb,
+    label: 'KI-EXPERIMENTE',
+    title: 'Nutze die Persona-Endpunkte für AI-Chatbots',
+    description: 'Nutze die Persona-Schnittstellen um eigene Chat-Bots oder Rollenspiel-Szenarien mit antiken Charakteren zu gestalten.',
+  },
+  {
+    icon: Globe,
+    label: 'OPEN SCIENCE',
+    title: 'Trage zu offener Wissenschaft bei',
+    description: 'Alle öffentlich zugänglichen Daten fördern das Open Science Prinzip – freier Zugang zu Wissen für eine informierte Gesellschaft.',
   },
 ];
 
@@ -309,6 +328,7 @@ const EndpointSection = ({ title, icon: Icon, endpoints }: { title: string; icon
 );
 
 export default function ApiDocsPage() {
+  const [activeTab, setActiveTab] = useState<TabId>('intro');
   const [query, setQuery] = useState('');
   const [activeGroup, setActiveGroup] = useState<'all' | EndpointGroup['id']>('all');
 
@@ -343,218 +363,227 @@ export default function ApiDocsPage() {
 
   const totalVisible = filteredGroups.reduce((acc, group) => acc + group.endpoints.length, 0);
 
+  const tabs: Array<{ id: TabId; label: string }> = [
+    { id: 'intro', label: 'Was ist eine API?' },
+    { id: 'basis', label: 'Basis' },
+    { id: 'content', label: 'Content' },
+    { id: 'learning', label: 'Discovery' },
+    { id: 'ai', label: 'KI' },
+    { id: 'system', label: 'System' },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-14">
+        {/* Header */}
         <header className="space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase tracking-[0.2em] font-bold">
-            API v1
+            API v1 DOKUMENTATION
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight">Meum Diarium API</h1>
           <p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
-            Strukturierte Referenz fuer alle oeffentlichen Endpunkte. Inklusive Suche, cURL-Beispielen und
-            Implementierungsleitfaden fuer eigene Anwendungen.
+            Vollständige Dokumentation aller Content- und KI-Endpunkte, inklusive cURL-Beispielen. Fokus auf mobile Lesbarkeit und klaren Einstieg.
           </p>
-
-          <Card className="card-modern border-primary/20 bg-primary/5">
-            <CardContent className="p-5 space-y-3">
-              <div className="flex items-center gap-2 text-primary">
-                <Code2 className="h-4 w-4" />
-                <p className="text-xs uppercase tracking-[0.2em] font-semibold">Basis-URL</p>
-              </div>
-              <code className="text-sm bg-background/80 px-2 py-1 rounded border border-border/50">{BASE_URL}</code>
-              <p className="text-sm text-muted-foreground">Empfohlener Start: GET /api/catalog, danach domain-spezifisch (Posts, Lexikon, KI).</p>
-            </CardContent>
-          </Card>
         </header>
 
-        <section className="space-y-6">
-          <div className="space-y-4">
-            <h2 className="font-display text-3xl font-bold flex items-center gap-3"><Code2 className="h-8 w-8 text-primary" />Was ist eine API?</h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Eine <strong>API (Application Programming Interface)</strong> ist eine standardisierte Schnittstelle, die es Computerprogrammen ermöglicht, miteinander zu kommunizieren. Statt dass ein Mensch eine Website mit der Maus bedient, verfrag ein Programm die API um Daten zu erhalten oder Operationen durchzuführen.
-            </p>
-          </div>
+        {/* Tab Navigation */}
+        <div className="flex gap-2 overflow-x-auto pb-2 border-b border-border/30">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors border-b-2 ${
+                activeTab === tab.id
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card className="card-modern border-border/50 bg-secondary/5">
-              <CardContent className="p-5 space-y-3">
-                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">Alltagsbeispiel</p>
-                <p className="text-sm text-muted-foreground">
-                  Wenn du in einem Restaurant bestellst, gibst du dem Kellner (API) deine Bestellung. Der Kellner geht in die Küche (Backend), gibt die Bestellung weiter, wartet auf das Ergebnis und bringt dir das fertige Gericht. Du musst nicht selbst in die Küche gehen.
-                </p>
-              </CardContent>
-            </Card>
+        {/* INTRO TAB */}
+        {activeTab === 'intro' && (
+          <div className="space-y-10">
+            <h2 className="font-display text-3xl font-bold">API Guide</h2>
 
-            <Card className="card-modern border-border/50 bg-primary/5">
-              <CardContent className="p-5 space-y-3">
-                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">In dieser Software</p>
-                <p className="text-sm text-muted-foreground">
-                  Die API erlaubt es dir, Beiträge zu suchen, Lexikon-Inhalte abzurufen, mit historischen Personen zu chatten und vieles mehr – ohne die Website manuell zu bedienen.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Two Main Cards */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card className="card-modern border-border/50">
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Code2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Was ist eine API?</h3>
+                      <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                        Eine <strong>API (Application Programming Interface)</strong> fungiert als digitaler Dolmetscher. Sie ermöglicht es externen Anwendungen, direkt auf die Wissensdatenbank von Meum Diarium zuzugreifen. Start einer grafischen Oberfläche liefert sie rein strukturierte Daten (JSON), die von Programmen verarbeitet werden können.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-          <div className="space-y-4 bg-secondary/30 border border-border/50 rounded-lg p-5">
-            <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">Wie funktioniert eine API?</p>
-            <ol className="space-y-3 text-sm text-muted-foreground">
-              <li><strong>1. Request:</strong> Ein Programm sendet eine strukturierte Anfrage (Request) an die API. Z. B.: „Gib mir alle Beiträge zum Thema Caesar".</li>
-              <li><strong>2. Verarbeitung:</strong> Der Server empfängt die Anfrage, validiert sie, führt die notwendigen Operationen durch (z. B. Datenbankabfrage).</li>
-              <li><strong>3. Response:</strong> Der Server schickt strukturierte Daten zurück (meist im JSON-Format), z. B. eine Liste von Beiträgen mit Titel, Text und Metadaten.</li>
-              <li><strong>4. Verarbeitung durch den Client:</strong> Das anfragende Programm (z. B. diese Website) empfängt die Daten und zeigt sie dem Benutzer an.</li>
-            </ol>
-          </div>
+              <Card className="card-modern border-border/50">
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Zap className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Warum Meum Diarium API?</h3>
+                      <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                        Wir glauben an die Demokratisierung von historischem Wissen. Unsere API stellt wissenschaftliche Inhalte, historische Quellen und KI-basierte Simulationen einer breiten Masse an Entwicklern und Forschern zur Verfügung, um Geschichte erlebbar zu machen.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            <Card className="card-modern border-border/50">
-              <CardContent className="p-5 space-y-3">
-                <p className="text-sm font-semibold text-primary">Content-APIs</p>
-                <p className="text-sm text-muted-foreground">
-                  Abrufen von Beiträgen, Lexikon-Einträgen, Werken und Autoren. Ideal für Inhaltssuche und Browsing.
-                </p>
-              </CardContent>
-            </Card>
+            {/* Use Cases Grid */}
+            <div className="space-y-4">
+              <h3 className="font-display text-2xl font-bold">Was kannst du damit machen?</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {useCases.map((useCase) => {
+                  const Icon = useCase.icon;
+                  return (
+                    <Card key={useCase.label} className="card-modern border-border/50">
+                      <CardContent className="p-5 space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Icon className="h-5 w-5 text-primary" />
+                          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">{useCase.label}</p>
+                        </div>
+                        <h4 className="font-semibold text-sm">{useCase.title}</h4>
+                        <p className="text-xs text-muted-foreground">{useCase.description}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
 
-            <Card className="card-modern border-border/50">
-              <CardContent className="p-5 space-y-3">
-                <p className="text-sm font-semibold text-primary">KI/Chat-APIs</p>
-                <p className="text-sm text-muted-foreground">
-                  Stelle Fragen an historische Personen, bekomme Erklärungen, führe interaktive Szenarien durch.
-                </p>
-              </CardContent>
-            </Card>
+            {/* Basis URL */}
+            <div className="space-y-4">
+              <h3 className="font-display text-xl font-bold">Basis-URL</h3>
+              <Card className="card-modern border-border/50">
+                <CardContent className="p-5 space-y-3">
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground">PAGES</p>
+                  <code className="text-sm text-primary font-mono">{BASE_URL}</code>
+                  <p className="text-sm text-muted-foreground">Statische Content-API plus KI-Proxy unter derselben Domain. /api liefert diese Dokumentation.</p>
+                </CardContent>
+              </Card>
+            </div>
 
-            <Card className="card-modern border-border/50">
-              <CardContent className="p-5 space-y-3">
-                <p className="text-sm font-semibold text-primary">Lern-APIs</p>
-                <p className="text-sm text-muted-foreground">
-                  Vokabelsuche, Grammatik-Daten, lateinische Texte und Discovery von Lernmaterialien.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="space-y-4 bg-primary/10 border border-primary/20 rounded-lg p-5">
-            <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary flex items-center gap-2"><Code2 className="h-4 w-4" />Praktisches Beispiel: Vokabeln abfragen</p>
-            <pre className="text-xs bg-background/80 border border-border/50 rounded p-3 overflow-x-auto">{`// Anfrage (Request)
-GET /api/vocab?q=amare&limit=5
-
-// Server antwortet (Response)
-{
-  "results": [
-    { "word": "amare", "type": "verb", "meaning": "to love" },
-    { "word": "amamus", "type": "verb_form", "meaning": "we love" }
-  ],
-  "count": 2
-}`}</pre>
-            <p className="text-sm text-muted-foreground">Früher musstest du ein Lateinwörterbuch von Hand durchblättern. Mit der API brauchst du als Programm nur eine Zeile Code.</p>
-          </div>
-        </section>
-
-        <section className="grid md:grid-cols-2 gap-4">
-          <Card className="card-modern border-border/50">
-            <CardContent className="p-5">
-              <div className="flex items-center gap-2 mb-3 text-primary"><Shield className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Sicherheit</p></div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Input-Validierung auf AI-Proxy-Endpunkten (Laengen, Allowlists, URL-Pruefung).</li>
-                <li>CORS auf allen oeffentlichen API-Endpunkten aktiv.</li>
-                <li>Bei fehlenden Bindings (z. B. D1/AI) liefern Endpunkte explizite Fehlercodes.</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="card-modern border-border/50">
-            <CardContent className="p-5">
-              <div className="flex items-center gap-2 mb-3 text-primary"><AlertTriangle className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Fehlerformat</p></div>
-              <p className="text-sm text-muted-foreground mb-2">Fehlerantworten folgen i. d. R.:</p>
-              <code className="text-sm bg-secondary px-2 py-1 rounded">{`{ "error": string, "message"?: string }`}</code>
-              <p className="text-sm text-muted-foreground mt-2">Typische Statuscodes: 400, 401/403, 404, 405, 500, 502, 503.</p>
-            </CardContent>
-          </Card>
-
-        </section>
-
-        <section className="grid lg:grid-cols-2 gap-4">
-          <Card className="card-modern border-border/50">
-            <CardContent className="p-5 space-y-3">
-              <div className="flex items-center gap-2 text-primary"><Code2 className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Quickstart cURL</p></div>
-              <pre className="text-xs bg-secondary/60 border border-border/50 rounded p-3 overflow-x-auto">{`curl -s "${BASE_URL}/api/catalog"
-curl -s "${BASE_URL}/api/posts?tag=caesar"
-curl -s "${BASE_URL}/api/ask?persona=caesar&ask=Was%20war%20der%20Rubikon%3F"`}</pre>
-            </CardContent>
-          </Card>
-
-          <Card className="card-modern border-border/50">
-            <CardContent className="p-5 space-y-3">
-              <div className="flex items-center gap-2 text-primary"><Code2 className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Integration (fetch)</p></div>
-              <pre className="text-xs bg-secondary/60 border border-border/50 rounded p-3 overflow-x-auto">{`const API = "${BASE_URL}";
-
-export async function askCaesar(question) {
-  const url = API + "/api/ask?persona=caesar&ask=" + encodeURIComponent(question);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error("API error " + res.status);
-  return res.json();
-}`}</pre>
-            </CardContent>
-          </Card>
-        </section>
-
-        <section className="space-y-4">
-          <div className="flex items-center gap-2 text-primary">
-            <Search className="h-4 w-4" />
-            <p className="text-xs uppercase tracking-[0.2em] font-semibold">Endpoint-Finder</p>
-          </div>
-
-          <div className="grid md:grid-cols-[1fr_auto] gap-3">
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suche nach Pfad, Methode, Parameter oder Beschreibung..."
-              className="bg-card/70"
-            />
-            <div className="flex flex-wrap gap-2">
-              {[
-                { id: 'all', label: 'Alle' },
-                { id: 'content', label: 'Content' },
-                { id: 'learning', label: 'Lernen' },
-                { id: 'ai', label: 'KI' },
-                { id: 'system', label: 'System' },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setActiveGroup(item.id as 'all' | EndpointGroup['id'])}
-                  className={`px-3 py-1.5 rounded-md text-xs border transition-colors ${
-                    activeGroup === item.id
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'bg-card/60 border-border/60 text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+            {/* Quickstart */}
+            <div className="space-y-4">
+              <h3 className="font-display text-xl font-bold">Schnellstart mit cURL</h3>
+              <p className="text-sm text-muted-foreground">Du kannst die API direkt von deinem Terminal aus testen. Hier ist ein Beispiel, wie du den Katalog abrufst:</p>
+              <Card className="card-modern border-border/50 bg-secondary/30">
+                <CardContent className="p-5">
+                  <pre className="text-xs bg-background/80 border border-border/50 rounded p-3 overflow-x-auto font-mono">
+                    {`curl "${BASE_URL}/api/catalog"`}
+                  </pre>
+                </CardContent>
+              </Card>
             </div>
           </div>
+        )}
 
-          <p className="text-sm text-muted-foreground">{totalVisible} Endpunkte sichtbar</p>
-        </section>
+        {/* BASIS TAB */}
+        {activeTab === 'basis' && (
+          <div className="space-y-10">
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card className="card-modern border-border/50">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-3 text-primary">
+                    <Shield className="h-4 w-4" />
+                    <p className="text-xs uppercase tracking-[0.2em] font-semibold">Sicherheit</p>
+                  </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>Input-Validierung auf AI-Proxy-Endpunkten (Laengen, Allowlists, URL-Pruefung).</li>
+                    <li>CORS auf allen oeffentlichen API-Endpunkten aktiv.</li>
+                    <li>Bei fehlenden Bindings (z. B. D1/AI) liefern Endpunkte explizite Fehlercodes.</li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-        {filteredGroups.length > 0 ? (
-          filteredGroups.map((group) => (
-            <EndpointSection
-              key={group.id}
-              title={group.title}
-              icon={group.icon}
-              endpoints={group.endpoints}
+              <Card className="card-modern border-border/50">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-3 text-primary">
+                    <AlertTriangle className="h-4 w-4" />
+                    <p className="text-xs uppercase tracking-[0.2em] font-semibold">Fehlerformat</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-2">Fehlerantworten folgen i. d. R.:</p>
+                  <code className="text-sm bg-secondary px-2 py-1 rounded">{`{ "error": string }`}</code>
+                  <p className="text-sm text-muted-foreground mt-2">Statuscodes: 400, 404, 405, 500, 502, 503.</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="font-display text-xl font-bold">Basis Endpoints</h3>
+              <EndpointSection title="Übersicht" icon={Database} endpoints={[
+                {
+                  method: 'GET',
+                  path: '/api/catalog',
+                  title: 'Katalog abrufen',
+                  description: 'Überblick über alle verfügbaren Inhalte: Posts, Lexikon, Werke, Autoren.',
+                  response: '{ counts, available_authors, timestamp }',
+                },
+              ]} />
+            </div>
+          </div>
+        )}
+
+        {/* CONTENT TAB */}
+        {activeTab === 'content' && (
+          <div className="space-y-10">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Suche in Content APIs..."
+              className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
             />
-          ))
-        ) : (
-          <Card className="card-modern border-border/50">
-            <CardContent className="p-6 text-sm text-muted-foreground">
-              Keine Endpunkte fuer diese Suche gefunden. Versuche kuerzere Begriffe wie "posts", "ask" oder "vocab".
-            </CardContent>
-          </Card>
+            <EndpointSection title="Content APIs" icon={Database} endpoints={contentEndpoints} />
+          </div>
+        )}
+
+        {/* LEARNING/DISCOVERY TAB */}
+        {activeTab === 'learning' && (
+          <div className="space-y-10">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Suche in Discovery APIs..."
+              className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
+            />
+            <EndpointSection title="Lern- und Discovery APIs" icon={Activity} endpoints={learningEndpoints} />
+          </div>
+        )}
+
+        {/* KI TAB */}
+        {activeTab === 'ai' && (
+          <div className="space-y-10">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Suche in KI APIs..."
+              className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
+            />
+            <EndpointSection title="KI- und Sprach-APIs" icon={Bot} endpoints={aiEndpoints} />
+          </div>
+        )}
+
+        {/* SYSTEM TAB */}
+        {activeTab === 'system' && (
+          <div className="space-y-10">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Suche in System APIs..."
+              className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
+            />
+            <EndpointSection title="System und Monitoring" icon={Shield} endpoints={systemEndpoints} />
+          </div>
         )}
       </div>
     </div>
