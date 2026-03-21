@@ -3,6 +3,9 @@
 
 export default {
     async fetch(request, env) {
+        const url = new URL(request.url);
+        const isWorkersDevHost = url.hostname.endsWith('.workers.dev');
+
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: corsHeaders() });
         }
@@ -13,7 +16,6 @@ export default {
             });
         }
 
-        const url = new URL(request.url);
         // Normalize pathname: remove trailing slash and convert to lowercase
         const pathname = url.pathname.toLowerCase().replace(/\/$/, "");
 
@@ -142,10 +144,24 @@ export default {
 
         // Route: Root / or /api or PersonaChat - let fall through to SPA for premium React docs
         if (pathname === "" || pathname === "/api" || pathname === "/personachat") {
+            // On workers.dev there is no Pages origin to fall through to; avoid recursive self-fetch.
+            if (isWorkersDevHost) {
+                return new Response(JSON.stringify({
+                    service: 'meum-diarium-worker',
+                    status: 'ok',
+                    routes: ['/', '/explain', '/simulate', '/stats', '/api/ask', '/api/explain', '/api/simulate']
+                }), { headers: corsHeaders() });
+            }
             return fetch(request);
         }
 
         // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
+        if (isWorkersDevHost) {
+            return new Response(JSON.stringify({ error: 'Not Found' }), {
+                status: 404,
+                headers: corsHeaders(),
+            });
+        }
         return fetch(request);
     }
 };
@@ -178,8 +194,30 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
 
     messages.push({ role: "user", content: question });
 
+    if (!env?.AI || typeof env.AI.run !== 'function') {
+        return {
+            error: 'AI binding not configured',
+            persona,
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert.' },
+            resources: [],
+            format: 'markdown',
+        };
+    }
+
     const chat = { messages };
-    const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+    let aiResponse;
+    try {
+        aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+    } catch (e) {
+        return {
+            error: 'AI request failed',
+            details: e?.message || 'Unknown AI error',
+            persona,
+            response: { response: 'Die KI ist momentan nicht erreichbar.' },
+            resources: [],
+            format: 'markdown',
+        };
+    }
 
     let resources = [];
     if (sitemapUrl) {
@@ -526,8 +564,28 @@ async function handleExplainTerm(request, env, url, body) {
 
     messages.push({ role: 'user', content: question || `Erkläre: ${term}` });
 
+    if (!env?.AI || typeof env.AI.run !== 'function') {
+        return new Response(JSON.stringify({
+            term,
+            error: 'AI binding not configured',
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert.' },
+            format: 'markdown',
+        }), { headers: corsHeaders(), status: 503 });
+    }
+
     const chat = { messages };
-    const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+    let aiResponse;
+    try {
+        aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+    } catch (e) {
+        return new Response(JSON.stringify({
+            term,
+            error: 'AI request failed',
+            details: e?.message || 'Unknown AI error',
+            response: { response: 'Die KI ist momentan nicht erreichbar.' },
+            format: 'markdown',
+        }), { headers: corsHeaders(), status: 502 });
+    }
 
     const result = {
         term,
