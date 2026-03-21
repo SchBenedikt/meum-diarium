@@ -205,7 +205,7 @@ const Index = () => {
               <button
                 type="button"
                 onClick={() => setIsFloatingExpanded(true)}
-                className="w-full max-w-sm mx-auto rounded-2xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/45 transition-colors"
+                className="block w-full max-w-sm mx-auto rounded-2xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/45 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Zap className="h-4 w-4 text-primary" />
