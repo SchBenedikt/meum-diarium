@@ -1,451 +1,319 @@
-import { motion } from "framer-motion";
-import { 
-  BookOpen, 
-  Download, 
-  Globe, 
-  FileText, 
-  Video, 
-  Headphones,
-  Code,
-  Share2,
-  ArrowRight,
-  Users,
-  Sparkles,
-  Zap,
-  Award,
-  TrendingUp,
-  Star
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { SEO } from "@/components/SEO";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { fadeUp, staggerContainer } from "@/lib/motion";
+import { motion } from 'framer-motion';
+import { BookOpen, Download, Globe, FileText, Video, Code, Share2, ArrowRight, Award, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
+import { Card, CardContent } from '@/components/ui/card';
+import { Footer } from '@/components/layout/Footer';
+import { fadeUp, staggerContainer } from '@/lib/motion';
+
+type ResourceItem = {
+  title: string;
+  description: string;
+  license: string;
+  format: string;
+  link: string;
+};
+
+type ResourceCategory = {
+  category: string;
+  icon: React.ElementType;
+  items: ResourceItem[];
+};
 
 const OERPage = () => {
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
 
-  const availableResources = [
+  const availableResources: ResourceCategory[] = [
     {
-      category: "Texte & Inhalte",
+      category: 'Texte und Inhalte',
       icon: FileText,
       items: [
         {
-          title: "Tagebucheinträge",
-          description: "KI-generierte Tagebucheinträge historischer Persönlichkeiten",
-          license: "CC BY-SA 4.0",
-          format: "HTML, JSON",
-          link: "/caesar"
+          title: 'Tagebucheintraege',
+          description: 'KI-generierte Tagebucheintraege historischer Persoenlichkeiten.',
+          license: 'CC BY-SA 4.0',
+          format: 'HTML, JSON',
+          link: '/caesar',
         },
         {
-          title: "Lexikon",
-          description: "Umfassende Enzyklopädie zur römischen Antike",
-          license: "CC BY-SA 4.0",
-          format: "HTML, API",
-          link: "/lexicon"
+          title: 'Lexikon',
+          description: 'Enzyklopaedie zur roemischen Antike mit historischer Einordnung.',
+          license: 'CC BY-SA 4.0',
+          format: 'HTML, API',
+          link: '/lexicon',
         },
         {
-          title: "Grammatik",
-          description: "Lateinische Grammatik mit Übungen",
-          license: "CC BY-SA 4.0",
-          format: "HTML, PDF",
-          link: "/learn/grammar"
-        }
-      ]
+          title: 'Grammatik',
+          description: 'Lateinische Grammatik mit Uebungen und didaktischem Aufbau.',
+          license: 'CC BY-SA 4.0',
+          format: 'HTML, PDF',
+          link: '/learn/grammar',
+        },
+      ],
     },
     {
-      category: "Multimedia",
+      category: 'Multimedia',
       icon: Video,
       items: [
         {
-          title: "Bildmaterial",
-          description: "Historische Abbildungen und Rekonstruktionen",
-          license: "CC BY-SA 4.0",
-          format: "JPG, PNG",
-          link: "/images"
+          title: 'Bildmaterial',
+          description: 'Historische Abbildungen und Rekonstruktionen zur freien Nutzung.',
+          license: 'CC BY-SA 4.0',
+          format: 'JPG, PNG',
+          link: '/images',
         },
         {
-          title: "Audio-Inhalte",
-          description: "Ausspracheübungen und Hörtexte",
-          license: "CC BY-SA 4.0",
-          format: "MP3, WAV",
-          link: "/audio"
+          title: 'Audio-Inhalte',
+          description: 'Ausspracheuebungen und Hoertexte fuer Lateinunterricht und Selbststudium.',
+          license: 'CC BY-SA 4.0',
+          format: 'MP3, WAV',
+          link: '/audio',
         },
         {
-          title: "Video-Tutorials",
-          description: "Lernvideos zur lateinischen Sprache",
-          license: "CC BY-SA 4.0",
-          format: "MP4, WebM",
-          link: "/videos"
-        }
-      ]
+          title: 'Video-Tutorials',
+          description: 'Lernvideos zur Sprache, Literatur und Kultur des antiken Rom.',
+          license: 'CC BY-SA 4.0',
+          format: 'MP4, WebM',
+          link: '/videos',
+        },
+      ],
     },
     {
-      category: "Technische Ressourcen",
+      category: 'Technische Ressourcen',
       icon: Code,
       items: [
         {
-          title: "API-Dokumentation",
-          description: "RESTful API für Entwickler",
-          license: "MIT",
-          format: "JSON, Swagger",
-          link: "/api"
+          title: 'API-Dokumentation',
+          description: 'REST API fuer Integrationen, Unterrichtstools und Forschung.',
+          license: 'MIT',
+          format: 'JSON, OpenAPI',
+          link: '/api',
         },
         {
-          title: "Quellcode",
-          description: "Open Source Projekt auf GitHub",
-          license: "MIT",
-          format: "TypeScript, React",
-          link: "https://github.com/meum-diarium"
+          title: 'Quellcode',
+          description: 'Offener Projektcode als Grundlage fuer eigene Erweiterungen.',
+          license: 'MIT',
+          format: 'TypeScript, React',
+          link: 'https://github.com/meum-diarium',
         },
         {
-          title: "Datenbank",
-          description: "Exportierbare Daten und Dumps",
-          license: "ODbL",
-          format: "SQL, CSV",
-          link: "/data"
-        }
-      ]
-    }
+          title: 'Datenbank-Exporte',
+          description: 'Nutzbare Daten fuer wissenschaftliche Auswertung und Reproduktion.',
+          license: 'ODbL',
+          format: 'SQL, CSV',
+          link: '/data',
+        },
+      ],
+    },
   ];
 
   const licenses = [
     {
-      name: "CC BY-SA 4.0",
-      short: "Creative Commons",
-      description: "Namensnennung, Weitergabe unter gleichen Bedingungen",
+      name: 'CC BY-SA 4.0',
+      short: 'Creative Commons',
+      description: 'Namensnennung und Weitergabe unter gleichen Bedingungen.',
       icon: Share2,
-      color: "bg-green-50 text-green-700 border-green-200"
+      color: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-200 dark:border-green-800/50',
     },
     {
-      name: "MIT",
-      short: "MIT License",
-      description: "Freie Nutzung, Modifikation und Verbreitung",
+      name: 'MIT',
+      short: 'MIT License',
+      description: 'Freie Nutzung, Modifikation und Weiterverteilung von Software.',
       icon: Code,
-      color: "bg-blue-50 text-blue-700 border-blue-200"
+      color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-200 dark:border-blue-800/50',
     },
     {
-      name: "ODbL",
-      short: "Open Database License",
-      description: "Freie Nutzung von Datenbankinhalten",
+      name: 'ODbL',
+      short: 'Open Database License',
+      description: 'Offene Weiternutzung von Datenbanken bei gleicher Offenheit.',
       icon: Globe,
-      color: "bg-purple-50 text-purple-700 border-purple-200"
+      color: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-200 dark:border-amber-800/50',
     },
     {
-      name: "CC0",
-      short: "Public Domain",
-      description: "Keine Rechtevorbehalte, gemeinfrei",
+      name: 'CC0',
+      short: 'Public Domain',
+      description: 'Gemeinfreie Inhalte ohne urheberrechtliche Einschraenkungen.',
       icon: Star,
-      color: "bg-gray-50 text-gray-700 border-gray-200"
-    }
+      color: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-900/20 dark:text-slate-200 dark:border-slate-700/60',
+    },
   ];
 
   const stats = [
-    { value: "92+", label: "Lexikon-Einträge", color: "from-primary to-blue-500" },
-    { value: "36.140", label: "Vokabeln", color: "from-blue-500 to-green-500" },
-    { value: "4", label: "Historiker", color: "from-green-500 to-orange-500" },
-    { value: "6", label: "Lektionen", color: "from-orange-500 to-red-500" }
+    { value: '92+', label: 'Lexikon-Eintraege' },
+    { value: '36.140', label: 'Vokabeln' },
+    { value: '4', label: 'Historiker' },
+    { value: '6', label: 'Lektionen' },
   ];
 
+  const isExternalLink = (url: string) => /^https?:\/\//.test(url);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Open Educational Resources – Meum Diarium"
-        description="Kostenfreie Bildungsmaterialien zur römischen Antike. Texte, Vokabeln und interaktive Lernwerkzeuge unter offenen Lizenzen."
+        title="Open Educational Resources - Meum Diarium"
+        description="Kostenfreie Bildungsmaterialien zur roemischen Antike. Texte, Vokabeln und interaktive Lernwerkzeuge unter offenen Lizenzen."
         type="website"
         image={`${baseUrl}/images/oer-hero.jpg`}
       />
 
-      {/* Hero Section - Landing Page Style */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-green-500/5" />
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 pt-32 pb-24 relative">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer(0.1)}
-            className="text-center space-y-8"
-          >
-            <motion.div variants={fadeUp()}>
-              <div className="flex justify-center gap-3 mb-6">
-                <Badge variant="secondary" className="px-4 py-2 text-xs font-medium">
-                  <Globe className="mr-2 h-3 w-3" />
-                  Open Educational Resources
-                </Badge>
-                <Badge variant="outline" className="px-4 py-2 text-xs font-medium">
-                  <Download className="mr-2 h-3 w-3" />
-                  Kostenfrei & Frei
-                </Badge>
-              </div>
-              <h1 className="font-bricolage text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                Bildungsmaterialien zur
-                <span className="bg-gradient-to-r from-primary to-green-500 bg-clip-text text-transparent"> römischen Antike</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Entdecke unsere kostenlosen Bildungsmaterialien für Latein und römische Geschichte. 
-                Alle Inhalte stehen unter offenen Lizenzen und dürfen frei verwendet, 
-                bearbeitet und weitergegeben werden.
-              </p>
-            </motion.div>
-            
-            <motion.div variants={fadeUp()} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/learn">
-                <Button 
-                  size="lg" 
-                  className="rounded-full px-8 h-14 text-base bg-primary hover:bg-primary/90"
-                >
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Lernmaterialien entdecken
-                </Button>
-              </Link>
-              <Link to="/api">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="rounded-full px-8 h-14 text-base"
-                >
-                  <Code className="mr-2 h-5 w-5" />
-                  API-Dokumentation
-                </Button>
-              </Link>
-            </motion.div>
+      <main className="flex-1 container mx-auto max-w-7xl px-4 pt-32 pb-24">
+        <motion.section
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer(0.08)}
+          className="mb-16"
+        >
+          <motion.div variants={fadeUp()} className="space-y-5 max-w-4xl">
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-primary/30" />
+              OPEN EDUCATIONAL RESOURCES
+            </div>
+            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+              Offene Lernmaterialien fuer <span className="text-primary italic">Latein und Rom</span>
+            </h1>
+            <p className="text-muted-foreground/70 text-lg leading-relaxed max-w-3xl">
+              Diese Seite buendelt die frei nutzbaren Ressourcen von Meum Diarium. Alle Materialien sind transparent lizenziert und fuer Unterricht, Studium und Forschung einsetzbar.
+            </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Stats - Based on actual data */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp()}>
-              <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-                <div className="w-8 h-[1px] bg-primary/30" />
-                STATISTIKEN
-                <div className="w-8 h-[1px] bg-primary/30" />
-              </div>
-              <h2 className="font-bricolage text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-                Unsere Ressourcen in Zahlen
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Ein umfassendes Angebot für das Studium der römischen Antike
-              </p>
-            </motion.div>
+          <motion.div variants={fadeUp()} className="flex flex-col sm:flex-row gap-3 mt-8">
+            <Link to="/learn">
+              <Button className="rounded-full h-12 px-7">
+                <BookOpen className="mr-2 h-4 w-4" />
+                Lernmaterialien entdecken
+              </Button>
+            </Link>
+            <Link to="/api">
+              <Button variant="outline" className="rounded-full h-12 px-7">
+                <Code className="mr-2 h-4 w-4" />
+                API-Dokumentation
+              </Button>
+            </Link>
           </motion.div>
-          
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp()}
-                className="relative group"
-              >
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm">
-                  <CardContent className="p-6 text-center">
-                    <div className={`text-3xl sm:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>{stat.value}</div>
-                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+        </motion.section>
+
+        <section className="mb-20">
+          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
+            <div className="w-8 h-[1px] bg-primary/30" />
+            STATISTIKEN
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {stats.map((stat) => (
+              <Card key={stat.label} className="card-modern border-border/50">
+                <CardContent className="p-5 sm:p-6">
+                  <p className="text-3xl sm:text-4xl font-display font-bold leading-none text-primary">{stat.value}</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">{stat.label}</p>
+                </CardContent>
+              </Card>
             ))}
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Available Resources - Landing Page Style */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp()}>
-              <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-                <div className="w-8 h-[1px] bg-primary/30" />
-                VERFÜGBARE RESSOURCEN
-                <div className="w-8 h-[1px] bg-primary/30" />
-              </div>
-              <h2 className="font-bricolage text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-                Verfügbare OER-Ressourcen
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Aktuelle Bildungsmaterialien aus dem Meum Diarium Projekt
-              </p>
-            </motion.div>
-          </motion.div>
-
+        <section className="mb-20">
+          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
+            <div className="w-8 h-[1px] bg-primary/30" />
+            VERFUEGBARE RESSOURCEN
+          </div>
           <div className="space-y-12">
-            {availableResources.map((category, i) => (
+            {availableResources.map((category) => (
               <motion.div
-                key={i}
+                key={category.category}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={staggerContainer(0.1)}
+                variants={staggerContainer(0.08)}
               >
-                <motion.div 
-                  variants={fadeUp()}
-                  className="flex items-center gap-3 mb-6"
-                >
-                  <div className="p-3 bg-primary/10 rounded-xl">
-                    <category.icon className="w-6 h-6 text-primary" />
+                <motion.div variants={fadeUp()} className="flex items-center gap-3 mb-6">
+                  <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <category.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-bricolage text-2xl font-bold tracking-tight">
-                    {category.category}
-                  </h3>
+                  <h2 className="font-display text-3xl font-bold">{category.category}</h2>
                 </motion.div>
 
-                <motion.div 
-                  variants={staggerContainer(0.05)}
-                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-                >
-                  {category.items.map((item, j) => (
-                    <motion.div
-                      key={j}
+                <motion.div variants={staggerContainer(0.06)} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.items.map((item) => (
+                    <motion.article
+                      key={item.title}
                       variants={fadeUp()}
-                      className="group"
+                      className="card-modern card-hover-primary card-padding-md"
                     >
-                      <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm hover:-translate-y-1">
-                        <CardContent className="p-6">
-                          <h4 className="font-bricolage text-lg font-bold mb-2">
-                            {item.title}
-                          </h4>
-                          <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                            {item.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            <Badge variant="secondary" className="text-xs">
-                              {item.license}
-                            </Badge>
-                            <Badge variant="outline" className="text-xs">
-                              {item.format}
-                            </Badge>
-                          </div>
-                          <Link to={item.link}>
-                            <Button variant="ghost" className="text-primary hover:text-primary/80 p-0 h-auto group-hover:translate-x-1 transition-all duration-300">
-                              Jetzt nutzen <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </Link>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
+                      <h3 className="font-display text-xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground/80 text-sm leading-relaxed mb-5">{item.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-5 text-[11px] font-bold uppercase tracking-[0.18em]">
+                        <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-primary">{item.license}</span>
+                        <span className="rounded-full border border-border px-3 py-1 text-muted-foreground">{item.format}</span>
+                      </div>
+                      {isExternalLink(item.link) ? (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center text-sm text-primary font-semibold hover:text-primary/80 transition-colors"
+                        >
+                          Jetzt nutzen <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.link}
+                          className="inline-flex items-center text-sm text-primary font-semibold hover:text-primary/80 transition-colors"
+                        >
+                          Jetzt nutzen <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      )}
+                    </motion.article>
                   ))}
                 </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Licenses Section - Landing Page Style */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp()}>
-              <div className="flex items-center justify-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-                <div className="w-8 h-[1px] bg-primary/30" />
-                OFFENE LIZENZEN
-                <div className="w-8 h-[1px] bg-primary/30" />
-              </div>
-              <h2 className="font-bricolage text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-                Offene Lizenzen
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Unsere Inhalte stehen unter freien Lizenzen, die die Nutzung, 
-                Bearbeitung und Weitergabe ermöglichen
-              </p>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {licenses.map((license, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp()}
-                className="group"
-              >
-                <Card className={`h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${license.color} hover:-translate-y-1`}>
-                  <CardContent className="p-6 text-center">
-                    <license.icon className="w-8 h-8 mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-bold text-lg mb-2">{license.name}</h3>
-                    <p className="font-mono text-sm mb-3 bg-white/20 px-2 py-1 rounded">{license.short}</p>
-                    <p className="text-sm leading-relaxed">{license.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+        <section className="mb-20">
+          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
+            <div className="w-8 h-[1px] bg-primary/30" />
+            OFFENE LIZENZEN
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {licenses.map((license) => (
+              <Card key={license.name} className={`card-modern ${license.color}`}>
+                <CardContent className="p-6">
+                  <license.icon className="w-6 h-6 mb-4" />
+                  <h3 className="font-display text-xl font-bold mb-1">{license.name}</h3>
+                  <p className="text-xs uppercase tracking-[0.2em] mb-3">{license.short}</p>
+                  <p className="text-sm leading-relaxed">{license.description}</p>
+                </CardContent>
+              </Card>
             ))}
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* CTA Section - Landing Page Style */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto max-w-4xl px-4 sm:px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer(0.1)}
-            className="space-y-8"
-          >
-            <motion.div variants={fadeUp()}>
-              <div className="relative inline-block">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-green-500/20 blur-xl rounded-full" />
-                <h2 className="relative font-bricolage text-4xl sm:text-5xl font-bold tracking-tight">
-                  Bildung gemeinsam gestalten
-                </h2>
-              </div>
-            </motion.div>
-            
-            <motion.p variants={fadeUp()} className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Werde Teil unserer OER-Community und trage zur freien Bildung bei. 
-              Nutze unsere Materialien für deinen Unterricht oder deine Forschung.
-            </motion.p>
-            
-            <motion.div variants={fadeUp()} className="flex flex-col sm:flex-row gap-4 justify-center">
+        <section className="card-modern card-padding-lg border-primary/20 bg-gradient-to-br from-primary/5 via-transparent to-background">
+          <div className="max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-4">MITMACHEN</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">Bildung gemeinsam gestalten</h2>
+            <p className="text-muted-foreground/80 text-lg leading-relaxed mb-8">
+              Nutze die OER-Materialien im Unterricht, in Arbeitsblaettern oder in deiner Forschung. Durch offene Lizenzen bleiben Inhalte transparent und wiederverwendbar.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link to="/learn">
-                <Button size="lg" className="rounded-full px-8 h-16 text-lg bg-primary hover:bg-primary/90">
-                  <BookOpen className="mr-2 h-5 w-5" />
+                <Button className="rounded-full h-12 px-7">
+                  <BookOpen className="mr-2 h-4 w-4" />
                   Jetzt lernen
                 </Button>
               </Link>
               <Link to="/api">
-                <Button size="lg" variant="outline" className="rounded-full px-8 h-16 text-lg">
-                  <Code className="mr-2 h-5 w-5" />
+                <Button variant="outline" className="rounded-full h-12 px-7">
+                  <Download className="mr-2 h-4 w-4" />
                   API nutzen
                 </Button>
               </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };

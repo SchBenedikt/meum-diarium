@@ -6,14 +6,13 @@ import {
     ArrowLeft,
     Languages,
     MessageSquare,
-    ChevronRight,
     BookOpen,
     GraduationCap,
-    AlertTriangle
+    AlertTriangle,
+    Brain
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
-import { cn } from '@/lib/utils';
 type Mode = 'menu';
 export default function LatinTools() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -103,7 +102,7 @@ export default function LatinTools() {
                                             <div>
                                                 <h3 className="text-lg font-semibold mb-2">Antike Texte</h3>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">
-                                                    Lies klassische lateinische Werke mit Kapitel- und Zeilennavigation.
+                                                    Lies klassische lateinische Werke im fokussierten Lesemodus.
                                                 </p>
                                             </div>
                                         </div>
@@ -155,6 +154,23 @@ export default function LatinTools() {
                                                 <h3 className="text-lg font-semibold mb-2">Vokabel-Wörterbuch</h3>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">
                                                     Durchsuche 36.000+ lateinische Vokabeln mit Grammatik.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </Link>
+
+                                {/* Grammatik + Stilmittel Ueben */}
+                                <Link to="/learn/practice" className="group">
+                                    <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
+                                        <div className="flex flex-col items-center text-center space-y-4">
+                                            <div className="p-3 rounded-lg bg-rose-100 dark:bg-rose-900/20">
+                                                <Brain className="h-8 w-8 text-rose-500" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold mb-2">Üben</h3>
+                                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                                    Übe Grammatik und Stilmittel mit direkten Aufgaben und Feedback.
                                                 </p>
                                             </div>
                                         </div>

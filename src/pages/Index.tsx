@@ -10,11 +10,13 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Author } from '@/types/blog';
 import NotFound from './NotFound';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { SEO } from '@/components/SEO';
 import { SimulationCarousel } from '@/components/simulation/SimulationCarousel';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedAuthorInfo } from '@/lib/author-translator';
+import { AnimatePresence, motion } from 'framer-motion';
 const Index = () => {
   const { setCurrentAuthor, currentAuthor } = useAuthor();
   const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
@@ -22,7 +24,34 @@ const Index = () => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const { t } = useLanguage();
+  const [showFloatingComposer, setShowFloatingComposer] = useState(false);
+  const [isFloatingExpanded, setIsFloatingExpanded] = useState(false);
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowFloatingComposer(window.scrollY > 700);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!showFloatingComposer) {
+      setIsFloatingExpanded(false);
+    }
+  }, [showFloatingComposer]);
+
+  const openChatFromComposer = () => {
+    const q = question.trim();
+    if (!currentAuthor) return;
+    if (q.length > 0) {
+      navigate(`/${currentAuthor}/chat?q=${encodeURIComponent(q)}`);
+      return;
+    }
+    navigate(`/${currentAuthor}/chat`);
+  };
   useEffect(() => {
     if (authorId && dbAuthors[authorId as Author]) {
       setCurrentAuthor(authorId as Author);
@@ -39,13 +68,16 @@ const Index = () => {
   }
   const author = currentAuthor ? dbAuthors[currentAuthor] : null;
   const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t) : null;
+  const floatingChatLabel = translatedAuthor
+    ? `Chatte mit ${translatedAuthor.name.split(' ')[0]}`
+    : 'Chatte mit dem Autor';
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : t('meumDiarium')}
         description={translatedAuthor?.description}
         author={translatedAuthor?.name}
-        image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.jpg`}
+        image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
         type="website"
         structuredData={{
           "@context": "https://schema.org",
@@ -160,6 +192,88 @@ const Index = () => {
           <LandingHeroNew />
         )}
       </main >
+
+      <AnimatePresence>
+        {currentAuthor && showFloatingComposer && (
+          <motion.div
+            initial={{ opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className={isFloatingExpanded
+              ? 'fixed inset-x-4 bottom-4 z-[90] md:inset-x-8'
+              : 'fixed inset-x-4 bottom-4 z-[90]'}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {!isFloatingExpanded ? (
+                <motion.button
+                  key="floating-chat-collapsed"
+                  type="button"
+                  onClick={() => setIsFloatingExpanded(true)}
+                  initial={{ opacity: 0, y: 14, scale: 0.985 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                  className="block w-full max-w-sm mx-auto rounded-2xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/40 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Zap className="h-4 w-4 text-primary" />
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">{floatingChatLabel}</p>
+                  </div>
+                  <div className="rounded-xl border border-border/60 bg-white/85 dark:bg-card/90 backdrop-blur-sm px-3 py-2.5 text-sm text-muted-foreground">
+                    Nachricht schreiben...
+                  </div>
+                </motion.button>
+              ) : (
+                <motion.div
+                  key="floating-chat-expanded"
+                  initial={{ opacity: 0, y: 12, scale: 0.99 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.985 }}
+                  transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  className="mx-auto max-w-4xl rounded-3xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl shadow-2xl p-3 sm:p-4"
+                >
+                  <div className="flex items-center justify-between gap-3 mb-2 px-1">
+                    <div className="flex items-center gap-2">
+                      <Zap className="h-4 w-4 text-primary" />
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">{floatingChatLabel}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsFloatingExpanded(false)}
+                      className="h-7 w-7 rounded-md inline-flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/70 transition-colors"
+                      aria-label="Eingabefeld minimieren"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="relative flex items-center gap-2">
+                    <Input
+                      value={question}
+                      onChange={(e) => setQuestion(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') openChatFromComposer();
+                        if (e.key === 'Escape') setIsFloatingExpanded(false);
+                      }}
+                      placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
+                      className="pr-12 py-2 text-base bg-white/85 dark:bg-card/90 border-border/50 focus-visible:ring-primary/30 rounded-xl backdrop-blur-sm"
+                      autoFocus
+                    />
+                    <Button
+                      size="icon"
+                      onClick={openChatFromComposer}
+                      className="absolute right-1.5 h-9 w-9 rounded-xl"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Footer />
     </div >
   );

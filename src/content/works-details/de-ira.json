@@ -1,0 +1,126 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Senecas De Ira entstand in der frühen Kaiserzeit, wahrscheinlich in den 40er oder 50er Jahren n. Chr., in einer politischen Kultur, in der persönliche Kränkungen schnell zu öffentlicher Gewalt eskalieren konnten.",
+      "Als Stoiker betrachtet Seneca den Zorn nicht als legitime Kraftquelle, sondern als pathologischen Affekt, der Urteilskraft zerstört und Herrschaft in Willkür verwandelt.",
+      "Das Werk richtet sich sowohl an politische Entscheidungsträger als auch an Privatpersonen: Wer sich selbst nicht regiert, kann weder ein Haus noch einen Staat vernünftig regieren."
+    ],
+    "contextTimeline": [
+      { "year": "41 n. Chr.", "event": "Rückkehr Senecas aus dem Exil unter Claudius" },
+      { "year": "ca. 49-54 n. Chr.", "event": "Abfassung von De Ira in einem Umfeld politischer Spannungen" },
+      { "year": "54 n. Chr.", "event": "Nero wird Kaiser; Seneca steigt zum einflussreichen Berater auf" }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Buch I - Was Zorn ist",
+        "description": "Seneca definiert Zorn als bewusste Zustimmung zu einem Racheimpuls und grenzt ihn von spontanen Regungen ab. Er beschreibt den Affekt als kurzzeitigen Wahnsinn, der den Verstand suspendiert.",
+        "timeframe": "Grundlagen",
+        "keyEvents": [
+          "Definition des Zorns als voluntativer Affekt",
+          "Abgrenzung von Affektbeginn und Zustimmung",
+          "Kritik an der Idee eines 'nützlichen' Zorns"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Buch II - Wie Zorn entsteht",
+        "description": "Im zweiten Buch untersucht Seneca die Auslöser: verletzte Erwartungen, narzisstische Kränkung, soziale Konkurrenz. Entscheidend ist nicht das Ereignis selbst, sondern das Urteil darüber.",
+        "timeframe": "Diagnose",
+        "keyEvents": [
+          "Analyse typischer Kränkungsnarrative",
+          "Rolle der Einbildungskraft bei Eskalationen",
+          "Zusammenhang von Selbstbild und Reizbarkeit"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Buch III - Therapeutik und Praxis",
+        "description": "Das dritte Buch bietet konkrete Übungen: Verzögerung der Reaktion, Perspektivwechsel, Milde im Urteil, reflektierte Tagesrückschau. Ziel ist stabile Charakterbildung statt bloßer Symptombekämpfung.",
+        "timeframe": "Praxis",
+        "keyEvents": [
+          "Technik der Reaktionsverzögerung",
+          "Übungen zur Selbstbeobachtung",
+          "Programm der clementia als politische Tugend"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "Philosophische Kernthese",
+        "content": [
+          "De Ira argumentiert konsequent gegen jede Romantisierung des Zorns. Für Seneca kann ein Affekt, der am Verlust der Vernunft hängt, niemals verlässliches Werkzeug des Guten sein.",
+          "Damit wendet er sich gegen alltagsnahe und aristotelische Positionen, die einen 'maßvollen Zorn' als moralisch produktiv betrachten.",
+          "Die stoische Alternative lautet: Nicht Affektintensität, sondern Urteilsklarheit, Standhaftigkeit und Gerechtigkeit sichern wirksames Handeln."
+        ]
+      },
+      {
+        "title": "Politische Dimension",
+        "content": [
+          "Für Seneca ist Zorn in der Politik besonders gefährlich, weil private Impulse dort mit institutioneller Macht multipliziert werden.",
+          "Tyrannische Herrschaft beginnt oft im Affekt: Strafe wird Rache, Recht wird Laune, Beratung wird unmöglich.",
+          "De Ira ist daher auch ein indirektes Lehrbuch verantwortlicher Führung - mit hoher Aktualität für moderne Machtkontexte."
+        ]
+      }
+    ],
+    "literaryFeatures": [
+      {
+        "title": "Moralpsychologische Fallanalyse",
+        "description": "Seneca arbeitet mit präzisen Mikroszenen aus Alltag und Politik, um die Dynamik der Eskalation sichtbar zu machen.",
+        "examples": [
+          "Beobachtung der körperlichen Vorzeichen des Affekts",
+          "Unterscheidung zwischen Impuls und Zustimmung",
+          "Rhetorische Sequenzen von Diagnose zu Therapie"
+        ]
+      },
+      {
+        "title": "Didaktische Rhetorik",
+        "description": "Die Sprache ist knapp, kontrastiv und handlungsorientiert. Seneca verbindet normative Urteile mit konkreten Übungsanweisungen.",
+        "examples": [
+          "Pointierte Antithesen (ratio vs. furor)",
+          "Direkte Imperative zur Selbstführung",
+          "Mischung aus philosophischem Argument und Lebensratgeber"
+        ]
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Zorn als 'kurzer Wahnsinn'",
+        "date": "Buch I",
+        "description": "Seneca prägt die wirkmächtige Formel, dass Zorn die rationale Selbststeuerung außer Kraft setzt.",
+        "significance": "Diese Diagnose verschiebt den Diskurs: Nicht legitime Härte, sondern kognitive Entgleisung steht im Zentrum."
+      },
+      {
+        "title": "Vom Affekt zur Übung",
+        "date": "Buch III",
+        "description": "Das Werk endet nicht bei Theorie, sondern mit einem praktischen Trainingsprogramm für Selbstbeherrschung.",
+        "significance": "Genau diese Verbindung aus Analyse und Übung erklärt die lange Wirkungsgeschichte des Textes."
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Ira furor brevis est.",
+        "translation": "Zorn ist ein kurzer Wahnsinn.",
+        "context": "Die prägnante Leitformel des Werkes über die Entmachtung der Vernunft im Affekt."
+      },
+      {
+        "latin": "Nulli ad iram satis causa est, cui est ad rationem.",
+        "translation": "Für niemanden gibt es ausreichenden Grund zum Zorn, wenn Raum für Vernunft bleibt.",
+        "context": "Stoischer Grundsatz gegen impulsive Vergeltungslogik."
+      }
+    ],
+    "impact": {
+      "title": "Wirkung und Erbe",
+      "paragraphs": [
+        "De Ira wurde zu einem Grundtext stoischer Affektethik und beeinflusste christliche Morallehre, frühneuzeitliche Tugenddiskurse und moderne Debatten über Emotionsregulation.",
+        "Seine Verbindung aus Anthropologie, Ethik und praktischer Selbsttechnik macht den Text bis heute anschlussfähig - von politischer Führung bis zur klinischen Emotionsarbeit."
+      ],
+      "highlights": [
+        "Klassischer Referenztext zur Kritik destruktiver Affekte",
+        "Frühes Modell kognitiver Emotionsregulation",
+        "Dauerhafte Relevanz für Ethik, Pädagogik und Leadership"
+      ]
+    }
+  }
+}

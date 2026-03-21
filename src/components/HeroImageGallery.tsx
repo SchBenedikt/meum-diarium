@@ -31,7 +31,7 @@ const heroImages: HeroImage[] = [
   },
   { 
     id: 'augustus', 
-    src: '/images/augustus-hero.jpg', 
+    src: '/images/augustus-hero.png', 
     alt: 'Augustus', 
     name: 'Augustus',
     description: 'Erster Kaiser des Römischen Reiches',
@@ -39,7 +39,7 @@ const heroImages: HeroImage[] = [
   },
   { 
     id: 'caesar', 
-    src: '/images/caesar-hero.jpg', 
+    src: '/images/caesar-hero.png', 
     alt: 'Caesar', 
     name: 'Caesar',
     description: 'Feldherr, Diktator und Schriftsteller',
@@ -47,7 +47,7 @@ const heroImages: HeroImage[] = [
   },
   { 
     id: 'catilina', 
-    src: '/images/catilina-hero.jpg', 
+    src: '/images/catilina-hero.png', 
     alt: 'Catilina', 
     name: 'Catilina',
     description: 'Verschwörer gegen die Republik',
@@ -63,7 +63,7 @@ const heroImages: HeroImage[] = [
   },
   { 
     id: 'seneca', 
-    src: '/images/seneca-hero.jpg', 
+    src: '/images/seneca-hero.png', 
     alt: 'Seneca', 
     name: 'Seneca',
     description: 'Stoischer Philosoph und Dramatiker',

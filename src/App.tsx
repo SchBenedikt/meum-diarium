@@ -12,6 +12,7 @@ import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuthors } from "@/hooks/use-authors";
+import { CookieBanner } from "@/components/CookieBanner";
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
@@ -42,6 +43,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
 const LatinGrammarPage = lazy(() => import('./pages/LatinGrammarPage'));
+const LearnPracticePage = lazy(() => import('./pages/LearnPracticePage'));
 const SubstantivePage = lazy(() => import('./pages/grammar/SubstantivePage'));
 const VerbenPage = lazy(() => import('./pages/grammar/VerbenPage'));
 const AdjektivePage = lazy(() => import('./pages/grammar/AdjektivePage'));
@@ -60,6 +62,7 @@ const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
+const StatisticsPage = lazy(() => import('./pages/StatisticsPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
@@ -78,7 +81,8 @@ const AppContent = () => {
   const isAuthorRoute = location.pathname.startsWith('/caesar') ||
     location.pathname.startsWith('/cicero') ||
     location.pathname.startsWith('/augustus') ||
-    location.pathname.startsWith('/seneca');
+    location.pathname.startsWith('/seneca') ||
+    location.pathname.startsWith('/catilina');
   const isPostPage = isAuthorRoute && (
     !location.pathname.endsWith('/about') &&
     !location.pathname.includes('/works/') &&
@@ -120,6 +124,7 @@ const AppContent = () => {
               <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
+              <Route path="/learn/practice" element={<PageTransition><LearnPracticePage /></PageTransition>} />
               <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
               <Route path="/learn/grammar/verben/:topic?" element={<PageTransition><VerbenPage /></PageTransition>} />
               <Route path="/learn/grammar/adjektive/:topic?" element={<PageTransition><AdjektivePage /></PageTransition>} />
@@ -142,6 +147,8 @@ const AppContent = () => {
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
               <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
+              <Route path="/stats" element={<PageTransition><StatisticsPage /></PageTransition>} />
+              <Route path="/statistik" element={<PageTransition><StatisticsPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}
@@ -189,6 +196,7 @@ const AppContent = () => {
             </Routes>
           </AnimatePresence>
         </Suspense>
+        <CookieBanner />
       </>
     </AuthorProvider>
   );

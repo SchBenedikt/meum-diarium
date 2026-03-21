@@ -30,7 +30,11 @@ export function AuthorAboutHero({
                     src={authorPage?.heroImage || authorInfo.heroImage}
                     alt={authorInfo.name}
                     className="w-full h-full object-cover scale-105"
-                    style={{ y, opacity }}
+                    style={{ 
+                        y, 
+                        opacity,
+                        objectPosition: 'top'
+                    }}
                 />
             </div>
             <div className="container mx-auto relative z-20 px-4 sm:px-6">

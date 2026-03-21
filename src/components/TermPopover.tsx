@@ -20,12 +20,19 @@ interface Message {
 }
 async function explainTerm(term: string, question?: string, history?: Message[]): Promise<string> {
   const isDev = import.meta.env.DEV;
-  const baseUrl = isDev ? 'https://caesar.schaechner.workers.dev' : '/api';
   const params = new URLSearchParams();
   params.set('term', term);
   if (question) params.set('question', question);
   if (history && history.length > 0) params.set('history', JSON.stringify(history));
-  const res = await fetch(`${baseUrl}/explain?${params.toString()}`);
+  const primaryUrl = isDev
+    ? `https://caesar.schaechner.workers.dev/explain?${params.toString()}`
+    : `/api/explain?${params.toString()}`;
+  let res = await fetch(primaryUrl);
+
+  if (!res.ok && (res.status === 404 || res.status >= 500)) {
+    res = await fetch(`https://caesar.schaechner.workers.dev/explain?${params.toString()}`);
+  }
+
   if (!res.ok) throw new Error(`Failed to explain term: ${res.status}`);
   const data = await res.json();
   return data.response?.response || data.response || 'Keine Antwort verfügbar.';

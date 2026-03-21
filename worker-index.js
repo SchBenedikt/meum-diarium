@@ -3,6 +3,9 @@
 
 export default {
     async fetch(request, env) {
+        const url = new URL(request.url);
+        const isWorkersDevHost = url.hostname.endsWith('.workers.dev');
+
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: corsHeaders() });
         }
@@ -13,7 +16,6 @@ export default {
             });
         }
 
-        const url = new URL(request.url);
         // Normalize pathname: remove trailing slash and convert to lowercase
         const pathname = url.pathname.toLowerCase().replace(/\/$/, "");
 
@@ -53,21 +55,31 @@ export default {
             return handleWorkTranslations(request, env, url, body, pathname);
         }
 
-        // Route: /api/latin/translate - handle Latin sentence translation
-        if (pathname.endsWith('/api/latin/translate')) {
-            return handleLatinTranslation(request, env, url, body);
-        }
-
-        // Route: /api/latin/analyze - handle Latin grammatical analysis
-        if (pathname.endsWith('/api/latin/analyze')) {
-            return handleLatinAnalysis(request, env, url, body);
-        }
-
         // Persona extraction and Documentation check
         let persona = (url.searchParams.get("persona") || body?.persona || "caesar").toLowerCase();
         let question = url.searchParams.get("ask") || body?.ask;
         let historyParam = url.searchParams.get("history") || (body?.history ? JSON.stringify(body.history) : null);
         let sitemapUrl = url.searchParams.get("sitemap") || body?.sitemap;
+
+        // Route: explicit AI API aliases to avoid accidental proxying
+        if (pathname === '/api/ask') {
+            if (!question) {
+                return new Response(JSON.stringify({ error: 'Missing ask parameter' }), {
+                    status: 400,
+                    headers: corsHeaders(),
+                });
+            }
+            const aiResult = await handleAiChat(request, env, persona, question, historyParam, sitemapUrl);
+            return new Response(JSON.stringify(aiResult), { headers: corsHeaders() });
+        }
+
+        if (pathname === '/api/explain') {
+            return handleExplainTerm(request, env, url, body);
+        }
+
+        if (pathname === '/api/simulate') {
+            return handleSimulation(request, env, url, body);
+        }
 
         // Route: /api - Only proxy write operations or specific AI queries.
         // Standard content GET requests should fall through to Pages (static assets or Functions).
@@ -76,11 +88,11 @@ export default {
             if (pathname.startsWith('/api/translations/works/')) {
                 // Already handled above, continue to next route
             } else {
-                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+                const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
                 const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
                 // Safety: Don't proxy back to self to avoid infinite loops
-                if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
+                if (url.hostname !== "meum-diarium.xn--schner-2za.de") {
                     try {
                         const headers = {
                             "Content-Type": "application/json",
@@ -122,13 +134,40 @@ export default {
 
         // Route: Root / or /api or PersonaChat - let fall through to SPA for premium React docs
         if (pathname === "" || pathname === "/api" || pathname === "/personachat") {
+            // On workers.dev there is no Pages origin to fall through to; avoid recursive self-fetch.
+            if (isWorkersDevHost) {
+                return new Response(JSON.stringify({
+                    service: 'meum-diarium-worker',
+                    status: 'ok',
+                    routes: ['/', '/explain', '/simulate', '/stats', '/api/ask', '/api/explain', '/api/simulate']
+                }), { headers: corsHeaders() });
+            }
             return fetch(request);
         }
 
         // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
+        if (isWorkersDevHost) {
+            return new Response(JSON.stringify({ error: 'Not Found' }), {
+                status: 404,
+                headers: corsHeaders(),
+            });
+        }
         return fetch(request);
     }
 };
+
+function resolveAiBinding(env) {
+    if (env?.AI && typeof env.AI.run === 'function') return env.AI;
+    if (env?.ki && typeof env.ki.run === 'function') return env.ki;
+    if (env?.KI && typeof env.KI.run === 'function') return env.KI;
+    return null;
+}
+
+function resolveDbBinding(env) {
+    if (env?.DB) return { db: env.DB, name: 'DB' };
+    if (env?.db) return { db: env.db, name: 'db' };
+    return { db: null, name: null };
+}
 
 async function handleAiChat(request, env, persona, question, historyParam, sitemapUrl) {
     const personaPrompts = {
@@ -158,14 +197,75 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
 
     messages.push({ role: "user", content: question });
 
+    const ai = resolveAiBinding(env);
+    if (!ai) {
+        return {
+            error: 'AI binding not configured',
+            persona,
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert. Erwarte Binding-Namen AI oder ki.' },
+            resources: [],
+            format: 'markdown',
+        };
+    }
+
     const chat = { messages };
-    const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+    let aiResponse;
+    try {
+        aiResponse = await ai.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+    } catch (e) {
+        return {
+            error: 'AI request failed',
+            details: e?.message || 'Unknown AI error',
+            persona,
+            response: { response: 'Die KI ist momentan nicht erreichbar.' },
+            resources: [],
+            format: 'markdown',
+        };
+    }
 
     let resources = [];
     if (sitemapUrl) {
         try {
-            resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
-        } catch (e) { }
+            console.log(`[AI Chat] 🔍 Generating resources for persona="${persona}", question="${question.substring(0, 50)}..."`);
+            
+            // Try both D1 and Sitemap in parallel for better coverage
+            console.log(`[AI Chat] Attempting resource generation from D1 and Sitemap...`);
+            const [d1Resources, sitemapResources] = await Promise.all([
+                suggestResourcesFromD1(env, persona, question, aiResponse.response || ""),
+                suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "")
+            ]);
+            
+            console.log(`[AI Chat] D1 returned ${d1Resources.length} resources`);
+            console.log(`[AI Chat] Sitemap returned ${sitemapResources.length} resources`);
+            
+            // Merge results, removing duplicates, prefer D1 (better quality)
+            const seen = new Set();
+            resources = [];
+            
+            for (const r of d1Resources) {
+                if (!seen.has(r.link)) {
+                    resources.push(r);
+                    seen.add(r.link);
+                }
+            }
+            
+            for (const r of sitemapResources) {
+                if (!seen.has(r.link)) {
+                    resources.push(r);
+                    seen.add(r.link);
+                }
+            }
+            
+            // Keep a larger candidate pool and let AI pick all relevant items for the current chat topic.
+            resources = resources.slice(0, 30);
+            resources = await rerankResourcesWithAI(env, question, persona, resources);
+            resources = resources.slice(0, 12);
+            console.log(`[AI Chat] ✓ Generated total ${resources.length} resources (merged from both sources)`);
+        } catch (e) {
+            console.error(`[AI Chat] ❌ Error generating resources: ${e.message}`, e);
+        }
+    } else {
+        console.warn(`[AI Chat] ⚠️ No sitemapUrl provided, skipping resource suggestions`);
     }
 
     return {
@@ -177,24 +277,100 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
     };
 }
 
+async function rerankResourcesWithAI(env, question, persona, resources) {
+    if (!Array.isArray(resources) || resources.length <= 5) return resources || [];
+
+    const ai = resolveAiBinding(env);
+    if (!ai) return resources.slice(0, 8);
+
+    const candidates = resources.slice(0, 20).map((r, idx) => ({
+        id: idx + 1,
+        title: String(r?.title || ''),
+        type: String(r?.type || 'text'),
+        description: String(r?.description || ''),
+        link: String(r?.link || ''),
+    }));
+
+    const system = `Du bist ein strenger Relevanz-Ranker fuer Ressourcen.
+Aufgabe: Waehle alle Ressourcen, die wirklich zur Frage passen, in Relevanz-Reihenfolge.
+Regeln:
+- Bevorzuge konkrete inhaltliche Treffer, nicht nur allgemeine Rom-Begriffe.
+- Ignoriere generische Uebereinstimmungen (z.B. "ihre", "fuer", "alle", "des").
+- Wenn die Frage einen konkreten Begriff enthaelt (z.B. Rubikon), nimm nur Treffer mit klarem Bezug dazu.
+- Nutze Titel + Beschreibung + Link als Kontext.
+- Lexikon-Artikel sind ausdruecklich erlaubt, wenn sie thematisch passen.
+- Antworte NUR als JSON im Format: {"selected":[id1,id2,...]}.
+- Keine Erklaerung, kein Markdown.`;
+
+    const user = `Persona: ${persona}\nFrage: ${question}\nKandidaten:\n${JSON.stringify(candidates)}`;
+
+    try {
+        const aiResp = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
+            messages: [
+                { role: 'system', content: system },
+                { role: 'user', content: user },
+            ],
+        });
+
+        const text = String(aiResp?.response || '').trim();
+        const firstBrace = text.indexOf('{');
+        const lastBrace = text.lastIndexOf('}');
+        if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
+            return resources.slice(0, 5);
+        }
+
+        const jsonText = text.slice(firstBrace, lastBrace + 1);
+        const parsed = JSON.parse(jsonText);
+        const selected = Array.isArray(parsed?.selected) ? parsed.selected : [];
+        const validIds = [];
+        const seen = new Set();
+
+        for (const id of selected) {
+            const n = Number(id);
+            if (!Number.isInteger(n) || n < 1 || n > candidates.length || seen.has(n)) continue;
+            seen.add(n);
+            validIds.push(n);
+            if (validIds.length >= 5) break;
+        }
+
+        const reranked = [];
+        for (const id of validIds) {
+            reranked.push(resources[id - 1]);
+        }
+
+        // If the model returns no IDs, keep a small heuristic fallback set.
+        if (!reranked.length) return resources.slice(0, 8);
+        return reranked.slice(0, 12);
+    } catch (e) {
+        console.warn(`[AI Chat] Reranking failed, using heuristic order: ${e?.message || e}`);
+        return resources.slice(0, 8);
+    }
+}
+
 
 async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse) {
+    console.log(`[Resources] Starting suggestResourcesFromSitemap for persona=${persona}`);
     const res = await fetch(sitemapUrl, { method: "GET" });
     if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
     const xml = await res.text();
+    console.log(`[Resources] Fetched sitemap, length=${xml.length}`);
+    const sitemapOrigin = new URL(sitemapUrl).origin;
 
-    const entries = parseSitemap(xml);
+    const entries = await resolveSitemapEntries(sitemapUrl, xml);
+    console.log(`[Resources] Parsed ${entries.length} sitemap entries`);
 
-    // Combine question and AI response for better keyword extraction
-    const fullContext = `${question} ${aiResponse}`.toLowerCase();
+    // Use user question as primary relevance signal to avoid generic repeated matches.
+    const fullContext = `${question}`.toLowerCase();
 
     // Extract important keywords from both question and response
     const keywords = extractKeywords(fullContext, persona);
+    const specificKeywords = getSpecificKeywords(keywords);
+    console.log(`[Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}...`);
 
     const scored = entries.map(u => {
         const slug = extractSlug(u.loc);
         const type = typeFromUrl(u.loc);
-        const { score, matched } = scoreUrl(u.loc, slug, keywords, type, persona);
+        const { score, matched } = scoreUrl(u.loc, slug, keywords, specificKeywords, type, persona);
 
         return {
             url: u.loc,
@@ -202,15 +378,23 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
             title: titleFromSlug(slug),
             type,
             description: matched.length ? `Relevanz: ${matched.slice(0, 3).join(", ")}` : undefined,
-            score
+            score,
+            matchedCount: matched.length,
         };
     });
 
     // Sort by score and deduplicate
     const top = scored
         .filter(s => s.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 5);
+        .sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            if ((b.matchedCount || 0) !== (a.matchedCount || 0)) return (b.matchedCount || 0) - (a.matchedCount || 0);
+            return tieBreakByQuestion(a.url, b.url, question);
+        })
+        .slice(0, 12);
+    
+    console.log(`[Resources] Top scored URLs (score > 0): ${top.length} found`);
+    top.forEach(t => console.log(`  - ${t.slug} (score=${t.score})`));
 
     const seen = new Set();
     const items = [];
@@ -223,11 +407,15 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
                 link: toSitePath(t.url),
             });
             seen.add(t.url);
-            if (items.length >= 3) break;
+            if (items.length >= 8) break;
         }
     }
+    
+    console.log(`[Resources] Collected ${items.length} items from top scores`);
+    
     // Fallback: if nothing matched, try loose contains with expanded keywords (prefer lexicon)
     if (items.length === 0 && keywords.length) {
+        console.log(`[Resources] No top matches, trying fallback with loose keyword matching...`);
         const variants = new Set();
         for (const k of keywords) {
             for (const v of expandKeyword(k)) variants.add(v);
@@ -244,25 +432,480 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
                 return a.url.length - b.url.length;
             })
             .slice(0, 3);
+        console.log(`[Resources] Fallback found ${loose.length} matches`);
         for (const u of loose) {
             const slug = extractSlug(u.url);
             items.push({ title: titleFromSlug(slug), type: u.type, link: toSitePath(u.url) });
         }
     }
-    return items;
+    
+    // Enrich with search index entries (works and topical content) for better context links.
+    console.log(`[Resources] Fetching search index for enrichment...`);
+    const indexCandidates = await suggestFromSearchIndex(sitemapOrigin, keywords, persona);
+    console.log(`[Resources] Search index returned ${indexCandidates.length} candidates`);
+    for (const candidate of indexCandidates) {
+        if (!seen.has(candidate.link)) {
+            items.push(candidate);
+            seen.add(candidate.link);
+            if (items.length >= 12) break;
+        }
+    }
+
+    // Persona-aware fallback for biography and core works when context is sparse.
+    const lowerContext = `${question} ${aiResponse}`.toLowerCase();
+    if (items.length < 2) {
+        const wantsBio = /(leben|biografie|wer\s+war|hintergrund|person|vita)/i.test(lowerContext);
+        const bioLink = `/${persona}/about`;
+        if (wantsBio && !seen.has(bioLink)) {
+            console.log(`[Resources] Adding persona bio as fallback`);
+            items.push({
+                title: `${capitalize(persona)}: Biografie`,
+                type: 'text',
+                description: 'Überblick über Leben, Karriere und historischen Kontext.',
+                link: bioLink,
+            });
+            seen.add(bioLink);
+        }
+    }
+
+    // Final safety net: if scoring produced nothing, return generally relevant URLs.
+    if (items.length === 0 && entries.length > 0) {
+        console.log(`[Resources] Applying final URL fallback from sitemap entries...`);
+        const variants = new Set();
+        for (const k of keywords) {
+            for (const v of expandKeyword(k)) variants.add(v);
+        }
+        const variantList = Array.from(variants).filter(Boolean);
+
+        const fallbackCandidates = entries
+            .map((u) => {
+                const path = toSitePath(u.loc);
+                const lower = String(path || '').toLowerCase();
+                let score = 0;
+
+                for (const v of variantList) {
+                    if (v && lower.includes(v)) score += 2;
+                }
+                if (lower.includes('/lexicon/')) score += 2;
+                if (lower.includes('/works/')) score += 1.5;
+                if (/\/[a-z0-9-]+\/[a-z0-9-]+/.test(lower)) score += 1;
+
+                return { path, score };
+            })
+            .filter((x) => x.path)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 8);
+
+        for (const candidate of fallbackCandidates) {
+            const path = candidate.path;
+            if (!seen.has(path)) {
+                const slug = extractSlug(path);
+                items.push({
+                    title: titleFromSlug(slug) || 'Ressource',
+                    type: path.includes('/lexicon/') ? 'lexicon' : 'text',
+                    link: path,
+                });
+                seen.add(path);
+            }
+        }
+        console.log(`[Resources] Final URL fallback added ${items.length} items`);
+    }
+
+    console.log(`[Resources] Final result: ${items.length} resources returned`);
+    return items.slice(0, 12);
+}
+
+async function suggestFromSearchIndex(origin, keywords, persona) {
+    console.log(`[SearchIndex] Fetching from ${origin}/api/search.json`);
+    try {
+        const indexRes = await fetch(`${origin}/api/search.json`, {
+            method: 'GET',
+            headers: { 'accept': 'application/json' }
+        });
+        if (!indexRes.ok) {
+            console.warn(`[SearchIndex] Failed to fetch: ${indexRes.status}`);
+            return [];
+        }
+
+        const raw = await indexRes.text();
+        const contentType = (indexRes.headers.get('content-type') || '').toLowerCase();
+        const trimmed = raw.trim();
+        const looksJson = trimmed.startsWith('{') || trimmed.startsWith('[');
+        if (!contentType.includes('application/json') && !looksJson) {
+            const bodyPreview = trimmed.slice(0, 120).replace(/\s+/g, ' ');
+            console.warn(`[SearchIndex] Expected JSON but got "${contentType}". Preview: ${bodyPreview}`);
+            return [];
+        }
+
+        let indexJson;
+        try {
+            indexJson = JSON.parse(trimmed);
+        } catch (e) {
+            const bodyPreview = trimmed.slice(0, 120).replace(/\s+/g, ' ');
+            console.warn(`[SearchIndex] Invalid JSON payload. Preview: ${bodyPreview}`);
+            return [];
+        }
+        const items = Array.isArray(indexJson?.items) ? indexJson.items : [];
+        console.log(`[SearchIndex] Got ${items.length} items from search.json`);
+        if (!items.length) return [];
+
+        const specificKeywords = getSpecificKeywords(keywords);
+        const specificSet = new Set(specificKeywords.map((k) => normalizeToken(k)).filter(Boolean));
+
+        const scored = items
+            .filter((item) => item && typeof item === 'object')
+            .map((item) => {
+                const type = String(item.type || '').toLowerCase();
+                const title = String(item.title || item.slug || 'Ressource');
+                const slug = String(item.slug || '');
+                const author = String(item.author || '').toLowerCase();
+                const summary = String(item.summary || '');
+                const haystack = `${title} ${slug} ${summary}`.toLowerCase();
+
+                let score = 0;
+                let matchedSpecificCount = 0;
+                for (const k of keywords) {
+                    if (!k || k.length < 3) continue;
+                    const variants = expandKeyword(k);
+                    if (variants.some((v) => v && haystack.includes(v))) {
+                        score += 2;
+                        if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
+                    }
+                }
+
+                if (specificSet.size > 0 && matchedSpecificCount === 0) score = 0;
+
+                if (author === persona) score += 3;
+                if (type === 'work') score += 2;
+
+                const link = linkFromIndexItem(type, author, slug);
+                return {
+                    score,
+                    title,
+                    summary,
+                    link,
+                    type: type === 'lexicon' ? 'lexicon' : 'text'
+                };
+            })
+            .filter((entry) => entry.link && entry.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 8)
+            .map((entry) => ({
+                title: entry.title,
+                type: entry.type,
+                description: entry.summary ? entry.summary.slice(0, 160) : undefined,
+                link: entry.link,
+            }));
+
+        console.log(`[SearchIndex] Returned ${scored.length} scored items`);
+        return scored;
+    } catch (e) {
+        console.error(`[SearchIndex] Error: ${e.message}`);
+        return [];
+    }
+}
+
+// =======================================
+// D1 Database Integration - Primary method
+// =======================================
+async function suggestResourcesFromD1(env, persona, question, aiResponse) {
+    console.log(`[D1Resources] Starting D1-based resource suggestion for persona=${persona}`);
+
+    const { db, name: dbBindingName } = resolveDbBinding(env);
+    if (!db) {
+        console.warn(`[D1Resources] ❌ DB binding not available (expected env.DB or env.db)`);
+        return [];
+    }
+
+    console.log(`[D1Resources] ✓ DB binding available via env.${dbBindingName}`);
+
+    try {
+        // Use question-focused keywords so ranking changes with user intent.
+        const fullContext = `${question}`.toLowerCase();
+        const keywords = extractKeywords(fullContext, persona);
+        const specificKeywords = getSpecificKeywords(keywords);
+        const specificSet = new Set(specificKeywords.map((k) => normalizeToken(k)).filter(Boolean));
+        console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}`);
+        
+        if (keywords.length === 0) {
+            console.warn(`[D1Resources] ⚠️ No keywords extracted, might get no results`);
+        }
+
+        // Build search conditions - try to find matching posts and lexicon entries
+        const results = [];
+        const seen = new Set();
+
+        // 1. Search ALL posts by topic relevance; persona only boosts ranking.
+        console.log(`[D1Resources] Querying posts across all authors...`);
+        try {
+            const postsResult = await db.prepare(
+                `SELECT id, slug, title, content, author_id
+                 FROM posts
+                 ORDER BY CASE WHEN lower(author_id) = ? THEN 0 ELSE 1 END, id DESC
+                 LIMIT 400`
+            ).bind(persona).all();
+
+            console.log(`[D1Resources] Posts query result:`, {
+                success: postsResult.success,
+                resultCount: postsResult.results?.length || 0,
+                error: postsResult.error,
+            });
+
+            if (postsResult.success && postsResult.results && postsResult.results.length > 0) {
+                console.log(`[D1Resources] ✓ Loaded ${postsResult.results.length} posts from DB`);
+                
+                for (const post of postsResult.results) {
+                    console.log(`[D1Resources]   Processing post: ${post.slug} (author=${post.author_id || 'unknown'})`);
+                    
+                    // content is stored as JSON string: { diary: "...", scientific: "..." }
+                    let contentText = post.title || '';
+                    try {
+                        if (post.content) {
+                            const contentObj = typeof post.content === 'string' ? JSON.parse(post.content) : post.content;
+                            contentText += ` ${contentObj.diary || ''} ${contentObj.scientific || ''}`;
+                        }
+                    } catch (e) {
+                        console.warn(`[D1Resources]     Could not parse content JSON:`, e.message);
+                        contentText += post.content ? ` ${post.content}` : '';
+                    }
+                    
+                    const postText = contentText.toLowerCase();
+                    let score = 0;
+                    const matchedKeywords = [];
+                    let matchedSpecificCount = 0;
+                    
+                    for (const k of keywords) {
+                        if (!k || k.length < 2) continue;
+                        const variants = expandKeyword(k);
+                        if (variants.some(v => postText.includes(v))) {
+                            score += 5;
+                            matchedKeywords.push(k);
+                            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
+                        }
+                    }
+
+                    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+                        score = 0;
+                    }
+
+                    if ((post.author_id || '').toLowerCase() === persona) {
+                        score += 2;
+                    }
+                    
+                    if (score > 0) {
+                        const postAuthor = (post.author_id || persona || '').toLowerCase();
+                        const link = postAuthor ? `/${postAuthor}/${post.slug}` : `/${post.slug}`;
+                        if (!seen.has(link)) {
+                            results.push({
+                                title: post.title,
+                                type: 'text',
+                                description: contentText.substring(0, 160),
+                                link,
+                                score,
+                                matchCount: matchedKeywords.length,
+                            });
+                            seen.add(link);
+                        }
+                    } else {
+                        console.log(`[D1Resources]     ⚠️ Post: ${post.slug} had no keyword matches`);
+                    }
+                }
+            } else if (!postsResult.success) {
+                console.error(`[D1Resources] ❌ Posts query failed:`, postsResult.error);
+            } else {
+                console.log(`[D1Resources] ℹ️ No posts found in DB query`);
+            }
+        } catch (e) {
+            console.error(`[D1Resources] ❌ Error querying posts:`, e.message, e.stack);
+        }
+
+
+        // 2. Search lexicon entries
+        console.log(`[D1Resources] Querying lexicon entries...`);
+        try {
+            const lexiconResult = await db.prepare(
+                `SELECT slug, term, definition FROM lexicon LIMIT 300`
+            ).all();
+
+            console.log(`[D1Resources] Lexicon query result:`, {
+                success: lexiconResult.success,
+                resultCount: lexiconResult.results?.length || 0,
+                error: lexiconResult.error,
+            });
+
+            if (lexiconResult.success && lexiconResult.results && lexiconResult.results.length > 0) {
+                console.log(`[D1Resources] ✓ Found ${lexiconResult.results.length} lexicon entries`);
+                
+                for (const entry of lexiconResult.results) {
+                    const entryText = `${entry.term} ${entry.definition || ''}`.toLowerCase();
+                    let score = 0;
+                    const matchedKeywords = [];
+                    let matchedSpecificCount = 0;
+                    
+                    for (const k of keywords) {
+                        if (!k || k.length < 2) continue;
+                        const variants = expandKeyword(k);
+                        if (variants.some(v => entryText.includes(v))) {
+                            score += 3;
+                            matchedKeywords.push(k);
+                            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
+                        }
+                    }
+
+                    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+                        score = 0;
+                    }
+                    
+                    if (score > 0) {
+                        const link = `/lexicon/${entry.slug}`;
+                        if (!seen.has(link)) {
+                            results.push({
+                                title: entry.term,
+                                type: 'lexicon',
+                                description: entry.definition ? entry.definition.substring(0, 160) : undefined,
+                                link,
+                                score,
+                                matchCount: matchedKeywords.length,
+                            });
+                            seen.add(link);
+                        }
+                    }
+                }
+            } else if (!lexiconResult.success) {
+                console.error(`[D1Resources] ❌ Lexicon query failed:`, lexiconResult.error);
+            } else {
+                console.log(`[D1Resources] ℹ️ No lexicon entries found`);
+            }
+        } catch (e) {
+            console.error(`[D1Resources] ❌ Error querying lexicon:`, e.message, e.stack);
+        }
+
+
+        // Sort by score and return top 5
+        const sorted = results
+            .sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                if ((b.matchCount || 0) !== (a.matchCount || 0)) return (b.matchCount || 0) - (a.matchCount || 0);
+                return tieBreakByQuestion(a.link, b.link, question);
+            })
+            .slice(0, 12)
+            .map(({ score, matchCount, ...rest }) => rest); // Remove ranking internals from output
+
+        console.log(`[D1Resources] Final result: ${sorted.length} resources (from ${results.length} candidates)`);
+        if (sorted.length > 0) {
+            sorted.forEach(r => console.log(`[D1Resources]   ✓ ${r.link} (${r.type})`));
+        } else {
+            console.warn(`[D1Resources] ⚠️ No resources matched keywords, returning empty array`);
+        }
+        return sorted;
+
+    } catch (e) {
+        console.error(`[D1Resources] ❌ Fatal error:`, e.message, e.stack);
+        return [];
+    }
+}
+
+function linkFromIndexItem(type, author, slug) {
+    if (!slug) return '';
+    if (type === 'work' && author) return `/${author}/works/${slug}`;
+    if (type === 'lexicon') return `/lexicon/${slug}`;
+    if (type === 'post' && author) return `/${author}/${slug}`;
+    return `/${slug}`;
+}
+
+function capitalize(value) {
+    if (!value) return value;
+    return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 function parseSitemap(xml) {
     const entries = [];
-    const urlBlocks = [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)];
+    const urlBlocks = [...xml.matchAll(/<url\b[^>]*>[\s\S]*?<\/url>/gi)];
     for (const m of urlBlocks) {
         const block = m[0];
-        const locMatch = [...block.matchAll(/<loc>([^<]+)<\/loc>/g)][0];
+        const locMatch = [...block.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)][0];
         if (!locMatch) continue;
-        const loc = locMatch[1];
+        const loc = locMatch[1].trim();
         entries.push({ loc });
     }
     return entries;
+}
+
+function parseAllLocEntries(xml) {
+    const entries = [];
+    const locBlocks = [...xml.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)];
+    for (const m of locBlocks) {
+        const loc = String(m[1] || '').trim();
+        if (!loc) continue;
+        entries.push({ loc });
+    }
+    return entries;
+}
+
+function parseSitemapIndex(xml) {
+    const entries = [];
+    const sitemapBlocks = [...xml.matchAll(/<sitemap\b[^>]*>[\s\S]*?<\/sitemap>/gi)];
+    for (const m of sitemapBlocks) {
+        const block = m[0];
+        const locMatch = [...block.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)][0];
+        if (!locMatch) continue;
+        const loc = locMatch[1].trim();
+        if (loc) entries.push(loc);
+    }
+    return entries;
+}
+
+async function resolveSitemapEntries(sitemapUrl, xml) {
+    const directEntries = parseSitemap(xml);
+    if (directEntries.length > 0) return directEntries;
+
+    // Fallback parser: accept any <loc> entries if <url> blocks are missing/unexpected.
+    const looseEntries = parseAllLocEntries(xml);
+    const nonXmlEntries = looseEntries.filter((e) => !/\.xml(\?|$)/i.test(e.loc));
+    if (nonXmlEntries.length > 0) {
+        console.log(`[Resources] Using loose <loc> parser: ${nonXmlEntries.length} URL entries`);
+        return nonXmlEntries;
+    }
+
+    const childSitemaps = parseSitemapIndex(xml);
+    if (!childSitemaps.length) {
+        const xmlPreview = String(xml || '').slice(0, 160).replace(/\s+/g, ' ');
+        console.warn(`[Resources] No <url> and no child sitemaps found. XML preview: ${xmlPreview}`);
+        return [];
+    }
+
+    console.log(`[Resources] Found sitemap index with ${childSitemaps.length} child sitemaps`);
+    const nestedEntries = [];
+    const visited = new Set([sitemapUrl]);
+    const maxChildren = 12;
+
+    for (const childUrl of childSitemaps.slice(0, maxChildren)) {
+        if (!childUrl || visited.has(childUrl)) continue;
+        visited.add(childUrl);
+        try {
+            const childRes = await fetch(childUrl, { method: 'GET' });
+            if (!childRes.ok) {
+                console.warn(`[Resources] Child sitemap fetch failed (${childRes.status}): ${childUrl}`);
+                continue;
+            }
+            const childXml = await childRes.text();
+            const childEntries = parseSitemap(childXml);
+            if (childEntries.length > 0) nestedEntries.push(...childEntries);
+        } catch (e) {
+            console.warn(`[Resources] Child sitemap fetch error for ${childUrl}: ${e.message}`);
+        }
+    }
+
+    const unique = [];
+    const seenLocs = new Set();
+    for (const entry of nestedEntries) {
+        if (!entry?.loc || seenLocs.has(entry.loc)) continue;
+        seenLocs.add(entry.loc);
+        unique.push(entry);
+    }
+
+    console.log(`[Resources] Collected ${unique.length} URLs from nested sitemaps`);
+    return unique;
 }
 
 function extractSlug(url) {
@@ -283,33 +926,82 @@ function extractKeywords(text, persona) {
         .map(w => w.toLowerCase());
 
     // Remove common stop words
-    const stopwords = ['der', 'die', 'das', 'und', 'oder', 'ist', 'bin', 'bist', 'sein', 'haben', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'eure', 'mein', 'dein', 'sein', 'unser', 'euer', 'eure', 'dem', 'den', 'mit', 'was', 'wie', 'warum', 'wieso', 'weshalb', 'hast', 'hat', 'tun', 'machen'];
+    const stopwords = [
+        'der', 'die', 'das', 'und', 'oder', 'ist', 'sind', 'war', 'waren', 'wird', 'wurden',
+        'ein', 'eine', 'einer', 'eines', 'einem', 'einen',
+        'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
+        'mein', 'dein', 'sein', 'ihr', 'unser', 'euer',
+        'meine', 'deine', 'seine', 'unsere', 'eure', 'ihre',
+        'jeder', 'jede', 'jedes', 'allen', 'alles', 'alle',
+        'dies', 'diese', 'dieser', 'dieses',
+        'dem', 'den', 'mit', 'von', 'für', 'auf', 'über', 'unter', 'durch', 'nach', 'vor',
+        'was', 'wie', 'warum', 'wieso', 'weshalb',
+        'hast', 'hat', 'haben', 'sein', 'tun', 'machen', 'auch', 'dann', 'noch', 'mehr',
+        'kann', 'kannst', 'koennen', 'konnte', 'wurde', 'worden', 'bin', 'bist', 'seid',
+        'please', 'tell', 'about', 'with', 'from', 'into', 'that', 'this', 'those', 'these',
+        'their', 'there', 'where', 'which', 'what', 'when', 'your', 'ours'
+    ];
     const filtered = words.filter(w => !stopwords.includes(w));
 
-    // Add persona-specific boosts
-    const boosts = {
-        caesar: ['rubikon', 'rubicon', 'gallien', 'gallia', 'alesia', 'bello', 'gallico', 'civili', 'pompeius', 'pompey', 'vercingetorix', 'helvetier', 'rhein', 'rhine'],
-        cicero: ['catilina', 'oratio', 'officiis', 'republica', 'publica', 'seneca', 'antonius'],
-        augustus: ['res', 'gestae', 'prinzipat', 'pax', 'romana', 'triumvir'],
-        catilina: ['verschwörung', 'verschwor', 'conspiracy', 'senat', 'cicero', 'optimaten'],
-    };
-
-    const personaBoosts = boosts[persona] || [];
+    // Keep only meaningful topic terms and a few short domain exceptions.
+    const allowShortDomainTokens = new Set(['rom', 'krieg']);
+    const meaningful = filtered.filter((w) => {
+        const normalized = normalizeToken(w);
+        if (!normalized) return false;
+        if (allowShortDomainTokens.has(normalized)) return true;
+        return normalized.length >= 4;
+    });
 
     // Expand with synonyms and normalized forms
     const expanded = new Set();
-    for (const w of [...filtered, ...personaBoosts]) {
+    for (const w of meaningful) {
         for (const v of expandKeyword(w)) {
             expanded.add(v);
         }
     }
-    return Array.from(expanded);
+    return Array.from(expanded).slice(0, 40);
 }
 
-function scoreUrl(url, slug, keywords, type, persona) {
+function isGenericKeyword(token) {
+    const t = normalizeToken(token);
+    const generic = new Set([
+        'rom', 'roemisch', 'romisch', 'roemer', 'caesar', 'augustus', 'cicero', 'catilina',
+        'krieg', 'macht', 'herrschaft', 'politik', 'reich', 'imperium', 'gegner', 'siege', 'sieg'
+    ]);
+    return generic.has(t);
+}
+
+function getSpecificKeywords(keywords) {
+    if (!Array.isArray(keywords)) return [];
+    return keywords.filter((k) => {
+        const t = normalizeToken(k);
+        if (!t) return false;
+        if (isGenericKeyword(t)) return false;
+        return t.length >= 5;
+    });
+}
+
+function hashString(input) {
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+        hash = ((hash << 5) - hash + input.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hash);
+}
+
+function tieBreakByQuestion(a, b, question) {
+    const seed = String(question || '').toLowerCase();
+    const ah = hashString(`${seed}::${a}`) % 10000;
+    const bh = hashString(`${seed}::${b}`) % 10000;
+    return ah - bh;
+}
+
+function scoreUrl(url, slug, keywords, specificKeywords, type, persona) {
     const lower = url.toLowerCase();
     let score = 0;
     const matched = [];
+    const specificSet = new Set((specificKeywords || []).map((k) => normalizeToken(k)).filter(Boolean));
+    let matchedSpecificCount = 0;
 
     // Exact slug word matches get high points
     for (const k of keywords) {
@@ -318,6 +1010,7 @@ function scoreUrl(url, slug, keywords, type, persona) {
         if (variants.some(v => slug.includes(v))) {
             score += type === 'lexicon' ? 6 : 4;
             matched.push(k);
+            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
         }
     }
 
@@ -328,7 +1021,12 @@ function scoreUrl(url, slug, keywords, type, persona) {
         if (!variants.some(v => slug.includes(v)) && variants.some(v => lower.includes(v))) {
             score += 1.5;
             if (matched.length < 3) matched.push(k);
+            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
         }
+    }
+
+    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+        score = 0;
     }
 
     // Boost lexicon and works URLs based on context
@@ -418,7 +1116,7 @@ function expandKeyword(k) {
 // Stats endpoint
 // =======================================
 async function handleStats() {
-    const baseUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseUrl = "https://meum-diarium.xn--schner-2za.de";
     const statsUrl = new URL('/api/stats-base', baseUrl);
 
     try {
@@ -506,8 +1204,29 @@ async function handleExplainTerm(request, env, url, body) {
 
     messages.push({ role: 'user', content: question || `Erkläre: ${term}` });
 
+    const ai = resolveAiBinding(env);
+    if (!ai) {
+        return new Response(JSON.stringify({
+            term,
+            error: 'AI binding not configured',
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert. Erwarte Binding-Namen AI oder ki.' },
+            format: 'markdown',
+        }), { headers: corsHeaders(), status: 503 });
+    }
+
     const chat = { messages };
-    const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+    let aiResponse;
+    try {
+        aiResponse = await ai.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+    } catch (e) {
+        return new Response(JSON.stringify({
+            term,
+            error: 'AI request failed',
+            details: e?.message || 'Unknown AI error',
+            response: { response: 'Die KI ist momentan nicht erreichbar.' },
+            format: 'markdown',
+        }), { headers: corsHeaders(), status: 502 });
+    }
 
     const result = {
         term,
@@ -589,8 +1308,22 @@ KRITISCH WICHTIG:
             messages.push({ role: 'user', content: "Starte das Szenario." });
         }
 
+        const ai = resolveAiBinding(env);
+        if (!ai) {
+            return new Response(JSON.stringify({
+                error: 'AI binding not configured',
+                narrative: 'Die KI-Bindung fehlt auf diesem Worker.',
+                stats: { volk: 0, einfluss: 0, macht: 0 },
+                options: [{ id: 'retry', text: 'Konfiguration prüfen' }],
+                ended: false
+            }), {
+                status: 503,
+                headers: corsHeaders(),
+            });
+        }
+
         // Try Llama 3.1 8b for better instruction following
-        const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', { messages });
+        const aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', { messages });
 
         if (!aiResponse || !aiResponse.response) {
             console.error("[Simulation] AI returned empty response");
@@ -681,7 +1414,7 @@ KRITISCH WICHTIG:
 // Comments endpoint - proxy to backend
 // =======================================
 async function handleComments(request, env, url, body) {
-    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
     // Fix: Explicitly target /api/comments on backend
     const proxyUrl = new URL('/api/comments' + url.search, baseBackendUrl);
 
@@ -721,7 +1454,7 @@ async function handleComments(request, env, url, body) {
 // Work Translations endpoint
 // =======================================
 async function handleWorkTranslations(request, env, url, body, pathname) {
-    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
     
     // Extract work ID and language from pathname
     // Pattern: /api/translations/works/:workId or /api/translations/works/:workId/:lang
@@ -819,142 +1552,3 @@ function corsHeaders() {
     };
 }
 
-// =======================================
-// Latin Translation endpoint
-// =======================================
-async function handleLatinTranslation(request, env, url, body) {
-    let sentence = url.searchParams.get('sentence') || body?.sentence;
-    let translationType = url.searchParams.get('type') || body?.type || 'literal';
-
-    if (!sentence) {
-        return new Response(JSON.stringify({ error: 'Missing sentence parameter' }), {
-            status: 400,
-            headers: corsHeaders(),
-        });
-    }
-
-    const systemPrompt = translationType === 'meaningful'
-        ? `Du bist ein Experte für lateinische Literatur und Übersetzung. Übersetze den folgenden lateinischen Satz in sinnvolles, fließendes Deutsch. Behalte den Ton und Stil des Originals bei. Gib nur die Übersetzung zurück, ohne zusätzliche Erklärungen.`
-        : `Du bist ein Experte für lateinische Grammatik und Übersetzung. Übersetze den folgenden lateinischen Satz so wörtlich wie möglich ins Deutsche, behalte aber die deutsche Satzstruktur bei. Gib nur die Übersetzung zurück, ohne zusätzliche Erklärungen.`;
-
-    const messages = [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: sentence }
-    ];
-
-    try {
-        const chat = { messages };
-        const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
-
-        const result = {
-            sentence,
-            type: translationType,
-            translation: aiResponse.response || 'Übersetzung nicht verfügbar',
-            format: 'text',
-        };
-
-        return new Response(JSON.stringify(result), { headers: corsHeaders() });
-    } catch (e) {
-        console.error('[Worker] Latin translation error:', e);
-        return new Response(JSON.stringify({ 
-            error: "Translation failed", 
-            details: e.message,
-            sentence,
-            type: translationType,
-            translation: 'Übersetzung nicht verfügbar'
-        }), {
-            status: 500,
-            headers: corsHeaders()
-        });
-    }
-}
-
-// =======================================
-// Latin Grammatical Analysis endpoint
-// =======================================
-async function handleLatinAnalysis(request, env, url, body) {
-    let sentence = url.searchParams.get('sentence') || body?.sentence;
-
-    if (!sentence) {
-        return new Response(JSON.stringify({ error: 'Missing sentence parameter' }), {
-            status: 400,
-            headers: corsHeaders(),
-        });
-    }
-
-    const systemPrompt = `Du bist ein Experte für lateinische Grammatik. Analysiere den gegebenen lateinischen Satz Wort für Wort und gib für jedes Wort die grammatischen Informationen an.
-
-Formatiere deine Antwort als JSON-Array mit folgenden Struktur für jedes Wort:
-{
-  "word": "lateinisches Wort",
-  "grammaticalInfo": {
-    "case": "Kasus (Nominativ, Akkusativ, Dativ, Genitiv, Ablativ)",
-    "gender": "Genus (maskulin, feminin, neutral)",
-    "number": "Numerus (Singular, Plural)",
-    "person": "Person (1., 2., 3.)",
-    "tense": "Tempus (Präsens, Perfekt, Futur, Plusquamperfekt, Futur II)",
-    "mood": "Modus (Indikativ, Konjunktiv, Imperativ)",
-    "voice": "Genus Verbi (Aktiv, Passiv)",
-    "role": "Funktion im Satz (Subjekt, Objekt, Prädikat, Adverbiale Bestimmung)"
-  },
-  "highlighted": true/false
-}
-
-Entferne Satzzeichen von den Wörtern. Gib nur das JSON-Array zurück, nichts anderes.`;
-
-    const messages = [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: sentence }
-    ];
-
-    try {
-        const chat = { messages };
-        const aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
-
-        let analysisData;
-        try {
-            // Try to parse the AI response as JSON
-            const text = aiResponse.response || '[]';
-            // Extract JSON array from response if it contains other text
-            const jsonMatch = text.match(/\[.*\]/s);
-            if (jsonMatch) {
-                analysisData = JSON.parse(jsonMatch[0]);
-            } else {
-                analysisData = JSON.parse(text);
-            }
-        } catch (parseError) {
-            console.error('[Worker] Latin analysis parse error:', parseError);
-            // Fallback: create basic analysis
-            const words = sentence.replace(/[.,;:!?]/g, '').split(' ');
-            analysisData = words.map((word, index) => ({
-                word: word,
-                grammaticalInfo: {
-                    case: index % 3 === 0 ? 'Nominativ' : index % 3 === 1 ? 'Akkusativ' : 'Dativ',
-                    gender: index % 3 === 0 ? 'maskulin' : index % 3 === 1 ? 'feminin' : 'neutral',
-                    number: index % 2 === 0 ? 'Singular' : 'Plural',
-                    role: index % 3 === 0 ? 'Subjekt' : index % 3 === 1 ? 'Objekt' : 'Prädikat'
-                },
-                highlighted: Math.random() > 0.5
-            }));
-        }
-
-        const result = {
-            sentence,
-            analysis: analysisData,
-            format: 'json',
-        };
-
-        return new Response(JSON.stringify(result), { headers: corsHeaders() });
-    } catch (e) {
-        console.error('[Worker] Latin analysis error:', e);
-        return new Response(JSON.stringify({ 
-            error: "Analysis failed", 
-            details: e.message,
-            sentence,
-            analysis: []
-        }), {
-            status: 500,
-            headers: corsHeaders()
-        });
-    }
-}

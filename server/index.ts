@@ -152,6 +152,18 @@ app.use(express.static(publicDir, {
 // Helper to build full URLs
 const buildUrl = (path: string) => `${BASE_URL}${path}`;
 
+const escapeXml = (value: string) => value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+
+const parseSitemapLocs = (xml: string): string[] => {
+    const matches = [...xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)];
+    return matches.map((m) => String(m[1] || '').trim()).filter(Boolean);
+};
+
 // ========== ROBOTS & SEO ENDPOINTS ==========
 
 // Serve robots.txt with dynamic sitemap reference
@@ -251,8 +263,73 @@ app.get('/sitemap-index.html', async (_req, res) => {
 app.get('/sitemap.xml', async (_req, res) => {
     try {
         const sitemapPath = path.resolve(__dirname, '../public/sitemap.xml');
-        const sitemap = await fs.readFile(sitemapPath, 'utf-8');
-        res.type('application/xml').send(sitemap);
+        const staticSitemap = await fs.readFile(sitemapPath, 'utf-8');
+        const staticLocs = parseSitemapLocs(staticSitemap);
+
+        // Read additional indexable content from static API artifacts.
+        const worksPath = path.resolve(__dirname, '../public/api/works.json');
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+
+        let works: any[] = [];
+        let lexicon: any[] = [];
+        try {
+            works = JSON.parse(await fs.readFile(worksPath, 'utf-8'));
+        } catch {
+            works = [];
+        }
+        try {
+            lexicon = JSON.parse(await fs.readFile(lexiconPath, 'utf-8'));
+        } catch {
+            lexicon = [];
+        }
+
+        // Add all blog/article URLs from DB so search engines can index everything.
+        const db = getLocalPostsDb();
+        const allPosts = await db.select({
+            slug: posts.slug,
+            author: posts.author,
+            date: posts.date,
+        }).from(posts).all();
+
+        const postEntries = allPosts
+            .filter((p: any) => p?.slug)
+            .map((p: any) => {
+                const slug = String(p.slug).replace(/^\/+|\/+$/g, '');
+                const author = String(p.author || '').toLowerCase().replace(/^\/+|\/+$/g, '');
+                const url = author ? buildUrl(`/${author}/${slug}`) : buildUrl(`/${slug}`);
+                const lastmod = p.date ? new Date(p.date).toISOString().split('T')[0] : null;
+                return { url, lastmod };
+            });
+
+        const workEntries = (Array.isArray(works) ? works : [])
+            .filter((w: any) => w?.slug)
+            .map((w: any) => {
+                const slug = String(w.slug).replace(/^\/+|\/+$/g, '');
+                const author = String(w.author || '').toLowerCase().replace(/^\/+|\/+$/g, '');
+                const url = author ? buildUrl(`/${author}/works/${slug}`) : buildUrl(`/works/${slug}`);
+                return { url, lastmod: null };
+            });
+
+        const lexiconEntries = (Array.isArray(lexicon) ? lexicon : [])
+            .filter((l: any) => l?.slug)
+            .map((l: any) => {
+                const slug = String(l.slug).replace(/^\/+|\/+$/g, '');
+                return { url: buildUrl(`/lexicon/${slug}`), lastmod: null };
+            });
+
+        const merged = new Map<string, { url: string; lastmod: string | null }>();
+        for (const loc of staticLocs) merged.set(loc, { url: loc, lastmod: null });
+        for (const entry of postEntries) merged.set(entry.url, entry);
+        for (const entry of workEntries) merged.set(entry.url, entry);
+        for (const entry of lexiconEntries) merged.set(entry.url, entry);
+
+        const urls = Array.from(merged.values()).sort((a, b) => a.url.localeCompare(b.url));
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+            .map((entry) => `  <url>\n    <loc>${escapeXml(entry.url)}</loc>${entry.lastmod ? `\n    <lastmod>${entry.lastmod}</lastmod>` : ''}\n  </url>`)
+            .join('\n')}\n</urlset>`;
+
+        res.type('application/xml').send(xml);
     } catch (error) {
         console.error('Error loading sitemap:', error);
         res.status(500).send('Error loading sitemap');
@@ -1138,116 +1215,6 @@ app.get('/api/vocab/all', async (req, res) => {
 // Health check
 app.get('/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Dev server running - using local data files' });
-});
-
-// =======================================
-// Latin Translation endpoint (Development)
-// =======================================
-app.post('/api/latin/translate', async (req, res) => {
-    console.log('🔤 [Dev] POST /api/latin/translate - AI translation request');
-    
-    try {
-        const { sentence, type = 'literal' } = req.body;
-        
-        if (!sentence) {
-            return res.status(400).json({ error: 'Missing sentence parameter' });
-        }
-
-        // In development, we'll provide mock translations with some variety
-        const mockTranslations: Record<string, Record<string, string>> = {
-            'Gallia est omnis divisa in partes tres': {
-                literal: 'Gallien ist ganz geteilt in drei Teile',
-                meaningful: 'Ganz Gallien ist in drei Teile gegliedert'
-            },
-            'Hi omnes lingua institutis legibus inter se differunt': {
-                literal: 'Diese alle Sprache Einrichtungen Gesetzen unter sich unterscheiden',
-                meaningful: 'Diese alle unterscheiden sich durch Sprache, Einrichtungen und Gesetze untereinander'
-            }
-        };
-
-        const translation = mockTranslations[sentence]?.[type] || 
-            (type === 'meaningful' 
-                ? `Sinnhafte Übersetzung von: ${sentence}`
-                : `Wörtliche Übersetzung von: ${sentence}`
-            );
-
-        const result = {
-            sentence,
-            type,
-            translation,
-            format: 'text',
-            source: 'development-mock'
-        };
-
-        console.log(`✅ [Dev] Translation completed for: "${sentence.substring(0, 50)}..."`);
-        res.json(result);
-        
-    } catch (error) {
-        console.error('❌ [Dev] Translation error:', error);
-        res.status(500).json({ 
-            error: 'Translation failed', 
-            message: error instanceof Error ? error.message : 'Unknown error'
-        });
-    }
-});
-
-// =======================================
-// Latin Grammatical Analysis endpoint (Development)
-// =======================================
-app.post('/api/latin/analyze', async (req, res) => {
-    console.log('📝 [Dev] POST /api/latin/analyze - AI analysis request');
-    
-    try {
-        const { sentence } = req.body;
-        
-        if (!sentence) {
-            return res.status(400).json({ error: 'Missing sentence parameter' });
-        }
-
-        // In development, create mock grammatical analysis
-        const words = sentence.replace(/[.,;:!?]/g, '').split(' ').filter(w => w.length > 0);
-        
-        const grammaticalCases = ['Nominativ', 'Akkusativ', 'Dativ', 'Genitiv', 'Ablativ'];
-        const genders = ['maskulin', 'feminin', 'neutral'];
-        const numbers = ['Singular', 'Plural'];
-        const persons = ['1. Person', '2. Person', '3. Person'];
-        const tenses = ['Präsens', 'Perfekt', 'Futur'];
-        const moods = ['Indikativ', 'Konjunktiv', 'Imperativ'];
-        const voices = ['Aktiv', 'Passiv'];
-        const roles = ['Subjekt', 'Objekt', 'Prädikat', 'Adverbiale Bestimmung'];
-
-        const analysis = words.map((word, index) => ({
-            word: word,
-            grammaticalInfo: {
-                case: grammaticalCases[index % grammaticalCases.length],
-                gender: genders[index % genders.length],
-                number: numbers[index % numbers.length],
-                person: persons[index % persons.length],
-                tense: tenses[index % tenses.length],
-                mood: moods[index % moods.length],
-                voice: voices[index % voices.length],
-                role: roles[index % roles.length]
-            },
-            highlighted: Math.random() > 0.5
-        }));
-
-        const result = {
-            sentence,
-            analysis,
-            format: 'json',
-            source: 'development-mock'
-        };
-
-        console.log(`✅ [Dev] Analysis completed for: "${sentence.substring(0, 50)}..."`);
-        res.json(result);
-        
-    } catch (error) {
-        console.error('❌ [Dev] Analysis error:', error);
-        res.status(500).json({ 
-            error: 'Analysis failed', 
-            message: error instanceof Error ? error.message : 'Unknown error'
-        });
-    }
 });
 
 // **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router

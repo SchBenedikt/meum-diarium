@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +16,7 @@ import { useLanguage } from '@/context/LanguageContext';
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
     const { setCurrentAuthor } = useAuthor();
     const { t } = useLanguage();
     const [messages, setMessages] = useState([
@@ -42,12 +43,16 @@ export default function ChatPage() {
     
     // Handle initial question from URL params
     useEffect(() => {
-        const q = searchParams.get('q');
+        const q = searchParams.get('q')?.trim();
         if (q && messages.length === 1 && !isTyping && author) {
-            setInput(q);
-            setTimeout(() => sendQuestion(q), 500);
+            // Auto-send deep-linked question, but keep input free for the next message.
+            setInput('');
+            setTimeout(() => {
+                sendQuestion(q);
+                navigate(`/${authorId}/chat`, { replace: true });
+            }, 250);
         }
-    }, [searchParams, messages, isTyping, author]);
+    }, [searchParams, messages, isTyping, author, authorId, navigate]);
     
     if (!author) return null;
     const sendQuestion = async (question: string) => {
@@ -55,20 +60,30 @@ export default function ChatPage() {
         setMessages(prev => [...prev, { role: 'user', content: question }]);
         setIsTyping(true);
         try {
+            if (import.meta.env.DEV) console.log(`[ChatPage] Sending question to AI...`);
             const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
+            if (import.meta.env.DEV) console.log(`[ChatPage] AI response received with ${suggested?.length || 0} resources`);
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
             if (suggested && suggested.length) {
+                if (import.meta.env.DEV) console.log(`[ChatPage] Processing ${suggested.length} suggested resources...`);
                 setResources(prev => {
                     const existingLinks = new Set(prev.map(r => r.link));
                     const merged = [...prev];
                     for (const s of suggested) {
-                        if (!existingLinks.has(s.link)) merged.push(s);
+                        if (!existingLinks.has(s.link)) {
+                            merged.push(s);
+                            if (import.meta.env.DEV) console.log(`[ChatPage] Added resource: ${s.title} (${s.link})`);
+                        }
                     }
+                    if (import.meta.env.DEV) console.log(`[ChatPage] Resources state now has ${merged.length} items`);
                     return merged;
                 });
+            } else {
+                if (import.meta.env.DEV) console.warn(`[ChatPage] No resources returned from AI`);
             }
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : 'Fehler beim Abruf der KI-Antwort.';
+            console.error(`[ChatPage] Error: ${msg}`);
             setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
         } finally {
             setIsTyping(false);

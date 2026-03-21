@@ -1,178 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <title>Meum Diarium</title>
-    <excerpt>Erlebe Geschichte neu mit KI-gestützten Zeitreisen.</excerpt>
-  </url>
-  <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/lexicon</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <title>Lexikon</title>
-    <excerpt>Das Glossar der römischen Antike.</excerpt>
-  </url>
-  <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/latin</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <title>Latein-Tools</title>
-    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
-  </url>
-  <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/learn</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <title>Latein-Tools</title>
-    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
-  </url>
-  <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/lernen</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <title>Latein-Tools</title>
-    <excerpt>Klassische Texte lesen und Vokabeln trainieren.</excerpt>
-  </url>
-  <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/lexikon</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <title>Lexikon</title>
-    <excerpt>Das Glossar der römischen Antike.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/about</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <title>Über uns</title>
-    <excerpt>Wer wir sind und was wir machen.</excerpt>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/über</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <loc>https://meum-diarium.xn--schchner-2za.de/timeline</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/lexicon</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/search</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/learn</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/learn/grammar</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/learn/practice</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/learn/rhetoric</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/vocab</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/reader</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/oer</loc>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <title>Über uns</title>
-    <excerpt>Wer wir sind und was wir machen.</excerpt>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/privacy</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Datenschutz</title>
-    <excerpt>Datenschutzerklärung und Informationen zur Datenverarbeitung.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/api</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/datenschutz</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Datenschutz</title>
-    <excerpt>Datenschutzerklärung und Informationen zur Datenverarbeitung.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/stats</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/caesar</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/legal</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Impressum</title>
-    <excerpt>Rechtliche Informationen und Kontaktdaten.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/cicero</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/impressum</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Impressum</title>
-    <excerpt>Rechtliche Informationen und Kontaktdaten.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/augustus</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/cookies</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Cookie-Richtlinien</title>
-    <excerpt>Informationen zur Verwendung von Cookies.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/seneca</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://meum-diarium.xn--schchner-2za.de/cookie-richtlinien</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <title>Cookie-Richtlinien</title>
-    <excerpt>Informationen zur Verwendung von Cookies.</excerpt>
+    <loc>https://meum-diarium.xn--schchner-2za.de/catilina</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
+
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/caesar/about</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/cicero/about</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/augustus/about</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/seneca/about</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/catilina/about</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-gallico</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>De Bello Gallico</title>
-    <excerpt>Caesars Bericht über die Eroberung Galliens (58-50 v. Chr.). Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa. Das Werk prägt bis heute den Lateinunterricht mit seinem berühmten Eröffnungssatz: "Gallia est omnis divisa in partes tres".</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/caesar/works/de-bello-civili</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>De Bello Civili</title>
-    <excerpt>Caesars Bericht über den Bürgerkrieg gegen Pompeius (49-48 v. Chr.). Emotionaler und defensiver als De Bello Gallico. Caesar rechtfertigt die Überschreitung des Rubikon als Selbstverteidigung gegen eine illegale senatorische Clique - ein Meisterwerk der politischen Selbstrechtfertigung.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-re-publica</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>De Re Publica</title>
-    <excerpt>Ciceros Verteidigung der idealen Republik als Dialog. Argumentiert für die gemischte Verfassung (Monarchie + Aristokratie + Demokratie), die Roms Verfassung verkörpert. Viel fragmentarisch erhalten; das berühmte "Somnium Scipionis" inspirierte das Mittelalter.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/de-officiis</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>De Officiis</title>
-    <excerpt>Ciceros meistgelesenes Werk über Ethik und Pflicht (44 v. Chr.). Ein Brief an seinen Sohn: Wie soll man sich verhalten? Welche Pflichten hat man? Kombination von stoischer Philosophie und römischer Praxis. Der einflussreichste ethische Text der westlichen Tradition.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/in-catilinam</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>In Catilinam</title>
-    <excerpt>Die vier "Catilin
-
-arischen Reden" (In Catilinam Orationes) gehören zu den berühmtesten Reden der Weltliteratur. Gehalten von Marcus Tullius Cicero während seiner Amtszeit als Consul im Jahr 63 v. Chr., deckten sie die Verschwörung des Lucius Sergius Catilina auf und führten zu dessen Flucht aus Rom.
-
-Die erste Rede beginnt mit den unsterblichen Worten: "Quo usque tandem abutere, Catilina, patientia nostra?" (Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?) - eine der wirkungsvollsten rhetorischen Eröffnungen aller Zeiten. Cicero konfrontiert Catilina direkt im Senat, während dieser persönlich anwesend ist - ein dramatischer Moment ungeheurer politischer Spannung.
-
-Die Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und emotionale Appelle virtuos verbinden. Sie zeigen Cicero auf dem Höhepunkt seiner Macht als "pater patriae" (Vater des Vaterlandes), der die Republik vor ihren inneren Feinden rettet. Zugleich werfen sie schwierige Fragen über Rechtsstaatlichkeit, Notstandsmaßnahmen und die Grenzen der Exekutivgewalt auf.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/cicero/works/philippicae</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>Philippicae</title>
-    <excerpt>Ciceros letzte verzweifelte Angriffe gegen Marcus Antonius nach Caesars Mord (44-43 v. Chr.). Vierzehn flammende Reden - Meisterwerke von Sarkasmus und Rhetorik. Kosteten Cicero sein Leben: Am 7. Dezember 43 v. Chr. ermordet, sein Kopf auf dem Forum zur Schau gestellt.</excerpt>
   </url>
   <url>
     <loc>https://meum-diarium.xn--schchner-2za.de/augustus/works/res-gestae</loc>
-    <lastmod>2026-02-05T13:00:01.830Z</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <title>Res Gestae Divi Augusti</title>
-    <excerpt>Augustus' autobiographischer Rechenschaftsbericht, verfasst am Lebensende. Auf Bronzetafeln im ganzen Reich verbreitet: Taten, Ämter, Ehrungen aufgelistet. Ein Meisterwerk der Propaganda: er stellt sich als Retter der Republik dar, obwohl er sie zur Monarchie umwandelte.</excerpt>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/seneca/works/de-ira</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/seneca/works/epistulae-morales</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/catilina/works/catilinae-coniuratio</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/privacy</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/legal</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/cookies</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://meum-diarium.xn--schchner-2za.de/agb</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

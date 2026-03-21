@@ -129,6 +129,7 @@ function parseInlineFormatting(text: string): TextNode[] {
 }
 // Parse blocks
 function parseMarkdown(content: string): Block[] {
+  if (!content) return [];
   const lines = content.split('\n');
   const blocks: Block[] = [];
   let i = 0;
@@ -275,6 +276,14 @@ interface FormattedContentProps {
 export function FormattedContent({ content, language, currentSlug }: FormattedContentProps) {
   const location = useLocation();
   const { lexicon } = useLexicon();
+
+  // Guard: render nothing when there is no content to parse.
+  // This can happen on the first render of a scientific-only post before the
+  // perspective state is corrected, or when content is genuinely absent.
+  if (!content || content.trim().length === 0) {
+    return null;
+  }
+
   // Build terms map from actual lexicon data
   const termsMap = new Map<string, { slug: string; definition: string; type: 'lexicon' | 'author' }>();
   lexicon.forEach((originalEntry: any) => {

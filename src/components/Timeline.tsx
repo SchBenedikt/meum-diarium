@@ -102,8 +102,8 @@ export function Timeline() {
   };
   const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/10">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <div className="bg-background selection:bg-primary/10">
+      <div className="w-full" ref={containerRef}>
         {/* Search & Filter Bar */}
         <div className="sticky top-20 z-50 mb-12">
           <motion.div

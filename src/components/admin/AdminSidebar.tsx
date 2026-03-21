@@ -12,6 +12,7 @@ import {
   Library,
   LogOut,
   Scroll,
+  PanelLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -34,6 +35,7 @@ const INITIAL_FOLDERS: AuthorFolder[] = [
   { id: 'cicero', name: 'Cicero', icon: '🗣️', posts: [], isOpen: false },
   { id: 'augustus', name: 'Augustus', icon: '👑', posts: [], isOpen: false },
   { id: 'seneca', name: 'Seneca', icon: '📜', posts: [], isOpen: false },
+  { id: 'catilina', name: 'Catilina', icon: '🗡️', posts: [], isOpen: false },
 ];
 
 const NAV_SECTIONS = [
@@ -97,7 +99,7 @@ export function AdminSidebar({ width = 256, onWidthChange, isCollapsed = false, 
 
   if (isCollapsed) {
     return (
-      <div className="bg-[#f7f6f3] dark:bg-[#191919] border-r border-border h-screen flex flex-col items-center py-4 gap-2" style={{ width: `${width}px` }}>
+      <div className="bg-background border-r border-border/70 h-screen flex flex-col items-center py-4 gap-2" style={{ width: `${width}px` }}>
         <NavLink to="/admin" end title="Dashboard"
           className={({ isActive }) => cn("p-2 rounded-lg transition-colors", isActive ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted")}
         >
@@ -120,14 +122,24 @@ export function AdminSidebar({ width = 256, onWidthChange, isCollapsed = false, 
   }
 
   return (
-    <div className="bg-[#f7f6f3] dark:bg-[#191919] border-r border-border h-screen flex flex-col flex-shrink-0 overflow-hidden" style={{ width: `${width}px`, minWidth: `${width}px` }}>
+    <div className="bg-background border-r border-border/70 h-screen flex flex-col flex-shrink-0 overflow-hidden" style={{ width: `${width}px`, minWidth: `${width}px` }}>
       {/* Logo / Header */}
-      <div className="flex items-center gap-2.5 px-4 py-4 border-b border-border/50">
+      <div className="flex items-center gap-2.5 px-4 py-4 border-b border-border/50 bg-gradient-to-r from-primary/5 via-transparent to-transparent">
         <div className="p-1.5 rounded-md bg-primary/10">
           <Scroll className="w-4 h-4 text-primary" />
         </div>
         <span className="font-semibold text-sm truncate">Meum Diarium</span>
-        <span className="ml-auto text-xs text-muted-foreground font-medium uppercase tracking-wider bg-muted px-1.5 py-0.5 rounded">Admin</span>
+        {onToggleCollapse && (
+          <button
+            type="button"
+            onClick={onToggleCollapse}
+            className="ml-auto p-1.5 rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            title="Sidebar einklappen"
+          >
+            <PanelLeft className="w-4 h-4" />
+          </button>
+        )}
+        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider bg-muted px-1.5 py-0.5 rounded">Admin</span>
       </div>
 
       <ScrollArea className="flex-1">
@@ -145,19 +157,25 @@ export function AdminSidebar({ width = 256, onWidthChange, isCollapsed = false, 
             Dashboard
           </NavLink>
 
+          <NavLink
+            to="/admin/post/new"
+            className={({ isActive }) => cn(
+              "mt-2 flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors border",
+              isActive
+                ? "border-primary/40 bg-primary/10 text-primary font-medium"
+                : "border-border/70 text-muted-foreground hover:bg-muted hover:text-foreground"
+            )}
+          >
+            <Plus className="w-4 h-4 shrink-0" />
+            Neuer Beitrag
+          </NavLink>
+
           {/* Posts Section */}
           <div className="pt-3">
             <div className="flex items-center justify-between px-3 mb-1.5">
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Beiträge
+                Beiträge nach Autor
               </span>
-              <NavLink
-                to="/admin/post/new"
-                className="p-1 rounded-md text-muted-foreground hover:bg-muted hover:text-primary transition-colors"
-                title="Neuer Beitrag"
-              >
-                <Plus className="w-3.5 h-3.5" />
-              </NavLink>
             </div>
 
             <div className="space-y-0.5">

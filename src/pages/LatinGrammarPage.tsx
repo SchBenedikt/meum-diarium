@@ -1,194 +1,252 @@
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
-    ArrowLeft,
-    GraduationCap,
-    BookOpen,
-    Users,
-    MessageSquare,
-    ChevronRight,
-    Hash,
-    List,
-    PenTool,
-    Calendar
+  ArrowLeft,
+  ChevronRight,
+  Search,
+  BookOpen,
+  Users,
+  MessageSquare,
+  Hash,
+  List,
+  PenTool,
+  Calendar,
+  Target,
+  Route,
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
-const grammarTopics = [
-    {
-        id: 'substantive',
-        title: 'Substantive (Nomen)',
-        description: 'Die lateinischen Hauptwörter und ihre Deklination.',
-        icon: BookOpen,
-        color: 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300',
-        topics: ['Geschlechter', 'Kasus', 'Deklination', 'Pluralbildung']
-    },
-    {
-        id: 'verben',
-        title: 'Verben',
-        description: 'Die lateinischen Zeitwörter und ihre Konjugation.',
-        icon: PenTool,
-        color: 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300',
-        topics: ['Konjugation', 'Tempora', 'Modi', 'Aktiv/Passiv']
-    },
-    {
-        id: 'adjektive',
-        title: 'Adjektive',
-        description: 'Die Eigenschaftswörter und ihre Steigerung.',
-        icon: MessageSquare,
-        color: 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300',
-        topics: ['Deklination', 'Steigerung', 'Vergleiche']
-    },
-    {
-        id: 'pronomen',
-        title: 'Pronomen',
-        description: 'Die Fürwörter und ihre Verwendung.',
-        icon: Users,
-        color: 'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300',
-        topics: ['Personalpronomen', 'Possessivpronomen', 'Demonstrativpronomen', 'Relativpronomen']
-    },
-    {
-        id: 'adverbien',
-        title: 'Adverbien',
-        description: 'Die Umstandswörter zur näheren Bestimmung.',
-        icon: Hash,
-        color: 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300',
-        topics: ['Adverbarten', 'Steigerung', 'Bildung']
-    },
-    {
-        id: 'syntax',
-        title: 'Syntax',
-        description: 'Die Satzstruktur und Wortstellung im Lateinischen.',
-        icon: List,
-        color: 'bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300',
-        topics: ['Satzbau', 'Wortstellung', 'Satzgliederung']
-    },
-    {
-        id: 'partizipien',
-        title: 'Partizipien',
-        description: 'Die Verbformen und ihre Verwendung.',
-        icon: Calendar,
-        color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300',
-        topics: ['PPA', 'PPP', 'PFA', 'Infinitiv', 'Gerundium']
-    }
+type GrammarTopic = {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  color: string;
+  level: 'Basis' | 'Mittelstufe' | 'Fortgeschritten';
+  topics: string[];
+};
+
+const grammarTopics: GrammarTopic[] = [
+  {
+    id: 'substantive',
+    title: 'Substantive (Nomen)',
+    description: 'Kasus, Deklination und Formensicherheit für solide Übersetzungen.',
+    icon: BookOpen,
+    color: 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300',
+    level: 'Basis',
+    topics: ['Geschlechter', 'Kasus', 'Deklination', 'Pluralbildung'],
+  },
+  {
+    id: 'verben',
+    title: 'Verben',
+    description: 'Tempora, Modi und Konjugationen als Kern jeder Satzanalyse.',
+    icon: PenTool,
+    color: 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300',
+    level: 'Basis',
+    topics: ['Konjugation', 'Tempora', 'Modi', 'Aktiv/Passiv'],
+  },
+  {
+    id: 'adjektive',
+    title: 'Adjektive',
+    description: 'Kongruenz, Steigerung und präziser Ausdruck in der Übersetzung.',
+    icon: MessageSquare,
+    color: 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300',
+    level: 'Basis',
+    topics: ['Deklination', 'Steigerung', 'Vergleiche'],
+  },
+  {
+    id: 'pronomen',
+    title: 'Pronomen',
+    description: 'Verweisstrukturen verstehen und komplexe Sätze sicher auflösen.',
+    icon: Users,
+    color: 'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300',
+    level: 'Mittelstufe',
+    topics: ['Personalpronomen', 'Possessivpronomen', 'Demonstrativpronomen', 'Relativpronomen'],
+  },
+  {
+    id: 'adverbien',
+    title: 'Adverbien',
+    description: 'Feinheiten der Aussage durch adverbiale Bestimmungen erfassen.',
+    icon: Hash,
+    color: 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300',
+    level: 'Mittelstufe',
+    topics: ['Adverbarten', 'Steigerung', 'Bildung'],
+  },
+  {
+    id: 'syntax',
+    title: 'Syntax',
+    description: 'Satzbau strategisch lesen, Kernsatz erkennen, Nebensätze einordnen.',
+    icon: List,
+    color: 'bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300',
+    level: 'Fortgeschritten',
+    topics: ['Satzbau', 'Wortstellung', 'Satzgliederung'],
+  },
+  {
+    id: 'partizipien',
+    title: 'Partizipien',
+    description: 'PPA, PPP und abhängige Konstruktionen souverän übersetzen.',
+    icon: Calendar,
+    color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300',
+    level: 'Fortgeschritten',
+    topics: ['PPA', 'PPP', 'PFA', 'Infinitiv', 'Gerundium'],
+  },
 ];
 
 export default function LatinGrammarPage() {
-    const { topic } = useParams<{ topic: string }>();
-    const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredTopics = grammarTopics.filter(t =>
-        t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.topics.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+  const filteredTopics = useMemo(
+    () =>
+      grammarTopics.filter((topic) => {
+        const q = searchQuery.trim().toLowerCase();
+        return (
+          !q ||
+          topic.title.toLowerCase().includes(q) ||
+          topic.description.toLowerCase().includes(q) ||
+          topic.topics.some((item) => item.toLowerCase().includes(q))
+        );
+      }),
+    [searchQuery],
+  );
 
-    return (
-        <div className="min-h-screen bg-background selection:bg-primary/10">
-            <main className="container mx-auto px-4 pt-32 pb-24 max-w-7xl">
-                {/* Minimalist Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="space-y-4"
-                    >
-                        <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
-                            <div className="w-8 h-[1px] bg-primary/30" />
-                            Grammatik
-                        </div>
-                        <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
-                            Lateinische <span className="text-primary italic">Grammatik</span>
-                        </h1>
-                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed mb-4">
-                            Meistere die Grundlagen der lateinischen Sprache mit interaktiven Lektionen.
-                        </p>
-                        
-                        {/* AI Disclaimer */}
-                        <motion.div 
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="max-w-md bg-amber-50/80 dark:bg-amber-900/20 border border-amber-200/50 dark:border-amber-800/30 rounded-xl p-3 backdrop-blur-sm"
-                        >
-                            <div className="flex items-start gap-2">
-                                <div className="w-4 h-4 rounded-full bg-amber-400 dark:bg-amber-600 mt-0.5 flex-shrink-0" />
-                                <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-                                    <strong>Hinweis:</strong> Diese Lernmaterialien wurden mit KI-Unterstützung erstellt und wurden zwar geprüft, können aber dennoch Fehler enthalten. Bitte bei Unklarheiten zusätzliche Quellen konsultieren.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="flex flex-col gap-4 items-end"
-                    >
-                        <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
-                            <div className="flex flex-col items-end">
-                                <span className="text-foreground">{grammarTopics.length}</span>
-                                <span>Themen</span>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-                {/* Search */}
-                <div className="max-w-2xl mx-auto mb-12">
-                    <div className="relative">
-                        <BookOpen className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-                        <input
-                            type="text"
-                            placeholder="Grammatikthemen suchen..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 text-lg bg-card/60 backdrop-blur-xl border-2 border-border/40 rounded-2xl focus:border-primary/50 transition-all duration-300"
-                        />
-                    </div>
-                </div>
+  return (
+    <div className="min-h-screen bg-background selection:bg-primary/10 flex flex-col">
+      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-primary/30" />
+              GRAMMATIK
+            </div>
+            <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+              Lateinische <span className="text-primary italic">Grammatik</span>
+            </h1>
+            <p className="text-muted-foreground/70 max-w-2xl font-light leading-relaxed text-lg">
+              Eine strukturierte Lernoberfläche mit klaren Themenbereichen statt bloßer Themenliste.
+              Wähle den passenden Einstieg, übe gezielt und vertiefe Schritt für Schritt.
+            </p>
+          </motion.div>
 
-                {/* Grammar Topics Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredTopics.map((t, index) => (
-                        <motion.div
-                            key={t.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            onClick={() => navigate(`/learn/grammar/${t.id}`)}
-                        >
-                            <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full">
-                                <div className="flex items-start justify-between mb-4">
-                                    <div className={`p-3 rounded-2xl ${t.color}`}>
-                                        <t.icon className="w-6 h-6" />
-                                    </div>
-                                    <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                                </div>
-                                
-                                <h3 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                    {t.title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
-                                    {t.description}
-                                </p>
-                                
-                                <div className="flex flex-wrap gap-2">
-                                    {t.topics.map((subTopic, i) => (
-                                        <span key={i} className="px-3 py-1 bg-secondary/50 rounded-full text-xs font-medium text-muted-foreground">
-                                            {subTopic}
-                                        </span>
-                                    ))}
-                                </div>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-            </main>
-
-            <Footer />
+          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col gap-4 items-end">
+            <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+              <div className="flex flex-col items-end">
+                <span className="text-foreground">{grammarTopics.length}</span>
+                <span>Module</span>
+              </div>
+              <div className="w-px h-6 bg-border/40" />
+              <div className="flex flex-col items-end">
+                <span className="text-foreground">3</span>
+                <span>Niveaus</span>
+              </div>
+            </div>
+            <Link to="/learn" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
+              <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Lernen
+            </Link>
+          </motion.div>
         </div>
-    );
+
+        <section className="mb-10">
+          <div className="relative max-w-2xl">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
+            <Input
+              type="text"
+              placeholder="Grammatikthemen suchen..."
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              className="pl-12 py-6 text-base rounded-2xl border-border/50"
+            />
+          </div>
+        </section>
+
+        <section className="grid lg:grid-cols-12 gap-6 mb-16">
+          <Card className="lg:col-span-8 card-modern border-border/50">
+            <CardContent className="p-6 sm:p-8">
+              <div className="flex items-center gap-2 mb-6 text-primary">
+                <Route className="h-4 w-4" />
+                <p className="text-xs uppercase tracking-[0.2em] font-semibold">Themenbereiche</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                {filteredTopics.map((topic, index) => (
+                  <motion.button
+                    key={topic.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.04 }}
+                    onClick={() => navigate(`/learn/grammar/${topic.id}`)}
+                    className="text-left rounded-2xl border border-border/50 bg-card p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-4">
+                      <div className={`p-2.5 rounded-xl ${topic.color}`}>
+                        <topic.icon className="w-5 h-5" />
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold mb-2">{topic.title}</h3>
+                    <p className="text-sm text-muted-foreground/80 leading-relaxed mb-4">{topic.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <span className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2 py-1 rounded-full bg-secondary text-muted-foreground">
+                        {topic.level}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {topic.topics.slice(0, 3).map((subTopic) => (
+                        <span key={subTopic} className="text-xs px-2 py-1 rounded-full border border-border/60 text-muted-foreground">
+                          {subTopic}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="lg:col-span-4 space-y-6">
+            <Card className="card-modern border-border/50">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4 text-primary">
+                  <Target className="h-4 w-4" />
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold">Orientierung</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="rounded-xl border border-border/50 bg-secondary/20 p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-1">Formenlehre</p>
+                    <p className="text-sm text-muted-foreground/80">Nomen, Verben und Adjektive schaffen das Fundament für jede Übersetzung.</p>
+                  </div>
+                  <div className="rounded-xl border border-border/50 bg-secondary/20 p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-1">Satzanalyse</p>
+                    <p className="text-sm text-muted-foreground/80">Mit Pronomen, Syntax und Partizipien löst du komplexe Originaltexte deutlich sicherer.</p>
+                  </div>
+                  <div className="rounded-xl border border-border/50 bg-secondary/20 p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-1">Direkt üben</p>
+                    <p className="text-sm text-muted-foreground/80">Nutze die Übungsseite für schnelle Aufgaben mit sofortiger Rückmeldung.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-modern border-border/50">
+              <CardContent className="p-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-semibold mb-3">Training</p>
+                <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                  Grammatik- und Stilmittelerkennung kannst du auf der neuen Übungsseite gemeinsam trainieren.
+                </p>
+                <Button className="mt-5 w-full rounded-full" onClick={() => navigate('/learn/practice')}>
+                  Zum Üben
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }

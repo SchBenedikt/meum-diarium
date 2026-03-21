@@ -1,14 +1,17 @@
 export type PageLanguage = 'de' | 'en' | 'la';
-export interface PageHighlight {
-  title: string;
-  description: string;
-}
+
 export interface PageTranslation {
   heroTitle?: string;
   heroSubtitle?: string;
   projectDescription?: string;
-  highlights?: PageHighlight[];
+  highlights?: { title: string; description: string }[];
 }
+
+export interface PageHighlight {
+  title: string;
+  description: string;
+}
+
 export interface PageContent {
   slug: string;
   heroTitle: string;

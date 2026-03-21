@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Scroll, Github, Twitter, Mail, Globe, Sparkles, BookOpen, Download, Users, HelpCircle, FileText, MessageCircle, Award, Library } from 'lucide-react';
+import { Scroll, Sparkles, BookOpen, Download, FileText, MessageCircle, Award, Library, Home, Clock3, Search, Info, BarChart3, Code2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+
 export function Footer() {
   const { t } = useLanguage();
   const text = (key: string, fallback: string) => {
@@ -13,11 +14,12 @@ export function Footer() {
     {
       title: 'Navigation',
       links: [
-        { label: 'Startseite', href: '/' },
-        { label: 'Zeitleiste', href: '/timeline' },
-        { label: 'Lexikon', href: '/lexicon' },
-        { label: 'Über uns', href: '/about' },
-        { label: 'API-Dokumentation', href: '/api' },
+        { label: 'Startseite', href: '/', icon: Home },
+        { label: 'Zeitleiste', href: '/timeline', icon: Clock3 },
+        { label: 'Lexikon', href: '/lexicon', icon: Search },
+        { label: 'Über uns', href: '/about', icon: Info },
+        { label: 'Statistik', href: '/stats', icon: BarChart3 },
+        { label: 'API-Dokumentation', href: '/api', icon: Code2 },
       ]
     },
     {
@@ -33,10 +35,11 @@ export function Footer() {
     {
       title: 'Persönlichkeiten',
       links: [
-        { label: 'Julius Caesar', href: '/caesar' },
-        { label: 'Marcus Cicero', href: '/cicero' },
-        { label: 'Kaiser Augustus', href: '/augustus' },
-        { label: 'Seneca der Jüngere', href: '/seneca' },
+        { label: 'Julius Caesar', href: '/caesar', icon: Scroll },
+        { label: 'Marcus Cicero', href: '/cicero', icon: MessageCircle },
+        { label: 'Kaiser Augustus', href: '/augustus', icon: Award },
+        { label: 'Seneca der Jüngere', href: '/seneca', icon: BookOpen },
+        { label: 'Catilina', href: '/catilina', icon: Sparkles },
       ]
     },
     {
@@ -49,10 +52,7 @@ export function Footer() {
     }
   ];
   return (
-    <footer className="relative mt-32 border-t border-border bg-card overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
+    <footer className="relative border-t border-border bg-card">
       <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Brand & Mission */}
@@ -68,9 +68,6 @@ export function Footer() {
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-sm font-light italic">
               "{description}"
             </p>
-            <div className="pt-4 flex items-center gap-4">
-              {/* Minimalist social indicators removal confirmed */}
-            </div>
           </div>
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {footerLinks.map((column) => (
@@ -102,19 +99,13 @@ export function Footer() {
         <div className="mt-20 sm:mt-32 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
             <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60 font-bold">
-              © {new Date().getFullYear()} {appName}
+              {new Date().getFullYear()} {appName}
             </p>
             <div className="flex items-center gap-6 text-[10px] uppercase tracking-widest font-bold">
               <Link to="/legal" className="text-muted-foreground hover:text-primary transition-colors">Impressum</Link>
               <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Datenschutz</Link>
               <Link to="/cookies" className="text-muted-foreground hover:text-primary transition-colors">Cookies</Link>
               <Link to="/agb" className="text-muted-foreground hover:text-primary transition-colors">AGB</Link>
-            </div>
-          </div>
-          <div className="hidden sm:flex items-center gap-8">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-primary/40 font-black italic">
-              <Globe className="h-3 w-3" />
-              <span>{t('spqr')}</span>
             </div>
           </div>
         </div>

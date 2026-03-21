@@ -1,21 +1,13 @@
 // Determine API base URL based on environment
 export function getApiBase(): string {
-    // Use Cloudflare Workers for all API calls to avoid Access issues
-    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
-        // In development, use relative URL since Vite proxy handles /api routing
-        return '';
-    }
-    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    // Use same-origin /api in both dev and production.
+    // In dev, Vite proxies /api to the local backend; in production, Cloudflare serves /api.
     return '/api';
 }
 
 // Specialized function for user-generated content APIs (comments, profile, etc.)
 export function getUserApiBase(): string {
-    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
-        // In development, use relative URL since Vite proxy handles /api routing
-        return '';
-    }
-    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    // Keep user-content APIs on same-origin /api for consistent routing.
     return '/api';
 }
 // Add request cache for GET requests to avoid redundant network calls
@@ -38,6 +30,13 @@ async function cachedFetch(url: string, options?: RequestInit) {
             console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
             throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
+        const contentType = res.headers.get('content-type') || '';
+        if (!contentType.toLowerCase().includes('application/json')) {
+            const raw = await res.text();
+            const preview = raw.slice(0, 160).replace(/\s+/g, ' ').trim();
+            throw new Error(`Expected JSON but got ${contentType || 'unknown content-type'} for ${url}. Response starts with: ${preview}`);
+        }
+
         const data = await res.json();
         // Log successful fetch with data source info
         if (dataSource) {
@@ -368,38 +367,81 @@ type AiResource = { title: string; type: 'map' | 'text' | 'lexicon'; description
 export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
-    const url = isDev
-        ? new URL('https://caesar.schaechner.workers.dev/')
-        : new URL('/api/ask', origin || '');
-    url.searchParams.set('persona', persona);
-    url.searchParams.set('ask', question);
+    const primaryUrl = isDev
+        ? new URL('/', 'https://caesar.schaechner.workers.dev')
+        : new URL('/api/ask', origin || 'http://localhost');
+    primaryUrl.searchParams.set('persona', persona);
+    primaryUrl.searchParams.set('ask', question);
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
-    if (sitemap) url.searchParams.set('sitemap', sitemap);
-    const res = await fetch(url.toString(), {
+    if (sitemap) primaryUrl.searchParams.set('sitemap', sitemap);
+
+    if (import.meta.env.DEV) console.log(`[Frontend] askAI request: persona=${persona}, question="${question.substring(0, 40)}..."${sitemap ? ', with sitemap' : ''}`);
+    let res = await fetch(primaryUrl.toString(), {
         method: 'GET',
         headers: { 'accept': 'application/json' }
     });
+
+    if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        if (import.meta.env.DEV) console.warn(`[Frontend] Primary URL failed (${res.status}), trying fallback...`);
+        const fallbackUrl = new URL('/', 'https://caesar.schaechner.workers.dev');
+        fallbackUrl.searchParams.set('persona', persona);
+        fallbackUrl.searchParams.set('ask', question);
+        if (sitemap) fallbackUrl.searchParams.set('sitemap', sitemap);
+        res = await fetch(fallbackUrl.toString(), {
+            method: 'GET',
+            headers: { 'accept': 'application/json' }
+        });
+    }
+
     if (!res.ok) {
+        console.error(`[Frontend] AI request failed: ${res.status} ${res.statusText}`);
         throw new Error(`AI request failed: ${res.status} ${res.statusText}`);
     }
+    
     const json = await res.json();
+    if (import.meta.env.DEV) console.log(`[Frontend] AI response received:`, {
+        hasResponse: !!json?.response,
+        hasResources: !!json?.resources,
+        resourceCount: json?.resources?.length || 0
+    });
+    
     // Worker returns shape: { persona, inputs, response: { response: string }, resources?: [] }
     const text = json?.response?.response ?? json?.response ?? JSON.stringify(json);
     const resources: AiResource[] | undefined = json?.resources;
+    
+    if (import.meta.env.DEV) {
+        if (resources && resources.length > 0) {
+            console.log(`[Frontend] Resources available:`, resources.map(r => ({ title: r.title, link: r.link, type: r.type })));
+        } else {
+            console.warn(`[Frontend] No resources returned from worker`);
+        }
+    }
+    
     const finalText = typeof text === 'string' ? text : String(text);
     return { text: finalText, resources };
 }
 export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
-    const url = isDev
-        ? new URL('https://caesar.schaechner.workers.dev/simulate')
-        : new URL('/api/simulate', origin || '');
-    const res = await fetch(url.toString(), {
+    const payload = { persona, scenario, history, choice };
+    const primaryUrl = isDev
+        ? new URL('/simulate', 'https://caesar.schaechner.workers.dev')
+        : new URL('/api/simulate', origin || 'http://localhost');
+    let res = await fetch(primaryUrl.toString(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ persona, scenario, history, choice })
+        body: JSON.stringify(payload)
     });
+
+    if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        const fallbackUrl = new URL('/simulate', 'https://caesar.schaechner.workers.dev');
+        res = await fetch(fallbackUrl.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+    }
+
     if (!res.ok) {
         throw new Error(`Simulation failed: ${res.status}`);
     }

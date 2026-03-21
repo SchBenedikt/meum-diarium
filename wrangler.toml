@@ -3,14 +3,6 @@ compatibility_date = "2025-12-08"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
-# Disable Cloudflare Analytics
-[analytics]
-enabled = false
-
-# Pages Functions configuration
-[functions]
-# The functions directory is automatically detected by Cloudflare Pages
-
 # D1 Database bindings
 [[d1_databases]]
 binding = "DB"

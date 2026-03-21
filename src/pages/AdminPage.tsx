@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useLanguage } from '@/context/LanguageContext';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -27,7 +26,6 @@ import { SearchFilter } from '@/components/SearchFilter';
 import { TranslationEditor } from '@/components/admin/TranslationEditor';
 import { useQueryClient } from '@tanstack/react-query';
 export default function AdminPage() {
-    const { t } = useLanguage();
     const { adminLogout, isAdminAuthenticated } = useAuth();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -220,15 +218,18 @@ export default function AdminPage() {
         }
     };
     return (
-        <div className="container mx-auto py-10 px-4 max-w-7xl pt-24 sm:pt-28">
+        <div className="container mx-auto py-6 px-4 max-w-7xl">
             {/* Header */}
-            <div className="mb-10">
-                <div className="flex items-center justify-between mb-2">
+            <div className="mb-8 rounded-3xl border border-border/60 bg-gradient-to-br from-card via-card to-primary/5 p-6 sm:p-8">
+                <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+                        <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
                             <LayoutDashboard className="h-5 w-5 text-primary" />
                         </div>
-                        <h1 className="font-display text-3xl font-bold">Admin</h1>
+                        <div>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Control Center</p>
+                            <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">Admin Dashboard</h1>
+                        </div>
                     </div>
                     <Button
                         variant="outline"
@@ -238,13 +239,17 @@ export default function AdminPage() {
                             navigate('/admin/login');
                             toast.success('Erfolgreich abgemeldet');
                         }}
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 rounded-full"
                     >
                         <LogOut className="h-4 w-4" />
                         Abmelden
                     </Button>
                 </div>
-                <p className="text-muted-foreground">Beiträge, Lexikon, Autoren und Übersetzungen verwalten</p>
+
+                <p className="text-muted-foreground max-w-3xl">
+                    Beiträge, Autoren, Werke, Lexikon und Übersetzungen an einem Ort. Fokus auf schnelle Abläufe,
+                    klare Zustände und weniger Klickwege.
+                </p>
             </div>
             {/* Stats */}
             <QuickStats stats={[
@@ -256,7 +261,7 @@ export default function AdminPage() {
             {/* Quick Links */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 my-8">
                 {quickLinks.map((link) => (
-                    <Card key={link.title} className="hover:border-primary/50 transition-colors">
+                    <Card key={link.title} className="border-border/60 hover:border-primary/40 hover:shadow-md transition-all">
                         <CardHeader className="p-4">
                             <div className="flex items-center justify-between">
                                 <div className="p-2 rounded-lg bg-primary/10">
@@ -275,14 +280,16 @@ export default function AdminPage() {
                 ))}
             </div>
             <Tabs defaultValue="posts" className="w-full">
-                <TabsList className="grid w-full grid-cols-6 mb-8">
-                    <TabsTrigger value="posts">Beiträge</TabsTrigger>
-                    <TabsTrigger value="authors">Autoren</TabsTrigger>
-                    <TabsTrigger value="works">Werke</TabsTrigger>
-                    <TabsTrigger value="lexicon">Lexikon</TabsTrigger>
-                    <TabsTrigger value="tags">Tags</TabsTrigger>
-                    <TabsTrigger value="translations">i18n</TabsTrigger>
-                </TabsList>
+                <div className="sticky top-16 z-20 mb-8 -mx-1 px-1 py-2 bg-background/80 backdrop-blur-xl border-y border-border/40">
+                    <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1 h-auto p-1.5 bg-muted/60">
+                        <TabsTrigger value="posts" className="rounded-lg">Beiträge</TabsTrigger>
+                        <TabsTrigger value="authors" className="rounded-lg">Autoren</TabsTrigger>
+                        <TabsTrigger value="works" className="rounded-lg">Werke</TabsTrigger>
+                        <TabsTrigger value="lexicon" className="rounded-lg">Lexikon</TabsTrigger>
+                        <TabsTrigger value="tags" className="rounded-lg">Tags</TabsTrigger>
+                        <TabsTrigger value="translations" className="rounded-lg">i18n</TabsTrigger>
+                    </TabsList>
+                </div>
                 {/* Posts Tab */}
                 <TabsContent value="posts">
                     <Card>
@@ -313,6 +320,7 @@ export default function AdminPage() {
                                     { value: 'cicero', label: 'Cicero' },
                                     { value: 'augustus', label: 'Augustus' },
                                     { value: 'seneca', label: 'Seneca' },
+                                    { value: 'catilina', label: 'Catilina' },
                                 ]}
                             />
                             <div className="overflow-x-auto">

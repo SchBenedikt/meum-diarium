@@ -7,7 +7,7 @@
   "birthYear": -4,
   "deathYear": 65,
   "description": "Einer der meistgelesenen Schriftsteller seiner Zeit, stoischer Philosoph, Naturforscher und Staatsmann. Erzieher und Berater des jungen Nero.",
-  "heroImage": "/images/seneca-hero.jpg",
+  "heroImage": "/images/seneca-hero.png",
   "theme": "theme-cicero",
   "color": "hsl(140, 40%, 40%)",
   "highlights": [
