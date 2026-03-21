@@ -179,21 +179,6 @@ const aiEndpoints: Endpoint[] = [
     ],
     response: '{ narrative, stats, options, ended }',
   },
-  {
-    method: 'POST',
-    path: '/api/latin/analyze',
-    title: 'Satzanalyse',
-    description: 'AI-gestützte grammatikalische Analyse eines lateinischen Satzes.',
-    response: '{ sentence, analysis[], format }',
-  },
-  {
-    method: 'POST',
-    path: '/api/latin/translate',
-    title: 'Übersetzung',
-    description: 'AI-gestützte Übersetzung (literal/meaningful).',
-    params: [{ name: 'type', description: 'literal | meaningful' }],
-    response: '{ sentence, type, translation }',
-  },
 ];
 
 const systemEndpoints: Endpoint[] = [
