@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapOff, Home, Search } from "lucide-react";
+import { ArrowLeft, AlertCircle, Home, Search } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 
@@ -73,7 +73,7 @@ const NotFound = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                   className="absolute -right-12 top-8"
                 >
-                  <MapOff className="h-10 w-10 text-primary/60" />
+                  <AlertCircle className="h-10 w-10 text-primary/60" />
                 </motion.div>
               </div>
             </div>
