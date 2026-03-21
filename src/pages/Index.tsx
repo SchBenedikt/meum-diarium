@@ -68,6 +68,9 @@ const Index = () => {
   }
   const author = currentAuthor ? dbAuthors[currentAuthor] : null;
   const translatedAuthor = currentAuthor ? getTranslatedAuthorInfo(currentAuthor, t) : null;
+  const floatingChatLabel = translatedAuthor
+    ? `Chatte mit ${translatedAuthor.name.split(' ')[0]}`
+    : 'Chatte mit dem Autor';
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
@@ -193,66 +196,80 @@ const Index = () => {
       <AnimatePresence>
         {currentAuthor && showFloatingComposer && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className={isFloatingExpanded
               ? 'fixed inset-x-4 bottom-4 z-[90] md:inset-x-8'
               : 'fixed inset-x-4 bottom-4 z-[90]'}
           >
-            {!isFloatingExpanded ? (
-              <button
-                type="button"
-                onClick={() => setIsFloatingExpanded(true)}
-                className="block w-full max-w-sm mx-auto rounded-2xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/45 transition-colors"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <Zap className="h-4 w-4 text-primary" />
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">Schnell in den KI-Chat</p>
-                </div>
-                <div className="rounded-xl border border-border/60 bg-secondary/30 px-3 py-2.5 text-sm text-muted-foreground">
-                  Nachricht schreiben...
-                </div>
-              </button>
-            ) : (
-              <div className="mx-auto max-w-4xl rounded-3xl border border-primary/20 bg-card/95 backdrop-blur-xl shadow-2xl p-3 sm:p-4">
-                <div className="flex items-center justify-between gap-3 mb-2 px-1">
-                  <div className="flex items-center gap-2">
+            <AnimatePresence mode="wait" initial={false}>
+              {!isFloatingExpanded ? (
+                <motion.button
+                  key="floating-chat-collapsed"
+                  type="button"
+                  onClick={() => setIsFloatingExpanded(true)}
+                  initial={{ opacity: 0, y: 14, scale: 0.985 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                  className="block w-full max-w-sm mx-auto rounded-2xl border border-border/40 bg-background/70 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/40 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2">
                     <Zap className="h-4 w-4 text-primary" />
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">Schnell in den KI-Chat</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">{floatingChatLabel}</p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setIsFloatingExpanded(false)}
-                    className="h-7 w-7 rounded-md inline-flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/70 transition-colors"
-                    aria-label="Eingabefeld minimieren"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
-                <div className="relative flex items-center gap-2">
-                  <Input
-                    value={question}
-                    onChange={(e) => setQuestion(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') openChatFromComposer();
-                      if (e.key === 'Escape') setIsFloatingExpanded(false);
-                    }}
-                    placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
-                    className="pr-12 py-2 text-base bg-secondary/40 border-primary/10 focus-visible:ring-primary/30 rounded-xl"
-                    autoFocus
-                  />
-                  <Button
-                    size="icon"
-                    onClick={openChatFromComposer}
-                    className="absolute right-1.5 h-9 w-9 rounded-xl"
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
+                  <div className="rounded-xl border border-border/60 bg-background/60 backdrop-blur-sm px-3 py-2.5 text-sm text-muted-foreground">
+                    Nachricht schreiben...
+                  </div>
+                </motion.button>
+              ) : (
+                <motion.div
+                  key="floating-chat-expanded"
+                  initial={{ opacity: 0, y: 12, scale: 0.99 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.985 }}
+                  transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  className="mx-auto max-w-4xl rounded-3xl border border-border/40 bg-background/70 backdrop-blur-xl shadow-2xl p-3 sm:p-4"
+                >
+                  <div className="flex items-center justify-between gap-3 mb-2 px-1">
+                    <div className="flex items-center gap-2">
+                      <Zap className="h-4 w-4 text-primary" />
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">{floatingChatLabel}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsFloatingExpanded(false)}
+                      className="h-7 w-7 rounded-md inline-flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/70 transition-colors"
+                      aria-label="Eingabefeld minimieren"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="relative flex items-center gap-2">
+                    <Input
+                      value={question}
+                      onChange={(e) => setQuestion(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') openChatFromComposer();
+                        if (e.key === 'Escape') setIsFloatingExpanded(false);
+                      }}
+                      placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
+                      className="pr-12 py-2 text-base bg-background/60 border-border/40 focus-visible:ring-primary/30 rounded-xl backdrop-blur-sm"
+                      autoFocus
+                    />
+                    <Button
+                      size="icon"
+                      onClick={openChatFromComposer}
+                      className="absolute right-1.5 h-9 w-9 rounded-xl"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>

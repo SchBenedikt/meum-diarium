@@ -368,17 +368,30 @@ type AiResource = { title: string; type: 'map' | 'text' | 'lexicon'; description
 export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
-    const url = isDev
-        ? new URL('https://caesar.schaechner.workers.dev/')
-        : new URL('/api/ask', origin || '');
-    url.searchParams.set('persona', persona);
-    url.searchParams.set('ask', question);
+    const primaryUrl = isDev
+        ? new URL('/', 'https://caesar.schaechner.workers.dev')
+        : new URL('/api/ask', origin || 'http://localhost');
+    primaryUrl.searchParams.set('persona', persona);
+    primaryUrl.searchParams.set('ask', question);
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
-    if (sitemap) url.searchParams.set('sitemap', sitemap);
-    const res = await fetch(url.toString(), {
+    if (sitemap) primaryUrl.searchParams.set('sitemap', sitemap);
+
+    let res = await fetch(primaryUrl.toString(), {
         method: 'GET',
         headers: { 'accept': 'application/json' }
     });
+
+    if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        const fallbackUrl = new URL('/', 'https://caesar.schaechner.workers.dev');
+        fallbackUrl.searchParams.set('persona', persona);
+        fallbackUrl.searchParams.set('ask', question);
+        if (sitemap) fallbackUrl.searchParams.set('sitemap', sitemap);
+        res = await fetch(fallbackUrl.toString(), {
+            method: 'GET',
+            headers: { 'accept': 'application/json' }
+        });
+    }
+
     if (!res.ok) {
         throw new Error(`AI request failed: ${res.status} ${res.statusText}`);
     }
@@ -392,14 +405,25 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
 export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
-    const url = isDev
-        ? new URL('https://caesar.schaechner.workers.dev/simulate')
-        : new URL('/api/simulate', origin || '');
-    const res = await fetch(url.toString(), {
+    const payload = { persona, scenario, history, choice };
+    const primaryUrl = isDev
+        ? new URL('/simulate', 'https://caesar.schaechner.workers.dev')
+        : new URL('/api/simulate', origin || 'http://localhost');
+    let res = await fetch(primaryUrl.toString(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ persona, scenario, history, choice })
+        body: JSON.stringify(payload)
     });
+
+    if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        const fallbackUrl = new URL('/simulate', 'https://caesar.schaechner.workers.dev');
+        res = await fetch(fallbackUrl.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+    }
+
     if (!res.ok) {
         throw new Error(`Simulation failed: ${res.status}`);
     }

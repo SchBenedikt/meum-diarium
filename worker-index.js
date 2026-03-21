@@ -69,6 +69,26 @@ export default {
         let historyParam = url.searchParams.get("history") || (body?.history ? JSON.stringify(body.history) : null);
         let sitemapUrl = url.searchParams.get("sitemap") || body?.sitemap;
 
+        // Route: explicit AI API aliases to avoid accidental proxying
+        if (pathname === '/api/ask') {
+            if (!question) {
+                return new Response(JSON.stringify({ error: 'Missing ask parameter' }), {
+                    status: 400,
+                    headers: corsHeaders(),
+                });
+            }
+            const aiResult = await handleAiChat(request, env, persona, question, historyParam, sitemapUrl);
+            return new Response(JSON.stringify(aiResult), { headers: corsHeaders() });
+        }
+
+        if (pathname === '/api/explain') {
+            return handleExplainTerm(request, env, url, body);
+        }
+
+        if (pathname === '/api/simulate') {
+            return handleSimulation(request, env, url, body);
+        }
+
         // Route: /api - Only proxy write operations or specific AI queries.
         // Standard content GET requests should fall through to Pages (static assets or Functions).
         if (pathname.startsWith('/api') && (["POST", "PUT", "DELETE"].includes(request.method) || question)) {
@@ -76,11 +96,11 @@ export default {
             if (pathname.startsWith('/api/translations/works/')) {
                 // Already handled above, continue to next route
             } else {
-                const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+                const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
                 const proxyUrl = new URL(url.pathname + url.search, baseBackendUrl);
 
                 // Safety: Don't proxy back to self to avoid infinite loops
-                if (url.hostname !== "meum-diarium.xn--schchner-2za.de") {
+                if (url.hostname !== "meum-diarium.xn--schner-2za.de") {
                     try {
                         const headers = {
                             "Content-Type": "application/json",
@@ -418,7 +438,7 @@ function expandKeyword(k) {
 // Stats endpoint
 // =======================================
 async function handleStats() {
-    const baseUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseUrl = "https://meum-diarium.xn--schner-2za.de";
     const statsUrl = new URL('/api/stats-base', baseUrl);
 
     try {
@@ -681,7 +701,7 @@ KRITISCH WICHTIG:
 // Comments endpoint - proxy to backend
 // =======================================
 async function handleComments(request, env, url, body) {
-    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
     // Fix: Explicitly target /api/comments on backend
     const proxyUrl = new URL('/api/comments' + url.search, baseBackendUrl);
 
@@ -721,7 +741,7 @@ async function handleComments(request, env, url, body) {
 // Work Translations endpoint
 // =======================================
 async function handleWorkTranslations(request, env, url, body, pathname) {
-    const baseBackendUrl = "https://meum-diarium.xn--schchner-2za.de";
+    const baseBackendUrl = "https://meum-diarium.xn--schner-2za.de";
     
     // Extract work ID and language from pathname
     // Pattern: /api/translations/works/:workId or /api/translations/works/:workId/:lang

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
@@ -23,6 +23,8 @@ import { PostTags } from '@/components/PostTags';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { getApiBase } from '@/lib/api';
 import { usePageTracking } from '@/hooks/usePageTracking';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 const calculateReadingTime = (text: string): number => {
   if (!text) return 0;
   const wordsPerMinute = 200;
@@ -32,8 +34,10 @@ const calculateReadingTime = (text: string): number => {
 function PostContent({ post }: { post: BlogPost }) {
   const { t, language } = useLanguage();
   const { user, token } = useAuth();
+  const navigate = useNavigate();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
   const [searchParams] = useSearchParams();
+  const [chatQuestion, setChatQuestion] = useState('');
   // Compute content availability once; used for initial perspective and the toggle visibility.
   const hasDiary = Boolean(post?.content?.diary?.trim().length);
   const hasScientific = Boolean(post?.content?.scientific?.trim().length);
@@ -114,6 +118,18 @@ function PostContent({ post }: { post: BlogPost }) {
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
   const finalImage = `${baseUrl}/images/caesar-hero.png`;
   const currentUrl = window.location.href;
+  const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
+
+  const openAuthorChat = useCallback(() => {
+    const authorId = post?.author;
+    if (!authorId) return;
+    const question = chatQuestion.trim();
+    navigate(question.length > 0
+      ? `/${authorId}/chat?q=${encodeURIComponent(question)}`
+      : `/${authorId}/chat`
+    );
+  }, [chatQuestion, navigate, post?.author]);
+
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
       <SEO
@@ -188,6 +204,27 @@ function PostContent({ post }: { post: BlogPost }) {
                       alt={post.title}
                       className="w-full h-full object-cover"
                     />
+                  </div>
+                  <div className="rounded-2xl border border-border/40 bg-background/70 backdrop-blur-xl p-3 sm:p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                        {t('index.historicalChat')}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Input
+                        value={chatQuestion}
+                        onChange={(e) => setChatQuestion(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') openAuthorChat();
+                        }}
+                        placeholder={t('index.chatPlaceholder', { name: chatAuthorName })}
+                        className="h-11 bg-background/60 border-border/50 focus-visible:ring-primary/30"
+                      />
+                      <Button type="button" size="icon" className="h-11 w-11 rounded-xl" onClick={openAuthorChat}>
+                        <BookText className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-3">
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
