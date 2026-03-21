@@ -238,6 +238,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
     const res = await fetch(sitemapUrl, { method: "GET" });
     if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
     const xml = await res.text();
+    const sitemapOrigin = new URL(sitemapUrl).origin;
 
     const entries = parseSitemap(xml);
 
@@ -305,7 +306,103 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
             items.push({ title: titleFromSlug(slug), type: u.type, link: toSitePath(u.url) });
         }
     }
-    return items;
+    // Enrich with search index entries (works and topical content) for better context links.
+    const indexCandidates = await suggestFromSearchIndex(sitemapOrigin, keywords, persona);
+    for (const candidate of indexCandidates) {
+        if (!seen.has(candidate.link)) {
+            items.push(candidate);
+            seen.add(candidate.link);
+            if (items.length >= 5) break;
+        }
+    }
+
+    // Persona-aware fallback for biography and core works when context is sparse.
+    const lowerContext = `${question} ${aiResponse}`.toLowerCase();
+    if (items.length < 3) {
+        const wantsBio = /(leben|biografie|wer\s+war|hintergrund|person|vita)/i.test(lowerContext);
+        const bioLink = `/${persona}/about`;
+        if (wantsBio && !seen.has(bioLink)) {
+            items.push({
+                title: `${capitalize(persona)}: Biografie`,
+                type: 'text',
+                description: 'Überblick über Leben, Karriere und historischen Kontext.',
+                link: bioLink,
+            });
+            seen.add(bioLink);
+        }
+    }
+
+    return items.slice(0, 5);
+}
+
+async function suggestFromSearchIndex(origin, keywords, persona) {
+    try {
+        const indexRes = await fetch(`${origin}/api/search.json`, {
+            method: 'GET',
+            headers: { 'accept': 'application/json' }
+        });
+        if (!indexRes.ok) return [];
+
+        const indexJson = await indexRes.json();
+        const items = Array.isArray(indexJson?.items) ? indexJson.items : [];
+        if (!items.length) return [];
+
+        const scored = items
+            .filter((item) => item && typeof item === 'object')
+            .map((item) => {
+                const type = String(item.type || '').toLowerCase();
+                const title = String(item.title || item.slug || 'Ressource');
+                const slug = String(item.slug || '');
+                const author = String(item.author || '').toLowerCase();
+                const summary = String(item.summary || '');
+                const haystack = `${title} ${slug} ${summary}`.toLowerCase();
+
+                let score = 0;
+                for (const k of keywords) {
+                    if (!k || k.length < 3) continue;
+                    const variants = expandKeyword(k);
+                    if (variants.some((v) => v && haystack.includes(v))) score += 2;
+                }
+
+                if (author === persona) score += 3;
+                if (type === 'work') score += 2;
+
+                const link = linkFromIndexItem(type, author, slug);
+                return {
+                    score,
+                    title,
+                    summary,
+                    link,
+                    type: type === 'lexicon' ? 'lexicon' : 'text'
+                };
+            })
+            .filter((entry) => entry.link && entry.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 4)
+            .map((entry) => ({
+                title: entry.title,
+                type: entry.type,
+                description: entry.summary ? entry.summary.slice(0, 160) : undefined,
+                link: entry.link,
+            }));
+
+        return scored;
+    } catch {
+        return [];
+    }
+}
+
+function linkFromIndexItem(type, author, slug) {
+    if (!slug) return '';
+    if (type === 'work' && author) return `/${author}/works/${slug}`;
+    if (type === 'lexicon') return `/lexicon/${slug}`;
+    if (type === 'post' && author) return `/${author}/${slug}`;
+    return `/${slug}`;
+}
+
+function capitalize(value) {
+    if (!value) return value;
+    return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 function parseSitemap(xml) {

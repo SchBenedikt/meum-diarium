@@ -18,9 +18,16 @@ export default defineConfig(({ mode }) => ({
         target: 'http://localhost:3001',
         changeOrigin: true,
         bypass: (req) => {
+          const requestUrl = req.url || '';
+
+          // Serve static JSON assets directly from Vite/public (avoid proxy ECONNREFUSED).
+          if (/^\/api\/.*\.json(?:\?.*)?$/.test(requestUrl)) {
+            return requestUrl;
+          }
+
           // If the request is exactly /api or /api/, served by the frontend
-          if (req.url === '/api' || req.url === '/api/') {
-            return req.url;
+          if (requestUrl === '/api' || requestUrl === '/api/') {
+            return requestUrl;
           }
           // Otherwise, proceed with proxying
           return null;
