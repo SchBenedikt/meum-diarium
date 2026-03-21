@@ -383,34 +383,36 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         }
     }
 
-    // Final safety net: if scoring produced nothing, still return likely content URLs.
+    // Final safety net: if scoring produced nothing, return generally relevant URLs.
     if (items.length === 0 && entries.length > 0) {
         console.log(`[Resources] Applying final URL fallback from sitemap entries...`);
+        const variants = new Set();
+        for (const k of keywords) {
+            for (const v of expandKeyword(k)) variants.add(v);
+        }
+        const variantList = Array.from(variants).filter(Boolean);
+
         const fallbackCandidates = entries
-            .map((u) => toSitePath(u.loc))
-            .filter((path) => isLikelyContentPath(path))
-            .map((path) => {
-                const lower = path.toLowerCase();
+            .map((u) => {
+                const path = toSitePath(u.loc);
+                const lower = String(path || '').toLowerCase();
                 let score = 0;
 
-                // Prefer persona-matching URLs if available, but keep generic support.
-                if (persona && lower.includes(`/${persona.toLowerCase()}/`)) score += 3;
-
-                for (const k of keywords) {
-                    if (!k || k.length < 3) continue;
-                    const variants = expandKeyword(k);
-                    if (variants.some((v) => v && lower.includes(v))) score += 2;
+                for (const v of variantList) {
+                    if (v && lower.includes(v)) score += 2;
                 }
+                if (lower.includes('/lexicon/')) score += 2;
+                if (lower.includes('/works/')) score += 1.5;
+                if (/\/[a-z0-9-]+\/[a-z0-9-]+/.test(lower)) score += 1;
 
-                if (lower.includes('/lexicon/')) score += 1;
-                if (lower.includes('/works/')) score += 1;
                 return { path, score };
             })
+            .filter((x) => x.path)
             .sort((a, b) => b.score - a.score)
-            .map((entry) => entry.path)
-            .slice(0, 5);
+            .slice(0, 8);
 
-        for (const path of fallbackCandidates) {
+        for (const candidate of fallbackCandidates) {
+            const path = candidate.path;
             if (!seen.has(path)) {
                 const slug = extractSlug(path);
                 items.push({
@@ -526,11 +528,14 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
         const results = [];
         const seen = new Set();
 
-        // 1. Search posts by author_id and content
-        console.log(`[D1Resources] Querying posts for author="${persona}"...`);
+        // 1. Search ALL posts by topic relevance; persona only boosts ranking.
+        console.log(`[D1Resources] Querying posts across all authors...`);
         try {
             const postsResult = await env.DB.prepare(
-                `SELECT id, slug, title, content FROM posts WHERE author_id = ? LIMIT 15`
+                `SELECT id, slug, title, content, author_id
+                 FROM posts
+                 ORDER BY CASE WHEN lower(author_id) = ? THEN 0 ELSE 1 END, id DESC
+                 LIMIT 400`
             ).bind(persona).all();
 
             console.log(`[D1Resources] Posts query result:`, {
@@ -540,10 +545,10 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
             });
 
             if (postsResult.success && postsResult.results && postsResult.results.length > 0) {
-                console.log(`[D1Resources] ✓ Found ${postsResult.results.length} posts by author="${persona}"`);
+                console.log(`[D1Resources] ✓ Loaded ${postsResult.results.length} posts from DB`);
                 
                 for (const post of postsResult.results) {
-                    console.log(`[D1Resources]   Processing post: ${post.slug}`);
+                    console.log(`[D1Resources]   Processing post: ${post.slug} (author=${post.author_id || 'unknown'})`);
                     
                     // content is stored as JSON string: { diary: "...", scientific: "..." }
                     let contentText = post.title || '';
@@ -569,9 +574,14 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                             matchedKeywords.push(k);
                         }
                     }
+
+                    if ((post.author_id || '').toLowerCase() === persona) {
+                        score += 2;
+                    }
                     
                     if (score > 0) {
-                        const link = `/${persona}/${post.slug}`;
+                        const postAuthor = (post.author_id || persona || '').toLowerCase();
+                        const link = postAuthor ? `/${postAuthor}/${post.slug}` : `/${post.slug}`;
                         if (!seen.has(link)) {
                             results.push({
                                 title: post.title,
@@ -590,7 +600,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
             } else if (!postsResult.success) {
                 console.error(`[D1Resources] ❌ Posts query failed:`, postsResult.error);
             } else {
-                console.log(`[D1Resources] ℹ️ No posts found for author="${persona}"`);
+                console.log(`[D1Resources] ℹ️ No posts found in DB query`);
             }
         } catch (e) {
             console.error(`[D1Resources] ❌ Error querying posts:`, e.message, e.stack);
@@ -601,7 +611,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
         console.log(`[D1Resources] Querying lexicon entries...`);
         try {
             const lexiconResult = await env.DB.prepare(
-                `SELECT slug, term, definition FROM lexicon LIMIT 30`
+                `SELECT slug, term, definition FROM lexicon LIMIT 300`
             ).all();
 
             console.log(`[D1Resources] Lexicon query result:`, {
@@ -855,25 +865,6 @@ function toSitePath(url) {
     } catch {
         return url;
     }
-}
-
-function isLikelyContentPath(path) {
-    if (!path || path === '/') return false;
-    const lower = path.toLowerCase();
-
-    if (lower.startsWith('/api/')) return false;
-    if (lower.startsWith('/assets/')) return false;
-    if (lower.startsWith('/images/')) return false;
-    if (lower.startsWith('/icons/')) return false;
-    if (lower.startsWith('/static/')) return false;
-
-    if (lower.includes('/lexicon/')) return true;
-    if (lower.includes('/works/')) return true;
-    if (lower.includes('/about')) return true;
-
-    // Any non-trivial document-like path can still be useful for unknown personas/topics.
-    const segments = lower.split('/').filter(Boolean);
-    return segments.length >= 2;
 }
 
 // --- Helpers for normalization and synonyms ---
