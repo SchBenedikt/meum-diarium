@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
-import { Shield, Code2, Database, Bot, Activity, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { Shield, Code2, Database, Bot, Activity, AlertTriangle, Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 
 type Endpoint = {
   method: string;
@@ -13,43 +14,50 @@ type Endpoint = {
   notes?: string[];
 };
 
-const BASE_URL = 'https://meum-diarium.xn--schchner-2za.de';
+type EndpointGroup = {
+  id: 'content' | 'learning' | 'ai' | 'system';
+  title: string;
+  icon: React.ElementType;
+  endpoints: Endpoint[];
+};
+
+const BASE_URL = 'https://meum-diarium.xn--schner-2za.de';
 
 const contentEndpoints: Endpoint[] = [
   {
     method: 'GET',
     path: '/api/catalog',
     title: 'Katalog',
-    description: 'Übersicht über verfügbare Inhalte (Posts, Lexikon, Werke, Autoren).',
+    description: 'Uebersicht ueber verfuegbare Inhalte (Posts, Lexikon, Werke, Autoren).',
     response: '{ timestamp, counts, available_authors }',
   },
   {
     method: 'GET, POST, PUT, DELETE',
     path: '/api/posts',
-    title: 'Beiträge',
-    description: 'Beiträge listen/erstellen/aktualisieren/löschen.',
+    title: 'Beitraege',
+    description: 'Beitraege listen/erstellen/aktualisieren/loeschen.',
     params: [
       { name: 'slug', description: 'Optional: einzelner Beitrag.' },
-      { name: 'tag', description: 'Optional: Tag-Filter für Listenansicht.' },
+      { name: 'tag', description: 'Optional: Tag-Filter fuer Listenansicht.' },
     ],
     response: 'Post[] | Post',
   },
   {
     method: 'GET, PUT, DELETE',
     path: '/api/posts/{author}/{slug}',
-    title: 'Beitrag über Autor+Slug',
+    title: 'Beitrag ueber Autor+Slug',
     description: 'Direkter Zugriff auf einen konkreten Beitrag inkl. Update/Delete.',
     response: 'Post',
-    notes: ['Author-Slug wird serverseitig geprüft.'],
+    notes: ['Author-Slug wird serverseitig geprueft.'],
   },
   {
     method: 'GET, POST, PUT, DELETE',
     path: '/api/lexicon',
     title: 'Lexikon',
-    description: 'Lexikoneinträge listen und verwalten.',
+    description: 'Lexikoneintraege listen und verwalten.',
     params: [
       { name: 'slug', description: 'Optional: einzelner Eintrag.' },
-      { name: 'search', description: 'Optional: Suche über term/definition.' },
+      { name: 'search', description: 'Optional: Suche ueber term/definition.' },
       { name: 'limit', description: 'Optional: Begrenzung der Ergebniszahl.' },
     ],
     response: 'LexiconEntry[] | LexiconEntry',
@@ -74,7 +82,7 @@ const contentEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/pages/{slug}',
     title: 'Seiten-Content',
-    description: 'Liefert strukturierten JSON-Content für über-Seiten und ähnliche Inhalte.',
+    description: 'Liefert strukturierten JSON-Content fuer ueber-Seiten und aehnliche Inhalte.',
     response: 'Page JSON',
   },
 ];
@@ -115,7 +123,7 @@ const learningEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/vocab/{vokId}/form/{form}',
     title: 'Konkrete Form',
-    description: 'Form-spezifische Abfrage für eine Vokabel.',
+    description: 'Form-spezifische Abfrage fuer eine Vokabel.',
     response: '{ success, data }',
   },
   {
@@ -134,7 +142,7 @@ const learningEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/tags',
     title: 'Tags',
-    description: 'Alle verwendeten Tags aus Beiträgen.',
+    description: 'Alle verwendeten Tags aus Beitraegen.',
     response: 'string[]',
   },
 ];
@@ -144,7 +152,7 @@ const aiEndpoints: Endpoint[] = [
     method: 'GET, POST',
     path: '/api/ask',
     title: 'Persona-Chat',
-    description: 'Proxy-Endpoint für historische Persona-Antworten.',
+    description: 'Proxy-Endpoint fuer historische Persona-Antworten inkl. Ressourcen.',
     params: [
       { name: 'persona', description: 'caesar | cicero | augustus | seneca | catilina' },
       { name: 'ask', description: 'Erforderlich, max. 800 Zeichen.' },
@@ -157,8 +165,8 @@ const aiEndpoints: Endpoint[] = [
   {
     method: 'GET, POST',
     path: '/api/explain',
-    title: 'Begriffserklärung',
-    description: 'Kurz-Erklärungen zu Begriffen mit optionalem Kontext.',
+    title: 'Begriffserklaerung',
+    description: 'Kurz-Erklaerungen zu Begriffen mit optionalem Kontext.',
     params: [
       { name: 'term', description: 'Erforderlich, max. 120 Zeichen.' },
       { name: 'question', description: 'Optional, max. 500 Zeichen.' },
@@ -186,21 +194,21 @@ const systemEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/stats',
     title: 'Statistiken',
-    description: 'Aggregierte Kennzahlen über Inhalte und Tags.',
+    description: 'Aggregierte Kennzahlen ueber Inhalte und Tags.',
     response: '{ posts, authors, tags, totalReadingTime, ... }',
   },
   {
     method: 'GET',
     path: '/api/health',
     title: 'Health',
-    description: 'Service- und Binding-Status für Monitoring.',
+    description: 'Service- und Binding-Status fuer Monitoring.',
     response: '{ status, message, environment, timestamp }',
   },
   {
     method: 'GET',
     path: '/api/dashboard/stats',
     title: 'Dashboard-Stats',
-    description: 'Nutzer-/Kommentarstatistik für Dashboard (auth-gebunden).',
+    description: 'Nutzer-/Kommentarstatistik fuer Dashboard (auth-gebunden).',
     response: 'DashboardStats',
   },
   {
@@ -215,7 +223,7 @@ const systemEndpoints: Endpoint[] = [
     method: 'GET, POST, PUT, DELETE',
     path: '/api/profile',
     title: 'Profil',
-    description: 'Profilverwaltung über Bearer-Token.',
+    description: 'Profilverwaltung ueber Bearer-Token.',
     notes: ['Authorization: Bearer <token> erforderlich.'],
     response: 'UserProfile',
   },
@@ -223,16 +231,26 @@ const systemEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/debug, /api/debug-bindings',
     title: 'Debug-Endpunkte',
-    description: 'Diagnoseinformationen für Entwicklung/Deployment.',
-    notes: ['Nicht für produktive Client-Nutzung vorgesehen.'],
+    description: 'Diagnoseinformationen fuer Entwicklung/Deployment.',
+    notes: ['Nicht fuer produktive Client-Nutzung vorgesehen.'],
   },
+];
+
+const endpointGroups: EndpointGroup[] = [
+  { id: 'content', title: 'Content APIs', icon: Database, endpoints: contentEndpoints },
+  { id: 'learning', title: 'Lern- und Discovery APIs', icon: Activity, endpoints: learningEndpoints },
+  { id: 'ai', title: 'KI- und Sprach-APIs', icon: Bot, endpoints: aiEndpoints },
+  { id: 'system', title: 'System und Monitoring', icon: Shield, endpoints: systemEndpoints },
 ];
 
 const EndpointSection = ({ title, icon: Icon, endpoints }: { title: string; icon: React.ElementType; endpoints: Endpoint[] }) => (
   <section className="space-y-6">
-    <div className="flex items-center gap-3">
-      <Icon className="h-5 w-5 text-primary" />
-      <h2 className="font-display text-3xl font-bold">{title}</h2>
+    <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-3">
+        <Icon className="h-5 w-5 text-primary" />
+        <h2 className="font-display text-3xl font-bold">{title}</h2>
+      </div>
+      <Badge variant="outline" className="font-mono">{endpoints.length} Endpunkte</Badge>
     </div>
 
     <div className="grid gap-4">
@@ -291,9 +309,39 @@ const EndpointSection = ({ title, icon: Icon, endpoints }: { title: string; icon
 );
 
 export default function ApiDocsPage() {
+  const [query, setQuery] = useState('');
+  const [activeGroup, setActiveGroup] = useState<'all' | EndpointGroup['id']>('all');
+
   useEffect(() => {
     document.title = 'Meum Diarium API | Dokumentation';
   }, []);
+
+  const filteredGroups = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    return endpointGroups
+      .filter((group) => activeGroup === 'all' || group.id === activeGroup)
+      .map((group) => ({
+        ...group,
+        endpoints: group.endpoints.filter((endpoint) => {
+          if (!q) return true;
+          const haystack = [
+            endpoint.title,
+            endpoint.path,
+            endpoint.description,
+            endpoint.method,
+            ...(endpoint.params?.map((p) => `${p.name} ${p.description}`) || []),
+            ...(endpoint.notes || []),
+          ]
+            .join(' ')
+            .toLowerCase();
+          return haystack.includes(q);
+        }),
+      }))
+      .filter((group) => group.endpoints.length > 0);
+  }, [activeGroup, query]);
+
+  const totalVisible = filteredGroups.reduce((acc, group) => acc + group.endpoints.length, 0);
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
@@ -304,8 +352,8 @@ export default function ApiDocsPage() {
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight">Meum Diarium API</h1>
           <p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
-            Vollständige, aktualisierte Dokumentation der öffentlich verfügbaren Endpunkte inklusive Lern- und KI-APIs.
-            Diese Seite orientiert sich am aktuellen Implementierungsstand der Cloudflare Pages Functions.
+            Strukturierte Referenz fuer alle oeffentlichen Endpunkte. Inklusive Suche, cURL-Beispielen und
+            Implementierungsleitfaden fuer eigene Anwendungen.
           </p>
 
           <Card className="card-modern border-primary/20 bg-primary/5">
@@ -315,7 +363,7 @@ export default function ApiDocsPage() {
                 <p className="text-xs uppercase tracking-[0.2em] font-semibold">Basis-URL</p>
               </div>
               <code className="text-sm bg-background/80 px-2 py-1 rounded border border-border/50">{BASE_URL}</code>
-              <p className="text-sm text-muted-foreground">Beispiel: <span className="font-mono">curl "{BASE_URL}/api/catalog"</span></p>
+              <p className="text-sm text-muted-foreground">Empfohlener Start: GET /api/catalog, danach domain-spezifisch (Posts, Lexikon, KI).</p>
             </CardContent>
           </Card>
         </header>
@@ -325,9 +373,9 @@ export default function ApiDocsPage() {
             <CardContent className="p-5">
               <div className="flex items-center gap-2 mb-3 text-primary"><Shield className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Sicherheit</p></div>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Input-Validierung auf AI-Proxy-Endpunkten (Längen, Allowlists, URL-Prüfung).</li>
-                <li>CORS auf allen öffentlichen API-Endpunkten aktiv.</li>
-                <li>DB-Binding-Checks mit 503 bei fehlender Konfiguration.</li>
+                <li>Input-Validierung auf AI-Proxy-Endpunkten (Laengen, Allowlists, URL-Pruefung).</li>
+                <li>CORS auf allen oeffentlichen API-Endpunkten aktiv.</li>
+                <li>Bei fehlenden Bindings (z. B. D1/AI) liefern Endpunkte explizite Fehlercodes.</li>
               </ul>
             </CardContent>
           </Card>
@@ -341,21 +389,89 @@ export default function ApiDocsPage() {
             </CardContent>
           </Card>
 
-          <Card className="card-modern border-border/50 md:col-span-2">
-            <CardContent className="p-5">
-              <div className="flex items-center gap-2 mb-3 text-primary"><CheckCircle2 className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Hinweis zu Auth</p></div>
-              <p className="text-sm text-muted-foreground">
-                Nicht alle Endpunkte sind public-readonly. Besonders <span className="font-mono">/api/profile</span>, <span className="font-mono">/api/dashboard/stats</span> und <span className="font-mono">/api/reading-progress</span>
-                erwarten Header-basierte Nutzeridentifikation bzw. Token.
-              </p>
+        </section>
+
+        <section className="grid lg:grid-cols-2 gap-4">
+          <Card className="card-modern border-border/50">
+            <CardContent className="p-5 space-y-3">
+              <div className="flex items-center gap-2 text-primary"><Code2 className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Quickstart cURL</p></div>
+              <pre className="text-xs bg-secondary/60 border border-border/50 rounded p-3 overflow-x-auto">{`curl -s "${BASE_URL}/api/catalog"
+curl -s "${BASE_URL}/api/posts?tag=caesar"
+curl -s "${BASE_URL}/api/ask?persona=caesar&ask=Was%20war%20der%20Rubikon%3F"`}</pre>
+            </CardContent>
+          </Card>
+
+          <Card className="card-modern border-border/50">
+            <CardContent className="p-5 space-y-3">
+              <div className="flex items-center gap-2 text-primary"><Code2 className="h-4 w-4" /><p className="text-xs uppercase tracking-[0.2em] font-semibold">Integration (fetch)</p></div>
+              <pre className="text-xs bg-secondary/60 border border-border/50 rounded p-3 overflow-x-auto">{`const API = "${BASE_URL}";
+
+export async function askCaesar(question) {
+  const url = API + "/api/ask?persona=caesar&ask=" + encodeURIComponent(question);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("API error " + res.status);
+  return res.json();
+}`}</pre>
             </CardContent>
           </Card>
         </section>
 
-        <EndpointSection title="Content APIs" icon={Database} endpoints={contentEndpoints} />
-        <EndpointSection title="Lern- und Discovery APIs" icon={Activity} endpoints={learningEndpoints} />
-        <EndpointSection title="KI- und Sprach-APIs" icon={Bot} endpoints={aiEndpoints} />
-        <EndpointSection title="System und Monitoring" icon={Shield} endpoints={systemEndpoints} />
+        <section className="space-y-4">
+          <div className="flex items-center gap-2 text-primary">
+            <Search className="h-4 w-4" />
+            <p className="text-xs uppercase tracking-[0.2em] font-semibold">Endpoint-Finder</p>
+          </div>
+
+          <div className="grid md:grid-cols-[1fr_auto] gap-3">
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Suche nach Pfad, Methode, Parameter oder Beschreibung..."
+              className="bg-card/70"
+            />
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: 'all', label: 'Alle' },
+                { id: 'content', label: 'Content' },
+                { id: 'learning', label: 'Lernen' },
+                { id: 'ai', label: 'KI' },
+                { id: 'system', label: 'System' },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveGroup(item.id as 'all' | EndpointGroup['id'])}
+                  className={`px-3 py-1.5 rounded-md text-xs border transition-colors ${
+                    activeGroup === item.id
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'bg-card/60 border-border/60 text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-sm text-muted-foreground">{totalVisible} Endpunkte sichtbar</p>
+        </section>
+
+        {filteredGroups.length > 0 ? (
+          filteredGroups.map((group) => (
+            <EndpointSection
+              key={group.id}
+              title={group.title}
+              icon={group.icon}
+              endpoints={group.endpoints}
+            />
+          ))
+        ) : (
+          <Card className="card-modern border-border/50">
+            <CardContent className="p-6 text-sm text-muted-foreground">
+              Keine Endpunkte fuer diese Suche gefunden. Versuche kuerzere Begriffe wie "posts", "ask" oder "vocab".
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );

@@ -214,13 +214,13 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.98 }}
                   transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  className="block w-full max-w-sm mx-auto rounded-2xl border border-border/40 bg-background/70 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/40 transition-colors"
+                  className="block w-full max-w-sm mx-auto rounded-2xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl shadow-2xl p-3 text-left hover:border-primary/40 transition-colors"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Zap className="h-4 w-4 text-primary" />
                     <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">{floatingChatLabel}</p>
                   </div>
-                  <div className="rounded-xl border border-border/60 bg-background/60 backdrop-blur-sm px-3 py-2.5 text-sm text-muted-foreground">
+                  <div className="rounded-xl border border-border/60 bg-white/85 dark:bg-card/90 backdrop-blur-sm px-3 py-2.5 text-sm text-muted-foreground">
                     Nachricht schreiben...
                   </div>
                 </motion.button>
@@ -231,7 +231,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.985 }}
                   transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                  className="mx-auto max-w-4xl rounded-3xl border border-border/40 bg-background/70 backdrop-blur-xl shadow-2xl p-3 sm:p-4"
+                  className="mx-auto max-w-4xl rounded-3xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl shadow-2xl p-3 sm:p-4"
                 >
                   <div className="flex items-center justify-between gap-3 mb-2 px-1">
                     <div className="flex items-center gap-2">
@@ -256,7 +256,7 @@ const Index = () => {
                         if (e.key === 'Escape') setIsFloatingExpanded(false);
                       }}
                       placeholder={t('index.chatPlaceholder', { name: translatedAuthor?.name.split(' ')[0] })}
-                      className="pr-12 py-2 text-base bg-background/60 border-border/40 focus-visible:ring-primary/30 rounded-xl backdrop-blur-sm"
+                      className="pr-12 py-2 text-base bg-white/85 dark:bg-card/90 border-border/50 focus-visible:ring-primary/30 rounded-xl backdrop-blur-sm"
                       autoFocus
                     />
                     <Button

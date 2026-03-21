@@ -220,8 +220,19 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
     let resources = [];
     if (sitemapUrl) {
         try {
-            resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
-        } catch (e) { }
+            console.log(`[AI Chat] Generating resources for persona=${persona}, question="${question.substring(0, 50)}..."`);
+            // Try D1 first (more reliable), fall back to sitemap
+            resources = await suggestResourcesFromD1(env, persona, question, aiResponse.response || "");
+            if (resources.length === 0) {
+                console.log(`[AI Chat] D1 returned no resources, trying sitemap fallback...`);
+                resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
+            }
+            console.log(`[AI Chat] Generated ${resources.length} resources: ${resources.map(r => r.link).join(", ")}`);
+        } catch (e) {
+            console.error(`[AI Chat] Error generating resources: ${e.message}`, e);
+        }
+    } else {
+        console.warn(`[AI Chat] No sitemapUrl provided, skipping resource suggestions`);
     }
 
     return {
@@ -235,18 +246,22 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
 
 
 async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse) {
+    console.log(`[Resources] Starting suggestResourcesFromSitemap for persona=${persona}`);
     const res = await fetch(sitemapUrl, { method: "GET" });
     if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
     const xml = await res.text();
+    console.log(`[Resources] Fetched sitemap, length=${xml.length}`);
     const sitemapOrigin = new URL(sitemapUrl).origin;
 
     const entries = parseSitemap(xml);
+    console.log(`[Resources] Parsed ${entries.length} sitemap entries`);
 
     // Combine question and AI response for better keyword extraction
     const fullContext = `${question} ${aiResponse}`.toLowerCase();
 
     // Extract important keywords from both question and response
     const keywords = extractKeywords(fullContext, persona);
+    console.log(`[Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}...`);
 
     const scored = entries.map(u => {
         const slug = extractSlug(u.loc);
@@ -268,6 +283,9 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         .filter(s => s.score > 0)
         .sort((a, b) => b.score - a.score)
         .slice(0, 5);
+    
+    console.log(`[Resources] Top scored URLs (score > 0): ${top.length} found`);
+    top.forEach(t => console.log(`  - ${t.slug} (score=${t.score})`));
 
     const seen = new Set();
     const items = [];
@@ -283,8 +301,12 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
             if (items.length >= 3) break;
         }
     }
+    
+    console.log(`[Resources] Collected ${items.length} items from top scores`);
+    
     // Fallback: if nothing matched, try loose contains with expanded keywords (prefer lexicon)
     if (items.length === 0 && keywords.length) {
+        console.log(`[Resources] No top matches, trying fallback with loose keyword matching...`);
         const variants = new Set();
         for (const k of keywords) {
             for (const v of expandKeyword(k)) variants.add(v);
@@ -301,13 +323,17 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
                 return a.url.length - b.url.length;
             })
             .slice(0, 3);
+        console.log(`[Resources] Fallback found ${loose.length} matches`);
         for (const u of loose) {
             const slug = extractSlug(u.url);
             items.push({ title: titleFromSlug(slug), type: u.type, link: toSitePath(u.url) });
         }
     }
+    
     // Enrich with search index entries (works and topical content) for better context links.
+    console.log(`[Resources] Fetching search index for enrichment...`);
     const indexCandidates = await suggestFromSearchIndex(sitemapOrigin, keywords, persona);
+    console.log(`[Resources] Search index returned ${indexCandidates.length} candidates`);
     for (const candidate of indexCandidates) {
         if (!seen.has(candidate.link)) {
             items.push(candidate);
@@ -322,6 +348,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         const wantsBio = /(leben|biografie|wer\s+war|hintergrund|person|vita)/i.test(lowerContext);
         const bioLink = `/${persona}/about`;
         if (wantsBio && !seen.has(bioLink)) {
+            console.log(`[Resources] Adding persona bio as fallback`);
             items.push({
                 title: `${capitalize(persona)}: Biografie`,
                 type: 'text',
@@ -332,19 +359,25 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         }
     }
 
+    console.log(`[Resources] Final result: ${items.length} resources returned`);
     return items.slice(0, 5);
 }
 
 async function suggestFromSearchIndex(origin, keywords, persona) {
+    console.log(`[SearchIndex] Fetching from ${origin}/api/search.json`);
     try {
         const indexRes = await fetch(`${origin}/api/search.json`, {
             method: 'GET',
             headers: { 'accept': 'application/json' }
         });
-        if (!indexRes.ok) return [];
+        if (!indexRes.ok) {
+            console.warn(`[SearchIndex] Failed to fetch: ${indexRes.status}`);
+            return [];
+        }
 
         const indexJson = await indexRes.json();
         const items = Array.isArray(indexJson?.items) ? indexJson.items : [];
+        console.log(`[SearchIndex] Got ${items.length} items from search.json`);
         if (!items.length) return [];
 
         const scored = items
@@ -386,8 +419,136 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
                 link: entry.link,
             }));
 
+        console.log(`[SearchIndex] Returned ${scored.length} scored items`);
         return scored;
-    } catch {
+    } catch (e) {
+        console.error(`[SearchIndex] Error: ${e.message}`);
+        return [];
+    }
+}
+
+// =======================================
+// D1 Database Integration - Primary method
+// =======================================
+async function suggestResourcesFromD1(env, persona, question, aiResponse) {
+    console.log(`[D1Resources] Starting D1-based resource suggestion for persona=${persona}`);
+    
+    if (!env.DB) {
+        console.warn(`[D1Resources] DB binding not available, skipping D1 method`);
+        return [];
+    }
+
+    try {
+        // Combine question and AI response for keyword extraction
+        const fullContext = `${question} ${aiResponse}`.toLowerCase();
+        const keywords = extractKeywords(fullContext, persona);
+        console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 5).join(", ")}`);
+
+        // Build search conditions - try to find matching posts and lexicon entries
+        const results = [];
+        const seen = new Set();
+
+        // 1. Search posts by author_id and content
+        console.log(`[D1Resources] Querying posts for author="${persona}"...`);
+        try {
+            const postsResult = await env.DB.prepare(
+                `SELECT id, slug, title, content FROM posts WHERE author_id = ? LIMIT 15`
+            ).bind(persona).all();
+
+            if (postsResult.success && postsResult.results) {
+                console.log(`[D1Resources] Found ${postsResult.results.length} posts by author`);
+                for (const post of postsResult.results) {
+                    // content is stored as JSON string: { diary: "...", scientific: "..." }
+                    let contentText = post.title || '';
+                    try {
+                        if (post.content) {
+                            const contentObj = typeof post.content === 'string' ? JSON.parse(post.content) : post.content;
+                            contentText += ` ${contentObj.diary || ''} ${contentObj.scientific || ''}`;
+                        }
+                    } catch (e) {
+                        contentText += post.content ? ` ${post.content}` : '';
+                    }
+                    
+                    const postText = contentText.toLowerCase();
+                    let score = 0;
+                    
+                    for (const k of keywords) {
+                        if (!k || k.length < 2) continue;
+                        const variants = expandKeyword(k);
+                        if (variants.some(v => postText.includes(v))) score += 5;
+                    }
+                    
+                    if (score > 0) {
+                        const link = `/${persona}/${post.slug}`;
+                        if (!seen.has(link)) {
+                            results.push({
+                                title: post.title,
+                                type: 'text',
+                                description: contentText.substring(0, 160),
+                                link,
+                                score
+                            });
+                            seen.add(link);
+                            console.log(`[D1Resources] Added post: ${post.slug} (score=${score})`);
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn(`[D1Resources] Error querying posts: ${e.message}`);
+        }
+
+        // 2. Search lexicon entries
+        console.log(`[D1Resources] Querying lexicon entries...`);
+        try {
+            const lexiconResult = await env.DB.prepare(
+                `SELECT slug, term, definition FROM lexicon LIMIT 30`
+            ).all();
+
+            if (lexiconResult.success && lexiconResult.results) {
+                console.log(`[D1Resources] Found ${lexiconResult.results.length} lexicon entries`);
+                for (const entry of lexiconResult.results) {
+                    const entryText = `${entry.term} ${entry.definition || ''}`.toLowerCase();
+                    let score = 0;
+                    
+                    for (const k of keywords) {
+                        if (!k || k.length < 2) continue;
+                        const variants = expandKeyword(k);
+                        if (variants.some(v => entryText.includes(v))) score += 3;
+                    }
+                    
+                    if (score > 0) {
+                        const link = `/lexicon/${entry.slug}`;
+                        if (!seen.has(link)) {
+                            results.push({
+                                title: entry.term,
+                                type: 'lexicon',
+                                description: entry.definition ? entry.definition.substring(0, 160) : undefined,
+                                link,
+                                score
+                            });
+                            seen.add(link);
+                            console.log(`[D1Resources] Added lexicon: ${entry.slug} (score=${score})`);
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn(`[D1Resources] Error querying lexicon: ${e.message}`);
+        }
+
+        // Sort by score and return top 5
+        const sorted = results
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 5)
+            .map(({ score, ...rest }) => rest); // Remove score from output
+
+        console.log(`[D1Resources] Returning ${sorted.length} resources from D1`);
+        sorted.forEach(r => console.log(`  - ${r.link} (${r.type})`));
+        return sorted;
+
+    } catch (e) {
+        console.error(`[D1Resources] Fatal error: ${e.message}`, e);
         return [];
     }
 }

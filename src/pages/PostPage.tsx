@@ -205,7 +205,7 @@ function PostContent({ post }: { post: BlogPost }) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="rounded-2xl border border-border/40 bg-background/70 backdrop-blur-xl p-3 sm:p-4">
+                  <div className="rounded-2xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl p-3 sm:p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
                         {t('index.historicalChat')}
@@ -219,7 +219,7 @@ function PostContent({ post }: { post: BlogPost }) {
                           if (e.key === 'Enter') openAuthorChat();
                         }}
                         placeholder={t('index.chatPlaceholder', { name: chatAuthorName })}
-                        className="h-11 bg-background/60 border-border/50 focus-visible:ring-primary/30"
+                        className="h-11 bg-white/85 dark:bg-card/90 border-border/60 focus-visible:ring-primary/30"
                       />
                       <Button type="button" size="icon" className="h-11 w-11 rounded-xl" onClick={openAuthorChat}>
                         <BookText className="h-4 w-4" />

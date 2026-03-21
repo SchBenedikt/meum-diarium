@@ -1,21 +1,13 @@
 // Determine API base URL based on environment
 export function getApiBase(): string {
-    // Use Cloudflare Workers for all API calls to avoid Access issues
-    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
-        // In development, use relative URL since Vite proxy handles /api routing
-        return '';
-    }
-    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    // Use same-origin /api in both dev and production.
+    // In dev, Vite proxies /api to the local backend; in production, Cloudflare serves /api.
     return '/api';
 }
 
 // Specialized function for user-generated content APIs (comments, profile, etc.)
 export function getUserApiBase(): string {
-    if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV) {
-        // In development, use relative URL since Vite proxy handles /api routing
-        return '';
-    }
-    // In production, use Cloudflare Pages D1 API (same domain as frontend)
+    // Keep user-content APIs on same-origin /api for consistent routing.
     return '/api';
 }
 // Add request cache for GET requests to avoid redundant network calls
@@ -38,6 +30,13 @@ async function cachedFetch(url: string, options?: RequestInit) {
             console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
             throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
+        const contentType = res.headers.get('content-type') || '';
+        if (!contentType.toLowerCase().includes('application/json')) {
+            const raw = await res.text();
+            const preview = raw.slice(0, 160).replace(/\s+/g, ' ').trim();
+            throw new Error(`Expected JSON but got ${contentType || 'unknown content-type'} for ${url}. Response starts with: ${preview}`);
+        }
+
         const data = await res.json();
         // Log successful fetch with data source info
         if (dataSource) {
@@ -376,12 +375,15 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
     if (sitemap) primaryUrl.searchParams.set('sitemap', sitemap);
 
+    console.log(`[Frontend] askAI request: persona=${persona}, question="${question.substring(0, 40)}..."${sitemap ? ', with sitemap' : ''}`);
+
     let res = await fetch(primaryUrl.toString(), {
         method: 'GET',
         headers: { 'accept': 'application/json' }
     });
 
     if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        console.warn(`[Frontend] Primary URL failed (${res.status}), trying fallback...`);
         const fallbackUrl = new URL('/', 'https://caesar.schaechner.workers.dev');
         fallbackUrl.searchParams.set('persona', persona);
         fallbackUrl.searchParams.set('ask', question);
@@ -393,12 +395,27 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     }
 
     if (!res.ok) {
+        console.error(`[Frontend] AI request failed: ${res.status} ${res.statusText}`);
         throw new Error(`AI request failed: ${res.status} ${res.statusText}`);
     }
+    
     const json = await res.json();
+    console.log(`[Frontend] AI response received:`, {
+        hasResponse: !!json?.response,
+        hasResources: !!json?.resources,
+        resourceCount: json?.resources?.length || 0
+    });
+    
     // Worker returns shape: { persona, inputs, response: { response: string }, resources?: [] }
     const text = json?.response?.response ?? json?.response ?? JSON.stringify(json);
     const resources: AiResource[] | undefined = json?.resources;
+    
+    if (resources && resources.length > 0) {
+        console.log(`[Frontend] Resources available:`, resources.map(r => ({ title: r.title, link: r.link, type: r.type })));
+    } else {
+        console.warn(`[Frontend] No resources returned from worker`);
+    }
+    
     const finalText = typeof text === 'string' ? text : String(text);
     return { text: finalText, resources };
 }
