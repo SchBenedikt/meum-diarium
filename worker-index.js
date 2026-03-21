@@ -133,16 +133,107 @@ export default {
         }
 
         // Route: Root / or /api or PersonaChat - let fall through to SPA for premium React docs
-        if (pathname === "" || pathname === "/api" || pathname === "/personachat") {
+        if (pathname === "" || pathname === "/personachat") {
             // On workers.dev there is no Pages origin to fall through to; avoid recursive self-fetch.
             if (isWorkersDevHost) {
                 return new Response(JSON.stringify({
                     service: 'meum-diarium-worker',
                     status: 'ok',
-                    routes: ['/', '/explain', '/simulate', '/stats', '/api/ask', '/api/explain', '/api/simulate']
+                    message: 'Besuche https://meum-diarium.xn--schner-2za.de/api für Dokumentation'
                 }), { headers: corsHeaders() });
             }
             return fetch(request);
+        }
+
+        // Route: /api - comprehensive documentation
+        if (pathname === "/api") {
+            const documentation = {
+                service: 'meum-diarium-worker',
+                status: 'ok',
+                language: 'de',
+                documentation: {
+                    title: 'Meum Diarium API – Dokumentation',
+                    what_is_api: {
+                        summary: 'Eine API (Application Programming Interface) ist eine Schnittstelle für strukturierte Kommunikation zwischen Anwendungen.',
+                        details: 'APIs ermöglichen es, spezifische Daten oder Funktionen anzufordern, ohne die innere Implementierung des Servers zu kennen. Statt Webseiten zu laden, senden Clients strukturierte Anfragen und erhalten JSON-Daten zurück.'
+                    },
+                    how_it_works: {
+                        summary: 'HTTP-basierte Kommunikation mit JSON-Daten',
+                        steps: [
+                            '1. Client sendet HTTP-Anfrage (GET/POST) an einen Endpoint mit Parametern',
+                            '2. Server verarbeitet die Anfrage (Datenbank-Abfragen, KI-Inferenz, etc.)',
+                            '3. Server antwortet mit JSON-formatierter Antwort',
+                            '4. Client nutzt die Daten (anzeigen, weiterverarbeiten, speichern)'
+                        ],
+                        example_flow: 'GET /api/ask?ask=Was%20ist%20der%20Rubikon&persona=caesar → 200 OK {response: "...", resources: [...]}'
+                    },
+                    use_cases: {
+                        summary: 'Einsatzgebiete in meum-diarium',
+                        applications: [
+                            'Historische Konversationen: Fragen an römische Persönlichkeiten stellen (Caesar, Cicero, etc.)',
+                            'Begriffserklärungen: Lateinische und römische Begriffe erklären lassen',
+                            'Historische Simulation: Interaktive Szenarien und Rollenspiele',
+                            'Inhaltsabruf: Zugriff auf Texte, Werke, Lexikon-Einträge',
+                            'Statistiken: Metadaten und Übersichts-Daten',
+                            'Datenintegration: Externe Anwendungen können auf Inhalte zugreifen'
+                        ]
+                    },
+                    available_endpoints: [
+                        {
+                            method: 'GET/POST',
+                            path: '/api/ask',
+                            description: 'Frage an eine historische Persönlichkeit stellen',
+                            parameters: 'ask (string), persona (caesar|augustus|cicero|catilina), history (array), sitemap (url)',
+                            response: '{response: string, resources: [{title, type, link, description}], ...}'
+                        },
+                        {
+                            method: 'GET/POST',
+                            path: '/api/explain',
+                            description: 'Einen historischen oder lateinischen Begriff erklären lassen',
+                            parameters: 'term (string), question (optional string), history (array)',
+                            response: '{term: string, response: {response: string}, format: "markdown"}'
+                        },
+                        {
+                            method: 'GET/POST',
+                            path: '/api/simulate',
+                            description: 'Ein historisches Szenario als interaktives Rollenspiel spielen',
+                            parameters: 'persona (string), scenario (string), choice (optional), history (array)',
+                            response: '{narrative: string, stats: {volk, einfluss, macht}, options: [...], ended: boolean}'
+                        },
+                        {
+                            method: 'GET',
+                            path: '/api/stats',
+                            description: 'Statistiken über verfügbare Inhalte',
+                            parameters: 'keine',
+                            response: '{counts: {...}, readingTime: {...}, yearRange: {...}, coverageYears: number}'
+                        }
+                    ],
+                    integration_examples: {
+                        chatbot: 'Verwende /api/ask um Fragen zu historischen Themen in einem Chatbot zu beantworten.',
+                        mobile_app: 'Rufe /api/explain auf um ein Glossar historischer Begriffe automatisch zu generieren.',
+                        external_service: 'Integriere /api/ask in deine eigene Anwendung für historisches Knowledge',
+                        education: 'Nutze /api/simulate für interaktives historisches Lernen'
+                    },
+                    best_practices: [
+                        'Verwende persona-Parameter um Antworten in charakteristischem Stil zu bekommen',
+                        'Nutze history-Array um Konversationskontext aufzubauen',
+                        'Parsiere Responses immer auf Fehler (error-Field)',
+                        'Respektiere Rate-Limits durch sinnvolle Anfrage-Abstände'
+                    ],
+                    notes: {
+                        format: 'Alle Responses sind gültiges JSON mit korrektem Content-Type',
+                        encoding: 'UTF-8 für Umlaute und Sonderzeichen',
+                        cors: 'CORS-Header sind aktiviert für Cross-Origin Requests',
+                        markdown: 'Viele Responses enthalten GitHub-Flavored Markdown'
+                    }
+                }
+            };
+            return new Response(JSON.stringify(documentation, null, 2), {
+                headers: {
+                    ...corsHeaders(),
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            });
         }
 
         // Default: Pass through to the origin (Cloudflare Pages assets/Functions)
@@ -256,10 +347,10 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
                 }
             }
             
-            // Keep a larger candidate pool and let AI pick the most relevant items for the current chat topic.
-            resources = resources.slice(0, 20);
+            // Keep a larger candidate pool and let AI pick all relevant items for the current chat topic.
+            resources = resources.slice(0, 30);
             resources = await rerankResourcesWithAI(env, question, persona, resources);
-            resources = resources.slice(0, 5);
+            resources = resources.slice(0, 12);
             console.log(`[AI Chat] ✓ Generated total ${resources.length} resources (merged from both sources)`);
         } catch (e) {
             console.error(`[AI Chat] ❌ Error generating resources: ${e.message}`, e);
@@ -281,7 +372,7 @@ async function rerankResourcesWithAI(env, question, persona, resources) {
     if (!Array.isArray(resources) || resources.length <= 5) return resources || [];
 
     const ai = resolveAiBinding(env);
-    if (!ai) return resources.slice(0, 5);
+    if (!ai) return resources.slice(0, 8);
 
     const candidates = resources.slice(0, 20).map((r, idx) => ({
         id: idx + 1,
@@ -292,12 +383,14 @@ async function rerankResourcesWithAI(env, question, persona, resources) {
     }));
 
     const system = `Du bist ein strenger Relevanz-Ranker fuer Ressourcen.
-Aufgabe: Waehle genau 5 Ressourcen, die am besten zur Frage passen.
+Aufgabe: Waehle alle Ressourcen, die wirklich zur Frage passen, in Relevanz-Reihenfolge.
 Regeln:
 - Bevorzuge konkrete inhaltliche Treffer, nicht nur allgemeine Rom-Begriffe.
 - Ignoriere generische Uebereinstimmungen (z.B. "ihre", "fuer", "alle", "des").
+- Wenn die Frage einen konkreten Begriff enthaelt (z.B. Rubikon), nimm nur Treffer mit klarem Bezug dazu.
 - Nutze Titel + Beschreibung + Link als Kontext.
-- Antworte NUR als JSON im Format: {"selected":[id1,id2,id3,id4,id5]}.
+- Lexikon-Artikel sind ausdruecklich erlaubt, wenn sie thematisch passen.
+- Antworte NUR als JSON im Format: {"selected":[id1,id2,...]}.
 - Keine Erklaerung, kein Markdown.`;
 
     const user = `Persona: ${persona}\nFrage: ${question}\nKandidaten:\n${JSON.stringify(candidates)}`;
@@ -336,18 +429,12 @@ Regeln:
             reranked.push(resources[id - 1]);
         }
 
-        if (reranked.length < 5) {
-            for (const r of resources) {
-                if (reranked.includes(r)) continue;
-                reranked.push(r);
-                if (reranked.length >= 5) break;
-            }
-        }
-
-        return reranked;
+        // If the model returns no IDs, keep a small heuristic fallback set.
+        if (!reranked.length) return resources.slice(0, 8);
+        return reranked.slice(0, 12);
     } catch (e) {
         console.warn(`[AI Chat] Reranking failed, using heuristic order: ${e?.message || e}`);
-        return resources.slice(0, 5);
+        return resources.slice(0, 8);
     }
 }
 
@@ -368,12 +455,13 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
 
     // Extract important keywords from both question and response
     const keywords = extractKeywords(fullContext, persona);
+    const specificKeywords = getSpecificKeywords(keywords);
     console.log(`[Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}...`);
 
     const scored = entries.map(u => {
         const slug = extractSlug(u.loc);
         const type = typeFromUrl(u.loc);
-        const { score, matched } = scoreUrl(u.loc, slug, keywords, type, persona);
+        const { score, matched } = scoreUrl(u.loc, slug, keywords, specificKeywords, type, persona);
 
         return {
             url: u.loc,
@@ -394,7 +482,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
             if ((b.matchedCount || 0) !== (a.matchedCount || 0)) return (b.matchedCount || 0) - (a.matchedCount || 0);
             return tieBreakByQuestion(a.url, b.url, question);
         })
-        .slice(0, 5);
+        .slice(0, 12);
     
     console.log(`[Resources] Top scored URLs (score > 0): ${top.length} found`);
     top.forEach(t => console.log(`  - ${t.slug} (score=${t.score})`));
@@ -410,7 +498,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
                 link: toSitePath(t.url),
             });
             seen.add(t.url);
-            if (items.length >= 3) break;
+            if (items.length >= 8) break;
         }
     }
     
@@ -450,13 +538,13 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         if (!seen.has(candidate.link)) {
             items.push(candidate);
             seen.add(candidate.link);
-            if (items.length >= 5) break;
+            if (items.length >= 12) break;
         }
     }
 
     // Persona-aware fallback for biography and core works when context is sparse.
     const lowerContext = `${question} ${aiResponse}`.toLowerCase();
-    if (items.length < 3) {
+    if (items.length < 2) {
         const wantsBio = /(leben|biografie|wer\s+war|hintergrund|person|vita)/i.test(lowerContext);
         const bioLink = `/${persona}/about`;
         if (wantsBio && !seen.has(bioLink)) {
@@ -515,7 +603,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
     }
 
     console.log(`[Resources] Final result: ${items.length} resources returned`);
-    return items.slice(0, 5);
+    return items.slice(0, 12);
 }
 
 async function suggestFromSearchIndex(origin, keywords, persona) {
@@ -552,6 +640,9 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
         console.log(`[SearchIndex] Got ${items.length} items from search.json`);
         if (!items.length) return [];
 
+        const specificKeywords = getSpecificKeywords(keywords);
+        const specificSet = new Set(specificKeywords.map((k) => normalizeToken(k)).filter(Boolean));
+
         const scored = items
             .filter((item) => item && typeof item === 'object')
             .map((item) => {
@@ -563,11 +654,17 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
                 const haystack = `${title} ${slug} ${summary}`.toLowerCase();
 
                 let score = 0;
+                let matchedSpecificCount = 0;
                 for (const k of keywords) {
                     if (!k || k.length < 3) continue;
                     const variants = expandKeyword(k);
-                    if (variants.some((v) => v && haystack.includes(v))) score += 2;
+                    if (variants.some((v) => v && haystack.includes(v))) {
+                        score += 2;
+                        if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
+                    }
                 }
+
+                if (specificSet.size > 0 && matchedSpecificCount === 0) score = 0;
 
                 if (author === persona) score += 3;
                 if (type === 'work') score += 2;
@@ -583,7 +680,7 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
             })
             .filter((entry) => entry.link && entry.score > 0)
             .sort((a, b) => b.score - a.score)
-            .slice(0, 4)
+            .slice(0, 8)
             .map((entry) => ({
                 title: entry.title,
                 type: entry.type,
@@ -617,6 +714,8 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
         // Use question-focused keywords so ranking changes with user intent.
         const fullContext = `${question}`.toLowerCase();
         const keywords = extractKeywords(fullContext, persona);
+        const specificKeywords = getSpecificKeywords(keywords);
+        const specificSet = new Set(specificKeywords.map((k) => normalizeToken(k)).filter(Boolean));
         console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}`);
         
         if (keywords.length === 0) {
@@ -664,6 +763,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                     const postText = contentText.toLowerCase();
                     let score = 0;
                     const matchedKeywords = [];
+                    let matchedSpecificCount = 0;
                     
                     for (const k of keywords) {
                         if (!k || k.length < 2) continue;
@@ -671,7 +771,12 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                         if (variants.some(v => postText.includes(v))) {
                             score += 5;
                             matchedKeywords.push(k);
+                            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
                         }
+                    }
+
+                    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+                        score = 0;
                     }
 
                     if ((post.author_id || '').toLowerCase() === persona) {
@@ -726,6 +831,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                     const entryText = `${entry.term} ${entry.definition || ''}`.toLowerCase();
                     let score = 0;
                     const matchedKeywords = [];
+                    let matchedSpecificCount = 0;
                     
                     for (const k of keywords) {
                         if (!k || k.length < 2) continue;
@@ -733,7 +839,12 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                         if (variants.some(v => entryText.includes(v))) {
                             score += 3;
                             matchedKeywords.push(k);
+                            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
                         }
+                    }
+
+                    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+                        score = 0;
                     }
                     
                     if (score > 0) {
@@ -768,7 +879,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                 if ((b.matchCount || 0) !== (a.matchCount || 0)) return (b.matchCount || 0) - (a.matchCount || 0);
                 return tieBreakByQuestion(a.link, b.link, question);
             })
-            .slice(0, 5)
+            .slice(0, 12)
             .map(({ score, matchCount, ...rest }) => rest); // Remove ranking internals from output
 
         console.log(`[D1Resources] Final result: ${sorted.length} resources (from ${results.length} candidates)`);
@@ -942,6 +1053,25 @@ function extractKeywords(text, persona) {
     return Array.from(expanded).slice(0, 40);
 }
 
+function isGenericKeyword(token) {
+    const t = normalizeToken(token);
+    const generic = new Set([
+        'rom', 'roemisch', 'romisch', 'roemer', 'caesar', 'augustus', 'cicero', 'catilina',
+        'krieg', 'macht', 'herrschaft', 'politik', 'reich', 'imperium', 'gegner', 'siege', 'sieg'
+    ]);
+    return generic.has(t);
+}
+
+function getSpecificKeywords(keywords) {
+    if (!Array.isArray(keywords)) return [];
+    return keywords.filter((k) => {
+        const t = normalizeToken(k);
+        if (!t) return false;
+        if (isGenericKeyword(t)) return false;
+        return t.length >= 5;
+    });
+}
+
 function hashString(input) {
     let hash = 0;
     for (let i = 0; i < input.length; i++) {
@@ -957,10 +1087,12 @@ function tieBreakByQuestion(a, b, question) {
     return ah - bh;
 }
 
-function scoreUrl(url, slug, keywords, type, persona) {
+function scoreUrl(url, slug, keywords, specificKeywords, type, persona) {
     const lower = url.toLowerCase();
     let score = 0;
     const matched = [];
+    const specificSet = new Set((specificKeywords || []).map((k) => normalizeToken(k)).filter(Boolean));
+    let matchedSpecificCount = 0;
 
     // Exact slug word matches get high points
     for (const k of keywords) {
@@ -969,6 +1101,7 @@ function scoreUrl(url, slug, keywords, type, persona) {
         if (variants.some(v => slug.includes(v))) {
             score += type === 'lexicon' ? 6 : 4;
             matched.push(k);
+            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
         }
     }
 
@@ -979,7 +1112,12 @@ function scoreUrl(url, slug, keywords, type, persona) {
         if (!variants.some(v => slug.includes(v)) && variants.some(v => lower.includes(v))) {
             score += 1.5;
             if (matched.length < 3) matched.push(k);
+            if (specificSet.has(normalizeToken(k))) matchedSpecificCount += 1;
         }
+    }
+
+    if (specificSet.size > 0 && matchedSpecificCount === 0) {
+        score = 0;
     }
 
     // Boost lexicon and works URLs based on context
