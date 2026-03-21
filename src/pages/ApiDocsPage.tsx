@@ -331,6 +331,22 @@ export default function ApiDocsPage() {
   const [activeTab, setActiveTab] = useState<TabId>('intro');
   const [query, setQuery] = useState('');
   const [activeGroup, setActiveGroup] = useState<'all' | EndpointGroup['id']>('all');
+  const [apiResponse, setApiResponse] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  const testEndpoint = async (endpoint: string) => {
+    setLoading(true);
+    setApiResponse(null);
+    try {
+      const response = await fetch(`${BASE_URL}${endpoint}`);
+      const data = await response.json();
+      setApiResponse(data);
+    } catch (error) {
+      setApiResponse({ error: error.message });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     document.title = 'Meum Diarium API | Dokumentation';
@@ -374,15 +390,15 @@ export default function ApiDocsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-14">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-14">
         {/* Header */}
         <header className="space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase tracking-[0.2em] font-bold">
-            API v1 DOKUMENTATION
+            API DOKUMENTATION
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight">Meum Diarium API</h1>
           <p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
-            Vollständige Dokumentation aller Content- und KI-Endpunkte, inklusive cURL-Beispielen. Fokus auf mobile Lesbarkeit und klaren Einstieg.
+            Vollständige Dokumentation aller Content- und KI-Endpunkte mit interaktiven Testfunktionen. Direkter Zugriff auf unsere Wissensdatenbank für Entwickler und Forscher.
           </p>
         </header>
 
@@ -409,29 +425,33 @@ export default function ApiDocsPage() {
             <h2 className="font-display text-3xl font-bold">API Guide</h2>
 
             {/* Two Main Cards */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card className="card-modern border-border/50">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="card-modern border-border/50 bg-gradient-to-br from-card to-card/80">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-start gap-3">
-                    <Code2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <Code2 className="h-5 w-5 text-primary" />
+                    </div>
                     <div>
                       <h3 className="font-semibold text-lg">Was ist eine API?</h3>
                       <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                        Eine <strong>API (Application Programming Interface)</strong> fungiert als digitaler Dolmetscher. Sie ermöglicht es externen Anwendungen, direkt auf die Wissensdatenbank von Meum Diarium zuzugreifen. Start einer grafischen Oberfläche liefert sie rein strukturierte Daten (JSON), die von Programmen verarbeitet werden können.
+                        Eine <strong>API (Application Programming Interface)</strong> fungiert als digitaler Dolmetscher zwischen Anwendungen. Sie ermöglicht externen Programmen, direkt auf die Wissensdatenbank von Meum Diarium zuzugreifen und strukturierte Daten (JSON) zu erhalten.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="card-modern border-border/50">
+              <Card className="card-modern border-border/50 bg-gradient-to-br from-card to-card/80">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-start gap-3">
-                    <Zap className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <Zap className="h-5 w-5 text-primary" />
+                    </div>
                     <div>
                       <h3 className="font-semibold text-lg">Warum Meum Diarium API?</h3>
                       <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                        Wir glauben an die Demokratisierung von historischem Wissen. Unsere API stellt wissenschaftliche Inhalte, historische Quellen und KI-basierte Simulationen einer breiten Masse an Entwicklern und Forschern zur Verfügung, um Geschichte erlebbar zu machen.
+                        Wir glauben an die Demokratisierung von historischem Wissen. Unsere API macht wissenschaftliche Inhalte, historische Quellen und KI-Simulationen für alle zugänglich – für Bildung, Forschung und innovative Anwendungen.
                       </p>
                     </div>
                   </div>
@@ -446,14 +466,16 @@ export default function ApiDocsPage() {
                 {useCases.map((useCase) => {
                   const Icon = useCase.icon;
                   return (
-                    <Card key={useCase.label} className="card-modern border-border/50">
+                    <Card key={useCase.label} className="card-modern border-border/50 bg-gradient-to-br from-card to-card/80 hover:shadow-lg transition-all duration-300">
                       <CardContent className="p-5 space-y-3">
                         <div className="flex items-center gap-2">
-                          <Icon className="h-5 w-5 text-primary" />
+                          <div className="p-1.5 rounded-lg bg-primary/10">
+                            <Icon className="h-4 w-4 text-primary" />
+                          </div>
                           <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">{useCase.label}</p>
                         </div>
                         <h4 className="font-semibold text-sm">{useCase.title}</h4>
-                        <p className="text-xs text-muted-foreground">{useCase.description}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{useCase.description}</p>
                       </CardContent>
                     </Card>
                   );
@@ -475,15 +497,55 @@ export default function ApiDocsPage() {
 
             {/* Quickstart */}
             <div className="space-y-4">
-              <h3 className="font-display text-xl font-bold">Schnellstart mit cURL</h3>
-              <p className="text-sm text-muted-foreground">Du kannst die API direkt von deinem Terminal aus testen. Hier ist ein Beispiel, wie du den Katalog abrufst:</p>
-              <Card className="card-modern border-border/50 bg-secondary/30">
-                <CardContent className="p-5">
-                  <pre className="text-xs bg-background/80 border border-border/50 rounded p-3 overflow-x-auto font-mono">
-                    {`curl "${BASE_URL}/api/catalog"`}
-                  </pre>
-                </CardContent>
-              </Card>
+              <h3 className="font-display text-xl font-bold">API interaktiv testen</h3>
+              <p className="text-sm text-muted-foreground">Teste unsere API direkt hier im Browser. Wähle einen Endpunkt und klicke auf "Testen":</p>
+              
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => testEndpoint('/api/catalog')}
+                    disabled={loading}
+                    className="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? '⏳ Lade...' : '📋 Katalog testen'}
+                  </button>
+                  <button
+                    onClick={() => testEndpoint('/api/vocab?q=roma')}
+                    disabled={loading}
+                    className="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? '⏳ Lade...' : '🔍 Vokabeln testen'}
+                  </button>
+                  <button
+                    onClick={() => testEndpoint('/api/stats')}
+                    disabled={loading}
+                    className="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? '⏳ Lade...' : '📊 Statistiken testen'}
+                  </button>
+                </div>
+                
+                {apiResponse && (
+                  <Card className="card-modern border-border/50">
+                    <CardContent className="p-5 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-semibold text-sm">API Antwort</h4>
+                        <button
+                          onClick={() => setApiResponse(null)}
+                          className="text-xs text-muted-foreground hover:text-foreground"
+                        >
+                          ✕ Schließen
+                        </button>
+                      </div>
+                      <div className="bg-secondary/50 rounded-lg p-3">
+                        <pre className="text-xs overflow-x-auto whitespace-pre-wrap font-mono">
+                          {JSON.stringify(apiResponse, null, 2)}
+                        </pre>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
         )}

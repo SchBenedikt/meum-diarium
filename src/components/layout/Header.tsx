@@ -37,6 +37,7 @@ import {
   LogOut,
   UserPlus,
   BarChart3,
+  Code2,
 
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
@@ -117,10 +118,11 @@ export function Header() {
     setMobileMenuOpen(false);
   }, []);
   const isActive = (href: string) => {
-    if (href === '/lexikon') return location.pathname === '/lexikon' || location.pathname === '/lexicon';
-    if (href === '/lernen') return location.pathname === '/lernen' || location.pathname === '/learn';
-    if (href === '/über') return location.pathname === '/über' || location.pathname === '/about';
-    return location.pathname === href;
+    const pathname = decodeURIComponent(location.pathname);
+    if (href === '/lexikon') return pathname === '/lexikon' || pathname === '/lexicon';
+    if (href === '/lernen') return pathname === '/lernen' || pathname === '/learn';
+    if (href === '/über') return pathname === '/über' || pathname === '/about';
+    return pathname === href;
   };
   // Hilfsflag: iPad soll wie Desktop behandelt werden
   const isDesktopLike = !isIpad; // DU kannst das bei Bedarf anpassen, z.B. immer Desktop auf iPad
