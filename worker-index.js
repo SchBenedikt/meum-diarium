@@ -383,12 +383,31 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         }
     }
 
-    // Final safety net: if scoring produced nothing, still return relevant persona/lexicon URLs.
+    // Final safety net: if scoring produced nothing, still return likely content URLs.
     if (items.length === 0 && entries.length > 0) {
         console.log(`[Resources] Applying final URL fallback from sitemap entries...`);
         const fallbackCandidates = entries
             .map((u) => toSitePath(u.loc))
-            .filter((path) => path && (path.includes(`/${persona}/`) || path.includes('/lexicon/')))
+            .filter((path) => isLikelyContentPath(path))
+            .map((path) => {
+                const lower = path.toLowerCase();
+                let score = 0;
+
+                // Prefer persona-matching URLs if available, but keep generic support.
+                if (persona && lower.includes(`/${persona.toLowerCase()}/`)) score += 3;
+
+                for (const k of keywords) {
+                    if (!k || k.length < 3) continue;
+                    const variants = expandKeyword(k);
+                    if (variants.some((v) => v && lower.includes(v))) score += 2;
+                }
+
+                if (lower.includes('/lexicon/')) score += 1;
+                if (lower.includes('/works/')) score += 1;
+                return { path, score };
+            })
+            .sort((a, b) => b.score - a.score)
+            .map((entry) => entry.path)
             .slice(0, 5);
 
         for (const path of fallbackCandidates) {
@@ -836,6 +855,25 @@ function toSitePath(url) {
     } catch {
         return url;
     }
+}
+
+function isLikelyContentPath(path) {
+    if (!path || path === '/') return false;
+    const lower = path.toLowerCase();
+
+    if (lower.startsWith('/api/')) return false;
+    if (lower.startsWith('/assets/')) return false;
+    if (lower.startsWith('/images/')) return false;
+    if (lower.startsWith('/icons/')) return false;
+    if (lower.startsWith('/static/')) return false;
+
+    if (lower.includes('/lexicon/')) return true;
+    if (lower.includes('/works/')) return true;
+    if (lower.includes('/about')) return true;
+
+    // Any non-trivial document-like path can still be useful for unknown personas/topics.
+    const segments = lower.split('/').filter(Boolean);
+    return segments.length >= 2;
 }
 
 // --- Helpers for normalization and synonyms ---
