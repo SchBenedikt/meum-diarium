@@ -156,6 +156,13 @@ export default {
     }
 };
 
+function resolveAiBinding(env) {
+    if (env?.AI && typeof env.AI.run === 'function') return env.AI;
+    if (env?.ki && typeof env.ki.run === 'function') return env.ki;
+    if (env?.KI && typeof env.KI.run === 'function') return env.KI;
+    return null;
+}
+
 async function handleAiChat(request, env, persona, question, historyParam, sitemapUrl) {
     const personaPrompts = {
         caesar: "Du bist Gaius Julius Caesar. Du bist davon überzeugt, dass du der beste Feldherr bist und jeden besiegen kannst. Du hoffst, dass dir bald alle unterlegen sind. Passe die Sprache an den Nutzer an; antworte in der gleichen Sprache, in der du die Frage bekommst.",
@@ -184,11 +191,12 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
 
     messages.push({ role: "user", content: question });
 
-    if (!env?.AI || typeof env.AI.run !== 'function') {
+    const ai = resolveAiBinding(env);
+    if (!ai) {
         return {
             error: 'AI binding not configured',
             persona,
-            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert.' },
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert. Erwarte Binding-Namen AI oder ki.' },
             resources: [],
             format: 'markdown',
         };
@@ -197,7 +205,7 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
     const chat = { messages };
     let aiResponse;
     try {
-        aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
+        aiResponse = await ai.run("@cf/meta/llama-4-scout-17b-16e-instruct", chat);
     } catch (e) {
         return {
             error: 'AI request failed',
@@ -554,11 +562,12 @@ async function handleExplainTerm(request, env, url, body) {
 
     messages.push({ role: 'user', content: question || `Erkläre: ${term}` });
 
-    if (!env?.AI || typeof env.AI.run !== 'function') {
+    const ai = resolveAiBinding(env);
+    if (!ai) {
         return new Response(JSON.stringify({
             term,
             error: 'AI binding not configured',
-            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert.' },
+            response: { response: 'KI-Binding ist auf diesem Worker nicht konfiguriert. Erwarte Binding-Namen AI oder ki.' },
             format: 'markdown',
         }), { headers: corsHeaders(), status: 503 });
     }
@@ -566,7 +575,7 @@ async function handleExplainTerm(request, env, url, body) {
     const chat = { messages };
     let aiResponse;
     try {
-        aiResponse = await env.AI.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
+        aiResponse = await ai.run('@cf/meta/llama-4-scout-17b-16e-instruct', chat);
     } catch (e) {
         return new Response(JSON.stringify({
             term,
@@ -657,8 +666,22 @@ KRITISCH WICHTIG:
             messages.push({ role: 'user', content: "Starte das Szenario." });
         }
 
+        const ai = resolveAiBinding(env);
+        if (!ai) {
+            return new Response(JSON.stringify({
+                error: 'AI binding not configured',
+                narrative: 'Die KI-Bindung fehlt auf diesem Worker.',
+                stats: { volk: 0, einfluss: 0, macht: 0 },
+                options: [{ id: 'retry', text: 'Konfiguration prüfen' }],
+                ended: false
+            }), {
+                status: 503,
+                headers: corsHeaders(),
+            });
+        }
+
         // Try Llama 3.1 8b for better instruction following
-        const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', { messages });
+        const aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', { messages });
 
         if (!aiResponse || !aiResponse.response) {
             console.error("[Simulation] AI returned empty response");
