@@ -277,7 +277,7 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
     console.log(`[Resources] Fetched sitemap, length=${xml.length}`);
     const sitemapOrigin = new URL(sitemapUrl).origin;
 
-    const entries = parseSitemap(xml);
+    const entries = await resolveSitemapEntries(sitemapUrl, xml);
     console.log(`[Resources] Parsed ${entries.length} sitemap entries`);
 
     // Combine question and AI response for better keyword extraction
@@ -383,6 +383,28 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
         }
     }
 
+    // Final safety net: if scoring produced nothing, still return relevant persona/lexicon URLs.
+    if (items.length === 0 && entries.length > 0) {
+        console.log(`[Resources] Applying final URL fallback from sitemap entries...`);
+        const fallbackCandidates = entries
+            .map((u) => toSitePath(u.loc))
+            .filter((path) => path && (path.includes(`/${persona}/`) || path.includes('/lexicon/')))
+            .slice(0, 5);
+
+        for (const path of fallbackCandidates) {
+            if (!seen.has(path)) {
+                const slug = extractSlug(path);
+                items.push({
+                    title: titleFromSlug(slug) || 'Ressource',
+                    type: path.includes('/lexicon/') ? 'lexicon' : 'text',
+                    link: path,
+                });
+                seen.add(path);
+            }
+        }
+        console.log(`[Resources] Final URL fallback added ${items.length} items`);
+    }
+
     console.log(`[Resources] Final result: ${items.length} resources returned`);
     return items.slice(0, 5);
 }
@@ -396,6 +418,13 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
         });
         if (!indexRes.ok) {
             console.warn(`[SearchIndex] Failed to fetch: ${indexRes.status}`);
+            return [];
+        }
+
+        const contentType = (indexRes.headers.get('content-type') || '').toLowerCase();
+        if (!contentType.includes('application/json')) {
+            const bodyPreview = (await indexRes.text()).slice(0, 120).replace(/\s+/g, ' ');
+            console.warn(`[SearchIndex] Expected JSON but got "${contentType}". Preview: ${bodyPreview}`);
             return [];
         }
 
@@ -639,15 +668,72 @@ function capitalize(value) {
 
 function parseSitemap(xml) {
     const entries = [];
-    const urlBlocks = [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)];
+    const urlBlocks = [...xml.matchAll(/<url\b[^>]*>[\s\S]*?<\/url>/gi)];
     for (const m of urlBlocks) {
         const block = m[0];
-        const locMatch = [...block.matchAll(/<loc>([^<]+)<\/loc>/g)][0];
+        const locMatch = [...block.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)][0];
         if (!locMatch) continue;
-        const loc = locMatch[1];
+        const loc = locMatch[1].trim();
         entries.push({ loc });
     }
     return entries;
+}
+
+function parseSitemapIndex(xml) {
+    const entries = [];
+    const sitemapBlocks = [...xml.matchAll(/<sitemap\b[^>]*>[\s\S]*?<\/sitemap>/gi)];
+    for (const m of sitemapBlocks) {
+        const block = m[0];
+        const locMatch = [...block.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)][0];
+        if (!locMatch) continue;
+        const loc = locMatch[1].trim();
+        if (loc) entries.push(loc);
+    }
+    return entries;
+}
+
+async function resolveSitemapEntries(sitemapUrl, xml) {
+    const directEntries = parseSitemap(xml);
+    if (directEntries.length > 0) return directEntries;
+
+    const childSitemaps = parseSitemapIndex(xml);
+    if (!childSitemaps.length) {
+        console.warn('[Resources] No <url> and no child sitemaps found in sitemap XML');
+        return [];
+    }
+
+    console.log(`[Resources] Found sitemap index with ${childSitemaps.length} child sitemaps`);
+    const nestedEntries = [];
+    const visited = new Set([sitemapUrl]);
+    const maxChildren = 12;
+
+    for (const childUrl of childSitemaps.slice(0, maxChildren)) {
+        if (!childUrl || visited.has(childUrl)) continue;
+        visited.add(childUrl);
+        try {
+            const childRes = await fetch(childUrl, { method: 'GET' });
+            if (!childRes.ok) {
+                console.warn(`[Resources] Child sitemap fetch failed (${childRes.status}): ${childUrl}`);
+                continue;
+            }
+            const childXml = await childRes.text();
+            const childEntries = parseSitemap(childXml);
+            if (childEntries.length > 0) nestedEntries.push(...childEntries);
+        } catch (e) {
+            console.warn(`[Resources] Child sitemap fetch error for ${childUrl}: ${e.message}`);
+        }
+    }
+
+    const unique = [];
+    const seenLocs = new Set();
+    for (const entry of nestedEntries) {
+        if (!entry?.loc || seenLocs.has(entry.loc)) continue;
+        seenLocs.add(entry.loc);
+        unique.push(entry);
+    }
+
+    console.log(`[Resources] Collected ${unique.length} URLs from nested sitemaps`);
+    return unique;
 }
 
 function extractSlug(url) {
