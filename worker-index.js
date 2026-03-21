@@ -286,8 +286,8 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
     const entries = await resolveSitemapEntries(sitemapUrl, xml);
     console.log(`[Resources] Parsed ${entries.length} sitemap entries`);
 
-    // Combine question and AI response for better keyword extraction
-    const fullContext = `${question} ${aiResponse}`.toLowerCase();
+    // Use user question as primary relevance signal to avoid generic repeated matches.
+    const fullContext = `${question}`.toLowerCase();
 
     // Extract important keywords from both question and response
     const keywords = extractKeywords(fullContext, persona);
@@ -304,14 +304,19 @@ async function suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResp
             title: titleFromSlug(slug),
             type,
             description: matched.length ? `Relevanz: ${matched.slice(0, 3).join(", ")}` : undefined,
-            score
+            score,
+            matchedCount: matched.length,
         };
     });
 
     // Sort by score and deduplicate
     const top = scored
         .filter(s => s.score > 0)
-        .sort((a, b) => b.score - a.score)
+        .sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            if ((b.matchedCount || 0) !== (a.matchedCount || 0)) return (b.matchedCount || 0) - (a.matchedCount || 0);
+            return tieBreakByQuestion(a.url, b.url, question);
+        })
         .slice(0, 5);
     
     console.log(`[Resources] Top scored URLs (score > 0): ${top.length} found`);
@@ -532,8 +537,8 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
     console.log(`[D1Resources] ✓ DB binding available via env.${dbBindingName}`);
 
     try {
-        // Combine question and AI response for keyword extraction
-        const fullContext = `${question} ${aiResponse}`.toLowerCase();
+        // Use question-focused keywords so ranking changes with user intent.
+        const fullContext = `${question}`.toLowerCase();
         const keywords = extractKeywords(fullContext, persona);
         console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}`);
         
@@ -605,7 +610,8 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 type: 'text',
                                 description: contentText.substring(0, 160),
                                 link,
-                                score
+                                score,
+                                matchCount: matchedKeywords.length,
                             });
                             seen.add(link);
                             console.log(`[D1Resources]     ✓ Added post: ${post.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
@@ -662,7 +668,8 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 type: 'lexicon',
                                 description: entry.definition ? entry.definition.substring(0, 160) : undefined,
                                 link,
-                                score
+                                score,
+                                matchCount: matchedKeywords.length,
                             });
                             seen.add(link);
                             console.log(`[D1Resources]   ✓ Added lexicon: ${entry.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
@@ -681,9 +688,13 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
 
         // Sort by score and return top 5
         const sorted = results
-            .sort((a, b) => b.score - a.score)
+            .sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                if ((b.matchCount || 0) !== (a.matchCount || 0)) return (b.matchCount || 0) - (a.matchCount || 0);
+                return tieBreakByQuestion(a.link, b.link, question);
+            })
             .slice(0, 5)
-            .map(({ score, ...rest }) => rest); // Remove score from output
+            .map(({ score, matchCount, ...rest }) => rest); // Remove ranking internals from output
 
         console.log(`[D1Resources] Final result: ${sorted.length} resources (from ${results.length} candidates)`);
         if (sorted.length > 0) {
@@ -816,31 +827,44 @@ function extractKeywords(text, persona) {
     const words = text
         .replace(/[^a-zA-ZäöüÄÖÜß\-\s0-9]/g, ' ')
         .split(/\s+/)
-        .filter(w => w.length > 2)
+        .filter(w => w.length > 3)
         .map(w => w.toLowerCase());
 
     // Remove common stop words
-    const stopwords = ['der', 'die', 'das', 'und', 'oder', 'ist', 'bin', 'bist', 'sein', 'haben', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'eure', 'mein', 'dein', 'sein', 'unser', 'euer', 'eure', 'dem', 'den', 'mit', 'was', 'wie', 'warum', 'wieso', 'weshalb', 'hast', 'hat', 'tun', 'machen'];
+    const stopwords = [
+        'der', 'die', 'das', 'und', 'oder', 'ist', 'sind', 'war', 'waren', 'wird', 'wurden',
+        'ein', 'eine', 'einer', 'eines', 'einem', 'einen',
+        'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
+        'mein', 'dein', 'sein', 'ihr', 'unser', 'euer',
+        'dem', 'den', 'mit', 'von', 'für', 'auf', 'über', 'unter', 'durch', 'nach', 'vor',
+        'was', 'wie', 'warum', 'wieso', 'weshalb',
+        'hast', 'hat', 'haben', 'sein', 'tun', 'machen', 'auch', 'dann', 'noch', 'mehr'
+    ];
     const filtered = words.filter(w => !stopwords.includes(w));
-
-    // Add persona-specific boosts
-    const boosts = {
-        caesar: ['rubikon', 'rubicon', 'gallien', 'gallia', 'alesia', 'bello', 'gallico', 'civili', 'pompeius', 'pompey', 'vercingetorix', 'helvetier', 'rhein', 'rhine'],
-        cicero: ['catilina', 'oratio', 'officiis', 'republica', 'publica', 'seneca', 'antonius'],
-        augustus: ['res', 'gestae', 'prinzipat', 'pax', 'romana', 'triumvir'],
-        catilina: ['verschwörung', 'verschwor', 'conspiracy', 'senat', 'cicero', 'optimaten'],
-    };
-
-    const personaBoosts = boosts[persona] || [];
 
     // Expand with synonyms and normalized forms
     const expanded = new Set();
-    for (const w of [...filtered, ...personaBoosts]) {
+    for (const w of filtered) {
         for (const v of expandKeyword(w)) {
             expanded.add(v);
         }
     }
-    return Array.from(expanded);
+    return Array.from(expanded).slice(0, 40);
+}
+
+function hashString(input) {
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+        hash = ((hash << 5) - hash + input.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hash);
+}
+
+function tieBreakByQuestion(a, b, question) {
+    const seed = String(question || '').toLowerCase();
+    const ah = hashString(`${seed}::${a}`) % 10000;
+    const bh = hashString(`${seed}::${b}`) % 10000;
+    return ah - bh;
 }
 
 function scoreUrl(url, slug, keywords, type, persona) {

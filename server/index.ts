@@ -266,6 +266,23 @@ app.get('/sitemap.xml', async (_req, res) => {
         const staticSitemap = await fs.readFile(sitemapPath, 'utf-8');
         const staticLocs = parseSitemapLocs(staticSitemap);
 
+        // Read additional indexable content from static API artifacts.
+        const worksPath = path.resolve(__dirname, '../public/api/works.json');
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+
+        let works: any[] = [];
+        let lexicon: any[] = [];
+        try {
+            works = JSON.parse(await fs.readFile(worksPath, 'utf-8'));
+        } catch {
+            works = [];
+        }
+        try {
+            lexicon = JSON.parse(await fs.readFile(lexiconPath, 'utf-8'));
+        } catch {
+            lexicon = [];
+        }
+
         // Add all blog/article URLs from DB so search engines can index everything.
         const db = getLocalPostsDb();
         const allPosts = await db.select({
@@ -284,9 +301,27 @@ app.get('/sitemap.xml', async (_req, res) => {
                 return { url, lastmod };
             });
 
+        const workEntries = (Array.isArray(works) ? works : [])
+            .filter((w: any) => w?.slug)
+            .map((w: any) => {
+                const slug = String(w.slug).replace(/^\/+|\/+$/g, '');
+                const author = String(w.author || '').toLowerCase().replace(/^\/+|\/+$/g, '');
+                const url = author ? buildUrl(`/${author}/works/${slug}`) : buildUrl(`/works/${slug}`);
+                return { url, lastmod: null };
+            });
+
+        const lexiconEntries = (Array.isArray(lexicon) ? lexicon : [])
+            .filter((l: any) => l?.slug)
+            .map((l: any) => {
+                const slug = String(l.slug).replace(/^\/+|\/+$/g, '');
+                return { url: buildUrl(`/lexicon/${slug}`), lastmod: null };
+            });
+
         const merged = new Map<string, { url: string; lastmod: string | null }>();
         for (const loc of staticLocs) merged.set(loc, { url: loc, lastmod: null });
         for (const entry of postEntries) merged.set(entry.url, entry);
+        for (const entry of workEntries) merged.set(entry.url, entry);
+        for (const entry of lexiconEntries) merged.set(entry.url, entry);
 
         const urls = Array.from(merged.values()).sort((a, b) => a.url.localeCompare(b.url));
 
