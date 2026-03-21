@@ -220,19 +220,22 @@ async function handleAiChat(request, env, persona, question, historyParam, sitem
     let resources = [];
     if (sitemapUrl) {
         try {
-            console.log(`[AI Chat] Generating resources for persona=${persona}, question="${question.substring(0, 50)}..."`);
+            console.log(`[AI Chat] 🔍 Generating resources for persona="${persona}", question="${question.substring(0, 50)}..."`);
             // Try D1 first (more reliable), fall back to sitemap
             resources = await suggestResourcesFromD1(env, persona, question, aiResponse.response || "");
+            console.log(`[AI Chat] D1 returned ${resources.length} resources`);
+            
             if (resources.length === 0) {
-                console.log(`[AI Chat] D1 returned no resources, trying sitemap fallback...`);
+                console.log(`[AI Chat] ⚠️ D1 returned no resources, trying sitemap fallback...`);
                 resources = await suggestResourcesFromSitemap(sitemapUrl, persona, question, aiResponse.response || "");
+                console.log(`[AI Chat] Sitemap fallback returned ${resources.length} resources`);
             }
-            console.log(`[AI Chat] Generated ${resources.length} resources: ${resources.map(r => r.link).join(", ")}`);
+            console.log(`[AI Chat] ✓ Generated total ${resources.length} resources`);
         } catch (e) {
-            console.error(`[AI Chat] Error generating resources: ${e.message}`, e);
+            console.error(`[AI Chat] ❌ Error generating resources: ${e.message}`, e);
         }
     } else {
-        console.warn(`[AI Chat] No sitemapUrl provided, skipping resource suggestions`);
+        console.warn(`[AI Chat] ⚠️ No sitemapUrl provided, skipping resource suggestions`);
     }
 
     return {
@@ -434,15 +437,21 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
     console.log(`[D1Resources] Starting D1-based resource suggestion for persona=${persona}`);
     
     if (!env.DB) {
-        console.warn(`[D1Resources] DB binding not available, skipping D1 method`);
+        console.warn(`[D1Resources] ❌ DB binding not available (env.DB undefined)`);
         return [];
     }
+    
+    console.log(`[D1Resources] ✓ DB binding available`);
 
     try {
         // Combine question and AI response for keyword extraction
         const fullContext = `${question} ${aiResponse}`.toLowerCase();
         const keywords = extractKeywords(fullContext, persona);
-        console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 5).join(", ")}`);
+        console.log(`[D1Resources] Extracted ${keywords.length} keywords: ${keywords.slice(0, 10).join(", ")}`);
+        
+        if (keywords.length === 0) {
+            console.warn(`[D1Resources] ⚠️ No keywords extracted, might get no results`);
+        }
 
         // Build search conditions - try to find matching posts and lexicon entries
         const results = [];
@@ -455,9 +464,18 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                 `SELECT id, slug, title, content FROM posts WHERE author_id = ? LIMIT 15`
             ).bind(persona).all();
 
-            if (postsResult.success && postsResult.results) {
-                console.log(`[D1Resources] Found ${postsResult.results.length} posts by author`);
+            console.log(`[D1Resources] Posts query result:`, {
+                success: postsResult.success,
+                resultCount: postsResult.results?.length || 0,
+                error: postsResult.error,
+            });
+
+            if (postsResult.success && postsResult.results && postsResult.results.length > 0) {
+                console.log(`[D1Resources] ✓ Found ${postsResult.results.length} posts by author="${persona}"`);
+                
                 for (const post of postsResult.results) {
+                    console.log(`[D1Resources]   Processing post: ${post.slug}`);
+                    
                     // content is stored as JSON string: { diary: "...", scientific: "..." }
                     let contentText = post.title || '';
                     try {
@@ -466,16 +484,21 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                             contentText += ` ${contentObj.diary || ''} ${contentObj.scientific || ''}`;
                         }
                     } catch (e) {
+                        console.warn(`[D1Resources]     Could not parse content JSON:`, e.message);
                         contentText += post.content ? ` ${post.content}` : '';
                     }
                     
                     const postText = contentText.toLowerCase();
                     let score = 0;
+                    const matchedKeywords = [];
                     
                     for (const k of keywords) {
                         if (!k || k.length < 2) continue;
                         const variants = expandKeyword(k);
-                        if (variants.some(v => postText.includes(v))) score += 5;
+                        if (variants.some(v => postText.includes(v))) {
+                            score += 5;
+                            matchedKeywords.push(k);
+                        }
                     }
                     
                     if (score > 0) {
@@ -489,14 +512,21 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 score
                             });
                             seen.add(link);
-                            console.log(`[D1Resources] Added post: ${post.slug} (score=${score})`);
+                            console.log(`[D1Resources]     ✓ Added post: ${post.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
                         }
+                    } else {
+                        console.log(`[D1Resources]     ⚠️ Post: ${post.slug} had no keyword matches`);
                     }
                 }
+            } else if (!postsResult.success) {
+                console.error(`[D1Resources] ❌ Posts query failed:`, postsResult.error);
+            } else {
+                console.log(`[D1Resources] ℹ️ No posts found for author="${persona}"`);
             }
         } catch (e) {
-            console.warn(`[D1Resources] Error querying posts: ${e.message}`);
+            console.error(`[D1Resources] ❌ Error querying posts:`, e.message, e.stack);
         }
+
 
         // 2. Search lexicon entries
         console.log(`[D1Resources] Querying lexicon entries...`);
@@ -505,16 +535,27 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                 `SELECT slug, term, definition FROM lexicon LIMIT 30`
             ).all();
 
-            if (lexiconResult.success && lexiconResult.results) {
-                console.log(`[D1Resources] Found ${lexiconResult.results.length} lexicon entries`);
+            console.log(`[D1Resources] Lexicon query result:`, {
+                success: lexiconResult.success,
+                resultCount: lexiconResult.results?.length || 0,
+                error: lexiconResult.error,
+            });
+
+            if (lexiconResult.success && lexiconResult.results && lexiconResult.results.length > 0) {
+                console.log(`[D1Resources] ✓ Found ${lexiconResult.results.length} lexicon entries`);
+                
                 for (const entry of lexiconResult.results) {
                     const entryText = `${entry.term} ${entry.definition || ''}`.toLowerCase();
                     let score = 0;
+                    const matchedKeywords = [];
                     
                     for (const k of keywords) {
                         if (!k || k.length < 2) continue;
                         const variants = expandKeyword(k);
-                        if (variants.some(v => entryText.includes(v))) score += 3;
+                        if (variants.some(v => entryText.includes(v))) {
+                            score += 3;
+                            matchedKeywords.push(k);
+                        }
                     }
                     
                     if (score > 0) {
@@ -528,14 +569,19 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
                                 score
                             });
                             seen.add(link);
-                            console.log(`[D1Resources] Added lexicon: ${entry.slug} (score=${score})`);
+                            console.log(`[D1Resources]   ✓ Added lexicon: ${entry.slug} (score=${score}, matched=${matchedKeywords.join(',')})`);
                         }
                     }
                 }
+            } else if (!lexiconResult.success) {
+                console.error(`[D1Resources] ❌ Lexicon query failed:`, lexiconResult.error);
+            } else {
+                console.log(`[D1Resources] ℹ️ No lexicon entries found`);
             }
         } catch (e) {
-            console.warn(`[D1Resources] Error querying lexicon: ${e.message}`);
+            console.error(`[D1Resources] ❌ Error querying lexicon:`, e.message, e.stack);
         }
+
 
         // Sort by score and return top 5
         const sorted = results
@@ -543,12 +589,16 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
             .slice(0, 5)
             .map(({ score, ...rest }) => rest); // Remove score from output
 
-        console.log(`[D1Resources] Returning ${sorted.length} resources from D1`);
-        sorted.forEach(r => console.log(`  - ${r.link} (${r.type})`));
+        console.log(`[D1Resources] Final result: ${sorted.length} resources (from ${results.length} candidates)`);
+        if (sorted.length > 0) {
+            sorted.forEach(r => console.log(`[D1Resources]   ✓ ${r.link} (${r.type})`));
+        } else {
+            console.warn(`[D1Resources] ⚠️ No resources matched keywords, returning empty array`);
+        }
         return sorted;
 
     } catch (e) {
-        console.error(`[D1Resources] Fatal error: ${e.message}`, e);
+        console.error(`[D1Resources] ❌ Fatal error:`, e.message, e.stack);
         return [];
     }
 }
