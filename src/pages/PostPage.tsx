@@ -106,7 +106,8 @@ function PostContent({ post }: { post: BlogPost }) {
     if (perspective !== initialPerspective) {
       setPerspective(initialPerspective);
     }
-  }, [post, searchParams, perspective]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [post, searchParams]);
   
   if (!post) {
     console.error('[PostContent] Post is null/undefined');
