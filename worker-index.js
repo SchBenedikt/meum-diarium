@@ -163,6 +163,12 @@ function resolveAiBinding(env) {
     return null;
 }
 
+function resolveDbBinding(env) {
+    if (env?.DB) return { db: env.DB, name: 'DB' };
+    if (env?.db) return { db: env.db, name: 'db' };
+    return { db: null, name: null };
+}
+
 async function handleAiChat(request, env, persona, question, historyParam, sitemapUrl) {
     const personaPrompts = {
         caesar: "Du bist Gaius Julius Caesar. Du bist davon überzeugt, dass du der beste Feldherr bist und jeden besiegen kannst. Du hoffst, dass dir bald alle unterlegen sind. Passe die Sprache an den Nutzer an; antworte in der gleichen Sprache, in der du die Frage bekommst.",
@@ -442,14 +448,24 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
             return [];
         }
 
+        const raw = await indexRes.text();
         const contentType = (indexRes.headers.get('content-type') || '').toLowerCase();
-        if (!contentType.includes('application/json')) {
-            const bodyPreview = (await indexRes.text()).slice(0, 120).replace(/\s+/g, ' ');
+        const trimmed = raw.trim();
+        const looksJson = trimmed.startsWith('{') || trimmed.startsWith('[');
+        if (!contentType.includes('application/json') && !looksJson) {
+            const bodyPreview = trimmed.slice(0, 120).replace(/\s+/g, ' ');
             console.warn(`[SearchIndex] Expected JSON but got "${contentType}". Preview: ${bodyPreview}`);
             return [];
         }
 
-        const indexJson = await indexRes.json();
+        let indexJson;
+        try {
+            indexJson = JSON.parse(trimmed);
+        } catch (e) {
+            const bodyPreview = trimmed.slice(0, 120).replace(/\s+/g, ' ');
+            console.warn(`[SearchIndex] Invalid JSON payload. Preview: ${bodyPreview}`);
+            return [];
+        }
         const items = Array.isArray(indexJson?.items) ? indexJson.items : [];
         console.log(`[SearchIndex] Got ${items.length} items from search.json`);
         if (!items.length) return [];
@@ -506,13 +522,14 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
 // =======================================
 async function suggestResourcesFromD1(env, persona, question, aiResponse) {
     console.log(`[D1Resources] Starting D1-based resource suggestion for persona=${persona}`);
-    
-    if (!env.DB) {
-        console.warn(`[D1Resources] ❌ DB binding not available (env.DB undefined)`);
+
+    const { db, name: dbBindingName } = resolveDbBinding(env);
+    if (!db) {
+        console.warn(`[D1Resources] ❌ DB binding not available (expected env.DB or env.db)`);
         return [];
     }
-    
-    console.log(`[D1Resources] ✓ DB binding available`);
+
+    console.log(`[D1Resources] ✓ DB binding available via env.${dbBindingName}`);
 
     try {
         // Combine question and AI response for keyword extraction
@@ -531,7 +548,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
         // 1. Search ALL posts by topic relevance; persona only boosts ranking.
         console.log(`[D1Resources] Querying posts across all authors...`);
         try {
-            const postsResult = await env.DB.prepare(
+            const postsResult = await db.prepare(
                 `SELECT id, slug, title, content, author_id
                  FROM posts
                  ORDER BY CASE WHEN lower(author_id) = ? THEN 0 ELSE 1 END, id DESC
@@ -610,7 +627,7 @@ async function suggestResourcesFromD1(env, persona, question, aiResponse) {
         // 2. Search lexicon entries
         console.log(`[D1Resources] Querying lexicon entries...`);
         try {
-            const lexiconResult = await env.DB.prepare(
+            const lexiconResult = await db.prepare(
                 `SELECT slug, term, definition FROM lexicon LIMIT 300`
             ).all();
 
@@ -708,6 +725,17 @@ function parseSitemap(xml) {
     return entries;
 }
 
+function parseAllLocEntries(xml) {
+    const entries = [];
+    const locBlocks = [...xml.matchAll(/<loc\b[^>]*>\s*([^<]+)\s*<\/loc>/gi)];
+    for (const m of locBlocks) {
+        const loc = String(m[1] || '').trim();
+        if (!loc) continue;
+        entries.push({ loc });
+    }
+    return entries;
+}
+
 function parseSitemapIndex(xml) {
     const entries = [];
     const sitemapBlocks = [...xml.matchAll(/<sitemap\b[^>]*>[\s\S]*?<\/sitemap>/gi)];
@@ -725,9 +753,18 @@ async function resolveSitemapEntries(sitemapUrl, xml) {
     const directEntries = parseSitemap(xml);
     if (directEntries.length > 0) return directEntries;
 
+    // Fallback parser: accept any <loc> entries if <url> blocks are missing/unexpected.
+    const looseEntries = parseAllLocEntries(xml);
+    const nonXmlEntries = looseEntries.filter((e) => !/\.xml(\?|$)/i.test(e.loc));
+    if (nonXmlEntries.length > 0) {
+        console.log(`[Resources] Using loose <loc> parser: ${nonXmlEntries.length} URL entries`);
+        return nonXmlEntries;
+    }
+
     const childSitemaps = parseSitemapIndex(xml);
     if (!childSitemaps.length) {
-        console.warn('[Resources] No <url> and no child sitemaps found in sitemap XML');
+        const xmlPreview = String(xml || '').slice(0, 160).replace(/\s+/g, ' ');
+        console.warn(`[Resources] No <url> and no child sitemaps found. XML preview: ${xmlPreview}`);
         return [];
     }
 
