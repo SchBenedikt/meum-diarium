@@ -62,6 +62,7 @@ const ProfileEditPage = lazy(() => import('./pages/ProfileEditPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
+const ImagesPage = lazy(() => import('./pages/ImagesPage'));
 const StatisticsPage = lazy(() => import('./pages/StatisticsPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -147,6 +148,7 @@ const AppContent = () => {
               {/* Legal pages */}
               <Route path="/agb" element={<PageTransition><AgbPage /></PageTransition>} />
               <Route path="/oer" element={<PageTransition><OERPage /></PageTransition>} />
+              <Route path="/images" element={<PageTransition><ImagesPage /></PageTransition>} />
               <Route path="/stats" element={<PageTransition><StatisticsPage /></PageTransition>} />
               <Route path="/statistik" element={<PageTransition><StatisticsPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}

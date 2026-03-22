@@ -60,7 +60,7 @@
   <meta property="og:locale" content="de_DE" />
   <meta property="og:url" content="https://meum-diarium.xn--schchner-2za.de/" />
   <meta property="og:image"
-    content="https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Kopf_von_Caesar._bfbb8779-5383-4e20-9d37-1c9e88400ab11.png" />
+    content="https://meum-diarium.xn--schchner-2za.de/images/caesar-hero.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Meum Diarium - Das antike Rom erleben" />
@@ -68,15 +68,16 @@
   <!-- Additional Open Graph for rich embeds -->
   <meta property="article:author" content="Meum Diarium" />
   <meta property="article:published_time" content="2024-01-01T00:00:00+00:00" />
-  <meta property="og:updated_time" content="2026-02-05T00:00:00+00:00" />
+  <meta property="og:updated_time" content="2026-03-21T00:00:00+00:00" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@meumdiarium" />
   <meta name="twitter:title" content="Meum Diarium – Das antike Rom erleben" />
   <meta name="twitter:description"
     content="Erlebe die Geschichte Roms durch interaktive Gespräche mit Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge und wissenschaftliche Kommentare." />
   <meta name="twitter:image"
-    content="https://caesar.schächner.de/wp-content/uploads/2024/03/kkg_system_36041_Kopf_von_Caesar._bfbb8779-5383-4e20-9d37-1c9e88400ab11.png" />
+    content="https://meum-diarium.xn--schchner-2za.de/images/caesar-hero.png" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -84,12 +85,26 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Meum Diarium",
+      "alternateName": "Meum Diarium – Das antike Rom erleben",
       "description": "Eine interaktive Bildungsplattform über das antike Rom mit KI-gestützten Gesprächen, Tagebucheinträgen und wissenschaftlichen Kommentaren von Caesar, Cicero, Augustus und Seneca",
       "url": "https://meum-diarium.xn--schchner-2za.de",
+      "inLanguage": "de-DE",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://meum-diarium.xn--schchner-2za.de/search?q={search_term_string}",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://meum-diarium.xn--schchner-2za.de/search?q={search_term_string}"
+        },
         "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Meum Diarium",
+        "url": "https://meum-diarium.xn--schchner-2za.de",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://meum-diarium.xn--schchner-2za.de/icons/favicon.svg"
+        }
       },
       "about": [
         {
@@ -98,7 +113,8 @@
           "birthDate": "-100",
           "deathDate": "-44",
           "birthPlace": "Rom",
-          "description": "Römischer Staatsmann, Feldherr und Autor"
+          "description": "Römischer Staatsmann, Feldherr und Autor",
+          "url": "https://meum-diarium.xn--schchner-2za.de/caesar"
         },
         {
           "@type": "Person",
@@ -106,7 +122,8 @@
           "birthDate": "-106",
           "deathDate": "-43",
           "birthPlace": "Arpinum",
-          "description": "Römischer Redner, Philosoph und Staatsmann"
+          "description": "Römischer Redner, Philosoph und Staatsmann",
+          "url": "https://meum-diarium.xn--schchner-2za.de/cicero"
         },
         {
           "@type": "Person",
@@ -114,7 +131,8 @@
           "birthDate": "-63",
           "deathDate": "14",
           "birthPlace": "Rom",
-          "description": "Erster römischer Kaiser und Gründer des Prinzipats"
+          "description": "Erster römischer Kaiser und Gründer des Prinzipats",
+          "url": "https://meum-diarium.xn--schchner-2za.de/augustus"
         },
         {
           "@type": "Person",
@@ -122,7 +140,17 @@
           "birthDate": "-4",
           "deathDate": "65",
           "birthPlace": "Corduba",
-          "description": "Römischer Philosoph, Dramatiker und Staatsmann"
+          "description": "Römischer Philosoph, Dramatiker und Staatsmann",
+          "url": "https://meum-diarium.xn--schchner-2za.de/seneca"
+        },
+        {
+          "@type": "Person",
+          "name": "Lucius Sergius Catilina",
+          "birthDate": "-108",
+          "deathDate": "-62",
+          "birthPlace": "Rom",
+          "description": "Römischer Senator und Anführer der Catilinarischen Verschwörung",
+          "url": "https://meum-diarium.xn--schchner-2za.de/catilina"
         }
       ]
     }
