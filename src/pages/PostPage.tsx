@@ -124,11 +124,12 @@ function PostContent({ post }: { post: BlogPost }) {
     const authorId = post?.author;
     if (!authorId) return;
     const question = chatQuestion.trim();
+    const context = encodeURIComponent(`${post.title}${post.tags?.length ? ' - ' + post.tags.join(', ') : ''}`);
     navigate(question.length > 0
-      ? `/${authorId}/chat?q=${encodeURIComponent(question)}`
-      : `/${authorId}/chat`
+      ? `/${authorId}/chat?q=${encodeURIComponent(question)}&ref=${context}`
+      : `/${authorId}/chat?ref=${context}`
     );
-  }, [chatQuestion, navigate, post?.author]);
+  }, [chatQuestion, navigate, post?.author, post?.title, post?.tags]);
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
