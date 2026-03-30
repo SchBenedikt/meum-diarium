@@ -2,3 +2,5 @@
 - [ ] Bei Lexikon-Einträgen-Popups, die KI-generiert sind, kann ich nicht scrollen, obwohl der Chat-Verlauf größer wäre
 - [ ] Ich kann keine wissenschaftliche Artikel mehr öffnen, hier treten Fehler auf.
 - [ ] Bei Lexikon-Einträgen sollten die "Verwandten Einträge" dünner, dafür breiter sein. Man sollte durch diese scrollen können.
+- [ ] Die API funktioniert über meum-diarium.xn--schchner-2za.de nicht.
+- [ ] Erstelle eine README.md Datei
