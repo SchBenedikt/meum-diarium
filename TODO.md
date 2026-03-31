@@ -5,3 +5,9 @@
 - [ ] Die API funktioniert über meum-diarium.xn--schchner-2za.de nicht.
 - [ ] Erstelle eine README.md Datei
 - [ ] In Google Search Console wurden zwar die ganzen Blog-Einträge gefunden, aber nicht indexiert. Bitte behebe das.
+- [ ] Beziehungsnetzwerk (z.b. mit D3.js) zwischen den verschiedenen Persönlichkeiten und deren Verbindungen
+- [ ] Wissensquiz: Am Ende ein KI-generiertes Quiz, um inhaltliche Fragen zu den Texten zu stellen
+- [ ] Zusätzliches Lehrerpaket zu jedem Beitrag, mit Aufgaben und Lösungen in zwei extra Dateien (am besten PDF); vllt auch am besten im Bezug auf die lateinischen Texte; Interpretationsaufgaben usw. Das Lernpaket sollte unter /learn zu finden sein. Man sollte ein Thema aus vielen auswählen können und hier dann mithilfe von KI Arbeitsblätter erstellen können. Diese sollten modern, ansprechend, in den passenden Farben aufgebaut sein. Jedes KI-generierte Arbeitsblatt sollte die gleiche Struktur, das gleiche moderne Design haben, aber auch nicht langweilig sein. Die Aufgaben sollten dynamsich dann hinzugefügt werden. Man sollte auswählen können, was diese enthalten: Textverständnis, Lückentext, Multiple Choice, Interpretationsaufgaben, passende Übersetzungsaufgaben und "Diskussionsaufgaben/Impulsfragen" (Hätte ...). Am Anfang des Arbeitsblattes sollte man auswählen können, ob man einen kurzen Einführungstext in das Thema haben möchte. Für jeden Aufgaben-Typ sollte man die Schwierigkeit festlegen können (1-3).
+- [ ] Kommentar-Funktion, um Beiträge ohne Registrierung zu kommentieren
+- [ ] Entferne Login-Funktion/Registrier-Funktion, unnötig
+- [ ] Website-Inhalt sollte Schema.org folgen, um übersichtlich, ordentlich zu bleiben.
