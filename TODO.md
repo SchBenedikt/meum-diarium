@@ -4,3 +4,4 @@
 - [ ] Bei Lexikon-Einträgen sollten die "Verwandten Einträge" dünner, dafür breiter sein. Man sollte durch diese scrollen können.
 - [ ] Die API funktioniert über meum-diarium.xn--schchner-2za.de nicht.
 - [ ] Erstelle eine README.md Datei
+- [ ] In Google Search Console wurden zwar die ganzen Blog-Einträge gefunden, aber nicht indexiert. Bitte behebe das.
