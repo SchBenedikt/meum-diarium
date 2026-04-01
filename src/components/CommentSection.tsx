@@ -32,8 +32,9 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
   const [authorName, setAuthorName] = useState('');
   const [authorEmail, setAuthorEmail] = useState('');
   const [content, setContent] = useState('');
-  const [deleteEmail, setDeleteEmail] = useState('');
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteDialogId, setDeleteDialogId] = useState<string | null>(null);
+  const [deleteInputEmail, setDeleteInputEmail] = useState('');
 
   // Fetch comments
   useEffect(() => {
@@ -67,7 +68,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
     setError(null);
 
     if (!authorName.trim() || !authorEmail.trim() || !content.trim()) {
-      setError('Please fill in all fields');
+      setError('Bitte alle Felder ausfüllen.');
       return;
     }
 
@@ -91,7 +92,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
       }
 
       const data = await res.json();
-      setComments([data.comment, ...comments]);
+      setComments((prev) => [data.comment, ...prev]);
       setAuthorName('');
       setAuthorEmail('');
       setContent('');
@@ -109,16 +110,17 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
 
   const handleDelete = async (commentId: string, email: string) => {
     if (!email) {
-      setError('Email required to delete comment');
+      setError('E-Mail erforderlich, um einen Kommentar zu löschen');
       return;
     }
 
     setDeletingId(commentId);
 
     try {
-      const res = await fetch(`/api/comments?id=${encodeURIComponent(commentId)}&email=${encodeURIComponent(email)}`, {
+      const res = await fetch('/api/comments', {
         method: 'DELETE',
-        headers: { 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: commentId, email }),
       });
 
       if (!res.ok) {
@@ -126,8 +128,9 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
         throw new Error(data.error || `Failed to delete comment: ${res.status}`);
       }
 
-      setComments(comments.filter((c) => c.id !== commentId));
-      setDeleteEmail('');
+      setComments((prev) => prev.filter((c) => c.id !== commentId));
+      setDeleteDialogId(null);
+      setDeleteInputEmail('');
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Failed to delete comment';
       setError(message);
@@ -248,10 +251,8 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                       variant="ghost"
                       size="sm"
                       onClick={() => {
-                        const email = prompt(`Gib deine E-Mail ein, um diesen Kommentar zu löschen:\n\n${comment.authorEmail}`);
-                        if (email) {
-                          handleDelete(comment.id, email);
-                        }
+                        setDeleteDialogId(comment.id);
+                        setDeleteInputEmail('');
                       }}
                       disabled={deletingId === comment.id}
                       className="text-destructive hover:text-destructive-foreground hover:bg-destructive/10"
@@ -264,6 +265,39 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                     </Button>
                   </div>
                   <p className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">{comment.content}</p>
+                  {deleteDialogId === comment.id && (
+                    <div className="mt-4 p-3 border border-destructive/30 rounded-lg bg-destructive/5 space-y-3">
+                      <p className="text-sm text-foreground font-medium">Kommentar löschen</p>
+                      <p className="text-xs text-muted-foreground">Gib deine E-Mail-Adresse ein, um den Kommentar zu löschen.</p>
+                      <Input
+                        type="email"
+                        placeholder="deine@email.com"
+                        value={deleteInputEmail}
+                        onChange={(e) => setDeleteInputEmail(e.target.value)}
+                        disabled={deletingId === comment.id}
+                        className="text-sm"
+                      />
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => handleDelete(comment.id, deleteInputEmail)}
+                          disabled={deletingId === comment.id || !deleteInputEmail.trim()}
+                        >
+                          {deletingId === comment.id ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : null}
+                          Löschen
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => { setDeleteDialogId(null); setDeleteInputEmail(''); }}
+                          disabled={deletingId === comment.id}
+                        >
+                          Abbrechen
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}

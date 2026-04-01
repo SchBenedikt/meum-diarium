@@ -41,7 +41,7 @@ export default {
         }
 
         // Route: /worksheet - handle worksheet generation
-        if (pathname.endsWith('/worksheet')) {
+        if (pathname === '/worksheet') {
             return handleWorksheet(request, env, url, body);
         }
 
@@ -1341,7 +1341,7 @@ async function handleWorksheet(request, env, url, body) {
             ],
         }, null, 2),
         '',
-        'KRITISCH: Das JSON MUSS vollständig und gültig sein. Inkludiere alle Felder.',
+        'KRITISCH: Das JSON MUSS vollständig und gültig sein. Halte dich exakt an die Beispielstruktur; optionale Felder (z.B. "intro") dürfen null sein oder weggelassen werden, wenn sie nicht verwendet werden.',
     ].filter(Boolean).join('\n');
 
     const ai = resolveAiBinding(env);
@@ -1361,7 +1361,8 @@ async function handleWorksheet(request, env, url, body) {
         });
 
         const raw = String(aiResponse?.response || '').trim();
-        console.log(`[Worksheet] Raw AI response (first 500 chars): ${raw.substring(0, 500)}`);
+        const rawLength = raw.length;
+        console.log(`[Worksheet] AI response received. length=${rawLength}`);
         
         const parsed = extractJsonObject(raw);
         if (!parsed) {
@@ -1471,7 +1472,8 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
     const resultTasks = [];
     for (const cfg of tasks) {
         const type = String(cfg?.type || 'readingComprehension');
-        const difficulty = Number(cfg?.difficulty || 2);
+        const rawDifficulty = Number(cfg?.difficulty);
+        const difficulty = Number.isFinite(rawDifficulty) ? Math.max(1, Math.min(3, rawDifficulty)) : 2;
         const amount = Math.max(1, Math.min(3, Number(cfg?.amount || 1)));
         const desc = taskDescriptionMap[type] || taskDescriptionMap.readingComprehension;
 
@@ -1481,7 +1483,7 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
                 title: `${desc.title}${amount > 1 ? ` ${i + 1}` : ''}`,
                 instruction: desc.instruction,
                 material: desc.material,
-                difficulty: difficulty === 1 || difficulty === 2 || difficulty === 3 ? difficulty : 2,
+                difficulty,
             });
         }
     }

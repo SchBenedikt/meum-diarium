@@ -458,14 +458,24 @@ export async function generateWorksheetAI(payload: {
         ? new URL('/worksheet', 'https://caesar.schaechner.workers.dev')
         : new URL('/api/worksheet', origin || 'http://localhost');
 
-    let res = await fetch(primaryUrl.toString(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
-        body: JSON.stringify(payload),
-    });
+    const fallbackUrl = new URL('/worksheet', 'https://caesar.schaechner.workers.dev');
 
-    if (!res.ok && (res.status === 404 || res.status >= 500)) {
-        const fallbackUrl = new URL('/worksheet', 'https://caesar.schaechner.workers.dev');
+    let res: Response;
+    try {
+        res = await fetch(primaryUrl.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (!res.ok && (res.status === 404 || res.status >= 500)) {
+            res = await fetch(fallbackUrl.toString(), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+        }
+    } catch {
         res = await fetch(fallbackUrl.toString(), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },

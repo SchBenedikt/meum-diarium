@@ -34,14 +34,13 @@ interface CommentResponse {
   updatedAt: string;
 }
 
-export const onRequest = async ({ request, params, env }: { request: Request; params: Record<string, string>; env: any }) => {
+export const onRequest = async ({ request, env }: { request: Request; env: any }) => {
   if (request.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   const db = getDb(env);
   const url = new URL(request.url);
-  const pathname = url.pathname.toLowerCase();
 
   // GET /api/comments?postId=:postId - Get all comments for a post
   if (request.method === 'GET') {
@@ -61,7 +60,9 @@ export const onRequest = async ({ request, params, env }: { request: Request; pa
         .where(sql`${comments.postId} = ${postId} AND ${comments.isDeleted} = 0`)
         .orderBy(sql`${comments.createdAt} DESC`);
 
-      return new Response(JSON.stringify({ comments: commentsList }), {
+      const safeComments = commentsList.map(({ authorEmail: _, ...rest }) => rest);
+
+      return new Response(JSON.stringify({ comments: safeComments }), {
         status: 200,
         headers: jsonHeaders,
       });
@@ -144,7 +145,7 @@ export const onRequest = async ({ request, params, env }: { request: Request; pa
 
     // Create comment
     try {
-      const commentId = `comment_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const commentId = crypto.randomUUID();
       const now = new Date().toISOString();
 
       const newComment: Omit<CommentResponse, 'id' | 'createdAt' | 'updatedAt'> & {
@@ -178,10 +179,20 @@ export const onRequest = async ({ request, params, env }: { request: Request; pa
     }
   }
 
-  // DELETE /api/comments/:id - Soft delete a comment (only by author's email or admin)
+  // DELETE /api/comments - Soft delete a comment (only by author's email or admin)
   if (request.method === 'DELETE') {
-    const commentId = url.searchParams.get('id');
-    const authorEmail = url.searchParams.get('email');
+    let deleteBody: { id?: string; email?: string } | null = null;
+    try {
+      deleteBody = await request.json();
+    } catch {
+      return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
+        status: 400,
+        headers: jsonHeaders,
+      });
+    }
+
+    const commentId = String(deleteBody?.id || '').trim();
+    const authorEmail = String(deleteBody?.email || '').trim();
 
     if (!commentId || !authorEmail) {
       return new Response(JSON.stringify({ error: 'Missing commentId or email' }), {
