@@ -52,12 +52,13 @@ export function LexiconSidebar({ entry }: LexiconSidebarProps) {
             <LinkIcon className="h-4 w-4 text-primary" />
             {t('relatedEntries')}
           </h3>
-          <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 -mr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[400px] overflow-y-auto pr-2 -mr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
             {relatedTerms.map(term => (
               <Link
                 key={term.slug}
                 to={`/lexicon/${term.slug}`}
-                className="block text-sm text-muted-foreground hover:text-primary hover:underline py-1"
+                className="block text-sm text-muted-foreground hover:text-primary hover:underline py-1.5 px-2 rounded-md hover:bg-secondary/50 transition-colors truncate"
+                title={term.term}
               >
                 {term.term}
               </Link>

@@ -105,19 +105,19 @@ export default function LexiconPage() {
         title={`${t('lexicon')} | Meum Diarium`}
         description={t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.'}
         keywords="Latein, Lexikon, antike Geschichte, römisches Reich, Begriffe, Definitionen, Etymologie, Caesar, Cicero, Seneca, Augustus"
-        image="https://meum-diarium.xn--schner-2za.de/images/lexicon-hero.jpg"
+        image="https://meum-diarium.xn--schchner-2za.de/images/lexicon-hero.jpg"
         type="website"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": `${t('lexicon')} - Meum Diarium`,
           "description": t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.',
-          "url": "https://meum-diarium.xn--schner-2za.de/lexicon",
+          "url": "https://meum-diarium.xn--schchner-2za.de/lexicon",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://meum-diarium.xn--schner-2za.de/lexicon?q={search_term_string}"
+              "urlTemplate": "https://meum-diarium.xn--schchner-2za.de/lexicon?q={search_term_string}"
             },
             "query-input": "required"
           },
@@ -134,7 +134,7 @@ export default function LexiconPage() {
             }
           ]
         }}
-        canonical="https://meum-diarium.xn--schner-2za.de/lexicon"
+        canonical="https://meum-diarium.xn--schchner-2za.de/lexicon"
       />
       <main className="flex-1 pb-16 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}

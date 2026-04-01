@@ -25,7 +25,7 @@ export function SenecaAboutPage() {
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
   const authorDetails = useAuthorDetails(t);
-  const baseUrl = 'https://meum-diarium.xn--schner-2za.de';
+  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
 
   useEffect(() => {
     setCurrentAuthor('seneca' as Author);

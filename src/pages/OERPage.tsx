@@ -22,7 +22,7 @@ type ResourceCategory = {
 };
 
 const OERPage = () => {
-  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
 
   const availableResources: ResourceCategory[] = [
     {

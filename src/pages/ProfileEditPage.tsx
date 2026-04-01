@@ -94,12 +94,12 @@ export default function ProfileEditPage() {
           "@type": "WebPage",
           "name": "Profil bearbeiten",
           "description": "Profil bearbeiten - Meum Diarium",
-          "url": "https://meum-diarium.xn--schner-2za.de/profile/edit",
+          "url": "https://meum-diarium.xn--schchner-2za.de/profile/edit",
           "potentialAction": {
             "@type": "UpdateAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://meum-diarium.xn--schner-2za.de/profile/edit"
+              "urlTemplate": "https://meum-diarium.xn--schchner-2za.de/profile/edit"
             }
           }
         }}

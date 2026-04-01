@@ -64,6 +64,7 @@ const AgbPage = lazy(() => import('./pages/AgbPage'));
 const OERPage = lazy(() => import('./pages/OERPage'));
 const ImagesPage = lazy(() => import('./pages/ImagesPage'));
 const StatisticsPage = lazy(() => import('./pages/StatisticsPage'));
+const RelationshipsPage = lazy(() => import('./pages/RelationshipsPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
@@ -151,6 +152,8 @@ const AppContent = () => {
               <Route path="/images" element={<PageTransition><ImagesPage /></PageTransition>} />
               <Route path="/stats" element={<PageTransition><StatisticsPage /></PageTransition>} />
               <Route path="/statistik" element={<PageTransition><StatisticsPage /></PageTransition>} />
+              <Route path="/relationships" element={<PageTransition><RelationshipsPage /></PageTransition>} />
+              <Route path="/beziehungen" element={<PageTransition><RelationshipsPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}

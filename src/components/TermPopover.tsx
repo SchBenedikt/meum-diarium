@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -45,7 +45,15 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const linkPath = type === 'author' ? `/${slug}` : `/lexicon/${slug}`;
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    if (messages.length > 0 && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
   useEffect(() => {
     if (open && !summary && !loading) {
       setLoading(true);
@@ -106,9 +114,9 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
               {type === 'author' ? 'Historische Persönlichkeit' : 'Lexikon-Eintrag'}
             </p>
           </div>
-          <ScrollArea className="h-64 p-4">
+          <ScrollArea className="max-h-96 p-4">
             {loading ? (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full min-h-[16rem]">
                 <Loader2 className="h-6 w-6 animate-spin text-primary" />
               </div>
             ) : (
@@ -138,6 +146,7 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
                         )}
                       </div>
                     ))}
+                    <div ref={messagesEndRef} />
                   </div>
                 )}
               </div>
@@ -226,6 +235,7 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
                         )}
                       </div>
                     ))}
+                    <div ref={messagesEndRef} />
                   </div>
                 )}
               </div>
