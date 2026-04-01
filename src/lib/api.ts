@@ -364,6 +364,30 @@ export async function deleteWorkDetails(slug: string) {
 }
 // ============ AI (Cloudflare Worker) ============
 type AiResource = { title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string };
+export type WorksheetTaskConfig = {
+    type: 'readingComprehension' | 'cloze' | 'multipleChoice' | 'translation' | 'interpretation' | 'discussion';
+    difficulty: 1 | 2 | 3;
+    amount: 1 | 2 | 3;
+};
+
+export type WorksheetTask = {
+    type: WorksheetTaskConfig['type'];
+    title: string;
+    instruction: string;
+    material?: string;
+    difficulty: 1 | 2 | 3;
+};
+
+export type WorksheetResponse = {
+    worksheet: {
+        title: string;
+        subtitle: string;
+        intro?: string;
+        tasks: WorksheetTask[];
+    };
+    warning?: string;
+};
+
 export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
@@ -420,6 +444,47 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     const finalText = typeof text === 'string' ? text : String(text);
     return { text: finalText, resources };
 }
+
+export async function generateWorksheetAI(payload: {
+    topic: string;
+    includeIntro: boolean;
+    teacherNote?: string;
+    tasks: WorksheetTaskConfig[];
+}): Promise<WorksheetResponse> {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+
+    const primaryUrl = isDev
+        ? new URL('/worksheet', 'https://caesar.schaechner.workers.dev')
+        : new URL('/api/worksheet', origin || 'http://localhost');
+
+    let res = await fetch(primaryUrl.toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
+        body: JSON.stringify(payload),
+    });
+
+    if (!res.ok && (res.status === 404 || res.status >= 500)) {
+        const fallbackUrl = new URL('/worksheet', 'https://caesar.schaechner.workers.dev');
+        res = await fetch(fallbackUrl.toString(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+    }
+
+    if (!res.ok) {
+        throw new Error(`Worksheet generation failed: ${res.status} ${res.statusText}`);
+    }
+
+    const json = await res.json();
+    if (!json?.worksheet || !Array.isArray(json.worksheet.tasks)) {
+        throw new Error('Worksheet response is invalid');
+    }
+
+    return json as WorksheetResponse;
+}
+
 export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;

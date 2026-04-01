@@ -40,6 +40,11 @@ export default {
             return handleSimulation(request, env, url, body);
         }
 
+        // Route: /worksheet - handle worksheet generation
+        if (pathname.endsWith('/worksheet')) {
+            return handleWorksheet(request, env, url, body);
+        }
+
         // Route: /stats - handle dynamic metrics
         if (pathname.endsWith('/stats')) {
             return handleStats();
@@ -79,6 +84,10 @@ export default {
 
         if (pathname === '/api/simulate') {
             return handleSimulation(request, env, url, body);
+        }
+
+        if (pathname === '/api/worksheet') {
+            return handleWorksheet(request, env, url, body);
         }
 
         // Route: /api - Only proxy write operations or specific AI queries.
@@ -1235,6 +1244,164 @@ async function handleExplainTerm(request, env, url, body) {
     };
 
     return new Response(JSON.stringify(result), { headers: corsHeaders() });
+}
+
+// =======================================
+// Worksheet generation endpoint
+// =======================================
+async function handleWorksheet(request, env, url, body) {
+    if (request.method !== 'POST') {
+        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+            status: 405,
+            headers: corsHeaders(),
+        });
+    }
+
+    const topic = String(body?.topic || '').trim();
+    const includeIntro = Boolean(body?.includeIntro);
+    const teacherNote = String(body?.teacherNote || '').trim();
+    const tasks = Array.isArray(body?.tasks) ? body.tasks : [];
+
+    if (!topic) {
+        return new Response(JSON.stringify({ error: 'Missing topic' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    if (!tasks.length) {
+        return new Response(JSON.stringify({ error: 'Missing tasks configuration' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    const taskLines = tasks
+        .map((task) => {
+            const type = String(task?.type || 'readingComprehension');
+            const amount = Number(task?.amount || 1);
+            const difficulty = Number(task?.difficulty || 2);
+            return `- type: ${type}, amount: ${amount}, difficulty: ${difficulty}`;
+        })
+        .join('\n');
+
+    const introRule = includeIntro
+        ? 'Füge eine kurze Einführung in das Thema ein (4-6 Zeilen).'
+        : 'Füge keine Einführung ein.';
+
+    const prompt = [
+        'Erstelle ein professionelles Arbeitsblattpaket für den Lateinunterricht auf Deutsch.',
+        `Thema: ${topic}`,
+        introRule,
+        'Vorgaben:',
+        '- Einheitliches Layout und klare Struktur über alle Aufgaben.',
+        '- Aufgaben dürfen sich nicht gegenseitig Lösungen vorwegnehmen.',
+        '- Klare, professionelle Sprache.',
+        '- Keine Musterlösungen ausgeben.',
+        teacherNote ? `Hinweis der Lehrkraft: ${teacherNote}` : '',
+        'Aufgabenkonfiguration:',
+        taskLines,
+        'Antworte AUSSCHLIESSLICH als valides JSON in folgendem Schema:',
+        JSON.stringify({
+            title: 'string',
+            subtitle: 'string',
+            intro: 'string optional',
+            tasks: [
+                {
+                    type: 'readingComprehension | cloze | multipleChoice | translation | interpretation | discussion',
+                    title: 'string',
+                    instruction: 'string',
+                    material: 'string optional',
+                    difficulty: 1,
+                },
+            ],
+        }, null, 2),
+    ].filter(Boolean).join('\n');
+
+    const ai = resolveAiBinding(env);
+    if (!ai) {
+        return new Response(JSON.stringify({
+            error: 'AI binding not configured',
+            worksheet: null,
+        }), { status: 503, headers: corsHeaders() });
+    }
+
+    try {
+        const aiResponse = await ai.run('@cf/meta/llama-4-scout-17b-16e-instruct', {
+            messages: [
+                { role: 'system', content: 'Du bist ein Assistent fuer didaktisch hochwertige Latein-Arbeitsblaetter.' },
+                { role: 'user', content: prompt },
+            ],
+        });
+
+        const raw = String(aiResponse?.response || '').trim();
+        const parsed = extractJsonObject(raw);
+        if (!parsed || !Array.isArray(parsed.tasks) || !parsed.tasks.length) {
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI response had no valid worksheet JSON. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        return new Response(JSON.stringify({ worksheet: parsed }), { headers: corsHeaders() });
+    } catch (e) {
+        return new Response(JSON.stringify({
+            worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+            warning: `AI request failed: ${e?.message || 'unknown error'}`,
+        }), { headers: corsHeaders() });
+    }
+}
+
+function extractJsonObject(text) {
+    if (!text) return null;
+    const firstBrace = text.indexOf('{');
+    const lastBrace = text.lastIndexOf('}');
+    if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
+
+    const candidate = text.slice(firstBrace, lastBrace + 1)
+        .replace(/,\s*([}\]])/g, '$1')
+        .trim();
+
+    try {
+        return JSON.parse(candidate);
+    } catch {
+        return null;
+    }
+}
+
+function buildWorksheetFallback(topic, includeIntro, tasks) {
+    const taskTitleMap = {
+        readingComprehension: 'Textverständnis',
+        cloze: 'Lückentext',
+        multipleChoice: 'Multiple Choice',
+        translation: 'Übersetzungsaufgabe',
+        interpretation: 'Interpretationsaufgabe',
+        discussion: 'Diskussionsaufgabe',
+    };
+
+    const resultTasks = [];
+    for (const cfg of tasks) {
+        const type = String(cfg?.type || 'readingComprehension');
+        const difficulty = Number(cfg?.difficulty || 2);
+        const amount = Math.max(1, Math.min(3, Number(cfg?.amount || 1)));
+
+        for (let i = 0; i < amount; i++) {
+            resultTasks.push({
+                type,
+                title: `${taskTitleMap[type] || 'Aufgabe'} ${i + 1}`,
+                instruction: `Bearbeite diese Aufgabe zum Thema "${topic}" auf Niveau ${difficulty}.`,
+                material: 'Die konkrete Materialgrundlage kann von der Lehrkraft ergänzt oder durch die KI verfeinert werden.',
+                difficulty: difficulty === 1 || difficulty === 2 || difficulty === 3 ? difficulty : 2,
+            });
+        }
+    }
+
+    return {
+        title: `${topic} - Arbeitsblatt`,
+        subtitle: 'KI-generiertes Unterrichtsmaterial',
+        intro: includeIntro ? `Dieses Arbeitsblatt bietet einen strukturierten Zugang zum Thema ${topic}.` : '',
+        tasks: resultTasks,
+    };
 }
 
 // =======================================

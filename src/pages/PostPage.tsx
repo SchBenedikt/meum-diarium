@@ -121,7 +121,7 @@ function PostContent({ post }: { post: BlogPost }) {
   const currentUrl = window.location.href;
   const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
 
-  const openAuthorChat = useCallback(() => {
+  const openAuthorChat = () => {
     const authorId = post?.author;
     if (!authorId) return;
     const question = chatQuestion.trim();
@@ -130,7 +130,7 @@ function PostContent({ post }: { post: BlogPost }) {
       ? `/${authorId}/chat?q=${encodeURIComponent(question)}&ref=${context}`
       : `/${authorId}/chat?ref=${context}`
     );
-  }, [chatQuestion, navigate, post?.author, post?.title, post?.tags]);
+  };
 
   return (
     <div ref={targetRef} className="min-h-screen flex flex-col bg-background">
