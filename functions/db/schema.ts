@@ -120,11 +120,13 @@ export const userReadingProgress = sqliteTable('user_reading_progress', {
   updatedAt: text('updated_at').notNull().default(new Date().toISOString()),
 });
 
-// Comments Table
+// Comments Table - supports both authenticated and anonymous comments
 export const comments = sqliteTable('comments', {
   id: text('id').primaryKey(),
-  userId: text('user_id').notNull().references(() => users.id),
   postId: text('post_id').notNull().references(() => posts.id),
+  userId: text('user_id').references(() => users.id), // Optional - for authenticated users
+  authorName: text('author_name'), // For anonymous comments
+  authorEmail: text('author_email'), // For anonymous comments
   content: text('content').notNull(),
   parentId: text('parent_id'), // For threaded comments
   isDeleted: integer('is_deleted', { mode: 'boolean' }).default(false),

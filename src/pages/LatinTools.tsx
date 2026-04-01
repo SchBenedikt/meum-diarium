@@ -9,7 +9,8 @@ import {
     BookOpen,
     GraduationCap,
     AlertTriangle,
-    Brain
+    Brain,
+    FileText
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
@@ -91,7 +92,7 @@ export default function LatinTools() {
                             exit={{ opacity: 0, y: -20 }}
                             className="space-y-8"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                 {/* Antike Texte */}
                                 <Link to="/reader" className="group">
                                     <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
@@ -171,6 +172,23 @@ export default function LatinTools() {
                                                 <h3 className="text-lg font-semibold mb-2">Üben</h3>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">
                                                     Übe Grammatik und Stilmittel mit direkten Aufgaben und Feedback.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </Link>
+
+                                {/* Lehrermaterial */}
+                                <Link to="/lernen/material" className="group">
+                                    <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
+                                        <div className="flex flex-col items-center text-center space-y-4">
+                                            <div className="p-3 rounded-lg bg-rose-100 dark:bg-rose-900/20">
+                                                <FileText className="h-8 w-8 text-rose-500" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold mb-2">Lehrermaterial</h3>
+                                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                                    Erstelle themenbasierte KI-Arbeitsblätter und exportiere sie als PDF.
                                                 </p>
                                             </div>
                                         </div>

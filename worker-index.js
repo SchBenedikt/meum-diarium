@@ -40,6 +40,11 @@ export default {
             return handleSimulation(request, env, url, body);
         }
 
+        // Route: /worksheet - handle worksheet generation
+        if (pathname === '/worksheet') {
+            return handleWorksheet(request, env, url, body);
+        }
+
         // Route: /stats - handle dynamic metrics
         if (pathname.endsWith('/stats')) {
             return handleStats();
@@ -79,6 +84,10 @@ export default {
 
         if (pathname === '/api/simulate') {
             return handleSimulation(request, env, url, body);
+        }
+
+        if (pathname === '/api/worksheet') {
+            return handleWorksheet(request, env, url, body);
         }
 
         // Route: /api - Only proxy write operations or specific AI queries.
@@ -1235,6 +1244,256 @@ async function handleExplainTerm(request, env, url, body) {
     };
 
     return new Response(JSON.stringify(result), { headers: corsHeaders() });
+}
+
+// =======================================
+// Worksheet generation endpoint
+// =======================================
+async function handleWorksheet(request, env, url, body) {
+    if (request.method !== 'POST') {
+        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+            status: 405,
+            headers: corsHeaders(),
+        });
+    }
+
+    const topic = String(body?.topic || '').trim();
+    const includeIntro = Boolean(body?.includeIntro);
+    const teacherNote = String(body?.teacherNote || '').trim();
+    const tasks = Array.isArray(body?.tasks) ? body.tasks : [];
+
+    if (!topic) {
+        return new Response(JSON.stringify({ error: 'Missing topic' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    if (!tasks.length) {
+        return new Response(JSON.stringify({ error: 'Missing tasks configuration' }), {
+            status: 400,
+            headers: corsHeaders(),
+        });
+    }
+
+    // Build enhanced task specifications with better examples
+    const taskDescriptions = {
+        readingComprehension: 'Textverständnis: Fragen zum Verständnis eines Textausschnitts oder zur Analyse von Schlüsselstellen',
+        cloze: 'Lückentext: Mit Vokabeln oder Grammatik-Formen zu füllende Lückentexte',
+        multipleChoice: 'Multiple Choice: Auswahl aus mehreren Optionen mit einer korrekten Antwort',
+        translation: 'Übersetzungsaufgabe: Übersetze lateinische Passagen ins Deutsche oder umgekehrt',
+        interpretation: 'Interpretationsaufgabe: Analyse von Stilmitteln, Textstruktur oder historischem Kontext',
+        discussion: 'Diskussionsaufgabe: Impulssfragen wie "Wie würde Caesar reagiert haben?" oder "Inwiefern bedeutet das..."'
+    };
+
+    const taskLines = tasks
+        .map((task) => {
+            const type = String(task?.type || 'readingComprehension');
+            const amount = Math.max(1, Math.min(3, Number(task?.amount || 1)));
+            const difficulty = Math.max(1, Math.min(3, Number(task?.difficulty || 2)));
+            return `  - Typ: ${type} (${taskDescriptions[type] || 'Aufgabe'})\n    Menge: ${amount} ${amount === 1 ? 'Aufgabe' : 'Aufgaben'}, Niveau: ${difficulty}/3`;
+        })
+        .join('\n');
+
+    const introRule = includeIntro
+        ? 'Füge eine kurze, informative Einführung in das Thema ein (3-4 Sätze). Diese soll den Kontext erklären.'
+        : '';
+
+    const prompt = [
+        'Du bist ein Assistent für didaktisch hochwertige Lateinunterrichtsmaterialien.',
+        '',
+        'AUFGABE: Erstelle ein professionelles Arbeitsblattpaket.',
+        `THEMA: ${topic}`,
+        '',
+        'VORGABEN:',
+        '- Erstelle genau die angeforderten Aufgaben mit konsistenter Qualität',
+        '- Jede Aufgabe soll konkret und bearbeitbar sein (nicht nur Platzhalter)',
+        '- Nutze authentisches Sprachmaterial, konkrete lateinische Textbeispiele oder historische Szenarien',
+        '- Aufgaben sollen unterschiedlich sein und sich nicht gegenseitig Lösungen vorwegnehmen',
+        '- Schwierigkeit skaliert: Niveau 1 = leicht/Anfänger, Niveau 2 = mittel, Niveau 3 = anspruchsvoll',
+        '- Material sollte konkrete lateinische Textbrocken, historische Kontexte oder Vokabeln enthalten',
+        teacherNote ? `- LEHRKRAFT-HINWEIS: ${teacherNote}` : '',
+        introRule ? `- Einführung: ${introRule}` : '- KEINE Einführung',
+        '',
+        'AUFGABENKONFIGURATION:',
+        taskLines,
+        '',
+        'ANTWORTFORMAT: Gib AUSSCHLIESSLICH valides JSON zurück (kein Markdown, kein zusätzlicher Text):',
+        JSON.stringify({
+            title: 'Beispiel: Caesar: De Bello Gallico - Arbeitsblatt',
+            subtitle: 'Quelle: meum-diarium.schächner.de',
+            intro: includeIntro ? 'Beispiel: Dieser Text bespricht...' : undefined,
+            tasks: [
+                {
+                    type: 'readingComprehension',
+                    title: 'Schließe Schlüsselstellen des Textes',
+                    instruction: 'Lese den folgenden Textausschnitt und beantworte die Fragen.',
+                    material: 'Bella Galliae a Caesare suscepta sunt...',
+                    difficulty: 2,
+                },
+                {
+                    type: 'cloze',
+                    title: 'Fülle die Lücken mit den richtigen Wortformen',
+                    instruction: 'Nutze die Wörterliste und die Grammatik-Regeln.',
+                    material: 'Caesar _____ (videre - Präs. 3.P.Sg.) legiones...',
+                    difficulty: 2,
+                },
+            ],
+        }, null, 2),
+        '',
+        'KRITISCH: Das JSON MUSS vollständig und gültig sein. Halte dich exakt an die Beispielstruktur; optionale Felder (z.B. "intro") dürfen null sein oder weggelassen werden, wenn sie nicht verwendet werden.',
+    ].filter(Boolean).join('\n');
+
+    const ai = resolveAiBinding(env);
+    if (!ai) {
+        return new Response(JSON.stringify({
+            error: 'AI binding not configured',
+            worksheet: null,
+        }), { status: 503, headers: corsHeaders() });
+    }
+
+    try {
+        const aiResponse = await ai.run('@cf/meta/llama-4-scout-17b-16e-instruct', {
+            messages: [
+                { role: 'system', content: 'Du bist ein Experte für Lateinunterricht und erstellst konsistent hochwertige, konkrete Arbeitsblaetter. Antworte NUR mit gültigem JSON, keinen anderen Text.' },
+                { role: 'user', content: prompt },
+            ],
+        });
+
+        const raw = String(aiResponse?.response || '').trim();
+        const rawLength = raw.length;
+        console.log(`[Worksheet] AI response received. length=${rawLength}`);
+        
+        const parsed = extractJsonObject(raw);
+        if (!parsed) {
+            console.error(`[Worksheet] Could not extract JSON from response`);
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI response had invalid JSON format. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        if (!Array.isArray(parsed.tasks) || parsed.tasks.length === 0) {
+            console.error(`[Worksheet] Parsed JSON has no tasks`);
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI response had no tasks. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        // Validate and normalize tasks
+        const validatedTasks = parsed.tasks
+            .filter(t => t && typeof t === 'object')
+            .map(t => ({
+                type: String(t.type || 'readingComprehension'),
+                title: String(t.title || 'Aufgabe'),
+                instruction: String(t.instruction || 'Bearbeite die Aufgabe.'),
+                material: t.material ? String(t.material) : undefined,
+                difficulty: [1,2,3].includes(Number(t.difficulty)) ? Number(t.difficulty) : 2,
+            }));
+
+        if (validatedTasks.length === 0) {
+            console.error(`[Worksheet] No valid tasks after validation`);
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI tasks were invalid. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        const result = {
+            title: String(parsed.title || `${topic} - Arbeitsblatt`),
+            subtitle: String(parsed.subtitle || 'Quelle: meum-diarium.schächner.de'),
+            intro: includeIntro && parsed.intro ? String(parsed.intro) : undefined,
+            tasks: validatedTasks,
+        };
+
+        console.log(`[Worksheet] Successfully generated worksheet with ${validatedTasks.length} tasks`);
+        return new Response(JSON.stringify({ worksheet: result }), { headers: corsHeaders() });
+    } catch (e) {
+        console.error(`[Worksheet] AI request error: ${e?.message}`);
+        return new Response(JSON.stringify({
+            worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+            warning: `AI request failed: ${e?.message || 'unknown error'}`,
+        }), { headers: corsHeaders() });
+    }
+}
+
+function extractJsonObject(text) {
+    if (!text) return null;
+    const firstBrace = text.indexOf('{');
+    const lastBrace = text.lastIndexOf('}');
+    if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
+
+    const candidate = text.slice(firstBrace, lastBrace + 1)
+        .replace(/,\s*([}\]])/g, '$1')
+        .trim();
+
+    try {
+        return JSON.parse(candidate);
+    } catch {
+        return null;
+    }
+}
+
+function buildWorksheetFallback(topic, includeIntro, tasks) {
+    const taskDescriptionMap = {
+        readingComprehension: {
+            title: 'Textverständnis',
+            instruction: 'Lese den folgenden Textausschnitt aufmerksam durch und beantworte die Fragen zum Inhalt, zur Struktur und zur Bedeutung.',
+            material: `[Textabschnitt zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        cloze: {
+            title: 'Lückentext',
+            instruction: 'Fülle die Lücken mit passenden Vokabeln oder Grammatik-Formen aus. Nutze die Wörterliste und beachte die grammatikalischen Anforderungen.',
+            material: `[Latinischer Text mit Lücken zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        multipleChoice: {
+            title: 'Multiple Choice',
+            instruction: 'Wähle die beste Antwort aus den vier Optionen. Es kann nur eine Antwort korrekt sein.',
+            material: `[Frage zum Thema "${topic}" mit vier Antwortmöglichkeiten sollte hier eingefügt werden]`,
+        },
+        translation: {
+            title: 'Übersetzungsaufgabe',
+            instruction: 'Übersetze die lateinische Passage ins Deutsche. Achte auf genaue Bedeutung und idiomatische Ausdrücke.',
+            material: `[Lateinischer Text zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        interpretation: {
+            title: 'Interpretationsaufgabe',
+            instruction: 'Analysiere die Passage auf Stilmittel, Wirkung und historischen Kontext. Erkläre, warum der Autor diese sprachlichen Mittel gewählt hat.',
+            material: `[Textabschnitt zum Thema "${topic}" zur Interpretation sollte hier eingefügt werden]`,
+        },
+        discussion: {
+            title: 'Diskussionsaufgabe',
+            instruction: 'Beantworte die Impulsfrage schriftlich. Begründe deine Antwort mit Beispielen aus dem Text oder historischem Kontext.',
+            material: `[Impulssfrage zum Thema "${topic}" z.B. "Wie würde Caesar reagiert haben?" oder "Inwiefern ist diese Situation noch heute relevant?"]`,
+        },
+    };
+
+    const resultTasks = [];
+    for (const cfg of tasks) {
+        const type = String(cfg?.type || 'readingComprehension');
+        const rawDifficulty = Number(cfg?.difficulty);
+        const difficulty = Number.isFinite(rawDifficulty) ? Math.max(1, Math.min(3, rawDifficulty)) : 2;
+        const amount = Math.max(1, Math.min(3, Number(cfg?.amount || 1)));
+        const desc = taskDescriptionMap[type] || taskDescriptionMap.readingComprehension;
+
+        for (let i = 0; i < amount; i++) {
+            resultTasks.push({
+                type,
+                title: `${desc.title}${amount > 1 ? ` ${i + 1}` : ''}`,
+                instruction: desc.instruction,
+                material: desc.material,
+                difficulty,
+            });
+        }
+    }
+
+    return {
+        title: `${topic} - Arbeitsblatt`,
+        subtitle: 'Quelle: meum-diarium.schächner.de',
+        intro: includeIntro ? `Dieses Arbeitsblatt behandelt das Thema "${topic}" mit strukturierten Aufgaben auf verschiedenen Schwierigkeitsstufen. Es dient der Vertiefung von Textverständnis, Übersetzungsfähigkeit und analytischen Kompetenzen.` : '',
+        tasks: resultTasks,
+    };
 }
 
 // =======================================
