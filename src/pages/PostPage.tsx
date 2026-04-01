@@ -184,7 +184,13 @@ function PostContent({ post }: { post: BlogPost }) {
           ],
           "keywords": post?.tags || ["Latein", "Antike Geschichte", "Römisches Reich"],
           "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
-          "isAccessibleForFree": true
+          "isAccessibleForFree": true,
+          "commentCount": 0,
+          "interactionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/CommentAction",
+            "userInteractionCount": 0
+          }
         }}
         canonical={currentUrl}
       />

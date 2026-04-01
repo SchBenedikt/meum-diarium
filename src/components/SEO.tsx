@@ -75,8 +75,20 @@ export function SEO({
   
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {
+    // If custom structured data is provided, use it directly (for pages like BlogPosting)
+    if (structuredData) {
+      if (Array.isArray(structuredData)) {
+        // Multiple structured data objects - return array
+        return structuredData;
+      } else {
+        // Single structured data object - return as-is
+        return structuredData;
+      }
+    }
+
+    // Default WebSite schema for pages without custom structured data
     const baseData: Record<string, any> = {
-      "@context": `https://schema.org`,
+      "@context": "https://schema.org",
       "@type": "WebSite",
       "name": defaults.siteName,
       "url": baseUrl,
@@ -88,40 +100,23 @@ export function SEO({
           "@type": "EntryPoint",
           "urlTemplate": `${baseUrl}/search?q={search_term_string}`
         },
-        "query-input": "required"
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": defaults.publisher,
+        "url": baseUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${baseUrl}/icons/favicon.svg`,
+          "width": 512,
+          "height": 512
+        }
       }
     };
 
-    // Add structured data if provided
-    if (structuredData) {
-      if (Array.isArray(structuredData)) {
-        baseData.mainEntity = structuredData.map(data => ({
-          "@type": type === 'article' ? "BlogPosting" : "WebPage",
-          "headline": data.headline || title,
-          "description": data.description || description,
-          "image": data.image || image,
-          "author": data.author || author,
-          "datePublished": data.datePublished || publishedTime,
-          "dateModified": data.dateModified || modifiedTime,
-          "url": data.url || currentUrl
-        }));
-      } else {
-        // Handle single structured data object
-        baseData.mainEntity = [{
-          "@type": type === 'article' ? "BlogPosting" : "WebPage",
-          "headline": structuredData.headline || title,
-          "description": structuredData.description || description,
-          "image": structuredData.image || image,
-          "author": structuredData.author || author,
-          "datePublished": structuredData.datePublished || publishedTime,
-          "dateModified": structuredData.dateModified || modifiedTime,
-          "url": structuredData.url || currentUrl
-        }];
-      }
-    }
-
     return baseData;
-  }, [language, defaults, finalDescription, structuredData, currentUrl, type, publishedTime, modifiedTime, author, image]);
+  }, [language, defaults, finalDescription, structuredData, baseUrl]);
 
   useEffect(() => {
     // Update document title
@@ -245,13 +240,27 @@ export function SEO({
     // JSON-LD structured data
     const existingLd = document.querySelectorAll('script[data-managed="seo-ld"]');
     existingLd.forEach(el => el.remove());
-    
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.dataset.managed = 'seo-ld';
-    script.text = JSON.stringify(jsonLdData);
-    document.head.appendChild(script);
-  }, [finalTitle, finalDescription, finalImage, currentUrl, language, author, type, publishedTime, modifiedTime, section, tags, noIndex, structuredData, canonical]);
+
+    // Handle both single objects and arrays of structured data
+    if (Array.isArray(jsonLdData)) {
+      // Multiple structured data objects - create separate script tags for each
+      jsonLdData.forEach((data, index) => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.dataset.managed = 'seo-ld';
+        script.dataset.index = String(index);
+        script.text = JSON.stringify(data);
+        document.head.appendChild(script);
+      });
+    } else {
+      // Single structured data object
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.dataset.managed = 'seo-ld';
+      script.text = JSON.stringify(jsonLdData);
+      document.head.appendChild(script);
+    }
+  }, [finalTitle, finalDescription, finalImage, currentUrl, language, author, type, publishedTime, modifiedTime, section, tags, noIndex, structuredData, canonical, jsonLdData]);
   
   return null;
 }

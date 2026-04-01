@@ -1363,13 +1363,22 @@ async function handleWorksheet(request, env, url, body) {
         const raw = String(aiResponse?.response || '').trim();
         const rawLength = raw.length;
         console.log(`[Worksheet] AI response received. length=${rawLength}`);
-        
+
+        // Log a preview of the response for debugging
+        const preview = raw.substring(0, 300).replace(/\s+/g, ' ');
+        console.log(`[Worksheet] Response preview: ${preview}`);
+
         const parsed = extractJsonObject(raw);
         if (!parsed) {
             console.error(`[Worksheet] Could not extract JSON from response`);
+            console.error(`[Worksheet] Full response (first 500 chars):`, raw.substring(0, 500));
             return new Response(JSON.stringify({
                 worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
                 warning: 'AI response had invalid JSON format. Fallback used.',
+                debug: {
+                    responsePreview: raw.substring(0, 200),
+                    responseLength: rawLength
+                }
             }), { headers: corsHeaders() });
         }
 
@@ -1420,18 +1429,48 @@ async function handleWorksheet(request, env, url, body) {
 
 function extractJsonObject(text) {
     if (!text) return null;
+
+    // Try to find JSON within markdown code blocks first
+    const markdownJsonMatch = text.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+    if (markdownJsonMatch) {
+        try {
+            const cleaned = markdownJsonMatch[1]
+                .replace(/,\s*([}\]])/g, '$1') // Remove trailing commas
+                .trim();
+            return JSON.parse(cleaned);
+        } catch {
+            // Continue to other methods if this fails
+        }
+    }
+
+    // Find first and last braces
     const firstBrace = text.indexOf('{');
     const lastBrace = text.lastIndexOf('}');
     if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
 
     const candidate = text.slice(firstBrace, lastBrace + 1)
-        .replace(/,\s*([}\]])/g, '$1')
+        .replace(/,\s*([}\]])/g, '$1') // Remove trailing commas
+        .replace(/\n/g, ' ') // Replace newlines with spaces
+        .replace(/\r/g, ' ') // Replace carriage returns
+        .replace(/\t/g, ' ') // Replace tabs
+        .replace(/\s+/g, ' ') // Collapse multiple spaces
         .trim();
 
     try {
         return JSON.parse(candidate);
-    } catch {
-        return null;
+    } catch (e) {
+        // Try more aggressive cleaning
+        try {
+            // Remove comments (both // and /* */ styles)
+            const noComments = candidate
+                .replace(/\/\/.*$/gm, '') // Remove single-line comments
+                .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
+            return JSON.parse(noComments);
+        } catch {
+            console.error('[JSON Extraction] Failed to parse JSON:', e.message);
+            console.error('[JSON Extraction] Candidate string preview:', candidate.substring(0, 200));
+            return null;
+        }
     }
 }
 
