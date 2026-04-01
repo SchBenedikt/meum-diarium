@@ -23,7 +23,7 @@ type EndpointGroup = {
 
 type TabId = 'intro' | 'basis' | 'content' | 'learning' | 'ai' | 'system';
 
-const BASE_URL = 'https://meum-diarium.xn--schner-2za.de';
+const BASE_URL = 'https://meum-diarium.xn--schchner-2za.de';
 
 const contentEndpoints: Endpoint[] = [
   {

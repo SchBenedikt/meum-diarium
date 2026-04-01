@@ -3,10 +3,16 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { SEO } from "@/components/SEO";
 const NotFound = () => {
   const { t } = useLanguage();
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title="404 - Seite nicht gefunden"
+        description="Die gesuchte Seite wurde nicht gefunden."
+        noIndex={true}
+      />
       <main className="flex-1 flex items-center justify-center pt-32">
         <div className="text-center px-4">
           <p className="text-sm font-medium text-primary mb-4">404</p>

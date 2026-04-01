@@ -177,7 +177,7 @@ export default function AIExplanationPage() {
         description="Entdecke, wie künstliche Intelligenz dein Latein-Lernen revolutioniert - von historischen Dialogen bis zu personalisierten Lernpfaden."
         tags={['KI', 'künstliche Intelligenz', 'Latein lernen', 'Grammatik-Assistent', 'personalisiertes Lernen', 'historische Dialoge']}
         type="website"
-        canonical="https://meum-diarium.xn--schner-2za.de/ai-explanation"
+        canonical="https://meum-diarium.xn--schchner-2za.de/ai-explanation"
       />
 
       {/* Hero Section */}

@@ -26,7 +26,7 @@ const Index = () => {
   const { t } = useLanguage();
   const [showFloatingComposer, setShowFloatingComposer] = useState(false);
   const [isFloatingExpanded, setIsFloatingExpanded] = useState(false);
-  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
 
   useEffect(() => {
     const onScroll = () => {

@@ -116,7 +116,7 @@ function PostContent({ post }: { post: BlogPost }) {
   
   const author = post?.author ? authorData[post.author as Author] : null;
   const excerpt = contentToDisplay?.substring(0, 160) || '';
-  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schner-2za.de';
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
   const finalImage = `${baseUrl}/images/caesar-hero.png`;
   const currentUrl = window.location.href;
   const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
@@ -148,16 +148,27 @@ function PostContent({ post }: { post: BlogPost }) {
           "@type": "BlogPosting",
           "headline": getDisplayTitle(),
           "description": contentToDisplay?.substring(0, 160),
+          "articleBody": contentToDisplay?.substring(0, 5000),
+          "wordCount": contentToDisplay?.split(/\s+/).length || 0,
           "image": post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage,
           "author": {
             "@type": "Person",
             "name": post?.author
           },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Meum Diarium",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${baseUrl}/icons/favicon.svg`
+            }
+          },
           "datePublished": post?.date,
-          "dateModified": post?.date,
+          "dateModified": post?.updatedAt || post?.date,
           "url": currentUrl,
           "mainEntityOfPage": {
             "@type": "WebPage",
+            "@id": currentUrl,
             "name": `${post?.author} - ${getDisplayTitle()}`,
             "description": contentToDisplay?.substring(0, 500)
           },
@@ -165,13 +176,14 @@ function PostContent({ post }: { post: BlogPost }) {
             {
               "@type": "Thing",
               "name": post?.historicalYear ? "Antike Geschichte" : "Römische Literatur",
-              "description": post?.historicalYear 
+              "description": post?.historicalYear
                 ? `Historischer Kontext aus dem Jahr ${post.historicalYear}`
                 : "Literarische Analyse und Interpretation"
             }
           ],
           "keywords": post?.tags || ["Latein", "Antike Geschichte", "Römisches Reich"],
-          "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la'
+          "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
+          "isAccessibleForFree": true
         }}
         canonical={currentUrl}
       />
@@ -319,12 +331,17 @@ export default function PostPage() {
         setIsLoadingPost(true);
         setError(null);
         const apiUrl = `${getApiBase()}/posts?slug=${encodeURIComponent(slug)}`;
+        console.log(`[PostPage] Fetching post from: ${apiUrl}`);
         const response = await fetch(apiUrl);
         if (!response.ok) {
-          throw new Error(`Post not found (${response.status})`);
+          const errorMsg = `Post not found (${response.status})`;
+          console.error(`[PostPage] API error: ${errorMsg}`);
+          throw new Error(errorMsg);
         }
         const data = await response.json();
+        console.log(`[PostPage] Received data:`, data);
         if (!data || (Array.isArray(data) && data.length === 0)) {
+          console.warn(`[PostPage] Empty data received for slug: ${slug}`);
           setPost(null);
           setIsLoadingPost(false);
           return;
@@ -332,8 +349,10 @@ export default function PostPage() {
         // API returns single object for slug query
         const loadedPost = Array.isArray(data) ? data[0] : data;
         if (loadedPost && loadedPost.id) {
+          console.log(`[PostPage] Successfully loaded post: ${loadedPost.title}`);
           setPost(loadedPost as BlogPost);
         } else {
+          console.warn(`[PostPage] Invalid post data structure`);
           setPost(null);
         }
       } catch (err: unknown) {

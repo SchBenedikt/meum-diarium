@@ -1,11 +1,11 @@
-- [ ] .gitignore erweitern
-- [ ] Bei Lexikon-Einträgen-Popups, die KI-generiert sind, kann ich nicht scrollen, obwohl der Chat-Verlauf größer wäre
-- [ ] Ich kann keine wissenschaftliche Artikel mehr öffnen, hier treten Fehler auf.
-- [ ] Bei Lexikon-Einträgen sollten die "Verwandten Einträge" dünner, dafür breiter sein. Man sollte durch diese scrollen können.
-- [ ] Die API funktioniert über meum-diarium.xn--schchner-2za.de nicht.
-- [ ] Erstelle eine README.md Datei
-- [ ] In Google Search Console wurden zwar die ganzen Blog-Einträge gefunden, aber nicht indexiert. Bitte behebe das.
-- [ ] Beziehungsnetzwerk (z.b. mit D3.js) zwischen den verschiedenen Persönlichkeiten und deren Verbindungen
+- [x] .gitignore erweitern
+- [x] Bei Lexikon-Einträgen-Popups, die KI-generiert sind, kann ich nicht scrollen, obwohl der Chat-Verlauf größer wäre
+- [x] Ich kann keine wissenschaftliche Artikel mehr öffnen, hier treten Fehler auf.
+- [x] Bei Lexikon-Einträgen sollten die "Verwandten Einträge" dünner, dafür breiter sein. Man sollte durch diese scrollen können.
+- [x] Die API funktioniert über meum-diarium.xn--schchner-2za.de nicht.
+- [x] Erstelle eine README.md Datei
+- [x] In Google Search Console wurden zwar die ganzen Blog-Einträge gefunden, aber nicht indexiert. Bitte behebe das.
+- [x] Beziehungsnetzwerk (z.b. mit D3.js) zwischen den verschiedenen Persönlichkeiten und deren Verbindungen
 - [ ] Wissensquiz: Am Ende ein KI-generiertes Quiz, um inhaltliche Fragen zu den Texten zu stellen
 - [ ] Zusätzliches Lehrerpaket zu jedem Beitrag, mit Aufgaben (am besten PDF). Das Lernpaket sollte unter /learn zu finden sein. Man sollte ein Thema aus vielen auswählen können und hier dann mithilfe von KI Arbeitsblätter erstellen können. Diese sollten modern, ansprechend, in den passenden Farben aufgebaut sein. Jedes KI-generierte Arbeitsblatt sollte die gleiche Struktur, das gleiche moderne, minimalistische Design haben, aber auch nicht "langweilig" sein. Die Aufgaben sollten dynamsich dann hinzugefügt werden. Man sollte auswählen können, was diese enthalten: Textverständnis, Lückentext, Multiple Choice, passende Übersetzungsaufgaben, Interpretationsaufgaben, und "Diskussionsaufgaben/Impulsfragen" (Hätte ...). Keine Aufgabe sollte der anderen etwas vorweg greifen. Beim Erstellen sollte man auswählen können, ob am Anfang der PDF eine kurze Einführung in das Thema vorhanden sein sollte. Für jeden Aufgaben-Typ sollte man die Schwierigkeit festlegen können (1-3).
 - [ ] Kommentar-Funktion, um Beiträge ohne Registrierung zu kommentieren

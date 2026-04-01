@@ -91,7 +91,7 @@ export default function LexiconEntryPage() {
       <SEO
         title={`${entry.term} - ${t('lexicon')} | Meum Diarium`}
         description={`${entry.term}: ${entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt'}`}
-        image={`https://meum-diarium.xn--schner-2za.de/images/${entry.category}.jpg`}
+        image={`https://meum-diarium.xn--schchner-2za.de/images/${entry.category}.jpg`}
         type="article"
         section="lexicon"
         tags={[entry.category, 'Latein', 'antike Geschichte', 'römisches Reich']}
@@ -100,15 +100,15 @@ export default function LexiconEntryPage() {
           "@type": "Article",
           "headline": entry.term,
           "description": entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt',
-          "image": `https://meum-diarium.xn--schner-2za.de/images/${entry.category}.jpg`,
+          "image": `https://meum-diarium.xn--schchner-2za.de/images/${entry.category}.jpg`,
           "author": {
             "@type": "Organization",
             "name": "Meum Diarium",
-            "url": "https://meum-diarium.xn--schner-2za.de"
+            "url": "https://meum-diarium.xn--schchner-2za.de"
           },
           "datePublished": new Date().toISOString(),
           "dateModified": new Date().toISOString(),
-          "url": `https://meum-diarium.xn--schner-2za.de/lexicon/${entry.slug}`,
+          "url": `https://meum-diarium.xn--schchner-2za.de/lexicon/${entry.slug}`,
           "mainEntityOfPage": {
             "@type": "DefinedTerm",
             "name": entry.term,
@@ -124,7 +124,7 @@ export default function LexiconEntryPage() {
             }
           ]
         }}
-        canonical={`https://meum-diarium.xn--schner-2za.de/lexicon/${entry.slug}`}
+        canonical={`https://meum-diarium.xn--schchner-2za.de/lexicon/${entry.slug}`}
       />
       <main className="flex-1 pb-16">
         <PageHero
