@@ -1276,46 +1276,72 @@ async function handleWorksheet(request, env, url, body) {
         });
     }
 
+    // Build enhanced task specifications with better examples
+    const taskDescriptions = {
+        readingComprehension: 'Textverständnis: Fragen zum Verständnis eines Textausschnitts oder zur Analyse von Schlüsselstellen',
+        cloze: 'Lückentext: Mit Vokabeln oder Grammatik-Formen zu füllende Lückentexte',
+        multipleChoice: 'Multiple Choice: Auswahl aus mehreren Optionen mit einer korrekten Antwort',
+        translation: 'Übersetzungsaufgabe: Übersetze lateinische Passagen ins Deutsche oder umgekehrt',
+        interpretation: 'Interpretationsaufgabe: Analyse von Stilmitteln, Textstruktur oder historischem Kontext',
+        discussion: 'Diskussionsaufgabe: Impulssfragen wie "Wie würde Caesar reagiert haben?" oder "Inwiefern bedeutet das..."'
+    };
+
     const taskLines = tasks
         .map((task) => {
             const type = String(task?.type || 'readingComprehension');
-            const amount = Number(task?.amount || 1);
-            const difficulty = Number(task?.difficulty || 2);
-            return `- type: ${type}, amount: ${amount}, difficulty: ${difficulty}`;
+            const amount = Math.max(1, Math.min(3, Number(task?.amount || 1)));
+            const difficulty = Math.max(1, Math.min(3, Number(task?.difficulty || 2)));
+            return `  - Typ: ${type} (${taskDescriptions[type] || 'Aufgabe'})\n    Menge: ${amount} ${amount === 1 ? 'Aufgabe' : 'Aufgaben'}, Niveau: ${difficulty}/3`;
         })
         .join('\n');
 
     const introRule = includeIntro
-        ? 'Füge eine kurze Einführung in das Thema ein (4-6 Zeilen).'
-        : 'Füge keine Einführung ein.';
+        ? 'Füge eine kurze, informative Einführung in das Thema ein (3-4 Sätze). Diese soll den Kontext erklären.'
+        : '';
 
     const prompt = [
-        'Erstelle ein professionelles Arbeitsblattpaket für den Lateinunterricht auf Deutsch.',
-        `Thema: ${topic}`,
-        introRule,
-        'Vorgaben:',
-        '- Einheitliches Layout und klare Struktur über alle Aufgaben.',
-        '- Aufgaben dürfen sich nicht gegenseitig Lösungen vorwegnehmen.',
-        '- Klare, professionelle Sprache.',
-        '- Keine Musterlösungen ausgeben.',
-        teacherNote ? `Hinweis der Lehrkraft: ${teacherNote}` : '',
-        'Aufgabenkonfiguration:',
+        'Du bist ein Assistent für didaktisch hochwertige Lateinunterrichtsmaterialien.',
+        '',
+        'AUFGABE: Erstelle ein professionelles Arbeitsblattpaket.',
+        `THEMA: ${topic}`,
+        '',
+        'VORGABEN:',
+        '- Erstelle genau die angeforderten Aufgaben mit konsistenter Qualität',
+        '- Jede Aufgabe soll konkret und bearbeitbar sein (nicht nur Platzhalter)',
+        '- Nutze authentisches Sprachmaterial, konkrete lateinische Textbeispiele oder historische Szenarien',
+        '- Aufgaben sollen unterschiedlich sein und sich nicht gegenseitig Lösungen vorwegnehmen',
+        '- Schwierigkeit skaliert: Niveau 1 = leicht/Anfänger, Niveau 2 = mittel, Niveau 3 = anspruchsvoll',
+        '- Material sollte konkrete lateinische Textbrocken, historische Kontexte oder Vokabeln enthalten',
+        teacherNote ? `- LEHRKRAFT-HINWEIS: ${teacherNote}` : '',
+        introRule ? `- Einführung: ${introRule}` : '- KEINE Einführung',
+        '',
+        'AUFGABENKONFIGURATION:',
         taskLines,
-        'Antworte AUSSCHLIESSLICH als valides JSON in folgendem Schema:',
+        '',
+        'ANTWORTFORMAT: Gib AUSSCHLIESSLICH valides JSON zurück (kein Markdown, kein zusätzlicher Text):',
         JSON.stringify({
-            title: 'string',
-            subtitle: 'string',
-            intro: 'string optional',
+            title: 'Beispiel: Caesar: De Bello Gallico - Arbeitsblatt',
+            subtitle: 'Quelle: meum-diarium.schächner.de',
+            intro: includeIntro ? 'Beispiel: Dieser Text bespricht...' : undefined,
             tasks: [
                 {
-                    type: 'readingComprehension | cloze | multipleChoice | translation | interpretation | discussion',
-                    title: 'string',
-                    instruction: 'string',
-                    material: 'string optional',
-                    difficulty: 1,
+                    type: 'readingComprehension',
+                    title: 'Schließe Schlüsselstellen des Textes',
+                    instruction: 'Lese den folgenden Textausschnitt und beantworte die Fragen.',
+                    material: 'Bella Galliae a Caesare suscepta sunt...',
+                    difficulty: 2,
+                },
+                {
+                    type: 'cloze',
+                    title: 'Fülle die Lücken mit den richtigen Wortformen',
+                    instruction: 'Nutze die Wörterliste und die Grammatik-Regeln.',
+                    material: 'Caesar _____ (videre - Präs. 3.P.Sg.) legiones...',
+                    difficulty: 2,
                 },
             ],
         }, null, 2),
+        '',
+        'KRITISCH: Das JSON MUSS vollständig und gültig sein. Inkludiere alle Felder.',
     ].filter(Boolean).join('\n');
 
     const ai = resolveAiBinding(env);
@@ -1329,22 +1355,61 @@ async function handleWorksheet(request, env, url, body) {
     try {
         const aiResponse = await ai.run('@cf/meta/llama-4-scout-17b-16e-instruct', {
             messages: [
-                { role: 'system', content: 'Du bist ein Assistent fuer didaktisch hochwertige Latein-Arbeitsblaetter.' },
+                { role: 'system', content: 'Du bist ein Experte für Lateinunterricht und erstellst konsistent hochwertige, konkrete Arbeitsblaetter. Antworte NUR mit gültigem JSON, keinen anderen Text.' },
                 { role: 'user', content: prompt },
             ],
         });
 
         const raw = String(aiResponse?.response || '').trim();
+        console.log(`[Worksheet] Raw AI response (first 500 chars): ${raw.substring(0, 500)}`);
+        
         const parsed = extractJsonObject(raw);
-        if (!parsed || !Array.isArray(parsed.tasks) || !parsed.tasks.length) {
+        if (!parsed) {
+            console.error(`[Worksheet] Could not extract JSON from response`);
             return new Response(JSON.stringify({
                 worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
-                warning: 'AI response had no valid worksheet JSON. Fallback used.',
+                warning: 'AI response had invalid JSON format. Fallback used.',
             }), { headers: corsHeaders() });
         }
 
-        return new Response(JSON.stringify({ worksheet: parsed }), { headers: corsHeaders() });
+        if (!Array.isArray(parsed.tasks) || parsed.tasks.length === 0) {
+            console.error(`[Worksheet] Parsed JSON has no tasks`);
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI response had no tasks. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        // Validate and normalize tasks
+        const validatedTasks = parsed.tasks
+            .filter(t => t && typeof t === 'object')
+            .map(t => ({
+                type: String(t.type || 'readingComprehension'),
+                title: String(t.title || 'Aufgabe'),
+                instruction: String(t.instruction || 'Bearbeite die Aufgabe.'),
+                material: t.material ? String(t.material) : undefined,
+                difficulty: [1,2,3].includes(Number(t.difficulty)) ? Number(t.difficulty) : 2,
+            }));
+
+        if (validatedTasks.length === 0) {
+            console.error(`[Worksheet] No valid tasks after validation`);
+            return new Response(JSON.stringify({
+                worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
+                warning: 'AI tasks were invalid. Fallback used.',
+            }), { headers: corsHeaders() });
+        }
+
+        const result = {
+            title: String(parsed.title || `${topic} - Arbeitsblatt`),
+            subtitle: String(parsed.subtitle || 'Quelle: meum-diarium.schächner.de'),
+            intro: includeIntro && parsed.intro ? String(parsed.intro) : undefined,
+            tasks: validatedTasks,
+        };
+
+        console.log(`[Worksheet] Successfully generated worksheet with ${validatedTasks.length} tasks`);
+        return new Response(JSON.stringify({ worksheet: result }), { headers: corsHeaders() });
     } catch (e) {
+        console.error(`[Worksheet] AI request error: ${e?.message}`);
         return new Response(JSON.stringify({
             worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
             warning: `AI request failed: ${e?.message || 'unknown error'}`,
@@ -1370,13 +1435,37 @@ function extractJsonObject(text) {
 }
 
 function buildWorksheetFallback(topic, includeIntro, tasks) {
-    const taskTitleMap = {
-        readingComprehension: 'Textverständnis',
-        cloze: 'Lückentext',
-        multipleChoice: 'Multiple Choice',
-        translation: 'Übersetzungsaufgabe',
-        interpretation: 'Interpretationsaufgabe',
-        discussion: 'Diskussionsaufgabe',
+    const taskDescriptionMap = {
+        readingComprehension: {
+            title: 'Textverständnis',
+            instruction: 'Lese den folgenden Textausschnitt aufmerksam durch und beantworte die Fragen zum Inhalt, zur Struktur und zur Bedeutung.',
+            material: `[Textabschnitt zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        cloze: {
+            title: 'Lückentext',
+            instruction: 'Fülle die Lücken mit passenden Vokabeln oder Grammatik-Formen aus. Nutze die Wörterliste und beachte die grammatikalischen Anforderungen.',
+            material: `[Latinischer Text mit Lücken zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        multipleChoice: {
+            title: 'Multiple Choice',
+            instruction: 'Wähle die beste Antwort aus den vier Optionen. Es kann nur eine Antwort korrekt sein.',
+            material: `[Frage zum Thema "${topic}" mit vier Antwortmöglichkeiten sollte hier eingefügt werden]`,
+        },
+        translation: {
+            title: 'Übersetzungsaufgabe',
+            instruction: 'Übersetze die lateinische Passage ins Deutsche. Achte auf genaue Bedeutung und idiomatische Ausdrücke.',
+            material: `[Lateinischer Text zum Thema "${topic}" sollte hier eingefügt werden]`,
+        },
+        interpretation: {
+            title: 'Interpretationsaufgabe',
+            instruction: 'Analysiere die Passage auf Stilmittel, Wirkung und historischen Kontext. Erkläre, warum der Autor diese sprachlichen Mittel gewählt hat.',
+            material: `[Textabschnitt zum Thema "${topic}" zur Interpretation sollte hier eingefügt werden]`,
+        },
+        discussion: {
+            title: 'Diskussionsaufgabe',
+            instruction: 'Beantworte die Impulsfrage schriftlich. Begründe deine Antwort mit Beispielen aus dem Text oder historischem Kontext.',
+            material: `[Impulssfrage zum Thema "${topic}" z.B. "Wie würde Caesar reagiert haben?" oder "Inwiefern ist diese Situation noch heute relevant?"]`,
+        },
     };
 
     const resultTasks = [];
@@ -1384,13 +1473,14 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
         const type = String(cfg?.type || 'readingComprehension');
         const difficulty = Number(cfg?.difficulty || 2);
         const amount = Math.max(1, Math.min(3, Number(cfg?.amount || 1)));
+        const desc = taskDescriptionMap[type] || taskDescriptionMap.readingComprehension;
 
         for (let i = 0; i < amount; i++) {
             resultTasks.push({
                 type,
-                title: `${taskTitleMap[type] || 'Aufgabe'} ${i + 1}`,
-                instruction: `Bearbeite diese Aufgabe zum Thema "${topic}" auf Niveau ${difficulty}.`,
-                material: 'Die konkrete Materialgrundlage kann von der Lehrkraft ergänzt oder durch die KI verfeinert werden.',
+                title: `${desc.title}${amount > 1 ? ` ${i + 1}` : ''}`,
+                instruction: desc.instruction,
+                material: desc.material,
                 difficulty: difficulty === 1 || difficulty === 2 || difficulty === 3 ? difficulty : 2,
             });
         }
@@ -1398,8 +1488,8 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
 
     return {
         title: `${topic} - Arbeitsblatt`,
-        subtitle: 'KI-generiertes Unterrichtsmaterial',
-        intro: includeIntro ? `Dieses Arbeitsblatt bietet einen strukturierten Zugang zum Thema ${topic}.` : '',
+        subtitle: 'Quelle: meum-diarium.schächner.de',
+        intro: includeIntro ? `Dieses Arbeitsblatt behandelt das Thema "${topic}" mit strukturierten Aufgaben auf verschiedenen Schwierigkeitsstufen. Es dient der Vertiefung von Textverständnis, Übersetzungsfähigkeit und analytischen Kompetenzen.` : '',
         tasks: resultTasks,
     };
 }

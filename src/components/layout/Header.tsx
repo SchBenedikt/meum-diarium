@@ -224,34 +224,7 @@ export function Header() {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                ) : (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-10 px-3"
-                      >
-                        <LogIn className="h-4 w-4" />
-                        <span className="hidden sm:inline ml-2">Login</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem asChild>
-                        <Link to="/login" className="flex items-center gap-2">
-                          <LogIn className="w-4 h-4" />
-                          Anmelden
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link to="/register" className="flex items-center gap-2">
-                          <UserPlus className="w-4 h-4" />
-                          Registrieren
-                        </Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
+                ) : null}
                 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -403,34 +376,7 @@ export function Header() {
                                 Abmelden
                               </Button>
                             </div>
-                          ) : (
-                            <div className="space-y-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="w-full justify-start"
-                                asChild
-                                onClick={handleNavClick}
-                              >
-                                <Link to="/login" className="flex items-center gap-2">
-                                  <LogIn className="w-4 h-4" />
-                                  Anmelden
-                                </Link>
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="w-full justify-start"
-                                asChild
-                                onClick={handleNavClick}
-                              >
-                                <Link to="/register" className="flex items-center gap-2">
-                                  <UserPlus className="w-4 h-4" />
-                                  Registrieren
-                                </Link>
-                              </Button>
-                            </div>
-                          )}
+                          ) : null}
                         </div>
                         
                         {/* Author Selector */}

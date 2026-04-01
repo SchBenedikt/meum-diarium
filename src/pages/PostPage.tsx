@@ -3,6 +3,7 @@ import { useParams, Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BlogSidebar } from '@/components/BlogSidebar';
+import { CommentSection } from '@/components/CommentSection';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
 import { authors as authorData } from '@/data/authors';
@@ -307,6 +308,7 @@ function PostContent({ post }: { post: BlogPost }) {
             )}
           </div>
         </div>
+        {post && <CommentSection postId={post.id} />}
       </main>
       <Footer />
     </div>

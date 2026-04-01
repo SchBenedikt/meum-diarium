@@ -275,15 +275,20 @@ export default function TeacherWorksheetPage() {
       });
     };
 
-    doc.setFillColor(15, 23, 42);
+    // Meum-Diarium Rot Farbe: HSL(345, 60%, 35%) = RGB(128, 22, 79)
+    const meumRed = { r: 128, g: 22, b: 79 };
+    
+    // Header mit Meum-Diarium Rot
+    doc.setFillColor(meumRed.r, meumRed.g, meumRed.b);
     doc.rect(0, 0, pageWidth, 120, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(22);
     doc.text(worksheet.title, marginX, 62);
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(12);
-    doc.text(worksheet.subtitle, marginX, 84);
+    doc.setFontSize(10);
+    doc.text(`Quelle: meum-diarium.schächner.de`, marginX, 84);
+    doc.setFontSize(11);
     doc.text(`Thema: ${worksheet.topic}`, marginX, 102);
 
     y = 150;
@@ -292,22 +297,30 @@ export default function TeacherWorksheetPage() {
     if (worksheet.intro?.trim()) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(13);
+      doc.setTextColor(meumRed.r, meumRed.g, meumRed.b);
       doc.text('Einführung', marginX, y);
       y += 18;
       doc.setFont('helvetica', 'normal');
+      doc.setTextColor(17, 24, 39);
       writeWrapped(worksheet.intro, 11, 16);
       y += 8;
     }
 
     worksheet.tasks.forEach((task, index) => {
       ensureSpace(110);
-      doc.setDrawColor(209, 213, 219);
+      
+      // Task header box mit Meum-Diarium Rot Akzent
+      doc.setDrawColor(meumRed.r, meumRed.g, meumRed.b);
+      doc.setLineWidth(2);
       doc.roundedRect(marginX, y, pageWidth - marginX * 2, 22, 6, 6);
+      
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
+      doc.setTextColor(meumRed.r, meumRed.g, meumRed.b);
       doc.text(`Aufgabe ${index + 1} · ${TASK_LABELS[task.type].short} · ${difficultyLabel(task.difficulty)}`, marginX + 10, y + 15);
       y += 34;
 
+      doc.setTextColor(17, 24, 39);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(12);
       writeWrapped(task.title, 12, 16);
@@ -317,12 +330,15 @@ export default function TeacherWorksheetPage() {
       if (task.material) {
         y += 4;
         doc.setFont('helvetica', 'italic');
+        doc.setTextColor(80, 80, 80);
         writeWrapped(`Material: ${task.material}`, 10, 14);
+        doc.setTextColor(17, 24, 39);
         doc.setFont('helvetica', 'normal');
       }
 
       y += 8;
       doc.setDrawColor(229, 231, 235);
+      doc.setLineWidth(0.5);
       for (let i = 0; i < 3; i++) {
         ensureSpace(20);
         doc.line(marginX, y, pageWidth - marginX, y);
@@ -477,53 +493,53 @@ export default function TeacherWorksheetPage() {
             <CardContent className="p-6 sm:p-8">
               {worksheet ? (
                 <div className="space-y-6">
-                  <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6">
+                  <div className="rounded-2xl border-2 border-primary bg-gradient-to-br from-primary/10 to-primary/5 p-6">
                     <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">Arbeitsblatt-Vorschau</p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-2">{worksheet.title}</h2>
-                    <p className="text-muted-foreground mb-2">{worksheet.subtitle}</p>
-                    <p className="text-sm text-muted-foreground">Thema: {worksheet.topic}</p>
+                    <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary tracking-tight mb-2">{worksheet.title}</h2>
+                    <p className="text-sm text-muted-foreground mb-1">{worksheet.subtitle}</p>
+                    <p className="text-xs text-muted-foreground/70">Thema: {worksheet.topic}</p>
                   </div>
 
                   {worksheet.intro?.trim() && (
-                    <div className="rounded-xl border border-border/50 p-5">
+                    <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
                       <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-2">Einführung</p>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{worksheet.intro}</p>
+                      <p className="text-sm leading-relaxed text-foreground">{worksheet.intro}</p>
                     </div>
                   )}
 
                   <div className="space-y-4">
                     {worksheet.tasks.map((task, index) => (
-                      <div key={`${task.title}-${index}`} className="rounded-xl border border-border/50 p-5 bg-background/80">
+                      <div key={`${task.title}-${index}`} className="rounded-xl border border-primary/20 p-5 bg-gradient-to-r from-primary/5 to-transparent">
                         <div className="flex flex-wrap items-center gap-2 mb-3">
-                          <Badge variant="outline">Aufgabe {index + 1}</Badge>
+                          <Badge className="bg-primary text-white">Aufgabe {index + 1}</Badge>
                           <Badge variant="outline" className={TASK_LABELS[task.type].accent}>
                             {TASK_LABELS[task.type].short}
                           </Badge>
                           <Badge variant="outline">{difficultyLabel(task.difficulty)}</Badge>
                         </div>
-                        <h3 className="font-semibold text-lg mb-2">{task.title}</h3>
+                        <h3 className="font-semibold text-lg text-foreground mb-2">{task.title}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{task.instruction}</p>
                         {task.material && (
-                          <div className="rounded-lg border border-border/50 bg-secondary/30 p-3 mb-3">
-                            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Material</p>
-                            <p className="text-sm leading-relaxed">{task.material}</p>
+                          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3 mb-3">
+                            <p className="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-1">Material</p>
+                            <p className="text-sm leading-relaxed text-foreground">{task.material}</p>
                           </div>
                         )}
-                        <div className="space-y-2">
-                          <div className="h-4 border-b border-dashed border-border/70" />
-                          <div className="h-4 border-b border-dashed border-border/70" />
-                          <div className="h-4 border-b border-dashed border-border/70" />
+                        <div className="space-y-2 mt-4">
+                          <div className="h-4 border-b border-dashed border-primary/40" />
+                          <div className="h-4 border-b border-dashed border-primary/40" />
+                          <div className="h-4 border-b border-dashed border-primary/40" />
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
               ) : (
-                <div className="min-h-[460px] rounded-2xl border border-dashed border-border/60 flex items-center justify-center text-center p-8">
+                <div className="min-h-[460px] rounded-2xl border border-dashed border-primary/40 flex items-center justify-center text-center p-8 bg-primary/5">
                   <div>
-                    <p className="font-semibold mb-2">Noch kein Arbeitsblatt erstellt</p>
+                    <p className="font-semibold text-foreground mb-2">Noch kein Arbeitsblatt erstellt</p>
                     <p className="text-sm text-muted-foreground max-w-md">
-                      Wähle links Thema und Aufgabenkonfiguration und erstelle danach ein professionelles, einheitliches KI-Arbeitsblatt mit PDF-Export.
+                      Wähle links Thema und Aufgabenkonfiguration und erstelle danach ein professionelles, einheitliches Arbeitsblatt mit PDF-Export.
                     </p>
                   </div>
                 </div>
