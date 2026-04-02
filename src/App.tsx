@@ -66,6 +66,7 @@ const OERPage = lazy(() => import('./pages/OERPage'));
 const ImagesPage = lazy(() => import('./pages/ImagesPage'));
 const StatisticsPage = lazy(() => import('./pages/StatisticsPage'));
 const RelationshipsPage = lazy(() => import('./pages/RelationshipsPage'));
+const SchemaOrgDocPage = lazy(() => import('./pages/SchemaOrgDocPage'));
 // const AIExplanationPage = lazy(() => import('./pages/AIExplanationPage'));
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
@@ -157,6 +158,8 @@ const AppContent = () => {
               <Route path="/statistik" element={<PageTransition><StatisticsPage /></PageTransition>} />
               <Route path="/relationships" element={<PageTransition><RelationshipsPage /></PageTransition>} />
               <Route path="/beziehungen" element={<PageTransition><RelationshipsPage /></PageTransition>} />
+              <Route path="/schema-org" element={<PageTransition><SchemaOrgDocPage /></PageTransition>} />
+              <Route path="/seo" element={<PageTransition><SchemaOrgDocPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
               <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}
