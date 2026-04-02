@@ -137,7 +137,7 @@ export default function SchemaOrgDocPage() {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Meum Diarium",
-  "url": "https://meum-diarium.schächner.de",
+  "url": "https://meum-diarium.xn--schchner-2za.de",
   "inLanguage": "de-DE",
   "potentialAction": {
     "@type": "SearchAction",
@@ -205,7 +205,7 @@ export default function SchemaOrgDocPage() {
 {`{
   "@type": "Organization",
   "name": "Meum Diarium",
-  "url": "https://meum-diarium.schächner.de",
+  "url": "https://meum-diarium.xn--schchner-2za.de",
   "logo": {
     "@type": "ImageObject",
     "url": "https://.../icons/favicon.svg",

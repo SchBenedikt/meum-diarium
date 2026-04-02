@@ -1374,11 +1374,7 @@ async function handleWorksheet(request, env, url, body) {
             console.error(`[Worksheet] Full response (first 500 chars):`, raw.substring(0, 500));
             return new Response(JSON.stringify({
                 worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
-                warning: 'AI response had invalid JSON format. Fallback used.',
-                debug: {
-                    responsePreview: raw.substring(0, 200),
-                    responseLength: rawLength
-                }
+                warning: 'AI response had invalid JSON format. Fallback used.'
             }), { headers: corsHeaders() });
         }
 
@@ -1448,7 +1444,16 @@ function extractJsonObject(text) {
     const lastBrace = text.lastIndexOf('}');
     if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
 
-    const candidate = text.slice(firstBrace, lastBrace + 1)
+    const rawCandidate = text.slice(firstBrace, lastBrace + 1);
+
+    // Try parsing unmodified candidate first to preserve intentional whitespace in values
+    try {
+        return JSON.parse(rawCandidate);
+    } catch {
+        // Fall through to aggressive cleaning
+    }
+
+    const candidate = rawCandidate
         .replace(/,\s*([}\]])/g, '$1') // Remove trailing commas
         .replace(/\n/g, ' ') // Replace newlines with spaces
         .replace(/\r/g, ' ') // Replace carriage returns

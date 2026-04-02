@@ -185,10 +185,10 @@ export default function TeacherWorksheetPage() {
 
     setIsGenerating(true);
 
-    const maxRetries = 2;
+    const maxAttempts = 3;
     let lastError: Error | null = null;
 
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
         const payload = {
           topic: finalTopic,
@@ -255,10 +255,10 @@ export default function TeacherWorksheetPage() {
 
       } catch (err: unknown) {
         lastError = err instanceof Error ? err : new Error('Unbekannter Fehler');
-        console.error(`[Worksheet] Attempt ${attempt}/${maxRetries} failed:`, lastError.message);
+        console.error(`[Worksheet] Attempt ${attempt}/${maxAttempts} failed:`, lastError.message);
 
         // If this isn't the last attempt, wait before retrying
-        if (attempt < maxRetries) {
+        if (attempt < maxAttempts) {
           await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
         }
       }
