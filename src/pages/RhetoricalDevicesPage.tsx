@@ -68,7 +68,7 @@ export default function RhetoricalDevicesPage() {
               Lateinische <span className="text-primary italic">Stilmittel</span>
             </h1>
             <p className="text-muted-foreground/60 max-w-xl font-light leading-relaxed">
-              Lerne rhetorische Mittel über einen klaren Katalog und ein fokussiertes Trainingsmodul.
+              Lerne rhetorische Mittel über einen übersichtlichen Katalog.
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col gap-4 items-end">

@@ -1407,15 +1407,9 @@ async function handleWorksheet(request, env, url, body) {
         const rawLength = raw.length;
         console.log(`[Worksheet] AI response received. length=${rawLength}`);
 
-        // Log a preview of the response for debugging
-        const preview = raw.substring(0, 300).replace(/\s+/g, ' ');
-        console.log(`[Worksheet] Response preview: ${preview}`);
-
         // Check if response is suspiciously short
         if (rawLength < 50) {
-            console.warn(`[Worksheet] AI response is suspiciously short (${rawLength} chars)`);
-            console.warn(`[Worksheet] Full response: "${raw}"`);
-            console.warn(`[Worksheet] Full aiResponse object:`, JSON.stringify(aiResponse).substring(0, 500));
+            console.warn(`[Worksheet] AI response is suspiciously short (${rawLength} chars). Check AI model configuration.`);
         }
 
         const parsed = extractJsonObject(raw);

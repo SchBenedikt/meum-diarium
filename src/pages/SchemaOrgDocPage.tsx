@@ -24,7 +24,21 @@ export default function SchemaOrgDocPage() {
       scripts.forEach(script => {
         try {
           const data = JSON.parse(script.textContent || '');
-          if (data['@type']) {
+          // Handle @graph (array of schemas inside a wrapper object)
+          if (data['@graph'] && Array.isArray(data['@graph'])) {
+            data['@graph'].forEach((item: unknown) => {
+              if (item && typeof item === 'object' && (item as SchemaType)['@type']) {
+                foundSchemas.push(item as SchemaType);
+              }
+            });
+          } else if (Array.isArray(data)) {
+            // Handle top-level arrays of schema objects
+            data.forEach((item: unknown) => {
+              if (item && typeof item === 'object' && (item as SchemaType)['@type']) {
+                foundSchemas.push(item as SchemaType);
+              }
+            });
+          } else if (data['@type']) {
             foundSchemas.push(data);
           }
         } catch (e) {
@@ -35,7 +49,9 @@ export default function SchemaOrgDocPage() {
       setSchemas(foundSchemas);
     };
 
-    extractSchemas();
+    // Delay to allow SEO component's useEffect to inject JSON-LD scripts first
+    const timer = setTimeout(extractSchemas, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   return (

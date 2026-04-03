@@ -37,7 +37,7 @@ export const onRequest = async (context: PagesContext) => {
             const results = await Promise.all(entries.map(async ([slug, fileName]) => {
                 try {
                     const assetUrl = new URL(`/api/pages/${fileName}`, url.origin);
-                    const staticResponse = await fetch(assetUrl.toString());
+                    const staticResponse = await context.env.ASSETS.fetch(new Request(assetUrl.toString()));
                     if (!staticResponse.ok) {
                         return { slug, title: slug, dataSource: 'fallback' };
                     }
@@ -86,7 +86,7 @@ export const onRequest = async (context: PagesContext) => {
             // Try to fetch from static assets first
             try {
                 const assetUrl = new URL(`/api/pages/${fileName}`, url.origin);
-                const staticResponse = await fetch(assetUrl.toString());
+                const staticResponse = await context.env.ASSETS.fetch(new Request(assetUrl.toString()));
                 
                 if (staticResponse.ok) {
                     const data = await staticResponse.json();
