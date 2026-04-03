@@ -1312,6 +1312,8 @@ async function handleWorksheet(request, env, url, body) {
         '- Aufgaben sollen unterschiedlich sein und sich nicht gegenseitig Lösungen vorwegnehmen',
         '- Schwierigkeit skaliert: Niveau 1 = leicht/Anfänger, Niveau 2 = mittel, Niveau 3 = anspruchsvoll',
         '- Material sollte konkrete lateinische Textbrocken, historische Kontexte oder Vokabeln enthalten',
+        '- Formuliere kompakt: kurze Titel, kurze Instruktionen, Material pro Aufgabe max. 260 Zeichen',
+        '- Gib exakt die angeforderten Aufgaben zurück, aber halte den Gesamtoutput knapp',
         teacherNote ? `- LEHRKRAFT-HINWEIS: ${teacherNote}` : '',
         introRule ? `- Einführung: ${introRule}` : '- KEINE Einführung',
         '',
@@ -1342,6 +1344,7 @@ async function handleWorksheet(request, env, url, body) {
         }, null, 2),
         '',
         'KRITISCH: Das JSON MUSS vollständig und gültig sein. Halte dich exakt an die Beispielstruktur; optionale Felder (z.B. "intro") dürfen null sein oder weggelassen werden, wenn sie nicht verwendet werden.',
+        'WICHTIG: KEINE Markdown-Codeblöcke, KEIN ```json, NUR reines JSON.',
     ].filter(Boolean).join('\n');
 
     const ai = resolveAiBinding(env);
@@ -1358,6 +1361,7 @@ async function handleWorksheet(request, env, url, body) {
                 { role: 'system', content: 'Du bist ein Experte für Lateinunterricht und erstellst konsistent hochwertige, konkrete Arbeitsblaetter. Antworte NUR mit gültigem JSON, keinen anderen Text.' },
                 { role: 'user', content: prompt },
             ],
+            max_tokens: 2200,
         });
 
         const raw = String(aiResponse?.response || '').trim();
@@ -1370,8 +1374,17 @@ async function handleWorksheet(request, env, url, body) {
 
         const parsed = extractJsonObject(raw);
         if (!parsed) {
-            console.error(`[Worksheet] Could not extract JSON from response`);
-            console.error(`[Worksheet] Full response (first 500 chars):`, raw.substring(0, 500));
+            const recovered = recoverWorksheetFromPartialResponse(raw, topic, includeIntro, tasks);
+            if (recovered) {
+                console.warn(`[Worksheet] Recovered worksheet from partial AI response`);
+                return new Response(JSON.stringify({
+                    worksheet: recovered,
+                    warning: 'AI response was partial. Reconstructed worksheet used.'
+                }), { headers: corsHeaders() });
+            }
+
+            console.warn(`[Worksheet] Could not extract JSON from response`);
+            console.warn(`[Worksheet] Full response (first 500 chars):`, raw.substring(0, 500));
             return new Response(JSON.stringify({
                 worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
                 warning: 'AI response had invalid JSON format. Fallback used.'
@@ -1426,57 +1439,215 @@ async function handleWorksheet(request, env, url, body) {
 function extractJsonObject(text) {
     if (!text) return null;
 
-    // Try to find JSON within markdown code blocks first
-    const markdownJsonMatch = text.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
-    if (markdownJsonMatch) {
-        try {
-            const cleaned = markdownJsonMatch[1]
-                .replace(/,\s*([}\]])/g, '$1') // Remove trailing commas
-                .trim();
-            return JSON.parse(cleaned);
-        } catch {
-            // Continue to other methods if this fails
+    const strippedFence = stripMarkdownCodeFence(text);
+    const balanced = findBalancedJsonObject(strippedFence) || findBalancedJsonObject(text);
+
+    // Try best candidate first (balanced object), then fallback candidates.
+    const candidates = [balanced, strippedFence, text].filter(Boolean);
+
+    for (const raw of candidates) {
+        const firstBrace = raw.indexOf('{');
+        if (firstBrace === -1) continue;
+
+        // Keep from first object start and auto-close open structures if the model truncated output.
+        const maybeJson = closeOpenJsonStructures(raw.slice(firstBrace));
+
+        // Parse with increasing tolerance while preserving content whenever possible.
+        const parseAttempts = [
+            maybeJson,
+            maybeJson.replace(/,\s*([}\]])/g, '$1'),
+            maybeJson
+                .replace(/\/\/.*$/gm, '')
+                .replace(/\/\*[\s\S]*?\*\//g, '')
+                .replace(/,\s*([}\]])/g, '$1'),
+        ];
+
+        for (const attempt of parseAttempts) {
+            try {
+                return JSON.parse(attempt.trim());
+            } catch {
+                // Try next attempt.
+            }
         }
     }
 
-    // Find first and last braces
-    const firstBrace = text.indexOf('{');
-    const lastBrace = text.lastIndexOf('}');
-    if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
+    console.warn('[JSON Extraction] Failed to parse JSON from AI response');
+    console.warn('[JSON Extraction] Raw preview:', String(text).substring(0, 220));
+    return null;
+}
 
-    const rawCandidate = text.slice(firstBrace, lastBrace + 1);
+function recoverWorksheetFromPartialResponse(rawText, topic, includeIntro, tasksConfig) {
+    if (!rawText) return null;
 
-    // Try parsing unmodified candidate first to preserve intentional whitespace in values
-    try {
-        return JSON.parse(rawCandidate);
-    } catch {
-        // Fall through to aggressive cleaning
-    }
-
-    const candidate = rawCandidate
-        .replace(/,\s*([}\]])/g, '$1') // Remove trailing commas
-        .replace(/\n/g, ' ') // Replace newlines with spaces
-        .replace(/\r/g, ' ') // Replace carriage returns
-        .replace(/\t/g, ' ') // Replace tabs
-        .replace(/\s+/g, ' ') // Collapse multiple spaces
+    const text = String(rawText)
+        .replace(/```(?:json)?/gi, '')
+        .replace(/```/g, '')
         .trim();
 
-    try {
-        return JSON.parse(candidate);
-    } catch (e) {
-        // Try more aggressive cleaning
-        try {
-            // Remove comments (both // and /* */ styles)
-            const noComments = candidate
-                .replace(/\/\/.*$/gm, '') // Remove single-line comments
-                .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
-            return JSON.parse(noComments);
-        } catch {
-            console.error('[JSON Extraction] Failed to parse JSON:', e.message);
-            console.error('[JSON Extraction] Candidate string preview:', candidate.substring(0, 200));
-            return null;
+    const safeExtract = (pattern, fallback = '') => {
+        const m = text.match(pattern);
+        return m && m[1] ? String(m[1]).trim() : fallback;
+    };
+
+    const title = safeExtract(/"title"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, `${topic} - Arbeitsblatt`);
+    const subtitle = safeExtract(/"subtitle"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, 'Quelle: meum-diarium.schächner.de');
+    const intro = includeIntro
+        ? safeExtract(/"intro"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, `Dieses Arbeitsblatt behandelt das Thema "${topic}".`)
+        : undefined;
+
+    const normalizedTitle = title.replace(/\\"/g, '"');
+    const normalizedSubtitle = subtitle.replace(/\\"/g, '"');
+    const normalizedIntro = intro ? intro.replace(/\\"/g, '"') : undefined;
+
+    const tasks = [];
+    const taskStartRegex = /\{\s*"type"\s*:\s*"([^"]+)"[\s\S]*?"title"\s*:\s*"([^"]+)"[\s\S]*?"instruction"\s*:\s*"([^"]+)"[\s\S]*?(?:"material"\s*:\s*"([^"]*)")?[\s\S]*?(?:"difficulty"\s*:\s*(\d))?/g;
+    let match;
+
+    while ((match = taskStartRegex.exec(text)) !== null) {
+        const type = String(match[1] || 'readingComprehension');
+        const taskTitle = String(match[2] || 'Aufgabe').replace(/\\"/g, '"');
+        const instruction = String(match[3] || 'Bearbeite die Aufgabe.').replace(/\\"/g, '"');
+        const material = match[4] ? String(match[4]).replace(/\\"/g, '"') : undefined;
+        const rawDifficulty = Number(match[5] || 2);
+        const difficulty = [1, 2, 3].includes(rawDifficulty) ? rawDifficulty : 2;
+
+        tasks.push({
+            type,
+            title: taskTitle,
+            instruction,
+            material,
+            difficulty,
+        });
+
+        if (tasks.length >= 8) break;
+    }
+
+    if (!tasks.length) return null;
+
+    // Ensure the worksheet always has at least one task per requested config when possible.
+    const requestedTypes = Array.isArray(tasksConfig)
+        ? tasksConfig.map((t) => String(t?.type || '').trim()).filter(Boolean)
+        : [];
+
+    for (const type of requestedTypes) {
+        const hasType = tasks.some((t) => String(t.type).toLowerCase() === type.toLowerCase());
+        if (!hasType) {
+            tasks.push({
+                type,
+                title: `${type} Aufgabe`,
+                instruction: `Bearbeite die Aufgabe zum Thema ${topic}.`,
+                difficulty: 2,
+            });
+        }
+        if (tasks.length >= 12) break;
+    }
+
+    return {
+        title: normalizedTitle || `${topic} - Arbeitsblatt`,
+        subtitle: normalizedSubtitle || 'Quelle: meum-diarium.schächner.de',
+        intro: normalizedIntro,
+        tasks: tasks.slice(0, 12),
+    };
+}
+
+function stripMarkdownCodeFence(text) {
+    if (!text) return '';
+    return String(text)
+        .replace(/^\s*```(?:json)?\s*/i, '')
+        .replace(/\s*```\s*$/i, '')
+        .trim();
+}
+
+function findBalancedJsonObject(input) {
+    if (!input) return null;
+
+    const text = String(input);
+    const start = text.indexOf('{');
+    if (start === -1) return null;
+
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let i = start; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            if (ch === '\\') {
+                escaped = true;
+                continue;
+            }
+            if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+            continue;
+        }
+        if (ch === '{') {
+            depth += 1;
+            continue;
+        }
+        if (ch === '}') {
+            depth -= 1;
+            if (depth === 0) {
+                return text.slice(start, i + 1);
+            }
         }
     }
+
+    return null;
+}
+
+function closeOpenJsonStructures(input) {
+    if (!input) return '';
+
+    const text = String(input).trim();
+    let inString = false;
+    let escaped = false;
+    let curly = 0;
+    let square = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            if (ch === '\\') {
+                escaped = true;
+                continue;
+            }
+            if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+            continue;
+        }
+        if (ch === '{') curly += 1;
+        else if (ch === '}') curly = Math.max(0, curly - 1);
+        else if (ch === '[') square += 1;
+        else if (ch === ']') square = Math.max(0, square - 1);
+    }
+
+    let result = text;
+    if (inString) result += '"';
+    if (square > 0) result += ']'.repeat(square);
+    if (curly > 0) result += '}'.repeat(curly);
+    return result;
 }
 
 function buildWorksheetFallback(topic, includeIntro, tasks) {

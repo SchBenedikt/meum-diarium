@@ -158,7 +158,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
         </p>
 
         {/* Comment Form */}
-        <Card className="mb-10 border-border/40 bg-card/50 backdrop-blur-sm shadow-sm">
+        <Card className="mb-10 border-border/50 bg-background shadow-none">
           <CardContent className="p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
@@ -204,6 +204,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                   disabled={isSubmitting}
                   rows={4}
                   maxLength={5000}
+                  className="min-h-[150px] resize-y rounded-2xl border-border/70 bg-background px-4 py-3 text-[0.95rem] leading-relaxed placeholder:text-muted-foreground/80 focus-visible:border-primary/60 focus-visible:ring-primary/30"
                 />
                 <p className="text-xs text-muted-foreground">
                   {content.length}/5000 Zeichen
