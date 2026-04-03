@@ -1364,13 +1364,41 @@ async function handleWorksheet(request, env, url, body) {
             max_tokens: 2200,
         });
 
-        const raw = String(aiResponse?.response || '').trim();
+        // Extract text from AI response - handle both string and structured responses
+        let raw = '';
+        if (typeof aiResponse?.response === 'string') {
+            raw = aiResponse.response.trim();
+        } else if (aiResponse?.response && typeof aiResponse.response === 'object') {
+            // For structured responses, check common fields
+            if (typeof aiResponse.response.text === 'string') {
+                raw = aiResponse.response.text.trim();
+            } else if (typeof aiResponse.response.content === 'string') {
+                raw = aiResponse.response.content.trim();
+            } else if (Array.isArray(aiResponse.response.choices) && aiResponse.response.choices[0]?.message?.content) {
+                raw = String(aiResponse.response.choices[0].message.content).trim();
+            } else {
+                // Fallback: try to stringify the whole response object
+                console.warn('[Worksheet] AI response is object, attempting JSON.stringify');
+                console.warn('[Worksheet] Response structure:', JSON.stringify(aiResponse.response).substring(0, 200));
+                raw = JSON.stringify(aiResponse.response);
+            }
+        } else {
+            raw = String(aiResponse?.response || '').trim();
+        }
+
         const rawLength = raw.length;
         console.log(`[Worksheet] AI response received. length=${rawLength}`);
 
         // Log a preview of the response for debugging
         const preview = raw.substring(0, 300).replace(/\s+/g, ' ');
         console.log(`[Worksheet] Response preview: ${preview}`);
+
+        // Check if response is suspiciously short
+        if (rawLength < 50) {
+            console.warn(`[Worksheet] AI response is suspiciously short (${rawLength} chars)`);
+            console.warn(`[Worksheet] Full response: "${raw}"`);
+            console.warn(`[Worksheet] Full aiResponse object:`, JSON.stringify(aiResponse).substring(0, 500));
+        }
 
         const parsed = extractJsonObject(raw);
         if (!parsed) {
