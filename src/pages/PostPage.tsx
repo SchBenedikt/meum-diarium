@@ -272,7 +272,14 @@ function PostContent({ post }: { post: BlogPost }) {
                 </div>
               </aside>
             </div>
-            
+
+            {/* Comments Section - Before Related Articles */}
+            {post && (
+              <div className="max-w-4xl mx-auto">
+                <CommentSection postId={post.id} />
+              </div>
+            )}
+
             {/* Related Articles Section */}
             {relatedPosts.length > 0 && post?.author && (
               <section className="mt-16 pt-10 border-t border-border/40">
@@ -288,11 +295,11 @@ function PostContent({ post }: { post: BlogPost }) {
                   opts={{
                     align: "start",
                   }}
-                  className="w-full"
+                  className="w-full max-w-6xl mx-auto"
                 >
-                  <CarouselContent>
+                  <CarouselContent className="-ml-4">
                     {relatedPosts.map((relatedPost, index) => (
-                      <CarouselItem key={index} className="basis-full lg:basis-1/2 pl-4">
+                      <CarouselItem key={index} className="basis-full md:basis-1/2 pl-4">
                         <BlogCard post={relatedPost} />
                       </CarouselItem>
                     ))}
@@ -308,7 +315,6 @@ function PostContent({ post }: { post: BlogPost }) {
             )}
           </div>
         </div>
-        {post && <CommentSection postId={post.id} />}
       </main>
       <Footer />
     </div>

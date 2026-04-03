@@ -304,8 +304,18 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
 // Helper function to normalize work results
 function normalizeWorkResult(work: any) {
+    const parseContent = (value: unknown) => {
+        if (typeof value !== 'string') return value || {};
+        try {
+            return JSON.parse(value);
+        } catch {
+            // Keep endpoint resilient even if a row contains malformed JSON.
+            return {};
+        }
+    };
+
     return {
         ...work,
-        content: typeof work.content === 'string' ? JSON.parse(work.content) : work.content || {}
+        content: parseContent(work.content)
     };
 }

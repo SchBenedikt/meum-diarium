@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
-import { ArrowLeft, FileDown, Loader2, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, FileDown, Loader2, Sparkles } from 'lucide-react';
 
 type TaskType =
   | 'readingComprehension'
@@ -185,69 +185,88 @@ export default function TeacherWorksheetPage() {
 
     setIsGenerating(true);
 
-    try {
-      const payload = {
-        topic: finalTopic,
-        includeIntro,
-        teacherNote: teacherNote.trim(),
-        tasks: activeTaskTypes.map((type) => ({
-          type,
-          difficulty: taskConfig[type].difficulty,
-          amount: taskConfig[type].amount,
-        })),
-      };
+    const maxAttempts = 3;
+    let lastError: Error | null = null;
 
-      const response = await generateWorksheetAI(payload);
-      const rawWorksheet = response.worksheet;
-
-      const normalizedTasks: WorksheetTask[] = rawWorksheet.tasks.map((task: unknown) => {
-        const rawTask = (task && typeof task === 'object') ? (task as Record<string, unknown>) : {};
-        const value = String(rawTask.type || '').toLowerCase();
-        const type: TaskType = value.includes('reading')
-          ? 'readingComprehension'
-          : value.includes('cloze') || value.includes('gap')
-          ? 'cloze'
-          : value.includes('multiple')
-          ? 'multipleChoice'
-          : value.includes('translation')
-          ? 'translation'
-          : value.includes('interpret')
-          ? 'interpretation'
-          : value.includes('discussion') || value.includes('impulse') || value.includes('what')
-          ? 'discussion'
-          : 'readingComprehension';
-
-        const fallbackDifficulty = taskConfig[type]?.difficulty ?? 2;
-        return {
-          type,
-          title: String(rawTask.title || TASK_LABELS[type].title),
-          instruction: String(rawTask.instruction || 'Bearbeite die Aufgabe sorgfältig.'),
-          material: rawTask.material ? String(rawTask.material) : undefined,
-          difficulty: clampDifficulty(rawTask.difficulty, fallbackDifficulty),
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        const payload = {
+          topic: finalTopic,
+          includeIntro,
+          teacherNote: teacherNote.trim(),
+          tasks: activeTaskTypes.map((type) => ({
+            type,
+            difficulty: taskConfig[type].difficulty,
+            amount: taskConfig[type].amount,
+          })),
         };
-      });
 
-      if (!normalizedTasks.length) {
-        setWorksheet(buildFallbackWorksheet('Keine Aufgaben von der KI erhalten.'));
+        const response = await generateWorksheetAI(payload);
+
+        // Check if response has a warning (fallback was used)
+        if (response.warning) {
+          console.warn('[Worksheet] AI used fallback:', response.warning);
+        }
+
+        const rawWorksheet = response.worksheet;
+
+        const normalizedTasks: WorksheetTask[] = rawWorksheet.tasks.map((task: unknown) => {
+          const rawTask = (task && typeof task === 'object') ? (task as Record<string, unknown>) : {};
+          const value = String(rawTask.type || '').toLowerCase();
+          const type: TaskType = value.includes('reading')
+            ? 'readingComprehension'
+            : value.includes('cloze') || value.includes('gap')
+            ? 'cloze'
+            : value.includes('multiple')
+            ? 'multipleChoice'
+            : value.includes('translation')
+            ? 'translation'
+            : value.includes('interpret')
+            ? 'interpretation'
+            : value.includes('discussion') || value.includes('impulse') || value.includes('what')
+            ? 'discussion'
+            : 'readingComprehension';
+
+          const fallbackDifficulty = taskConfig[type]?.difficulty ?? 2;
+          return {
+            type,
+            title: String(rawTask.title || TASK_LABELS[type].title),
+            instruction: String(rawTask.instruction || 'Bearbeite die Aufgabe sorgfältig.'),
+            material: rawTask.material ? String(rawTask.material) : undefined,
+            difficulty: clampDifficulty(rawTask.difficulty, fallbackDifficulty),
+          };
+        });
+
+        if (!normalizedTasks.length) {
+          throw new Error('Keine Aufgaben von der KI erhalten.');
+        }
+
+        setWorksheet({
+          topic: finalTopic,
+          title: String(rawWorksheet.title || `${finalTopic} - Arbeitsblatt`),
+          subtitle: String(rawWorksheet.subtitle || 'KI-generiertes Unterrichtsmaterial'),
+          intro: includeIntro ? String(rawWorksheet.intro || '') : undefined,
+          tasks: normalizedTasks,
+        });
+
+        // Success - break out of retry loop
+        setIsGenerating(false);
         return;
-      }
 
-      setWorksheet({
-        topic: finalTopic,
-        title: String(rawWorksheet.title || `${finalTopic} - Arbeitsblatt`),
-        subtitle: String(rawWorksheet.subtitle || 'KI-generiertes Unterrichtsmaterial'),
-        intro: includeIntro ? String(rawWorksheet.intro || '') : undefined,
-        tasks: normalizedTasks,
-      });
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || 'Das Arbeitsblatt konnte nicht erstellt werden.');
-      } else {
-        setError('Das Arbeitsblatt konnte nicht erstellt werden.');
+      } catch (err: unknown) {
+        lastError = err instanceof Error ? err : new Error('Unbekannter Fehler');
+        console.error(`[Worksheet] Attempt ${attempt}/${maxAttempts} failed:`, lastError.message);
+
+        // If this isn't the last attempt, wait before retrying
+        if (attempt < maxAttempts) {
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+        }
       }
-    } finally {
-      setIsGenerating(false);
     }
+
+    // All retries failed - show error
+    setError(lastError?.message || 'Das Arbeitsblatt konnte nicht erstellt werden. Bitte versuche es erneut.');
+    setIsGenerating(false);
   };
 
   const exportPdf = () => {
@@ -376,6 +395,22 @@ export default function TeacherWorksheetPage() {
           <Link to="/lernen" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors">
             <ArrowLeft className="h-3.5 w-3.5" /> Zurück zu Lernen
           </Link>
+        </div>
+
+        <div className="mb-8 rounded-2xl border-2 border-amber-500/40 bg-gradient-to-r from-amber-50 to-orange-50 p-5 shadow-none">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 rounded-full bg-amber-500/15 p-2 text-amber-700">
+              <AlertTriangle className="h-4 w-4" />
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs uppercase tracking-[0.22em] text-amber-800 font-semibold">Open Research</p>
+              <p className="text-sm leading-relaxed text-amber-900">
+                Dieses Projekt dokumentiert offen, wie Arbeitsblätter und Lernmaterial mit KI erstellt werden können.
+                Inhalte sind KI-generiert und können Fehler, Ungenauigkeiten oder didaktische Schwächen enthalten. Es gibt keine Garantie auf
+                fachliche Richtigkeit oder Vollständigkeit. Bitte prüfe alle Ergebnisse vor der Nutzung im Unterricht.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid xl:grid-cols-12 gap-6">

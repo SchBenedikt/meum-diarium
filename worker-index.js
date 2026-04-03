@@ -1280,9 +1280,9 @@ async function handleWorksheet(request, env, url, body) {
     const taskDescriptions = {
         readingComprehension: 'Textverständnis: Fragen zum Verständnis eines Textausschnitts oder zur Analyse von Schlüsselstellen',
         cloze: 'Lückentext: Mit Vokabeln oder Grammatik-Formen zu füllende Lückentexte',
-        multipleChoice: 'Multiple Choice: Auswahl aus mehreren Optionen mit einer korrekten Antwort',
+        multipleChoice: 'Multiple Choice: Eine konkrete Frage mit exakt vier Antwortoptionen (A-D) und genau einer korrekten Antwort',
         translation: 'Übersetzungsaufgabe: Übersetze lateinische Passagen ins Deutsche oder umgekehrt',
-        interpretation: 'Interpretationsaufgabe: Analyse von Stilmitteln, Textstruktur oder historischem Kontext',
+        interpretation: 'Interpretationsaufgabe: Interpretation eines übersetzten Stücks zu Aussageabsicht, Gefühlen, Bedeutung und sprachlichen Besonderheiten (ohne Materialfeld)',
         discussion: 'Diskussionsaufgabe: Impulssfragen wie "Wie würde Caesar reagiert haben?" oder "Inwiefern bedeutet das..."'
     };
 
@@ -1311,7 +1311,14 @@ async function handleWorksheet(request, env, url, body) {
         '- Nutze authentisches Sprachmaterial, konkrete lateinische Textbeispiele oder historische Szenarien',
         '- Aufgaben sollen unterschiedlich sein und sich nicht gegenseitig Lösungen vorwegnehmen',
         '- Schwierigkeit skaliert: Niveau 1 = leicht/Anfänger, Niveau 2 = mittel, Niveau 3 = anspruchsvoll',
-        '- Material sollte konkrete lateinische Textbrocken, historische Kontexte oder Vokabeln enthalten',
+        '- Vermeide generische Formulierungen wie "Bearbeite die Aufgabe"; formuliere präzise Arbeitsaufträge mit klaren Kriterien',
+        '- Material nur bei passenden Aufgabentypen verwenden (z.B. Textverständnis, Lückentext, Übersetzung, Multiple Choice)',
+        '- Für multipleChoice MUSS material eine konkrete Frage plus vier Optionen A) bis D) enthalten',
+        '- Für interpretation KEIN material-Feld erzeugen; stattdessen eine konkrete Interpretationsanweisung geben (Aussageabsicht, Gefühle, Bedeutung, sprachliche Merkmale)',
+        '- Für translation darf der Text authentisch ODER didaktisch konstruiert sein; er muss nicht aus einem realen antiken Werk stammen',
+        '- Passe Übersetzungstexte strikt ans Niveau an: Niveau 1 kurz und klar, Niveau 2 mit Nebensätzen, Niveau 3 mit komplexerer Syntax',
+        '- Formuliere kompakt: kurze Titel, kurze Instruktionen, Material pro Aufgabe max. 260 Zeichen',
+        '- Gib exakt die angeforderten Aufgaben zurück, aber halte den Gesamtoutput knapp',
         teacherNote ? `- LEHRKRAFT-HINWEIS: ${teacherNote}` : '',
         introRule ? `- Einführung: ${introRule}` : '- KEINE Einführung',
         '',
@@ -1332,16 +1339,30 @@ async function handleWorksheet(request, env, url, body) {
                     difficulty: 2,
                 },
                 {
-                    type: 'cloze',
-                    title: 'Fülle die Lücken mit den richtigen Wortformen',
-                    instruction: 'Nutze die Wörterliste und die Grammatik-Regeln.',
-                    material: 'Caesar _____ (videre - Präs. 3.P.Sg.) legiones...',
+                    type: 'multipleChoice',
+                    title: 'Historischer Kontext',
+                    instruction: 'Wähle die zutreffende Option und begründe kurz, warum die anderen drei weniger passend sind.',
+                    material: 'Warum erwähnt Caesar die Belgae besonders?\nA) Wegen ihrer Nähe zu Germanen\nB) Wegen ihres Seereichtums\nC) Wegen ihrer Tempel\nD) Wegen ihrer Flotte',
+                    difficulty: 2,
+                },
+                {
+                    type: 'interpretation',
+                    title: 'Deutung der Aussage',
+                    instruction: 'Interpretiere das übersetzte Stück: 1) Aussageabsicht, 2) erzeugte Gefühle, 3) historische Bedeutung, 4) sprachliche Wirkung. Belege jede Deutung mit einer konkreten Textbeobachtung.',
+                    difficulty: 2,
+                },
+                {
+                    type: 'translation',
+                    title: 'Übersetzung didaktischer Übungstext',
+                    instruction: 'Übersetze den Text vollständig ins Deutsche und markiere zwei Schlüsselstellen, bei denen die Satzstruktur für die Bedeutung wichtig ist.',
+                    material: 'Didaktischer Übungstext (Niveau 2): Caesar, cum nuntius de motu Gallorum venisset, legatos convocavit et dixit se celeriter agere oportere, ne socii timore frangerentur.',
                     difficulty: 2,
                 },
             ],
         }, null, 2),
         '',
         'KRITISCH: Das JSON MUSS vollständig und gültig sein. Halte dich exakt an die Beispielstruktur; optionale Felder (z.B. "intro") dürfen null sein oder weggelassen werden, wenn sie nicht verwendet werden.',
+        'WICHTIG: KEINE Markdown-Codeblöcke, KEIN ```json, NUR reines JSON.',
     ].filter(Boolean).join('\n');
 
     const ai = resolveAiBinding(env);
@@ -1358,18 +1379,55 @@ async function handleWorksheet(request, env, url, body) {
                 { role: 'system', content: 'Du bist ein Experte für Lateinunterricht und erstellst konsistent hochwertige, konkrete Arbeitsblaetter. Antworte NUR mit gültigem JSON, keinen anderen Text.' },
                 { role: 'user', content: prompt },
             ],
+            max_tokens: 2200,
         });
 
-        const raw = String(aiResponse?.response || '').trim();
+        // Extract text from AI response - handle both string and structured responses
+        let raw = '';
+        if (typeof aiResponse?.response === 'string') {
+            raw = aiResponse.response.trim();
+        } else if (aiResponse?.response && typeof aiResponse.response === 'object') {
+            // For structured responses, check common fields
+            if (typeof aiResponse.response.text === 'string') {
+                raw = aiResponse.response.text.trim();
+            } else if (typeof aiResponse.response.content === 'string') {
+                raw = aiResponse.response.content.trim();
+            } else if (Array.isArray(aiResponse.response.choices) && aiResponse.response.choices[0]?.message?.content) {
+                raw = String(aiResponse.response.choices[0].message.content).trim();
+            } else {
+                // Fallback: try to stringify the whole response object
+                console.warn('[Worksheet] AI response is object, attempting JSON.stringify');
+                console.warn('[Worksheet] Response structure:', JSON.stringify(aiResponse.response).substring(0, 200));
+                raw = JSON.stringify(aiResponse.response);
+            }
+        } else {
+            raw = String(aiResponse?.response || '').trim();
+        }
+
         const rawLength = raw.length;
         console.log(`[Worksheet] AI response received. length=${rawLength}`);
-        
+
+        // Check if response is suspiciously short
+        if (rawLength < 50) {
+            console.warn(`[Worksheet] AI response is suspiciously short (${rawLength} chars). Check AI model configuration.`);
+        }
+
         const parsed = extractJsonObject(raw);
         if (!parsed) {
-            console.error(`[Worksheet] Could not extract JSON from response`);
+            const recovered = recoverWorksheetFromPartialResponse(raw, topic, includeIntro, tasks);
+            if (recovered) {
+                console.warn(`[Worksheet] Recovered worksheet from partial AI response`);
+                return new Response(JSON.stringify({
+                    worksheet: recovered,
+                    warning: 'AI response was partial. Reconstructed worksheet used.'
+                }), { headers: corsHeaders() });
+            }
+
+            console.warn(`[Worksheet] Could not extract JSON from response`);
+            console.warn(`[Worksheet] Full response (first 500 chars):`, raw.substring(0, 500));
             return new Response(JSON.stringify({
                 worksheet: buildWorksheetFallback(topic, includeIntro, tasks),
-                warning: 'AI response had invalid JSON format. Fallback used.',
+                warning: 'AI response had invalid JSON format. Fallback used.'
             }), { headers: corsHeaders() });
         }
 
@@ -1384,13 +1442,7 @@ async function handleWorksheet(request, env, url, body) {
         // Validate and normalize tasks
         const validatedTasks = parsed.tasks
             .filter(t => t && typeof t === 'object')
-            .map(t => ({
-                type: String(t.type || 'readingComprehension'),
-                title: String(t.title || 'Aufgabe'),
-                instruction: String(t.instruction || 'Bearbeite die Aufgabe.'),
-                material: t.material ? String(t.material) : undefined,
-                difficulty: [1,2,3].includes(Number(t.difficulty)) ? Number(t.difficulty) : 2,
-            }));
+            .map((t) => normalizeWorksheetTask(t, topic));
 
         if (validatedTasks.length === 0) {
             console.error(`[Worksheet] No valid tasks after validation`);
@@ -1418,21 +1470,358 @@ async function handleWorksheet(request, env, url, body) {
     }
 }
 
+function normalizeWorksheetTask(task, topic) {
+    const type = String(task?.type || 'readingComprehension');
+    const typeLower = type.toLowerCase();
+    let title = String(task?.title || 'Aufgabe').trim() || 'Aufgabe';
+    const difficulty = [1, 2, 3].includes(Number(task?.difficulty)) ? Number(task.difficulty) : 2;
+    let instruction = String(task?.instruction || 'Bearbeite die Aufgabe.').trim() || 'Bearbeite die Aufgabe.';
+    let material = task?.material ? String(task.material).trim() : undefined;
+
+    if (isGenericTaskTitle(title)) {
+        title = defaultTaskTitle(typeLower, difficulty);
+    }
+
+    if (isGenericTaskInstruction(instruction)) {
+        instruction = defaultTaskInstruction(typeLower, difficulty, topic);
+    }
+
+    if (typeLower === 'multiplechoice') {
+        if (!material || !hasMultipleChoiceOptions(material)) {
+            material = buildMultipleChoiceMaterial(topic);
+        }
+    }
+
+    if (typeLower === 'interpretation') {
+        material = undefined;
+        instruction = interpretationInstructionByDifficulty(difficulty);
+    }
+
+    if (typeLower === 'translation') {
+        if (!material || isPlaceholderMaterial(material)) {
+            material = buildTranslationMaterial(topic, difficulty);
+        }
+        if (isGenericTaskInstruction(instruction)) {
+            instruction = defaultTaskInstruction(typeLower, difficulty, topic);
+        }
+    }
+
+    const normalized = {
+        type,
+        title,
+        instruction,
+        difficulty,
+    };
+
+    if (material) normalized.material = material;
+    return normalized;
+}
+
+function hasMultipleChoiceOptions(text) {
+    if (!text) return false;
+    const normalized = String(text);
+    const hasA = /(^|\n)\s*A\s*[\)\.:\-]/i.test(normalized);
+    const hasB = /(^|\n)\s*B\s*[\)\.:\-]/i.test(normalized);
+    const hasC = /(^|\n)\s*C\s*[\)\.:\-]/i.test(normalized);
+    const hasD = /(^|\n)\s*D\s*[\)\.:\-]/i.test(normalized);
+    return hasA && hasB && hasC && hasD;
+}
+
+function isGenericTaskTitle(title) {
+    const t = String(title || '').trim().toLowerCase();
+    return !t || t === 'aufgabe' || t === 'task' || t === 'worksheet task';
+}
+
+function isGenericTaskInstruction(instruction) {
+    const i = String(instruction || '').trim().toLowerCase();
+    if (!i) return true;
+    return i === 'bearbeite die aufgabe.'
+        || i === 'bearbeite die aufgabe'
+        || i === 'löse die aufgabe.'
+        || i === 'solve the task.'
+        || i === 'complete the task.';
+}
+
+function isPlaceholderMaterial(material) {
+    const m = String(material || '').trim().toLowerCase();
+    if (!m) return true;
+    if (m.startsWith('[') && m.endsWith(']')) return true;
+    return m.includes('sollte hier eingefügt werden');
+}
+
+function defaultTaskTitle(type, difficulty) {
+    const level = Number(difficulty) || 2;
+    const map = {
+        readingcomprehension: ['Kernaussagen erfassen', 'Argumentation nachvollziehen', 'Textstruktur analysieren'],
+        cloze: ['Grundformen einsetzen', 'Formen und Bezüge erkennen', 'Syntax präzise ergänzen'],
+        multiplechoice: ['Sachverhalt prüfen', 'Kontext bewerten', 'Feinabgrenzung treffen'],
+        translation: ['Basisübersetzung', 'Übersetzung mit Satzgefüge', 'Feinübersetzung komplexer Syntax'],
+        interpretation: ['Aussage deuten', 'Wirkung und Intention deuten', 'Mehrschichtige Deutung entwickeln'],
+        discussion: ['Position beziehen', 'Argumentiert Stellung nehmen', 'Kontroverse begründet auswerten'],
+    };
+    const list = map[type] || ['Aufgabe'];
+    return list[Math.max(0, Math.min(2, level - 1))] || list[0];
+}
+
+function defaultTaskInstruction(type, difficulty, topic) {
+    const level = Number(difficulty) || 2;
+    if (type === 'translation') {
+        if (level === 1) return `Übersetze den kurzen Übungstext zum Thema ${topic} vollständig ins Deutsche. Markiere im Anschluss Subjekt und Prädikat in jedem Satz.`;
+        if (level === 2) return `Übersetze den Text zum Thema ${topic} vollständig ins Deutsche und erläutere bei zwei Satzteilen deine Übersetzungsentscheidung (z.B. Tempus oder Nebensatzbezug).`;
+        return `Fertige eine präzise Gesamtübersetzung zum Thema ${topic} an und kommentiere drei schwierige Strukturen (Satzgefüge, Partizipialkonstruktion oder semantische Nuance).`;
+    }
+    if (type === 'multiplechoice') {
+        if (level === 1) return 'Wähle die richtige Option (A-D) und notiere ein Stichwort als Begründung.';
+        if (level === 2) return 'Wähle die zutreffende Option (A-D) und begründe in 1-2 Sätzen, warum die Alternativen weniger passend sind.';
+        return 'Wähle die präziseste Option (A-D) und begründe analytisch, welche Textsignale deine Entscheidung stützen.';
+    }
+    return `Bearbeite die Aufgabe zum Thema ${topic} präzise und begründe deine Ergebnisse kurz.`;
+}
+
+function interpretationInstructionByDifficulty(difficulty) {
+    const level = Number(difficulty) || 2;
+    if (level === 1) {
+        return 'Interpretiere das übersetzte Stück in 4-6 Sätzen: Was ist die zentrale Aussage? Welche Stimmung wird erzeugt? Woran erkennst du das sprachlich?';
+    }
+    if (level === 2) {
+        return 'Interpretiere das übersetzte Stück: 1) Aussageabsicht, 2) erzeugte Gefühle, 3) historische Bedeutung, 4) sprachliche Wirkung. Belege jede Deutung mit einer konkreten Textbeobachtung.';
+    }
+    return 'Entwickle eine vertiefte Interpretation des übersetzten Stücks: Argumentiere zu Intention, Perspektive, Wirkung und historischer Einordnung und stütze jede These mit präziser Textbeobachtung.';
+}
+
+function buildMultipleChoiceMaterial(topic) {
+    return [
+        `Welche Aussage passt am besten zum Thema "${topic}"?`,
+        'A) Die Darstellung betont strategisches Vorgehen und politische Selbstdarstellung.',
+        'B) Der Text lehnt jede militärische Planung grundsätzlich ab.',
+        'C) Die Quelle behandelt ausschließlich religiöse Rituale ohne Politikbezug.',
+        'D) Der Abschnitt beschreibt nur geografische Daten ohne Argumentationsziel.'
+    ].join('\n');
+}
+
+function buildTranslationMaterial(topic, difficulty) {
+    const level = Number(difficulty) || 2;
+    if (level === 1) {
+        return `Didaktischer Übungstext (Niveau 1): Caesar in castris manet et milites monet. Galli legatos mittunt, sed Romani portas servant. Omnes de pace et timore disputant.`;
+    }
+    if (level === 2) {
+        return `Didaktischer Übungstext (Niveau 2): Caesar, cum nuntius de motu Gallorum venisset, legatos convocavit et dixit se celeriter agere oportere, ne socii timore frangerentur.`;
+    }
+    return `Didaktischer Übungstext (Niveau 3): Quamquam hiems appropinquabat, Caesar statuit exercitum trans flumen ducere, ut oppida, quae superioribus diebus dubitaverant, consilio celeriter capto ad fidem revocarentur.`;
+}
+
 function extractJsonObject(text) {
     if (!text) return null;
-    const firstBrace = text.indexOf('{');
-    const lastBrace = text.lastIndexOf('}');
-    if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) return null;
 
-    const candidate = text.slice(firstBrace, lastBrace + 1)
-        .replace(/,\s*([}\]])/g, '$1')
+    const strippedFence = stripMarkdownCodeFence(text);
+    const balanced = findBalancedJsonObject(strippedFence) || findBalancedJsonObject(text);
+
+    // Try best candidate first (balanced object), then fallback candidates.
+    const candidates = [balanced, strippedFence, text].filter(Boolean);
+
+    for (const raw of candidates) {
+        const firstBrace = raw.indexOf('{');
+        if (firstBrace === -1) continue;
+
+        // Keep from first object start and auto-close open structures if the model truncated output.
+        const maybeJson = closeOpenJsonStructures(raw.slice(firstBrace));
+
+        // Parse with increasing tolerance while preserving content whenever possible.
+        const parseAttempts = [
+            maybeJson,
+            maybeJson.replace(/,\s*([}\]])/g, '$1'),
+            maybeJson
+                .replace(/\/\/.*$/gm, '')
+                .replace(/\/\*[\s\S]*?\*\//g, '')
+                .replace(/,\s*([}\]])/g, '$1'),
+        ];
+
+        for (const attempt of parseAttempts) {
+            try {
+                return JSON.parse(attempt.trim());
+            } catch {
+                // Try next attempt.
+            }
+        }
+    }
+
+    console.warn('[JSON Extraction] Failed to parse JSON from AI response');
+    console.warn('[JSON Extraction] Raw preview:', String(text).substring(0, 220));
+    return null;
+}
+
+function recoverWorksheetFromPartialResponse(rawText, topic, includeIntro, tasksConfig) {
+    if (!rawText) return null;
+
+    const text = String(rawText)
+        .replace(/```(?:json)?/gi, '')
+        .replace(/```/g, '')
         .trim();
 
-    try {
-        return JSON.parse(candidate);
-    } catch {
-        return null;
+    const safeExtract = (pattern, fallback = '') => {
+        const m = text.match(pattern);
+        return m && m[1] ? String(m[1]).trim() : fallback;
+    };
+
+    const title = safeExtract(/"title"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, `${topic} - Arbeitsblatt`);
+    const subtitle = safeExtract(/"subtitle"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, 'Quelle: meum-diarium.schächner.de');
+    const intro = includeIntro
+        ? safeExtract(/"intro"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/, `Dieses Arbeitsblatt behandelt das Thema "${topic}".`)
+        : undefined;
+
+    const normalizedTitle = title.replace(/\\"/g, '"');
+    const normalizedSubtitle = subtitle.replace(/\\"/g, '"');
+    const normalizedIntro = intro ? intro.replace(/\\"/g, '"') : undefined;
+
+    const tasks = [];
+    const taskStartRegex = /\{\s*"type"\s*:\s*"([^"]+)"[\s\S]*?"title"\s*:\s*"([^"]+)"[\s\S]*?"instruction"\s*:\s*"([^"]+)"[\s\S]*?(?:"material"\s*:\s*"([^"]*)")?[\s\S]*?(?:"difficulty"\s*:\s*(\d))?/g;
+    let match;
+
+    while ((match = taskStartRegex.exec(text)) !== null) {
+        const type = String(match[1] || 'readingComprehension');
+        const taskTitle = String(match[2] || 'Aufgabe').replace(/\\"/g, '"');
+        const instruction = String(match[3] || 'Bearbeite die Aufgabe.').replace(/\\"/g, '"');
+        const material = match[4] ? String(match[4]).replace(/\\"/g, '"') : undefined;
+        const rawDifficulty = Number(match[5] || 2);
+        const difficulty = [1, 2, 3].includes(rawDifficulty) ? rawDifficulty : 2;
+
+        tasks.push({
+            type,
+            title: taskTitle,
+            instruction,
+            material,
+            difficulty,
+        });
+
+        if (tasks.length >= 8) break;
     }
+
+    if (!tasks.length) return null;
+
+    // Ensure the worksheet always has at least one task per requested config when possible.
+    const requestedTypes = Array.isArray(tasksConfig)
+        ? tasksConfig.map((t) => String(t?.type || '').trim()).filter(Boolean)
+        : [];
+
+    for (const type of requestedTypes) {
+        const hasType = tasks.some((t) => String(t.type).toLowerCase() === type.toLowerCase());
+        if (!hasType) {
+            tasks.push({
+                type,
+                title: `${type} Aufgabe`,
+                instruction: `Bearbeite die Aufgabe zum Thema ${topic}.`,
+                difficulty: 2,
+            });
+        }
+        if (tasks.length >= 12) break;
+    }
+
+    return {
+        title: normalizedTitle || `${topic} - Arbeitsblatt`,
+        subtitle: normalizedSubtitle || 'Quelle: meum-diarium.schächner.de',
+        intro: normalizedIntro,
+        tasks: tasks.slice(0, 12),
+    };
+}
+
+function stripMarkdownCodeFence(text) {
+    if (!text) return '';
+    return String(text)
+        .replace(/^\s*```(?:json)?\s*/i, '')
+        .replace(/\s*```\s*$/i, '')
+        .trim();
+}
+
+function findBalancedJsonObject(input) {
+    if (!input) return null;
+
+    const text = String(input);
+    const start = text.indexOf('{');
+    if (start === -1) return null;
+
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let i = start; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            if (ch === '\\') {
+                escaped = true;
+                continue;
+            }
+            if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+            continue;
+        }
+        if (ch === '{') {
+            depth += 1;
+            continue;
+        }
+        if (ch === '}') {
+            depth -= 1;
+            if (depth === 0) {
+                return text.slice(start, i + 1);
+            }
+        }
+    }
+
+    return null;
+}
+
+function closeOpenJsonStructures(input) {
+    if (!input) return '';
+
+    const text = String(input).trim();
+    let inString = false;
+    let escaped = false;
+    let curly = 0;
+    let square = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            if (ch === '\\') {
+                escaped = true;
+                continue;
+            }
+            if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+            continue;
+        }
+        if (ch === '{') curly += 1;
+        else if (ch === '}') curly = Math.max(0, curly - 1);
+        else if (ch === '[') square += 1;
+        else if (ch === ']') square = Math.max(0, square - 1);
+    }
+
+    let result = text;
+    if (inString) result += '"';
+    if (square > 0) result += ']'.repeat(square);
+    if (curly > 0) result += '}'.repeat(curly);
+    return result;
 }
 
 function buildWorksheetFallback(topic, includeIntro, tasks) {
@@ -1459,8 +1848,7 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
         },
         interpretation: {
             title: 'Interpretationsaufgabe',
-            instruction: 'Analysiere die Passage auf Stilmittel, Wirkung und historischen Kontext. Erkläre, warum der Autor diese sprachlichen Mittel gewählt hat.',
-            material: `[Textabschnitt zum Thema "${topic}" zur Interpretation sollte hier eingefügt werden]`,
+            instruction: 'Interpretiere das übersetzte Stück mit Blick auf Aussageabsicht, Gefühle, Bedeutung und sprachliche Besonderheiten. Begründe deine Deutung mit mindestens zwei Beobachtungen.',
         },
         discussion: {
             title: 'Diskussionsaufgabe',
@@ -1482,9 +1870,12 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
                 type,
                 title: `${desc.title}${amount > 1 ? ` ${i + 1}` : ''}`,
                 instruction: desc.instruction,
-                material: desc.material,
                 difficulty,
             });
+
+            if (desc.material) {
+                resultTasks[resultTasks.length - 1].material = desc.material;
+            }
         }
     }
 

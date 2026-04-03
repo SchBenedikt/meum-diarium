@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -8,26 +7,13 @@ import {
     MessageSquare,
     BookOpen,
     GraduationCap,
-    AlertTriangle,
     Brain,
     FileText
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
-type Mode = 'menu';
+
 export default function LatinTools() {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const mode = (searchParams.get('mode') as Mode) || 'menu';
-    const setMode = (newMode: Mode) => {
-        if (newMode === 'menu') {
-            setSearchParams({});
-        } else {
-            setSearchParams({ mode: newMode });
-        }
-    };
-    const reset = () => {
-        setMode('menu');
-    };
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -44,55 +30,26 @@ export default function LatinTools() {
                         <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
                             Meistere <span className="text-primary italic">Latein</span>
                         </h1>
-                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
-                            Wähle zwischen klassischen Texten und interaktivem Vokabeltraining.
+                        <p className="text-muted-foreground/60 max-w-2xl font-light leading-relaxed">
+                            Alle Lernbereiche an einem Ort: Grundlagen, Analyse und praxisnahe Übungen für Unterricht und Selbststudium.
                         </p>
                     </motion.div>
-                    {mode !== 'menu' ? (
-                        <button
-                            onClick={() => setMode('menu')}
-                            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2"
-                        >
-                            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Menü
-                        </button>
-                    ) : (
-                        <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
-                            <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Start
-                        </Link>
-                    )}
+                    <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors pr-2">
+                        <ArrowLeft className="h-3.5 w-3.5" /> Zurück zum Start
+                    </Link>
                 </div>
 
-                {/* Beta Notice */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mb-12"
-                >
-                    <Card className="p-4 bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
-                        <div className="flex items-center gap-3">
-                            <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0" />
-                            <div>
-                                <p className="text-sm font-medium text-red-800 dark:text-red-200">
-                                    Beta-Version
-                                </p>
-                                <p className="text-xs text-red-700 dark:text-red-300">
-                                    Diese Lernfunktionen befinden sich in der Testphase und werden noch überarbeitet. 
-                                    Es können Fehler auftreten und Funktionen sich ändern.
-                                </p>
-                            </div>
-                        </div>
-                    </Card>
-                </motion.div>
                 <AnimatePresence mode="wait">
-                    {mode === 'menu' && (
-                        <motion.div
-                            key="menu"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="space-y-8"
-                        >
-                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <motion.div
+                        key="menu"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="space-y-10"
+                    >
+                            <div>
+                                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">Grundlagen</p>
+                                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                 {/* Antike Texte */}
                                 <Link to="/reader" className="group">
                                     <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
@@ -160,7 +117,12 @@ export default function LatinTools() {
                                         </div>
                                     </Card>
                                 </Link>
+                                </div>
+                            </div>
 
+                            <div>
+                                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">Praxis</p>
+                                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                 {/* Grammatik + Stilmittel Ueben */}
                                 <Link to="/learn/practice" className="group">
                                     <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
@@ -182,8 +144,8 @@ export default function LatinTools() {
                                 <Link to="/lernen/material" className="group">
                                     <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full">
                                         <div className="flex flex-col items-center text-center space-y-4">
-                                            <div className="p-3 rounded-lg bg-rose-100 dark:bg-rose-900/20">
-                                                <FileText className="h-8 w-8 text-rose-500" />
+                                            <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/20">
+                                                <FileText className="h-8 w-8 text-amber-600 dark:text-amber-400" />
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-semibold mb-2">Lehrermaterial</h3>
@@ -194,9 +156,9 @@ export default function LatinTools() {
                                         </div>
                                     </Card>
                                 </Link>
+                                </div>
                             </div>
                         </motion.div>
-                    )}
                 </AnimatePresence>
             </main>
             <Footer />

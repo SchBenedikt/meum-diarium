@@ -150,16 +150,16 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
   };
 
   return (
-    <div className="space-y-8 border-t border-primary/20 pt-8">
+    <div className="space-y-8 mt-12 pt-12 border-t border-border/30">
       <div>
-        <h3 className="text-xl font-bold text-foreground mb-2">Diskussion ({comments.length})</h3>
-        <p className="text-sm text-muted-foreground mb-6">
+        <h3 className="font-display text-2xl font-bold text-foreground mb-2">Diskussion ({comments.length})</h3>
+        <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
           Teile deine Gedanken zu diesem Beitrag. Alle Kommentare werden moderiert.
         </p>
 
         {/* Comment Form */}
-        <Card className="mb-8 border-primary/20">
-          <CardContent className="p-6">
+        <Card className="mb-10 border-border/50 bg-background shadow-none">
+          <CardContent className="p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
                 <div className="flex gap-2 text-sm text-destructive bg-destructive/10 p-3 rounded-lg">
@@ -204,6 +204,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                   disabled={isSubmitting}
                   rows={4}
                   maxLength={5000}
+                  className="min-h-[150px] resize-y rounded-2xl border-border/70 bg-background px-4 py-3 text-[0.95rem] leading-relaxed placeholder:text-muted-foreground/80 focus-visible:border-primary/60 focus-visible:ring-primary/30"
                 />
                 <p className="text-xs text-muted-foreground">
                   {content.length}/5000 Zeichen
@@ -238,14 +239,14 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
             <p>Noch keine Kommentare. Sei der Erste!</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-5">
             {comments.map((comment) => (
-              <Card key={comment.id} className="border-border/50 bg-background/50">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex justify-between items-start gap-4 mb-3">
-                    <div>
-                      <p className="font-semibold text-foreground">{comment.authorName}</p>
-                      <p className="text-xs text-muted-foreground">{formatDate(comment.createdAt)}</p>
+              <Card key={comment.id} className="border-border/40 bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-5 sm:p-7">
+                  <div className="flex justify-between items-start gap-4 mb-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-foreground text-base">{comment.authorName}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{formatDate(comment.createdAt)}</p>
                     </div>
                     <Button
                       variant="ghost"
@@ -255,7 +256,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                         setDeleteInputEmail('');
                       }}
                       disabled={deletingId === comment.id}
-                      className="text-destructive hover:text-destructive-foreground hover:bg-destructive/10"
+                      className="text-destructive hover:text-destructive-foreground hover:bg-destructive/10 flex-shrink-0"
                     >
                       {deletingId === comment.id ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
@@ -266,9 +267,9 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                   </div>
                   <p className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">{comment.content}</p>
                   {deleteDialogId === comment.id && (
-                    <div className="mt-4 p-3 border border-destructive/30 rounded-lg bg-destructive/5 space-y-3">
-                      <p className="text-sm text-foreground font-medium">Kommentar löschen</p>
-                      <p className="text-xs text-muted-foreground">Gib deine E-Mail-Adresse ein, um den Kommentar zu löschen.</p>
+                    <div className="mt-5 p-4 border border-destructive/30 rounded-lg bg-destructive/5 space-y-3">
+                      <p className="text-sm text-foreground font-semibold">Kommentar löschen</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">Gib deine E-Mail-Adresse ein, um den Kommentar zu löschen.</p>
                       <Input
                         type="email"
                         placeholder="deine@email.com"
