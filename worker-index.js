@@ -1280,9 +1280,9 @@ async function handleWorksheet(request, env, url, body) {
     const taskDescriptions = {
         readingComprehension: 'Textverständnis: Fragen zum Verständnis eines Textausschnitts oder zur Analyse von Schlüsselstellen',
         cloze: 'Lückentext: Mit Vokabeln oder Grammatik-Formen zu füllende Lückentexte',
-        multipleChoice: 'Multiple Choice: Auswahl aus mehreren Optionen mit einer korrekten Antwort',
+        multipleChoice: 'Multiple Choice: Eine konkrete Frage mit exakt vier Antwortoptionen (A-D) und genau einer korrekten Antwort',
         translation: 'Übersetzungsaufgabe: Übersetze lateinische Passagen ins Deutsche oder umgekehrt',
-        interpretation: 'Interpretationsaufgabe: Analyse von Stilmitteln, Textstruktur oder historischem Kontext',
+        interpretation: 'Interpretationsaufgabe: Interpretation eines übersetzten Stücks zu Aussageabsicht, Gefühlen, Bedeutung und sprachlichen Besonderheiten (ohne Materialfeld)',
         discussion: 'Diskussionsaufgabe: Impulssfragen wie "Wie würde Caesar reagiert haben?" oder "Inwiefern bedeutet das..."'
     };
 
@@ -1311,7 +1311,12 @@ async function handleWorksheet(request, env, url, body) {
         '- Nutze authentisches Sprachmaterial, konkrete lateinische Textbeispiele oder historische Szenarien',
         '- Aufgaben sollen unterschiedlich sein und sich nicht gegenseitig Lösungen vorwegnehmen',
         '- Schwierigkeit skaliert: Niveau 1 = leicht/Anfänger, Niveau 2 = mittel, Niveau 3 = anspruchsvoll',
-        '- Material sollte konkrete lateinische Textbrocken, historische Kontexte oder Vokabeln enthalten',
+        '- Vermeide generische Formulierungen wie "Bearbeite die Aufgabe"; formuliere präzise Arbeitsaufträge mit klaren Kriterien',
+        '- Material nur bei passenden Aufgabentypen verwenden (z.B. Textverständnis, Lückentext, Übersetzung, Multiple Choice)',
+        '- Für multipleChoice MUSS material eine konkrete Frage plus vier Optionen A) bis D) enthalten',
+        '- Für interpretation KEIN material-Feld erzeugen; stattdessen eine konkrete Interpretationsanweisung geben (Aussageabsicht, Gefühle, Bedeutung, sprachliche Merkmale)',
+        '- Für translation darf der Text authentisch ODER didaktisch konstruiert sein; er muss nicht aus einem realen antiken Werk stammen',
+        '- Passe Übersetzungstexte strikt ans Niveau an: Niveau 1 kurz und klar, Niveau 2 mit Nebensätzen, Niveau 3 mit komplexerer Syntax',
         '- Formuliere kompakt: kurze Titel, kurze Instruktionen, Material pro Aufgabe max. 260 Zeichen',
         '- Gib exakt die angeforderten Aufgaben zurück, aber halte den Gesamtoutput knapp',
         teacherNote ? `- LEHRKRAFT-HINWEIS: ${teacherNote}` : '',
@@ -1334,10 +1339,23 @@ async function handleWorksheet(request, env, url, body) {
                     difficulty: 2,
                 },
                 {
-                    type: 'cloze',
-                    title: 'Fülle die Lücken mit den richtigen Wortformen',
-                    instruction: 'Nutze die Wörterliste und die Grammatik-Regeln.',
-                    material: 'Caesar _____ (videre - Präs. 3.P.Sg.) legiones...',
+                    type: 'multipleChoice',
+                    title: 'Historischer Kontext',
+                    instruction: 'Wähle die zutreffende Option und begründe kurz, warum die anderen drei weniger passend sind.',
+                    material: 'Warum erwähnt Caesar die Belgae besonders?\nA) Wegen ihrer Nähe zu Germanen\nB) Wegen ihres Seereichtums\nC) Wegen ihrer Tempel\nD) Wegen ihrer Flotte',
+                    difficulty: 2,
+                },
+                {
+                    type: 'interpretation',
+                    title: 'Deutung der Aussage',
+                    instruction: 'Interpretiere das übersetzte Stück: 1) Aussageabsicht, 2) erzeugte Gefühle, 3) historische Bedeutung, 4) sprachliche Wirkung. Belege jede Deutung mit einer konkreten Textbeobachtung.',
+                    difficulty: 2,
+                },
+                {
+                    type: 'translation',
+                    title: 'Übersetzung didaktischer Übungstext',
+                    instruction: 'Übersetze den Text vollständig ins Deutsche und markiere zwei Schlüsselstellen, bei denen die Satzstruktur für die Bedeutung wichtig ist.',
+                    material: 'Didaktischer Übungstext (Niveau 2): Caesar, cum nuntius de motu Gallorum venisset, legatos convocavit et dixit se celeriter agere oportere, ne socii timore frangerentur.',
                     difficulty: 2,
                 },
             ],
@@ -1430,13 +1448,7 @@ async function handleWorksheet(request, env, url, body) {
         // Validate and normalize tasks
         const validatedTasks = parsed.tasks
             .filter(t => t && typeof t === 'object')
-            .map(t => ({
-                type: String(t.type || 'readingComprehension'),
-                title: String(t.title || 'Aufgabe'),
-                instruction: String(t.instruction || 'Bearbeite die Aufgabe.'),
-                material: t.material ? String(t.material) : undefined,
-                difficulty: [1,2,3].includes(Number(t.difficulty)) ? Number(t.difficulty) : 2,
-            }));
+            .map((t) => normalizeWorksheetTask(t, topic));
 
         if (validatedTasks.length === 0) {
             console.error(`[Worksheet] No valid tasks after validation`);
@@ -1462,6 +1474,146 @@ async function handleWorksheet(request, env, url, body) {
             warning: `AI request failed: ${e?.message || 'unknown error'}`,
         }), { headers: corsHeaders() });
     }
+}
+
+function normalizeWorksheetTask(task, topic) {
+    const type = String(task?.type || 'readingComprehension');
+    const typeLower = type.toLowerCase();
+    let title = String(task?.title || 'Aufgabe').trim() || 'Aufgabe';
+    const difficulty = [1, 2, 3].includes(Number(task?.difficulty)) ? Number(task.difficulty) : 2;
+    let instruction = String(task?.instruction || 'Bearbeite die Aufgabe.').trim() || 'Bearbeite die Aufgabe.';
+    let material = task?.material ? String(task.material).trim() : undefined;
+
+    if (isGenericTaskTitle(title)) {
+        title = defaultTaskTitle(typeLower, difficulty);
+    }
+
+    if (isGenericTaskInstruction(instruction)) {
+        instruction = defaultTaskInstruction(typeLower, difficulty, topic);
+    }
+
+    if (typeLower === 'multiplechoice') {
+        if (!material || !hasMultipleChoiceOptions(material)) {
+            material = buildMultipleChoiceMaterial(topic);
+        }
+    }
+
+    if (typeLower === 'interpretation') {
+        material = undefined;
+        instruction = interpretationInstructionByDifficulty(difficulty);
+    }
+
+    if (typeLower === 'translation') {
+        if (!material || isPlaceholderMaterial(material)) {
+            material = buildTranslationMaterial(topic, difficulty);
+        }
+        if (isGenericTaskInstruction(instruction)) {
+            instruction = defaultTaskInstruction(typeLower, difficulty, topic);
+        }
+    }
+
+    const normalized = {
+        type,
+        title,
+        instruction,
+        difficulty,
+    };
+
+    if (material) normalized.material = material;
+    return normalized;
+}
+
+function hasMultipleChoiceOptions(text) {
+    if (!text) return false;
+    const normalized = String(text);
+    const hasA = /(^|\n)\s*A\s*[\)\.:\-]/i.test(normalized);
+    const hasB = /(^|\n)\s*B\s*[\)\.:\-]/i.test(normalized);
+    const hasC = /(^|\n)\s*C\s*[\)\.:\-]/i.test(normalized);
+    const hasD = /(^|\n)\s*D\s*[\)\.:\-]/i.test(normalized);
+    return hasA && hasB && hasC && hasD;
+}
+
+function isGenericTaskTitle(title) {
+    const t = String(title || '').trim().toLowerCase();
+    return !t || t === 'aufgabe' || t === 'task' || t === 'worksheet task';
+}
+
+function isGenericTaskInstruction(instruction) {
+    const i = String(instruction || '').trim().toLowerCase();
+    if (!i) return true;
+    return i === 'bearbeite die aufgabe.'
+        || i === 'bearbeite die aufgabe'
+        || i === 'löse die aufgabe.'
+        || i === 'solve the task.'
+        || i === 'complete the task.';
+}
+
+function isPlaceholderMaterial(material) {
+    const m = String(material || '').trim().toLowerCase();
+    if (!m) return true;
+    if (m.startsWith('[') && m.endsWith(']')) return true;
+    return m.includes('sollte hier eingefügt werden');
+}
+
+function defaultTaskTitle(type, difficulty) {
+    const level = Number(difficulty) || 2;
+    const map = {
+        readingcomprehension: ['Kernaussagen erfassen', 'Argumentation nachvollziehen', 'Textstruktur analysieren'],
+        cloze: ['Grundformen einsetzen', 'Formen und Bezüge erkennen', 'Syntax präzise ergänzen'],
+        multiplechoice: ['Sachverhalt prüfen', 'Kontext bewerten', 'Feinabgrenzung treffen'],
+        translation: ['Basisübersetzung', 'Übersetzung mit Satzgefüge', 'Feinübersetzung komplexer Syntax'],
+        interpretation: ['Aussage deuten', 'Wirkung und Intention deuten', 'Mehrschichtige Deutung entwickeln'],
+        discussion: ['Position beziehen', 'Argumentiert Stellung nehmen', 'Kontroverse begründet auswerten'],
+    };
+    const list = map[type] || ['Aufgabe'];
+    return list[Math.max(0, Math.min(2, level - 1))] || list[0];
+}
+
+function defaultTaskInstruction(type, difficulty, topic) {
+    const level = Number(difficulty) || 2;
+    if (type === 'translation') {
+        if (level === 1) return `Übersetze den kurzen Übungstext zum Thema ${topic} vollständig ins Deutsche. Markiere im Anschluss Subjekt und Prädikat in jedem Satz.`;
+        if (level === 2) return `Übersetze den Text zum Thema ${topic} vollständig ins Deutsche und erläutere bei zwei Satzteilen deine Übersetzungsentscheidung (z.B. Tempus oder Nebensatzbezug).`;
+        return `Fertige eine präzise Gesamtübersetzung zum Thema ${topic} an und kommentiere drei schwierige Strukturen (Satzgefüge, Partizipialkonstruktion oder semantische Nuance).`;
+    }
+    if (type === 'multiplechoice') {
+        if (level === 1) return 'Wähle die richtige Option (A-D) und notiere ein Stichwort als Begründung.';
+        if (level === 2) return 'Wähle die zutreffende Option (A-D) und begründe in 1-2 Sätzen, warum die Alternativen weniger passend sind.';
+        return 'Wähle die präziseste Option (A-D) und begründe analytisch, welche Textsignale deine Entscheidung stützen.';
+    }
+    return `Bearbeite die Aufgabe zum Thema ${topic} präzise und begründe deine Ergebnisse kurz.`;
+}
+
+function interpretationInstructionByDifficulty(difficulty) {
+    const level = Number(difficulty) || 2;
+    if (level === 1) {
+        return 'Interpretiere das übersetzte Stück in 4-6 Sätzen: Was ist die zentrale Aussage? Welche Stimmung wird erzeugt? Woran erkennst du das sprachlich?';
+    }
+    if (level === 2) {
+        return 'Interpretiere das übersetzte Stück: 1) Aussageabsicht, 2) erzeugte Gefühle, 3) historische Bedeutung, 4) sprachliche Wirkung. Belege jede Deutung mit einer konkreten Textbeobachtung.';
+    }
+    return 'Entwickle eine vertiefte Interpretation des übersetzten Stücks: Argumentiere zu Intention, Perspektive, Wirkung und historischer Einordnung und stütze jede These mit präziser Textbeobachtung.';
+}
+
+function buildMultipleChoiceMaterial(topic) {
+    return [
+        `Welche Aussage passt am besten zum Thema "${topic}"?`,
+        'A) Die Darstellung betont strategisches Vorgehen und politische Selbstdarstellung.',
+        'B) Der Text lehnt jede militärische Planung grundsätzlich ab.',
+        'C) Die Quelle behandelt ausschließlich religiöse Rituale ohne Politikbezug.',
+        'D) Der Abschnitt beschreibt nur geografische Daten ohne Argumentationsziel.'
+    ].join('\n');
+}
+
+function buildTranslationMaterial(topic, difficulty) {
+    const level = Number(difficulty) || 2;
+    if (level === 1) {
+        return `Didaktischer Übungstext (Niveau 1): Caesar in castris manet et milites monet. Galli legatos mittunt, sed Romani portas servant. Omnes de pace et timore disputant.`;
+    }
+    if (level === 2) {
+        return `Didaktischer Übungstext (Niveau 2): Caesar, cum nuntius de motu Gallorum venisset, legatos convocavit et dixit se celeriter agere oportere, ne socii timore frangerentur.`;
+    }
+    return `Didaktischer Übungstext (Niveau 3): Quamquam hiems appropinquabat, Caesar statuit exercitum trans flumen ducere, ut oppida, quae superioribus diebus dubitaverant, consilio celeriter capto ad fidem revocarentur.`;
 }
 
 function extractJsonObject(text) {
@@ -1702,8 +1854,7 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
         },
         interpretation: {
             title: 'Interpretationsaufgabe',
-            instruction: 'Analysiere die Passage auf Stilmittel, Wirkung und historischen Kontext. Erkläre, warum der Autor diese sprachlichen Mittel gewählt hat.',
-            material: `[Textabschnitt zum Thema "${topic}" zur Interpretation sollte hier eingefügt werden]`,
+            instruction: 'Interpretiere das übersetzte Stück mit Blick auf Aussageabsicht, Gefühle, Bedeutung und sprachliche Besonderheiten. Begründe deine Deutung mit mindestens zwei Beobachtungen.',
         },
         discussion: {
             title: 'Diskussionsaufgabe',
@@ -1725,9 +1876,12 @@ function buildWorksheetFallback(topic, includeIntro, tasks) {
                 type,
                 title: `${desc.title}${amount > 1 ? ` ${i + 1}` : ''}`,
                 instruction: desc.instruction,
-                material: desc.material,
                 difficulty,
             });
+
+            if (desc.material) {
+                resultTasks[resultTasks.length - 1].material = desc.material;
+            }
         }
     }
 

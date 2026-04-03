@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
-import { ArrowLeft, FileDown, Loader2, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, FileDown, Loader2, Sparkles } from 'lucide-react';
 
 type TaskType =
   | 'readingComprehension'
@@ -395,6 +395,22 @@ export default function TeacherWorksheetPage() {
           <Link to="/lernen" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors">
             <ArrowLeft className="h-3.5 w-3.5" /> Zurück zu Lernen
           </Link>
+        </div>
+
+        <div className="mb-8 rounded-2xl border-2 border-amber-500/40 bg-gradient-to-r from-amber-50 to-orange-50 p-5 shadow-none">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 rounded-full bg-amber-500/15 p-2 text-amber-700">
+              <AlertTriangle className="h-4 w-4" />
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs uppercase tracking-[0.22em] text-amber-800 font-semibold">Open Research</p>
+              <p className="text-sm leading-relaxed text-amber-900">
+                Dieses Projekt dokumentiert offen, wie Arbeitsblätter und Lernmaterial mit KI erstellt werden können.
+                Inhalte sind KI-generiert und können Fehler, Ungenauigkeiten oder didaktische Schwächen enthalten. Es gibt keine Garantie auf
+                fachliche Richtigkeit oder Vollständigkeit. Bitte prüfe alle Ergebnisse vor der Nutzung im Unterricht.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid xl:grid-cols-12 gap-6">

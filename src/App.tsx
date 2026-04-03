@@ -129,6 +129,7 @@ const AppContent = () => {
               <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
               <Route path="/learn/practice" element={<PageTransition><LearnPracticePage /></PageTransition>} />
+              <Route path="/learn/practise" element={<Navigate to="/learn/practice" replace />} />
               <Route path="/lernen/material" element={<PageTransition><TeacherWorksheetPage /></PageTransition>} />
               <Route path="/learn/teacher" element={<Navigate to="/lernen/material" replace />} />
               <Route path="/learn/grammar/substantive/:topic?" element={<PageTransition><SubstantivePage /></PageTransition>} />
