@@ -321,6 +321,7 @@ export default function AdminPage() {
                                     { value: 'augustus', label: 'Augustus' },
                                     { value: 'seneca', label: 'Seneca' },
                                     { value: 'catilina', label: 'Catilina' },
+                                    { value: 'sallust', label: 'Sallust' },
                                 ]}
                             />
                             <div className="overflow-x-auto">
