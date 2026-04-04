@@ -63,53 +63,48 @@ export default function LexiconPage() {
   const filteredLexicon = useMemo(() => {
     const searchLower = searchTerm.toLowerCase();
 
-    return lexicon
-      .filter(entry => {
-        const categoryMatch = !activeCategory || entry.category === activeCategory;
-        const searchMatch =
-          (entry.term || "").toLowerCase().includes(searchLower) ||
-          (entry.definition || "").toLowerCase().includes(searchLower) ||
-          (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchLower));
-        return categoryMatch && searchMatch;
-      })
-      .sort((() => {
-        if (!searchTerm) {
-          return (a: LexiconEntry, b: LexiconEntry) => (a.term || "").localeCompare(b.term || "");
-        }
+    const filtered = lexicon.filter(entry => {
+      const categoryMatch = !activeCategory || entry.category === activeCategory;
+      const searchMatch =
+        (entry.term || "").toLowerCase().includes(searchLower) ||
+        (entry.definition || "").toLowerCase().includes(searchLower) ||
+        (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchLower));
+      return categoryMatch && searchMatch;
+    });
 
-        // Escape regex metacharacters to avoid runtime errors and ReDoS
-        const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
+    if (!searchTerm) {
+      return filtered.sort((a, b) => (a.term || "").localeCompare(b.term || ""));
+    }
 
-        // Precompute a relevance score for every entry once before sorting
-        const getRelevanceScore = (entry: LexiconEntry): number => {
-          const termLower = (entry.term || "").toLowerCase();
-          const definitionLower = (entry.definition || "").toLowerCase();
-          const variantsLower = (entry.variants || []).map(v => (v || "").toLowerCase());
+    // Escape regex metacharacters to avoid runtime errors and ReDoS
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
 
-          if (termLower === searchLower) return 1000;
-          if (termLower.startsWith(searchLower)) return 900;
-          if (variantsLower.some(v => v === searchLower)) return 800;
-          if (variantsLower.some(v => v.startsWith(searchLower))) return 700;
-          if (wordBoundaryRegex.test(termLower)) return 600;
-          if (variantsLower.some(v => wordBoundaryRegex.test(v))) return 500;
-          if (termLower.includes(searchLower)) return 400;
-          if (variantsLower.some(v => v.includes(searchLower))) return 300;
-          if (definitionLower.startsWith(searchLower)) return 200;
-          if (wordBoundaryRegex.test(definitionLower)) return 100;
-          if (definitionLower.includes(searchLower)) return 50;
-          return 0;
-        };
+    const getRelevanceScore = (entry: LexiconEntry): number => {
+      const termLower = (entry.term || "").toLowerCase();
+      const definitionLower = (entry.definition || "").toLowerCase();
+      const variantsLower = (entry.variants || []).map(v => (v || "").toLowerCase());
 
-        // Build score map once (O(n)) so comparator calls are O(1)
-        const scoreMap = new Map<LexiconEntry, number>();
-        return (a: LexiconEntry, b: LexiconEntry) => {
-          if (!scoreMap.has(a)) scoreMap.set(a, getRelevanceScore(a));
-          if (!scoreMap.has(b)) scoreMap.set(b, getRelevanceScore(b));
-          const diff = (scoreMap.get(b) ?? 0) - (scoreMap.get(a) ?? 0);
-          return diff !== 0 ? diff : (a.term || "").localeCompare(b.term || "");
-        };
-      })());
+      if (termLower === searchLower) return 1000;
+      if (termLower.startsWith(searchLower)) return 900;
+      if (variantsLower.some(v => v === searchLower)) return 800;
+      if (variantsLower.some(v => v.startsWith(searchLower))) return 700;
+      if (wordBoundaryRegex.test(termLower)) return 600;
+      if (variantsLower.some(v => wordBoundaryRegex.test(v))) return 500;
+      if (termLower.includes(searchLower)) return 400;
+      if (variantsLower.some(v => v.includes(searchLower))) return 300;
+      if (definitionLower.startsWith(searchLower)) return 200;
+      if (wordBoundaryRegex.test(definitionLower)) return 100;
+      if (definitionLower.includes(searchLower)) return 50;
+      return 0;
+    };
+
+    // Precompute scores once (O(n)) so the comparator calls are O(1)
+    const scoreMap = new Map(filtered.map(e => [e, getRelevanceScore(e)]));
+    return filtered.sort((a, b) => {
+      const diff = (scoreMap.get(b) ?? 0) - (scoreMap.get(a) ?? 0);
+      return diff !== 0 ? diff : (a.term || "").localeCompare(b.term || "");
+    });
   }, [searchTerm, activeCategory, lexicon]);
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {

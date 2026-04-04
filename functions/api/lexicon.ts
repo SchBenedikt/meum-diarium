@@ -128,9 +128,9 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
             let results = await db.query.lexicon.findMany({
                 where: whereClause,
-                // When searching, fetch all matching candidates so relevance sort
-                // covers the full result set; apply limit after sorting.
-                limit: search ? undefined : limit
+                // When searching, fetch a generous upper bound so relevance sorting
+                // covers enough candidates; apply the requested limit after sorting.
+                limit: search ? Math.max(limit * 10, 500) : limit
             });
 
             // If search is provided, sort by relevance then apply limit
