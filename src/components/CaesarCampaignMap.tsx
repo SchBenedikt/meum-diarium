@@ -136,7 +136,18 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
     return <div className={`${mapHeightClass} w-full rounded-3xl bg-card/60 border border-border/40 animate-pulse`} />;
   }
   return (
-    <div className={`card-modern card-hover-primary overflow-hidden ${className}`}>
+    <div className={`card-modern overflow-hidden shadow-xl ${className}`}>
+      <div className="bg-gradient-to-br from-primary/5 via-background to-background/50 p-4 border-b border-border/40">
+        <h3 className="font-display text-xl font-bold text-foreground flex items-center gap-2">
+          <span className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            🗺️
+          </span>
+          Caesars Feldzüge (58–45 v. Chr.)
+        </h3>
+        <p className="text-sm text-muted-foreground mt-2">
+          Interaktive Karte der wichtigsten Schlachten und Kampagnen
+        </p>
+      </div>
       <MapContainer
         bounds={mapBounds}
         maxBounds={mapBounds}
@@ -161,15 +172,15 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
             positions={segment.points}
             pathOptions={{
               color: segment.color,
-              weight: 5,
-              opacity: 0.85,
-              dashArray: segment.dashed ? '12 8' : undefined,
+              weight: 6,
+              opacity: 0.9,
+              dashArray: segment.dashed ? '15 10' : undefined,
               lineJoin: 'round',
               lineCap: 'round',
             }}
           >
-            <Tooltip sticky permanent={false} direction="center" opacity={0.95}>
-              <div className="text-xs font-bold text-foreground">{segment.label}</div>
+            <Tooltip sticky permanent={false} direction="center" opacity={0.97} className="!bg-background/95 !border-2 !border-primary/40 !rounded-lg !shadow-xl">
+              <div className="text-xs font-bold text-foreground px-1">{segment.label}</div>
             </Tooltip>
           </Polyline>
         ))}
@@ -177,46 +188,50 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
           <CircleMarker
             key={point.title}
             center={point.position}
-            radius={8}
+            radius={9}
             pathOptions={{
               color: point.tone === 'siege' ? '#d97706' : point.tone === 'sea' ? '#0284c7' : '#dc2626',
               fillColor: point.tone === 'siege' ? '#fbbf24' : point.tone === 'sea' ? '#38bdf8' : '#f87171',
-              fillOpacity: 0.85,
-              weight: 3,
+              fillOpacity: 0.9,
+              weight: 3.5,
               opacity: 1,
             }}
           >
-            <Popup maxWidth={280} minWidth={200}>
-              <div className="text-sm p-1">
-                <div className="font-bold text-foreground mb-2 text-base border-b border-border pb-1.5">{point.title}</div>
+            <Popup maxWidth={300} minWidth={220} className="campaign-popup">
+              <div className="text-sm p-2">
+                <div className="font-bold text-foreground mb-2 text-base border-b-2 border-primary/30 pb-2">{point.title}</div>
                 <div className="text-[13px] text-foreground/90 leading-relaxed whitespace-pre-line font-medium">{point.note}</div>
               </div>
             </Popup>
-            <Tooltip 
-              direction="top" 
-              offset={[0, -10]} 
+            <Tooltip
+              direction="top"
+              offset={[0, -12]}
               opacity={0.98}
               permanent={false}
-              className="!bg-background/95 !border-2 !border-border/60 !rounded-lg !shadow-lg"
+              className="!bg-background/98 !border-2 !border-border/70 !rounded-lg !shadow-2xl !px-3 !py-1.5"
             >
               <span className="text-xs font-bold text-foreground">{point.title}</span>
             </Tooltip>
           </CircleMarker>
         ))}
       </MapContainer>
-      <div className="p-4 border-t border-border/40 bg-background/60">
-        <div className="flex flex-col gap-4">
+      <div className="p-5 border-t border-border/40 bg-gradient-to-br from-background via-background/90 to-card/30">
+        <div className="flex flex-col gap-5">
           {/* Kampagnen-Routen */}
           <div>
-            <div className="text-xs font-bold text-foreground/70 mb-2 uppercase tracking-wide">Feldzüge</div>
+            <div className="text-xs font-bold text-primary/90 mb-3 uppercase tracking-widest flex items-center gap-2">
+              <span className="h-px flex-1 bg-primary/20" />
+              Feldzüge & Kampagnen
+              <span className="h-px flex-1 bg-primary/20" />
+            </div>
             <div className="flex flex-wrap gap-2">
               {legend.map((item) => (
-                <div key={item.id} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border/50 hover:border-border transition-colors">
+                <div key={item.id} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:border-primary/40 hover:bg-card transition-all shadow-sm hover:shadow-md">
                   <span
-                    className="h-3 w-8 rounded-full"
+                    className="h-3.5 w-10 rounded-full shadow-inner"
                     style={{
                       backgroundColor: item.color,
-                      backgroundImage: item.dashed ? 'repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,0.5) 5px, rgba(255,255,255,0.5) 10px)' : undefined,
+                      backgroundImage: item.dashed ? 'repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(255,255,255,0.6) 6px, rgba(255,255,255,0.6) 12px)' : undefined,
                     }}
                   />
                   <span className="font-semibold text-foreground text-xs">{item.label}</span>
@@ -226,24 +241,31 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
           </div>
           {/* Markierungs-Typen */}
           <div>
-            <div className="text-xs font-bold text-foreground/70 mb-2 uppercase tracking-wide">Ereignisse</div>
+            <div className="text-xs font-bold text-primary/90 mb-3 uppercase tracking-widest flex items-center gap-2">
+              <span className="h-px flex-1 bg-primary/20" />
+              Ereignistypen
+              <span className="h-px flex-1 bg-primary/20" />
+            </div>
             <div className="flex flex-wrap gap-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border/50">
-                <div className="h-3 w-3 rounded-full bg-red-400 border-2 border-red-600" />
-                <span className="font-semibold text-foreground text-xs">Schlachten</span>
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-red-400 border-[3px] border-red-600 shadow-md" />
+                <span className="font-semibold text-foreground text-xs">Feldschlachten</span>
               </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border/50">
-                <div className="h-3 w-3 rounded-full bg-amber-300 border-2 border-amber-600" />
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-amber-300 border-[3px] border-amber-600 shadow-md" />
                 <span className="font-semibold text-foreground text-xs">Belagerungen</span>
               </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border/50">
-                <div className="h-3 w-3 rounded-full bg-sky-400 border-2 border-sky-600" />
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-sky-400 border-[3px] border-sky-600 shadow-md" />
                 <span className="font-semibold text-foreground text-xs">Seeschlachten</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-3 text-[11px] text-foreground/50 text-right">Karte: OSM/Carto</div>
+        <div className="mt-4 pt-3 border-t border-border/20 flex items-center justify-between text-[11px] text-muted-foreground/60">
+          <span>Kartendaten: OpenStreetMap • CartoDB</span>
+          <span>© {new Date().getFullYear()} Meum Diarium</span>
+        </div>
       </div>
     </div>
   );

@@ -61,16 +61,76 @@ export default function LexiconPage() {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const allCategories = useMemo(() => [...new Set(lexicon.map(e => e.category))].sort(), [lexicon]);
   const filteredLexicon = useMemo(() => {
+    const searchLower = searchTerm.toLowerCase();
+
     return lexicon
       .filter(entry => {
         const categoryMatch = !activeCategory || entry.category === activeCategory;
         const searchMatch =
-          (entry.term || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (entry.definition || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchTerm.toLowerCase()));
+          (entry.term || "").toLowerCase().includes(searchLower) ||
+          (entry.definition || "").toLowerCase().includes(searchLower) ||
+          (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchLower));
         return categoryMatch && searchMatch;
       })
-      .sort((a, b) => (a.term || "").localeCompare(b.term || ""));
+      .sort((a, b) => {
+        if (!searchTerm) {
+          // No search term: sort alphabetically
+          return (a.term || "").localeCompare(b.term || "");
+        }
+
+        // Calculate relevance scores for sorting
+        const getRelevanceScore = (entry: LexiconEntry) => {
+          const termLower = (entry.term || "").toLowerCase();
+          const definitionLower = (entry.definition || "").toLowerCase();
+          const variantsLower = (entry.variants || []).map(v => (v || "").toLowerCase());
+
+          // Exact match on term (highest priority)
+          if (termLower === searchLower) return 1000;
+
+          // Starts with search term in main term
+          if (termLower.startsWith(searchLower)) return 900;
+
+          // Exact match in variants
+          if (variantsLower.some(v => v === searchLower)) return 800;
+
+          // Starts with search term in variants
+          if (variantsLower.some(v => v.startsWith(searchLower))) return 700;
+
+          // Contains search term in main term (word boundary)
+          const wordBoundaryRegex = new RegExp(`\\b${searchLower}`, 'i');
+          if (wordBoundaryRegex.test(termLower)) return 600;
+
+          // Contains search term in variants (word boundary)
+          if (variantsLower.some(v => wordBoundaryRegex.test(v))) return 500;
+
+          // Contains search term anywhere in term
+          if (termLower.includes(searchLower)) return 400;
+
+          // Contains search term anywhere in variants
+          if (variantsLower.some(v => v.includes(searchLower))) return 300;
+
+          // Contains search term at start of definition
+          if (definitionLower.startsWith(searchLower)) return 200;
+
+          // Contains search term in definition (word boundary)
+          if (wordBoundaryRegex.test(definitionLower)) return 100;
+
+          // Contains search term anywhere in definition
+          if (definitionLower.includes(searchLower)) return 50;
+
+          return 0;
+        };
+
+        const scoreA = getRelevanceScore(a);
+        const scoreB = getRelevanceScore(b);
+
+        if (scoreA !== scoreB) {
+          return scoreB - scoreA; // Higher score first
+        }
+
+        // Same score: sort alphabetically
+        return (a.term || "").localeCompare(b.term || "");
+      });
   }, [searchTerm, activeCategory, lexicon]);
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {

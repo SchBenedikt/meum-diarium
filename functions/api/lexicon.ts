@@ -126,10 +126,55 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 );
             }
 
-            const results = await db.query.lexicon.findMany({
+            let results = await db.query.lexicon.findMany({
                 where: whereClause,
                 limit: limit
             });
+
+            // If search is provided, sort by relevance
+            if (search) {
+                const searchLower = search.toLowerCase();
+                results = results.sort((a, b) => {
+                    const getRelevanceScore = (entry: any) => {
+                        const termLower = (entry.term || "").toLowerCase();
+                        const definitionLower = (entry.definition || "").toLowerCase();
+
+                        // Exact match on term (highest priority)
+                        if (termLower === searchLower) return 1000;
+
+                        // Starts with search term in main term
+                        if (termLower.startsWith(searchLower)) return 900;
+
+                        // Contains search term in main term (word boundary)
+                        const wordBoundaryRegex = new RegExp(`\\b${searchLower}`, 'i');
+                        if (wordBoundaryRegex.test(termLower)) return 600;
+
+                        // Contains search term anywhere in term
+                        if (termLower.includes(searchLower)) return 400;
+
+                        // Contains search term at start of definition
+                        if (definitionLower.startsWith(searchLower)) return 200;
+
+                        // Contains search term in definition (word boundary)
+                        if (wordBoundaryRegex.test(definitionLower)) return 100;
+
+                        // Contains search term anywhere in definition
+                        if (definitionLower.includes(searchLower)) return 50;
+
+                        return 0;
+                    };
+
+                    const scoreA = getRelevanceScore(a);
+                    const scoreB = getRelevanceScore(b);
+
+                    if (scoreA !== scoreB) {
+                        return scoreB - scoreA; // Higher score first
+                    }
+
+                    // Same score: sort alphabetically
+                    return (a.term || "").localeCompare(b.term || "");
+                });
+            }
 
             // Parse JSON fields manually
             const parsedResults = results.map((entry: any) => ({
