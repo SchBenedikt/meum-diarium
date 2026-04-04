@@ -28,12 +28,14 @@ const STATIC_URLS: Array<{ loc: string; changefreq: string; priority: string; la
     { loc: '/augustus', changefreq: 'weekly', priority: '0.9', lastmod: TODAY },
     { loc: '/seneca', changefreq: 'weekly', priority: '0.9', lastmod: TODAY },
     { loc: '/catilina', changefreq: 'weekly', priority: '0.9', lastmod: TODAY },
+    { loc: '/sallust', changefreq: 'weekly', priority: '0.9', lastmod: TODAY },
     // Author about pages
     { loc: '/caesar/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     { loc: '/cicero/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     { loc: '/augustus/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     { loc: '/seneca/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     { loc: '/catilina/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/sallust/about', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     // Works pages
     { loc: '/caesar/works/de-bello-gallico', changefreq: 'monthly', priority: '0.8', lastmod: TODAY },
     { loc: '/caesar/works/de-bello-civili', changefreq: 'monthly', priority: '0.8', lastmod: TODAY },

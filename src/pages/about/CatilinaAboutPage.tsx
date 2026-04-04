@@ -1,7 +1,7 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { MapPin, BookOpen, Award, ArrowRight, Clock, Sword, Users, Scroll, AlertTriangle, Shield, Flame, Landmark, Sparkles } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
+import { Calendar, MapPin, BookOpen, Award, ArrowLeft, Users, Scroll, Clock, ArrowRight, Sword, Flame, AlertTriangle, Crown, Landmark, Sparkles, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
 import { motion } from 'framer-motion';
@@ -15,6 +15,7 @@ import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import catilinaPageData from '@/content/pages/author-about-catilina.json';
+
 export function CatilinaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { language, t } = useLanguage();
@@ -23,11 +24,11 @@ export function CatilinaAboutPage() {
   const [authorWorks, setAuthorWorks] = useState<Work[]>([]);
   const [authorPage, setAuthorPage] = useState<PageContent | null>(null);
   const authorDetails = useAuthorDetails(t);
+
   useEffect(() => {
     setCurrentAuthor('catilina' as Author);
 
     async function translateContent() {
-      // Use local JSON data directly
       setAuthorPage(catilinaPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
@@ -36,12 +37,13 @@ export function CatilinaAboutPage() {
       }
 
       const translatedWorks = await Promise.all(
-        Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language, slugify(w.title, { lower: true, strict: true })))
+        Object.values(baseWorks).filter(w => w.author === 'catilina').map(w => getTranslatedWork(language as any, slugify(w.title, { lower: true, strict: true })))
       );
       setAuthorWorks(translatedWorks.filter((w): w is Work => w !== null));
     }
     translateContent();
   }, [setCurrentAuthor, language, allPosts, postsLoading]);
+
   if (!authorInfo) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">
@@ -49,190 +51,190 @@ export function CatilinaAboutPage() {
       </div>
     );
   }
+
   const details = authorDetails.catilina;
+
   const catilinaSnapshots = [
-    { label: t('catilina.snapshots.lifespan'), value: '108–62 ' + t('common.bc'), hint: '~46 ' + t('common.years') },
-    { label: t('catilina.snapshots.conspiracy'), value: '63 ' + t('common.bc'), hint: t('catilina.snapshots.conspiracyHint') },
-    { label: t('catilina.snapshots.consulElections'), value: '2', hint: '64 & 63 ' + t('common.bc') },
-    { label: t('catilina.snapshots.supporters'), value: '3000+', hint: t('catilina.snapshots.supportersHint') },
-    { label: t('catilina.snapshots.ciceroSpeeches'), value: '4', hint: 'In Catilinam I-IV' },
-    { label: t('catilina.snapshots.finalBattle'), value: 'Pistoria', hint: '62 ' + t('common.bc') },
+    { label: 'Lebenszeit', value: '108–62 ' + t('common.bc'), hint: '~46 ' + t('common.years') },
+    { label: 'Verschwörung', value: '63 ' + t('common.bc'), hint: 'Catilinarische Verschwörung' },
+    { label: 'Konsulatsbewerbungen', value: '2x', hint: '64 & 63 ' + t('common.bc') },
+    { label: 'Anhänger', value: '~3000', hint: 'Verschuldete & Veteranen' },
+    { label: 'Ciceros Reden', value: '4', hint: 'In Catilinam I-IV' },
+    { label: 'Tod in Schlacht', value: 'Pistoria', hint: '62 ' + t('common.bc') },
   ];
-  const catilinaTimeline = [
+
+  const catilinaTimeline = {
+    events: [
+      { year: -108, title: 'Geburt in Rom', note: 'Aus patrizischem Geschlecht der Sergii' },
+      { year: -68, title: 'Prätor', note: 'Bekleidung der zweithöchsten Magistratur' },
+      { year: -67, title: 'Statthalter Africa', note: 'Korruption und Erpressung' },
+      { year: -66, title: 'Erste Verschwörung?', note: 'Angeblicher Putschversuch (umstritten)' },
+      { year: -64, title: '1. Konsulatsbewerbung', note: 'Scheitert wegen Anklage' },
+      { year: -63, title: '2. Konsulatsbewerbung', note: 'Unterliegt Cicero' },
+      { year: -63, title: 'Catilinarische Verschwörung', note: 'Plan zur Machtübernahme' },
+      { year: -63, title: 'Ciceros Reden', note: 'Aufdeckung der Verschwörung' },
+      { year: -62, title: 'Schlacht bei Pistoria', note: 'Tod in der Schlacht' },
+    ],
+    offices: [
+      { year: -77, title: 'Militärdienst unter Sulla', note: 'Proskriptionen und Bürgerkrieg' },
+      { year: -68, title: 'Prätor', note: 'Zweithöchstes Staatsamt' },
+      { year: -67, title: 'Propraetor Africa', note: 'Statthalterschaft mit Korruptionsvorwürfen' },
+    ],
+    conspiracy: [
+      { year: -64, title: 'Erste Pläne', note: 'Sammlung von Anhängern' },
+      { year: -63, title: 'Konkrete Planung', note: 'Rekrutierung und Finanzierung' },
+      { year: -63, title: 'Aufdeckung', note: 'Ciceros Geheimdienstinformationen' },
+      { year: -62, title: 'Finale', note: 'Militärische Niederlage' },
+    ],
+  };
+
+  const catilinaLegacy = [
     {
-      year: -108,
-      title: t('catilina.timeline.birth.title'),
-      description: t('catilina.timeline.birth.description'),
-      type: 'birth' as const,
-      icon: Users,
+      title: 'Symbol der Verschwörung',
+      summary: 'Catilinas Name wurde zum Inbegriff für Staatsfeinde und Verschwörer. Seine Verschwörung gilt als Paradebeispiel für die Krisen der späten Republik.',
+      tag: 'Geschichte',
+      horizon: 'Langfristig',
     },
     {
-      year: -68,
-      title: t('catilina.timeline.praetor.title'),
-      description: t('catilina.timeline.praetor.description'),
-      type: 'event' as const,
-      icon: Landmark,
+      title: 'Ciceros größter Triumph',
+      summary: 'Die Aufdeckung der catilinarischen Verschwörung war Ciceros größter politischer Erfolg. Die vier Reden "In Catilinam" gehören zu den berühmtesten Texten der lateinischen Literatur.',
+      tag: 'Rhetorik',
+      horizon: 'Langfristig',
     },
     {
-      year: -66,
-      title: t('catilina.timeline.africa.title'),
-      description: t('catilina.timeline.africa.description'),
-      type: 'event' as const,
-      icon: MapPin,
+      title: 'Krisenindikator',
+      summary: 'Die Verschwörung offenbarte die tiefen sozialen und wirtschaftlichen Spannungen der späten Republik: Verschuldung, Veteranenprobleme, politische Polarisierung.',
+      tag: 'Sozialgeschichte',
+      horizon: 'Strukturell',
     },
     {
-      year: -64,
-      title: t('catilina.timeline.firstElection.title'),
-      description: t('catilina.timeline.firstElection.description'),
-      type: 'event' as const,
+      title: 'Quellenkritische Herausforderung',
+      summary: 'Alle Quellen über Catilina stammen von seinen Feinden. War er ein skrupelloser Verbrecher oder ein Reformer, der von der Oligarchie dämonisiert wurde?',
+      tag: 'Forschung',
+      horizon: 'Bis heute',
+    },
+  ];
+
+  const conspiracyPhases = [
+    {
+      title: 'Erste Verschwörung (64 ' + t('common.bc') + ')',
+      detail: 'Angeblicher Plan, die gewählten Konsuln zu ermorden und selbst die Macht zu übernehmen. Historisch umstritten.',
+      impact: 'Möglicherweise Propaganda seiner Gegner',
       icon: AlertTriangle,
     },
     {
-      year: -63,
-      title: t('catilina.timeline.secondElection.title'),
-      description: t('catilina.timeline.secondElection.description'),
-      type: 'event' as const,
-      icon: AlertTriangle,
-    },
-    {
-      year: -63,
-      title: t('catilina.timeline.conspiracyRevealed.title'),
-      description: t('catilina.timeline.conspiracyRevealed.description'),
-      type: 'event' as const,
-      icon: Scroll,
-    },
-    {
-      year: -63,
-      title: t('catilina.timeline.fleeRome.title'),
-      description: t('catilina.timeline.fleeRome.description'),
-      type: 'event' as const,
+      title: 'Hauptverschwörung (63 ' + t('common.bc') + ')',
+      detail: 'Nach erneuter Niederlage bei den Konsulwahlen plant Catilina einen Umsturz: Mord an Cicero, Brandstiftung in Rom, Bürgerkrieg.',
+      impact: 'Reale Bedrohung für die Republik',
       icon: Flame,
     },
     {
-      year: -62,
-      title: t('catilina.timeline.death.title'),
-      description: t('catilina.timeline.death.description'),
-      type: 'death' as const,
-      icon: Sword,
+      title: 'Aufdeckung (Nov. 63 ' + t('common.bc') + ')',
+      detail: 'Ciceros Informanten enthüllen die Pläne. Die berühmte Senatssitzung, in der Cicero Catilina direkt anklagt: "Quo usque tandem...?"',
+      impact: 'Wendepunkt der Krise',
+      icon: Scroll,
     },
   ];
-  const catilinaLegacy = [
+
+  const catilinaReformDeep = [
     {
-      title: t('catilina.legacy.symbolOfCorruption'),
-      summary: t('catilina.legacy.symbolOfCorruptionSummary'),
-      tag: t('catilina.tags.politics'),
-      horizon: t('catilina.horizons.longTerm'),
+      title: 'Soziale Basis',
+      detail: 'Catilinas Anhänger: verschuldete Adlige, enttäuschte Veteranen Sullas, verarmte Bauern. Ein breites Bündnis der Unzufriedenen.',
+      impact: 'Zeigt die sozialen Spannungen der späten Republik',
     },
     {
-      title: t('catilina.legacy.ciceroRise'),
-      summary: t('catilina.legacy.ciceroRiseSummary'),
-      tag: t('catilina.tags.rhetoric'),
-      horizon: t('catilina.horizons.immediate'),
+      title: 'Politische Ziele',
+      detail: 'Schuldenerlass, Landverteilung, Machtbeteiligung. Viele Forderungen waren ähnlich wie bei späteren Popularen.',
+      impact: 'Reform oder Revolution? Die Grenze war fließend',
     },
     {
-      title: t('catilina.legacy.republicanCrisis'),
-      summary: t('catilina.legacy.republicanCrisisSummary'),
-      tag: t('catilina.tags.history'),
-      horizon: t('catilina.horizons.longTerm'),
-    },
-    {
-      title: t('catilina.legacy.debtCrisis'),
-      summary: t('catilina.legacy.debtCrisisSummary'),
-      tag: t('catilina.tags.economics'),
-      horizon: t('catilina.horizons.mediumTerm'),
+      title: 'Ciceros Gegenoffensive',
+      detail: 'Senatus consultum ultimum, Notstandsgesetze, Hinrichtung ohne Gerichtsverfahren. Cicero überschritt verfassungsrechtliche Grenzen.',
+      impact: 'Präzedenzfall für spätere Ausnahmezustände',
     },
   ];
-  const catilinaContext = [
-    {
-      title: t('catilina.context.lateRepublic.title'),
-      description: t('catilina.context.lateRepublic.description'),
-      period: '1. ' + t('common.century') + ' ' + t('common.bc'),
-    },
-    {
-      title: t('catilina.context.debtCrisis.title'),
-      description: t('catilina.context.debtCrisis.description'),
-      period: '70-60s ' + t('common.bc'),
-    },
-    {
-      title: t('catilina.context.sullaLegacy.title'),
-      description: t('catilina.context.sullaLegacy.description'),
-      period: t('catilina.context.sullaLegacy.period'),
-    },
-    {
-      title: t('catilina.context.nobilitas.title'),
-      description: t('catilina.context.nobilitas.description'),
-      period: t('catilina.context.nobilitas.period'),
-    },
-  ];
-  const conspiracyPhases = [
-    {
-      title: t('catilina.conspiracy.firstPlot.title'),
-      year: '64 ' + t('common.bc'),
-      description: t('catilina.conspiracy.firstPlot.description'),
-      outcome: t('catilina.conspiracy.firstPlot.outcome'),
-    },
-    {
-      title: t('catilina.conspiracy.secondPlot.title'),
-      year: '63 ' + t('common.bc'),
-      description: t('catilina.conspiracy.secondPlot.description'),
-      outcome: t('catilina.conspiracy.secondPlot.outcome'),
-    },
-    {
-      title: t('catilina.conspiracy.exposure.title'),
-      year: t('catilina.conspiracy.exposure.year'),
-      description: t('catilina.conspiracy.exposure.description'),
-      outcome: t('catilina.conspiracy.exposure.outcome'),
-    },
-    {
-      title: t('catilina.conspiracy.finalStand.title'),
-      year: t('catilina.conspiracy.finalStand.year'),
-      description: t('catilina.conspiracy.finalStand.description'),
-      outcome: t('catilina.conspiracy.finalStand.outcome'),
-    },
-  ];
+
   const ciceroSpeeches = [
     {
-      title: t('catilina.ciceroSpeeches.first.title'),
-      date: t('catilina.ciceroSpeeches.first.date'),
-      summary: t('catilina.ciceroSpeeches.first.summary'),
-      impact: t('catilina.ciceroSpeeches.first.impact'),
+      title: 'In Catilinam I',
+      date: '8. November 63 ' + t('common.bc'),
+      summary: 'Die berühmte Eröffnung: "Quo usque tandem abutere, Catilina, patientia nostra?" Cicero klagt Catilina im Senat direkt an.',
+      impact: 'Rhetorisches Meisterwerk',
+      quote: 'Quo usque tandem...?',
     },
     {
-      title: t('catilina.ciceroSpeeches.second.title'),
-      date: t('catilina.ciceroSpeeches.second.date'),
-      summary: t('catilina.ciceroSpeeches.second.summary'),
-      impact: t('catilina.ciceroSpeeches.second.impact'),
+      title: 'In Catilinam II',
+      date: '9. November 63 ' + t('common.bc'),
+      summary: 'Vor dem Volk: Cicero erklärt Catilinas Flucht aus Rom und warnt vor seinen Anhängern in der Stadt.',
+      impact: 'Mobilisierung der öffentlichen Meinung',
+      quote: 'O tempora, o mores!',
     },
     {
-      title: t('catilina.ciceroSpeeches.third.title'),
-      date: t('catilina.ciceroSpeeches.third.date'),
-      summary: t('catilina.ciceroSpeeches.third.summary'),
-      impact: t('catilina.ciceroSpeeches.third.impact'),
+      title: 'In Catilinam III',
+      date: '3. Dezember 63 ' + t('common.bc'),
+      summary: 'Präsentation der Beweise: Briefe der Verschwörer, Geständnisse. Die Verschwörung ist unwiderlegbar aufgedeckt.',
+      impact: 'Sicherung der Beweislage',
+      quote: 'Abii, excessit, evasit, erupit!',
     },
     {
-      title: t('catilina.ciceroSpeeches.fourth.title'),
-      date: t('catilina.ciceroSpeeches.fourth.date'),
-      summary: t('catilina.ciceroSpeeches.fourth.summary'),
-      impact: t('catilina.ciceroSpeeches.fourth.impact'),
+      title: 'In Catilinam IV',
+      date: '5. Dezember 63 ' + t('common.bc'),
+      summary: 'Senatsrede über die Bestrafung der gefangenen Verschwörer. Caesar plädiert für lebenslange Haft, Cato für Hinrichtung.',
+      impact: 'Hinrichtung ohne Gerichtsverfahren',
+      quote: 'Cedant arma togae!',
     },
   ];
+
+  const catilinaDebate = [
+    {
+      heading: 'Als Staatsfeind gesehen',
+      points: [
+        'Plan zur Ermordung des Konsuls Cicero',
+        'Brandstiftung in Rom geplant',
+        'Bündnis mit Galliern gegen Rom',
+        'Bewaffneter Aufstand gegen die Republik',
+      ],
+    },
+    {
+      heading: 'Als Reformer gedeutet',
+      points: [
+        'Vertrat Interessen der Verschuldeten',
+        'Wollte Veteranen Land verschaffen',
+        'Kritisierte Oligarchie des Senats',
+        'Von Cicero dämonisiert und verleumdet?',
+      ],
+    },
+  ];
+
   const formatYear = (year: number) => {
     if (Number.isNaN(year)) return '—';
     if (year === 0) return '0';
     return year < 0 ? `${Math.abs(year)} ${t('common.bc')}` : `${year} ${t('common.ad')}`;
   };
+
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <main className="flex-1">
-        <AuthorAboutHero authorInfo={authorInfo} authorPage={authorPage} language={language} birthPlace={details.birthPlace} />
+        <AuthorAboutHero
+          authorInfo={authorInfo}
+          authorPage={authorPage}
+          language={language}
+          birthPlace={details.birthPlace}
+        />
+
+        {/* Main Content */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-24">
           <div className="grid gap-20 lg:grid-cols-12">
             <div className="lg:col-span-8 space-y-24">
+              {/* Works Section */}
               {authorWorks.length > 0 && (
                 <section>
-                  <div className="flex items-center gap-6 mb-12">
-                    <h2 className="font-display text-4xl font-bold">{t('works')}</h2>
-                    <div className="h-px flex-1 bg-white/5" />
+                  <div className="flex items-center gap-4 mb-12">
+                    <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
+                    <div>
+                      <h2 className="font-display text-3xl font-bold">{t('works')}</h2>
+                      <p className="text-sm text-muted-foreground mt-1">Werke über Catilina</p>
+                    </div>
                   </div>
                   <div className="grid gap-6 sm:grid-cols-2">
                     {authorWorks.map((work, i) => (
@@ -242,16 +244,25 @@ export function CatilinaAboutPage() {
                         className="card-modern card-hover-primary card-padding-lg group relative overflow-hidden block"
                       >
                         <div className="relative z-10">
-                          <BookOpen className="h-8 w-8 text-primary mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                              <BookOpen className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                {work.year}
+                              </p>
+                            </div>
+                          </div>
                           <h3 className="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                             {work.title}
                           </h3>
-                          <p className="text-muted-foreground line-clamp-3 mb-8 italic">
+                          <p className="text-sm text-muted-foreground line-clamp-4 mb-4 leading-relaxed">
                             {work.summary}
                           </p>
-                          <div className="flex items-center text-sm font-bold uppercase tracking-widest text-primary gap-2">
-                            <span>{t('readMore')}</span>
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+                          <div className="flex items-center text-sm font-semibold text-primary gap-2">
+                            <span>Zum Werk</span>
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>
                       </Link>
@@ -260,39 +271,45 @@ export function CatilinaAboutPage() {
                 </section>
               )}
 
+              {/* Recent Entries */}
               {authorPosts.length > 0 && (
                 <section>
-                  <div className="flex items-center justify-between mb-12">
-                    <h2 className="font-display text-4xl font-bold">{t('diaryEntries')}</h2>
-                    <Button asChild variant="ghost" className="text-primary hover:text-primary/80 uppercase tracking-widest font-bold text-xs">
+                  <div className="flex items-center justify-between gap-4 mb-12 flex-wrap">
+                    <div className="flex items-center gap-4">
+                      <Scroll className="h-6 w-6 text-primary flex-shrink-0" />
+                      <div>
+                        <h2 className="font-display text-3xl font-bold">{t('diaryEntries')}</h2>
+                        <p className="text-sm text-muted-foreground mt-1">Aktuelle Einträge</p>
+                      </div>
+                    </div>
+                    <Button asChild variant="secondary" className="text-xs uppercase tracking-widest font-bold">
                       <Link to="/catilina">
-                        {t('viewAllEntries')} <ArrowRight className="h-4 w-4 ml-2" />
+                        {t('viewAllEntries')} <ArrowRight className="h-3 w-3 ml-2" />
                       </Link>
                     </Button>
                   </div>
-                  <div className="grid gap-6 md:grid-cols-2">
+                  <div className="grid gap-6">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
-                        <article className="card-modern card-hover-primary card-padding-md relative h-full overflow-hidden">
-                          <div className="relative flex items-center justify-between gap-3 mb-4">
-                            <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
-                              {post.title}
-                            </h3>
-                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                        <article className="card-modern card-hover-primary card-padding-lg relative h-full overflow-hidden flex flex-col">
+                          <div className="mb-4">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1 rounded-full">
                               {post.historicalDate}
                             </span>
                           </div>
-                          <p className="relative text-base text-foreground/85 leading-relaxed line-clamp-3 mb-5">
+                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
                             {post.excerpt}
                           </p>
-                          <div className="relative flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="inline-flex items-center gap-2">
-                              <span className="h-2 w-2 rounded-full bg-primary/60" />
-                              {post.readingTime ? `${post.readingTime} min` : '5 min'} Lesedauer
+                              <Clock className="h-3 w-3" />
+                              {post.readingTime ? `${post.readingTime} min` : '5 min'}
                             </span>
-                            <span className="inline-flex items-center text-primary font-semibold text-sm">
-                              Weiterlesen
-                              <ArrowRight className="ml-2 h-4 w-4" />
+                            <span className="inline-flex items-center text-primary font-semibold gap-1 group-hover:gap-2 transition-all">
+                              Weiterlesen <ArrowRight className="h-3 w-3" />
                             </span>
                           </div>
                         </article>
@@ -303,6 +320,7 @@ export function CatilinaAboutPage() {
               )}
             </div>
 
+            {/* Sidebar */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
                 <div className="card-modern card-padding-md">
@@ -324,74 +342,82 @@ export function CatilinaAboutPage() {
           </div>
         </div>
 
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.historicalContext.title')}</h2>
-              <p className="text-lg text-muted-foreground">Politische und soziale Spannungen in der späten Republik als Nährboden der Verschwörung.</p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
-              {catilinaContext.map((context, index) => (
-                <div key={index} className="card-modern card-hover-primary card-padding-lg">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Kontext</span>
-                    <span className="text-xs font-semibold text-primary/70">{context.period}</span>
-                  </div>
-                  <h3 className="font-display text-xl font-bold mb-2">{context.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{context.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        {/* Timeline Section - Full Width */}
         <section className="py-24 border-t border-border/40">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-4 mb-12">
                 <Clock className="h-8 w-8 text-primary" />
                 <div>
-                  <h2 className="font-display text-4xl font-bold">{t('catilina.timeline.title')}</h2>
-                  <p className="text-lg text-muted-foreground mt-2">Wendepunkte von Aufstieg, Verschwörung und Untergang.</p>
+                  <h2 className="font-display text-4xl font-bold">Lebenslauf & Verschwörung</h2>
+                  <p className="text-lg text-muted-foreground mt-2">Von patrizischer Herkunft zum Staatsfeind</p>
                 </div>
               </div>
-              <div className="space-y-4">
-                {catilinaTimeline.map((event, index) => {
-                  const Icon = event.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.06 }}
-                      className="flex gap-4 items-start"
-                    >
-                      <div className="flex-shrink-0 w-24 text-right pt-3">
-                        <div className="text-sm font-bold text-primary">{formatYear(event.year)}</div>
+              <div className="grid gap-8 lg:grid-cols-3">
+                {/* Lebensstationen */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Users className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Lebensstationen</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {catilinaTimeline.events.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
                       </div>
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mt-2">
-                          <Icon className="w-5 h-5 text-primary" />
-                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Ämter */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Ämter & Karriere</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {catilinaTimeline.offices.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
                       </div>
-                      <div className="flex-1 bg-card rounded-2xl p-4 border border-border">
-                        <h3 className="font-bold mb-1">{event.title}</h3>
-                        <p className="text-sm text-muted-foreground">{event.description}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Verschwörung */}
+                <div className="card-modern card-padding-lg space-y-6">
+                  <div className="flex items-center gap-3">
+                    <AlertTriangle className="h-6 w-6 text-primary" />
+                    <h3 className="font-display text-2xl font-bold">Verschwörung</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {catilinaTimeline.conspiracy.map((item, idx) => (
+                      <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
+                        <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
+                        <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    ))}
+                  </div>
+                </div>
               </div>
+
+              {/* Timeline Link */}
               <div className="mt-16 pt-12 border-t border-border/40">
-                <p className="text-center text-muted-foreground mb-8">Für eine detaillierte Chronologie aller Ereignisse:</p>
+                <p className="text-center text-muted-foreground mb-8">
+                  Für eine detaillierte Chronologie aller Ereignisse:
+                </p>
                 <div className="flex justify-center gap-4">
                   <Link
                     to="/timeline"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
                   >
-                    <Clock className="h-4 w-4" />
-                    Zur vollständigen Chronologie
+                    <Calendar className="h-4 w-4" />
+                    Zur vollständigen Zeitleiste
                   </Link>
                 </div>
               </div>
@@ -399,25 +425,53 @@ export function CatilinaAboutPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-surface-container-low/30">
+        {/* Die Verschwörung in Phasen */}
+        <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.conspiracy.title')}</h2>
-              <p className="text-lg text-muted-foreground">Die Verschwörung in Phasen, Akteuren und Folgen.</p>
+              <h2 className="font-display text-4xl font-bold mb-4">Die Verschwörung in Phasen</h2>
+              <p className="text-lg text-muted-foreground">Vom Plan zur Niederlage</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
-              {conspiracyPhases.map((phase, index) => (
-                <div key={index} className="card-modern card-hover-primary card-padding-lg">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <AlertTriangle className="h-3.5 w-3.5" /> Phase
-                    </span>
-                    <span className="text-xs font-semibold text-primary/70">{phase.year}</span>
+            <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+              {conspiracyPhases.map((phase) => {
+                const Icon = phase.icon;
+                return (
+                  <div
+                    key={phase.title}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-6">
+                      <Icon className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold mb-3">{phase.title}</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed mb-3">{phase.detail}</p>
+                    <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
+                      <span className="font-semibold text-primary">Bedeutung:</span> {phase.impact}
+                    </div>
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-2">{phase.title}</h3>
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-4">{phase.description}</p>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Soziale & Politische Dimensionen */}
+        <section className="py-20 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Soziale & politische Dimensionen</h2>
+              <p className="text-lg text-muted-foreground">Mehr als eine Verschwörung</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+              {catilinaReformDeep.map((item) => (
+                <div
+                  key={item.title}
+                  className="card-modern card-hover-primary card-padding-md"
+                >
+                  <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">{item.detail}</p>
                   <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
-                    <span className="font-semibold text-primary">{t('catilina.conspiracy.outcome')}:</span> {phase.outcome}
+                    <span className="font-semibold text-primary">Bedeutung:</span> {item.impact}
                   </div>
                 </div>
               ))}
@@ -425,191 +479,93 @@ export function CatilinaAboutPage() {
           </div>
         </section>
 
+        {/* Ciceros Reden */}
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.ciceroSpeeches.title')}</h2>
-              <p className="text-lg text-muted-foreground">{t('catilina.ciceroSpeeches.description')}</p>
+              <h2 className="font-display text-4xl font-bold mb-4">Ciceros Reden gegen Catilina</h2>
+              <p className="text-lg text-muted-foreground">Rhetorik als Waffe</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
-              {ciceroSpeeches.map((speech, index) => (
-                <div key={index} className="card-modern card-hover-primary card-padding-lg">
+              {ciceroSpeeches.map((speech) => (
+                <div
+                  key={speech.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Rede</span>
                     <span className="text-xs font-semibold text-primary/70">{speech.date}</span>
                   </div>
                   <h3 className="font-display text-xl font-bold mb-2">{speech.title}</h3>
-                  <p className="text-sm text-foreground/85 leading-relaxed mb-4">{speech.summary}</p>
-                  <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
-                    <span className="font-semibold text-primary">{t('catilina.ciceroSpeeches.impactLabel')}:</span> {speech.impact}
+                  <p className="text-sm text-foreground/85 leading-relaxed mb-3">{speech.summary}</p>
+                  <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 mb-3">
+                    <p className="text-sm font-display italic text-foreground/90">"{speech.quote}"</p>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    <span className="font-semibold text-primary">Wirkung:</span> {speech.impact}
                   </div>
                 </div>
               ))}
             </div>
+            <div className="mt-12 text-center">
+              <Link
+                to="/cicero/works/in-catilinam"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-colors"
+              >
+                <BookOpen className="h-4 w-4" />
+                Alle Reden lesen
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </section>
 
+        {/* Historisches Vermächtnis */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">{t('catilina.legacy.title')}</h2>
-              <p className="text-lg text-muted-foreground">Historische Wirkung der Catilinarischen Verschwörung auf Republik, Rhetorik und politische Kultur.</p>
+              <h2 className="font-display text-4xl font-bold mb-4">Historisches Vermächtnis</h2>
+              <p className="text-lg text-muted-foreground">Wie Catilina die Geschichte prägte</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
-              {catilinaLegacy.map((legacy, index) => (
-                <div key={index} className="card-modern card-hover-primary card-padding-lg">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">{legacy.tag}</span>
-                    <span className="text-xs px-2 py-1 rounded-full bg-secondary text-secondary-foreground">{legacy.horizon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{legacy.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{legacy.summary}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="bg-secondary/30 rounded-xl p-6 border-l-4 border-primary">
-                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-primary" />
-                  {t('catilina.sources.title')}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-3">
-                  {t('catilina.sources.description')}
-                </p>
-                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                  <li>{t('catilina.sources.cicero')}</li>
-                  <li>{t('catilina.sources.sallust')}</li>
-                  <li>{t('catilina.sources.note')}</li>
-                </ul>
-              </div>
-              <div className="mt-12 flex justify-between items-center">
-                <Link to="/about">
-                  <Button variant="outline" className="gap-2">
-                    {t('backToAuthorOverview')}
-                  </Button>
-                </Link>
-                <Link to={`/${authorInfo.id}`}>
-                  <Button className="gap-2">
-                    {t('catilina.viewDiary')}
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Catilinas Vermächtnis */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="font-display text-4xl font-bold mb-4">Catilinas Vermächtnis</h2>
-              <p className="text-lg text-muted-foreground">Der Verschwörer, der zum Symbol für Korruption und Staatsfeind wurde.</p>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-              {[
-                {
-                  title: 'Die Verschwörung',
-                  summary: 'Catilinas Plan zur Machtübernahme durch Mord an führende Politiker und Brandstiftung in Rom.',
-                  tag: 'Staatsstreich',
-                  years: '63 v. Chr.'
-                },
-                {
-                  title: 'Ciceros Reden',
-                  summary: 'Die vier Catilinarischen Reden, die Catilinas Plan enthüllten und seine Flucht erzwangen.',
-                  tag: 'Rhetorik',
-                  years: '63 v. Chr.'
-                },
-                {
-                  title: 'Historische Bedeutung',
-                  summary: 'Catilina als Symbol für politische Korruption und die Gefahren der späten Republik.',
-                  tag: 'Geschichtsschreibung',
-                  years: '63 v. Chr.–62 v. Chr.'
-                },
-                {
-                  title: 'Archäologische Funde',
-                  summary: 'Die Catilinarischen Verschwörungsbriefe und ihre Bedeutung für die moderne Forschung.',
-                  tag: 'Quellenkritik',
-                  years: 'Entdeckt 1937'
-                },
-                {
-                  title: 'Rezeption in Literatur',
-                  summary: 'Catilina in Shakespeares "Julius Caesar" und Ben Jonsons "Catiline" als politischer Bösewicht.',
-                  tag: 'Literaturgeschichte',
-                  years: '16.–21. Jahrhundert'
-                }
-              ].map((work, i) => (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
+              {catilinaLegacy.map((legacy) => (
                 <div
-                  key={work.title}
+                  key={legacy.title}
                   className="card-modern card-hover-primary card-padding-lg"
                 >
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
-                    <Scroll className="h-6 w-6 text-primary opacity-60" />
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{legacy.tag}</span>
+                    <span className="inline-flex px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-semibold">
+                      {legacy.horizon}
+                    </span>
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
-                    {i === 1 && (
-                      <Link
-                        to="/cicero/works/in-catilinam"
-                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <BookOpen className="h-3.5 w-3.5" />
-                        Reden lesen
-                      </Link>
-                    )}
-                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{legacy.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{legacy.summary}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Catilina warum er polarisierte */}
-        <section className="py-24 bg-surface-container-low/30">
+        {/* Warum er polarisierte */}
+        <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="font-display text-4xl font-bold mb-4">Warum er polarisierte</h2>
-              <p className="text-lg text-muted-foreground">Zwischen Verschwörer und politischer Märtyrer.</p>
+              <p className="text-lg text-muted-foreground">Zwei Gesichter der Geschichte</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-              {[
-                {
-                  heading: 'Warum er als Staatsfeind gilt',
-                  points: [
-                    'Plan zur Ermordung von Konsuln und anderen führenden Politikern.',
-                    'Brandstiftung in Rom, um Chaos zu schaffen und die Macht zu übernehmen.',
-                    'Bündnis mit Galliern und Sklaven für den Bürgerkrieg.',
-                    'Drohung gegen die Grundlagen der Römischen Republik.'
-                  ]
-                },
-                {
-                  heading: 'Warum er als Opfer Ciceros gilt',
-                  points: [
-                    'Wurde von Cicero als Sündenbock für die Krisen der Republik dargestellt.',
-                    'Seine Verbannung und spätere Hinrichtung ohne ordentliches Gerichtsverfahren.',
-                    'Ausnutzung als politisches Werkzeug zur Machtkonsolidierung.',
-                    'Sein Tod als Symbol für den Sieg der Republik über die inneren Feinde.'
-                  ]
-                }
-              ].map((block) => (
+              {catilinaDebate.map((block) => (
                 <div
                   key={block.heading}
                   className="card-modern card-hover-primary card-padding-lg"
                 >
                   <h3 className="font-display text-xl font-bold mb-4">{block.heading}</h3>
                   <div className="space-y-3">
-                    {block.points.map((point, i) => (
-                      <div key={i} className="flex items-start gap-3 text-sm text-foreground/85 leading-relaxed">
-                        <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        <span>{point}</span>
+                    {block.points.map((point) => (
+                      <div key={point} className="flex gap-3 items-start">
+                        <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                        <p className="text-sm text-foreground/85 leading-relaxed font-medium">{point}</p>
                       </div>
                     ))}
                   </div>
@@ -620,31 +576,31 @@ export function CatilinaAboutPage() {
         </section>
 
         {/* Legendäre Zitate */}
-        <section className="py-24">
+        <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
-              <p className="text-lg text-muted-foreground">Worte, die Catilinas Schicksal besiegelten.</p>
+              <p className="text-lg text-muted-foreground">Worte, die Geschichte schrieben</p>
             </div>
             <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
               {[
                 {
                   quote: 'Quo usque tandem abutere, Catilina, patientia nostra?',
                   translation: 'Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?',
-                  when: 'Cicero, 1. Catilinaria',
-                  meaning: 'Die berühmte Eröffnung von Ciceros erster Rede gegen Catilina.'
+                  when: 'Cicero, 1. Rede',
+                  meaning: 'Die berühmteste Eröffnung der lateinischen Literatur'
                 },
                 {
                   quote: 'O tempora, o mores!',
                   translation: 'O Zeiten, o Sitten!',
-                  when: 'Cicero, 2. Catilinaria', 
-                  meaning: 'Klage über den moralischen Verfall Roms und die Gefahr für die Republik.'
+                  when: 'Cicero, 1. Rede',
+                  meaning: 'Klage über den moralischen Verfall Roms'
                 },
                 {
-                  quote: 'Catilina, hostis ad salutem populi Romani, dux aciem feriet.',
-                  translation: 'Catilina, der dem Heil des römischen Volkes den Rücken kehrt und das Schwert zieht.',
-                  when: 'Sallust, Bellum Catilinae',
-                  meaning: 'Beschreibung von Catilinas Verrat und militärischer Bedrohung für Rom.'
+                  quote: 'Abii, excessit, evasit, erupit!',
+                  translation: 'Er ist gegangen, entkommen, entflohen, ausgebrochen!',
+                  when: 'Cicero, 2. Rede',
+                  meaning: 'Triumphierende Verkündung von Catilinas Flucht'
                 }
               ].map((item) => (
                 <div
@@ -653,7 +609,7 @@ export function CatilinaAboutPage() {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles className="h-3.5 w-3.5" /> Wirkung
+                      <Sparkles className="h-3.5 w-3.5" /> Zitat
                     </span>
                     <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                   </div>

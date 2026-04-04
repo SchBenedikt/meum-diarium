@@ -87,33 +87,64 @@ export function SEO({
     }
 
     // Default WebSite schema for pages without custom structured data
-    const baseData: Record<string, any> = {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": defaults.siteName,
-      "url": baseUrl,
-      "description": finalDescription,
-      "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${baseUrl}/search?q={search_term_string}`
-        },
-        "query-input": "required name=search_term_string"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": defaults.publisher,
+    const baseData: Record<string, any>[] = [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": defaults.siteName,
         "url": baseUrl,
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${baseUrl}/icons/favicon.svg`,
-          "width": 512,
-          "height": 512
+        "description": finalDescription,
+        "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": defaults.publisher,
+          "url": baseUrl,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${baseUrl}/icons/favicon.svg`,
+            "width": 512,
+            "height": 512
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": defaults.siteName,
+        "url": baseUrl,
+        "logo": `${baseUrl}/icons/favicon.svg`,
+        "description": finalDescription,
+        "sameAs": [
+          `${baseUrl}/about`,
+          `${baseUrl}/oer`
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": defaults.contact
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": defaults.siteName,
+        "url": baseUrl,
+        "description": finalDescription,
+        "educationalLevel": "Sekundarstufe I & II",
+        "audience": {
+          "@type": "EducationalAudience",
+          "educationalRole": ["student", "teacher"]
         }
       }
-    };
+    ];
 
     return baseData;
   }, [language, defaults, finalDescription, structuredData, baseUrl]);

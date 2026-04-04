@@ -220,15 +220,15 @@ export default function AdminPage() {
     return (
         <div className="container mx-auto py-6 px-4 max-w-7xl">
             {/* Header */}
-            <div className="mb-8 rounded-3xl border border-border/60 bg-gradient-to-br from-card via-card to-primary/5 p-6 sm:p-8">
+            <div className="mb-8 rounded-3xl border border-border/60 bg-gradient-to-br from-card via-card to-primary/5 p-6 sm:p-8 shadow-lg">
                 <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
-                            <LayoutDashboard className="h-5 w-5 text-primary" />
+                        <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/30 shadow-inner">
+                            <LayoutDashboard className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Control Center</p>
-                            <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">Admin Dashboard</h1>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-1">Admin • Control Center</p>
+                            <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text">Dashboard</h1>
                         </div>
                     </div>
                     <Button
@@ -239,16 +239,15 @@ export default function AdminPage() {
                             navigate('/admin/login');
                             toast.success('Erfolgreich abgemeldet');
                         }}
-                        className="flex items-center gap-2 rounded-full"
+                        className="flex items-center gap-2 rounded-full shadow-sm hover:shadow-md transition-shadow"
                     >
                         <LogOut className="h-4 w-4" />
                         Abmelden
                     </Button>
                 </div>
 
-                <p className="text-muted-foreground max-w-3xl">
-                    Beiträge, Autoren, Werke, Lexikon und Übersetzungen an einem Ort. Fokus auf schnelle Abläufe,
-                    klare Zustände und weniger Klickwege.
+                <p className="text-muted-foreground max-w-3xl leading-relaxed">
+                    Zentrale Verwaltung für Beiträge, Autoren, Werke, Lexikon und Übersetzungen. Optimiert für schnelle Workflows und klare Übersicht.
                 </p>
             </div>
             {/* Stats */}
@@ -261,48 +260,67 @@ export default function AdminPage() {
             {/* Quick Links */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 my-8">
                 {quickLinks.map((link) => (
-                    <Card key={link.title} className="border-border/60 hover:border-primary/40 hover:shadow-md transition-all">
-                        <CardHeader className="p-4">
-                            <div className="flex items-center justify-between">
-                                <div className="p-2 rounded-lg bg-primary/10">
-                                    <link.icon className="h-4 w-4 text-primary" />
+                    <Card key={link.title} className="group border-border/60 hover:border-primary/50 hover:shadow-lg transition-all duration-200 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <CardHeader className="p-4 relative">
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 group-hover:scale-110 transition-transform">
+                                    <link.icon className="h-5 w-5 text-primary" />
                                 </div>
-                                <Button variant="ghost" size="icon" asChild className="h-8 w-8">
+                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <Link to={link.href}>
                                         <ArrowUpRight className="h-4 w-4" />
                                     </Link>
                                 </Button>
                             </div>
-                            <CardTitle className="text-sm mt-3">{link.title}</CardTitle>
-                            <CardDescription className="text-xs">{link.description}</CardDescription>
+                            <CardTitle className="text-base font-semibold">{link.title}</CardTitle>
+                            <CardDescription className="text-xs leading-relaxed">{link.description}</CardDescription>
                         </CardHeader>
                     </Card>
                 ))}
             </div>
             <Tabs defaultValue="posts" className="w-full">
-                <div className="sticky top-16 z-20 mb-8 -mx-1 px-1 py-2 bg-background/80 backdrop-blur-xl border-y border-border/40">
-                    <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1 h-auto p-1.5 bg-muted/60">
-                        <TabsTrigger value="posts" className="rounded-lg">Beiträge</TabsTrigger>
-                        <TabsTrigger value="authors" className="rounded-lg">Autoren</TabsTrigger>
-                        <TabsTrigger value="works" className="rounded-lg">Werke</TabsTrigger>
-                        <TabsTrigger value="lexicon" className="rounded-lg">Lexikon</TabsTrigger>
-                        <TabsTrigger value="tags" className="rounded-lg">Tags</TabsTrigger>
-                        <TabsTrigger value="translations" className="rounded-lg">i18n</TabsTrigger>
+                <div className="sticky top-16 z-20 mb-8 -mx-1 px-1 py-3 bg-background/95 backdrop-blur-xl border-y border-border/40 shadow-sm">
+                    <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-2 h-auto p-2 bg-muted/80 backdrop-blur rounded-xl shadow-inner">
+                        <TabsTrigger value="posts" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <BookOpenText className="h-4 w-4 mr-2" />
+                            Beiträge
+                        </TabsTrigger>
+                        <TabsTrigger value="authors" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <Users className="h-4 w-4 mr-2" />
+                            Autoren
+                        </TabsTrigger>
+                        <TabsTrigger value="works" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <BookMarked className="h-4 w-4 mr-2" />
+                            Werke
+                        </TabsTrigger>
+                        <TabsTrigger value="lexicon" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <LibraryBig className="h-4 w-4 mr-2" />
+                            Lexikon
+                        </TabsTrigger>
+                        <TabsTrigger value="tags" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <Tags className="h-4 w-4 mr-2" />
+                            Tags
+                        </TabsTrigger>
+                        <TabsTrigger value="translations" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
+                            <Settings className="h-4 w-4 mr-2" />
+                            i18n
+                        </TabsTrigger>
                     </TabsList>
                 </div>
                 {/* Posts Tab */}
                 <TabsContent value="posts">
-                    <Card>
-                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <Card className="shadow-lg border-border/60">
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-br from-muted/30 to-transparent border-b border-border/40">
                             <div>
-                                <CardTitle>Blog-Beiträge</CardTitle>
-                                <CardDescription>{filteredPosts.length} von {postRows.length} Beiträgen aus D1-Datenbank</CardDescription>
+                                <CardTitle className="text-xl font-bold">Blog-Beiträge</CardTitle>
+                                <CardDescription className="text-sm mt-1">{filteredPosts.length} von {postRows.length} Beiträgen aus D1-Datenbank</CardDescription>
                             </div>
                             <div className="flex gap-2">
-                                <Button variant="outline" onClick={handleRefreshPosts}>
+                                <Button variant="outline" onClick={handleRefreshPosts} className="shadow-sm">
                                     <RefreshCw className="mr-2 h-4 w-4" /> Neu laden
                                 </Button>
-                                <Button asChild>
+                                <Button asChild className="shadow-sm">
                                     <Link to="/admin/post/new">
                                         <Plus className="mr-2 h-4 w-4" /> Neuer Beitrag
                                     </Link>
@@ -321,6 +339,7 @@ export default function AdminPage() {
                                     { value: 'augustus', label: 'Augustus' },
                                     { value: 'seneca', label: 'Seneca' },
                                     { value: 'catilina', label: 'Catilina' },
+                                    { value: 'sallust', label: 'Sallust' },
                                 ]}
                             />
                             <div className="overflow-x-auto">

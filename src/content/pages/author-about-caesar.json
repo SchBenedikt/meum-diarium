@@ -1,7 +1,7 @@
 {
   "slug": "author-about-caesar",
   "heroTitle": "Gaius Julius Caesar",
-  "heroSubtitle": "Dictator Perpetuo",
+  "heroSubtitle": "Diktator auf Lebenszeit, Feldherr und Staatsmann",
   "heroImage": "/images/caesar-hero.png",
   "introText": "Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.",
   "sections": [],
@@ -13,29 +13,20 @@
     }
   ],
   "translations": {
+    "de": {
+      "heroTitle": "Gaius Julius Caesar",
+      "heroSubtitle": "Diktator auf Lebenszeit, Feldherr und Staatsmann",
+      "introText": "Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich."
+    },
     "en": {
-      "heroTitle": "",
-      "heroSubtitle": "",
-      "introText": "",
-      "highlights": [
-        {
-          "title": "",
-          "description": "",
-          "icon": "BookOpen"
-        }
-      ]
+      "heroTitle": "Gaius Julius Caesar",
+      "heroSubtitle": "Dictator Perpetuo",
+      "introText": "General, statesman and author. Conqueror of Gaul and architect of the transition from Roman Republic to Empire."
     },
     "la": {
-      "heroTitle": "",
-      "heroSubtitle": "",
-      "introText": "",
-      "highlights": [
-        {
-          "title": "",
-          "description": "",
-          "icon": "BookOpen"
-        }
-      ]
+      "heroTitle": "Gaius Julius Caesar",
+      "heroSubtitle": "Dictator Perpetuo",
+      "introText": "Imperator, vir publicus et scriptor. Galliae victor et rei publicae ad imperium transitus conditor."
     }
   }
 }

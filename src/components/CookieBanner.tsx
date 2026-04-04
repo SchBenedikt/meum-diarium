@@ -1,18 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Cookie, Sparkles, ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
+import { Cookie, Sparkles, ShieldCheck, ChevronDown, ChevronUp, Settings, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 
 type CookieConsent = {
   necessary: true;
   analytics: boolean;
+  functional: boolean;
   timestamp: number;
+  version: number;
   source: 'banner';
 };
 
-const CONSENT_KEY = 'md_cookie_consent_v1';
+const CONSENT_KEY = 'md_cookie_consent_v2';
+const CONSENT_VERSION = 2; // Increment when cookie policy changes
 
 function readConsent(): CookieConsent | null {
   try {
@@ -20,10 +23,14 @@ function readConsent(): CookieConsent | null {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<CookieConsent>;
     if (parsed.necessary !== true) return null;
+    // Show banner again if version changed (new cookie policy)
+    if (typeof parsed.version !== 'number' || parsed.version < CONSENT_VERSION) return null;
     return {
       necessary: true,
       analytics: Boolean(parsed.analytics),
+      functional: Boolean(parsed.functional),
       timestamp: typeof parsed.timestamp === 'number' ? parsed.timestamp : Date.now(),
+      version: CONSENT_VERSION,
       source: 'banner',
     };
   } catch {
@@ -31,14 +38,21 @@ function readConsent(): CookieConsent | null {
   }
 }
 
-function saveConsent(analytics: boolean) {
+function saveConsent(analytics: boolean, functional: boolean) {
   const value: CookieConsent = {
     necessary: true,
     analytics,
+    functional,
     timestamp: Date.now(),
+    version: CONSENT_VERSION,
     source: 'banner',
   };
   localStorage.setItem(CONSENT_KEY, JSON.stringify(value));
+
+  // Dispatch event for analytics tracking integration
+  window.dispatchEvent(new CustomEvent('cookieConsentUpdated', {
+    detail: { analytics, functional }
+  }));
 }
 
 export function CookieBanner() {
@@ -46,6 +60,7 @@ export function CookieBanner() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+  const [functionalEnabled, setFunctionalEnabled] = useState(true);
 
   const isHiddenRoute = useMemo(
     () => location.pathname.startsWith('/admin'),
@@ -63,21 +78,22 @@ export function CookieBanner() {
       return;
     }
     setAnalyticsEnabled(consent.analytics);
+    setFunctionalEnabled(consent.functional);
     setOpen(false);
   }, [isHiddenRoute]);
 
   const acceptAll = () => {
-    saveConsent(true);
+    saveConsent(true, true);
     setOpen(false);
   };
 
   const acceptNecessaryOnly = () => {
-    saveConsent(false);
+    saveConsent(false, false);
     setOpen(false);
   };
 
   const saveCustom = () => {
-    saveConsent(analyticsEnabled);
+    saveConsent(analyticsEnabled, functionalEnabled);
     setOpen(false);
   };
 
@@ -104,31 +120,32 @@ export function CookieBanner() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-2">
                   <Sparkles className="h-3.5 w-3.5" />
-                  DER SENAT TAGT
+                  GDPR-KONFORM • DATENSCHUTZ
                 </div>
                 <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
-                  Cookies? Nur wenn sie Rom besser machen.
+                  Cookies? Nur mit deiner Zustimmung.
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground/90 leading-relaxed">
-                  Notwendige Cookies halten das Forum stabil. Analyse-Cookies zeigen uns, welche Inhalte spannend sind.
-                  Kein Werbe-Tracking, kein Datenhandel, keine Legionen von Bannern.
+                  Diese Webseite nutzt Cookies, um dir das bestmögliche Erlebnis zu bieten. Notwendige Cookies sichern Kernfunktionen (Sprache, Theme). Analyse-Cookies helfen uns, Inhalte zu verbessern. Funktionale Cookies ermöglichen erweiterte Features. Du entscheidest, was gespeichert wird.
                 </p>
               </div>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2.5">
-              <Button className="rounded-full" onClick={acceptAll}>
-                Alles akzeptieren
+              <Button className="rounded-full gap-2" onClick={acceptAll}>
+                <CheckCircle2 className="h-4 w-4" />
+                Alle akzeptieren
               </Button>
               <Button variant="outline" className="rounded-full" onClick={acceptNecessaryOnly}>
                 Nur notwendige
               </Button>
               <Button
                 variant="ghost"
-                className="rounded-full"
+                className="rounded-full gap-2"
                 onClick={() => setExpanded((prev) => !prev)}
               >
-                Einstellungen {expanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+                <Settings className="h-4 w-4" />
+                Einstellungen {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
               </Button>
             </div>
 
@@ -145,17 +162,17 @@ export function CookieBanner() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-sm font-semibold">Notwendige Cookies</p>
-                        <p className="text-xs text-muted-foreground">Immer aktiv für Sprache, Theme und Kernfunktionen.</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">Immer aktiv. Ermöglichen Grundfunktionen wie Sprache, Theme und Navigation.</p>
                       </div>
-                      <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                        <ShieldCheck className="h-3.5 w-3.5" /> Aktiv
+                      <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary whitespace-nowrap">
+                        <ShieldCheck className="h-3.5 w-3.5" /> Erforderlich
                       </div>
                     </div>
 
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-sm font-semibold">Analyse-Cookies</p>
-                        <p className="text-xs text-muted-foreground">Anonyme Nutzungstrends, damit wir Inhalte verbessern können.</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">Anonyme Nutzungsstatistiken zur Verbesserung der Inhalte und Benutzererfahrung.</p>
                       </div>
                       <Switch
                         checked={analyticsEnabled}
@@ -164,12 +181,27 @@ export function CookieBanner() {
                       />
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-sm font-semibold">Funktionale Cookies</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">Erweiterte Features wie Lesezeichen, Favoriten und personalisierte Einstellungen.</p>
+                      </div>
+                      <Switch
+                        checked={functionalEnabled}
+                        onCheckedChange={setFunctionalEnabled}
+                        aria-label="Funktionale Cookies aktivieren"
+                      />
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/40">
                       <Button className="rounded-full" onClick={saveCustom}>
                         Auswahl speichern
                       </Button>
-                      <Link to="/cookies" className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors">
-                        Mehr erfahren
+                      <Link to="/cookies" className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors px-3">
+                        Cookie-Richtlinien
+                      </Link>
+                      <Link to="/privacy" className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors px-3">
+                        Datenschutz
                       </Link>
                     </div>
                   </div>

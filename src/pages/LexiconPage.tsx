@@ -61,16 +61,50 @@ export default function LexiconPage() {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const allCategories = useMemo(() => [...new Set(lexicon.map(e => e.category))].sort(), [lexicon]);
   const filteredLexicon = useMemo(() => {
-    return lexicon
-      .filter(entry => {
-        const categoryMatch = !activeCategory || entry.category === activeCategory;
-        const searchMatch =
-          (entry.term || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (entry.definition || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchTerm.toLowerCase()));
-        return categoryMatch && searchMatch;
-      })
-      .sort((a, b) => (a.term || "").localeCompare(b.term || ""));
+    const searchLower = searchTerm.toLowerCase();
+
+    const filtered = lexicon.filter(entry => {
+      const categoryMatch = !activeCategory || entry.category === activeCategory;
+      const searchMatch =
+        (entry.term || "").toLowerCase().includes(searchLower) ||
+        (entry.definition || "").toLowerCase().includes(searchLower) ||
+        (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchLower));
+      return categoryMatch && searchMatch;
+    });
+
+    if (!searchTerm) {
+      return filtered.sort((a, b) => (a.term || "").localeCompare(b.term || ""));
+    }
+
+    // Escape regex metacharacters to avoid runtime errors and ReDoS
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
+
+    const getRelevanceScore = (entry: LexiconEntry): number => {
+      const termLower = (entry.term || "").toLowerCase();
+      const definitionLower = (entry.definition || "").toLowerCase();
+      const variantsLower = (entry.variants || []).map(v => (v || "").toLowerCase());
+
+      if (termLower === searchLower) return 1000;
+      if (termLower.startsWith(searchLower)) return 900;
+      if (variantsLower.some(v => v === searchLower)) return 800;
+      if (variantsLower.some(v => v.startsWith(searchLower))) return 700;
+      if (wordBoundaryRegex.test(termLower)) return 600;
+      if (variantsLower.some(v => wordBoundaryRegex.test(v))) return 500;
+      if (termLower.includes(searchLower)) return 400;
+      if (variantsLower.some(v => v.includes(searchLower))) return 300;
+      if (definitionLower.startsWith(searchLower)) return 200;
+      if (wordBoundaryRegex.test(definitionLower)) return 100;
+      if (definitionLower.includes(searchLower)) return 50;
+      return 0;
+    };
+
+    // Precompute scores once (O(n)) so the comparator calls are O(1)
+    const scoreMap = new Map(filtered.map(e => [e, getRelevanceScore(e)]));
+    return filtered.sort((a, b) => {
+      const diff = (scoreMap.get(b) ?? 0) - (scoreMap.get(a) ?? 0);
+      return diff !== 0 ? diff : (a.term || "").localeCompare(b.term || "");
+    });
   }, [searchTerm, activeCategory, lexicon]);
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {

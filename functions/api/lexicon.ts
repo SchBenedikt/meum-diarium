@@ -126,10 +126,42 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 );
             }
 
-            const results = await db.query.lexicon.findMany({
+            let results = await db.query.lexicon.findMany({
                 where: whereClause,
-                limit: limit
+                // When searching, fetch a generous upper bound so relevance sorting
+                // covers enough candidates; apply the requested limit after sorting.
+                limit: search ? Math.max(limit * 10, 500) : limit
             });
+
+            // If search is provided, sort by relevance then apply limit
+            if (search) {
+                const searchLower = search.toLowerCase();
+                // Escape regex metacharacters to avoid runtime errors and ReDoS
+                const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
+
+                const getRelevanceScore = (entry: any): number => {
+                    const termLower = (entry.term || "").toLowerCase();
+                    const definitionLower = (entry.definition || "").toLowerCase();
+
+                    if (termLower === searchLower) return 1000;
+                    if (termLower.startsWith(searchLower)) return 900;
+                    if (wordBoundaryRegex.test(termLower)) return 600;
+                    if (termLower.includes(searchLower)) return 400;
+                    if (definitionLower.startsWith(searchLower)) return 200;
+                    if (wordBoundaryRegex.test(definitionLower)) return 100;
+                    if (definitionLower.includes(searchLower)) return 50;
+                    return 0;
+                };
+
+                // Precompute scores once (O(n)) before sorting
+                const scored = results.map((entry: any) => ({ entry, score: getRelevanceScore(entry) }));
+                scored.sort((a: any, b: any) => {
+                    const diff = b.score - a.score;
+                    return diff !== 0 ? diff : (a.entry.term || "").localeCompare(b.entry.term || "");
+                });
+                results = scored.slice(0, limit).map((s: any) => s.entry);
+            }
 
             // Parse JSON fields manually
             const parsedResults = results.map((entry: any) => ({

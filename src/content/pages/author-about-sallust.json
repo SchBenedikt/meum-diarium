@@ -1,0 +1,26 @@
+{
+  "slug": "author-about-sallust",
+  "heroTitle": "Gaius Sallustius Crispus",
+  "heroSubtitle": "Römischer Geschichtsschreiber und Politiker",
+  "heroImage": "/images/sallust-hero.png",
+  "introText": "Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa.",
+  "sections": [],
+  "highlights": [],
+  "translations": {
+    "de": {
+      "heroTitle": "Gaius Sallustius Crispus",
+      "heroSubtitle": "Römischer Geschichtsschreiber und Politiker",
+      "introText": "Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa."
+    },
+    "en": {
+      "heroTitle": "Gaius Sallustius Crispus",
+      "heroSubtitle": "Roman Historian and Politician",
+      "introText": "One of the most important Roman historians. Sallust shaped ancient historiography through his morally critical perspective and is considered a master of Latin prose."
+    },
+    "la": {
+      "heroTitle": "Gaius Sallustius Crispus",
+      "heroSubtitle": "Historicus et Politicus Romanus",
+      "introText": "Unus ex historicis Romanis praecipuis. Sallustius historiographiam antiquam per perspectivam moralem criticam formavit et magister prosae Latinae habetur."
+    }
+  }
+}

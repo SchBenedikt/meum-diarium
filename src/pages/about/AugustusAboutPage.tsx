@@ -532,6 +532,80 @@ export function AugustusAboutPage() {
           </div>
         </section>
 
+        {/* Augustus' Vermächtnis */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Das Vermächtnis des Augustus</h2>
+              <p className="text-lg text-muted-foreground">Wie ein Mann Rom für 500 Jahre neu erfand.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {[
+                {
+                  title: 'Res Gestae Divi Augusti',
+                  summary: 'Sein autobiographischer Rechenschaftsbericht – in Bronze an seinem Mausoleum verewigt. Das wichtigste Zeugnis augusteischer Selbstdarstellung.',
+                  tag: 'Literatur',
+                  years: '14 n. Chr.'
+                },
+                {
+                  title: 'Römisches Kaiserreich',
+                  summary: 'Begründete ein System, das 500 Jahre überdauerte. Seine Verfassungsordnung blieb bis zum Ende Westroms im 5. Jahrhundert gültig.',
+                  tag: 'Staatsform',
+                  years: '27 v. Chr.–476 n. Chr.'
+                },
+                {
+                  title: 'Pax Romana',
+                  summary: '200 Jahre relativen Friedens im Imperium – direktes Ergebnis seiner Reformen. Wirtschaftsblüte, Handel und Kultur profitierten enorm.',
+                  tag: 'Friedenszeit',
+                  years: '27 v. Chr.–180 n. Chr.'
+                },
+                {
+                  title: 'Kulturelles Goldenes Zeitalter',
+                  summary: "Vergils Aeneis, Horaz' Oden, Ovids Metamorphosen – die größten Werke lateinischer Dichtung entstanden unter Augustus.",
+                  tag: 'Literatur',
+                  years: '30 v.–10 n. Chr.'
+                },
+                {
+                  title: 'Städtebau & Architektur',
+                  summary: '"Fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor." Das Forum Augustum, Ara Pacis und zahllose Tempel prägten Rom für immer.',
+                  tag: 'Architektur',
+                  years: '28 v.–14 n. Chr.'
+                },
+                {
+                  title: 'Vorbild für Kaiser',
+                  summary: 'Alle römischen Kaiser nahmen sich Augustus zum Vorbild. Sein Titel "Augustus" wurde zum festen Bestandteil des Kaisertitels.',
+                  tag: 'Nachfolge',
+                  years: 'Bis 1453 n. Chr.'
+                }
+              ].map((work, i) => (
+                <div
+                  key={work.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
+                    <Scroll className="h-6 w-6 text-primary opacity-60" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
+                    {i === 0 && (
+                      <Link
+                        to="/augustus/works/res-gestae"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Werk lesen
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Augustus warum er polarisierte */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
@@ -580,8 +654,143 @@ export function AugustusAboutPage() {
           </div>
         </section>
 
-        {/* Legendäre Zitate */}
+        {/* Augustus Weg zur Macht */}
         <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <h2 className="font-display text-4xl font-bold mb-4">Augustus' Weg zur Macht</h2>
+              <p className="text-lg text-muted-foreground">Von Caesars Erbe zum ersten römischen Kaiser.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              {/* Phase 1 */}
+              <div className="mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Aufstieg (44–31 v. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group h-full"
+                  >
+                    <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">44 v. Chr.</span>
+                    <h3 className="font-display text-2xl font-bold mb-3">Caesars Erbe</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Nach Caesars Ermordung nimmt Octavian dessen Namen und Erbe an. Konfrontation mit Marcus Antonius beginnt.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="relative p-8 rounded-3xl border border-border/40 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl hover:border-primary/30 transition-all group"
+                  >
+                    <div className="absolute top-4 right-4 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold mb-4">43 v. Chr.</span>
+                    <h3 className="font-display text-2xl font-bold mb-3">Zweites Triumvirat</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Bündnis mit Antonius und Lepidus. Proskriptionen besiegeln das Ende vieler Gegner, darunter Cicero.</p>
+                  </motion.div>
+                </div>
+              </div>
+              {/* Phase 2 */}
+              <div className="mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Actium (31 v. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="relative p-10 rounded-3xl border-2 border-primary/40 bg-gradient-to-br from-primary/5 via-card/60 to-card/40 backdrop-blur-xl overflow-hidden group"
+                >
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-6">
+                      <div>
+                        <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">2. September 31 v. Chr.</span>
+                        <h3 className="font-display text-3xl font-bold mb-2">Schlacht bei Actium</h3>
+                        <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Wendepunkt der Geschichte</p>
+                      </div>
+                      <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                        <Award className="h-8 w-8 text-primary" />
+                      </div>
+                    </div>
+                    <p className="text-base text-foreground/90 leading-relaxed mb-4">Die Seeschlacht gegen Antonius und Kleopatra entscheidet den Bürgerkrieg. Ägypten wird römische Provinz, Octavian unangefochtener Herrscher.</p>
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex items-center gap-2 text-xs text-primary/80">
+                        <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                        <span className="font-semibold">Alleinherrschaft beginnt</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+              {/* Phase 3 */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Prinzipat (27 v. Chr.–14 n. Chr.)</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Crown className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">27 v. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Augustus</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Senat verleiht den Ehrennamen "Augustus". Beginn der neuen Staatsordnung unter republikanischer Fassade.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Landmark className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">13 v. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Ara Pacis</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Der Friedensaltar wird geweiht. Symbol der Pax Augusta und des kulturellen Aufschwungs.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="card-modern card-hover-primary card-padding-md"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Clock className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">14 n. Chr.</span>
+                    <h3 className="font-display text-xl font-bold mt-2 mb-3">Tod in Nola</h3>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Nach 41 Jahren Herrschaft stirbt Augustus. Tiberius tritt die Nachfolge an.</p>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Legendäre Zitate */}
+        <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="font-display text-4xl font-bold mb-4">Legendäre Zitate</h2>
