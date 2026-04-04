@@ -532,6 +532,80 @@ export function AugustusAboutPage() {
           </div>
         </section>
 
+        {/* Augustus' Vermächtnis */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Das Vermächtnis des Augustus</h2>
+              <p className="text-lg text-muted-foreground">Wie ein Mann Rom für 500 Jahre neu erfand.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {[
+                {
+                  title: 'Res Gestae Divi Augusti',
+                  summary: 'Sein autobiographischer Rechenschaftsbericht – in Bronze an seinem Mausoleum verewigt. Das wichtigste Zeugnis augusteischer Selbstdarstellung.',
+                  tag: 'Literatur',
+                  years: '14 n. Chr.'
+                },
+                {
+                  title: 'Römisches Kaiserreich',
+                  summary: 'Begründete ein System, das 500 Jahre überdauerte. Seine Verfassungsordnung blieb bis zum Ende Westroms im 5. Jahrhundert gültig.',
+                  tag: 'Staatsform',
+                  years: '27 v. Chr.–476 n. Chr.'
+                },
+                {
+                  title: 'Pax Romana',
+                  summary: '200 Jahre relativen Friedens im Imperium – direktes Ergebnis seiner Reformen. Wirtschaftsblüte, Handel und Kultur profitierten enorm.',
+                  tag: 'Friedenszeit',
+                  years: '27 v. Chr.–180 n. Chr.'
+                },
+                {
+                  title: 'Kulturelles Goldenes Zeitalter',
+                  summary: 'Vergils Aeneis, Horaz' Oden, Ovids Metamorphosen – die größten Werke lateinischer Dichtung entstanden unter Augustus.',
+                  tag: 'Literatur',
+                  years: '30 v.–10 n. Chr.'
+                },
+                {
+                  title: 'Städtebau & Architektur',
+                  summary: '"Fand eine Stadt aus Ziegeln und hinterließ eine aus Marmor." Das Forum Augustum, Ara Pacis und zahllose Tempel prägten Rom für immer.',
+                  tag: 'Architektur',
+                  years: '28 v.–14 n. Chr.'
+                },
+                {
+                  title: 'Vorbild für Kaiser',
+                  summary: 'Alle römischen Kaiser nahmen sich Augustus zum Vorbild. Sein Titel "Augustus" wurde zum festen Bestandteil des Kaisertitels.',
+                  tag: 'Nachfolge',
+                  years: 'Bis 1453 n. Chr.'
+                }
+              ].map((work, i) => (
+                <div
+                  key={work.title}
+                  className="card-modern card-hover-primary card-padding-lg"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{work.tag}</span>
+                    <Scroll className="h-6 w-6 text-primary opacity-60" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2">{work.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm mb-4">{work.summary}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary/70">{work.years}</span>
+                    {i === 0 && (
+                      <Link
+                        to="/augustus/works/res-gestae"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Werk lesen
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Augustus warum er polarisierte */}
         <section className="py-24 bg-surface-container-low/30">
           <div className="container mx-auto px-4">
