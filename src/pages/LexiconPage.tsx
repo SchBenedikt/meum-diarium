@@ -72,65 +72,44 @@ export default function LexiconPage() {
           (entry.variants || []).some(v => (v || "").toLowerCase().includes(searchLower));
         return categoryMatch && searchMatch;
       })
-      .sort((a, b) => {
+      .sort((() => {
         if (!searchTerm) {
-          // No search term: sort alphabetically
-          return (a.term || "").localeCompare(b.term || "");
+          return (a: LexiconEntry, b: LexiconEntry) => (a.term || "").localeCompare(b.term || "");
         }
 
-        // Calculate relevance scores for sorting
-        const getRelevanceScore = (entry: LexiconEntry) => {
+        // Escape regex metacharacters to avoid runtime errors and ReDoS
+        const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
+
+        // Precompute a relevance score for every entry once before sorting
+        const getRelevanceScore = (entry: LexiconEntry): number => {
           const termLower = (entry.term || "").toLowerCase();
           const definitionLower = (entry.definition || "").toLowerCase();
           const variantsLower = (entry.variants || []).map(v => (v || "").toLowerCase());
 
-          // Exact match on term (highest priority)
           if (termLower === searchLower) return 1000;
-
-          // Starts with search term in main term
           if (termLower.startsWith(searchLower)) return 900;
-
-          // Exact match in variants
           if (variantsLower.some(v => v === searchLower)) return 800;
-
-          // Starts with search term in variants
           if (variantsLower.some(v => v.startsWith(searchLower))) return 700;
-
-          // Contains search term in main term (word boundary)
-          const wordBoundaryRegex = new RegExp(`\\b${searchLower}`, 'i');
           if (wordBoundaryRegex.test(termLower)) return 600;
-
-          // Contains search term in variants (word boundary)
           if (variantsLower.some(v => wordBoundaryRegex.test(v))) return 500;
-
-          // Contains search term anywhere in term
           if (termLower.includes(searchLower)) return 400;
-
-          // Contains search term anywhere in variants
           if (variantsLower.some(v => v.includes(searchLower))) return 300;
-
-          // Contains search term at start of definition
           if (definitionLower.startsWith(searchLower)) return 200;
-
-          // Contains search term in definition (word boundary)
           if (wordBoundaryRegex.test(definitionLower)) return 100;
-
-          // Contains search term anywhere in definition
           if (definitionLower.includes(searchLower)) return 50;
-
           return 0;
         };
 
-        const scoreA = getRelevanceScore(a);
-        const scoreB = getRelevanceScore(b);
-
-        if (scoreA !== scoreB) {
-          return scoreB - scoreA; // Higher score first
-        }
-
-        // Same score: sort alphabetically
-        return (a.term || "").localeCompare(b.term || "");
-      });
+        // Build score map once (O(n)) so comparator calls are O(1)
+        const scoreMap = new Map<LexiconEntry, number>();
+        return (a: LexiconEntry, b: LexiconEntry) => {
+          if (!scoreMap.has(a)) scoreMap.set(a, getRelevanceScore(a));
+          if (!scoreMap.has(b)) scoreMap.set(b, getRelevanceScore(b));
+          const diff = (scoreMap.get(b) ?? 0) - (scoreMap.get(a) ?? 0);
+          return diff !== 0 ? diff : (a.term || "").localeCompare(b.term || "");
+        };
+      })());
   }, [searchTerm, activeCategory, lexicon]);
   const groupedLexicon = useMemo(() => {
     return filteredLexicon.reduce((acc, entry) => {

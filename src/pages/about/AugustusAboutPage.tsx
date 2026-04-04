@@ -561,7 +561,7 @@ export function AugustusAboutPage() {
                 },
                 {
                   title: 'Kulturelles Goldenes Zeitalter',
-                  summary: 'Vergils Aeneis, Horaz' Oden, Ovids Metamorphosen – die größten Werke lateinischer Dichtung entstanden unter Augustus.',
+                  summary: "Vergils Aeneis, Horaz' Oden, Ovids Metamorphosen – die größten Werke lateinischer Dichtung entstanden unter Augustus.",
                   tag: 'Literatur',
                   years: '30 v.–10 n. Chr.'
                 },

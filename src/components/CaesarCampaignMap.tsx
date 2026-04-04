@@ -139,7 +139,7 @@ export default function CaesarCampaignMap({ className = '', mapHeightClass = 'h-
     <div className={`card-modern overflow-hidden shadow-xl ${className}`}>
       <div className="bg-gradient-to-br from-primary/5 via-background to-background/50 p-4 border-b border-border/40">
         <h3 className="font-display text-xl font-bold text-foreground flex items-center gap-2">
-          <span className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+          <span aria-hidden="true" className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
             🗺️
           </span>
           Caesars Feldzüge (58–45 v. Chr.)

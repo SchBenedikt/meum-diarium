@@ -128,52 +128,39 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
             let results = await db.query.lexicon.findMany({
                 where: whereClause,
-                limit: limit
+                // When searching, fetch all matching candidates so relevance sort
+                // covers the full result set; apply limit after sorting.
+                limit: search ? undefined : limit
             });
 
-            // If search is provided, sort by relevance
+            // If search is provided, sort by relevance then apply limit
             if (search) {
                 const searchLower = search.toLowerCase();
-                results = results.sort((a, b) => {
-                    const getRelevanceScore = (entry: any) => {
-                        const termLower = (entry.term || "").toLowerCase();
-                        const definitionLower = (entry.definition || "").toLowerCase();
+                // Escape regex metacharacters to avoid runtime errors and ReDoS
+                const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const wordBoundaryRegex = new RegExp(`\\b${escapeRegExp(searchLower)}`, 'i');
 
-                        // Exact match on term (highest priority)
-                        if (termLower === searchLower) return 1000;
+                const getRelevanceScore = (entry: any): number => {
+                    const termLower = (entry.term || "").toLowerCase();
+                    const definitionLower = (entry.definition || "").toLowerCase();
 
-                        // Starts with search term in main term
-                        if (termLower.startsWith(searchLower)) return 900;
+                    if (termLower === searchLower) return 1000;
+                    if (termLower.startsWith(searchLower)) return 900;
+                    if (wordBoundaryRegex.test(termLower)) return 600;
+                    if (termLower.includes(searchLower)) return 400;
+                    if (definitionLower.startsWith(searchLower)) return 200;
+                    if (wordBoundaryRegex.test(definitionLower)) return 100;
+                    if (definitionLower.includes(searchLower)) return 50;
+                    return 0;
+                };
 
-                        // Contains search term in main term (word boundary)
-                        const wordBoundaryRegex = new RegExp(`\\b${searchLower}`, 'i');
-                        if (wordBoundaryRegex.test(termLower)) return 600;
-
-                        // Contains search term anywhere in term
-                        if (termLower.includes(searchLower)) return 400;
-
-                        // Contains search term at start of definition
-                        if (definitionLower.startsWith(searchLower)) return 200;
-
-                        // Contains search term in definition (word boundary)
-                        if (wordBoundaryRegex.test(definitionLower)) return 100;
-
-                        // Contains search term anywhere in definition
-                        if (definitionLower.includes(searchLower)) return 50;
-
-                        return 0;
-                    };
-
-                    const scoreA = getRelevanceScore(a);
-                    const scoreB = getRelevanceScore(b);
-
-                    if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Higher score first
-                    }
-
-                    // Same score: sort alphabetically
-                    return (a.term || "").localeCompare(b.term || "");
+                // Precompute scores once (O(n)) before sorting
+                const scored = results.map((entry: any) => ({ entry, score: getRelevanceScore(entry) }));
+                scored.sort((a: any, b: any) => {
+                    const diff = b.score - a.score;
+                    return diff !== 0 ? diff : (a.entry.term || "").localeCompare(b.entry.term || "");
                 });
+                results = scored.slice(0, limit).map((s: any) => s.entry);
             }
 
             // Parse JSON fields manually
