@@ -202,4 +202,44 @@ export const authors: Record<string, AuthorInfo> = {
       },
     },
   },
+
+  sallust: {
+    id: 'sallust',
+    name: 'Gaius Sallustius Crispus',
+    latinName: 'C. Sallustius Crispus',
+    title: 'Römischer Geschichtsschreiber und Politiker',
+    years: '86–35 v. Chr.',
+    birthYear: -86,
+    deathYear: -35,
+    description:
+      'Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa.',
+    heroImage: '/images/sallust-hero.png',
+    theme: 'sallust',
+    color: '#7C2D12',
+    highlights: [
+      {
+        title: 'Catilinae Coniuratio',
+        description: 'Sallusts Monographie über die catilinarische Verschwörung – Meisterwerk der römischen Geschichtsschreibung.',
+        link: '/sallust',
+        icon: 'BookOpen',
+      },
+      {
+        title: 'Bellum Iugurthinum',
+        description: 'Der Krieg gegen Jugurtha – Analyse des moralischen Verfalls der späten Republik.',
+        link: '/sallust',
+        icon: 'Scroll',
+      },
+    ],
+    translations: {
+      en: {
+        title: 'Roman Historian and Politician',
+        description:
+          'One of the most important Roman historians. Sallust shaped ancient historiography through his morally critical perspective and is considered a master of Latin prose.',
+      },
+      la: {
+        title: 'Historicus et Politicus Romanus',
+        description: 'Unus ex historicis Romanis praecipuis. Sallustius historiographiam antiquam per perspectivam moralem criticam formavit.',
+      },
+    },
+  },
 };

@@ -24,6 +24,7 @@ const CiceroAboutPage = lazy(() => import("./pages/about/CiceroAboutPage").then(
 const AugustusAboutPage = lazy(() => import("./pages/about/AugustusAboutPage").then(m => ({ default: m.AugustusAboutPage })));
 const SenecaAboutPage = lazy(() => import("./pages/about/SenecaAboutPage").then(m => ({ default: m.SenecaAboutPage })));
 const CatilinaAboutPage = lazy(() => import("./pages/about/CatilinaAboutPage").then(m => ({ default: m.CatilinaAboutPage })));
+const SallustAboutPage = lazy(() => import("./pages/about/SallustAboutPage").then(m => ({ default: m.SallustAboutPage })));
 const TimelinePage = lazy(() => import("./pages/TimelinePage"));
 const LexiconPage = lazy(() => import("./pages/LexiconPage"));
 const LexiconEntryPage = lazy(() => import("./pages/LexiconEntryPage"));
@@ -86,7 +87,8 @@ const AppContent = () => {
     location.pathname.startsWith('/cicero') ||
     location.pathname.startsWith('/augustus') ||
     location.pathname.startsWith('/seneca') ||
-    location.pathname.startsWith('/catilina');
+    location.pathname.startsWith('/catilina') ||
+    location.pathname.startsWith('/sallust');
   const isPostPage = isAuthorRoute && (
     !location.pathname.endsWith('/about') &&
     !location.pathname.includes('/works/') &&
@@ -187,6 +189,7 @@ const AppContent = () => {
               <Route path="/augustus/about" element={<PageTransition><AugustusAboutPage /></PageTransition>} />
               <Route path="/seneca/about" element={<PageTransition><SenecaAboutPage /></PageTransition>} />
               <Route path="/catilina/about" element={<PageTransition><CatilinaAboutPage /></PageTransition>} />
+              <Route path="/sallust/about" element={<PageTransition><SallustAboutPage /></PageTransition>} />
 
               {/* Dynamic author routes - must come after static routes */}
               <Route path="/:authorId" element={<PageTransition><Index /></PageTransition>} />
