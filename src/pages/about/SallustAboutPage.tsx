@@ -124,21 +124,35 @@ export function SallustAboutPage() {
   const sallustStyle = [
     {
       title: 'Brevitas',
-      detail: 'Knappe, konzise Sprache ohne Ciceros Fülle. Sallust sagt in wenigen Worten viel. Keine Redundanz, keine rhetorischen Spielereien.',
+      detail: 'Knappe, konzentrierte Sprache – Sallust sagt in wenigen Worten viel. Keine ciceronische Ausschmückung.',
       impact: 'Prägnant und einprägsam',
       icon: Feather,
+      latinExample: '„Omnia orta occidunt et aucta senescunt." (Catilina 2,3)',
+      translation: '„Alles, was entstanden ist, geht zugrunde, und alles, was gewachsen ist, altert."',
     },
     {
       title: 'Inconcinnitas',
-      detail: 'Asymmetrische Satzstrukturen, unrunde Perioden. Bewusster Bruch mit Ciceros ausgewogener Rhetorik. Schafft Spannung und Intensität.',
+      detail: 'Asymmetrische Satzstrukturen – bewusster Bruch mit Ciceros ausgewogener Rhetorik.',
       impact: 'Dramatisch und lebendig',
       icon: TrendingDown,
+      latinExample: '„Igitur domi militiaeque boni mores colebantur…" (Catilina 9,1)',
+      translation: '„So wurden zuhause wie im Krieg gute Sitten gepflegt…"',
     },
     {
       title: 'Archaismus',
-      detail: 'Verwendung altertümlicher Wörter und Konstruktionen. Anklang an Cato den Älteren. Suggestion moralischer Strenge der Vorfahren.',
+      detail: 'Altertümliche Wörter und Konstruktionen – bewusster Anklang an Cato den Älteren.',
       impact: 'Würdevoll und autoritativ',
       icon: Scroll,
+      latinExample: '„lubido" statt „libido", „vortat" statt „vertat"',
+      translation: 'Altertümliche Schreibweisen evozieren das Rom der Väter',
+    },
+    {
+      title: 'Direkte Reden',
+      detail: 'Fiktive direkte Reden (oratio recta) zur Charakterisierung – Catilinas Ansprache, Catos Senatsdebatte.',
+      impact: 'Lebendig und charakterisierend',
+      icon: Landmark,
+      latinExample: '„Ite qua coepistis, dum licet." (Catilina 58)',
+      translation: '„Geht, solange ihr noch könnt, den Weg, den ihr begonnen habt."',
     },
   ];
 
@@ -379,14 +393,14 @@ export function SallustAboutPage() {
           </div>
         </section>
 
-        {/* Literarischer Stil */}
+        {/* Literarischer Stil mit Textbeispielen */}
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="font-display text-4xl font-bold mb-4">Literarischer Stil</h2>
-              <p className="text-lg text-muted-foreground">Sallusts einzigartige Prosa</p>
+              <p className="text-lg text-muted-foreground">Sallusts einzigartige Prosa mit Textbeispielen</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+            <div className="grid gap-6 md:grid-cols-2 max-w-6xl mx-auto">
               {sallustStyle.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -398,13 +412,112 @@ export function SallustAboutPage() {
                       <Icon className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
-                    <p className="text-sm text-foreground/85 leading-relaxed mb-3">{item.detail}</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed mb-4">{item.detail}</p>
+                    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 mb-3">
+                      <p className="text-xs font-bold uppercase tracking-widest text-primary mb-2">Textbeispiel:</p>
+                      <p className="text-sm italic text-foreground/90 mb-1">{item.latinExample}</p>
+                      <p className="text-xs text-muted-foreground">{item.translation}</p>
+                    </div>
                     <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
                       <span className="font-semibold text-primary">Wirkung:</span> {item.impact}
                     </div>
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Kontroverse */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Sallust &amp; die Kontroverse</h2>
+              <p className="text-lg text-muted-foreground">Zwischen Moralkritik und politischer Parteinahme</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+              <div className="card-modern card-padding-lg">
+                <div className="flex items-center gap-3 mb-5">
+                  <Shield className="h-6 w-6 text-primary flex-shrink-0" />
+                  <h3 className="font-display text-xl font-bold">Sallust als Moralist</h3>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    'Diagnose des moralischen Verfalls Roms nach dem Sieg über Karthago (146 v. Chr.)',
+                    'Luxuria, avaritia und ambitio als Grundübel der späten Republik',
+                    'Kontrast zwischen alter virtus der Vorväter und zeitgenössischem Sittenverfall',
+                    'Historische Analyse als Warnung an die Gegenwart – Sallust versteht Geschichte als Lehrmeisterin',
+                  ].map((point) => (
+                    <div key={point} className="flex gap-2 items-start">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <p className="text-sm text-foreground/85">{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="card-modern card-padding-lg">
+                <div className="flex items-center gap-3 mb-5">
+                  <Award className="h-6 w-6 text-primary flex-shrink-0" />
+                  <h3 className="font-display text-xl font-bold">Sallust als Parteigänger</h3>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    'Selbst aus dem Senat wegen angeblicher Unmoral ausgeschlossen – fragwürdige Glaubwürdigkeit',
+                    'Enger Vertrauter Caesars; nutzte sein Amt in Africa Nova zur massiven persönlichen Bereicherung',
+                    'Systematische Verharmlosung caesarischer Figuren, Überzeichnung senatorischer Schuldiger',
+                    'Moderne Forschung: Sallust schreibt populare Propaganda in historiographischem Gewand',
+                  ].map((point) => (
+                    <div key={point} className="flex gap-2 items-start">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <p className="text-sm text-foreground/85">{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Markante Zitate */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Markante Zitate</h2>
+              <p className="text-lg text-muted-foreground">Sallusts einprägsamste Sätze</p>
+            </div>
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  quote: '„Omnia orta occidunt et aucta senescunt."',
+                  translation: '„Alles, was entstanden ist, geht zugrunde, und alles, was gewachsen ist, altert."',
+                  when: 'Catilina 2,3',
+                  meaning: 'Sallusts Verfallsdiagnose in einem einzigen Satz – universelle Sententia über den Lauf der Geschichte.',
+                },
+                {
+                  quote: '„Caesar beneficiis ac munificentia magnus habebatur, integritate vitae Cato."',
+                  translation: '„Caesar galt durch Wohltaten und Freigiebigkeit als groß, Cato durch die Untadeligkeit seines Lebens."',
+                  when: 'Catilina 54',
+                  meaning: 'Sallusts berühmteste Synkrisis: Zwei Ideale der römischen Größe in perfektem antithetischem Gleichgewicht.',
+                },
+                {
+                  quote: '„Idem velle atque idem nolle, ea demum firma amicitia est."',
+                  translation: '„Dasselbe zu wollen und dasselbe abzulehnen – das erst ist wahre Freundschaft."',
+                  when: 'Catilina 20,4',
+                  meaning: 'Catilinas Rede an seine Verschwörer – ironisch: die tiefste Definition von Freundschaft im Mund eines Verbrechers.',
+                },
+              ].map((item) => (
+                <div key={item.quote} className="card-modern card-hover-primary card-padding-md">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <Sparkles className="h-3.5 w-3.5" /> Zitat
+                    </span>
+                    <span className="text-xs font-semibold text-primary/70">{item.when}</span>
+                  </div>
+                  <p className="text-xl font-display italic text-foreground/90 mb-1">{item.quote}</p>
+                  <p className="text-base font-medium text-muted-foreground mb-4">{item.translation}</p>
+                  <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -7,8 +7,8 @@
     "description": "Übertragung einer Eigenschaft von einem Gegenstand auf einen anderen, ohne direkten Vergleich.",
     "detailedDescription": "Die Metapher ist eine der wichtigsten rhetorischen Figuren. Sie schafft eine bildhafte Verbindung zwischen zwei unähnlichen Konzepten und ermöglicht dem Leser, abstrakte Ideen durch konkrete Bilder zu verstehen.",
     "wirkung": "Schafft bildhafte Vorstellungen und emotionale Verbindungen",
-    "example": "Die Zeit ist ein Dieb, der die Hoffnung frisst.",
-    "author": "Cicero"
+    "example": "Sallust, Cat. 1,2: \"animus... per virtutem clarescere\" – Die Seele erhellt sich durch Tugend",
+    "author": "Sallust (Catilina 1,2)"
   },
   {
     "id": "alliteration",
@@ -29,8 +29,8 @@
     "description": "Gegenüberstellung von gegensätzlichen Begriffen oder Sätzen in paralleler Anordnung.",
     "detailedDescription": "Die Antithese stellt zwei entgegengesetzte Ideen nebeneinander, um einen starken Kontrast zu erzeugen. Diese rhetorische Figur ist besonders wirksam, wenn sie moralische oder ethische Gegensätze hervorhebt.",
     "wirkung": "Erzeugt Kontrast und Spannung",
-    "example": "Nicht das, sondern das.",
-    "author": "Cicero"
+    "example": "Sallust, Cat. 54: \"Caesar beneficiis ac munificentia magnus habebatur, integritate vitae Cato.\"",
+    "author": "Sallust (Catilina 54)"
   },
   {
     "id": "parallelismus",
@@ -51,11 +51,8 @@
     "description": "Wiederholung eines Wortes oder einer Wortgruppe am Anfang mehrerer aufeinanderfolgender Sätze.",
     "detailedDescription": "Die Anapher ist eine wirkungsvolle rhetorische Figur, die durch Wiederholung Emphasis erzeugt und eine rhythmische Struktur schafft.",
     "wirkung": "Erzeugt Emphase und Rhythmus",
-    "example": "Ich kam, ich sah, ich siegte.",
-    "author": "Caesar"
-  },
-  {
-    "id": "hyperbel",
+    "example": "Cicero, Cat. 1,1: \"Quousque tandem... Quam diu etiam... Quem ad finem...\" – Dreifache Frageanapher",
+    "author": "Caesar",
     "name": "Hyperbel",
     "latinName": "Hyperbole",
     "category": "wirkungen",
@@ -95,7 +92,7 @@
     "description": "Frage, deren Antwort offensichtlich ist oder nicht erwartet wird.",
     "detailedDescription": "Die rhetorische Frage wird nicht gestellt, um eine Information zu erhalten, sondern um eine Aussage zu machen oder zum Nachdenken anzuregen.",
     "wirkung": "Regt zum Nachdenken an",
-    "example": "Soll ich schweigen, wenn Unrecht geschieht?",
+    "example": "Cicero, Cat. 1,1: \"Quousque tandem abutere, Catilina, patientia nostra?\"",
     "author": "Cicero"
   },
   {
@@ -128,7 +125,7 @@
     "description": "Kreuzweise Anordnung von Begriffen im Schema ABBA.",
     "detailedDescription": "Der Chiasmus ist eine symmetrische Satzstruktur, bei der die zweite Hälfte die erste spiegelbildlich umkehrt.",
     "wirkung": "Schafft Balance und Eleganz",
-    "example": "Essen und Trinken sollen wir genießen, nicht trinken und essen.",
+    "example": "Sallust, Cat. 54: \"Esse quam videri bonus malebat\" – Sein vs. Scheinen",
     "author": "Seneca"
   },
   {
@@ -148,7 +145,7 @@
     "latinName": "Ellipsis",
     "category": "figuren",
     "description": "Auslassung von Wörtern oder Teilen, die vom Hörer ergänzt werden können.",
-    "detailedDescription": "Die Ellipse lässt bewusst Teile aus, die der Kontext ergänzen lässt, creating engagement and efficiency.",
+    "detailedDescription": "Die Ellipse lässt bewusst Teile aus, die der Kontext ergänzen lässt. Sie ist ein Kernelement von Sallusts brevitas: Durch konsequente Auslassung entbehrlicher Verben und Füllwörter entsteht die charakteristische Kürze und Dichte seiner Prosa.",
     "wirkung": "Erzeugt Spannung und Beteiligung",
     "example": "Ich komme, wenn...",
     "author": "Cicero"
@@ -161,7 +158,7 @@
     "description": "Aufzählung ohne Verbindungswörter wie 'und' oder 'oder'.",
     "detailedDescription": "Das Asyndeton reiht Begriffe direkt aneinander, creating a rapid, emphatic rhythm.",
     "wirkung": "Erzeugt Schnelligkeit und Emphase",
-    "example": "Ich kam, sah, siegte.",
+    "example": "Caesar: \"Veni, vidi, vici\" – Sallust, Cat. 5,4: \"avidus, prodigus, ardens in cupiditatibus\"",
     "author": "Caesar"
   },
   {
@@ -183,7 +180,7 @@
     "description": "Steigerung von Begriffen zu einem Höhepunkt.",
     "detailedDescription": "Die Klimax baut eine Reihe von Begriffen auf, die an Intensität zunehmen und zu einem emotionalen Höhepunkt führen.",
     "wirkung": "Erzeugt Spannung und Entladung",
-    "example": "Ich kam, sah, siegte.",
+    "example": "Sallust, Cat. 20: Catilinas Rede steigert sich von allgemeiner Not zu direktem Handlungsaufruf",
     "author": "Cicero"
   },
   {
@@ -238,7 +235,7 @@
     "description": "Verneinung des Gegenteils zur Bejahung.",
     "detailedDescription": "Die Litotes drückt eine positive Aussage durch die Verneinung ihres Gegenteils aus, often creating understatement.",
     "wirkung": "Erzeugt Untertreibung",
-    "example": "Nicht schlecht.",
+    "example": "Sallust, Cat. 3,2: \"non sine gloria\" – nicht ohne Ruhm (= mit großem Ruhm)",
     "author": "Cicero"
   },
   {
@@ -339,5 +336,60 @@
     "wirkung": "Drückt starke Emotionen aus",
     "example": "O weh!",
     "author": "Seneca"
+  },
+  {
+    "id": "synkrisis",
+    "name": "Synkrisis",
+    "latinName": "Syncrisis",
+    "category": "strukturen",
+    "description": "Vergleichende Gegenüberstellung zweier Personen zur kontrastierenden Charakterisierung.",
+    "detailedDescription": "Die Synkrisis ist Sallusts berühmtestes Strukturmittel: In Catilina 53–54 stellt er Cato und Caesar als Verkörperungen zweier Ideale gegenüber. Beide werden als 'magnus' bezeichnet, aber aus völlig verschiedenen Gründen.",
+    "wirkung": "Verdeutlicht Kontraste und ermöglicht komplexe Charakterzeichnung ohne einseitige Wertung",
+    "example": "Sallust, Cat. 53–54: Cato – streng, unbeugsam, tugendhaft; Caesar – freigiebig, volksnah, strategisch. Beide 'magnus' auf je eigene, gegensätzliche Weise.",
+    "author": "Sallust (Catilina 53–54)"
+  },
+  {
+    "id": "sententia",
+    "name": "Sententia (Gnome)",
+    "latinName": "Sententia / Gnome",
+    "category": "argumente",
+    "description": "Prägnanter allgemeingültiger Sinnspruch, der eine moralische Wahrheit komprimiert formuliert.",
+    "detailedDescription": "Die Sententia ist ein Kernelement von Sallusts Stil: Allgemeingültige moralische Einsichten in aphoristischer Form, oft am Anfang oder Ende eines Abschnitts. Stark beeinflusst von Thukydides.",
+    "wirkung": "Verleiht Gedanken Autorität, Allgemeingültigkeit und Einprägsamkeit über den Moment hinaus",
+    "example": "Sallust, Cat. 2,3: \"Omnia orta occidunt et aucta senescunt\" – Alles Entstandene vergeht. Zeitlose Verfallsdiagnose.",
+    "author": "Sallust (Catilina, Jugurtha)"
+  },
+  {
+    "id": "aposiopese",
+    "name": "Aposiopese",
+    "latinName": "Aposiopesis",
+    "category": "figuren",
+    "description": "Abrupter Abbruch eines Satzes – das Ungesagte bleibt bedeutungsvoll im Raum stehen.",
+    "detailedDescription": "Die Aposiopese lässt einen Satz bewusst unvollendet. Das Unausgesprochene wirkt oft stärker als jede direkte Aussage. Im Lateinischen signalisiert sie Überraschung, Empörung oder Drohung.",
+    "wirkung": "Erzeugt Spannung, lässt Schlimmes unausgesprochen und provoziert eigene Gedanken",
+    "example": "Vergil, Aeneis 1,135: Neptun zu den Winden: \"Quos ego –!\" – Eine unvergessliche unvollendete Drohung",
+    "author": "Vergil, Cicero"
+  },
+  {
+    "id": "enumeratio",
+    "name": "Enumeratio",
+    "latinName": "Enumeratio",
+    "category": "strukturen",
+    "description": "Aufzählung mehrerer Punkte oder Merkmale zur vollständigen und eindringlichen Darstellung.",
+    "detailedDescription": "Die Enumeratio reiht Merkmale, Eigenschaften oder Handlungen aneinander. Bei Sallust dient sie der Charakterisierung durch Häufung von Lastern oder Tugenden – Kernelement seiner Charakterporträts.",
+    "wirkung": "Erzeugt Vollständigkeit, Eindringlichkeit und Überwältigung durch Häufung von Merkmalen",
+    "example": "Sallust, Cat. 5,4: \"avidus, prodigus, ardens in cupiditatibus, satis eloquentiae, sapientiae parum\" – sechs Eigenschaften in rascher Folge",
+    "author": "Sallust (Catilina 5)"
+  },
+  {
+    "id": "exemplum",
+    "name": "Exemplum",
+    "latinName": "Exemplum",
+    "category": "argumente",
+    "description": "Historisches oder mythologisches Beispiel als Beleg und Beweismittel für eine allgemeine These.",
+    "detailedDescription": "Das Exemplum ist ein zentrales Mittel der römischen Rhetorik: Eine allgemeine These wird durch ein konkretes historisches Beispiel belegt. Sallust nutzt es, um seinen Verfall-Diagnosen historische Evidenz zu verleihen.",
+    "wirkung": "Verleiht Argumenten Glaubwürdigkeit und historische Tiefe durch konkrete Belege",
+    "example": "Sallust, Jug. 41,2: Karthagos Zerstörung 146 v. Chr. als historisches Exemplum für den Beginn des moralischen Verfalls Roms – der metus hostilis entfiel",
+    "author": "Sallust, Cicero"
   }
 ]
