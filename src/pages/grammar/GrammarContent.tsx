@@ -7,7 +7,7 @@ import { CheckCircle2 } from 'lucide-react';
  */
 export function splitToSentences(text: string): string[] {
   return text
-    .split(/\.\s+(?=[A-ZÄÖÜ0-9])/)
+    .split(/\.\s+(?=[A-ZÄÖÜ])/)
     .map(s => s.trim())
     .filter(Boolean)
     .map(s => (s.endsWith('.') ? s : `${s}.`));
@@ -19,7 +19,7 @@ export function splitToSentences(text: string): string[] {
  */
 export function parseRules(text: string): { label: string; body: string }[] {
   // Split on label pattern: "Word(s): " at the start of each segment
-  const pattern = /(?:^|\.\s+)([A-ZÄÖÜ0-9][^:]{1,40}):\s+/g;
+  const pattern = /(?:^|\.\s+)([A-ZÄÖÜ][^:]{1,40}):\s+/g;
   const segments: { label: string; body: string }[] = [];
   let lastIndex = 0;
   let lastLabel = '';
