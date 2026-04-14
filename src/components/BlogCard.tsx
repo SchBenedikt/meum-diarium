@@ -59,15 +59,17 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
           className
         )}
       >
-        {/* Bild links – flexibler, aber mit Mindestbreite */}
-        <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
-          <ImageWithFallback
-            src={post.coverImage}
-            alt={post.title}
-            loading="lazy"
-            className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-          />
-        </div>
+        {/* Bild links – nur anzeigen wenn coverImage vorhanden */}
+        {post.coverImage && (
+          <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
+            <ImageWithFallback
+              src={post.coverImage}
+              alt={post.title}
+              loading="lazy"
+              className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+        )}
         {/* Content rechts – flexibler, passt sich an */}
         <div className="flex flex-1 flex-col justify-between px-4 py-3 sm:px-5 sm:py-4 gap-2">
           {/* Datum / Jahr oben */}

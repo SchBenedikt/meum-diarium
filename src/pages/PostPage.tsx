@@ -212,14 +212,16 @@ function PostContent({ post }: { post: BlogPost }) {
                       {post.excerpt}
                     </p>
                   </div>
-                  {/* Beitragsbild unter dem Titel */}
-                  <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
-                    <ImageWithFallback
-                      src={post.coverImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {/* Beitragsbild unter dem Titel – nur anzeigen wenn coverImage vorhanden */}
+                  {post.coverImage && (
+                    <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
+                      <ImageWithFallback
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="rounded-2xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl p-3 sm:p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
