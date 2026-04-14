@@ -97,10 +97,21 @@ function renderWithVocab(
     parts.push(
       <span
         key={key}
+        role="button"
+        tabIndex={0}
+        aria-pressed={isActive}
+        aria-label={`${word}: ${meaning}`}
         className={`relative cursor-pointer underline decoration-dotted decoration-primary/60 ${isActive ? 'text-primary' : 'text-primary/80'}`}
         onClick={(e) => {
           e.stopPropagation();
           setActiveVocabWord(prev => prev?.word === key ? null : { word: key, index: match!.index });
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            e.stopPropagation();
+            setActiveVocabWord(prev => prev?.word === key ? null : { word: key, index: match!.index });
+          }
         }}
         title={meaning}
       >

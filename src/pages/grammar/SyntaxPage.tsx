@@ -265,11 +265,11 @@ export default function SyntaxPage() {
                                 </div>
                                 <div>
                                     <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Im Detail</p>
-                                    <DetailsList text={Array.isArray(currentTopic.content.details) ? currentTopic.content.details.join(' ') : currentTopic.content.details} />
+                                    <DetailsList text={Array.isArray(currentTopic.content.details) ? currentTopic.content.details.join('. ') : currentTopic.content.details} />
                                 </div>
                                 <div>
                                     <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Regeln & Merkmale</p>
-                                    <RuleCards text={Array.isArray(currentTopic.content.rules) ? currentTopic.content.rules.join(' ') : currentTopic.content.rules} />
+                                    <RuleCards text={Array.isArray(currentTopic.content.rules) ? currentTopic.content.rules.join('. ') : currentTopic.content.rules} />
                                 </div>
                             </CardContent>
                         </Card>

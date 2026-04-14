@@ -3,14 +3,40 @@ import { CheckCircle2 } from 'lucide-react';
 
 /**
  * Splits a long prose paragraph into an array of sentences, trimming whitespace.
- * Sentences are split on ". " followed by an uppercase letter.
+ * Avoids splitting on common abbreviations like "z.B.", "bzw.", "u.a.", "d.h."
  */
 export function splitToSentences(text: string): string[] {
-  return text
+  // Replace common abbreviations with a placeholder to avoid false splits
+  const abbrevs: [RegExp, string][] = [
+    [/z\.B\./g, 'z§B§'],
+    [/bzw\./g, 'bzw§'],
+    [/u\.a\./g, 'u§a§'],
+    [/d\.h\./g, 'd§h§'],
+    [/v\.\s*Chr\./g, 'v§Chr§'],
+    [/n\.\s*Chr\./g, 'n§Chr§'],
+    [/ca\./g, 'ca§'],
+    [/etc\./g, 'etc§'],
+    [/vgl\./g, 'vgl§'],
+  ];
+  let safe = text;
+  for (const [re, placeholder] of abbrevs) {
+    safe = safe.replace(re, placeholder);
+  }
+  const parts = safe
     .split(/\.\s+(?=[A-ZÄÖÜ])/)
     .map(s => s.trim())
     .filter(Boolean)
     .map(s => (s.endsWith('.') ? s : `${s}.`));
+  // Restore placeholders
+  return parts.map(s => {
+    let r = s;
+    for (const [, placeholder] of abbrevs) {
+      r = r.replace(new RegExp(placeholder.replace('§', '\\§'), 'g'), placeholder.replace('§', '.'));
+    }
+    // Restore all § to .
+    r = r.replace(/§/g, '.');
+    return r;
+  });
 }
 
 /**
