@@ -235,7 +235,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                 className="min-h-[130px] resize-y rounded-xl border-border/60 bg-background px-4 py-3 text-[0.95rem] leading-relaxed placeholder:text-muted-foreground/60 focus-visible:border-primary/60"
               />
               <p className="text-xs text-muted-foreground/60 text-right">
-                {content.length}/5000
+                {content.length}/5000 Zeichen
               </p>
             </div>
 

@@ -170,7 +170,7 @@ export default function LatinGrammarPage() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<string>('Alle');
 
-  const dailyTip = DAILY_TIPS[Math.floor((Date.now() / 86400000)) % DAILY_TIPS.length];
+  const dailyTip = DAILY_TIPS[Math.floor(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()) / 86400000) % DAILY_TIPS.length];
 
   const categories = ['Alle', 'Nomen & Pronomen', 'Verb & Syntax', 'Erweiterung'];
   const categoryMap: Record<string, string[]> = {
