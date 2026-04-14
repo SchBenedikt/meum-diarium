@@ -18,8 +18,7 @@ import {
   CheckCircle2,
   Lightbulb,
   AlertTriangle,
-  TrendingUp,
-  Route,
+  ArrowRight,
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
@@ -33,6 +32,7 @@ type GrammarTopic = {
   color: string;
   level: Level;
   topics: string[];
+  relatedTo: string[];
 };
 
 const grammarTopics: GrammarTopic[] = [
@@ -44,6 +44,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300',
     level: 'Basis',
     topics: ['Geschlechter', 'Kasus', 'Deklination', 'Pluralbildung'],
+    relatedTo: ['adjektive', 'pronomen'],
   },
   {
     id: 'verben',
@@ -53,6 +54,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300',
     level: 'Basis',
     topics: ['Konjugation', 'Tempora', 'Modi', 'Aktiv/Passiv'],
+    relatedTo: ['syntax', 'partizipien'],
   },
   {
     id: 'adjektive',
@@ -62,6 +64,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300',
     level: 'Basis',
     topics: ['Deklination', 'Steigerung', 'Vergleiche'],
+    relatedTo: ['substantive', 'adverbien'],
   },
   {
     id: 'pronomen',
@@ -71,6 +74,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300',
     level: 'Mittelstufe',
     topics: ['Personalpronomen', 'Possessivpronomen', 'Demonstrativpronomen', 'Relativpronomen'],
+    relatedTo: ['substantive', 'syntax'],
   },
   {
     id: 'adverbien',
@@ -80,6 +84,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300',
     level: 'Mittelstufe',
     topics: ['Adverbarten', 'Steigerung', 'Bildung'],
+    relatedTo: ['adjektive', 'syntax'],
   },
   {
     id: 'syntax',
@@ -89,6 +94,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300',
     level: 'Fortgeschritten',
     topics: ['Satzbau', 'Wortstellung', 'Satzgliederung'],
+    relatedTo: ['verben', 'pronomen', 'partizipien'],
   },
   {
     id: 'partizipien',
@@ -98,6 +104,7 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300',
     level: 'Fortgeschritten',
     topics: ['PPA', 'PPP', 'PFA', 'Infinitiv', 'Gerundium'],
+    relatedTo: ['verben', 'syntax'],
   },
 ];
 
@@ -197,33 +204,6 @@ export default function LatinGrammarPage() {
           </motion.div>
         </div>
 
-        {/* Quick Start Paths */}
-        <section className="mb-12">
-          <div className="flex items-center gap-2 mb-5">
-            <TrendingUp className="h-4 w-4 text-primary" />
-            <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary">Schnelleinstieg</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { label: 'Anfänger', color: 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/10', steps: ['Substantive', 'Verben', 'Adjektive'] },
-              { label: 'Mittelstufe', color: 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-900/10', steps: ['Pronomen', 'Adverbien', 'Syntax'] },
-              { label: 'Fortgeschritten', color: 'border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-900/10', steps: ['Partizipien', 'Stilmittel'] },
-            ].map(path => (
-              <div key={path.label} className={`rounded-2xl border p-4 ${path.color}`}>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3 text-muted-foreground">{path.label}</p>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  {path.steps.map((step, i) => (
-                    <span key={step} className="flex items-center gap-1.5">
-                      <span className="text-sm font-medium">{step}</span>
-                      {i < path.steps.length - 1 && <ChevronRight className="h-3 w-3 text-muted-foreground" />}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Level Filter */}
         <section className="mb-8">
           <div className="flex items-center gap-2 flex-wrap">
@@ -246,53 +226,67 @@ export default function LatinGrammarPage() {
           <Card className="lg:col-span-8 card-modern border-border/50">
             <CardContent className="p-6 sm:p-8">
               <div className="flex items-center gap-2 mb-6 text-primary">
-                <Route className="h-4 w-4" />
+                <BookOpen className="h-4 w-4" />
                 <p className="text-xs uppercase tracking-[0.2em] font-semibold">Themenbereiche</p>
               </div>
 
               <AnimatePresence mode="popLayout">
                 <div className="grid md:grid-cols-2 gap-5">
-                  {filteredTopics.map((topic, index) => (
-                    <motion.button
-                      key={topic.id}
-                      layout
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ delay: index * 0.04 }}
-                      onClick={() => handleNavigate(topic.id)}
-                      className="text-left rounded-2xl border border-border/50 bg-card p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors relative"
-                    >
-                      {visited.has(topic.id) && (
-                        <span className="absolute top-3 right-3 text-green-500" title="Besucht">
-                          <CheckCircle2 className="h-4 w-4" />
-                        </span>
-                      )}
-                      <div className="flex items-start justify-between gap-3 mb-4">
-                        <div className={`p-2.5 rounded-xl ${topic.color}`}>
-                          <topic.icon className="w-5 h-5" />
-                        </div>
-                        {!visited.has(topic.id) && <ChevronRight className="w-4 h-4 text-muted-foreground mt-0.5" />}
-                      </div>
-                      <h3 className="font-display text-xl font-bold mb-2">{topic.title}</h3>
-                      <p className="text-sm text-muted-foreground/80 leading-relaxed mb-3">{topic.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        <span className={`text-[10px] uppercase tracking-[0.18em] font-semibold px-2.5 py-1 rounded-full ${LEVEL_COLORS[topic.level]}`}>
-                          {topic.level}
-                        </span>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {topic.topics.slice(0, 3).map((subTopic) => (
-                          <span key={subTopic} className="text-xs px-2 py-1 rounded-full border border-border/60 text-muted-foreground">
-                            {subTopic}
+                  {filteredTopics.map((topic, index) => {
+                    const relatedTopics = topic.relatedTo.map(id => grammarTopics.find(t => t.id === id)).filter(Boolean) as typeof grammarTopics;
+                    return (
+                      <motion.button
+                        key={topic.id}
+                        layout
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ delay: index * 0.04 }}
+                        onClick={() => handleNavigate(topic.id)}
+                        className="text-left rounded-2xl border border-border/50 bg-card p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors relative"
+                      >
+                        {visited.has(topic.id) && (
+                          <span className="absolute top-3 right-3 text-green-500" title="Besucht">
+                            <CheckCircle2 className="h-4 w-4" />
                           </span>
-                        ))}
-                      </div>
-                      <p className="mt-3 text-xs font-semibold text-primary/80 flex items-center gap-1">
-                        Zum Modul <ChevronRight className="h-3 w-3" />
-                      </p>
-                    </motion.button>
-                  ))}
+                        )}
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className={`p-2.5 rounded-xl ${topic.color}`}>
+                            <topic.icon className="w-5 h-5" />
+                          </div>
+                          {!visited.has(topic.id) && <ChevronRight className="w-4 h-4 text-muted-foreground mt-0.5" />}
+                        </div>
+                        <h3 className="font-display text-xl font-bold mb-1.5">{topic.title}</h3>
+                        <p className="text-sm text-muted-foreground/80 leading-relaxed mb-3">{topic.description}</p>
+                        <div className="flex flex-wrap gap-1.5 mb-3">
+                          <span className={`text-[10px] uppercase tracking-[0.18em] font-semibold px-2.5 py-1 rounded-full ${LEVEL_COLORS[topic.level]}`}>
+                            {topic.level}
+                          </span>
+                          {topic.topics.slice(0, 3).map((subTopic) => (
+                            <span key={subTopic} className="text-xs px-2 py-1 rounded-full border border-border/60 text-muted-foreground">
+                              {subTopic}
+                            </span>
+                          ))}
+                        </div>
+                        {relatedTopics.length > 0 && (
+                          <div className="pt-2.5 border-t border-border/30">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-1.5">Auch relevant:</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {relatedTopics.map(rel => (
+                                <span key={rel.id} className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-primary/8 text-primary/80 border border-primary/20">
+                                  <ArrowRight className="h-2.5 w-2.5" />
+                                  {rel.title.split(' ')[0]}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <p className="mt-2.5 text-xs font-semibold text-primary/80 flex items-center gap-1">
+                          Zum Modul <ChevronRight className="h-3 w-3" />
+                        </p>
+                      </motion.button>
+                    );
+                  })}
                 </div>
               </AnimatePresence>
             </CardContent>

@@ -330,6 +330,14 @@ export const de = {
     catilina_timeline_3_event: 'Ciceros Rede "In Catilinam" & Flucht aus Rom',
     catilina_timeline_4_year: '62 v. Chr.',
     catilina_timeline_4_event: 'Tod in der Schlacht bei Pistoria',
+    // Sallust
+    sallust_name: 'Gaius Sallustius Crispus',
+    sallust_latinName: 'C. Sallustius Crispus',
+    sallust_title: 'Geschichtsschreiber & Politiker',
+    sallust_years: '86–35 v. Chr.',
+    sallust_description: 'Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa.',
+    sallust_birthplace: 'Amiternum',
+    sallust_achievements: 'Meister der lateinischen Historiographie',
     // Catilina Biography Page
     catilina: {
         snapshots: {

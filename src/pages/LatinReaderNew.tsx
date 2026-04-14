@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -75,23 +75,45 @@ function saveNote(workSlug: string, chapterKey: string, text: string) {
   localStorage.setItem(`note-${workSlug}-${chapterKey}`, text);
 }
 
-function renderWithVocab(sentence: string, vocabMode: boolean): React.ReactNode {
+function renderWithVocab(
+  sentence: string,
+  vocabMode: boolean,
+  activeVocabWord: { word: string; index: number } | null,
+  setActiveVocabWord: React.Dispatch<React.SetStateAction<{ word: string; index: number } | null>>,
+  sentenceIndex: number,
+): React.ReactNode {
   if (!vocabMode) return sentence;
   const pattern = new RegExp(VOCAB_PATTERN.source, VOCAB_PATTERN.flags);
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
+  let wordIdx = 0;
   while ((match = pattern.exec(sentence)) !== null) {
     if (match.index > lastIndex) parts.push(sentence.slice(lastIndex, match.index));
     const word = match[0];
     const meaning = VOCAB_MAP[word.toLowerCase()];
+    const key = `${sentenceIndex}-${match.index}`;
+    const isActive = activeVocabWord?.word === key;
     parts.push(
-      <span key={match.index} className="relative group cursor-help underline decoration-dotted decoration-primary/60 text-primary/90" title={meaning}>
+      <span
+        key={key}
+        className={`relative cursor-pointer underline decoration-dotted decoration-primary/60 ${isActive ? 'text-primary' : 'text-primary/80'}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          setActiveVocabWord(prev => prev?.word === key ? null : { word: key, index: match!.index });
+        }}
+        title={meaning}
+      >
         {word}
-        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:flex whitespace-nowrap rounded-lg bg-popover border border-border px-2.5 py-1 text-xs text-popover-foreground shadow-md z-50">{meaning}</span>
+        {isActive && (
+          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 whitespace-nowrap rounded-lg bg-popover border border-border px-3 py-1.5 text-xs text-popover-foreground shadow-lg pointer-events-none">
+            {meaning}
+          </span>
+        )}
       </span>,
     );
     lastIndex = match.index + match[0].length;
+    wordIdx++;
   }
   if (lastIndex < sentence.length) parts.push(sentence.slice(lastIndex));
   return parts;
@@ -110,6 +132,7 @@ export default function LatinReaderNew() {
   const [noteText, setNoteText] = useState('');
   const [copiedSentence, setCopiedSentence] = useState<string | null>(null);
   const [showNotes, setShowNotes] = useState(false);
+  const [activeVocabWord, setActiveVocabWord] = useState<{ word: string; index: number } | null>(null);
   const noteDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const availableAuthors = useMemo(
@@ -181,6 +204,13 @@ export default function LatinReaderNew() {
     if (sections.length > 0) setSelectedSectionNumber(sections[0].number);
     setSelectedSentence(null);
   }, [selectedBookKey, sections]);
+
+  useEffect(() => {
+    if (!activeVocabWord) return;
+    const close = () => setActiveVocabWord(null);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, [activeVocabWord]);
 
   const toggleMarkRead = useCallback(() => {
     if (!workSlug || !chapterKey) return;
@@ -465,7 +495,7 @@ export default function LatinReaderNew() {
                               className={`relative group inline cursor-pointer rounded-xl px-2 -mx-2 transition-colors ${selectedSentence === sentence ? 'bg-primary/15' : 'hover:bg-muted/50'}`}
                               onClick={() => setSelectedSentence(prev => prev === sentence ? null : sentence)}
                             >
-                              {renderWithVocab(sentence, vocabMode)}
+                              {renderWithVocab(sentence, vocabMode, activeVocabWord, setActiveVocabWord, i)}
                               {' '}
                               <button
                                 className="inline-flex opacity-0 group-hover:opacity-100 transition-opacity align-middle ml-1 p-0.5 rounded text-muted-foreground hover:text-primary"
@@ -480,7 +510,7 @@ export default function LatinReaderNew() {
                           ))}
                         </div>
                       ) : (
-                        <p>{renderWithVocab(selectedSection.latin, vocabMode)}</p>
+                        <p>{renderWithVocab(selectedSection.latin, vocabMode, activeVocabWord, setActiveVocabWord, 0)}</p>
                       )}
                     </article>
                   ) : (
@@ -499,11 +529,21 @@ export default function LatinReaderNew() {
                       transition={{ duration: 0.2 }}
                     >
                       <Card className="p-5 border-primary/20 bg-primary/5">
-                        <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-2">Übersetzung</p>
-                        <p className="text-sm text-foreground/90 leading-relaxed italic mb-2">{selectedSentence}</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {SENTENCE_TRANSLATIONS[selectedSentence] ?? 'Keine Übersetzung verfügbar.'}
-                        </p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">Satz analysieren</p>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div className="rounded-xl bg-background/60 border border-border/50 p-3">
+                            <p className="text-[10px] uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-1.5">Lateinisch</p>
+                            <p className="text-sm font-serif italic text-foreground/90 leading-relaxed">{selectedSentence}</p>
+                          </div>
+                          <div className="rounded-xl bg-background/60 border border-border/50 p-3">
+                            <p className="text-[10px] uppercase tracking-[0.15em] font-semibold text-muted-foreground mb-1.5">Deutsch</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {SENTENCE_TRANSLATIONS[selectedSentence] ?? (
+                                <span className="italic opacity-60">Keine Übersetzung verfügbar.</span>
+                              )}
+                            </p>
+                          </div>
+                        </div>
                       </Card>
                     </motion.div>
                   )}
