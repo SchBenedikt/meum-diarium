@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import { Sparkles, MessageCircle, BookOpen, Map, Library, ArrowRight, Users, Bookmark, ChevronRight, Globe, Clock, Award, Zap, Shield, Scroll, Cpu, Play, Star, TrendingUp, Heart, Brain, Calendar, User } from 'lucide-react';
+import { Sparkles, MessageCircle, BookOpen, Map, Library, ArrowRight, Users, Bookmark, ChevronRight, Clock, Award, Zap, Shield, Scroll, Cpu, Play, Star, TrendingUp, Heart, Brain, Calendar, User } from 'lucide-react';
 import { AuthorGrid } from './AuthorGrid';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -108,13 +108,6 @@ export default function LandingHeroNew() {
       description: t('landing.features.lexiconDesc') || '92+ Einträge zur römischen Antike',
       bgColor: 'bg-amber-100 dark:bg-amber-900/20',
       iconColor: 'text-amber-500'
-    },
-    {
-      icon: Globe,
-      title: t('landing.features.multilingual') || 'Mehrsprachig',
-      description: t('landing.features.multilingualDesc') || 'Deutsch, Englisch und Latein',
-      bgColor: 'bg-green-100 dark:bg-green-900/20',
-      iconColor: 'text-green-500'
     },
     {
       icon: Clock,

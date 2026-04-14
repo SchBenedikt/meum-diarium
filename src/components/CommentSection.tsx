@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { Loader2, Trash2, AlertCircle } from 'lucide-react';
+import { Loader2, Trash2, AlertCircle, MessageSquare, Send } from 'lucide-react';
 
 interface Comment {
   id: string;
@@ -149,104 +149,145 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
     });
   };
 
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
+  const getAvatarColor = (name: string) => {
+    const colors = [
+      'bg-blue-500', 'bg-violet-500', 'bg-rose-500',
+      'bg-amber-500', 'bg-emerald-500', 'bg-cyan-500',
+      'bg-indigo-500', 'bg-pink-500', 'bg-teal-500',
+    ];
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    return colors[Math.abs(hash) % colors.length];
+  };
+
   return (
-    <div className="space-y-8 mt-12 pt-12 border-t border-border/30">
-      <div>
-        <h3 className="font-display text-2xl font-bold text-foreground mb-2">Diskussion ({comments.length})</h3>
-        <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-          Teile deine Gedanken zu diesem Beitrag. Alle Kommentare werden moderiert.
-        </p>
+    <div className="space-y-10 mt-14 pt-14 border-t border-border/30">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-xl bg-primary/10 text-primary">
+          <MessageSquare className="h-5 w-5" />
+        </div>
+        <div>
+          <h3 className="font-display text-2xl font-bold text-foreground">Diskussion</h3>
+          <p className="text-sm text-muted-foreground">{comments.length} {comments.length === 1 ? 'Kommentar' : 'Kommentare'}</p>
+        </div>
+      </div>
 
-        {/* Comment Form */}
-        <Card className="mb-10 border-border/50 bg-background shadow-none">
-          <CardContent className="p-6 sm:p-8">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <div className="flex gap-2 text-sm text-destructive bg-destructive/10 p-3 rounded-lg">
-                  <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                  <span>{error}</span>
-                </div>
-              )}
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="author-name">Name</Label>
-                  <Input
-                    id="author-name"
-                    type="text"
-                    placeholder="Dein Name"
-                    value={authorName}
-                    onChange={(e) => setAuthorName(e.target.value)}
-                    disabled={isSubmitting}
-                    maxLength={100}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="author-email">E-Mail</Label>
-                  <Input
-                    id="author-email"
-                    type="email"
-                    placeholder="deine@email.com"
-                    value={authorEmail}
-                    onChange={(e) => setAuthorEmail(e.target.value)}
-                    disabled={isSubmitting}
-                  />
-                </div>
+      {/* Comment Form */}
+      <Card className="border-border/50 bg-card/50 backdrop-blur-sm shadow-none rounded-2xl overflow-hidden">
+        <CardContent className="p-6 sm:p-8">
+          <p className="text-sm font-semibold text-foreground mb-5">Kommentar schreiben</p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex gap-2 text-sm text-destructive bg-destructive/10 p-3 rounded-xl">
+                <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                <span>{error}</span>
               </div>
+            )}
 
+            <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="comment-content">Dein Kommentar</Label>
-                <Textarea
-                  id="comment-content"
-                  placeholder="Schreibe deinen Kommentar hier..."
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
+                <Label htmlFor="author-name" className="text-xs uppercase tracking-[0.12em] text-muted-foreground font-semibold">Name</Label>
+                <Input
+                  id="author-name"
+                  type="text"
+                  placeholder="Dein Name"
+                  value={authorName}
+                  onChange={(e) => setAuthorName(e.target.value)}
                   disabled={isSubmitting}
-                  rows={4}
-                  maxLength={5000}
-                  className="min-h-[150px] resize-y rounded-2xl border-border/70 bg-background px-4 py-3 text-[0.95rem] leading-relaxed placeholder:text-muted-foreground/80 focus-visible:border-primary/60 focus-visible:ring-primary/30"
+                  maxLength={100}
+                  className="rounded-xl border-border/60 bg-background focus-visible:border-primary/60"
                 />
-                <p className="text-xs text-muted-foreground">
-                  {content.length}/5000 Zeichen
-                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="author-email" className="text-xs uppercase tracking-[0.12em] text-muted-foreground font-semibold">E-Mail <span className="text-muted-foreground/60 normal-case tracking-normal">(nicht öffentlich)</span></Label>
+                <Input
+                  id="author-email"
+                  type="email"
+                  placeholder="deine@email.com"
+                  value={authorEmail}
+                  onChange={(e) => setAuthorEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  className="rounded-xl border-border/60 bg-background focus-visible:border-primary/60"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="comment-content" className="text-xs uppercase tracking-[0.12em] text-muted-foreground font-semibold">Kommentar</Label>
+              <Textarea
+                id="comment-content"
+                placeholder="Teile deine Gedanken zu diesem Beitrag..."
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                disabled={isSubmitting}
+                rows={4}
+                maxLength={5000}
+                className="min-h-[130px] resize-y rounded-xl border-border/60 bg-background px-4 py-3 text-[0.95rem] leading-relaxed placeholder:text-muted-foreground/60 focus-visible:border-primary/60"
+              />
+              <p className="text-xs text-muted-foreground/60 text-right">
+                {content.length}/5000
+              </p>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting || !authorName.trim() || !authorEmail.trim() || !content.trim()}
+              className="rounded-xl gap-2"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Wird veröffentlicht...
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4" />
+                  Kommentar veröffentlichen
+                </>
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      {/* Comments List */}
+      {isLoading ? (
+        <div className="flex justify-center py-12">
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        </div>
+      ) : comments.length === 0 ? (
+        <div className="text-center py-14 text-muted-foreground">
+          <MessageSquare className="h-10 w-10 mx-auto mb-3 text-muted-foreground/30" />
+          <p className="font-medium">Noch keine Kommentare</p>
+          <p className="text-sm mt-1 text-muted-foreground/70">Sei der Erste und starte die Diskussion!</p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {comments.map((comment) => (
+            <div key={comment.id} className="group flex gap-4">
+              {/* Avatar */}
+              <div className={`flex-shrink-0 w-10 h-10 rounded-full ${getAvatarColor(comment.authorName || 'A')} flex items-center justify-center text-white text-sm font-bold shadow-sm`}>
+                {getInitials(comment.authorName || 'A')}
               </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting || !authorName.trim() || !authorEmail.trim() || !content.trim()}
-                className="w-full"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Wird gespeichert...
-                  </>
-                ) : (
-                  'Kommentar veröffentlichen'
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Comments List */}
-        {isLoading ? (
-          <div className="flex justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-          </div>
-        ) : comments.length === 0 ? (
-          <div className="text-center py-8 text-muted-foreground">
-            <p>Noch keine Kommentare. Sei der Erste!</p>
-          </div>
-        ) : (
-          <div className="space-y-5">
-            {comments.map((comment) => (
-              <Card key={comment.id} className="border-border/40 bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-5 sm:p-7">
-                  <div className="flex justify-between items-start gap-4 mb-4">
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-base">{comment.authorName}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{formatDate(comment.createdAt)}</p>
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <div className="rounded-2xl rounded-tl-sm border border-border/40 bg-card/60 backdrop-blur-sm px-5 py-4 shadow-sm group-hover:border-border/70 transition-colors">
+                  <div className="flex justify-between items-start gap-3 mb-2">
+                    <div>
+                      <span className="font-semibold text-foreground text-sm">{comment.authorName}</span>
+                      <span className="mx-2 text-border">·</span>
+                      <span className="text-xs text-muted-foreground/70">{formatDate(comment.createdAt)}</span>
                     </div>
                     <Button
                       variant="ghost"
@@ -256,55 +297,60 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                         setDeleteInputEmail('');
                       }}
                       disabled={deletingId === comment.id}
-                      className="text-destructive hover:text-destructive-foreground hover:bg-destructive/10 flex-shrink-0"
+                      className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10 flex-shrink-0 rounded-lg"
+                      title="Kommentar löschen"
                     >
                       {deletingId === comment.id ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
                       ) : (
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-3.5 w-3.5" />
                       )}
                     </Button>
                   </div>
                   <p className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">{comment.content}</p>
-                  {deleteDialogId === comment.id && (
-                    <div className="mt-5 p-4 border border-destructive/30 rounded-lg bg-destructive/5 space-y-3">
-                      <p className="text-sm text-foreground font-semibold">Kommentar löschen</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">Gib deine E-Mail-Adresse ein, um den Kommentar zu löschen.</p>
-                      <Input
-                        type="email"
-                        placeholder="deine@email.com"
-                        value={deleteInputEmail}
-                        onChange={(e) => setDeleteInputEmail(e.target.value)}
+                </div>
+
+                {/* Delete confirmation */}
+                {deleteDialogId === comment.id && (
+                  <div className="mt-2 ml-2 p-4 border border-destructive/30 rounded-xl bg-destructive/5 space-y-3">
+                    <p className="text-sm font-semibold text-foreground">Kommentar löschen?</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">Gib die E-Mail-Adresse ein, mit der du kommentiert hast.</p>
+                    <Input
+                      type="email"
+                      placeholder="deine@email.com"
+                      value={deleteInputEmail}
+                      onChange={(e) => setDeleteInputEmail(e.target.value)}
+                      disabled={deletingId === comment.id}
+                      className="text-sm rounded-lg h-9"
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="destructive"
+                        className="rounded-lg h-8 text-xs"
+                        onClick={() => handleDelete(comment.id, deleteInputEmail)}
+                        disabled={deletingId === comment.id || !deleteInputEmail.trim()}
+                      >
+                        {deletingId === comment.id ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : null}
+                        Löschen
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="rounded-lg h-8 text-xs"
+                        onClick={() => { setDeleteDialogId(null); setDeleteInputEmail(''); }}
                         disabled={deletingId === comment.id}
-                        className="text-sm"
-                      />
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="destructive"
-                          onClick={() => handleDelete(comment.id, deleteInputEmail)}
-                          disabled={deletingId === comment.id || !deleteInputEmail.trim()}
-                        >
-                          {deletingId === comment.id ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : null}
-                          Löschen
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => { setDeleteDialogId(null); setDeleteInputEmail(''); }}
-                          disabled={deletingId === comment.id}
-                        >
-                          Abbrechen
-                        </Button>
-                      </div>
+                      >
+                        Abbrechen
+                      </Button>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
