@@ -274,28 +274,28 @@ export function AdminPostEditor() {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-3 border-b border-border bg-white dark:bg-[#191919]">
-        <div className="flex items-center gap-4">
+      <header className="flex items-center justify-between px-3 sm:px-6 py-3 border-b border-border bg-white dark:bg-[#191919]">
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0">
           <Button variant="ghost" size="icon" onClick={() => navigate('/admin')}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0 overflow-hidden">
             {isNewPost ? (
               <span className="text-sm text-muted-foreground">Neuer Beitrag</span>
             ) : (
               <>
-                <span className="text-sm text-muted-foreground capitalize">{post.author}</span>
-                <ChevronLeft className="w-3 h-3 text-muted-foreground" />
-                <span className="text-sm font-medium">{post.title || 'Unbenannt'}</span>
+                <span className="text-sm text-muted-foreground capitalize hidden sm:inline">{post.author}</span>
+                <ChevronLeft className="w-3 h-3 text-muted-foreground hidden sm:inline" />
+                <span className="text-sm font-medium truncate max-w-[120px] sm:max-w-none">{post.title || 'Unbenannt'}</span>
               </>
             )}
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3 shrink-0">
           {lastSaved && (
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Gespeichert {lastSaved.toLocaleTimeString()}</span>
             </div>
@@ -306,8 +306,8 @@ export function AdminPostEditor() {
             onClick={() => savePost(true)}
             disabled={saving}
           >
-            <Save className="w-4 h-4 mr-2" />
-            {saving ? 'Speichern...' : 'Speichern'}
+            <Save className="w-4 h-4 sm:mr-2" />
+            <span className="hidden sm:inline">{saving ? 'Speichern...' : 'Speichern'}</span>
           </Button>
         </div>
       </header>
@@ -316,7 +316,7 @@ export function AdminPostEditor() {
       <div className="flex-1 overflow-hidden w-full">
         <div className="flex flex-col border-r border-border overflow-hidden h-full w-full">
           <ScrollArea className="flex-1">
-            <div className="w-full p-6 space-y-6">
+            <div className="w-full p-3 sm:p-6 space-y-6">
               {/* Configuration Fields - Compact layout at top */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl">
                 {/* Author Selector - only for new posts */}
@@ -410,9 +410,9 @@ export function AdminPostEditor() {
                 </TabsList>
                 
                 <TabsContent value="diary" className="mt-4">
-                  <div className="flex gap-4 h-[600px]">
-                    {/* Left: Raw Markdown Editor */}
-                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden">
+                  <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
+                    {/* Editor */}
+                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden min-h-[300px] md:min-h-0">
                       <div className="px-3 py-2 bg-muted border-b text-xs font-medium text-muted-foreground">
                         Markdown
                       </div>
@@ -428,8 +428,8 @@ export function AdminPostEditor() {
                         spellCheck={false}
                       />
                     </div>
-                    {/* Right: Live Preview */}
-                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden bg-[#f7f6f3] dark:bg-[#1a1a1a]">
+                    {/* Live Preview */}
+                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden bg-[#f7f6f3] dark:bg-[#1a1a1a] min-h-[200px] md:min-h-0">
                       <div className="px-3 py-2 bg-white dark:bg-[#191919] border-b text-xs font-medium text-muted-foreground flex items-center gap-2">
                         <Eye className="w-3 h-3" />
                         Vorschau
@@ -445,9 +445,9 @@ export function AdminPostEditor() {
                 </TabsContent>
                 
                 <TabsContent value="scientific" className="mt-4">
-                  <div className="flex gap-4 h-[600px]">
-                    {/* Left: Raw Markdown Editor */}
-                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden">
+                  <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
+                    {/* Editor */}
+                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden min-h-[300px] md:min-h-0">
                       <div className="px-3 py-2 bg-muted border-b text-xs font-medium text-muted-foreground">
                         Markdown
                       </div>
@@ -463,8 +463,8 @@ export function AdminPostEditor() {
                         spellCheck={false}
                       />
                     </div>
-                    {/* Right: Live Preview */}
-                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden bg-[#f7f6f3] dark:bg-[#1a1a1a]">
+                    {/* Live Preview */}
+                    <div className="flex-1 flex flex-col border rounded-lg overflow-hidden bg-[#f7f6f3] dark:bg-[#1a1a1a] min-h-[200px] md:min-h-0">
                       <div className="px-3 py-2 bg-white dark:bg-[#191919] border-b text-xs font-medium text-muted-foreground flex items-center gap-2">
                         <Eye className="w-3 h-3" />
                         Vorschau
