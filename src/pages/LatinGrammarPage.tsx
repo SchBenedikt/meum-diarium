@@ -32,7 +32,6 @@ type GrammarTopic = {
   color: string;
   accent: string;
   subtopics: string[];
-  highlights: string[];
   relatedTo: string[];
 };
 
@@ -46,7 +45,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-blue-50 dark:bg-blue-900/20',
     accent: 'text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
     subtopics: ['Geschlechter', 'Nominativ', 'Genitiv', 'Dativ', 'Akkusativ', 'Ablativ', 'Deklination', 'Pluralbildung'],
-    highlights: ['1.–5. Deklination', 'Genus-Regeln', 'Ablativus absolutus'],
     relatedTo: ['adjektive', 'pronomen'],
   },
   {
@@ -58,7 +56,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-green-50 dark:bg-green-900/20',
     accent: 'text-green-700 dark:text-green-300 border-green-200 dark:border-green-800',
     subtopics: ['Konjugation', 'Präsens', 'Imperfekt', 'Perfekt', 'Plusquamperfekt', 'Futur', 'Konjunktiv', 'Aktiv/Passiv'],
-    highlights: ['4 Konjugationsklassen', 'Deponentia', 'Irreguläre Verben'],
     relatedTo: ['syntax', 'partizipien'],
   },
   {
@@ -70,7 +67,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-purple-50 dark:bg-purple-900/20',
     accent: 'text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800',
     subtopics: ['Deklination', 'Positiv', 'Komparativ', 'Superlativ', 'Elativ', 'Unregelmäßige Steigerung'],
-    highlights: ['A/O-Deklination', 'Konsonant.-Stamm', 'Komparativ-Konstruktionen'],
     relatedTo: ['substantive', 'adverbien'],
   },
   {
@@ -82,7 +78,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-amber-50 dark:bg-amber-900/20',
     accent: 'text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
     subtopics: ['Personalpronomen', 'Possessivpronomen', 'Demonstrativpronomen', 'Relativpronomen', 'Interrogativpronomen', 'Indefinitpronomen'],
-    highlights: ['is, ea, id', 'ille, ille, illud', 'qui, quae, quod'],
     relatedTo: ['substantive', 'syntax'],
   },
   {
@@ -94,7 +89,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-red-50 dark:bg-red-900/20',
     accent: 'text-red-700 dark:text-red-300 border-red-200 dark:border-red-800',
     subtopics: ['Lokaladverbien', 'Temporaladverbien', 'Modaladverbien', 'Kausaladverbien', 'Steigerung', 'Bildung aus Adjektiven'],
-    highlights: ['Bildung auf -e/-iter', 'Steigerungsformen', 'Interrogativadverbien'],
     relatedTo: ['adjektive', 'syntax'],
   },
   {
@@ -106,7 +100,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-indigo-50 dark:bg-indigo-900/20',
     accent: 'text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
     subtopics: ['AcI', 'NcI', 'ut-Sätze', 'cum-Konstruktionen', 'Finalsätze', 'Kausalsätze', 'Relativsätze', 'Konsequtivsätze'],
-    highlights: ['AcI nach dicere/putare', 'ut finale vs. consecutivum', 'Wortstellung'],
     relatedTo: ['verben', 'pronomen', 'partizipien'],
   },
   {
@@ -118,7 +111,6 @@ const grammarTopics: GrammarTopic[] = [
     color: 'bg-teal-50 dark:bg-teal-900/20',
     accent: 'text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800',
     subtopics: ['PPA', 'PPP', 'PFA', 'Gerundium', 'Gerundivum', 'Ablativus absolutus', 'Partizipialphrase'],
-    highlights: ['Zeitverhältnis', 'Kongruenz', 'Ablativus absolutus'],
     relatedTo: ['verben', 'syntax'],
   },
 ];
@@ -285,19 +277,6 @@ export default function LatinGrammarPage() {
                         +{topic.subtopics.length - 4}
                       </span>
                     )}
-                  </div>
-
-                  {/* Highlights */}
-                  <div className={`rounded-xl border px-3 py-2.5 mb-4 ${topic.color} border-current/20`}>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-1.5">Highlights</p>
-                    <div className="space-y-0.5">
-                      {topic.highlights.map((h) => (
-                        <div key={h} className="flex items-center gap-1.5">
-                          <span className={`text-[10px] ${topic.accent.split(' ')[0]}`}>•</span>
-                          <span className="text-xs text-muted-foreground/80">{h}</span>
-                        </div>
-                      ))}
-                    </div>
                   </div>
 
                   {/* Related topics */}
