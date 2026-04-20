@@ -287,7 +287,7 @@ export function AdminPostEditor() {
               <>
                 <span className="text-sm text-muted-foreground capitalize hidden sm:inline">{post.author}</span>
                 <ChevronLeft className="w-3 h-3 text-muted-foreground hidden sm:inline" />
-                <span className="text-sm font-medium truncate max-w-[120px] sm:max-w-none">{post.title || 'Unbenannt'}</span>
+                <span className="text-sm font-medium truncate max-w-24 sm:max-w-none">{post.title || 'Unbenannt'}</span>
               </>
             )}
           </div>

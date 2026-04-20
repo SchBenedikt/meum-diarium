@@ -95,7 +95,7 @@ export function AdminLayout() {
             <div className="flex items-center gap-1 sm:gap-2">
               <Link to="/admin/post/new">
                 <Button size="sm" className="rounded-full px-3 sm:px-4 text-xs sm:text-sm">
-                  <span className="hidden xs:inline">Neuer </span>Beitrag
+                  <span className="hidden sm:inline">Neuer </span>Beitrag
                 </Button>
               </Link>
               <Link to="/" target="_blank" rel="noreferrer">
