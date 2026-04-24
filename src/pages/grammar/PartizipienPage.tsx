@@ -11,6 +11,7 @@ import {
     Calendar
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
+import { ExplanationBlock, DetailsList, RuleCards } from './GrammarContent';
 
 const partizipienTopics = [
     {
@@ -187,9 +188,12 @@ export default function PartizienPage() {
                                             </h3>
                                             <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                         </div>
-                                        <p className="text-muted-foreground leading-relaxed">
-                                            {t.description}
-                                        </p>
+                                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t.description}</p>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {(t.topics ?? []).slice(0, 3).map(sub => (
+                                                <span key={sub} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/40">{sub}</span>
+                                            ))}
+                                        </div>
                                     </Card>
                                 </motion.div>
                             ))}
@@ -265,28 +269,17 @@ export default function PartizienPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                <div className="prose prose-neutral dark:prose-invert max-w-none">
-                                    <p className="text-lg leading-relaxed">
-                                        {currentTopic.content.explanation}
-                                    </p>
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-2">Überblick</p>
+                                    <ExplanationBlock text={currentTopic.content.explanation} />
                                 </div>
-                                
-                                <div className="space-y-6">
-                                    <h3 className="font-semibold text-xl">Detaillierte Erläuterungen:</h3>
-                                    <div className="prose prose-neutral dark:prose-invert max-w-none">
-                                        <p className="text-lg leading-relaxed">
-                                            {currentTopic.content.details}
-                                        </p>
-                                    </div>
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Im Detail</p>
+                                    <DetailsList text={currentTopic.content.details} />
                                 </div>
-
-                                <div className="space-y-6">
-                                    <h3 className="font-semibold text-xl">Wichtige Regeln:</h3>
-                                    <div className="prose prose-neutral dark:prose-invert max-w-none">
-                                        <p className="text-lg leading-relaxed">
-                                            {currentTopic.content.rules}
-                                        </p>
-                                    </div>
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Regeln & Merkmale</p>
+                                    <RuleCards text={currentTopic.content.rules} />
                                 </div>
                             </CardContent>
                         </Card>

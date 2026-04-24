@@ -42,17 +42,17 @@ export function AdminDashboard() {
   return (
     <div className="h-full flex flex-col bg-white dark:bg-[#191919]">
       {/* Header */}
-      <header className="px-6 py-4 border-b border-border">
+      <header className="px-4 sm:px-6 py-4 border-b border-border">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
+          <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
+          <p className="text-muted-foreground mt-1 text-sm">
             Verwalte deine Blog-Beiträge und Einstellungen
           </p>
         </div>
       </header>
 
       <ScrollArea className="flex-1">
-        <div className="p-6 space-y-6 w-full">
+        <div className="p-4 sm:p-6 space-y-6 w-full">
           {/* Stats Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Card>

@@ -1,0 +1,67 @@
+{
+  "id": "bellum-catilinae",
+  "title": "Bellum Catilinae",
+  "author": "sallust",
+  "type": "prose",
+  "defaultRef": "Cat. 1,1",
+  "books": [
+    {
+      "id": "catilina",
+      "title": "De Catilinae Coniuratione",
+      "chapters": [
+        {
+          "id": "cat-1",
+          "number": 1,
+          "latin": "Omnis homines, qui sese student praestare ceteris animalibus, summa ope niti decet, ne vitam silentio transeant veluti pecora, quae natura prona atque ventri oboedientia finxit. Sed nostra omnis vis in animo et corpore sita est; animi imperio, corporis servitio magis utimur; alterum nobis cum dis, alterum cum beluis commune est.",
+          "sentences": [
+            "Omnis homines, qui sese student praestare ceteris animalibus, summa ope niti decet, ne vitam silentio transeant veluti pecora, quae natura prona atque ventri oboedientia finxit.",
+            "Sed nostra omnis vis in animo et corpore sita est; animi imperio, corporis servitio magis utimur; alterum nobis cum dis, alterum cum beluis commune est."
+          ]
+        },
+        {
+          "id": "cat-5",
+          "number": 5,
+          "latin": "L. Catilina, nobili genere natus, fuit magna vi et animi et corporis, sed ingenio malo pravoque. Huic ab adulescentia bella intestina, caedes, rapinae, discordia civilis grata fuere ibique iuventutem suam exercuit. Corpus patiens inediae, algoris, vigiliae supra quam cuiquam credibile est. Animus audax, subdolus, varius, cuius rei lubet simulator ac dissimulator; alieni adpetens, sui profusus; ardens in cupiditatibus; satis eloquentiae, sapientiae parum.",
+          "sentences": [
+            "L. Catilina, nobili genere natus, fuit magna vi et animi et corporis, sed ingenio malo pravoque.",
+            "Huic ab adulescentia bella intestina, caedes, rapinae, discordia civilis grata fuere ibique iuventutem suam exercuit.",
+            "Corpus patiens inediae, algoris, vigiliae supra quam cuiquam credibile est.",
+            "Animus audax, subdolus, varius, cuius rei lubet simulator ac dissimulator; alieni adpetens, sui profusus; ardens in cupiditatibus; satis eloquentiae, sapientiae parum."
+          ]
+        },
+        {
+          "id": "cat-9",
+          "number": 9,
+          "latin": "Igitur domi militiaeque boni mores colebantur, concordia maxuma, minuma avaritia erat; ius bonumque apud eos non legibus magis quam natura valebat. Iurgia, discordias, simultates cum hostibus exercebant, cives cum civibus de virtute certabant. In suppliciis deorum magnifici, domi parci, in amicos fideles erant.",
+          "sentences": [
+            "Igitur domi militiaeque boni mores colebantur, concordia maxuma, minuma avaritia erat; ius bonumque apud eos non legibus magis quam natura valebat.",
+            "Iurgia, discordias, simultates cum hostibus exercebant, cives cum civibus de virtute certabant.",
+            "In suppliciis deorum magnifici, domi parci, in amicos fideles erant."
+          ]
+        },
+        {
+          "id": "cat-20",
+          "number": 20,
+          "latin": "Ni virtus fidesque vestra spectata mihi foret, nequiquam opportuna res cecidisset; spes magna, dominatio in manibus frustra fuissent; neque ego per ignaviam aut vana ingenia incerta pro certis captarem. Sed quia multis et magnis tempestatibus vos cognovi fortis fidosque mihi, eo animus ausus est maximum atque pulcerrimum facinus incipere.",
+          "sentences": [
+            "Ni virtus fidesque vestra spectata mihi foret, nequiquam opportuna res cecidisset; spes magna, dominatio in manibus frustra fuissent.",
+            "Neque ego per ignaviam aut vana ingenia incerta pro certis captarem.",
+            "Sed quia multis et magnis tempestatibus vos cognovi fortis fidosque mihi, eo animus ausus est maximum atque pulcerrimum facinus incipere."
+          ]
+        },
+        {
+          "id": "cat-54",
+          "number": 54,
+          "latin": "Igitur eis genus, aetas, eloquentia prope aequalia fuere; magnitudo animi par, item gloria, sed alia alii. Caesar beneficiis ac munificentia magnus habebatur, integritate vitae Cato. Ille mansuetudine et misericordia clarus factus, huic severitas dignitatem addiderat. Caesar dando, sublevando, ignoscendo, Cato nihil largiundo gloriam adeptus est. In altero miseris perfugium erat, in altero malis pernicies.",
+          "sentences": [
+            "Igitur eis genus, aetas, eloquentia prope aequalia fuere; magnitudo animi par, item gloria, sed alia alii.",
+            "Caesar beneficiis ac munificentia magnus habebatur, integritate vitae Cato.",
+            "Ille mansuetudine et misericordia clarus factus, huic severitas dignitatem addiderat.",
+            "Caesar dando, sublevando, ignoscendo, Cato nihil largiundo gloriam adeptus est.",
+            "In altero miseris perfugium erat, in altero malis pernicies."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -118,6 +118,8 @@
     /* Sage Green */
     --author-catilina: 15 70% 40%;
     /* Dark Orange/Rust */
+    --author-sallust: 270 45% 38%;
+    /* Deep Violet/Purple */
   }
 
   .dark {
@@ -160,6 +162,7 @@
     --author-augustus: 45 60% 55%;
     --author-seneca: 165 35% 50%;
     --author-catilina: 15 65% 60%;
+    --author-sallust: 270 50% 62%;
   }
 
   /* Author Theme Overrides */
@@ -261,6 +264,26 @@
     --surface-container-low: 15 10% 13%;
     --surface-container: 15 10% 13.5%;
     --card: 15 8% 14%;
+  }
+
+  .theme-sallust {
+    --primary: var(--author-sallust);
+    --accent: var(--author-sallust);
+    --ring: var(--author-sallust);
+    --background: 270 8% 97.5%;
+    --surface-container-low: 270 5% 98.5%;
+    --surface-container: 270 5% 99%;
+    --card: 270 3% 99.5%;
+  }
+
+  .dark.theme-sallust {
+    --primary: var(--author-sallust);
+    --accent: var(--author-sallust);
+    --ring: var(--author-sallust);
+    --background: 270 12% 11%;
+    --surface-container-low: 270 8% 13%;
+    --surface-container: 270 8% 13.5%;
+    --card: 270 6% 14%;
   }
 
   * {
@@ -1708,6 +1731,18 @@
 
 .border-author-seneca {
   border-color: hsl(var(--author-seneca));
+}
+
+.text-author-sallust {
+  color: hsl(var(--author-sallust));
+}
+
+.bg-author-sallust {
+  background-color: hsl(var(--author-sallust));
+}
+
+.border-author-sallust {
+  border-color: hsl(var(--author-sallust));
 }
 
 

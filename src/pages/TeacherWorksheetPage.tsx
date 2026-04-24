@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
-import { AlertTriangle, ArrowLeft, FileDown, Loader2, Sparkles } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, FileDown, Loader2, Pencil, Sparkles } from 'lucide-react';
 
 type TaskType =
   | 'readingComprehension'
@@ -128,6 +128,8 @@ export default function TeacherWorksheetPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [worksheet, setWorksheet] = useState<WorksheetData | null>(null);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, boolean>>({});
 
   const activeTaskTypes = useMemo(
     () => (Object.keys(taskConfig) as TaskType[]).filter((key) => taskConfig[key].enabled),
@@ -248,6 +250,10 @@ export default function TeacherWorksheetPage() {
           intro: includeIntro ? String(rawWorksheet.intro || '') : undefined,
           tasks: normalizedTasks,
         });
+
+        // Reset answers when new worksheet is generated
+        setAnswers({});
+        setSubmittedAnswers({});
 
         // Success - break out of retry loop
         setIsGenerating(false);
@@ -529,7 +535,10 @@ export default function TeacherWorksheetPage() {
               {worksheet ? (
                 <div className="space-y-6">
                   <div className="rounded-2xl border-2 border-primary bg-gradient-to-br from-primary/10 to-primary/5 p-6">
-                    <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">Arbeitsblatt-Vorschau</p>
+                    <div className="flex items-center gap-2 mb-3">
+                      <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Arbeitsblatt</p>
+                      <span className="text-xs text-muted-foreground/60">– interaktiv ausfüllbar</span>
+                    </div>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary tracking-tight mb-2">{worksheet.title}</h2>
                     <p className="text-sm text-muted-foreground mb-1">{worksheet.subtitle}</p>
                     <p className="text-xs text-muted-foreground/70">Thema: {worksheet.topic}</p>
@@ -542,28 +551,67 @@ export default function TeacherWorksheetPage() {
                     </div>
                   )}
 
-                  <div className="space-y-4">
+                  <div className="space-y-5">
                     {worksheet.tasks.map((task, index) => (
-                      <div key={`${task.title}-${index}`} className="rounded-xl border border-primary/20 p-5 bg-gradient-to-r from-primary/5 to-transparent">
+                      <div key={`${task.title}-${index}`} className={`rounded-xl border p-5 transition-colors ${submittedAnswers[index] ? 'border-green-300 dark:border-green-700 bg-green-50/40 dark:bg-green-900/10' : 'border-primary/20 bg-gradient-to-r from-primary/5 to-transparent'}`}>
                         <div className="flex flex-wrap items-center gap-2 mb-3">
                           <Badge className="bg-primary text-white">Aufgabe {index + 1}</Badge>
                           <Badge variant="outline" className={TASK_LABELS[task.type].accent}>
                             {TASK_LABELS[task.type].short}
                           </Badge>
                           <Badge variant="outline">{difficultyLabel(task.difficulty)}</Badge>
+                          {submittedAnswers[index] && (
+                            <Badge variant="outline" className="border-green-400 text-green-600 dark:text-green-400 gap-1">
+                              <CheckCircle2 className="h-3 w-3" /> Gespeichert
+                            </Badge>
+                          )}
                         </div>
                         <h3 className="font-semibold text-lg text-foreground mb-2">{task.title}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{task.instruction}</p>
                         {task.material && (
-                          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3 mb-3">
+                          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3 mb-4">
                             <p className="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-1">Material</p>
                             <p className="text-sm leading-relaxed text-foreground">{task.material}</p>
                           </div>
                         )}
-                        <div className="space-y-2 mt-4">
-                          <div className="h-4 border-b border-dashed border-primary/40" />
-                          <div className="h-4 border-b border-dashed border-primary/40" />
-                          <div className="h-4 border-b border-dashed border-primary/40" />
+
+                        {/* Interactive answer field */}
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                            <Pencil className="h-3 w-3" />
+                            Deine Antwort
+                          </div>
+                          <Textarea
+                            placeholder="Schreibe deine Antwort hier..."
+                            value={answers[index] ?? ''}
+                            onChange={(e) => {
+                              setAnswers(prev => ({ ...prev, [index]: e.target.value }));
+                              if (submittedAnswers[index]) {
+                                setSubmittedAnswers(prev => ({ ...prev, [index]: false }));
+                              }
+                            }}
+                            rows={4}
+                            className="min-h-[100px] resize-y rounded-xl border-border/60 bg-background text-sm leading-relaxed placeholder:text-muted-foreground/50 focus-visible:border-primary/60"
+                          />
+                          <div className="flex justify-end">
+                            <Button
+                              size="sm"
+                              variant={submittedAnswers[index] ? 'outline' : 'default'}
+                              className="rounded-lg h-8 text-xs gap-1.5"
+                              onClick={() => {
+                                if ((answers[index] ?? '').trim()) {
+                                  setSubmittedAnswers(prev => ({ ...prev, [index]: true }));
+                                }
+                              }}
+                              disabled={!(answers[index] ?? '').trim()}
+                            >
+                              {submittedAnswers[index] ? (
+                                <><CheckCircle2 className="h-3 w-3" /> Gespeichert</>
+                              ) : (
+                                <>Antwort speichern</>
+                              )}
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -574,7 +622,7 @@ export default function TeacherWorksheetPage() {
                   <div>
                     <p className="font-semibold text-foreground mb-2">Noch kein Arbeitsblatt erstellt</p>
                     <p className="text-sm text-muted-foreground max-w-md">
-                      Wähle links Thema und Aufgabenkonfiguration und erstelle danach ein professionelles, einheitliches Arbeitsblatt mit PDF-Export.
+                      Wähle links Thema und Aufgabenkonfiguration und erstelle danach ein Arbeitsblatt, das du direkt online ausfüllen oder als PDF exportieren kannst.
                     </p>
                   </div>
                 </div>
