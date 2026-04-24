@@ -258,7 +258,7 @@ export default function LatinReaderNew() {
         ta.style.opacity = '0';
         document.body.appendChild(ta);
         ta.select();
-        try { document.execCommand('copy'); doCopy(sentence); } catch { /* silent */ }
+        try { if (document.execCommand('copy')) doCopy(sentence); } catch { /* silent */ }
         document.body.removeChild(ta);
       });
     } else {
@@ -269,7 +269,7 @@ export default function LatinReaderNew() {
       ta.style.opacity = '0';
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand('copy'); doCopy(sentence); } catch { /* silent */ }
+      try { if (document.execCommand('copy')) doCopy(sentence); } catch { /* silent */ }
       document.body.removeChild(ta);
     }
   }, []);
