@@ -234,11 +234,44 @@ export default function LatinReaderNew() {
     });
   }, [workSlug, chapterKey]);
 
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current !== null) clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
+
   const copySentence = useCallback((sentence: string) => {
-    navigator.clipboard.writeText(sentence).then(() => {
-      setCopiedSentence(sentence);
-      setTimeout(() => setCopiedSentence(null), 2000);
-    });
+    const doCopy = (text: string) => {
+      setCopiedSentence(text);
+      if (copyTimeoutRef.current !== null) clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = setTimeout(() => setCopiedSentence(null), 2000);
+    };
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(sentence).then(() => doCopy(sentence)).catch(() => {
+        // fallback: execCommand
+        const ta = document.createElement('textarea');
+        ta.value = sentence;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); doCopy(sentence); } catch { /* silent */ }
+        document.body.removeChild(ta);
+      });
+    } else {
+      // Non-secure context fallback
+      const ta = document.createElement('textarea');
+      ta.value = sentence;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); doCopy(sentence); } catch { /* silent */ }
+      document.body.removeChild(ta);
+    }
   }, []);
 
   // Step 1: Author Selection

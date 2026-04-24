@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { AdminSidebar } from './AdminSidebar';
 import { PanelLeftClose, PanelLeftOpen, ExternalLink, Menu } from 'lucide-react';
@@ -9,12 +9,20 @@ export function AdminLayout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   // On mobile the sidebar is hidden by default and opens as an overlay
   const [mobileOpen, setMobileOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   // Close mobile sidebar whenever the route changes
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
+
+  // Set focus on the drawer when it opens
+  useEffect(() => {
+    if (mobileOpen && drawerRef.current) {
+      drawerRef.current.focus();
+    }
+  }, [mobileOpen]);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -43,8 +51,13 @@ export function AdminLayout() {
       {/* Mobile sidebar overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-50 md:hidden"
+          ref={drawerRef}
+          tabIndex={-1}
+          className="fixed inset-0 z-50 md:hidden outline-none"
+          role="dialog"
           aria-modal="true"
+          aria-label="Navigation"
+          onKeyDown={(e) => { if (e.key === 'Escape') setMobileOpen(false); }}
         >
           {/* Backdrop */}
           <div

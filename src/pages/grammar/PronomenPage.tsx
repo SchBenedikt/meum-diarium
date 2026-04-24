@@ -170,7 +170,7 @@ export default function PronomenPage() {
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t.description}</p>
                                         <div className="flex flex-wrap gap-1.5">
-                                            {t.topics?.slice(0, 3).map(sub => (
+                                            {(t.topics ?? []).slice(0, 3).map(sub => (
                                                 <span key={sub} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/40">{sub}</span>
                                             ))}
                                         </div>

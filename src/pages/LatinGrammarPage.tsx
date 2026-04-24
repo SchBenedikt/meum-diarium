@@ -99,7 +99,7 @@ const grammarTopics: GrammarTopic[] = [
     icon: List,
     color: 'bg-indigo-50 dark:bg-indigo-900/20',
     accent: 'text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
-    subtopics: ['AcI', 'NcI', 'ut-Sätze', 'cum-Konstruktionen', 'Finalsätze', 'Kausalsätze', 'Relativsätze', 'Konsequtivsätze'],
+    subtopics: ['AcI', 'NcI', 'ut-Sätze', 'cum-Konstruktionen', 'Finalsätze', 'Kausalsätze', 'Relativsätze', 'Konsekutivsätze'],
     relatedTo: ['verben', 'pronomen', 'partizipien'],
   },
   {
@@ -191,7 +191,7 @@ export default function LatinGrammarPage() {
             </h1>
             <p className="text-muted-foreground/70 max-w-2xl font-light leading-relaxed text-lg">
               Alle Grammatikthemen mit klaren Erklärungen, Tabellen, Regeln und Beispielen –
-              für eine tiefes Verständnis der lateinischen Sprache.
+              für ein tiefes Verständnis der lateinischen Sprache.
             </p>
           </motion.div>
 
