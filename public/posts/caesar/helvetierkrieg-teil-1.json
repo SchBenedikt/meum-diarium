@@ -1,0 +1,30 @@
+{
+  "id": "caesar-helvetierkrieg-teil-1",
+  "slug": "helvetierkrieg-teil-1",
+  "title": "Helvetierkrieg – Teil 1",
+  "excerpt": "Die Helvetier – eine grauenvolle Gruppe – wollen durch mein Gebiet ziehen. Ich muss handeln und unsere Mitbürger schützen!",
+  "date": "2024-02-05",
+  "historicalDate": "58 v. Chr.",
+  "historicalYear": -58,
+  "author": "caesar",
+  "tags": ["Barbaren", "Gallien", "Gegner", "Helvetier"],
+  "readingTime": 4,
+  "content": {
+    "diary": "Ihr habt doch bestimmt schon mal von den Barbaren🐺 und Galliern 🦍 gehört. Öffentlich darf ich das nicht sagen, dann werde ich ja sofort wieder angezeigt oder noch schlimmer: bei der Diskriminierungsmeldestelle gemeldet, aber hier traue ich mich einfach. Ich lass mich nicht unterkriegen! Die Gallier und Barbaren sind echt – wie der Name schon sagt – barbarisch. Solche ungehobelten Kerle habt ihr noch nie gesehen. Ich finde, dass sind sogar mehr Tiere als Menschen. Die haben noch nie ein vernünftiges Wort gesprochen oder eine Straße gesehen, sondern leben in Wäldern 🏡und bekriegen sich als Freizeitbeschäftigung. Die sind so abseits von unserer Provinz, dass teils gar keine Händler zu diesen vordringen.\n\nEine Gruppe unter ihnen ist besonders schlimm: Die Helvetier. Gegen die sind die oben geschilderten Stämme reine Kaninchen. Ich wage es nicht, diese genauer zu beschreiben, aber ein Wort trifft es ganz gut: „Grauenvoll\".\n\nDas wäre an sich nicht so schlimm, aber jetzt hat der Anführer dieser unzivilisierten Gruppe seine Schergen zu mir geschickt und diese verlangen – unter Gewaltandrohung, durch mein Gebiet zu ziehen, um Krieg zu führen.\n\nDa sie behauptet haben, sie hätten keinen anderen Weg – was nicht stimmt, ist die Sachlage ganz klar: Diese unehrlichen Feinde unserer Republik wollen meine Gebiete angreifen.\n\nIch weiß noch nicht, was ich machen soll, aber sicher ist: Ich muss handeln und unsere Mitbürger schützen.\n\nMir ist Volksnähe sehr wichtig, deswegen schreibt gerne mal in die Kommentare, wie ich vorgehen soll.\n\nIch werde nicht zulassen, dass diese „Tiere\" unsere zivilisierte Gesellschaft unterwandern!\n\nEs ist besser, ein für allemal zu sterben, als in dauernder Erwartung des Todes zu leben.\n\nDamit Ihr diese Erfahrung nicht machen müsst, werde ich euch davor beschützen.\n\n🥂Auf mich und meine Erfolge!",
+    "scientific": "Der Helvetierfeldzug des Jahres 58 v. Chr. bildete den Auftakt zu Caesars Gallischen Kriegen. Die Helvetier, ein keltisches Volk aus dem heutigen Schweizer Mittelland, hatten unter Führung des Orgetorix begonnen, ihre Heimat zu verlassen, um in fruchtbarere Gebiete Westgalliens zu ziehen.\n\nCaesar nutzte den Aufbruch der Helvetier als Vorwand für ein militärisches Eingreifen. Als diese um Erlaubnis baten, durch die Provincia Romana (die römische Provinz im heutigen Südfrankreich) zu ziehen, lehnte Caesar ab und ließ die Rhône-Übergänge sperren. Die Helvetier wählten daraufhin einen nördlicheren Weg durch das Gebiet der Sequaner.\n\nAuf Bitten der Haeduer, die als Verbündete Roms galten und von den Helvetiern geplündert worden waren, griff Caesar militärisch ein. Er holte die Helvetier nahe dem Fluss Arar (heute Saône) ein und schlug sie in der anschließenden Schlacht entscheidend.\n\nHistorisch betrachtet war Caesars Eingreifen ein strategischer Schachzug zur Ausweitung römischen Einflusses in Gallien, der über die bloße Verteidigung der Verbündeten hinausging. Die antike Darstellung Caesars, er handele defensiv, ist von modernen Historikern kritisch hinterfragt worden."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Jahr", "value": "58 v. Chr." },
+      { "label": "Gegner", "value": "Helvetier (keltisches Volk der heutigen Schweiz)" },
+      { "label": "Schlachtort", "value": "Bei Bibracte (heute Mont Beuvray, Frankreich)" },
+      { "label": "Ergebnis", "value": "Römischer Sieg, Helvetier zur Rückkehr gezwungen" }
+    ],
+    "quote": {
+      "text": "Es ist besser, ein für allemal zu sterben, als in dauernder Erwartung des Todes zu leben.",
+      "source": "Überliefert, Caesar",
+      "author": "Gaius Iulius Caesar",
+      "date": "58 v. Chr."
+    }
+  }
+}
