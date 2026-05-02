@@ -1,0 +1,31 @@
+{
+  "id": "cicero-mein-bitteres-exil",
+  "slug": "mein-bitteres-exil",
+  "title": "Mein bitteres Exil",
+  "excerpt": "Ich, der Retter Roms, wurde verbannt! Clodius hat mich ins Exil getrieben. Ich schreibe verzweifelte Briefe aus Thessalonike.",
+  "date": "2024-04-15",
+  "historicalDate": "58 v. Chr.",
+  "historicalYear": -58,
+  "author": "cicero",
+  "tags": ["Exil", "Clodius", "Griechenland", "Verzweiflung"],
+  "readingTime": 3,
+  "content": {
+    "diary": "Ich bin am Boden zerstört. Ich, der Retter Roms, wurde verbannt! 😭 Wie konnte diese undankbare Stadt mich nur so verraten? Dieser hinterhältige Publius Clodius Pulcher, ein Mann ohne jegliche Moral, hat als Volkstribun ein Gesetz durchgedrückt, das jeden verbannt, der römische Bürger ohne Prozess hinrichten ließ. Natürlich war das direkt gegen mich gerichtet, weil ich damals die Anhänger Catilinas beseitigen ließ. Aber hallo, das war eine Notstandssituation! Ich habe den Staat gerettet!\n\nJetzt sitze ich hier in Thessalonike in Griechenland, fernab meiner geliebten Heimat, meiner Familie und vor allem fernab des Forums, wo meine Stimme hingehört. Ich weine ununterbrochen und schreibe unzählige Briefe an meinen besten Freund Atticus. Ohne ihn wüsste ich nicht, was ich tun sollte. Mein ganzes Vermögen wurde konfisziert und mein wunderschönes Haus auf dem Palatin wurde einfach niedergebrannt! 🔥\n\nEs ist eine absolute Ungerechtigkeit. Rom ist ohne mich wie ein Körper ohne Seele. Ich hoffe inständig, dass Pompeius und die anderen endlich zur Besinnung kommen und mich zurückholen. Bis dahin bleibt mir nur meine Philosophie und die Hoffnung, dass die Geschichte meine Taten richtig bewerten wird.",
+    "scientific": "Ciceros Exil (58–57 v. Chr.) war eine direkte Folge des politischen Machtkampfes in Rom. Der Volkstribun Publius Clodius Pulcher, ein persönlicher Feind Ciceros, brachte ein rückwirkendes Gesetz (lex de capite civis) durch, das jeden bestrafte, der römische Bürger ohne Volksgerichtsverfahren hingerichtet hatte.\n\nDieses Gesetz zielte unmittelbar auf Ciceros Handeln während der Catilinarischen Verschwörung (63 v. Chr.) ab, als er die Hauptverschwörer ohne ordentlichen Prozess hatte hinrichten lassen. Statt auf das drohende Strafverfahren zu warten, verließ Cicero freiwillig Rom und floh zunächst nach Thessalonike, später nach Dyrrachium.\n\nWährend des Exils verfasste Cicero zahlreiche Briefe an seinen engen Freund Titus Pomponius Atticus (die Epistulae ad Atticum) und an andere Vertraute. Diese Briefe sind als Sammlung erhalten und stellen eine wichtige historische und literarische Quelle dar. Sie zeigen einen Cicero in tiefer persönlicher und politischer Verzweiflung.\n\nSein Haus auf dem Palatin und seine Villen wurden konfisziert und zerstört. Clodius ließ an der Stelle von Ciceros Haus einen Tempel der Libertas errichten – eine bittere Ironie."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Jahr", "value": "58–57 v. Chr." },
+      { "label": "Exilort", "value": "Thessalonike (Griechenland), Dyrrachium" },
+      { "label": "Ursache", "value": "Lex de capite civis (Clodius)" },
+      { "label": "Brieffreund", "value": "Titus Pomponius Atticus" }
+    ],
+    "quote": {
+      "text": "Dum spiro, spero.",
+      "translation": "Solange ich atme, hoffe ich.",
+      "source": "Cicero",
+      "author": "Marcus Tullius Cicero",
+      "date": "58 v. Chr."
+    }
+  }
+}

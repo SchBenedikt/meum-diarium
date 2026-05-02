@@ -1,13 +1,10 @@
-import { getDb } from '../db/client';
-import { posts } from '../db/schema';
-import { desc, eq } from 'drizzle-orm';
 import type { PagesContext } from '../types';
 
 export const onRequest = async (context: PagesContext): Promise<Response> => {
     const corsHeaders = {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With, Accept, Origin',
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Max-Age': '86400',
@@ -21,293 +18,127 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
     const startTime = Date.now();
 
     try {
-        // Check if D1 database is available
-        if (!context.env?.DB) {
-            console.error('❌ [Posts API] D1 database not available');
-            return new Response(JSON.stringify({ 
-                error: 'Database not configured',
-                message: 'D1 database binding not found'
-            }), {
-                status: 503,
+        const url = new URL(context.request.url);
+        const method = context.request.method;
+
+        if (method !== 'GET') {
+            return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+                status: 405,
                 headers: corsHeaders
             });
         }
 
-        const db = getDb(context.env);
-        const url = new URL(context.request.url);
-        const method = context.request.method;
-
         console.log(`🔷 [Posts API] ${method} request: ${url.pathname}${url.search}`);
 
-        // Extract slug from URL path or query params
+        // Extract author and slug from URL path: /api/posts/{author}/{slug}
         const pathSegments = url.pathname.split('/').filter(Boolean);
-        const slugFromPath = pathSegments[pathSegments.length - 1] !== 'posts' ? pathSegments[pathSegments.length - 1] : null;
-        const slug = slugFromPath || url.searchParams.get('slug');
+        // pathSegments: ['api', 'posts'] or ['api', 'posts', author] or ['api', 'posts', author, slug]
+        const postsIndex = pathSegments.indexOf('posts');
+        const author = postsIndex >= 0 && pathSegments.length > postsIndex + 1 ? pathSegments[postsIndex + 1] : null;
+        const slug = postsIndex >= 0 && pathSegments.length > postsIndex + 2 ? pathSegments[postsIndex + 2] : (url.searchParams.get('slug') || null);
         const tag = url.searchParams.get('tag');
+        const authorParam = url.searchParams.get('author') || author;
 
-        // GET handler
-        if (method === 'GET') {
-            if (slug) {
-                const result = await db.query.posts.findFirst({
-                    where: eq(posts.slug, slug)
-                });
+        // GET /api/posts/{author}/{slug} – serve a single post file
+        if (author && slug) {
+            try {
+                const fileUrl = new URL(`/posts/${author}/${slug}.json`, url.origin);
+                const fileResponse = await context.env.ASSETS.fetch(new Request(fileUrl.toString()));
 
-                const queryTime = Date.now() - startTime;
-                
-                if (!result) {
-                    console.warn(`⚠️ [Posts API] Post not found: ${slug}`);
+                if (!fileResponse.ok) {
+                    console.warn(`⚠️ [Posts API] Post file not found: ${author}/${slug}`);
                     return new Response(JSON.stringify({ error: 'Not Found' }), {
                         status: 404,
                         headers: corsHeaders
                     });
                 }
 
-                // Normalize fields
-                const normalizedResult = normalizePostResult(result);
+                const post = await fileResponse.json() as any;
+                // Ensure author fields are set
+                post.author = post.author || author;
+                post.authorId = post.author;
 
-                console.log(`✅ [Posts API] GET found post "${normalizedResult.title}" (${queryTime}ms)`);
-                
-                return new Response(JSON.stringify(normalizedResult), {
+                const queryTime = Date.now() - startTime;
+                console.log(`✅ [Posts API] Served post "${post.title}" from file (${queryTime}ms)`);
+
+                return new Response(JSON.stringify(post), {
                     headers: {
                         ...corsHeaders,
                         'Cache-Control': 'public, max-age=3600',
-                        'X-Data-Source': 'cloudflare-d1'
+                        'X-Data-Source': 'static-files'
                     }
                 });
-            }
-
-            // Fetch all posts
-            const allPosts = await db.query.posts.findMany({
-                orderBy: [desc(posts.date)]
-            });
-
-            let filtered = allPosts.map(normalizePostResult);
-            
-            if (tag) {
-                filtered = filtered.filter((post: any) => {
-                    const tags = post.tags;
-                    return Array.isArray(tags) && tags.includes(tag);
+            } catch (err: any) {
+                console.error(`❌ [Posts API] Failed to load post ${author}/${slug}:`, err.message);
+                return new Response(JSON.stringify({ error: 'Not Found' }), {
+                    status: 404,
+                    headers: corsHeaders
                 });
             }
+        }
+
+        // GET /api/posts – serve all posts from index.json
+        try {
+            const indexUrl = new URL('/posts/index.json', url.origin);
+            const indexResponse = await context.env.ASSETS.fetch(new Request(indexUrl.toString()));
+
+            if (!indexResponse.ok) {
+                throw new Error(`Index file not available: ${indexResponse.status}`);
+            }
+
+            const index = await indexResponse.json() as { posts: any[] };
+            let allPosts: any[] = index.posts || [];
+
+            // Filter by author if provided
+            if (authorParam) {
+                allPosts = allPosts.filter((p: any) => p.author === authorParam);
+            }
+
+            // Filter by tag if provided
+            if (tag) {
+                allPosts = allPosts.filter((p: any) =>
+                    Array.isArray(p.tags) && p.tags.includes(tag)
+                );
+            }
+
+            // Sort by date descending
+            allPosts.sort((a: any, b: any) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return dateB - dateA;
+            });
+
+            // Ensure authorId is set on all posts
+            allPosts = allPosts.map((p: any) => ({ ...p, authorId: p.author }));
 
             const queryTime = Date.now() - startTime;
-            console.log(`✅ [Posts API] GET fetched ${filtered.length} posts (${queryTime}ms)`);
+            console.log(`✅ [Posts API] Served ${allPosts.length} posts from static files (${queryTime}ms)`);
 
-            return new Response(JSON.stringify(filtered), {
+            return new Response(JSON.stringify(allPosts), {
                 headers: {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
-                    'X-Data-Source': 'cloudflare-d1',
-                    'X-Post-Count': filtered.length.toString()
+                    'X-Data-Source': 'static-files',
+                    'X-Post-Count': allPosts.length.toString()
+                }
+            });
+        } catch (err: any) {
+            console.error(`❌ [Posts API] Failed to load post index:`, err.message);
+            return new Response(JSON.stringify([]), {
+                headers: {
+                    ...corsHeaders,
+                    'X-Data-Source': 'static-files',
+                    'X-Post-Count': '0'
                 }
             });
         }
-
-        // POST handler - Create new post
-        if (method === 'POST') {
-            try {
-                const body = await context.request.json();
-                
-                // Validate required fields
-                if (!body.slug || !body.title) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Missing required fields',
-                        required: ['slug', 'title']
-                    }), {
-                        status: 400,
-                        headers: corsHeaders
-                    });
-                }
-
-                // Check if post already exists
-                const existing = await db.query.posts.findFirst({
-                    where: eq(posts.slug, body.slug)
-                });
-
-                if (existing) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Post already exists',
-                        slug: body.slug
-                    }), {
-                        status: 409,
-                        headers: corsHeaders
-                    });
-                }
-
-                // Create new post
-                const newPost = {
-                    id: body.id || `post-${Date.now()}`,
-                    slug: body.slug,
-                    authorId: body.authorId || body.author,
-                    title: body.title,
-                    excerpt: body.excerpt || '',
-                    historicalDate: body.historicalDate || '',
-                    historicalYear: body.historicalYear || null,
-                    date: body.date || new Date().toISOString().split('T')[0],
-                    readingTime: body.readingTime || 5,
-                    tags: Array.isArray(body.tags) ? body.tags : [],
-                    coverImage: body.coverImage || '',
-                    content: body.content || { diary: '', scientific: '' },
-                    translations: body.translations || { en: {}, la: {} }
-                };
-
-                await db.insert(posts).values(newPost);
-                
-                const queryTime = Date.now() - startTime;
-                console.log(`✅ [Posts API] POST created post "${newPost.title}" (${queryTime}ms)`);
-
-                return new Response(JSON.stringify({ 
-                    success: true,
-                    message: 'Post created',
-                    post: normalizePostResult(newPost)
-                }), {
-                    status: 201,
-                    headers: corsHeaders
-                });
-            } catch (err: any) {
-                console.error('❌ [Posts API] POST failed:', err.message);
-                return new Response(JSON.stringify({ 
-                    error: 'Failed to create post',
-                    message: err.message
-                }), {
-                    status: 400,
-                    headers: corsHeaders
-                });
-            }
-        }
-
-        // PUT handler - Update post
-        if (method === 'PUT') {
-            try {
-                if (!slug) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Slug required for update'
-                    }), {
-                        status: 400,
-                        headers: corsHeaders
-                    });
-                }
-
-                const body = await context.request.json();
-
-                // Check if post exists
-                const existing = await db.query.posts.findFirst({
-                    where: eq(posts.slug, slug)
-                });
-
-                if (!existing) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Post not found',
-                        slug: slug
-                    }), {
-                        status: 404,
-                        headers: corsHeaders
-                    });
-                }
-
-                // Update post
-                const updatedData = {
-                    title: body.title ?? existing.title,
-                    excerpt: body.excerpt ?? existing.excerpt,
-                    historicalDate: body.historicalDate ?? existing.historicalDate,
-                    historicalYear: body.historicalYear ?? existing.historicalYear,
-                    readingTime: body.readingTime ?? existing.readingTime,
-                    tags: body.tags ?? existing.tags,
-                    coverImage: body.coverImage ?? existing.coverImage,
-                    content: body.content ?? existing.content,
-                    translations: body.translations ?? existing.translations
-                };
-
-                await db.update(posts)
-                    .set(updatedData)
-                    .where(eq(posts.slug, slug));
-
-                const queryTime = Date.now() - startTime;
-                console.log(`✅ [Posts API] PUT updated post "${slug}" (${queryTime}ms)`);
-
-                return new Response(JSON.stringify({ 
-                    success: true,
-                    message: 'Post updated',
-                    slug: slug
-                }), {
-                    headers: corsHeaders
-                });
-            } catch (err: any) {
-                console.error('❌ [Posts API] PUT failed:', err.message);
-                return new Response(JSON.stringify({ 
-                    error: 'Failed to update post',
-                    message: err.message
-                }), {
-                    status: 400,
-                    headers: corsHeaders
-                });
-            }
-        }
-
-        // DELETE handler
-        if (method === 'DELETE') {
-            try {
-                if (!slug) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Slug required for deletion'
-                    }), {
-                        status: 400,
-                        headers: corsHeaders
-                    });
-                }
-
-                // Check if post exists
-                const existing = await db.query.posts.findFirst({
-                    where: eq(posts.slug, slug)
-                });
-
-                if (!existing) {
-                    return new Response(JSON.stringify({ 
-                        error: 'Post not found',
-                        slug: slug
-                    }), {
-                        status: 404,
-                        headers: corsHeaders
-                    });
-                }
-
-                await db.delete(posts).where(eq(posts.slug, slug));
-
-                const queryTime = Date.now() - startTime;
-                console.log(`✅ [Posts API] DELETE removed post "${slug}" (${queryTime}ms)`);
-
-                return new Response(JSON.stringify({ 
-                    success: true,
-                    message: 'Post deleted',
-                    slug: slug
-                }), {
-                    headers: corsHeaders
-                });
-            } catch (err: any) {
-                console.error('❌ [Posts API] DELETE failed:', err.message);
-                return new Response(JSON.stringify({ 
-                    error: 'Failed to delete post',
-                    message: err.message
-                }), {
-                    status: 400,
-                    headers: corsHeaders
-                });
-            }
-        }
-
-        return new Response(JSON.stringify({ 
-            error: 'Method not allowed'
-        }), {
-            status: 405,
-            headers: corsHeaders
-        });
 
     } catch (err: any) {
         const queryTime = Date.now() - startTime;
         console.error(`❌ [Posts API] Error (${queryTime}ms):`, err.message);
-        
-        return new Response(JSON.stringify({ 
-            error: 'Server error', 
+
+        return new Response(JSON.stringify({
+            error: 'Server error',
             message: err.message
         }), {
             status: 500,
@@ -315,46 +146,3 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         });
     }
 };
-
-// Helper function to normalize post results
-function normalizePostResult(post: any) {
-    // Handle tags - ensure it's always an array
-    let normalizedTags = [];
-    if (post.tags) {
-        if (typeof post.tags === 'string') {
-            try {
-                const parsed = JSON.parse(post.tags);
-                normalizedTags = Array.isArray(parsed) ? parsed : [];
-            } catch {
-                // If JSON parsing fails, try to handle common string formats
-                if (post.tags.includes('[') && post.tags.includes(']')) {
-                    // It might be a stringified array with issues
-                    try {
-                        const cleanTags = post.tags
-                            .replace(/[\[\]"]/g, '')
-                            .replace(/,\s*/g, ',')
-                            .trim();
-                        normalizedTags = cleanTags ? cleanTags.split(',') : [];
-                    } catch {
-                        normalizedTags = [];
-                    }
-                } else if (post.tags.trim()) {
-                    // Split by commas if it's a comma-separated string
-                    normalizedTags = post.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean);
-                }
-            }
-        } else if (Array.isArray(post.tags)) {
-            normalizedTags = post.tags;
-        }
-    }
-    
-    return {
-        ...post,
-        author: post.authorId ?? post.author_id,
-        authorId: post.authorId ?? post.author_id,
-        author_id: post.authorId ?? post.author_id,
-        content: typeof post.content === 'string' ? JSON.parse(post.content) : post.content,
-        tags: normalizedTags,
-        translations: typeof post.translations === 'string' ? JSON.parse(post.translations) : post.translations,
-    };
-}
