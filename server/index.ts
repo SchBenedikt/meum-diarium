@@ -303,17 +303,29 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
     const { author, slug } = req.params;
     console.log(`📝 [Dev] GET /api/posts/${author}/${slug} - serving from public/posts/`);
 
+    // Sanitize path components to prevent path traversal
+    const safeAuthor = author.replace(/[^a-z0-9-]/gi, '');
+    const safeSlug = slug.replace(/[^a-z0-9-]/gi, '');
+    if (!safeAuthor || !safeSlug) {
+        return res.status(400).json({ error: 'Invalid parameters' });
+    }
+
     try {
-        const postPath = path.resolve(__dirname, '../public/posts', author, `${slug}.json`);
+        const postsBase = path.resolve(__dirname, '../public/posts');
+        const postPath = path.join(postsBase, safeAuthor, `${safeSlug}.json`);
+        // Guard against path traversal beyond the posts directory
+        if (!postPath.startsWith(postsBase + path.sep)) {
+            return res.status(400).json({ error: 'Invalid parameters' });
+        }
         const content = await fs.readFile(postPath, 'utf-8');
         const post = JSON.parse(content);
-        post.author = post.author || author;
+        post.author = post.author || safeAuthor;
         post.authorId = post.author;
         console.log(`✅ [Dev] Served post: ${post.title}`);
         res.json(post);
     } catch {
-        console.log(`⚠️ [Dev] Post not found: ${author}/${slug}`);
-        res.status(404).json({ error: 'Not found', message: `Post ${author}/${slug} not found` });
+        console.log(`⚠️ [Dev] Post not found: ${safeAuthor}/${safeSlug}`);
+        res.status(404).json({ error: 'Not found', message: `Post ${safeAuthor}/${safeSlug} not found` });
     }
 });
 
