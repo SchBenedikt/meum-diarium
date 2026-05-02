@@ -216,7 +216,7 @@ function PostContent({ post }: { post: BlogPost }) {
                   {post.coverImage && (
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
                       <ImageWithFallback
-                        src={post.coverImage.startsWith('/') ? post.coverImage : `/images/${post.coverImage}`}
+                        src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
                         alt={post.title}
                         className="w-full h-full object-cover"
                       />
