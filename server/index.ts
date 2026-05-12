@@ -17,6 +17,21 @@ app.enable('strict routing');
 // Known author IDs
 const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca', 'sallust', 'sokrates'];
 
+// Cache for lexicon entries (loaded once at startup)
+let cachedLexicon: any[] | null = null;
+async function getLexiconEntries(): Promise<any[]> {
+    if (cachedLexicon !== null) return cachedLexicon;
+    try {
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+        const content = await fs.readFile(lexiconPath, 'utf-8');
+        const data = JSON.parse(content);
+        cachedLexicon = Array.isArray(data) ? data : [];
+    } catch {
+        cachedLexicon = [];
+    }
+    return cachedLexicon;
+}
+
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
@@ -352,30 +367,17 @@ app.delete('/api/posts/:author/:slug', (req, res) => {
 });
 
 app.get('/api/lexicon', async (_req, res) => {
-    try {
-        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
-        const content = await fs.readFile(lexiconPath, 'utf-8');
-        const data = JSON.parse(content);
-        res.json(Array.isArray(data) ? data : []);
-    } catch {
-        res.json([]);
-    }
+    const entries = await getLexiconEntries();
+    res.json(entries);
 });
 
 app.get('/api/lexicon/:slug', async (req, res) => {
-    try {
-        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
-        const content = await fs.readFile(lexiconPath, 'utf-8');
-        const data = JSON.parse(content);
-        const entries: any[] = Array.isArray(data) ? data : [];
-        const entry = entries.find((e: any) => e.slug === req.params.slug);
-        if (!entry) {
-            res.status(404).json({ error: 'Not found' });
-        } else {
-            res.json(entry);
-        }
-    } catch {
+    const entries = await getLexiconEntries();
+    const entry = entries.find((e: any) => e.slug === req.params.slug);
+    if (!entry) {
         res.status(404).json({ error: 'Not found' });
+    } else {
+        res.json(entry);
     }
 });
 
