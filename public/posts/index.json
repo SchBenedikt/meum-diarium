@@ -203,6 +203,66 @@
       "historicalYear": -44,
       "tags": ["Antonius", "Philippicae", "Republik", "Senat", "Freiheit"],
       "readingTime": 4
+    },
+    {
+      "id": "sokrates-das-delphische-orakel",
+      "slug": "das-delphische-orakel",
+      "author": "sokrates",
+      "title": "Das Delphische Orakel",
+      "excerpt": "Das Orakel von Delphi hat mich zum weisesten aller Menschen erklärt. Ich weiß, dass ich nichts weiß – und genau das macht mich wohl am weisesten.",
+      "date": "2024-05-06",
+      "historicalDate": "ca. 430 v. Chr.",
+      "historicalYear": -430,
+      "tags": ["Apollon", "Delphi", "Orakel", "Weisheit", "Philosophie"],
+      "readingTime": 4
+    },
+    {
+      "id": "sokrates-die-kunst-der-maieutik",
+      "slug": "die-kunst-der-maieutik",
+      "author": "sokrates",
+      "title": "Die Kunst der Maieutik",
+      "excerpt": "Meine Mutter war Hebamme und half Frauen, Kinder zur Welt zu bringen. Ich helfe Menschen, Gedanken zur Welt zu bringen. Das nenne ich Maieutik – die Hebammenkunst des Geistes.",
+      "date": "2024-05-13",
+      "historicalDate": "ca. 420 v. Chr.",
+      "historicalYear": -420,
+      "tags": ["Maieutik", "Dialektik", "Philosophie", "Gesprächsmethode", "Hebammenkunst"],
+      "readingTime": 5
+    },
+    {
+      "id": "sokrates-die-aporie",
+      "slug": "die-aporie",
+      "author": "sokrates",
+      "title": "Die Aporie – Am Ende des Weges",
+      "excerpt": "Wir haben stundenlang gestritten, was Tapferkeit wirklich ist. Am Ende standen wir beide ratlos da. Ist das ein Misserfolg? Nein – es ist der Beginn echter Philosophie.",
+      "date": "2024-05-20",
+      "historicalDate": "ca. 415 v. Chr.",
+      "historicalYear": -415,
+      "tags": ["Aporie", "Dialektik", "Philosophie", "Ethik", "Gesprächsmethode"],
+      "readingTime": 4
+    },
+    {
+      "id": "sokrates-meine-verteidigung",
+      "slug": "meine-verteidigung",
+      "author": "sokrates",
+      "title": "Meine Verteidigung",
+      "excerpt": "Sie haben mich angeklagt: Gottlosigkeit und Verführung der Jugend. Ich verteidige mich selbst – nicht um mein Leben zu retten, sondern um der Wahrheit willen.",
+      "date": "2024-05-27",
+      "historicalDate": "399 v. Chr.",
+      "historicalYear": -399,
+      "tags": ["Apologie", "Prozess", "Athen", "Gerechtigkeit", "Tod", "Verteidigung"],
+      "readingTime": 5
+    },
+    {
+      "id": "sokrates-der-tod-des-sokrates",
+      "slug": "der-tod-des-sokrates",
+      "author": "sokrates",
+      "title": "Der Tod des Sokrates",
+      "excerpt": "Meine Freunde haben geweint, als ich den Schierlingsbecher nahm. Ich nicht. Der Tod ist kein Übel – er ist entweder ein tiefer Schlaf oder der Beginn eines besseren Lebens.",
+      "date": "2024-06-03",
+      "historicalDate": "399 v. Chr.",
+      "historicalYear": -399,
+      "tags": ["Tod", "Phaidon", "Seele", "Philosophie", "Unsterblichkeit", "Schierlingsbecher"],
+      "readingTime": 5
     }
   ]
 }

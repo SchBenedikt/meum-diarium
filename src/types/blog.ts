@@ -1,4 +1,4 @@
-export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca' | 'catilina';
+export type Author = 'caesar' | 'cicero' | 'augustus' | 'seneca' | 'catilina' | 'sokrates' | 'sallust';
 export type Perspective = 'diary' | 'scientific';
 export type Language = 'de';
 

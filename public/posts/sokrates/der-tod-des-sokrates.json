@@ -1,0 +1,55 @@
+{
+  "id": "sokrates-der-tod-des-sokrates",
+  "slug": "der-tod-des-sokrates",
+  "title": "Der Tod des Sokrates",
+  "excerpt": "Meine Freunde haben geweint, als ich den Schierlingsbecher nahm. Ich nicht. Der Tod ist kein Übel – er ist entweder ein tiefer Schlaf oder der Beginn eines besseren Lebens.",
+  "date": "2024-06-03",
+  "historicalDate": "399 v. Chr.",
+  "historicalYear": -399,
+  "author": "sokrates",
+  "tags": [
+    "Tod",
+    "Phaidon",
+    "Seele",
+    "Philosophie",
+    "Unsterblichkeit",
+    "Schierlingsbecher"
+  ],
+  "readingTime": 5,
+  "coverImage": "sokrates-hero.png",
+  "content": {
+    "diary": "Heute ist mein letzter Tag. Meine Freunde sind bei mir – Kriton, Phaidon, Simmias, Kebes und viele andere. Sie weinen. Ich nicht.\n\nKriton fragte mich heute Morgen: Willst du nicht fliehen? Der Wächter lässt sich bestechen, die Freunde in Thessalien würden mich aufnehmen. Ich habe abgelehnt. Nicht weil mir der Tod gleichgültig wäre, sondern weil ich dem Gesetz verpflichtet bin. Ich habe mein ganzes Leben in Athen unter diesen Gesetzen gelebt. Sie haben mich genährt und geformt. Jetzt, da sie ein Urteil über mich gefällt haben, das ich für ungerecht halte – wäre es da richtig, sie zu missachten? Nein.\n\nDen ganzen Tag habe ich mit meinen Freunden über die Seele gesprochen. Über die Frage, ob sie nach dem Tod fortbesteht. Ich glaube, sie tut es. Denn das Denken ist nicht vom Körper abhängig – im Gegenteil: der Körper hindert das Denken oft. Wenn also der Körper abfällt, ist die Seele vielleicht freier als je zuvor.\n\nAm Abend wurde der Becher gebracht. Ich bat den Diener, mir zu zeigen, wie es zu trinken sei. Er weinte. Ich nicht. Ich trank. Ich legte mich nieder. Die Kälte stieg langsam empor.\n\nMeine letzten Worte galten dem Asklepios: Kriton, wir schulden dem Asklepios einen Hahn. Bezahlt ihn und vergesst es nicht. Das Opfer an den Gott der Heilung – denn der Tod ist die Heilung von den Leiden des Lebens.\n\nIch bin nun frei.",
+    "scientific": "Der Tod des Sokrates (399 v. Chr.) ist durch Platons Dialog Phaidon literarisch überliefert – eine der bewegendsten Schilderungen in der gesamten antiken Literatur. Der Phaidon ist formal ein Bericht des Phaidon von Elis über Sokrates' letzten Lebenstag im Gespräch mit dem Pythagoreer Echekrates.\n\nDer Dialog enthält vier Argumente für die Unsterblichkeit der Seele:\n1. Gegensatzargument (Phaid. 70c–72e): Aus den Gegensätzen (Leben/Tod) entsteht stets der andere.\n2. Wiedererinnerungsargument (Anamnesis) (72e–77a): Da wir Ideen kennen, die wir nicht erlernt haben, muss die Seele vor der Geburt existiert haben.\n3. Gleichheitsargument (78b–80b): Die Seele ähnelt den ewigen Ideen, nicht den vergänglichen Körpern.\n4. Abschlussargument (105b–107a): Die Seele hat Anteil an der Idee des Lebens und kann daher nicht sterben.\n\nHistorisch bedeutsam ist auch Sokrates' Weigerung zu fliehen (Dialog Kriton): Sokrates argumentiert, dass er durch ein Leben unter den Gesetzen Athens einen impliziten Vertrag mit diesen eingegangen sei. Das Urteil zu umgehen wäre ein Unrecht, auch wenn das Urteil selbst ungerecht sei – eine der frühesten Formulierungen des Prinzips der Gesetzestreue.\n\nDie letzte Aussage über den Hahn für Asklepios (Phaid. 118a) wird von Gelehrten unterschiedlich interpretiert: als Dankbarkeit für die Heilung vom Leben, als ironische Geste oder als schlichten frommen Brauch."
+  },
+  "sidebar": {
+    "facts": [
+      {
+        "label": "Datum",
+        "value": "399 v. Chr., Athen"
+      },
+      {
+        "label": "Anwesende",
+        "value": "Kriton, Phaidon, Simmias, Kebes u. a."
+      },
+      {
+        "label": "Todesart",
+        "value": "Schierlingsbecher (Cicuta)"
+      },
+      {
+        "label": "Letzte Worte",
+        "value": "Wir schulden dem Asklepios einen Hahn"
+      },
+      {
+        "label": "Quelle",
+        "value": "Platon, Phaidon; Kriton"
+      }
+    ],
+    "quote": {
+      "text": "Kriton, wir schulden dem Asklepios einen Hahn; bezahlt ihn und vernachlässigt es nicht.",
+      "translation": "O Kriton, toi Asklepio opheilomen aletryon; alla apodote kai me amelesete.",
+      "source": "Platon, Phaidon 118a",
+      "author": "Sokrates (letzte Worte)",
+      "date": "399 v. Chr."
+    }
+  }
+}

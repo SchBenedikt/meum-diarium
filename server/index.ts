@@ -15,7 +15,7 @@ const BASE_URL = (process.env.SITE_URL || 'https://meum-diarium.xn--schchner-2za
 app.enable('strict routing');
 
 // Known author IDs
-const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
+const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca', 'sallust', 'sokrates'];
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -351,12 +351,32 @@ app.delete('/api/posts/:author/:slug', (req, res) => {
     });
 });
 
-app.get('/api/lexicon', (_req, res) => {
-    res.json([]);
+app.get('/api/lexicon', async (_req, res) => {
+    try {
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+        const content = await fs.readFile(lexiconPath, 'utf-8');
+        const data = JSON.parse(content);
+        res.json(Array.isArray(data) ? data : []);
+    } catch {
+        res.json([]);
+    }
 });
 
-app.get('/api/lexicon/:slug', (_req, res) => {
-    res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+app.get('/api/lexicon/:slug', async (req, res) => {
+    try {
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+        const content = await fs.readFile(lexiconPath, 'utf-8');
+        const data = JSON.parse(content);
+        const entries: any[] = Array.isArray(data) ? data : [];
+        const entry = entries.find((e: any) => e.slug === req.params.slug);
+        if (!entry) {
+            res.status(404).json({ error: 'Not found' });
+        } else {
+            res.json(entry);
+        }
+    } catch {
+        res.status(404).json({ error: 'Not found' });
+    }
 });
 
 app.get('/api/authors', (_req, res) => {

@@ -1,0 +1,59 @@
+{
+  "id": "sokrates-meine-verteidigung",
+  "slug": "meine-verteidigung",
+  "title": "Meine Verteidigung",
+  "excerpt": "Sie haben mich angeklagt: Gottlosigkeit und Verführung der Jugend. Ich verteidige mich selbst – nicht um mein Leben zu retten, sondern um der Wahrheit willen.",
+  "date": "2024-05-27",
+  "historicalDate": "399 v. Chr.",
+  "historicalYear": -399,
+  "author": "sokrates",
+  "tags": [
+    "Apologie",
+    "Prozess",
+    "Athen",
+    "Gerechtigkeit",
+    "Tod",
+    "Verteidigung"
+  ],
+  "readingTime": 5,
+  "coverImage": "sokrates-hero.png",
+  "content": {
+    "diary": "Es ist so weit. Meletos, Anytos und Lykon haben mich angeklagt. Die Vorwürfe: Ich soll die Götter Athens nicht anerkennen und die Jugend verderben. Das Strafmaß, das sie fordern: den Tod.\n\nIch hätte einen Redner beauftragen können, mir eine schöne Verteidigungsrede zu schreiben – geschliffene Worte, die die Richter beeindrucken. Aber das wäre nicht ich. Ich habe mich selbst verteidigt, so wie ich immer gesprochen habe: offen, direkt, ungeschönt.\n\nIch habe den Richtern gesagt: Ich weiß, dass das, was ich tun werde, einige von euch ärgern wird. Aber ich kann nicht anders. Mein Daimonion – diese innere Stimme, die mich seit Kindheit begleitet – hat mir nie erlaubt, zu tun, was falsch ist.\n\nDie Götter verderbe ich? Im Gegenteil! Ich diene ihnen, indem ich die Menschen dazu bringe, ihr Leben zu überprüfen. Das ist der größte Dienst, den ein Mensch der Polis erweisen kann. Ein ungeprüftes Leben ist kein lebenswertes Leben.\n\nSie haben mich schuldig gesprochen – mit 280 zu 220 Stimmen. Als das Strafmaß verhandelt wurde, hätte ich um Gnade bitten oder eine Geldstrafe anbieten können. Stattdessen sagte ich: Wenn ihr bedenkt, was ich für Athen geleistet habe, wäre eine Belohnung angemessener als eine Strafe. Ich weiß, das war keine kluge Taktik. Aber die Wahrheit ist keine Taktik.\n\nDas Urteil: Tod durch den Schierlingsbecher. Ich nehme es an.",
+    "scientific": "Der Prozess des Sokrates (399 v. Chr.) ist eines der bekanntesten Gerichtsverfahren der Antike. Die Anklagepunkte lauteten: Einführung neuer Gottheiten und Verführung der Jugend. Als Ankläger traten Meletos (Dichter), Anytos (Politiker) und Lykon (Redner) auf.\n\nSokrates verteidigte sich selbst – dies ist durch Platons Dialog Apologie des Sokrates überliefert, der jedoch nach Sokrates' Tod verfasst wurde und möglicherweise eine stilisierte Version der historischen Rede darstellt. Xenophon verfasste ebenfalls eine Apologie, die einige abweichende Details enthält.\n\nZentrale Elemente seiner Verteidigung:\n1. Abgrenzung von Naturphilosophen: Sokrates distanziert sich von Philosophen wie Anaxagoras, die Naturerscheinungen materialistisch erklären.\n2. Begründung seiner Mission: Er stellt sein Philosophieren als Dienst an Apollon dar.\n3. Ablehnung jeder Kompromisslösung: Sokrates lehnte Exil oder Schweigen als Strafe ab.\n4. Das berühmte Diktum: Ein ungeprüftes Leben ist kein lebenswertes Leben (ho de anexetastos bios ou biotos anthropo, Apol. 38a).\n\nDas Urteil fiel mit 280 Ja-Stimmen gegen 220 Nein-Stimmen. Bei der anschließenden Strafzumessung wurde die Todesstrafe beschlossen, nachdem Sokrates keine ernsthafte Gegenstrafe angeboten hatte. Historiker diskutieren bis heute die politischen Hintergründe des Prozesses: Die Ankläger standen dem demokratischen Lager nahe, das Sokrates mit dem oligarchischen Tyrannen Kritias (einem seiner Schüler) assoziierte."
+  },
+  "sidebar": {
+    "facts": [
+      {
+        "label": "Datum",
+        "value": "399 v. Chr., Athen"
+      },
+      {
+        "label": "Ankläger",
+        "value": "Meletos, Anytos, Lykon"
+      },
+      {
+        "label": "Anklagepunkte",
+        "value": "Gottlosigkeit und Verführung der Jugend"
+      },
+      {
+        "label": "Abstimmung",
+        "value": "280 Ja : 220 Nein (schuldig)"
+      },
+      {
+        "label": "Urteil",
+        "value": "Tod durch den Schierlingsbecher"
+      },
+      {
+        "label": "Quelle",
+        "value": "Platon, Apologie des Sokrates; Xenophon, Apologie"
+      }
+    ],
+    "quote": {
+      "text": "ho de anexetastos bios ou biotos anthropo.",
+      "translation": "Ein ungeprüftes Leben ist kein lebenswertes Leben.",
+      "source": "Platon, Apologie 38a",
+      "author": "Sokrates",
+      "date": "399 v. Chr."
+    }
+  }
+}
