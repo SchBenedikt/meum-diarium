@@ -1,0 +1,26 @@
+{
+  "slug": "author-about-sokrates",
+  "heroTitle": "Sokrates",
+  "heroSubtitle": "Philosoph, Fragender, Lehrer im Dialog",
+  "heroImage": "/images/sokrates-hero.png",
+  "introText": "Sokrates prägte die Philosophie durch das fragend-entwickelnde Gespräch. Seine Methode zielte nicht auf Belehrung, sondern auf Einsicht – bis hin zur Aporie.",
+  "sections": [],
+  "highlights": [],
+  "translations": {
+    "de": {
+      "heroTitle": "Sokrates",
+      "heroSubtitle": "Philosoph, Fragender, Lehrer im Dialog",
+      "introText": "Sokrates prägte die Philosophie durch das fragend-entwickelnde Gespräch. Seine Methode zielte nicht auf Belehrung, sondern auf Einsicht – bis hin zur Aporie."
+    },
+    "en": {
+      "heroTitle": "Socrates",
+      "heroSubtitle": "Philosopher, questioner, teacher in dialogue",
+      "introText": "Socrates shaped philosophy through dialogical inquiry. His method aimed not at instruction, but at insight – often culminating in aporia."
+    },
+    "la": {
+      "heroTitle": "Socrates",
+      "heroSubtitle": "Philosophus et magister per dialogum",
+      "introText": "Socrates philosophiam arte quaerendi et disputandi formavit. Methodus eius ad cognitionem ducebat, saepe ad aporiam perveniens."
+    }
+  }
+}
