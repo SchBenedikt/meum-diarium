@@ -128,11 +128,11 @@ export function SokratesAboutPage() {
       { year: -430, title: 'Orakelspruch von Delphi', note: 'Der Beginn der sokratischen Mission' },
       { year: -420, title: 'Öffentliche Dialoge', note: 'Tägliche philosophische Gespräche auf Athener Agora' },
       { year: -405, title: 'Sophisten und Sokrates', note: 'Auseinandersetzung mit Protagoras und anderen' },
-      { year: -399, title: 'Prozess und Anklage', note: 'Apologie – Sokrates' Selbstverteidigung' },
+      { year: -399, title: 'Prozess und Anklage', note: 'Apologie – Sokrates\' Selbstverteidigung' },
       { year: -399, title: 'Kriton', note: 'Dialog über Gerechtigkeit und Fluchtmöglichkeit' },
     ],
     platonischePhaidon: [
-      { year: -399, title: 'Der Phaidon', note: 'Sokrates' letzte Stunden – sein stärkstes Werk' },
+      { year: -399, title: 'Der Phaidon', note: 'Sokrates\' letzte Stunden – sein stärkstes Werk' },
       { year: -399, title: 'Argumente für Unsterblichkeit', note: 'Vier philosophische Beweise der Seele' },
       { year: -399, title: 'Der Schierlingsbecher', note: 'Beschreibung des Sterbens mit philosophischer Ruhe' },
       { year: -399, title: 'Frage nach dem Jenseits', note: 'Der Übergang von Leben zu Tod als Frage' },
@@ -515,7 +515,7 @@ export function SokratesAboutPage() {
                     </div>
                     <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">399 v. Chr.</span>
                     <h3 className="font-display text-xl font-bold mt-2 mb-3">Die Apologie</h3>
-                    <p className="text-sm text-foreground/85 leading-relaxed">Platons Darstellung von Sokrates' Selbstverteidigung – kein Schuldeingeständnis, sondern Bekräftigung seiner Mission.</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Platons Darstellung von Sokrates\' Selbstverteidigung – kein Schuldeingeständnis, sondern Bekräftigung seiner Mission.</p>
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -529,7 +529,7 @@ export function SokratesAboutPage() {
                     </div>
                     <span className="text-xs font-bold text-primary/70 uppercase tracking-widest">399 v. Chr.</span>
                     <h3 className="font-display text-xl font-bold mt-2 mb-3">Der Phaidon</h3>
-                    <p className="text-sm text-foreground/85 leading-relaxed">Sokrates' letzte Stunden, philosophierend mit seinen Schülern über die Unsterblichkeit der Seele – Das Meisterwerk Platons.</p>
+                    <p className="text-sm text-foreground/85 leading-relaxed">Sokrates\' letzte Stunden, philosophierend mit seinen Schülern über die Unsterblichkeit der Seele – Das Meisterwerk Platons.</p>
                   </motion.div>
                 </div>
               </div>

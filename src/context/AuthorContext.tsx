@@ -17,7 +17,7 @@ export function AuthorProvider({ children, authorsData = {} }: { children: React
   const authorInfo = currentAuthor ? authors[currentAuthor] : null;
   useEffect(() => {
     // Remove all theme classes and default class
-    document.documentElement.classList.remove('theme-default', 'theme-caesar', 'theme-cicero', 'theme-augustus', 'theme-seneca', 'theme-catilina', 'theme-sallust');
+    document.documentElement.classList.remove('theme-default', 'theme-caesar', 'theme-cicero', 'theme-augustus', 'theme-seneca', 'theme-catilina', 'theme-sallust', 'theme-sokrates');
     // Add current author theme if selected, otherwise default
     if (currentAuthor) {
       document.documentElement.classList.add(`theme-${currentAuthor}`);

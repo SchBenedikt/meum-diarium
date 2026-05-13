@@ -120,6 +120,8 @@
     /* Dark Orange/Rust */
     --author-sallust: 270 45% 38%;
     /* Deep Violet/Purple */
+    --author-sokrates: 90 50% 35%;
+    /* Lime Green */
   }
 
   .dark {
@@ -163,6 +165,7 @@
     --author-seneca: 165 35% 50%;
     --author-catilina: 15 65% 60%;
     --author-sallust: 270 50% 62%;
+    --author-sokrates: 90 55% 60%;
   }
 
   /* Author Theme Overrides */
@@ -284,6 +287,26 @@
     --surface-container-low: 270 8% 13%;
     --surface-container: 270 8% 13.5%;
     --card: 270 6% 14%;
+  }
+
+  .theme-sokrates {
+    --primary: var(--author-sokrates);
+    --accent: var(--author-sokrates);
+    --ring: var(--author-sokrates);
+    --background: 90 8% 97.5%;
+    --surface-container-low: 90 5% 98.5%;
+    --surface-container: 90 5% 99%;
+    --card: 90 3% 99.5%;
+  }
+
+  .dark.theme-sokrates {
+    --primary: var(--author-sokrates);
+    --accent: var(--author-sokrates);
+    --ring: var(--author-sokrates);
+    --background: 90 12% 11%;
+    --surface-container-low: 90 8% 13%;
+    --surface-container: 90 8% 13.5%;
+    --card: 90 6% 14%;
   }
 
   * {

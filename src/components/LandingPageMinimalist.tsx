@@ -12,7 +12,7 @@ import { useRef, useState, useEffect } from 'react';
 const STATS = [
   { value: '36K+', label: 'Vokabeln' },
   { value: '92+', label: 'Lexikon-Einträge' },
-  { value: '4', label: 'Historische Autoren' },
+  { value: '5', label: 'Historische Autoren' },
   { value: '170+', label: 'Jahre Geschichte' },
 ];
 
@@ -27,6 +27,7 @@ const AUTHORS = [
   { id: 'cicero',   name: 'Cicero',   full: 'Marcus Tullius Cicero',  role: 'Redner & Philosoph',       years: '106–43 v. Chr.', quote: 'O tempora, o mores.', path: '/cicero',   color: '#1e3a5f' },
   { id: 'augustus', name: 'Augustus', full: 'Gaius Octavius Augustus', role: 'Erster Kaiser Roms',       years: '63 v.–14 n. Chr.', quote: 'Festina lente.', path: '/augustus', color: '#78350f' },
   { id: 'seneca',   name: 'Seneca',  full: 'Lucius Annaeus Seneca',   role: 'Stoischer Philosoph',      years: '4 v.–65 n. Chr.', quote: 'Dum differtur vita transcurrit.', path: '/seneca',   color: '#14532d' },
+  { id: 'sokrates', name: 'Sokrates', full: 'Sokrates',                role: 'Philosoph & Weiser',       years: '470–399 v. Chr.', quote: 'Ich weiß, dass ich nichts weiß.', path: '/sokrates', color: '#6ba82f' },
 ];
 
 const BENTO = [
