@@ -331,8 +331,8 @@ export default function PostPage() {
   const [error, setError] = useState<string | null>(null);
   // Load post directly from API by author + slug
   useEffect(() => {
-    if (!slug) {
-      setError('No slug provided');
+    if (!slug || !authorId) {
+      setError('Missing route parameters');
       setIsLoadingPost(false);
       return;
     }
@@ -340,34 +340,17 @@ export default function PostPage() {
       try {
         setIsLoadingPost(true);
         setError(null);
-        let loadedPost: BlogPost | null = null;
-
-        if (authorId) {
-          const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
-          console.log(`[PostPage] Fetching post from: ${apiUrl}`);
-          const response = await fetch(apiUrl);
-          if (!response.ok) {
-            const errorMsg = `Post not found (${response.status})`;
-            console.error(`[PostPage] API error: ${errorMsg}`);
-            throw new Error(errorMsg);
-          }
-          const data = await response.json();
-          console.log(`[PostPage] Received post data:`, data);
-          loadedPost = data as BlogPost;
-        } else {
-          // Fallback for unexpected routes without authorId
-          const apiUrl = `${getApiBase()}/posts`;
-          console.log(`[PostPage] Fetching posts list from: ${apiUrl}`);
-          const response = await fetch(apiUrl);
-          if (!response.ok) {
-            const errorMsg = `Posts list not available (${response.status})`;
-            console.error(`[PostPage] API error: ${errorMsg}`);
-            throw new Error(errorMsg);
-          }
-          const data = await response.json();
-          const posts = Array.isArray(data) ? data : [];
-          loadedPost = posts.find((p) => p?.slug === slug) ?? null;
+        const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
+        console.log(`[PostPage] Fetching post from: ${apiUrl}`);
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          const errorMsg = `Post not found (${response.status})`;
+          console.error(`[PostPage] API error: ${errorMsg}`);
+          throw new Error(errorMsg);
         }
+        const data = await response.json();
+        console.log(`[PostPage] Received post data:`, data);
+        const loadedPost = data as BlogPost;
 
         if (loadedPost && loadedPost.id) {
           console.log(`[PostPage] Successfully loaded post: ${loadedPost.title}`);
