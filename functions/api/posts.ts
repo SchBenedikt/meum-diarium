@@ -101,6 +101,39 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 );
             }
 
+            // Enrich coverImage from per-post files when index metadata omits it.
+            allPosts = await Promise.all(
+                allPosts.map(async (post: any) => {
+                    const hasCoverImage = typeof post.coverImage === 'string' && post.coverImage.trim().length > 0;
+                    if (hasCoverImage || !post.author || !post.slug) {
+                        return post;
+                    }
+
+                    try {
+                        const postFileUrl = new URL(`/posts/${post.author}/${post.slug}.json`, url.origin);
+                        const postFileResponse = await context.env.ASSETS.fetch(new Request(postFileUrl.toString()));
+
+                        if (!postFileResponse.ok) {
+                            return post;
+                        }
+
+                        const fullPost = await postFileResponse.json() as any;
+                        const coverImage = typeof fullPost.coverImage === 'string' ? fullPost.coverImage.trim() : '';
+
+                        if (!coverImage) {
+                            return post;
+                        }
+
+                        return {
+                            ...post,
+                            coverImage,
+                        };
+                    } catch {
+                        return post;
+                    }
+                })
+            );
+
             // Sort by date descending
             allPosts.sort((a: any, b: any) => {
                 const dateA = a.date ? new Date(a.date).getTime() : 0;

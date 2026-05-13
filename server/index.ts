@@ -49,7 +49,32 @@ async function loadAllPostsFromFiles(): Promise<any[]> {
         const indexContent = await fs.readFile(indexPath, 'utf-8');
         const index = JSON.parse(indexContent);
         if (index.posts && Array.isArray(index.posts)) {
-            allPosts = index.posts.map((p: any) => ({ ...p, authorId: p.author }));
+            allPosts = await Promise.all(index.posts.map(async (p: any) => {
+                const basePost = { ...p, authorId: p.author };
+                const hasCoverImage = typeof basePost.coverImage === 'string' && basePost.coverImage.trim().length > 0;
+
+                if (hasCoverImage || !basePost.author || !basePost.slug) {
+                    return basePost;
+                }
+
+                try {
+                    const postPath = path.join(postsDir, basePost.author, `${basePost.slug}.json`);
+                    const postContent = await fs.readFile(postPath, 'utf-8');
+                    const fullPost = JSON.parse(postContent);
+                    const coverImage = typeof fullPost.coverImage === 'string' ? fullPost.coverImage.trim() : '';
+
+                    if (!coverImage) {
+                        return basePost;
+                    }
+
+                    return {
+                        ...basePost,
+                        coverImage,
+                    };
+                } catch {
+                    return basePost;
+                }
+            }));
             return allPosts;
         }
     } catch {

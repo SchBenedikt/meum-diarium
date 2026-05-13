@@ -17,6 +17,12 @@ interface BlogCardProps {
 export function BlogCard({ post, className, preferredPerspective }: BlogCardProps) {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const normalizedCoverImage = typeof post.coverImage === 'string' ? post.coverImage.trim() : '';
+  const resolvedCoverImage = normalizedCoverImage
+    ? (normalizedCoverImage.startsWith('/') || normalizedCoverImage.startsWith('http://') || normalizedCoverImage.startsWith('https://')
+      ? normalizedCoverImage
+      : `/images/${normalizedCoverImage}`)
+    : '';
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -60,10 +66,10 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
         )}
       >
         {/* Bild links – nur anzeigen wenn coverImage vorhanden */}
-        {post.coverImage && (
+        {resolvedCoverImage && (
           <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
             <ImageWithFallback
-              src={post.coverImage}
+              src={resolvedCoverImage}
               alt={post.title}
               loading="lazy"
               className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
