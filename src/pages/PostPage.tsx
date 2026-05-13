@@ -329,7 +329,7 @@ export default function PostPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoadingPost, setIsLoadingPost] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // Load post directly from API by slug
+  // Load post directly from API by author + slug
   useEffect(() => {
     if (!slug) {
       setError('No slug provided');
@@ -340,27 +340,38 @@ export default function PostPage() {
       try {
         setIsLoadingPost(true);
         setError(null);
-        const apiUrl = `${getApiBase()}/posts?slug=${encodeURIComponent(slug)}`;
-        console.log(`[PostPage] Fetching post from: ${apiUrl}`);
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          const errorMsg = `Post not found (${response.status})`;
-          console.error(`[PostPage] API error: ${errorMsg}`);
-          throw new Error(errorMsg);
+        let loadedPost: BlogPost | null = null;
+
+        if (authorId) {
+          const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
+          console.log(`[PostPage] Fetching post from: ${apiUrl}`);
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            const errorMsg = `Post not found (${response.status})`;
+            console.error(`[PostPage] API error: ${errorMsg}`);
+            throw new Error(errorMsg);
+          }
+          const data = await response.json();
+          console.log(`[PostPage] Received post data:`, data);
+          loadedPost = data as BlogPost;
+        } else {
+          // Fallback for unexpected routes without authorId
+          const apiUrl = `${getApiBase()}/posts`;
+          console.log(`[PostPage] Fetching posts list from: ${apiUrl}`);
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            const errorMsg = `Posts list not available (${response.status})`;
+            console.error(`[PostPage] API error: ${errorMsg}`);
+            throw new Error(errorMsg);
+          }
+          const data = await response.json();
+          const posts = Array.isArray(data) ? data : [];
+          loadedPost = posts.find((p) => p?.slug === slug) ?? null;
         }
-        const data = await response.json();
-        console.log(`[PostPage] Received data:`, data);
-        if (!data || (Array.isArray(data) && data.length === 0)) {
-          console.warn(`[PostPage] Empty data received for slug: ${slug}`);
-          setPost(null);
-          setIsLoadingPost(false);
-          return;
-        }
-        // API returns single object for slug query
-        const loadedPost = Array.isArray(data) ? data[0] : data;
+
         if (loadedPost && loadedPost.id) {
           console.log(`[PostPage] Successfully loaded post: ${loadedPost.title}`);
-          setPost(loadedPost as BlogPost);
+          setPost(loadedPost);
         } else {
           console.warn(`[PostPage] Invalid post data structure`);
           setPost(null);
@@ -374,7 +385,7 @@ export default function PostPage() {
       }
     };
     loadPost();
-  }, [slug]);
+  }, [slug, authorId]);
   // Set current author if authorId is available
   useEffect(() => {
     if (authorId && authorData[authorId as Author]) {
