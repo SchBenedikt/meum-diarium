@@ -11,7 +11,7 @@ export interface SiteSettings {
 }
 export const defaultSettings: SiteSettings = {
   siteName: 'Meum Diarium',
-  siteDescription: 'Eine Reise durch die römische Geschichte',
+  siteDescription: 'Antikes Rom interaktiv erleben: Tagebücher, KI-Chats, Latein-Reader & Lexikon',
   siteUrl: 'https://example.com',
   defaultLanguage: 'de',
   enableTranslations: true,

@@ -19,30 +19,30 @@ export interface SEOProps {
 
 const defaultMeta = {
   de: {
-    title: 'Meum Diarium – Das antike Rom erleben',
-    description: 'Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen.',
+    title: 'Meum Diarium – Römische Geschichte interaktiv: Caesar, Cicero, Augustus & Seneca',
+    description: 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader und ein umfassendes Lexikon – für Schule, Studium und alle Geschichtsbegeisterten.',
     siteName: 'Meum Diarium',
-    keywords: 'Römisches Reich, Latein, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, Kommentare, Zeitreisen',
+    keywords: 'Römisches Reich, Latein lernen, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, interaktive Zeitreise, Latein-Reader, römische Geschichte, OER, Bildungsmaterial, Geschichtsunterricht',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
     contact: 'info@meum-diarium.de',
     type: 'website'
   },
   en: {
-    title: 'Meum Diarium – Experience Ancient Rome',
-    description: 'Experience history of Rome through the eyes of great personalities: Caesar, Cicero, Augustus and Seneca. Diary entries, scholarly commentary and interactive time travel.',
+    title: 'Meum Diarium – Experience Ancient Rome Interactively: Caesar, Cicero, Augustus & Seneca',
+    description: 'Immerse yourself in the world of ancient Rome: experience history through the eyes of Caesar, Cicero, Augustus and Seneca. Authentic diary entries, scholarly analysis, AI chats, interactive simulations, Latin reader and a comprehensive lexicon – for school, university and history enthusiasts.',
     siteName: 'Meum Diarium',
-    keywords: 'Roman Empire, Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, commentary, time travel',
+    keywords: 'Roman Empire, learn Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, interactive time travel, Latin reader, Roman history, OER, educational resources',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
     contact: 'info@meum-diarium.de',
     type: 'website'
   },
   la: {
-    title: 'Meum Diarium – Roma Antiqua',
-    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, eruditi et interactivae peregrinationes temporales.',
+    title: 'Meum Diarium – Historiam Romanam Experire: Caesar, Cicero, Augustus, Seneca',
+    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, analysis erudita, colloquia AI, simulationes interactivae, lector Latinus et lexicon comprehensivum.',
     siteName: 'Meum Diarium',
-    keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, commentarii, peregrinationes',
+    keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, peregrinationes temporales, lector Latinus, lexicon',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
     contact: 'info@meum-diarium.de',

@@ -74,7 +74,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={translatedAuthor ? `${translatedAuthor.name} – ${t('caesar.diaryRecent')}` : t('meumDiarium')}
+        title={translatedAuthor ? `${translatedAuthor.name} – Tagebücher, Werke & Analysen` : undefined}
         description={translatedAuthor?.description}
         author={translatedAuthor?.name}
         image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.png`}

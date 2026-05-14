@@ -9,7 +9,7 @@ export function Footer() {
     return typeof val === 'string' ? val : fallback;
   };
   const appName = text('appName', 'Meum Diarium');
-  const description = text('footerDescription', 'Experience history through the eyes of the greatest figures of ancient Rome. Diaries and scholarly commentaries.');
+  const description = text('footerDescription', 'Antikes Rom interaktiv erleben: Authentische Tagebücher großer Persönlichkeiten, KI-Chats, interaktive Simulationen, Latein-Originaltexte mit Übersetzung und ein umfassendes Lexikon – für Schule, Studium und Geschichtsbegeisterte.');
   const footerLinks = [
     {
       title: 'Navigation',
