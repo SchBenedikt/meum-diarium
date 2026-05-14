@@ -1,13 +1,13 @@
 {
   "id": "augustus-pax-romana",
   "slug": "pax-romana",
-  "title": "The Pax Romana: Building an Empire of Peace",
-  "excerpt": "My vision extends beyond mere military victory. I am creating a new Rome—one where peace, commerce, and civilization flourish across the Mediterranean world.",
+  "title": "Die Pax Romana: Ein Imperium des Friedens errichten",
+  "excerpt": "Meine Vision reicht über bloße militärische Siege hinaus. Ich schaffe ein neues Rom - eines, in dem Frieden, Handel und Zivilisation in der gesamten Mittelmeerwelt florieren.",
   "date": "2024-02-02",
   "historicalDate": "25 v. Chr.",
   "historicalYear": -25,
   "author": "augustus",
-  "tags": ["politics", "peace", "infrastructure", "trade", "stability"],
+  "tags": ["Politik", "Frieden", "Infrastruktur", "Handel", "Stabilität"],
   "readingTime": 6,
   "coverImage": "augustus-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Period", "value": "31 BCE - 14 CE" },
-      { "label": "Key Accomplishment", "value": "End of civil war" },
-      { "label": "Major Infrastructure", "value": "Roads, aqueducts, ports" },
-      { "label": "Legions Positioned", "value": "Along frontiers" },
-      { "label": "Political System", "value": "Principate (republic in form)" }
+      { "label": "Zeitraum", "value": "31 v. Chr. - 14 n. Chr." },
+      { "label": "Wichtigste Errungenschaft", "value": "Ende des Bürgerkrieges" },
+      { "label": "Wichtigste Infrastruktur", "value": "Straßen, Aquädukte, Häfen" },
+      { "label": "Legionen positioniert", "value": "Entlang der Grenzen" },
+      { "label": "Politisches System", "value": "Prinzipatswesen (Republik in der Form)" }
     ],
     "quote": {
       "text": "Deo patriae, invicto Augusto.",
-      "translation": "To the god of the fatherland, the unconquered Augustus.",
+      "translation": "Dem Gott des Vaterlandes, dem unbesiegbaren Augustus.",
       "source": "Historical Inscription",
       "author": "Roman Citizens",
       "date": "Early Principate"

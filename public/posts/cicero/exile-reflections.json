@@ -1,13 +1,13 @@
 {
   "id": "cicero-exile-reflections",
   "slug": "exile-reflections",
-  "title": "Meditations in Exile: On Virtue and Misfortune",
-  "excerpt": "My thoughts from exile, driven out by that ruffian Clodius and his street gangs. A philosophical examination of suffering and justice.",
+  "title": "Meditationen im Exil: Über Tugend und Unglück",
+  "excerpt": "Meine Gedanken aus dem Exil, vertrieben von diesem Schurken Clodius und seinen Straßengangs. Eine philosophische Untersuchung von Leiden und Gerechtigkeit.",
   "date": "2024-01-03",
   "historicalDate": "58 v. Chr.",
   "historicalYear": -58,
   "author": "cicero",
-  "tags": ["philosophy", "exile", "politics", "virtue", "reflection"],
+  "tags": ["Philosophie", "Exil", "Politik", "Tugend", "Betrachtung"],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Year of Exile", "value": "58 v. Chr." },
-      { "label": "Duration", "value": "16 months" },
-      { "label": "Proposer of Exile", "value": "Publius Clodius" },
-      { "label": "Key Supporter of Recall", "value": "Pompey" },
-      { "label": "Return Date", "value": "August 57 v. Chr." }
+      { "label": "Exiljahr", "value": "58 v. Chr." },
+      { "label": "Dauer", "value": "16 Monate" },
+      { "label": "Antragsteller des Exils", "value": "Publius Clodius" },
+      { "label": "Wichtigster Rückkehr-Unterstützer", "value": "Pompeius" },
+      { "label": "Rückkehrdatum", "value": "August 57 v. Chr." }
     ],
     "quote": {
       "text": "Caret regione, caret luce, caret deo!",

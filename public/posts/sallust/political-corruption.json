@@ -1,13 +1,13 @@
 {
   "id": "sallust-political-corruption",
   "slug": "political-corruption",
-  "title": "The Corruption of Rome: How Empire Destroys Virtue",
-  "excerpt": "Rome has become wealthy and powerful. Yet this wealth and power have corrupted her. The very success that made Rome mighty has sown the seeds of her moral decline.",
+  "title": "Die Korruption Roms: Wie Imperium Tugend zerstört",
+  "excerpt": "Rom ist wohlhabend und mächtig geworden. Doch dieser Reichtum und diese Macht haben sie verdorben. Der sehr Erfolg, der Rom mächtig machte, hat die Sätze ihrer moralischen Niedergangs gesät.",
   "date": "2024-05-03",
   "historicalDate": "50 v. Chr.",
   "historicalYear": -50,
   "author": "sallust",
-  "tags": ["corruption", "history", "morality", "politics", "decline"],
+  "tags": ["Korruption", "Geschichte", "Moralität", "Politik", "Niedergang"],
   "readingTime": 6,
   "coverImage": "sallust-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Theme", "value": "Corruption and decline" },
-      { "label": "Historical Period", "value": "Late Republic" },
-      { "label": "Sallust's Perspective", "value": "Moral and systemic analysis" },
-      { "label": "Key Cause", "value": "Wealth and power" },
-      { "label": "Predicted Outcome", "value": "Civil war" }
+      { "label": "Thema", "value": "Korruption und Niedergang" },
+      { "label": "Historische Epoche", "value": "Spätrepublik" },
+      { "label": "Sallust's Perspektive", "value": "Moralische und systematische Analyse" },
+      { "label": "Wichtige Ursache", "value": "Reichtum und Macht" },
+      { "label": "Vorausgesagtes Ergebnis", "value": "Bürgerkrieg" }
     ],
     "quote": {
       "text": "Quando potentia maxima, tunc virtus minima.",

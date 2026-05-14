@@ -1,13 +1,13 @@
 {
   "id": "augustus-military-reform",
   "slug": "military-reform",
-  "title": "Reorganizing the Legions: Building Rome's Military System",
-  "excerpt": "The Roman military must be transformed from a tool of faction into an instrument of state power. Here are my reforms that will define Rome's military for centuries.",
+  "title": "Die Legionen reorganisieren: Roms Militärsystem aufbauen",
+  "excerpt": "Das römische Militär muss von einem Werkzeug der Faktion in ein Instrument der Staatsmacht verwandelt werden. Hier sind meine Reformen, die Roms Militär für Jahrhunderte prägen werden.",
   "date": "2024-02-03",
   "historicalDate": "30 v. Chr.",
   "historicalYear": -30,
   "author": "augustus",
-  "tags": ["military", "reform", "legions", "organization", "governance"],
+  "tags": ["Militär", "Reform", "Legionen", "Organisation", "Regierung"],
   "readingTime": 6,
   "coverImage": "augustus-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Total Legions", "value": "28 permanent legions" },
-      { "label": "Legion Establishment", "value": "5,500 soldiers" },
-      { "label": "Service Term", "value": "25 years" },
-      { "label": "Praetorian Guard", "value": "~4,500 soldiers" },
-      { "label": "Reform Period", "value": "31-13 BCE" }
+      { "label": "Gesamtlegionen", "value": "28 permanente Legionen" },
+      { "label": "Legionensollbestand", "value": "5.500 Soldaten" },
+      { "label": "Dienstzeit", "value": "25 Jahre" },
+      { "label": "Prätorianergarde", "value": "~4.500 Soldaten" },
+      { "label": "Reformzeitraum", "value": "31-13 v. Chr." }
     ],
     "quote": {
       "text": "Stipendium Romae defendere est.",
-      "translation": "To receive the emperor's pay is to defend Rome.",
+      "translation": "Der Sold Roms zu verteidigen ist Roms zu verteidigen.",
       "source": "Military Oath",
       "author": "Roman Soldiers",
       "date": "Augustan period"

@@ -1,13 +1,13 @@
 {
   "id": "catilina-justifying-action",
   "slug": "justifying-action",
-  "title": "The Necessity of Radical Action: Why the Conspiracy is Justice",
-  "excerpt": "They call me conspirator, revolutionary, enemy of the state. But what is conspiracy when the state itself has become unjust? What is revolution when the existing order oppresses the worthy and rewards the mediocre?",
+  "title": "Die Notwendigkeit radikaler Maßnahmen: Warum die Verschwörung Gerechtigkeit ist",
+  "excerpt": "Sie nennen mich Verschwörer, Revolut ionär, Feind des Staates. Aber was ist eine Verschwörung, wenn der Staat selbst ungerecht geworden ist? Was ist eine Revolution, wenn die bestehende Ordnung die Verdienten unterdrückt und die Mittlemäßigen belohnt?",
   "date": "2024-04-02",
   "historicalDate": "63 v. Chr.",
   "historicalYear": -63,
   "author": "catilina",
-  "tags": ["conspiracy", "justice", "revolution", "politics", "ideology"],
+  "tags": ["Verschwörung", "Gerechtigkeit", "Revolution", "Politik", "Ideologie"],
   "readingTime": 6,
   "coverImage": "catilina-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Stated Goals", "value": "Debt relief, land reform" },
-      { "label": "Supporters", "value": "Debtors, young nobles, soldiers" },
-      { "label": "Opponent", "value": "Cicero (and the oligarchy)" },
-      { "label": "Ideological Basis", "value": "Reform vs oligarchic rule" },
-      { "label": "Historical Context", "value": "Late Republic social crisis" }
+      { "label": "Erklärte Ziele", "value": "Schuldenerlass, Landreform" },
+      { "label": "Unterstützer", "value": "Schuldner, junge Adlige, Soldaten" },
+      { "label": "Gegner", "value": "Cicero (und die Oligarchie)" },
+      { "label": "Ideologische Grundlage", "value": "Reform vs. oligarchische Herrschaft" },
+      { "label": "Historischer Kontext", "value": "Soziale Krise der Spätrepublik" }
     ],
     "quote": {
       "text": "Iustitia non est in legibus corruptis sed in reformatione iusta.",

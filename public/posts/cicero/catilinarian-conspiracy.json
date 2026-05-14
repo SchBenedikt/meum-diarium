@@ -1,13 +1,13 @@
 {
   "id": "cicero-catilinarian-conspiracy",
   "slug": "catilinarian-conspiracy",
-  "title": "The Exposure of Catiline's Conspiracy",
-  "excerpt": "How I, Marcus Tullius Cicero, single-handedly uncovered and thwarted the most dangerous conspiracy Rome has ever known.",
+  "title": "Die Entlöfftung der Catilinarischen Verschwörung",
+  "excerpt": "Wie ich, Marcus Tullius Cicero, die gefährlichste Verschwörung, die Rom je kannte, einzeln aufdeckte und vereidigte.",
   "date": "2024-01-01",
   "historicalDate": "63 v. Chr.",
   "historicalYear": -63,
   "author": "cicero",
-  "tags": ["conspiracy", "politics", "speeches", "rome", "security"],
+  "tags": ["Verschwörung", "Politik", "Reden", "Rom", "Sicherheit"],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Date", "value": "November 8, 63 BCE" },
-      { "label": "Conspirators Executed", "value": "5 senators and equestrians" },
-      { "label": "Catilina's Final Battle", "value": "62 BCE near Pistoria" },
-      { "label": "Cicero's Position", "value": "Consul of Rome" },
-      { "label": "Orations Delivered", "value": "4 (Catilinarian Orations)" }
+      { "label": "Datum", "value": "8. November 63 v. Chr." },
+      { "label": "Hingerichtete Verschwörer", "value": "5 Senatoren und Ritter" },
+      { "label": "Catilinas letzte Schlacht", "value": "62 v. Chr. bei Pistoria" },
+      { "label": "Ciceros Position", "value": "Konsul von Rom" },
+      { "label": "Gehaltene Reden", "value": "4 (Catilinarische Orationen)" }
     ],
     "quote": {
       "text": "O tempora, o mores!",
-      "translation": "Oh the times! Oh the customs!",
+      "translation": "Ach die Zeiten! Ach die Sitten!",
       "source": "First Catilinarian Oration",
       "author": "Marcus Tullius Cicero",
       "date": "63 v. Chr."

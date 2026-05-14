@@ -1,13 +1,13 @@
 {
   "id": "augustus-legacy",
   "slug": "legacy",
-  "title": "Building Immortality: My Legacy to Rome",
-  "excerpt": "The greatest monuments a leader can build are not of marble, but of institutions and civic improvements that serve generations to come.",
+  "title": "Unsterblichkeit errichten: Mein Vermächtnis an Rom",
+  "excerpt": "Die größten Denkmäler, die ein Anführer errichten kann, sind nicht aus Marmor, sondern aus Institutionen und städtischen Verbesserungen, die Generationen dienen.",
   "date": "2024-02-05",
   "historicalDate": "13 v. Chr.",
   "historicalYear": -13,
   "author": "augustus",
-  "tags": ["legacy", "infrastructure", "culture", "immortality", "rome"],
+  "tags": ["Vermächtnis", "Infrastruktur", "Kultur", "Unsterblichkeit", "Rom"],
   "readingTime": 6,
   "coverImage": "augustus-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Building Projects", "value": "Forum, Mausoleum, Theatre, Ara Pacis" },
-      { "label": "Poets Patronized", "value": "Virgil, Horace, Ovid" },
-      { "label": "Key Document", "value": "Res Gestae Divi Augusti" },
-      { "label": "Reign Length", "value": "41 years (31 BCE-14 CE)" },
-      { "label": "Deification", "value": "14 CE (after death)" }
+      { "label": "Bauprojekte", "value": "Forum, Mausoleum, Theater, Ara Pacis" },
+      { "label": "Geförderte Dichter", "value": "Vergil, Horaz, Ovid" },
+      { "label": "Wichtiges Dokument", "value": "Res Gestae Divi Augusti" },
+      { "label": "Herrschaftsdauer", "value": "41 Jahre (31 v. Chr.-14 n. Chr.)" },
+      { "label": "Vergöttlichung", "value": "14 n. Chr. (nach dem Tod)" }
     ],
     "quote": {
       "text": "Quod mihi fecit, memoriam meam tutabitur.",
-      "translation": "What I have built will preserve my memory.",
+      "translation": "Das, was ich gebaut habe, wird mein Andenken bewahren.",
       "source": "Philosophical observation",
       "author": "Augustus",
       "date": "Late reign"

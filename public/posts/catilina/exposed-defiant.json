@@ -1,13 +1,13 @@
 {
   "id": "catilina-exposed-defiant",
   "slug": "exposed-defiant",
-  "title": "Exposed: My Defense Against Cicero's Calumnies",
-  "excerpt": "Cicero has exposed the conspiracy, attempted to discredit me before the Senate. But I will not cower or apologize. I have acted in accordance with justice and will defend my position whatever the personal cost.",
+  "title": "Entlöftet: Meine Verteidigung gegen Ciceros Diffamierungen",
+  "excerpt": "Cicero hat die Verschwörung entlöftet und versucht, mich vor dem Senat zu diskreditieren. Aber ich werde nicht feige sein oder mich entschuldigen. Ich habe nach Gerechtigkeit gehandelt und werde meine Position verteidigen, koste es, was es wolle.",
   "date": "2024-04-04",
   "historicalDate": "63 v. Chr.",
   "historicalYear": -63,
   "author": "catilina",
-  "tags": ["politics", "conspiracy", "defense", "cicero", "confrontation"],
+  "tags": ["Politik", "Verschwörung", "Verteidigung", "Cicero", "Konfrontation"],
   "readingTime": 6,
   "coverImage": "catilina-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Cicero's Speech", "value": "First Catilinarian Oration" },
-      { "label": "Senate Action", "value": "Condemnation and decree" },
-      { "label": "Catilina's Response", "value": "Flight to Etruria" },
-      { "label": "Result", "value": "Armed rebellion begins" },
-      { "label": "Date", "value": "November 8, 63 BCE" }
+      { "label": "Ciceros Rede", "value": "Erste Catilinarische Oration" },
+      { "label": "Senatsmassnahme", "value": "Verurteilung und Dekret" },
+      { "label": "Catilinas Reaktion", "value": "Flucht nach Etrurien" },
+      { "label": "Ergebnis", "value": "Bewaffneter Aufstand beginnt" },
+      { "label": "Datum", "value": "8. November 63 v. Chr." }
     ],
     "quote": {
       "text": "Ciceronis eloquentia timeo, sed veritate vinco.",

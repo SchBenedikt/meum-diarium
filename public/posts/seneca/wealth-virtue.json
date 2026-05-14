@@ -1,13 +1,13 @@
 {
   "id": "seneca-wealth-virtue",
   "slug": "wealth-virtue",
-  "title": "The Paradox of Wealth: Can a Rich Man Be Truly Virtuous?",
-  "excerpt": "I am fabulously wealthy, yet I teach that virtue is the only true good. How do I reconcile this apparent contradiction? Through careful thought and rigorous practice of Stoicism.",
+  "title": "Das Paradoxon des Reichtums: Kann ein reicher Mann wirklich tugendhaft sein?",
+  "excerpt": "Ich bin fabellos wohlhabend, lehre aber, dass Tugend das einzige wahre Gut ist. Wie verköhne ich diesen offensichtlichen Widerspruch? Durch sorgfältiges Denken und strenge Stoische Praxis.",
   "date": "2024-03-01",
   "historicalDate": "60 n. Chr.",
   "historicalYear": 60,
   "author": "seneca",
-  "tags": ["philosophy", "stoicism", "wealth", "virtue", "ethics"],
+  "tags": ["Philosophie", "Stoizismus", "Reichtum", "Tugend", "Ethik"],
   "readingTime": 6,
   "coverImage": "seneca-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Status", "value": "Wealthy senator and philosopher" },
-      { "label": "Philosophical School", "value": "Stoicism" },
-      { "label": "Key Concept", "value": "Preferred indifferents" },
-      { "label": "Practice", "value": "Voluntary simplicity despite wealth" },
-      { "label": "Audience", "value": "Lucilius and other students" }
+      { "label": "Status", "value": "Wohlhabender Senator und Philosoph" },
+      { "label": "Philosophische Schule", "value": "Stoizismus" },
+      { "label": "Wichtiges Konzept", "value": "Indifferente zu bevorzugen" },
+      { "label": "Praxis", "value": "Freiwillige Einfachheit trotz Reichtum" },
+      { "label": "Zuhörer", "value": "Lucilius und andere Schüler" }
     ],
     "quote": {
       "text": "Etiamsi omnes mihi pecuniae ademerunt, sapientiam non poterunt.",
-      "translation": "Even if all my wealth were taken, they could not take my wisdom.",
+      "translation": "Selbst wenn all mein Reichtum mir genommen würde, könnten sie mir meine Weisheit nicht nehmen.",
       "source": "Letters to Lucilius",
       "author": "Lucius Annaeus Seneca",
       "date": "60s n. Chr."

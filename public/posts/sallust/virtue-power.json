@@ -1,13 +1,13 @@
 {
   "id": "sallust-virtue-power",
   "slug": "virtue-power",
-  "title": "Virtue and Power: Can They Coexist in the Republic?",
-  "excerpt": "I have observed power in Rome for decades. Virtue and power seem incompatible. Those who maintain virtue do not achieve power; those who achieve power lose virtue. Is this inevitable?",
+  "title": "Tugend und Macht: Können sie in der Republik koexistieren?",
+  "excerpt": "Ich habe Macht in Rom über Jahrzehnte hinweg beobachtet. Tugend und Macht scheinen unvereinbar zu sein. Diejenigen, die Tugend bewahren, erreichen keine Macht; diejenigen, die Macht erreichen, verlieren Tugend. Ist das unvermeidlich?",
   "date": "2024-05-05",
   "historicalDate": "35 v. Chr.",
   "historicalYear": -35,
   "author": "sallust",
-  "tags": ["philosophy", "power", "virtue", "politics", "morality"],
+  "tags": ["Philosophie", "Macht", "Tugend", "Politik", "Moralität"],
   "readingTime": 6,
   "coverImage": "sallust-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Central Question", "value": "Virtue vs. Power compatibility" },
-      { "label": "Sallust's Conclusion", "value": "Likely incompatible in Rome" },
-      { "label": "Predicted Outcome", "value": "Autocratic rule replacing Republic" },
-      { "label": "Root Cause", "value": "Systemic corruption" },
-      { "label": "Historical Period", "value": "Late Republic" }
+      { "label": "Zentrale Frage", "value": "Tugend vs. Macht-Kompatibilität" },
+      { "label": "Sallust's Schlussfolgerung", "value": "Wahrscheinlich unvereinbar in Rom" },
+      { "label": "Vorausgesagtes Ergebnis", "value": "Autokratische Herrschaft ersetzt Republik" },
+      { "label": "Grundursache", "value": "Systematische Korruption" },
+      { "label": "Historische Epoche", "value": "Spätrepublik" }
     ],
     "quote": {
       "text": "Virtus et potentia non simul crescunt.",

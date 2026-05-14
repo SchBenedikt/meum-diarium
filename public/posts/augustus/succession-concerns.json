@@ -1,13 +1,13 @@
 {
   "id": "augustus-succession-concerns",
   "slug": "succession-concerns",
-  "title": "The Weight of Succession: Securing Rome's Future",
-  "excerpt": "I have no sons. This haunts me more than I admit. How does one ensure that the system one has built survives one's death?",
+  "title": "Die Last der Nachfolge: Roms Zukunft sichern",
+  "excerpt": "Ich habe keine Söhne. Dies verfolgt mich mehr als ich zugebe. Wie stellt man sicher, dass das System, das man aufgebaut hat, den eigenen Tod überlebt?",
   "date": "2024-02-04",
   "historicalDate": "5 v. Chr.",
   "historicalYear": -5,
   "author": "augustus",
-  "tags": ["succession", "politics", "family", "legacy", "mortality"],
+  "tags": ["Nachfolge", "Politik", "Familie", "Vermächtnis", "Sterblichkeit"],
   "readingTime": 6,
   "coverImage": "augustus-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Augustus's Age", "value": "70 at this writing" },
-      { "label": "Potential Heirs", "value": "Marcellus, Agrippa, Tiberius (among others)" },
-      { "label": "Key Document", "value": "Res Gestae Divi Augusti" },
-      { "label": "Actual Heir", "value": "Tiberius (r. 14-37 CE)" },
-      { "label": "Augustus's Death", "value": "14 CE" }
+      { "label": "Augustus' Alter", "value": "70 Jahre nach diesem Schreiben" },
+      { "label": "Mögliche Erben", "value": "Marcellus, Agrippa, Tiberius (unter anderen)" },
+      { "label": "Wichtiges Dokument", "value": "Res Gestae Divi Augusti" },
+      { "label": "Tatsächlicher Erbe", "value": "Tiberius (r. 14-37 n. Chr.)" },
+      { "label": "Augustus' Tod", "value": "14 n. Chr." }
     ],
     "quote": {
       "text": "Vale, mortales. Consummatum est.",
-      "translation": "Farewell, mortals. It is finished.",
+      "translation": "Leb wohl, Sterbliche. Es ist vollbracht.",
       "source": "Attributed to Augustus",
       "author": "Augustus",
       "date": "14 n. Chr."

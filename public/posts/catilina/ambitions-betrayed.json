@@ -1,13 +1,13 @@
 {
   "id": "catilina-ambitions-betrayed",
   "slug": "ambitions-betrayed",
-  "title": "On the Treachery of Fortune: My Political Ambitions Thwarted",
-  "excerpt": "They say I am desperate, ambitious, a danger to the state. What is my crime? Desiring what any man of noble birth should desire—honor, power, influence. The system has rejected me. It remains to be seen whether I will accept that rejection quietly.",
+  "title": "Über die Falschheit des Schicksals: Meine politischen Ambitionen vereitelt",
+  "excerpt": "Sie sagen, ich bin verwöhnt, ehrgeizig, eine Gefahr für den Staat. Was ist mein Verbrechen? Danach zu verlan gen, was jeder Mann edler Geburt verlangen sollte - Ehre, Macht, Einfluss. Das System hat mich abgelehnt. Es muss sich zeigen, ob ich diese Ablehnung ruhig akzeptieren werde.",
   "date": "2024-04-01",
   "historicalDate": "63 v. Chr.",
   "historicalYear": -63,
   "author": "catilina",
-  "tags": ["politics", "ambition", "betrayal", "conspiracy", "power"],
+  "tags": ["Politik", "Ehrgeiz", "Verrat", "Verschwörung", "Macht"],
   "readingTime": 6,
   "coverImage": "catilina-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Birth", "value": "108 BCE" },
-      { "label": "Election Attempts", "value": "Failed multiple times" },
-      { "label": "Position Held", "value": "Praetor (~68 BCE)" },
-      { "label": "Death", "value": "62 BCE (battle)" },
-      { "label": "Rival", "value": "Marcus Tullius Cicero" }
+      { "label": "Geburt", "value": "108 v. Chr." },
+      { "label": "Wahlversuche", "value": "Mehrfach fehlgeschlagen" },
+      { "label": "Bekleidetes Amt", "value": "Prätor (~68 v. Chr.)" },
+      { "label": "Tod", "value": "62 v. Chr. (Schlacht)" },
+      { "label": "Rivale", "value": "Marcus Tullius Cicero" }
     ],
     "quote": {
       "text": "Si flagitium eius absolvit, omnia quae fecerit licebit.",

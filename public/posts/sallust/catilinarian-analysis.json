@@ -1,13 +1,13 @@
 {
   "id": "sallust-catilinarian-analysis",
   "slug": "catilinarian-analysis",
-  "title": "The Catilinarian Conspiracy: A Historian's Analysis of Corruption and Chaos",
-  "excerpt": "I was present during the Catilinarian Conspiracy—not as a conspirator but as an observer of Rome's moral decay. Cicero saw drama; I see symptom of deeper disease.",
+  "title": "Die Catilinarische Verschwörung: Eine Historische Analyse von Korruption und Chaos",
+  "excerpt": "Ich war während der Catilinarischen Verschwörung anwesend - nicht als Verschwörer, sondern als Beobachter des moralischen Niedergangs Roms. Cicero sah Drama; ich sehe das Symptom einer tieferen Krankheit.",
   "date": "2024-05-02",
   "historicalDate": "62 v. Chr.",
   "historicalYear": -62,
   "author": "sallust",
-  "tags": ["history", "conspiracy", "corruption", "analysis", "rome"],
+  "tags": ["Geschichte", "Verschwörung", "Korruption", "Analyse", "Rom"],
   "readingTime": 6,
   "coverImage": "sallust-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Sallust's Work", "value": "Bellum Catilinae" },
-      { "label": "Timeframe of Events", "value": "63 BCE" },
-      { "label": "Writing Date", "value": "~40 BCE" },
-      { "label": "Perspective", "value": "Analyst of Roman corruption" },
-      { "label": "Key Question", "value": "Why did conspiracy emerge?" }
+      { "label": "Sallust's Werk", "value": "Bellum Catilinae" },
+      { "label": "Zeitra um der Ereignisse", "value": "63 v. Chr." },
+      { "label": "Schreibdatum", "value": "~40 v. Chr." },
+      { "label": "Perspektive", "value": "Analyst der römischen Korruption" },
+      { "label": "Schlüsselfrage", "value": "Warum ist die Verschwörung entstanden?" }
     ],
     "quote": {
       "text": "Avaritia et luxuria corrumpunt animum civitatis.",

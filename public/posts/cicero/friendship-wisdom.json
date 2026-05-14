@@ -1,13 +1,13 @@
 {
   "id": "cicero-friendship-wisdom",
   "slug": "friendship-wisdom",
-  "title": "On Friendship and the Good Life: Philosophical Meditations",
-  "excerpt": "My reflections on the true nature of friendship, wisdom, and what makes life worth living for a man of virtue.",
+  "title": "Zur Freundschaft und zum guten Leben: Philosophische Meditationen",
+  "excerpt": "Meine Gedanken über die wahre Natur der Freundschaft, Weisheit und was das Leben für einen Mann der Tugend lebenswert macht.",
   "date": "2024-01-05",
   "historicalDate": "45 v. Chr.",
   "historicalYear": -45,
   "author": "cicero",
-  "tags": ["philosophy", "friendship", "wisdom", "virtue", "letters"],
+  "tags": ["Philosophie", "Freundschaft", "Weisheit", "Tugend", "Briefe"],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Work", "value": "De Amicitia (On Friendship)" },
-      { "label": "Composition Date", "value": "44 v. Chr." },
-      { "label": "Format", "value": "Philosophical Dialogue" },
-      { "label": "Key Character", "value": "Laelius" },
-      { "label": "Cicero's Closest Friend", "value": "Atticus" }
+      { "label": "Werk", "value": "De Amicitia (Über Freundschaft)" },
+      { "label": "Kompositionsdatum", "value": "44 v. Chr." },
+      { "label": "Format", "value": "Philosophischer Dialog" },
+      { "label": "Schlüsselfigur", "value": "Laelius" },
+      { "label": "Ciceros nächster Freund", "value": "Atticus" }
     ],
     "quote": {
       "text": "Amicitia est una omnium rerum, quae ratione comparantur, quam tu omnium vel pretiosissimam vel sapientissimam esse dixeris.",
-      "translation": "Friendship is the one thing among all things sought with reason that you would say is the most precious or wisest.",
+      "translation": "Freundschaft ist die eine unter all den Dingen, die mit Vernunft erreicht werden, die du sagst, ist die wertvollste oder weiseste.",
       "source": "De Amicitia",
       "author": "Marcus Tullius Cicero",
       "date": "44 v. Chr."

@@ -1,13 +1,13 @@
 {
   "id": "cicero-conflict-antony",
   "slug": "conflict-antony",
-  "title": "The Philippics: My War of Words Against Antony",
-  "excerpt": "Against the tyrant Mark Antony, I have wielded the only weapons a philosopher may wield—reason, rhetoric, and the power of public censure.",
+  "title": "Die Philippischen Reden: Mein Krieg der Worte gegen Antonius",
+  "excerpt": "Gegen den Tyrannen Marcus Antonius habe ich die einzigen Waffen eingesetzt, die ein Philosoph einsetzen darf - Vernunft, Redekunst und die Kraft der öffentlichen Verurteilung.",
   "date": "2024-01-04",
   "historicalDate": "43 v. Chr.",
   "historicalYear": -43,
   "author": "cicero",
-  "tags": ["politics", "civil-war", "rhetoric", "mark-antony", "death"],
+  "tags": ["Politik", "Bürgerkrieg", "Redekunst", "Marcus Antonius", "Tod"],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Period", "value": "September 43 - March 43 BCE" },
-      { "label": "Total Orations", "value": "14 Philippics" },
-      { "label": "Cicero's Fate", "value": "Executed December 43 BCE" },
-      { "label": "Antony's Position", "value": "Consul; Member of Second Triumvirate" },
-      { "label": "Key Named Speech", "value": "Second Philippic" }
+      { "label": "Zeitraum", "value": "September 43 - März 43 v. Chr." },
+      { "label": "Gesamtorationen", "value": "14 Philippische Reden" },
+      { "label": "Ciceros Schicksal", "value": "Hingerichtet Dezember 43 v. Chr." },
+      { "label": "Antonius' Position", "value": "Konsul; Mitglied des Zweiten Triumvirats" },
+      { "label": "Wichtigste Rede", "value": "Zweite Philippische Rede" }
     ],
     "quote": {
       "text": "Silent enim leges inter arma.",
-      "translation": "Laws are silent in the time of war.",
+      "translation": "Die Gesetze sind während des Krieges stumm.",
       "source": "Pro Milone",
       "author": "Marcus Tullius Cicero",
       "date": "52 v. Chr."

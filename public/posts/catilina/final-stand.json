@@ -1,13 +1,13 @@
 {
   "id": "catilina-final-stand",
   "slug": "final-stand",
-  "title": "The Last Battle: Reflections Before the End",
-  "excerpt": "The end approaches. My forces have dwindled; the Republic's armies close in. Yet I do not regret what I have attempted. Some causes are worth dying for.",
+  "title": "Die letzte Schlacht: Gedanken vor dem Ende",
+  "excerpt": "Das Ende nähert sich. Meine Streitkräfte haben sich verringert; die Armeen der Republik schließen sich ein. Doch bereue ich nicht, was ich versucht habe. Einige Ursachen sind es wert, dafür zu sterben.",
   "date": "2024-04-05",
   "historicalDate": "62 v. Chr.",
   "historicalYear": -62,
   "author": "catilina",
-  "tags": ["death", "defeat", "principles", "sacrifice", "legacy"],
+  "tags": ["Tod", "Niederlage", "Prinzipien", "Opfer", "Vermächtnis"],
   "readingTime": 6,
   "coverImage": "catilina-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Final Battle", "value": "62 BCE near Pistoria" },
-      { "label": "Forces Remaining", "value": "Severely depleted" },
-      { "label": "Result", "value": "Catilina killed in battle" },
-      { "label": "Movement", "value": "Ended with his death" },
-      { "label": "Legacy", "value": "Historical condemnation" }
+      { "label": "Letzte Schlacht", "value": "62 v. Chr. bei Pistoria" },
+      { "label": "Verbleibende Streitkräfte", "value": "Stark verringert" },
+      { "label": "Ergebnis", "value": "Catilina im Kampf getötet" },
+      { "label": "Bewegung", "value": "Mit seinem Tod beendet" },
+      { "label": "Vermächtnis", "value": "Historische Verdammung" }
     ],
     "quote": {
       "text": "Melius est semel vivere quam servire perpetuo.",

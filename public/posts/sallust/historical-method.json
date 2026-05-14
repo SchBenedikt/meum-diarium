@@ -1,13 +1,13 @@
 {
   "id": "sallust-historical-method",
   "slug": "historical-method",
-  "title": "On Writing History: The Historian's Duty to Truth",
-  "excerpt": "What is the historian's purpose? To celebrate victors or to analyze truth? I have chosen the latter, even when it proves uncomfortable to power.",
+  "title": "Zur Geschichtsschreibung: Die Pflicht des Historikers zur Wahrheit",
+  "excerpt": "Was ist das Ziel des Historikers? Sieger zu feiern oder die Wahrheit zu analysieren? Ich habe mich für letzteres entschieden, auch wenn es sich für die Macht als unbequem erweist.",
   "date": "2024-05-04",
   "historicalDate": "40 v. Chr.",
   "historicalYear": -40,
   "author": "sallust",
-  "tags": ["history", "methodology", "truth", "writing", "philosophy"],
+  "tags": ["Geschichte", "Methode", "Wahrheit", "Schreiben", "Philosophie"],
   "readingTime": 6,
   "coverImage": "sallust-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Approach", "value": "Analytical rather than celebratory" },
-      { "label": "Method", "value": "Contextual and systemic analysis" },
-      { "label": "Key Focus", "value": "Underlying causes and structures" },
-      { "label": "Works", "value": "Bellum Iugurthinum, Bellum Catilinae" },
-      { "label": "Writing Period", "value": "After retirement from politics" }
+      { "label": "Ansatz", "value": "Analytisch statt Feierlich" },
+      { "label": "Methode", "value": "Kontextuelle und systematische Analyse" },
+      { "label": "Wichtiger Schwerpunkt", "value": "Zugrunde liegende Ursachen und Strukturen" },
+      { "label": "Werke", "value": "Bellum Iugurthinum, Bellum Catilinae" },
+      { "label": "Schreibzeitraum", "value": "Nach Pensionierung aus der Politik" }
     ],
     "quote": {
       "text": "Historia magistra vitae.",

@@ -1,13 +1,13 @@
 {
   "id": "seneca-tutoring-nero",
   "slug": "tutoring-nero",
-  "title": "Shaping a Prince: My Years Teaching Nero",
-  "excerpt": "I have had the extraordinary privilege of tutoring the young emperor. But influence over a ruler is a double-edged sword—can philosophy truly reform a man destined for power?",
+  "title": "Einen Fürsten formen: Meine Jahre als Neros Lehrer",
+  "excerpt": "Ich hatte das auÞrgewöhnliche Vorrecht, den jungen Kaiser zu unterrichten. Aber Einfluss über einen Herrscher ist ein zweischneidiges Schwert - kann Philosophie einen Mann wirklich reformieren, der zur Macht bestimmt ist?",
   "date": "2024-03-02",
   "historicalDate": "55 n. Chr.",
   "historicalYear": 55,
   "author": "seneca",
-  "tags": ["politics", "education", "nero", "philosophy", "power"],
+  "tags": ["Politik", "Bildung", "Nero", "Philosophie", "Macht"],
   "readingTime": 6,
   "coverImage": "seneca-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Tutor Period", "value": "From age 12 through reign" },
-      { "label": "Nero's Reign", "value": "54-68 CE" },
-      { "label": "Co-administrator", "value": "With Burrus (prefect)" },
-      { "label": "Key Issue", "value": "Influence decline as Nero matured" },
-      { "label": "Death", "value": "65 CE (ordered by Nero)" }
+      { "label": "Unterrichtszeit", "value": "Ab Alter 12 durch Herrschaft" },
+      { "label": "Neros Herrschaft", "value": "54-68 n. Chr." },
+      { "label": "Co-Administrator", "value": "Mit Burrus (Präfekt)" },
+      { "label": "Hauptproblem", "value": "Einflussabnahme als Nero erwachsen wurde" },
+      { "label": "Tod", "value": "65 n. Chr. (von Nero befohlen)" }
     ],
     "quote": {
       "text": "Cum mortis tempus venerit, libenter abibunt qui sic vixerunt ut non putarent sibi perpetuam vitam deberi.",
-      "translation": "When the time of death comes, they will gladly depart who have lived as if they did not expect eternal life.",
+      "translation": "Wenn die Zeit des Todes kommt, werden sie gerne abreisen, die so gelebt haben, dass sie nicht erwarteten, auf ewiges Leben Anspruch zu haben.",
       "source": "Moral Letters",
       "author": "Lucius Annaeus Seneca",
       "date": "After 60 n. Chr."

@@ -1,13 +1,13 @@
 {
   "id": "sallust-jugurthine-war",
   "slug": "jugurthine-war",
-  "title": "On the Jugurthine War: Military Folly and Political Corruption",
-  "excerpt": "I served in Africa during the war against Jugurtha. What I witnessed there—military incompetence, political intrigue, moral bankruptcy—shaped my understanding of Rome's decline.",
+  "title": "Über den Jugurthinischen Krieg: Militärische Torheit und politische Korruption",
+  "excerpt": "Ich war militärisch in Afrika im Krieg gegen Jugurtha tätig. Was ich dort sah - militärische Inkompetenz, politische Intrigen, moralischer Bankrott - prägte mein Verständnis von Roms Niedergang.",
   "date": "2024-05-01",
   "historicalDate": "109 v. Chr.",
   "historicalYear": -109,
   "author": "sallust",
-  "tags": ["history", "corruption", "military", "africa", "politics"],
+  "tags": ["Geschichte", "Korruption", "Militär", "Afrika", "Politik"],
   "readingTime": 6,
   "coverImage": "sallust-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "War Period", "value": "111-105 BCE" },
-      { "label": "Location", "value": "North Africa (Numidia)" },
-      { "label": "Key Commanders", "value": "Metellus, Marius" },
-      { "label": "Sallust's Role", "value": "Military officer/historian" },
-      { "label": "Final Resolution", "value": "Jugurtha captured 104 BCE" }
+      { "label": "Kriegszeit", "value": "111-105 v. Chr." },
+      { "label": "Ort", "value": "Nordafrika (Numidien)" },
+      { "label": "Wichtige Befehlshaber", "value": "Metellus, Marius" },
+      { "label": "Sallust's Rolle", "value": "Offizier/Historiograph" },
+      { "label": "Endresolution", "value": "Jugurtha gefangen 104 v. Chr." }
     ],
     "quote": {
       "text": "Longi belli culpa magistratus, non hostium virtus.",

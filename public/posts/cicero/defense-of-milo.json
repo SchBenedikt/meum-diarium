@@ -1,13 +1,13 @@
 {
   "id": "cicero-defense-of-milo",
   "slug": "defense-of-milo",
-  "title": "In Defense of Milo: A Matter of Justice and Rhetoric",
-  "excerpt": "My spirited defense of Milo, though it ended in acquittal, shows the limits of even the greatest oratory when politics interferes.",
+  "title": "Zur Verteidigung Milos: Eine Frage von Gerechtigkeit und Redekunst",
+  "excerpt": "Meine spirited defense of Milo, obwohl sie in Freispruch endete, zeigt die Grenzen der Redekunst, selbst wenn sie von den Größten geführt wird, wenn Politik sich einmischt.",
   "date": "2024-01-02",
   "historicalDate": "52 v. Chr.",
   "historicalYear": -52,
   "author": "cicero",
-  "tags": ["law", "rhetoric", "justice", "defense", "politics"],
+  "tags": ["Gesetz", "Redekunst", "Gerechtigkeit", "Verteidigung", "Politik"],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Date", "value": "April 8, 52 BCE" },
-      { "label": "Victim", "value": "Publius Clodius Pulcher" },
-      { "label": "Location of Killing", "value": "Appian Way" },
-      { "label": "Outcome", "value": "Conviction; exile to Massilia" },
-      { "label": "Presiding Judge", "value": "Pompey (sole consul)" }
+      { "label": "Datum", "value": "8. April 52 v. Chr." },
+      { "label": "Opfer", "value": "Publius Clodius Pulcher" },
+      { "label": "Ort der Tötung", "value": "Appische Straße" },
+      { "label": "Ergebnis", "value": "Verurteilung; Verbannung nach Massilia" },
+      { "label": "Vorsitzender Richter", "value": "Pompeius (Alleinkonzul)" }
     ],
     "quote": {
       "text": "Si ius populi Romani, si libertas, si patria in periculum vocatur, quid moror?",
-      "translation": "If the law of the Roman people, if liberty, if our country is called into danger, why do I delay?",
+      "translation": "Wenn das Recht des römischen Volkes, wenn Freiheit, wenn unser Vaterland in Gefahr ist, warum zögere ich?",
       "source": "Pro Milone",
       "author": "Marcus Tullius Cicero",
       "date": "52 v. Chr."

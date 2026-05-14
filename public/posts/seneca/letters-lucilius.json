@@ -1,13 +1,13 @@
 {
   "id": "seneca-letters-lucilius",
   "slug": "letters-lucilius",
-  "title": "On Friendship Through Letters: Correspondence with Lucilius",
-  "excerpt": "My correspondence with my friend Lucilius has become a vehicle for philosophical teaching. Through letters, we explore the good life together across the distance between our cities.",
+  "title": "Über Freundschaft durch Briefe: Briefwechsel mit Lucilius",
+  "excerpt": "Mein Briefwechsel mit meinem Freund Lucilius ist zu einem Instrument der philosophischen Lehre geworden. Durch Briefe erkunden wir zusammen das gute Leben über die Entfernung zwischen unseren Städten hinweg.",
   "date": "2024-03-04",
   "historicalDate": "62 n. Chr.",
   "historicalYear": 62,
   "author": "seneca",
-  "tags": ["philosophy", "friendship", "correspondence", "letters", "virtue"],
+  "tags": ["Philosophie", "Freundschaft", "Briefwechsel", "Briefe", "Tugend"],
   "readingTime": 6,
   "coverImage": "seneca-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Recipient", "value": "Lucilius (procurator in Sicily)" },
-      { "label": "Approximate Period", "value": "62-65 CE" },
-      { "label": "Total Letters", "value": "~124" },
-      { "label": "Work Title", "value": "Epistulae Morales" },
-      { "label": "Themes", "value": "Virtue, friendship, emotions, wisdom" }
+      { "label": "Empfänger", "value": "Lucilius (Prokurator in Sizilien)" },
+      { "label": "Zeitraum", "value": "62-65 n. Chr." },
+      { "label": "Gesamtzahl Briefe", "value": "~124" },
+      { "label": "Werktitel", "value": "Epistulae Morales" },
+      { "label": "Themen", "value": "Tugend, Freundschaft, Emotionen, Weisheit" }
     ],
     "quote": {
       "text": "Amicitia est animarum consoratio.",
-      "translation": "Friendship is the fellowship of souls.",
+      "translation": "Freundschaft ist die Gemeinschaft der Seelen.",
       "source": "Moral Letters",
       "author": "Lucius Annaeus Seneca",
       "date": "60s n. Chr."

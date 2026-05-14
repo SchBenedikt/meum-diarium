@@ -1,13 +1,13 @@
 {
   "id": "augustus-actium-victory",
   "slug": "actium-victory",
-  "title": "The Battle of Actium: Victory and the Future of Rome",
-  "excerpt": "My triumph at Actium marks not merely a military victory, but the beginning of a new age for Rome—one of order, stability, and lasting peace.",
+  "title": "Die Schlacht von Aktium: Sieg und die Zukunft Roms",
+  "excerpt": "Mein Triumph bei Aktium kennzeichnet nicht nur einen militärischen Sieg, sondern den Beginn eines neuen Zeitalters für Rom - eines der Ordnung, Stabilität und dauerhaften Friedens.",
   "date": "2024-02-01",
   "historicalDate": "31 v. Chr.",
   "historicalYear": -31,
   "author": "augustus",
-  "tags": ["military", "politics", "actium", "civil-war", "strategy"],
+  "tags": ["Militär", "Politik", "Aktium", "Bürgerkrieg", "Strategie"],
   "readingTime": 6,
   "coverImage": "augustus-hero.png",
   "content": {
@@ -16,15 +16,15 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Date", "value": "September 2, 31 BCE" },
-      { "label": "Location", "value": "Acarnania (Modern Greece)" },
-      { "label": "Commander", "value": "Octavian (via Agrippa)" },
-      { "label": "Opponents", "value": "Mark Antony and Cleopatra VII" },
-      { "label": "Fleet Losses", "value": "~200 ships (Antony's forces)" }
+      { "label": "Datum", "value": "2. September 31 v. Chr." },
+      { "label": "Ort", "value": "Akarnien (modernes Griechenland)" },
+      { "label": "Befehlshaber", "value": "Oktavian (via Agrippa)" },
+      { "label": "Gegner", "value": "Marcus Antonius und Kleopatra VII." },
+      { "label": "Schiffsverluste", "value": "~200 Schiffe (Antonius-Streitkräfte)" }
     ],
     "quote": {
       "text": "Aegyptus capta est.",
-      "translation": "Egypt has been captured.",
+      "translation": "Ägypten wurde erobert.",
       "source": "Historical Record",
       "author": "Augustus",
       "date": "30 v. Chr."

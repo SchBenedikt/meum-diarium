@@ -1,13 +1,13 @@
 {
   "id": "catilina-conspiracy-unfolds",
   "slug": "conspiracy-unfolds",
-  "title": "The Conspiracy Takes Shape: The Plan and Its Promise",
-  "excerpt": "Now is the moment. The pieces are in place. A network of allies across Italy, military force, popular support in Rome itself. Soon the oligarchy will learn that not all Romans will accept their dominance.",
+  "title": "Die Verschwörung nimmt Gestalt an: Der Plan und seine Versprechen",
+  "excerpt": "Jetzt ist der Moment gekommen. Die Teile sind an Ort und Stelle. Ein Netzwerk von Verbündeten in ganz Italien, militärische Kraft, Unterstützung in Rom selbst. Bald werden die Oligarchen lernen, dass nicht alle Römer ihre Dominanz akzeptieren werden.",
   "date": "2024-04-03",
   "historicalDate": "63 v. Chr.",
   "historicalYear": -63,
   "author": "catilina",
-  "tags": ["conspiracy", "planning", "politics", "action", "rome"],
+  "tags": ["Verschwörung", "Planung", "Politik", "Aktion", "Rom"],
   "readingTime": 6,
   "coverImage": "catilina-hero.png",
   "content": {
@@ -16,11 +16,11 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Military Commander", "value": "Gaius Manlius" },
-      { "label": "Location", "value": "Etruria (military camp)" },
-      { "label": "Support Base", "value": "Rome and provinces" },
-      { "label": "Key Promise", "value": "Debt cancellation" },
-      { "label": "Timeline", "value": "63 BCE conspiracy" }
+      { "label": "Militärischer Befehlshaber", "value": "Gaius Manlius" },
+      { "label": "Ort", "value": "Etrurien (militärlager)" },
+      { "label": "Unterstüzungsbasis", "value": "Rom und Provinzen" },
+      { "label": "Wichtigstes Versprechen", "value": "Schuldenerlass" },
+      { "label": "Zeitlinie", "value": "63 v. Chr. Verschwörung" }
     ],
     "quote": {
       "text": "Nunc tempus est agendi vel moriendi.",
