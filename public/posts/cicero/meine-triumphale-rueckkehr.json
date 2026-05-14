@@ -7,19 +7,36 @@
   "historicalDate": "4. August 57 v. Chr.",
   "historicalYear": -57,
   "author": "cicero",
-  "tags": ["Rückkehr", "Triumph", "Rom", "Senat"],
+  "tags": [
+    "Rückkehr",
+    "Triumph",
+    "Rom",
+    "Senat"
+  ],
   "readingTime": 3,
   "coverImage": "cicero-hero.png",
   "content": {
-    "diary": "Ich bin wieder da! 🥳 Nach über einem Jahr in diesem schrecklichen, deprimierenden Exil hat Rom endlich begriffen, was es an mir hat. Der Senat hat mich auf Betreiben von Pompeius (wenigstens auf ihn ist noch Verlass) zurückgerufen.\n\nMeine Rückreise quer durch Italien glich einem Triumphzug! In jeder Stadt, in der ich ankam, strömten die Menschenmassen zusammen, um mich zu bejubeln. Es war fast so, als ob sie einen Gott empfangen würden. (Na ja, ich bin ja auch der „Vater des Vaterlandes\"). In Rom selbst stand das ganze Volk auf den Treppen der Tempel, um mich willkommen zu heißen. 🏛️✨\n\nAls ich das Forum betrat, spürte ich, wie sehr mir das alles gefehlt hat: Die Politik, die Reden, die Aufmerksamkeit. Zwar ist mein geliebtes Haus auf dem Palatin immer noch eine Ruine (dieser elende Clodius hatte dort tatsächlich einen Tempel für die „Freiheit\" errichtet, was für eine Ironie!), aber der Staat wird mir den Wiederaufbau bezahlen. Das ist das Mindeste!\n\nIch werde nun wieder meinen rechtmäßigen Platz im Senat einnehmen. Die Republik braucht mich, jetzt mehr denn je. Ohne mich herrschen ja nur Chaos und diese machthungrigen Generäle. Lasst die goldenen Zeiten Roms wieder aufleben!",
+    "diary": "ICH BIN ZURÜCK, BABY! 🎉🏛️💪\n\n16 Monate Exil – 16 MONATE! – und jetzt stehe ich wieder auf dem Forum Romanum! Die Menge jubelt! 👏 Der Senat applaudiert! 🎊 Sogar Leute, die mich vorher nicht mochten, tun so, als wären sie meine besten Freunde! 😅\n\nDie Rückreise war wie ein einziger Triumphzug! 🏇✨ In jeder Stadt, durch die ich kam, strömten die Menschen heraus, um mich zu begrüßen! \"CICERO! CICERO!\" haben sie gerufen! 🗣️ Ich will ja nicht angeben, aber... okay, ich gebe an. ES WAR FANTASTISCH! 😎\n\nClodius' Gesicht, als er hörte, dass ich zurückkomme? Ich hätte dafür GELD bezahlt, das zu sehen! 😂💸\n\nMein Haus wird auf Staatskosten wieder aufgebaut! 🏗️ HA! Nicht nur zurück, sondern BESSER als vorher! 🏡✨\n\nWisst ihr, was das Exil mich gelehrt hat? Dass Rom MICH BRAUCHT! Ohne Cicero ist diese Republik wie ein Schiff ohne Steuermann – es treibt halt so rum! 🚢😬\n\nTriumphierend und NUR EIN BISSCHEN selbstgefällig – euer Cicero 🎊😇",
     "scientific": "Ciceros Rückkehr aus dem Exil am 4. August 57 v. Chr. war ein bedeutendes politisches Ereignis. Auf Initiative von Pompeius Magnus und mit Unterstützung des Volkstribuns Titus Annius Milo wurde ein Gesetz verabschiedet, das Ciceros Rückkehr ermöglichte. Der Senat stimmte fast einstimmig dafür.\n\nDie Rückreise durch Süditalien wurde von enthusiastischen Bürgerempfängen begleitet – ein Zeichen für Ciceros nach wie vor hohe Popularität. In seiner Dankrede vor dem Senat (Post reditum in senatu) und vor dem Volk (Post reditum ad Quirites) schilderte Cicero seine Heimkehr in theatralisch überhöhter Form.\n\nDie Restitution seiner Eigentumsrechte und der Wiederaufbau seines Hauses auf dem Palatin (an dessen Stelle Clodius einen Freiheitstempel errichten ließ) wurde durch Senatsbeschluss genehmigt. Die finanzielle Entschädigung blieb allerdings hinter Ciceros Erwartungen zurück.\n\nPolitisch war Ciceros Rückkehr ein gemischter Erfolg: Zwar konnte er seine Karriere fortsetzen, doch die eigentlichen Machtzentren – Caesar, Pompeius, Crassus – hatten sich während seiner Abwesenheit gefestigt. Cicero musste sich in der Folgezeit vorsichtig zwischen den politischen Lagern bewegen."
   },
   "sidebar": {
     "facts": [
-      { "label": "Rückkehr", "value": "4. August 57 v. Chr." },
-      { "label": "Förderer", "value": "Pompeius Magnus" },
-      { "label": "Rückkehrgesetz", "value": "Lex de Ciceronis reditu" },
-      { "label": "Haus", "value": "Wiederaufbau auf dem Palatin genehmigt" }
+      {
+        "label": "Rückkehr",
+        "value": "4. August 57 v. Chr."
+      },
+      {
+        "label": "Förderer",
+        "value": "Pompeius Magnus"
+      },
+      {
+        "label": "Rückkehrgesetz",
+        "value": "Lex de Ciceronis reditu"
+      },
+      {
+        "label": "Haus",
+        "value": "Wiederaufbau auf dem Palatin genehmigt"
+      }
     ],
     "quote": {
       "text": "O fortunatam natam me consule Romam!",
