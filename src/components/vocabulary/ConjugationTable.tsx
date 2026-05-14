@@ -35,8 +35,6 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
-        console.log(`🔍 [ConjugationTable] Processing form: ${form.form} -> ${form.bestimmung}`);
-        
         // Sort tenses by priority to ensure most specific matches first
         const sortedTenses = [...tenses].sort((a, b) => a.priority - b.priority);
         
@@ -51,8 +49,6 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
                     groupedForms[tense.key] = {};
                 }
                 
-                console.log(`✅ [ConjugationTable] Form ${form.form} matches tense ${tense.label} (priority ${tense.priority})`);
-                
                 // Determine person and number
                 for (let i = 1; i <= 3; i++) {
                     // Check for exact person and number matches
@@ -61,11 +57,9 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
                     
                     if (personSgPattern.test(form.bestimmung!)) {
                         groupedForms[tense.key][`${i}sg`] = form.form;
-                        console.log(`✅ [ConjugationTable] Added ${i}. Sg.: ${form.form}`);
                         break; // Found right person, stop searching
                     } else if (personPlPattern.test(form.bestimmung!)) {
                         groupedForms[tense.key][`${i}pl`] = form.form;
-                        console.log(`✅ [ConjugationTable] Added ${i}. Pl.: ${form.form}`);
                         break; // Found right person, stop searching
                     }
                 }
@@ -74,13 +68,8 @@ export function ConjugationTable({ forms }: ConjugationTableProps) {
         }
     });
     
-    console.log('📊 [ConjugationTable] Received forms:', forms);
-    console.log('🔢 [ConjugationTable] Forms count:', forms.length);
-    
     // If we have forms grouped by tense, show tabs
     const availableTenses = tenses.filter(t => groupedForms[t.key]);
-    console.log('📋 [ConjugationTable] Available tenses:', availableTenses);
-    console.log('🗂️ [ConjugationTable] Grouped forms:', groupedForms);
     
     if (availableTenses.length > 0) {
         return (

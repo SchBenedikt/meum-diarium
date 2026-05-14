@@ -10,8 +10,6 @@ export function usePosts() {
   const { data: posts, isLoading: isFetching, error } = useQuery<BlogPost[]>({
     queryKey: ['posts'],
     queryFn: async () => {
-      console.log('🔄 [usePosts] Starting to fetch posts from API...');
-      const apiStartTime = Date.now();
       const apiPosts = await fetchPosts();
       const normalizedPosts = Array.isArray(apiPosts)
         ? apiPosts.map((post: any) => {
@@ -24,10 +22,7 @@ export function usePosts() {
             };
           })
         : [];
-      const apiFetchTime = Date.now() - apiStartTime;
       if (normalizedPosts.length > 0) {
-        console.log(`✅ [usePosts] Loaded ${normalizedPosts.length} posts from D1 database (${apiFetchTime}ms)`);
-        console.log('🔍 [usePosts] Sample post data:', normalizedPosts[0]);
         return normalizedPosts;
       }
       console.warn('⚠️ [usePosts] No posts received from API');

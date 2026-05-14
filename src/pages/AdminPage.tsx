@@ -42,16 +42,12 @@ export default function AdminPage() {
     const { works } = useWorks();
     const { tags } = useTags();
     
-    // Debug logging
-    console.log('🔍 [AdminPage] usePosts returned:', { posts: posts?.length, isLoading, error });
     // Derived state for filtering
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [filteredLexicon, setFilteredLexicon] = useState<LexiconEntry[]>([]);
     const [filteredTags, setFilteredTags] = useState<string[]>([]);
     useEffect(() => {
         if (posts) {
-            console.log(`🔍 [AdminPage] Received ${posts.length} posts from usePosts hook`);
-            console.log('🔍 [AdminPage] Sample post:', posts[0]);
             setFilteredPosts(sortPostsChronologically(posts));
         }
     }, [posts]);

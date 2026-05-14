@@ -101,7 +101,6 @@ export default function WorkPage() {
             const workSlug = slugify(w.title, { lower: true, strict: true });
             return workSlug === slug;
           });
-          console.log(`🔍 [WorkPage] Searched allWorks (${allWorks.length} items): found=${!!foundWork}`);
         }
       }
       if (foundWork) {
@@ -124,7 +123,6 @@ export default function WorkPage() {
           }
         }
       } else {
-        console.log(`❌ [WorkPage] Work not found for slug="${slug}". baseWorks keys: ${Object.keys(baseWorks).join(', ')}`);
         if (active) {
           setWork(null);
         }

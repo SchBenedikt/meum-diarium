@@ -341,7 +341,6 @@ export default function PostPage() {
         setIsLoadingPost(true);
         setError(null);
         const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
-        console.log(`[PostPage] Fetching post from: ${apiUrl}`);
         const response = await fetch(apiUrl);
         if (!response.ok) {
           const errorMsg = `Post not found (${response.status})`;
@@ -349,11 +348,9 @@ export default function PostPage() {
           throw new Error(errorMsg);
         }
         const data = await response.json();
-        console.log(`[PostPage] Received post data:`, data);
         const loadedPost = data as BlogPost;
 
         if (loadedPost && loadedPost.id) {
-          console.log(`[PostPage] Successfully loaded post: ${loadedPost.title}`);
           setPost(loadedPost);
         } else {
           console.warn(`[PostPage] Invalid post data structure`);

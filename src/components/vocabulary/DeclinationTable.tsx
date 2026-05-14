@@ -12,9 +12,6 @@ interface DeclinationTableProps {
 }
 
 export function DeclinationTable({ forms }: DeclinationTableProps) {
-    console.log('📊 [DeclinationTable] Received forms:', forms);
-    console.log('🔢 [DeclinationTable] Forms count:', forms.length);
-    
     // Parse declension forms into a structured table
     // Forms typically have bestimmung like "Nom. Sg.", "Gen. Sg.", "Dat. Sg.", etc.
     // For adjectives, they may also have gender indicators like "mask.", "fem.", "neut."
@@ -26,8 +23,6 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
     const hasGenderForms = forms.some(f => 
         f.bestimmung && genders.some(g => f.bestimmung!.includes(g))
     );
-    console.log('🏷️ [DeclinationTable] Has gender forms:', hasGenderForms);
-    
     if (hasGenderForms) {
         // Multi-gender declension table (for adjectives)
         const formsByGender: Record<string, Record<string, { sg?: string[]; pl?: string[] }>> = {};
@@ -36,8 +31,6 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
             if (!form.bestimmung) return;
             
             const bestimmung = form.bestimmung;
-            console.log(`🔍 [DeclinationTable] Processing form: ${form.form} -> ${bestimmung}`);
-            
             // Determine gender
             let gender = 'mask.'; // default
             for (const g of genders) {
@@ -64,7 +57,6 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                             formsByGender[gender][caseName].sg = [];
                         }
                         formsByGender[gender][caseName].sg!.push(form.form);
-                        console.log(`✅ [DeclinationTable] Added ${gender} ${caseName} Sg: ${form.form}`);
                     } 
                     // Handle combined descriptions like "Nom. Pl., Akk. Pl."
                     if (bestimmung.includes('Pl.')) {
@@ -72,14 +64,11 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                             formsByGender[gender][caseName].pl = [];
                         }
                         formsByGender[gender][caseName].pl!.push(form.form);
-                        console.log(`✅ [DeclinationTable] Added ${gender} ${caseName} Pl: ${form.form}`);
                     }
                     // Don't break here - continue checking for other cases in same description
                 }
             }
         });
-        
-        console.log('📋 [DeclinationTable] Forms by gender:', formsByGender);
         
         const availableGenders = Object.keys(formsByGender);
         
@@ -168,14 +157,10 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
     // Single-gender declension table (for nouns)
     const formsByCase: Record<string, { sg?: string[]; pl?: string[] }> = {};
     
-    console.log('📝 [DeclinationTable] Processing single-gender forms...');
-    
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
         const bestimmung = form.bestimmung;
-        console.log(` [DeclinationTable] Processing form: ${form.form} -> ${bestimmung}`);
-        
         // Check each case
         for (const caseName of cases) {
             if (bestimmung.includes(caseName)) {
@@ -189,7 +174,6 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                         formsByCase[caseName].sg = [];
                     }
                     formsByCase[caseName].sg!.push(form.form);
-                    console.log(` [DeclinationTable] Added ${caseName} Sg: ${form.form}`);
                 } 
                 // Handle combined descriptions like "Nom. Pl., Akk. Pl."
                 if (bestimmung.includes('Pl.')) {
@@ -197,14 +181,11 @@ export function DeclinationTable({ forms }: DeclinationTableProps) {
                         formsByCase[caseName].pl = [];
                     }
                     formsByCase[caseName].pl!.push(form.form);
-                    console.log(` [DeclinationTable] Added ${caseName} Pl: ${form.form}`);
                 }
                 // Don't break here - continue checking for other cases in the same description
             }
         }
     });
-
-    console.log(' [DeclinationTable] Final forms by case:', formsByCase);
 
     return (
         <div className="overflow-x-auto">

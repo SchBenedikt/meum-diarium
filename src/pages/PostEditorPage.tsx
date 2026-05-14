@@ -138,41 +138,19 @@ export default function PostEditorPage() {
     const { authors } = useAuthors();
     const [loading, setLoading] = useState(false);
     
-    console.log('🔍 [PostEditorPage] Params:', { author, slug, isEditMode });
-    
     // Fetch post data if editing
     const { data: postData, isLoading: isFetching, error: postError } = useQuery({
         queryKey: ['post', author, slug],
         queryFn: async () => {
-            console.log('🔄 [PostEditorPage] Fetching post data...');
             if (!isEditMode || !author || !slug) {
-                console.log('⚠️ [PostEditorPage] Missing params for edit mode');
                 return null;
             }
-            
-            try {
-                const result = await fetchPost(author, slug);
-                console.log('✅ [PostEditorPage] Successfully fetched post data:', result);
-                return result;
-            } catch (error) {
-                console.error('❌ [PostEditorPage] Error fetching post:', error);
-                
-                // Check if error is a JSON parsing error
-                if (error instanceof SyntaxError && error.message.includes('JSON')) {
-                    console.error('🚨 [PostEditorPage] JSON parsing error - likely received HTML instead of JSON');
-                    console.error('🔍 [PostEditorPage] This usually indicates a service worker caching issue');
-                    console.error('💡 [PostEditorPage] Try clearing caches with: clearApiCaches() in console');
-                }
-                
-                throw error;
-            }
+            return fetchPost(author, slug);
         },
         enabled: isEditMode,
         staleTime: 0, // Disable caching to always fetch fresh data
         refetchOnWindowFocus: true // Refetch when window gains focus
     });
-    
-    console.log('📊 [PostEditorPage] Post data:', { postData, isFetching, postError });
     
     // State for preview functionality
     const diaryTextareaRef = useRef<HTMLTextAreaElement>(null);

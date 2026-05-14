@@ -47,16 +47,11 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
     
     const groupedForms: Record<string, Record<string, Record<string, string>>> = {};
     
-    console.log('📊 [ParticipleTable] Received forms:', forms);
-    console.log('🔢 [ParticipleTable] Forms count:', forms.length);
-    
     // Group forms by participle type, gender, case, and number
     forms.forEach(form => {
         if (!form.bestimmung) return;
         
         const bestimmung = form.bestimmung;
-        console.log(`🔍 [ParticipleTable] Processing form: ${form.form} -> ${bestimmung}`);
-        
         // Sort participle types by priority to ensure most specific matches first
         const sortedTypes = [...participleTypes].sort((a, b) => {
             // More specific patterns should come first (lower priority number = higher priority)
@@ -72,8 +67,6 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
                 if (!groupedForms[participleType.key]) {
                     groupedForms[participleType.key] = {};
                 }
-                
-                console.log(`✅ [ParticipleTable] Form ${form.form} matches type ${participleType.label} (priority ${participleType.priority})`);
                 
                 // Parse gender, case, and number from description
                 // Examples: "PPA (Nom. Sg. mask.)", "PPP (Gen. Pl. fem.)"
@@ -96,14 +89,11 @@ export function ParticipleTable({ forms }: ParticipleTableProps) {
                     
                     const cellKey = `${caseName}${number === 'Sg.' ? 'sg' : 'pl'}`;
                     groupedForms[participleType.key][gender][cellKey] = form.form;
-                    console.log(`✅ [ParticipleTable] Added ${participleType.key} ${gender} ${caseName} ${number}: ${form.form}`);
                 }
                 break; // Found matching type, stop checking other types
             }
         }
     });
-    
-    console.log('🗂️ [ParticipleTable] Grouped forms:', groupedForms);
     
     // If we have forms grouped by participle type, show tabs
     const availableTypes = participleTypes.filter(type => groupedForms[type.key]);
