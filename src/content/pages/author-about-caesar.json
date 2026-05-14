@@ -4,12 +4,36 @@
   "heroSubtitle": "Diktator auf Lebenszeit, Feldherr und Staatsmann",
   "heroImage": "/images/caesar-hero.png",
   "introText": "Feldherr, Staatsmann und Autor. Eroberer Galliens und Begründer des Übergangs von der Römischen Republik zum Kaiserreich.",
-  "sections": [],
+  "sections": [
+    {
+      "title": "Seine Werke",
+      "content": [
+        "De Bello Gallico (58-50 v. Chr.): Caesars Bericht über die Eroberung Galliens. Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa. Das Werk gliedert sich in 8 Bücher und beginnt mit dem berühmten Satz 'Gallia est omnis divisa in partes tres'.",
+        "De Bello Civili (49-48 v. Chr.): Caesars Rechtfertigung des Bürgerkriegs gegen Pompeius. Emotionaler und defensiver als der Gallische Krieg, zeigt Caesar die Überschreitung des Rubikon als unvermeidbare Notwendigkeit."
+      ]
+    },
+    {
+      "title": "Seine Reformen",
+      "content": [
+        "Julianischer Kalender: Caesar reformierte den römischen Kalender grundlegend – die Grundlage unseres heutigen Kalendersystems.",
+        "Bürgerrecht: Er erweiterte das römische Bürgerrecht auf die Transpadaner und öffnete den Senat für verdiente Männer aus den Provinzen.",
+        "Schuldenerlass und Zinsdeckel: Wirtschaftsreformen zur Entlastung der Verschuldeten.",
+        "Forum Iulium und Bauprogramm: Groß angelegte Bauprojekte in Rom, darunter das Forum Iulium."
+      ]
+    }
+  ],
   "highlights": [
     {
-      "title": "",
-      "description": "",
-      "icon": "BookOpen"
+      "title": "De Bello Gallico",
+      "description": "Caesars Kommentare zum Gallischen Krieg – ein Meisterwerk militärischer Literatur.",
+      "link": "/caesar/works/de-bello-gallico",
+      "icon": "Scroll"
+    },
+    {
+      "title": "De Bello Civili",
+      "description": "Caesars Bericht über den Bürgerkrieg gegen Pompeius – politische Selbstrechtfertigung.",
+      "link": "/caesar/works/de-bello-civili",
+      "icon": "Sword"
     }
   ],
   "translations": {

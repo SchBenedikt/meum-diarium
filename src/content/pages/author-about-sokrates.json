@@ -4,8 +4,38 @@
   "heroSubtitle": "Philosoph, Fragender, Lehrer im Dialog",
   "heroImage": "/images/sokrates-hero.png",
   "introText": "Sokrates prägte die Philosophie durch das fragend-entwickelnde Gespräch. Seine Methode zielte nicht auf Belehrung, sondern auf Einsicht – bis hin zur Aporie.",
-  "sections": [],
-  "highlights": [],
+  "sections": [
+    {
+      "title": "Seine Lehre",
+      "content": [
+        "Die sokratische Methode (Maieutik): Durch gezieltes Fragen, nicht durch Belehrung, führt Sokrates seine Gesprächspartner zur Selbsterkenntnis. Wie eine Hebamme hilft er, verborgene Wahrheiten ans Licht zu bringen.",
+        "Das sokratische Nichtwissen: Ich weiß, dass ich nichts weiß – dieser Satz ist der Ausgangspunkt aller Philosophie. Die Anerkennung der eigenen Unwissenheit ist der erste Schritt zur Weisheit.",
+        "Tugend als Wissen: Niemand tut freiwillig Unrecht. Schlechtes Handeln ist immer das Ergebnis von Unwissenheit. Wer das Gute wirklich erkennt, wird es auch tun."
+      ]
+    },
+    {
+      "title": "Die überlieferten Werke",
+      "content": [
+        "Sokrates selbst hat keine Schriften hinterlassen. Sein Denken ist uns durch seine Schüler Platon und Xenophon überliefert.",
+        "Die Apologie: Platons Darstellung der Verteidigungsrede des Sokrates vor dem athenischen Gericht. Das Gründungsdokument der abendländischen Philosophie. Sokrates rechtfertigt sein Philosophieren als göttlichen Auftrag und weigert sich, um sein Leben zu bitten.",
+        "Der Phaidon: Platons berühmter Dialog über die letzten Stunden des Sokrates. Im Angesicht des Todes diskutiert Sokrates über die Unsterblichkeit der Seele und beweist seine philosophische Gelassenheit bis zum letzten Atemzug."
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Die Apologie",
+      "description": "Sokrates' Verteidigungsrede vor Gericht – die Grundlegung der kritischen Philosophie.",
+      "link": "/sokrates/works/apologie",
+      "icon": "BookOpen"
+    },
+    {
+      "title": "Der Phaidon",
+      "description": "Sokrates' letzte Stunde: Philosophie als Übung im Sterben und Beweis der Unsterblichkeit.",
+      "link": "/sokrates/works/phaidon",
+      "icon": "Scroll"
+    }
+  ],
   "translations": {
     "de": {
       "heroTitle": "Sokrates",

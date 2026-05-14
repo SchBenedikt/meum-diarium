@@ -1,0 +1,1359 @@
+{
+  "id": "res-gestae",
+  "title": "Res Gestae Divi Augusti",
+  "author": "augustus",
+  "type": "prose",
+  "defaultRef": "Res Gestae 1",
+  "books": [
+    {
+      "id": 1,
+      "title": "Res Gestae Divi Augusti",
+      "chapters": [
+        {
+          "id": "1",
+          "number": 1,
+          "latin": "Annos undeviginti natus exercitum privato consilio et privata impensa\ncomparavi, per quem rem publicam a dominatione factionis oppressam in\nlibertatem vindicavi.  [Ob quae] senatus decretis honorificis in ordinem suum\nme adlegit, C. Pansa et A. Hirtio consulibus, consularem locum sententiae\ndicendae tribuens, et imperium mihi dedit. Res publica ne quid detrimenti\ncaperet, me propraetore simul cum consulibus providere iussit. Populus autem\neodem anno me consulem, cum cos. uterque bello cecidisset, et triumvirum rei\npublicae constituendae creavit.",
+          "sentences": [
+            "Annos undeviginti natus exercitum privato consilio et privata impensa\ncomparavi, per quem rem publicam a dominatione factionis oppressam in\nlibertatem vindicavi.",
+            "[Ob quae] senatus decretis honorificis in ordinem suum\nme adlegit, C.",
+            "Pansa et A.",
+            "Hirtio consulibus, consularem locum sententiae\ndicendae tribuens, et imperium mihi dedit.",
+            "Res publica ne quid detrimenti\ncaperet, me propraetore simul cum consulibus providere iussit.",
+            "Populus autem\neodem anno me consulem, cum cos.",
+            "uterque bello cecidisset, et triumvirum rei\npublicae constituendae creavit."
+          ],
+          "lines": [
+            "Annos undeviginti natus exercitum privato consilio et privata impensa\ncomparavi, per quem rem publicam a dominatione factionis oppressam in\nlibertatem vindicavi.",
+            "[Ob quae] senatus decretis honorificis in ordinem suum\nme adlegit, C.",
+            "Pansa et A.",
+            "Hirtio consulibus, consularem locum sententiae\ndicendae tribuens, et imperium mihi dedit.",
+            "Res publica ne quid detrimenti\ncaperet, me propraetore simul cum consulibus providere iussit.",
+            "Populus autem\neodem anno me consulem, cum cos.",
+            "uterque bello cecidisset, et triumvirum rei\npublicae constituendae creavit."
+          ]
+        },
+        {
+          "id": "1",
+          "number": 1,
+          "latin": "Rerum gestarum divi Augusti, quibus orbem terra[rum] imperio populi Rom. subiecit, et impensarum, quas in rem publicam populumque Romanum fecit, incisarum in duabus aheneis pilis, quae su[n]t Romae positae, exemplar sub[i]ectum.",
+          "sentences": [
+            "Rerum gestarum divi Augusti, quibus orbem terra[rum] imperio populi Rom.",
+            "subiecit, et impensarum, quas in rem publicam populumque Romanum fecit, incisarum in duabus aheneis pilis, quae su[n]t Romae positae, exemplar sub[i]ectum."
+          ],
+          "lines": [
+            "Rerum gestarum divi Augusti, quibus orbem terra[rum] imperio populi Rom.",
+            "subiecit, et impensarum, quas in rem publicam populumque Romanum fecit, incisarum in duabus aheneis pilis, quae su[n]t Romae positae, exemplar sub[i]ectum."
+          ]
+        },
+        {
+          "id": "2",
+          "number": 2,
+          "latin": "Qui parentem meum trucidaverunt, eos in exilium expuli iudiciis legitimis\nultus eorum facinus, et postea bellum inferentis rei publicae vici bis acie.",
+          "sentences": [
+            "Qui parentem meum trucidaverunt, eos in exilium expuli iudiciis legitimis\nultus eorum facinus, et postea bellum inferentis rei publicae vici bis acie."
+          ],
+          "lines": [
+            "Qui parentem meum trucidaverunt, eos in exilium expuli iudiciis legitimis\nultus eorum facinus, et postea bellum inferentis rei publicae vici bis acie."
+          ]
+        },
+        {
+          "id": "2",
+          "number": 2,
+          "latin": "1. Annos undeviginti natus  exercitum privato consilio et privata impensa comparavi.~ per quem rem \npublicam a dominatione factionis oppressam in liberatatem vindicavi.  Eo [nomi]ne senatus decretis \nhonorif[i]cis in ordinem suum m[e adlegit C. Pansa et A. Hirti]o consulibus, con[sula]rem locum s[imul \ndan sententiae ferendae, et i]imperium mihi dedit.~ Res publica, n[e quid detrimenti caperet, a] me pro \npraetore simul cum consulibus pro[viden]dum [iussit. P]opulus autem eodem anno me consulem, cum \n[cos. uterqu]e in bel[lo ceci]disset, et triumvirum rei publicae costituend[ae creavit].",
+          "sentences": [
+            "Annos undeviginti natus  exercitum privato consilio et privata impensa comparavi.~ per quem rem \npublicam a dominatione factionis oppressam in liberatatem vindicavi.",
+            "Eo [nomi]ne senatus decretis \nhonorif[i]cis in ordinem suum m[e adlegit C.",
+            "Pansa et A.",
+            "Hirti]o consulibus, con[sula]rem locum s[imul \ndan sententiae ferendae, et i]imperium mihi dedit.~ Res publica, n[e quid detrimenti caperet, a] me pro \npraetore simul cum consulibus pro[viden]dum [iussit.",
+            "P]opulus autem eodem anno me consulem, cum \n[cos.",
+            "uterqu]e in bel[lo ceci]disset, et triumvirum rei publicae costituend[ae creavit]."
+          ],
+          "lines": [
+            "Annos undeviginti natus  exercitum privato consilio et privata impensa comparavi.~ per quem rem \npublicam a dominatione factionis oppressam in liberatatem vindicavi.",
+            "Eo [nomi]ne senatus decretis \nhonorif[i]cis in ordinem suum m[e adlegit C.",
+            "Pansa et A.",
+            "Hirti]o consulibus, con[sula]rem locum s[imul \ndan sententiae ferendae, et i]imperium mihi dedit.~ Res publica, n[e quid detrimenti caperet, a] me pro \npraetore simul cum consulibus pro[viden]dum [iussit.",
+            "P]opulus autem eodem anno me consulem, cum \n[cos.",
+            "uterqu]e in bel[lo ceci]disset, et triumvirum rei publicae costituend[ae creavit]."
+          ]
+        },
+        {
+          "id": "3",
+          "number": 3,
+          "latin": "Bella terra et mari civilia externaque toto in orbe terrarum saepe gessi,\nvictorque omnibus veniam petentibus civibus peperci. Externas gentes, quibus\ntuto ignosci potuit, conservare quam excidere malui. Millia civium Romanorum\nsub sacramento meo fuerunt circiter quingenta. Ex quibus deduxi in colonias aut\nremisi in municipia sua stipendis emeritis millia aliquanto plura quam\ntrecenta, et iis omnibus agros adsignavi aut pecuniam pro praemiis militiae\ndedi. Naves cepi sescentas praeter eas, si quae minores quam triremes fuerunt.",
+          "sentences": [
+            "Bella terra et mari civilia externaque toto in orbe terrarum saepe gessi,\nvictorque omnibus veniam petentibus civibus peperci.",
+            "Externas gentes, quibus\ntuto ignosci potuit, conservare quam excidere malui.",
+            "Millia civium Romanorum\nsub sacramento meo fuerunt circiter quingenta.",
+            "Ex quibus deduxi in colonias aut\nremisi in municipia sua stipendis emeritis millia aliquanto plura quam\ntrecenta, et iis omnibus agros adsignavi aut pecuniam pro praemiis militiae\ndedi.",
+            "Naves cepi sescentas praeter eas, si quae minores quam triremes fuerunt."
+          ],
+          "lines": [
+            "Bella terra et mari civilia externaque toto in orbe terrarum saepe gessi,\nvictorque omnibus veniam petentibus civibus peperci.",
+            "Externas gentes, quibus\ntuto ignosci potuit, conservare quam excidere malui.",
+            "Millia civium Romanorum\nsub sacramento meo fuerunt circiter quingenta.",
+            "Ex quibus deduxi in colonias aut\nremisi in municipia sua stipendis emeritis millia aliquanto plura quam\ntrecenta, et iis omnibus agros adsignavi aut pecuniam pro praemiis militiae\ndedi.",
+            "Naves cepi sescentas praeter eas, si quae minores quam triremes fuerunt."
+          ]
+        },
+        {
+          "id": "3",
+          "number": 3,
+          "latin": "2.   Qui parentem meum [interfecer]un[t eo]s in exilium expuli iudiciis legitimis ultus eorum [fa]cin[us, \ne]t postea bellum inferentis rei publicae vici b[is a]cie.",
+          "sentences": [
+            "Qui parentem meum [interfecer]un[t eo]s in exilium expuli iudiciis legitimis ultus eorum [fa]cin[us, \ne]t postea bellum inferentis rei publicae vici b[is a]cie."
+          ],
+          "lines": [
+            "Qui parentem meum [interfecer]un[t eo]s in exilium expuli iudiciis legitimis ultus eorum [fa]cin[us, \ne]t postea bellum inferentis rei publicae vici b[is a]cie."
+          ]
+        },
+        {
+          "id": "4",
+          "number": 4,
+          "latin": "Bis ovans triumphavi, tris egi curulis triumphos et appellatus sum viciens\net semel imperator. Cum autem pluris triumphos mihi senatus decrevisset, iis\nsupersedi. Laurum de fascibus deposui in Capitolio, votis quae quoque bello\nnuncupaveram solutis. Ob res a me aut per legatos meos auspicis meis terra\nmarique prospere gestas quinquagiens et quinquiens decrevit senatus\nsupplicandum esse dis immortalibus. Dies autem, per quos ex senatus consulto\nsupplicatum est, fuere DCCCLXXXX. In triumphis meis ducti sunt ante currum meum\nreges aut regum liberi novem. Consul fueram terdeciens, cum scribebam haec, et\nagebam septimum et tricensimum tribuniciae potestatis.",
+          "sentences": [
+            "Bis ovans triumphavi, tris egi curulis triumphos et appellatus sum viciens\net semel imperator.",
+            "Cum autem pluris triumphos mihi senatus decrevisset, iis\nsupersedi.",
+            "Laurum de fascibus deposui in Capitolio, votis quae quoque bello\nnuncupaveram solutis.",
+            "Ob res a me aut per legatos meos auspicis meis terra\nmarique prospere gestas quinquagiens et quinquiens decrevit senatus\nsupplicandum esse dis immortalibus.",
+            "Dies autem, per quos ex senatus consulto\nsupplicatum est, fuere DCCCLXXXX.",
+            "In triumphis meis ducti sunt ante currum meum\nreges aut regum liberi novem.",
+            "Consul fueram terdeciens, cum scribebam haec, et\nagebam septimum et tricensimum tribuniciae potestatis."
+          ],
+          "lines": [
+            "Bis ovans triumphavi, tris egi curulis triumphos et appellatus sum viciens\net semel imperator.",
+            "Cum autem pluris triumphos mihi senatus decrevisset, iis\nsupersedi.",
+            "Laurum de fascibus deposui in Capitolio, votis quae quoque bello\nnuncupaveram solutis.",
+            "Ob res a me aut per legatos meos auspicis meis terra\nmarique prospere gestas quinquagiens et quinquiens decrevit senatus\nsupplicandum esse dis immortalibus.",
+            "Dies autem, per quos ex senatus consulto\nsupplicatum est, fuere DCCCLXXXX.",
+            "In triumphis meis ducti sunt ante currum meum\nreges aut regum liberi novem.",
+            "Consul fueram terdeciens, cum scribebam haec, et\nagebam septimum et tricensimum tribuniciae potestatis."
+          ]
+        },
+        {
+          "id": "4",
+          "number": 4,
+          "latin": "3.    [B]ella terra et mari c[ivilia ex]ternaque toto in orbe terrarum s[aepe gessi] victorque omnibus \nv[eniam petentib]us civibus peperci.  Exte[rnas] gentes, quibus tuto i[gnosci pot]ui[t, co]nservare quam \nexcidere m[alui].  Millia civium Roma[no]rum [sub] sacramento meo fuerunt circiter [quingen]ta.  Ex \nquibus dedu[xi in coloni]as aut remisi in municipia sua stipen[dis emeri]tis millia aliquant[o plura \nqu]am trecenta et iis omnibus agros a[dsignavi] aut pecuniam pro p[raemis mil]itiae dedi.  Naves cepi \nsescen[tas praeter] eas, si quae minore[s quam trir]emes fuerunt.",
+          "sentences": [
+            "[B]ella terra et mari c[ivilia ex]ternaque toto in orbe terrarum s[aepe gessi] victorque omnibus \nv[eniam petentib]us civibus peperci.",
+            "Exte[rnas] gentes, quibus tuto i[gnosci pot]ui[t, co]nservare quam \nexcidere m[alui].",
+            "Millia civium Roma[no]rum [sub] sacramento meo fuerunt circiter [quingen]ta.",
+            "Ex \nquibus dedu[xi in coloni]as aut remisi in municipia sua stipen[dis emeri]tis millia aliquant[o plura \nqu]am trecenta et iis omnibus agros a[dsignavi] aut pecuniam pro p[raemis mil]itiae dedi.",
+            "Naves cepi \nsescen[tas praeter] eas, si quae minore[s quam trir]emes fuerunt."
+          ],
+          "lines": [
+            "[B]ella terra et mari c[ivilia ex]ternaque toto in orbe terrarum s[aepe gessi] victorque omnibus \nv[eniam petentib]us civibus peperci.",
+            "Exte[rnas] gentes, quibus tuto i[gnosci pot]ui[t, co]nservare quam \nexcidere m[alui].",
+            "Millia civium Roma[no]rum [sub] sacramento meo fuerunt circiter [quingen]ta.",
+            "Ex \nquibus dedu[xi in coloni]as aut remisi in municipia sua stipen[dis emeri]tis millia aliquant[o plura \nqu]am trecenta et iis omnibus agros a[dsignavi] aut pecuniam pro p[raemis mil]itiae dedi.",
+            "Naves cepi \nsescen[tas praeter] eas, si quae minore[s quam trir]emes fuerunt."
+          ]
+        },
+        {
+          "id": "5",
+          "number": 5,
+          "latin": "Dictaturam et apsenti et praesenti mihi delatam et a populo et a senatu, M.\nMarcello et L. Arruntio consulibus non accepi. Non recusavi in summa frumenti\npenuria curationem annonae, quam ita administravi, ut intra paucos dies metu et\npericlo praesenti populum universum liberarem impensa et cura mea. Consulatum\nquoque tum annuum et perpetuum mihi delatum non recepi.",
+          "sentences": [
+            "Dictaturam et apsenti et praesenti mihi delatam et a populo et a senatu, M.",
+            "Marcello et L.",
+            "Arruntio consulibus non accepi.",
+            "Non recusavi in summa frumenti\npenuria curationem annonae, quam ita administravi, ut intra paucos dies metu et\npericlo praesenti populum universum liberarem impensa et cura mea.",
+            "Consulatum\nquoque tum annuum et perpetuum mihi delatum non recepi."
+          ],
+          "lines": [
+            "Dictaturam et apsenti et praesenti mihi delatam et a populo et a senatu, M.",
+            "Marcello et L.",
+            "Arruntio consulibus non accepi.",
+            "Non recusavi in summa frumenti\npenuria curationem annonae, quam ita administravi, ut intra paucos dies metu et\npericlo praesenti populum universum liberarem impensa et cura mea.",
+            "Consulatum\nquoque tum annuum et perpetuum mihi delatum non recepi."
+          ]
+        },
+        {
+          "id": "5",
+          "number": 5,
+          "latin": "4.    [Bis] ovans triumphavi et tri[s egi] curulis triumphos et appella[tus sum v]iciens et semel imperator. [decernente plu]ris triumphos mihi sena[t]u,  qua[ter eis su]persedi. ~ L[aurum de f]asc[i]bus deposui  in Capi[tolio votis, quae] quoque bello nuncupaveram, [sol]utis.  Ob res a [me aut per legatos] meos auspicis meis terra ma[riqu]e pr[o]spere gestas qui[nquageniens et q]uinquiens decrevit senatus \nsupp[lica]ndum esse dis immortalibus.  Dies a[utem, pe]r quos ex senatus consulto [s]upplicatum est, \nfuere DC[CCLXXXX.   In triumphis meis] ducti sunt ante currum meum reges aut r[eg]um lib[eri \nnovem.  Consul f]ueram terdeciens, cum [scribeb]a[m] haec, [et eram se]p[timum et] tricen[simu]m \ntribuniciae potestatis.",
+          "sentences": [
+            "[Bis] ovans triumphavi et tri[s egi] curulis triumphos et appella[tus sum v]iciens et semel imperator.",
+            "[decernente plu]ris triumphos mihi sena[t]u,  qua[ter eis su]persedi.",
+            "~ L[aurum de f]asc[i]bus deposui  in Capi[tolio votis, quae] quoque bello nuncupaveram, [sol]utis.",
+            "Ob res a [me aut per legatos] meos auspicis meis terra ma[riqu]e pr[o]spere gestas qui[nquageniens et q]uinquiens decrevit senatus \nsupp[lica]ndum esse dis immortalibus.",
+            "Dies a[utem, pe]r quos ex senatus consulto [s]upplicatum est, \nfuere DC[CCLXXXX.",
+            "In triumphis meis] ducti sunt ante currum meum reges aut r[eg]um lib[eri \nnovem.",
+            "Consul f]ueram terdeciens, cum [scribeb]a[m] haec, [et eram se]p[timum et] tricen[simu]m \ntribuniciae potestatis."
+          ],
+          "lines": [
+            "[Bis] ovans triumphavi et tri[s egi] curulis triumphos et appella[tus sum v]iciens et semel imperator.",
+            "[decernente plu]ris triumphos mihi sena[t]u,  qua[ter eis su]persedi.",
+            "~ L[aurum de f]asc[i]bus deposui  in Capi[tolio votis, quae] quoque bello nuncupaveram, [sol]utis.",
+            "Ob res a [me aut per legatos] meos auspicis meis terra ma[riqu]e pr[o]spere gestas qui[nquageniens et q]uinquiens decrevit senatus \nsupp[lica]ndum esse dis immortalibus.",
+            "Dies a[utem, pe]r quos ex senatus consulto [s]upplicatum est, \nfuere DC[CCLXXXX.",
+            "In triumphis meis] ducti sunt ante currum meum reges aut r[eg]um lib[eri \nnovem.",
+            "Consul f]ueram terdeciens, cum [scribeb]a[m] haec, [et eram se]p[timum et] tricen[simu]m \ntribuniciae potestatis."
+          ]
+        },
+        {
+          "id": "6",
+          "number": 6,
+          "latin": "Consulibus M. Vinicio et Q. Lucretio et postea P. Lentulo et Cn. Lentulo et\ntertium Paullo Fabio Maximo et Q. Tuberone senatu populoque Romano\nconsentientibus ut curator legum et morum summa potestate solus crearer, nullum\nmagistratum contra morem maiorum delatum recepi. Quae tum per me geri senatus\nvoluit, per tribuniciam potestatem perfeci, cuius potestatis conlegam et ipse\nultro quinquiens a senatu depoposci et accepi.",
+          "sentences": [
+            "Consulibus M.",
+            "Vinicio et Q.",
+            "Lucretio et postea P.",
+            "Lentulo et Cn.",
+            "Lentulo et\ntertium Paullo Fabio Maximo et Q.",
+            "Tuberone senatu populoque Romano\nconsentientibus ut curator legum et morum summa potestate solus crearer, nullum\nmagistratum contra morem maiorum delatum recepi.",
+            "Quae tum per me geri senatus\nvoluit, per tribuniciam potestatem perfeci, cuius potestatis conlegam et ipse\nultro quinquiens a senatu depoposci et accepi."
+          ],
+          "lines": [
+            "Consulibus M.",
+            "Vinicio et Q.",
+            "Lucretio et postea P.",
+            "Lentulo et Cn.",
+            "Lentulo et\ntertium Paullo Fabio Maximo et Q.",
+            "Tuberone senatu populoque Romano\nconsentientibus ut curator legum et morum summa potestate solus crearer, nullum\nmagistratum contra morem maiorum delatum recepi.",
+            "Quae tum per me geri senatus\nvoluit, per tribuniciam potestatem perfeci, cuius potestatis conlegam et ipse\nultro quinquiens a senatu depoposci et accepi."
+          ]
+        },
+        {
+          "id": "6",
+          "number": 6,
+          "latin": "5.  [Dic]tat[ura]m et apsent[i e]t praesent[i mihi delatam et a  popul]o et a se[na]tu [M. Marce]llo e[t] L. Arruntio [cos.] non rec[epi.  Non sum] depreca[tus] in s[umma f]rum[enti p]enuria curatio[n]em \nan[non]ae.  [qu] am ita ad[min]ist[ravi, ut] in[tra] die[s] paucos metu et periclo p[r] aesenti civitatem \nuniv[ersam liberarem impensa et] cura mea.   Consul[atum] quoqu]e tum annum e[t perpetuum mihi] \ndela[tum non recepi.]",
+          "sentences": [
+            "[Dic]tat[ura]m et apsent[i e]t praesent[i mihi delatam et a  popul]o et a se[na]tu [M.",
+            "Marce]llo e[t] L.",
+            "Arruntio [cos.] non rec[epi.",
+            "Non sum] depreca[tus] in s[umma f]rum[enti p]enuria curatio[n]em \nan[non]ae.",
+            "[qu] am ita ad[min]ist[ravi, ut] in[tra] die[s] paucos metu et periclo p[r] aesenti civitatem \nuniv[ersam liberarem impensa et] cura mea.",
+            "Consul[atum] quoqu]e tum annum e[t perpetuum mihi] \ndela[tum non recepi.]"
+          ],
+          "lines": [
+            "[Dic]tat[ura]m et apsent[i e]t praesent[i mihi delatam et a  popul]o et a se[na]tu [M.",
+            "Marce]llo e[t] L.",
+            "Arruntio [cos.] non rec[epi.",
+            "Non sum] depreca[tus] in s[umma f]rum[enti p]enuria curatio[n]em \nan[non]ae.",
+            "[qu] am ita ad[min]ist[ravi, ut] in[tra] die[s] paucos metu et periclo p[r] aesenti civitatem \nuniv[ersam liberarem impensa et] cura mea.",
+            "Consul[atum] quoqu]e tum annum e[t perpetuum mihi] \ndela[tum non recepi.]"
+          ]
+        },
+        {
+          "id": "7",
+          "number": 7,
+          "latin": "Triumvirum rei publicae constituendae fui per continuos annos decem.\nPrinceps senatus fui usque ad eum diem quo scripseram haec per annos\nquadraginta. Pontifex maximus, augur, XV virum sacris faciundis, VII virum\nepulonum, frater arvalis, sodalis Titius, fetialis fui.",
+          "sentences": [
+            "Triumvirum rei publicae constituendae fui per continuos annos decem.",
+            "Princeps senatus fui usque ad eum diem quo scripseram haec per annos\nquadraginta.",
+            "Pontifex maximus, augur, XV virum sacris faciundis, VII virum\nepulonum, frater arvalis, sodalis Titius, fetialis fui."
+          ],
+          "lines": [
+            "Triumvirum rei publicae constituendae fui per continuos annos decem.",
+            "Princeps senatus fui usque ad eum diem quo scripseram haec per annos\nquadraginta.",
+            "Pontifex maximus, augur, XV virum sacris faciundis, VII virum\nepulonum, frater arvalis, sodalis Titius, fetialis fui."
+          ]
+        },
+        {
+          "id": "7",
+          "number": 7,
+          "latin": "6.   [Consulibus M. Vinicio et Q. Lucretio] et postea P. Lentulo et Cn. L[entulo et tertium Paullo Fabio \nMaximo] e[t Q> Tuberone senatu populoq]u[e Romano consentientibus] ut cu[rator legum et morum \nmaxima potestate solus crearer nullum magistratum contra morem maiorem delatum recepi.  Quae tum \nper me fieri senatus] v[o]luit, per trib[un]ici[a]m p[otestatem perfeci, cuius potes]tatis conlegam et [ips]e \nultro [quinquiens mihi a sena]tu[de]poposci et accepi.",
+          "sentences": [
+            "[Consulibus M.",
+            "Vinicio et Q.",
+            "Lucretio] et postea P.",
+            "Lentulo et Cn.",
+            "L[entulo et tertium Paullo Fabio \nMaximo] e[t Q> Tuberone senatu populoq]u[e Romano consentientibus] ut cu[rator legum et morum \nmaxima potestate solus crearer nullum magistratum contra morem maiorem delatum recepi.",
+            "Quae tum \nper me fieri senatus] v[o]luit, per trib[un]ici[a]m p[otestatem perfeci, cuius potes]tatis conlegam et [ips]e \nultro [quinquiens mihi a sena]tu[de]poposci et accepi."
+          ],
+          "lines": [
+            "[Consulibus M.",
+            "Vinicio et Q.",
+            "Lucretio] et postea P.",
+            "Lentulo et Cn.",
+            "L[entulo et tertium Paullo Fabio \nMaximo] e[t Q> Tuberone senatu populoq]u[e Romano consentientibus] ut cu[rator legum et morum \nmaxima potestate solus crearer nullum magistratum contra morem maiorem delatum recepi.",
+            "Quae tum \nper me fieri senatus] v[o]luit, per trib[un]ici[a]m p[otestatem perfeci, cuius potes]tatis conlegam et [ips]e \nultro [quinquiens mihi a sena]tu[de]poposci et accepi."
+          ]
+        },
+        {
+          "id": "8",
+          "number": 8,
+          "latin": "Patriciorum numerum auxi consul quintum iussu populi et senatus. Senatum\nter legi, et in consulatu sexto censum populi conlega M. Agrippa egi. Lustrum\npost annum alterum et quadragensimum feci, quo lustro civium Romanorum censa\nsunt capita quadragiens centum millia et sexaginta tria millia. Tum iterum\nconsulari cum imperio lustrum solus feci C. Censonno et C. Asinio cos., quo\nlustro censa sunt civium Romanorum capita quadragiens centum millia et ducenta\ntriginta tria millia. Et tertium consulari cum imperio lustrum conlega Tib.\nCaesare filio meo feci Sex. Pompeio et Sex. Appuleio cos., quo lustro censa\nsunt civium Romanorum capitum quadragiens centum millia et nongenta triginta et\nseptem millia. Legibus novis me auctore latis multa exempla maiorum\nexolescentia iam ex nostro saeculo reduxi et ipse multarum rerum exempla\nimitanda posteris tradidi.",
+          "sentences": [
+            "Patriciorum numerum auxi consul quintum iussu populi et senatus.",
+            "Senatum\nter legi, et in consulatu sexto censum populi conlega M.",
+            "Agrippa egi.",
+            "Lustrum\npost annum alterum et quadragensimum feci, quo lustro civium Romanorum censa\nsunt capita quadragiens centum millia et sexaginta tria millia.",
+            "Tum iterum\nconsulari cum imperio lustrum solus feci C.",
+            "Censonno et C.",
+            "Asinio cos., quo\nlustro censa sunt civium Romanorum capita quadragiens centum millia et ducenta\ntriginta tria millia.",
+            "Et tertium consulari cum imperio lustrum conlega Tib.",
+            "Caesare filio meo feci Sex.",
+            "Pompeio et Sex.",
+            "Appuleio cos., quo lustro censa\nsunt civium Romanorum capitum quadragiens centum millia et nongenta triginta et\nseptem millia.",
+            "Legibus novis me auctore latis multa exempla maiorum\nexolescentia iam ex nostro saeculo reduxi et ipse multarum rerum exempla\nimitanda posteris tradidi."
+          ],
+          "lines": [
+            "Patriciorum numerum auxi consul quintum iussu populi et senatus.",
+            "Senatum\nter legi, et in consulatu sexto censum populi conlega M.",
+            "Agrippa egi.",
+            "Lustrum\npost annum alterum et quadragensimum feci, quo lustro civium Romanorum censa\nsunt capita quadragiens centum millia et sexaginta tria millia.",
+            "Tum iterum\nconsulari cum imperio lustrum solus feci C.",
+            "Censonno et C.",
+            "Asinio cos., quo\nlustro censa sunt civium Romanorum capita quadragiens centum millia et ducenta\ntriginta tria millia.",
+            "Et tertium consulari cum imperio lustrum conlega Tib.",
+            "Caesare filio meo feci Sex.",
+            "Pompeio et Sex.",
+            "Appuleio cos., quo lustro censa\nsunt civium Romanorum capitum quadragiens centum millia et nongenta triginta et\nseptem millia.",
+            "Legibus novis me auctore latis multa exempla maiorum\nexolescentia iam ex nostro saeculo reduxi et ipse multarum rerum exempla\nimitanda posteris tradidi."
+          ]
+        },
+        {
+          "id": "8",
+          "number": 8,
+          "latin": "7.   [Tri]umv[i]rum rei pu[blicae c]on[s]ti[tuendae fui per continuos an]nos [decem.  P]rinceps s[enatus \nfui usque ad e]um d[iem, quo scrip]seram [haec, per annos] quadra[ginta.  Pon]tifex [maximus, augur, \nXvvir]um sacris fac[iundis,  VIIvirum ep]ulon[um, frater arvalis, sodalis Titius], fetialis fui.",
+          "sentences": [
+            "[Tri]umv[i]rum rei pu[blicae c]on[s]ti[tuendae fui per continuos an]nos [decem.",
+            "P]rinceps s[enatus \nfui usque ad e]um d[iem, quo scrip]seram [haec, per annos] quadra[ginta.",
+            "Pon]tifex [maximus, augur, \nXvvir]um sacris fac[iundis,  VIIvirum ep]ulon[um, frater arvalis, sodalis Titius], fetialis fui."
+          ],
+          "lines": [
+            "[Tri]umv[i]rum rei pu[blicae c]on[s]ti[tuendae fui per continuos an]nos [decem.",
+            "P]rinceps s[enatus \nfui usque ad e]um d[iem, quo scrip]seram [haec, per annos] quadra[ginta.",
+            "Pon]tifex [maximus, augur, \nXvvir]um sacris fac[iundis,  VIIvirum ep]ulon[um, frater arvalis, sodalis Titius], fetialis fui."
+          ]
+        },
+        {
+          "id": "9",
+          "number": 9,
+          "latin": "Vota pro valetudine mea suscipi per consules et sacerdotes quinto quoque\nanno senatus decrevit. Ex iis votis saepe fecerunt vivo me ludos aliquotiens\nsacerdotum quattuor amplissima collegia, aliquotiens consules. Privatim etiam\net municipatim universi cives unanimiter continenter apud omnia pulvinaria pro\nvaletudine mea supplicaverunt.",
+          "sentences": [
+            "Vota pro valetudine mea suscipi per consules et sacerdotes quinto quoque\nanno senatus decrevit.",
+            "Ex iis votis saepe fecerunt vivo me ludos aliquotiens\nsacerdotum quattuor amplissima collegia, aliquotiens consules.",
+            "Privatim etiam\net municipatim universi cives unanimiter continenter apud omnia pulvinaria pro\nvaletudine mea supplicaverunt."
+          ],
+          "lines": [
+            "Vota pro valetudine mea suscipi per consules et sacerdotes quinto quoque\nanno senatus decrevit.",
+            "Ex iis votis saepe fecerunt vivo me ludos aliquotiens\nsacerdotum quattuor amplissima collegia, aliquotiens consules.",
+            "Privatim etiam\net municipatim universi cives unanimiter continenter apud omnia pulvinaria pro\nvaletudine mea supplicaverunt."
+          ]
+        },
+        {
+          "id": "9",
+          "number": 9,
+          "latin": "8.    Patriciorum numerum auxi consul quintum iussu populi et senatus.  Senatum ter legi.  Et in \nconsulatu sexto censum populi conlega M. Agrippa egi.  Lustrum post annum alterum et \nquadragensimum fec[i].  Quo lustro civium Romanorum censa sunt capita quadragiens centum millia et \nsexag[i]inta tria millia. ~  Tum [iteru]m consulari com imperio lustrum [s]olus feci C. Censorin[o et C.] \nAsinio cos.   Quo lustro censa sunt civium Romanorum [capita] quadragiens centum millia et ducenta \ntriginta tria mi[llia.  Et tertiu]m consulari cum imperio lustrum conlega Tib. Cae[sare filio] m[eo feci,]   \nSex. Pompeio et Sex. Appuleio cos.   Quo lustro ce[nsa sunt]civ[ium Ro]manorum capitum quadragiens \ncentum mill[ia et n]onge[nta tr]iginta et septem millia. Legibus novi[s] m[e auctore l]atis m[ulta \ne]xempla maiorum exolescentia iam ex nostro [saecul]o red[uxi et ipse] multarum rer[um exe]mpla \nimitanda pos[teris tradidi.]",
+          "sentences": [
+            "Patriciorum numerum auxi consul quintum iussu populi et senatus.",
+            "Senatum ter legi.",
+            "Et in \nconsulatu sexto censum populi conlega M.",
+            "Agrippa egi.",
+            "Lustrum post annum alterum et \nquadragensimum fec[i].",
+            "Quo lustro civium Romanorum censa sunt capita quadragiens centum millia et \nsexag[i]inta tria millia.",
+            "~  Tum [iteru]m consulari com imperio lustrum [s]olus feci C.",
+            "Censorin[o et C.] \nAsinio cos.",
+            "Quo lustro censa sunt civium Romanorum [capita] quadragiens centum millia et ducenta \ntriginta tria mi[llia.",
+            "Et tertiu]m consulari cum imperio lustrum conlega Tib.",
+            "Cae[sare filio] m[eo feci,]   \nSex.",
+            "Pompeio et Sex.",
+            "Appuleio cos.",
+            "Quo lustro ce[nsa sunt]civ[ium Ro]manorum capitum quadragiens \ncentum mill[ia et n]onge[nta tr]iginta et septem millia.",
+            "Legibus novi[s] m[e auctore l]atis m[ulta \ne]xempla maiorum exolescentia iam ex nostro [saecul]o red[uxi et ipse] multarum rer[um exe]mpla \nimitanda pos[teris tradidi.]"
+          ],
+          "lines": [
+            "Patriciorum numerum auxi consul quintum iussu populi et senatus.",
+            "Senatum ter legi.",
+            "Et in \nconsulatu sexto censum populi conlega M.",
+            "Agrippa egi.",
+            "Lustrum post annum alterum et \nquadragensimum fec[i].",
+            "Quo lustro civium Romanorum censa sunt capita quadragiens centum millia et \nsexag[i]inta tria millia.",
+            "~  Tum [iteru]m consulari com imperio lustrum [s]olus feci C.",
+            "Censorin[o et C.] \nAsinio cos.",
+            "Quo lustro censa sunt civium Romanorum [capita] quadragiens centum millia et ducenta \ntriginta tria mi[llia.",
+            "Et tertiu]m consulari cum imperio lustrum conlega Tib.",
+            "Cae[sare filio] m[eo feci,]   \nSex.",
+            "Pompeio et Sex.",
+            "Appuleio cos.",
+            "Quo lustro ce[nsa sunt]civ[ium Ro]manorum capitum quadragiens \ncentum mill[ia et n]onge[nta tr]iginta et septem millia.",
+            "Legibus novi[s] m[e auctore l]atis m[ulta \ne]xempla maiorum exolescentia iam ex nostro [saecul]o red[uxi et ipse] multarum rer[um exe]mpla \nimitanda pos[teris tradidi.]"
+          ]
+        },
+        {
+          "id": "10",
+          "number": 10,
+          "latin": "Nomen meum senatus consulto inclusum est in saliare carmen, et\nsacrosanctus in perpetum ut essem et, quoad viverem, tribunicia potestas mihi\nesset, per legem sanctum est. Pontifex maximus ne fierem in vivi conlegae mei\nlocum, populo id sacerdotium deferente mihi quod pater meus habuerat, recusavi.\nQuod sacerdotium aliquod post annos, eo mortuo qui civilis motus occasione\noccupaverat, cuncta ex Italia ad comitia mea confluente multitudine, quanta\nRomae nunquam fertur ante id tempus fuisse, recepi, P. Sulpicio C. Valgio\nconsulibus.",
+          "sentences": [
+            "Nomen meum senatus consulto inclusum est in saliare carmen, et\nsacrosanctus in perpetum ut essem et, quoad viverem, tribunicia potestas mihi\nesset, per legem sanctum est.",
+            "Pontifex maximus ne fierem in vivi conlegae mei\nlocum, populo id sacerdotium deferente mihi quod pater meus habuerat, recusavi.",
+            "Quod sacerdotium aliquod post annos, eo mortuo qui civilis motus occasione\noccupaverat, cuncta ex Italia ad comitia mea confluente multitudine, quanta\nRomae nunquam fertur ante id tempus fuisse, recepi, P.",
+            "Sulpicio C.",
+            "Valgio\nconsulibus."
+          ],
+          "lines": [
+            "Nomen meum senatus consulto inclusum est in saliare carmen, et\nsacrosanctus in perpetum ut essem et, quoad viverem, tribunicia potestas mihi\nesset, per legem sanctum est.",
+            "Pontifex maximus ne fierem in vivi conlegae mei\nlocum, populo id sacerdotium deferente mihi quod pater meus habuerat, recusavi.",
+            "Quod sacerdotium aliquod post annos, eo mortuo qui civilis motus occasione\noccupaverat, cuncta ex Italia ad comitia mea confluente multitudine, quanta\nRomae nunquam fertur ante id tempus fuisse, recepi, P.",
+            "Sulpicio C.",
+            "Valgio\nconsulibus."
+          ]
+        },
+        {
+          "id": "10",
+          "number": 10,
+          "latin": "9.    Vota p[ro valetudine meo susc]ipi p[er cons]ules et sacerdotes qu[in]to qu[oque anno senatus \ndecrevit.  Ex iis] votis s[ae]pe fecerunt vivo m[e ludos aliquotiens sace]rdo[tu]m quattuor amplissima \ncolle[gia, aliquotiens consules. Pr]iva[t]im etiam et municipatim univer[si cives unanimite]r \ncon[tinente]r apud omnia pulvinaria pro vale[tu]din[e mea s]upp[licaverunt.]",
+          "sentences": [
+            "Vota p[ro valetudine meo susc]ipi p[er cons]ules et sacerdotes qu[in]to qu[oque anno senatus \ndecrevit.",
+            "Ex iis] votis s[ae]pe fecerunt vivo m[e ludos aliquotiens sace]rdo[tu]m quattuor amplissima \ncolle[gia, aliquotiens consules.",
+            "Pr]iva[t]im etiam et municipatim univer[si cives unanimite]r \ncon[tinente]r apud omnia pulvinaria pro vale[tu]din[e mea s]upp[licaverunt.]"
+          ],
+          "lines": [
+            "Vota p[ro valetudine meo susc]ipi p[er cons]ules et sacerdotes qu[in]to qu[oque anno senatus \ndecrevit.",
+            "Ex iis] votis s[ae]pe fecerunt vivo m[e ludos aliquotiens sace]rdo[tu]m quattuor amplissima \ncolle[gia, aliquotiens consules.",
+            "Pr]iva[t]im etiam et municipatim univer[si cives unanimite]r \ncon[tinente]r apud omnia pulvinaria pro vale[tu]din[e mea s]upp[licaverunt.]"
+          ]
+        },
+        {
+          "id": "11",
+          "number": 11,
+          "latin": "Aram Fortunae Reducis ante aedes Honoris et Virtutis ad portam Capenam pro\nreditu meo senatus consacravit, in qua pontifices et virgines Vestales\nanniversarium sacrificium facere iussit eo die quo, consulibus Q. Lucretio et\nM. Vinicio, in urbem ex Syria redieram, et diem Augustalia ex cognomine nostro\nappellavit.",
+          "sentences": [
+            "Aram Fortunae Reducis ante aedes Honoris et Virtutis ad portam Capenam pro\nreditu meo senatus consacravit, in qua pontifices et virgines Vestales\nanniversarium sacrificium facere iussit eo die quo, consulibus Q.",
+            "Lucretio et\nM.",
+            "Vinicio, in urbem ex Syria redieram, et diem Augustalia ex cognomine nostro\nappellavit."
+          ],
+          "lines": [
+            "Aram Fortunae Reducis ante aedes Honoris et Virtutis ad portam Capenam pro\nreditu meo senatus consacravit, in qua pontifices et virgines Vestales\nanniversarium sacrificium facere iussit eo die quo, consulibus Q.",
+            "Lucretio et\nM.",
+            "Vinicio, in urbem ex Syria redieram, et diem Augustalia ex cognomine nostro\nappellavit."
+          ]
+        },
+        {
+          "id": "11",
+          "number": 11,
+          "latin": "10.    Nom[en me]um [sena]tus c[onsulto inc]lusum est in saliare carmen et sacrosanctu[s in perp]etum \n[ut essem et, q]uoad ivierem, tribunicia potestas mihi [esse, per lege]m sanc[tum est.  Pontif]ex maximus \nne fierem in vivi [c]onlegae l]ocum, [populo id sace]rdotium deferente mihi, quod pater meu[s \nhabuer]at, r[ecusavi.  Qu]od sacerdotium aliquod post annos, eo mor[t]uo q[ui civilis] m[otus o]ccasione \noccupaverat, ~ cuncta ex Italia [ad comitia mea] confluen[te mu]ltitudine, quanta Romae nun[q]uam  \n[fertur ante i]d temp[us fuisse], recep[i]  P. Sulpicio C. Valgio consulibu[s].",
+          "sentences": [
+            "Nom[en me]um [sena]tus c[onsulto inc]lusum est in saliare carmen et sacrosanctu[s in perp]etum \n[ut essem et, q]uoad ivierem, tribunicia potestas mihi [esse, per lege]m sanc[tum est.",
+            "Pontif]ex maximus \nne fierem in vivi [c]onlegae l]ocum, [populo id sace]rdotium deferente mihi, quod pater meu[s \nhabuer]at, r[ecusavi.",
+            "Qu]od sacerdotium aliquod post annos, eo mor[t]uo q[ui civilis] m[otus o]ccasione \noccupaverat, ~ cuncta ex Italia [ad comitia mea] confluen[te mu]ltitudine, quanta Romae nun[q]uam  \n[fertur ante i]d temp[us fuisse], recep[i]  P.",
+            "Sulpicio C.",
+            "Valgio consulibu[s]."
+          ],
+          "lines": [
+            "Nom[en me]um [sena]tus c[onsulto inc]lusum est in saliare carmen et sacrosanctu[s in perp]etum \n[ut essem et, q]uoad ivierem, tribunicia potestas mihi [esse, per lege]m sanc[tum est.",
+            "Pontif]ex maximus \nne fierem in vivi [c]onlegae l]ocum, [populo id sace]rdotium deferente mihi, quod pater meu[s \nhabuer]at, r[ecusavi.",
+            "Qu]od sacerdotium aliquod post annos, eo mor[t]uo q[ui civilis] m[otus o]ccasione \noccupaverat, ~ cuncta ex Italia [ad comitia mea] confluen[te mu]ltitudine, quanta Romae nun[q]uam  \n[fertur ante i]d temp[us fuisse], recep[i]  P.",
+            "Sulpicio C.",
+            "Valgio consulibu[s]."
+          ]
+        },
+        {
+          "id": "12",
+          "number": 12,
+          "latin": "Ex senatus auctoritate pars praetorum et tribunorum plebi cum consule Q.\nLucretio et principibus viris obviam mihi missa est in Campaniam, qui honos ad\nhoc tempus nemimi praeter me est decretus. Cum ex Hispania Galliaque, rebus in\niis provincis prospere gestis, Romam redi, Ti. Nerone P. Qintilio consulibus,\naram Pacis Augustae senatus pro reditu meo consacrandam censuit ad campum\nMartium, in qua magistratus et sacerdotes virginesque Vestales anniversarium\nsacrificium facere iussit.",
+          "sentences": [
+            "Ex senatus auctoritate pars praetorum et tribunorum plebi cum consule Q.",
+            "Lucretio et principibus viris obviam mihi missa est in Campaniam, qui honos ad\nhoc tempus nemimi praeter me est decretus.",
+            "Cum ex Hispania Galliaque, rebus in\niis provincis prospere gestis, Romam redi, Ti.",
+            "Nerone P.",
+            "Qintilio consulibus,\naram Pacis Augustae senatus pro reditu meo consacrandam censuit ad campum\nMartium, in qua magistratus et sacerdotes virginesque Vestales anniversarium\nsacrificium facere iussit."
+          ],
+          "lines": [
+            "Ex senatus auctoritate pars praetorum et tribunorum plebi cum consule Q.",
+            "Lucretio et principibus viris obviam mihi missa est in Campaniam, qui honos ad\nhoc tempus nemimi praeter me est decretus.",
+            "Cum ex Hispania Galliaque, rebus in\niis provincis prospere gestis, Romam redi, Ti.",
+            "Nerone P.",
+            "Qintilio consulibus,\naram Pacis Augustae senatus pro reditu meo consacrandam censuit ad campum\nMartium, in qua magistratus et sacerdotes virginesque Vestales anniversarium\nsacrificium facere iussit."
+          ]
+        },
+        {
+          "id": "12",
+          "number": 12,
+          "latin": "11.   Aram [Fortunae] R[educis a]nte aedes Honoris et Virtutis ad portam Cap[enam pro] red[itu me]o \nsenatus consacravit, in qua ponti[fices et] vir[gines Ve]stal[es anni]versarium sacrificium facere \n[decrevit eo] di[e quo co]nsul[ibus Q. Luc]retio et [M. Vi]nic[i]o in urbem ex [Syria redieram, et diem \nAugustali]a ex [c]o[gnomine] nos[t]ro appellavit.",
+          "sentences": [
+            "Aram [Fortunae] R[educis a]nte aedes Honoris et Virtutis ad portam Cap[enam pro] red[itu me]o \nsenatus consacravit, in qua ponti[fices et] vir[gines Ve]stal[es anni]versarium sacrificium facere \n[decrevit eo] di[e quo co]nsul[ibus Q.",
+            "Luc]retio et [M.",
+            "Vi]nic[i]o in urbem ex [Syria redieram, et diem \nAugustali]a ex [c]o[gnomine] nos[t]ro appellavit."
+          ],
+          "lines": [
+            "Aram [Fortunae] R[educis a]nte aedes Honoris et Virtutis ad portam Cap[enam pro] red[itu me]o \nsenatus consacravit, in qua ponti[fices et] vir[gines Ve]stal[es anni]versarium sacrificium facere \n[decrevit eo] di[e quo co]nsul[ibus Q.",
+            "Luc]retio et [M.",
+            "Vi]nic[i]o in urbem ex [Syria redieram, et diem \nAugustali]a ex [c]o[gnomine] nos[t]ro appellavit."
+          ]
+        },
+        {
+          "id": "13",
+          "number": 13,
+          "latin": "Ianum Quinnum, quem claussum esse maiores nostri voluerunt cum per totum\nimperium populi Romani terra marique esset parta victoriis pax, cum priusquam\nnascerer, a condita urbe bis omnino clausum fuisse prodatur memoriae, ter me\nprincipe senatus claudendum esse censuit.",
+          "sentences": [
+            "Ianum Quinnum, quem claussum esse maiores nostri voluerunt cum per totum\nimperium populi Romani terra marique esset parta victoriis pax, cum priusquam\nnascerer, a condita urbe bis omnino clausum fuisse prodatur memoriae, ter me\nprincipe senatus claudendum esse censuit."
+          ],
+          "lines": [
+            "Ianum Quinnum, quem claussum esse maiores nostri voluerunt cum per totum\nimperium populi Romani terra marique esset parta victoriis pax, cum priusquam\nnascerer, a condita urbe bis omnino clausum fuisse prodatur memoriae, ter me\nprincipe senatus claudendum esse censuit."
+          ]
+        },
+        {
+          "id": "13",
+          "number": 13,
+          "latin": "12.  [Senatus consulto ea occasion]e pars [praetorum e]t tribunorum [plebi cum consule Q.] Lu[cret]io et \nprinci[pi] bus viris [ob]viam mihi mis[s]a e[st in Campan]iam, quo honos [ad ho]c tempus nemini \npraeter [m]e es[t decretus. Cu]m ex H[is[]ania Gal[liaque, rebu]s in iis provincis prosp[e]re [gest]i[s], \nR[omam redi] Ti. Nerone P. Qui[ntilio c]o[n]s[ulibu]s, ~ aram [Pacis A]u[g]ust[ae senatus pro]redi[t]u \nmeo consa[c]randam [censuit] ad campam [Martium, in qua ma]gistratus et sac[er]dotes [et v]irgines \nV[est]a[les ann]iversarium sacrific]ium facer[e decrevit.]",
+          "sentences": [
+            "[Senatus consulto ea occasion]e pars [praetorum e]t tribunorum [plebi cum consule Q.] Lu[cret]io et \nprinci[pi] bus viris [ob]viam mihi mis[s]a e[st in Campan]iam, quo honos [ad ho]c tempus nemini \npraeter [m]e es[t decretus.",
+            "Cu]m ex H[is[]ania Gal[liaque, rebu]s in iis provincis prosp[e]re [gest]i[s], \nR[omam redi] Ti.",
+            "Nerone P.",
+            "Qui[ntilio c]o[n]s[ulibu]s, ~ aram [Pacis A]u[g]ust[ae senatus pro]redi[t]u \nmeo consa[c]randam [censuit] ad campam [Martium, in qua ma]gistratus et sac[er]dotes [et v]irgines \nV[est]a[les ann]iversarium sacrific]ium facer[e decrevit.]"
+          ],
+          "lines": [
+            "[Senatus consulto ea occasion]e pars [praetorum e]t tribunorum [plebi cum consule Q.] Lu[cret]io et \nprinci[pi] bus viris [ob]viam mihi mis[s]a e[st in Campan]iam, quo honos [ad ho]c tempus nemini \npraeter [m]e es[t decretus.",
+            "Cu]m ex H[is[]ania Gal[liaque, rebu]s in iis provincis prosp[e]re [gest]i[s], \nR[omam redi] Ti.",
+            "Nerone P.",
+            "Qui[ntilio c]o[n]s[ulibu]s, ~ aram [Pacis A]u[g]ust[ae senatus pro]redi[t]u \nmeo consa[c]randam [censuit] ad campam [Martium, in qua ma]gistratus et sac[er]dotes [et v]irgines \nV[est]a[les ann]iversarium sacrific]ium facer[e decrevit.]"
+          ]
+        },
+        {
+          "id": "14",
+          "number": 14,
+          "latin": "Filios meos, quos iuvenes mihi eripuit fortuna, Gaium et Lucium Caesares\nhonoris mei caussa senatus populusque Romanus annum quintum et decimum agentis\nconsules designavit, ut eum magistratum inirent post quinquennium, et ex eo die\nquo deducti sunt in forum ut interessent consiliis publicis decrevit senatus.\nEquites autem Romani universi principem iuventutis utrumque eorum parmis et\nhastis argenteis donatum appellaverunt.",
+          "sentences": [
+            "Filios meos, quos iuvenes mihi eripuit fortuna, Gaium et Lucium Caesares\nhonoris mei caussa senatus populusque Romanus annum quintum et decimum agentis\nconsules designavit, ut eum magistratum inirent post quinquennium, et ex eo die\nquo deducti sunt in forum ut interessent consiliis publicis decrevit senatus.",
+            "Equites autem Romani universi principem iuventutis utrumque eorum parmis et\nhastis argenteis donatum appellaverunt."
+          ],
+          "lines": [
+            "Filios meos, quos iuvenes mihi eripuit fortuna, Gaium et Lucium Caesares\nhonoris mei caussa senatus populusque Romanus annum quintum et decimum agentis\nconsules designavit, ut eum magistratum inirent post quinquennium, et ex eo die\nquo deducti sunt in forum ut interessent consiliis publicis decrevit senatus.",
+            "Equites autem Romani universi principem iuventutis utrumque eorum parmis et\nhastis argenteis donatum appellaverunt."
+          ]
+        },
+        {
+          "id": "14",
+          "number": 14,
+          "latin": "13.   [Ianum] Quirin[um, quem cl]aussum ess[e maiores nostri voluer]unt, cum [p]er totum i[mperium \npo]puli Roma[ni terra marique es]set parta victoriis pax, cum pr[ius quam] nascerer, a co[ndita] u[rb]e \nbis omnino clausum [f]uisse prodatur m[emori]ae, ter me princi]pe senat]us claudendum esse censui[t].",
+          "sentences": [
+            "[Ianum] Quirin[um, quem cl]aussum ess[e maiores nostri voluer]unt, cum [p]er totum i[mperium \npo]puli Roma[ni terra marique es]set parta victoriis pax, cum pr[ius quam] nascerer, a co[ndita] u[rb]e \nbis omnino clausum [f]uisse prodatur m[emori]ae, ter me princi]pe senat]us claudendum esse censui[t]."
+          ],
+          "lines": [
+            "[Ianum] Quirin[um, quem cl]aussum ess[e maiores nostri voluer]unt, cum [p]er totum i[mperium \npo]puli Roma[ni terra marique es]set parta victoriis pax, cum pr[ius quam] nascerer, a co[ndita] u[rb]e \nbis omnino clausum [f]uisse prodatur m[emori]ae, ter me princi]pe senat]us claudendum esse censui[t]."
+          ]
+        },
+        {
+          "id": "15",
+          "number": 15,
+          "latin": "Plebei Romanae viritim HS trecenos numeravi ex testamento patris mei et\nnomine meo HS quadringenos ex bellorum manibiis consul quintum dedi, iterum\nautem in consulatu decimo ex patrimonio meo HS quadringenos congiari viritim\npernumeravi, et consul undecimum duodecim frumentationes frumento privatim\ncoempto emensus sum, et tribunicia potestate duodecimum quadringenos nummos\ntertium viritim dedi. Quae mea congiaria pervenerunt ad hominum millia numquam\nminus quinquaginta et ducenta. Tribuniciae potestatis duodevicensimum, consul\nXII, trecentis et viginti millibus plebis urbanae sexagenos denarios viritim\ndedi. Et colonis militum meorum consul quintum ex manibiis viritim millia nummum\nsingula dedi; acceperunt id triumphale congiarium in colonis hominum circiter\ncentum et viginti millia. Consul tertium decimum sexagenos denarios plebei quae\ntum frumentum publicum accipiebat dedi; ea millia hominum paullo plura quam\nducenta fuerunt.",
+          "sentences": [
+            "Plebei Romanae viritim HS trecenos numeravi ex testamento patris mei et\nnomine meo HS quadringenos ex bellorum manibiis consul quintum dedi, iterum\nautem in consulatu decimo ex patrimonio meo HS quadringenos congiari viritim\npernumeravi, et consul undecimum duodecim frumentationes frumento privatim\ncoempto emensus sum, et tribunicia potestate duodecimum quadringenos nummos\ntertium viritim dedi.",
+            "Quae mea congiaria pervenerunt ad hominum millia numquam\nminus quinquaginta et ducenta.",
+            "Tribuniciae potestatis duodevicensimum, consul\nXII, trecentis et viginti millibus plebis urbanae sexagenos denarios viritim\ndedi.",
+            "Et colonis militum meorum consul quintum ex manibiis viritim millia nummum\nsingula dedi; acceperunt id triumphale congiarium in colonis hominum circiter\ncentum et viginti millia.",
+            "Consul tertium decimum sexagenos denarios plebei quae\ntum frumentum publicum accipiebat dedi; ea millia hominum paullo plura quam\nducenta fuerunt."
+          ],
+          "lines": [
+            "Plebei Romanae viritim HS trecenos numeravi ex testamento patris mei et\nnomine meo HS quadringenos ex bellorum manibiis consul quintum dedi, iterum\nautem in consulatu decimo ex patrimonio meo HS quadringenos congiari viritim\npernumeravi, et consul undecimum duodecim frumentationes frumento privatim\ncoempto emensus sum, et tribunicia potestate duodecimum quadringenos nummos\ntertium viritim dedi.",
+            "Quae mea congiaria pervenerunt ad hominum millia numquam\nminus quinquaginta et ducenta.",
+            "Tribuniciae potestatis duodevicensimum, consul\nXII, trecentis et viginti millibus plebis urbanae sexagenos denarios viritim\ndedi.",
+            "Et colonis militum meorum consul quintum ex manibiis viritim millia nummum\nsingula dedi; acceperunt id triumphale congiarium in colonis hominum circiter\ncentum et viginti millia.",
+            "Consul tertium decimum sexagenos denarios plebei quae\ntum frumentum publicum accipiebat dedi; ea millia hominum paullo plura quam\nducenta fuerunt."
+          ]
+        },
+        {
+          "id": "15",
+          "number": 15,
+          "latin": "14.   [Fil]ios meos, quos iuv[enes] mihi eripuit for[tuna], Gaium et Lucium Caesares,",
+          "sentences": [
+            "[Fil]ios meos, quos iuv[enes] mihi eripuit for[tuna], Gaium et Lucium Caesares,"
+          ],
+          "lines": [
+            "[Fil]ios meos, quos iuv[enes] mihi eripuit for[tuna], Gaium et Lucium Caesares,"
+          ]
+        },
+        {
+          "id": "16",
+          "number": 16,
+          "latin": "Pecuniam pro agris quos in consulatu meo quarto et postea consulibus M.\nCrasso et Cn. Lentulo Augure adsignavi militibus solvi municipis; ea summa\nsestertium circiter sexsiens milliens fuit quam pro Italicis praedis numeravi,\net circiter bis milliens et sescentiens quod pro agris provincialibus solvi. Id\nprimus et solus omnium qui deduxerunt colonias militum in Italia aut in\nprovincis ad memoriam aetatis meae feci. Et postea, Ti. Nerone et Cn. Pisone\nconsulibus itemque C. Antistio et D. Laelio cos. et C. Calvisio et L. Pasieno\nconsulibus et L. Lentulo et M. Messalla consulibus et L. Camnio et Q. Fabricio\ncos., militibus quos emeriteis stipendis in sua municipia deduxi praemia\nnumerato persolvi, quam in rem sestertium quater milliens circiter impendi.",
+          "sentences": [
+            "Pecuniam pro agris quos in consulatu meo quarto et postea consulibus M.",
+            "Crasso et Cn.",
+            "Lentulo Augure adsignavi militibus solvi municipis; ea summa\nsestertium circiter sexsiens milliens fuit quam pro Italicis praedis numeravi,\net circiter bis milliens et sescentiens quod pro agris provincialibus solvi.",
+            "Id\nprimus et solus omnium qui deduxerunt colonias militum in Italia aut in\nprovincis ad memoriam aetatis meae feci.",
+            "Et postea, Ti.",
+            "Nerone et Cn.",
+            "Pisone\nconsulibus itemque C.",
+            "Antistio et D.",
+            "Laelio cos.",
+            "Calvisio et L.",
+            "Pasieno\nconsulibus et L.",
+            "Lentulo et M.",
+            "Messalla consulibus et L.",
+            "Camnio et Q.",
+            "Fabricio\ncos., militibus quos emeriteis stipendis in sua municipia deduxi praemia\nnumerato persolvi, quam in rem sestertium quater milliens circiter impendi."
+          ],
+          "lines": [
+            "Pecuniam pro agris quos in consulatu meo quarto et postea consulibus M.",
+            "Crasso et Cn.",
+            "Lentulo Augure adsignavi militibus solvi municipis; ea summa\nsestertium circiter sexsiens milliens fuit quam pro Italicis praedis numeravi,\net circiter bis milliens et sescentiens quod pro agris provincialibus solvi.",
+            "Id\nprimus et solus omnium qui deduxerunt colonias militum in Italia aut in\nprovincis ad memoriam aetatis meae feci.",
+            "Et postea, Ti.",
+            "Nerone et Cn.",
+            "Pisone\nconsulibus itemque C.",
+            "Antistio et D.",
+            "Laelio cos.",
+            "Calvisio et L.",
+            "Pasieno\nconsulibus et L.",
+            "Lentulo et M.",
+            "Messalla consulibus et L.",
+            "Camnio et Q.",
+            "Fabricio\ncos., militibus quos emeriteis stipendis in sua municipia deduxi praemia\nnumerato persolvi, quam in rem sestertium quater milliens circiter impendi."
+          ]
+        },
+        {
+          "id": "16",
+          "number": 16,
+          "latin": "honoris mei caussa senatus populusque Romanus annum quintum et decimum agentis consules \ndesignavit, ut [e]um magistratum inirent post quinquennium.  Et ex eo die, quo deducti [s]unt in forum \nut interessent consiliis publicis decrevit sena[t]us.  Equites [a]utem Romani universi principem \niuventutis utrumque eorum parm[is] et hastis argenteis donatum appellaverunt.",
+          "sentences": [
+            "honoris mei caussa senatus populusque Romanus annum quintum et decimum agentis consules \ndesignavit, ut [e]um magistratum inirent post quinquennium.",
+            "Et ex eo die, quo deducti [s]unt in forum \nut interessent consiliis publicis decrevit sena[t]us.",
+            "Equites [a]utem Romani universi principem \niuventutis utrumque eorum parm[is] et hastis argenteis donatum appellaverunt."
+          ],
+          "lines": [
+            "honoris mei caussa senatus populusque Romanus annum quintum et decimum agentis consules \ndesignavit, ut [e]um magistratum inirent post quinquennium.",
+            "Et ex eo die, quo deducti [s]unt in forum \nut interessent consiliis publicis decrevit sena[t]us.",
+            "Equites [a]utem Romani universi principem \niuventutis utrumque eorum parm[is] et hastis argenteis donatum appellaverunt."
+          ]
+        },
+        {
+          "id": "17",
+          "number": 17,
+          "latin": "Quater pecunia mea iuvi aerarium, ita ut sestertium milliens et\nquingentiens ad eos qui praerant aerario detulerim. Et M. Lepido et L. Arruntio\ncos. in aerarium militare, quod ex consilio meo constitutum est ex quo praemia\ndarentur militibus qui vicena aut plura stipendia emeruissent, HS milliens et\nseptingentiens ex patrimonio meo detuli.",
+          "sentences": [
+            "Quater pecunia mea iuvi aerarium, ita ut sestertium milliens et\nquingentiens ad eos qui praerant aerario detulerim.",
+            "Lepido et L.",
+            "Arruntio\ncos.",
+            "in aerarium militare, quod ex consilio meo constitutum est ex quo praemia\ndarentur militibus qui vicena aut plura stipendia emeruissent, HS milliens et\nseptingentiens ex patrimonio meo detuli."
+          ],
+          "lines": [
+            "Quater pecunia mea iuvi aerarium, ita ut sestertium milliens et\nquingentiens ad eos qui praerant aerario detulerim.",
+            "Lepido et L.",
+            "Arruntio\ncos.",
+            "in aerarium militare, quod ex consilio meo constitutum est ex quo praemia\ndarentur militibus qui vicena aut plura stipendia emeruissent, HS milliens et\nseptingentiens ex patrimonio meo detuli."
+          ]
+        },
+        {
+          "id": "17",
+          "number": 17,
+          "latin": "15.    Plebei Romanae viritum HS trecenos numeravi ex testamento patris mei.  et nomine meo  HS \nquadringenos ex bellorum manibiis consul quintum dedi, iterum autem in consulatu decimo ex \n[p]atrimonio meo  HS  quadringenos congiari viritim pernumer[a]vi, et consul undecimum duodecim \nfrumentationes frumento pr[i]vatim coempto emensus sum.  ~  et tribunicia potestate duodecimum \nquadringenos nummos tertium viritim dedi.  Quae mea congiaria p[e]rvenerunt ad [homi]num millia \nnunquam minus quinquaginta et ducenta.  Tribuniciae potestatis duodevicensimum consul XII trecentis \net viginti millibus plebis urbanae sexagenos denarios viritim dedi.  Et colon[i]s militum meorum consul \nquintum ex manibiis viritim millia nummum singula dedi.    acceperunt id triumphale congiarium in \ncolonis hominum circiter centum et viginti millia.  Consul tertium dec[i]mum sexagenos denarios \nplebei, quae tum frumentum publicum acciebat, dedi;  ea millia hominum paullo plura quam ducenta \nfuerunt.",
+          "sentences": [
+            "Plebei Romanae viritum HS trecenos numeravi ex testamento patris mei.",
+            "et nomine meo  HS \nquadringenos ex bellorum manibiis consul quintum dedi, iterum autem in consulatu decimo ex \n[p]atrimonio meo  HS  quadringenos congiari viritim pernumer[a]vi, et consul undecimum duodecim \nfrumentationes frumento pr[i]vatim coempto emensus sum.",
+            "~  et tribunicia potestate duodecimum \nquadringenos nummos tertium viritim dedi.",
+            "Quae mea congiaria p[e]rvenerunt ad [homi]num millia \nnunquam minus quinquaginta et ducenta.",
+            "Tribuniciae potestatis duodevicensimum consul XII trecentis \net viginti millibus plebis urbanae sexagenos denarios viritim dedi.",
+            "Et colon[i]s militum meorum consul \nquintum ex manibiis viritim millia nummum singula dedi.",
+            "acceperunt id triumphale congiarium in \ncolonis hominum circiter centum et viginti millia.",
+            "Consul tertium dec[i]mum sexagenos denarios \nplebei, quae tum frumentum publicum acciebat, dedi;  ea millia hominum paullo plura quam ducenta \nfuerunt."
+          ],
+          "lines": [
+            "Plebei Romanae viritum HS trecenos numeravi ex testamento patris mei.",
+            "et nomine meo  HS \nquadringenos ex bellorum manibiis consul quintum dedi, iterum autem in consulatu decimo ex \n[p]atrimonio meo  HS  quadringenos congiari viritim pernumer[a]vi, et consul undecimum duodecim \nfrumentationes frumento pr[i]vatim coempto emensus sum.",
+            "~  et tribunicia potestate duodecimum \nquadringenos nummos tertium viritim dedi.",
+            "Quae mea congiaria p[e]rvenerunt ad [homi]num millia \nnunquam minus quinquaginta et ducenta.",
+            "Tribuniciae potestatis duodevicensimum consul XII trecentis \net viginti millibus plebis urbanae sexagenos denarios viritim dedi.",
+            "Et colon[i]s militum meorum consul \nquintum ex manibiis viritim millia nummum singula dedi.",
+            "acceperunt id triumphale congiarium in \ncolonis hominum circiter centum et viginti millia.",
+            "Consul tertium dec[i]mum sexagenos denarios \nplebei, quae tum frumentum publicum acciebat, dedi;  ea millia hominum paullo plura quam ducenta \nfuerunt."
+          ]
+        },
+        {
+          "id": "18",
+          "number": 18,
+          "latin": "Ab eo anno quo Cn. et P. Lentulli consules fuerunt, cum deficerent\nvectigalia, tum centum milibus hominum tum pluribus multo frumentarios et\nnummarios tributus ex horreo et patrimonio meo edidi.",
+          "sentences": [
+            "Ab eo anno quo Cn.",
+            "Lentulli consules fuerunt, cum deficerent\nvectigalia, tum centum milibus hominum tum pluribus multo frumentarios et\nnummarios tributus ex horreo et patrimonio meo edidi."
+          ],
+          "lines": [
+            "Ab eo anno quo Cn.",
+            "Lentulli consules fuerunt, cum deficerent\nvectigalia, tum centum milibus hominum tum pluribus multo frumentarios et\nnummarios tributus ex horreo et patrimonio meo edidi."
+          ]
+        },
+        {
+          "id": "18",
+          "number": 18,
+          "latin": "16.    Pecuniam [pr]o agris, quos in consulatu meo quarto et postea consulibus M. Cr[a]ssao et Cn. \nLentulo augure adsignavi militibus, soliv municipis. Ea [s]u[mma s]estertium circiter sexsiens milliens \nfuit, quam [p]ro Italicis praedis numeravi.  et ci[r]citer bis mill[ie]ns et sescentiens, quod pro agris \nprovincialibus soliv.  Id primus et [s]olus omnium, qui [d]eduxerunt colonias militum in Italia aut in \nprovincis, ad memoriam aetatis meae feci.  Et postea  Ti. Nerone et Cn. Pisone consulibus, ~ et D. \nLaelio cos.,  et C. Calvisio et L. Pasieno consulibus, et  L. Le[nt]ulo et M. Messalla consulibus, et L. \nCaninio ~ et  Q. Fabricio co[s.],  milit[i]bus, quos emeriteis stipendis in sua municpi[a dedux]i,  \npraem[i]a numerato persolvi.  ~ quam in rem sestertium q[uater m]illiens cir[cite]r impendi.",
+          "sentences": [
+            "Pecuniam [pr]o agris, quos in consulatu meo quarto et postea consulibus M.",
+            "Cr[a]ssao et Cn.",
+            "Lentulo augure adsignavi militibus, soliv municipis.",
+            "Ea [s]u[mma s]estertium circiter sexsiens milliens \nfuit, quam [p]ro Italicis praedis numeravi.",
+            "et ci[r]citer bis mill[ie]ns et sescentiens, quod pro agris \nprovincialibus soliv.",
+            "Id primus et [s]olus omnium, qui [d]eduxerunt colonias militum in Italia aut in \nprovincis, ad memoriam aetatis meae feci.",
+            "Et postea  Ti.",
+            "Nerone et Cn.",
+            "Pisone consulibus, ~ et D.",
+            "Laelio cos.,  et C.",
+            "Calvisio et L.",
+            "Pasieno consulibus, et  L.",
+            "Le[nt]ulo et M.",
+            "Messalla consulibus, et L.",
+            "Caninio ~ et  Q.",
+            "Fabricio co[s.],  milit[i]bus, quos emeriteis stipendis in sua municpi[a dedux]i,  \npraem[i]a numerato persolvi.",
+            "~ quam in rem sestertium q[uater m]illiens cir[cite]r impendi."
+          ],
+          "lines": [
+            "Pecuniam [pr]o agris, quos in consulatu meo quarto et postea consulibus M.",
+            "Cr[a]ssao et Cn.",
+            "Lentulo augure adsignavi militibus, soliv municipis.",
+            "Ea [s]u[mma s]estertium circiter sexsiens milliens \nfuit, quam [p]ro Italicis praedis numeravi.",
+            "et ci[r]citer bis mill[ie]ns et sescentiens, quod pro agris \nprovincialibus soliv.",
+            "Id primus et [s]olus omnium, qui [d]eduxerunt colonias militum in Italia aut in \nprovincis, ad memoriam aetatis meae feci.",
+            "Et postea  Ti.",
+            "Nerone et Cn.",
+            "Pisone consulibus, ~ et D.",
+            "Laelio cos.,  et C.",
+            "Calvisio et L.",
+            "Pasieno consulibus, et  L.",
+            "Le[nt]ulo et M.",
+            "Messalla consulibus, et L.",
+            "Caninio ~ et  Q.",
+            "Fabricio co[s.],  milit[i]bus, quos emeriteis stipendis in sua municpi[a dedux]i,  \npraem[i]a numerato persolvi.",
+            "~ quam in rem sestertium q[uater m]illiens cir[cite]r impendi."
+          ]
+        },
+        {
+          "id": "19",
+          "number": 19,
+          "latin": "Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum\nporticibus, aedem divi Iuli, Lupercal, porticum ad circum Flaminium, quam sum\nappellari passus ex nomine eius qui priorem eodem in solo fecerat, Octaviam,\npulvinar ad circum maximum, aedes in Capitolio Iovis Feretri Iovis Tonantis,\naedem Quirini, aedes Minervae et Iunonis Reginae et Iovis Libertatis in\nAventino, aedem Larum in summa sacra via, aedem deum Penatium in Velia, aedem\nIuventatis, aedem Matris Magnae in Palatio feci.",
+          "sentences": [
+            "Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum\nporticibus, aedem divi Iuli, Lupercal, porticum ad circum Flaminium, quam sum\nappellari passus ex nomine eius qui priorem eodem in solo fecerat, Octaviam,\npulvinar ad circum maximum, aedes in Capitolio Iovis Feretri Iovis Tonantis,\naedem Quirini, aedes Minervae et Iunonis Reginae et Iovis Libertatis in\nAventino, aedem Larum in summa sacra via, aedem deum Penatium in Velia, aedem\nIuventatis, aedem Matris Magnae in Palatio feci."
+          ],
+          "lines": [
+            "Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum\nporticibus, aedem divi Iuli, Lupercal, porticum ad circum Flaminium, quam sum\nappellari passus ex nomine eius qui priorem eodem in solo fecerat, Octaviam,\npulvinar ad circum maximum, aedes in Capitolio Iovis Feretri Iovis Tonantis,\naedem Quirini, aedes Minervae et Iunonis Reginae et Iovis Libertatis in\nAventino, aedem Larum in summa sacra via, aedem deum Penatium in Velia, aedem\nIuventatis, aedem Matris Magnae in Palatio feci."
+          ]
+        },
+        {
+          "id": "19",
+          "number": 19,
+          "latin": "17.    Quater [pe]cunia mea iuvi aerarium, ita ut sestertium milliens et quing[en]ties ad eos qui praerant \naerario detulerim.  Et M. Lepido et L. Ar[r]untio cos. in aerarium militare, quod ex consilio n[eo] \nco[ns]titutum est, ex [q]uo praemia darentur militibus, qui vicena [aut plu]ra sti[pendi]a emeruissent ~ \nHS milliens et septing[e]nti[ens ex pa]t[rim]onio [m]eo detuli.",
+          "sentences": [
+            "Quater [pe]cunia mea iuvi aerarium, ita ut sestertium milliens et quing[en]ties ad eos qui praerant \naerario detulerim.",
+            "Lepido et L.",
+            "Ar[r]untio cos.",
+            "in aerarium militare, quod ex consilio n[eo] \nco[ns]titutum est, ex [q]uo praemia darentur militibus, qui vicena [aut plu]ra sti[pendi]a emeruissent ~ \nHS milliens et septing[e]nti[ens ex pa]t[rim]onio [m]eo detuli."
+          ],
+          "lines": [
+            "Quater [pe]cunia mea iuvi aerarium, ita ut sestertium milliens et quing[en]ties ad eos qui praerant \naerario detulerim.",
+            "Lepido et L.",
+            "Ar[r]untio cos.",
+            "in aerarium militare, quod ex consilio n[eo] \nco[ns]titutum est, ex [q]uo praemia darentur militibus, qui vicena [aut plu]ra sti[pendi]a emeruissent ~ \nHS milliens et septing[e]nti[ens ex pa]t[rim]onio [m]eo detuli."
+          ]
+        },
+        {
+          "id": "20",
+          "number": 20,
+          "latin": "Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine\nulla inscriptione nominis mei.  Rivos aquarum compluribus locis vetustate\nlabentes refeci, et aquam quae Marcia appellatur duplicavi fonte novo in rivum\neius inmisso.  Forum Iulium et basilicam quae fuit inter aedem Castoris et\naedem Saturni, coepta profligataque opera a patre meo, perfeci et eandem\nbasilicam consumptam incendio, ampliato eius solo, sub titulo nominis filiorum\nmeorum incohavi, et, si vivus non perfecissem, perfici ab heredibus meis iussi.\nDuo et octoginta templa deum in urbe consul sextum ex auctoritate senatus\nrefeci nullo praetermisso quod eo tempore refici debebat. Consul septimum viam\nFlaminiam ab urbe Ariminum refeci pontesque omnes praeter Mulvium et Minucium.",
+          "sentences": [
+            "Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine\nulla inscriptione nominis mei.",
+            "Rivos aquarum compluribus locis vetustate\nlabentes refeci, et aquam quae Marcia appellatur duplicavi fonte novo in rivum\neius inmisso.",
+            "Forum Iulium et basilicam quae fuit inter aedem Castoris et\naedem Saturni, coepta profligataque opera a patre meo, perfeci et eandem\nbasilicam consumptam incendio, ampliato eius solo, sub titulo nominis filiorum\nmeorum incohavi, et, si vivus non perfecissem, perfici ab heredibus meis iussi.",
+            "Duo et octoginta templa deum in urbe consul sextum ex auctoritate senatus\nrefeci nullo praetermisso quod eo tempore refici debebat.",
+            "Consul septimum viam\nFlaminiam ab urbe Ariminum refeci pontesque omnes praeter Mulvium et Minucium."
+          ],
+          "lines": [
+            "Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine\nulla inscriptione nominis mei.",
+            "Rivos aquarum compluribus locis vetustate\nlabentes refeci, et aquam quae Marcia appellatur duplicavi fonte novo in rivum\neius inmisso.",
+            "Forum Iulium et basilicam quae fuit inter aedem Castoris et\naedem Saturni, coepta profligataque opera a patre meo, perfeci et eandem\nbasilicam consumptam incendio, ampliato eius solo, sub titulo nominis filiorum\nmeorum incohavi, et, si vivus non perfecissem, perfici ab heredibus meis iussi.",
+            "Duo et octoginta templa deum in urbe consul sextum ex auctoritate senatus\nrefeci nullo praetermisso quod eo tempore refici debebat.",
+            "Consul septimum viam\nFlaminiam ab urbe Ariminum refeci pontesque omnes praeter Mulvium et Minucium."
+          ]
+        },
+        {
+          "id": "20",
+          "number": 20,
+          "latin": "18.    [Ab eo anno q]uo Cn. et P. Lentuli c[ons]ules fuerunt, cum deficerent [vecti]g[alia, tum] centum \nmillibus h[omi]num, tum pluribus multo frume[ntarios et n]umma[rio]s t[ributus ex horr]eo et \npatr[i]monio m[e]o edidi.",
+          "sentences": [
+            "[Ab eo anno q]uo Cn.",
+            "Lentuli c[ons]ules fuerunt, cum deficerent [vecti]g[alia, tum] centum \nmillibus h[omi]num, tum pluribus multo frume[ntarios et n]umma[rio]s t[ributus ex horr]eo et \npatr[i]monio m[e]o edidi."
+          ],
+          "lines": [
+            "[Ab eo anno q]uo Cn.",
+            "Lentuli c[ons]ules fuerunt, cum deficerent [vecti]g[alia, tum] centum \nmillibus h[omi]num, tum pluribus multo frume[ntarios et n]umma[rio]s t[ributus ex horr]eo et \npatr[i]monio m[e]o edidi."
+          ]
+        },
+        {
+          "id": "21",
+          "number": 21,
+          "latin": "In privato solo Martis Ultoris templum forumque Augustum ex manibiis feci.\nTheatrum ad aedem Apollinis in solo magna ex parte a privatis empto feci, quod\nsub nomine M. Marcelli generi mei esset. Dona ex manibiis in Capitolio et in\naede divi Iuli et in aede Apollinis et in aede Vestae et in templo Martis\nUltoris consacravi, quae mihi constiterunt HS circiter milliens. Auri coronari\npondo triginta et quinque millia municipiis et colonis Italiae conferentibus ad\ntriumphos meos quintum consul remisi, et postea, quotienscumque imperator\nappellatus sum, aurum coronarium non accepi decernentibus municipiis et colonis\naeque benigne adque antea decreverant.",
+          "sentences": [
+            "In privato solo Martis Ultoris templum forumque Augustum ex manibiis feci.",
+            "Theatrum ad aedem Apollinis in solo magna ex parte a privatis empto feci, quod\nsub nomine M.",
+            "Marcelli generi mei esset.",
+            "Dona ex manibiis in Capitolio et in\naede divi Iuli et in aede Apollinis et in aede Vestae et in templo Martis\nUltoris consacravi, quae mihi constiterunt HS circiter milliens.",
+            "Auri coronari\npondo triginta et quinque millia municipiis et colonis Italiae conferentibus ad\ntriumphos meos quintum consul remisi, et postea, quotienscumque imperator\nappellatus sum, aurum coronarium non accepi decernentibus municipiis et colonis\naeque benigne adque antea decreverant."
+          ],
+          "lines": [
+            "In privato solo Martis Ultoris templum forumque Augustum ex manibiis feci.",
+            "Theatrum ad aedem Apollinis in solo magna ex parte a privatis empto feci, quod\nsub nomine M.",
+            "Marcelli generi mei esset.",
+            "Dona ex manibiis in Capitolio et in\naede divi Iuli et in aede Apollinis et in aede Vestae et in templo Martis\nUltoris consacravi, quae mihi constiterunt HS circiter milliens.",
+            "Auri coronari\npondo triginta et quinque millia municipiis et colonis Italiae conferentibus ad\ntriumphos meos quintum consul remisi, et postea, quotienscumque imperator\nappellatus sum, aurum coronarium non accepi decernentibus municipiis et colonis\naeque benigne adque antea decreverant."
+          ]
+        },
+        {
+          "id": "21",
+          "number": 21,
+          "latin": "19.  Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum porticibus, aedem divi \nIuli, Lupercal, porticum ad circum Flaminium, quam sum appellari passus ex nomine eius qui priorem \neodem in solo fecerat Octaviam, pulvinar ad circum maximum, aedes in Capitolio Iovis Feretri et Iovis \nTonantis, ~  aedem Quirini, aedes Minervae et Iunonis reginae et Iovis Libertatis in Aventino,  aedem \nLarum in summa sacra via,  aedem deum Penatium in Velia,  aedem Iuventatis, aedem Matris Magnae \nin Palatio feci.",
+          "sentences": [
+            "Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum porticibus, aedem divi \nIuli, Lupercal, porticum ad circum Flaminium, quam sum appellari passus ex nomine eius qui priorem \neodem in solo fecerat Octaviam, pulvinar ad circum maximum, aedes in Capitolio Iovis Feretri et Iovis \nTonantis, ~  aedem Quirini, aedes Minervae et Iunonis reginae et Iovis Libertatis in Aventino,  aedem \nLarum in summa sacra via,  aedem deum Penatium in Velia,  aedem Iuventatis, aedem Matris Magnae \nin Palatio feci."
+          ],
+          "lines": [
+            "Curiam et continens ei Chalcidicum templumque Apollinis in Palatio cum porticibus, aedem divi \nIuli, Lupercal, porticum ad circum Flaminium, quam sum appellari passus ex nomine eius qui priorem \neodem in solo fecerat Octaviam, pulvinar ad circum maximum, aedes in Capitolio Iovis Feretri et Iovis \nTonantis, ~  aedem Quirini, aedes Minervae et Iunonis reginae et Iovis Libertatis in Aventino,  aedem \nLarum in summa sacra via,  aedem deum Penatium in Velia,  aedem Iuventatis, aedem Matris Magnae \nin Palatio feci."
+          ]
+        },
+        {
+          "id": "22",
+          "number": 22,
+          "latin": "Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut\nnepotum nomine, quibus muneribus depugnaverunt hominum circiter decem millia.\nBis athletarum undique accitorum spectaculum populo praebui meo nomine et\ntertium nepotis mei nomine. Ludos feci meo nomine quater, aliorum autem\nmagistratuum vicem ter et viciens. Pro conlegio XV virorum magister conlegii\ncollega M. Agrippa ludos saeclares C. Furnio C. Silano cos. feci.  Consul XIII\nludos Martiales primus feci quos post id tempus deinceps insequentibus annis\ns.c. et lege fecerunt consules. Venationes bestiarum Africanarum meo nomine aut\nfiliorum meorum et nepotum in circo aut in foro aut in amphitheatris populo\ndedi sexiens et viciens, quibus confecta sunt bestiarum circiter tria millia et\nquingentae.",
+          "sentences": [
+            "Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut\nnepotum nomine, quibus muneribus depugnaverunt hominum circiter decem millia.",
+            "Bis athletarum undique accitorum spectaculum populo praebui meo nomine et\ntertium nepotis mei nomine.",
+            "Ludos feci meo nomine quater, aliorum autem\nmagistratuum vicem ter et viciens.",
+            "Pro conlegio XV virorum magister conlegii\ncollega M.",
+            "Agrippa ludos saeclares C.",
+            "Furnio C.",
+            "Silano cos.",
+            "Consul XIII\nludos Martiales primus feci quos post id tempus deinceps insequentibus annis\ns.c.",
+            "et lege fecerunt consules.",
+            "Venationes bestiarum Africanarum meo nomine aut\nfiliorum meorum et nepotum in circo aut in foro aut in amphitheatris populo\ndedi sexiens et viciens, quibus confecta sunt bestiarum circiter tria millia et\nquingentae."
+          ],
+          "lines": [
+            "Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut\nnepotum nomine, quibus muneribus depugnaverunt hominum circiter decem millia.",
+            "Bis athletarum undique accitorum spectaculum populo praebui meo nomine et\ntertium nepotis mei nomine.",
+            "Ludos feci meo nomine quater, aliorum autem\nmagistratuum vicem ter et viciens.",
+            "Pro conlegio XV virorum magister conlegii\ncollega M.",
+            "Agrippa ludos saeclares C.",
+            "Furnio C.",
+            "Silano cos.",
+            "Consul XIII\nludos Martiales primus feci quos post id tempus deinceps insequentibus annis\ns.c.",
+            "et lege fecerunt consules.",
+            "Venationes bestiarum Africanarum meo nomine aut\nfiliorum meorum et nepotum in circo aut in foro aut in amphitheatris populo\ndedi sexiens et viciens, quibus confecta sunt bestiarum circiter tria millia et\nquingentae."
+          ]
+        },
+        {
+          "id": "22",
+          "number": 22,
+          "latin": "20.    Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine ulla inscriptione \nnominis mei.  Rovos aquarum compluribus locis vetustate labentes refeci, ~ et aquam quae Marcia \nappellatur duplicavi fonte novo in rivum eius inmisso.  Forum Iulium et basilicam quae fuit inter aedem \nCastoris et aedem Saturni, ~ coepta profligataque poera a patre meo, perfeci,  et eandem basilicam \nconsumptam incendio ampliato eius solo sub titulo nominis filiorum m[eorum i]ncohavi, ~ et, si vivus \nnon perfecissem, perfici ab heredibus [meis ius]si.  Duo et octoginta templa deum in urbe consul \nsex[tu]m ex [auctori]tate senatus refeci, nullo praetermisso quod e[o] tempore [refici debeba]t.  Consul \nseptimum viam Flaminiam a[b urbe] Ari[minum refeci pontes]que omnes praeter Mulvium et \nMinucium.",
+          "sentences": [
+            "Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine ulla inscriptione \nnominis mei.",
+            "Rovos aquarum compluribus locis vetustate labentes refeci, ~ et aquam quae Marcia \nappellatur duplicavi fonte novo in rivum eius inmisso.",
+            "Forum Iulium et basilicam quae fuit inter aedem \nCastoris et aedem Saturni, ~ coepta profligataque poera a patre meo, perfeci,  et eandem basilicam \nconsumptam incendio ampliato eius solo sub titulo nominis filiorum m[eorum i]ncohavi, ~ et, si vivus \nnon perfecissem, perfici ab heredibus [meis ius]si.",
+            "Duo et octoginta templa deum in urbe consul \nsex[tu]m ex [auctori]tate senatus refeci, nullo praetermisso quod e[o] tempore [refici debeba]t.",
+            "Consul \nseptimum viam Flaminiam a[b urbe] Ari[minum refeci pontes]que omnes praeter Mulvium et \nMinucium."
+          ],
+          "lines": [
+            "Capitolium et Pompeium theatrum utrumque opus impensa grandi refeci sine ulla inscriptione \nnominis mei.",
+            "Rovos aquarum compluribus locis vetustate labentes refeci, ~ et aquam quae Marcia \nappellatur duplicavi fonte novo in rivum eius inmisso.",
+            "Forum Iulium et basilicam quae fuit inter aedem \nCastoris et aedem Saturni, ~ coepta profligataque poera a patre meo, perfeci,  et eandem basilicam \nconsumptam incendio ampliato eius solo sub titulo nominis filiorum m[eorum i]ncohavi, ~ et, si vivus \nnon perfecissem, perfici ab heredibus [meis ius]si.",
+            "Duo et octoginta templa deum in urbe consul \nsex[tu]m ex [auctori]tate senatus refeci, nullo praetermisso quod e[o] tempore [refici debeba]t.",
+            "Consul \nseptimum viam Flaminiam a[b urbe] Ari[minum refeci pontes]que omnes praeter Mulvium et \nMinucium."
+          ]
+        },
+        {
+          "id": "23",
+          "number": 23,
+          "latin": "Navalis proeli spectaclum populo dedi trans Tiberim in quo loco nunc nemus\nest Caesarum, cavato solo in longitudinem mille et octingentos pedes, in\nlatitudinem mille et ducenti, in quo triginta rostratae naves triremes aut\nbiremes, plures autem minores inter se conflixerunt; quibus in classibus\npugnaverunt praeter remiges millia hominum tria circiter.",
+          "sentences": [
+            "Navalis proeli spectaclum populo dedi trans Tiberim in quo loco nunc nemus\nest Caesarum, cavato solo in longitudinem mille et octingentos pedes, in\nlatitudinem mille et ducenti, in quo triginta rostratae naves triremes aut\nbiremes, plures autem minores inter se conflixerunt; quibus in classibus\npugnaverunt praeter remiges millia hominum tria circiter."
+          ],
+          "lines": [
+            "Navalis proeli spectaclum populo dedi trans Tiberim in quo loco nunc nemus\nest Caesarum, cavato solo in longitudinem mille et octingentos pedes, in\nlatitudinem mille et ducenti, in quo triginta rostratae naves triremes aut\nbiremes, plures autem minores inter se conflixerunt; quibus in classibus\npugnaverunt praeter remiges millia hominum tria circiter."
+          ]
+        },
+        {
+          "id": "23",
+          "number": 23,
+          "latin": "21.    In privato solo Martis Ultoris templum [f]orumque Augustum [ex ma]n[i]biis feci.  Theatrum ad \naede Apollinis in solo magna ex parte a p[r]i[v]atis empto feci, quod sub nomine M. Marcell[i] generi \nmei esset.  Don[a e]x manibiis in Capitolio et in aede divi Iu[l]i et in aede Apollinis de Vestae et in \ntemplo Martis Ultoris consecravi,  quae mihi constituerunt  HS circiter milliens.  Auri coronari pondo \ntriginta et quinque millia municipiis et colonis Italiae conferentibus ad triumpho[s] meos quintum \nconsul remisi, et postea, quotienscumque imperator a[ppe]llatus sum, aurum coronarium non accepi, \ndecernentibus municipii[s] et colonis aequ[e] beni[g]ne adque antea decreverant.",
+          "sentences": [
+            "In privato solo Martis Ultoris templum [f]orumque Augustum [ex ma]n[i]biis feci.",
+            "Theatrum ad \naede Apollinis in solo magna ex parte a p[r]i[v]atis empto feci, quod sub nomine M.",
+            "Marcell[i] generi \nmei esset.",
+            "Don[a e]x manibiis in Capitolio et in aede divi Iu[l]i et in aede Apollinis de Vestae et in \ntemplo Martis Ultoris consecravi,  quae mihi constituerunt  HS circiter milliens.",
+            "Auri coronari pondo \ntriginta et quinque millia municipiis et colonis Italiae conferentibus ad triumpho[s] meos quintum \nconsul remisi, et postea, quotienscumque imperator a[ppe]llatus sum, aurum coronarium non accepi, \ndecernentibus municipii[s] et colonis aequ[e] beni[g]ne adque antea decreverant."
+          ],
+          "lines": [
+            "In privato solo Martis Ultoris templum [f]orumque Augustum [ex ma]n[i]biis feci.",
+            "Theatrum ad \naede Apollinis in solo magna ex parte a p[r]i[v]atis empto feci, quod sub nomine M.",
+            "Marcell[i] generi \nmei esset.",
+            "Don[a e]x manibiis in Capitolio et in aede divi Iu[l]i et in aede Apollinis de Vestae et in \ntemplo Martis Ultoris consecravi,  quae mihi constituerunt  HS circiter milliens.",
+            "Auri coronari pondo \ntriginta et quinque millia municipiis et colonis Italiae conferentibus ad triumpho[s] meos quintum \nconsul remisi, et postea, quotienscumque imperator a[ppe]llatus sum, aurum coronarium non accepi, \ndecernentibus municipii[s] et colonis aequ[e] beni[g]ne adque antea decreverant."
+          ]
+        },
+        {
+          "id": "24",
+          "number": 24,
+          "latin": "In templis omnium civitatium provinciae Asiae victor ornamenta reposui\nquae spoliatis templis is cum quo bellum gesseram privatim possederat. Statuae\nmeae pedestres et equestres et in quadrigeis argenteae steterunt in urbe XXC\ncirciter, quas ipse sustuli, exque ea pecunia dona aurea in aede Apollinis meo\nnomine et illorum qui mihi statuarum honorem habuerunt posui.",
+          "sentences": [
+            "In templis omnium civitatium provinciae Asiae victor ornamenta reposui\nquae spoliatis templis is cum quo bellum gesseram privatim possederat.",
+            "Statuae\nmeae pedestres et equestres et in quadrigeis argenteae steterunt in urbe XXC\ncirciter, quas ipse sustuli, exque ea pecunia dona aurea in aede Apollinis meo\nnomine et illorum qui mihi statuarum honorem habuerunt posui."
+          ],
+          "lines": [
+            "In templis omnium civitatium provinciae Asiae victor ornamenta reposui\nquae spoliatis templis is cum quo bellum gesseram privatim possederat.",
+            "Statuae\nmeae pedestres et equestres et in quadrigeis argenteae steterunt in urbe XXC\ncirciter, quas ipse sustuli, exque ea pecunia dona aurea in aede Apollinis meo\nnomine et illorum qui mihi statuarum honorem habuerunt posui."
+          ]
+        },
+        {
+          "id": "24",
+          "number": 24,
+          "latin": "22.    Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut n[e]potum nomine; \nquibus muneribus depugnaverunt hominum ci[rc]iter decem millia. ~ Bis athletarum  undique accitorum \nspectaculu[m] p[o]pulo pra[ebui me]o nomine et tertium nepo[tis] mei nomine.  Ludos feci m[eo \nno]m[ine] quater, ~ aliorum autem m[agistr]atuum vicem ter et viciens. ~ [Pr]o conlegio Xvvirorum \nmagis[ter con]legii collega M. Agrippa ~ lud[os s]aeclares, C. Furnio C. Silano cos. [feci.  C]onsul XIII \nludos Mar[tia]les pr[imus fec]i, quos p[ost i]d tempus deincep[s] ins[equen]ti[bus] annis [ex senatus \nconsulto et lege fe]cerunt [co]n[su]les.  ~ [Ven]ation[es] best[ia]rum Africanarum meo nomine aut \nfilio[ru]m meorum et nepotum in ci[r]co aut in foro aut in amphitheatris, popul[o d]edi sexiens et \nviciens, quibus confecta sunt bestiarum circiter tria m[ill]ia et quingentae.",
+          "sentences": [
+            "Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut n[e]potum nomine; \nquibus muneribus depugnaverunt hominum ci[rc]iter decem millia.",
+            "~ Bis athletarum  undique accitorum \nspectaculu[m] p[o]pulo pra[ebui me]o nomine et tertium nepo[tis] mei nomine.",
+            "Ludos feci m[eo \nno]m[ine] quater, ~ aliorum autem m[agistr]atuum vicem ter et viciens.",
+            "~ [Pr]o conlegio Xvvirorum \nmagis[ter con]legii collega M.",
+            "Agrippa ~ lud[os s]aeclares, C.",
+            "Furnio C.",
+            "Silano cos.",
+            "[feci.",
+            "C]onsul XIII \nludos Mar[tia]les pr[imus fec]i, quos p[ost i]d tempus deincep[s] ins[equen]ti[bus] annis [ex senatus \nconsulto et lege fe]cerunt [co]n[su]les.",
+            "~ [Ven]ation[es] best[ia]rum Africanarum meo nomine aut \nfilio[ru]m meorum et nepotum in ci[r]co aut in foro aut in amphitheatris, popul[o d]edi sexiens et \nviciens, quibus confecta sunt bestiarum circiter tria m[ill]ia et quingentae."
+          ],
+          "lines": [
+            "Ter munus gladiatorium dedi meo nomine et quinquiens filiorum meorum aut n[e]potum nomine; \nquibus muneribus depugnaverunt hominum ci[rc]iter decem millia.",
+            "~ Bis athletarum  undique accitorum \nspectaculu[m] p[o]pulo pra[ebui me]o nomine et tertium nepo[tis] mei nomine.",
+            "Ludos feci m[eo \nno]m[ine] quater, ~ aliorum autem m[agistr]atuum vicem ter et viciens.",
+            "~ [Pr]o conlegio Xvvirorum \nmagis[ter con]legii collega M.",
+            "Agrippa ~ lud[os s]aeclares, C.",
+            "Furnio C.",
+            "Silano cos.",
+            "[feci.",
+            "C]onsul XIII \nludos Mar[tia]les pr[imus fec]i, quos p[ost i]d tempus deincep[s] ins[equen]ti[bus] annis [ex senatus \nconsulto et lege fe]cerunt [co]n[su]les.",
+            "~ [Ven]ation[es] best[ia]rum Africanarum meo nomine aut \nfilio[ru]m meorum et nepotum in ci[r]co aut in foro aut in amphitheatris, popul[o d]edi sexiens et \nviciens, quibus confecta sunt bestiarum circiter tria m[ill]ia et quingentae."
+          ]
+        },
+        {
+          "id": "25",
+          "number": 25,
+          "latin": "Mare pacavi a praedonibus. Eo bello servorum qui fugerant a dominis suis\net arma contra rem publicam ceperant triginta fere millia capta dominis ad\nsupplicium sumendum tradidi.  Iuravit in mea verba tota Italia sponte sua, et\nme belli quo vici ad Actium ducem depoposcit; iuraverunt in eadem verba\nprovinciae Galliae, Hispaniae, Africa, Sicilia, Sardinia. Qui sub signis meis\ntum militaverint fuerunt senatores plures quam DCC, in iis qui vel antea vel\npostea consules facti sunt ad eum diem quo scripta sunt haec LXXXIII,\nsacerdotes circiter CLXX.",
+          "sentences": [
+            "Mare pacavi a praedonibus.",
+            "Eo bello servorum qui fugerant a dominis suis\net arma contra rem publicam ceperant triginta fere millia capta dominis ad\nsupplicium sumendum tradidi.",
+            "Iuravit in mea verba tota Italia sponte sua, et\nme belli quo vici ad Actium ducem depoposcit; iuraverunt in eadem verba\nprovinciae Galliae, Hispaniae, Africa, Sicilia, Sardinia.",
+            "Qui sub signis meis\ntum militaverint fuerunt senatores plures quam DCC, in iis qui vel antea vel\npostea consules facti sunt ad eum diem quo scripta sunt haec LXXXIII,\nsacerdotes circiter CLXX."
+          ],
+          "lines": [
+            "Mare pacavi a praedonibus.",
+            "Eo bello servorum qui fugerant a dominis suis\net arma contra rem publicam ceperant triginta fere millia capta dominis ad\nsupplicium sumendum tradidi.",
+            "Iuravit in mea verba tota Italia sponte sua, et\nme belli quo vici ad Actium ducem depoposcit; iuraverunt in eadem verba\nprovinciae Galliae, Hispaniae, Africa, Sicilia, Sardinia.",
+            "Qui sub signis meis\ntum militaverint fuerunt senatores plures quam DCC, in iis qui vel antea vel\npostea consules facti sunt ad eum diem quo scripta sunt haec LXXXIII,\nsacerdotes circiter CLXX."
+          ]
+        },
+        {
+          "id": "25",
+          "number": 25,
+          "latin": "23.    Navalis proeli spectaclum populo de[di tr]ans Tiberim, in quo loco nunc nemus est Caesarum, \ncavato [s]olo in longitudinem mille et octingentos pedes ~ in latudine[m mille] e[t] ducenti.  In quo \ntriginta rostratae naves triremes a[ut birem]es ~ plures autem minores inter se conflixerunt.  Q[uibu]s in \nclassibus pugnaverunt praeter remiges millia ho[minum tr]ia circiter.",
+          "sentences": [
+            "Navalis proeli spectaclum populo de[di tr]ans Tiberim, in quo loco nunc nemus est Caesarum, \ncavato [s]olo in longitudinem mille et octingentos pedes ~ in latudine[m mille] e[t] ducenti.",
+            "In quo \ntriginta rostratae naves triremes a[ut birem]es ~ plures autem minores inter se conflixerunt.",
+            "Q[uibu]s in \nclassibus pugnaverunt praeter remiges millia ho[minum tr]ia circiter."
+          ],
+          "lines": [
+            "Navalis proeli spectaclum populo de[di tr]ans Tiberim, in quo loco nunc nemus est Caesarum, \ncavato [s]olo in longitudinem mille et octingentos pedes ~ in latudine[m mille] e[t] ducenti.",
+            "In quo \ntriginta rostratae naves triremes a[ut birem]es ~ plures autem minores inter se conflixerunt.",
+            "Q[uibu]s in \nclassibus pugnaverunt praeter remiges millia ho[minum tr]ia circiter."
+          ]
+        },
+        {
+          "id": "26",
+          "number": 26,
+          "latin": "Omnium provinciarum populi Romani quibus finitimae fuerunt gentes quae non\nparerent imperio nostro fines auxi. Gallias et Hispanias provincias, item\nGermaniam, qua includit Oceanus a Gadibus ad ostium Albis fluminis pacavi.\nAlpes a regione ea quae proxima est Hadriano mari ad Tuscum pacificavi nulli\ngenti bello per iniuriam inlato. Classis mea per Oceanum ab ostio Rheni ad\nsolis orientis regionem usque ad fines Cimbrorum navigavit, quo neque terra\nneque mari quisquam Romanus ante id tempus adit. Cimbrique et Charydes et\nSemnones et eiusdem tractus alii Germanorum populi per legatos amicitiam meam\net populi Romani petierunt. Meo iussu et auspicio ducti sunt duo exercitus eodem\nfere tempore in Aethiopiam et in Arabiam quae appellatur Eudaemon, magnaeque\nhostium gentis utriusque copiae caesae sunt in acie et complura oppida capta.\nIn Aethiopiam usque ad oppidum Nabata perventum est, cui proxima est Meroe; in\nArabiam usque in fines Sabaeorum processit exercitus ad oppidum Mariba.",
+          "sentences": [
+            "Omnium provinciarum populi Romani quibus finitimae fuerunt gentes quae non\nparerent imperio nostro fines auxi.",
+            "Gallias et Hispanias provincias, item\nGermaniam, qua includit Oceanus a Gadibus ad ostium Albis fluminis pacavi.",
+            "Alpes a regione ea quae proxima est Hadriano mari ad Tuscum pacificavi nulli\ngenti bello per iniuriam inlato.",
+            "Classis mea per Oceanum ab ostio Rheni ad\nsolis orientis regionem usque ad fines Cimbrorum navigavit, quo neque terra\nneque mari quisquam Romanus ante id tempus adit.",
+            "Cimbrique et Charydes et\nSemnones et eiusdem tractus alii Germanorum populi per legatos amicitiam meam\net populi Romani petierunt.",
+            "Meo iussu et auspicio ducti sunt duo exercitus eodem\nfere tempore in Aethiopiam et in Arabiam quae appellatur Eudaemon, magnaeque\nhostium gentis utriusque copiae caesae sunt in acie et complura oppida capta.",
+            "In Aethiopiam usque ad oppidum Nabata perventum est, cui proxima est Meroe; in\nArabiam usque in fines Sabaeorum processit exercitus ad oppidum Mariba."
+          ],
+          "lines": [
+            "Omnium provinciarum populi Romani quibus finitimae fuerunt gentes quae non\nparerent imperio nostro fines auxi.",
+            "Gallias et Hispanias provincias, item\nGermaniam, qua includit Oceanus a Gadibus ad ostium Albis fluminis pacavi.",
+            "Alpes a regione ea quae proxima est Hadriano mari ad Tuscum pacificavi nulli\ngenti bello per iniuriam inlato.",
+            "Classis mea per Oceanum ab ostio Rheni ad\nsolis orientis regionem usque ad fines Cimbrorum navigavit, quo neque terra\nneque mari quisquam Romanus ante id tempus adit.",
+            "Cimbrique et Charydes et\nSemnones et eiusdem tractus alii Germanorum populi per legatos amicitiam meam\net populi Romani petierunt.",
+            "Meo iussu et auspicio ducti sunt duo exercitus eodem\nfere tempore in Aethiopiam et in Arabiam quae appellatur Eudaemon, magnaeque\nhostium gentis utriusque copiae caesae sunt in acie et complura oppida capta.",
+            "In Aethiopiam usque ad oppidum Nabata perventum est, cui proxima est Meroe; in\nArabiam usque in fines Sabaeorum processit exercitus ad oppidum Mariba."
+          ]
+        },
+        {
+          "id": "26",
+          "number": 26,
+          "latin": "24.    In templis omnium civitatium prov[inci]ae Asiae victor ornamenta reposui, quae spoliatis tem[plis \ni]s cum quo bellum gesseram privatim possederat.  Satatuae [mea]e pedestres et equestres et in \nquadrigeis argenteae steterunt in urbe XXC circiter, quas ipse sustuli ~ exque ea pecunia dona aurea in \naede Apollinis meo nomine et illorum, qui mihi statuarum honorem habuerunt, posui.",
+          "sentences": [
+            "In templis omnium civitatium prov[inci]ae Asiae victor ornamenta reposui, quae spoliatis tem[plis \ni]s cum quo bellum gesseram privatim possederat.",
+            "Satatuae [mea]e pedestres et equestres et in \nquadrigeis argenteae steterunt in urbe XXC circiter, quas ipse sustuli ~ exque ea pecunia dona aurea in \naede Apollinis meo nomine et illorum, qui mihi statuarum honorem habuerunt, posui."
+          ],
+          "lines": [
+            "In templis omnium civitatium prov[inci]ae Asiae victor ornamenta reposui, quae spoliatis tem[plis \ni]s cum quo bellum gesseram privatim possederat.",
+            "Satatuae [mea]e pedestres et equestres et in \nquadrigeis argenteae steterunt in urbe XXC circiter, quas ipse sustuli ~ exque ea pecunia dona aurea in \naede Apollinis meo nomine et illorum, qui mihi statuarum honorem habuerunt, posui."
+          ]
+        },
+        {
+          "id": "27",
+          "number": 27,
+          "latin": "Aegyptum imperio populi Romani adieci. Armeniam maiorem interfecto rege\neius Artaxe cum possem facere provinciam malui maiorum nostrorum exemplo regnum\nid Tigrani regis Artavasdis filio, nepoti autem Tigranis regis, per Ti. Neronem\ntradere, qui tum mihi privignus erat. Et eandem gentem postea desciscentem et\nrebellantem domitam per Gaium filium meum regi Ariobarzani regis Medorum\nArtabazi filio regendam tradidi, et post eius mortem filio eius Artavasdi; quo\ninterfecto Tigranem qui erat ex regio genere Armeniorum oriundus in id regnum\nmisi. Provincias omnis quae trans Hadrianum mare vergunt ad orientem\nCyrenasque, iam ex parte magna regibus ea possidentibus, et antea Siciliam et\nSardiniam occupatas bello servili reciperavi.",
+          "sentences": [
+            "Aegyptum imperio populi Romani adieci.",
+            "Armeniam maiorem interfecto rege\neius Artaxe cum possem facere provinciam malui maiorum nostrorum exemplo regnum\nid Tigrani regis Artavasdis filio, nepoti autem Tigranis regis, per Ti.",
+            "Neronem\ntradere, qui tum mihi privignus erat.",
+            "Et eandem gentem postea desciscentem et\nrebellantem domitam per Gaium filium meum regi Ariobarzani regis Medorum\nArtabazi filio regendam tradidi, et post eius mortem filio eius Artavasdi; quo\ninterfecto Tigranem qui erat ex regio genere Armeniorum oriundus in id regnum\nmisi.",
+            "Provincias omnis quae trans Hadrianum mare vergunt ad orientem\nCyrenasque, iam ex parte magna regibus ea possidentibus, et antea Siciliam et\nSardiniam occupatas bello servili reciperavi."
+          ],
+          "lines": [
+            "Aegyptum imperio populi Romani adieci.",
+            "Armeniam maiorem interfecto rege\neius Artaxe cum possem facere provinciam malui maiorum nostrorum exemplo regnum\nid Tigrani regis Artavasdis filio, nepoti autem Tigranis regis, per Ti.",
+            "Neronem\ntradere, qui tum mihi privignus erat.",
+            "Et eandem gentem postea desciscentem et\nrebellantem domitam per Gaium filium meum regi Ariobarzani regis Medorum\nArtabazi filio regendam tradidi, et post eius mortem filio eius Artavasdi; quo\ninterfecto Tigranem qui erat ex regio genere Armeniorum oriundus in id regnum\nmisi.",
+            "Provincias omnis quae trans Hadrianum mare vergunt ad orientem\nCyrenasque, iam ex parte magna regibus ea possidentibus, et antea Siciliam et\nSardiniam occupatas bello servili reciperavi."
+          ]
+        },
+        {
+          "id": "27",
+          "number": 27,
+          "latin": "25.    Mare pacavi a praedonibus.  Eo bello servorum, qui fugerant a dominis suis et arma contra rem \npublicam ceperant, triginta fere millia capta dominis ad supplicium sumendum tradidi.  Iuravit in mea \nverba tota Italia sponte sual et me be[lli] quo vici ad Actium ducem depoposcit.  Iuraverunt in eadem \nver[ba provi]nciae Galliae, Hispaniae, Africa, Sicilia, Sardinia.  Qui sub [signis meis tum] militaverint, \nfuerunt senatores plures quam DCC,  in ii[s qui vel antea vel pos]tea consules facti sunt ad eum diem \nquo scripta su[nt haec   LX]X[XIII,  sacerdo]tes ci[rc]iter CLXX.",
+          "sentences": [
+            "Mare pacavi a praedonibus.",
+            "Eo bello servorum, qui fugerant a dominis suis et arma contra rem \npublicam ceperant, triginta fere millia capta dominis ad supplicium sumendum tradidi.",
+            "Iuravit in mea \nverba tota Italia sponte sual et me be[lli] quo vici ad Actium ducem depoposcit.",
+            "Iuraverunt in eadem \nver[ba provi]nciae Galliae, Hispaniae, Africa, Sicilia, Sardinia.",
+            "Qui sub [signis meis tum] militaverint, \nfuerunt senatores plures quam DCC,  in ii[s qui vel antea vel pos]tea consules facti sunt ad eum diem \nquo scripta su[nt haec   LX]X[XIII,  sacerdo]tes ci[rc]iter CLXX."
+          ],
+          "lines": [
+            "Mare pacavi a praedonibus.",
+            "Eo bello servorum, qui fugerant a dominis suis et arma contra rem \npublicam ceperant, triginta fere millia capta dominis ad supplicium sumendum tradidi.",
+            "Iuravit in mea \nverba tota Italia sponte sual et me be[lli] quo vici ad Actium ducem depoposcit.",
+            "Iuraverunt in eadem \nver[ba provi]nciae Galliae, Hispaniae, Africa, Sicilia, Sardinia.",
+            "Qui sub [signis meis tum] militaverint, \nfuerunt senatores plures quam DCC,  in ii[s qui vel antea vel pos]tea consules facti sunt ad eum diem \nquo scripta su[nt haec   LX]X[XIII,  sacerdo]tes ci[rc]iter CLXX."
+          ]
+        },
+        {
+          "id": "28",
+          "number": 28,
+          "latin": "Colonias in Africa, Sicilia, Macedonia, utraque Hispania, Achaia, Asia,\nSyria, Gallia Narbonensi, Pisidia militum deduxi. Italia autem XXVIII colonias\nquae vivo me celeberrimae et frequentissimae fuerunt mea auctoritate deductas\nhabet.",
+          "sentences": [
+            "Colonias in Africa, Sicilia, Macedonia, utraque Hispania, Achaia, Asia,\nSyria, Gallia Narbonensi, Pisidia militum deduxi.",
+            "Italia autem XXVIII colonias\nquae vivo me celeberrimae et frequentissimae fuerunt mea auctoritate deductas\nhabet."
+          ],
+          "lines": [
+            "Colonias in Africa, Sicilia, Macedonia, utraque Hispania, Achaia, Asia,\nSyria, Gallia Narbonensi, Pisidia militum deduxi.",
+            "Italia autem XXVIII colonias\nquae vivo me celeberrimae et frequentissimae fuerunt mea auctoritate deductas\nhabet."
+          ]
+        },
+        {
+          "id": "28",
+          "number": 28,
+          "latin": "26.    Omnium prov[inciarum populi Romani], quibus finitimae fuerunt gentes quae non p[arerent \nimperio nos]tro, fines auxi.  Gallias et Hispanias provincias, i[tem Germaniam qua inclu]dit Oceanus a \nGadibus ad ostium Albis flumin[is pacavi.  Alpes a re]gione ea, quae proxima est Hadriano mari, [ad \nTuscum pacari fec]i. nulli genti bello per iniuriam inlato.  Cla[ssis m]ea per Oceanum] ab ostio Rheni \nad solis orientis regionem usque ad fi[nes Cimbroru]m navigavit, ~ quo neque terra neque mari \nquisquam Romanus ante id tempus adit, Cimbrique et Charydes et Semnones et eiusdem tractus alli \nGermanorum popu[l]i per legatos amicitiam mean et populi Romani petierunt.  Meo iussu et auspicio \nducti sunt [duo] exercitus eodem fere tempore in Aethiopiam et in Ar[a]biam, quae appel[latur \nEudaemon, [maxim]aeque hos[t]ium gentis utr[iu]sque cop[iae] caesae sunt in acie et [c]om[plur]a \noppida capta.  In Aethiopiam usque ad oppidum Nabata pervent[um]est, cui proxima est Meroe.  In \nArabiam usque ...",
+          "sentences": [
+            "Omnium prov[inciarum populi Romani], quibus finitimae fuerunt gentes quae non p[arerent \nimperio nos]tro, fines auxi.",
+            "Gallias et Hispanias provincias, i[tem Germaniam qua inclu]dit Oceanus a \nGadibus ad ostium Albis flumin[is pacavi.",
+            "Alpes a re]gione ea, quae proxima est Hadriano mari, [ad \nTuscum pacari fec]i.",
+            "nulli genti bello per iniuriam inlato.",
+            "Cla[ssis m]ea per Oceanum] ab ostio Rheni \nad solis orientis regionem usque ad fi[nes Cimbroru]m navigavit, ~ quo neque terra neque mari \nquisquam Romanus ante id tempus adit, Cimbrique et Charydes et Semnones et eiusdem tractus alli \nGermanorum popu[l]i per legatos amicitiam mean et populi Romani petierunt.",
+            "Meo iussu et auspicio \nducti sunt [duo] exercitus eodem fere tempore in Aethiopiam et in Ar[a]biam, quae appel[latur \nEudaemon, [maxim]aeque hos[t]ium gentis utr[iu]sque cop[iae] caesae sunt in acie et [c]om[plur]a \noppida capta.",
+            "In Aethiopiam usque ad oppidum Nabata pervent[um]est, cui proxima est Meroe.",
+            "In \nArabiam usque ..."
+          ],
+          "lines": [
+            "Omnium prov[inciarum populi Romani], quibus finitimae fuerunt gentes quae non p[arerent \nimperio nos]tro, fines auxi.",
+            "Gallias et Hispanias provincias, i[tem Germaniam qua inclu]dit Oceanus a \nGadibus ad ostium Albis flumin[is pacavi.",
+            "Alpes a re]gione ea, quae proxima est Hadriano mari, [ad \nTuscum pacari fec]i.",
+            "nulli genti bello per iniuriam inlato.",
+            "Cla[ssis m]ea per Oceanum] ab ostio Rheni \nad solis orientis regionem usque ad fi[nes Cimbroru]m navigavit, ~ quo neque terra neque mari \nquisquam Romanus ante id tempus adit, Cimbrique et Charydes et Semnones et eiusdem tractus alli \nGermanorum popu[l]i per legatos amicitiam mean et populi Romani petierunt.",
+            "Meo iussu et auspicio \nducti sunt [duo] exercitus eodem fere tempore in Aethiopiam et in Ar[a]biam, quae appel[latur \nEudaemon, [maxim]aeque hos[t]ium gentis utr[iu]sque cop[iae] caesae sunt in acie et [c]om[plur]a \noppida capta.",
+            "In Aethiopiam usque ad oppidum Nabata pervent[um]est, cui proxima est Meroe.",
+            "In \nArabiam usque ..."
+          ]
+        },
+        {
+          "id": "29",
+          "number": 29,
+          "latin": "Signa militaria complura per alios duces amissa devictis hostibus recepi\nex Hispania et Gallia et a Dalmateis. Parthos trium exercitum Romanorum spolia\net signa reddere mihi supplicesque amicitiam populi Romani petere coegi. Ea\nautem signa in penetrali quod est in templo Martis Ultoris reposui.",
+          "sentences": [
+            "Signa militaria complura per alios duces amissa devictis hostibus recepi\nex Hispania et Gallia et a Dalmateis.",
+            "Parthos trium exercitum Romanorum spolia\net signa reddere mihi supplicesque amicitiam populi Romani petere coegi.",
+            "Ea\nautem signa in penetrali quod est in templo Martis Ultoris reposui."
+          ],
+          "lines": [
+            "Signa militaria complura per alios duces amissa devictis hostibus recepi\nex Hispania et Gallia et a Dalmateis.",
+            "Parthos trium exercitum Romanorum spolia\net signa reddere mihi supplicesque amicitiam populi Romani petere coegi.",
+            "Ea\nautem signa in penetrali quod est in templo Martis Ultoris reposui."
+          ]
+        },
+        {
+          "id": "29",
+          "number": 29,
+          "latin": "27.    Aegyptum imperio populi [Ro]mani adieci.  Armeniam maiorum, interfecto rege eius Artaxe, \nc[u]m possem facere provinciam, malui maiorum nostrorum exemplo regn[u]m id Tigrani, regis \nArtavasdis filio, nepoti autem Tigranis regis, per T[i. Ne]ronem trad[er], qui tum mihi priv[ig]nus erat.  \nEt eandem gentem postea d[e]sciscentem et rebellantem domit[a]m per Gaium filium meum regi \nAriobarzani, regis Medorum Artaba[zi] filio, regendam tradidi ~ et post eius mortem filio eius \nArtavasdi. ~ Quo interfecto, Tig[ra]ne>m< qui erat ex regio genere Armeniorum oriundus, in id regnum \nmisi.  Provincias omnis, quae trans Hadrianum mare vergunt ad orien[te]m, Cyrenasque, iam ex parte \nmagna regibus eas possidentibus, et antea Siciliam et Sardiniam occupatas bello servili reciperavi.",
+          "sentences": [
+            "Aegyptum imperio populi [Ro]mani adieci.",
+            "Armeniam maiorum, interfecto rege eius Artaxe, \nc[u]m possem facere provinciam, malui maiorum nostrorum exemplo regn[u]m id Tigrani, regis \nArtavasdis filio, nepoti autem Tigranis regis, per T[i.",
+            "Ne]ronem trad[er], qui tum mihi priv[ig]nus erat.",
+            "Et eandem gentem postea d[e]sciscentem et rebellantem domit[a]m per Gaium filium meum regi \nAriobarzani, regis Medorum Artaba[zi] filio, regendam tradidi ~ et post eius mortem filio eius \nArtavasdi.",
+            "~ Quo interfecto, Tig[ra]ne>m< qui erat ex regio genere Armeniorum oriundus, in id regnum \nmisi.",
+            "Provincias omnis, quae trans Hadrianum mare vergunt ad orien[te]m, Cyrenasque, iam ex parte \nmagna regibus eas possidentibus, et antea Siciliam et Sardiniam occupatas bello servili reciperavi."
+          ],
+          "lines": [
+            "Aegyptum imperio populi [Ro]mani adieci.",
+            "Armeniam maiorum, interfecto rege eius Artaxe, \nc[u]m possem facere provinciam, malui maiorum nostrorum exemplo regn[u]m id Tigrani, regis \nArtavasdis filio, nepoti autem Tigranis regis, per T[i.",
+            "Ne]ronem trad[er], qui tum mihi priv[ig]nus erat.",
+            "Et eandem gentem postea d[e]sciscentem et rebellantem domit[a]m per Gaium filium meum regi \nAriobarzani, regis Medorum Artaba[zi] filio, regendam tradidi ~ et post eius mortem filio eius \nArtavasdi.",
+            "~ Quo interfecto, Tig[ra]ne>m< qui erat ex regio genere Armeniorum oriundus, in id regnum \nmisi.",
+            "Provincias omnis, quae trans Hadrianum mare vergunt ad orien[te]m, Cyrenasque, iam ex parte \nmagna regibus eas possidentibus, et antea Siciliam et Sardiniam occupatas bello servili reciperavi."
+          ]
+        },
+        {
+          "id": "30",
+          "number": 30,
+          "latin": "Pannoniorum gentes, quas ante me principem populi Romani exercitus nunquam\nadit, devictas per Ti. Neronem, qui tum erat privignus et legatus meus, imperio\npopuli Romani subieci, protulique fines Illyrici ad ripam fluminis Danui. Citra\nquod Dacorum transgressus exercitus meis auspicis victus profilgatusque est, et\npostea trans Danuvium ductus exercitus meus Dacorum gentes imperia populi\nRomani perferre coegit.",
+          "sentences": [
+            "Pannoniorum gentes, quas ante me principem populi Romani exercitus nunquam\nadit, devictas per Ti.",
+            "Neronem, qui tum erat privignus et legatus meus, imperio\npopuli Romani subieci, protulique fines Illyrici ad ripam fluminis Danui.",
+            "Citra\nquod Dacorum transgressus exercitus meis auspicis victus profilgatusque est, et\npostea trans Danuvium ductus exercitus meus Dacorum gentes imperia populi\nRomani perferre coegit."
+          ],
+          "lines": [
+            "Pannoniorum gentes, quas ante me principem populi Romani exercitus nunquam\nadit, devictas per Ti.",
+            "Neronem, qui tum erat privignus et legatus meus, imperio\npopuli Romani subieci, protulique fines Illyrici ad ripam fluminis Danui.",
+            "Citra\nquod Dacorum transgressus exercitus meis auspicis victus profilgatusque est, et\npostea trans Danuvium ductus exercitus meus Dacorum gentes imperia populi\nRomani perferre coegit."
+          ]
+        },
+        {
+          "id": "30",
+          "number": 30,
+          "latin": "28.   Colonias in Africa Sicilia [M]acedonia utraque Hispania Achai[a] Asia S[y]ria Gallia Narbonensi \nPi[si]dia militum deduxi.  Italia autem XXVIII [colo]nias, quae vivo me celeberrimae et frequentissimae \nfuerunt, me [auctore] deductas habet.",
+          "sentences": [
+            "Colonias in Africa Sicilia [M]acedonia utraque Hispania Achai[a] Asia S[y]ria Gallia Narbonensi \nPi[si]dia militum deduxi.",
+            "Italia autem XXVIII [colo]nias, quae vivo me celeberrimae et frequentissimae \nfuerunt, me [auctore] deductas habet."
+          ],
+          "lines": [
+            "Colonias in Africa Sicilia [M]acedonia utraque Hispania Achai[a] Asia S[y]ria Gallia Narbonensi \nPi[si]dia militum deduxi.",
+            "Italia autem XXVIII [colo]nias, quae vivo me celeberrimae et frequentissimae \nfuerunt, me [auctore] deductas habet."
+          ]
+        },
+        {
+          "id": "31",
+          "number": 31,
+          "latin": "Ad me ex India regum legationes saepe missae sunt non visae ante id tempus\napud quemquam Romanorum ducem. Nostram amicitiam appetiverunt per legatos\nBastarnae Scythaeque et Sarmatarum qui sunt citra flumen Tanaim et ultra reges,\nAlbanorumque rex et Hiberorum et Medorum.",
+          "sentences": [
+            "Ad me ex India regum legationes saepe missae sunt non visae ante id tempus\napud quemquam Romanorum ducem.",
+            "Nostram amicitiam appetiverunt per legatos\nBastarnae Scythaeque et Sarmatarum qui sunt citra flumen Tanaim et ultra reges,\nAlbanorumque rex et Hiberorum et Medorum."
+          ],
+          "lines": [
+            "Ad me ex India regum legationes saepe missae sunt non visae ante id tempus\napud quemquam Romanorum ducem.",
+            "Nostram amicitiam appetiverunt per legatos\nBastarnae Scythaeque et Sarmatarum qui sunt citra flumen Tanaim et ultra reges,\nAlbanorumque rex et Hiberorum et Medorum."
+          ]
+        },
+        {
+          "id": "31",
+          "number": 31,
+          "latin": "29.   Signa militaria complur[a per] alios d[u]ces ami[ssa] devicti[s hostibu]s re[cipe]ravi ex Hispania et \n[Gallia et a Dalm]ateis.  Parthos trium exercitum Romanorum spolia et signa re[ddere] mihi \nsupplicesque amicitiam populi Romani petere coegi.  Ea autem si[gn]a in penetrali, quod e[s]t in templo \nMartis Ultoris, reposui.",
+          "sentences": [
+            "Signa militaria complur[a per] alios d[u]ces ami[ssa] devicti[s hostibu]s re[cipe]ravi ex Hispania et \n[Gallia et a Dalm]ateis.",
+            "Parthos trium exercitum Romanorum spolia et signa re[ddere] mihi \nsupplicesque amicitiam populi Romani petere coegi.",
+            "Ea autem si[gn]a in penetrali, quod e[s]t in templo \nMartis Ultoris, reposui."
+          ],
+          "lines": [
+            "Signa militaria complur[a per] alios d[u]ces ami[ssa] devicti[s hostibu]s re[cipe]ravi ex Hispania et \n[Gallia et a Dalm]ateis.",
+            "Parthos trium exercitum Romanorum spolia et signa re[ddere] mihi \nsupplicesque amicitiam populi Romani petere coegi.",
+            "Ea autem si[gn]a in penetrali, quod e[s]t in templo \nMartis Ultoris, reposui."
+          ]
+        },
+        {
+          "id": "32",
+          "number": 32,
+          "latin": "Ad me supplices confugerunt reges Parthorum Tiridates et postea Phrates\nregis Phratis filius, Medorum Artavasdes, Adiabenorum Artaxares, Britannorum\nDumnobellaunus et Tincommius, Sugambrorum Maelo, Marcomanorum Sueborum . . .\nrus. Ad me rex Parthorum Phrates Orodis filius filios suos nepotesque omnes\nmisit in Italiam non bello superatus, sed amicitiam nostram per liberorum\nsuorum pignora petens. Plurimaeque aliae gentes expertae sunt p. R. fidem me\nprincipe quibus antea cum populo Romano nullum extiterat legationum et\namicitiae commercium.",
+          "sentences": [
+            "Ad me supplices confugerunt reges Parthorum Tiridates et postea Phrates\nregis Phratis filius, Medorum Artavasdes, Adiabenorum Artaxares, Britannorum\nDumnobellaunus et Tincommius, Sugambrorum Maelo, Marcomanorum Sueborum .",
+            "Ad me rex Parthorum Phrates Orodis filius filios suos nepotesque omnes\nmisit in Italiam non bello superatus, sed amicitiam nostram per liberorum\nsuorum pignora petens.",
+            "Plurimaeque aliae gentes expertae sunt p.",
+            "fidem me\nprincipe quibus antea cum populo Romano nullum extiterat legationum et\namicitiae commercium."
+          ],
+          "lines": [
+            "Ad me supplices confugerunt reges Parthorum Tiridates et postea Phrates\nregis Phratis filius, Medorum Artavasdes, Adiabenorum Artaxares, Britannorum\nDumnobellaunus et Tincommius, Sugambrorum Maelo, Marcomanorum Sueborum .",
+            "Ad me rex Parthorum Phrates Orodis filius filios suos nepotesque omnes\nmisit in Italiam non bello superatus, sed amicitiam nostram per liberorum\nsuorum pignora petens.",
+            "Plurimaeque aliae gentes expertae sunt p.",
+            "fidem me\nprincipe quibus antea cum populo Romano nullum extiterat legationum et\namicitiae commercium."
+          ]
+        },
+        {
+          "id": "32",
+          "number": 32,
+          "latin": "30.    Pannoniorum gentes, qua[s a]nte me principem populi Rpmani exercitus numquam ad[it], devictas \nper Ti. [Ne]ronem, qui tum erat privignus et legatus meus, imperio populi Romani s[ubie]ci protulique \nfines Illyrici ad r[ip]am fluminis Dan[uv]i.  Citr[a] quod [D]a[cor]u[m tra]n[s]gressus exercitus meis \na[u]sp[icis vict]us profligatusque [es]t, et pos[tea tran]s Dan[u]vium ductus ex[ercitus me]u[s] \nDa[cor]um gentis im[peri]a p[opuli] R[omani perferre coegit].",
+          "sentences": [
+            "Pannoniorum gentes, qua[s a]nte me principem populi Rpmani exercitus numquam ad[it], devictas \nper Ti.",
+            "[Ne]ronem, qui tum erat privignus et legatus meus, imperio populi Romani s[ubie]ci protulique \nfines Illyrici ad r[ip]am fluminis Dan[uv]i.",
+            "Citr[a] quod [D]a[cor]u[m tra]n[s]gressus exercitus meis \na[u]sp[icis vict]us profligatusque [es]t, et pos[tea tran]s Dan[u]vium ductus ex[ercitus me]u[s] \nDa[cor]um gentis im[peri]a p[opuli] R[omani perferre coegit]."
+          ],
+          "lines": [
+            "Pannoniorum gentes, qua[s a]nte me principem populi Rpmani exercitus numquam ad[it], devictas \nper Ti.",
+            "[Ne]ronem, qui tum erat privignus et legatus meus, imperio populi Romani s[ubie]ci protulique \nfines Illyrici ad r[ip]am fluminis Dan[uv]i.",
+            "Citr[a] quod [D]a[cor]u[m tra]n[s]gressus exercitus meis \na[u]sp[icis vict]us profligatusque [es]t, et pos[tea tran]s Dan[u]vium ductus ex[ercitus me]u[s] \nDa[cor]um gentis im[peri]a p[opuli] R[omani perferre coegit]."
+          ]
+        },
+        {
+          "id": "33",
+          "number": 33,
+          "latin": "A me gentes Parthorum et Medorum per legatos principes earum gentium reges\npetitos acceperunt: Parthi Vononem, regis Phratis filium, regis Orodis nepotem,\nMedi Ariobarzanem, regis Artavazdis filium, regis Ariobarzanis nepotem.",
+          "sentences": [
+            "A me gentes Parthorum et Medorum per legatos principes earum gentium reges\npetitos acceperunt: Parthi Vononem, regis Phratis filium, regis Orodis nepotem,\nMedi Ariobarzanem, regis Artavazdis filium, regis Ariobarzanis nepotem."
+          ],
+          "lines": [
+            "A me gentes Parthorum et Medorum per legatos principes earum gentium reges\npetitos acceperunt: Parthi Vononem, regis Phratis filium, regis Orodis nepotem,\nMedi Ariobarzanem, regis Artavazdis filium, regis Ariobarzanis nepotem."
+          ]
+        },
+        {
+          "id": "33",
+          "number": 33,
+          "latin": "31.    Ad me ex In[dia regum legationes saepe missae sunt nunquam visae ante id t]em[pus] apud \nqu[em]q[uam] R[omanorum du]cem.  Nostram amic[itiam petie]run[t] per legat[os] B[a]starn[ae \nScythae]que et Sarmatarum qui su[nt citra fl]umen Tanaim [et] ultra reg[es.  Alba]norumque rex et \nHiberorum e[t Medorum] .",
+          "sentences": [
+            "Ad me ex In[dia regum legationes saepe missae sunt nunquam visae ante id t]em[pus] apud \nqu[em]q[uam] R[omanorum du]cem.",
+            "Nostram amic[itiam petie]run[t] per legat[os] B[a]starn[ae \nScythae]que et Sarmatarum qui su[nt citra fl]umen Tanaim [et] ultra reg[es.",
+            "Alba]norumque rex et \nHiberorum e[t Medorum] ."
+          ],
+          "lines": [
+            "Ad me ex In[dia regum legationes saepe missae sunt nunquam visae ante id t]em[pus] apud \nqu[em]q[uam] R[omanorum du]cem.",
+            "Nostram amic[itiam petie]run[t] per legat[os] B[a]starn[ae \nScythae]que et Sarmatarum qui su[nt citra fl]umen Tanaim [et] ultra reg[es.",
+            "Alba]norumque rex et \nHiberorum e[t Medorum] ."
+          ]
+        },
+        {
+          "id": "34",
+          "number": 34,
+          "latin": "In consulatu sexto et septimo, postquam bella civilia exstinxeram, per\nconsensum universorum potitus rerum omnium, rem publicam ex mea potestate in\nsenatus populique Romani arbitrium transtuli. Quo pro merito meo senatus\nconsulto Augustus appellatus sum et laureis postes aedium mearum vestiti\npublice coronaque civica super ianuam meam fixa est et clupeus aureus in curia\nIulia positus, quem mihi senatum populumque Romanum dare virtutis clementiaeque\net iustitiae et pietatis caussa testatum est per eius clupei inscriptionem.\nPost id tempus auctoritate omnibus praestiti, potestatis autem nihilo amplius\nhabui quam ceteri qui mihi quoque in magistratu conlegae fuerunt.",
+          "sentences": [
+            "In consulatu sexto et septimo, postquam bella civilia exstinxeram, per\nconsensum universorum potitus rerum omnium, rem publicam ex mea potestate in\nsenatus populique Romani arbitrium transtuli.",
+            "Quo pro merito meo senatus\nconsulto Augustus appellatus sum et laureis postes aedium mearum vestiti\npublice coronaque civica super ianuam meam fixa est et clupeus aureus in curia\nIulia positus, quem mihi senatum populumque Romanum dare virtutis clementiaeque\net iustitiae et pietatis caussa testatum est per eius clupei inscriptionem.",
+            "Post id tempus auctoritate omnibus praestiti, potestatis autem nihilo amplius\nhabui quam ceteri qui mihi quoque in magistratu conlegae fuerunt."
+          ],
+          "lines": [
+            "In consulatu sexto et septimo, postquam bella civilia exstinxeram, per\nconsensum universorum potitus rerum omnium, rem publicam ex mea potestate in\nsenatus populique Romani arbitrium transtuli.",
+            "Quo pro merito meo senatus\nconsulto Augustus appellatus sum et laureis postes aedium mearum vestiti\npublice coronaque civica super ianuam meam fixa est et clupeus aureus in curia\nIulia positus, quem mihi senatum populumque Romanum dare virtutis clementiaeque\net iustitiae et pietatis caussa testatum est per eius clupei inscriptionem.",
+            "Post id tempus auctoritate omnibus praestiti, potestatis autem nihilo amplius\nhabui quam ceteri qui mihi quoque in magistratu conlegae fuerunt."
+          ]
+        },
+        {
+          "id": "34",
+          "number": 34,
+          "latin": "32.    Ad me supplices confug[erunt] reges Parthorum Tirida[te]s et post[ea] Phrat[es] regis Phrati[s] \nfiliu[s].  ~  Medorum Ar[tavasdes, Adiabenorum] Artaxares, Britannorum Dumnobellaunus et \nTin[commius, Sugambr]orum Maelo,  Marcomannorum Sueborum [Segime]rus.    Ad [me re]x \nParthorum Phrates, Orod[i]s filius, filios suos nepot[esque omnes] misit in Italiam, non bello \nsuperatu[s], sed amicitiam nostram per [libe]ror[um] suorum pignora petens.  Plurimaeque aliae gentes \nexper[tae sunt p. R.] fidem me principe, quibus antea cum populo Roman[o nullum extitera]t legationum \net amicitiae [c]ommercium.",
+          "sentences": [
+            "Ad me supplices confug[erunt] reges Parthorum Tirida[te]s et post[ea] Phrat[es] regis Phrati[s] \nfiliu[s].",
+            "~  Medorum Ar[tavasdes, Adiabenorum] Artaxares, Britannorum Dumnobellaunus et \nTin[commius, Sugambr]orum Maelo,  Marcomannorum Sueborum [Segime]rus.",
+            "Ad [me re]x \nParthorum Phrates, Orod[i]s filius, filios suos nepot[esque omnes] misit in Italiam, non bello \nsuperatu[s], sed amicitiam nostram per [libe]ror[um] suorum pignora petens.",
+            "Plurimaeque aliae gentes \nexper[tae sunt p.",
+            "R.] fidem me principe, quibus antea cum populo Roman[o nullum extitera]t legationum \net amicitiae [c]ommercium."
+          ],
+          "lines": [
+            "Ad me supplices confug[erunt] reges Parthorum Tirida[te]s et post[ea] Phrat[es] regis Phrati[s] \nfiliu[s].",
+            "~  Medorum Ar[tavasdes, Adiabenorum] Artaxares, Britannorum Dumnobellaunus et \nTin[commius, Sugambr]orum Maelo,  Marcomannorum Sueborum [Segime]rus.",
+            "Ad [me re]x \nParthorum Phrates, Orod[i]s filius, filios suos nepot[esque omnes] misit in Italiam, non bello \nsuperatu[s], sed amicitiam nostram per [libe]ror[um] suorum pignora petens.",
+            "Plurimaeque aliae gentes \nexper[tae sunt p.",
+            "R.] fidem me principe, quibus antea cum populo Roman[o nullum extitera]t legationum \net amicitiae [c]ommercium."
+          ]
+        },
+        {
+          "id": "35",
+          "number": 35,
+          "latin": "Tertium decimum consulatum cum gerebam, senatus et equester ordo\npopulusque Romanus universus appellavit me patrem patriae, idque in vestibulo\naedium mearum inscribendum et in curia Iulia et in foro Aug. sub quadrigis quae\nmihi ex s.c. positae sunt censuit. Cum scripsi haec annum agebam septuagensumum\nsextum.",
+          "sentences": [
+            "Tertium decimum consulatum cum gerebam, senatus et equester ordo\npopulusque Romanus universus appellavit me patrem patriae, idque in vestibulo\naedium mearum inscribendum et in curia Iulia et in foro Aug.",
+            "sub quadrigis quae\nmihi ex s.c.",
+            "positae sunt censuit.",
+            "Cum scripsi haec annum agebam septuagensumum\nsextum."
+          ],
+          "lines": [
+            "Tertium decimum consulatum cum gerebam, senatus et equester ordo\npopulusque Romanus universus appellavit me patrem patriae, idque in vestibulo\naedium mearum inscribendum et in curia Iulia et in foro Aug.",
+            "sub quadrigis quae\nmihi ex s.c.",
+            "positae sunt censuit.",
+            "Cum scripsi haec annum agebam septuagensumum\nsextum."
+          ]
+        },
+        {
+          "id": "35",
+          "number": 35,
+          "latin": "33.     A me gentes Parthorum et Medoru[m per legatos] principes earum gentium reges pet[i]tos \nacceperunt: Par[thi Vononem,  regis Phr]atis filium,  regis Orodis nepotem.  Medi Arioba[rzanem,]  \nregis Artavazdis filium, regis Ariobarzanis nepotem.",
+          "sentences": [
+            "A me gentes Parthorum et Medoru[m per legatos] principes earum gentium reges pet[i]tos \nacceperunt: Par[thi Vononem,  regis Phr]atis filium,  regis Orodis nepotem.",
+            "Medi Arioba[rzanem,]  \nregis Artavazdis filium, regis Ariobarzanis nepotem."
+          ],
+          "lines": [
+            "A me gentes Parthorum et Medoru[m per legatos] principes earum gentium reges pet[i]tos \nacceperunt: Par[thi Vononem,  regis Phr]atis filium,  regis Orodis nepotem.",
+            "Medi Arioba[rzanem,]  \nregis Artavazdis filium, regis Ariobarzanis nepotem."
+          ]
+        },
+        {
+          "id": "36",
+          "number": 36,
+          "latin": "34.    In consulatu sexto et septimo, po[stquam b]ella [civil]ia oxstinxeram, perconsensum universorum \n[potitus reru]m om[n]ium, rem publicam ex pea potestate ~ in senat[us populique Rom]ani [a]rbitrium \ntranstuli.  Quo pro merito meo senatu[s consulto Au]gust[us appe]llatus sum et laureis postes aedium \nmearum v[estiti] publ[ice coronaq]ue civica super ianuam meam fixa est ~ [et clu]peus [aureu]s in \n[c]uria Iulia positus, quem mihi senatum pop[ulumq]ue Rom[anu]m dare virtutis clement[iaequ]e \niustitiae et pieta[tis caus]sa testatu[m] est pe[r e]ius clupei [inscription]em.  Post id tem[pus a]uctoritate \n[omnibus praestiti, potest]atis au[tem n]ihilo ampliu[s habu]i quam cet[eri qui m]ihi quoque in \nma[gis]tra[t]u conlegae f[uerunt].",
+          "sentences": [
+            "In consulatu sexto et septimo, po[stquam b]ella [civil]ia oxstinxeram, perconsensum universorum \n[potitus reru]m om[n]ium, rem publicam ex pea potestate ~ in senat[us populique Rom]ani [a]rbitrium \ntranstuli.",
+            "Quo pro merito meo senatu[s consulto Au]gust[us appe]llatus sum et laureis postes aedium \nmearum v[estiti] publ[ice coronaq]ue civica super ianuam meam fixa est ~ [et clu]peus [aureu]s in \n[c]uria Iulia positus, quem mihi senatum pop[ulumq]ue Rom[anu]m dare virtutis clement[iaequ]e \niustitiae et pieta[tis caus]sa testatu[m] est pe[r e]ius clupei [inscription]em.",
+            "Post id tem[pus a]uctoritate \n[omnibus praestiti, potest]atis au[tem n]ihilo ampliu[s habu]i quam cet[eri qui m]ihi quoque in \nma[gis]tra[t]u conlegae f[uerunt]."
+          ],
+          "lines": [
+            "In consulatu sexto et septimo, po[stquam b]ella [civil]ia oxstinxeram, perconsensum universorum \n[potitus reru]m om[n]ium, rem publicam ex pea potestate ~ in senat[us populique Rom]ani [a]rbitrium \ntranstuli.",
+            "Quo pro merito meo senatu[s consulto Au]gust[us appe]llatus sum et laureis postes aedium \nmearum v[estiti] publ[ice coronaq]ue civica super ianuam meam fixa est ~ [et clu]peus [aureu]s in \n[c]uria Iulia positus, quem mihi senatum pop[ulumq]ue Rom[anu]m dare virtutis clement[iaequ]e \niustitiae et pieta[tis caus]sa testatu[m] est pe[r e]ius clupei [inscription]em.",
+            "Post id tem[pus a]uctoritate \n[omnibus praestiti, potest]atis au[tem n]ihilo ampliu[s habu]i quam cet[eri qui m]ihi quoque in \nma[gis]tra[t]u conlegae f[uerunt]."
+          ]
+        },
+        {
+          "id": "37",
+          "number": 37,
+          "latin": "35.    Tertium dec[i]mum consulatu[m cum gereba]m, sena[tus et e]quester order populusq[ue] Romanus \nuniversus [appell]av[it me pat]re[m p]atriae idque in vestibu[lo a]edium mearum inscribendum et in \nc[u]ria [Iulia e]t in foro Aug. sub quadrig[i]s, quae mihi ex s.c. pos[it]ae [sunt, decrevit.  Cum scri]psi \nhaec, annus agebam septuagensu[mum sextum].",
+          "sentences": [
+            "Tertium dec[i]mum consulatu[m cum gereba]m, sena[tus et e]quester order populusq[ue] Romanus \nuniversus [appell]av[it me pat]re[m p]atriae idque in vestibu[lo a]edium mearum inscribendum et in \nc[u]ria [Iulia e]t in foro Aug.",
+            "sub quadrig[i]s, quae mihi ex s.c.",
+            "pos[it]ae [sunt, decrevit.",
+            "Cum scri]psi \nhaec, annus agebam septuagensu[mum sextum]."
+          ],
+          "lines": [
+            "Tertium dec[i]mum consulatu[m cum gereba]m, sena[tus et e]quester order populusq[ue] Romanus \nuniversus [appell]av[it me pat]re[m p]atriae idque in vestibu[lo a]edium mearum inscribendum et in \nc[u]ria [Iulia e]t in foro Aug.",
+            "sub quadrig[i]s, quae mihi ex s.c.",
+            "pos[it]ae [sunt, decrevit.",
+            "Cum scri]psi \nhaec, annus agebam septuagensu[mum sextum]."
+          ]
+        },
+        {
+          "id": "38",
+          "number": 38,
+          "latin": "App. I.   Summa pecun[i]ae, quam ded[it vel in aera]rium [vel plebei Romanae vel di]missis militibus:  \ndenarium sexien[s milliens].",
+          "sentences": [
+            "Summa pecun[i]ae, quam ded[it vel in aera]rium [vel plebei Romanae vel di]missis militibus:  \ndenarium sexien[s milliens]."
+          ],
+          "lines": [
+            "Summa pecun[i]ae, quam ded[it vel in aera]rium [vel plebei Romanae vel di]missis militibus:  \ndenarium sexien[s milliens]."
+          ]
+        },
+        {
+          "id": "39",
+          "number": 39,
+          "latin": "App. II.   Opera fecit nova aedem Martis, [Iovis] Ton[antis et Feretri, Apollinis], divi Iuli, Quirini, \nMinervae, [Iunonis Reginae, Iovis Libertatis], Larum, deum Penatium, ~ Iuv[entatis, Matris Magnae, \nLupercal, pulvina]r ad circum, ~ curiam cum Ch[alcidico, forum Augustum, basilica]m Iuliam, \ntheatrum Marcelli, ~[p]or[ticum Octaviam, nemus trans T]iberim Caesarum.",
+          "sentences": [
+            "Opera fecit nova aedem Martis, [Iovis] Ton[antis et Feretri, Apollinis], divi Iuli, Quirini, \nMinervae, [Iunonis Reginae, Iovis Libertatis], Larum, deum Penatium, ~ Iuv[entatis, Matris Magnae, \nLupercal, pulvina]r ad circum, ~ curiam cum Ch[alcidico, forum Augustum, basilica]m Iuliam, \ntheatrum Marcelli, ~[p]or[ticum Octaviam, nemus trans T]iberim Caesarum."
+          ],
+          "lines": [
+            "Opera fecit nova aedem Martis, [Iovis] Ton[antis et Feretri, Apollinis], divi Iuli, Quirini, \nMinervae, [Iunonis Reginae, Iovis Libertatis], Larum, deum Penatium, ~ Iuv[entatis, Matris Magnae, \nLupercal, pulvina]r ad circum, ~ curiam cum Ch[alcidico, forum Augustum, basilica]m Iuliam, \ntheatrum Marcelli, ~[p]or[ticum Octaviam, nemus trans T]iberim Caesarum."
+          ]
+        },
+        {
+          "id": "40",
+          "number": 40,
+          "latin": "App. III.   Refecit Capito[liam sacra]sque aedes [nu]m[ero octoginta] duas, thea[t]rum Pompei, \naqu[aram r]iv[as, vi]am Flamin[iam].",
+          "sentences": [
+            "Refecit Capito[liam sacra]sque aedes [nu]m[ero octoginta] duas, thea[t]rum Pompei, \naqu[aram r]iv[as, vi]am Flamin[iam]."
+          ],
+          "lines": [
+            "Refecit Capito[liam sacra]sque aedes [nu]m[ero octoginta] duas, thea[t]rum Pompei, \naqu[aram r]iv[as, vi]am Flamin[iam]."
+          ]
+        },
+        {
+          "id": "41",
+          "number": 41,
+          "latin": "App. IV.    Impensa p[raestita in spec]tacul[a] sca[enica et munera] gladiatorum at[que athletas et \nvenationes et] naumachi[am] et donata pe[c]unia [colonis municipiis oppidis] terrae motu incendioque \nconsumpt[is] a[ut viritim] a[micis senat]oribusque, quorum census explevit, in[n]umera[bili]s.",
+          "sentences": [
+            "Impensa p[raestita in spec]tacul[a] sca[enica et munera] gladiatorum at[que athletas et \nvenationes et] naumachi[am] et donata pe[c]unia [colonis municipiis oppidis] terrae motu incendioque \nconsumpt[is] a[ut viritim] a[micis senat]oribusque, quorum census explevit, in[n]umera[bili]s."
+          ],
+          "lines": [
+            "Impensa p[raestita in spec]tacul[a] sca[enica et munera] gladiatorum at[que athletas et \nvenationes et] naumachi[am] et donata pe[c]unia [colonis municipiis oppidis] terrae motu incendioque \nconsumpt[is] a[ut viritim] a[micis senat]oribusque, quorum census explevit, in[n]umera[bili]s."
+          ]
+        }
+      ]
+    }
+  ]
+}

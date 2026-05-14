@@ -160,26 +160,44 @@ export default function DesignGuidePage() {
                     Weitere Author-Themes
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {[
-                      {
-                        name: "Cicero",
-                        color: "hsl(215, 45%, 35%)",
-                        class: "theme-cicero",
-                        icon: BookOpen,
-                      },
-                      {
-                        name: "Augustus",
-                        color: "hsl(45, 65%, 35%)",
-                        class: "theme-augustus",
-                        icon: Star,
-                      },
-                      {
-                        name: "Seneca",
-                        color: "hsl(165, 40%, 30%)",
-                        class: "theme-seneca",
-                        icon: Coffee,
-                      },
-                    ].map((author) => (
+{[
+                        {
+                          name: "Cicero",
+                          color: "hsl(215, 45%, 35%)",
+                          class: "theme-cicero",
+                          icon: BookOpen,
+                        },
+                        {
+                          name: "Augustus",
+                          color: "hsl(45, 65%, 35%)",
+                          class: "theme-augustus",
+                          icon: Star,
+                        },
+                        {
+                          name: "Seneca",
+                          color: "hsl(165, 40%, 30%)",
+                          class: "theme-seneca",
+                          icon: Coffee,
+                        },
+                        {
+                          name: "Sallust",
+                          color: "hsl(25, 80%, 45%)",
+                          class: "theme-sallust",
+                          icon: Award,
+                        },
+                        {
+                          name: "Sokrates",
+                          color: "hsl(265, 55%, 50%)",
+                          class: "theme-sokrates",
+                          icon: Sparkles,
+                        },
+                        {
+                          name: "Catilina",
+                          color: "hsl(15, 70%, 45%)",
+                          class: "theme-catilina",
+                          icon: Flame,
+                        },
+                      ].map((author) => (
                       <div
                         key={author.name}
                         className={`${author.class} p-4 bg-card/40 rounded-2xl border border-border/40 group hover:border-primary/50 transition-all`}

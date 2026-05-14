@@ -114,5 +114,108 @@
       "Apologie des Sokrates",
       "Verteidigungsrede"
     ]
+  },
+  {
+    "term": "Stoa",
+    "slug": "stoa",
+    "definition": "Die Stoa (griech. Στοά – Säulenhalle) ist eine der einflussreichsten philosophischen Schulen der Antike. Begründet um 300 v. Chr. von Zenon von Kition, der in der bemalten Säulenhalle (Stoa Poikile) in Athen lehrte. Die stoische Philosophie gliedert sich in drei Bereiche: Physik (die Welt ist von der göttlichen Vernunft, dem Logos, durchdrungen), Logik (Lehre vom richtigen Denken und Erkennen) und Ethik (die Kunst der tugendhaften Lebensführung). Das oberste Prinzip der Stoa lautet: „Übereinstimmung mit der Natur” (homologia), was bedeutet, in Harmonie mit der Vernunft zu leben, die die gesamte Weltordnung durchdringt. Die Schule erlebte ihre Blüte im römischen Stoizismus bei Seneca, Epiktet und Mark Aurel.",
+    "category": "Philosophie",
+    "etymology": "Griechisch στοά (stoa) – Säulenhalle, Wandelhalle; bezieht sich auf die Stoa Poikile in Athen",
+    "relatedTerms": [
+      "seneca",
+      "stoizismus",
+      "virtus",
+      "fatum"
+    ],
+    "variants": [
+      "Stoizismus",
+      "Stoische Schule",
+      "Stoiker"
+    ]
+  },
+  {
+    "term": "Prinzipat",
+    "slug": "prinzipat",
+    "definition": "Der Prinzipat (von lat. princeps – der Erste) ist die von Augustus begründete Staatsform des Römischen Reiches (27 v. Chr. – 284 n. Chr.). Augustus behielt die republikanischen Institutionen formal bei, vereinte aber alle entscheidenden Machtbefugnisse in seiner Person: die tribunicia potestas (Macht eines Volkstribuns, Gesetze einzubringen), das imperium proconsulare maius (oberster militärischer Befehl über alle Provinzen) und die Rolle des pontifex maximus (oberster Priester). Nach außen gab er sich als primus inter pares (Erster unter Gleichen), während er faktisch allein regierte. Der Begriff princeps wurde zum Titel des römischen Kaisers.",
+    "category": "Politik",
+    "etymology": "Lateinisch principatus, von princeps (primus + capere) – der Erste, der Erste im Rang",
+    "relatedTerms": [
+      "augustus",
+      "imperium",
+      "auctoritas",
+      "diktator"
+    ],
+    "variants": [
+      "Augusteische Verfassung",
+      "Princeps-System"
+    ]
+  },
+  {
+    "term": "Naturrecht",
+    "slug": "naturrecht",
+    "definition": "Das Naturrecht (lat. ius naturale) ist die Idee eines überpositiven Rechts, das aus der Natur des Menschen und der Vernunft entspringt und über den positiven Gesetzen des Staates steht. Cicero formulierte in De Re Publica und De Legibus die Grundlagen des abendländischen Naturrechts: Es gibt ein allgemeingültiges, unveränderliches Gesetz, das für alle Völker und Zeiten gilt. Dieses Gesetz ist die recta ratio (richtige Vernunft) der Natur. Ungerechte Gesetze, die diesem Naturrecht widersprechen, sind keine wahren Gesetze (non videtur esse lex). Ciceros Naturrechtslehre beeinflusste nachhaltig die christliche Theologie (Augustinus, Thomas von Aquin) und die Aufklärungsphilosophie.",
+    "category": "Recht",
+    "etymology": "Lateinisch ius naturale, von natura – Natur, Geburt; ius – Recht, Gesetz",
+    "relatedTerms": [
+      "cicero",
+      "iustitia",
+      "res-publica"
+    ],
+    "variants": [
+      "Ius naturale",
+      "Lex naturae",
+      "Überpositives Recht"
+    ]
+  },
+  {
+    "term": "Alea iacta est",
+    "slug": "alea-iacta-est",
+    "definition": "Alea iacta est (lat. Der Würfel ist gefallen) ist der legendäre Ausspruch Caesars beim Überschreiten des Rubikons am 10. Januar 49 v. Chr. Nach dem Bericht Suetons (De Vita Caesarum I.31–33) zögerte Caesar kurz am Ufer des Rubikons, der Grenze zwischen seiner Provinz Gallien und Italien. Dann rief er: Alea iacta est! und überquerte mit seiner XIII. Legion den Fluss. Dieser Schritt war illegal und bedeutete die Kriegserklärung an den Senat und Pompeius. Der Satz symbolisiert den Beginn eines unumkehrbaren Prozesses – Caesars Entscheidung, durch Bürgerkrieg die Macht in Rom zu erringen, die letztlich das Ende der Römischen Republik einleitete.",
+    "category": "Geschichte",
+    "etymology": "Lateinisch alea – Würfel, Risiko; iacta est – ist geworfen/gefallen; von iacere – werfen",
+    "relatedTerms": [
+      "caesar",
+      "rubikon",
+      "bürgerkrieg",
+      "diktator"
+    ],
+    "variants": [
+      "Der Würfel ist gefallen",
+      "Iacta alea est"
+    ]
+  },
+  {
+    "term": "Somnium Scipionis",
+    "slug": "somnium-scipionis",
+    "definition": "Das Somnium Scipionis (lat. Der Traum des Scipio) ist der sechste und abschließende Teil von Ciceros De Re Publica (54–51 v. Chr.) und der einzige vollständig erhaltene Abschnitt des Werkes. Scipio Aemilianus berichtet von einem Traum, in dem ihm sein Adoptivgroßvater Scipio Africanus erscheint und ihm die kosmische Ordnung, die Unsterblichkeit der Seele und den Lohn für tugendhafte Staatsmänner im Jenseits offenbart. Der Text verbindet platonische und stoische Elemente zu einer Vision des Kosmos, in der gute politische Taten durch Unsterblichkeit belohnt werden. Der spätantike Philosoph Macrobius verfasste einen ausführlichen Kommentar zum Somnium Scipionis, der die Überlieferung sicherte und die mittelalterliche Kosmologie nachhaltig beeinflusste.",
+    "category": "Philosophie",
+    "etymology": "Lateinisch somnium – Traum; Scipionis – des Scipio (Genitiv)",
+    "relatedTerms": [
+      "cicero",
+      "de-re-publica",
+      "makrokosmos"
+    ],
+    "variants": [
+      "Scipios Traum",
+      "Traum des Scipio"
+    ]
+  },
+  {
+    "term": "Senatus consultum ultimum",
+    "slug": "senatus-consultum-ultimum",
+    "definition": "Das senatus consultum ultimum (lat. der äußerste Senatsbeschluss) war ein Notstandsdekret der späten römischen Republik. Es forderte die Konsuln auf, alle notwendigen Maßnahmen zu ergreifen, um die Republik vor inneren Feinden zu schützen – videant consules ne quid res publica detrimenti capiat (die Konsuln mögen sehen, dass der Staat keinen Schaden nehme). Erstmals angewandt 121 v. Chr. gegen Gaius Gracchus. Berühmt wurde die Anwendung im Jahr 63 v. Chr., als Cicero aufgrund dieses Beschlusses die Catilinarischen Verschwörer ohne Gerichtsverfahren hinrichten ließ. Der Beschluss setzte reguläre Rechtsgarantien außer Kraft und war in der Forschung umstritten – ein antiker Vorläufer des modernen Ausnahmezustands.",
+    "category": "Politik",
+    "etymology": "Lateinisch senatus – Senat; consultum – Beschluss; ultimum – der äußerste, letzte",
+    "relatedTerms": [
+      "cicero",
+      "catilina",
+      "consul",
+      "in-catilinam"
+    ],
+    "variants": [
+      "SCU (Abkürzung)",
+      "Senatus consultum de re publica defendenda",
+      "Notstandsdekret"
+    ]
   }
 ]

@@ -1,0 +1,117 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Der Prozess gegen Sokrates im Jahr 399 v. Chr. fand vor dem Hintergrund der athenischen Niederlage im Peloponnesischen Krieg (431–404 v. Chr.) und der anschließenden Herrschaft der Dreißig Tyrannen statt. Athen war traumatisiert und politisch instabil.",
+      "Sokrates war in der athenischen Öffentlichkeit umstritten. Seine Methode, durch scharfe Fragen Autoritäten zu untergraben, hatte ihm mächtige Feinde gemacht. Dass er mit Kritias, dem Anführer der Dreißig Tyrannen, und Alkibiades, dem Verräter Athens, assoziiert wurde, belastete ihn zusätzlich.",
+      "Die Anklage lautete formal auf Asebie (Gottlosigkeit) durch Einführung neuer Gottheiten (sein Daimonion) und Verführung der Jugend. Die Ankläger – Meletos, Anytos und Lykon – repräsentierten unterschiedliche Fraktionen: die Dichter, die Handwerker und die Politiker, die Sokrates beleidigt hatte."
+    ],
+    "sections": [
+      {
+        "title": "Literarische Bedeutung",
+        "content": [
+          "Die Apologie ist der einzige erhaltene Text, der eine Verteidigungsrede in der athenischen Gerichtsrede originalgetreu nachbildet. Platon war beim Prozess anwesend, Xenophon verfasste eine eigene, kürzere Version.",
+          "Die Rede etabliert das Urbild des Philosophen, der lieber stirbt, als seine Überzeugungen zu verraten. Die Figur des Sokrates wurde zum Vorbild für Märtyrer, Aufklärer und Dissidenten aller Zeiten.",
+          "Das Diktum 'Das ungeprüfte Leben ist nicht lebenswert' (ho anexetastos bios ou biōtos anthrōpō) ist das Gründungsmanifest der kritischen Philosophie und ein Aufruf zur intellektuellen Autonomie."
+        ]
+      },
+      {
+        "title": "Rechtliche und politische Aspekte",
+        "content": [
+          "Der Prozess gegen Sokrates war legal korrekt, aber politisch motiviert. Athen nutzte seine demokratischen Verfahren, um einen unbequemen Denker auszuschalten – ein frühes Beispiel für die Tyrannei der Mehrheit.",
+          "Sokrates' Weigerung, um sein Leben zu bitten oder Exil zu akzeptieren, zeigt seine tiefe Überzeugung, dass der Philosoph dem Gesetz gehorcht – auch einem ungerechten Urteil. Dieses Paradox prägt die politische Philosophie bis heute.",
+          "Die Apologie enthält eine implizite Kritik der athenischen Demokratie: Die Masse versteht nicht, was wahres Wissen ist, und die politischen Führer scheuen die intellektuelle Prüfung."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Ho anexetastos bios ou biōtos anthrōpō.",
+        "translation": "Das ungeprüfte Leben ist für den Menschen nicht lebenswert.",
+        "context": "Der Kernsatz der gesamten Philosophie des Sokrates. Ausgesprochen als Begründung, warum er das Philosophieren nicht aufgeben kann – selbst um den Preis seines Lebens."
+      },
+      {
+        "latin": "Ouk oida, oude oiomai eidenai.",
+        "translation": "Ich weiß, dass ich nicht weiß.",
+        "context": "Sokrates' Ausgangspunkt aller Erkenntnis: Das Bewusstsein der eigenen Unwissenheit ist der Anfang aller Weisheit."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Das Orakel von Delphi",
+        "date": "ca. 430 v. Chr.",
+        "description": "Sokrates berichtet, dass sein Freund Chairephon das Orakel von Delphi fragte, ob jemand weiser sei als Sokrates. Die Antwort: Nein. Sokrates versteht dies als göttlichen Auftrag, die Menschen ihrer Unwissenheit zu überführen.",
+        "significance": "Das Orakel begründet Sokrates' philosophische Mission. Sein ganzes Leben ist die Erfüllung dieses göttlichen Auftrags – eine Rechtfertigung, die vor Gericht zentral wird."
+      },
+      {
+        "title": "Das Kreuzverhör des Meletos",
+        "date": "399 v. Chr.",
+        "description": "Sokrates befragt seinen Ankläger Meletos vor Gericht und zeigt durch geschickte Fragen die Widersprüche in dessen Argumentation auf.",
+        "significance": "Demonstration der sokratischen Methode vor Gericht. Sokrates beweist, dass seine Gegner nicht wissen, wovon sie sprechen – und macht sich damit noch unbelieber."
+      },
+      {
+        "title": "Die Verkündung des Todesurteils",
+        "date": "399 v. Chr.",
+        "description": "Nach der Verurteilung spricht Sokrates Prophezeiungen über seine Richter aus: Sie werden durch ihr Unrecht mehr Schaden erleiden als er. Der Tod ist kein Übel.",
+        "significance": "Der Philosoph besiegt den Tod durch Vernunft. Sokrates' letzte Worte an die Richter sind Liebe und Warnung zugleich – er verflucht sie nicht, sondern bedauert sie."
+      }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Die Widerlegung der alten Vorurteile",
+        "description": "Sokrates unterscheidet zwischen alten und neuen Anklägern. Die alten, anonymen Vorwürfe – er forsche über Himmelsphänomene, mache das schwächere Argument stärker – sind gefährlicher als die konkrete Anklage.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Sokrates' Erscheinen vor Gericht",
+          "Rückblick auf Aristophanes' 'Wolken'",
+          "Die Unterscheidung alter und neuer Ankläger"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Verteidigung gegen Meletos",
+        "description": "Sokrates widerlegt die Anklage durch Befragung des Meletos. Wer die Jugend verderbe, tue dies unfreiwillig – und unfreiwilliges Unrecht ist nicht strafwürdig. Das Daimonion sei eine göttliche Stimme, keine neue Gottheit.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Kreuzverhör des Meletos",
+          "Widerlegung der Gottlosigkeitsanklage",
+          "Verteidigung des Daimonion"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Die philosophische Mission",
+        "description": "Sokrates erklärt, warum er nicht aufhören kann zu philosophieren: Der Gott hat ihn damit beauftragt. Er ist die 'Bremse' Athens, die die Stadt aus ihrer intellektuellen Trägheit reißt.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Der göttliche Auftrag",
+          "Das ungeprüfte Leben ist nicht lebenswert",
+          "Sokrates als Bremse Athens"
+        ]
+      },
+      {
+        "number": 4,
+        "title": "Das Gegenplädoyer nach dem Schuldspruch",
+        "description": "Nach der Verurteilung darf Sokrates einen Strafantrag stellen. Ironisch schlägt er die Speisung im Prytaneion vor, dann eine Geldstrafe. Er weigert sich, Exil zu beantragen.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Ironischer Strafantrag",
+          "Ablehnung des Exils",
+          "Forderung, nicht aufzuhören zu philosophieren"
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Die Prophezeiung",
+        "description": "Nach dem Todesurteil spricht Sokrates zu den Richtern, die ihn freigesprochen hätten, und prophezeit kommende Prüfer Athens. Abschiedsworte an alle Anwesenden.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Prophezeiung an die Richter",
+          "Der Tod ist kein Übel",
+          "Letzte Worte an Freunde und Feinde"
+        ]
+      }
+    ]
+  }
+}

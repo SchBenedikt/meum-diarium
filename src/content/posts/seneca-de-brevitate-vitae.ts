@@ -3,7 +3,7 @@ import { BlogPost } from '@/types/blog';
 export const post: Partial<BlogPost> & { image?: string; historicalDate?: string; translations?: any } = {
   slug: 'seneca-de-brevitate-vitae',
   author: 'seneca',
-  title: 'De Brevitate Vitae – Über die Kürze des Lebens',
+  title: 'De Brevitate Vitae',
   diaryTitle: 'Über die Kürze des Lebens',
   scientificTitle: 'Senecas De Brevitate Vitae – Analyse und Bedeutung',
   excerpt: 'Das Leben ist nicht kurz. Wir machen es kurz. Wir verschwenden es mit Müßiggang, Beschäftigkeit und sinnlosem Streben nach Reichtum und Ruhm, statt die Zeit zu nutzen, die uns gegeben ist.',

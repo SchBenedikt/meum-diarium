@@ -4,8 +4,38 @@
   "heroSubtitle": "Römischer Geschichtsschreiber und Politiker",
   "heroImage": "/images/sallust-hero.png",
   "introText": "Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa.",
-  "sections": [],
-  "highlights": [],
+  "sections": [
+    {
+      "title": "Seine Werke",
+      "content": [
+        "De Catilinae Coniuratione: Sallusts Monographie über die catilinarische Verschwörung von 63 v. Chr. Eine schonungslose Analyse des moralischen Verfalls Roms, die Catilina nicht nur als Verbrecher, sondern als Symptom einer kranken Gesellschaft zeichnet.",
+        "Bellum Iugurthinum: Der Krieg gegen König Jugurtha von Numidien (111-105 v. Chr.). Sallust zeigt, wie Bestechung und Korruption der römischen Senatsaristokratie einen ausländischen König jahrelang ungestraft handeln ließen.",
+        "Historiae: Ein großes Geschichtswerk über die Jahre 78-67 v. Chr., das nur fragmentarisch erhalten ist. Es behandelte die Zeit nach Sullas Tod und den Aufstieg des Pompeius."
+      ]
+    },
+    {
+      "title": "Stil und Bedeutung",
+      "content": [
+        "Sallusts Stil ist geprägt von Brevitas (Knappheit), Inconcinnitas (asymmetrische Satzstrukturen) und Archaismus (altertümliche Sprachformen). Er brach bewusst mit Ciceros ausgewogener Periodenrhetorik und schuf einen eigenen, unverwechselbaren Stil.",
+        "Als moralischer Kritiker der römischen Gesellschaft diagnostiziert Sallust den Niedergang der Republik als Folge von Luxuria (Luxus), Avaritia (Habgier) und Ambitio (hemmungsloser Ehrgeiz). Seine Geschichtsschreibung ist zugleich Zeitdiagnose und Sittenkritik.",
+        "Seine Werke beeinflussten Tacitus und die gesamte spätere römische Historiographie. In der Renaissance wurden Sallusts Monographien zu Schultexten und prägten das europäische Geschichtsdenken."
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Catilinae Coniuratio",
+      "description": "Monographie über die Verschwörung des Catilina – Meisterwerk der römischen Geschichtsschreibung und Sittenkritik.",
+      "link": "/sallust/works/catilinae-coniuratio",
+      "icon": "BookOpen"
+    },
+    {
+      "title": "Bellum Iugurthinum",
+      "description": "Analyse des Krieges gegen Jugurtha und der Korruption der römischen Senatsaristokratie.",
+      "link": "/sallust/works/bellum-jugurthinum",
+      "icon": "Scroll"
+    }
+  ],
   "translations": {
     "de": {
       "heroTitle": "Gaius Sallustius Crispus",

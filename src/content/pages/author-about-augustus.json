@@ -4,8 +4,36 @@
   "heroSubtitle": "Princeps, Erster römischer Kaiser",
   "heroImage": "/images/augustus-hero.png",
   "introText": "Großneffe und Adoptivsohn Caesars. Begründer des Römischen Kaiserreichs (Prinzipat), der nach Jahrzehnten des Bürgerkriegs eine neue Ära des Friedens einleitete.",
-  "sections": [],
-  "highlights": [],
+  "sections": [
+    {
+      "title": "Die Begründung des Prinzipats",
+      "content": [
+        "Nach dem Sieg über Antonius und Kleopatra bei Actium (31 v. Chr.) stand Octavian als Alleinherrscher da. Klug bewahrte er die republikanischen Formen, vereinte aber alle Macht in seiner Person: tribunizische Gewalt, imperium proconsulare, pontifex maximus.",
+        "27 v. Chr. gab er die Macht formell an den Senat zurück und erhielt sie durch Akklamation zurück – zusammen mit dem Ehrennamen 'Augustus'. Die 'Wiederherstellung der Republik' (res publica restituta) war die genialste Fassade der Geschichte."
+      ]
+    },
+    {
+      "title": "Sein literarisches Vermächtnis",
+      "content": [
+        "Res Gestae Divi Augusti: Der autobiographische Rechenschaftsbericht, den Augustus kurz vor seinem Tod verfasste. Auf Bronzetafeln vor seinem Mausoleum in Rom angebracht und im ganzen Reich verbreitet. Das bedeutendste Zeugnis augusteischer Selbstdarstellung.",
+        "Augustus förderte ein kulturelles Goldenes Zeitalter: Vergils Aeneis, Horaz' Oden, Ovids Metamorphosen und Livius' Geschichtswerk entstanden unter seiner Herrschaft. Sein Kulturminister Maecenas wurde zum Inbegriff des Kunstmäzens."
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Res Gestae Divi Augusti",
+      "description": "Autobiographischer Rechenschaftsbericht – das bedeutendste lateinische Inschriftenwerk.",
+      "link": "/augustus/works/res-gestae",
+      "icon": "Scroll"
+    },
+    {
+      "title": "Pax Romana",
+      "description": "200 Jahre relativen Friedens im Imperium Romanum, eingeleitet durch Augustus.",
+      "link": "/augustus",
+      "icon": "Crown"
+    }
+  ],
   "translations": {
     "de": {
       "heroTitle": "Gaius Octavius Augustus",

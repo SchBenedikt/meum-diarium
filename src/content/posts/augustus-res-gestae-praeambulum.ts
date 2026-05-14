@@ -3,7 +3,7 @@ import { BlogPost } from '@/types/blog';
 export const post: Partial<BlogPost> & { image?: string; historicalDate?: string; translations?: any } = {
   slug: 'augustus-res-gestae-praeambulum',
   author: 'augustus',
-  title: 'Res Gestae – Meine Taten für das Vaterland',
+  title: 'Res Gestae',
   diaryTitle: 'Was ich für Rom getan habe',
   scientificTitle: 'Res Gestae Divi Augusti – Einleitung und Bedeutung',
   excerpt: 'Ich habe das Testament meines Wirkens in Bronze gießen lassen. Die Nachwelt soll wissen, was ich für Rome getan habe – nicht als Herrschaft, sondern als Dienst.',

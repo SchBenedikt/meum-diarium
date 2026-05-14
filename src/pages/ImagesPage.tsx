@@ -6,47 +6,63 @@ import { Footer } from '@/components/layout/Footer';
 import { fadeUp, staggerContainer } from '@/lib/motion';
 
 const historicalFigures = [
-  {
-    name: 'Gaius Julius Caesar',
-    slug: 'caesar',
-    image: '/images/caesar-hero.png',
-    description: 'Feldherr, Staatsmann und Autor der Commentarii de Bello Gallico.',
-    years: '100–44 v. Chr.',
-    link: '/caesar',
-  },
-  {
-    name: 'Marcus Tullius Cicero',
-    slug: 'cicero',
-    image: '/images/cicero-hero.png',
-    description: 'Redner, Philosoph und Konsul der späten römischen Republik.',
-    years: '106–43 v. Chr.',
-    link: '/cicero',
-  },
-  {
-    name: 'Augustus',
-    slug: 'augustus',
-    image: '/images/augustus-hero.png',
-    description: 'Erster römischer Kaiser und Begründer des Principats.',
-    years: '63 v. Chr. – 14 n. Chr.',
-    link: '/augustus',
-  },
-  {
-    name: 'Lucius Annaeus Seneca',
-    slug: 'seneca',
-    image: '/images/seneca-hero.png',
-    description: 'Stoischer Philosoph, Dramatiker und Erzieher Neros.',
-    years: '4 v. Chr. – 65 n. Chr.',
-    link: '/seneca',
-  },
-  {
-    name: 'Lucius Sergius Catilina',
-    slug: 'catilina',
-    image: '/images/catilina-hero.png',
-    description: 'Römischer Aristokrat und Anführer der berühmten Verschwörung.',
-    years: '108–62 v. Chr.',
-    link: '/catilina',
-  },
-];
+   {
+     name: 'Gaius Julius Caesar',
+     slug: 'caesar',
+     image: '/images/caesar-hero.png',
+     description: 'Feldherr, Staatsmann und Autor der Commentarii de Bello Gallico.',
+     years: '100–44 v. Chr.',
+     link: '/caesar',
+   },
+   {
+     name: 'Marcus Tullius Cicero',
+     slug: 'cicero',
+     image: '/images/cicero-hero.png',
+     description: 'Redner, Philosoph und Konsul der späten römischen Republik.',
+     years: '106–43 v. Chr.',
+     link: '/cicero',
+   },
+   {
+     name: 'Augustus',
+     slug: 'augustus',
+     image: '/images/augustus-hero.png',
+     description: 'Erster römischer Kaiser und Begründer des Principats.',
+     years: '63 v. Chr. – 14 n. Chr.',
+     link: '/augustus',
+   },
+   {
+     name: 'Lucius Annaeus Seneca',
+     slug: 'seneca',
+     image: '/images/seneca-hero.png',
+     description: 'Stoischer Philosoph, Dramatiker und Erzieher Neros.',
+     years: '4 v. Chr. – 65 n. Chr.',
+     link: '/seneca',
+   },
+   {
+     name: 'Lucius Sergius Catilina',
+     slug: 'catilina',
+     image: '/images/catilina-hero.png',
+     description: 'Römischer Aristokrat und Anführer der berühmten Verschwörung.',
+     years: '108–62 v. Chr.',
+     link: '/catilina',
+   },
+   {
+     name: 'Gaius Sallustius Crispus',
+     slug: 'sallust',
+     image: '/images/sallust-hero.png',
+     description: 'Römischer Geschichtsschreiber und moralischer Kritiker der späten Republik.',
+     years: '86–35 v. Chr.',
+     link: '/sallust',
+   },
+   {
+     name: 'Sokrates',
+     slug: 'sokrates',
+     image: '/images/sokrates-hero.png',
+     description: 'Athenischer Philosoph und Begründer der westlichen Ethik.',
+     years: 'ca. 470–399 v. Chr.',
+     link: '/sokrates',
+   },
+ ];
 
 const ImagesPage = () => {
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';

@@ -3,7 +3,7 @@ import { BlogPost } from '@/types/blog';
 export const post: Partial<BlogPost> & { image?: string; historicalDate?: string; translations?: any } = {
   slug: 'seneca-epistulae-morales-i',
   author: 'seneca',
-  title: 'Epistulae Morales – Brief I: Über die Zeit',
+  title: 'Epistulae Morales I',
   diaryTitle: 'An Lucilius – Vindica te tibi',
   scientificTitle: 'Epistulae Morales I.1 – Philosophische Analyse',
   excerpt: 'Vindica te tibi – Nimm dir dich selbst zurück! Das ist mein erster Rat an Lucilius und an jeden, der diesen Brief liest. Unsere Zeit gehört uns. Niemand sonst.',

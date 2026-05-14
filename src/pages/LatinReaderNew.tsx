@@ -11,6 +11,11 @@ import { works } from '@/data/works';
 import deBelloGallicoText from '@/data/latin/caesar-de-bello-gallico.json';
 import deOfficiisText from '@/data/latin-texts/de-officiis.json';
 import sallustBellumCatilinae from '@/data/latin/sallust-bellum-catilinae.json';
+import senecaDeBrevitateVitae from '@/data/latin/seneca-de-brevitate-vitae.json';
+import senecaDeVitaBeata from '@/data/latin/seneca-de-vita-beata.json';
+import senecaDeTranquillitateAnimi from '@/data/latin/seneca-de-tranquillitate-animi.json';
+import senecaDeClementia from '@/data/latin/seneca-de-clementia.json';
+import resGestae from '@/data/latin/res-gestae.json';
 
 interface LatinSection { id?: string; number: number; latin: string; sentences: string[]; lines?: string[]; }
 interface LatinBook { id?: string; number?: number; title?: string; chapters?: LatinSection[]; sections?: LatinSection[]; }
@@ -22,6 +27,11 @@ const LATIN_TEXTS: Record<string, LatinText> = {
   'de-officiis': deOfficiisText as unknown as LatinText,
   'bellum-catilinae': sallustBellumCatilinae as unknown as LatinText,
   'catilinae-coniuratio': sallustBellumCatilinae as unknown as LatinText,
+  'de-brevitate-vitae': senecaDeBrevitateVitae as unknown as LatinText,
+  'de-vita-beata': senecaDeVitaBeata as unknown as LatinText,
+  'de-tranquillitate-animi': senecaDeTranquillitateAnimi as unknown as LatinText,
+  'de-clementia': senecaDeClementia as unknown as LatinText,
+  'res-gestae': resGestae as unknown as LatinText,
 };
 
 const AUTHOR_LABELS: Record<string, string> = {
@@ -31,6 +41,7 @@ const AUTHOR_LABELS: Record<string, string> = {
   seneca: 'Seneca',
   catilina: 'Lucius Sergius Catilina',
   sallust: 'Gaius Sallustius Crispus',
+  sokrates: 'Sokrates',
 };
 
 const FONT_SCALES = [
@@ -44,13 +55,55 @@ const SENTENCE_TRANSLATIONS: Record<string, string> = {
   'L. Catilina, nobili genere natus, fuit magna vi et animi et corporis, sed ingenio malo pravoque.': 'Lucius Catilina, aus adligem Geschlecht geboren, besaß große Kraft des Geistes und des Körpers, aber eine schlechte und verdorbene Natur.',
   'Caesar beneficiis ac munificentia magnus habebatur, integritate vitae Cato.': 'Caesar galt durch Wohltaten und Freigiebigkeit als groß, Cato durch seine untadelige Lebensführung.',
   'In altero miseris perfugium erat, in altero malis pernicies.': 'Bei dem einen fanden die Unglücklichen Zuflucht, bei dem anderen erwartete die Schlechten ihr Verderben.',
-  'Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.': 'Gallien ist als Ganzes in drei Teile geteilt, von denen die Belgier einen bewohnen, die Aquitaner einen anderen, und den dritten diejenigen, die in ihrer eigenen Sprache Kelten, in unserer Gallier genannt werden.',
+  'Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani, tertiam qui ipsorum lingua Celtae, nostra Galli appellantur.': 'Ganz Gallien ist in drei Teile geteilt, von denen den einen die Belger bewohnen, den anderen die Aquitaner, den dritten diejenigen, die in ihrer eigenen Sprache Kelten, in unserer Gallier genannt werden.',
+  'Maior pars mortalium, Pauline, de naturae malignitate conqueritur, quod in exiguum aeui gignimur': 'Der größte Teil der Sterblichen, Paulinus, beklagt sich über die Missgunst der Natur, dass wir für eine kurze Lebenszeit geboren werden',
+  'Non exiguum temporis habemus, sed multum perdidimus.': 'Wir haben nicht wenig Zeit, sondern wir haben viel verloren.',
+  'Satis longa uita et in maximarum rerum consummationem large data est, si tota bene collocaretur': 'Lang genug ist das Leben und für die Vollendung der größten Dinge reichlich gegeben, wenn es ganz gut angelegt würde.',
+  'Quid de rerum natura querimur? Illa se benigne gessit: uita, si uti scias, longa est.': 'Was beklagen wir uns über die Natur? Sie hat sich wohlwollend verhalten: Das Leben, wenn du es zu nutzen weißt, ist lang.',
+  'Maximum uiuendi impedimentum est exspectatio, quae pendet ex crastino, perdit hodiernum.': 'Das größte Hindernis des Lebens ist die Erwartung, die am Morgen hängt und den heutigen Tag verdirbt.',
+  'Omnia quae uentura sunt in incerto iacent: protinus uiue.': 'Alles, was kommen wird, liegt im Ungewissen: Lebe sofort.',
+  'Quid cunctaris? Quid cessas? Nisi occupas, fugit.': 'Was zögerst du? Was säumst du? Wenn du es nicht ergreifst, flieht es.',
+  'Dum differtur vita transcurrit.': 'Während das Leben aufgeschoben wird, eilt es dahin.',
+  'Tota uitae suae ratio in contrarium fert.': 'Die ganze Lebensführung wird ins Gegenteil verkehrt.',
+  'Nihil minus est hominis occupati quam uiuere': 'Nichts ist weniger Sache eines beschäftigten Menschen als zu leben.',
+  'Viuere militare est.': 'Leben heißt kämpfen.',
+  'Quomodo fabula, sic uita: non quam diu, sed quam bene acta sit, refert.': 'Wie ein Schauspiel, so das Leben: Nicht wie lange, sondern wie gut es gespielt wurde, kommt darauf an.',
+  'Omnis homines, qui sese student praestare ceteris animalibus, summa ope niti decet, ne vitam silentio transeant veluti pecora, quae natura prona atque ventri oboedientia finxit.': 'Allen Menschen, die sich bestreben, sich vor den übrigen Tieren auszuzeichnen, ziemt es, mit höchster Kraft danach zu streben, nicht ihr Leben schweigend zu verbringen wie das Vieh, das die Natur gebeugt und dem Bauch gehorsam geschaffen hat.',
+  'Sed nostra omnis vis in animo et corpore sita est; animi imperio, corporis servitio magis utimur': 'Aber unsere ganze Kraft liegt in Geist und Körper; des Geistes Befehl, des Körpers Dienst gebrauchen wir mehr.',
+  'Igitur de Catilinae coniuratione quam verissume potero paucis absolvam': 'Daher werde ich über die Verschwörung Catilinas so wahrheitsgetreu wie ich kann in Kürze darlegen.',
+  'Gallos ab Aquitanis Garumna flumen, a Belgis Matrona et Sequana dividit': 'Die Gallier scheidet von den Aquitaniern der Fluss Garonne, von den Belgiern die Marne und die Seine.',
+  'Horum omnium fortissimi sunt Belgae': 'Von allen diesen sind die tapfersten die Belgier.',
+  'Apud Helvetios longe nobilissimus fuit et ditissimus Orgetorix': 'Bei den Helvetiern war bei weitem der angesehenste und reichste Orgetorix.',
+  'Id hoc facilius eis persuasit, quod undique loci natura Helvetii continentur': 'Dies redete er ihnen umso leichter ein, weil die Helvetier von allen Seiten durch die Natur des Ortes eingeschlossen werden.',
+  'Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt': 'Aus diesem Grund übertreffen auch die Helvetier die übrigen Gallier an Tapferkeit.',
+  'Rex erat unus, qui summam imperii habebat': 'Es gab einen König, der die höchste Befehlsgewalt innehatte.',
+  'Ea res est Helvetiis per indicium enuntiata': 'Diese Sache wurde den Helvetiern durch Anzeige verraten.',
+  'Caesar cum id nuntiatum esset, maturat ab urbe proficisci': 'Als Caesar dies gemeldet wurde, eilt er, von der Stadt aufzubrechen.',
+  'Quibus rebus cognitis, Caesar apud milites contionatur': 'Nachdem diese Dinge bekannt geworden waren, hält Caesar eine Ansprache vor den Soldaten.',
+  'Neminem id paenitere debet, quod cum omnibus viribus rem publicam defenderit': 'Niemanden sollte es reuen, dass er mit allen Kräften den Staat verteidigt hat.',
 };
 
 const VOCAB_MAP: Record<string, string> = {
   virtus: 'Tugend, Tapferkeit', avaritia: 'Habgier, Gier', gloria: 'Ruhm, Ehre',
   patria: 'Vaterland', imperium: 'Befehlsgewalt, Reich', senatus: 'Senat',
   consul: 'Konsul', bellum: 'Krieg', pax: 'Frieden', mos: 'Sitte, Brauch',
+  populus: 'Volk', res: 'Sache, Ding', publica: 'öffentlich, staatlich',
+  provincia: 'Provinz, Amtsbereich', exercitus: 'Heer', legio: 'Legion',
+  legatus: 'Gesandter, Legat', castra: 'Lager', proelium: 'Schlacht',
+  hostis: 'Feind', miles: 'Soldat', dux: 'Führer, Feldherr',
+  rex: 'König', regnum: 'Königreich', libertas: 'Freiheit',
+  iustitia: 'Gerechtigkeit', honos: 'Ehre, Amt', fortuna: 'Glück, Schicksal',
+  caelum: 'Himmel', terra: 'Erde', mare: 'Meer', flumen: 'Fluss',
+  urbs: 'Stadt', domus: 'Haus', amicus: 'Freund', inimicus: 'Feind',
+  vita: 'Leben', mors: 'Tod', animus: 'Geist, Seele', corpus: 'Körper',
+  tempus: 'Zeit', dies: 'Tag', nox: 'Nacht', annus: 'Jahr',
+  magnus: 'groß', parvus: 'klein', bonus: 'gut', malus: 'schlecht',
+  omnis: 'jeder, ganz', multus: 'viel', paucus: 'wenig', totus: 'ganz',
+  princeps: 'Erster, Führer', civitas: 'Bürgerschaft, Staat',
+  auxilium: 'Hilfe', victoria: 'Sieg', lex: 'Gesetz',
+  ius: 'Recht', causa: 'Grund, Ursache', ratio: 'Vernunft, Berechnung',
+  oratio: 'Rede', verbum: 'Wort', littera: 'Buchstabe, Brief',
+  sapientia: 'Weisheit', philosophia: 'Philosophie',
 };
 const VOCAB_PATTERN = new RegExp(
   `\\b(${Object.keys(VOCAB_MAP).map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'gi',

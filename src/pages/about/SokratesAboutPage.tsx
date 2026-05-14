@@ -218,29 +218,28 @@ export function SokratesAboutPage() {
                       </Link>
                     </Button>
                   </div>
-                  <div className="grid gap-6 md:grid-cols-2">
+                  <div className="grid gap-6">
                     {authorPosts.map((post) => (
                       <Link key={post.id} to={`/${post.author}/${post.slug}`} className="group h-full">
-                        <article className="card-modern card-hover-primary card-padding-md relative h-full overflow-hidden">
-                          <div className="relative flex items-center justify-between gap-3 mb-4">
-                            <h3 className="font-display text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
-                              {post.title}
-                            </h3>
-                            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                        <article className="card-modern card-hover-primary card-padding-lg relative h-full overflow-hidden flex flex-col">
+                          <div className="mb-4">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1 rounded-full">
                               {post.historicalDate}
                             </span>
                           </div>
-                          <p className="relative text-base text-foreground/85 leading-relaxed line-clamp-3 mb-5">
+                          <h3 className="font-display text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
                             {post.excerpt}
                           </p>
-                          <div className="relative flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="inline-flex items-center gap-2">
-                              <span className="h-2 w-2 rounded-full bg-primary/60" />
-                              {post.readingTime ? `${post.readingTime} min` : '5 min'} Lesedauer
+                              <Clock className="h-3 w-3" />
+                              {post.readingTime ? `${post.readingTime} min` : '5 min'}
                             </span>
-                            <span className="inline-flex items-center text-primary font-semibold text-sm">
-                              Weiterlesen
-                              <ArrowRight className="ml-2 h-4 w-4" />
+                            <span className="inline-flex items-center text-primary font-semibold gap-1 group-hover:gap-2 transition-all">
+                              Weiterlesen <ArrowRight className="h-3 w-3" />
                             </span>
                           </div>
                         </article>

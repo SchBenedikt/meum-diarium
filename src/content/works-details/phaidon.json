@@ -1,0 +1,152 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Der Phaidon ist der einzige platonische Dialog, der den Leser direkt an die Schwelle des Todes führt. Geschrieben etwa 375–360 v. Chr., gehört er zur mittleren Phase von Platons Schaffen, in der er beginnt, seine eigene Ideenlehre systematisch zu entwickeln.",
+      "Während die frühen Dialoge (wie die Apologie) noch stark den historischen Sokrates zeigen, tritt im Phaidon die platonische Philosophie deutlicher hervor. Das Werk verbindet die dramatische Schilderung von Sokrates' letzten Stunden mit der metaphysischen Begründung der Seelenunsterblichkeit.",
+      "Die Figur des Phaidon von Elis, der den Dialog erzählt, war selbst ein befreiter Sklave und späterer Philosoph. Seine Rahmenerzählung schafft eine emotionale Distanz, die es dem Leser ermöglicht, die philosophischen Argumente unabhängig vom dramatischen Kontext zu würdigen."
+    ],
+    "sections": [
+      {
+        "title": "Philosophische Grundlagen",
+        "content": [
+          "Der Phaidon enthält die erste systematische Argumentation für die Unsterblichkeit der Seele in der abendländischen Philosophie. Sokrates führt mehrere Beweise an, die sich gegenseitig stützen sollen.",
+          "Die Ideenlehre ist die ontologische Grundlage des Dialogs: Es gibt eine unsichtbare, unvergängliche Welt der ewigen Ideen (Gerechtigkeit, Schönheit, Gleichheit an sich), an der die Seele durch ihre Vernunft teilhat. Diese Verwandtschaft mit dem Ewigen beweist ihre Unsterblichkeit.",
+          "Der Körper erscheint als Gefängnis oder Grab der Seele (sōma sēma). Die Philosophie ist der Weg der Befreiung: Durch Übung im Denken löst sich die Seele von den körperlichen Begierden und bereitet sich auf die Rückkehr zur Ideenwelt vor."
+        ]
+      },
+      {
+        "title": "Literarische und dramatische Bedeutung",
+        "content": [
+          "Der Phaidon ist Platons größte literarische Leistung. Die tragische Rahmenhandlung – der Abschied von Frau und Kindern, der Schierlingsbecher, die wachsende Trauer der Freunde – kontrastiert kunstvoll mit der luziden philosophischen Argumentation.",
+          "Die Figur des Sokrates erreicht hier ihre höchste Vollendung: Er ist Philosoph, Lehrer, Freund und Mensch in einer Person. Seine Ruhe im Angesicht des Todes ist die lebendige Bestätigung seiner Lehre.",
+          "Der Dialog hat die christliche Theologie (besonders die Vorstellung der unsterblichen Seele) und die gesamte abendländische Metaphysik nachhaltig beeinflusst. Augustinus, Thomas von Aquin und noch Descartes knüpfen an die Argumente des Phaidon an."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Tōi d'oukoun esti tauta, hōsper phēmen, en tōi thanatōi.",
+        "translation": "Diejenigen, die richtig philosophieren, üben sich im Sterben.",
+        "context": "Der berühmteste Satz des Phaidon: Philosophie ist nichts anderes als Vorbereitung auf den Tod. Der Philosoph strebt danach, die Seele vom Körper zu lösen."
+      },
+      {
+        "latin": "Kritōn, tōi Askupiōi hōs tripodas.",
+        "translation": "Kriton, wir schulden dem Asklepios einen Hahn. Entrichtet ihn ja.",
+        "context": "Sokrates' letzte Worte. Asklepios ist der Gott der Heilkunst. Der Hahn ist ein Dankopfer für die Heilung – vielleicht für die Heilung vom Leben durch den Tod."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Die Ankunft der Freunde",
+        "date": "399 v. Chr.",
+        "description": "Die Freunde versammeln sich im Gefängnis. Xanthippe wird hinausgeführt. Sokrates ist heiter und reibt sich die Beine nach der Abnahme der Fesseln – der Schmerz weicht der Lust, ein Vorspiel auf das Thema des Dialogs.",
+        "significance": "Die dramatische Eröffnung etabliert die Grundstimmung: Der Philosoph fürchtet den Tod nicht. Die Gegenüberstellung von Schmerz und Lust führt direkt in die philosophische Diskussion."
+      },
+      {
+        "title": "Der Schierlingsbecher",
+        "date": "399 v. Chr.",
+        "description": "Nach Beendigung des Gesprächs bereitet sich Sokrates auf den Tod vor. Er badet, verabschiedet sich von seiner Familie und trinkt den Becher ohne Zittern. Die Freunde brechen in Tränen aus.",
+        "significance": "Der Höhepunkt der philosophischen Haltung: Sokrates demonstriert, was er gelehrt hat. Sein Sterben ist der letzte, schlüssigste Beweis seiner Philosophie."
+      },
+      {
+        "title": "Die letzten Worte",
+        "date": "399 v. Chr.",
+        "description": "Der Tod tritt allmählich ein. Sokrates' letzte Worte gelten einer Opferschuld an Asklepios. Dann bedeckt er sich und stirbt. Kriton schließt ihm die Augen und den Mund.",
+        "significance": "Die rätselhaften letzten Worte geben bis heute Anlass zur Interpretation. Sie zeigen Sokrates bis zum Ende als frommen, ordentlichen Menschen, der auch im Tod noch seine Pflichten erfüllt."
+      }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Prolog: Die letzte Stunde beginnt",
+        "description": "Phaidon erzählt die Vorgeschichte. Die Freunde versammeln sich, Xanthippe wird weggebracht. Sokrates spricht über das Verhältnis von Lust und Schmerz und leitet zur Frage nach dem Selbstmord über.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Versammlung der Freunde",
+          "Abschied von Xanthippe",
+          "Lust und Schmerz als Gegensätze",
+          "Die Frage nach dem Selbstmord"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Die philosophische Übung im Sterben",
+        "description": "Sokrates entwickelt die These, dass wahre Philosophie Übung im Sterben (meletē thanatou) ist. Der Körper ist Hindernis für die Erkenntnis. Der Philosoph strebt danach, die Seele vom Körper zu lösen.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Die Seele und der Körper",
+          "Sinnestäuschung und Erkenntnis",
+          "Das Sterben als Befreiung"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Der Zyklusbeweis",
+        "description": "Erstes Argument für die Unsterblichkeit: Alles entsteht aus seinem Gegenteil. Leben entsteht aus Tod, also müssen die Seelen der Verstorbenen in einem Jenseits existieren, von wo sie wiedergeboren werden.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Gegensätze erzeugen einander",
+          "Der Kreislauf von Leben und Tod",
+          "Wiedergeburt als Notwendigkeit"
+        ]
+      },
+      {
+        "number": 4,
+        "title": "Die Wiedererinnerungslehre",
+        "description": "Zweites Argument: Lernen ist Wiedererinnerung (Anamnesis). Wir kennen den Begriff der Gleichheit, ohne ihn je sinnlich erfahren zu haben. Dieses Wissen stammt aus einer Existenz der Seele vor der Geburt.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Der Beweis aus der Anamnesis",
+          "Gleichheit als Idee",
+          "Die Seele existierte vor der Geburt"
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Die Verwandtschaft mit den Ideen",
+        "description": "Drittes Argument: Die Seele ist dem Unsichtbaren, Ewigen, Unvergänglichen verwandt – wie die Ideen. Der Körper ist dem Sichtbaren, Vergänglichen verwandt. Die Seele gehört also zur ewigen Welt.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Das Sichtbare und das Unsichtbare",
+          "Die Seele als Herrin des Körpers",
+          "Die Verwandtschaft mit dem Ewigen"
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Die Einwände und ihre Widerlegung",
+        "description": "Simmias vergleicht die Seele mit der Harmonie einer Leier. Kebes bezweifelt die absolute Unsterblichkeit. Sokrates widerlegt beide Einwände durch dialektische Argumentation.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Die Harmonie-These des Simmias",
+          "Der Einwand des Kebes",
+          "Widerlegung der Gegenargumente"
+        ]
+      },
+      {
+        "number": 7,
+        "title": "Der Schlussmythos",
+        "description": "Sokrates schildert die wahre Gestalt der Erde und das Schicksal der Seelen nach dem Tod. Die guten Seelen gelangen zu den Inseln der Seligen, die schlechten werden bestraft. Die reinen Philosophen aber erreichen die wahre, reine Welt.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Die wahre Gestalt der Erde",
+          "Das Schicksal der Seelen",
+          "Die Inseln der Seligen"
+        ]
+      },
+      {
+        "number": 8,
+        "title": "Die letzte Stunde",
+        "description": "Sokrates badet, verabschiedet sich, trinkt den Schierlingsbecher. Der Tod tritt ein. Die Trauer der Freunde. Die letzten Worte an Kriton und Asklepios.",
+        "timeframe": "399 v. Chr.",
+        "keyEvents": [
+          "Das Bad des Sokrates",
+          "Abschied von den Kindern",
+          "Der Schierlingsbecher",
+          "Die letzten Worte"
+        ]
+      }
+    ]
+  }
+}

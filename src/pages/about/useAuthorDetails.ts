@@ -4,23 +4,45 @@ export const useAuthorDetails = (t: (key: string, params?: any) => string) => {
   return {
     caesar: {
       birthPlace: 'Rom, Italien',
-      // Weitere Details können hier hinzugefügt werden
+      deathPlace: 'Rom, Italien',
+      occupation: 'Feldherr, Staatsmann, Schriftsteller',
+      era: 'Späte Republik',
     },
     cicero: {
       birthPlace: 'Arpinum, Italien',
-      // Weitere Details können hier hinzugefügt werden
+      deathPlace: 'Formiae, Italien',
+      occupation: 'Redner, Philosoph, Politiker',
+      era: 'Späte Republik',
     },
     augustus: {
       birthPlace: 'Rom, Italien',
-      // Weitere Details können hier hinzugefügt werden
+      deathPlace: 'Nola, Kampanien',
+      occupation: 'Staatsoberhaupt, Kaiser',
+      era: 'Principat',
     },
     seneca: {
       birthPlace: 'Córdoba, Hispanien',
-      // Weitere Details können hier hinzugefügt werden
+      deathPlace: 'Rom, Italien',
+      occupation: 'Philosoph, Tragödiendichter, Staatsmann',
+      era: 'Frühkaiserzeit',
     },
     catilina: {
       birthPlace: 'Rom, Italien',
-      // Weitere Details können hier hinzugefügt werden
-    }
+      deathPlace: 'Pistoria, Etrurien',
+      occupation: 'Senator, Politiker',
+      era: 'Späte Republik',
+    },
+    sallust: {
+      birthPlace: 'Amiternum, Sabinerland',
+      deathPlace: 'Rom, Italien',
+      occupation: 'Geschichtsschreiber, Politiker',
+      era: 'Späte Republik',
+    },
+    sokrates: {
+      birthPlace: 'Alopeke bei Athen',
+      deathPlace: 'Athen, Griechenland',
+      occupation: 'Philosoph',
+      era: 'Klassisches Athen',
+    },
   };
 };

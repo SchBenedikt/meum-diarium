@@ -2,7 +2,7 @@ import { Work } from '@/types/blog';
 
 const work: Work = {
   title: 'Catilinae Coniuratio',
-  author: 'catilina',
+  author: 'sallust',
   year: '63 v. Chr.',
   slug: 'catilinae-coniuratio',
   summary: `Sallusts Monographie über die catilinarische Verschwörung (63 v. Chr.). Eine packende Darstellung von Catilinas gescheitertem Staatsstreich, die gleichzeitig eine scharfe Analyse der Krise der späten Republik bietet. Sallust verbindet dramatische Erzählung mit moralischer Kulturkritik.`,

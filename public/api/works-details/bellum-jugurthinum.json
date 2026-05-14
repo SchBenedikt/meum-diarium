@@ -1,0 +1,153 @@
+{
+  "de": {
+    "contextTitle": "Historischer Kontext",
+    "contextParagraphs": [
+      "Der Krieg gegen Jugurtha (111–105 v. Chr.) fällt in eine Zeit tiefgreifender Veränderungen für die Römische Republik. Nach der Zerstörung Karthagos (146 v. Chr.) fehlte der äußere Feind, der die römische Gesellschaft bisher zusammengehalten hatte.",
+      "Numidien war ein nordafrikanisches Königreich, das nach den Punischen Kriegen enger Verbündeter Roms geworden war. Als König Micipsa 118 v. Chr. starb, brach ein Erbstreit zwischen seinen Söhnen und seinem Adoptivsohn Jugurtha aus – ein Konflikt, der die Korruption der römischen Senatsaristokratie schonungslos offenlegte.",
+      "Sallusts Monographie ist nicht nur ein Kriegsbericht, sondern vor allem eine moralische Abrechnung: Er zeigt, wie Habgier (avaritia) und Bestechung die römische Führungsschicht zersetzen und die Republik an den Rand des Abgrunds treiben."
+    ],
+    "sections": [
+      {
+        "title": "Historische Bedeutung",
+        "content": [
+          "Das Bellum Iugurthinum ist die erste erhaltene Monographie der römischen Historiographie, die sich auf einen einzelnen Krieg konzentriert. Sallust schafft damit ein neues literarisches Genre.",
+          "Der Konflikt offenbarte die strukturelle Krise der späten Republik: Die Senatsaristokratie war durch Klientelwirtschaft und Korruption so geschwächt, dass ein ausländischer König jahrelang ungestraft gegen römische Interessen handeln konnte.",
+          "Der Krieg brachte Marius hervor, einen homo novus, der durch Volksbeschluss gegen den Senat zum Oberbefehlshaber ernannt wurde – ein Präzedenzfall, der die Macht der Volksversammlung stärkte und den Weg für spätere Heerführer wie Caesar ebnete."
+        ]
+      },
+      {
+        "title": "Moralische Dimension",
+        "content": [
+          "Sallust verwendet den Krieg als Folie für seine Verfallsdiagnose: Der Krieg gegen Jugurtha ist ein Krieg Roms gegen sich selbst. Die Bestechlichkeit der römischen Eliten ist die eigentliche Bedrohung – nicht Jugurtha.",
+          "Die berühmte Sentenz 'Urbem venalem et mature perituram si emptorem invenerit' (Rom käuflich und dem Untergang geweiht, wenn es einen Käufer findet) wird Jugurtha in den Mund gelegt und fasst Sallusts Kritik in einem Satz zusammen.",
+          "Marius und Sulla erscheinen als gegensätzliche Typen: Marius der aufsteigende homo novus, der das Heer reformiert, Sulla der aristokratische Intrigant. Beide werden später zu Gegnern im ersten großen Bürgerkrieg Roms."
+        ]
+      }
+    ],
+    "quotes": [
+      {
+        "latin": "Urbem venalem et mature perituram si emptorem invenerit.",
+        "translation": "Eine käufliche Stadt, die dem Untergang geweiht ist, wenn sie einen Käufer findet.",
+        "context": "Jugurthas berühmter Ausspruch beim Verlassen Roms – die vernichtendste Kritik an der römischen Korruption, formuliert von ihrem Gegner."
+      },
+      {
+        "latin": "Omnia orta occidunt et aucta senescunt.",
+        "translation": "Alles, was entstanden ist, vergeht, und alles, was gewachsen ist, altert.",
+        "context": "Sallusts Leitmotiv – der Kreislauf von Aufstieg und Verfall als Gesetz der Geschichte."
+      }
+    ],
+    "keyMoments": [
+      {
+        "title": "Jugurtha in Rom",
+        "date": "116 v. Chr.",
+        "description": "Jugurtha reist nach Rom, um seinen Anspruch auf Numidien zu vertreten. Er besticht systematisch Senatoren und verlässt Rom mit seiner vernichtenden Sentenz über die Käuflichkeit der Stadt.",
+        "significance": "Die Episode wird zum Symbol für die Korruption der späten Republik und rechtfertigt Sallusts moralische Kritik."
+      },
+      {
+        "title": "Marius erhält den Oberbefehl",
+        "date": "107 v. Chr.",
+        "description": "Gaius Marius wird durch Volksbeschluss gegen den Willen des Senats zum Oberbefehlshaber in Numidien ernannt. Er wirbt Proletarier statt Bauern für seine Legionen an.",
+        "significance": "Marius' Heeresreform verändert die römische Armee fundamental – Soldaten werden nun von ihrem Feldherrn abhängig, nicht vom Staat. Ein Schritt auf dem Weg zur Militärdiktatur."
+      },
+      {
+        "title": "Gefangennahme Jugurthas",
+        "date": "105 v. Chr.",
+        "description": "Durch Verrat des Maurenkönigs Bocchus, vermittelt von Sulla, wird Jugurtha gefangen genommen. Er wird nach Rom gebracht, im Triumphzug geführt und hingerichtet.",
+        "significance": "Sulla, nicht Marius, wird als der eigentliche Sieger gefeiert – die Saat für die spätere Feindschaft zwischen Marius und Sulla ist gelegt."
+      }
+    ],
+    "bookChapters": [
+      {
+        "number": 1,
+        "title": "Proömium und Rechtfertigung",
+        "description": "Sallust verteidigt die Geschichtsschreibung als edle Tätigkeit des Geistes. Er erklärt seinen Rückzug aus der Politik und die Hinwendung zur Historiographie als moralische Pflicht.",
+        "timeframe": "Vorrede",
+        "keyEvents": [
+          "Verteidigung der Historiographie",
+          "Kritik an der politischen Korruption",
+          "Sallusts eigene Motive"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Die Vorgeschichte Numidiens",
+        "description": "Rückblick auf die Geschichte Nordafrikas und Numidiens. Die Herrschaft Massinissas, des treuen römischen Verbündeten. Der Aufstieg der numidischen Könige im Schatten Roms.",
+        "timeframe": "Rückblick",
+        "keyEvents": [
+          "Massinissa als römischer Verbündeter",
+          "Die Erbteilung Numidiens",
+          "Jugurthas Adoption"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Jugurthas Aufstieg und erste Verbrechen",
+        "description": "Jugurtha erweist sich als fähiger Krieger in Numantia. Nach Micipsas Tod ermordet er Hiempsal. Adherbal flieht nach Rom. Jugurtha besticht römische Gesandte.",
+        "timeframe": "118–112 v. Chr.",
+        "keyEvents": [
+          "Jugurtha in Numantia",
+          "Ermordung Hiempsals",
+          "Adherbals Flucht nach Rom",
+          "Erste Bestechungen"
+        ]
+      },
+      {
+        "number": 4,
+        "title": "Der Krieg beginnt",
+        "description": "Nach der Eroberung Cirtas und Adherbals Tod erklärt Rom den Krieg. Die ersten römischen Feldherren in Africa lassen sich jedoch von Jugurtha bestechen. Der Krieg stockt.",
+        "timeframe": "112–109 v. Chr.",
+        "keyEvents": [
+          "Belagerung und Fall Cirtas",
+          "Kriegserklärung Roms",
+          "Korruption der ersten Kommandeure"
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Metellus in Africa",
+        "description": "Metellus übernimmt den Oberbefehl, diszipliniert das Heer und erzielt erste Erfolge gegen Jugurtha. Doch ein entscheidender Sieg bleibt aus – Jugurtha weicht aus.",
+        "timeframe": "109–107 v. Chr.",
+        "keyEvents": [
+          "Metellus' Heeresreform",
+          "Schlacht am Muthul",
+          "Guerillataktik Jugurthas"
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Marius und der Fall des Metellus",
+        "description": "Marius, Legat des Metellus, bewirbt sich um das Konsulat und verspricht, den Krieg schnell zu beenden. Er wird durch Volksbeschluss zum Oberbefehlshaber ernannt und reformiert das Heer grundlegend.",
+        "timeframe": "107 v. Chr.",
+        "keyEvents": [
+          "Marius' Ambitionen",
+          "Wahlansprache an das Volk",
+          "Heeresreform: Proletarier als Legionäre",
+          "Ende des Metellus-Kommandos"
+        ]
+      },
+      {
+        "number": 7,
+        "title": "Der Guerillakrieg",
+        "description": "Marius führt einen zermürbenden Feldzug in der Wüste. Jugurtha verbündet sich mit König Bocchus. Die Kämpfe sind blutig und ergebnislos. Sallust beschreibt die Härte des Wüstenkrieges.",
+        "timeframe": "107–105 v. Chr.",
+        "keyEvents": [
+          "Marius' Marsch durch die Wüste",
+          "Schlacht am Fluss Muluccha",
+          "Bocchus wechselt die Seiten"
+        ]
+      },
+      {
+        "number": 8,
+        "title": "Verrat und Ende Jugurthas",
+        "description": "Sulla überredet Bocchus, Jugurtha zu verraten. Jugurtha wird gefangen, nach Rom gebracht und hingerichtet. Sallust reflektiert über den moralischen Verfall Roms.",
+        "timeframe": "105 v. Chr.",
+        "keyEvents": [
+          "Sullas Mission zu Bocchus",
+          "Gefangennahme Jugurthas",
+          "Triumphzug des Marius",
+          "Hinrichtung im Tullianum"
+        ]
+      }
+    ]
+  }
+}

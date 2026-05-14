@@ -3,7 +3,7 @@ import { BlogPost } from '@/types/blog';
 export const post: Partial<BlogPost> & { image?: string; historicalDate?: string; translations?: any } = {
   slug: 'catilina-coniuratio-63bc',
   author: 'catilina',
-  title: 'Die Verschwörung – Meine Sicht der Dinge',
+  title: 'Die Verschwörung',
   diaryTitle: 'Was sie die Catilinarische Verschwörung nennen',
   scientificTitle: 'Die Catilinarische Verschwörung (63 v. Chr.) – Historische Analyse',
   excerpt: 'Sie nennen es Verrat. Ich nenne es Notwendigkeit. Rom ist krank – krank vor Schulden, vor Gier der Reichen, vor einer Aristokratie, die das Volk ausblutet. Ich wollte Wandel. Nicht Untergang.',

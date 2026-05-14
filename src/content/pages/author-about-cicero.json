@@ -4,8 +4,49 @@
   "heroSubtitle": "Konsul, Redner, Philosoph",
   "heroImage": "/images/cicero-hero.png",
   "introText": "Der bedeutendste Redner Roms, Staatsmann, Philosoph und Verteidiger der Republik. Prägte die lateinische Prosa und die abendländische Rhetorik.",
-  "sections": [],
-  "highlights": [],
+  "sections": [
+    {
+      "title": "Rednerische Meisterwerke",
+      "content": [
+        "In Catilinam (63 v. Chr.): Vier Reden gegen den Verschwörer Catilina, gehalten im Senat und vor dem Volk. Die berühmtesten Reden der römischen Literatur, beginnend mit dem unsterblichen 'Quo usque tandem abutere, Catilina, patientia nostra?'",
+        "Philippicae (44-43 v. Chr.): 14 flammende Reden gegen Marcus Antonius nach Caesars Ermordung. Sie kosteten Cicero das Leben: Am 7. Dezember 43 v. Chr. wurde er auf Befehl des Antonius ermordet."
+      ]
+    },
+    {
+      "title": "Philosophische Schriften",
+      "content": [
+        "De Re Publica (54-51 v. Chr.): Ciceros Dialog über die beste Staatsform. Verteidigt die gemischte Verfassung Roms und enthält das berühmte Somnium Scipionis (Traum des Scipio).",
+        "De Officiis (44 v. Chr.): Ein Brief an seinen Sohn Marcus über ethische Pflichten. Das einflussreichste ethische Werk der westlichen Tradition, gelesen von Erasmus, Montaigne und Kant.",
+        "De Legibus (Über die Gesetze): Ergänzung zu De Re Publica, begründet das Naturrecht als Grundlage aller Gesetzgebung."
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "In Catilinam",
+      "description": "Vier Reden gegen Catilina – Höhepunkt römischer Rhetorik und Rettung der Republik.",
+      "link": "/cicero/works/in-catilinam",
+      "icon": "Users"
+    },
+    {
+      "title": "Philippicae",
+      "description": "14 Reden gegen Marcus Antonius, die ihm das Leben kosteten.",
+      "link": "/cicero/works/philippicae",
+      "icon": "Award"
+    },
+    {
+      "title": "De Officiis",
+      "description": "Über die Pflichten – Ciceros meistgelesenes Werk, zeitlose Ethik für den Alltag.",
+      "link": "/cicero/works/de-officiis",
+      "icon": "BookOpen"
+    },
+    {
+      "title": "De Re Publica",
+      "description": "Vom Staat – Ciceros Vision der idealen Republik und das Somnium Scipionis.",
+      "link": "/cicero/works/de-re-publica",
+      "icon": "Landmark"
+    }
+  ],
   "translations": {
     "de": {
       "heroTitle": "Marcus Tullius Cicero",

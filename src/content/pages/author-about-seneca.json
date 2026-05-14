@@ -5,16 +5,41 @@
   "heroImage": "/images/seneca-hero.png",
   "projectDescription": "Einer der bedeutendsten stoischen Philosophen der Antike, Berater Kaiser Neros und Verfasser zahlreicher philosophischer Schriften, die bis heute Gültigkeit haben.",
   "introText": "Einer der einflussreichsten stoischen Philosophen und Berater des Kaisers Nero.",
-  "sections": [],
+  "sections": [
+    {
+      "title": "Philosophische Hauptwerke",
+      "content": [
+        "Epistulae Morales (62-65 n. Chr.): 124 Briefe an Lucilius über stoische Lebensführung. Das meistgelesene Werk Senecas – praktische Philosophie für den Alltag. Themen: Zeit, Tod, Freundschaft, Reichtum, Tugend, Glück.",
+        "De Ira (ca. 55 n. Chr.): Abhandlung über den Zorn. Ein psychologisches Meisterwerk: Wie man Wut erkennt, kontrolliert und überwindet. Analysiert die Entstehung von Wut und bietet konkrete Techniken zur Selbstbeherrschung.",
+        "De Brevitate Vitae (49 n. Chr.): Über die Kürze des Lebens. Seneca argumentiert, dass wir genug Zeit haben – wir verschwenden sie nur. Ein zeitloser Essay über Zeit und Sinn.",
+        "Naturales Quaestiones: Naturwissenschaftliches Werk über Erdbeben, Blitze und Himmelsphänomene. Verknüpft Naturforschung mit stoischer Ethik."
+      ]
+    },
+    {
+      "title": "Tragödien",
+      "content": [
+        "Seneca schrieb neun erhaltene Tragödien, darunter Medea, Thyestes, Phaedra und Oedipus. Sie waren nicht für die Bühne, sondern zum Vorlesen konzipiert. Ihr pathetischer Stil und ihre psychologische Tiefe beeinflussten Shakespeare und das europäische Drama.",
+        "Die Apocolocyntosis (Verkürbissung des Kaisers Claudius): Eine beißende Satire auf den vergöttlichten Kaiser – das einzige erhaltene Beispiel römischer Menippeischer Satire."
+      ]
+    }
+  ],
   "highlights": [
     {
       "title": "Epistulae Morales",
       "description": "124 Briefe an Lucilius – die tiefgründigste Sammlung stoischer Lebensweisheit.",
+      "link": "/seneca/works/epistulae-morales",
       "icon": "BookOpen"
+    },
+    {
+      "title": "De Ira",
+      "description": "Über den Zorn – Senecas psychologisches Meisterwerk der Affektkontrolle.",
+      "link": "/seneca/works/de-ira",
+      "icon": "AlertTriangle"
     },
     {
       "title": "De Brevitate Vitae",
       "description": "Über die Kürze des Lebens – ein zeitloser Essay über Zeit und Sinn.",
+      "link": "/seneca",
       "icon": "Clock"
     }
   ],

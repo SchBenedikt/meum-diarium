@@ -40,6 +40,8 @@ export function Footer() {
         { label: 'Kaiser Augustus', href: '/augustus', icon: Award },
         { label: 'Seneca der Jüngere', href: '/seneca', icon: BookOpen },
         { label: 'Catilina', href: '/catilina', icon: Sparkles },
+        { label: 'Sallust', href: '/sallust', icon: BookOpen },
+        { label: 'Sokrates', href: '/sokrates', icon: BookOpen },
       ]
     },
     {

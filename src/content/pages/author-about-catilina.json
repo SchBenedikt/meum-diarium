@@ -4,8 +4,43 @@
   "heroSubtitle": "Römischer Senator und Verschwörer",
   "heroImage": "/images/catilina-hero.png",
   "introText": "Patrizier, gescheiterter Konsulatsbewerber und Anführer der berühmten Catilinarischen Verschwörung gegen die Römische Republik.",
-  "sections": [],
-  "highlights": [],
+  "sections": [
+    {
+      "title": "Die Verschwörung",
+      "content": [
+        "Catilina (ca. 108–62 v. Chr.) entstammte dem alten patrizischen Geschlecht der Sergier. Nach zweimal gescheiterter Bewerbung um das Konsulat plante er einen bewaffneten Umsturz: Schuldenerlass, Landverteilung und Beseitigung der senatorischen Oligarchie.",
+        "Cicero deckte die Verschwörung durch sein Spitzelsystem auf. Die berühmten vier Reden In Catilinam zwangen Catilina zur Flucht aus Rom. Die verhafteten Verschwörer wurden ohne Gerichtsverfahren hingerichtet.",
+        "Catilina fiel 62 v. Chr. in der Schlacht bei Pistoria an der Spitze seiner Truppen. Seine Geschichte ist vor allem durch die Darstellung seiner Gegner (Cicero, Sallust) überliefert – eine quellenkritische Herausforderung."
+      ]
+    },
+    {
+      "title": "Überlieferung und Deutung",
+      "content": [
+        "Catilinae Coniuratio: Sallusts Monographie über die catilinarische Verschwörung. Sie zeigt Catilina nicht nur als Verbrecher, sondern als Symptom des moralischen Verfalls der späten Republik. Sallusts Darstellung ist parteiisch – er war Anhänger Caesars und Gegner der Senatsoligarchie.",
+        "In Catilinam: Ciceros vier Reden sind die berühmtesten Zeugnisse der Verschwörung. Die erste Rede, gehalten im Senat mit Catilina persönlich anwesend, beginnt mit dem unsterblichen 'Quo usque tandem...'"
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Catilinarische Verschwörung",
+      "description": "63 v. Chr. – Staatsstreichsversuch gegen die Republik, aufgedeckt von Cicero.",
+      "link": "/catilina",
+      "icon": "AlertTriangle"
+    },
+    {
+      "title": "Catilinae Coniuratio",
+      "description": "Sallusts Monographie – die schonungslose Analyse einer gescheiterten Revolution.",
+      "link": "/catilina/works/catilinae-coniuratio",
+      "icon": "Scroll"
+    },
+    {
+      "title": "In Catilinam",
+      "description": "Ciceros vier Reden gegen Catilina – die bedeutendsten Zeugnisse der Epoche.",
+      "link": "/cicero/works/in-catilinam",
+      "icon": "Users"
+    }
+  ],
   "translations": {
     "de": {
       "heroTitle": "Lucius Sergius Catilina",
