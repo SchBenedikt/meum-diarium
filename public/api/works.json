@@ -1,44 +1,142 @@
 [
   {
-    "slug": "de-bello-civili",
-    "title": "De Bello Civili",
-    "author": "caesar",
-    "year": "49-48 v. Chr."
-  },
-  {
     "slug": "de-bello-gallico",
     "title": "De Bello Gallico",
-    "author": "caesar",
-    "year": "58-50 v. Chr."
+    "author": "caesar"
   },
   {
-    "slug": "de-officiis",
-    "title": "De Officiis",
-    "author": "cicero",
-    "year": "44 v. Chr."
+    "slug": "de-bello-civili",
+    "title": "De Bello Civili",
+    "author": "caesar"
   },
   {
     "slug": "de-re-publica",
     "title": "De Re Publica",
-    "author": "cicero",
-    "year": "54–51 v. Chr."
+    "author": "cicero"
+  },
+  {
+    "slug": "de-officiis",
+    "title": "De Officiis",
+    "author": "cicero"
   },
   {
     "slug": "in-catilinam",
     "title": "In Catilinam",
-    "author": "cicero",
-    "year": "63 v. Chr."
+    "author": "cicero"
   },
   {
     "slug": "philippicae",
     "title": "Philippicae",
-    "author": "cicero",
-    "year": "44–43 v. Chr."
+    "author": "cicero"
   },
   {
     "slug": "res-gestae",
     "title": "Res Gestae Divi Augusti",
-    "author": "augustus",
-    "year": "14 n. Chr."
+    "author": "augustus"
+  },
+  {
+    "slug": "de-ira",
+    "title": "De Ira",
+    "author": "seneca"
+  },
+  {
+    "slug": "epistulae-morales",
+    "title": "Epistulae Morales",
+    "author": "seneca"
+  },
+  {
+    "slug": "catilinae-coniuratio",
+    "title": "Catilinae Coniuratio",
+    "author": "sallust"
+  },
+  {
+    "slug": "bellum-jugurthinum",
+    "title": "Bellum Iugurthinum",
+    "author": "sallust"
+  },
+  {
+    "slug": "apologie",
+    "title": "Apologie",
+    "author": "sokrates"
+  },
+  {
+    "slug": "phaidon",
+    "title": "Phaidon",
+    "author": "sokrates"
+  },
+  {
+    "slug": "de-legibus",
+    "title": "De Legibus",
+    "author": "cicero"
+  },
+  {
+    "slug": "de-finibus",
+    "title": "De Finibus",
+    "author": "cicero"
+  },
+  {
+    "slug": "de-natura-deorum",
+    "title": "De Natura Deorum",
+    "author": "cicero"
+  },
+  {
+    "slug": "tusculanae-disputationes",
+    "title": "Tusculanae Disputationes",
+    "author": "cicero"
+  },
+  {
+    "slug": "de-amicitia",
+    "title": "De Amicitia",
+    "author": "cicero"
+  },
+  {
+    "slug": "de-senectute",
+    "title": "De Senectute",
+    "author": "cicero"
+  },
+  {
+    "slug": "in-verrem",
+    "title": "In Verrem",
+    "author": "cicero"
+  },
+  {
+    "slug": "pro-milone",
+    "title": "Pro Milone",
+    "author": "cicero"
+  },
+  {
+    "slug": "de-brevitate-vitae",
+    "title": "De Brevitate Vitae",
+    "author": "seneca"
+  },
+  {
+    "slug": "de-clementia",
+    "title": "De Clementia",
+    "author": "seneca"
+  },
+  {
+    "slug": "de-tranquillitate-animi",
+    "title": "De Tranquillitate Animi",
+    "author": "seneca"
+  },
+  {
+    "slug": "de-vita-beata",
+    "title": "De Vita Beata",
+    "author": "seneca"
+  },
+  {
+    "slug": "de-beneficiis",
+    "title": "De Beneficiis",
+    "author": "seneca"
+  },
+  {
+    "slug": "naturales-quaestiones",
+    "title": "Naturales Quaestiones",
+    "author": "seneca"
+  },
+  {
+    "slug": "medea",
+    "title": "Medea",
+    "author": "seneca"
   }
 ]
