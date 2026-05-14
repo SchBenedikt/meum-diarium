@@ -201,35 +201,6 @@ export function SokratesAboutPage() {
                             <span>{t('readMore')}</span>
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
                 </div>
-                <div className="card-modern card-padding-md">
-                  <h3 className="font-display text-2xl font-bold mb-5 text-primary">Zum Lexikon</h3>
-                  <div className="space-y-3 text-sm">
-                    <Link to="/lexicon/maieutik" className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Maieutik</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                    <Link to="/lexicon/aporie" className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Aporie</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                    <Link to="/lexicon/dialektik" className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Dialektik</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                    <Link to="/lexicon/elenchos" className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Elenchos</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                    <Link to="/lexicon/sokratische-ironie" className="flex items-start justify-between gap-4 border-b border-border/30 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Sokratische Ironie</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                    <Link to="/lexicon/daimonion" className="flex items-start justify-between gap-4 pb-2 hover:text-primary transition-colors group">
-                      <span className="font-semibold group-hover:text-primary">Daimonion</span>
-                      <span className="text-xs text-muted-foreground">→ Lexikon</span>
-                    </Link>
-                  </div>
-                </div>
               </div>
                       </Link>
                     ))}
