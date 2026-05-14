@@ -217,5 +217,73 @@
       "Senatus consultum de re publica defendenda",
       "Notstandsdekret"
     ]
+  },
+  {
+    "term": "Vorsokratiker",
+    "slug": "vorsokratiker",
+    "definition": "Die Vorsokratiker (griech. προσωκρατικοί – vor Sokrates) sind die griechischen Philosophen des 6. und 5. Jahrhunderts v. Chr., die vor oder zeitgleich mit Sokrates wirkten. Zu ihnen gehören die Milesier (Thales, Anaximander, Anaximenes), die Pythagoreer, Heraklit, Parmenides, Zenon, Empedokles, Anaxagoras und die Atomisten (Demokrit, Leukipp). Sie suchten als erste nach rationalen Erklärungen der Welt (arché – Urprinzip) und lösten sich vom mythischen Weltbild. Ihre Fragestellungen – Was ist der Urstoff der Welt? Was ist Sein? Was ist Bewegung? – legten das Fundament der abendländischen Philosophie. Sokrates’ Methode des Dialogs und seine Hinwendung zur Ethik sind als Reaktion auf die vorsokratische Naturphilosophie zu verstehen.",
+    "category": "Philosophie",
+    "etymology": "Griechisch πρό (pro) – vor + Σωκράτης (Sokrates); deutsch: Vorsokratiker",
+    "relatedTerms": [
+      "sokrates",
+      "maieutik",
+      "dialektik"
+    ],
+    "variants": [
+      "Vorsokratische Philosophie",
+      "Frühgriechische Philosophie"
+    ]
+  },
+  {
+    "term": "Anamnesis",
+    "slug": "anamnesis",
+    "definition": "Die Anamnesis (griech. ἀνάμνησις – Wiedererinnerung) ist Platons Lehre, dass alles Lernen ein Wiedererinnern der Seele an ihr vorgeburtliches Wissen ist. Die Seele existierte vor der Geburt im Reich der Ideen und schaute dort die ewigen Wahrheiten (das Gute, das Schöne, das Gerechte) unmittelbar. Bei der Geburt vergisst sie dieses Wissen. Durch philosophische Fragen – wie Sokrates sie stellt – kann die Seele an die verschütteten Erkenntnisse wiederanknüpfen. Die Anamnesis ist ein zentrales Argument für die Unsterblichkeit der Seele und wird von Platon im Phaidon und Menon ausführlich dargestellt.",
+    "category": "Philosophie",
+    "etymology": "Griechisch ἀνάμνησις (anamnēsis) – Wiedererinnerung, von ἀναμιμνῄσκω (anamimnēskō) – sich erinnern, wiedererinnern",
+    "relatedTerms": [
+      "phaidon",
+      "platon",
+      "sokrates",
+      "maieutik"
+    ],
+    "variants": [
+      "Wiedererinnerungslehre",
+      "Platonische Anamnesis"
+    ]
+  },
+  {
+    "term": "Hebammenkunst",
+    "slug": "hebammenkunst",
+    "definition": "Die Hebammenkunst ist die deutsche Übersetzung des griechischen Begriffs Maieutik (μαιευτική). Sie bezeichnet die von Sokrates entwickelte Methode des philosophischen Gesprächs. Analog zur Geburtshilfe seiner Mutter Phainarete hilft Sokrates seinen Gesprächspartnern, eigenes Wissen aus sich selbst heraus zu entwickeln – nicht durch Belehrung, sondern durch gezieltes Fragen. Der Begriff betont den geburtshelferischen Charakter der sokratischen Methode: Der Philosoph ist nicht der Wissende, der sein Wissen weitergibt, sondern der Geburtshelfer, der die Einsicht im Gegenüber zur Entfaltung bringt.",
+    "category": "Philosophie",
+    "etymology": "althochdeutsch hevianna – heben; mittelhochdeutsch hebamme – die Hebende (die das Kind hebt); Kunst – Kenntnis, Fertigkeit; als Lehnübersetzung von griech. μαιευτική (maieutikē)",
+    "relatedTerms": [
+      "maieutik",
+      "sokrates",
+      "dialektik",
+      "elenchos",
+      "aporie"
+    ],
+    "variants": [
+      "Sokratische Methode",
+      "Maieutik",
+      "Geburtshilfe des Geistes"
+    ]
+  },
+  {
+    "term": "Psychagogie",
+    "slug": "psychagogie",
+    "definition": "Psychagogie (griech. ψυχαγωγία – Seelenführung) bezeichnet in der antiken Philosophie und Rhetorik die Kunst der Führung oder Lenkung der Seele durch Rede und Überzeugung. Bei Platon und Sokrates meint Psychagogie die philosophische Führung der Seele zur Wahrheit und Tugend durch den Dialog. In der Rhetorik (besonders bei Cicero) bezeichnet sie die Fähigkeit des Redners, die Gefühle und Urteile der Zuhörer zu lenken. Die Psychagogie ist das Ziel der sokratischen Maieutik: Die Seele wird nicht belehrt, sondern zur Selbsterkenntnis und zur Schau der Ideen geführt.",
+    "category": "Philosophie",
+    "etymology": "Griechisch ψυχή (psychē) – Seele + ἀγωγή (agōgē) – Führung; wörtlich: Seelenführung",
+    "relatedTerms": [
+      "sokrates",
+      "maieutik",
+      "dialektik"
+    ],
+    "variants": [
+      "Seelenführung",
+      "Philosophische Führung"
+    ]
   }
 ]
