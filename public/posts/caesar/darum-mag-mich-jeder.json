@@ -7,7 +7,13 @@
   "historicalDate": "46–44 v. Chr.",
   "historicalYear": -46,
   "author": "caesar",
-  "tags": ["Armee", "Clementia Caesaris", "Gegner", "Rom", "Senat"],
+  "tags": [
+    "Armee",
+    "Clementia Caesaris",
+    "Gegner",
+    "Rom",
+    "Senat"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,16 +22,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Begriff", "value": "Clementia Caesaris (Caesars Milde)" },
-      { "label": "Begnadigte Feinde", "value": "Brutus, Cassius (spätere Mörder), Cicero" },
-      { "label": "Politischer Nutzen", "value": "Gewinnung von Anhängern und politischer Stabilität" },
-      { "label": "Späteres Schicksal", "value": "Trotz Milde wurde Caesar ermordet" }
+      {
+        "label": "Begriff",
+        "value": "Clementia Caesaris (Caesars Milde)"
+      },
+      {
+        "label": "Begnadigte Feinde",
+        "value": "Brutus, Cassius (spätere Mörder), Cicero"
+      },
+      {
+        "label": "Politischer Nutzen",
+        "value": "Gewinnung von Anhängern und politischer Stabilität"
+      },
+      {
+        "label": "Späteres Schicksal",
+        "value": "Trotz Milde wurde Caesar ermordet"
+      }
     ],
     "quote": {
-      "text": "Die Menschen glauben im allgemeinen gern, was sie wünschen.",
-      "source": "Caesar, De Bello Gallico",
+      "text": "Fere libenter homines id quod volunt credunt.",
+      "translation": "Die Menschen glauben in der Regel gerne das, was sie sich wünschen.",
+      "source": "De Bello Gallico III, 18",
       "author": "Gaius Iulius Caesar",
-      "date": "46 v. Chr."
+      "date": "ca. 56 v. Chr."
     }
   }
 }

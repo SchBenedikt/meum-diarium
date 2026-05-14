@@ -1,7 +1,31 @@
 import { getDb } from '../../../db/client';
 import { posts } from '../../../db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import type { PagesContext } from '../../../types';
+
+async function tryStaticFile(context: PagesContext, author: string, slug: string, corsHeaders: Record<string, string>): Promise<Response | null> {
+    try {
+        const url = new URL(context.request.url);
+        const fileUrl = new URL(`/posts/${author}/${slug}.json`, url.origin);
+        const fileResponse = await context.env.ASSETS.fetch(new Request(fileUrl.toString()));
+
+        if (!fileResponse.ok) return null;
+
+        const post = await fileResponse.json() as any;
+        post.author = post.author || author;
+        post.authorId = post.author;
+
+        return new Response(JSON.stringify(post), {
+            headers: {
+                ...corsHeaders,
+                'Cache-Control': 'public, max-age=3600',
+                'X-Data-Source': 'static-files'
+            }
+        });
+    } catch {
+        return null;
+    }
+}
 
 export const onRequest = async (context: PagesContext): Promise<Response> => {
     const corsHeaders = {
@@ -17,9 +41,56 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
     }
 
     const startTime = Date.now();
+    const url = new URL(context.request.url);
+    const method = context.request.method;
+    const author = context.params.author as string;
+    const slug = context.params.slug as string;
 
     try {
-        // Check if D1 database is available
+        // For GET requests, try D1 first then fall back to static files
+        if (method === 'GET') {
+            // Try D1 database first (if available)
+            if (context.env?.DB) {
+                try {
+                    const db = getDb(context.env);
+                    const result = await db.query.posts.findFirst({
+                        where: eq(posts.slug, slug)
+                    });
+
+                    const queryTime = Date.now() - startTime;
+
+                    if (result && (result.authorId === author || result.author_id === author)) {
+                        const normalizedResult = normalizePostResult(result);
+                        console.log(`✅ [Posts Author/Slug API] GET found post "${normalizedResult.title}" from D1 (${queryTime}ms)`);
+
+                        return new Response(JSON.stringify(normalizedResult), {
+                            headers: {
+                                ...corsHeaders,
+                                'Cache-Control': 'public, max-age=3600',
+                                'X-Data-Source': 'cloudflare-d1'
+                            }
+                        });
+                    }
+                } catch (err: any) {
+                    console.warn(`⚠️ [Posts Author/Slug API] D1 query failed, trying static files: ${err.message}`);
+                }
+            }
+
+            // Fall back to static files
+            const staticResponse = await tryStaticFile(context, author, slug, corsHeaders);
+            if (staticResponse) {
+                console.log(`✅ [Posts Author/Slug API] GET served post from static files: ${author}/${slug}`);
+                return staticResponse;
+            }
+
+            console.warn(`⚠️ [Posts Author/Slug API] Post not found in D1 or static files: ${author}/${slug}`);
+            return new Response(JSON.stringify({ error: 'Not Found' }), {
+                status: 404,
+                headers: corsHeaders
+            });
+        }
+
+        // Write operations (PUT, DELETE) require D1
         if (!context.env?.DB) {
             console.error('❌ [Posts Author/Slug API] D1 database not available');
             return new Response(JSON.stringify({ 
@@ -32,62 +103,8 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
         }
 
         const db = getDb(context.env);
-        const url = new URL(context.request.url);
-        const method = context.request.method;
-        
-        // Extract author and slug from params
-        const author = context.params.author as string;
-        const slug = context.params.slug as string;
 
         console.log(`🔷 [Posts Author/Slug API] ${method} request: /api/posts/${author}/${slug}`);
-
-        // GET handler - fetch post by author and slug
-        if (method === 'GET') {
-            try {
-                const result = await db.query.posts.findFirst({
-                    where: eq(posts.slug, slug)
-                });
-
-                const queryTime = Date.now() - startTime;
-                
-                if (!result) {
-                    console.warn(`⚠️ [Posts Author/Slug API] Post not found: ${author}/${slug}`);
-                    return new Response(JSON.stringify({ error: 'Not Found' }), {
-                        status: 404,
-                        headers: corsHeaders
-                    });
-                }
-
-                // Verify author matches
-                if (result.authorId !== author && result.author_id !== author) {
-                    console.warn(`⚠️ [Posts Author/Slug API] Author mismatch: expected ${author}, got ${result.authorId || result.author_id}`);
-                    return new Response(JSON.stringify({ error: 'Not Found' }), {
-                        status: 404,
-                        headers: corsHeaders
-                    });
-                }
-
-                const normalizedResult = normalizePostResult(result);
-                console.log(`✅ [Posts Author/Slug API] GET found post "${normalizedResult.title}" (${queryTime}ms)`);
-                
-                return new Response(JSON.stringify(normalizedResult), {
-                    headers: {
-                        ...corsHeaders,
-                        'Cache-Control': 'public, max-age=3600',
-                        'X-Data-Source': 'cloudflare-d1'
-                    }
-                });
-            } catch (err: any) {
-                console.error('❌ [Posts Author/Slug API] GET failed:', err.message);
-                return new Response(JSON.stringify({ 
-                    error: 'Server error',
-                    message: err.message
-                }), {
-                    status: 500,
-                    headers: corsHeaders
-                });
-            }
-        }
 
         // PUT handler - Update post by author and slug
         if (method === 'PUT') {

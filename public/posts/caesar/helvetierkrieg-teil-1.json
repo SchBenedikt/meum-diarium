@@ -7,7 +7,12 @@
   "historicalDate": "58 v. Chr.",
   "historicalYear": -58,
   "author": "caesar",
-  "tags": ["Barbaren", "Gallien", "Gegner", "Helvetier"],
+  "tags": [
+    "Barbaren",
+    "Gallien",
+    "Gegner",
+    "Helvetier"
+  ],
   "readingTime": 4,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,16 +21,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Jahr", "value": "58 v. Chr." },
-      { "label": "Gegner", "value": "Helvetier (keltisches Volk der heutigen Schweiz)" },
-      { "label": "Schlachtort", "value": "Bei Bibracte (heute Mont Beuvray, Frankreich)" },
-      { "label": "Ergebnis", "value": "Römischer Sieg, Helvetier zur Rückkehr gezwungen" }
+      {
+        "label": "Jahr",
+        "value": "58 v. Chr."
+      },
+      {
+        "label": "Gegner",
+        "value": "Helvetier (keltisches Volk der heutigen Schweiz)"
+      },
+      {
+        "label": "Schlachtort",
+        "value": "Bei Bibracte (heute Mont Beuvray, Frankreich)"
+      },
+      {
+        "label": "Ergebnis",
+        "value": "Römischer Sieg, Helvetier zur Rückkehr gezwungen"
+      }
     ],
     "quote": {
-      "text": "Es ist besser, ein für allemal zu sterben, als in dauernder Erwartung des Todes zu leben.",
-      "source": "Überliefert, Caesar",
+      "text": "Caesari omnia uno tempore erant agenda.",
+      "translation": "Caesar musste alles zur gleichen Zeit erledigen.",
+      "source": "De Bello Gallico II, 20",
       "author": "Gaius Iulius Caesar",
-      "date": "58 v. Chr."
+      "date": "57 v. Chr."
     }
   }
 }

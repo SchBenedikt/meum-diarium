@@ -7,24 +7,41 @@
   "historicalDate": "4. August 57 v. Chr.",
   "historicalYear": -57,
   "author": "cicero",
-  "tags": ["Rückkehr", "Triumph", "Rom", "Senat"],
+  "tags": [
+    "Rückkehr",
+    "Triumph",
+    "Rom",
+    "Senat"
+  ],
   "readingTime": 3,
   "coverImage": "cicero-hero.png",
   "content": {
-    "diary": "Ich bin wieder da! 🥳 Nach über einem Jahr in diesem schrecklichen, deprimierenden Exil hat Rom endlich begriffen, was es an mir hat. Der Senat hat mich auf Betreiben von Pompeius (wenigstens auf ihn ist noch Verlass) zurückgerufen.\n\nMeine Rückreise quer durch Italien glich einem Triumphzug! In jeder Stadt, in der ich ankam, strömten die Menschenmassen zusammen, um mich zu bejubeln. Es war fast so, als ob sie einen Gott empfangen würden. (Na ja, ich bin ja auch der „Vater des Vaterlandes\"). In Rom selbst stand das ganze Volk auf den Treppen der Tempel, um mich willkommen zu heißen. 🏛️✨\n\nAls ich das Forum betrat, spürte ich, wie sehr mir das alles gefehlt hat: Die Politik, die Reden, die Aufmerksamkeit. Zwar ist mein geliebtes Haus auf dem Palatin immer noch eine Ruine (dieser elende Clodius hatte dort tatsächlich einen Tempel für die „Freiheit\" errichtet, was für eine Ironie!), aber der Staat wird mir den Wiederaufbau bezahlen. Das ist das Mindeste!\n\nIch werde nun wieder meinen rechtmäßigen Platz im Senat einnehmen. Die Republik braucht mich, jetzt mehr denn je. Ohne mich herrschen ja nur Chaos und diese machthungrigen Generäle. Lasst die goldenen Zeiten Roms wieder aufleben!",
+    "diary": "Der Tag meiner Rückkehr nach Rom war einer der schönsten und bewegendsten Tage meines Lebens. Sechzehn Monate im Exil lagen hinter mir, sechzehn Monate der Demütigung, der Ungewissheit, der Sorge um meine Familie und um mein Vaterland. Und nun kehrte ich zurück, und Rom empfing mich, als hätte es nur auf diesen Moment gewartet.\n\nDie Reise begann in Dyrrachium, wo ich die Nachricht von meiner Rückberufung erhalten hatte. Der Senat hatte mit überwältigender Mehrheit für meine Rückkehr gestimmt, und das Volk hatte in einer Volksversammlung den Beschluss bestätigt. Als ich das Schiff bestieg, das mich nach Italien bringen sollte, fühlte ich zum ersten Mal seit über einem Jahr wieder so etwas wie Hoffnung.\n\nIn Brundisium kam mir meine Tochter Tullia entgegen. Sie hatte auf mich gewartet, und als sie mich sah, liefen ihr die Tränen über das Gesicht. Ich gestehe, dass auch mir die Augen feucht wurden, obwohl ein römischer Mann Schwäche nicht zeigen sollte. Aber es gibt Momente, in denen die Liebe stärker ist als der Stolz, und dies war einer davon.\n\nDie Reise von Brundisium nach Rom glich einem Triumphzug. In jeder Stadt, durch die ich kam, strömten die Menschen zusammen, um mich zu begrüßen. Bauern verließen ihre Felder, Händler schlossen ihre Läden, und selbst Menschen, die mich nie persönlich kennengelernt hatten, kamen, um mir die Hand zu schütteln und mir Glück zu wünschen. Es war, als hätte ganz Italien auf meine Rückkehr gewartet.\n\nIn Rom selbst war der Empfang überwältigend. Der Senat hatte beschlossen, mein Haus auf Staatskosten wieder aufzubauen, ein Zeichen der Rehabilitierung, das mich tief berührte. Die Straßen waren gesäumt von Menschen, die mir zujubelten, und als ich das Kapitol bestieg, um den Göttern zu danken, hatte ich das Gefühl, dass die Gerechtigkeit doch noch existiert in dieser Welt.\n\nNatürlich bin ich nicht naiv genug zu glauben, dass alle diese Begeisterung aufrichtig war. Manche jubelten, weil sie es wirklich so empfanden. Andere jubelten, weil es opportun war, dem zurückgekehrten Konsularen Respekt zu zollen. Und einige wenige jubelten vermutlich gar nicht, sondern beobachteten mit Unbehagen, wie ein Mann, den sie für erledigt gehalten hatten, wieder in die politische Arena trat.\n\nAber an jenem Tag war mir das gleichgültig. An jenem Tag genoss ich den Moment, denn man weiß nie, wie viele solcher Momente einem das Schicksal noch gönnt. Ich war zurück, meine Familie war in Sicherheit, und mein Name war wiederhergestellt. Was immer die Zukunft bringen mochte, diesen Tag konnte mir niemand mehr nehmen.\n\nDie Erfahrung des Exils und der Rückkehr hat mich verändert. Ich bin vorsichtiger geworden, weniger bereit, mich in politische Abenteuer zu stürzen, und mir meiner Verwundbarkeit bewusster als zuvor. Gleichzeitig hat sie meinen Glauben an die Republik gestärkt, denn es war die Republik, die mich zurückgerufen hat, nicht ein einzelner Machthaber 🏛️.",
     "scientific": "Ciceros Rückkehr aus dem Exil am 4. August 57 v. Chr. war ein bedeutendes politisches Ereignis. Auf Initiative von Pompeius Magnus und mit Unterstützung des Volkstribuns Titus Annius Milo wurde ein Gesetz verabschiedet, das Ciceros Rückkehr ermöglichte. Der Senat stimmte fast einstimmig dafür.\n\nDie Rückreise durch Süditalien wurde von enthusiastischen Bürgerempfängen begleitet – ein Zeichen für Ciceros nach wie vor hohe Popularität. In seiner Dankrede vor dem Senat (Post reditum in senatu) und vor dem Volk (Post reditum ad Quirites) schilderte Cicero seine Heimkehr in theatralisch überhöhter Form.\n\nDie Restitution seiner Eigentumsrechte und der Wiederaufbau seines Hauses auf dem Palatin (an dessen Stelle Clodius einen Freiheitstempel errichten ließ) wurde durch Senatsbeschluss genehmigt. Die finanzielle Entschädigung blieb allerdings hinter Ciceros Erwartungen zurück.\n\nPolitisch war Ciceros Rückkehr ein gemischter Erfolg: Zwar konnte er seine Karriere fortsetzen, doch die eigentlichen Machtzentren – Caesar, Pompeius, Crassus – hatten sich während seiner Abwesenheit gefestigt. Cicero musste sich in der Folgezeit vorsichtig zwischen den politischen Lagern bewegen."
   },
   "sidebar": {
     "facts": [
-      { "label": "Rückkehr", "value": "4. August 57 v. Chr." },
-      { "label": "Förderer", "value": "Pompeius Magnus" },
-      { "label": "Rückkehrgesetz", "value": "Lex de Ciceronis reditu" },
-      { "label": "Haus", "value": "Wiederaufbau auf dem Palatin genehmigt" }
+      {
+        "label": "Rückkehr",
+        "value": "4. August 57 v. Chr."
+      },
+      {
+        "label": "Förderer",
+        "value": "Pompeius Magnus"
+      },
+      {
+        "label": "Rückkehrgesetz",
+        "value": "Lex de Ciceronis reditu"
+      },
+      {
+        "label": "Haus",
+        "value": "Wiederaufbau auf dem Palatin genehmigt"
+      }
     ],
     "quote": {
       "text": "O fortunatam natam me consule Romam!",
       "translation": "O glückliches Rom, das unter meinem Konsulat geboren wurde!",
-      "source": "Cicero (selbstgedichteter Vers, von Zeitgenossen verspottet)",
+      "source": "Cicero, De Consulatu Suo (zitiert bei Juvenal, Satiren 10, 122)",
       "author": "Marcus Tullius Cicero",
       "date": "57 v. Chr."
     }

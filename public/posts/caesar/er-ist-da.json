@@ -7,7 +7,12 @@
   "historicalDate": "13. Juli 100 v. Chr.",
   "historicalYear": -100,
   "author": "caesar",
-  "tags": ["Abstammung", "Disclaimer", "Geburt", "Spenden"],
+  "tags": [
+    "Abstammung",
+    "Disclaimer",
+    "Geburt",
+    "Spenden"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,16 +21,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Geburtsdatum", "value": "13. Juli 100 v. Chr." },
-      { "label": "Geburtsort", "value": "Rom, Italia" },
-      { "label": "Familie", "value": "Gens Iulia (Patriziergeschlecht)" },
-      { "label": "Abstammung", "value": "Von Venus und Aeneas (nach eigener Überzeugung)" }
+      {
+        "label": "Geburtsdatum",
+        "value": "13. Juli 100 v. Chr."
+      },
+      {
+        "label": "Geburtsort",
+        "value": "Rom, Italia"
+      },
+      {
+        "label": "Familie",
+        "value": "Gens Iulia (Patriziergeschlecht)"
+      },
+      {
+        "label": "Abstammung",
+        "value": "Von Venus und Aeneas (nach eigener Überzeugung)"
+      }
     ],
     "quote": {
-      "text": "Igitur lege cum voluptate!",
-      "source": "Caesar",
+      "text": "Horum omnium fortissimi sunt Belgae.",
+      "translation": "Von allen diesen sind die Belger die Tapfersten.",
+      "source": "De Bello Gallico I, 1",
       "author": "Gaius Iulius Caesar",
-      "date": "100 v. Chr."
+      "date": "ca. 58 v. Chr."
     }
   }
 }

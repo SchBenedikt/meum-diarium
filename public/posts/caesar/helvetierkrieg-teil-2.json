@@ -7,7 +7,13 @@
   "historicalDate": "52 v. Chr.",
   "historicalYear": -52,
   "author": "caesar",
-  "tags": ["Armee", "Gallien", "Haeduer", "Schlacht", "Vercingetorix"],
+  "tags": [
+    "Armee",
+    "Gallien",
+    "Haeduer",
+    "Schlacht",
+    "Vercingetorix"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,17 +22,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Jahr", "value": "52 v. Chr." },
-      { "label": "Hauptgegner", "value": "Vercingetorix (Arverner)" },
-      { "label": "Entscheidende Schlacht", "value": "Belagerung von Alesia" },
-      { "label": "Ergebnis", "value": "Unterwerfung Galliens, Vercingetorix gefangen" }
+      {
+        "label": "Jahr",
+        "value": "52 v. Chr."
+      },
+      {
+        "label": "Hauptgegner",
+        "value": "Vercingetorix (Arverner)"
+      },
+      {
+        "label": "Entscheidende Schlacht",
+        "value": "Belagerung von Alesia"
+      },
+      {
+        "label": "Ergebnis",
+        "value": "Unterwerfung Galliens, Vercingetorix gefangen"
+      }
     ],
     "quote": {
-      "text": "Omnium consensu.",
-      "translation": "Mit dem Einverständnis aller.",
-      "source": "Caesar",
+      "text": "In maxuma fortuna minuma licentia est.",
+      "translation": "Bei größter Macht hat man die geringste Freiheit.",
+      "source": "Sallust, Bellum Catilinae 51 (Rede Caesars im Senat)",
       "author": "Gaius Iulius Caesar",
-      "date": "52 v. Chr."
+      "date": "63 v. Chr."
     }
   }
 }

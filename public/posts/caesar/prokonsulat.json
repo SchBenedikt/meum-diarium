@@ -7,7 +7,13 @@
   "historicalDate": "58 v. Chr.",
   "historicalYear": -58,
   "author": "caesar",
-  "tags": ["Caesoninus", "Gallia Cisalpina", "Gallia Transalpina", "Illyrien", "Prokonsulat"],
+  "tags": [
+    "Caesoninus",
+    "Gallia Cisalpina",
+    "Gallia Transalpina",
+    "Illyrien",
+    "Prokonsulat"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,17 +22,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Amtszeit", "value": "58–50 v. Chr." },
-      { "label": "Provinzen", "value": "Gallia Cisalpina, Gallia Transalpina, Illyricum" },
-      { "label": "Gesetz", "value": "Lex Vatinia (59 v. Chr.)" },
-      { "label": "Wichtigste Folge", "value": "Beginn der Gallischen Kriege" }
+      {
+        "label": "Amtszeit",
+        "value": "58–50 v. Chr."
+      },
+      {
+        "label": "Provinzen",
+        "value": "Gallia Cisalpina, Gallia Transalpina, Illyricum"
+      },
+      {
+        "label": "Gesetz",
+        "value": "Lex Vatinia (59 v. Chr.)"
+      },
+      {
+        "label": "Wichtigste Folge",
+        "value": "Beginn der Gallischen Kriege"
+      }
     ],
     "quote": {
-      "text": "Novarum rerum cupidus!",
-      "translation": "Ich bin neuer Dinge begierig!",
-      "source": "Caesar",
+      "text": "Omnia mala exempla ex rebus bonis orta sunt.",
+      "translation": "Alle schlechten Beispiele sind aus guten Anfängen entstanden.",
+      "source": "Sallust, Bellum Catilinae 51 (Rede Caesars im Senat)",
       "author": "Gaius Iulius Caesar",
-      "date": "58 v. Chr."
+      "date": "63 v. Chr."
     }
   }
 }

@@ -30,9 +30,7 @@ export function useAuthors() {
                             };
                         }
                     });
-                    if (data.length > 0) {
-                        console.log(`✅ [useAuthors] Loaded ${data.length} authors from D1`);
-                    }
+
                 } else if (data && typeof data === 'object') {
                     Object.keys(data).forEach(key => {
                         const fallback = authorsMap[key] || {};
@@ -43,7 +41,6 @@ export function useAuthors() {
                             translations: data[key].translations ?? fallback.translations,
                         };
                     });
-                    console.log(`✅ [useAuthors] Loaded ${Object.keys(data).length} authors from D1`);
                 }
             } catch (err) {
                 console.warn('⚠️ [useAuthors] Could not fetch authors from DB, using fallback data:', err);

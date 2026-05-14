@@ -7,7 +7,12 @@
   "historicalDate": "59 v. Chr.",
   "historicalYear": -59,
   "author": "caesar",
-  "tags": ["Bibulus", "Crassus", "Gegner", "Konsulat"],
+  "tags": [
+    "Bibulus",
+    "Crassus",
+    "Gegner",
+    "Konsulat"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,16 +21,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Amtszeit", "value": "59 v. Chr." },
-      { "label": "Amtskollege", "value": "Marcus Calpurnius Bibulus" },
-      { "label": "Wichtigstes Gesetz", "value": "Lex Iulia agraria (Landverteilung)" },
-      { "label": "Unterstützer", "value": "Pompeius Magnus und Marcus Licinius Crassus" }
+      {
+        "label": "Amtszeit",
+        "value": "59 v. Chr."
+      },
+      {
+        "label": "Amtskollege",
+        "value": "Marcus Calpurnius Bibulus"
+      },
+      {
+        "label": "Wichtigstes Gesetz",
+        "value": "Lex Iulia agraria (Landverteilung)"
+      },
+      {
+        "label": "Unterstützer",
+        "value": "Pompeius Magnus und Marcus Licinius Crassus"
+      }
     ],
     "quote": {
-      "text": "Ich liebe den Verrat, aber hasse die Verräter.",
-      "source": "Plutarch, Caesar",
+      "text": "Uxorem Caesaris non solum crimine, sed etiam suspicione carere oportet.",
+      "translation": "Caesars Gattin muss nicht nur frei von Schuld, sondern auch frei von Verdacht sein.",
+      "source": "Plutarch, Caesar 10",
       "author": "Gaius Iulius Caesar",
-      "date": "59 v. Chr."
+      "date": "62 v. Chr."
     }
   }
 }

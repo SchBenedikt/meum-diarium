@@ -7,7 +7,9 @@
   "historicalDate": "58 v. Chr.",
   "historicalYear": -58,
   "author": "caesar",
-  "tags": ["Gallien"],
+  "tags": [
+    "Gallien"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,10 +18,22 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Werk", "value": "De Bello Gallico" },
-      { "label": "Entstehungszeit", "value": "58–51 v. Chr." },
-      { "label": "Sprache", "value": "Latein, 3. Person Singular" },
-      { "label": "Bücher", "value": "7 (+ 1 von Hirtius)" }
+      {
+        "label": "Werk",
+        "value": "De Bello Gallico"
+      },
+      {
+        "label": "Entstehungszeit",
+        "value": "58–51 v. Chr."
+      },
+      {
+        "label": "Sprache",
+        "value": "Latein, 3. Person Singular"
+      },
+      {
+        "label": "Bücher",
+        "value": "7 (+ 1 von Hirtius)"
+      }
     ],
     "quote": {
       "text": "Gallia est omnis divisa in partes tres.",

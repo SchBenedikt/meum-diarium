@@ -49,16 +49,12 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
         setLoading(true);
         setError(null);
         try {
-            console.log('🔍 [VocabularyDetail] Fetching entry for vokId:', vokId);
             const response = await fetch(`/api/vocab/${encodeURIComponent(vokId)}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch vocabulary entry');
             }
             const data = await response.json();
-            console.log('📊 [VocabularyDetail] Raw API response:', data);
             setEntry(data);
-            console.log('📋 [VocabularyDetail] Forms count:', data.forms?.length || 0);
-            console.log('📝 [VocabularyDetail] All forms:', data.forms);
         } catch (err) {
             console.error('❌ [VocabularyDetail] Error fetching entry:', err);
             setError(err instanceof Error ? err.message : 'Unknown error');
@@ -84,7 +80,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
             const results = await Promise.all(
                 formsWithoutDescriptions.map(async (form) => {
                     try {
-                        console.log(`🔍 [VocabularyDetail] Fetching additional info for form: ${form.form}`);
                         const response = await fetch(`/api/vocab/${vokId}/form/${encodeURIComponent(form.form)}`);
                         if (response.ok) {
                             const data = await response.json();
@@ -95,7 +90,7 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
                             };
                         }
                     } catch (error) {
-                        console.log(`❌ [VocabularyDetail] Failed to fetch info for ${form.form}:`, error);
+
                     }
                     return {
                         form: form.form,
@@ -135,7 +130,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
 
     // Use the enriched forms (forms now contains all GRAMMAR forms with FORM descriptions)
     const allForms = entry.forms || [];
-    console.log('🔢 [VocabularyDetail] Total forms count:', allForms.length);
 
     // Categorize forms into different types based on their descriptions
     const participleForms = allForms.filter(form => 
@@ -144,7 +138,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
         form.bestimmung?.includes('PDFA') ||
         form.bestimmung?.includes('Part.')
     );
-    console.log('🎓 [VocabularyDetail] Participle forms:', participleForms);
 
     const conjugationForms = allForms.filter(form => 
         form.bestimmung && (
@@ -159,7 +152,6 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
         !form.bestimmung.includes('PDFA') &&
         !form.bestimmung.includes('Part.')
     );
-    console.log('🔄 [VocabularyDetail] Conjugation forms:', conjugationForms);
 
     // Declension forms (for nouns and adjectives)
     const declensionForms = allForms.filter(form =>
@@ -181,11 +173,9 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
         !form.bestimmung.includes('Plusq.') &&
         !form.bestimmung.includes('Fut.')
     );
-    console.log('📋 [VocabularyDetail] Declension forms:', declensionForms);
 
     // Forms without descriptions (from GRAMMAR table that didn't match FORM table)
     const formsWithoutDescriptions = allForms.filter(form => !form.bestimmung);
-    console.log('❓ [VocabularyDetail] Forms without descriptions:', formsWithoutDescriptions);
 
     return (
         <div className="space-y-8">

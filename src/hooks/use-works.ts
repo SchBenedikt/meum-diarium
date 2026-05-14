@@ -10,14 +10,11 @@ export function useWorks() {
     queryKey: ['works'],
     queryFn: async () => {
       try {
-        const apiStartTime = Date.now();
         const response = await fetch('/api/works.json');
         if (!response.ok) {
           return [];
         }
         const works = await response.json();
-        const apiFetchTime = Date.now() - apiStartTime;
-        console.log(`✅ [useWorks] Loaded ${works.length} works (${apiFetchTime}ms)`);
         return Array.isArray(works) ? works : [];
       } catch (error) {
         console.error('❌ [useWorks] Error loading works:', error);
@@ -49,7 +46,6 @@ export function useWorkDetails(slug: string | undefined) {
       setIsLoading(true);
       setError(null);
       try {
-        const apiStartTime = Date.now();
         const response = await fetch(`/api/works-details/${slug}.json`);
         if (!response.ok) {
           setDetails(null);
@@ -57,7 +53,6 @@ export function useWorkDetails(slug: string | undefined) {
           return;
         }
         const rawData = await response.json();
-        const apiFetchTime = Date.now() - apiStartTime;
         // Transform language-organized data into component structure
         // If data has language keys (de, en, etc.), use the default language (de)
         const langData = rawData.de || rawData;
@@ -78,7 +73,6 @@ export function useWorkDetails(slug: string | undefined) {
             highlights: langData.impact.highlights || []
           } : null
         };
-        console.log(`✅ [useWorkDetails] Loaded details for "${slug}" (${apiFetchTime}ms)`);
         setDetails(transformedDetails);
       } catch (err) {
         console.error(`❌ [useWorkDetails] Error loading details for "${slug}":`, err);

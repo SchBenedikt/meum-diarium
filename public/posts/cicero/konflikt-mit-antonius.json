@@ -1,33 +1,54 @@
 {
   "id": "cicero-conflict-antony",
-  "slug": "conflict-antony",
+  "slug": "konflikt-mit-antonius",
   "title": "Die Philippischen Reden: Mein Krieg der Worte gegen Antonius",
   "excerpt": "Gegen den Tyrannen Marcus Antonius habe ich die einzigen Waffen eingesetzt, die ein Philosoph einsetzen darf - Vernunft, Redekunst und die Kraft der öffentlichen Verurteilung.",
   "date": "2024-01-04",
   "historicalDate": "43 v. Chr.",
   "historicalYear": -43,
   "author": "cicero",
-  "tags": ["Politik", "Bürgerkrieg", "Redekunst", "Marcus Antonius", "Tod"],
+  "tags": [
+    "Politik",
+    "Bürgerkrieg",
+    "Redekunst",
+    "Marcus Antonius",
+    "Tod"
+  ],
   "readingTime": 6,
   "coverImage": "cicero-hero.png",
   "content": {
-    "diary": "The gods are testing me, it seems, with ever greater trials. That uncouth brute, Mark Antony—who was not fit to carry the sandals of Caesar himself—now struts about Rome as though the Republic were his personal plaything. His shabby alliance with that boy Octavian and Lepidus, that wretched triumvirate, has convinced them they rule us all.\n\nI have written fourteen orations—fourteen!—against this man, and I have named them the Philippics, after those famous orations of Demosthenes against Philip of Macedon. If Demosthenes could stand against a king, surely I, Marcus Tullius Cicero, can stand against a common soldier elevated above his station!\n\nThe irony is exquisite—and it is a kind that Antony's dim mind could never appreciate. I, the man who helped raise him from nothing, now must denounce him as a threat to Rome itself. I have been magnanimous to so many ambitious men. I warned Caesar himself against his path! And yet, my warnings go unheeded.\n\nMy Philippics detail his every crime, every constitutional violation, every moral depravity. I have exposed his drunken binges, his crude paramours, his shameless seizure of property. I painted his character so vividly and so devastatingly that men in the Senate laughed—yes, actually laughed—at the description of this contemptible creature masquerading as Rome's leader.\n\nIn the Second Philippic especially, I outdid myself. Antony had attacked me publicly, and I responded with such fury and precision that future generations will read it and marvel at how thoroughly I annihilated a man with mere words. My wit was particularly sharp, my logic irrefutable, my moral indignation perfectly calibrated to move the hearts of senators and citizens alike.\n\nYet I fear—though I admit this only to these pages—that words may no longer suffice. Antony commands legions, and I command only language. Rome has fallen into such chaos that even the eloquence of Cicero cannot restore order. That thought troubles me more than any personal danger.\n\nStill, I will not be silenced. If my words are to be my last legacy, then let them be worthy of the man I have become. I have stood for the Republic my entire life, defended her institutions, preserved her dignity through rhetorical excellence. If my enemies silence me permanently, they will only prove how much my voice frightened them.\n\nThe Philippics will endure. Long after Antony is dust and his name a byword for political corruption, my orations will be read and studied. That is the victory that truly matters.",
+    "diary": "Der Bruch mit Marcus Antonius war unvermeidlich, und rückblickend frage ich mich, warum er nicht früher kam. Wir waren nie Freunde gewesen, Antonius und ich, aber nach Caesars Ermordung hatte es für kurze Zeit den Anschein, als könnten wir zusammenarbeiten, um die Republik zu stabilisieren. Diese Hoffnung hat sich als Illusion erwiesen.\n\nAntonius zeigte sein wahres Gesicht bereits wenige Tage nach den Iden des März. Statt die Chance zu nutzen, die Caesars Tod bot, statt die Diktatur zu beenden und dem Senat seine Autorität zurückzugeben, griff Antonius nach der Macht mit einer Gier, die selbst Caesar beschämt hätte. Er bemächtigte sich der Staatskasse, fälschte Dekrete unter Caesars Namen und verteilte Ämter und Privilegien an seine Gefolgsleute, als wäre Rom sein persönlicher Besitz.\n\nWas mich besonders empört, ist die Schamlosigkeit, mit der er vorgeht. Bei einer Senatssitzung erschien er betrunken, ein Verhalten, das für einen römischen Konsul undenkbar sein sollte. Er droht offen mit Gewalt, und seine bewaffneten Anhänger terrorisieren die Stadt. Die Senatoren, die ihm widersprechen wollen, schweigen aus Angst, und die, die mit ihm zusammenarbeiten, tun es aus Berechnung.\n\nIch habe beschlossen, nicht zu schweigen. Meine Philippischen Reden sind meine Waffe, die einzige, die mir als alter Mann zur Verfügung steht. In ihnen lege ich Antonius' Verbrechen offen, seine Veruntreuung, seine Gewalt, seine Verachtung für die republikanischen Institutionen. Demosthenes kämpfte einst mit seinen Reden gegen Philipp von Makedonien. Ich kämpfe mit meinen Reden gegen einen Mann, der Roms Freiheit nicht weniger bedroht.\n\nDie Gefahr, in der ich schwebe, ist mir bewusst. Antonius hat die Mittel und den Willen, seine Feinde zu beseitigen, und ich stehe ganz oben auf seiner Liste. Meine Freunde raten mir, Rom zu verlassen und in Sicherheit abzuwarten. Aber wohin sollte ich gehen? Und was wäre mein Leben noch wert, wenn ich aus Angst vor dem Tod aufhörte, für das einzustehen, woran ich glaube?\n\nMeine Hoffnung ist, dass der Senat stark genug sein wird, Antonius Widerstand zu leisten. Ich habe im Senat dafür plädiert, den jungen Oktavian als Gegengewicht zu Antonius aufzubauen. Ob das klug ist, weiß ich nicht mit Sicherheit. Oktavian ist Caesars Erbe und möglicherweise ebenso ehrgeizig wie sein Adoptivvater. Aber im Moment ist er der Einzige, der Antonius militärisch entgegentreten kann, und in der Politik muss man manchmal mit dem arbeiten, was man hat, nicht mit dem, was man sich wünscht.\n\nDie Republik steht am Scheideweg. Entweder wir verteidigen sie jetzt, mit allen Mitteln, die uns zur Verfügung stehen, oder wir verlieren sie für immer. Ich bin zu alt, um Schwerter zu führen, aber solange meine Stimme trägt und meine Hand schreiben kann, werde ich kämpfen 🗡️.",
     "scientific": "The Philippics of Cicero represent both a rhetorical masterpiece and a tragic failure of political realism in the final years of the Roman Republic. Delivered between September 43 BCE and early 43 BCE, the fourteen orations constituted Cicero's response to the political domination of Mark Antony following Caesar's assassination in 44 BCE.\n\nThe political context was complex. Following Caesar's death, Cicero had initially hoped the Republic might be restored through a coalition of senators and the young Octavian, Caesar's adopted heir. For a moment, Cicero believed that Octavian, lacking the military experience and political standing of other powerful figures, might be more amenable to republican governance. In this miscalculation, Cicero was not alone—it was a failure of perception shared by many contemporary political actors.\n\nMark Antony, as Caesar's ally and consul in 43 BCE, possessed both military resources and political legitimacy. He moved to consolidate power, using both constitutional means and extralegal force. Cicero responded with his Philippics, named deliberately after Demosthenes's orations against Philip of Macedon, invoking the Athenian orator's famous resistance against Macedonian domination.\n\nThe Philippics were composed and partly delivered in the Senate, partly circulated as published political texts. They combined several rhetorical strategies: direct constitutional arguments about Antony's violations of senatorial procedure and law; personal attacks on Antony's character, habits, and competence; and emotional appeals to the Senate to defend Republican institutions.\n\nCicero's attacks on Antony were notably personal in a way that reflects both Cicero's rhetorical style and the norms of late Republican political discourse. He mocked Antony's appearance, his drinking habits, his sexual relationships, and his alleged cowardice in military campaigns. In the Second Philippic, Cicero deployed particularly vicious invective, describing Antony's conduct in extraordinary detail and with withering contempt.\n\nPolitically, Cicero's strategy involved persuading the Senate to support resistance against Antony by framing the conflict as a defense of Republican institutions against a tyrant. The strategy achieved initial success: the Senate did declare Antony an enemy of the state (hostis publicus), and an army was assembled to oppose him. For a brief moment, it appeared that Republican resistance might succeed.\n\nHowever, Cicero's political judgment proved fatally flawed. He failed to account for the fact that Octavian, despite their initial alignment, would ultimately prefer alliance with Antony to maintaining Republican forms. The Second Triumvirate—the formal alliance between Octavian, Antony, and Lepidus—was established in late 43 BCE with a proscription list of their enemies. Cicero appeared on that list.\n\nCicero was hunted down and killed in December 43 BCE, his head and hands severed and displayed in Rome as a warning. Antony, whom Cicero had attacked so relentlessly, allegedly ordered the desecration of Cicero's remains—a violation of Roman customs that itself became a source of moral outrage. Paradoxically, this act increased the esteem in which Cicero was held by later generations; his martyrdom seemed to validate his principled opposition to tyranny.\n\nHistorically, the Philippics represent the moment when oratorical excellence and constitutional argumentation proved insufficient against military force organized through ruthless pragmatism. Cicero's faith in the power of words—the very foundation of his intellectual worldview—was ultimately proven false by the violence that characterized the late Republic. Yet his orations endured as the most celebrated examples of political rhetoric in Western history, studied and admired precisely for their eloquence even as they document the failure of republican governance and the triumph of military power over institutional forms.\n\nThe Philippics' very name—deliberately evoking Demosthenes—captured something of Cicero's understanding: that he was engaged in a struggle against tyranny using the tools available to a speaker and writer. That the tools proved inadequate does not diminish the eloquence with which they were wielded."
   },
   "sidebar": {
     "facts": [
-      { "label": "Zeitraum", "value": "September 43 - März 43 v. Chr." },
-      { "label": "Gesamtorationen", "value": "14 Philippische Reden" },
-      { "label": "Ciceros Schicksal", "value": "Hingerichtet Dezember 43 v. Chr." },
-      { "label": "Antonius' Position", "value": "Konsul; Mitglied des Zweiten Triumvirats" },
-      { "label": "Wichtigste Rede", "value": "Zweite Philippische Rede" }
+      {
+        "label": "Zeitraum",
+        "value": "September 43 - März 43 v. Chr."
+      },
+      {
+        "label": "Gesamtorationen",
+        "value": "14 Philippische Reden"
+      },
+      {
+        "label": "Ciceros Schicksal",
+        "value": "Hingerichtet Dezember 43 v. Chr."
+      },
+      {
+        "label": "Antonius' Position",
+        "value": "Konsul; Mitglied des Zweiten Triumvirats"
+      },
+      {
+        "label": "Wichtigste Rede",
+        "value": "Zweite Philippische Rede"
+      }
     ],
     "quote": {
-      "text": "Silent enim leges inter arma.",
-      "translation": "Die Gesetze sind während des Krieges stumm.",
-      "source": "Pro Milone",
+      "text": "Nulla est enim societas nobis cum tyrannis.",
+      "translation": "Denn es gibt keine Gemeinschaft zwischen uns und Tyrannen.",
+      "source": "Cicero, De Officiis III, 32",
       "author": "Marcus Tullius Cicero",
-      "date": "52 v. Chr."
+      "date": "44 v. Chr."
     }
   }
 }

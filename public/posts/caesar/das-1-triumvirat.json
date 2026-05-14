@@ -7,7 +7,11 @@
   "historicalDate": "60 v. Chr.",
   "historicalYear": -60,
   "author": "caesar",
-  "tags": ["Crassus", "Pompeius", "Triumvirat"],
+  "tags": [
+    "Crassus",
+    "Pompeius",
+    "Triumvirat"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,16 +20,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Gründungsjahr", "value": "ca. 60 v. Chr." },
-      { "label": "Mitglieder", "value": "Caesar, Pompeius, Crassus" },
-      { "label": "Art des Bündnisses", "value": "Informell, kein offizielles Staatsamt" },
-      { "label": "Ende", "value": "53 v. Chr. (Tod des Crassus)" }
+      {
+        "label": "Gründungsjahr",
+        "value": "ca. 60 v. Chr."
+      },
+      {
+        "label": "Mitglieder",
+        "value": "Caesar, Pompeius, Crassus"
+      },
+      {
+        "label": "Art des Bündnisses",
+        "value": "Informell, kein offizielles Staatsamt"
+      },
+      {
+        "label": "Ende",
+        "value": "53 v. Chr. (Tod des Crassus)"
+      }
     ],
     "quote": {
-      "text": "Wir haben weder ewige Verbündete noch ewige Feinde. Wir haben nur dauerhafte Interessen.",
-      "source": "Caesar",
+      "text": "Nihil esse rem publicam, appellationem modo sine corpore ac specie.",
+      "translation": "Der Staat sei nichts weiter als ein Name ohne Gestalt und Wirklichkeit.",
+      "source": "Sueton, Caesar 77",
       "author": "Gaius Iulius Caesar",
-      "date": "60 v. Chr."
+      "date": "ca. 45 v. Chr."
     }
   }
 }
