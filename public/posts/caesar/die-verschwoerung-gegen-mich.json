@@ -7,7 +7,14 @@
   "historicalDate": "15. März 44 v. Chr.",
   "historicalYear": -44,
   "author": "caesar",
-  "tags": ["Brutus", "Caesarianer", "Dolch", "Gegner", "Mord", "Verschwörung"],
+  "tags": [
+    "Brutus",
+    "Caesarianer",
+    "Dolch",
+    "Gegner",
+    "Mord",
+    "Verschwörung"
+  ],
   "readingTime": 4,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,15 +23,27 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Datum", "value": "15. März 44 v. Chr. (Iden des März)" },
-      { "label": "Ort", "value": "Pompeiustheater, Rom" },
-      { "label": "Anzahl Verschwörer", "value": "ca. 60 Senatoren" },
-      { "label": "Anführer", "value": "Marcus Iunius Brutus & Gaius Cassius Longinus" }
+      {
+        "label": "Datum",
+        "value": "15. März 44 v. Chr. (Iden des März)"
+      },
+      {
+        "label": "Ort",
+        "value": "Pompeiustheater, Rom"
+      },
+      {
+        "label": "Anzahl Verschwörer",
+        "value": "ca. 60 Senatoren"
+      },
+      {
+        "label": "Anführer",
+        "value": "Marcus Iunius Brutus & Gaius Cassius Longinus"
+      }
     ],
     "quote": {
       "text": "Et tu, Brute?",
       "translation": "Auch du, Brutus?",
-      "source": "Shakespeare, Julius Caesar (historisch nicht belegt)",
+      "source": "Shakespeare, Julius Caesar (historisch nicht belegt; Sueton überliefert die griechische Form)",
       "author": "Gaius Iulius Caesar",
       "date": "15. März 44 v. Chr."
     }

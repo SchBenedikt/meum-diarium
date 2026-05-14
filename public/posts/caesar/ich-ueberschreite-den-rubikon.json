@@ -7,7 +7,15 @@
   "historicalDate": "10./11. Januar 49 v. Chr.",
   "historicalYear": -49,
   "author": "caesar",
-  "tags": ["Armee", "Bürgerkrieg", "Gegner", "Pompeius", "Rom", "Rubikon", "Senat"],
+  "tags": [
+    "Armee",
+    "Bürgerkrieg",
+    "Gegner",
+    "Pompeius",
+    "Rom",
+    "Rubikon",
+    "Senat"
+  ],
   "readingTime": 5,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,14 +24,26 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Datum", "value": "10./11. Januar 49 v. Chr." },
-      { "label": "Fluss", "value": "Rubikon (Norditalien)" },
-      { "label": "Entscheidende Schlacht", "value": "Pharsalos, 9. August 48 v. Chr." },
-      { "label": "Ergebnis", "value": "Caesar siegt, Pompeius flieht nach Ägypten" }
+      {
+        "label": "Datum",
+        "value": "10./11. Januar 49 v. Chr."
+      },
+      {
+        "label": "Fluss",
+        "value": "Rubikon (Norditalien)"
+      },
+      {
+        "label": "Entscheidende Schlacht",
+        "value": "Pharsalos, 9. August 48 v. Chr."
+      },
+      {
+        "label": "Ergebnis",
+        "value": "Caesar siegt, Pompeius flieht nach Ägypten"
+      }
     ],
     "quote": {
-      "text": "Alea iacta est!",
-      "translation": "Der Würfel ist gefallen!",
+      "text": "Alea iacta est.",
+      "translation": "Der Würfel ist gefallen.",
       "source": "Sueton, Caesar 32",
       "author": "Gaius Iulius Caesar",
       "date": "49 v. Chr."

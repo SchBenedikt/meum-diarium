@@ -44,11 +44,11 @@
       }
     ],
     "quote": {
-      "text": "Deo patriae, invicto Augusto.",
-      "translation": "Dem Gott des Vaterlandes, dem unbesiegbaren Augustus.",
-      "source": "Historical Inscription",
-      "author": "Roman Citizens",
-      "date": "Early Principate"
+      "text": "Rem publicam a dominatione factionis oppressam in libertatem vindicavi.",
+      "translation": "Den Staat, der von einer Parteiherrschaft unterdrückt war, habe ich in die Freiheit überführt.",
+      "source": "Res Gestae Divi Augusti 1",
+      "author": "Augustus",
+      "date": "14 n. Chr."
     }
   }
 }

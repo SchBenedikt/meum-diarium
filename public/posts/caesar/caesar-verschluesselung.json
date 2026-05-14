@@ -7,7 +7,10 @@
   "historicalDate": "ca. 50 v. Chr.",
   "historicalYear": -50,
   "author": "caesar",
-  "tags": ["Cäsar-Verschlüsselung", "Cäsarchiffre"],
+  "tags": [
+    "Cäsar-Verschlüsselung",
+    "Cäsarchiffre"
+  ],
   "readingTime": 4,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,17 +19,29 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Methode", "value": "Buchstabenverschiebung um 3 Stellen" },
-      { "label": "Quelle", "value": "Sueton, De vita Caesarum" },
-      { "label": "Nachfolger", "value": "Augustus nutzte ähnliche Methode (1 Stelle)" },
-      { "label": "Moderne Entsprechung", "value": "ROT13 (13 Stellen Verschiebung)" }
+      {
+        "label": "Methode",
+        "value": "Buchstabenverschiebung um 3 Stellen"
+      },
+      {
+        "label": "Quelle",
+        "value": "Sueton, De vita Caesarum"
+      },
+      {
+        "label": "Nachfolger",
+        "value": "Augustus nutzte ähnliche Methode (1 Stelle)"
+      },
+      {
+        "label": "Moderne Entsprechung",
+        "value": "ROT13 (13 Stellen Verschiebung)"
+      }
     ],
     "quote": {
-      "text": "Cras legam!",
-      "translation": "Morgen werde ich lesen.",
-      "source": "Caesar",
+      "text": "Malo primus esse in hoc vico quam secundus Romae.",
+      "translation": "Lieber möchte ich der Erste in diesem Dorf sein als der Zweite in Rom.",
+      "source": "Plutarch, Caesar 11",
       "author": "Gaius Iulius Caesar",
-      "date": "ca. 50 v. Chr."
+      "date": "ca. 60 v. Chr."
     }
   }
 }

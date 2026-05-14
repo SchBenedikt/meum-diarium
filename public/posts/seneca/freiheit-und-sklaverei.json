@@ -44,11 +44,11 @@
       }
     ],
     "quote": {
-      "text": "Servi sunt? Immo homines sunt.",
-      "translation": "Sie sind Sklaven? Nein, sie sind menschliche Wesen.",
-      "source": "Seneca zugeschrieben",
+      "text": "Servi sunt? Immo homines. Servi sunt? Immo contubernales. Servi sunt? Immo humiles amici.",
+      "translation": "Sie sind Sklaven? Nein, Menschen. Sie sind Sklaven? Nein, Gefährten. Sie sind Sklaven? Nein, niedrige Freunde.",
+      "source": "Seneca, Epistulae Morales 47, 1",
       "author": "Lucius Annaeus Seneca",
-      "date": "60s n. Chr."
+      "date": "ca. 63 n. Chr."
     }
   }
 }

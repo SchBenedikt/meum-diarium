@@ -44,11 +44,11 @@
       }
     ],
     "quote": {
-      "text": "Nunc tempus est agendi vel moriendi.",
-      "translation": "Now is the time for action or death.",
-      "source": "Attributed to Catilina",
+      "text": "Semper in proelio eis maximum est periculum, qui maxime timent.",
+      "translation": "In der Schlacht ist die größte Gefahr stets bei jenen, die am meisten fürchten.",
+      "source": "Sallust, Bellum Catilinae 58",
       "author": "Lucius Sergius Catilina",
-      "date": "63 v. Chr."
+      "date": "62 v. Chr."
     }
   }
 }

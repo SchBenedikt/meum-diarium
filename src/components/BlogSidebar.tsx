@@ -25,17 +25,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         .filter(p => p?.author === post.author && p?.slug !== post.slug)
         .slice(0, 3)
     : [];
-  // Get the appropriate translation for the current language
-  const getQuoteTranslation = () => {
-    if (!post?.sidebar?.quote?.translations) return null;
-    // Try to get translation for current language
-    const currentLang = language.split('-')[0] as 'de' | 'en' | 'la';
-    return post.sidebar.quote.translations[currentLang] ||
-      post.sidebar.quote.translations.de ||
-      post.sidebar.quote.translations.en ||
-      null;
-  };
-  const quoteTranslation = getQuoteTranslation();
+  const quoteTranslation = post?.sidebar?.quote?.translation || null;
   return (
     <motion.aside
       initial={{ opacity: 0, x: 16 }}

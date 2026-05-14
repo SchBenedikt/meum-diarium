@@ -45,7 +45,10 @@
     ],
     "quote": {
       "text": "Festina lente.",
-      "translation": "Eile mit Weile."
+      "translation": "Eile mit Weile.",
+      "source": "Sueton, Augustus 25",
+      "author": "Augustus",
+      "date": "Augusteische Zeit"
     },
     "related": [
       "pax-romana",

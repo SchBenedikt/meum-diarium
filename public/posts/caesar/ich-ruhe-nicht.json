@@ -7,7 +7,12 @@
   "historicalDate": "48–47 v. Chr.",
   "historicalYear": -48,
   "author": "caesar",
-  "tags": ["Ägypten", "Königin Kleopatra", "Pompeius", "Rom"],
+  "tags": [
+    "Ägypten",
+    "Königin Kleopatra",
+    "Pompeius",
+    "Rom"
+  ],
   "readingTime": 3,
   "coverImage": "caesar-hero.png",
   "content": {
@@ -16,13 +21,25 @@
   },
   "sidebar": {
     "facts": [
-      { "label": "Zeitraum", "value": "48–47 v. Chr." },
-      { "label": "Aufenthaltsort", "value": "Alexandria, Ägypten" },
-      { "label": "Bekannte Person", "value": "Kleopatra VII. (ägyptische Königin)" },
-      { "label": "Schnellster Feldzug", "value": "Zela gegen Pharnakes II. (47 v. Chr.)" }
+      {
+        "label": "Zeitraum",
+        "value": "48–47 v. Chr."
+      },
+      {
+        "label": "Aufenthaltsort",
+        "value": "Alexandria, Ägypten"
+      },
+      {
+        "label": "Bekannte Person",
+        "value": "Kleopatra VII. (ägyptische Königin)"
+      },
+      {
+        "label": "Schnellster Feldzug",
+        "value": "Zela gegen Pharnakes II. (47 v. Chr.)"
+      }
     ],
     "quote": {
-      "text": "Veni – Vidi – Vici.",
+      "text": "Veni, vidi, vici.",
       "translation": "Ich kam, ich sah, ich siegte.",
       "source": "Sueton, Caesar 37; Plutarch, Caesar 50",
       "author": "Gaius Iulius Caesar",
