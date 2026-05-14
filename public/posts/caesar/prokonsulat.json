@@ -1,0 +1,32 @@
+{
+  "id": "caesar-prokonsulat",
+  "slug": "prokonsulat",
+  "title": "Prokonsulat",
+  "excerpt": "Ich bin jetzt Prokonsul! Meine Gebiete erstrecken sich von Illyrien über Gallien Cisalpina bis hin zu Gallien Transalpina.",
+  "date": "2024-01-22",
+  "historicalDate": "58 v. Chr.",
+  "historicalYear": -58,
+  "author": "caesar",
+  "tags": ["Caesoninus", "Gallia Cisalpina", "Gallia Transalpina", "Illyrien", "Prokonsulat"],
+  "readingTime": 3,
+  "coverImage": "caesar-hero.png",
+  "content": {
+    "diary": "Jetzt hätte ich doch fast Ärger mit diesen „Gesetzeshütern\" bekommen – die wollten mich doch tatsächlich verklagen ⚔️ und verurteilen, sobald ich wieder Privatmann bin! Aber das können die sich abschminken. Nur weil ich nicht alles so gemacht hab, wie es vielleicht vorgeschrieben ist. Aber so ist es halt, wenn man viel Macht hat. Es gibt immer Gegner, die das nicht wollen.\n\nAber wir als Triumvirat sind stark und kämpfen dafür auch. Deswegen hat mir auch Pompeius und Crassus geholfen, dass es so weit gar nicht erst kommt. Deswegen bin ich auch noch hier – und berichte voller Freude, dass ich Prokonsul geworden bin. Ein Prokonsul ist ein römischer Stadthalter, der für ein Jahr lang im Amt ist und den Konsul in den Provinzen vertritt. Auf alle Fälle bin ich jetzt vorerst für fünf Jahre Prokonsul – da muss ich jetzt zeigen, was ich alles kann. 🌍Meine Gebiete sind dieses Mal ziemlich groß (heutige Niederlande, Frankreich und Belgien) – von Illyrien zu Gallien Cisalpina und Gallien Transalpina. Das heißt, ich kann große Eroberungskämpfe führen, und mir muss der Senat verzeihen – denn ich bin der einzig wahre Führer Roms!\n\nDoch bevor ich mich auf den Weg nach Gallien mach, heirate ich noch Calpurnia – die Tochter von dem römischen Senator Lucius Calpurnius Piso Caesoninus. Das mach ich aber auch nur – wie kann es anders sein – damit Calpurnias Vater die Wahl zum Konsul für das darauffolgende Jahr vereinfacht wird.\n\nJetzt geht's so richtig los:\n\nNovarum rerum cupidus!\n\nIch bin neuer Dinge begierig!",
+    "scientific": "Im Jahr 59 v. Chr. erhielt Caesar durch das Vatinische Gesetz (lex Vatinia) das Prokonsulat über Gallia Cisalpina (das Gebiet nördlich des Apennin bis zu den Alpen) und Illyricum für fünf Jahre. Nach dem plötzlichen Tod des designierten Statthalters von Gallia Transalpina (dem heutigen Südfrankreich) übertrug ihm der Senat auch diese Provinz.\n\nDas Prokonsulat ermöglichte Caesar mehrere entscheidende Vorteile: Als Amtsträger war er vor Strafverfolgung geschützt, er konnte Truppen ausheben und anführen sowie Kriegsbeute für seine Zwecke verwenden. Die Kontrolle über Gallien gab ihm zudem Zugang zu enormem Reichtum und militärischer Macht.\n\nGleichzeitig heiratete Caesar Calpurnia, die Tochter des Lucius Calpurnius Piso Caesoninus, der dadurch für das Konsuljahr 58 v. Chr. wählbar wurde. Diese politische Ehe war typisch für Caesars strategisches Vorgehen.\n\nMit dem Prokonsulat begann Caesars berühmter Gallischer Krieg (58–50 v. Chr.), der in seinem Werk „De Bello Gallico\" dokumentiert wurde und ihm unermesslichen Ruhm sowie enorme Mittel für seinen späteren Kampf um die politische Macht Roms einbrachte."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Amtszeit", "value": "58–50 v. Chr." },
+      { "label": "Provinzen", "value": "Gallia Cisalpina, Gallia Transalpina, Illyricum" },
+      { "label": "Gesetz", "value": "Lex Vatinia (59 v. Chr.)" },
+      { "label": "Wichtigste Folge", "value": "Beginn der Gallischen Kriege" }
+    ],
+    "quote": {
+      "text": "Novarum rerum cupidus!",
+      "translation": "Ich bin neuer Dinge begierig!",
+      "source": "Caesar",
+      "author": "Gaius Iulius Caesar",
+      "date": "58 v. Chr."
+    }
+  }
+}

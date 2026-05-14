@@ -1,1 +1,118 @@
-[]
+[
+  {
+    "term": "Maieutik",
+    "slug": "maieutik",
+    "definition": "Die Maieutik (griech. μαιευτική – Hebammenkunst) ist die von Sokrates entwickelte philosophische Gesprächsmethode. Analog zur Geburtshilfe seiner Mutter Phainarete hilft Sokrates seinen Gesprächspartnern, Wissen aus sich selbst heraus zu entwickeln – nicht durch Belehrung, sondern durch gezieltes Fragen. Das Verfahren gliedert sich in den Elenchos (Prüfung/Widerlegung bestehender Meinungen) und die anschließende konstruktive Phase, in der der Gesprächspartner durch eigenes Denken zu neuen Erkenntnissen gelangt. Platon beschreibt die Maieutik ausführlich im Dialog Theaitetos (148e–151d).",
+    "category": "Philosophie",
+    "etymology": "Griechisch μαιευτική (maieutikē), von μαῖα (maia) – Hebamme; μαιεύομαι (maieuomai) – als Hebamme wirken",
+    "relatedTerms": [
+      "aporie",
+      "dialektik",
+      "elenchos",
+      "sokrates"
+    ],
+    "variants": [
+      "Sokratische Methode",
+      "Hebammenkunst",
+      "Maieutisch"
+    ]
+  },
+  {
+    "term": "Aporie",
+    "slug": "aporie",
+    "definition": "Die Aporie (griech. ἀπορία – Ausweglosigkeit, kein Durchgang) bezeichnet in der sokratischen Philosophie den Zustand der Ratlosigkeit, in den Gesprächspartner durch den sokratischen Elenchos geführt werden. Nach längerem Gespräch stellt sich heraus, dass keine befriedigende Definition des gesuchten Begriffs (Gerechtigkeit, Tapferkeit, Frömmigkeit etc.) gefunden werden konnte. Die Aporie gilt nicht als Scheitern, sondern als produktiver Ausgangspunkt: Wer weiß, dass er etwas nicht weiß, beginnt erst wirklich zu denken. Die frühen platonischen Dialoge (Laches, Charmides, Euthyphron, Menon) enden charakteristisch in der Aporie.",
+    "category": "Philosophie",
+    "etymology": "Griechisch ἀπορία (aporia), von ἄ-πορος (a-poros) – ohne Durchgang; ἀπορέω (aporeo) – ratlos sein, keinen Ausweg finden",
+    "relatedTerms": [
+      "maieutik",
+      "dialektik",
+      "elenchos",
+      "sokrates"
+    ],
+    "variants": [
+      "Aporesis",
+      "Aporetisch"
+    ]
+  },
+  {
+    "term": "Elenchos",
+    "slug": "elenchos",
+    "definition": "Der Elenchos (griech. ἔλεγχος – Prüfung, Widerlegung) ist das Kernverfahren der sokratischen Methode: Sokrates prüft die Aussagen seines Gesprächspartners durch systematisches Befragen auf innere Widersprüche. Er lässt den Gesprächspartner zunächst eine Definition geben, findet dann Gegenbeispiele oder zeigt Widersprüche auf und führt so zur Revision der ursprünglichen Antwort. Der Elenchos dient der Aufdeckung von Scheinwissen (Doxa) und ist die erste Phase der Maieutik, bevor – in der zweiten Phase – konstruktives Erkennen entstehen kann.",
+    "category": "Philosophie",
+    "etymology": "Griechisch ἔλεγχος (elenchos) – Prüfung, Befragung, Widerlegung; von ἐλέγχω (elenchō) – prüfen, widerlegen",
+    "relatedTerms": [
+      "maieutik",
+      "aporie",
+      "dialektik",
+      "sokrates"
+    ],
+    "variants": [
+      "Sokratische Ironie",
+      "Elenktisch"
+    ]
+  },
+  {
+    "term": "Dialektik",
+    "slug": "dialektik",
+    "definition": "Die Dialektik (griech. διαλεκτική – Kunst des Gesprächs) bezeichnet im sokratischen Sinne die Methode, durch das lebendige Gespräch Wissen entstehen zu lassen. Das Besondere daran ist, dass Wissen durch ein fragend-entwickelndes Verfahren gewonnen wird und nicht durch Belehrung. Sokrates selbst hat von den zur Debatte gestellten Begriffen kein Wissen (sokratisches Nichtwissen), sondern er prüft nur die vom Gesprächspartner gegebenen Antworten und Definitionen auf ihren Wahrheitsgehalt. Platon lässt Sokrates diese Kunst auch als Maieutik bezeichnen. In der späteren Philosophiegeschichte erhielt der Begriff durch Hegel und Marx eine veränderte Bedeutung (These–Antithese–Synthese).",
+    "category": "Philosophie",
+    "etymology": "Griechisch διαλεκτική (dialektikē), von διαλέγομαι (dialegomai) – sich unterhalten, erörtern; διά (dia) – durch, hindurch + λέγω (lego) – sagen, reden",
+    "relatedTerms": [
+      "maieutik",
+      "aporie",
+      "elenchos",
+      "sokrates"
+    ],
+    "variants": [
+      "Sokratisches Gespräch",
+      "Dialektische Methode"
+    ]
+  },
+  {
+    "term": "Daimonion",
+    "slug": "daimonion",
+    "definition": "Das Daimonion (griech. δαιμόνιον – das Göttliche, die innere Stimme) ist bei Sokrates eine Art innerer Warnstimme oder göttliches Zeichen, das ihn seit Kindheit begleitet. Es äußert sich nicht als Befehl, sondern als Abmahnung: Es hält Sokrates davon ab, etwas Falsches zu tun. In der Anklage gegen Sokrates spielte das Daimonion eine Rolle: Man warf ihm vor, dadurch neue Gottheiten einzuführen. Philosophisch wird das Daimonion als frühes Zeugnis für das Konzept des Gewissens gedeutet.",
+    "category": "Philosophie",
+    "etymology": "Griechisch δαιμόνιον (daimonion), Diminutiv von δαίμων (daimon) – Geist, göttliches Wesen",
+    "relatedTerms": [
+      "sokrates",
+      "apologie"
+    ],
+    "variants": [
+      "Dämon des Sokrates",
+      "Sokratisches Daimonion"
+    ]
+  },
+  {
+    "term": "Sokratische Ironie",
+    "slug": "sokratische-ironie",
+    "definition": "Die Sokratische Ironie (griech. εἰρωνεία, eirōneia – Verstellung) ist ein Stilmittel des sokratischen Gesprächs: Sokrates gibt vor, selbst unwissend zu sein und von seinem Gesprächspartner belehrt werden zu wollen. Diese gespielte Unwissenheit dient dazu, den Gesprächspartner dazu zu bringen, sein vermeintliches Wissen offenzulegen – woraufhin Sokrates durch Fragen zeigt, dass dieses Wissen tatsächlich nur Scheinwissen ist. Die sokratische Ironie ist also keine bloße Spötterei, sondern ein methodisches Mittel zur Wahrheitsfindung.",
+    "category": "Philosophie",
+    "etymology": "Griechisch εἰρωνεία (eirōneia) – Verstellung, Ironie; εἴρων (eirōn) – jemand der sich verstellt",
+    "relatedTerms": [
+      "maieutik",
+      "elenchos",
+      "sokrates",
+      "dialektik"
+    ],
+    "variants": [
+      "Sokratische Selbstverkleinerung",
+      "Ironische Distanz"
+    ]
+  },
+  {
+    "term": "Apologie",
+    "slug": "apologie",
+    "definition": "Eine Apologie (griech. ἀπολογία, apologia – Verteidigungsrede) ist eine Schutzrede oder Rechtfertigung. Im engeren Sinne bezeichnet die Apologie des Sokrates Platons überlieferte Version der Verteidigungsrede, die Sokrates 399 v. Chr. vor dem athenischen Geschworenengericht hielt. Sokrates war angeklagt wegen Einführung neuer Gottheiten und Verführung der Jugend. In seiner Verteidigung erklärt er seine philosophische Mission als Dienst an Apollon und formuliert das berühmte Diktum: Ein ungeprüftes Leben ist kein lebenswertes Leben. Xenophon verfasste eine zweite Version der Apologie mit abweichenden Details.",
+    "category": "Philosophie",
+    "etymology": "Griechisch ἀπολογία (apologia), von ἀπολογέομαι (apologeomai) – sich verteidigen; ἀπό (apo) – weg von + λόγος (logos) – Rede",
+    "relatedTerms": [
+      "sokrates",
+      "daimonion"
+    ],
+    "variants": [
+      "Apologie des Sokrates",
+      "Verteidigungsrede"
+    ]
+  }
+]

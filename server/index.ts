@@ -3,8 +3,6 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
-import { getLocalPostsDb } from './db/local-posts-client';
-import { posts } from './db/posts-schema';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +15,22 @@ const BASE_URL = (process.env.SITE_URL || 'https://meum-diarium.xn--schchner-2za
 app.enable('strict routing');
 
 // Known author IDs
-const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca'];
+const AUTHOR_IDS = ['caesar', 'augustus', 'cicero', 'catilina', 'seneca', 'sallust', 'sokrates'];
+
+// Cache for lexicon entries (loaded once at startup)
+let cachedLexicon: any[] | null = null;
+async function getLexiconEntries(): Promise<any[]> {
+    if (cachedLexicon !== null) return cachedLexicon;
+    try {
+        const lexiconPath = path.resolve(__dirname, '../public/api/lexicon.json');
+        const content = await fs.readFile(lexiconPath, 'utf-8');
+        const data = JSON.parse(content);
+        cachedLexicon = Array.isArray(data) ? data : [];
+    } catch {
+        cachedLexicon = [];
+    }
+    return cachedLexicon;
+}
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -25,115 +38,96 @@ app.use(express.json({ limit: '50mb' }));
 // **IMPORTANT**: API routes must be defined BEFORE static file serving
 // to prevent static directories from intercepting API requests
 
-// API Posts endpoint
-app.get('/api/posts', async (_req, res) => {
-    console.log('📝 [Dev] GET /api/posts - serving from local posts database');
-    
+// Helper: load all posts from public/posts/ directory
+async function loadAllPostsFromFiles(): Promise<any[]> {
+    const postsDir = path.resolve(__dirname, '../public/posts');
+    let allPosts: any[] = [];
+
+    // Try index.json first for fast listing
     try {
-        const db = getLocalPostsDb();
-        
-        // Get all posts from the database
-        const allPosts = await db.select().from(posts).all();
-        
-        // Normalize tags from database text to arrays
-        const normalizedPosts = allPosts.map((post: any) => {
-            const normalizedPost: any = { ...post };
-            
-            // Parse tags from text to array
-            if (typeof normalizedPost.tags === 'string') {
+        const indexPath = path.join(postsDir, 'index.json');
+        const indexContent = await fs.readFile(indexPath, 'utf-8');
+        const index = JSON.parse(indexContent);
+        if (index.posts && Array.isArray(index.posts)) {
+            allPosts = await Promise.all(index.posts.map(async (p: any) => {
+                const basePost = { ...p, authorId: p.author };
+                const hasCoverImage = typeof basePost.coverImage === 'string' && basePost.coverImage.trim().length > 0;
+
+                if (hasCoverImage || !basePost.author || !basePost.slug) {
+                    return basePost;
+                }
+
                 try {
-                    const parsed = JSON.parse(normalizedPost.tags);
-                    normalizedPost.tags = Array.isArray(parsed) ? parsed : [];
+                    const postPath = path.join(postsDir, basePost.author, `${basePost.slug}.json`);
+                    const postContent = await fs.readFile(postPath, 'utf-8');
+                    const fullPost = JSON.parse(postContent);
+                    const coverImage = typeof fullPost.coverImage === 'string' ? fullPost.coverImage.trim() : '';
+
+                    if (!coverImage) {
+                        return basePost;
+                    }
+
+                    return {
+                        ...basePost,
+                        coverImage,
+                    };
                 } catch {
-                    // If it's not valid JSON, try to split by common delimiters
-                    if (normalizedPost.tags.includes('[') && normalizedPost.tags.includes(']')) {
-                        // It might be a stringified array that had issues
-                        try {
-                            // Clean up the string and parse again
-                            const cleanTags = normalizedPost.tags
-                                .replace(/[\[\]"]/g, '')
-                                .replace(/,\s*/g, ',')
-                                .trim();
-                            normalizedPost.tags = cleanTags ? cleanTags.split(',') : [];
-                        } catch {
-                            normalizedPost.tags = [];
-                        }
-                    } else if (normalizedPost.tags.trim()) {
-                        // Split by commas if it's a comma-separated string
-                        normalizedPost.tags = normalizedPost.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean);
-                    } else {
-                        normalizedPost.tags = [];
-                    }
+                    return basePost;
                 }
-            }
-            
-            // Ensure tags is always an array
-            if (!Array.isArray(normalizedPost.tags)) {
-                normalizedPost.tags = [];
-            }
-            
-            return normalizedPost;
-        });
-        
-        console.log(`✅ [Dev] Served ${normalizedPosts.length} posts from local database`);
-        res.json(normalizedPosts);
-        
-    } catch (error) {
-        console.error('❌ [Dev] Error serving posts from database:', error);
-        
-        // Fallback to JSON files if database fails
-        console.log('🔄 [Dev] Falling back to JSON files...');
-        try {
-            const postsDir = path.resolve(__dirname, '../public/api/posts');
-            const authorDirs = await fs.readdir(postsDir);
-            
-            let allPosts: any[] = [];
-            
-            for (const authorDir of authorDirs) {
-                const authorPath = path.join(postsDir, authorDir);
-                const stat = await fs.stat(authorPath);
-                
-                if (stat.isDirectory()) {
-                    const postFiles = await fs.readdir(authorPath);
-                    
-                    for (const file of postFiles) {
-                        if (file.endsWith('.json')) {
-                            const filePath = path.join(authorPath, file);
-                            const content = await fs.readFile(filePath, 'utf-8');
-                            const post = JSON.parse(content);
-                            
-                            // Normalize data structure
-                            post.author = authorDir;
-                            post.authorId = authorDir;
-                            
-                            // Ensure tags is always an array, not a string
-                            if (typeof post.tags === 'string') {
-                                try {
-                                    post.tags = JSON.parse(post.tags);
-                                } catch {
-                                    post.tags = [];
-                                }
-                            }
-                            if (!Array.isArray(post.tags)) {
-                                post.tags = [];
-                            }
-                            
-                            allPosts.push(post);
-                        }
-                    }
-                }
-            }
-            
-            // Sort by date (newest first)
-            allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
-            
-            console.log(`✅ [Dev] Fallback: Served ${allPosts.length} posts from JSON files`);
-            res.json(allPosts);
-            
-        } catch (fallbackError) {
-            console.error('❌ [Dev] Fallback also failed:', fallbackError);
-            res.json([]);
+            }));
+            return allPosts;
         }
+    } catch {
+        // Fall through to directory scan
+    }
+
+    // Fallback: scan directories
+    const authorDirs = await fs.readdir(postsDir);
+    for (const authorDir of authorDirs) {
+        const authorPath = path.join(postsDir, authorDir);
+        let stat;
+        try {
+            stat = await fs.stat(authorPath);
+        } catch {
+            continue;
+        }
+        if (!stat.isDirectory()) continue;
+
+        const postFiles = await fs.readdir(authorPath);
+        for (const file of postFiles) {
+            if (!file.endsWith('.json')) continue;
+            try {
+                const content = await fs.readFile(path.join(authorPath, file), 'utf-8');
+                const post = JSON.parse(content);
+                post.author = post.author || authorDir;
+                post.authorId = post.author;
+                if (!Array.isArray(post.tags)) post.tags = [];
+                allPosts.push(post);
+            } catch {
+                // skip malformed files
+            }
+        }
+    }
+    return allPosts;
+}
+
+// API Posts endpoint – reads from public/posts/ static files
+app.get('/api/posts', async (req, res) => {
+    console.log('📝 [Dev] GET /api/posts - serving from public/posts/');
+
+    try {
+        let allPosts = await loadAllPostsFromFiles();
+
+        const { author, tag } = req.query as Record<string, string>;
+        if (author) allPosts = allPosts.filter((p: any) => p.author === author);
+        if (tag) allPosts = allPosts.filter((p: any) => Array.isArray(p.tags) && p.tags.includes(tag));
+
+        allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+        console.log(`✅ [Dev] Served ${allPosts.length} posts from static files`);
+        res.json(allPosts);
+    } catch (error) {
+        console.error('❌ [Dev] Error serving posts from files:', error);
+        res.json([]);
     }
 });
 
@@ -283,13 +277,8 @@ app.get('/sitemap.xml', async (_req, res) => {
             lexicon = [];
         }
 
-        // Add all blog/article URLs from DB so search engines can index everything.
-        const db = getLocalPostsDb();
-        const allPosts = await db.select({
-            slug: posts.slug,
-            author: posts.author,
-            date: posts.date,
-        }).from(posts).all();
+        // Add all blog/article URLs from static post files so search engines can index everything.
+        const allPosts = await loadAllPostsFromFiles().catch(() => []);
 
         const postEntries = allPosts
             .filter((p: any) => p?.slug)
@@ -337,121 +326,8 @@ app.get('/sitemap.xml', async (_req, res) => {
 });
 
 // ========== API ENDPOINTS - STUB/FALLBACK ==========
-// These return empty data since we're using D1 in Cloudflare Functions
-// In production, these won't be hit - Cloudflare Functions handle /api/*
-
-app.get('/api/posts', async (_req, res) => {
-    console.log('📝 [Dev] GET /api/posts - serving from local posts database');
-    
-    try {
-        const db = getLocalPostsDb();
-        
-        // Get all posts from the database
-        // Note: This assumes there's a posts table in the database
-        // We'll need to adjust this based on the actual schema
-        const allPosts = await db.select().from(posts).all();
-        
-        // Normalize tags from database text to arrays
-        const normalizedPosts = allPosts.map((post: any) => {
-            const normalizedPost: any = { ...post };
-            
-            // Parse tags from text to array
-            if (typeof normalizedPost.tags === 'string') {
-                try {
-                    const parsed = JSON.parse(normalizedPost.tags);
-                    normalizedPost.tags = Array.isArray(parsed) ? parsed : [];
-                } catch {
-                    // If it's not valid JSON, try to split by common delimiters
-                    if (normalizedPost.tags.includes('[') && normalizedPost.tags.includes(']')) {
-                        // It might be a stringified array that had issues
-                        try {
-                            // Clean up the string and parse again
-                            const cleanTags = normalizedPost.tags
-                                .replace(/[\[\]"]/g, '')
-                                .replace(/,\s*/g, ',')
-                                .trim();
-                            normalizedPost.tags = cleanTags ? cleanTags.split(',') : [];
-                        } catch {
-                            normalizedPost.tags = [];
-                        }
-                    } else if (normalizedPost.tags.trim()) {
-                        // Split by commas if it's a comma-separated string
-                        normalizedPost.tags = normalizedPost.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean);
-                    } else {
-                        normalizedPost.tags = [];
-                    }
-                }
-            }
-            
-            // Ensure tags is always an array
-            if (!Array.isArray(normalizedPost.tags)) {
-                normalizedPost.tags = [];
-            }
-            
-            return normalizedPost;
-        });
-        
-        console.log(`✅ [Dev] Served ${normalizedPosts.length} posts from local database`);
-        res.json(normalizedPosts);
-        
-    } catch (error) {
-        console.error('❌ [Dev] Error serving posts from database:', error);
-        
-        // Fallback to JSON files if database fails
-        console.log('🔄 [Dev] Falling back to JSON files...');
-        try {
-            const postsDir = path.resolve(__dirname, '../public/api/posts');
-            const authorDirs = await fs.readdir(postsDir);
-            
-            let allPosts: any[] = [];
-            
-            for (const authorDir of authorDirs) {
-                const authorPath = path.join(postsDir, authorDir);
-                const stat = await fs.stat(authorPath);
-                
-                if (stat.isDirectory()) {
-                    const postFiles = await fs.readdir(authorPath);
-                    
-                    for (const file of postFiles) {
-                        if (file.endsWith('.json')) {
-                            const filePath = path.join(authorPath, file);
-                            const content = await fs.readFile(filePath, 'utf-8');
-                            const post = JSON.parse(content);
-                            
-                            // Normalize data structure
-                            post.author = authorDir;
-                            post.authorId = authorDir;
-                            
-                            // Ensure tags is always an array, not a string
-                            if (typeof post.tags === 'string') {
-                                try {
-                                    post.tags = JSON.parse(post.tags);
-                                } catch {
-                                    post.tags = [];
-                                }
-                            }
-                            if (!Array.isArray(post.tags)) {
-                                post.tags = [];
-                            }
-                            
-                            allPosts.push(post);
-                        }
-                    }
-                }
-            }
-            
-            // Sort by date (newest first)
-            allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
-            
-            console.log(`✅ [Dev] Fallback: Served ${allPosts.length} posts from JSON files`);
-            res.json(allPosts);
-            
-        } catch (fallbackError) {
-            console.error('❌ [Dev] Fallback also failed:', fallbackError);
-            res.json([]);
-        }
-    }
-});
+// Posts are now served from public/posts/ static files
+// In production, Cloudflare Functions handle /api/* with the same file-based approach
 
 app.post('/api/posts', (req, res) => {
     // In dev, always return success for create
@@ -465,30 +341,31 @@ app.post('/api/posts', (req, res) => {
 
 app.get('/api/posts/:author/:slug', async (req, res) => {
     const { author, slug } = req.params;
-    console.log(`📝 [Dev] GET /api/posts/${author}/${slug} - serving from JSON files`);
-    
+    console.log(`📝 [Dev] GET /api/posts/${author}/${slug} - serving from public/posts/`);
+
+    // Sanitize path components to prevent path traversal
+    const safeAuthor = author.replace(/[^a-z0-9-]/gi, '');
+    const safeSlug = slug.replace(/[^a-z0-9-]/gi, '');
+    if (!safeAuthor || !safeSlug) {
+        return res.status(400).json({ error: 'Invalid parameters' });
+    }
+
     try {
-        const postPath = path.resolve(__dirname, '../public/api/posts', author, `${slug}.json`);
-        
-        try {
-            const content = await fs.readFile(postPath, 'utf-8');
-            const post = JSON.parse(content);
-            
-            // Ensure author field is set
-            post.author = author;
-            post.authorId = author;
-            
-            console.log(`✅ [Dev] Served post: ${post.title}`);
-            res.json(post);
-            
-        } catch (fileError) {
-            console.log(`⚠️ [Dev] Post not found: ${author}/${slug}`);
-            res.status(404).json({ error: 'Not found', message: `Post ${author}/${slug} not found` });
+        const postsBase = path.resolve(__dirname, '../public/posts');
+        const postPath = path.join(postsBase, safeAuthor, `${safeSlug}.json`);
+        // Guard against path traversal beyond the posts directory
+        if (!postPath.startsWith(postsBase + path.sep)) {
+            return res.status(400).json({ error: 'Invalid parameters' });
         }
-        
-    } catch (error) {
-        console.error('❌ [Dev] Error serving post:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        const content = await fs.readFile(postPath, 'utf-8');
+        const post = JSON.parse(content);
+        post.author = post.author || safeAuthor;
+        post.authorId = post.author;
+        console.log(`✅ [Dev] Served post: ${post.title}`);
+        res.json(post);
+    } catch {
+        console.log(`⚠️ [Dev] Post not found: ${safeAuthor}/${safeSlug}`);
+        res.status(404).json({ error: 'Not found', message: `Post ${safeAuthor}/${safeSlug} not found` });
     }
 });
 
@@ -514,12 +391,19 @@ app.delete('/api/posts/:author/:slug', (req, res) => {
     });
 });
 
-app.get('/api/lexicon', (_req, res) => {
-    res.json([]);
+app.get('/api/lexicon', async (_req, res) => {
+    const entries = await getLexiconEntries();
+    res.json(entries);
 });
 
-app.get('/api/lexicon/:slug', (_req, res) => {
-    res.status(404).json({ error: 'Not found', message: 'Use Cloudflare Functions in production' });
+app.get('/api/lexicon/:slug', async (req, res) => {
+    const entries = await getLexiconEntries();
+    const entry = entries.find((e: any) => e.slug === req.params.slug);
+    if (!entry) {
+        res.status(404).json({ error: 'Not found' });
+    } else {
+        res.json(entry);
+    }
 });
 
 app.get('/api/authors', (_req, res) => {

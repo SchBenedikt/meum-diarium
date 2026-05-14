@@ -1,0 +1,32 @@
+{
+  "id": "caesar-caesar-verschluesselung",
+  "slug": "caesar-verschluesselung",
+  "title": "Cäsar-Verschlüsselung",
+  "excerpt": "Ich habe die berühmte Cäsar-Verschlüsselung erfunden – eine Methode, bei der jeder Buchstabe um drei Stellen im Alphabet verschoben wird.",
+  "date": "2024-03-04",
+  "historicalDate": "ca. 50 v. Chr.",
+  "historicalYear": -50,
+  "author": "caesar",
+  "tags": ["Cäsar-Verschlüsselung", "Cäsarchiffre"],
+  "readingTime": 4,
+  "coverImage": "caesar-hero.png",
+  "content": {
+    "diary": "Überlieferung von Sueton:\n[…] si qua occultius perferenda erant, per notas scripsit, id est sic structo litterarum ordine, ut nullum verbum effici posset: quae si quis investigare et persequi velit, quartam elementorum litteram, id est D pro A et perinde reliquas commutet.\n\nWer hat das verstanden? Für all diejenigen, die es nicht verstanden haben: Das ist die berühmte Cäsar-Verschlüsselung, mit vielen, vielen Namen: Cäsarchiffre, Cäsar-Verschiebung, Caesar Shift, Cäsarverschlüsselung, Einfacher Cäsar, Cäsar Code.\n\nDoch warum macht sich ein so guter Feldherr die Mühe, und entwickelt sogar noch eine neue „Sprache\"? Als Feldherr habe ich oft böse Feinde, die meine guten, geheimen Pläne kennen wollen. Eines Tages wollte ich eine Lösung für das Problem haben und habe die Cäsar-Chiffre erfunden. Die neuartigste und modernste Verschlüsselung der Welt. ©️ Gaius Julius Cäsar.\n\nAber wie funktioniert diese? Das ist ganz einfach: Wenn du ein Wort hast, dann nimmt man einfach jeden Buchstaben und verschiebt diesen um drei Buchstaben nach rechts, wie oben beschrieben. Das bedeutet, dass aus einem A ein D wird. Damit es einfacher ist (viele sind ja noch nicht mal des Schreibens & Lesens mächtig), nutze ich in dieser Verschlüsselung nur Kleinbuchstaben.\n\nTatsächlich würde ich ja einfach mal bescheiden sagen „Ja, dass habe ich erfunden\", aber dass kann ich leider nicht…. Denn wenn ich von dieser Verschlüsselung schreibe, müsst ihr auch gleich wissen, warum diese so besonders ist. Tatsächlich wird diese Verschlüsselung in den nächsten Jahr(hundert)en immer noch verwendet; einer meiner Nachfolger, Augustus nutzte diese auch – nur mit einer kleinen Abwandlung.\n\nFalls ihr aber denkt, dass das die beste Verschlüsselung ist, habt ihr euch geirrt. Das besondere daran ist nämlich nicht, dass man diese nicht leicht entschlüsseln kann, sondern dass man die Entschlüsselungs-Methode geheim halten muss, damit der Code nicht entschlüsselt werden kann.\n\nEs gibt zigtausende solche Verschlüsselungsmethoden, aber eines müsst ihr immer wissen: Entweder ist die Verschlüsselung, von mir, von Cäsar oder sie ist von mir hinterhältig gestohlen worden!\n\nZu meiner Verschlüsselung gibt es auch ein berühmtes Zitat von mir:\n\nCras legam!\n\nMorgen werde ich lesen.",
+    "scientific": "Die Cäsar-Chiffre ist eine der ältesten und bekanntesten Verschlüsselungsmethoden in der Geschichte der Kryptographie. Bei dieser monoalphabetischen Substitutionschiffre wird jeder Buchstabe des Klartextes durch den Buchstaben ersetzt, der im Alphabet um eine feste Anzahl von Stellen (in Caesars Fall: 3) verschoben ist.\n\nDer antike Historiker Sueton beschreibt in seiner Caesar-Biographie (De vita Caesarum) explizit die Verwendung dieser Verschlüsselungsmethode durch Caesar. Auch sein Nachfolger Augustus verwendete nach Sueton eine ähnliche Methode, verschob Buchstaben jedoch nur um eine Stelle.\n\nDie Cäsar-Chiffre gilt aus moderner kryptographischer Sicht als extrem unsicher, da es nur 25 mögliche Schlüssel gibt und sie durch einfache Häufigkeitsanalyse leicht zu knacken ist. Bereits arabische Gelehrte des 9. Jahrhunderts wie al-Kindi beschrieben Methoden zur Kryptoanalyse solcher Chiffren.\n\nTrotz ihrer Schwäche hat die Cäsar-Chiffre eine wichtige didaktische Bedeutung und wird bis heute als Einführungsbeispiel in der Kryptographie verwendet. Variationen wie ROT13 (Verschiebung um 13 Stellen im 26-buchstabigen lateinischen Alphabet) werden noch heute verwendet."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Methode", "value": "Buchstabenverschiebung um 3 Stellen" },
+      { "label": "Quelle", "value": "Sueton, De vita Caesarum" },
+      { "label": "Nachfolger", "value": "Augustus nutzte ähnliche Methode (1 Stelle)" },
+      { "label": "Moderne Entsprechung", "value": "ROT13 (13 Stellen Verschiebung)" }
+    ],
+    "quote": {
+      "text": "Cras legam!",
+      "translation": "Morgen werde ich lesen.",
+      "source": "Caesar",
+      "author": "Gaius Iulius Caesar",
+      "date": "ca. 50 v. Chr."
+    }
+  }
+}

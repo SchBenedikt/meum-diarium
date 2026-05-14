@@ -338,6 +338,14 @@ export const de = {
     sallust_description: 'Einer der bedeutendsten römischen Geschichtsschreiber. Sallust prägte durch seine moralisch-kritische Perspektive die antike Historiographie und gilt als Meister der lateinischen Prosa.',
     sallust_birthplace: 'Amiternum',
     sallust_achievements: 'Meister der lateinischen Historiographie',
+    // Sokrates
+    sokrates_name: 'Sokrates',
+    sokrates_latinName: 'Socrates',
+    sokrates_title: 'Philosoph und Begründer der sokratischen Methode',
+    sokrates_years: '~470–399 v. Chr.',
+    sokrates_description: 'Athenischer Philosoph, bekannt für Dialektik, Maieutik und das sokratische Nichtwissen. Überliefert vor allem durch Platon und Xenophon.',
+    sokrates_birthplace: 'Alopeke bei Athen',
+    sokrates_achievements: 'Prägende Figur der westlichen Philosophie',
     // Catilina Biography Page
     catilina: {
         snapshots: {

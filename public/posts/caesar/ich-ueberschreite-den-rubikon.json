@@ -1,0 +1,32 @@
+{
+  "id": "caesar-ich-ueberschreite-den-rubikon",
+  "slug": "ich-ueberschreite-den-rubikon",
+  "title": "Ich überschreite den Rubikon",
+  "excerpt": "Alea iacta est! Ich marschiere mit meiner Armee über den Rubikon und beginne damit den Bürgerkrieg gegen Pompeius und den Senat.",
+  "date": "2024-02-19",
+  "historicalDate": "10./11. Januar 49 v. Chr.",
+  "historicalYear": -49,
+  "author": "caesar",
+  "tags": ["Armee", "Bürgerkrieg", "Gegner", "Pompeius", "Rom", "Rubikon", "Senat"],
+  "readingTime": 5,
+  "coverImage": "caesar-hero.png",
+  "content": {
+    "diary": "Ich habe schon wieder einen Krieg angefangen! Dieses Mal direkt in der Nähe von Rom, als ich den Fluss Rubicone (Rubikon) 🛶überschreiten wollte. Diese blöden Senatsbeschlüsse halt immer. Ich wollte gerade meine erneute Kandidatur als Konsul anmelden (ja ja, ich sollte auch angeklagt werden….), als ich erfahren hab, dass ich nicht mit meinem fünf Kohorten, also 480*5=2400 Mann über den Rubikon, also den Grenzfluss zwischen meiner Provinz und dem zentralen römischen Staatsgebiet überschreiten darf. Wer hat sich so einen Schmarrn überlegt? Warum sollte ich nicht auf meine Reisen meine Armee mitnehmen dürfen?\n\nAber was soll man da machen? Soll ich die einfach so stehen lassen, damit sie jeden Bürger in Angst und Schrecken versetzten? Nein. Definitiv nicht. Das habe ich auch so mit meinem berühmten Spruch „Aneriftho ho kybos\" -> „Der Würfel soll geworfen sein\" gesagt und bin einfach rüber marschiert. Jetzt fragt ihr euch bestimmt, warum ich das auf Griechisch gesagt habe? Tja, ganz einfach: Jeder römische Gelehrte in der Oberschicht kann Griechisch. Obwohl, manch andere Politiker haben ihr Studium abgebrochen. Ich nicht. Also kann ich es auch. Irgendwann hat sich das dann mal in „Alea iacta est\" -> „Der Würfel ist gefallen\" (oder auch „Die Würfel sind gefallen\") umgewandelt. 🎲\n\nAber zurück zum Thema. Dieser Senat hat mich jetzt zum Staatsfeind erklärt. Und jetzt ist da auch noch ein Bürgerkrieg, den ich gewinnen muss. Ich habe aber auch so viel zu tun! Die können doch nicht vom Volk geliebte Politiker einfach weg tun… .\n\nDie Details will ich euch jetzt ersparen, aber ich bin Pompeius, meinem Feind, immer wieder hinterher gelaufen. Ich wollte eine friedliche Lösung finden. Pompeius nicht. Doch jetzt das Wichtige: Ich habe mal wieder bewiesen, wie gut ich bin, indem ich Pompeius am 9. August 48 v. Chr. erfolgreich geschlagen habe! Das war der wichtigste und beste Feldherr ganz Roms! Man muss auch wohlgemerkt sagen, dass ich eigentlich unterlegen war. Ich hatte ungefähr 22000 Legionäre – die Optimaten hatten 44000 mit 7000 Reitern; bei mir waren es nur 1000 Reiter.\n\nNoch dazu darf man nicht vergessen, dass bei mir nur ein sehr kleiner Teil (ungefähr 100) gestorben ist, während es bei den Optimaten ganze 15000 Menschen wären. Durch meine gute Kriegsführung habe ich diesen auch gewonnen!\n\nPompeius ist mir wieder entwischt! Wie konnte das nur passieren! In seinem Lager war er nicht mehr, und jetzt ist er in Ägypten! Ich werde ihm zeigen, dass man vor mir nicht flüchten kann – das wird er mit seinem Tod zu spüren bekommen!\n\nEs gilt also nur noch zu sagen:\n\nEine bessere Zeit wird kommen!\n\nAlea iacta est!\n\nDer Würfel ist geworfen worden! (Die Würfel sind gefallen!)",
+    "scientific": "Die Überschreitung des Rubikons am 10. oder 11. Januar 49 v. Chr. gilt als einer der bedeutendsten Wendepunkte der römischen Geschichte. Der Rubikon (lat. Rubico) war ein kleiner Fluss in Norditalien, der die Grenze zwischen Caesars Provinz Gallia Cisalpina und dem unmittelbaren Staatsgebiet Roms bildete.\n\nNach dem Ablauf seiner Amtszeit als Prokonsul sollte Caesar nach Rückkehr nach Rom seine Streitkräfte entlassen und sich als Privatmann möglicherweise einer Strafverfolgung stellen. Caesar forderte stattdessen, sich in absentia für das Konsulat bewerben zu dürfen. Als der Senat ablehnte und Caesar aufforderte, seine Armee aufzulösen, entschied er sich für die Überschreitung des Rubikons – eine explizite Kriegserklärung an den Senat und gegen die römische Verfassung.\n\nDie überlieferten Worte „Alea iacta est\" (Der Würfel ist gefallen) stammen wohl aus einem griechischen Zitat des Komikers Menander und wurden Caesar von Sueton zugeschrieben. Der Ausruf symbolisiert den unwiderruflichen Charakter seiner Entscheidung.\n\nDer darauffolgende Bürgerkrieg gegen Pompeius und die Optimaten endete mit der entscheidenden Schlacht bei Pharsalos (9. August 48 v. Chr.), in der Caesar mit einer zahlenmäßig unterlegenen Armee einen vernichtenden Sieg errang. Pompeius floh nach Ägypten, wo er ermordet wurde."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Datum", "value": "10./11. Januar 49 v. Chr." },
+      { "label": "Fluss", "value": "Rubikon (Norditalien)" },
+      { "label": "Entscheidende Schlacht", "value": "Pharsalos, 9. August 48 v. Chr." },
+      { "label": "Ergebnis", "value": "Caesar siegt, Pompeius flieht nach Ägypten" }
+    ],
+    "quote": {
+      "text": "Alea iacta est!",
+      "translation": "Der Würfel ist gefallen!",
+      "source": "Sueton, Caesar 32",
+      "author": "Gaius Iulius Caesar",
+      "date": "49 v. Chr."
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "sokrates-das-delphische-orakel",
+  "slug": "das-delphische-orakel",
+  "title": "Das Delphische Orakel",
+  "excerpt": "Das Orakel von Delphi hat mich zum weisesten aller Menschen erklärt. Ich weiß, dass ich nichts weiß – und genau das macht mich wohl am weisesten.",
+  "date": "2024-05-06",
+  "historicalDate": "ca. 430 v. Chr.",
+  "historicalYear": -430,
+  "author": "sokrates",
+  "tags": [
+    "Apollon",
+    "Delphi",
+    "Orakel",
+    "Weisheit",
+    "Philosophie"
+  ],
+  "readingTime": 4,
+  "coverImage": "sokrates-hero.png",
+  "content": {
+    "diary": "Mein Freund Chairephon hat mich heute in größte Verwirrung gestürzt. Er ist nach Delphi gereist und hat das Orakel des Apollon befragt, ob es irgendjemanden gäbe, der weiser sei als ich. Die Antwort des Gottes lautete: Nein.\n\nIch sage euch: Ich war fassungslos. Wie kann das sein? Ich weiß doch selbst, dass ich nichts weiß! Ich bin kein Feldherr mit strategischem Genius, kein Dichter mit gottgleicher Inspiration, kein Handwerker mit bewundernswerter Fertigkeit. Was sollte mich weiser machen als alle anderen?\n\nDoch ich vertraue dem Gott nicht blindlings, sondern ich versuche, seinen Spruch zu verstehen. Also begann ich meine Nachforschungen: Ich suchte die auf, die als weise galten – Politiker, Dichter, Handwerker. Und was fand ich? Jeder von ihnen glaubte, in den Bereichen, die er nicht beherrschte, ebenfalls weise zu sein. Sie besaßen ein partielles Wissen und hielten es für universale Weisheit.\n\nDa erkannte ich: Vielleicht hat Apollon recht. Ich bin in einem kleinen Vorteil gegenüber diesen Menschen: Ich bilde mir nicht ein, das zu wissen, was ich nicht weiß. Meine einzige Weisheit ist das Bewusstsein meiner eigenen Unwissenheit – dieses Wissen um das Nichtwissen.\n\nDiese Erkenntnis hat mich zu meiner philosophischen Mission geführt: Ich werde meine Mitmenschen prüfen, ihre vermeintliche Weisheit untersuchen und zeigen, dass wahre Weisheit im Anerkennen der eigenen Grenzen beginnt. Das ist mein Dienst an Apollon und an Athen.",
+    "scientific": "Das Delphische Orakel und seine Aussage über Sokrates bilden den mythisch-religiösen Ausgangspunkt der sokratischen Philosophie. Platon überliefert dieses Ereignis in der Apologie des Sokrates (Apol. 20e–23b): Chairephon, ein enger Freund des Sokrates, befragte das Orakel der Pythia in Delphi, ob jemand weiser sei als Sokrates. Die Pythia verneinte dies.\n\nSokrates interpretiert diesen Orakelspruch als göttlichen Auftrag: Er müsse herausfinden, was der Gott damit gemeint haben konnte. In seiner Untersuchung befragt er Politiker, Dichter und Handwerker und stellt fest, dass alle glauben, mehr zu wissen, als sie tatsächlich tun. Diese Entdeckung führt zum Kerngedanken des sokratischen Nichtwissens (griech. agnosia): Sokrates weiß, dass er nichts weiß – und gerade dieses Wissen um die eigene Unwissenheit ist eine Form von Weisheit.\n\nDas Orakel \"Erkenne dich selbst\" (gnothi seauton) war bereits am Eingang des Apollontempels in Delphi eingraviert und wurde zur Leitinschrift der sokratischen Selbstreflexion. Die philosophische Methode des Sokrates – das prüfende Gespräch (elenchos) – ist direkt aus diesem religiösen Impuls hervorgegangen.\n\nDie Authentizität des Orakelberichts ist historisch nicht sicher nachweisbar, da Platon die Apologie nach Sokrates' Tod verfasste. Dennoch zeigt die Erzählung die für Sokrates charakteristische Verbindung von religiöser Pietät und kritischem Denken."
+  },
+  "sidebar": {
+    "facts": [
+      {
+        "label": "Ort",
+        "value": "Orakel von Delphi, Heiligtum des Apollon"
+      },
+      {
+        "label": "Befrager",
+        "value": "Chairephon, Freund des Sokrates"
+      },
+      {
+        "label": "Orakelspruch",
+        "value": "Niemand ist weiser als Sokrates"
+      },
+      {
+        "label": "Konsequenz",
+        "value": "Sokrates sieht es als göttlichen Auftrag zu philosophieren"
+      },
+      {
+        "label": "Quelle",
+        "value": "Platon, Apologie des Sokrates 20e–23b"
+      }
+    ],
+    "quote": {
+      "text": "Ich weiß, dass ich nichts weiß.",
+      "translation": "Scio me nihil scire.",
+      "source": "Sokrates (überliefert durch Platon)",
+      "author": "Sokrates",
+      "date": "ca. 430 v. Chr."
+    }
+  }
+}

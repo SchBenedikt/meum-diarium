@@ -1,0 +1,54 @@
+{
+  "id": "sokrates-die-aporie",
+  "slug": "die-aporie",
+  "title": "Die Aporie – Am Ende des Weges",
+  "excerpt": "Wir haben stundenlang gestritten, was Tapferkeit wirklich ist. Am Ende standen wir beide ratlos da. Ist das ein Misserfolg? Nein – es ist der Beginn echter Philosophie.",
+  "date": "2024-05-20",
+  "historicalDate": "ca. 415 v. Chr.",
+  "historicalYear": -415,
+  "author": "sokrates",
+  "tags": [
+    "Aporie",
+    "Dialektik",
+    "Philosophie",
+    "Ethik",
+    "Gesprächsmethode"
+  ],
+  "readingTime": 4,
+  "coverImage": "sokrates-hero.png",
+  "content": {
+    "diary": "Heute sprach ich wieder mit Laches, dem berühmten Feldherrn. Ich fragte ihn: Was ist Tapferkeit? Er antwortete zuversichtlich: Tapferkeit sei es, im Kampf standhaft zu bleiben und nicht zu fliehen.\n\nIch fragte weiter: Aber ist nicht auch derjenige tapfer, der einen klugen Rückzug antritt, um die eigene Armee zu retten? Er dachte nach und räumte ein: Ja, auch das könnte Tapferkeit sein. Also fragte ich: Was ist Tapferkeit dann wirklich?\n\nWir rangen zwei Stunden lang miteinander. Tapferkeit sei Ausdauer? Nein, auch unkluge Ausdauer ist keine Tugend. Tapferkeit sei das Wissen um das Gefährliche und Ungefährliche? Das klingt gut – aber dann müssten alle Fachleute, die Gefahren kennen, tapfer sein. Ein Arzt, der Krankheiten kennt, ist deshalb nicht tapfer.\n\nAm Ende standen wir in der Aporie: Wir fanden keinen Ausweg, keine befriedigende Definition. Laches war frustriert. Er hatte erwartet, dass ein Gespräch mit mir ihn klüger machen würde. Stattdessen war er nun unsicherer als zuvor.\n\nIch erklärte ihm, was ich für das Wichtigste halte: Diese Verwirrung ist kein Scheitern. Die Aporie ist der Moment, in dem echter Erkenntnisdrang entsteht. Wer glaubt, er kenne bereits die Antwort, sucht nicht mehr. Nur wer erkennt, dass er die Antwort noch nicht kennt, beginnt wirklich zu denken.\n\nDas griechische Wort Aporie bedeutet wörtlich: Ich habe keinen Übergang, keinen Weg. Aber gerade das Nicht-Weiterkommen ist oft der Beginn des echten Weges.",
+    "scientific": "Die Aporie (griech. aporia, von a- nicht und poros Durchgang, Weg) bezeichnet in der sokratischen Philosophie den Zustand der Ratlosigkeit und des Nicht-Weiterkommens, in den Gesprächspartner durch den sokratischen Elenchos geführt werden.\n\nIn den frühen platonischen Dialogen – den sogenannten aporetischen Dialogen – enden die Gespräche regelmäßig ohne positive Definition des gesuchten Begriffs:\n- Laches: Was ist Tapferkeit (andreia)? – keine Antwort\n- Charmides: Was ist Besonnenheit (sophrosyne)? – keine Antwort\n- Euthyphron: Was ist Frömmigkeit (eusebeia)? – keine Antwort\n- Menon: Was ist Tugend (arete)? – keine endgültige Antwort\n\nDie Aporie erfüllt in der sokratischen Methode eine didaktische Funktion: Sie löst den Gesprächspartner aus der unreflektierten Selbstsicherheit (doxa – Meinung, Scheinwissen) und schafft die Voraussetzung für echtes philosophisches Suchen.\n\nPhilosophisch bedeutsam ist, dass Sokrates die Aporie nicht als definitives Scheitern versteht, sondern als Übergang von Scheinwissen zu bewusstem Nichtwissen – einer höheren Form des Erkennens. In der Forschung wird daher zwischen negativer Aporie (bloßes Scheitern) und produktiver Aporie (Anstoß zur weiteren Forschung) unterschieden.\n\nDas Konzept beeinflusste maßgeblich die spätere Philosophiegeschichte: Aristoteles nutzte aporetische Methoden in der Metaphysik, und in der modernen analytischen Philosophie lebt das Verfahren der Aporie-Erzeugung in der Form von Gegenbeispielen weiter."
+  },
+  "sidebar": {
+    "facts": [
+      {
+        "label": "Griechischer Begriff",
+        "value": "aporia – kein Durchgang, kein Weg"
+      },
+      {
+        "label": "Funktion",
+        "value": "Auflösung von Scheinwissen, Anstoß zum Denken"
+      },
+      {
+        "label": "Aporetische Dialoge",
+        "value": "Laches, Charmides, Euthyphron, Menon"
+      },
+      {
+        "label": "Gegenteil",
+        "value": "Dogmatismus – das Annehmen einer fertigen Antwort"
+      },
+      {
+        "label": "Quelle",
+        "value": "Platon, Laches; Euthyphron; Menon"
+      }
+    ],
+    "quote": {
+      "text": "aporeo – ich habe keinen Übergang, ich finde keinen Weg.",
+      "translation": "Aporia – Ich stehe am Ende des Weges und sehe keinen Ausgang.",
+      "source": "Etymologie des griechischen Begriffs",
+      "author": "Sokrates",
+      "date": "ca. 415 v. Chr."
+    }
+  }
+}

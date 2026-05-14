@@ -242,4 +242,44 @@ export const authors: Record<string, AuthorInfo> = {
       },
     },
   },
+
+  sokrates: {
+    id: 'sokrates',
+    name: 'Sokrates',
+    latinName: 'Socrates',
+    title: 'Philosoph, Begründer der westlichen Ethik',
+    years: '~470–399 v. Chr.',
+    birthYear: -470,
+    deathYear: -399,
+    description:
+      'Athenischer Philosoph und Begründer der abendländischen Philosophietradition. Sokrates hinterließ keine eigenen Schriften – sein Denken ist uns durch Platon und Xenophon überliefert. Er entwickelte die sokratische Methode (Maieutik) und wurde wegen angeblicher Gottlosigkeit und Verführung der Jugend zum Tode verurteilt.',
+    heroImage: '/images/sokrates-hero.png',
+    theme: 'sokrates',
+    color: '#6D28D9',
+    highlights: [
+      {
+        title: 'Die Maieutik',
+        description: 'Die „Hebammenkunst" – durch Fragen das Wissen im Gegenüber zur Entfaltung bringen.',
+        link: '/sokrates',
+        icon: 'Brain',
+      },
+      {
+        title: 'Der Prozess des Sokrates',
+        description: '399 v. Chr. – verurteilt wegen Gottlosigkeit und Verführung der Jugend, hingerichtet durch Schierlingsbecher.',
+        link: '/sokrates',
+        icon: 'Scale',
+      },
+    ],
+    translations: {
+      en: {
+        title: 'Philosopher, Founder of Western Ethics',
+        description:
+          'Athenian philosopher and founder of the Western philosophical tradition. Socrates left no writings of his own – his thought is transmitted through Plato and Xenophon. He developed the Socratic method (maieutics) and was sentenced to death for alleged impiety and corrupting the youth.',
+      },
+      la: {
+        title: 'Philosophus, Conditor Ethicae Occidentalis',
+        description: 'Philosophus Atheniensis et conditor traditionis philosophicae Occidentalis. Socrates nullas scripturas reliquit – cogitatio eius per Platonem et Xenophontem tradita est.',
+      },
+    },
+  },
 };

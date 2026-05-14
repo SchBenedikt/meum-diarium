@@ -1,0 +1,32 @@
+{
+  "id": "caesar-ich-ruhe-nicht",
+  "slug": "ich-ruhe-nicht",
+  "title": "Ich ruhe nicht!",
+  "excerpt": "Ich stehe in Ägypten bei Kleopatra und überlege, wie weit ich noch gehen soll. Veni – Vidi – Vici: Einen Feldzug habe ich in 5 Tagen gewonnen!",
+  "date": "2024-02-26",
+  "historicalDate": "48–47 v. Chr.",
+  "historicalYear": -48,
+  "author": "caesar",
+  "tags": ["Ägypten", "Königin Kleopatra", "Pompeius", "Rom"],
+  "readingTime": 3,
+  "coverImage": "caesar-hero.png",
+  "content": {
+    "diary": "So jetzt stehe ich in Ägypten und weiß nicht, was ich noch machen soll. Ich muss sagen, mir ist ein bisschen langweilig. Aber alles was zählt: Ich habe bereits einiges geschafft. Da könnt Ihr mir mal echt auf die Schulter klopfen. Nein, natürlich nicht. Sonst werfe ich euch den Löwen zum Fraß vor. Aber meine Erfolge sind beachtlich, dass muss jeder zugeben.\n\nIch überlege nur aktuell, wie weit ich noch gehen sollte.\n\nAktuell wohne ich bei der ägyptischen Königin Kleopatra. Ich muss sagen, ich glaube, ich habe mich dort ein wenig zu viel eingemischt. Mit Kleopatra habe ich ein Kind bekommen, das ist aber ziemlich ungezogen. Das eigentliche Problem ist, dass ich jetzt in Ägypten Krieg führen muss. Übrigens: Die Bibliothek von Alexandria habe nicht ich abgebrannt. Das ist bewiesen.\n\nIch musste dann aber nach kurzer Zeit schon wieder nach Rom zurück. Ein paar Kriege und tote Gegner später, kann ich mich nun Größerem widmen. Aber das ist noch geheim 😉. Auf alle Fälle stehen mir die Söhne Pompeius (die versehentlich in einem meiner Kriege getötet worden sind) nicht mehr im Weg. Es hat alles seinen Vorteil.\n\nAber man sieht, dass ich einfach der geborene Sieger bin. Einen Feldzug habe ich nach 5 Tagen gewonnen. Ich sage nur:\n\nVeni – Vidi – Vici\n\nIch kam, Ich sah, Ich siegte",
+    "scientific": "Nach seinem Sieg bei Pharsalos (48 v. Chr.) verfolgte Caesar Pompeius nach Ägypten. Dort wurde er jedoch von der Nachricht empfangen, dass Pompeius auf Befehl des ägyptischen Königs Ptolemaios XIII. ermordet worden war.\n\nIn Ägypten wurde Caesar in den ptolemäischen Thronstreit hineingezogen. Er stellte sich auf die Seite Kleopatras VII. gegen ihren Bruder Ptolemaios XIII. Aus der Verbindung mit Kleopatra ging ein Sohn hervor, der den Beinamen Kaisarion (\"kleiner Caesar\") erhielt. Historiker sind sich uneinig, ob Caesar tatsächlich der biologische Vater war.\n\nDer Ägyptische Krieg (48–47 v. Chr.) war für Caesar eine gefährliche Phase – er war militärisch in der Hauptstadt Alexandria eingeschlossen. Die Bibliothek von Alexandria wurde zwar im Zuge der Kampfhandlungen beschädigt, die antiken Quellen machen Caesar jedoch nur teilweise dafür verantwortlich.\n\nDas berühmte Zitat „Veni – Vidi – Vici\" (Ich kam, ich sah, ich siegte) bezieht sich auf Caesars Feldzug gegen König Pharnakes II. von Pontus in der kleinen asiatischen Stadt Zela (47 v. Chr.), der nach antiken Berichten tatsächlich nur wenige Stunden dauerte. Caesar soll diesen Ausspruch in einem Siegesbericht an seinen Freund Amintius geschrieben haben."
+  },
+  "sidebar": {
+    "facts": [
+      { "label": "Zeitraum", "value": "48–47 v. Chr." },
+      { "label": "Aufenthaltsort", "value": "Alexandria, Ägypten" },
+      { "label": "Bekannte Person", "value": "Kleopatra VII. (ägyptische Königin)" },
+      { "label": "Schnellster Feldzug", "value": "Zela gegen Pharnakes II. (47 v. Chr.)" }
+    ],
+    "quote": {
+      "text": "Veni – Vidi – Vici.",
+      "translation": "Ich kam, ich sah, ich siegte.",
+      "source": "Sueton, Caesar 37; Plutarch, Caesar 50",
+      "author": "Gaius Iulius Caesar",
+      "date": "47 v. Chr."
+    }
+  }
+}

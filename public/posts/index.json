@@ -1,0 +1,840 @@
+{
+  "posts": [
+    {
+      "id": "sokrates-der-tod-des-sokrates",
+      "slug": "der-tod-des-sokrates",
+      "author": "sokrates",
+      "title": "Der Tod des Sokrates",
+      "excerpt": "Meine Freunde haben geweint, als ich den Schierlingsbecher nahm. Ich nicht. Der Tod ist kein Übel – er ist entweder ein tiefer Schlaf oder der Beginn eines besseren Lebens.",
+      "date": "2024-06-03",
+      "historicalDate": "399 v. Chr.",
+      "historicalYear": -399,
+      "tags": [
+        "Tod",
+        "Phaidon",
+        "Seele",
+        "Philosophie",
+        "Unsterblichkeit",
+        "Schierlingsbecher"
+      ],
+      "readingTime": 5
+    },
+    {
+      "id": "sokrates-meine-verteidigung",
+      "slug": "meine-verteidigung",
+      "author": "sokrates",
+      "title": "Meine Verteidigung",
+      "excerpt": "Sie haben mich angeklagt: Gottlosigkeit und Verführung der Jugend. Ich verteidige mich selbst – nicht um mein Leben zu retten, sondern um der Wahrheit willen.",
+      "date": "2024-05-27",
+      "historicalDate": "399 v. Chr.",
+      "historicalYear": -399,
+      "tags": [
+        "Apologie",
+        "Prozess",
+        "Athen",
+        "Gerechtigkeit",
+        "Tod",
+        "Verteidigung"
+      ],
+      "readingTime": 5
+    },
+    {
+      "id": "sokrates-die-aporie",
+      "slug": "die-aporie",
+      "author": "sokrates",
+      "title": "Die Aporie – Am Ende des Weges",
+      "excerpt": "Wir haben stundenlang gestritten, was Tapferkeit wirklich ist. Am Ende standen wir beide ratlos da. Ist das ein Misserfolg? Nein – es ist der Beginn echter Philosophie.",
+      "date": "2024-05-20",
+      "historicalDate": "ca. 415 v. Chr.",
+      "historicalYear": -415,
+      "tags": [
+        "Aporie",
+        "Dialektik",
+        "Philosophie",
+        "Ethik",
+        "Gesprächsmethode"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "sokrates-die-kunst-der-maieutik",
+      "slug": "die-kunst-der-maieutik",
+      "author": "sokrates",
+      "title": "Die Kunst der Maieutik",
+      "excerpt": "Meine Mutter war Hebamme und half Frauen, Kinder zur Welt zu bringen. Ich helfe Menschen, Gedanken zur Welt zu bringen. Das nenne ich Maieutik – die Hebammenkunst des Geistes.",
+      "date": "2024-05-13",
+      "historicalDate": "ca. 420 v. Chr.",
+      "historicalYear": -420,
+      "tags": [
+        "Maieutik",
+        "Dialektik",
+        "Philosophie",
+        "Gesprächsmethode",
+        "Hebammenkunst"
+      ],
+      "readingTime": 5
+    },
+    {
+      "id": "sokrates-das-delphische-orakel",
+      "slug": "das-delphische-orakel",
+      "author": "sokrates",
+      "title": "Das Delphische Orakel",
+      "excerpt": "Das Orakel von Delphi hat mich zum weisesten aller Menschen erklärt. Ich weiß, dass ich nichts weiß – und genau das macht mich wohl am weisesten.",
+      "date": "2024-05-06",
+      "historicalDate": "ca. 430 v. Chr.",
+      "historicalYear": -430,
+      "tags": [
+        "Apollon",
+        "Delphi",
+        "Orakel",
+        "Weisheit",
+        "Philosophie"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "sallust-tugend-und-macht",
+      "slug": "tugend-und-macht",
+      "author": "sallust",
+      "title": "Tugend und Macht: Können sie in der Republik koexistieren?",
+      "excerpt": "Ich habe die Macht in Rom über Jahrzehnte beobachtet. Tugend und Macht scheinen unvereinbar zu sein. Diejenigen, die ihre Tugend bewahren, erlangen keine Macht; diejenigen, die Macht erlangen, verlieren ihre Tugend. Ist dies unvermeidlich?",
+      "date": "2024-05-05",
+      "historicalDate": "35 v. Chr.",
+      "historicalYear": -35,
+      "tags": [
+        "philosophy",
+        "power",
+        "virtue",
+        "politics",
+        "morality"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "sallust-historische-methode",
+      "slug": "historische-methode",
+      "author": "sallust",
+      "title": "Über das Schreiben von Geschichte: Die Pflicht des Historikers zur Wahrheit",
+      "excerpt": "Was ist der Zweck des Historikers? Sieger zu feiern oder die Wahrheit zu analysieren? Ich habe mich für Letzteres entschieden, auch wenn es sich für die Mächtigen als unangenehm erweist.",
+      "date": "2024-05-04",
+      "historicalDate": "40 v. Chr.",
+      "historicalYear": -40,
+      "tags": [
+        "history",
+        "methodology",
+        "truth",
+        "writing",
+        "philosophy"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "sallust-politische-korruption",
+      "slug": "politische-korruption",
+      "author": "sallust",
+      "title": "Die Korruption Roms: Wie das Imperium die Tugend zerstört",
+      "excerpt": "Rom ist reich und mächtig geworden. Doch dieser Reichtum und diese Macht haben es korrumpiert. Genau der Erfolg, der Rom mächtig gemacht hat, hat die Saat für seinen moralischen Niedergang gesät.",
+      "date": "2024-05-03",
+      "historicalDate": "50 v. Chr.",
+      "historicalYear": -50,
+      "tags": [
+        "corruption",
+        "history",
+        "morality",
+        "politics",
+        "decline"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "sallust-catilinarische-analyse",
+      "slug": "catilinarische-analyse",
+      "author": "sallust",
+      "title": "Die Catilinarische Verschwörung: Eine historische Analyse von Korruption und Chaos",
+      "excerpt": "Ich war während der Catilinarischen Verschwörung anwesend – nicht als Verschwörer, sondern als Beobachter von Roms moralischem Verfall. Cicero sah ein Drama; ich sehe das Symptom einer tieferen Krankheit.",
+      "date": "2024-05-02",
+      "historicalDate": "62 v. Chr.",
+      "historicalYear": -62,
+      "tags": [
+        "history",
+        "conspiracy",
+        "corruption",
+        "analysis",
+        "rome"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "sallust-jugurthinischer-krieg",
+      "slug": "jugurthinischer-krieg",
+      "author": "sallust",
+      "title": "Zum Jugurthinischen Krieg: Militärische Torheit und politische Korruption",
+      "excerpt": "Ich diente während des Krieges gegen Jugurtha in Afrika. Was ich dort miterlebt habe – militärische Inkompetenz, politische Intrigen, moralischer Bankrott – prägte mein Verständnis von Roms Niedergang.",
+      "date": "2024-05-01",
+      "historicalDate": "109 v. Chr.",
+      "historicalYear": -109,
+      "tags": [
+        "history",
+        "corruption",
+        "military",
+        "africa",
+        "politics"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "cicero-gegen-den-neuen-tyrannen",
+      "slug": "gegen-den-neuen-tyrannen",
+      "author": "cicero",
+      "title": "Gegen den neuen Tyrannen",
+      "excerpt": "Caesar ist tot, aber Marcus Antonius will die Macht. Ich halte die Philippischen Reden!",
+      "date": "2024-04-29",
+      "historicalDate": "44–43 v. Chr.",
+      "historicalYear": -44,
+      "tags": [
+        "Antonius",
+        "Philippicae",
+        "Republik",
+        "Senat",
+        "Freiheit"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "cicero-meine-triumphale-rueckkehr",
+      "slug": "meine-triumphale-rueckkehr",
+      "author": "cicero",
+      "title": "Meine triumphale Rückkehr",
+      "excerpt": "Ich bin wieder da! Nach einem Jahr Exil hat Rom endlich begriffen, was es an mir hat.",
+      "date": "2024-04-22",
+      "historicalDate": "4. August 57 v. Chr.",
+      "historicalYear": -57,
+      "tags": [
+        "Rückkehr",
+        "Triumph",
+        "Rom",
+        "Senat"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "cicero-mein-bitteres-exil",
+      "slug": "mein-bitteres-exil",
+      "author": "cicero",
+      "title": "Mein bitteres Exil",
+      "excerpt": "Ich, der Retter Roms, wurde verbannt! Clodius hat mich ins Exil getrieben.",
+      "date": "2024-04-15",
+      "historicalDate": "58 v. Chr.",
+      "historicalYear": -58,
+      "tags": [
+        "Exil",
+        "Clodius",
+        "Griechenland",
+        "Verzweiflung"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "cicero-ich-rette-die-republik",
+      "slug": "ich-rette-die-republik",
+      "author": "cicero",
+      "title": "Ich rette die Republik!",
+      "excerpt": "Quousque tandem abutere, Catilina, patientia nostra? Ich habe die Catilinarische Verschwörung aufgedeckt!",
+      "date": "2024-04-08",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "Catilina",
+        "Konsulat",
+        "Senat",
+        "Verschwörung",
+        "Pater Patriae"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "catilina-letzter-widerstand",
+      "slug": "letzter-widerstand",
+      "author": "catilina",
+      "title": "Die letzte Schlacht: Gedanken vor dem Ende",
+      "excerpt": "Das Ende nähert sich. Meine Streitkräfte haben sich verringert; die Armeen der Republik schließen sich ein. Doch bereue ich nicht, was ich versucht habe. Einige Ursachen sind es wert, dafür zu sterben.",
+      "date": "2024-04-05",
+      "historicalDate": "62 v. Chr.",
+      "historicalYear": -62,
+      "tags": [
+        "death",
+        "defeat",
+        "principles",
+        "sacrifice",
+        "legacy"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "catilina-enttarnt-und-trotzig",
+      "slug": "enttarnt-und-trotzig",
+      "author": "catilina",
+      "title": "Entlarvt: Meine Verteidigung gegen Ciceros Diffamierungen",
+      "excerpt": "Cicero hat die Verschwörung entlarvt und versucht, mich vor dem Senat zu diskreditieren. Aber ich werde nicht feige sein oder mich entschuldigen. Ich habe im Einklang mit der Gerechtigkeit gehandelt und werde meine Position verteidigen, koste es, was es wolle.",
+      "date": "2024-04-04",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "politics",
+        "conspiracy",
+        "defense",
+        "cicero",
+        "confrontation"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "catilina-die-verschwoerung-entfaltet-sich",
+      "slug": "die-verschwoerung-entfaltet-sich",
+      "author": "catilina",
+      "title": "Die Verschwörung nimmt Form an: Der Plan und sein Versprechen",
+      "excerpt": "Jetzt ist der Moment gekommen. Die Teile sind an Ort und Stelle. Ein Netzwerk von Verbündeten in ganz Italien, militärische Gewalt, Unterstützung im Volk in Rom selbst. Bald wird die Oligarchie lernen, dass nicht alle Römer ihre Vorherrschaft akzeptieren werden.",
+      "date": "2024-04-03",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "conspiracy",
+        "planning",
+        "politics",
+        "action",
+        "rome"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "catilina-rechtfertigung-des-handelns",
+      "slug": "rechtfertigung-des-handelns",
+      "author": "catilina",
+      "title": "Die Notwendigkeit radikalen Handelns: Warum die Verschwörung Gerechtigkeit ist",
+      "excerpt": "Sie nennen mich Verschwörer, Revolutionär, Staatsfeind. Aber was ist eine Verschwörung, wenn der Staat selbst ungerecht geworden ist? Was ist eine Revolution, wenn die bestehende Ordnung die Würdigen unterdrückt und die Mittelmäßigen belohnt?",
+      "date": "2024-04-02",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "conspiracy",
+        "justice",
+        "revolution",
+        "politics",
+        "ideology"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "cicero-ich-besiege-den-korrupten-statthalter",
+      "slug": "ich-besiege-den-korrupten-statthalter",
+      "author": "cicero",
+      "title": "Ich besiege den korrupten Statthalter",
+      "excerpt": "Die Sizilianer baten mich, sie gegen Gaius Verres zu vertreten. Ich habe gewonnen!",
+      "date": "2024-04-01",
+      "historicalDate": "70 v. Chr.",
+      "historicalYear": -70,
+      "tags": [
+        "Verres",
+        "Sizilien",
+        "Anwalt",
+        "Korruption",
+        "Erfolg"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "catilina-ambitionen-verraten",
+      "slug": "ambitionen-verraten",
+      "author": "catilina",
+      "title": "Über den Verrat des Schicksals: Meine vereitelten politischen Ambitionen",
+      "excerpt": "Sie sagen, ich sei verzweifelt, ehrgeizig, eine Gefahr für den Staat. Was ist mein Verbrechen? Das zu begehren, was jeder Mann edler Geburt begehren sollte – Ehre, Macht, Einfluss. Das System hat mich abgelehnt. Es bleibt abzuwarten, ob ich diese Ablehnung stillschweigend akzeptieren werde.",
+      "date": "2024-04-01",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "politics",
+        "ambition",
+        "betrayal",
+        "conspiracy",
+        "power"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "caesar-die-verschwoerung-gegen-mich",
+      "slug": "die-verschwoerung-gegen-mich",
+      "author": "caesar",
+      "title": "Die Verschwörung gegen mich",
+      "excerpt": "An den Iden des März werde ich sterben. Et tu, Brute?",
+      "date": "2024-03-18",
+      "historicalDate": "15. März 44 v. Chr.",
+      "historicalYear": -44,
+      "tags": [
+        "Brutus",
+        "Caesarianer",
+        "Dolch",
+        "Gegner",
+        "Mord",
+        "Verschwörung"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "caesar-darum-mag-mich-jeder",
+      "slug": "darum-mag-mich-jeder",
+      "author": "caesar",
+      "title": "Darum mag mich jeder",
+      "excerpt": "Clementia Caesaris – meine Gnade gegenüber besiegten Feinden gewinnt mir immer mehr Anhänger.",
+      "date": "2024-03-11",
+      "historicalDate": "46–44 v. Chr.",
+      "historicalYear": -46,
+      "tags": [
+        "Armee",
+        "Clementia Caesaris",
+        "Gegner",
+        "Rom",
+        "Senat"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "seneca-freiheit-und-sklaverei",
+      "slug": "freiheit-und-sklaverei",
+      "author": "seneca",
+      "title": "Freiheit und Sklaverei: Die Ketten, die wir wählen und nicht wählen können",
+      "excerpt": "Ich besitze Sklaven, wie alle römischen Männer meiner Stellung. Doch die Philosophie lehrt, dass wahre Sklaverei nicht eine Frage des Rechtsstatus ist, sondern der Unterdrückung des Geistes. Eine Betrachtung über Freiheit, Knechtschaft und das Paradoxon der Freiheit in Rom.",
+      "date": "2024-03-05",
+      "historicalDate": "64 n. Chr.",
+      "historicalYear": 64,
+      "tags": [
+        "philosophy",
+        "slavery",
+        "freedom",
+        "ethics",
+        "stoicism"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "caesar-caesar-verschluesselung",
+      "slug": "caesar-verschluesselung",
+      "author": "caesar",
+      "title": "Cäsar-Verschlüsselung",
+      "excerpt": "Ich habe die berühmte Cäsar-Verschlüsselung erfunden – Buchstabenverschiebung um drei Stellen.",
+      "date": "2024-03-04",
+      "historicalDate": "ca. 50 v. Chr.",
+      "historicalYear": -50,
+      "tags": [
+        "Cäsar-Verschlüsselung",
+        "Cäsarchiffre"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "seneca-briefe-an-lucilius",
+      "slug": "briefe-an-lucilius",
+      "author": "seneca",
+      "title": "Über Freundschaft durch Briefe: Briefwechsel mit Lucilius",
+      "excerpt": "Mein Briefwechsel mit meinem Freund Lucilius ist zu einem Instrument der philosophischen Lehre geworden. Durch Briefe erkunden wir gemeinsam das gute Leben über die Entfernung zwischen unseren Städten hinweg.",
+      "date": "2024-03-04",
+      "historicalDate": "62 n. Chr.",
+      "historicalYear": 62,
+      "tags": [
+        "philosophy",
+        "friendship",
+        "correspondence",
+        "letters",
+        "virtue"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "seneca-naturphilosophie",
+      "slug": "naturphilosophie",
+      "author": "seneca",
+      "title": "Naturbeobachtungen: Über Vulkane und die Vorsehung der Götter",
+      "excerpt": "Naturphänomene können uns viel über den Aufbau der Welt und die menschliche Natur lehren. Hier reflektiere ich über die erschreckende und wunderschöne Macht der Natur.",
+      "date": "2024-03-03",
+      "historicalDate": "63 n. Chr.",
+      "historicalYear": 63,
+      "tags": [
+        "philosophy",
+        "nature",
+        "science",
+        "volcanoes",
+        "stoicism"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "seneca-erziehung-neros",
+      "slug": "erziehung-neros",
+      "author": "seneca",
+      "title": "Einen Prinzen formen: Meine Jahre als Erzieher von Nero",
+      "excerpt": "Ich hatte das außergewöhnliche Privileg, den jungen Kaiser zu unterrichten. Doch Einfluss auf einen Herrscher ist ein zweischneidiges Schwert – kann die Philosophie wirklich einen Mann reformieren, der für die Macht bestimmt ist?",
+      "date": "2024-03-02",
+      "historicalDate": "55 n. Chr.",
+      "historicalYear": 55,
+      "tags": [
+        "politics",
+        "education",
+        "nero",
+        "philosophy",
+        "power"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "seneca-reichtum-und-tugend",
+      "slug": "reichtum-und-tugend",
+      "author": "seneca",
+      "title": "Das Paradoxon des Reichtums: Kann ein reicher Mann wirklich tugendhaft sein?",
+      "excerpt": "Ich bin fabelhaft reich, doch ich lehre, dass Tugend das einzige wahre Gut ist. Wie versöhne ich diesen offensichtlichen Widerspruch? Durch sorgfältiges Nachdenken und die strenge Praxis des Stoizismus.",
+      "date": "2024-03-01",
+      "historicalDate": "60 n. Chr.",
+      "historicalYear": 60,
+      "tags": [
+        "philosophy",
+        "stoicism",
+        "wealth",
+        "virtue",
+        "ethics"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "caesar-ich-ruhe-nicht",
+      "slug": "ich-ruhe-nicht",
+      "author": "caesar",
+      "title": "Ich ruhe nicht!",
+      "excerpt": "Ich stehe in Ägypten bei Kleopatra. Veni – Vidi – Vici: Einen Feldzug habe ich in 5 Tagen gewonnen!",
+      "date": "2024-02-26",
+      "historicalDate": "48–47 v. Chr.",
+      "historicalYear": -48,
+      "tags": [
+        "Ägypten",
+        "Königin Kleopatra",
+        "Pompeius",
+        "Rom"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "caesar-ich-ueberschreite-den-rubikon",
+      "slug": "ich-ueberschreite-den-rubikon",
+      "author": "caesar",
+      "title": "Ich überschreite den Rubikon",
+      "excerpt": "Alea iacta est! Ich marschiere mit meiner Armee über den Rubikon und beginne damit den Bürgerkrieg.",
+      "date": "2024-02-19",
+      "historicalDate": "10./11. Januar 49 v. Chr.",
+      "historicalYear": -49,
+      "tags": [
+        "Armee",
+        "Bürgerkrieg",
+        "Gegner",
+        "Pompeius",
+        "Rom",
+        "Rubikon",
+        "Senat"
+      ],
+      "readingTime": 5
+    },
+    {
+      "id": "caesar-helvetierkrieg-teil-2",
+      "slug": "helvetierkrieg-teil-2",
+      "author": "caesar",
+      "title": "Helvetierkrieg – Teil 2",
+      "excerpt": "Vercingetorix und seine wilden Mörder haben unsere Städte überfallen. Ich marschiere sofort!",
+      "date": "2024-02-12",
+      "historicalDate": "52 v. Chr.",
+      "historicalYear": -52,
+      "tags": [
+        "Armee",
+        "Gallien",
+        "Haeduer",
+        "Schlacht",
+        "Vercingetorix"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "caesar-helvetierkrieg-teil-1",
+      "slug": "helvetierkrieg-teil-1",
+      "author": "caesar",
+      "title": "Helvetierkrieg – Teil 1",
+      "excerpt": "Die Helvetier wollen durch mein Gebiet ziehen. Ich muss handeln und unsere Mitbürger schützen!",
+      "date": "2024-02-05",
+      "historicalDate": "58 v. Chr.",
+      "historicalYear": -58,
+      "tags": [
+        "Barbaren",
+        "Gallien",
+        "Gegner",
+        "Helvetier"
+      ],
+      "readingTime": 4
+    },
+    {
+      "id": "augustus-vermaechtnis",
+      "slug": "vermaechtnis",
+      "author": "augustus",
+      "title": "Unsterblichkeit bauen: Mein Vermächtnis an Rom",
+      "excerpt": "Die größten Monumente, die ein Anführer bauen kann, sind nicht aus Marmor, sondern aus Institutionen und bürgerlichen Verbesserungen, die Generationen überdauern.",
+      "date": "2024-02-05",
+      "historicalDate": "13 v. Chr.",
+      "historicalYear": -13,
+      "tags": [
+        "legacy",
+        "infrastructure",
+        "culture",
+        "immortality",
+        "rome"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "augustus-nachfolge-sorgen",
+      "slug": "nachfolge-sorgen",
+      "author": "augustus",
+      "title": "Das Gewicht der Nachfolge: Roms Zukunft sichern",
+      "excerpt": "Ich habe keine Söhne. Das verfolgt mich mehr, als ich zugebe. Wie stellt man sicher, dass das System, das man aufgebaut hat, den eigenen Tod überdauert?",
+      "date": "2024-02-04",
+      "historicalDate": "5 v. Chr.",
+      "historicalYear": -5,
+      "tags": [
+        "succession",
+        "politics",
+        "family",
+        "legacy",
+        "mortality"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "augustus-militaerreform",
+      "slug": "militaerreform",
+      "author": "augustus",
+      "title": "Neuordnung der Legionen: Aufbau von Roms Militärsystem",
+      "excerpt": "Das römische Militär muss von einem Werkzeug der Faktionen in ein Instrument der Staatsmacht umgewandelt werden. Hier sind meine Reformen, die Roms Militär für Jahrhunderte definieren werden.",
+      "date": "2024-02-03",
+      "historicalDate": "30 v. Chr.",
+      "historicalYear": -30,
+      "tags": [
+        "military",
+        "reform",
+        "legions",
+        "organization",
+        "governance"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "augustus-pax-romana",
+      "slug": "pax-romana",
+      "author": "augustus",
+      "title": "Die Pax Romana: Aufbau eines Reiches des Friedens",
+      "excerpt": "Meine Vision reicht über den bloßen militärischen Sieg hinaus. Ich erschaffe ein neues Rom – eines, in dem Frieden, Handel und Zivilisation in der gesamten Mittelmeerwelt blühen.",
+      "date": "2024-02-02",
+      "historicalDate": "25 v. Chr.",
+      "historicalYear": -25,
+      "tags": [
+        "politics",
+        "peace",
+        "infrastructure",
+        "trade",
+        "stability"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "augustus-sieg-bei-actium",
+      "slug": "sieg-bei-actium",
+      "author": "augustus",
+      "title": "Die Schlacht von Actium: Sieg und die Zukunft Roms",
+      "excerpt": "Mein Triumph bei Actium markiert nicht nur einen militärischen Sieg, sondern den Beginn eines neuen Zeitalters für Rom – eines Zeitalters der Ordnung, Stabilität und des dauerhaften Friedens.",
+      "date": "2024-02-01",
+      "historicalDate": "31 v. Chr.",
+      "historicalYear": -31,
+      "tags": [
+        "military",
+        "politics",
+        "actium",
+        "civil-war",
+        "strategy"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "caesar-mein-genialer-satz",
+      "slug": "mein-genialer-satz",
+      "author": "caesar",
+      "title": "Mein genialer Satz",
+      "excerpt": "Gallia est omnis divisa in partes tres – wer kennt meinen berühmten Anfang nicht?",
+      "date": "2024-01-29",
+      "historicalDate": "58 v. Chr.",
+      "historicalYear": -58,
+      "tags": [
+        "Gallien"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "caesar-prokonsulat",
+      "slug": "prokonsulat",
+      "author": "caesar",
+      "title": "Prokonsulat",
+      "excerpt": "Ich bin jetzt Prokonsul! Meine Gebiete erstrecken sich von Illyrien über Gallien Cisalpina bis hin zu Gallien Transalpina.",
+      "date": "2024-01-22",
+      "historicalDate": "58 v. Chr.",
+      "historicalYear": -58,
+      "tags": [
+        "Caesoninus",
+        "Gallia Cisalpina",
+        "Gallia Transalpina",
+        "Illyrien",
+        "Prokonsulat"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "caesar-das-1-triumvirat",
+      "slug": "das-1-triumvirat",
+      "author": "caesar",
+      "title": "Das 1. Triumvirat",
+      "excerpt": "Heute habe ich mein eigenes Triumvirat gegründet. Das Großartige daran ist, dass es so was noch nie gegeben hat!",
+      "date": "2024-01-15",
+      "historicalDate": "60 v. Chr.",
+      "historicalYear": -60,
+      "tags": [
+        "Crassus",
+        "Pompeius",
+        "Triumvirat"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "caesar-mein-konsulat",
+      "slug": "mein-konsulat",
+      "author": "caesar",
+      "title": "Mein Konsulat",
+      "excerpt": "Lasst die Korken knallen! Ich bin jetzt Konsul! Pompeius und Crassus haben mir geholfen – und Rom wird nie mehr dasselbe sein.",
+      "date": "2024-01-08",
+      "historicalDate": "59 v. Chr.",
+      "historicalYear": -59,
+      "tags": [
+        "Bibulus",
+        "Crassus",
+        "Gegner",
+        "Konsulat"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "cicero-freundschaft-und-weisheit",
+      "slug": "freundschaft-und-weisheit",
+      "author": "cicero",
+      "title": "Über Freundschaft und das gute Leben: Philosophische Meditationen",
+      "excerpt": "Meine Überlegungen zum wahren Wesen der Freundschaft, der Weisheit und dessen, was das Leben für einen tugendhaften Mann lebenswert macht.",
+      "date": "2024-01-05",
+      "historicalDate": "45 v. Chr.",
+      "historicalYear": -45,
+      "tags": [
+        "philosophy",
+        "friendship",
+        "wisdom",
+        "virtue",
+        "letters"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "cicero-konflikt-mit-antonius",
+      "slug": "konflikt-mit-antonius",
+      "author": "cicero",
+      "title": "Die Philippicae: Mein Wortkrieg gegen Antonius",
+      "excerpt": "Gegen den Tyrannen Marcus Antonius habe ich die einzigen Waffen geführt, die ein Philosoph führen kann – Vernunft, Rhetorik und die Macht der öffentlichen Kritik.",
+      "date": "2024-01-04",
+      "historicalDate": "43 v. Chr.",
+      "historicalYear": -43,
+      "tags": [
+        "politics",
+        "civil-war",
+        "rhetoric",
+        "mark-antony",
+        "death"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "cicero-reflexionen-im-exil",
+      "slug": "reflexionen-im-exil",
+      "author": "cicero",
+      "title": "Meditationen im Exil: Über Tugend und Unglück",
+      "excerpt": "Meine Gedanken aus dem Exil, vertrieben von diesem Schurken Clodius und seinen Straßengangs. Eine philosophische Untersuchung von Leiden und Gerechtigkeit.",
+      "date": "2024-01-03",
+      "historicalDate": "58 v. Chr.",
+      "historicalYear": -58,
+      "tags": [
+        "philosophy",
+        "exile",
+        "politics",
+        "virtue",
+        "reflection"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "cicero-verteidigung-des-milo",
+      "slug": "verteidigung-des-milo",
+      "author": "cicero",
+      "title": "In Verteidigung des Milo: Eine Frage der Gerechtigkeit und Rhetorik",
+      "excerpt": "Meine leidenschaftliche Verteidigung des Milo zeigt, trotz des Ausgangs im Exil, die Grenzen selbst der größten Redekunst, wenn die Politik einschreitet.",
+      "date": "2024-01-02",
+      "historicalDate": "52 v. Chr.",
+      "historicalYear": -52,
+      "tags": [
+        "law",
+        "rhetoric",
+        "justice",
+        "defense",
+        "politics"
+      ],
+      "readingTime": 6
+    },
+    {
+      "id": "caesar-er-ist-da",
+      "slug": "er-ist-da",
+      "author": "caesar",
+      "title": "Er ist da.",
+      "excerpt": "Endlich wurde ich geboren. Am 13. Juli 100 v. Chr. wusste ich bereits, dass ich die Herrschaft über ganz Rom anstreben werde.",
+      "date": "2024-01-01",
+      "historicalDate": "13. Juli 100 v. Chr.",
+      "historicalYear": -100,
+      "tags": [
+        "Abstammung",
+        "Disclaimer",
+        "Geburt",
+        "Spenden"
+      ],
+      "readingTime": 3
+    },
+    {
+      "id": "cicero-catilinarian-conspiracy",
+      "slug": "catilinarian-conspiracy",
+      "author": "cicero",
+      "title": "The Exposure of Catiline's Conspiracy",
+      "excerpt": "How I, Marcus Tullius Cicero, single-handedly uncovered and thwarted the most dangerous conspiracy Rome has ever known.",
+      "date": "2024-01-01",
+      "historicalDate": "63 v. Chr.",
+      "historicalYear": -63,
+      "tags": [
+        "conspiracy",
+        "politics",
+        "speeches",
+        "rome",
+        "security"
+      ],
+      "readingTime": 6
+    }
+  ]
+}

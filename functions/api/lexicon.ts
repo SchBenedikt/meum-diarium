@@ -55,16 +55,63 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
     const startTime = Date.now();
 
+    // Helper: load lexicon entries from static JSON file
+    const loadStaticLexicon = async (): Promise<any[]> => {
+        try {
+            const fileUrl = new URL('/api/lexicon.json', new URL(context.request.url).origin);
+            const fileResponse = await context.env.ASSETS.fetch(new Request(fileUrl.toString()));
+            if (!fileResponse.ok) return [];
+            const data = await fileResponse.json() as any[];
+            return Array.isArray(data) ? data : [];
+        } catch {
+            return [];
+        }
+    };
+
     try {
-        // Check if D1 database is available
+        // Check if D1 database is available – fall back to static JSON if not
         if (!context.env?.DB) {
-            console.error('❌ [Lexicon API] D1 database not available');
-            return new Response(JSON.stringify({ 
-                error: 'Database not configured',
-                message: 'D1 database binding not found'
-            }), {
-                status: 503,
-                headers: corsHeaders
+            console.warn('⚠️ [Lexicon API] D1 database not available, serving from static file');
+            const url = new URL(context.request.url);
+            const method = context.request.method;
+
+            if (method !== 'GET') {
+                return new Response(JSON.stringify({ error: 'Service unavailable' }), {
+                    status: 503,
+                    headers: corsHeaders
+                });
+            }
+
+            const pathSegments = url.pathname.split('/').filter(Boolean);
+            const slugFromPath = pathSegments[pathSegments.length - 1] !== 'lexicon' ? pathSegments[pathSegments.length - 1] : null;
+            const slugParam = slugFromPath || url.searchParams.get('slug');
+            const search = url.searchParams.get('search');
+
+            const entries = await loadStaticLexicon();
+
+            if (slugParam) {
+                const entry = entries.find((e: any) => e.slug === slugParam);
+                if (!entry) {
+                    return new Response(JSON.stringify({ error: 'Not Found' }), { status: 404, headers: corsHeaders });
+                }
+                return new Response(JSON.stringify(entry), {
+                    headers: { ...corsHeaders, 'X-Data-Source': 'static-file' }
+                });
+            }
+
+            let result = entries;
+            if (search) {
+                const q = search.toLowerCase();
+                result = entries.filter((e: any) =>
+                    (e.term && e.term.toLowerCase().includes(q)) ||
+                    (e.definition && e.definition.toLowerCase().includes(q))
+                );
+            }
+
+            const queryTime = Date.now() - startTime;
+            console.log(`✅ [Lexicon API] Served ${result.length} entries from static file (${queryTime}ms)`);
+            return new Response(JSON.stringify(result), {
+                headers: { ...corsHeaders, 'X-Data-Source': 'static-file', 'X-Entry-Count': result.length.toString() }
             });
         }
 
