@@ -73,6 +73,39 @@ export default function LandingHeroNew() {
       quote: 'Dum differtur vita transcurrit.',
       color: 'from-green-600 to-teal-600'
     },
+    { 
+      id: 'sokrates' as Author, 
+      name: 'Sokrates', 
+      full: 'Sokrates',
+      role: 'Philosoph', 
+      years: '469–399 v. Chr.', 
+      description: 'Der Begründer der abendländischen Philosophie, der durch seine bohrenden Fragen und sein unerschütterliches Streben nach Wahrheit Athen herausforderte.',
+      image: '/images/sokrates-hero.png',
+      quote: 'Ich weiß, dass ich nichts weiß.',
+      color: 'from-sky-600 to-blue-600'
+    },
+    { 
+      id: 'sallust' as Author, 
+      name: 'Sallust', 
+      full: 'Gaius Sallustius Crispus',
+      role: 'Historiker', 
+      years: '86–35 v. Chr.', 
+      description: 'Ein bedeutender römischer Historiker, der für seine prägnanten Analysen des moralischen Verfalls Roms und der politischen Korruption bekannt ist.',
+      image: '/images/sallust-hero.png',
+      quote: 'Tugend ist das einzige unvergängliche Gut.',
+      color: 'from-purple-600 to-fuchsia-600'
+    },
+    { 
+      id: 'catilina' as Author, 
+      name: 'Catilina', 
+      full: 'Lucius Sergius Catilina',
+      role: 'Verschwörer', 
+      years: '108–62 v. Chr.', 
+      description: 'Der berüchtigte Gegenspieler Ciceros, der eine gewaltsame Umwälzung der Republik plante und als Symbol für den inneren Zerfall Roms gilt.',
+      image: '/images/catilina-hero.png',
+      quote: 'Das Unglück macht die Menschen kühn.',
+      color: 'from-zinc-700 to-stone-900'
+    },
   ];
 
   const currentAuthorData = authors.find(a => a.id === selectedAuthor);
@@ -134,7 +167,7 @@ export default function LandingHeroNew() {
 
   
   const stats = [
-    { value: '4', label: 'Historische Persönlichkeiten', delay: 0 },
+    { value: '7', label: 'Historische Persönlichkeiten', delay: 0 },
     { value: '36000', label: 'Vokabeln', delay: 0.2 },
     { value: '50', label: 'Artikel', delay: 0.4 },
     { value: '92+', label: 'Lexikon-Einträge', delay: 0.6 },

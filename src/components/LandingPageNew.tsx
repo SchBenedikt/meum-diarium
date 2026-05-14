@@ -101,11 +101,35 @@ export default function LandingPageNew() {
       years: '4 v.Chr.–65 n.Chr.',
       color: 'from-green-600 to-teal-600',
       letter: 'S'
+    },
+    {
+      id: 'sokrates',
+      name: 'Sokrates',
+      role: 'Philosoph',
+      years: '469–399 v.Chr.',
+      color: 'from-sky-600 to-blue-600',
+      letter: 'Σ'
+    },
+    {
+      id: 'sallust',
+      name: 'Sallust',
+      role: 'Historiker',
+      years: '86–35 v.Chr.',
+      color: 'from-purple-600 to-fuchsia-600',
+      letter: 'S'
+    },
+    {
+      id: 'catilina',
+      name: 'Catilina',
+      role: 'Verschwörer',
+      years: '108–62 v.Chr.',
+      color: 'from-zinc-700 to-stone-900',
+      letter: 'C'
     }
   ];
 
   const stats = [
-    { value: '4', label: 'Historische Persönlichkeiten' },
+    { value: '7', label: 'Historische Persönlichkeiten' },
     { value: '36K+', label: 'Vokabeln' },
     { value: '92+', label: 'Lexikon-Einträge' },
     { value: '170+', label: 'Jahre Geschichte' }
@@ -181,7 +205,8 @@ export default function LandingPageNew() {
                     Oder beginne direkt mit: 
                     <Link to="/cicero" className="ml-1" style={{ color: '#ffffff' }}>Cicero</Link> • 
                     <Link to="/augustus" className="ml-1" style={{ color: '#ffffff' }}>Augustus</Link> • 
-                    <Link to="/seneca" className="ml-1" style={{ color: '#ffffff' }}>Seneca</Link>
+                    <Link to="/seneca" className="ml-1" style={{ color: '#ffffff' }}>Seneca</Link> •
+                    <Link to="/sokrates" className="ml-1" style={{ color: '#ffffff' }}>Sokrates</Link>
                   </p>
                 </div>
               </div>
@@ -235,11 +260,11 @@ export default function LandingPageNew() {
               Lerne von den größten Denkern Roms
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Vier außergewöhnliche Persönlichkeiten als deine Begleiter auf der Reise in die Antike.
+              Sieben außergewöhnliche Persönlichkeiten als deine Begleiter auf der Reise in die Antike.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {authors.map((author, i) => (
               <motion.div
                 key={author.id}
@@ -417,7 +442,8 @@ export default function LandingPageNew() {
               <p className="text-sm text-muted-foreground">
                 Oder wähle direkt: <Link to="/cicero" className="text-primary hover:underline">Cicero</Link> • 
                 <Link to="/augustus" className="text-primary hover:underline ml-1">Augustus</Link> • 
-                <Link to="/seneca" className="text-primary hover:underline ml-1">Seneca</Link>
+                <Link to="/seneca" className="text-primary hover:underline ml-1">Seneca</Link> •
+                <Link to="/sokrates" className="text-primary hover:underline ml-1">Sokrates</Link>
               </p>
             </div>
           </motion.div>
