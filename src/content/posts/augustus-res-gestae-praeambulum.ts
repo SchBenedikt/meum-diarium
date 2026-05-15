@@ -10,7 +10,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   historicalDate: '14',
   date: '2024-08-19',
   readingTime: 8,
-  tags: ['res gestae', 'autobiography', 'prinzipat', 'vermächtnis', 'rom'],
+  tags: ['res gestae', 'autobiographie', 'prinzipat', 'vermächtnis', 'rom'],
   image: '/images/augustus-hero.png',
   content: {
     diary: `Ich bin siebzig Jahre alt und spüre, dass mein Ende naht. Nola ist angenehm im Sommer, aber die Hitze erschöpft mich mehr als früher. Livia ist bei mir. Das ist gut.

@@ -143,8 +143,8 @@ const learningEndpoints: Endpoint[] = [
   {
     method: 'GET',
     path: '/api/tags',
-    title: 'Tags',
-    description: 'Alle verwendeten Tags aus Beitraegen.',
+    title: 'Schlagwörter',
+    description: 'Alle verwendeten Schlagwörter aus Beiträgen.',
     response: 'string[]',
   },
 ];
@@ -202,8 +202,8 @@ const systemEndpoints: Endpoint[] = [
   {
     method: 'GET',
     path: '/api/health',
-    title: 'Health',
-    description: 'Service- und Binding-Status fuer Monitoring.',
+    title: 'Gesundheit',
+    description: 'Service- und Binding-Status für Überwachung.',
     response: '{ status, message, environment, timestamp }',
   },
   {
@@ -256,10 +256,10 @@ const useCases = [
 ];
 
 const endpointGroups: EndpointGroup[] = [
-  { id: 'content', title: 'Content APIs', icon: Database, endpoints: contentEndpoints },
-  { id: 'learning', title: 'Lern- und Discovery APIs', icon: Activity, endpoints: learningEndpoints },
+  { id: 'content', title: 'Inhalts-APIs', icon: Database, endpoints: contentEndpoints },
+  { id: 'learning', title: 'Lern- und Entdeckungs-APIs', icon: Activity, endpoints: learningEndpoints },
   { id: 'ai', title: 'KI- und Sprach-APIs', icon: Bot, endpoints: aiEndpoints },
-  { id: 'system', title: 'System und Monitoring', icon: Shield, endpoints: systemEndpoints },
+  { id: 'system', title: 'System und Überwachung', icon: Shield, endpoints: systemEndpoints },
 ];
 
 const EndpointSection = ({ title, icon: Icon, endpoints }: { title: string; icon: React.ElementType; endpoints: Endpoint[] }) => (
@@ -302,7 +302,7 @@ const EndpointSection = ({ title, icon: Icon, endpoints }: { title: string; icon
 
             {endpoint.response && (
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Response</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Antwort</p>
                 <code className="text-sm bg-secondary px-2 py-1 rounded">{endpoint.response}</code>
               </div>
             )}
@@ -382,8 +382,8 @@ export default function ApiDocsPage() {
   const tabs: Array<{ id: TabId; label: string }> = [
     { id: 'intro', label: 'Was ist eine API?' },
     { id: 'basis', label: 'Basis' },
-    { id: 'content', label: 'Content' },
-    { id: 'learning', label: 'Discovery' },
+    { id: 'content', label: 'Inhalte' },
+    { id: 'learning', label: 'Entdecken' },
     { id: 'ai', label: 'KI' },
     { id: 'system', label: 'System' },
   ];
@@ -582,7 +582,7 @@ export default function ApiDocsPage() {
             </div>
 
             <div className="space-y-6">
-              <h3 className="font-display text-xl font-bold">Basis Endpoints</h3>
+              <h3 className="font-display text-xl font-bold">Basis-Endpunkte</h3>
               <EndpointSection title="Übersicht" icon={Database} endpoints={[
                 {
                   method: 'GET',
@@ -602,10 +602,10 @@ export default function ApiDocsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suche in Content APIs..."
+              placeholder="Suche in Inhalts-APIs..."
               className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
             />
-            <EndpointSection title="Content APIs" icon={Database} endpoints={contentEndpoints} />
+            <EndpointSection title="Inhalts-APIs" icon={Database} endpoints={contentEndpoints} />
           </div>
         )}
 
@@ -615,10 +615,10 @@ export default function ApiDocsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suche in Discovery APIs..."
+              placeholder="Suche in Entdeckungs-APIs..."
               className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
             />
-            <EndpointSection title="Lern- und Discovery APIs" icon={Activity} endpoints={learningEndpoints} />
+            <EndpointSection title="Lern- und Entdeckungs-APIs" icon={Activity} endpoints={learningEndpoints} />
           </div>
         )}
 
@@ -628,7 +628,7 @@ export default function ApiDocsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suche in KI APIs..."
+              placeholder="Suche in KI-APIs..."
               className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
             />
             <EndpointSection title="KI- und Sprach-APIs" icon={Bot} endpoints={aiEndpoints} />
@@ -641,10 +641,10 @@ export default function ApiDocsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Suche in System APIs..."
+              placeholder="Suche in System-APIs..."
               className="w-full px-4 py-2 border border-border/50 rounded-lg bg-card text-foreground text-sm"
             />
-            <EndpointSection title="System und Monitoring" icon={Shield} endpoints={systemEndpoints} />
+            <EndpointSection title="System und Überwachung" icon={Shield} endpoints={systemEndpoints} />
           </div>
         )}
       </div>

@@ -231,7 +231,7 @@ export function TranslationEditor() {
                                                         value={editValues.en}
                                                         onChange={(e) => setEditValues(prev => ({ ...prev, en: e.target.value }))}
                                                         className="text-sm min-h-[40px]"
-                                                        placeholder="English text..."
+                                                        placeholder="Englischer Text..."
                                                     />
                                                 </TableCell>
                                                 <TableCell>
@@ -273,7 +273,7 @@ export function TranslationEditor() {
                                                 </TableCell>
                                                 <TableCell className="max-w-[200px]">
                                                     <p className={`text-sm line-clamp-2 ${!translations?.en?.[key] ? 'text-amber-600/60 italic' : ''}`}>
-                                                        {translations?.en?.[key] || '(missing)'}
+                                                        {translations?.en?.[key] || '(fehlt)'}
                                                     </p>
                                                 </TableCell>
                                                 <TableCell className="max-w-[200px]">

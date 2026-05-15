@@ -251,13 +251,13 @@ export function Header() {
                       checked={theme === 'light'}
                       onCheckedChange={() => setTheme('light')}
                     >
-                      Light ☀️
+                      Hell ☀️
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
                       checked={theme === 'dark'}
                       onCheckedChange={() => setTheme('dark')}
                     >
-                      Dark 🌙
+                      Dunkel 🌙
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
                       checked={theme === 'system'}
@@ -398,7 +398,7 @@ export function Header() {
                             ) : (
                               <Sun className="w-4 h-4" />
                             )}
-                            Theme
+                            Thema
                           </h3>
                           <div className="grid grid-cols-3 gap-2">
                             <Button

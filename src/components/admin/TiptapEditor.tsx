@@ -43,7 +43,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
   });
 
   if (!editor) {
-    return <div className="p-4 text-muted-foreground">Loading editor...</div>;
+    return <div className="p-4 text-muted-foreground">Editor wird geladen...</div>;
   }
 
   const toggleBold = () => editor.chain().focus().toggleBold().run();
@@ -69,7 +69,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('heading', { level: 1 }) && "bg-primary/10 text-primary"
           )}
-          title="Heading 1"
+          title="Überschrift 1"
         >
           <Heading1 className="w-4 h-4" />
         </button>
@@ -79,7 +79,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('heading', { level: 2 }) && "bg-primary/10 text-primary"
           )}
-          title="Heading 2"
+          title="Überschrift 2"
         >
           <Heading2 className="w-4 h-4" />
         </button>
@@ -89,7 +89,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('heading', { level: 3 }) && "bg-primary/10 text-primary"
           )}
-          title="Heading 3"
+          title="Überschrift 3"
         >
           <Heading3 className="w-4 h-4" />
         </button>
@@ -102,7 +102,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('bold') && "bg-primary/10 text-primary"
           )}
-          title="Bold"
+          title="Fett"
         >
           <Bold className="w-4 h-4" />
         </button>
@@ -112,7 +112,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('italic') && "bg-primary/10 text-primary"
           )}
-          title="Italic"
+          title="Kursiv"
         >
           <Italic className="w-4 h-4" />
         </button>
@@ -122,7 +122,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('strike') && "bg-primary/10 text-primary"
           )}
-          title="Strikethrough"
+          title="Durchgestrichen"
         >
           <Strikethrough className="w-4 h-4" />
         </button>
@@ -132,7 +132,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('code') && "bg-primary/10 text-primary"
           )}
-          title="Inline Code"
+          title="Inline-Code"
         >
           <Code className="w-4 h-4" />
         </button>
@@ -145,7 +145,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('bulletList') && "bg-primary/10 text-primary"
           )}
-          title="Bullet List"
+          title="Aufzählungsliste"
         >
           <List className="w-4 h-4" />
         </button>
@@ -155,7 +155,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('orderedList') && "bg-primary/10 text-primary"
           )}
-          title="Ordered List"
+          title="Nummerierte Liste"
         >
           <ListOrdered className="w-4 h-4" />
         </button>
@@ -165,7 +165,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('blockquote') && "bg-primary/10 text-primary"
           )}
-          title="Quote"
+          title="Zitat"
         >
           <Quote className="w-4 h-4" />
         </button>
@@ -175,7 +175,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
             "p-1.5 rounded hover:bg-muted transition-colors",
             editor.isActive('codeBlock') && "bg-primary/10 text-primary"
           )}
-          title="Code Block"
+          title="Code-Block"
         >
           <Code2 className="w-4 h-4" />
         </button>
@@ -185,7 +185,7 @@ export function TiptapEditor({ content, onChange, placeholder = "Beginne zu schr
         <button
           onClick={insertHorizontalRule}
           className="p-1.5 rounded hover:bg-muted transition-colors"
-          title="Horizontal Rule"
+          title="Trennlinie"
         >
           <Minus className="w-4 h-4" />
         </button>

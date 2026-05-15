@@ -28,7 +28,7 @@ export function Footer() {
         { label: 'Latein Tools', href: '/learn', icon: BookOpen },
         { label: 'Grammatik', href: '/learn/grammar', icon: FileText },
         { label: 'Vokabeltrainer', href: '/vocab', icon: Library },
-        { label: 'Text Reader', href: '/reader', icon: BookOpen },
+        { label: 'Text-Leser', href: '/reader', icon: BookOpen },
         { label: 'OER Ressourcen', href: '/oer', icon: Download },
       ]
     },

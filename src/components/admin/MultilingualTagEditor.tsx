@@ -135,7 +135,7 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                         <Tabs defaultValue="de" className="w-full">
                             <TabsList className="grid w-full grid-cols-3">
                                 <TabsTrigger value="de">🇩🇪 Deutsch</TabsTrigger>
-                                <TabsTrigger value="en">🇬🇧 English</TabsTrigger>
+                                <TabsTrigger value="en">🇬🇧 Englisch</TabsTrigger>
                                 <TabsTrigger value="la">🏛️ Latinum</TabsTrigger>
                             </TabsList>
                             <TabsContent value="de" className="space-y-2">
@@ -153,11 +153,11 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                 )}
                             </TabsContent>
                             <TabsContent value="en" className="space-y-2">
-                                <Label className="text-xs">English Tag Name</Label>
+                                <Label className="text-xs">Englischer Name</Label>
                                 <Input
                                     value={newTag.en}
                                     onChange={e => setNewTag({ ...newTag, en: e.target.value })}
-                                    placeholder="e.g. Warfare, Politics, Philosophy"
+                                    placeholder="z.B. Warfare, Politics, Philosophy"
                                 />
                             </TabsContent>
                             <TabsContent value="la" className="space-y-2">

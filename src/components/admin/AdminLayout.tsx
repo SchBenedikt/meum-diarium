@@ -29,7 +29,7 @@ export function AdminLayout() {
   };
 
   const sectionTitle = (() => {
-    if (location.pathname === '/admin' || location.pathname === '/admin/overview') return 'Dashboard';
+    if (location.pathname === '/admin' || location.pathname === '/admin/overview') return 'Übersicht';
     if (location.pathname.includes('/admin/post')) return 'Beiträge';
     if (location.pathname.includes('/admin/lexicon')) return 'Lexikon';
     if (location.pathname.includes('/admin/settings')) return 'Einstellungen';

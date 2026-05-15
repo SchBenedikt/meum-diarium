@@ -1180,12 +1180,12 @@ export default function DesignGuidePage() {
                 <div className="space-y-6">
                   {[
                     { size: 'text-7xl', text: 'Römische Geschichte', usage: 'Hero H1' },
-                    { size: 'text-5xl', text: 'Große Überschriften', usage: 'H2, Section Titles' },
-                    { size: 'text-3xl', text: 'Mittelgroße Titel', usage: 'H3, Card Titles' },
-                    { size: 'text-xl', text: 'Untertitel & Beschreibungen', usage: 'H4, Lead Text' },
-                    { size: 'text-base', text: 'Normaler Fließtext', usage: 'Body Content' },
-                    { size: 'text-sm', text: 'Kleinere Texte', usage: 'Captions, Labels' },
-                    { size: 'text-xs', text: 'Metadaten & Navigation', usage: 'Badges, Nav' },
+                    { size: 'text-5xl', text: 'Große Überschriften', usage: 'H2, Abschnittstitel' },
+                    { size: 'text-3xl', text: 'Mittelgroße Titel', usage: 'H3, Kartentitel' },
+                    { size: 'text-xl', text: 'Untertitel & Beschreibungen', usage: 'H4, Einleitungstext' },
+                    { size: 'text-base', text: 'Normaler Fließtext', usage: 'Haupttext' },
+                    { size: 'text-sm', text: 'Kleinere Texte', usage: 'Bildunterschriften, Beschriftungen' },
+                    { size: 'text-xs', text: 'Metadaten & Navigation', usage: 'Abzeichen, Navigation' },
                   ].map((type, i) => (
                     <div key={i} className="flex items-center justify-between p-4 bg-secondary/20 rounded-xl">
                       <div className="flex-1">
@@ -1228,10 +1228,10 @@ export default function DesignGuidePage() {
                 </h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
-                    { name: 'Primary', hsl: '345 60% 35%', hex: '#8B2F5C', usage: 'Branding, Links, Accents' },
-                    { name: 'Primary Light', hsl: '345 60% 55%', hex: '#D6478F', usage: 'Highlights, States' },
-                    { name: 'Primary Dark', hsl: '345 60% 25%', hex: '#5A1F3D', usage: 'Hover States, Depth' },
-                    { name: 'Background', hsl: '40 20% 98%', hex: '#FCFAF5', usage: 'Page Background' },
+                    { name: 'Primär', hsl: '345 60% 35%', hex: '#8B2F5C', usage: 'Marke, Links, Akzente' },
+                    { name: 'Primär Hell', hsl: '345 60% 55%', hex: '#D6478F', usage: 'Hervorhebungen, Zustände' },
+                    { name: 'Primär Dunkel', hsl: '345 60% 25%', hex: '#5A1F3D', usage: 'Hover-Zustände, Tiefe' },
+                    { name: 'Hintergrund', hsl: '40 20% 98%', hex: '#FCFAF5', usage: 'Seitenhintergrund' },
                   ].map((color, i) => (
                     <div key={i} className="space-y-3">
                       <div 
@@ -1300,14 +1300,14 @@ export default function DesignGuidePage() {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                 {[
-                  { size: '1', value: '0.25rem', px: '4px', usage: 'Micro spacing' },
-                  { size: '2', value: '0.5rem', px: '8px', usage: 'Small gaps' },
-                  { size: '3', value: '0.75rem', px: '12px', usage: 'Default padding' },
-                  { size: '4', value: '1rem', px: '16px', usage: 'Standard spacing' },
-                  { size: '6', value: '1.5rem', px: '24px', usage: 'Section spacing' },
-                  { size: '8', value: '2rem', px: '32px', usage: 'Large spacing' },
-                  { size: '12', value: '3rem', px: '48px', usage: 'Hero spacing' },
-                  { size: '16', value: '4rem', px: '64px', usage: 'Page sections' },
+                  { size: '1', value: '0.25rem', px: '4px', usage: 'Mikro-Abstände' },
+                  { size: '2', value: '0.5rem', px: '8px', usage: 'Kleine Abstände' },
+                  { size: '3', value: '0.75rem', px: '12px', usage: 'Standard-Padding' },
+                  { size: '4', value: '1rem', px: '16px', usage: 'Normale Abstände' },
+                  { size: '6', value: '1.5rem', px: '24px', usage: 'Abschnitts-Abstände' },
+                  { size: '8', value: '2rem', px: '32px', usage: 'Große Abstände' },
+                  { size: '12', value: '3rem', px: '48px', usage: 'Hero-Abstände' },
+                  { size: '16', value: '4rem', px: '64px', usage: 'Seitenabschnitte' },
                 ].map((space, i) => (
                   <div key={i} className="text-center">
                     <div className={`h-${space.size} bg-primary/20 rounded mb-2`}></div>

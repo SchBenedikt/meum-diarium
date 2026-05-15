@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
               <Lock className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <CardTitle className="text-2xl text-center">Admin Login</CardTitle>
+          <CardTitle className="text-2xl text-center">Admin-Anmeldung</CardTitle>
           <CardDescription className="text-center">
             Gib das Admin-Passwort ein, um auf den CMS-Bereich zuzugreifen
           </CardDescription>

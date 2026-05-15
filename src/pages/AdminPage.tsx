@@ -85,7 +85,7 @@ export default function AdminPage() {
         },
         {
             title: 'Einstellungen',
-            description: 'Branding und PWA',
+            description: 'Marke und PWA',
             href: '/admin/settings',
             icon: Settings,
         },
@@ -251,7 +251,7 @@ export default function AdminPage() {
                 { icon: BookOpenText, label: 'Beiträge', value: postRows.length },
                 { icon: Users, label: 'Autoren', value: Object.keys(authorEntries).length },
                 { icon: LibraryBig, label: 'Lexikon', value: lexiconEntries?.length || 0 },
-                { icon: Tags, label: 'Tags', value: tags?.length || 0 },
+                { icon: Tags, label: 'Schlagwörter', value: tags?.length || 0 },
             ]} />
             {/* Quick Links */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 my-8">
@@ -296,11 +296,11 @@ export default function AdminPage() {
                         </TabsTrigger>
                         <TabsTrigger value="tags" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
                             <Tags className="h-4 w-4 mr-2" />
-                            Tags
+                            Schlagwörter
                         </TabsTrigger>
                         <TabsTrigger value="translations" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-md">
                             <Settings className="h-4 w-4 mr-2" />
-                            i18n
+                            Übersetzungen
                         </TabsTrigger>
                     </TabsList>
                 </div>

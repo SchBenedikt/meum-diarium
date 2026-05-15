@@ -94,16 +94,16 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 });
             }
             if (res.ok) {
-                toast.success(isUpdate ? 'Post updated' : 'Post created');
+                toast.success(isUpdate ? 'Beitrag aktualisiert' : 'Beitrag erstellt');
                 onSuccess();
                 onOpenChange(false);
             } else {
                 const error = await res.json();
-                toast.error(`Failed to save post: ${error.error || 'Unknown error'}`);
+                toast.error(`Beitrag konnte nicht gespeichert werden: ${error.error || 'Unbekannter Fehler'}`);
             }
         } catch (error) {
             console.error(error);
-            toast.error('Error saving post');
+            toast.error('Fehler beim Speichern des Beitrags');
         } finally {
             setLoading(false);
         }
@@ -112,12 +112,12 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle>{post ? 'Edit Post' : 'Create New Post'}</DialogTitle>
+                    <DialogTitle>{post ? 'Beitrag bearbeiten' : 'Neuen Beitrag erstellen'}</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label>Legacy Title (Fallback)</Label>
+                            <Label>Legacy-Titel (Fallback)</Label>
                             <Input
                                 value={formData.title}
                                 onChange={e => setFormData({ ...formData, title: e.target.value })}
@@ -125,11 +125,11 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label>Slug</Label>
+                            <Label>Slug (Kurzname)</Label>
                             <Input
                                 value={formData.slug}
                                 onChange={e => setFormData({ ...formData, slug: e.target.value })}
-                                placeholder="Auto-generated from title"
+                                placeholder="Automatisch aus dem Titel generiert"
                             />
                         </div>
                     </div>
@@ -156,7 +156,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <Label>Author</Label>
+                        <Label>Autor</Label>
                         <Select
                             value={formData.author}
                             onValueChange={value => setFormData({ ...formData, author: value })}
@@ -173,7 +173,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         </Select>
                     </div>
                     <div className="space-y-2">
-                        <Label>Excerpt</Label>
+                        <Label>Auszug</Label>
                         <Textarea
                             value={formData.excerpt}
                             onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
@@ -181,7 +181,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label>Cover Image URL</Label>
+                        <Label>Cover-Bild-URL</Label>
                         <Input
                             value={formData.coverImage}
                             onChange={e => setFormData({ ...formData, coverImage: e.target.value })}
@@ -192,7 +192,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         </p>
                     </div>
                     <div className="space-y-2">
-                        <Label className="flex items-center gap-2">📔 Content (Tagebuch)</Label>
+                        <Label className="flex items-center gap-2">📔 Inhalt (Tagebuch)</Label>
                         <Textarea
                             className="min-h-[200px] font-mono"
                             value={formData.contentDiary}
@@ -201,7 +201,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label className="flex items-center gap-2">📚 Content (Wissenschaftlich)</Label>
+                        <Label className="flex items-center gap-2">📚 Inhalt (Wissenschaftlich)</Label>
                         <Textarea
                             className="min-h-[200px] font-mono"
                             value={formData.contentScientific}
@@ -233,11 +233,11 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                                 />
                             </div>
                             <div className="space-y-2 md:col-span-2">
-                                <Label className="text-sm">🇬🇧 English</Label>
+                                <Label className="text-sm">🇬🇧 Englisch</Label>
                                 <Textarea
                                     value={formData.quoteTranslationEn}
                                     onChange={e => setFormData({ ...formData, quoteTranslationEn: e.target.value })}
-                                    placeholder="English translation..."
+                                    placeholder="Englische Übersetzung..."
                                     rows={2}
                                 />
                             </div>
@@ -278,10 +278,10 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                     </div>
                     <DialogFooter>
                         <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                            Cancel
+                            Abbrechen
                         </Button>
                         <Button type="submit" disabled={loading}>
-                            {loading ? 'Saving...' : 'Save Post'}
+                            {loading ? 'Speichern...' : 'Beitrag speichern'}
                         </Button>
                     </DialogFooter>
                 </form>
