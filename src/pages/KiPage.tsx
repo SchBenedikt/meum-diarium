@@ -41,49 +41,147 @@ const KiPage = () => {
           </motion.div>
         </motion.section>
 
-        {/* Main Content */}
+        {/* Aktive KI */}
         <motion.section 
           initial="hidden" 
           whileInView="visible" 
           viewport={{ once: true }}
           variants={staggerContainer(0.1)}
-          className="container mx-auto max-w-6xl px-4 py-16 border-t border-primary/10"
+          className="container mx-auto max-w-6xl px-4 py-20 border-t border-primary/10"
         >
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Was ist alles mit KI gemacht */}
-            <motion.div variants={fadeUp()} className="space-y-6">
-              <h2 className="font-display text-2xl font-bold">Was ist mit KI gemacht?</h2>
-              <div className="space-y-3 text-muted-foreground/80">
-                <p><strong>✓ Alle Tagebuch-Einträge</strong> — Die persönlichen Perspektiven der historischen Personen</p>
-                <p><strong>✓ Wissenschaftliche Artikel</strong> — Historische Kontexte und Analysen</p>
-                <p><strong>✓ Der KI-Chat</strong> — Gespräche mit Caesar, Cicero, Augustus und anderen</p>
-                <p><strong>✓ Das Zeitreise-Spiel</strong> — Interaktive Szenarien zum Lernen</p>
-                <p><strong>✓ Begriffserklärungen</strong> — Lexikon und Glossare</p>
-                <p><strong>✓ UI & Design</strong> — Diese Seite selbst</p>
-              </div>
+          <motion.div variants={fadeUp()} className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-[2px] bg-primary" />
+              <span className="text-primary font-bold text-xs uppercase tracking-widest">Aktive KI</span>
+            </div>
+            <h2 className="font-display text-3xl font-bold">Echtzeit-Interaktion mit KI</h2>
+            <p className="text-muted-foreground/80 mt-2">Diese Features verwenden KI in Echtzeit — du redest direkt mit ihr</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">KI-Chat mit Charakteren</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Du kannst mit Caesar, Cicero, Augustus, Seneca und anderen römischen Persönlichkeiten chatten. Die KI antwortet im Charakter.
+              </p>
+              <p className="text-sm text-primary">→ Im Chat spontan kreativ generiert</p>
             </motion.div>
 
-            {/* Warum das funktioniert */}
-            <motion.div variants={fadeUp()} className="space-y-6">
-              <h2 className="font-display text-2xl font-bold">Warum das funktioniert</h2>
-              <div className="space-y-3 text-muted-foreground/80">
-                <p><strong>Historische Basis</strong> — Alle Inhalte basieren auf echten historischen Quellen und dokumentierten Fakten.</p>
-                <p><strong>Kontrolle</strong> — Die Inhalte wurden manuell überprüft und korrigiert.</p>
-                <p><strong>Spezialität</strong> — KI ist extrem gut darin, komplexe Inhalte verständlich zu erklären.</p>
-                <p><strong>Konsistenz</strong> — KI erzeugt konsistente Charaktere und Perspektiven.</p>
-              </div>
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Zeitreise-Szenarien</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Das interaktive Spiel mit Entscheidungen und Konsequenzen wird von KI gesteuert — jedes Spiel ist unterschiedlich.
+              </p>
+              <p className="text-sm text-primary">→ Dynamisch generiert basierend auf deinen Entscheidungen</p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Passive KI */}
+        <motion.section 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true }}
+          variants={staggerContainer(0.1)}
+          className="container mx-auto max-w-6xl px-4 py-20 border-t border-primary/10"
+        >
+          <motion.div variants={fadeUp()} className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-[2px] bg-primary" />
+              <span className="text-primary font-bold text-xs uppercase tracking-widest">Passive KI</span>
+            </div>
+            <h2 className="font-display text-3xl font-bold">KI-generierte Inhalte (überprüft)</h2>
+            <p className="text-muted-foreground/80 mt-2">Diese Inhalte wurden mit KI erstellt, dann manuell überprüft und korrigiert</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Tagebuch-Einträge</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Die persönlichen Perspektiven, Gedanken und Erlebnisse der historischen Figuren. Basieren auf historischen Fakten, erzählt aus persönlicher Perspektive.
+              </p>
+              <p className="text-sm text-primary">✓ KI-generiert, manuell überprüft auf historische Korrektheit</p>
             </motion.div>
 
-            {/* Kritische Punkte */}
-            <motion.div variants={fadeUp()} className="space-y-6">
-              <h2 className="font-display text-2xl font-bold">Wichtige Grenzen</h2>
-              <div className="space-y-3 text-muted-foreground/80">
-                <p><strong>KI kann irren</strong> — Besonders bei Details und speziellen Daten.</p>
-                <p><strong>Generalisierungen</strong> — KI vereinfacht manchmal zu viel.</p>
-                <p><strong>Keine neuen Erkenntnisse</strong> — KI generiert aus bestehendem Wissen, erfindet nicht neu.</p>
-                <p><strong>Archiviert im 2026er Snapshot</strong> — Das Wissen der KI hat ein Cut-off-Datum.</p>
-              </div>
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Wissenschaftliche Artikel</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Detaillierte Analysen, historischer Kontext, Quellenangaben und akademische Perspektiven. Mindestens 300 Wörter pro Artikel.
+              </p>
+              <p className="text-sm text-primary">✓ KI-generiert und erweitert, redaktionell überprüft</p>
             </motion.div>
+
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Lexikon & Begriffserklärungen</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Lateinische Vokabeln, historische Begriffe, antike Konzepte — jeweils kurz und verständlich erklärt.
+              </p>
+              <p className="text-sm text-primary">✓ KI-generiert, auf Accuracy überprüft</p>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Diese Webseite selbst</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Layout, Texte (bis auf diese Seite), Bildunterschriften, Navigationselemente — alles KI-unterstützt konzipiert und umgesetzt.
+              </p>
+              <p className="text-sm text-primary">✓ KI-generiert, manuell angepasst</p>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeUp()}
+              className="bg-gradient-to-br from-primary/5 via-background to-background border border-primary/10 rounded-lg p-6"
+            >
+              <h3 className="font-display text-xl font-bold mb-3">Medieninhalte (Videos)</h3>
+              <p className="text-muted-foreground/80 mb-4">
+                Ein KI-generiertes Video (aktuell: Ciceros Philippische Reden). Visuell illustrativ, nicht editorisch.
+              </p>
+              <p className="text-sm text-primary">✓ KI-generiert, mit Disclaimer vor Wiedergabe</p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Überprüfung */}
+        <motion.section 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true }}
+          variants={fadeUp()}
+          className="container mx-auto max-w-4xl px-4 py-20 border-t border-primary/10"
+        >
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-lg p-8 md:p-12">
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">Wie wurde das überprüft?</h2>
+            <div className="space-y-4 text-muted-foreground/80">
+              <p>
+                <strong>Historische Korrektheit:</strong> Alle Inhalte basieren auf etablierten Quellen — Primärtexte, akademische Werke, archäologische Befunde. KI-Generierte Texte wurden gegen diese Quellen gegengelesen.
+              </p>
+              <p>
+                <strong>Faktenchecks:</strong> Daten, Daten, Namen und historische Ereignisse wurden manuell überprüft. Bei Unsicherheiten wurde recherchiert.
+              </p>
+              <p>
+                <strong>Stil & Verständlichkeit:</strong> Die Texte wurden auf Verständlichkeit, Konsistenz und Ton überprüft — besonders bei den Tagebuch-Einträgen für Authentizität.
+              </p>
+              <p>
+                <strong>Aber:</strong> KI kann trotzdem Fehler machen, besonders bei speziellen Details oder Interpretationen. Wenn du etwas Falsches findest, melde es bitte.
+              </p>
+            </div>
           </div>
         </motion.section>
 
