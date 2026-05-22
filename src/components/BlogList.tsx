@@ -8,12 +8,13 @@ import { cn } from '@/lib/utils';
 import { BlogPost } from '@/types/blog';
 import { useLanguage } from '@/context/LanguageContext';
 import { getPostTags } from '@/lib/tag-utils';
-type ContentFilter = 'all' | 'diary' | 'scientific';
+
 export function BlogList() {
   const { currentAuthor, authorInfo } = useAuthor();
   const { posts, isLoading } = usePosts();
   const [searchQuery, setSearchQuery] = useState('');
-  const [contentFilter, setContentFilter] = useState<ContentFilter>('all');
+
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc'); // 'asc' = oldest first, 'desc' = newest first
   const { language } = useLanguage();
   // Helper function to check if a post has content for a specific perspective
   const hasContent = (post: BlogPost, perspective: 'diary' | 'scientific') => {
@@ -27,16 +28,9 @@ export function BlogList() {
   };
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
-    return posts
+    const base = posts
       .filter((post) => post.author === currentAuthor)
-      .filter((post) => {
-        if (contentFilter === 'diary') {
-          return hasContent(post, 'diary');
-        } else if (contentFilter === 'scientific') {
-          return hasContent(post, 'scientific');
-        }
-        return true;
-      })
+      .filter((post) => post.author === currentAuthor)
       .filter((post) => {
         if (!searchQuery.trim()) return true;
         const query = searchQuery.toLowerCase();
@@ -47,13 +41,18 @@ export function BlogList() {
           post.excerpt.toLowerCase().includes(query) ||
           getPostTags(post, language).some(tag => tag.toLowerCase().includes(query))
         );
-      })
-      .sort((a, b) => {
-        const ay = typeof a.historicalYear === 'number' ? a.historicalYear : new Date(a.date).getFullYear();
-        const by = typeof b.historicalYear === 'number' ? b.historicalYear : new Date(b.date).getFullYear();
-        return ay - by;
       });
-  }, [posts, currentAuthor, contentFilter, searchQuery]);
+
+    // Sort by historical year (default) and then by date within year.
+    base.sort((a, b) => {
+      const ay = typeof a.historicalYear === 'number' ? a.historicalYear : (a.date ? new Date(a.date).getFullYear() : 0);
+      const by = typeof b.historicalYear === 'number' ? b.historicalYear : (b.date ? new Date(b.date).getFullYear() : 0);
+      // ascending = oldest first
+      return sortOrder === 'asc' ? ay - by : by - ay;
+    });
+
+    return base;
+  }, [posts, currentAuthor, searchQuery, sortOrder]);
   // Group posts by year
   const groupedByYear = useMemo(() => {
     const groups: Record<number, BlogPost[]> = {};
@@ -70,28 +69,21 @@ export function BlogList() {
       groups[yearKey].sort((a, b) => {
         const ad = a.date ? new Date(a.date).getTime() : 0;
         const bd = b.date ? new Date(b.date).getTime() : 0;
-        return ad - bd;
+        return sortOrder === 'asc' ? ad - bd : bd - ad;
       });
     });
-    return Object.entries(groups).sort((a, b) => Number(b[0]) - Number(a[0]));
+    // Sort years according to sortOrder
+    return Object.entries(groups).sort((a, b) => {
+      const na = Number(a[0]);
+      const nb = Number(b[0]);
+      return sortOrder === 'asc' ? na - nb : nb - na;
+    });
   }, [filteredPosts]);
   // Count posts with content
   const counts = useMemo(() => {
-    if (!posts || posts.length === 0) {
-      return { all: 0, diary: 0, scientific: 0 };
-    }
+    if (!posts || posts.length === 0) return { all: 0 };
     const authorPosts = posts.filter(p => p.author === currentAuthor);
-    const hasContentMemo = (post: BlogPost, perspective: 'diary' | 'scientific') => {
-      const content = post?.content?.[perspective];
-      return content != null && typeof content === 'string' && content.trim().length > 0;
-    };
-    const diaryCount = authorPosts.filter(p => hasContentMemo(p, 'diary')).length;
-    const scientificCount = authorPosts.filter(p => hasContentMemo(p, 'scientific')).length;
-    return {
-      all: authorPosts.length,
-      diary: diaryCount,
-      scientific: scientificCount,
-    };
+    return { all: authorPosts.length };
   }, [posts, currentAuthor]);
   if (!currentAuthor || !authorInfo) return null;
   if (isLoading) {
@@ -111,30 +103,28 @@ export function BlogList() {
               <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight">Einträge</h2>
               <p className="text-muted-foreground text-sm mt-1">{filteredPosts.length} Einträge</p>
             </div>
-            <BookOpen className="h-6 w-6 text-primary/40 shrink-0" />
-          </div>
-          {/* Content Filter Buttons */}
-          <div className="flex flex-wrap gap-2">
-            {[
-              { id: 'all', icon: BookMarked, label: 'Alle', count: counts.all },
-              { id: 'diary', icon: BookOpen, label: 'Tagebuch', count: counts.diary },
-              { id: 'scientific', icon: GraduationCap, label: 'Wissenschaftlich', count: counts.scientific }
-            ].map((filter) => (
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">Sortieren:</div>
               <button
-                key={filter.id}
-                onClick={() => setContentFilter(filter.id as ContentFilter)}
-                className={cn(
-                  'inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200',
-                  contentFilter === filter.id
-                    ? 'bg-primary text-primary-foreground shadow-none'
-                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
-                )}
+                onClick={() => setSortOrder('asc')}
+                className={cn('px-3 py-2 rounded-full text-xs font-semibold transition-all duration-200', sortOrder === 'asc' ? 'bg-primary text-primary-foreground' : 'bg-secondary/50 text-muted-foreground')}
+                aria-pressed={sortOrder === 'asc'}
+                title="Älteste zuerst"
               >
-                <filter.icon className="h-3.5 w-3.5" />
-                {filter.label} <span className="opacity-60 font-medium">({filter.count})</span>
+                Älteste
               </button>
-            ))}
+              <button
+                onClick={() => setSortOrder('desc')}
+                className={cn('px-3 py-2 rounded-full text-xs font-semibold transition-all duration-200', sortOrder === 'desc' ? 'bg-primary text-primary-foreground' : 'bg-secondary/50 text-muted-foreground')}
+                aria-pressed={sortOrder === 'desc'}
+                title="Neueste zuerst"
+              >
+                Neueste
+              </button>
+              <BookOpen className="h-6 w-6 text-primary/40 shrink-0" />
+            </div>
           </div>
+
         </div>
         {/* Search Filter */}
         <div className="mb-8">
@@ -158,11 +148,7 @@ export function BlogList() {
                 </div>
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
                   {postsOfYear.map((post) => (
-                    <BlogCard
-                      key={post.slug}
-                      post={post}
-                      preferredPerspective={contentFilter === 'scientific' ? 'scientific' : (contentFilter === 'diary' ? 'diary' : undefined)}
-                    />
+                    <BlogCard key={post.slug} post={post} />
                   ))}
                 </div>
               </section>
@@ -170,13 +156,7 @@ export function BlogList() {
           </div>
         ) : (
           <div className="text-center py-16 rounded-lg border border-dashed border-border bg-secondary/20">
-            <p className="text-muted-foreground">
-              {contentFilter === 'diary'
-                ? 'Keine Tagebuch-Einträge von diesem Autor.'
-                : contentFilter === 'scientific'
-                  ? 'Keine wissenschaftlichen Artikel von diesem Autor.'
-                  : 'Noch keine Einträge von diesem Autor.'}
-            </p>
+            <p className="text-muted-foreground">Noch keine Einträge von diesem Autor.</p>
           </div>
         )}
       </div>

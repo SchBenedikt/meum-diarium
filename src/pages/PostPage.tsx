@@ -52,6 +52,35 @@ function PostContent({ post }: { post: BlogPost }) {
   
   // Calculate reading time separately to avoid dependency issues
   const readingTime = useMemo(() => calculateReadingTime(contentToDisplay), [contentToDisplay]);
+
+  const [showVideo, setShowVideo] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoSrc = useMemo(() => {
+    const m = contentToDisplay?.match(/^Video:\s*\[[^\]]+\]\(([^)]+)\)/m);
+    return m ? m[1] : null;
+  }, [contentToDisplay]);
+
+  // When user requests playback, show a 3s KI notice overlay; only after timeout or skip start playback
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | null = null;
+    if (showVideo && videoSrc && !videoPlaying) {
+      setShowNotice(true);
+      t = setTimeout(() => {
+        setShowNotice(false);
+        setVideoPlaying(true);
+      }, 3000);
+    }
+    return () => { if (t) clearTimeout(t); };
+  }, [showVideo, videoSrc, videoPlaying]);
+
+  // Start playback when videoPlaying becomes true
+  useEffect(() => {
+    if (videoPlaying && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [videoPlaying]);
   
   // Page Tracking
   usePageTracking({
@@ -90,20 +119,30 @@ function PostContent({ post }: { post: BlogPost }) {
     return post?.title || 'Untitled'; // Fallback
   }, [perspective, post]);
   
-  // Update perspective based on URL params and content availability
+  // Update perspective based on URL params, user preference and content availability
   useEffect(() => {
     if (!post) return;
     
     const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
     const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
-    const defaultPerspective: Perspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
     const requested = (searchParams.get('p') as Perspective | null);
-    const initialPerspective: Perspective = requested === 'scientific' && hasScientific
-      ? 'scientific'
-      : requested === 'diary' && hasDiary
-        ? 'diary'
-        : defaultPerspective;
-    
+
+    // Read saved user preference (if any)
+    const savedPref = (typeof window !== 'undefined' ? (localStorage.getItem('defaultArticleMode') as 'auto' | 'diary' | 'scientific' | null) : null) || 'auto';
+
+    let initialPerspective: Perspective;
+    if (requested === 'scientific' && hasScientific) {
+      initialPerspective = 'scientific';
+    } else if (requested === 'diary' && hasDiary) {
+      initialPerspective = 'diary';
+    } else if (savedPref === 'diary' && hasDiary) {
+      initialPerspective = 'diary';
+    } else if (savedPref === 'scientific' && hasScientific) {
+      initialPerspective = 'scientific';
+    } else {
+      initialPerspective = hasDiary ? 'diary' : (hasScientific ? 'scientific' : 'diary');
+    }
+
     if (perspective !== initialPerspective) {
       setPerspective(initialPerspective);
     }
@@ -116,6 +155,9 @@ function PostContent({ post }: { post: BlogPost }) {
   }
   
   const author = post?.author ? authorData[post.author as Author] : null;
+  const authorColor = author?.color || '#000000';
+  const overlayBg = authorColor.length === 7 ? `${authorColor}CC` : `${authorColor}`;
+  const overlayTextColor = '#ffffff';
   const excerpt = contentToDisplay?.substring(0, 160) || '';
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
   const finalImage = `${baseUrl}/images/caesar-hero.png`;
@@ -215,11 +257,54 @@ function PostContent({ post }: { post: BlogPost }) {
                   {/* Beitragsbild unter dem Titel – nur anzeigen wenn coverImage vorhanden */}
                   {post.coverImage && (
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border/40">
-                      <ImageWithFallback
-                        src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
-                        alt={post.title}
-                        className="w-full h-full object-cover"
-                      />
+                      {videoSrc && showVideo ? (
+                        <div className="relative w-full h-full">
+                          {/* Full-area notice overlay while waiting */}
+                          {showNotice && (
+                            <>
+                              {/* Blurred background */}
+                              <div className="absolute inset-0 z-40 pointer-events-none" style={{ backgroundColor: overlayBg, filter: 'blur(8px)' }} />
+                              {/* Overlay content */}
+                              <div className="absolute inset-0 z-50 flex items-center justify-center">
+                                <div className="w-full h-full flex flex-col items-center justify-center text-center px-6">
+                                  <p className="text-lg sm:text-xl font-semibold text-white mb-2">Achtung: Das Video wurde mithilfe von KI erstellt.</p>
+                                  <p className="text-sm text-white mb-4">Weitere Informationen zur Nutzung von KI sind <a href="/ki" className="underline font-semibold text-white">hier</a>.</p>
+                                  <div className="flex gap-3">
+                                    <button onClick={() => { setShowNotice(false); setVideoPlaying(true); }} className="px-4 py-2 rounded bg-white text-black font-medium">Überspringen</button>
+                                    <div className="px-3 py-2 rounded border border-white text-white">Startet in 3 Sekunden...</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          <video
+                            ref={videoRef}
+                            controls={videoPlaying}
+                            className="w-full h-full object-cover rounded-xl"
+                            playsInline
+                          >
+                            <source src={videoSrc} />
+                            Dein Browser unterstützt das Video-Tag nicht. <a href={videoSrc} className="text-primary underline">Link zum Video</a>
+                          </video>
+                        </div>
+                      ) : (
+                        <>
+                          <ImageWithFallback
+                            src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
+                            alt={post.title}
+                            className="w-full h-full object-cover"
+                          />
+                          {videoSrc && (
+                            <button onClick={() => { setShowVideo(true); setVideoPlaying(false); }} aria-label="Play video" className="absolute inset-0 flex items-center justify-center bg-black/20">
+                              <svg className="h-16 w-16 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)" />
+                                <path d="M10 8L16 12L10 16V8Z" fill="white" />
+                              </svg>
+                            </button>
+                          )}
+                        </>
+                      )}
                     </div>
                   )}
                   <div className="rounded-2xl border border-border/50 bg-white/80 dark:bg-card/85 backdrop-blur-xl p-3 sm:p-4">
@@ -263,6 +348,47 @@ function PostContent({ post }: { post: BlogPost }) {
                   <PerspectiveToggle value={perspective} onChange={setPerspective} hasDiary={hasDiary} hasScientific={hasScientific} />
                 </header>
                 <div className="space-y-8">
+                  {/* Optional inline video: markdown line like `Video: [label](/videos/file.mp4)` at the top of the content will be rendered as a player */}
+                  {(() => {
+                    // when there's an inline video (no coverImage), render player with a short KI notice overlay
+                    if (videoSrc && !post.coverImage) {
+                      return (
+                        <div className="mb-6">
+                          {!showVideo ? (
+                            <div className="rounded-lg border border-border/40 bg-secondary/20 h-64 flex items-center justify-center">
+                              <button onClick={() => { setShowVideo(true); setVideoPlaying(false); }} aria-label="Play video" className="flex items-center gap-3 bg-primary/80 hover:bg-primary text-white px-4 py-2 rounded">
+                                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10 8L16 12L10 16V8Z" fill="currentColor" />
+                                </svg>
+                                Video abspielen
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="relative mb-6">
+                              {showNotice && (
+                                <div className="absolute inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: overlayBg }}>
+                                  <div className="w-full h-full flex flex-col items-center justify-center text-center px-6">
+                                    <p className="text-lg sm:text-xl font-semibold text-white mb-2">Achtung: Das Video wurde mithilfe von KI erstellt.</p>
+                                    <p className="text-sm text-white mb-4">Weitere Informationen zur Nutzung von KI sind <a href="/ki" className="underline font-semibold text-white">hier</a>.</p>
+                                    <div className="flex gap-3">
+                                      <button onClick={() => { setShowNotice(false); setVideoPlaying(true); }} className="px-4 py-2 rounded bg-white text-black font-medium">Überspringen</button>
+                                      <div className="px-3 py-2 rounded border border-white text-white">Startet in 3 Sekunden...</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                              <video ref={videoRef} controls={videoPlaying} className="w-full rounded-lg border border-border/40" playsInline>
+                                <source src={videoSrc} />
+                                Dein Browser unterstützt das Video-Tag nicht. Folge dem <a href={videoSrc} className="text-primary underline">Link zum Video</a>.
+                              </video>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })()}
+
                   <TableOfContents content={contentToDisplay} title={t('tableOfContents') || 'Inhaltsverzeichnis'} />
                   <FormattedContent content={contentToDisplay} language={language as Language} currentSlug={post?.slug} />
                 </div>

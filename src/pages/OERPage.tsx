@@ -6,6 +6,7 @@ import { SEO } from '@/components/SEO';
 import { Card, CardContent } from '@/components/ui/card';
 import { Footer } from '@/components/layout/Footer';
 import { fadeUp, staggerContainer } from '@/lib/motion';
+import { authors } from '@/data/authors';
 
 type ResourceItem = {
   title: string;
@@ -83,52 +84,18 @@ const OERPage = () => {
           format: 'TypeScript, React',
           link: 'https://github.com/meum-diarium',
         },
-        {
-          title: 'Datenbank-Exporte',
-          description: 'Nutzbare Daten fuer wissenschaftliche Auswertung und Reproduktion.',
-          license: 'ODbL',
-          format: 'SQL, CSV',
-          link: '/data',
-        },
+
       ],
     },
   ];
 
-  const licenses = [
-    {
-      name: 'CC BY-SA 4.0',
-      short: 'Creative Commons',
-      description: 'Namensnennung und Weitergabe unter gleichen Bedingungen.',
-      icon: Share2,
-      color: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-200 dark:border-green-800/50',
-    },
-    {
-      name: 'MIT',
-      short: 'MIT License',
-      description: 'Freie Nutzung, Modifikation und Weiterverteilung von Software.',
-      icon: Code,
-      color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-200 dark:border-blue-800/50',
-    },
-    {
-      name: 'ODbL',
-      short: 'Open Database License',
-      description: 'Offene Weiternutzung von Datenbanken bei gleicher Offenheit.',
-      icon: Globe,
-      color: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-200 dark:border-amber-800/50',
-    },
-    {
-      name: 'CC0',
-      short: 'Public Domain',
-      description: 'Gemeinfreie Inhalte ohne urheberrechtliche Einschraenkungen.',
-      icon: Star,
-      color: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-900/20 dark:text-slate-200 dark:border-slate-700/60',
-    },
-  ];
+  const licenses: any[] = [];
 
+  const authorsCount = Object.keys(authors).length;
   const stats = [
     { value: '92+', label: 'Lexikon-Eintraege' },
     { value: '36.140', label: 'Vokabeln' },
-    { value: '4', label: 'Historiker' },
+    { value: String(authorsCount), label: 'Historische Persoenlichkeiten' },
     { value: '6', label: 'Lektionen' },
   ];
 
@@ -159,7 +126,7 @@ const OERPage = () => {
               Offene Lernmaterialien fuer <span className="text-primary italic">Latein und Rom</span>
             </h1>
             <p className="text-muted-foreground/70 text-lg leading-relaxed max-w-3xl">
-              Diese Seite buendelt die frei nutzbaren Ressourcen von Meum Diarium. Alle Materialien sind transparent lizenziert und fuer Unterricht, Studium und Forschung einsetzbar.
+              Diese Seite buendelt die frei nutzbaren Ressourcen von Meum Diarium. Alle Materialien sind transparent lizenziert und fuer Unterricht und Studium einsetzbar.
             </p>
           </motion.div>
 
@@ -255,24 +222,6 @@ const OERPage = () => {
           </div>
         </section>
 
-        <section className="mb-20">
-          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
-            <div className="w-8 h-[1px] bg-primary/30" />
-            OFFENE LIZENZEN
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {licenses.map((license) => (
-              <Card key={license.name} className={`card-modern ${license.color}`}>
-                <CardContent className="p-6">
-                  <license.icon className="w-6 h-6 mb-4" />
-                  <h3 className="font-display text-xl font-bold mb-1">{license.name}</h3>
-                  <p className="text-xs uppercase tracking-[0.2em] mb-3">{license.short}</p>
-                  <p className="text-sm leading-relaxed">{license.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
 
         <section className="card-modern card-padding-lg border-primary/20 bg-gradient-to-br from-primary/5 via-transparent to-background">
           <div className="max-w-3xl">

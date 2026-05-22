@@ -36,6 +36,13 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
     });
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // Validate scientific content length (min 300 words if provided)
+        const countWords = (s: string) => (s || '').trim().split(/\s+/).filter(Boolean).length;
+        const sciWords = countWords(formData.contentScientific);
+        if (sciWords > 0 && sciWords < 300) {
+            toast.error('Wissenschaftlicher Artikel muss mindestens 300 Wörter enthalten.');
+            return;
+        }
         setLoading(true);
         try {
             const payload = {

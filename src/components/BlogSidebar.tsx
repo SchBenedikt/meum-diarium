@@ -90,6 +90,8 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
           </cite>
         </div>
       )}
+
+
       {getPostTags(post, language).length > 0 && (
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6">
           <h3 className="font-display text-lg font-medium mb-4 flex items-center gap-2">

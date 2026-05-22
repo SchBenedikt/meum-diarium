@@ -400,6 +400,9 @@ export default function ApiDocsPage() {
           <p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
             Vollständige Dokumentation aller Content- und KI-Endpunkte mit interaktiven Testfunktionen. Direkter Zugriff auf unsere Wissensdatenbank für Entwickler und Forscher.
           </p>
+          <p className="text-sm text-muted-foreground max-w-3xl">
+            Hinweis: Alle öffentlich zugänglichen Beiträge und Katalogeinträge werden ausschließlich auf Deutsch bereitgestellt. Die API liefert daher deutschen Content (Titel, Auszüge und Textabschnitte).
+          </p>
         </header>
 
         {/* Tab Navigation */}

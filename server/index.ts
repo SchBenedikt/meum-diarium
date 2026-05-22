@@ -122,8 +122,9 @@ app.get('/api/posts', async (req, res) => {
         if (author) allPosts = allPosts.filter((p: any) => p.author === author);
         if (tag) allPosts = allPosts.filter((p: any) => Array.isArray(p.tags) && p.tags.includes(tag));
 
-        allPosts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
-        console.log(`✅ [Dev] Served ${allPosts.length} posts from static files`);
+        // Default sorting: oldest first (ascending)
+        allPosts.sort((a, b) => new Date(a.date || 0).getTime() - new Date(b.date || 0).getTime());
+        console.log(`✅ [Dev] Served ${allPosts.length} posts from static files (oldest-first)`);
         res.json(allPosts);
     } catch (error) {
         console.error('❌ [Dev] Error serving posts from files:', error);
@@ -330,8 +331,12 @@ app.get('/sitemap.xml', async (_req, res) => {
 // In production, Cloudflare Functions handle /api/* with the same file-based approach
 
 app.post('/api/posts', (req, res) => {
-    // In dev, always return success for create
     console.log('📝 [Dev] POST /api/posts - creating post:', req.body.slug);
+    const scientific = req.body?.content?.scientific || '';
+    const wordCount = String(scientific).trim() ? String(scientific).trim().split(/\s+/).filter(Boolean).length : 0;
+    if (wordCount > 0 && wordCount < 300) {
+        return res.status(400).json({ error: 'Scientific content must be at least 300 words.' });
+    }
     res.status(201).json({ 
         success: true, 
         message: 'Post created (dev mode)',
@@ -370,9 +375,13 @@ app.get('/api/posts/:author/:slug', async (req, res) => {
 });
 
 app.put('/api/posts/:author/:slug', (req, res) => {
-    // In dev, always return success for update
     const { author, slug } = req.params;
     console.log(`✏️  [Dev] PUT /api/posts/${author}/${slug} - updating post`);
+    const scientific = req.body?.content?.scientific || '';
+    const wordCount = String(scientific).trim() ? String(scientific).trim().split(/\s+/).filter(Boolean).length : 0;
+    if (wordCount > 0 && wordCount < 300) {
+        return res.status(400).json({ error: 'Scientific content must be at least 300 words.' });
+    }
     res.status(200).json({ 
         success: true, 
         message: 'Post updated (dev mode)',

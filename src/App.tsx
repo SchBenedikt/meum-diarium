@@ -42,6 +42,7 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const ImprintPage = lazy(() => import("./pages/ImprintPage"));
 const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const KiPage = lazy(() => import('./pages/KiPage'));
 const ApiDocsPage = lazy(() => import("./pages/ApiDocsPage"));
 const LatinTools = lazy(() => import('./pages/LatinTools'));
 const LatinGrammarPage = lazy(() => import('./pages/LatinGrammarPage'));
@@ -129,6 +130,7 @@ const AppContent = () => {
               <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
               <Route path="/cookie-richtlinien" element={<PageTransition><CookiesPage /></PageTransition>} />
               <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
+               <Route path="/ki" element={<PageTransition><KiPage /></PageTransition>} />
               <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />

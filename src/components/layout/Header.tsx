@@ -38,6 +38,7 @@ import {
   UserPlus,
   BarChart3,
   Code2,
+  Check,
 
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
@@ -52,6 +53,7 @@ export function Header() {
   const [isIpad, setIsIpad] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setThemeState] = useState<'light' | 'dark' | 'system'>('system');
+  const [defaultMode, setDefaultMode] = useState<'auto' | 'diary' | 'scientific'>('auto');
   const headerRef = useRef<HTMLDivElement>(null);
   // iPad Detection (inkl. iPadOS 13+)
   useEffect(() => {
@@ -67,6 +69,9 @@ export function Header() {
       'system';
     setThemeState(savedTheme);
     applyTheme(savedTheme);
+    // Load default article mode preference
+    const savedMode = (localStorage.getItem('defaultArticleMode') as 'auto' | 'diary' | 'scientific') || 'auto';
+    setDefaultMode(savedMode);
   }, []);
   const applyTheme = (newTheme: 'light' | 'dark' | 'system') => {
     const htmlElement = document.documentElement;
@@ -86,6 +91,15 @@ export function Header() {
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
     applyTheme(newTheme);
+  };
+
+  const setDefaultArticleMode = (mode: 'auto' | 'diary' | 'scientific') => {
+    setDefaultMode(mode);
+    try {
+      localStorage.setItem('defaultArticleMode', mode);
+    } catch (e) {
+      // ignore storage errors
+    }
   };
   // Scroll detection for header styling
   useEffect(() => {
@@ -264,6 +278,30 @@ export function Header() {
                       onCheckedChange={() => setTheme('system')}
                     >
                       System 🖥️
+                    </DropdownMenuCheckboxItem>
+
+                    <DropdownMenuSeparator />
+                    <DropdownMenuLabel className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" />
+                      Standard-Ansicht
+                    </DropdownMenuLabel>
+                    <DropdownMenuCheckboxItem
+                      checked={defaultMode === 'auto'}
+                      onCheckedChange={() => setDefaultArticleMode('auto')}
+                    >
+                      Auto (Fallback) 🔁
+                    </DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem
+                      checked={defaultMode === 'diary'}
+                      onCheckedChange={() => setDefaultArticleMode('diary')}
+                    >
+                      Tagebuch 📝
+                    </DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem
+                      checked={defaultMode === 'scientific'}
+                      onCheckedChange={() => setDefaultArticleMode('scientific')}
+                    >
+                      Wissenschaftlich 📚
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
