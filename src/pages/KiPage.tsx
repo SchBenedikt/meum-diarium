@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { SEO } from '@/components/SEO';
+import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { fadeUp, staggerContainer } from '@/lib/motion';
@@ -13,10 +14,45 @@ const KiPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="KI-Nutzung — Meum Diarium"
-        description="Vollständige Transparenz: Meum Diarium wurde mithilfe von KI erstellt. Alle Inhalte, Features und Texte sind mithilfe von KI entwickelt und überprüft."
+        title="KI-Transparenz und Nutzung"
+        description="Vollständige Transparenz zur KI-Nutzung bei Meum Diarium: Wie Inhalte, Funktionen und Lernmodule entwickelt, überprüft und eingesetzt werden."
         type="website"
         image={`${baseUrl}/images/ki-hero.jpg`}
+        canonical={`${baseUrl}/ki`}
+        tags={['KI', 'Transparenz', 'Meum Diarium', 'PWA', 'SEO']}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "KI-Transparenz und Nutzung",
+            "url": `${baseUrl}/ki`,
+            "description": "Transparente Erklärung zur KI-Nutzung bei Meum Diarium.",
+            "inLanguage": "de-DE",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Meum Diarium",
+              "url": baseUrl
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Startseite",
+                "item": baseUrl
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "KI",
+                "item": `${baseUrl}/ki`
+              }
+            ]
+          }
+        ]}
       />
 
       <main className="flex-1">
@@ -321,6 +357,7 @@ const KiPage = () => {
           <p>Aktualisiert: 22.05.2026</p>
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 };

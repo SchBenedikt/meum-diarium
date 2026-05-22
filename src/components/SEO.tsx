@@ -72,6 +72,7 @@ export function SEO({
   const finalTitle = title ? `${title} | ${defaults.siteName}` : defaults.title;
   const finalDescription = description || defaults.description;
   const finalImage = image || `${baseUrl}/images/caesar-hero.png`;
+  const canonicalUrl = canonical || currentUrl;
   
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {
@@ -195,17 +196,20 @@ export function SEO({
     removeMetaTag('twitter:site');
     removeMetaTag('twitter:creator');
     removeMetaTag('theme-color');
+    removeMetaTag('application-name');
+    removeMetaTag('apple-mobile-web-app-title');
     removeMetaTag('mobile-web-app-capable');
     removeMetaTag('apple-mobile-web-app-capable');
     removeMetaTag('apple-mobile-web-app-status-bar-style');
-    removeMetaTag('canonical');
-    
+
     // Add new meta tags
     updateMetaTag('description', finalDescription);
     updateMetaTag('author', author || defaults.author);
-    updateMetaTag('robots', noIndex ? 'noindex, nofollow' : 'index, follow');
+    updateMetaTag('robots', noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     updateMetaTag('keywords', defaults.keywords);
-    
+    updateMetaTag('application-name', defaults.siteName);
+    updateMetaTag('apple-mobile-web-app-title', defaults.siteName);
+
     // Open Graph
     updateMetaTag('og:title', finalTitle, true);
     updateMetaTag('og:description', finalDescription, true);
@@ -226,7 +230,7 @@ export function SEO({
     updateMetaTag('twitter:creator', author || defaults.author);
     
     // Mobile and PWA
-    updateMetaTag('theme-color', '#5a0f1f');
+    updateMetaTag('theme-color', '#B8860B');
     updateMetaTag('mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
@@ -237,20 +241,22 @@ export function SEO({
     }
     
     // Canonical URL
-    if (canonical) {
-      let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (!canonicalLink) {
-        canonicalLink = document.createElement('link');
-        canonicalLink.rel = 'canonical';
-        document.head.appendChild(canonicalLink);
-      }
-      canonicalLink.href = canonical;
-    } else {
-      const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (canonicalLink) {
-        canonicalLink.remove();
-      }
+    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      document.head.appendChild(canonicalLink);
     }
+    canonicalLink.href = canonicalUrl;
+
+    let sitemapLink = document.querySelector('link[rel="sitemap"]') as HTMLLinkElement;
+    if (!sitemapLink) {
+      sitemapLink = document.createElement('link');
+      sitemapLink.rel = 'sitemap';
+      sitemapLink.type = 'application/xml';
+      document.head.appendChild(sitemapLink);
+    }
+    sitemapLink.href = `${baseUrl}/sitemap.xml`;
     
     // Update html lang attribute
     document.documentElement.lang = language;

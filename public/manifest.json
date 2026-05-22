@@ -1,7 +1,7 @@
 {
   "name": "Meum Diarium - Antike Tagebücher",
   "short_name": "Meum Diarium",
-  "description": "Erlebe die Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Tagebücher und wissenschaftliche Kommentare aus dem alten Rom.",
+  "description": "Interaktive Plattform für römische Geschichte, Lateinlernen, KI-Transparenz und antike Texte.",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -133,6 +133,18 @@
       "short_name": "Über",
       "description": "Erfahre mehr über das Projekt",
       "url": "/about",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "KI-Transparenz",
+      "short_name": "KI",
+      "description": "Wie KI in Meum Diarium eingesetzt wird",
+      "url": "/ki",
       "icons": [
         {
           "src": "/icons/icon-192x192.png",

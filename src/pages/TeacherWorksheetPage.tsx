@@ -409,9 +409,8 @@ export default function TeacherWorksheetPage() {
               <AlertTriangle className="h-4 w-4" />
             </div>
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-[0.22em] text-amber-800 font-semibold">Open Research</p>
+              <p className="text-xs uppercase tracking-[0.22em] text-amber-800 font-semibold">Transparenzhinweis</p>
               <p className="text-sm leading-relaxed text-amber-900">
-                Dieses Projekt dokumentiert offen, wie Arbeitsblätter und Lernmaterial mit KI erstellt werden können.
                 Inhalte sind KI-generiert und können Fehler, Ungenauigkeiten oder didaktische Schwächen enthalten. Es gibt keine Garantie auf
                 fachliche Richtigkeit oder Vollständigkeit. Bitte prüfe alle Ergebnisse vor der Nutzung im Unterricht.
               </p>

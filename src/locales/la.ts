@@ -97,7 +97,7 @@ export const la = {
     notFoundTitle: 'Pagina non inventa',
     notFoundDesc: 'Haec pagina in annalibus nostris non exstat.',
     notFoundBtn: 'Ad paginam primam redire',
-    footerDescription: 'Experire historiam per oculos maximorum virorum Romae antiquae. Diaria et commentarii scientifici.',
+    footerDescription: 'Historiam Romanam, linguam Latinam et doctrinam KI-auxiliatam – aperte, interactive et ad usum scholasticum.',
     footerNavigation: 'Navigatio',
     authors: 'Auctores',
     followUs: 'Sequere nos',

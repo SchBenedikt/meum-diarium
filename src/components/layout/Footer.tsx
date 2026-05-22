@@ -9,7 +9,7 @@ export function Footer() {
     return typeof val === 'string' ? val : fallback;
   };
   const appName = text('appName', 'Meum Diarium');
-  const description = text('footerDescription', 'Antikes Rom interaktiv erleben: Authentische Tagebücher großer Persönlichkeiten, KI-Chats, interaktive Simulationen, Latein-Originaltexte mit Übersetzung und ein umfassendes Lexikon – für Schule, Studium und Geschichtsbegeisterte.');
+  const description = text('footerDescription', 'Römische Geschichte, Latein und KI-gestützte Lerninhalte – transparent, interaktiv und für den Unterricht gedacht.');
   const footerLinks = [
     {
       title: 'Navigation',
@@ -18,6 +18,7 @@ export function Footer() {
         { label: 'Zeitleiste', href: '/timeline', icon: Clock3 },
         { label: 'Lexikon', href: '/lexicon', icon: Search },
         { label: 'Über uns', href: '/about', icon: Info },
+        { label: 'KI-Transparenz', href: '/ki', icon: Sparkles },
         { label: 'Statistik', href: '/stats', icon: BarChart3 },
         { label: 'API-Dokumentation', href: '/api', icon: Code2 },
       ]

@@ -1,7 +1,7 @@
-const CACHE_NAME = 'meum-diarium-v3';
-const RUNTIME_CACHE = 'runtime-cache-v3';
-const OFFLINE_CACHE = 'offline-content-v2';
-const IMAGES_CACHE = 'images-cache-v1';
+const CACHE_NAME = 'meum-diarium-v4';
+const RUNTIME_CACHE = 'runtime-cache-v4';
+const OFFLINE_CACHE = 'offline-content-v3';
+const IMAGES_CACHE = 'images-cache-v2';
 
 // Assets to cache on install (Core UI)
 const PRECACHE_ASSETS = [
@@ -9,6 +9,10 @@ const PRECACHE_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/robots.txt',
+  '/sitemap.xml',
+  '/sitemap-pages.xml',
+  '/sitemap-authors.xml',
+  '/sitemap-content.xml',
   '/icons/favicon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
@@ -21,9 +25,13 @@ const PRECACHE_ASSETS = [
   // Core learning pages
   '/learn',
   '/learn/grammar',
+  '/learn/practice',
   '/vocab',
   '/reader',
-  '/lexicon'
+  '/lexicon',
+  '/ki',
+  '/ai',
+  '/ai-explanation'
 ];
 
 // Install event - precache essential UI assets

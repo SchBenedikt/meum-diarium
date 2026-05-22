@@ -13,6 +13,8 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuthors } from "@/hooks/use-authors";
 import { CookieBanner } from "@/components/CookieBanner";
+import { SWUpdateToast } from "@/components/SWUpdateToast";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
@@ -130,7 +132,9 @@ const AppContent = () => {
               <Route path="/cookies" element={<PageTransition><CookiesPage /></PageTransition>} />
               <Route path="/cookie-richtlinien" element={<PageTransition><CookiesPage /></PageTransition>} />
               <Route path="/loading" element={<PageTransition><LoadingDemoPage /></PageTransition>} />
-               <Route path="/ki" element={<PageTransition><KiPage /></PageTransition>} />
+              <Route path="/ai" element={<Navigate to="/ki" replace />} />
+              <Route path="/ai-explanation" element={<Navigate to="/ki" replace />} />
+              <Route path="/ki" element={<PageTransition><KiPage /></PageTransition>} />
               <Route path="/learn" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/lernen" element={<PageTransition><LatinTools /></PageTransition>} />
               <Route path="/learn/grammar" element={<PageTransition><LatinGrammarPage /></PageTransition>} />
@@ -242,6 +246,8 @@ const App = () => {
           <LanguageProvider>
             <AuthProvider>
               <Toaster richColors />
+              <SWUpdateToast />
+              <PWAInstallPrompt />
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <AppContent />
               </BrowserRouter>
