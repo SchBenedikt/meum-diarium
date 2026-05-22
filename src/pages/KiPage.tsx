@@ -109,7 +109,7 @@ const KiPage = () => {
               <p className="text-muted-foreground/80 mb-4">
                 Die persönlichen Perspektiven, Gedanken und Erlebnisse der historischen Figuren. Basieren auf historischen Fakten, erzählt aus persönlicher Perspektive.
               </p>
-              <p className="text-sm text-primary">✓ KI-generiert, manuell überprüft auf historische Korrektheit</p>
+              <p className="text-sm text-primary">✓ Mithilfe von KI erstellt, manuell überprüft auf historische Korrektheit</p>
             </motion.div>
 
             <motion.div 
@@ -120,7 +120,7 @@ const KiPage = () => {
               <p className="text-muted-foreground/80 mb-4">
                 Detaillierte Analysen, historischer Kontext, Quellenangaben und akademische Perspektiven. Mindestens 300 Wörter pro Artikel.
               </p>
-              <p className="text-sm text-primary">✓ KI-generiert und erweitert, redaktionell überprüft</p>
+              <p className="text-sm text-primary">✓ Mithilfe von KI erstellt und erweitert, redaktionell überprüft</p>
             </motion.div>
 
             <motion.div 
@@ -131,7 +131,7 @@ const KiPage = () => {
               <p className="text-muted-foreground/80 mb-4">
                 Lateinische Vokabeln, historische Begriffe, antike Konzepte — jeweils kurz und verständlich erklärt.
               </p>
-              <p className="text-sm text-primary">✓ KI-generiert, auf Accuracy überprüft</p>
+              <p className="text-sm text-primary">✓ Mithilfe von KI erstellt, auf Genauigkeit überprüft</p>
             </motion.div>
 
             <motion.div 
@@ -140,9 +140,9 @@ const KiPage = () => {
             >
               <h3 className="font-display text-xl font-bold mb-3">Diese Webseite selbst</h3>
               <p className="text-muted-foreground/80 mb-4">
-                Layout, Texte (bis auf diese Seite), Bildunterschriften, Navigationselemente — alles KI-unterstützt konzipiert und umgesetzt.
+                Layout, Design, Bildunterschriften, Navigationselemente — alles mithilfe von KI-Tools konzipiert und umgesetzt.
               </p>
-              <p className="text-sm text-primary">✓ KI-generiert, manuell angepasst</p>
+              <p className="text-sm text-primary">✓ Mithilfe von KI erstellt, manuell angepasst</p>
             </motion.div>
 
             <motion.div 
@@ -153,7 +153,7 @@ const KiPage = () => {
               <p className="text-muted-foreground/80 mb-4">
                 Ein KI-generiertes Video (aktuell: Ciceros Philippische Reden). Visuell illustrativ, nicht editorisch.
               </p>
-              <p className="text-sm text-primary">✓ KI-generiert, mit Disclaimer vor Wiedergabe</p>
+              <p className="text-sm text-primary">✓ Mithilfe von KI erstellt, mit Disclaimer vor Wiedergabe</p>
             </motion.div>
           </div>
         </motion.section>
@@ -199,7 +199,7 @@ const KiPage = () => {
               Nein. Die KI-Inhalte sind <strong>grundsätzlich nicht gekennzeichnet</strong>, weil die ganze Anwendung mit KI erstellt wurde.
             </p>
             <p className="text-muted-foreground/80">
-              Wenn du wissen möchtest, ob etwas mit KI gemacht wurde: Die Antwort ist ja. Die einzigen handschriftlich verfassten Teile sind diese Transparenz-Seite und die allgemeine Struktur der Anwendung. Der Rest ist KI-generiert oder KI-unterstützt.
+              Wenn du wissen möchtest, ob etwas mit KI gemacht wurde: Die Antwort ist ja. Der gesamte Inhalt — von den Tagebucheinträgen über die wissenschaftlichen Artikel bis zu den interaktiven Features — wurde mithilfe von KI erstellt. Jeder Inhalt wurde dann manuell überprüft und verbessert.
             </p>
           </div>
         </motion.section>
@@ -254,12 +254,12 @@ const KiPage = () => {
           className="container mx-auto max-w-3xl px-4 py-20 border-t border-primary/10"
         >
           <div className="space-y-6 text-center">
-            <h2 className="font-display text-3xl font-bold">Das ist nicht perfekt — und das ist okay</h2>
+            <h2 className="font-display text-3xl font-bold">Ein vertrauenswürdiges Lernwerkzeug</h2>
             <p className="text-lg text-muted-foreground/80 leading-relaxed">
-              Meum Diarium ist ein Experiment: Kann KI ein echtes, vertrauenswürdiges Lernwerkzeug sein? Kann sie Geschichte so vermitteln, dass sie interessant wird?
+              Meum Diarium zeigt, dass KI ein echtes, zuverlässiges Werkzeug für Bildung sein kann — wenn wir ehrlich sind. Wenn wir sagen, wie Inhalte erstellt wurden. Wenn wir Qualität überprüfen und Fehler korrigieren.
             </p>
             <p className="text-lg text-muted-foreground/80 leading-relaxed">
-              Die Antwort ist: Ja, wenn wir ehrlich sind. Wenn wir sagen, was KI ist und was nicht. Wenn wir Fehler zugeben und korrigieren.
+              Die gesamte Anwendung wurde mithilfe von KI erstellt und überprüft. Das ist kein Experiment — das ist sorgfältig entwickelt.
             </p>
             <p className="text-lg font-semibold text-primary">
               Deshalb diese Seite. Deshalb diese Transparenz.
