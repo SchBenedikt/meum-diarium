@@ -1977,11 +1977,25 @@ KRITISCH WICHTIG:
             });
         }
 
-        // Try Llama 3.1 8b for better instruction following
-        const aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', { messages });
+        // Use Llama 4 Scout for larger context window (handles longer prompts)
+        const AI_MODEL = '@cf/meta/llama-4-scout-17b-16e-instruct';
+        console.log(`[Simulation] Using model ${AI_MODEL}, persona=${persona}, scenario="${(scenario || '').substring(0, 120)}..."`);
+        console.log(`[Simulation] Messages count: ${messages.length}`);
+        let totalChars = 0;
+        messages.forEach((m, i) => { totalChars += (m.content || '').length; });
+        console.log(`[Simulation] Total prompt characters: ${totalChars}`);
+
+        let aiResponse;
+        try {
+            aiResponse = await ai.run(AI_MODEL, { messages });
+        } catch (modelError) {
+            console.error(`[Simulation] ${AI_MODEL} failed:`, modelError?.message || modelError);
+            console.log(`[Simulation] Falling back to @cf/meta/llama-3.1-8b-instruct`);
+            aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', { messages });
+        }
 
         if (!aiResponse || !aiResponse.response) {
-            console.error("[Simulation] AI returned empty response");
+            console.error(`[Simulation] AI returned empty response. aiResponse=`, JSON.stringify(aiResponse).substring(0, 500));
             throw new Error("AI returned no response content");
         }
 
@@ -1993,13 +2007,15 @@ KRITISCH WICHTIG:
         const lastBrace = text.lastIndexOf('}');
 
         if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
-            console.error("[Simulation] No JSON object found in response");
+            console.error(`[Simulation] No JSON object found. firstBrace=${firstBrace}, lastBrace=${lastBrace}`);
+            console.error(`[Simulation] FULL raw AI response (first 2000 chars):`, text.substring(0, 2000));
+            console.error(`[Simulation] FULL raw AI response length:`, text.length);
             return new Response(JSON.stringify({
                 narrative: "Die Götter schweigen... (Kein JSON gefunden)",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
                 options: [{ id: "retry", text: "Wir werden es erneut versuchen" }],
                 ended: false,
-                debug: text.substring(0, 500) // Log more for debugging
+                debug: text.substring(0, 500)
             }), { headers: corsHeaders() });
         }
 
@@ -2013,13 +2029,21 @@ KRITISCH WICHTIG:
         const hasEnded = cleanedJson.includes('"ended"');
 
         if (!hasNarrative || !hasStats || !hasOptions || !hasEnded) {
-            console.error("[Simulation] JSON appears truncated, missing required fields");
+            const missing = [];
+            if (!hasNarrative) missing.push('narrative');
+            if (!hasStats) missing.push('stats');
+            if (!hasOptions) missing.push('options');
+            if (!hasEnded) missing.push('ended');
+            console.error(`[Simulation] JSON truncated – missing fields: ${missing.join(', ')}`);
+            console.error(`[Simulation] Cleaned JSON length: ${cleanedJson.length}`);
+            console.error(`[Simulation] FULL raw AI response (first 2000 chars):`, text.substring(0, 2000));
+            console.error(`[Simulation] FULL raw AI response length:`, text.length);
             return new Response(JSON.stringify({
                 narrative: "Die Antwort der Götter wurde unterbrochen... Die Prophezeiung ist unvollständig.",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
                 options: [{ id: "retry", text: "Erneut die Götter befragen" }],
                 ended: false,
-                debug: "Truncated response - missing fields. Content: " + cleanedJson.substring(0, 300)
+                debug: "Truncated response - missing: " + missing.join(', ') + " | Content: " + cleanedJson.substring(0, 400)
             }), { headers: corsHeaders() });
         }
 
