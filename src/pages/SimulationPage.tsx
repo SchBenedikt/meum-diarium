@@ -54,6 +54,21 @@ export default function SimulationPage() {
         setActiveScenario(scenario);
         setStats(scenario.initialStats);
         setGameEnded(false);
+        const hasStaticEvents = Object.keys(scenario.events).length > 0;
+        if (hasStaticEvents) {
+            const firstEvent = scenario.events[scenario.startEventId];
+            if (firstEvent) {
+                setHistory([{
+                    text: firstEvent.description,
+                    type: 'narrative' as const,
+                    role: 'assistant' as const
+                }]);
+                setCurrentOptions(firstEvent.choices.map(c => ({ id: c.id, text: c.text })));
+                setCurrentEventId(scenario.startEventId);
+            }
+            setIsLoading(false);
+            return;
+        }
         try {
             const res = await simulateAI(authorId || 'caesar', scenario.title, []);
             setHistory([{
@@ -65,12 +80,10 @@ export default function SimulationPage() {
             setGameEnded(res.ended || false);
         } catch (error) {
             console.error("Failed to start AI simulation:", error);
-            // Fallback to static if AI fails
             setHistory([{
-                text: scenario.events[scenario.startEventId].description,
+                text: "Fehler beim Starten der Simulation.",
                 type: 'narrative'
             }]);
-            setCurrentEventId(scenario.startEventId);
         } finally {
             setIsLoading(false);
         }
@@ -78,10 +91,50 @@ export default function SimulationPage() {
     const handleChoice = async (choiceText: string) => {
         if (isLoading || gameEnded) return;
         setIsLoading(true);
+        setHistory(prev => [...prev, { text: choiceText, type: 'choice' as const, role: 'user' as const }]);
+        const scenario = activeScenario;
+        const hasStaticEvents = scenario && Object.keys(scenario.events).length > 0;
+        if (hasStaticEvents && currentEventId && scenario) {
+            const currentEvent = scenario.events[currentEventId];
+            if (currentEvent) {
+                const chosen = currentEvent.choices.find(c => c.text === choiceText);
+                if (chosen) {
+                    if (chosen.effect) {
+                        setStats(prev => ({
+                            welfare: Math.max(0, Math.min(100, prev.welfare + (chosen.effect.welfare || 0))),
+                            influence: Math.max(0, Math.min(100, prev.influence + (chosen.effect.influence || 0))),
+                            power: Math.max(0, Math.min(100, prev.power + (chosen.effect.power || 0))),
+                        }));
+                    }
+                    setHistory(prev => [
+                        ...prev,
+                        { text: chosen.response, type: 'narrative' as const, role: 'assistant' as const }
+                    ]);
+                    if (chosen.nextEventId === 'END') {
+                        setCurrentOptions([]);
+                        setGameEnded(true);
+                    } else {
+                        const nextEvent = scenario.events[chosen.nextEventId];
+                        if (nextEvent) {
+                            setCurrentEventId(chosen.nextEventId);
+                            setHistory(prev => [
+                                ...prev,
+                                { text: nextEvent.description, type: 'narrative' as const, role: 'assistant' as const }
+                            ]);
+                            setCurrentOptions(nextEvent.choices.map(c => ({ id: c.id, text: c.text })));
+                        } else {
+                            setGameEnded(true);
+                        }
+                    }
+                    setIsLoading(false);
+                    setCustomInput('');
+                    return;
+                }
+            }
+        }
         const newHistoryRows = [
             ...history.map(h => ({ role: h.role || (h.type === 'choice' ? 'user' : 'assistant'), content: h.text })),
         ];
-        setHistory(prev => [...prev, { text: choiceText, type: 'choice' as const, role: 'user' as const }]);
         try {
             const res = await simulateAI(authorId || 'caesar', activeScenario?.title || '', newHistoryRows, choiceText);
             if (res.stats) {
