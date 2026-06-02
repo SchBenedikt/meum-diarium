@@ -593,7 +593,7 @@ export const simulations: Record<string, SimulationScenario[]> = {
                 'before_battle': {
                     id: 'before_battle',
                     title: 'Am Vorabend',
-                    description: 'Unsere Flotte ist kleiner, aber Agrippa hat sie besser ausgebildet. Antonius' Schiffe sind schwerer, aber langsamer. Kleopatra wartet mit ihrer ägyptischen Flotte.',
+                    description: 'Unsere Flotte ist kleiner, aber Agrippa hat sie besser ausgebildet. Antonius Schiffe sind schwerer, aber langsamer. Kleopatra wartet mit ihrer ägyptischen Flotte.',
                     choices: [
                         {
                             id: 'attack',
