@@ -9,7 +9,7 @@ export function Footer() {
     return typeof val === 'string' ? val : fallback;
   };
   const appName = text('appName', 'Meum Diarium');
-  const description = text('footerDescription', 'Römische Geschichte, Latein und KI-gestützte Lerninhalte – transparent, interaktiv und für den Unterricht gedacht.');
+  const description = text('footerDescription', 'Antike Geschichten');
   const footerLinks = [
     {
       title: 'Navigation',

@@ -105,7 +105,7 @@ export const de = {
     notFoundTitle: 'Pagina non inventa',
     notFoundDesc: 'Haec pagina in annalibus nostris non exstat.',
     notFoundBtn: 'Ad paginam primam redire',
-    footerDescription: 'Römische Geschichte, Latein und KI-gestützte Lerninhalte – transparent, interaktiv und für den Unterricht gedacht.',
+    footerDescription: 'Antike Geschichten',
     footerNavigation: 'Navigation',
     authors: 'Autoren',
     followUs: 'Folgen Sie uns',
