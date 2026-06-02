@@ -1979,19 +1979,21 @@ KRITISCH WICHTIG:
 
         // Use Llama 4 Scout for larger context window (handles longer prompts)
         const AI_MODEL = '@cf/meta/llama-4-scout-17b-16e-instruct';
-        console.log(`[Simulation] Using model ${AI_MODEL}, persona=${persona}, scenario="${(scenario || '').substring(0, 120)}..."`);
+        console.log(`[Simulation] Using model ${AI_MODEL}, persona=${persona}`);
         console.log(`[Simulation] Messages count: ${messages.length}`);
         let totalChars = 0;
         messages.forEach((m, i) => { totalChars += (m.content || '').length; });
         console.log(`[Simulation] Total prompt characters: ${totalChars}`);
 
+        const aiOptions = { messages, max_tokens: 1024 };
+
         let aiResponse;
         try {
-            aiResponse = await ai.run(AI_MODEL, { messages });
+            aiResponse = await ai.run(AI_MODEL, aiOptions);
         } catch (modelError) {
             console.error(`[Simulation] ${AI_MODEL} failed:`, modelError?.message || modelError);
             console.log(`[Simulation] Falling back to @cf/meta/llama-3.1-8b-instruct`);
-            aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', { messages });
+            aiResponse = await ai.run('@cf/meta/llama-3.1-8b-instruct', aiOptions);
         }
 
         if (!aiResponse || !aiResponse.response) {
@@ -2038,6 +2040,26 @@ KRITISCH WICHTIG:
             console.error(`[Simulation] Cleaned JSON length: ${cleanedJson.length}`);
             console.error(`[Simulation] FULL raw AI response (first 2000 chars):`, text.substring(0, 2000));
             console.error(`[Simulation] FULL raw AI response length:`, text.length);
+
+            // Try to repair: if only ended is missing, close JSON and add default ended field
+            if (!hasEnded && hasNarrative && hasStats && hasOptions) {
+                try {
+                    const repaired = cleanedJson + ',\n"ended": false\n}';
+                    const result = JSON.parse(repaired);
+                    if (result.narrative && result.stats && result.options) {
+                        console.log(`[Simulation] Repaired truncated JSON with default ended:false`);
+                        return new Response(JSON.stringify({
+                            narrative: result.narrative,
+                            stats: result.stats,
+                            options: result.options,
+                            ended: false
+                        }), { headers: corsHeaders() });
+                    }
+                } catch (repairError) {
+                    console.error(`[Simulation] Repair attempt failed:`, repairError?.message);
+                }
+            }
+
             return new Response(JSON.stringify({
                 narrative: "Die Antwort der Götter wurde unterbrochen... Die Prophezeiung ist unvollständig.",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
