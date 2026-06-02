@@ -64,7 +64,7 @@ export default function ParallaxHero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-xl sm:text-2xl text-white/90 max-w-2xl mx-auto font-light font-bricolage-grotesque mb-8 drop-shadow-md"
         >
-          Deine Latein-Reise. Deine Ziele. Dein Erfolg.
+          Tagebücher antiker Persönlichkeiten
         </motion.p>
       </motion.div>
 

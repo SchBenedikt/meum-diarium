@@ -205,7 +205,7 @@ export default function WorkEditorPage() {
           <Tabs value={activeLang} onValueChange={(v: 'de' | 'en' | 'la') => setActiveLang(v)}>
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="de">Deutsch</TabsTrigger>
-              <TabsTrigger value="en">English</TabsTrigger>
+              <TabsTrigger value="en">Englisch</TabsTrigger>
               <TabsTrigger value="la">Latinum</TabsTrigger>
             </TabsList>
             {(['de','en','la'] as const).map(lang => (

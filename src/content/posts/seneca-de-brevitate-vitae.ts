@@ -53,20 +53,6 @@ De Brevitate Vitae gehört zu den meistgelesenen philosophischen Essays der Anti
       diaryTitle: 'On the Shortness of Life',
       scientificTitle: "Seneca's De Brevitate Vitae – Analysis and Significance",
       excerpt: 'Life is not short. We make it short. We waste it with idleness and meaningless striving.',
-      content: {
-        diary: `It is morning again. The light falls through the window of my study.
-
-Today I wrote to Paulinus my thoughts on time. He is a clever man, but like all people around me – occupied by a thousand trivialities. Administrative tasks, visitors, dinner invitations.
-
-"Dum differtur vita transcurrit," I wrote to him. While we delay, life passes by.
-
-This is no cliché. This is the deepest problem of human existence. We believe there is still time left. We live as if life were a resource that can be saved up. But every hour we waste is gone. Forever.
-
-The wealthy waste it making money. The ambitious waste it in politics. The pleasure-seekers waste it at banquets and theatres. Everyone waits for the moment when "real life" begins. But life is this moment. This one. Now.
-
-I survived Corsica. Eight years of exile. There I learned what time truly is.`,
-        scientific: `"De Brevitate Vitae" (On the Shortness of Life) is a philosophical treatise by Seneca, probably written between 49 and 55 AD, addressed to his father-in-law Pompeius Paulinus.`,
-      },
     },
     la: {
       diaryTitle: 'De Brevitate Vitae',

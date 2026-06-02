@@ -539,28 +539,7 @@ export default function LandingHeroNew() {
               </Link>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-12">
-              {[
-                { icon: BookOpen, label: 'Kostenlos' },
-                { icon: Shield, label: 'Sicher' },
-                { icon: Users, label: 'Community' },
-                { icon: Award, label: 'Qualität' }
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex flex-col items-center space-y-2"
-                >
-                  <div className="p-3 bg-background/80 rounded-xl">
-                    <item.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{item.label}</span>
-                </motion.div>
-              ))}
-            </div>
+
           </motion.div>
         </div>
       </section>

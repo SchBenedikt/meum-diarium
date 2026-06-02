@@ -191,7 +191,7 @@ export function TranslationEditor() {
                             <TableRow className="bg-muted/30 hover:bg-muted/30">
                                 <TableHead className="w-[200px] font-display">Schlüssel</TableHead>
                                 <TableHead className="font-display">Deutsch (DE)</TableHead>
-                                <TableHead className="font-display">English (EN)</TableHead>
+                                <TableHead className="font-display">Englisch (EN)</TableHead>
                                 <TableHead className="font-display">Latine (LA)</TableHead>
                                 <TableHead className="w-[100px] text-right font-display">Aktionen</TableHead>
                             </TableRow>
@@ -231,7 +231,7 @@ export function TranslationEditor() {
                                                         value={editValues.en}
                                                         onChange={(e) => setEditValues(prev => ({ ...prev, en: e.target.value }))}
                                                         className="text-sm min-h-[40px]"
-                                                        placeholder="Englischer Text..."
+                                                        placeholder="Englische Übersetzung..."
                                                     />
                                                 </TableCell>
                                                 <TableCell>

@@ -30,14 +30,14 @@ const contentEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/catalog',
     title: 'Katalog',
-    description: 'Uebersicht ueber verfuegbare Inhalte (Posts, Lexikon, Werke, Autoren).',
+    description: 'Übersicht über verfügbare Inhalte (Posts, Lexikon, Werke, Autoren).',
     response: '{ timestamp, counts, available_authors }',
   },
   {
     method: 'GET, POST, PUT, DELETE',
     path: '/api/posts',
-    title: 'Beitraege',
-    description: 'Beitraege listen/erstellen/aktualisieren/loeschen.',
+    title: 'Beiträge',
+    description: 'Beiträge listen/erstellen/aktualisieren/löschen.',
     params: [
       { name: 'slug', description: 'Optional: einzelner Beitrag.' },
       { name: 'tag', description: 'Optional: Tag-Filter fuer Listenansicht.' },
@@ -47,19 +47,19 @@ const contentEndpoints: Endpoint[] = [
   {
     method: 'GET, PUT, DELETE',
     path: '/api/posts/{author}/{slug}',
-    title: 'Beitrag ueber Autor+Slug',
+    title: 'Beitrag über Autor+Slug',
     description: 'Direkter Zugriff auf einen konkreten Beitrag inkl. Update/Delete.',
     response: 'Post',
-    notes: ['Author-Slug wird serverseitig geprueft.'],
+    notes: ['Author-Slug wird serverseitig geprüft.'],
   },
   {
     method: 'GET, POST, PUT, DELETE',
     path: '/api/lexicon',
     title: 'Lexikon',
-    description: 'Lexikoneintraege listen und verwalten.',
+    description: 'Lexikoneinträge listen und verwalten.',
     params: [
       { name: 'slug', description: 'Optional: einzelner Eintrag.' },
-      { name: 'search', description: 'Optional: Suche ueber term/definition.' },
+      { name: 'search', description: 'Optional: Suche über term/definition.' },
       { name: 'limit', description: 'Optional: Begrenzung der Ergebniszahl.' },
     ],
     response: 'LexiconEntry[] | LexiconEntry',
@@ -84,7 +84,7 @@ const contentEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/pages/{slug}',
     title: 'Seiten-Content',
-    description: 'Liefert strukturierten JSON-Content fuer ueber-Seiten und aehnliche Inhalte.',
+    description: 'Liefert strukturierten JSON-Content für Über-Seiten und ähnliche Inhalte.',
     response: 'Page JSON',
   },
 ];
@@ -196,7 +196,7 @@ const systemEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/stats',
     title: 'Statistiken',
-    description: 'Aggregierte Kennzahlen ueber Inhalte und Tags.',
+    description: 'Aggregierte Kennzahlen über Inhalte und Tags.',
     response: '{ posts, authors, tags, totalReadingTime, ... }',
   },
   {
@@ -564,8 +564,8 @@ export default function ApiDocsPage() {
                     <p className="text-xs uppercase tracking-[0.2em] font-semibold">Sicherheit</p>
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>Input-Validierung auf AI-Proxy-Endpunkten (Laengen, Allowlists, URL-Pruefung).</li>
-                    <li>CORS auf allen oeffentlichen API-Endpunkten aktiv.</li>
+                    <li>Input-Validierung auf AI-Proxy-Endpunkten (Längen, Allowlists, URL-Prüfung).</li>
+                    <li>CORS auf allen öffentlichen API-Endpunkten aktiv.</li>
                     <li>Bei fehlenden Bindings (z. B. D1/AI) liefern Endpunkte explizite Fehlercodes.</li>
                   </ul>
                 </CardContent>

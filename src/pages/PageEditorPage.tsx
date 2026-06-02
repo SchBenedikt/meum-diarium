@@ -304,7 +304,7 @@ export default function PageEditorPage() {
                   variant={activeLang === 'en' ? 'default' : 'outline'}
                   onClick={() => setActiveLang('en')}
                 >
-                  English
+                  Englisch
                 </Button>
                 <Button
                   variant={activeLang === 'la' ? 'default' : 'outline'}

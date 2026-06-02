@@ -42,7 +42,7 @@ const BENTO = [
   {
     icon: Brain,
     title: 'Vokabeltrainer',
-    desc: '36.000+ Vokabeln mit intelligentem Spaced-Repetition-System.',
+    desc: '36.000+ Vokabeln mit intelligentem Wiederholungssystem.',
     link: '/vocab',
     size: 'small',
     accent: '#4c1d95',

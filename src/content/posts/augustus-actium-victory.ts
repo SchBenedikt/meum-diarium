@@ -46,18 +46,6 @@ Die Niederlage von Actium markiert den Endpunkt der spätrömischen Republik. Oc
       diaryTitle: 'My Triumph at Actium',
       scientificTitle: 'The Battle of Actium (31 BC)',
       excerpt: 'On September 2, 31 BC, I decided the naval battle of Actium against Marcus Antonius and Cleopatra.',
-      content: {
-        diary: `The sea before Actium reflects the rising sun today, as if the gods themselves witness my triumph. Marcus Agrippa, my most loyal general, gave everything – his ships, his strategy, his genius.
-
-Antonius and Cleopatra fled. With their own ships! I had expected him to fight to the last man. Instead: flight. Perhaps it was Cleopatra's influence. Perhaps he recognized that all was lost.
-
-Octavia, my sister, he had cast aside. The three children he had sired with the Egyptian woman. His will, which he had kept in the Temple of the Vestals and which I opened: he wanted to be buried in Alexandria. Not in Rome. That said everything.
-
-Today Rome is free. The Republic... no, I will not lie, not even in my own diary. The Republic is no more. But what I will build in its place will be more lasting, more just, more peaceful. I owe that to my father Caesar. I owe that to Rome.
-
-The gods have spoken. I am their instrument.`,
-        scientific: `The Battle of Actium on September 2, 31 BC is considered one of the most decisive military engagements in ancient history. It ended the last phase of the Roman civil wars and paved the way for Augustan sole rule.`,
-      },
     },
     la: {
       diaryTitle: 'Victoria mea ad Actium',

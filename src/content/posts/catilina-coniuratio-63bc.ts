@@ -59,22 +59,6 @@ Catilina wurde in der antiken Historiographie (Sallust, Cicero) meist als Demago
       diaryTitle: 'What They Call the Catilinarian Conspiracy',
       scientificTitle: 'The Catilinarian Conspiracy (63 BC) – Historical Analysis',
       excerpt: 'They call it treason. I call it necessity. Rome was sick – sick with debt, with the greed of the rich, with an aristocracy bleeding the people dry.',
-      content: {
-        diary: `They have surrounded my camp. The troops of Consul Antonius approach. I know this is my end.
-
-What should I write? Posterity will know Cicero's version – his four speeches against me, carefully polished and prepared for transmission. My voice will fall silent.
-
-But here, in these final hours, I write the truth:
-
-I was no monster. I was a man who saw what Rome had become: a republic in which the debts of the people devoured the freedom of the fathers. In which patricians who had been sucking at the public teat for generations smothered every attempt at reform. Sulla had used dictatorship to enrich the wealthy. Caesar would use it to elevate himself. I wanted to use it to free Rome.
-
-Yes, I had allies among the ruined, the dispossessed, Sulla's soldiers who after thirty years still awaited their promised lands. Was that a crime?
-
-Cicero has won. He declared me an enemy of the state, had my followers executed without trial. That was illegal. He knew it. But he did it anyway.
-
-History will praise him.`,
-        scientific: `The Catilinarian Conspiracy (63 BC) is one of the best-documented political events of the late Roman Republic, revealing the systemic crises of a political order in transition to monarchy.`,
-      },
     },
     la: {
       diaryTitle: 'Quam Coniurationem Catilinariam vocant',

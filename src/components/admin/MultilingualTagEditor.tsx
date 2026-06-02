@@ -157,7 +157,7 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                 <Input
                                     value={newTag.en}
                                     onChange={e => setNewTag({ ...newTag, en: e.target.value })}
-                                    placeholder="z.B. Warfare, Politics, Philosophy"
+                                    placeholder="z.B. Warfare, Politics, Philosophy (EN)"
                                 />
                             </TabsContent>
                             <TabsContent value="la" className="space-y-2">
@@ -165,7 +165,7 @@ export function MultilingualTagEditor({ tags, onChange }: MultilingualTagEditorP
                                 <Input
                                     value={newTag.la}
                                     onChange={e => setNewTag({ ...newTag, la: e.target.value })}
-                                    placeholder="e.g. Bellum, Politica, Philosophia"
+                                    placeholder="z.B. Bellum, Politica, Philosophia (LA)"
                                 />
                             </TabsContent>
                         </Tabs>

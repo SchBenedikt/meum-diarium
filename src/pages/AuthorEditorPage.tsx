@@ -298,7 +298,7 @@ export default function AuthorEditorPage() {
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-4">
-                                <h3 className="font-medium text-sm text-muted-foreground border-b pb-1">English</h3>
+                                <h3 className="font-medium text-sm text-muted-foreground border-b pb-1">Englisch</h3>
                                 <div className="grid grid-cols-1 gap-4">
                                     <div className="space-y-2">
                                         <Label>Title (EN)</Label>

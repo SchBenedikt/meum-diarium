@@ -71,11 +71,11 @@ export default function DesignGuidePage() {
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
               <Layers className="h-4 w-4 text-primary" />
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                Design System
+                Design-System
               </span>
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-              Design <span className="text-primary italic">Guidelines</span>
+              Design-<span className="text-primary italic">Richtlinien</span>
             </h1>
             <p className="text-lg text-muted-foreground/70 max-w-2xl font-light leading-relaxed">
               Ein durchdachtes Design-System inspiriert von der römischen Ästhetik. Modern, elegant und zeitlos.
@@ -103,7 +103,7 @@ export default function DesignGuidePage() {
             <div className="flex items-center gap-3 mb-8">
               <Crown className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">
-                Author Themeing
+Autoren-Theming
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -116,7 +116,7 @@ export default function DesignGuidePage() {
                     </div>
                     <div>
                       <h3 className="font-display text-2xl font-bold text-primary">
-                        Caesar Theme
+Caesar-Theme
                       </h3>
                       <p className="text-sm text-muted-foreground">
                         Kaiserliches Gold & Macht
@@ -245,7 +245,7 @@ export default function DesignGuidePage() {
               {/* Standard Glassmorphism Card */}
               <div className="space-y-4">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
-                  Standard Glass Card
+                  Standard-Glass-Card
                 </h3>
                 <div className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8 hover:border-primary/50 transition-all duration-500 group">
                   <BookOpen className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
@@ -272,7 +272,7 @@ export default function DesignGuidePage() {
               {/* Interactive Chat Card */}
               <div className="space-y-4 lg:col-span-2">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
-                  Interactive Chat Card
+Interaktive Chat-Card
                 </h3>
                 <div className="bg-card/60 backdrop-blur-md rounded-3xl p-8 border border-border/40 relative overflow-hidden group hover:border-primary/50 transition-all duration-700">
                   <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-105 group-hover:-rotate-6">
@@ -320,8 +320,8 @@ export default function DesignGuidePage() {
                   </div>
                 </div>
                 <div className="text-xs text-muted-foreground bg-secondary/20 p-3 rounded-xl">
-                  <strong>Features:</strong> Large background icon, animated
-                  hover effects, interactive input field, suggestion chips
+<strong>Features:</strong> Großes Hintergrund-Icon, animierte
+                                                  Hover-Effekte, interaktives Eingabefeld, Vorschlags-Chips
                 </div>
               </div>
             </div>
@@ -348,7 +348,7 @@ export default function DesignGuidePage() {
                 <div className="space-y-8">
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Display Font - Headlines
+                      Anzeigeschrift – Überschriften
                     </p>
                     <h1 className="font-display text-5xl font-bold mb-2">
                       Meum Diarium
@@ -359,10 +359,10 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Gradient Text
+                      Farbverlauf
                     </p>
                     <h2 className="font-display text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-2">
-                      Caesar's Design System
+                      Caesars Design-System
                     </h2>
                     <p className="text-sm text-muted-foreground">
                       bg-clip-text text-transparent mit gradient
@@ -370,7 +370,7 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Body Text
+Fließtext
                     </p>
                     <p className="text-lg leading-relaxed">
                       Die Geschichte Roms wird durch moderne Technologie zum
@@ -406,7 +406,7 @@ export default function DesignGuidePage() {
                 <div className="space-y-6">
                   <div>
                     <h1 className="font-display text-4xl font-bold mb-1">
-                      Hero Title
+                      Hero-Titel
                     </h1>
                     <p className="text-xs text-muted-foreground">
                       text-4xl-7xl font-bold
@@ -414,7 +414,7 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <h2 className="font-display text-2xl font-bold mb-1">
-                      Section Title
+                      Abschnittstitel
                     </h2>
                     <p className="text-xs text-muted-foreground">
                       text-2xl-3xl font-bold
@@ -430,19 +430,19 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <p className="text-lg leading-relaxed mb-1">
-                      Large Body Text
+                      Großer Fließtext
                     </p>
                     <p className="text-xs text-muted-foreground">
                       text-lg leading-relaxed
                     </p>
                   </div>
                   <div>
-                    <p className="text-base mb-1">Regular Body Text</p>
+                    <p className="text-base mb-1">Normaler Fließtext</p>
                     <p className="text-xs text-muted-foreground">text-base</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">
-                      Small Text & Captions
+                      Kleiner Text & Beschriftungen
                     </p>
                     <p className="text-xs text-muted-foreground">
                       text-sm text-muted-foreground
@@ -450,7 +450,7 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">
-                      SECTION LABELS
+                      ABSCHNITTS-LABELS
                     </p>
                     <p className="text-xs text-muted-foreground">
                       text-xs font-bold uppercase tracking-[0.3em]
@@ -477,7 +477,7 @@ export default function DesignGuidePage() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                  Primary Colors
+                  Primärfarben
                 </h3>
                 <div className="space-y-4">
                   <div>
@@ -486,7 +486,7 @@ export default function DesignGuidePage() {
                       Primary: hsl(345, 60%, 35%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Wine Red - CTA, Links, Active States
+                      Weinrot – CTAs, Links, Active-States
                     </p>
                   </div>
                   <div>
@@ -495,7 +495,7 @@ export default function DesignGuidePage() {
                       Primary/20: hsl(345, 60%, 35% / 20%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Hover States, Backgrounds
+                      Hover-States, Hintergründe
                     </p>
                   </div>
                   <div>
@@ -504,14 +504,14 @@ export default function DesignGuidePage() {
                       Primary/10: hsl(345, 60%, 35% / 10%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Subtle Backgrounds, Icon Containers
+                      Subtile Hintergründe, Icon-Container
                     </p>
                   </div>
                 </div>
               </div>
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                  Author Colors
+                  Autorenfarben
                 </h3>
                 <div className="space-y-4">
                   <div>
@@ -520,7 +520,7 @@ export default function DesignGuidePage() {
                       Caesar: hsl(30, 100%, 55%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Imperial Gold
+                      Kaiserliches Gold
                     </p>
                   </div>
                   <div>
@@ -528,7 +528,7 @@ export default function DesignGuidePage() {
                     <p className="font-mono text-xs">
                       Cicero: hsl(210, 90%, 60%)
                     </p>
-                    <p className="text-xs text-muted-foreground">Orator Blue</p>
+                    <p className="text-xs text-muted-foreground">Redner-Blau</p>
                   </div>
                   <div>
                     <div className="w-full h-16 bg-author-augustus rounded-2xl mb-3" />
@@ -536,7 +536,7 @@ export default function DesignGuidePage() {
                       Augustus: hsl(280, 80%, 60%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Royal Purple
+                      Kaiserliches Purpur
                     </p>
                   </div>
                   <div>
@@ -545,28 +545,28 @@ export default function DesignGuidePage() {
                       Seneca: hsl(150, 85%, 40%)
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Wisdom Green
+                      Weisheits-Grün
                     </p>
                   </div>
                 </div>
               </div>
               <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-6">
-                  Background System
+Hintergrundsystem
                 </h3>
                 <div className="space-y-4">
                   <div>
                     <div className="w-full h-16 bg-background rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">Background</p>
                     <p className="text-xs text-muted-foreground">
-                      Main Page Background
+                      Seitenhintergrund
                     </p>
                   </div>
                   <div>
                     <div className="w-full h-16 bg-card rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">Card</p>
                     <p className="text-xs text-muted-foreground">
-                      Solid Card Backgrounds
+                      Solide Kartenhintergründe
                     </p>
                   </div>
                   <div>
@@ -575,14 +575,14 @@ export default function DesignGuidePage() {
                       Card/60 + backdrop-blur-xl
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Glassmorphism Cards
+                      Glassmorphism-Karten
                     </p>
                   </div>
                   <div>
                     <div className="w-full h-16 bg-secondary rounded-2xl mb-3 border border-border/40" />
                     <p className="font-mono text-xs">Secondary</p>
                     <p className="text-xs text-muted-foreground">
-                      Input Backgrounds, Chips
+                      Input-Hintergründe, Chips
                     </p>
                   </div>
                 </div>
@@ -609,18 +609,18 @@ export default function DesignGuidePage() {
               {/* Buttons */}
               <div className="space-y-6">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
-                  Buttons & Actions
+                  Buttons & Aktionen
                 </h3>
                 <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-8 space-y-6">
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Primary Button
+Primär-Button
                     </p>
                     <Button className="w-full">Caesar's Tagebuch lesen</Button>
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Secondary Button
+Sekundär-Button
                     </p>
                     <Button variant="secondary" className="w-full">
                       Mehr erfahren
@@ -628,7 +628,7 @@ export default function DesignGuidePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Icon Button
+                      Icon-Button
                     </p>
                     <Button size="icon" className="rounded-xl">
                       <ArrowRight className="h-5 w-5" />
@@ -652,20 +652,20 @@ export default function DesignGuidePage() {
                 <div className="space-y-4">
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:border-primary/40 transition-colors duration-300 p-6 text-center group">
                     <Zap className="w-8 h-8 text-primary mb-3 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <p className="font-semibold">Icon Scale (110%)</p>
+                    <p className="font-semibold">Icon-Skalierung (110%)</p>
                     <p className="text-xs text-muted-foreground mt-2">
                       duration-300
                     </p>
                   </div>
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:border-primary/40 transition-all duration-500 p-6 text-center group">
                     <BookOpen className="w-8 h-8 text-primary mb-3 mx-auto group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500" />
-                    <p className="font-semibold">Scale + Rotate</p>
+                    <p className="font-semibold">Skalieren + Drehen</p>
                     <p className="text-xs text-muted-foreground mt-2">
                       duration-500
                     </p>
                   </div>
                   <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 hover:bg-card/60 hover:border-primary/50 transition-all duration-700 p-6 text-center">
-                    <p className="font-semibold">Background + Border</p>
+                    <p className="font-semibold">Hintergrund + Rahmen</p>
                     <p className="text-xs text-muted-foreground mt-2">
                       duration-700
                     </p>
@@ -687,14 +687,14 @@ export default function DesignGuidePage() {
             <div className="flex items-center gap-3 mb-8">
               <Grid3x3 className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">
-                Spacing & Layout
+Abstände & Layout
               </h2>
             </div>
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="grid lg:grid-cols-3 gap-12">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-6">
-                    Border Radius
+                    Randabrundung
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-center gap-4">
@@ -734,7 +734,7 @@ export default function DesignGuidePage() {
                 </div>
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-6">
-                    Padding Scale
+                    Abstufungen
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-center gap-4">
@@ -759,18 +759,18 @@ export default function DesignGuidePage() {
                       <div className="w-28 h-8 bg-primary/20 rounded text-xs flex items-center justify-center">
                         p-10
                       </div>
-                      <p className="text-sm">40px - Hero Cards</p>
+                      <p className="text-sm">40px - Hero-Karten</p>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-6">
-                    Grid Layouts
+                    Raster-Layouts
                   </h3>
                   <div className="space-y-4">
                     <div>
                       <p className="text-sm font-semibold mb-2">
-                        Dashboard Grid
+                        Dashboard-Raster
                       </p>
                       <div className="grid grid-cols-3 gap-2 mb-2">
                         <div className="aspect-square bg-primary/20 rounded"></div>
@@ -782,7 +782,7 @@ export default function DesignGuidePage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold mb-2">
-                        Content Layout
+                        Inhalts-Layout
                       </p>
                       <div className="grid grid-cols-5 gap-2 mb-2">
                         <div className="aspect-square bg-primary/20 rounded col-span-3"></div>
@@ -810,25 +810,25 @@ export default function DesignGuidePage() {
             <div className="flex items-center gap-3 mb-8">
               <Zap className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">
-                Motion & Animation
+Bewegung & Animation
               </h2>
             </div>
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="grid lg:grid-cols-2 gap-12">
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Framer Motion Patterns
+                    Framer-Motion-Muster
                   </h3>
                   <div className="space-y-4 text-sm">
                     <div>
-                      <p className="font-semibold mb-1">Fade Up Animation</p>
+                      <p className="font-semibold mb-1">Einblend-Animation</p>
                       <div className="bg-secondary/30 p-3 rounded-lg font-mono text-xs">
                         <div>hidden: {`{ opacity: 0, y: 20 }`}</div>
                         <div>visible: {`{ opacity: 1, y: 0 }`}</div>
                       </div>
                     </div>
                     <div>
-                      <p className="font-semibold mb-1">Entrance Animation</p>
+                      <p className="font-semibold mb-1">Eingangs-Animation</p>
                       <div className="bg-secondary/30 p-3 rounded-lg font-mono text-xs">
                         <div>initial: {`{ opacity: 0, y: 20 }`}</div>
                         <div>animate: {`{ opacity: 1, y: 0 }`}</div>
@@ -836,7 +836,7 @@ export default function DesignGuidePage() {
                       </div>
                     </div>
                     <div>
-                      <p className="font-semibold mb-1">Scroll-triggered</p>
+                      <p className="font-semibold mb-1">Scroll-gesteuert</p>
                       <div className="bg-secondary/30 p-3 rounded-lg font-mono text-xs">
                         <div>whileInView="visible"</div>
                         <div>viewport={`{ once: true }`}</div>
@@ -846,29 +846,29 @@ export default function DesignGuidePage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Transition Durations
+                    Übergangsdauern
                   </h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-2 border-b border-border/40">
-                      <span className="font-semibold">Fast Feedback</span>
+                      <span className="font-semibold">Schnelles Feedback</span>
                       <span className="text-primary">150ms</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b border-border/40">
-                      <span className="font-semibold">Standard Hover</span>
+                      <span className="font-semibold">Standard-Hover</span>
                       <span className="text-primary">300ms</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b border-border/40">
-                      <span className="font-semibold">Complex Animations</span>
+                      <span className="font-semibold">Komplexe Animationen</span>
                       <span className="text-primary">500ms</span>
                     </div>
                     <div className="flex justify-between items-center py-2">
-                      <span className="font-semibold">Entrance Effects</span>
+                      <span className="font-semibold">Eingangseffekte</span>
                       <span className="text-primary">700ms</span>
                     </div>
                   </div>
                   <div className="mt-8 p-4 bg-amber-50/50 dark:bg-amber-950/20 rounded-xl border border-amber-200/40 dark:border-amber-800/40">
                     <p className="text-xs text-amber-800 dark:text-amber-200">
-                      <strong>Performance Tip:</strong> Verwende transform und
+                      <strong>Performance-Tipp:</strong> Verwende transform und
                       opacity für animationen statt layout-eigenschaften wie
                       width/height.
                     </p>
@@ -891,14 +891,14 @@ export default function DesignGuidePage() {
             <div className="flex items-center gap-3 mb-8">
               <Grid3x3 className="w-8 h-8 text-primary" />
               <h2 className="font-display text-4xl font-bold">
-                Page Header Structure
+Seitenkopf-Struktur
               </h2>
             </div>
             <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/40 p-12">
               <div className="space-y-8">
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
-                    Standard Header Layout
+                    Standard-Seitenkopf
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">
                     Konsistente Header-Struktur für Seiten wie /lexicon, /learn, /about, /privacy, /cookies, /legal
@@ -1031,11 +1031,11 @@ export default function DesignGuidePage() {
               <div className="grid lg:grid-cols-2 gap-12">
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    CSS Utilities
+                    CSS-Hilfsklassen
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <p className="font-semibold mb-2">Glassmorphism Card</p>
+                      <p className="font-semibold mb-2">Glassmorphism-Karte</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                         <div>bg-card/60</div>
                         <div>backdrop-blur-xl</div>
@@ -1046,7 +1046,7 @@ export default function DesignGuidePage() {
                       </div>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2">Interactive Elements</p>
+                      <p className="font-semibold mb-2">Interaktive Elemente</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                         <div>group</div>
                         <div>group-hover:scale-110</div>
@@ -1059,11 +1059,11 @@ export default function DesignGuidePage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-6">
-                    Design Tokens
+                    Design-Tokens
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <p className="font-semibold mb-2">Color Variables</p>
+                      <p className="font-semibold mb-2">Farbvariablen</p>
                       <div className="bg-secondary/30 p-4 rounded-xl font-mono text-xs">
                         <div>--primary: 345 60% 35%</div>
                         <div>--author-caesar: 30 100% 55%</div>
@@ -1110,7 +1110,7 @@ export default function DesignGuidePage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Framer Motion für Entrance Animations</span>
+                      <span>Framer Motion für Eingangs-Animationen</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -1179,7 +1179,7 @@ export default function DesignGuidePage() {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { size: 'text-7xl', text: 'Römische Geschichte', usage: 'Hero H1' },
+                    { size: 'text-7xl', text: 'Römische Geschichte', usage: 'Hero-Überschrift H1' },
                     { size: 'text-5xl', text: 'Große Überschriften', usage: 'H2, Abschnittstitel' },
                     { size: 'text-3xl', text: 'Mittelgroße Titel', usage: 'H3, Kartentitel' },
                     { size: 'text-xl', text: 'Untertitel & Beschreibungen', usage: 'H4, Einleitungstext' },
