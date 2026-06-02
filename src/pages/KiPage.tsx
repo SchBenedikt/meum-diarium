@@ -15,7 +15,7 @@ const KiPage = () => {
       title: 'KI-Chat mit historischen Persönlichkeiten',
       path: '/caesar#chat',
       description: 'Echtzeit-Gespräche mit Caesar, Cicero, Augustus, Seneca, Catilina, Sallust und Sokrates. Die KI antwortet im Charakter der Figur – mit historischem Wissen, passendem Sprachstil und Persönlichkeit. Jede Antwort wird live generiert, kein Text ist vorgefertigt.',
-      endpoint: 'ChatPage → askAI → handleAiChat (@cf/meta/llama-4-scout-17b-16e-instruct)',
+      model: 'Llama-4-Scout (17B)',
       location: 'Jede Persönlichkeiten-Seite (z. B. /caesar#chat)'
     },
     {
@@ -23,7 +23,7 @@ const KiPage = () => {
       title: 'Zeitreise-Simulation',
       path: '/simulation',
       description: 'Interaktives Entscheidungsspiel in der Ich-Perspektive. Die KI beschreibt historische Situationen, bietet Handlungsoptionen und reagiert dynamisch auf Entscheidungen. Jeder Durchlauf ist einzigartig – mit wechselnden Narrativen, Statuseffekten und Enden.',
-      endpoint: 'SimulationPage → simulateAI → handleSimulation (Llama-4-Scout / Llama-3.1-8B)',
+      model: 'Llama-4-Scout (17B) / Llama-3.1-8B (Fallback)',
       location: '/simulation/[autor] (z. B. /simulation/cicero)'
     },
     {
@@ -31,7 +31,7 @@ const KiPage = () => {
       title: 'Arbeitsblatt-Generator',
       path: '/teacher/worksheet',
       description: 'Erstellt dynamisch Latein-Unterrichtsmaterialien zu jedem Thema. Wählbar sind Aufgabentypen (Textverständnis, Lückentext, Multiple Choice, Übersetzung, Interpretation, Diskussion), Schwierigkeitsgrad und Menge. Die KI generiert passende Texte, Fragen und Lösungen.',
-      endpoint: 'TeacherWorksheetPage → generateWorksheetAI → handleWorksheet (Llama-4-Scout)',
+      model: 'Llama-4-Scout (17B)',
       location: '/teacher/worksheet'
     },
     {
@@ -39,7 +39,7 @@ const KiPage = () => {
       title: 'Begriffserklärungen (TermPopover)',
       path: '/lexicon',
       description: 'Beim Lesen von lateinischen Texten und Artikeln können Begriffe angeklickt werden. Die KI erklärt den Begriff in 2-3 Sätzen mit historischem Kontext, lateinischer Einordnung und relevanter Bedeutung – live und kontextabhängig.',
-      endpoint: 'TermPopover → explainTerm → handleExplainTerm (Llama-4-Scout)',
+      model: 'Llama-4-Scout (17B)',
       location: 'Überall auf der Seite per Klick auf unterstrichene Begriffe'
     },
     {
@@ -47,15 +47,15 @@ const KiPage = () => {
       title: 'Demo-Chat-Widget',
       path: '/',
       description: 'Auf der Startseite und Unterseiten befindet sich ein kompaktes Chat-Widget für schnelle Fragen an Caesar. Vereinfachte Version des Vollbild-Chats – für spontane Interaktion ohne Seitenwechsel.',
-      endpoint: 'DemoChatWidget → askAI → handleAiChat (Llama-4-Scout)',
+      model: 'Llama-4-Scout (17B)',
       location: 'Startseite, Footer-Bereich'
     },
     {
       icon: Search,
       title: 'Ressourcen-Vorschläge (KI-gestützt)',
       path: '/chat',
-      description: 'Während des KI-Chats schlägt das System passende Lexikon-Einträge, Artikel und Werke vor. Die Relevanz wird von einer zweiten KI (Llama-3.1-8B) automatisch bewertet und sortiert – nur die besten 12 Treffer werden angezeigt.',
-      endpoint: 'rerankResourcesWithAI (Llama-3.1-8B) + D1-Datenbank + Sitemap',
+      description: 'Während des KI-Chats schlägt das System passende Lexikon-Einträge, Artikel und Werke vor. Die Relevanz wird von einer zweiten KI automatisch bewertet und sortiert – nur die besten 12 Treffer werden angezeigt.',
+      model: 'Llama-3.1-8B (Reranking)',
       location: 'Automatisch im KI-Chat integriert'
     },
   ];
@@ -127,8 +127,8 @@ const KiPage = () => {
                         </p>
                         <div className="flex flex-col gap-2 text-[11px] font-mono">
                           <div className="flex items-start gap-2">
-                            <span className="text-muted-foreground/50 shrink-0">KI:</span>
-                            <span className="text-muted-foreground/80 break-all">{feature.endpoint}</span>
+                            <span className="text-muted-foreground/50 shrink-0">Modell:</span>
+                            <span className="text-muted-foreground/80">{feature.model}</span>
                           </div>
                           <div className="flex items-start gap-2">
                             <span className="text-muted-foreground/50 shrink-0">Wo:</span>
