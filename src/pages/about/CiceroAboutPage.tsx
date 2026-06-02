@@ -33,7 +33,7 @@ export function CiceroAboutPage() {
       setAuthorPage(ciceroPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'cicero').slice(0, 3);
+        const authorPostsList = allPosts.filter(p => p.author === 'cicero');
         setAuthorPosts(authorPostsList);
       }
 

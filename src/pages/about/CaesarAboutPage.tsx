@@ -34,7 +34,7 @@ export function CaesarAboutPage() {
       setAuthorPage(caesarPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'caesar').slice(0, 3);
+        const authorPostsList = allPosts.filter(p => p.author === 'caesar');
         setAuthorPosts(authorPostsList);
       }
 

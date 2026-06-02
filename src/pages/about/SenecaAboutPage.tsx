@@ -34,7 +34,7 @@ export function SenecaAboutPage() {
       setAuthorPage(senecaPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'seneca').slice(0, 3);
+        const authorPostsList = allPosts.filter(p => p.author === 'seneca');
         setAuthorPosts(authorPostsList);
       }
 

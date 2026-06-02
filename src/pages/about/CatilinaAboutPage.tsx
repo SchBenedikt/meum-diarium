@@ -32,7 +32,7 @@ export function CatilinaAboutPage() {
       setAuthorPage(catilinaPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'catilina').slice(0, 3);
+        const authorPostsList = allPosts.filter(p => p.author === 'catilina');
         setAuthorPosts(authorPostsList);
       }
 

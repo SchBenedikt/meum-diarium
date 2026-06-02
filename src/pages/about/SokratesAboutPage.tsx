@@ -33,7 +33,7 @@ export function SokratesAboutPage() {
     setAuthorPage(sokratesPageData as PageContent);
 
     if (!postsLoading && allPosts.length > 0) {
-      setAuthorPosts(allPosts.filter((post) => post.author === 'sokrates').slice(0, 3));
+      setAuthorPosts(allPosts.filter((post) => post.author === 'sokrates'));
     }
 
     (async () => {

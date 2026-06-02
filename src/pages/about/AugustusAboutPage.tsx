@@ -34,7 +34,7 @@ export function AugustusAboutPage() {
       setAuthorPage(augustusPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'augustus').slice(0, 3);
+        const authorPostsList = allPosts.filter(p => p.author === 'augustus');
         setAuthorPosts(authorPostsList);
       }
 
