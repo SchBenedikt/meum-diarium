@@ -31,22 +31,22 @@ const OERPage = () => {
       icon: FileText,
       items: [
         {
-          title: 'Tagebucheintraege',
-          description: 'KI-generierte Tagebucheintraege historischer Persoenlichkeiten.',
+          title: 'Tagebucheinträge',
+          description: 'KI-generierte Tagebucheinträge historischer Persönlichkeiten.',
           license: 'CC BY-SA 4.0',
           format: 'HTML, JSON',
           link: '/caesar',
         },
         {
           title: 'Lexikon',
-          description: 'Enzyklopaedie zur roemischen Antike mit historischer Einordnung.',
+          description: 'Enzyklopädie zur römischen Antike mit historischer Einordnung.',
           license: 'CC BY-SA 4.0',
           format: 'HTML, API',
           link: '/lexicon',
         },
         {
           title: 'Grammatik',
-          description: 'Lateinische Grammatik mit Uebungen und didaktischem Aufbau.',
+          description: 'Lateinische Grammatik mit Übungen und didaktischem Aufbau.',
           license: 'CC BY-SA 4.0',
           format: 'HTML, PDF',
           link: '/learn/grammar',
@@ -93,7 +93,7 @@ const OERPage = () => {
 
   const authorsCount = Object.keys(authors).length;
   const stats = [
-    { value: '92+', label: 'Lexikon-Eintraege' },
+    { value: '92+', label: 'Lexikon-Einträge' },
     { value: '36.140', label: 'Vokabeln' },
     { value: String(authorsCount), label: 'Historische Persoenlichkeiten' },
     { value: '6', label: 'Lektionen' },
@@ -105,7 +105,7 @@ const OERPage = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title="Open Educational Resources - Meum Diarium"
-        description="Kostenfreie Bildungsmaterialien zur roemischen Antike. Texte, Vokabeln und interaktive Lernwerkzeuge unter offenen Lizenzen."
+        description="Kostenfreie Bildungsmaterialien zur römischen Antike. Texte, Vokabeln und interaktive Lernwerkzeuge unter offenen Lizenzen."
         type="website"
         image={`${baseUrl}/images/oer-hero.jpg`}
       />
@@ -123,10 +123,10 @@ const OERPage = () => {
               OPEN EDUCATIONAL RESOURCES
             </div>
             <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
-              Offene Lernmaterialien fuer <span className="text-primary italic">Latein und Rom</span>
+              Offene Lernmaterialien für <span className="text-primary italic">Latein und Rom</span>
             </h1>
             <p className="text-muted-foreground/70 text-lg leading-relaxed max-w-3xl">
-              Diese Seite buendelt die frei nutzbaren Ressourcen von Meum Diarium. Alle Materialien sind transparent lizenziert und fuer Unterricht und Studium einsetzbar.
+              Diese Seite bündelt die frei nutzbaren Ressourcen von Meum Diarium. Alle Materialien sind transparent lizenziert und für Unterricht und Studium einsetzbar.
             </p>
           </motion.div>
 
@@ -166,7 +166,7 @@ const OERPage = () => {
         <section className="mb-20">
           <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
             <div className="w-8 h-[1px] bg-primary/30" />
-            VERFUEGBARE RESSOURCEN
+            VERFÜGBARE RESSOURCEN
           </div>
           <div className="space-y-12">
             {availableResources.map((category) => (
@@ -228,7 +228,7 @@ const OERPage = () => {
             <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-4">MITMACHEN</p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">Bildung gemeinsam gestalten</h2>
             <p className="text-muted-foreground/80 text-lg leading-relaxed mb-8">
-              Nutze die OER-Materialien im Unterricht, in Arbeitsblaettern oder in deiner Forschung. Durch offene Lizenzen bleiben Inhalte transparent und wiederverwendbar.
+              Nutze die OER-Materialien im Unterricht, in Arbeitsblättern oder in deiner Forschung. Durch offene Lizenzen bleiben Inhalte transparent und wiederverwendbar.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link to="/learn">

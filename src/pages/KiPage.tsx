@@ -313,9 +313,6 @@ const KiPage = () => {
             <p className="text-lg text-muted-foreground/80 leading-relaxed">
               Meum Diarium zeigt, dass KI ein echtes, zuverlässiges Werkzeug für Bildung sein kann — wenn wir ehrlich sind. Wenn wir sagen, wie Inhalte erstellt wurden. Wenn wir Qualität überprüfen und Fehler korrigieren.
             </p>
-            <p className="text-lg text-muted-foreground/80 leading-relaxed">
-              Die gesamte Anwendung wurde mithilfe von KI erstellt und überprüft. Das ist kein Experiment — das ist sorgfältig entwickelt.
-            </p>
             <p className="text-lg font-semibold text-primary">
               Deshalb diese Seite. Deshalb diese Transparenz.
             </p>
@@ -335,9 +332,6 @@ const KiPage = () => {
               <h2 className="font-display text-3xl font-bold">Warum Transparenz?</h2>
               <p className="text-lg text-muted-foreground/80 leading-relaxed">
                 Meum Diarium zeigt, dass KI ein echtes, zuverlässiges Werkzeug für Bildung sein kann — wenn wir ehrlich sind über ihre Nutzung.
-              </p>
-              <p className="text-lg text-muted-foreground/80 leading-relaxed">
-                Die gesamte Anwendung wurde sorgfältig entwickelt, mithilfe von KI erstellt und überprüft. Das ist kein Experiment — das ist ein vollständiges Lernwerkzeug.
               </p>
               <div className="pt-6">
                 <p className="font-semibold text-primary text-lg">Deshalb diese Transparenz.</p>
