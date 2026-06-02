@@ -105,7 +105,7 @@ export const de = {
     notFoundTitle: 'Pagina non inventa',
     notFoundDesc: 'Haec pagina in annalibus nostris non exstat.',
     notFoundBtn: 'Ad paginam primam redire',
-    footerDescription: 'Antike Geschichten',
+    footerDescription: 'Tagebücher antiker Persönlichkeiten',
     footerNavigation: 'Navigation',
     authors: 'Autoren',
     followUs: 'Folgen Sie uns',

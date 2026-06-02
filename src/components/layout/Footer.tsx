@@ -9,7 +9,7 @@ export function Footer() {
     return typeof val === 'string' ? val : fallback;
   };
   const appName = text('appName', 'Meum Diarium');
-  const description = text('footerDescription', 'Antike Geschichten');
+  const description = text('footerDescription', 'Tagebücher antiker Persönlichkeiten');
   const footerLinks = [
     {
       title: 'Navigation',
