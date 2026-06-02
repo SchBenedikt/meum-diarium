@@ -1045,9 +1045,14 @@ function scoreUrl(url, slug, keywords, specificKeywords, type, persona) {
     if (type === 'lexicon') score += 1;
     if (type === 'text' && (lower.includes('/works/') || lower.includes('/posts/'))) score += 0.5;
 
-    // Persona-specific boosts
-    if (persona === 'caesar' && (slug.includes('gallien') || slug.includes('bello') || slug.includes('rubikon') || slug.includes('rubicon'))) score += 2;
-    if (persona === 'cicero' && slug.includes('catilina')) score += 2;
+    // Persona-specific boosts for all 7 personas
+    if (persona === 'caesar' && (slug.includes('gallien') || slug.includes('bello') || slug.includes('rubikon') || slug.includes('rubicon') || slug.includes('caesar') || slug.includes('helvetier') || slug.includes('triumvirat') || slug.includes('kalender') || slug.includes('konsulat'))) score += 2;
+    if (persona === 'cicero' && (slug.includes('catilina') || slug.includes('cicero') || slug.includes('verres') || slug.includes('philippic') || slug.includes('republik') || slug.includes('officiis') || slug.includes('exil'))) score += 2;
+    if (persona === 'augustus' && (slug.includes('augustus') || slug.includes('prinzipat') || slug.includes('philippi') || slug.includes('triumvirat') || slug.includes('actium') || slug.includes('pax') || slug.includes('adoption') || slug.includes('frieden'))) score += 2;
+    if (persona === 'seneca' && (slug.includes('seneca') || slug.includes('stoa') || slug.includes('stoic') || slug.includes('nero') || slug.includes('briefe') || slug.includes('epistulae') || slug.includes('natur') || slug.includes('freiheit') || slug.includes('tugend'))) score += 2;
+    if (persona === 'catilina' && (slug.includes('catilina') || slug.includes('verschworung') || slug.includes('verschwörung') || slug.includes('etrurien') || slug.includes('ambition') || slug.includes('sulla') || slug.includes('pistoria'))) score += 2;
+    if (persona === 'sallust' && (slug.includes('sallust') || slug.includes('histor') || slug.includes('catilinae') || slug.includes('coniuratio') || slug.includes('jugurtha') || slug.includes('korruption') || slug.includes('tugend') || slug.includes('macht') || slug.includes('methode'))) score += 2;
+    if (persona === 'sokrates' && (slug.includes('sokrates') || slug.includes('aporie') || slug.includes('maieutik') || slug.includes('delphi') || slug.includes('orakel') || slug.includes('verteidigung') || slug.includes('alkibiades') || slug.includes('philosoph'))) score += 2;
 
     return { score, matched: Array.from(new Set(matched)) };
 }
@@ -1096,10 +1101,24 @@ const SYNONYMS = {
     rubikon: ['rubicon'],
     rubicon: ['rubikon'],
     gallien: ['gallia', 'gaul', 'gallier', 'gallischer', 'gallienfeldzug'],
-    caesar: ['gaius', 'julius', 'gaius-julius-caesar'],
+    caesar: ['gaius', 'julius', 'gaius-julius-caesar', 'iulius'],
     pompeius: ['pompey', 'gnaius-pompeius', 'gnaeus-pompeius'],
+    cicero: ['marcus-tullius-cicero', 'tullius'],
+    augustus: ['octavian', 'octavianus', 'gaius-octavius', 'princeps'],
+    catilina: ['lucius-sergius-catilina', 'catilinarian', 'catilinae', 'verschwörung'],
+    sallust: ['crispus', 'sallustius', 'coniuratio'],
+    seneca: ['lucius-annaeus-seneca'],
+    sokrates: ['socrates', 'sokrat'],
+    stoa: ['stoa', 'stoiker', 'stoicismus', 'stoische-philosophie', 'stoa'],
+    actium: ['aktium'],
+    philippi: ['philippi'],
+    rubicon: ['rubikon'],
     rhein: ['rhine', 'rhenus'],
     alesia: ['alesia'],
+    proskription: ['proscription', 'ächtung', 'proscribed'],
+    'res-gestae': ['res-gestae', 'taten-des-augustus', 'monumentum-ancyranum'],
+    philosophie: ['philosophy', 'philosophie', 'philosoph'],
+    bürgerkrieg: ['civil-war', 'bellum-civile', 'buergerkrieg'],
 };
 
 function expandKeyword(k) {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-05T13:00:49.969Z",
+  "generatedAt": "2026-06-02T15:03:13.429Z",
   "items": [
     {
       "type": "work",
@@ -8,7 +8,8 @@
       "summary": "Caesars Bericht über die Eroberung Galliens (58-50 v. Chr.). Ein Meisterwerk der Kriegsberichterstattung und politischen Propaganda in kristallklarer Prosa. Das Werk prägt bis heute den Lateinunterricht mit seinem berühmten Eröffnungssatz: \"Gallia est omnis divisa in partes tres\".",
       "author": "caesar",
       "year": "58-50 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/caesar/works/de-bello-gallico"
     },
     {
       "type": "work",
@@ -17,7 +18,8 @@
       "summary": "Caesars Bericht über den Bürgerkrieg gegen Pompeius (49-48 v. Chr.). Emotionaler und defensiver als De Bello Gallico. Caesar rechtfertigt die Überschreitung des Rubikon als Selbstverteidigung gegen eine illegale senatorische Clique - ein Meisterwerk der politischen Selbstrechtfertigung.",
       "author": "caesar",
       "year": "49-48 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/caesar/works/de-bello-civili"
     },
     {
       "type": "work",
@@ -26,7 +28,8 @@
       "summary": "Ciceros Verteidigung der idealen Republik als Dialog. Argumentiert für die gemischte Verfassung (Monarchie + Aristokratie + Demokratie), die Roms Verfassung verkörpert. Viel fragmentarisch erhalten; das berühmte \"Somnium Scipionis\" inspirierte das Mittelalter.",
       "author": "cicero",
       "year": "54–51 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/cicero/works/de-re-publica"
     },
     {
       "type": "work",
@@ -35,7 +38,8 @@
       "summary": "Ciceros meistgelesenes Werk über Ethik und Pflicht (44 v. Chr.). Ein Brief an seinen Sohn: Wie soll man sich verhalten? Welche Pflichten hat man? Kombination von stoischer Philosophie und römischer Praxis. Der einflussreichste ethische Text der westlichen Tradition.",
       "author": "cicero",
       "year": "44 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/cicero/works/de-officiis"
     },
     {
       "type": "work",
@@ -44,7 +48,8 @@
       "summary": "Die vier \"Catilin\n\narischen Reden\" (In Catilinam Orationes) gehören zu den berühmtesten Reden der Weltliteratur. Gehalten von Marcus Tullius Cicero während seiner Amtszeit als Consul im Jahr 63 v. Chr., deckten sie die Verschwörung des Lucius Sergius Catilina auf und führten zu dessen Flucht aus Rom.\n\nDie erste Rede beginnt mit den unsterblichen Worten: \"Quo usque tandem abutere, Catilina, patientia nostra?\" (Wie lange noch, Catilina, wirst du unsere Geduld missbrauchen?) - eine der wirkungsvollsten rhetorischen Eröffnungen aller Zeiten. Cicero konfrontiert Catilina direkt im Senat, während dieser persönlich anwesend ist - ein dramatischer Moment ungeheurer politischer Spannung.\n\nDie Reden sind Meisterwerke der politischen Rhetorik, die Analyse, Anklage und emotionale Appelle virtuos verbinden. Sie zeigen Cicero auf dem Höhepunkt seiner Macht als \"pater patriae\" (Vater des Vaterlandes), der die Republik vor ihren inneren Feinden rettet. Zugleich werfen sie schwierige Fragen über Rechtsstaatlichkeit, Notstandsmaßnahmen und die Grenzen der Exekutivgewalt auf.",
       "author": "cicero",
       "year": "63 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/cicero/works/in-catilinam"
     },
     {
       "type": "work",
@@ -53,7 +58,8 @@
       "summary": "Ciceros letzte verzweifelte Angriffe gegen Marcus Antonius nach Caesars Mord (44-43 v. Chr.). Vierzehn flammende Reden - Meisterwerke von Sarkasmus und Rhetorik. Kosteten Cicero sein Leben: Am 7. Dezember 43 v. Chr. ermordet, sein Kopf auf dem Forum zur Schau gestellt.",
       "author": "cicero",
       "year": "44–43 v. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/cicero/works/philippicae"
     },
     {
       "type": "work",
@@ -62,7 +68,1142 @@
       "summary": "Augustus' autobiographischer Rechenschaftsbericht, verfasst am Lebensende. Auf Bronzetafeln im ganzen Reich verbreitet: Taten, Ämter, Ehrungen aufgelistet. Ein Meisterwerk der Propaganda: er stellt sich als Retter der Republik dar, obwohl er sie zur Monarchie umwandelte.",
       "author": "augustus",
       "year": "14 n. Chr.",
-      "translations": {}
+      "translations": {},
+      "link": "/augustus/works/res-gestae"
+    },
+    {
+      "type": "text",
+      "slug": "der-tod-des-sokrates",
+      "title": "Der Tod Des Sokrates",
+      "summary": "Seite über sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/der-tod-des-sokrates"
+    },
+    {
+      "type": "text",
+      "slug": "meine-verteidigung",
+      "title": "Meine Verteidigung",
+      "summary": "Seite über sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/meine-verteidigung"
+    },
+    {
+      "type": "text",
+      "slug": "die-aporie",
+      "title": "Die Aporie",
+      "summary": "Seite über sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/die-aporie"
+    },
+    {
+      "type": "text",
+      "slug": "die-kunst-der-maieutik",
+      "title": "Die Kunst Der Maieutik",
+      "summary": "Seite über sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/die-kunst-der-maieutik"
+    },
+    {
+      "type": "text",
+      "slug": "das-delphische-orakel",
+      "title": "Das Delphische Orakel",
+      "summary": "Seite über sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/das-delphische-orakel"
+    },
+    {
+      "type": "text",
+      "slug": "tugend-und-macht",
+      "title": "Tugend Und Macht",
+      "summary": "Seite über sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/tugend-und-macht"
+    },
+    {
+      "type": "text",
+      "slug": "historische-methode",
+      "title": "Historische Methode",
+      "summary": "Seite über sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/historische-methode"
+    },
+    {
+      "type": "text",
+      "slug": "politische-korruption",
+      "title": "Politische Korruption",
+      "summary": "Seite über sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/politische-korruption"
+    },
+    {
+      "type": "text",
+      "slug": "catilinarische-analyse",
+      "title": "Catilinarische Analyse",
+      "summary": "Seite über sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/catilinarische-analyse"
+    },
+    {
+      "type": "text",
+      "slug": "jugurthinischer-krieg",
+      "title": "Jugurthinischer Krieg",
+      "summary": "Seite über sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/jugurthinischer-krieg"
+    },
+    {
+      "type": "text",
+      "slug": "gegen-den-neuen-tyrannen",
+      "title": "Gegen Den Neuen Tyrannen",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/gegen-den-neuen-tyrannen"
+    },
+    {
+      "type": "text",
+      "slug": "meine-triumphale-rueckkehr",
+      "title": "Meine Triumphale Rueckkehr",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/meine-triumphale-rueckkehr"
+    },
+    {
+      "type": "text",
+      "slug": "mein-bitteres-exil",
+      "title": "Mein Bitteres Exil",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/mein-bitteres-exil"
+    },
+    {
+      "type": "text",
+      "slug": "ich-rette-die-republik",
+      "title": "Ich Rette Die Republik",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/ich-rette-die-republik"
+    },
+    {
+      "type": "text",
+      "slug": "letzter-widerstand",
+      "title": "Letzter Widerstand",
+      "summary": "Seite über catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/letzter-widerstand"
+    },
+    {
+      "type": "text",
+      "slug": "enttarnt-und-trotzig",
+      "title": "Enttarnt Und Trotzig",
+      "summary": "Seite über catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/enttarnt-und-trotzig"
+    },
+    {
+      "type": "text",
+      "slug": "die-verschwoerung-entfaltet-sich",
+      "title": "Die Verschwoerung Entfaltet Sich",
+      "summary": "Seite über catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/die-verschwoerung-entfaltet-sich"
+    },
+    {
+      "type": "text",
+      "slug": "rechtfertigung-des-handelns",
+      "title": "Rechtfertigung Des Handelns",
+      "summary": "Seite über catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/rechtfertigung-des-handelns"
+    },
+    {
+      "type": "text",
+      "slug": "ich-besiege-den-korrupten-statthalter",
+      "title": "Ich Besiege Den Korrupten Statthalter",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/ich-besiege-den-korrupten-statthalter"
+    },
+    {
+      "type": "text",
+      "slug": "ambitionen-verraten",
+      "title": "Ambitionen Verraten",
+      "summary": "Seite über catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/ambitionen-verraten"
+    },
+    {
+      "type": "text",
+      "slug": "die-verschwoerung-gegen-mich",
+      "title": "Die Verschwoerung Gegen Mich",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/die-verschwoerung-gegen-mich"
+    },
+    {
+      "type": "text",
+      "slug": "darum-mag-mich-jeder",
+      "title": "Darum Mag Mich Jeder",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/darum-mag-mich-jeder"
+    },
+    {
+      "type": "text",
+      "slug": "freiheit-und-sklaverei",
+      "title": "Freiheit Und Sklaverei",
+      "summary": "Seite über seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/freiheit-und-sklaverei"
+    },
+    {
+      "type": "text",
+      "slug": "caesar-verschluesselung",
+      "title": "Caesar Verschluesselung",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/caesar-verschluesselung"
+    },
+    {
+      "type": "text",
+      "slug": "briefe-an-lucilius",
+      "title": "Briefe An Lucilius",
+      "summary": "Seite über seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/briefe-an-lucilius"
+    },
+    {
+      "type": "text",
+      "slug": "naturphilosophie",
+      "title": "Naturphilosophie",
+      "summary": "Seite über seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/naturphilosophie"
+    },
+    {
+      "type": "text",
+      "slug": "erziehung-neros",
+      "title": "Erziehung Neros",
+      "summary": "Seite über seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/erziehung-neros"
+    },
+    {
+      "type": "text",
+      "slug": "reichtum-und-tugend",
+      "title": "Reichtum Und Tugend",
+      "summary": "Seite über seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/reichtum-und-tugend"
+    },
+    {
+      "type": "text",
+      "slug": "ich-ruhe-nicht",
+      "title": "Ich Ruhe Nicht",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/ich-ruhe-nicht"
+    },
+    {
+      "type": "text",
+      "slug": "ich-ueberschreite-den-rubikon",
+      "title": "Ich Ueberschreite Den Rubikon",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/ich-ueberschreite-den-rubikon"
+    },
+    {
+      "type": "text",
+      "slug": "helvetierkrieg-teil-2",
+      "title": "Helvetierkrieg Teil 2",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/helvetierkrieg-teil-2"
+    },
+    {
+      "type": "text",
+      "slug": "helvetierkrieg-teil-1",
+      "title": "Helvetierkrieg Teil 1",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/helvetierkrieg-teil-1"
+    },
+    {
+      "type": "text",
+      "slug": "vermaechtnis",
+      "title": "Vermaechtnis",
+      "summary": "Seite über augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/vermaechtnis"
+    },
+    {
+      "type": "text",
+      "slug": "nachfolge-sorgen",
+      "title": "Nachfolge Sorgen",
+      "summary": "Seite über augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/nachfolge-sorgen"
+    },
+    {
+      "type": "text",
+      "slug": "militaerreform",
+      "title": "Militaerreform",
+      "summary": "Seite über augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/militaerreform"
+    },
+    {
+      "type": "text",
+      "slug": "pax-romana",
+      "title": "Pax Romana",
+      "summary": "Seite über augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/pax-romana"
+    },
+    {
+      "type": "text",
+      "slug": "sieg-bei-actium",
+      "title": "Sieg Bei Actium",
+      "summary": "Seite über augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/sieg-bei-actium"
+    },
+    {
+      "type": "text",
+      "slug": "mein-genialer-satz",
+      "title": "Mein Genialer Satz",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/mein-genialer-satz"
+    },
+    {
+      "type": "text",
+      "slug": "prokonsulat",
+      "title": "Prokonsulat",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/prokonsulat"
+    },
+    {
+      "type": "text",
+      "slug": "das-1-triumvirat",
+      "title": "Das 1 Triumvirat",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/das-1-triumvirat"
+    },
+    {
+      "type": "text",
+      "slug": "mein-konsulat",
+      "title": "Mein Konsulat",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/mein-konsulat"
+    },
+    {
+      "type": "text",
+      "slug": "freundschaft-und-weisheit",
+      "title": "Freundschaft Und Weisheit",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/freundschaft-und-weisheit"
+    },
+    {
+      "type": "text",
+      "slug": "konflikt-mit-antonius",
+      "title": "Konflikt Mit Antonius",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/konflikt-mit-antonius"
+    },
+    {
+      "type": "text",
+      "slug": "reflexionen-im-exil",
+      "title": "Reflexionen Im Exil",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/reflexionen-im-exil"
+    },
+    {
+      "type": "text",
+      "slug": "verteidigung-des-milo",
+      "title": "Verteidigung Des Milo",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/verteidigung-des-milo"
+    },
+    {
+      "type": "text",
+      "slug": "er-ist-da",
+      "title": "Er Ist Da",
+      "summary": "Seite über caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/er-ist-da"
+    },
+    {
+      "type": "text",
+      "slug": "enthuellung-der-catilinarischen-verschwoerung",
+      "title": "Enthuellung Der Catilinarischen Verschwoerung",
+      "summary": "Seite über cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/enthuellung-der-catilinarischen-verschwoerung"
+    },
+    {
+      "type": "work",
+      "slug": "de-ira",
+      "title": "De Ira",
+      "summary": "Artikel über de ira",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-ira"
+    },
+    {
+      "type": "work",
+      "slug": "epistulae-morales",
+      "title": "Epistulae Morales",
+      "summary": "Artikel über epistulae morales",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/epistulae-morales"
+    },
+    {
+      "type": "work",
+      "slug": "catilinae-coniuratio",
+      "title": "Catilinae Coniuratio",
+      "summary": "Artikel über catilinae coniuratio",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/works/catilinae-coniuratio"
+    },
+    {
+      "type": "work",
+      "slug": "bellum-jugurthinum",
+      "title": "Bellum Jugurthinum",
+      "summary": "Artikel über bellum jugurthinum",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/works/bellum-jugurthinum"
+    },
+    {
+      "type": "work",
+      "slug": "apologie",
+      "title": "Apologie",
+      "summary": "Artikel über apologie",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/works/apologie"
+    },
+    {
+      "type": "work",
+      "slug": "phaidon",
+      "title": "Phaidon",
+      "summary": "Artikel über phaidon",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/works/phaidon"
+    },
+    {
+      "type": "work",
+      "slug": "de-legibus",
+      "title": "De Legibus",
+      "summary": "Artikel über de legibus",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/de-legibus"
+    },
+    {
+      "type": "work",
+      "slug": "de-finibus",
+      "title": "De Finibus",
+      "summary": "Artikel über de finibus",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/de-finibus"
+    },
+    {
+      "type": "work",
+      "slug": "de-natura-deorum",
+      "title": "De Natura Deorum",
+      "summary": "Artikel über de natura deorum",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/de-natura-deorum"
+    },
+    {
+      "type": "work",
+      "slug": "tusculanae-disputationes",
+      "title": "Tusculanae Disputationes",
+      "summary": "Artikel über tusculanae disputationes",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/tusculanae-disputationes"
+    },
+    {
+      "type": "work",
+      "slug": "de-amicitia",
+      "title": "De Amicitia",
+      "summary": "Artikel über de amicitia",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/de-amicitia"
+    },
+    {
+      "type": "work",
+      "slug": "de-senectute",
+      "title": "De Senectute",
+      "summary": "Artikel über de senectute",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/de-senectute"
+    },
+    {
+      "type": "work",
+      "slug": "in-verrem",
+      "title": "In Verrem",
+      "summary": "Artikel über in verrem",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/in-verrem"
+    },
+    {
+      "type": "work",
+      "slug": "pro-milone",
+      "title": "Pro Milone",
+      "summary": "Artikel über pro milone",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/works/pro-milone"
+    },
+    {
+      "type": "work",
+      "slug": "de-brevitate-vitae",
+      "title": "De Brevitate Vitae",
+      "summary": "Artikel über de brevitate vitae",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-brevitate-vitae"
+    },
+    {
+      "type": "work",
+      "slug": "de-clementia",
+      "title": "De Clementia",
+      "summary": "Artikel über de clementia",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-clementia"
+    },
+    {
+      "type": "work",
+      "slug": "de-tranquillitate-animi",
+      "title": "De Tranquillitate Animi",
+      "summary": "Artikel über de tranquillitate animi",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-tranquillitate-animi"
+    },
+    {
+      "type": "work",
+      "slug": "de-vita-beata",
+      "title": "De Vita Beata",
+      "summary": "Artikel über de vita beata",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-vita-beata"
+    },
+    {
+      "type": "work",
+      "slug": "de-beneficiis",
+      "title": "De Beneficiis",
+      "summary": "Artikel über de beneficiis",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/de-beneficiis"
+    },
+    {
+      "type": "work",
+      "slug": "naturales-quaestiones",
+      "title": "Naturales Quaestiones",
+      "summary": "Artikel über naturales quaestiones",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/naturales-quaestiones"
+    },
+    {
+      "type": "work",
+      "slug": "medea",
+      "title": "Medea",
+      "summary": "Artikel über medea",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/works/medea"
+    },
+    {
+      "type": "text",
+      "slug": "maieutik",
+      "title": "Maieutik",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/maieutik"
+    },
+    {
+      "type": "text",
+      "slug": "aporie",
+      "title": "Aporie",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/aporie"
+    },
+    {
+      "type": "text",
+      "slug": "elenchos",
+      "title": "Elenchos",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/elenchos"
+    },
+    {
+      "type": "text",
+      "slug": "dialektik",
+      "title": "Dialektik",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/dialektik"
+    },
+    {
+      "type": "text",
+      "slug": "daimonion",
+      "title": "Daimonion",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/daimonion"
+    },
+    {
+      "type": "text",
+      "slug": "sokratische-ironie",
+      "title": "Sokratische Ironie",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/sokratische-ironie"
+    },
+    {
+      "type": "text",
+      "slug": "apologie",
+      "title": "Apologie",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/apologie"
+    },
+    {
+      "type": "text",
+      "slug": "stoa",
+      "title": "Stoa",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/stoa"
+    },
+    {
+      "type": "text",
+      "slug": "prinzipat",
+      "title": "Prinzipat",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/prinzipat"
+    },
+    {
+      "type": "text",
+      "slug": "naturrecht",
+      "title": "Naturrecht",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/naturrecht"
+    },
+    {
+      "type": "text",
+      "slug": "alea-iacta-est",
+      "title": "Alea Iacta Est",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/alea-iacta-est"
+    },
+    {
+      "type": "text",
+      "slug": "somnium-scipionis",
+      "title": "Somnium Scipionis",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/somnium-scipionis"
+    },
+    {
+      "type": "text",
+      "slug": "senatus-consultum-ultimum",
+      "title": "Senatus Consultum Ultimum",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/senatus-consultum-ultimum"
+    },
+    {
+      "type": "text",
+      "slug": "vorsokratiker",
+      "title": "Vorsokratiker",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/vorsokratiker"
+    },
+    {
+      "type": "text",
+      "slug": "anamnesis",
+      "title": "Anamnesis",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/anamnesis"
+    },
+    {
+      "type": "text",
+      "slug": "hebammenkunst",
+      "title": "Hebammenkunst",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/hebammenkunst"
+    },
+    {
+      "type": "text",
+      "slug": "psychagogie",
+      "title": "Psychagogie",
+      "summary": "Seite über lexicon",
+      "author": "lexicon",
+      "year": "",
+      "link": "/lexicon/psychagogie"
+    },
+    {
+      "type": "text",
+      "slug": "caesar",
+      "title": "Caesar",
+      "summary": "Historische Persönlichkeit: caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Caesar: Biografie",
+      "summary": "Biografie und historischer Kontext von caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Caesar",
+      "summary": "Historische Persönlichkeit: caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Caesar",
+      "summary": "Historische Persönlichkeit: caesar",
+      "author": "caesar",
+      "year": "",
+      "link": "/caesar/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "augustus",
+      "title": "Augustus",
+      "summary": "Historische Persönlichkeit: augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Augustus: Biografie",
+      "summary": "Biografie und historischer Kontext von augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Augustus",
+      "summary": "Historische Persönlichkeit: augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Augustus",
+      "summary": "Historische Persönlichkeit: augustus",
+      "author": "augustus",
+      "year": "",
+      "link": "/augustus/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "cicero",
+      "title": "Cicero",
+      "summary": "Historische Persönlichkeit: cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Cicero: Biografie",
+      "summary": "Biografie und historischer Kontext von cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Cicero",
+      "summary": "Historische Persönlichkeit: cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Cicero",
+      "summary": "Historische Persönlichkeit: cicero",
+      "author": "cicero",
+      "year": "",
+      "link": "/cicero/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "catilina",
+      "title": "Catilina",
+      "summary": "Historische Persönlichkeit: catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Catilina: Biografie",
+      "summary": "Biografie und historischer Kontext von catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Catilina",
+      "summary": "Historische Persönlichkeit: catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Catilina",
+      "summary": "Historische Persönlichkeit: catilina",
+      "author": "catilina",
+      "year": "",
+      "link": "/catilina/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "seneca",
+      "title": "Seneca",
+      "summary": "Historische Persönlichkeit: seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Seneca: Biografie",
+      "summary": "Biografie und historischer Kontext von seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Seneca",
+      "summary": "Historische Persönlichkeit: seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Seneca",
+      "summary": "Historische Persönlichkeit: seneca",
+      "author": "seneca",
+      "year": "",
+      "link": "/seneca/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "sallust",
+      "title": "Sallust",
+      "summary": "Historische Persönlichkeit: sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Sallust: Biografie",
+      "summary": "Biografie und historischer Kontext von sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Sallust",
+      "summary": "Historische Persönlichkeit: sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Sallust",
+      "summary": "Historische Persönlichkeit: sallust",
+      "author": "sallust",
+      "year": "",
+      "link": "/sallust/simulation"
+    },
+    {
+      "type": "text",
+      "slug": "sokrates",
+      "title": "Sokrates",
+      "summary": "Historische Persönlichkeit: sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates"
+    },
+    {
+      "type": "text",
+      "slug": "about",
+      "title": "Sokrates: Biografie",
+      "summary": "Biografie und historischer Kontext von sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/about"
+    },
+    {
+      "type": "text",
+      "slug": "chat",
+      "title": "Sokrates",
+      "summary": "Historische Persönlichkeit: sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/chat"
+    },
+    {
+      "type": "text",
+      "slug": "simulation",
+      "title": "Sokrates",
+      "summary": "Historische Persönlichkeit: sokrates",
+      "author": "sokrates",
+      "year": "",
+      "link": "/sokrates/simulation"
+    },
+    {
+      "type": "lexicon",
+      "slug": "roemisches-reich",
+      "title": "Römisches Reich",
+      "summary": "Das Römische Reich bestand von 27 v. Chr. bis 476 n. Chr. (Westrom) bzw. 1453 n. Chr. (Ostrom).",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/roemisches-reich"
+    },
+    {
+      "type": "lexicon",
+      "slug": "roemische-republik",
+      "title": "Römische Republik",
+      "summary": "Die Römische Republik (ca. 509–27 v. Chr.) war eine Mischverfassung aus Monarchie, Aristokratie und Demokratie.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/roemische-republik"
+    },
+    {
+      "type": "lexicon",
+      "slug": "rubikon",
+      "title": "Rubikon",
+      "summary": "Der Rubikon ist ein kleiner Fluss in Oberitalien. Caesars Überschreitung 49 v. Chr. löste den Bürgerkrieg aus.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/rubikon"
+    },
+    {
+      "type": "lexicon",
+      "slug": "senat",
+      "title": "Senat",
+      "summary": "Der Senat war die oberste politische Institution in der Römischen Republik und Kaiserzeit.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/senat"
+    },
+    {
+      "type": "lexicon",
+      "slug": "gallien",
+      "title": "Gallien",
+      "summary": "Gallien (heute Frankreich, Belgien, Teile der Schweiz) wurde von Caesar 58–50 v. Chr. erobert.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/gallien"
+    },
+    {
+      "type": "lexicon",
+      "slug": "caesar",
+      "title": "Gaius Iulius Caesar",
+      "summary": "Gaius Iulius Caesar (100–44 v. Chr.) war römischer Feldherr, Politiker und Autor.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/caesar"
+    },
+    {
+      "type": "lexicon",
+      "slug": "cicero",
+      "title": "Marcus Tullius Cicero",
+      "summary": "Marcus Tullius Cicero (106–43 v. Chr.) war römischer Redner, Philosoph und Politiker.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/cicero"
+    },
+    {
+      "type": "lexicon",
+      "slug": "augustus",
+      "title": "Augustus",
+      "summary": "Augustus (63 v. Chr. – 14 n. Chr.) war der erste römische Kaiser, begründete das Prinzipat.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/augustus"
+    },
+    {
+      "type": "lexicon",
+      "slug": "seneca",
+      "title": "Seneca",
+      "summary": "Lucius Annaeus Seneca (ca. 4 v. Chr. – 65 n. Chr.) war stoischer Philosoph und Erzieher Neros.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/seneca"
+    },
+    {
+      "type": "lexicon",
+      "slug": "catilina",
+      "title": "Catilina",
+      "summary": "Lucius Sergius Catilina (ca. 108–62 v. Chr.) führte eine gescheiterte Verschwörung gegen die Römische Republik.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/catilina"
+    },
+    {
+      "type": "lexicon",
+      "slug": "sallust",
+      "title": "Sallust",
+      "summary": "Gaius Sallustius Crispus (86–35 v. Chr.) war römischer Geschichtsschreiber und Politiker.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/sallust"
+    },
+    {
+      "type": "lexicon",
+      "slug": "sokrates",
+      "title": "Sokrates",
+      "summary": "Sokrates (469–399 v. Chr.) war ein athenischer Philosoph und Begründer der westlichen Philosophie.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/sokrates"
+    },
+    {
+      "type": "lexicon",
+      "slug": "proskription",
+      "title": "Proskription",
+      "summary": "Proskriptionen waren Ächtungslisten, die die Ermordung politischer Gegner legalisierten.",
+      "author": "",
+      "year": "",
+      "link": "/lexicon/proskription"
     }
   ]
 }
