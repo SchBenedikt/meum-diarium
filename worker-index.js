@@ -610,11 +610,68 @@ async function suggestFromSearchIndex(origin, keywords, persona) {
             }));
 
         console.log(`[SearchIndex] Returned ${scored.length} scored items`);
+        
+        // Fallback: if nothing matched, return persona-relevant items
+        if (scored.length === 0 && persona) {
+            const fallbackItems = getPersonaFallbackItems(persona);
+            if (fallbackItems.length > 0) {
+                console.log(`[SearchIndex] Using persona fallback (${fallbackItems.length} items)`);
+                return fallbackItems;
+            }
+        }
+        
         return scored;
     } catch (e) {
         console.error(`[SearchIndex] Error: ${e.message}`);
+        // Try persona fallback on error too
+        if (persona) return getPersonaFallbackItems(persona);
         return [];
     }
+}
+
+function getPersonaFallbackItems(persona) {
+    const p = (persona || '').toLowerCase();
+    const all = [
+        // Persona pages
+        { title: 'Über mich', type: 'text', description: 'Persönlicher Bericht aus der Ich-Perspektive.', link: `/${p}/about`, score: 3 },
+        { title: 'Zeitreise-Simulation', type: 'text', description: 'Interaktives Entscheidungsspiel in der Ich-Perspektive.', link: `/${p}/simulation`, score: 2 },
+        // Works (by matching author)
+        ...(p === 'caesar' ? [
+            { title: 'De Bello Gallico', type: 'text', description: 'Caesars Bericht über die Eroberung Galliens.', link: '/caesar/works/de-bello-gallico', score: 4 },
+            { title: 'De Bello Civili', type: 'text', description: 'Caesars Bericht über den Bürgerkrieg gegen Pompeius.', link: '/caesar/works/de-bello-civili', score: 4 },
+            { title: 'Ich überschreite den Rubikon', type: 'text', description: 'Meine Entscheidung am Rubikon – der Beginn des Bürgerkriegs.', link: '/caesar/ich-uberschreite-den-rubikon', score: 3 },
+        ] : []),
+        ...(p === 'cicero' ? [
+            { title: 'De Re Publica', type: 'text', description: 'Ciceros Verteidigung der idealen Republik.', link: '/cicero/works/de-re-publica', score: 4 },
+            { title: 'De Officiis', type: 'text', description: 'Ciceros Werk über Ethik und Pflicht.', link: '/cicero/works/de-officiis', score: 4 },
+            { title: 'Ich rette die Republik', type: 'text', description: 'Meine Rolle in der Catilinarischen Verschwörung.', link: '/cicero/ich-rette-die-republik', score: 3 },
+        ] : []),
+        ...(p === 'augustus' ? [
+            { title: 'Res Gestae Divi Augusti', type: 'text', description: 'Augustus’ eigener Rechenschaftsbericht über seine Taten.', link: '/augustus/works/res-gestae', score: 4 },
+            { title: 'Der Prinzipat', type: 'text', description: 'Die Begründung der römischen Kaiserherrschaft.', link: '/augustus/der-prinzipat', score: 3 },
+            { title: 'Pax Augusta', type: 'text', description: 'Die Friedensordnung des Augustus.', link: '/augustus/pax-augusta', score: 3 },
+        ] : []),
+        ...(p === 'seneca' ? [
+            { title: 'Epistulae Morales', type: 'text', description: 'Senecas Briefe an Lucilius über die stoische Philosophie.', link: '/seneca/works/epistulae-morales', score: 4 },
+            { title: 'De Ira', type: 'text', description: 'Senecas Werk über den Zorn und seine Bewältigung.', link: '/seneca/works/de-ira', score: 4 },
+            { title: 'Briefe an Lucilius', type: 'text', description: 'Philosophische Briefe über das Leben.', link: '/seneca/briefe-an-lucilius', score: 3 },
+        ] : []),
+        ...(p === 'catilina' ? [
+            { title: 'Catilinae Coniuratio', type: 'text', description: 'Sallusts Bericht über die Catilinarische Verschwörung.', link: '/catilina/works/catilinae-coniuratio', score: 4 },
+            { title: 'Die Verschwörung entfaltet sich', type: 'text', description: 'Meine Pläne gegen die Römische Republik.', link: '/catilina/die-verschworung-entfaltet-sich', score: 3 },
+        ] : []),
+        ...(p === 'sallust' ? [
+            { title: 'Historische Methode', type: 'text', description: 'Sallusts Ansatz als Geschichtsschreiber.', link: '/sallust/historische-methode', score: 4 },
+            { title: 'Tugend und Macht', type: 'text', description: 'Sallusts Analyse von Moral und Politik.', link: '/sallust/tugend-und-macht', score: 3 },
+        ] : []),
+        ...(p === 'sokrates' ? [
+            { title: 'Apologie', type: 'text', description: 'Sokrates’ Verteidigungsrede vor dem athenischen Gericht.', link: '/sokrates/meine-verteidigung', score: 4 },
+            { title: 'Der Tod des Sokrates', type: 'text', description: 'Die letzten Stunden des Sokrates im Gefängnis.', link: '/sokrates/der-tod-des-sokrates', score: 4 },
+            { title: 'Die Kunst der Maieutik', type: 'text', description: 'Sokrates’ Methode der Gesprächsführung.', link: '/sokrates/die-kunst-der-maieutik', score: 3 },
+            { title: 'Das Delphische Orakel', type: 'text', description: 'Die Antwort der Pythia: Sokrates ist der weiseste Mensch.', link: '/sokrates/das-delphische-orakel', score: 3 },
+        ] : []),
+    ];
+    return all.sort((a, b) => b.score - a.score).slice(0, 6).map(({ score, ...rest }) => rest);
 }
 
 // =======================================

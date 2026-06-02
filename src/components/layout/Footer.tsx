@@ -18,6 +18,7 @@ export function Footer() {
         { label: 'Zeitleiste', href: '/timeline', icon: Clock3 },
         { label: 'Lexikon', href: '/lexicon', icon: Search },
         { label: 'Über uns', href: '/about', icon: Info },
+        { label: 'Das neue Meum Diarium', href: '/projekt', icon: Sparkles },
         { label: 'KI-Transparenz', href: '/ki', icon: Sparkles },
         { label: 'Statistik', href: '/stats', icon: BarChart3 },
         { label: 'API-Dokumentation', href: '/api', icon: Code2 },

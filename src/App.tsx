@@ -21,6 +21,7 @@ const WorkPage = lazy(() => import("./pages/WorkPage"));
 const ChatPage = lazy(() => import("./pages/ChatPage"));
 const SimulationPage = lazy(() => import("./pages/SimulationPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ProjectPage = lazy(() => import("./pages/ProjectPage"));
 const CaesarAboutPage = lazy(() => import("./pages/about/CaesarAboutPage").then(m => ({ default: m.CaesarAboutPage })));
 const CiceroAboutPage = lazy(() => import("./pages/about/CiceroAboutPage").then(m => ({ default: m.CiceroAboutPage })));
 const AugustusAboutPage = lazy(() => import("./pages/about/AugustusAboutPage").then(m => ({ default: m.AugustusAboutPage })));
@@ -118,6 +119,7 @@ const AppContent = () => {
               {/* Static routes must come before dynamic :authorId routes */}
               <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
               <Route path="/über" element={<PageTransition><AboutPage /></PageTransition>} />
+              <Route path="/projekt" element={<PageTransition><ProjectPage /></PageTransition>} />
               <Route path="/api" element={<PageTransition><ApiDocsPage /></PageTransition>} />
               <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
               <Route path="/lexicon" element={<PageTransition><LexiconPage /></PageTransition>} />
