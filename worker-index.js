@@ -2001,99 +2001,98 @@ KRITISCH WICHTIG:
             throw new Error("AI returned no response content");
         }
 
-        const text = aiResponse.response;
-        console.log("[Simulation] Raw AI Response:", text);
+        const rawResponse = aiResponse.response;
+        console.log("[Simulation] Raw AI Response type:", typeof rawResponse);
 
-        // Improved Extraction Logic: Look for the first '{' and the last '}'
+        // Llama-4-Scout returns a parsed object directly; Llama-3.1-8B returns a JSON string.
+        let result = null;
+
+        if (typeof rawResponse === 'object' && rawResponse !== null && rawResponse.narrative) {
+            // Already a parsed object – use directly
+            result = rawResponse;
+            console.log("[Simulation] AI returned parsed object directly");
+            result = {
+                narrative: result.narrative,
+                stats: result.stats || { volk: 0, einfluss: 0, macht: 0 },
+                options: result.options || [{ id: "o1", text: "Abwarten und beobachten" }],
+                ended: typeof result.ended === 'boolean' ? result.ended : false
+            };
+        } else if (typeof rawResponse === 'object' && rawResponse !== null && rawResponse.response) {
+            // Nested: { response: { narrative, stats, options, ended } }
+            const inner = rawResponse.response;
+            if (typeof inner === 'object' && inner.narrative) {
+                result = {
+                    narrative: inner.narrative,
+                    stats: inner.stats || { volk: 0, einfluss: 0, macht: 0 },
+                    options: inner.options || [{ id: "o1", text: "Abwarten und beobachten" }],
+                    ended: typeof inner.ended === 'boolean' ? inner.ended : false
+                };
+                console.log("[Simulation] AI returned nested response object");
+            }
+        }
+
+        if (result) {
+            console.log("[Simulation] Successfully extracted result");
+            return new Response(JSON.stringify(result), { headers: corsHeaders() });
+        }
+
+        // Fallback: treat as JSON string and parse
+        const text = String(rawResponse);
+        console.log("[Simulation] Treating response as JSON string, length:", text.length);
+
         const firstBrace = text.indexOf('{');
         const lastBrace = text.lastIndexOf('}');
 
         if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
-            console.error(`[Simulation] No JSON object found. firstBrace=${firstBrace}, lastBrace=${lastBrace}`);
-            console.error(`[Simulation] FULL raw AI response (first 2000 chars):`, text.substring(0, 2000));
-            console.error(`[Simulation] FULL raw AI response length:`, text.length);
+            console.error(`[Simulation] No JSON object found in string response`);
+            console.error(`[Simulation] FULL raw response (first 2000 chars):`, text.substring(0, 2000));
             return new Response(JSON.stringify({
-                narrative: "Die Götter schweigen... (Kein JSON gefunden)",
+                narrative: "Die Götter schweigen...",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
-                options: [{ id: "retry", text: "Wir werden es erneut versuchen" }],
-                ended: false,
-                debug: text.substring(0, 500)
+                options: [{ id: "retry", text: "Erneut versuchen" }],
+                ended: false
             }), { headers: corsHeaders() });
         }
 
         let cleanedJson = text.substring(firstBrace, lastBrace + 1);
-        console.log("[Simulation] Extracted JSON string:", cleanedJson);
 
-        // Check if JSON appears truncated (missing required fields)
-        const hasNarrative = cleanedJson.includes('"narrative"');
-        const hasStats = cleanedJson.includes('"stats"');
-        const hasOptions = cleanedJson.includes('"options"');
-        const hasEnded = cleanedJson.includes('"ended"');
-
-        if (!hasNarrative || !hasStats || !hasOptions || !hasEnded) {
-            const missing = [];
-            if (!hasNarrative) missing.push('narrative');
-            if (!hasStats) missing.push('stats');
-            if (!hasOptions) missing.push('options');
-            if (!hasEnded) missing.push('ended');
-            console.error(`[Simulation] JSON truncated – missing fields: ${missing.join(', ')}`);
-            console.error(`[Simulation] Cleaned JSON length: ${cleanedJson.length}`);
-            console.error(`[Simulation] FULL raw AI response (first 2000 chars):`, text.substring(0, 2000));
-            console.error(`[Simulation] FULL raw AI response length:`, text.length);
-
-            // Try to repair: if only ended is missing, close JSON and add default ended field
-            if (!hasEnded && hasNarrative && hasStats && hasOptions) {
-                try {
-                    const repaired = cleanedJson + ',\n"ended": false\n}';
-                    const result = JSON.parse(repaired);
-                    if (result.narrative && result.stats && result.options) {
-                        console.log(`[Simulation] Repaired truncated JSON with default ended:false`);
-                        return new Response(JSON.stringify({
-                            narrative: result.narrative,
-                            stats: result.stats,
-                            options: result.options,
-                            ended: false
-                        }), { headers: corsHeaders() });
-                    }
-                } catch (repairError) {
-                    console.error(`[Simulation] Repair attempt failed:`, repairError?.message);
-                }
-            }
-
-            return new Response(JSON.stringify({
-                narrative: "Die Antwort der Götter wurde unterbrochen... Die Prophezeiung ist unvollständig.",
-                stats: { volk: 0, einfluss: 0, macht: 0 },
-                options: [{ id: "retry", text: "Erneut die Götter befragen" }],
-                ended: false,
-                debug: "Truncated response - missing: " + missing.join(', ') + " | Content: " + cleanedJson.substring(0, 400)
-            }), { headers: corsHeaders() });
-        }
-
-        // Basic JSON cleanup for common LLM mistakes
+        // Basic JSON cleanup
         cleanedJson = cleanedJson
-            .replace(/,\s*([}\]])/g, '$1') // remove trailing commas
-            .replace(/\n/g, ' ')           // remove newlines inside JSON
+            .replace(/,\s*([}\]])/g, '$1')
+            .replace(/\n/g, ' ')
             .replace(/\r/g, ' ');
 
+        // If ended is missing, try to repair
+        if (!cleanedJson.includes('"ended"')) {
+            try {
+                const repaired = cleanedJson + ',"ended": false}';
+                const parsed = JSON.parse(repaired);
+                if (parsed.narrative && parsed.stats && parsed.options) {
+                    console.log(`[Simulation] Repaired truncated JSON with ended:false`);
+                    return new Response(JSON.stringify({
+                        narrative: parsed.narrative,
+                        stats: parsed.stats,
+                        options: parsed.options,
+                        ended: false
+                    }), { headers: corsHeaders() });
+                }
+            } catch (e) {}
+        }
+
         try {
-            const result = JSON.parse(cleanedJson);
-            console.log("[Simulation] Successfully parsed JSON object");
-
-            // Validate that all required fields exist
-            if (!result.narrative || !result.stats || !result.options || typeof result.ended !== 'boolean') {
-                throw new Error("Missing required fields in parsed JSON");
+            const parsed = JSON.parse(cleanedJson);
+            if (!parsed.narrative || !parsed.stats || !parsed.options || typeof parsed.ended !== 'boolean') {
+                throw new Error("Missing required fields");
             }
-
-            return new Response(JSON.stringify(result), { headers: corsHeaders() });
+            return new Response(JSON.stringify(parsed), { headers: corsHeaders() });
         } catch (parseError) {
-            console.error("[Simulation] JSON Parse Error:", parseError);
-            console.error("[Simulation] Content that failed to parse:", cleanedJson);
+            console.error("[Simulation] JSON Parse Error:", parseError.message);
+            console.error("[Simulation] Content:", cleanedJson.substring(0, 500));
             return new Response(JSON.stringify({
-                narrative: "Ein Fehler in den Schriftrollen... (Parse-Fehler)",
+                narrative: "Ein Fehler in den Schriftrollen...",
                 stats: { volk: 0, einfluss: 0, macht: 0 },
                 options: [{ id: "retry", text: "Erneut versuchen" }],
-                ended: false,
-                debug: "Error: " + parseError.message + " | Content: " + cleanedJson.substring(0, 300)
+                ended: false
             }), { headers: corsHeaders() });
         }
 
