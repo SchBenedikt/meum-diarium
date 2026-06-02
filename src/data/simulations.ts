@@ -323,6 +323,99 @@ export const simulations: Record<string, SimulationScenario[]> = {
                     ]
                 }
             }
+        },
+        {
+            id: 'britain',
+            authorId: 'caesar',
+            title: 'Die Invasion Britanniens',
+            date: 'August 55 v. Chr.',
+            description: 'Britannien liegt jenseits des Ozeans – geheimnisvoll, wild, unberührt von römischer Macht. Meine Kundschafter berichten von Klippen, Kriegern und einer unberechenbaren See. Der Rubikon war erst der Anfang.',
+            initialStats: {
+                welfare: 55,
+                influence: 60,
+                power: 70
+            },
+            startEventId: 'channel_crossing',
+            events: {
+                'channel_crossing': {
+                    id: 'channel_crossing',
+                    title: 'Die Überfahrt',
+                    description: '80 Schiffe liegen bereit. Die Legionäre haben Angst vor dem Ozean – sie hören Geschichten von Seeungeheuern und dem Ende der Welt. Die Flut ist günstig.',
+                    choices: [
+                        {
+                            id: 'embark',
+                            text: 'Ich befehle die Überfahrt – der Ozean muss uns gehorchen!',
+                            effect: { welfare: -5, influence: +15, power: +15 },
+                            response: 'Die Überfahrt ist stürmisch, aber wir erreichen die weißen Klippen. Die Britannier starren ungläubig auf unsere Flotte.',
+                            nextEventId: 'landing'
+                        },
+                        {
+                            id: 'delay',
+                            text: 'Ich warte auf besseres Wetter und mehr Kundschafter.',
+                            effect: { welfare: +5, influence: -5, power: -10 },
+                            response: 'Die Legionäre sind erleichtert, aber die Gallier lachen über meine Zögerlichkeit.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                },
+                'landing': {
+                    id: 'landing',
+                    title: 'Die Landung',
+                    description: 'Britannische Krieger stehen an den Klippen – bemalt, wild, mit Streitwagen. Der Strand ist eng, die Brandung gefährlich. Meine Legionäre zögern.',
+                    choices: [
+                        {
+                            id: 'charge',
+                            text: 'Ich lasse die Tribunen die Männer antreiben – Angriff um jeden Preis!',
+                            effect: { welfare: -10, influence: +20, power: +25 },
+                            response: 'Der Adler wird ans Ufer getragen. Meine Männer kämpfen wie Verrückte. Die Britannier fliehen ins Landesinnere.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'parley',
+                            text: 'Ich verhandle mit den Britanniern – vielleicht werden sie Verbündete.',
+                            effect: { welfare: +10, influence: +5, power: 0 },
+                            response: 'Sie versprechen Frieden – aber ich traue ihnen nicht. In der Nacht greifen sie unsere Stellung an.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'crossing_rubicon_variant',
+            authorId: 'caesar',
+            title: 'Der Rubikon (andere Seite)',
+            date: '10. Januar 49 v. Chr.',
+            description: 'Was wäre gewesen, wenn ich Pompeius Angebot angenommen hätte? Ein letztes Friedensangebot liegt vor mir: Teile die Macht, kehre als Privatmann zurück, vermeide den Krieg.',
+            initialStats: {
+                welfare: 65,
+                influence: 75,
+                power: 85
+            },
+            startEventId: 'last_offer',
+            events: {
+                'last_offer': {
+                    id: 'last_offer',
+                    title: 'Das letzte Angebot',
+                    description: 'Ein Bote des Pompeius erreicht mich am Rubikon. "Caesar, kehre um und verhandle. Der Senat ist bereit, dir Gallien zu lassen – wenn du das Kommando abgibst." Meine Offiziere sind gespalten.',
+                    choices: [
+                        {
+                            id: 'negotiate',
+                            text: 'Ich verhandle mit Pompeius – vielleicht ein friedliches Ende.',
+                            effect: { welfare: +20, influence: +5, power: -10 },
+                            response: 'Wochen des Verhandelns. Pompeius will Sicherheiten, ich will meine Ehre. Schließlich ein Kompromiss – aber die Republik ist für immer verändert.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'march',
+                            text: 'Kein Verrat an meinen Legionen. Ich marschiere auf Rom!',
+                            effect: { welfare: -10, influence: +10, power: +20 },
+                            response: 'Die Würfel sind gefallen. Ich überschreite den Rubikon – der Bürgerkrieg beginnt. Pompeius flieht nach Griechenland.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
         }
     ],
     cicero: [
@@ -517,6 +610,120 @@ export const simulations: Record<string, SimulationScenario[]> = {
                     ]
                 }
             }
+        },
+        {
+            id: 'verres',
+            authorId: 'cicero',
+            title: 'Der Prozess gegen Verres',
+            date: 'August 70 v. Chr.',
+            description: 'Verres, der frühere Statthalter Siziliens, hat die Provinz ausgeplündert. Die Sizilier flehen mich an, ihn anzuklagen. Ich habe nur 110 Tage, um Beweise zu sammeln. Er hat Hortensius, den besten Anwalt Roms.',
+            initialStats: {
+                welfare: 50,
+                influence: 40,
+                power: 30
+            },
+            startEventId: 'preparation',
+            events: {
+                'preparation': {
+                    id: 'preparation',
+                    title: 'Die Beweisaufnahme',
+                    description: 'In nur 110 Tagen reise ich durch Sizilien. Die Zeugen sind verängstigt. Verres Anhänger versuchen, mich zu bestechen und einzuschüchtern. Hortensius bereitet eine Gegenklage vor.',
+                    choices: [
+                        {
+                            id: 'investigate',
+                            text: 'Ich sammele alle Beweise – Zeugen, Dokumente, Rechnungen.',
+                            effect: { welfare: +10, influence: +15, power: +10 },
+                            response: 'Die Beweislast ist erdrückend. Ich halte meine erste Rede – kurz und vernichtend. Verres Gesicht wird aschfahl.',
+                            nextEventId: 'trial_cicero'
+                        },
+                        {
+                            id: 'settle',
+                            text: 'Ich nehme das Schweigegeld an. Verres geht frei.',
+                            effect: { welfare: -15, influence: -10, power: +5 },
+                            response: 'Das Geld ist gut, aber mein Gewissen ist schwer. Die Sizilier verfluchen mich.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                },
+                'trial_cicero': {
+                    id: 'trial_cicero',
+                    title: 'Der Prozess',
+                    description: 'Das Forum ist voll. Hortensius verteidigt Verres mit aller Macht. Ich muss die Geschworenen überzeugen – nicht mit Pathos, sondern mit Beweisen.',
+                    choices: [
+                        {
+                            id: 'facts',
+                            text: 'Ich präsentiere die Beweise kühl und sachlich.',
+                            effect: { welfare: +10, influence: +20, power: +15 },
+                            response: '„Was werden wir morgen haben, wenn Schuld nicht mehr bestraft wird?" Verres flieht noch vor dem Urteil ins Exil. Mein Ruf als Ankläger ist gemacht.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'emotion',
+                            text: 'Ich appelliere an das Rechtsgefühl der Geschworenen.',
+                            effect: { welfare: +5, influence: +10, power: +5 },
+                            response: 'Die Geschworenen sind bewegt, aber Hortensius kontert geschickt. Der Prozess zieht sich hin. Verres bekommt mildere Strafe.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'pro_archia',
+            authorId: 'cicero',
+            title: 'Für den Dichter Archias',
+            date: '62 v. Chr.',
+            description: 'Der Dichter Archias, mein alter Lehrer, soll ausgebürgert werden. Gegner sagen, er sei kein römischer Bürger. Ich muss ihn verteidigen – nicht nur aus Dankbarkeit, sondern für die Kunst selbst.',
+            initialStats: {
+                welfare: 60,
+                influence: 50,
+                power: 40
+            },
+            startEventId: 'court_cicero',
+            events: {
+                'court_cicero': {
+                    id: 'court_cicero',
+                    title: 'Vor Gericht',
+                    description: 'Archias sitzt auf der Anklagebank. Einundsechzig Jahre alt, grau, aber mit leuchtenden Augen. Seine Feinde haben gefälschte Dokumente vorgelegt. Der Richter ist skeptisch.',
+                    choices: [
+                        {
+                            id: 'legal',
+                            text: 'Ich argumentiere rein juristisch mit Beweisen für sein Bürgerrecht.',
+                            effect: { welfare: +5, influence: +10, power: +5 },
+                            response: 'Die Beweise sind stichhaltig. Archias Gegner verstummen. Ein klarer Sieg des Rechts.',
+                            nextEventId: 'speech_cicero'
+                        },
+                        {
+                            id: 'short',
+                            text: 'Ich plädiere kurz und überlasse es den Fakten.',
+                            effect: { welfare: 0, influence: +5, power: 0 },
+                            response: 'Das Gericht entscheidet nach Aktenlage. Archias wird freigesprochen, aber meine Rede ist vergessen.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                },
+                'speech_cicero': {
+                    id: 'speech_cicero',
+                    title: 'Die berühmte Rede',
+                    description: 'Ich spüre, dass der Fall gewonnen ist. Nun nutze ich die Gelegenheit für etwas Größeres – eine Verteidigung der Bildung und der Dichtkunst. "Denn die anderen Künste sind des Ortes, der Zeit, des Alters; diese eine aber nährt die Jugend, erfreut das Alter..."',
+                    choices: [
+                        {
+                            id: 'eloquent',
+                            text: 'Ich halte eine Rede über den Wert der Bildung und der Künste.',
+                            effect: { welfare: +15, influence: +20, power: +5 },
+                            response: '„Denn die anderen Künste sind des Ortes, der Zeit, des Alters; diese eine aber nährt die Jugend, erfreut das Alter, schmückt das Glück, bietet Trost und Zuflucht im Unglück." Der Saal ist still. Ich habe nicht nur Archias gerettet – ich habe die Kunst verteidigt.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'modest',
+                            text: 'Ich bleibe bescheiden und rede nur über Archias.',
+                            effect: { welfare: +5, influence: +5, power: 0 },
+                            response: 'Archias wird freigesprochen. Eine gute Tat, aber meine schönste Rede habe ich nicht gehalten.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
         }
     ],
     augustus: [
@@ -690,6 +897,78 @@ export const simulations: Record<string, SimulationScenario[]> = {
                     ]
                 }
             }
+        },
+        {
+            id: 'ara_pacis',
+            authorId: 'augustus',
+            title: 'Der Friedensaltar',
+            date: '13 v. Chr.',
+            description: 'Der Senat beschließt, einen Altar des Friedens zu errichten – die Ara Pacis. Ein Zeichen für die Pax Romana. Ich muss entscheiden: Wie soll Rom sich selbst darstellen? Als Krieger oder als Hüter des Friedens?',
+            initialStats: {
+                welfare: 80,
+                influence: 85,
+                power: 90
+            },
+            startEventId: 'altar_plan',
+            events: {
+                'altar_plan': {
+                    id: 'altar_plan',
+                    title: 'Der Plan',
+                    description: 'Die Baumeister legen mir Entwürfe vor. Prächtig, monumental, mit Szenen meiner Siege und der Gründung Roms. Ein ewiges Denkmal.',
+                    choices: [
+                        {
+                            id: 'peace',
+                            text: 'Der Altar soll den Frieden feiern – nicht den Krieg.',
+                            effect: { welfare: +15, influence: +10, power: +5 },
+                            response: 'Die Ara Pacis zeigt meine Familie, die Priester, das Volk – im Frieden vereint. Rom versteht: Eine neue Ära hat begonnen.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'glory',
+                            text: 'Der Altar soll meine militärischen Siege zeigen.',
+                            effect: { welfare: -5, influence: +10, power: +15 },
+                            response: 'Die Ara Pacis wird ein Triumphmal. Die Veteranen lieben es, aber die Friedensparteien sind enttäuscht.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'succession',
+            authorId: 'augustus',
+            title: 'Die Nachfolge',
+            date: '4 n. Chr.',
+            description: 'Meine Enkel Gaius und Lucius sind tot. Tiberius ist mein letzter erwachsener Erbe. Ich mag ihn nicht – aber er ist der fähigste. Der Senat wartet auf meine Entscheidung.',
+            initialStats: {
+                welfare: 75,
+                influence: 80,
+                power: 95
+            },
+            startEventId: 'heir_choice',
+            events: {
+                'heir_choice': {
+                    id: 'heir_choice',
+                    title: 'Die Wahl des Erben',
+                    description: 'Tiberius ist verbittert, zieht sich nach Rhodos zurück. Germanicus, sein Neffe, ist beliebter beim Volk. Livia drängt mich zu Tiberius. Der Senat schweigt abwartend.',
+                    choices: [
+                        {
+                            id: 'tiberius',
+                            text: 'Ich adoptiere Tiberius – er ist der erfahrenste Feldherr.',
+                            effect: { welfare: +5, influence: +15, power: +20 },
+                            response: 'Tiberius wird mein Sohn und Erbe. Er ist nicht der Herrscher, den ich mir wünsche, aber der, den Rom braucht. Germanicus wird sein Nachfolger.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'germanicus',
+                            text: 'Ich setze Germanicus als Erben ein – das Volk liebt ihn.',
+                            effect: { welfare: +15, influence: +5, power: -5 },
+                            response: 'Germanicus ist jung, aber unerfahren. Die Legionen jubeln. Tiberius ist tödlich beleidigt. Die Saat für künftige Konflikte ist gelegt.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
         }
     ],
     seneca: [
@@ -806,6 +1085,78 @@ export const simulations: Record<string, SimulationScenario[]> = {
                     ]
                 }
             }
+        },
+        {
+            id: 'exile',
+            authorId: 'seneca',
+            title: 'Das Exil auf Korsika',
+            date: '41 n. Chr.',
+            description: 'Kaiser Claudius hat mich nach Korsika verbannt. Messalina, seine Frau, hasst mich. Die Insel ist eine öde, felsige Einöde. Acht Jahre Verbannung – oder mein ganzes Leben? Die Philosophie ist mein einziger Trost.',
+            initialStats: {
+                welfare: 20,
+                influence: 10,
+                power: 5
+            },
+            startEventId: 'exile_start',
+            events: {
+                'exile_start': {
+                    id: 'exile_start',
+                    title: 'Ankunft auf Korsika',
+                    description: 'Das Schiff legt an. Kahle Berge, ein paar elende Hütten. Der Wind heult. Meine Begleiter weinen. "Warum?" fragen sie mich. Ich blicke auf das Meer und denke an die Stoa.',
+                    choices: [
+                        {
+                            id: 'philosophy',
+                            text: 'Ich ertrage mein Schicksal mit stoischer Gelassenheit – Trost in der Philosophie.',
+                            effect: { welfare: +10, influence: +15, power: +5 },
+                            response: 'Ich beginne zu schreiben – Tröstungen an meine Mutter, Briefe an Freunde. "Der Weise ist überall zu Hause, denn er trägt seine Heimat in sich." Die Jahre im Exil werden meine fruchtbarsten.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'despair',
+                            text: 'Ich verfalle in Bitterkeit und Selbstmitleid.',
+                            effect: { welfare: -10, influence: -10, power: -5 },
+                            response: 'Die Jahre vergehen in Hoffnungslosigkeit. Als Agrippina mich zurückruft, bin ich ein gebrochener Mann ohne literarisches Erbe.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'de_brevitate',
+            authorId: 'seneca',
+            title: 'Über die Kürze des Lebens',
+            date: '49 n. Chr.',
+            description: 'Zurück in Rom, von Agrippina zurückgeholt. Ich sehe die Menschen um mich hetzen, rackern, ihr Leben verschwenden. Paulinus, der Ritter, beschwert sich über zu wenig Zeit. Ich muss ihm antworten.',
+            initialStats: {
+                welfare: 50,
+                influence: 50,
+                power: 30
+            },
+            startEventId: 'paulinus_visit',
+            events: {
+                'paulinus_visit': {
+                    id: 'paulinus_visit',
+                    title: 'Der Besuch des Paulinus',
+                    description: 'Paulinus, ein vielbeschäftigter römischer Ritter, sitzt in meinem Atrium. "Seneca, ich habe einfach keine Zeit! Der Staat, die Geschäfte, die Klienten – das Leben ist zu kurz!" Er sieht erschöpft aus.',
+                    choices: [
+                        {
+                            id: 'teach',
+                            text: 'Ich erkläre ihm: "Nicht das Leben ist kurz, wir machen es kurz."',
+                            effect: { welfare: +10, influence: +15, power: +5 },
+                            response: 'Ich diktiere ihm meine Gedanken: "Das Leben ist lang genug, wenn man es richtig nutzt." Meine Schrift "De Brevitate Vitae" wird geboren – ein Bestseller der Philosophie.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'advise',
+                            text: 'Ich rate ihm praktisch: Delegiere, vereinfache, konzentriere dich.',
+                            effect: { welfare: +15, influence: +5, power: 0 },
+                            response: 'Paulinus folgt meinem Rat und wird glücklicher. Aber meine Gedanken schreibe ich nicht auf – die Nachwelt verliert ein Meisterwerk.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
         }
     ],
     catilina: [
@@ -901,6 +1252,78 @@ export const simulations: Record<string, SimulationScenario[]> = {
                     ]
                 }
             }
+        },
+        {
+            id: 'sulla_legacy',
+            authorId: 'catilina',
+            title: 'Sullas Erbe',
+            date: '82 v. Chr.',
+            description: 'Sulla, der Diktator, belohnt seine Anhänger mit Proskriptionen – Ächtung und Ermordung seiner Feinde. Ich bin ein junger Offizier. Seine Methoden sind brutal, aber effektiv. Folgt man dem Gesetz oder der Macht?',
+            initialStats: {
+                welfare: 20,
+                influence: 15,
+                power: 25
+            },
+            startEventId: 'sulla_choice',
+            events: {
+                'sulla_choice': {
+                    id: 'sulla_choice',
+                    title: 'Sullas Befehl',
+                    description: 'Sulla befiehlt mir, einen geächteten Senator zu töten. Der Mann war einst mein Nachbar. Er fleht um sein Leben. Sulla beobachtet mich – ein Test meiner Loyalität.',
+                    choices: [
+                        {
+                            id: 'obey',
+                            text: 'Ich töte den Mann. Sulla hat das Gesetz auf seiner Seite.',
+                            effect: { welfare: -10, influence: +15, power: +20 },
+                            response: 'Sulla nickt anerkennend. Ich erhalte Land und Beute. Aber der erste Blutfleck sitzt tief. Die Proskriptionen lehren mich: Macht macht alles erlaubt.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'refuse',
+                            text: 'Ich weigere mich – ich bin Soldat, kein Henker.',
+                            effect: { welfare: +15, influence: -10, power: -10 },
+                            response: 'Ich verliere Sullas Gunst. Meine Karriere stockt. Ich bleibe arm, aber sauber – bis die Verbitterung wächst.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'election_63',
+            authorId: 'catilina',
+            title: 'Die verlorene Wahl',
+            date: 'Juli 63 v. Chr.',
+            description: 'Zum zweiten Mal bewerbe ich mich um das Konsulat. Cicero ist mein Gegner. Die Nobilität hasst mich. Ich habe Schulden, aber ich habe Pläne. Das Volk liebt mich – das muss reichen.',
+            initialStats: {
+                welfare: 35,
+                influence: 45,
+                power: 30
+            },
+            startEventId: 'election_day',
+            events: {
+                'election_day': {
+                    id: 'election_day',
+                    title: 'Der Wahltag',
+                    description: 'Das Marsfeld ist voll. Ich sehe Cicero in seiner weißen Toga, umringt von Optimaten. Meine Anhänger skandieren meinen Namen. Die Stimmung ist aufgeheizt.',
+                    choices: [
+                        {
+                            id: 'campaign',
+                            text: 'Ich verspreche Schuldenerlass und Land für die Armen.',
+                            effect: { welfare: +15, influence: +10, power: +5 },
+                            response: 'Die Armen jubeln. Aber Cicero hat den Senat und das Geld. Er gewinnt. Wieder. Die Verzweiflung treibt mich zur Radikalität.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'intimidate',
+                            text: 'Ich schüchtere die Wähler ein – mit Gladiatoren und Banden.',
+                            effect: { welfare: -10, influence: +5, power: +15 },
+                            response: 'Die Gewalt eskaliert. Cicero verhängt den Ausnahmezustand. Ich verliere die Wahl, aber mein Name ist in aller Munde – als Bedrohung der Republik.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
         }
     ],
     sallust: [
@@ -991,6 +1414,78 @@ export const simulations: Record<string, SimulationScenario[]> = {
                             text: 'Ich schreibe diplomatisch, um meine Position zu schützen.',
                             effect: { welfare: +5, influence: -5, power: +5 },
                             response: 'Meine Werke sind vergessen. Keiner erinnert sich an einen Historiker, der keine Haltung hat.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'africa',
+            authorId: 'sallust',
+            title: 'Statthalter von Africa Nova',
+            date: '46 v. Chr.',
+            description: 'Caesar hat mich zum Statthalter der neuen Provinz Africa Nova ernannt. Eine reiche Provinz – und eine gefährliche. Die Stämme sind unruhig, die Steuern fließen spärlich. Hier kann ich Reichtum oder Ruin finden.',
+            initialStats: {
+                welfare: 40,
+                influence: 35,
+                power: 45
+            },
+            startEventId: 'arrival',
+            events: {
+                'arrival': {
+                    id: 'arrival',
+                    title: 'Ankunft in Utica',
+                    description: 'Die Hauptstadt Africa Novas empfängt mich mit gemischten Gefühlen. Die Händler bieten Geschenke – Bestechung. Die Stammesführer fordern Tribut. Die Legionen sind undiszipliniert.',
+                    choices: [
+                        {
+                            id: 'just',
+                            text: 'Ich regiere gerecht, bestrafe Korruption und gewinne das Vertrauen.',
+                            effect: { welfare: +15, influence: +10, power: +5 },
+                            response: 'Die Provinz blüht unter meiner gerechten Herrschaft. Aber ich mache Feinde unter den Händlern. Sie werden mich in Rom anklagen.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'enrich',
+                            text: 'Ich bereichere mich wie alle anderen auch – die Gelegenheit ist zu gut.',
+                            effect: { welfare: -10, influence: +5, power: +15 },
+                            response: 'Ich werde reich, aber mein Ruf ist ruiniert. In Rom klagt man mich der Erpressung an. Die Geschichte wird mich als korrupten Statthalter erinnern.',
+                            nextEventId: 'END'
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            id: 'moral_decline',
+            authorId: 'sallust',
+            title: 'Vom Verfall der Sitten',
+            date: '40 v. Chr.',
+            description: 'Ich habe mich aus der Politik zurückgezogen. Rom versinkt im Bürgerkrieg. Ich schreibe die Geschichte auf – und ich sehe ein Muster. Die Republik stirbt an ihrer eigenen Größe, an Habgier und Machtmissbrauch.',
+            initialStats: {
+                welfare: 50,
+                influence: 40,
+                power: 20
+            },
+            startEventId: 'writing_sallust',
+            events: {
+                'writing_sallust': {
+                    id: 'writing_sallust',
+                    title: 'Die Feder oder das Schwert',
+                    description: 'Soll ich meine Historiae schreiben oder noch einmal in die Politik gehen? Antonius bietet mir ein Amt an. Caesar ist tot. Die Zukunft Roms ist ungewiss.',
+                    choices: [
+                        {
+                            id: 'history',
+                            text: 'Ich schreibe – die Wahrheit ist mächtiger als das Schwert.',
+                            effect: { welfare: +10, influence: +15, power: +5 },
+                            response: 'In meiner Villa schreibe ich die Geschichte der Verschwörung Catilinas und des Jugurthinischen Kriegs. Ich enthülle die Korruption. Meine Werke überdauern die Imperien.',
+                            nextEventId: 'END'
+                        },
+                        {
+                            id: 'politics',
+                            text: 'Ich kehre in die Politik zurück – vielleicht kann ich noch etwas bewegen.',
+                            effect: { welfare: +5, influence: 0, power: +10 },
+                            response: 'Die Politik ist noch schmutziger als in meiner Erinnerung. Ich scheitere und ziehe mich endgültig zurück – ohne mein historisches Werk.',
                             nextEventId: 'END'
                         }
                     ]
@@ -1207,511 +1702,4 @@ export const simulations: Record<string, SimulationScenario[]> = {
             }
         }
     ],
-    caesar: [
-        {
-            id: 'britain',
-            authorId: 'caesar',
-            title: 'Die Invasion Britanniens',
-            date: 'August 55 v. Chr.',
-            description: 'Britannien liegt jenseits des Ozeans – geheimnisvoll, wild, unberührt von römischer Macht. Meine Kundschafter berichten von Klippen, Kriegern und einer unberechenbaren See. Der Rubikon war erst der Anfang.',
-            initialStats: {
-                welfare: 55,
-                influence: 60,
-                power: 70
-            },
-            startEventId: 'channel_crossing',
-            events: {
-                'channel_crossing': {
-                    id: 'channel_crossing',
-                    title: 'Die Überfahrt',
-                    description: '80 Schiffe liegen bereit. Die Legionäre haben Angst vor dem Ozean – sie hören Geschichten von Seeungeheuern und dem Ende der Welt. Die Flut ist günstig.',
-                    choices: [
-                        {
-                            id: 'embark',
-                            text: 'Ich befehle die Überfahrt – der Ozean muss uns gehorchen!',
-                            effect: { welfare: -5, influence: +15, power: +15 },
-                            response: 'Die Überfahrt ist stürmisch, aber wir erreichen die weißen Klippen. Die Britannier starren ungläubig auf unsere Flotte.',
-                            nextEventId: 'landing'
-                        },
-                        {
-                            id: 'delay',
-                            text: 'Ich warte auf besseres Wetter und mehr Kundschafter.',
-                            effect: { welfare: +5, influence: -5, power: -10 },
-                            response: 'Die Legionäre sind erleichtert, aber die Gallier lachen über meine Zögerlichkeit.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                },
-                'landing': {
-                    id: 'landing',
-                    title: 'Die Landung',
-                    description: 'Britannische Krieger stehen an den Klippen – bemalt, wild, mit Streitwagen. Der Strand ist eng, die Brandung gefährlich. Meine Legionäre zögern.',
-                    choices: [
-                        {
-                            id: 'charge',
-                            text: 'Ich lasse die Tribunen die Männer antreiben – Angriff um jeden Preis!',
-                            effect: { welfare: -10, influence: +20, power: +25 },
-                            response: 'Der Adler wird ans Ufer getragen. Meine Männer kämpfen wie Verrückte. Die Britannier fliehen ins Landesinnere.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'parley',
-                            text: 'Ich verhandle mit den Britanniern – vielleicht werden sie Verbündete.',
-                            effect: { welfare: +10, influence: +5, power: 0 },
-                            response: 'Sie versprechen Frieden – aber ich traue ihnen nicht. In der Nacht greifen sie unsere Stellung an.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'crossing_rubicon_variant',
-            authorId: 'caesar',
-            title: 'Der Rubikon (andere Seite)',
-            date: '10. Januar 49 v. Chr.',
-            description: 'Was wäre gewesen, wenn ich Pompeius Angebot angenommen hätte? Ein letztes Friedensangebot liegt vor mir: Teile die Macht, kehre als Privatmann zurück, vermeide den Krieg.',
-            initialStats: {
-                welfare: 65,
-                influence: 75,
-                power: 85
-            },
-            startEventId: 'last_offer',
-            events: {
-                'last_offer': {
-                    id: 'last_offer',
-                    title: 'Das letzte Angebot',
-                    description: 'Ein Bote des Pompeius erreicht mich am Rubikon. "Caesar, kehre um und verhandle. Der Senat ist bereit, dir Gallien zu lassen – wenn du das Kommando abgibst." Meine Offiziere sind gespalten.',
-                    choices: [
-                        {
-                            id: 'negotiate',
-                            text: 'Ich verhandle mit Pompeius – vielleicht ein friedliches Ende.',
-                            effect: { welfare: +20, influence: +5, power: -10 },
-                            response: 'Wochen des Verhandelns. Pompeius will Sicherheiten, ich will meine Ehre. Schließlich ein Kompromiss – aber die Republik ist für immer verändert.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'march',
-                            text: 'Kein Verrat an meinen Legionen. Ich marschiere auf Rom!',
-                            effect: { welfare: -10, influence: +10, power: +20 },
-                            response: 'Die Würfel sind gefallen. Ich überschreite den Rubikon – der Bürgerkrieg beginnt. Pompeius flieht nach Griechenland.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    cicero: [
-        {
-            id: 'verres',
-            authorId: 'cicero',
-            title: 'Der Prozess gegen Verres',
-            date: 'August 70 v. Chr.',
-            description: 'Verres, der frühere Statthalter Siziliens, hat die Provinz ausgeplündert. Die Sizilier flehen mich an, ihn anzuklagen. Ich habe nur 110 Tage, um Beweise zu sammeln. Er hat Hortensius, den besten Anwalt Roms.',
-            initialStats: {
-                welfare: 50,
-                influence: 40,
-                power: 30
-            },
-            startEventId: 'preparation',
-            events: {
-                'preparation': {
-                    id: 'preparation',
-                    title: 'Die Beweisaufnahme',
-                    description: 'In nur 110 Tagen reise ich durch Sizilien. Die Zeugen sind verängstigt. Verres Anhänger versuchen, mich zu bestechen und einzuschüchtern. Hortensius bereitet eine Gegenklage vor.',
-                    choices: [
-                        {
-                            id: 'investigate',
-                            text: 'Ich sammele alle Beweise – Zeugen, Dokumente, Rechnungen.',
-                            effect: { welfare: +10, influence: +15, power: +10 },
-                            response: 'Die Beweislast ist erdrückend. Ich halte meine erste Rede – kurz und vernichtend. Verres Gesicht wird aschfahl.',
-                            nextEventId: 'trial_cicero'
-                        },
-                        {
-                            id: 'settle',
-                            text: 'Ich nehme das Schweigegeld an. Verres geht frei.',
-                            effect: { welfare: -15, influence: -10, power: +5 },
-                            response: 'Das Geld ist gut, aber mein Gewissen ist schwer. Die Sizilier verfluchen mich.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                },
-                'trial_cicero': {
-                    id: 'trial_cicero',
-                    title: 'Der Prozess',
-                    description: 'Das Forum ist voll. Hortensius verteidigt Verres mit aller Macht. Ich muss die Geschworenen überzeugen – nicht mit Pathos, sondern mit Beweisen.',
-                    choices: [
-                        {
-                            id: 'facts',
-                            text: 'Ich präsentiere die Beweise kühl und sachlich.',
-                            effect: { welfare: +10, influence: +20, power: +15 },
-                            response: '„Was werden wir morgen haben, wenn Schuld nicht mehr bestraft wird?" Verres flieht noch vor dem Urteil ins Exil. Mein Ruf als Ankläger ist gemacht.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'emotion',
-                            text: 'Ich appelliere an das Rechtsgefühl der Geschworenen.',
-                            effect: { welfare: +5, influence: +10, power: +5 },
-                            response: 'Die Geschworenen sind bewegt, aber Hortensius kontert geschickt. Der Prozess zieht sich hin. Verres bekommt mildere Strafe.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'pro_archia',
-            authorId: 'cicero',
-            title: 'Für den Dichter Archias',
-            date: '62 v. Chr.',
-            description: 'Der Dichter Archias, mein alter Lehrer, soll ausgebürgert werden. Gegner sagen, er sei kein römischer Bürger. Ich muss ihn verteidigen – nicht nur aus Dankbarkeit, sondern für die Kunst selbst.',
-            initialStats: {
-                welfare: 60,
-                influence: 50,
-                power: 40
-            },
-            startEventId: 'court_cicero',
-            events: {
-                'court_cicero': {
-                    id: 'court_cicero',
-                    title: 'Vor Gericht',
-                    description: 'Archias sitzt auf der Anklagebank. Einundsechzig Jahre alt, grau, aber mit leuchtenden Augen. Seine Feinde haben gefälschte Dokumente vorgelegt. Der Richter ist skeptisch.',
-                    choices: [
-                        {
-                            id: 'legal',
-                            text: 'Ich argumentiere rein juristisch mit Beweisen für sein Bürgerrecht.',
-                            effect: { welfare: +5, influence: +10, power: +5 },
-                            response: 'Die Beweise sind stichhaltig. Archias Gegner verstummen. Ein klarer Sieg des Rechts.',
-                            nextEventId: 'speech_cicero'
-                        },
-                        {
-                            id: 'short',
-                            text: 'Ich plädiere kurz und überlasse es den Fakten.',
-                            effect: { welfare: 0, influence: +5, power: 0 },
-                            response: 'Das Gericht entscheidet nach Aktenlage. Archias wird freigesprochen, aber meine Rede ist vergessen.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                },
-                'speech_cicero': {
-                    id: 'speech_cicero',
-                    title: 'Die berühmte Rede',
-                    description: 'Ich spüre, dass der Fall gewonnen ist. Nun nutze ich die Gelegenheit für etwas Größeres – eine Verteidigung der Bildung und der Dichtkunst. "Denn die anderen Künste sind des Ortes, der Zeit, des Alters; diese eine aber nährt die Jugend, erfreut das Alter..."',
-                    choices: [
-                        {
-                            id: 'eloquent',
-                            text: 'Ich halte eine Rede über den Wert der Bildung und der Künste.',
-                            effect: { welfare: +15, influence: +20, power: +5 },
-                            response: '„Denn die anderen Künste sind des Ortes, der Zeit, des Alters; diese eine aber nährt die Jugend, erfreut das Alter, schmückt das Glück, bietet Trost und Zuflucht im Unglück." Der Saal ist still. Ich habe nicht nur Archias gerettet – ich habe die Kunst verteidigt.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'modest',
-                            text: 'Ich bleibe bescheiden und rede nur über Archias.',
-                            effect: { welfare: +5, influence: +5, power: 0 },
-                            response: 'Archias wird freigesprochen. Eine gute Tat, aber meine schönste Rede habe ich nicht gehalten.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    augustus: [
-        {
-            id: 'ara_pacis',
-            authorId: 'augustus',
-            title: 'Der Friedensaltar',
-            date: '13 v. Chr.',
-            description: 'Der Senat beschließt, einen Altar des Friedens zu errichten – die Ara Pacis. Ein Zeichen für die Pax Romana. Ich muss entscheiden: Wie soll Rom sich selbst darstellen? Als Krieger oder als Hüter des Friedens?',
-            initialStats: {
-                welfare: 80,
-                influence: 85,
-                power: 90
-            },
-            startEventId: 'altar_plan',
-            events: {
-                'altar_plan': {
-                    id: 'altar_plan',
-                    title: 'Der Plan',
-                    description: 'Die Baumeister legen mir Entwürfe vor. Prächtig, monumental, mit Szenen meiner Siege und der Gründung Roms. Ein ewiges Denkmal.',
-                    choices: [
-                        {
-                            id: 'peace',
-                            text: 'Der Altar soll den Frieden feiern – nicht den Krieg.',
-                            effect: { welfare: +15, influence: +10, power: +5 },
-                            response: 'Die Ara Pacis zeigt meine Familie, die Priester, das Volk – im Frieden vereint. Rom versteht: Eine neue Ära hat begonnen.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'glory',
-                            text: 'Der Altar soll meine militärischen Siege zeigen.',
-                            effect: { welfare: -5, influence: +10, power: +15 },
-                            response: 'Die Ara Pacis wird ein Triumphmal. Die Veteranen lieben es, aber die Friedensparteien sind enttäuscht.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'succession',
-            authorId: 'augustus',
-            title: 'Die Nachfolge',
-            date: '4 n. Chr.',
-            description: 'Meine Enkel Gaius und Lucius sind tot. Tiberius ist mein letzter erwachsener Erbe. Ich mag ihn nicht – aber er ist der fähigste. Der Senat wartet auf meine Entscheidung.',
-            initialStats: {
-                welfare: 75,
-                influence: 80,
-                power: 95
-            },
-            startEventId: 'heir_choice',
-            events: {
-                'heir_choice': {
-                    id: 'heir_choice',
-                    title: 'Die Wahl des Erben',
-                    description: 'Tiberius ist verbittert, zieht sich nach Rhodos zurück. Germanicus, sein Neffe, ist beliebter beim Volk. Livia drängt mich zu Tiberius. Der Senat schweigt abwartend.',
-                    choices: [
-                        {
-                            id: 'tiberius',
-                            text: 'Ich adoptiere Tiberius – er ist der erfahrenste Feldherr.',
-                            effect: { welfare: +5, influence: +15, power: +20 },
-                            response: 'Tiberius wird mein Sohn und Erbe. Er ist nicht der Herrscher, den ich mir wünsche, aber der, den Rom braucht. Germanicus wird sein Nachfolger.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'germanicus',
-                            text: 'Ich setze Germanicus als Erben ein – das Volk liebt ihn.',
-                            effect: { welfare: +15, influence: +5, power: -5 },
-                            response: 'Germanicus ist jung, aber unerfahren. Die Legionen jubeln. Tiberius ist tödlich beleidigt. Die Saat für künftige Konflikte ist gelegt.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    seneca: [
-        {
-            id: 'exile',
-            authorId: 'seneca',
-            title: 'Das Exil auf Korsika',
-            date: '41 n. Chr.',
-            description: 'Kaiser Claudius hat mich nach Korsika verbannt. Messalina, seine Frau, hasst mich. Die Insel ist eine öde, felsige Einöde. Acht Jahre Verbannung – oder mein ganzes Leben? Die Philosophie ist mein einziger Trost.',
-            initialStats: {
-                welfare: 20,
-                influence: 10,
-                power: 5
-            },
-            startEventId: 'exile_start',
-            events: {
-                'exile_start': {
-                    id: 'exile_start',
-                    title: 'Ankunft auf Korsika',
-                    description: 'Das Schiff legt an. Kahle Berge, ein paar elende Hütten. Der Wind heult. Meine Begleiter weinen. "Warum?" fragen sie mich. Ich blicke auf das Meer und denke an die Stoa.',
-                    choices: [
-                        {
-                            id: 'philosophy',
-                            text: 'Ich ertrage mein Schicksal mit stoischer Gelassenheit – Trost in der Philosophie.',
-                            effect: { welfare: +10, influence: +15, power: +5 },
-                            response: 'Ich beginne zu schreiben – Tröstungen an meine Mutter, Briefe an Freunde. "Der Weise ist überall zu Hause, denn er trägt seine Heimat in sich." Die Jahre im Exil werden meine fruchtbarsten.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'despair',
-                            text: 'Ich verfalle in Bitterkeit und Selbstmitleid.',
-                            effect: { welfare: -10, influence: -10, power: -5 },
-                            response: 'Die Jahre vergehen in Hoffnungslosigkeit. Als Agrippina mich zurückruft, bin ich ein gebrochener Mann ohne literarisches Erbe.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'de_brevitate',
-            authorId: 'seneca',
-            title: 'Über die Kürze des Lebens',
-            date: '49 n. Chr.',
-            description: 'Zurück in Rom, von Agrippina zurückgeholt. Ich sehe die Menschen um mich hetzen, rackern, ihr Leben verschwenden. Paulinus, der Ritter, beschwert sich über zu wenig Zeit. Ich muss ihm antworten.',
-            initialStats: {
-                welfare: 50,
-                influence: 50,
-                power: 30
-            },
-            startEventId: 'paulinus_visit',
-            events: {
-                'paulinus_visit': {
-                    id: 'paulinus_visit',
-                    title: 'Der Besuch des Paulinus',
-                    description: 'Paulinus, ein vielbeschäftigter römischer Ritter, sitzt in meinem Atrium. "Seneca, ich habe einfach keine Zeit! Der Staat, die Geschäfte, die Klienten – das Leben ist zu kurz!" Er sieht erschöpft aus.',
-                    choices: [
-                        {
-                            id: 'teach',
-                            text: 'Ich erkläre ihm: "Nicht das Leben ist kurz, wir machen es kurz."',
-                            effect: { welfare: +10, influence: +15, power: +5 },
-                            response: 'Ich diktiere ihm meine Gedanken: "Das Leben ist lang genug, wenn man es richtig nutzt." Meine Schrift "De Brevitate Vitae" wird geboren – ein Bestseller der Philosophie.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'advise',
-                            text: 'Ich rate ihm praktisch: Delegiere, vereinfache, konzentriere dich.',
-                            effect: { welfare: +15, influence: +5, power: 0 },
-                            response: 'Paulinus folgt meinem Rat und wird glücklicher. Aber meine Gedanken schreibe ich nicht auf – die Nachwelt verliert ein Meisterwerk.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    catilina: [
-        {
-            id: 'sulla_legacy',
-            authorId: 'catilina',
-            title: 'Sullas Erbe',
-            date: '82 v. Chr.',
-            description: 'Sulla, der Diktator, belohnt seine Anhänger mit Proskriptionen – Ächtung und Ermordung seiner Feinde. Ich bin ein junger Offizier. Seine Methoden sind brutal, aber effektiv. Folgt man dem Gesetz oder der Macht?',
-            initialStats: {
-                welfare: 20,
-                influence: 15,
-                power: 25
-            },
-            startEventId: 'sulla_choice',
-            events: {
-                'sulla_choice': {
-                    id: 'sulla_choice',
-                    title: 'Sullas Befehl',
-                    description: 'Sulla befiehlt mir, einen geächteten Senator zu töten. Der Mann war einst mein Nachbar. Er fleht um sein Leben. Sulla beobachtet mich – ein Test meiner Loyalität.',
-                    choices: [
-                        {
-                            id: 'obey',
-                            text: 'Ich töte den Mann. Sulla hat das Gesetz auf seiner Seite.',
-                            effect: { welfare: -10, influence: +15, power: +20 },
-                            response: 'Sulla nickt anerkennend. Ich erhalte Land und Beute. Aber der erste Blutfleck sitzt tief. Die Proskriptionen lehren mich: Macht macht alles erlaubt.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'refuse',
-                            text: 'Ich weigere mich – ich bin Soldat, kein Henker.',
-                            effect: { welfare: +15, influence: -10, power: -10 },
-                            response: 'Ich verliere Sullas Gunst. Meine Karriere stockt. Ich bleibe arm, aber sauber – bis die Verbitterung wächst.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'election_63',
-            authorId: 'catilina',
-            title: 'Die verlorene Wahl',
-            date: 'Juli 63 v. Chr.',
-            description: 'Zum zweiten Mal bewerbe ich mich um das Konsulat. Cicero ist mein Gegner. Die Nobilität hasst mich. Ich habe Schulden, aber ich habe Pläne. Das Volk liebt mich – das muss reichen.',
-            initialStats: {
-                welfare: 35,
-                influence: 45,
-                power: 30
-            },
-            startEventId: 'election_day',
-            events: {
-                'election_day': {
-                    id: 'election_day',
-                    title: 'Der Wahltag',
-                    description: 'Das Marsfeld ist voll. Ich sehe Cicero in seiner weißen Toga, umringt von Optimaten. Meine Anhänger skandieren meinen Namen. Die Stimmung ist aufgeheizt.',
-                    choices: [
-                        {
-                            id: 'campaign',
-                            text: 'Ich verspreche Schuldenerlass und Land für die Armen.',
-                            effect: { welfare: +15, influence: +10, power: +5 },
-                            response: 'Die Armen jubeln. Aber Cicero hat den Senat und das Geld. Er gewinnt. Wieder. Die Verzweiflung treibt mich zur Radikalität.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'intimidate',
-                            text: 'Ich schüchtere die Wähler ein – mit Gladiatoren und Banden.',
-                            effect: { welfare: -10, influence: +5, power: +15 },
-                            response: 'Die Gewalt eskaliert. Cicero verhängt den Ausnahmezustand. Ich verliere die Wahl, aber mein Name ist in aller Munde – als Bedrohung der Republik.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    sallust: [
-        {
-            id: 'africa',
-            authorId: 'sallust',
-            title: 'Statthalter von Africa Nova',
-            date: '46 v. Chr.',
-            description: 'Caesar hat mich zum Statthalter der neuen Provinz Africa Nova ernannt. Eine reiche Provinz – und eine gefährliche. Die Stämme sind unruhig, die Steuern fließen spärlich. Hier kann ich Reichtum oder Ruin finden.',
-            initialStats: {
-                welfare: 40,
-                influence: 35,
-                power: 45
-            },
-            startEventId: 'arrival',
-            events: {
-                'arrival': {
-                    id: 'arrival',
-                    title: 'Ankunft in Utica',
-                    description: 'Die Hauptstadt Africa Novas empfängt mich mit gemischten Gefühlen. Die Händler bieten Geschenke – Bestechung. Die Stammesführer fordern Tribut. Die Legionen sind undiszipliniert.',
-                    choices: [
-                        {
-                            id: 'just',
-                            text: 'Ich regiere gerecht, bestrafe Korruption und gewinne das Vertrauen.',
-                            effect: { welfare: +15, influence: +10, power: +5 },
-                            response: 'Die Provinz blüht unter meiner gerechten Herrschaft. Aber ich mache Feinde unter den Händlern. Sie werden mich in Rom anklagen.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'enrich',
-                            text: 'Ich bereichere mich wie alle anderen auch – die Gelegenheit ist zu gut.',
-                            effect: { welfare: -10, influence: +5, power: +15 },
-                            response: 'Ich werde reich, aber mein Ruf ist ruiniert. In Rom klagt man mich der Erpressung an. Die Geschichte wird mich als korrupten Statthalter erinnern.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            id: 'moral_decline',
-            authorId: 'sallust',
-            title: 'Vom Verfall der Sitten',
-            date: '40 v. Chr.',
-            description: 'Ich habe mich aus der Politik zurückgezogen. Rom versinkt im Bürgerkrieg. Ich schreibe die Geschichte auf – und ich sehe ein Muster. Die Republik stirbt an ihrer eigenen Größe, an Habgier und Machtmissbrauch.',
-            initialStats: {
-                welfare: 50,
-                influence: 40,
-                power: 20
-            },
-            startEventId: 'writing_sallust',
-            events: {
-                'writing_sallust': {
-                    id: 'writing_sallust',
-                    title: 'Die Feder oder das Schwert',
-                    description: 'Soll ich meine Historiae schreiben oder noch einmal in die Politik gehen? Antonius bietet mir ein Amt an. Caesar ist tot. Die Zukunft Roms ist ungewiss.',
-                    choices: [
-                        {
-                            id: 'history',
-                            text: 'Ich schreibe – die Wahrheit ist mächtiger als das Schwert.',
-                            effect: { welfare: +10, influence: +15, power: +5 },
-                            response: 'In meiner Villa schreibe ich die Geschichte der Verschwörung Catilinas und des Jugurthinischen Kriegs. Ich enthülle die Korruption. Meine Werke überdauern die Imperien.',
-                            nextEventId: 'END'
-                        },
-                        {
-                            id: 'politics',
-                            text: 'Ich kehre in die Politik zurück – vielleicht kann ich noch etwas bewegen.',
-                            effect: { welfare: +5, influence: 0, power: +10 },
-                            response: 'Die Politik ist noch schmutziger als in meiner Erinnerung. Ich scheitere und ziehe mich endgültig zurück – ohne mein historisches Werk.',
-                            nextEventId: 'END'
-                        }
-                    ]
-                }
-            }
-        }
-    ]
 };
