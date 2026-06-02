@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { useAuthors } from '@/hooks/use-authors';
 import { Author } from '@/types/blog';
@@ -49,6 +49,18 @@ export default function SimulationPage() {
             setCurrentAuthor(authorId as Author);
         }
     }, [authorId, setCurrentAuthor]);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const scenarioParam = searchParams.get('scenario');
+    useEffect(() => {
+        if (scenarioParam && authorId && allScenarios.length > 0 && !activeScenario) {
+            const found = allScenarios.find(s => s.id === scenarioParam);
+            if (found) {
+                startGame(found);
+                setSearchParams({}, { replace: true });
+            }
+        }
+    }, [scenarioParam, authorId, allScenarios.length]);
     const getScenarioContext = (scenario?: SimulationScenario | null) => {
         if (!scenario) return '';
         const name = author?.name || authorId || 'Unbekannt';

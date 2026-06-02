@@ -49,7 +49,7 @@ export function SimulationCarousel({ authorId }: SimulationCarouselProps) {
     }, [api]);
     if (allScenarios.length === 0) return null;
     const handleCardClick = (scenario: SimulationScenario) => {
-        navigate(`/${authorId}/simulation`);
+        navigate(`/${authorId}/simulation?scenario=${scenario.id}`);
     };
     const handleCustomSubmit = () => {
         if (customScenarioText.trim()) {
