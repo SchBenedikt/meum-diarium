@@ -225,6 +225,46 @@ export default function AboutPageNew() {
           </div>
         </section>
 
+        <section className="mb-20 space-y-6">
+          <div className="flex items-center gap-3 mb-8">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <h2 className="font-display text-3xl font-bold">Das neue Meum Diarium</h2>
+          </div>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Das neue Meum Diarium vereint nun mehrere große antike Persönlichkeiten, unter andere Gaius Julius Caesar, Marcus Tullius Cicero und Augustus, in einer eigens dafür von Grund auf neu programmierte Plattform. Diese speziell für Meum Diarium erschaffene Anwendung basierend auf next.js ermöglicht Dank einem zusätzlich integrierten Admin-Portal grenzlose Skalierung der Inhalte und beliebige Erweiterung und Bearbeitung. Jede Persönlichkeit besitzt mit einer eigenen Farbe seinen eigenen individuellen Touch, um die Übersichtlichkeit der Anwendung gewährleisten zu können.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Nicht nur Unterhaltung</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Neben den einfachen Tagebucheinträgen, die das vorherige Meum Diarium von Gaius Julius Caesar geprägt haben, gibt es jetzt auch wissenschaftlich basierte Artikel, um eine inhaltlich korrekte Auseinandersetzung mit den Inhalten gewährleisten zu können.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Eine klare Struktur</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Um dafür komplexe, auf ein Fachgebiet spezialisierte Begriffe schneller verstehen zu können, oder um auch ohne Hintergrundwissen die detaillierten Artikel ohne Verständnisprobleme lesen zu können, werden Fachbegriffe, Namen und Orte automatisch zum eigens dazu erschaffenen Lexikon verlinkt. Mit einem einfachen Hover über die Fachbegriffe, ohne die Website zu verlassen, generiert eine spezielle KI zudem eine kompakte, verständliche Zusammenfassung eines Fachbegriffs, mit der Möglichkeit, Nachfragen zu stellen.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Den Überblick behalten</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Zudem gibt es zu jeder Persönlichkeit eine eigene Portfolio-Seite, in der neben den Werken, die die Person evtl. geschrieben hat, auch chronologisch geordnet der Lebenslauf mit deren Taten, Reformen und Ämter dargestellt werden. Hinzu kommen bekannte Zitate und Analysen der Persönlichkeiten. Ein Artikel ist so aufgebaut, dass man schnell zwischen dem Tagebucheintrag und dem wissenschaftlichen Eintrag wechseln kann. Da die wissenschaftlich basierten Artikel rund 5000 Wörter pro Artikel haben, gibt es ein Inhaltsverzeichnis, um eine Struktur und Übersichtlichkeit in den Artikeln gewährleisten zu können.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Integrationen von KI</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Genau wie bei dem alten „Meum Diarium" gibt es einen integrierte KI-Chat für jede Persönlichkeit. Dieser verlinkt automatisch passend zum Chat-Thema Ressourcen, die auf „Meum Diarium" verfügbar sind, um selbst mehr Hintergrundwissen zu erhalten und spezielle Themen nachlesen zu können. Eine neue KI-Funktion ist zudem das neue integrierte textbasierte Spiel, bei dem man bei auswählbaren Szenarien wie eine der Persönlichkeiten handelt.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Nicht nur Sachwissen</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Die vertiefende, inhaltlich korrekte Auseinandersetzung neben den unterhaltsamen Inhalten wird zudem mit neuen Lernfunktionen ermöglicht. Ein digitales Wörterbuch mit über 36.000 Wörtern und vielen Deklinationstabellen hilft Schülern bei der Hausaufgabe & Übersetzung. Um Texte und deren Hintergründe auch sprachlich analysieren zu können, gibt es zudem eine Übersicht über wichtige Stilmittel mit passenden Tests dazu. Bereits jetzt kann man Teile von großen römischen Werken anschauen.
+          </p>
+
+          <h3 className="font-display text-2xl font-bold pt-4">Skalierungsmöglichkeiten</h3>
+          <p className="text-muted-foreground/80 leading-relaxed text-lg">
+            Auf den Inhalt des neuen Meum Diarium können auch andere Entwickler darauf zugreifen und Inhalte dynamisch über eine API abrufen, damit diese auch in andere Anwendungen implementiert werden können. Somit macht Meum Diarium die wissenschaftlichen Inhalte & Informationen für weitere mögliche Bildungsprojekte zugänglich.
+          </p>
+        </section>
+
         <section className="mb-20">
           <div className="flex items-center gap-3 mb-8">
             <Users className="h-5 w-5 text-primary" />

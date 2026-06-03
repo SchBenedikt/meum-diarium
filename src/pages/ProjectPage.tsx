@@ -28,7 +28,7 @@ export default function ProjectPage() {
         description="Erfahre mehr über das neue Meum Diarium: KI-gestützte Plattform für römische Geschichte mit Tagebuch, Wissenschaft, Lexikon, Zeitstrahl und interaktiven Lernfunktionen."
         tags={['Meum Diarium', 'Projekt', 'Römische Geschichte', 'KI', 'Bildung', 'Latein', 'Crossmediapreis', 'Multimediapreis']}
       />
-      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-4xl">
+      <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         <motion.section
           initial="hidden"
           animate="visible"
@@ -36,7 +36,7 @@ export default function ProjectPage() {
           className="mb-16"
         >
           <motion.div variants={fadeUp(0)} className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10">
-            <div className="space-y-4 max-w-4xl">
+            <div className="space-y-4 max-w-3xl">
               <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
                 <div className="w-8 h-[1px] bg-primary/30" />
                 DAS NEUE MEUM DIARIUM
@@ -44,7 +44,7 @@ export default function ProjectPage() {
               <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
                 Geschichte <span className="text-primary italic">neu gedacht</span>
               </h1>
-              <p className="text-muted-foreground/70 max-w-3xl font-light leading-relaxed text-lg">
+              <p className="text-muted-foreground/70 max-w-2xl font-light leading-relaxed text-lg">
                 Begeistert von dem unglaublich positiv ausfallenden Feedback zum Meum Diarium, mit dem wir bereits vor zwei Jahren den Crossmedia-Preis und den Deutschen Multimediapreis gewonnen haben, haben wir eine neue, modernere, verbesserte und erweitertes „Meum Diarium" entwickelt.
               </p>
             </div>
