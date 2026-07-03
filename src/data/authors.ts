@@ -252,7 +252,7 @@ export const authors: Record<string, AuthorInfo> = {
     birthYear: -470,
     deathYear: -399,
     description:
-      'Athenischer Philosoph und Begründer der abendländischen Philosophietradition. Sokrates hinterließ keine eigenen Schriften – sein Denken ist uns durch Platon und Xenophon überliefert. Er entwickelte die sokratische Methode (Maieutik) und wurde wegen angeblicher Gottlosigkeit und Verführung der Jugend zum Tode verurteilt.',
+      'Athenischer Philosoph und Begründer der abendländischen Philosophie. Entwickelte die sokratische Methode (Maieutik). Zum Tode verurteilt wegen angeblicher Gottlosigkeit und Verführung der Jugend.',
     heroImage: '/images/sokrates-hero.png',
     theme: 'sokrates',
     color: '#6D28D9',
