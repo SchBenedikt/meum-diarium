@@ -57,6 +57,10 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 // Ensure author fields are set
                 post.author = post.author || author;
                 post.authorId = post.author;
+                // Map 'image' field to 'coverImage' for compatibility
+                if (!post.coverImage && post.image) {
+                    post.coverImage = post.image;
+                }
 
                 const queryTime = Date.now() - startTime;
                 console.log(`✅ [Posts API] Served post "${post.title}" from file (${queryTime}ms)`);
@@ -118,7 +122,10 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                         }
 
                         const fullPost = await postFileResponse.json() as any;
-                        const coverImage = typeof fullPost.coverImage === 'string' ? fullPost.coverImage.trim() : '';
+                        // Map 'image' field to 'coverImage' for compatibility
+                        const coverImage = typeof fullPost.coverImage === 'string' ? fullPost.coverImage.trim() 
+                                        : typeof fullPost.image === 'string' ? fullPost.image.trim() 
+                                        : '';
 
                         if (!coverImage) {
                             return post;

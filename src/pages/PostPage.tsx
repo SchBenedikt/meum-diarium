@@ -56,6 +56,7 @@ function PostContent({ post }: { post: BlogPost }) {
   const [showVideo, setShowVideo] = useState(false);
   const [showNotice, setShowNotice] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [showImageLightbox, setShowImageLightbox] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoSrc = useMemo(() => {
     const m = contentToDisplay?.match(/^Video:\s*\[[^\]]+\]\(([^)]+)\)/m);
@@ -109,15 +110,10 @@ function PostContent({ post }: { post: BlogPost }) {
       .slice(0, 6);
   }, [allPosts, post?.author, post?.slug]);
   
-  // Determine which title to display based on perspective
+  // Determine which title to display - always use main title for consistency
   const getDisplayTitle = useCallback(() => {
-    if (perspective === 'diary' && post?.diaryTitle) {
-      return post.diaryTitle;
-    } else if (perspective === 'scientific' && post?.scientificTitle) {
-      return post.scientificTitle;
-    }
-    return post?.title || 'Untitled'; // Fallback
-  }, [perspective, post]);
+    return post?.title || 'Untitled';
+  }, [post?.title]);
   
   // Update perspective based on URL params, user preference and content availability
   useEffect(() => {
@@ -290,11 +286,23 @@ function PostContent({ post }: { post: BlogPost }) {
                         </div>
                       ) : (
                         <>
-                          <ImageWithFallback
-                            src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
-                            alt={post.title}
-                            className="w-full h-full object-cover"
-                          />
+                          <button 
+                            onClick={() => setShowImageLightbox(true)}
+                            className="relative w-full h-full group"
+                            aria-label="Bild vergrößern"
+                          >
+                            <ImageWithFallback
+                              src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <svg className="h-12 w-12 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.5)" />
+                                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                          </button>
                           {videoSrc && (
                             <button onClick={() => { setShowVideo(true); setVideoPlaying(false); }} aria-label="Play video" className="absolute inset-0 flex items-center justify-center bg-black/20">
                               <svg className="h-16 w-16 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

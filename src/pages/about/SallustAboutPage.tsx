@@ -31,7 +31,10 @@ export function SallustAboutPage() {
       setAuthorPage(sallustPageData as PageContent);
 
       if (!postsLoading && allPosts.length > 0) {
-        const authorPostsList = allPosts.filter(p => p.author === 'sallust');
+        const authorPostsList = allPosts
+          .filter(p => p.author === 'sallust')
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 3);
         setAuthorPosts(authorPostsList);
       }
 

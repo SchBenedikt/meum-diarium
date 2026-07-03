@@ -69,8 +69,8 @@ export function Footer() {
                 {appName}
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-sm font-light italic">
-              "{description}"
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-sm font-light">
+              {description}
             </p>
           </div>
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12">

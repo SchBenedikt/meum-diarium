@@ -11,7 +11,7 @@ export const post: Partial<BlogPost> & { image?: string; historicalDate?: string
   date: '2025-04-20',
   readingTime: 9,
   tags: ['varus', 'germanien', 'niederlage', 'legionen', 'arminius', 'rom'],
-  image: '/images/augustus-hero.png',
+  image: '/images/augustus-posts/varus-katastrophe.jpg',
   content: {
     diary: `Ich kann nicht schlafen.
 

@@ -33,14 +33,8 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
     post.excerpt || generateExcerpt(post.content?.diary || post.content?.scientific || '', 150);
   const hasDiary = post.content?.diary && post.content.diary.trim().length > 0;
   const hasScientific = post.content?.scientific && post.content.scientific.trim().length > 0;
-  let displayTitle = post.title;
-  if (hasDiary && !hasScientific && post.diaryTitle) {
-    displayTitle = post.diaryTitle;
-  } else if (hasScientific && !hasDiary && post.scientificTitle) {
-    displayTitle = post.scientificTitle;
-  } else if (hasDiary && hasScientific) {
-    displayTitle = post.diaryTitle || post.scientificTitle || post.title;
-  }
+  // Always use the main title for consistency
+  const displayTitle = post.title;
   const year = useMemo(() => {
     // 1. Try to extract any year-like number from historicalDate (handles "59 v. Chr.")
     const yearMatch = post.historicalDate?.match(/\d+/)?.[0];

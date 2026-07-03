@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 import { ExplanationBlock, DetailsList, RuleCards } from './GrammarContent';
+import { GrammarTable } from './GrammarTable';
 
 const verbenTopics = [
     {
@@ -20,16 +21,37 @@ const verbenTopics = [
         content: {
             explanation: 'Das lateinische Konjugationssystem bildet das morphologische Rückgrat der lateinischen Verbflexion und gliedert sich in vier Hauptklassen, die sich nach der charakteristischen Endung des Infinitivs auf -re unterscheiden. Dieses System ermöglicht eine präzise Vorhersage aller Verbformen innerhalb jeder Konjugation und spiegelt die historische Entwicklung der lateinischen Sprache wider. Jede Konjugation hat spezifische Stammvokale und Endungsmuster, die für die korrekte Bildung aller Tempora, Modi und Diathesen fundamental sind.',
             details: 'Die 1. Konjugation mit dem Stammvokal -a ist die einheitlichste und regelmäßigste Klasse. Sie umfasst viele der häufigsten lateinischen Verben und ist ideal für die Einführung in die lateinische Konjugation. Die 2. Konjugation mit dem Stammvokal -e zeichnet sich durch ihre klare Systematik aus und bildet die Grundlage für viele abgeleitete Verben. Die 3. Konjugation ist die größte und heterogenste Klasse mit dem Stammvokal -e in kurzer Silbe. Sie enthält zahlreiche unregelmäßige Verben und besondere Bildungen. Die 4. Konjugation mit dem Stammvokal -i umfasst Verben, die oft von Adjektiven oder Substantiven abgeleitet sind und eine charakteristische i-Flexion aufweisen. Die Konjugationszugehörigkeit bestimmt nicht nur die Endungen, sondern auch die Bildung von Partizipien, Gerundien und Gerundiven. Besondere Verben wie esse (sein) und posse (können) bilden eigene unregelmäßige Muster, die als Hilfsverben fundamental für die lateinische Syntax sind. Deponentien und semideponentien folgen den Konjugationsmustern, haben aber passive Formen bei aktiver Bedeutung.',
-            rules: 'Die 1. Konjugation bildet ihre Formen mit dem Stammvokal -a, was zu regelmäßigen Endungen in allen Personen führt. Der Infinitiv endet auf -āre und die 1. Person Singular Präsens auf -ō. Die 2. Konjugation verwendet den Stammvokal -e, was sich im Infinitiv auf -ēre und in der 1. Person Singular auf -eō zeigt. Die 3. Konjugation ist komplexer, da hier zwischen i-Stämmen und konsonantischen Stämmen unterschieden werden muss. Der Infinitiv endet auf -ere und die 1. Person Singular auf -ō, aber der Stammvokal kann variieren. Die 4. Konjugation mit dem Stammvokal -i zeigt den Infinitiv auf -īre und die 1. Person Singular auf -iō. Die Konjugation bestimmt die Präsensstammform mit den charakteristischen Stammvokalen -a-, -e-, -e-, -i-. Perfektstämme folgen eigenen Mustern, die nicht immer mit der Konjugationszugehörigkeit übereinstimmen. Supinstämme zeigen ebenfalls konjugationsspezifische Unterschiede mit den Endungen -re für die 1. und 2., -sī für die 3. und -tum für die 4. Konjugation.',
+            rules: [
+                {
+                    label: '1. Konjugation',
+                    body: 'Stammvokal -a, Infinitiv -āre, 1. Pers. Sg. Präsens -ō. Regelmäßige Endungen in allen Personen.'
+                },
+                {
+                    label: '2. Konjugation',
+                    body: 'Stammvokal -e, Infinitiv -ēre, 1. Pers. Sg. Präsens -eō. Klare Systematik für abgeleitete Verben.'
+                },
+                {
+                    label: '3. Konjugation',
+                    body: 'Stammvokal -e in kurzer Silbe, Infinitiv -ere, 1. Pers. Sg. Präsens -ō. Komplex mit i-Stämmen und konsonantischen Stämmen.'
+                },
+                {
+                    label: '4. Konjugation',
+                    body: 'Stammvokal -i, Infinitiv -īre, 1. Pers. Sg. Präsens -iō. Charakteristische i-Flexion, oft von Adjektiven abgeleitet.'
+                },
+                {
+                    label: 'Stammvokale',
+                    body: 'Präsensstammvokale: -a- (1.), -e- (2.), -e- (3.), -i- (4.). Perfektstämme folgen eigenen Mustern, Supinstämme zeigen konjugationsspezifische Unterschiede.'
+                }
+            ],
             tables: [
                 {
                     title: 'Die vier Konjugationen',
                     headers: ['Konjugation', 'Infinitiv', 'Stammvokal', '1. Pers. Sg.'],
                     rows: [
-                        ['1.', '-āre', '-a-', 'amō'],
-                        ['2.', '-ēre', '-e-', 'moneō'],
-                        ['3.', '-ere', '-e-', 'dicō'],
-                        ['4.', '-īre', '-i-', 'audiō']
+                        ['1.', '**āre**', '**-a-**', '**amō**'],
+                        ['2.', '**ēre**', '**-e-**', '**moneō**'],
+                        ['3.', '**ere**', '**-e-**', '**dicō**'],
+                        ['4.', '**īre**', '**-i-**', '**audiō**']
                     ]
                 }
             ]
@@ -42,18 +64,43 @@ const verbenTopics = [
         content: {
             explanation: 'Das lateinische Zeitsystem ist bemerkenswert komplex und präzise, unterteilt in zwei fundamentale Systeme: das Präsensystem für nicht-abgeschlossene und das Perfektsystem für abgeschlossene Handlungen. Diese Zweiteilung ermöglicht eine nuancierte Darstellung von zeitlichen Beziehungen, die weit über die deutschen Tempora hinausgeht. Jedes System umfasst drei Hauptzeitformen, die durch charakteristische Bildungsweisen und spezifische Verwendungskontexte definiert sind.',
             details: 'Das Präsensystem umfasst das Präsens für gegenwärtige oder allgemeingültige Handlungen, das Imperfekt für vergangene, nicht abgeschlossene oder wiederholte Handlungen, sowie das Futur I für zukünftige Handlungen. Das Perfektsystem besteht aus dem Perfekt für abgeschlossene Handlungen in der Vergangenheit, dem Plusquamperfekt für vorzeitige abgeschlossene Handlungen und dem Futur II für zukünftig abgeschlossene Handlungen. Die Bildung dieser Tempora folgt systematischen Mustern: das Präsenssystem verwendet den Präsensstamm mit charakteristischen Endungen, während das Perfektsystem auf dem Perfektstamm basiert. Besonders wichtig ist die Unterscheidung zwischen systematischen und unsystematischen Perfektbildungen, die oft die Konjugationszugehörigkeit eines Verbes verraten.',
-            rules: 'Das Präsens wird vom Präsensstamm mit den Endungen -ō, -s, -t, -mus, -tis, -nt gebildet. Das Imperfekt verwendet den Präsensstamm mit dem Infix -ba- und den gleichen Personalendungen. Das Futur I bildet sich durch charakteristische Endungen: -bō, -bis, -bit, -bimus, -bitis, -bunt in der 1. und 2. Konjugation, bzw. -am, -ēs, -et, -ēmus, -ētis, -ent in der 3. und 4. Konjugation. Das Perfekt wird vom Perfektstamm gebildet, der auf -ī, -istī, -it, -imus, -istis, -ērunt/-ēre endet. Das Plusquamperfekt verwendet den Perfektstamm mit dem Infix -ēra- und den Perfektendungen. Das Futur II bildet sich mit dem Perfektstamm und dem Infix -ēri- sowie den Futur-Endungen. Bei unregelmäßigen Verben wie esse und posse folgen diese Bildungen eigenen Mustern, die auswendig gelernt werden müssen.',
+            rules: [
+                {
+                    label: 'Präsens',
+                    body: 'Vom Präsensstamm mit den Endungen -ō, -s, -t, -mus, -tis, -nt gebildet. Verwendung: Gegenwart.'
+                },
+                {
+                    label: 'Imperfekt',
+                    body: 'Vom Präsensstamm mit dem Infix -ba- und den gleichen Personalendungen gebildet. Verwendung: Vergangenheit.'
+                },
+                {
+                    label: 'Futur I',
+                    body: 'Durch charakteristische Endungen gebildet: -bō, -bis, -bit, -bimus, -bitis, -bunt (1./2. Konj.), -am, -ēs, -et, -ēmus, -ētis, -ent (3./4. Konj.). Verwendung: Zukunft.'
+                },
+                {
+                    label: 'Perfekt',
+                    body: 'Vom Perfektstamm gebildet, der auf -ī, -istī, -it, -imus, -istis, -ērunt/-ēre endet. Verwendung: Abgeschlossen.'
+                },
+                {
+                    label: 'Plusquamperfekt',
+                    body: 'Vom Perfektstamm mit dem Infix -ēra- und den Perfektendungen gebildet. Verwendung: Vorzeitig.'
+                },
+                {
+                    label: 'Futur II',
+                    body: 'Vom Perfektstamm mit dem Infix -ēri- und den Futur-Endungen gebildet. Verwendung: Zukünftig abgeschlossen.'
+                }
+            ],
             tables: [
                 {
                     title: 'Die sechs Tempora',
                     headers: ['Tempus', 'System', 'Stamm', 'Bildung', 'Verwendung'],
                     rows: [
-                        ['Präsens', 'Präsenssystem', 'Präsensstamm', 'Stamm + Endungen', 'Gegenwart'],
-                        ['Imperfekt', 'Präsenssystem', 'Präsensstamm', 'Stamm + -ba-', 'Vergangenheit'],
-                        ['Futur I', 'Präsenssystem', 'Präsensstamm', 'Futur-Endungen', 'Zukunft'],
-                        ['Perfekt', 'Perfektsystem', 'Perfektstamm', 'Perfektstamm + Endungen', 'Abgeschlossen'],
-                        ['Plusquamperfekt', 'Perfektsystem', 'Perfektstamm', 'Stamm + -ēra-', 'Vorzeitig'],
-                        ['Futur II', 'Perfektsystem', 'Perfektstamm', 'Stamm + -ēri-', 'Zukünftig abgeschlossen']
+                        ['Präsens', '**Präsenssystem**', '**Präsensstamm**', '**Stamm + Endungen**', '**Gegenwart**'],
+                        ['Imperfekt', '**Präsenssystem**', '**Präsensstamm**', '**Stamm + -ba-**', '**Vergangenheit**'],
+                        ['Futur I', '**Präsenssystem**', '**Präsensstamm**', '**Futur-Endungen**', '**Zukunft**'],
+                        ['Perfekt', '**Perfektsystem**', '**Perfektstamm**', '**Perfektstamm + Endungen**', '**Abgeschlossen**'],
+                        ['Plusquamperfekt', '**Perfektsystem**', '**Perfektstamm**', '**Stamm + -ēra-**', '**Vorzeitig**'],
+                        ['Futur II', '**Perfektsystem**', '**Perfektstamm**', '**Stamm + -ēri-**', '**Zukünftig abgeschlossen**']
                     ]
                 }
             ]
@@ -66,17 +113,54 @@ const verbenTopics = [
         content: {
             explanation: 'Das lateinische Modussystem ermöglicht eine differenzierte Darstellung der Sprecherhaltung zur ausgedrückten Handlung. Neben den drei Hauptmodi Indikativ, Konjunktiv und Imperativ existieren weitere Modi wie Infinitiv und Partizip, die als infinite Verbformen fungieren. Jeder Modus hat spezifische Verwendungskontexte und bildungsmäßige Besonderheiten, die für die korrekte lateinische Syntax fundamental sind.',
             details: 'Der Indikativ als Realis drückt reale, tatsächliche Handlungen aus und ist der am häufigsten verwendete Modus. Er wird in allen Tempora und Personen gebildet und dient als Grundlage für die meisten Aussagesätze. Der Konjunktiv als Irrealis drückt unreale, gewünschte, geforderte oder mögliche Handlungen aus und hat zahlreiche syntaktische Funktionen. Er wird in abhängigen Sätzen, bei indirekten Fragen, in Wunschsätzen und in vielen anderen Kontexten verwendet. Der Imperativ dient zur Befehlsformung und existiert nur in 2. Person Singular und Plural. Die infinite Verbformen umfassen Infinitiv, Gerundium, Gerundivum und Partizipien, die als Verbalnomina oder Verbaladjektive fungieren und komplexe Satzkonstruktionen ermöglichen.',
-            rules: 'Der Indikativ folgt den regulären Konjugationsmustern in allen Tempora. Der Konjunktiv Präsens wird mit charakteristischen Endungen gebildet: -m, -s, -t, -mus, -tis, -nt in der 1. Konjugation, bzw. -am, -ās, -at, -āmus, -ātis, -ant in den anderen Konjugationen. Der Konjunktiv Imperfekt verwendet den Konjunktivstamm mit dem Infix -rē- und den Konjunktivendungen. Der Konjunktiv Perfekt bildet sich vom Perfektstamm mit den Endungen -erim, -erīs, -erit, -erīmus, -erītis, -erint. Der Konjunktiv Plusquamperfekt verwendet den Perfektstamm mit dem Infix -issē- und den Konjunktivendungen. Der Imperativ hat die Formen -ā (2. Pers. Sg.) und -āte (2. Pers. Pl.) in der 1. Konjugation, bzw. -e und -ete in den anderen Konjugationen. Der Infinitiv Präsens endet auf -āre, -ēre, -ere, -īre je nach Konjugation, während der Infinitiv Perfekt auf -isse und der Infinitiv Futur auf -ūrus esse endet.',
+            rules: [
+                {
+                    label: 'Indikativ',
+                    body: 'Realis-Modus, drückt reale, tatsächliche Handlungen aus. Wird in allen Tempora und Personen gebildet. Grundlage für die meisten Aussagesätze.'
+                },
+                {
+                    label: 'Konjunktiv Präsens',
+                    body: 'Irrealis-Modus, drückt unreale, gewünschte, geforderte oder mögliche Handlungen aus. Wird in abhängigen Sätzen, bei indirekten Fragen, in Wunschsätzen verwendet. Endungen: -m, -s, -t, -mus, -tis, -nt (1. Konj.), -am, -ās, -at, -āmus, -ātis, -ant (andere Konj.).'
+                },
+                {
+                    label: 'Konjunktiv Imperfekt',
+                    body: 'Verwendet den Konjunktivstamm mit dem Infix -rē- und den Konjunktivendungen.'
+                },
+                {
+                    label: 'Konjunktiv Perfekt',
+                    body: 'Bildet sich vom Perfektstamm mit den Endungen -erim, -erīs, -erit, -erīmus, -erītis, -erint.'
+                },
+                {
+                    label: 'Konjunktiv Plusquamperfekt',
+                    body: 'Verwendet den Perfektstamm mit dem Infix -issē- und den Konjunktivendungen.'
+                },
+                {
+                    label: 'Imperativ',
+                    body: 'Befehlsformung, existiert nur in 2. Person Singular und Plural. Formen: -ā (2. Pers. Sg.) und -āte (2. Pers. Pl.) in der 1. Konjugation, -e und -ete in den anderen Konjugationen.'
+                },
+                {
+                    label: 'Infinitiv Präsens',
+                    body: 'Endet auf -āre, -ēre, -ere, -īre je nach Konjugation (unvollendet).'
+                },
+                {
+                    label: 'Infinitiv Perfekt',
+                    body: 'Endet auf -isse (abgeschlossen).'
+                },
+                {
+                    label: 'Infinitiv Futur',
+                    body: 'Endet auf -ūrus esse (zukünftig).'
+                }
+            ],
             tables: [
                 {
                     title: 'Die Modi',
                     headers: ['Modus', 'Typ', 'Verwendung', 'Beispiel'],
                     rows: [
-                        ['Indikativ', 'Finit', 'Realität', 'amo - ich liebe'],
-                        ['Konjunktiv', 'Finit', 'Möglichkeit/Wunsch', 'ut amem - damit ich liebe'],
-                        ['Imperativ', 'Finit', 'Befehl', 'ama - liebe!'],
-                        ['Infinitiv', 'Infinit', 'Objekt/Nebensatz', 'amare - zu lieben'],
-                        ['Partizip', 'Infinit', 'Attribut', 'amans - liebend']
+                        ['Indikativ', '**Finit**', '**Realität**', '**amo** - ich liebe'],
+                        ['Konjunktiv', '**Finit**', '**Möglichkeit/Wunsch**', '**ut amem** - damit ich liebe'],
+                        ['Imperativ', '**Finit**', '**Befehl**', '**ama** - liebe!'],
+                        ['Infinitiv', '**Infinit**', '**Objekt/Nebensatz**', '**amare** - zu lieben'],
+                        ['Partizip', '**Infinit**', '**Attribut**', '**amans** - liebend']
                     ]
                 }
             ]
@@ -89,18 +173,59 @@ const verbenTopics = [
         content: {
             explanation: 'Das lateinische Diathesensystem unterscheidet zwischen Aktiv und Passiv als grundlegende Handlungsrichtungen. Das Aktiv drückt aus, dass das Subjekt die Handlung ausführt, während das Passiv ausdrückt, dass das Subjekt die Handlung erleidet. Diese Unterscheidung wird nicht nur durch verschiedene Endungen, sondern auch durch unterschiedliche Bildungsmuster in den verschiedenen Tempora und Modi realisiert.',
             details: 'Das Aktiv ist die grundlegende Diathese und wird in allen Konjugationen regelmäßig gebildet. Die Endungen folgen den bekannten Mustern -ō, -s, -t, -mus, -tis, -nt im Präsens und entsprechenden Formen in anderen Tempora. Das Passiv wird im Präsenssystem durch charakteristische Passivendungen gebildet: -or, -ris, -tur, -mur, -minī, -ntur. Im Perfektsystem verwendet das Passiv die Formen des Hilfsverbs esse mit dem Partizip Perfekt Passiv. Besonders wichtig ist die Unterscheidung zwischen transitiven und intransitiven Verben, da nur transitive Verben ein echtes Passiv bilden können. Deponentien stellen eine besondere Klasse dar, da sie passive Formen bei aktiver Bedeutung verwenden.',
-            rules: 'Das Aktiv Präsens wird mit den Endungen -ō, -s, -t, -mus, -tis, -nt gebildet. Das Passiv Präsens verwendet -or, -ris, -tur, -mur, -minī, -ntur. Das Aktiv Imperfekt hat die Endungen -bam, -bās, -bat, -bāmus, -bātis, -bant, während das Passiv Imperfekt -bar, -bāris, -bātur, -bāmur, -bāminī, -bantur verwendet. Das Aktiv Perfekt endet auf -ī, -istī, -it, -imus, -istis, -ērunt/-ēre. Das Passiv Perfekt wird als periphrastische Form mit Partizip Perfekt Passiv und esse gebildet: amatus sum, amatus es, amatus est usw. Das Aktiv Futur I bildet -bō, -bis, -bit, -bimus, -bitis, -bunt (1./2. Konj.) bzw. -am, -ēs, -et, -ēmus, -ētis, -ent (3./4. Konj.). Das Passiv Futur I verwendet -bor, -beris, -bitur, -bimur, -biminī, -buntur. Das Futur II Aktiv bildet -erō, -eris, -erit, -erimus, -eritis, -erint, während das Passiv Futur II als periphrastische Form mit Partizip Futur Aktiv und esse gebildet wird: amatus erō, amatus eris, amatus erit usw.',
+            rules: [
+                {
+                    label: 'Aktiv Präsens',
+                    body: 'Wird mit den Endungen -ō, -s, -t, -mus, -tis, -nt gebildet.'
+                },
+                {
+                    label: 'Passiv Präsens',
+                    body: 'Verwendet die charakteristischen Passivendungen -or, -ris, -tur, -mur, -minī, -ntur.'
+                },
+                {
+                    label: 'Aktiv Imperfekt',
+                    body: 'Hat die Endungen -bam, -bās, -bat, -bāmus, -bātis, -bant.'
+                },
+                {
+                    label: 'Passiv Imperfekt',
+                    body: 'Verwendet -bar, -bāris, -bātur, -bāmur, -bāminī, -bantur.'
+                },
+                {
+                    label: 'Aktiv Perfekt',
+                    body: 'Endet auf -ī, -istī, -it, -imus, -istis, -ērunt/-ēre.'
+                },
+                {
+                    label: 'Passiv Perfekt',
+                    body: 'Wird als periphrastische Form mit Partizip Perfekt Passiv und esse gebildet: amatus sum, amatus es, amatus est usw.'
+                },
+                {
+                    label: 'Aktiv Futur I',
+                    body: 'Bildet -bō, -bis, -bit, -bimus, -bitis, -bunt (1./2. Konj.) bzw. -am, -ēs, -et, -ēmus, -ētis, -ent (3./4. Konj.).'
+                },
+                {
+                    label: 'Passiv Futur I',
+                    body: 'Verwendet -bor, -beris, -bitur, -bimur, -biminī, -buntur.'
+                },
+                {
+                    label: 'Aktiv Futur II',
+                    body: 'Bildet -erō, -eris, -erit, -erimus, -eritis, -erint.'
+                },
+                {
+                    label: 'Passiv Futur II',
+                    body: 'Wird als periphrastische Form mit Partizip Futur Aktiv und esse gebildet: amatus erō, amatus eris, amatus erit usw.'
+                }
+            ],
             tables: [
                 {
                     title: 'Aktiv und Passiv',
                     headers: ['Tempus', 'Aktiv', 'Passiv', 'Beispiel'],
                     rows: [
-                        ['Präsens', 'amo', 'amor', 'amo/amor'],
-                        ['Imperfekt', 'amabam', 'amabar', 'amabam/amabar'],
-                        ['Futur I', 'amabo', 'abor', 'amabor'],
-                        ['Perfekt', 'amavi', 'amatus sum', 'amavi/amatus sum'],
-                        ['Plusquamperfekt', 'amaveram', 'amatus eram', 'amaveram/amatus eram'],
-                        ['Futur II', 'amavero', 'amatus ero', 'amavero/amatus ero']
+                        ['Präsens', '**amo**', '**amor**', '**amo/amor**'],
+                        ['Imperfekt', '**amabam**', '**amabar**', '**amabam/amabar**'],
+                        ['Futur I', '**amabo**', '**abor**', '**amabor**'],
+                        ['Perfekt', '**amavi**', '**amatus sum**', '**amavi/amatus sum**'],
+                        ['Plusquamperfekt', '**amaveram**', '**amatus eram**', '**amaveram/amatus eram**'],
+                        ['Futur II', '**amavero**', '**amatus ero**', '**amavero/amatus ero**']
                     ]
                 }
             ]
@@ -170,11 +295,6 @@ export default function VerbenPage() {
                                             <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t.description}</p>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {(t.topics ?? []).slice(0, 3).map(sub => (
-                                                <span key={sub} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/40">{sub}</span>
-                                            ))}
-                                        </div>
                                     </Card>
                                 </motion.div>
                             ))}
@@ -241,70 +361,40 @@ export default function VerbenPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-8">
-                        <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <GraduationCap className="w-6 h-6 text-primary" />
-                                    Theorie
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-6">
+                    <div className="space-y-12">
+                        <div className="space-y-8">
+                            <h2 className="text-2xl font-bold">Theorie</h2>
+                            <div className="space-y-8">
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-2">Überblick</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Überblick</p>
                                     <ExplanationBlock text={currentTopic.content.explanation} />
                                 </div>
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Im Detail</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Im Detail</p>
                                     <DetailsList text={currentTopic.content.details} />
                                 </div>
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Regeln & Merkmale</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Regeln & Merkmale</p>
                                     <RuleCards text={currentTopic.content.rules} />
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
 
                         {/* Tables */}
                         {currentTopic.content.tables && currentTopic.content.tables.length > 0 && (
-                            <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
-                                <CardHeader>
-                                    <CardTitle>Konjugationstabellen</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-8">
-                                        {currentTopic.content.tables.map((table, tableIndex) => (
-                                            <div key={tableIndex} className="space-y-4">
-                                                <h3 className="font-semibold text-xl">{table.title}</h3>
-                                                <div className="overflow-x-auto">
-                                                    <table className="w-full border-collapse">
-                                                        <thead>
-                                                            <tr>
-                                                                {table.headers.map((header, headerIndex) => (
-                                                                    <th key={headerIndex} className="border border-border/40 px-4 py-2 bg-card/60 text-left font-semibold">
-                                                                        {header}
-                                                                    </th>
-                                                                ))}
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {table.rows.map((row, rowIndex) => (
-                                                                <tr key={rowIndex}>
-                                                                    {row.map((cell, cellIndex) => (
-                                                                        <td key={cellIndex} className="border border-border/40 px-4 py-2">
-                                                                            {cell}
-                                                                        </td>
-                                                                    ))}
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <div>
+                                <h2 className="text-2xl font-bold mb-6">Tabellen</h2>
+                                <div className="space-y-8">
+                                    {currentTopic.content.tables.map((table, tableIndex) => (
+                                        <GrammarTable
+                                            key={tableIndex}
+                                            title={table.title}
+                                            headers={table.headers}
+                                            rows={table.rows}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                         )}
 
                         {/* Navigation */}

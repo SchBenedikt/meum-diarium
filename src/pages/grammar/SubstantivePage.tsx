@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 import { ExplanationBlock, DetailsList, RuleCards } from './GrammarContent';
+import { GrammarTable } from './GrammarTable';
 
 const substantiveTopics = [
     {
@@ -20,7 +21,32 @@ const substantiveTopics = [
         content: {
             explanation: 'Das lateinische Genussystem stellt eines der fundamentalen Konzepte der lateinischen Grammatik dar und unterscheidet sich grundlegend vom deutschen System. Während im Deutschen viele grammatische Geschlechter durch natürliche oder formale Kriterien erkennbar sind, müssen die lateinischen Genera weitgehend als lexikalische Eigenschaften der einzelnen Substantive gelernt werden. Das grammatische Geschlecht beeinflusst nicht nur die Deklination des Substantivs selbst, sondern determiniert auch die Kongruenz von Adjektiven, Pronomen und Partizipien. Die korrekte Zuordnung des Genus ist daher essentiell für die Beherrschung der lateinischen Syntax.',
             details: 'Das Maskulinum umfasst männliche Lebewesen und zahlreiche Gegenstände sowie abstrakte Begriffe. Es ist die häufigste Genusklasse und charakterisiert viele der wichtigsten lateinischen Substantive. Das Femininum schließt weibliche Lebewesen ein, aber auch eine Vielzahl von Gegenständen, Pflanzen und abstrakten Konzepten. Besonders auffällig ist die Häufung bei Baumnamen und vielen abstrakten Qualitätsbegriffen. Das Neutrum umfasst primär sächliche Gegenstände, aber überraschenderweise auch einige Lebewesen und abstrakte Begriffe. Die Neutra zeichnen sich durch besondere Pluralbildungen aus. Die Diskrepanz zwischen natürlichem Geschlecht (Sexus) und grammatischem Geschlecht (Genus) ist im Lateinischen besonders ausgeprägt. So können weibliche Personen grammatisch maskulin sein und umgekehrt. Die Wortendung gibt zwar oft Hinweise auf das Genus, aber es existieren zahlreiche Ausnahmen und unregelmäßige Muster, die besondere Aufmerksamkeit erfordern.',
-            rules: 'Die 1. Deklination auf -a ist überwiegend feminin, mit wenigen Ausnahmen wie agricola (Landmann) oder nauta (Seefahrer), die maskulin sind. Die 2. Deklination zeigt eine klare Trennung: Maskulina auf -us/-er und Neutra auf -um. Besonderheiten bilden die Wörter auf -er, bei denen der Stammvokal im Genitiv sichtbar wird (z.B. puer, pueri). Die 3. Deklination ist die heterogenste Gruppe und enthält alle drei Genera. Die Endungen allein geben wenig Aufschluss, sodass hier das Genus mitgelernt werden muss. Substantive auf -or sind meist maskulin (amor, dolor), aber es gibt wichtige Feminina wie arbor (Baum) oder honor (Ehre). Griechische Lehnwörter behalten oft ihr ursprüngliches Geschlecht, was zu unvorhersehbaren Genuszuweisungen führt. Toponyme folgen eigenen Regeln: Flussnamen sind typischerweise maskulin (Rhenus, Danubius), Inselnamen feminin (Sicilia, Corsica), während Städte je nach Kontext variieren können.',
+            rules: [
+                {
+                    label: '1. Deklination',
+                    body: '**Überwiegend feminin** mit Ausnahmen wie agricola (Landmann) oder nauta (Seefahrer), die maskulin sind.'
+                },
+                {
+                    label: '2. Deklination',
+                    body: '**Klar getrennt:** Maskulina auf -us/-er und Neutra auf -um. Wörter auf -er zeigen den Stammvokal im Genitiv (z.B. puer, pueri).'
+                },
+                {
+                    label: '3. Deklination',
+                    body: '**Heterogenste Gruppe** mit allen drei Genera. Die Endungen geben wenig Aufschluss, sodass das Genus mitgelernt werden muss.'
+                },
+                {
+                    label: 'Substantive auf -or',
+                    body: '**Meist maskulin** (amor, dolor), aber es gibt wichtige Feminina wie arbor (Baum) oder honor (Ehre).'
+                },
+                {
+                    label: 'Griechische Lehnwörter',
+                    body: '**Behalten oft ihr ursprüngliches Geschlecht**, was zu unvorhersehbaren Genuszuweisungen führt.'
+                },
+                {
+                    label: 'Toponyme',
+                    body: '**Flussnamen:** maskulin (Rhenus, Danubius) **Inselnamen:** feminin (Sicilia, Corsica) **Städte:** variieren je nach Kontext'
+                }
+            ],
             tables: [
                 {
                     title: '1. Deklination (a-Deklination) - rosa, rosae (Femininum)',
@@ -226,11 +252,6 @@ export default function SubstantivePage() {
                                             <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t.description}</p>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {(t.topics ?? []).slice(0, 3).map(sub => (
-                                                <span key={sub} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/40">{sub}</span>
-                                            ))}
-                                        </div>
                                     </Card>
                                 </motion.div>
                             ))}
@@ -297,70 +318,40 @@ export default function SubstantivePage() {
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-8">
-                        <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <GraduationCap className="w-6 h-6 text-primary" />
-                                    Theorie
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-6">
+                    <div className="space-y-12">
+                        <div className="space-y-8">
+                            <h2 className="text-2xl font-bold">Theorie</h2>
+                            <div className="space-y-8">
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-2">Überblick</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Überblick</p>
                                     <ExplanationBlock text={currentTopic.content.explanation} />
                                 </div>
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Im Detail</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Im Detail</p>
                                     <DetailsList text={currentTopic.content.details} />
                                 </div>
                                 <div>
-                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground mb-3">Regeln & Merkmale</p>
+                                    <p className="text-sm font-semibold text-muted-foreground mb-4">Regeln & Merkmale</p>
                                     <RuleCards text={currentTopic.content.rules} />
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
 
                         {/* Tables */}
                         {currentTopic.content.tables && currentTopic.content.tables.length > 0 && (
-                            <Card className="bg-card/60 backdrop-blur-xl rounded-3xl border border-border/40 p-8">
-                                <CardHeader>
-                                    <CardTitle>Deklinationstabellen</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-8">
-                                        {currentTopic.content.tables.map((table, tableIndex) => (
-                                            <div key={tableIndex} className="space-y-4">
-                                                <h3 className="font-semibold text-xl">{table.title}</h3>
-                                                <div className="overflow-x-auto">
-                                                    <table className="w-full border-collapse">
-                                                        <thead>
-                                                            <tr>
-                                                                {table.headers.map((header, headerIndex) => (
-                                                                    <th key={headerIndex} className="border border-border/40 px-4 py-2 bg-card/60 text-left font-semibold">
-                                                                        {header}
-                                                                    </th>
-                                                                ))}
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {table.rows.map((row, rowIndex) => (
-                                                                <tr key={rowIndex}>
-                                                                    {row.map((cell, cellIndex) => (
-                                                                        <td key={cellIndex} className="border border-border/40 px-4 py-2">
-                                                                            {cell}
-                                                                        </td>
-                                                                    ))}
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <div>
+                                <h2 className="text-2xl font-bold mb-6">Tabellen</h2>
+                                <div className="space-y-8">
+                                    {currentTopic.content.tables.map((table, tableIndex) => (
+                                        <GrammarTable
+                                            key={tableIndex}
+                                            title={table.title}
+                                            headers={table.headers}
+                                            rows={table.rows}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                         )}
 
                         {/* Navigation */}

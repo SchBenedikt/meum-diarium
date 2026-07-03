@@ -20,7 +20,28 @@ const adverbienTopics = [
         content: {
             explanation: 'Die lateinischen Adverbien bilden eine vielfältige Wortart, die zur Modifizierung von Verben, Adjektiven und anderen Adverbien dient. Im Gegensatz zum Deutschen unterscheidet das Lateinische weniger formale Adverbklassen, sondern gliedert die Adverbien nach ihrer semantischen Funktion und ihrer Bildungsweise. Die meisten lateinischen Adverbien werden von Adjektiven abgeleitet, aber es gibt auch zahlreiche primäre Adverbien, die nicht auf andere Wortarten zurückzuführen sind.',
             details: 'Die Adverbien lassen sich nach ihrer semantischen Funktion in mehrere Hauptgruppen einteilen: Adverbien des Ortes (ubi, ibi, illic), der Zeit (nunc, tunc, semper), der Art und Weise (bene, male, sic), der Ursache (ideo, propter), des Grades (valde, multum, parum) und der Bejahung/Verneinung (ita, non, minime). Die Bildungsweise der Adverbien folgt systematischen Mustern: Adjektive der a/o-Deklination bilden Adverbien auf -ē (bonus → bene, clarus → clare), Adjektive der 3. Deklination auf -iter (fortis → fortiter, felix → feliciter), und einige Adjektive auf -ter (celer → celeriter). Die primären Adverbien wie hic, nunc, iam, non sind nicht von anderen Wortarten abgeleitet und müssen einzeln gelernt werden.',
-            rules: 'Die Bildung der Adverbien von Adjektiven der a/o-Deklination erfolgt durch die Endung -ē: bonus → bene (gut), malus → male (schlecht), clarus → clare (deutlich), magnus → magnopere (sehr). Die Adjektive der 3. Deklination bilden Adverbien auf -iter: fortis → fortiter (tapfer), felix → feliciter (glücklich), prudens → prudenter (klug). Einige Adjektive auf -er bilden Adverbien auf -ter: celer → celeriter (schnell), pulcher → pulchre (schön). Die Steigerung der Adverbien erfolgt durch die Endungen -ius (Komparativ) und -issime/-e (Superlativ): bene → melius → optime, male → peius → pessime, fortiter → fortius → fortissime. Die unregelmäßigen Steigerungen müssen auswendig gelernt werden: multum → plus → plurimum, paulum → minus → minimum.',
+rules: [
+                {
+                    label: 'a/o-Deklination',
+                    body: 'Die Bildung der Adverbien von Adjektiven der a/o-Deklination erfolgt durch die Endung -ē: bonus → bene (gut), malus → male (schlecht), clarus → clare (deutlich), magnus → magnopere (sehr).'
+                },
+                {
+                    label: '3. Deklination',
+                    body: 'Die Adjektive der 3. Deklination bilden Adverbien auf -iter: fortis → fortiter (tapfer), felix → feliciter (glücklich), prudens → prudenter (klug).'
+                },
+                {
+                    label: 'Adjektive auf -er',
+                    body: 'Einige Adjektive auf -er bilden Adverbien auf -ter: celer → celeriter (schnell), pulcher → pulchre (schön).'
+                },
+                {
+                    label: 'Adverbsteigerung',
+                    body: 'Die Steigerung der Adverbien erfolgt durch die Endungen -ius (Komparativ) und -issime/-e (Superlativ): bene → melius → optime, male → peius → pessime, fortiter → fortius → fortissime.'
+                },
+                {
+                    label: 'Unregelmäßige Steigerungen',
+                    body: 'Die unregelmäßigen Steigerungen müssen einzeln gelernt werden: multum → plus → plurimum, paulum → minus → minimum.'
+                }
+            ],
             tables: [
                 {
                     title: 'Adverbbildung von Adjektiven',

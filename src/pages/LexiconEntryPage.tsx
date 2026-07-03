@@ -71,8 +71,8 @@ export default function LexiconEntryPage() {
       searchTerms.some(term =>
         post.title.toLowerCase().includes(term) ||
         post.excerpt?.toLowerCase().includes(term) ||
-        post.content.diary?.toLowerCase().includes(term) ||
-        post.content.scientific?.toLowerCase().includes(term)
+        post.content?.diary?.toLowerCase().includes(term) ||
+        post.content?.scientific?.toLowerCase().includes(term)
       )
     );
     setRelatedPosts(foundPosts.slice(0, 5));

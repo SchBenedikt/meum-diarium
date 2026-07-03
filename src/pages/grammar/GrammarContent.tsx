@@ -1,5 +1,4 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
 
 /**
  * Splits a long prose paragraph into an array of sentences, trimming whitespace.
@@ -68,13 +67,13 @@ export function parseRules(text: string): { label: string; body: string }[] {
   return segments;
 }
 
-/** Renders the intro/explanation block */
+/** Renders the intro/explanation block - minimalist design */
 export function ExplanationBlock({ text }: { text: string }) {
   const sentences = splitToSentences(text);
   return (
-    <div className="rounded-2xl border-l-4 border-primary bg-primary/5 px-5 py-4 space-y-1">
+    <div className="space-y-4">
       {sentences.map((s, i) => (
-        <p key={i} className={`${i === 0 ? 'text-sm font-medium text-foreground' : 'text-sm text-muted-foreground'} leading-relaxed`}>
+        <p key={i} className="text-base leading-relaxed text-foreground/90">
           {s}
         </p>
       ))}
@@ -82,32 +81,32 @@ export function ExplanationBlock({ text }: { text: string }) {
   );
 }
 
-/** Renders the details block as a bullet list, one sentence per item */
+/** Renders the details block as clean bullet list */
 export function DetailsList({ text }: { text: string }) {
   const sentences = splitToSentences(text);
   return (
-    <ul className="space-y-2">
+    <ul className="space-y-4">
       {sentences.map((s, i) => (
-        <li key={i} className="flex gap-3 items-start">
-          <CheckCircle2 className="h-4 w-4 text-primary/60 mt-0.5 shrink-0" />
-          <span className="text-sm text-muted-foreground leading-relaxed">{s}</span>
+        <li key={i} className="flex gap-4 items-start">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 shrink-0" />
+          <span className="text-base leading-relaxed text-foreground/80">{s}</span>
         </li>
       ))}
     </ul>
   );
 }
 
-/** Renders rules as labelled cards (label: body) */
+/** Renders rules as clean list items with labels */
 export function RuleCards({ text }: { text: string }) {
   const rules = parseRules(text);
   return (
-    <div className="grid sm:grid-cols-2 gap-3">
+    <div className="space-y-4">
       {rules.map((rule, i) => (
-        <div key={i} className="rounded-xl border border-border/60 bg-card p-3.5 space-y-1">
+        <div key={i} className="pl-4 border-l-2 border-primary/20">
           {rule.label && (
-            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary">{rule.label}</p>
+            <p className="text-sm font-semibold text-primary mb-1">{rule.label}</p>
           )}
-          <p className="text-sm text-muted-foreground leading-relaxed">{rule.body}</p>
+          <p className="text-base leading-relaxed text-foreground/80">{rule.body}</p>
         </div>
       ))}
     </div>
