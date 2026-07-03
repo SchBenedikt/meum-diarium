@@ -857,8 +857,10 @@ export const de = {
     tag_birth: 'Geburt',
     // PWA Installation
     installApp: 'App installieren',
+    installAppDesc: 'Meum Diarium als App speichern und offline nutzen.',
     installAppDescription: 'Installiere Meum Diarium für schnellen Zugriff und ein besseres Erlebnis.',
     install: 'Installieren',
+    installNow: 'Installieren',
     notNow: 'Nicht jetzt',
     pwaFeature1: 'Funktioniert auch offline',
     pwaFeature2: 'Schneller Start vom Homescreen',

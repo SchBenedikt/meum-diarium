@@ -1,6 +1,11 @@
-# Meum Diarium - Antikes Rom Blog
+# Meum Diarium – Römische Geschichte interaktiv erleben
 
-Ein modernes, interaktives Blog-System über das antike Rom mit KI-gestützten Erklärungen und mehrsprachigem Lexikon.
+**Mission:** Meum Diarium macht die antike römische Geschichte lebendig – durch persönliche Tagebücher historischer Persönlichkeiten, wissenschaftliche Analysen, KI-gestützte Erklärungen und interaktive Lernwerkzeuge. Die Plattform verbindet erzählerische Immersion mit fachlicher Fundierung und macht Geschichte zu einem erlebbaren, verständlichen und bildenden Erlebnis für Schüler, Studierende, Lateinlernende und alle Geschichtsbegeisterten.
+
+Als **Open Educational Resource (OER)** konzipiert, vereint Meum Diarium Mehrperspektivität (Tagebuch + wissenschaftlicher Kommentar), sprachliche Bildung (Latein-Tools, Vokabeltrainer, Grammatik, Lektüren), digitale Innovation (KI-Erklärungen, Simulationen, PWA) und historische Genauigkeit in einer barrierefreien, modernen Webanwendung.
+
+**Zielgruppe:** Schüler und Studierende der Alten Geschichte und Latinistik, Lateinlehrkräfte, Geschichtsinteressierte, digital affine Kulturlernende.
+**USP:** Einzige Plattform, die historische Persönlichkeiten durch KI-gestützte Tagebücher und interaktive Gespräche persönlich erlebbar macht, mit didaktisch fundierten Lernmodulen und vollständiger KI-Transparenz.
 
 ## 🌟 Features
 
