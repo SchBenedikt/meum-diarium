@@ -21,18 +21,18 @@ const KiPage = () => {
     {
       icon: Zap,
       title: 'Zeitreise-Simulation',
-      path: '/simulation',
+      path: '/caesar/simulation',
       description: 'Interaktives Entscheidungsspiel in der Ich-Perspektive. Die KI beschreibt historische Situationen, bietet Handlungsoptionen und reagiert dynamisch auf Entscheidungen. Jeder Durchlauf ist einzigartig – mit wechselnden Narrativen, Statuseffekten und Enden.',
       model: 'Llama-4-Scout (17B) / Llama-3.1-8B (Fallback)',
-      location: '/simulation/[autor] (z. B. /simulation/cicero)'
+      location: '/[autor]/simulation (z. B. /caesar/simulation)'
     },
     {
       icon: FileText,
       title: 'Arbeitsblatt-Generator',
-      path: '/teacher/worksheet',
+      path: '/lernen/material',
       description: 'Erstellt dynamisch Latein-Unterrichtsmaterialien zu jedem Thema. Wählbar sind Aufgabentypen (Textverständnis, Lückentext, Multiple Choice, Übersetzung, Interpretation, Diskussion), Schwierigkeitsgrad und Menge. Die KI generiert passende Texte, Fragen und Lösungen.',
       model: 'Llama-4-Scout (17B)',
-      location: '/teacher/worksheet'
+      location: '/lernen/material'
     },
     {
       icon: BookOpen,
@@ -45,7 +45,7 @@ const KiPage = () => {
     {
       icon: Bot,
       title: 'Demo-Chat-Widget',
-      path: '/',
+      path: '/caesar/chat',
       description: 'Auf der Startseite und Unterseiten befindet sich ein kompaktes Chat-Widget für schnelle Fragen an Caesar. Vereinfachte Version des Vollbild-Chats – für spontane Interaktion ohne Seitenwechsel.',
       model: 'Llama-4-Scout (17B)',
       location: 'Startseite, Footer-Bereich'
@@ -66,7 +66,7 @@ const KiPage = () => {
         title="KI-Transparenz – Aktive KI-Nutzung"
         description="Vollständige Liste aller aktiven KI-Features in Meum Diarium: Chat, Simulation, Arbeitsblätter, Begriffserklärungen und mehr."
         type="website"
-        image={`${baseUrl}/images/ki-hero.jpg`}
+        image={`${baseUrl}/images/caesar-hero.png`}
         canonical={`${baseUrl}/ki`}
       />
 

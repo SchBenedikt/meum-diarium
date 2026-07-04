@@ -22,6 +22,7 @@ export default function LexiconEntryPage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const { posts: allPosts, isLoading: postsLoading } = usePosts();
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
   const [entry, setEntry] = useState<LexiconEntry | null | undefined>(undefined);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function LexiconEntryPage() {
       <SEO
         title={`${entry.term} - ${t('lexicon')} | Meum Diarium`}
         description={`${entry.term}: ${entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt'}`}
-        image={`https://meum-diarium.xn--schchner-2za.de/images/${entry.category}.jpg`}
+        image={`${baseUrl}/images/caesar-hero.png`}
         type="article"
         section="lexicon"
         tags={[entry.category, 'Latein', 'antike Geschichte', 'römisches Reich']}
@@ -100,15 +101,15 @@ export default function LexiconEntryPage() {
           "@type": "Article",
           "headline": entry.term,
           "description": entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt',
-          "image": `https://meum-diarium.xn--schchner-2za.de/images/${entry.category}.jpg`,
+          "image": `${baseUrl}/images/caesar-hero.png`,
           "author": {
             "@type": "Organization",
             "name": "Meum Diarium",
-            "url": "https://meum-diarium.xn--schchner-2za.de"
+            "url": baseUrl
           },
           "datePublished": new Date().toISOString(),
           "dateModified": new Date().toISOString(),
-          "url": `https://meum-diarium.xn--schchner-2za.de/lexicon/${entry.slug}`,
+          "url": `${baseUrl}/lexicon/${entry.slug}`,
           "mainEntityOfPage": {
             "@type": "DefinedTerm",
             "name": entry.term,
@@ -124,7 +125,7 @@ export default function LexiconEntryPage() {
             }
           ]
         }}
-        canonical={`https://meum-diarium.xn--schchner-2za.de/lexicon/${entry.slug}`}
+        canonical={`${baseUrl}/lexicon/${entry.slug}`}
       />
       <main className="flex-1 pb-16">
         <PageHero
