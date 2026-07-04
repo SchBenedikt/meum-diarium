@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BlogPost } from '@/types/blog';
-import { Calendar, Clock, ArrowRight } from 'lucide-react'; // Tag entfernt
+import { Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
@@ -31,8 +31,8 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
   const readingTime = post.readingTime;
   const displayExcerpt =
     post.excerpt || generateExcerpt(post.content?.diary || post.content?.scientific || '', 150);
-  const hasDiary = post.content?.diary && post.content.diary.trim().length > 0;
-  const hasScientific = post.content?.scientific && post.content.scientific.trim().length > 0;
+  const hasDiary = Boolean(post.content?.diary?.trim());
+  const hasScientific = Boolean(post.content?.scientific?.trim());
   // Always use the main title for consistency
   const displayTitle = post.title;
   const year = useMemo(() => {
@@ -109,10 +109,6 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
                 ))}
               </div>
             )}
-          </div>
-          {/* Pfeil rechts unten */}
-          <div className="mt-1 flex justify-end">
-            <ArrowRight className="h-5 w-5 text-muted-foreground transition-colors" />
           </div>
         </div>
       </Link>

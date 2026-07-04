@@ -24,7 +24,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
         author: post?.author || 'caesar',
         excerpt: post?.excerpt || '',
         coverImage: post?.coverImage || '',
-        contentDiary: post?.content.diary || '',
+        contentDiary: post?.content?.diary || '',
         contentScientific: post?.content.scientific || '',
         quoteText: post?.sidebar?.quote?.text || '',
         quoteTranslationDe: post?.sidebar?.quote?.translations?.de || '',

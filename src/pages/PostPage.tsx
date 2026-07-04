@@ -119,8 +119,8 @@ function PostContent({ post }: { post: BlogPost }) {
   useEffect(() => {
     if (!post) return;
     
-    const hasDiary = post?.content?.diary && post.content.diary.trim().length > 0;
-    const hasScientific = post?.content?.scientific && post.content.scientific.trim().length > 0;
+    const hasDiary = Boolean(post?.content?.diary?.trim());
+    const hasScientific = Boolean(post?.content?.scientific?.trim());
     const requested = (searchParams.get('p') as Perspective | null);
 
     // Read saved user preference (if any)
@@ -453,6 +453,27 @@ function PostContent({ post }: { post: BlogPost }) {
         </div>
       </main>
       <Footer />
+
+      {showImageLightbox && post.coverImage && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowImageLightbox(false)}
+        >
+          <button
+            onClick={() => setShowImageLightbox(false)}
+            className="absolute top-4 right-4 h-10 w-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors z-10"
+            aria-label="Schließen"
+          >
+            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+          </button>
+          <img
+            src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
+            alt={post.title}
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

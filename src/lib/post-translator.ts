@@ -19,8 +19,8 @@ export function getTranslatedPost(post: BlogPost, language: Language): BlogPost 
     title: translation.title && translation.title.trim() !== "" ? translation.title : post.title,
     excerpt: translation.excerpt && translation.excerpt.trim() !== "" ? translation.excerpt : post.excerpt,
     content: {
-      diary: translation.content.diary && translation.content.diary.trim() !== "" ? translation.content.diary : post.content.diary,
-      scientific: translation.content.scientific && translation.content.scientific.trim() !== "" ? translation.content.scientific : post.content.scientific,
+      diary: translation.content?.diary && translation.content.diary.trim() !== "" ? translation.content.diary : (post.content?.diary || ''),
+      scientific: translation.content?.scientific && translation.content.scientific.trim() !== "" ? translation.content.scientific : (post.content?.scientific || ''),
     },
     tags: translation.tags && translation.tags.length > 0 ? translation.tags : post.tags,
   };

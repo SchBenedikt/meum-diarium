@@ -82,7 +82,7 @@ export function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
     const postResults: SearchResult[] = posts.filter(post =>
       post.title.toLowerCase().includes(searchTerm) ||
       post.excerpt.toLowerCase().includes(searchTerm) ||
-      post.content.diary.toLowerCase().includes(searchTerm) ||
+      (post.content?.diary || '').toLowerCase().includes(searchTerm) ||
       (authors[post.author]?.name || '').toLowerCase().includes(searchTerm) ||
       getPostTags(post, language).some(tag => tag.toLowerCase().includes(searchTerm))
     ).map(post => ({ type: 'post', data: post }));
