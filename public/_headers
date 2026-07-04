@@ -25,6 +25,10 @@ https://cloudflareinsights.com/*
   Access-Control-Allow-Methods: GET, POST, OPTIONS
   Access-Control-Allow-Headers: *
 
+# Disable Cloudflare injected beacon/analytics (causes integrity errors)
+/*.html
+  cf-beacon: disabled
+
 # Security headers for all pages
 /*
   X-Frame-Options: SAMEORIGIN

@@ -106,8 +106,8 @@ export default function SearchPage() {
       filteredPosts = filteredPosts.filter(post =>
         post.title.toLowerCase().includes(searchQuery) ||
         post.excerpt?.toLowerCase().includes(searchQuery) ||
-        post.content.diary?.toLowerCase().includes(searchQuery) ||
-        post.content.scientific?.toLowerCase().includes(searchQuery) ||
+        post.content?.diary?.toLowerCase().includes(searchQuery) ||
+        post.content?.scientific?.toLowerCase().includes(searchQuery) ||
         authors[post.author]?.name.toLowerCase().includes(searchQuery)
       );
       filteredLexicon = filteredLexicon.filter(entry =>
