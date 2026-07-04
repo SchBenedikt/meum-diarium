@@ -296,12 +296,7 @@ function PostContent({ post }: { post: BlogPost }) {
                               alt={post.title}
                               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                              <svg className="h-12 w-12 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.5)" />
-                                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </div>
+
                           </button>
                           {videoSrc && (
                             <button onClick={() => { setShowVideo(true); setVideoPlaying(false); }} aria-label="Play video" className="absolute inset-0 flex items-center justify-center bg-black/20">
