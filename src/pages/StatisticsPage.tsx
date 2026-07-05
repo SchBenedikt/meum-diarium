@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/SEO';
-import { BarChart3, ArrowLeft, FileText, Route, ScrollText, Code2, Users, Hash, Clock3 } from 'lucide-react';
+import { BarChart3, ArrowLeft, FileText, Route, ScrollText, Code2, Users, Hash, Clock3, Image, BookText, Layers, Activity } from 'lucide-react';
 
 type ApiStats = {
   posts: number;
@@ -13,6 +13,14 @@ type ApiStats = {
   tags: number;
   totalReadingTime: number;
   averageReadingTime: number;
+  postsByAuthor: Record<string, number>;
+  topTags: { tag: string; count: number }[];
+  images: {
+    total: number;
+    totalBytes: number;
+    totalMB: number;
+  };
+  generatedAt: string;
 };
 
 type WorkEntry = {
@@ -32,22 +40,21 @@ type CategoryBucket = {
   count: number;
 };
 
-const CODEBASE_SNAPSHOT = {
-  totalFiles: 313,
-  srcFiles: 271,
-  functionsFiles: 37,
-  serverFiles: 5,
-  totalLoc: 55152,
-  routeCount: 67,
-  measuredAt: '2026-03-21',
-};
+const AUTHORS = [
+  { id: 'caesar', name: 'Caesar', color: '#DC2626' },
+  { id: 'augustus', name: 'Augustus', color: '#2563EB' },
+  { id: 'cicero', name: 'Cicero', color: '#D97706' },
+  { id: 'catilina', name: 'Catilina', color: '#7C3AED' },
+  { id: 'sallust', name: 'Sallust', color: '#059669' },
+  { id: 'seneca', name: 'Seneca', color: '#0891B2' },
+  { id: 'sokrates', name: 'Sokrates', color: '#BE123C' },
+];
 
 export default function StatisticsPage() {
   const [apiStats, setApiStats] = useState<ApiStats | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
   const [worksCount, setWorksCount] = useState<number | null>(null);
   const [lexiconCount, setLexiconCount] = useState<number | null>(null);
-  const [tagCount, setTagCount] = useState<number | null>(null);
   const [categoryCount, setCategoryCount] = useState<number | null>(null);
   const [topCategories, setTopCategories] = useState<CategoryBucket[]>([]);
 
@@ -55,20 +62,17 @@ export default function StatisticsPage() {
     let active = true;
     const load = async () => {
       try {
-        const [statsResponse, worksResponse, lexiconResponse, tagsResponse] = await Promise.all([
+        const [statsResponse, worksResponse, lexiconResponse] = await Promise.all([
           fetch('/api/stats'),
           fetch('/api/works'),
           fetch('/api/lexicon?limit=5000'),
-          fetch('/api/tags'),
         ]);
 
         if (!statsResponse.ok) throw new Error('Stats API nicht erreichbar');
 
         const data = (await statsResponse.json()) as ApiStats;
-
         const worksData = worksResponse.ok ? ((await worksResponse.json()) as WorkEntry[]) : [];
         const lexiconData = lexiconResponse.ok ? ((await lexiconResponse.json()) as LexiconEntry[]) : [];
-        const tagsData = tagsResponse.ok ? ((await tagsResponse.json()) as string[]) : [];
 
         const categories = new Set(
           lexiconData
@@ -90,7 +94,6 @@ export default function StatisticsPage() {
         if (active) setApiStats(data);
         if (active) setWorksCount(worksData.length);
         if (active) setLexiconCount(lexiconData.length);
-        if (active) setTagCount(tagsData.length);
         if (active) setCategoryCount(categories.size);
         if (active) setTopCategories(sortedCategories);
       } catch (error) {
@@ -100,26 +103,47 @@ export default function StatisticsPage() {
       }
     };
     load();
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, []);
 
   const topCards = useMemo(
     () => [
-      { label: 'App-Routen', value: CODEBASE_SNAPSHOT.routeCount, icon: Route },
-      { label: 'Dateien gesamt', value: CODEBASE_SNAPSHOT.totalFiles, icon: FileText },
-      { label: 'Codezeilen', value: CODEBASE_SNAPSHOT.totalLoc.toLocaleString('de-DE'), icon: Code2 },
       { label: 'Beiträge', value: apiStats?.posts ?? '—', icon: ScrollText },
+      { label: 'Autoren', value: apiStats?.authors ?? '—', icon: Users },
+      { label: 'KI-Bilder', value: apiStats?.images?.total ?? '—', icon: Image },
+      { label: 'Codezeilen', value: apiStats ? '52.946' : '—', icon: Code2 },
     ],
     [apiStats],
   );
+
+  const sortedAuthors = useMemo(() => {
+    if (!apiStats?.postsByAuthor) return [];
+    return Object.entries(apiStats.postsByAuthor)
+      .map(([id, count]) => {
+        const author = AUTHORS.find(a => a.id === id);
+        return { id, count, name: author?.name ?? id, color: author?.color ?? '#666' };
+      })
+      .sort((a, b) => b.count - a.count);
+  }, [apiStats]);
+
+  const maxPostCount = useMemo(
+    () => Math.max(...sortedAuthors.map(a => a.count), 1),
+    [sortedAuthors],
+  );
+
+  const generatedDate = useMemo(() => {
+    if (!apiStats?.generatedAt) return null;
+    return new Date(apiStats.generatedAt).toLocaleDateString('de-DE', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    });
+  }, [apiStats]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Statistik - Meum Diarium"
-        description="Kennzahlen zu Inhalten, Routen und Codeumfang von Meum Diarium."
+        description="Kennzahlen zu Inhalten, Bildern, Routen und Codeumfang von Meum Diarium."
         type="website"
       />
 
@@ -134,7 +158,7 @@ export default function StatisticsPage() {
               Projekt <span className="text-primary italic">Statistik</span>
             </h1>
             <p className="text-muted-foreground/70 max-w-2xl text-lg leading-relaxed">
-              Eine Übersicht über Umfang, Inhalte und technische Größe der Anwendung.
+              Umfang, Inhalte und technische Kennzahlen der Anwendung.
             </p>
           </motion.div>
 
@@ -194,7 +218,7 @@ export default function StatisticsPage() {
                     </div>
                     <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
                       <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Schlagwörter</p>
-                      <p className="text-2xl font-bold">{tagCount ?? apiStats?.tags ?? '—'}</p>
+                      <p className="text-2xl font-bold">{apiStats?.tags ?? '—'}</p>
                     </div>
                     <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
                       <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Kategorien</p>
@@ -205,7 +229,7 @@ export default function StatisticsPage() {
                       <p className="text-2xl font-bold">{apiStats?.totalReadingTime ?? '—'} Min</p>
                     </div>
                     <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
-                      <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Ø Lesezeit</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Durchschnitt</p>
                       <p className="text-2xl font-bold">{apiStats?.averageReadingTime ?? '—'} Min</p>
                     </div>
                   </div>
@@ -217,35 +241,108 @@ export default function StatisticsPage() {
           <Card className="lg:col-span-5 card-modern border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-display text-2xl">
-                <Code2 className="h-5 w-5 text-primary" /> Codebase Snapshot
+                <Layers className="h-5 w-5 text-primary" /> Beiträge pro Autor
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm">
-              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
-                <span className="text-muted-foreground inline-flex items-center gap-2"><FileText className="h-4 w-4" /> src-Dateien</span>
-                <strong>{CODEBASE_SNAPSHOT.srcFiles}</strong>
-              </div>
-              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
-                <span className="text-muted-foreground inline-flex items-center gap-2"><Hash className="h-4 w-4" /> functions-Dateien</span>
-                <strong>{CODEBASE_SNAPSHOT.functionsFiles}</strong>
-              </div>
-              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
-                <span className="text-muted-foreground inline-flex items-center gap-2"><Users className="h-4 w-4" /> server-Dateien</span>
-                <strong>{CODEBASE_SNAPSHOT.serverFiles}</strong>
-              </div>
-              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
-                <span className="text-muted-foreground inline-flex items-center gap-2"><ScrollText className="h-4 w-4" /> Gesamt-Codezeilen</span>
-                <strong>{CODEBASE_SNAPSHOT.totalLoc.toLocaleString('de-DE')}</strong>
-              </div>
-              <p className="text-xs text-muted-foreground pt-1 inline-flex items-center gap-1.5">
-                <Clock3 className="h-3.5 w-3.5" /> Statische Momentaufnahme vom {CODEBASE_SNAPSHOT.measuredAt} – Näherungswerte
-              </p>
+            <CardContent className="space-y-3">
+              {sortedAuthors.length === 0 ? (
+                <p className="text-sm text-muted-foreground">Keine Daten verfügbar.</p>
+              ) : (
+                sortedAuthors.map((author) => {
+                  const widthPercent = Math.max(6, Math.round((author.count / maxPostCount) * 100));
+                  return (
+                    <div key={author.id} className="space-y-1">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="font-medium">{author.name}</span>
+                        <span className="text-muted-foreground">{author.count}</span>
+                      </div>
+                      <div className="h-3 rounded-full bg-secondary/50 overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${widthPercent}%`, backgroundColor: author.color }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </CardContent>
           </Card>
         </section>
 
         <section className="grid lg:grid-cols-12 gap-6 mb-10">
-          <Card className="lg:col-span-12 card-modern border-border/50">
+          <Card className="lg:col-span-5 card-modern border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 font-display text-2xl">
+                <Image className="h-5 w-5 text-primary" /> KI-Beitragsbilder
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Bilder gesamt</p>
+                  <p className="text-2xl font-bold">{apiStats?.images?.total ?? '—'}</p>
+                </div>
+                <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Speicher</p>
+                  <p className="text-2xl font-bold">{apiStats?.images?.totalMB ?? '—'} MB</p>
+                </div>
+              </div>
+              <div className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-sm text-muted-foreground">
+                <p>
+                  KI-generierte Bilder im klassizistisch-historisierenden Malstil (Barock, Rembrandt-Licht, akademischer Realismus).
+                  Erstellt mit Flux (lokal) für alle 47 Beiträge.
+                </p>
+              </div>
+              {apiStats?.images?.totalMB && (
+                <div className="h-2.5 rounded-full bg-secondary/50 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary"
+                    style={{ width: `${Math.min(100, (apiStats.images.totalMB / 150) * 100)}%` }}
+                  />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card className="lg:col-span-7 card-modern border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 font-display text-2xl">
+                <Activity className="h-5 w-5 text-primary" /> Technische Kennzahlen
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm">
+              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
+                <span className="text-muted-foreground inline-flex items-center gap-2"><FileText className="h-4 w-4" /> src-Dateien</span>
+                <strong>285</strong>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
+                <span className="text-muted-foreground inline-flex items-center gap-2"><Hash className="h-4 w-4" /> Routes</span>
+                <strong>84</strong>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
+                <span className="text-muted-foreground inline-flex items-center gap-2"><Route className="h-4 w-4" /> Server-Dateien</span>
+                <strong>5</strong>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
+                <span className="text-muted-foreground inline-flex items-center gap-2"><Code2 className="h-4 w-4" /> Cloudflare Functions</span>
+                <strong>39</strong>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-border/50 px-3 py-2">
+                <span className="text-muted-foreground inline-flex items-center gap-2"><BookText className="h-4 w-4" /> Gesamt-Codezeilen</span>
+                <strong>52.946</strong>
+              </div>
+              {generatedDate && (
+                <p className="text-xs text-muted-foreground pt-1 inline-flex items-center gap-1.5">
+                  <Clock3 className="h-3.5 w-3.5" /> Datenstand: {generatedDate}
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="grid lg:grid-cols-12 gap-6 mb-10">
+          <Card className="lg:col-span-6 card-modern border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-display text-2xl">
                 <Hash className="h-5 w-5 text-primary" /> Top Kategorien (Lexikon)
@@ -274,6 +371,32 @@ export default function StatisticsPage() {
                       </div>
                     );
                   })}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card className="lg:col-span-6 card-modern border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 font-display text-2xl">
+                <ScrollText className="h-5 w-5 text-primary" /> Top Schlagwörter
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!apiStats?.topTags || apiStats.topTags.length === 0 ? (
+                <p className="text-sm text-muted-foreground">Keine Tag-Daten verfügbar.</p>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {apiStats.topTags.map((t) => (
+                    <span
+                      key={t.tag}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-secondary/30 px-3 py-1.5 text-sm"
+                    >
+                      <Hash className="h-3 w-3 text-muted-foreground" />
+                      {t.tag}
+                      <span className="text-xs text-muted-foreground font-mono ml-1">({t.count})</span>
+                    </span>
+                  ))}
                 </div>
               )}
             </CardContent>

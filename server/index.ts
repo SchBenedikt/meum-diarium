@@ -401,6 +401,97 @@ app.delete('/api/posts/:author/:slug', (req, res) => {
     });
 });
 
+// Compute aggregate statistics from static files (dev fallback for Cloudflare /api/stats)
+app.get('/api/stats', async (_req, res) => {
+    try {
+        const postsDir = path.resolve(__dirname, '../public/posts');
+        const imagesDir = path.resolve(__dirname, '../public/images');
+
+        // Load all posts
+        let allPosts: any[] = [];
+        try {
+            const indexPath = path.join(postsDir, 'index.json');
+            const indexContent = await fs.readFile(indexPath, 'utf-8');
+            const index = JSON.parse(indexContent);
+            allPosts = (index.posts && Array.isArray(index.posts)) ? index.posts : [];
+        } catch {
+            allPosts = [];
+        }
+
+        // Compute stats
+        const totalPosts = allPosts.length;
+        const totalReadingTime = allPosts.reduce((sum: number, p: any) => sum + (p.readingTime || 0), 0);
+        const averageReadingTime = totalPosts > 0 ? Math.round(totalReadingTime / totalPosts) : 0;
+
+        // Unique tags
+        const tagSet = new Set<string>();
+        const tagCounts: Record<string, number> = {};
+        allPosts.forEach((p: any) => {
+            if (Array.isArray(p.tags)) {
+                p.tags.forEach((t: string) => {
+                    if (typeof t === 'string' && t) {
+                        tagSet.add(t);
+                        tagCounts[t] = (tagCounts[t] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        // Posts per author
+        const postsByAuthor: Record<string, number> = {};
+        allPosts.forEach((p: any) => {
+            const author = p.author || 'unknown';
+            postsByAuthor[author] = (postsByAuthor[author] || 0) + 1;
+        });
+
+        // Image stats
+        let totalImages = 0;
+        let totalImageBytes = 0;
+        try {
+            const authorDirs = await fs.readdir(imagesDir);
+            for (const dir of authorDirs) {
+                const dirPath = path.join(imagesDir, dir);
+                const stat = await fs.stat(dirPath).catch(() => null);
+                if (!stat || !stat.isDirectory()) continue;
+                const files = await fs.readdir(dirPath);
+                for (const file of files) {
+                    if (!file.match(/\.(png|jpg|jpeg|webp)$/i)) continue;
+                    totalImages++;
+                    const filePath = path.join(dirPath, file);
+                    const fileStat = await fs.stat(filePath).catch(() => null);
+                    if (fileStat) totalImageBytes += fileStat.size;
+                }
+            }
+        } catch {
+            // ignore image stat errors
+        }
+
+        const stats = {
+            posts: totalPosts,
+            authors: Object.keys(postsByAuthor).length,
+            tags: tagSet.size,
+            totalReadingTime,
+            averageReadingTime,
+            postsByAuthor,
+            topTags: Object.entries(tagCounts)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 10)
+                .map(([tag, count]) => ({ tag, count })),
+            images: {
+                total: totalImages,
+                totalBytes: totalImageBytes,
+                totalMB: Math.round(totalImageBytes / (1024 * 1024) * 10) / 10,
+            },
+            generatedAt: new Date().toISOString(),
+        };
+
+        res.json(stats);
+    } catch (err: any) {
+        console.error('❌ [Dev] /api/stats error:', err.message);
+        res.status(500).json({ error: 'Failed to compute stats', message: err.message });
+    }
+});
+
 app.get('/api/lexicon', async (_req, res) => {
     const entries = await getLexiconEntries();
     res.json(entries);

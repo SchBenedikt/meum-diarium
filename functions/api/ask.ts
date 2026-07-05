@@ -17,7 +17,7 @@ const jsonHeaders = {
   ...corsHeaders,
 };
 
-const allowedPersonas = new Set(['caesar', 'cicero', 'augustus', 'seneca', 'catilina']);
+const allowedPersonas = new Set(['caesar', 'cicero', 'augustus', 'seneca', 'catilina', 'sallust', 'sokrates']);
 
 function normalizeHistory(input: unknown): Array<{ role: string; content: string }> {
   if (!Array.isArray(input)) return [];
