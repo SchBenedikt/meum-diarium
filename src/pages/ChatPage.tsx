@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { askAI } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Footer } from '@/components/layout/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
@@ -24,7 +23,7 @@ export default function ChatPage() {
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
-    const bottomRef = useRef<HTMLDivElement | null>(null);
+    const scrollRef = useRef<HTMLDivElement | null>(null);
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
     
     const author = authorId ? authors[authorId as Author] : null;
@@ -36,10 +35,20 @@ export default function ChatPage() {
         }
     }, [authorId, setCurrentAuthor]);
     
-    // Auto-scroll to bottom when messages change
+    // Auto-scroll chat viewport to bottom when messages change
+    const scrollToBottom = useCallback(() => {
+        if (!scrollRef.current) return;
+        const viewport = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+        if (viewport) {
+            requestAnimationFrame(() => {
+                viewport.scrollTop = viewport.scrollHeight;
+            });
+        }
+    }, []);
+
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages, isTyping]);
+        scrollToBottom();
+    }, [messages, isTyping, scrollToBottom]);
     
     // Handle initial question from URL params
     useEffect(() => {
@@ -96,30 +105,25 @@ export default function ChatPage() {
         await sendQuestion(question);
     };
     return (
-        <div className="min-h-screen flex flex-col bg-background">
-            <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
+        <div className="h-screen flex flex-col bg-background overflow-hidden">
+            <main className="flex-1 flex flex-col min-h-0 container mx-auto px-4 pt-4 sm:pt-6 max-w-7xl">
                 {/* Minimalist Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                <div className="flex items-center justify-between mb-4 shrink-0">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="space-y-4"
+                        className="space-y-1"
                     >
-                        <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
-                            <div className="w-8 h-[1px] bg-primary/30" />
-                            HISTORISCHER CHAT
-                        </div>
-                        <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+                        <h1 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
                             Sprich mit <span className="text-primary italic">{author.name.split(' ').slice(1).join(' ')}</span>
                         </h1>
-                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                        <p className="text-xs sm:text-sm text-muted-foreground/60 max-w-md font-light leading-relaxed">
                             Stelle gezielte Fragen an {author.name.split(' ')[0]} und erhalte kontextreiche, KI-gestützte Antworten.
                         </p>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="flex flex-col gap-4 items-end"
                     >
                         <Link to={`/${authorId}`} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors">
                             <ArrowLeft className="h-3.5 w-3.5" /> Zurück
@@ -127,8 +131,8 @@ export default function ChatPage() {
                     </motion.div>
                 </div>
                 {/* Chat Content */}
-                <div className="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
-                    <div className="card-modern card-padding-md space-y-6 lg:sticky lg:top-24">
+                <div className="flex-1 flex gap-6 min-h-0">
+                    <div className="hidden lg:flex lg:w-[300px] xl:w-[340px] shrink-0 flex-col card-modern card-padding-md space-y-6 overflow-y-auto">
                         <div className="flex items-center gap-3">
                             <div className="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                                 <MessageCircle className="h-6 w-6 text-primary" />
@@ -167,8 +171,8 @@ export default function ChatPage() {
                             )}
                         </div>
                     </div>
-                    <div className="card-modern p-0 overflow-hidden">
-                        <div className="flex items-center justify-between border-b border-border/50 px-4 sm:px-5 py-4 bg-background/70 backdrop-blur-xl">
+                    <div className="flex-1 flex flex-col card-modern p-0 overflow-hidden min-h-0">
+                        <div className="flex items-center justify-between border-b border-border/50 px-4 sm:px-5 py-4 bg-background/70 backdrop-blur-xl shrink-0">
                             <div className="flex items-center gap-3">
                                 <div className="h-10 w-10 rounded-full overflow-hidden ring-2 ring-primary/20">
                                     <img src={author.heroImage} alt={author.name} className="h-full w-full object-cover" />
@@ -188,11 +192,11 @@ export default function ChatPage() {
                                 <span className="px-2 py-1 rounded-md text-[10px] font-semibold tracking-wide bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">BETA</span>
                             </div>
                         </div>
-                        <div className="px-4 sm:px-5 py-2 bg-amber-500/10 border-b border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
+                        <div className="px-4 sm:px-5 py-2 bg-amber-500/10 border-b border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2 shrink-0">
                             <Sparkles className="h-3.5 w-3.5" />
                             <span>Experimenteller KI-Chat (Beta) – Antworten können ungenau sein.</span>
                         </div>
-                        <ScrollArea className="h-[55vh] sm:h-[60vh] p-4 sm:p-6">
+                        <ScrollArea ref={scrollRef} className="flex-1 p-4 sm:p-6">
                             <div className="max-w-3xl mx-auto space-y-5 pb-2">
                                 {messages.map((msg, i) => (
                                     <motion.div
@@ -249,7 +253,6 @@ export default function ChatPage() {
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
-                                <div ref={bottomRef} />
                             </div>
                         </ScrollArea>
                         <div className="border-t border-border/50 bg-background/80 backdrop-blur-xl px-4 sm:px-5 py-4">
@@ -276,7 +279,6 @@ export default function ChatPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }
