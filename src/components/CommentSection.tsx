@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Trash2, AlertCircle, MessageSquare, Send } from 'lucide-react';
 
 interface Comment {
@@ -139,7 +140,18 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatRelativeTime = (dateString: string) => {
+    const now = Date.now();
+    const diff = now - new Date(dateString).getTime();
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (minutes < 1) return 'gerade eben';
+    if (minutes < 60) return `vor ${minutes} Minute${minutes !== 1 ? 'n' : ''}`;
+    if (hours < 24) return `vor ${hours} Stunde${hours !== 1 ? 'n' : ''}`;
+    if (days < 7) return `vor ${days} Tag${days !== 1 ? 'en' : ''}`;
+    
     return new Date(dateString).toLocaleDateString('de-DE', {
       day: '2-digit',
       month: '2-digit',
@@ -262,93 +274,119 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
 
       {/* Comments List */}
       {isLoading ? (
-        <div className="flex justify-center py-12">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        <div className="flex justify-center py-16">
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <p className="text-sm text-muted-foreground">Kommentare werden geladen…</p>
+          </div>
         </div>
       ) : comments.length === 0 ? (
-        <div className="text-center py-14 text-muted-foreground">
-          <MessageSquare className="h-10 w-10 mx-auto mb-3 text-muted-foreground/30" />
-          <p className="font-medium">Noch keine Kommentare</p>
-          <p className="text-sm mt-1 text-muted-foreground/70">Sei der Erste und schreibe einen Kommentar!</p>
+        <div className="text-center py-16">
+          <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mx-auto mb-4">
+            <MessageSquare className="h-7 w-7 text-muted-foreground/40" />
+          </div>
+          <p className="font-semibold text-foreground">Noch keine Kommentare</p>
+          <p className="text-sm text-muted-foreground/70 mt-1 max-w-xs mx-auto">
+            Sei der Erste und teile deine Gedanken zu diesem Beitrag!
+          </p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {comments.map((comment) => (
-            <div key={comment.id} className="group flex gap-4">
-              {/* Avatar */}
-              <div className={`flex-shrink-0 w-10 h-10 rounded-full ${getAvatarColor(comment.authorName || 'A')} flex items-center justify-center text-white text-sm font-bold shadow-sm`}>
-                {getInitials(comment.authorName || 'A')}
-              </div>
+        <div className="space-y-5">
+          {comments.map((comment, index) => {
+            const avatarColor = getAvatarColor(comment.authorName || 'A');
+            return (
+              <motion.div
+                key={comment.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+                className="group"
+              >
+                <div className="relative flex gap-3 sm:gap-4">
+                  {/* Avatar */}
+                  <div className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full ${avatarColor} flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-sm mt-0.5`}>
+                    {getInitials(comment.authorName || 'A')}
+                  </div>
 
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                <div className="rounded-2xl rounded-tl-sm border border-border/40 bg-card/60 backdrop-blur-sm px-5 py-4 shadow-sm group-hover:border-border/70 transition-colors">
-                  <div className="flex justify-between items-start gap-3 mb-2">
-                    <div>
-                      <span className="font-semibold text-foreground text-sm">{comment.authorName}</span>
-                      <span className="mx-2 text-border">·</span>
-                      <span className="text-xs text-muted-foreground/70">{formatDate(comment.createdAt)}</span>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        setDeleteDialogId(comment.id);
-                        setDeleteInputEmail('');
-                      }}
-                      disabled={deletingId === comment.id}
-                      className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10 flex-shrink-0 rounded-lg"
-                      title="Kommentar löschen"
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className={`rounded-2xl rounded-tl-sm border bg-card/50 px-4 sm:px-5 py-3 sm:py-3.5 shadow-sm border-l-[3px] sm:border-l-[3px]`}
+                      style={{ borderLeftColor: `var(--${avatarColor.replace('bg-', '').replace('-500', '')}-500)` }}
                     >
-                      {deletingId === comment.id ? (
-                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                      ) : (
-                        <Trash2 className="h-3.5 w-3.5" />
-                      )}
-                    </Button>
-                  </div>
-                  <p className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">{comment.content}</p>
-                </div>
-
-                {/* Delete confirmation */}
-                {deleteDialogId === comment.id && (
-                  <div className="mt-2 ml-2 p-4 border border-destructive/30 rounded-xl bg-destructive/5 space-y-3">
-                    <p className="text-sm font-semibold text-foreground">Kommentar löschen?</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">Gib die E-Mail-Adresse ein, mit der du kommentiert hast.</p>
-                    <Input
-                      type="email"
-                      placeholder="E-Mail-Adresse eingeben"
-                      value={deleteInputEmail}
-                      onChange={(e) => setDeleteInputEmail(e.target.value)}
-                      disabled={deletingId === comment.id}
-                      className="text-sm rounded-lg h-9"
-                    />
-                    <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        className="rounded-lg h-8 text-xs"
-                        onClick={() => handleDelete(comment.id, deleteInputEmail)}
-                        disabled={deletingId === comment.id || !deleteInputEmail.trim()}
-                      >
-                        {deletingId === comment.id ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : null}
-                        Löschen
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="rounded-lg h-8 text-xs"
-                        onClick={() => { setDeleteDialogId(null); setDeleteInputEmail(''); }}
-                        disabled={deletingId === comment.id}
-                      >
-                        Abbrechen
-                      </Button>
+                      <div className="flex justify-between items-start gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="font-semibold text-foreground text-sm truncate">{comment.authorName}</span>
+                          <span className="text-muted-foreground/30 shrink-0">·</span>
+                          <span className="text-xs text-muted-foreground/60 whitespace-nowrap shrink-0">{formatRelativeTime(comment.createdAt)}</span>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setDeleteDialogId(comment.id);
+                            setDeleteInputEmail('');
+                          }}
+                          disabled={deletingId === comment.id}
+                          className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100 max-sm:opacity-100 transition-opacity text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 flex-shrink-0 rounded-lg"
+                          title="Kommentar löschen"
+                        >
+                          {deletingId === comment.id ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : (
+                            <Trash2 className="h-3.5 w-3.5" />
+                          )}
+                        </Button>
+                      </div>
+                      <p className="text-sm text-foreground/85 leading-relaxed whitespace-pre-wrap">{comment.content}</p>
                     </div>
+
+                    {/* Delete confirmation */}
+                    {deleteDialogId === comment.id && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-2 ml-1 p-4 border border-destructive/20 rounded-xl bg-destructive/5 space-y-3"
+                      >
+                        <p className="text-sm font-semibold text-foreground">Kommentar löschen?</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          Gib die E-Mail-Adresse ein, mit der du kommentiert hast.
+                        </p>
+                        <Input
+                          type="email"
+                          placeholder="E-Mail-Adresse eingeben"
+                          value={deleteInputEmail}
+                          onChange={(e) => setDeleteInputEmail(e.target.value)}
+                          disabled={deletingId === comment.id}
+                          className="text-sm rounded-lg h-9"
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            className="rounded-lg h-8 text-xs"
+                            onClick={() => handleDelete(comment.id, deleteInputEmail)}
+                            disabled={deletingId === comment.id || !deleteInputEmail.trim()}
+                          >
+                            {deletingId === comment.id ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : null}
+                            Löschen
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="rounded-lg h-8 text-xs"
+                            onClick={() => { setDeleteDialogId(null); setDeleteInputEmail(''); }}
+                            disabled={deletingId === comment.id}
+                          >
+                            Abbrechen
+                          </Button>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
-          ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       )}
     </div>
