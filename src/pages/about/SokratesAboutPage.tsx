@@ -129,7 +129,7 @@ export function SokratesAboutPage() {
   ];
 
   const sokratesSidebar = {
-    dialogeUndQuellenUebersicht: [
+    dialogeUndQuellenÜbersicht: [
       { year: -430, title: 'Orakelspruch von Delphi', note: 'Der Beginn der sokratischen Mission' },
       { year: -420, title: 'Öffentliche Dialoge', note: 'Tägliche philosophische Gespräche auf Athener Agora' },
       { year: -405, title: 'Sophisten und Sokrates', note: 'Auseinandersetzung mit Protagoras und anderen' },
@@ -293,7 +293,7 @@ export function SokratesAboutPage() {
                     <h3 className="font-display text-2xl font-bold">Dialoge & Quellen</h3>
                   </div>
                   <div className="space-y-4">
-                    {sokratesSidebar.dialogeUndQuellenUebersicht.map((item) => (
+                    {sokratesSidebar.dialogeUndQuellenÜbersicht.map((item) => (
                       <div key={`${item.title}-${item.year}`} className="pb-4 border-b border-border/40 last:border-0">
                         <div className="text-xs font-semibold text-primary/80 uppercase tracking-[0.12em] mb-1">{formatYear(item.year)}</div>
                         <h4 className="text-sm font-semibold text-foreground mb-1">{item.title}</h4>

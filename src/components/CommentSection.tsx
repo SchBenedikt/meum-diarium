@@ -213,7 +213,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                 <Input
                   id="author-email"
                   type="email"
-                  placeholder="deine@email.com"
+                  placeholder="E-Mail-Adresse eingeben"
                   value={authorEmail}
                   onChange={(e) => setAuthorEmail(e.target.value)}
                   disabled={isSubmitting}
@@ -317,7 +317,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
                     <p className="text-xs text-muted-foreground leading-relaxed">Gib die E-Mail-Adresse ein, mit der du kommentiert hast.</p>
                     <Input
                       type="email"
-                      placeholder="deine@email.com"
+                      placeholder="E-Mail-Adresse eingeben"
                       value={deleteInputEmail}
                       onChange={(e) => setDeleteInputEmail(e.target.value)}
                       disabled={deletingId === comment.id}

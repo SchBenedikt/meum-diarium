@@ -72,14 +72,14 @@ const OERPage = () => {
       items: [
         {
           title: 'API-Dokumentation',
-          description: 'REST API fuer Integrationen, Unterrichtstools und Forschung.',
+          description: 'REST API für Integrationen, Unterrichtstools und Forschung.',
           license: 'MIT',
           format: 'JSON, OpenAPI',
           link: '/api',
         },
         {
           title: 'Quellcode',
-          description: 'Offener Projektcode als Grundlage fuer eigene Erweiterungen.',
+          description: 'Offener Projektcode als Grundlage für eigene Erweiterungen.',
           license: 'MIT',
           format: 'TypeScript, React',
           link: 'https://github.com/meum-diarium',
@@ -95,7 +95,7 @@ const OERPage = () => {
   const stats = [
     { value: '92+', label: 'Lexikon-Einträge' },
     { value: '36.140', label: 'Vokabeln' },
-    { value: String(authorsCount), label: 'Historische Persoenlichkeiten' },
+    { value: String(authorsCount), label: 'Historische Persönlichkeiten' },
     { value: '6', label: 'Lektionen' },
   ];
 

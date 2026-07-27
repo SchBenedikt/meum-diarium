@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/SEO';
-import { BarChart3, ArrowLeft, FileText, Route, ScrollText, Code2, Users, Hash, Clock3, Image, BookText, Layers, Activity } from 'lucide-react';
+import { BarChart3, ArrowLeft, FileText, Route, ScrollText, Code2, Users, Hash, Clock3, BookText, Layers, Activity } from 'lucide-react';
 
 type ApiStats = {
   posts: number;
@@ -110,7 +110,6 @@ export default function StatisticsPage() {
     () => [
       { label: 'Beiträge', value: apiStats?.posts ?? '—', icon: ScrollText },
       { label: 'Autoren', value: apiStats?.authors ?? '—', icon: Users },
-      { label: 'KI-Bilder', value: apiStats?.images?.total ?? '—', icon: Image },
       { label: 'Codezeilen', value: apiStats ? '52.946' : '—', icon: Code2 },
     ],
     [apiStats],
@@ -167,7 +166,7 @@ export default function StatisticsPage() {
           </Link>
         </div>
 
-        <section className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
+        <section className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10">
           {topCards.map((card) => (
             <Card key={card.label} className="card-modern border-border/50">
               <CardContent className="p-5 sm:p-6">
@@ -271,41 +270,7 @@ export default function StatisticsPage() {
         </section>
 
         <section className="grid lg:grid-cols-12 gap-6 mb-10">
-          <Card className="lg:col-span-5 card-modern border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 font-display text-2xl">
-                <Image className="h-5 w-5 text-primary" /> KI-Beitragsbilder
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Bilder gesamt</p>
-                  <p className="text-2xl font-bold">{apiStats?.images?.total ?? '—'}</p>
-                </div>
-                <div className="rounded-xl border border-border/60 bg-secondary/20 p-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-1">Speicher</p>
-                  <p className="text-2xl font-bold">{apiStats?.images?.totalMB ?? '—'} MB</p>
-                </div>
-              </div>
-              <div className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-sm text-muted-foreground">
-                <p>
-                  KI-generierte Bilder im klassizistisch-historisierenden Malstil (Barock, Rembrandt-Licht, akademischer Realismus).
-                  Erstellt mit Flux (lokal) für alle 47 Beiträge.
-                </p>
-              </div>
-              {apiStats?.images?.totalMB && (
-                <div className="h-2.5 rounded-full bg-secondary/50 overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary"
-                    style={{ width: `${Math.min(100, (apiStats.images.totalMB / 150) * 100)}%` }}
-                  />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          <Card className="lg:col-span-7 card-modern border-border/50">
+          <Card className="lg:col-span-12 card-modern border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-display text-2xl">
                 <Activity className="h-5 w-5 text-primary" /> Technische Kennzahlen

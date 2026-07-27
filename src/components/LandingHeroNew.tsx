@@ -179,14 +179,14 @@ export default function LandingHeroNew() {
       <ParallaxHero />
       
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5 relative z-10">
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-primary/5 to-secondary/5 relative z-10">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8"
           >
             {stats.map((stat, i) => (
               <AnimatedCounter
@@ -202,24 +202,24 @@ export default function LandingHeroNew() {
 
       
       {/* Enhanced Features Grid */}
-      <section className="py-20 bg-background">
+      <section className="py-16 sm:py-20 bg-background">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bricolage font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-4xl font-bricolage font-bold text-foreground mb-3 sm:mb-4">
               Alles für dein Latein-Erlebnis
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-4">
               Moderne Tools und Inhalte, die das Lernen erleichtern und begeistern
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {features.map((feature, i) => {
               const Icon = feature.icon;
               return (
@@ -250,25 +250,25 @@ export default function LandingHeroNew() {
         </div>
       </section>
 
-            {/* Historical Personalities Section - Two Column Layout */}
-      <section className="py-20 bg-secondary/30">
+      {/* Historical Personalities Section - Two Column Layout */}
+      <section className="py-16 sm:py-20 bg-secondary/30">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bricolage-grotesque font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-4xl font-bricolage-grotesque font-bold text-foreground mb-3 sm:mb-4">
               Historische Persönlichkeiten
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-4">
               Entdecke die größten Denker und Herrscher des antiken Roms
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Left Column - Selected Author Details */}
             <div className="relative">
               <AnimatePresence mode="wait">
@@ -280,11 +280,11 @@ export default function LandingHeroNew() {
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                   >
-                    <Card className="p-8 h-full">
-                      <div className="space-y-6">
+                    <Card className="p-5 sm:p-8 h-full">
+                      <div className="space-y-4 sm:space-y-6">
                         {/* Author Header */}
                         <motion.div 
-                          className="flex items-start gap-6"
+                          className="flex items-start gap-4 sm:gap-6"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 }}
@@ -502,44 +502,42 @@ export default function LandingHeroNew() {
       </section>
 
       {/* Enhanced Call to Action Section */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 to-secondary/10 border-t border-border">
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-primary/10 to-secondary/10 border-t border-border">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
-            <div className="space-y-4">
-              <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-2 text-sm font-medium">
-                <Heart className="mr-2 h-4 w-4" />
+            <div className="space-y-3 sm:space-y-4">
+              <Badge className="bg-primary/20 text-primary border-primary/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium">
+                <Heart className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 Made with Love for Latin Learners
               </Badge>
-              <h2 className="text-4xl sm:text-5xl font-bricolage-grotesque font-bold text-foreground">
+              <h2 className="text-3xl sm:text-5xl font-bricolage-grotesque font-bold text-foreground px-2">
                 Bereit für deine Zeitreise?
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
                 Beginne jetzt deine Reise durch die faszinierende Welt des antiken Roms und entdecke Latein wie nie zuvor.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
-              <Link to="/caesar">
-                <Button size="lg" className="rounded-full px-12 py-4 text-lg bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6">
+              <Link to="/caesar" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-6 sm:py-4 text-base sm:text-lg bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                   <Sparkles className="mr-2 h-5 w-5" />
                   Jetzt starten
                 </Button>
               </Link>
-              <Link to="/about">
-                <Button size="lg" variant="outline" className="rounded-full px-12 py-4 text-lg bg-background text-foreground border-border hover:bg-secondary/50 transition-all duration-300">
+              <Link to="/about" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-6 sm:py-4 text-base sm:text-lg bg-background text-foreground border-border hover:bg-secondary/50 transition-all duration-300">
                   Mehr erfahren
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
-            
-
           </motion.div>
         </div>
       </section>

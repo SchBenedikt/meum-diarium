@@ -12,7 +12,7 @@ import { Header } from "./components/layout/Header";
 import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuthors } from "@/hooks/use-authors";
-import { CookieBanner } from "@/components/CookieBanner";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { SWUpdateToast } from "@/components/SWUpdateToast";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 const Index = lazy(() => import("./pages/Index"));
@@ -222,7 +222,7 @@ const AppContent = () => {
             </Routes>
           </AnimatePresence>
         </Suspense>
-        <CookieBanner />
+        <ConsentBanner />
       </>
     </AuthorProvider>
   );

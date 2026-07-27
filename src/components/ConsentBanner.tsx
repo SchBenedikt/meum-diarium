@@ -55,7 +55,7 @@ function saveConsent(analytics: boolean, functional: boolean) {
   }));
 }
 
-export function CookieBanner() {
+export function ConsentBanner() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);

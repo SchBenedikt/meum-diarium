@@ -39,6 +39,7 @@ import {
   BarChart3,
   Code2,
   Check,
+  Clock3,
 
 } from 'lucide-react';
 import { SearchDialog } from '@/components/SearchDialog';
@@ -122,6 +123,7 @@ export function Header() {
   }, []);
   const navItems = [
     { href: '/lexikon', label: t('navLexicon'), icon: BookOpen },
+    { href: '/timeline', label: t('navTimeline'), icon: Clock3 },
     { href: '/lernen', label: t('navLernen'), icon: GraduationCap },
     { href: '/über', label: t('navAbout'), icon: Info },
   ];
@@ -134,6 +136,7 @@ export function Header() {
   const isActive = (href: string) => {
     const pathname = decodeURIComponent(location.pathname);
     if (href === '/lexikon') return pathname === '/lexikon' || pathname === '/lexicon';
+    if (href === '/timeline') return pathname === '/timeline';
     if (href === '/lernen') return pathname === '/lernen' || pathname === '/learn';
     if (href === '/über') return pathname === '/über' || pathname === '/about';
     return pathname === href;
@@ -193,17 +196,17 @@ export function Header() {
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button - Hidden on mobile, moved to sheet menu */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setSearchOpen(true)}
-                className="hidden md:flex h-10 w-10 sm:h-11 sm:w-11 rounded-lg border border-transparent touch-manipulation"
-                aria-label={t('search')}
-              >
-                <Search className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setSearchOpen(true)}
+                  className="hidden md:flex h-11 w-11 rounded-lg border border-transparent touch-manipulation"
+                  aria-label={t('search')}
+                >
+                  <Search className="h-5 w-5" />
+                </Button>
               {/* Desktop Controls (inkl. iPad) */}
-              <div className="hidden md:flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-1.5">
                 <AuthorSwitcher />
                 
                 {/* User Authentication */}
@@ -313,13 +316,13 @@ export function Header() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg"
+                      className="h-11 w-11 rounded-lg"
                       aria-label="Menu"
                     >
-                      <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+                      <Menu className="h-6 w-6" />
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-full p-0 flex flex-col sm:max-w-sm border-none bg-background/95 backdrop-blur-2xl">
+                  <SheetContent side="left" className="w-full p-0 flex flex-col sm:max-w-sm border-none bg-background/98 backdrop-blur-2xl">
                     <div className="flex flex-col h-full">
                       {/* Sheet Header */}
                       <div className="flex items-center justify-between p-6 border-b border-border/30">

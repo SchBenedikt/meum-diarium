@@ -262,7 +262,7 @@ export default function AgbPage() {
                 <div className="bg-muted/50 p-4 rounded-lg">
                   <p className="font-medium">Kontakt:</p>
                   <p className="text-sm text-muted-foreground">
-                    E-Mail: support@meum-diarium.de<br />
+                    E-Mail: benedikt@schächner.de<br />
                     Plattform: Meum Diarium
                   </p>
                 </div>

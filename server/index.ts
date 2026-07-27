@@ -519,12 +519,30 @@ app.get('/api/authors', (_req, res) => {
     res.json(authors);
 });
 
-app.get('/api/works', (_req, res) => {
-    res.json([]);
+app.get('/api/works', async (_req, res) => {
+    try {
+        const worksPath = path.resolve(__dirname, '../public/api/works.json');
+        const content = await fs.readFile(worksPath, 'utf-8');
+        res.json(JSON.parse(content));
+    } catch {
+        res.json([]);
+    }
 });
 
-app.get('/api/works/:slug', (_req, res) => {
-    res.status(404).json({ error: 'Not found' });
+app.get('/api/works/:slug', async (req, res) => {
+    try {
+        const worksPath = path.resolve(__dirname, '../public/api/works.json');
+        const content = await fs.readFile(worksPath, 'utf-8');
+        const works = JSON.parse(content);
+        const work = works.find((w: any) => w.slug === req.params.slug);
+        if (work) {
+            res.json(work);
+        } else {
+            res.status(404).json({ error: 'Not found' });
+        }
+    } catch {
+        res.status(404).json({ error: 'Not found' });
+    }
 });
 
 app.get('/api/tags', (_req, res) => {

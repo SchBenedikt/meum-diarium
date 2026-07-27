@@ -40,7 +40,7 @@ const contentEndpoints: Endpoint[] = [
     description: 'Beiträge listen/erstellen/aktualisieren/löschen.',
     params: [
       { name: 'slug', description: 'Optional: einzelner Beitrag.' },
-      { name: 'tag', description: 'Optional: Tag-Filter fuer Listenansicht.' },
+      { name: 'tag', description: 'Optional: Tag-Filter für Listenansicht.' },
     ],
     response: 'Post[] | Post',
   },
@@ -125,7 +125,7 @@ const learningEndpoints: Endpoint[] = [
     method: 'GET',
     path: '/api/vocab/{vokId}/form/{form}',
     title: 'Konkrete Form',
-    description: 'Form-spezifische Abfrage fuer eine Vokabel.',
+    description: 'Form-spezifische Abfrage für eine Vokabel.',
     response: '{ success, data }',
   },
   {
@@ -154,7 +154,7 @@ const aiEndpoints: Endpoint[] = [
     method: 'GET, POST',
     path: '/api/ask',
     title: 'Persona-Chat',
-    description: 'Proxy-Endpoint fuer historische Persona-Antworten inkl. Ressourcen.',
+    description: 'Proxy-Endpoint für historische Persona-Antworten inkl. Ressourcen.',
     params: [
       { name: 'persona', description: 'caesar | cicero | augustus | seneca | catilina' },
       { name: 'ask', description: 'Erforderlich, max. 800 Zeichen.' },

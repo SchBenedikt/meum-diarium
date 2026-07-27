@@ -303,11 +303,11 @@ async function rerankResourcesWithAI(env, question, persona, resources) {
         link: String(r?.link || ''),
     }));
 
-    const system = `Du bist ein strenger Relevanz-Ranker fuer Ressourcen.
+    const system = `Du bist ein strenger Relevanz-Ranker für Ressourcen.
 Aufgabe: Waehle alle Ressourcen, die wirklich zur Frage passen, in Relevanz-Reihenfolge.
 Regeln:
 - Bevorzuge konkrete inhaltliche Treffer, nicht nur allgemeine Rom-Begriffe.
-- Ignoriere generische Uebereinstimmungen (z.B. "ihre", "fuer", "alle", "des").
+- Ignoriere generische Übereinstimmungen (z.B. "ihre", "für", "alle", "des").
 - Wenn die Frage einen konkreten Begriff enthaelt (z.B. Rubikon), nimm nur Treffer mit klarem Bezug dazu.
 - Nutze Titel + Beschreibung + Link als Kontext.
 - Lexikon-Artikel sind ausdruecklich erlaubt, wenn sie thematisch passen.

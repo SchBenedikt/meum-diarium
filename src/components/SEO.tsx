@@ -20,32 +20,32 @@ export interface SEOProps {
 const defaultMeta = {
   de: {
     title: 'Meum Diarium – Römische Geschichte interaktiv: Caesar, Cicero, Augustus & Seneca',
-    description: 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader und ein umfassendes Lexikon – für Schule, Studium und alle Geschichtsbegeisterten.',
+    description: 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader, Vokabeltrainer und ein umfassendes Lexikon mit 92+ Einträgen – für Schule, Studium und alle Geschichtsbegeisterten. Kostenlose OER-Bildungsmaterialien.',
     siteName: 'Meum Diarium',
-    keywords: 'Römisches Reich, Latein lernen, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, interaktive Zeitreise, Latein-Reader, römische Geschichte, OER, Bildungsmaterial, Geschichtsunterricht',
+    keywords: 'Römisches Reich, Latein lernen, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, interaktive Zeitreise, Latein-Reader, römische Geschichte, OER, Bildungsmaterial, Geschichtsunterricht, Latein Vokabeln, KI Chat, historische Simulation',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
-    contact: 'info@meum-diarium.de',
+    contact: 'benedikt@schächner.de',
     type: 'website'
   },
   en: {
     title: 'Meum Diarium – Experience Ancient Rome Interactively: Caesar, Cicero, Augustus & Seneca',
-    description: 'Immerse yourself in the world of ancient Rome: experience history through the eyes of Caesar, Cicero, Augustus and Seneca. Authentic diary entries, scholarly analysis, AI chats, interactive simulations, Latin reader and a comprehensive lexicon – for school, university and history enthusiasts.',
+    description: 'Immerse yourself in the world of ancient Rome: experience history through the eyes of Caesar, Cicero, Augustus and Seneca. Authentic diary entries, scholarly analysis, AI chats, interactive simulations, Latin reader with 36,000+ vocabulary entries and a comprehensive lexicon – for school, university and history enthusiasts.',
     siteName: 'Meum Diarium',
-    keywords: 'Roman Empire, learn Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, interactive time travel, Latin reader, Roman history, OER, educational resources',
+    keywords: 'Roman Empire, learn Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, interactive time travel, Latin reader, Roman history, OER, educational resources, Latin vocabulary, AI chat',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
-    contact: 'info@meum-diarium.de',
+    contact: 'benedikt@schächner.de',
     type: 'website'
   },
   la: {
     title: 'Meum Diarium – Historiam Romanam Experire: Caesar, Cicero, Augustus, Seneca',
-    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, analysis erudita, colloquia AI, simulationes interactivae, lector Latinus et lexicon comprehensivum.',
+    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, analysis erudita, colloquia AI, simulationes interactivae, lector Latinus cum 36,000+ vocabulis et lexicon comprehensivum.',
     siteName: 'Meum Diarium',
-    keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, peregrinationes temporales, lector Latinus, lexicon',
+    keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, peregrinationes temporales, lector Latinus, lexicon, vocabularium',
     author: 'Meum Diarium Team',
     publisher: 'Meum Diarium',
-    contact: 'info@meum-diarium.de',
+    contact: 'benedikt@schächner.de',
     type: 'website'
   }
 };

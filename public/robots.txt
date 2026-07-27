@@ -6,6 +6,9 @@ User-agent: Googlebot-Image
 Allow: /images/
 Allow: /icons/
 
+User-agent: Googlebot-News
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
@@ -30,10 +33,33 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
+User-agent: Applebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
 Disallow: /.wrangler/
+Disallow: /*?*
+Disallow: /dashboard
 
 Sitemap: https://meum-diarium.xn--schchner-2za.de/sitemap.xml
+
+

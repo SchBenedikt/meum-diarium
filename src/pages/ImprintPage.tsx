@@ -84,8 +84,8 @@ export default function ImprintPage() {
                     <Mail className="w-5 h-5 text-primary mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">E-Mail</p>
-                      <a href="mailto:info@meum-diarium.de" className="text-primary hover:underline">
-                        info@meum-diarium.de
+                      <a href="mailto:benedikt@schächner.de" className="text-primary hover:underline">
+                        benedikt@schächner.de
                       </a>
                     </div>
                   </div>

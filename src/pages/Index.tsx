@@ -75,7 +75,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title={translatedAuthor ? `${translatedAuthor.name} – Tagebücher, Werke & Analysen` : undefined}
-        description={translatedAuthor?.description}
+        description={translatedAuthor?.description || 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader mit über 36.000 Vokabeln und ein umfassendes Lexikon – für Schule, Studium und alle Geschichtsbegeisterten.'}
         author={translatedAuthor?.name}
         image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
         type="website"
@@ -83,7 +83,7 @@ const Index = () => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Meum Diarium",
-          "description": translatedAuthor?.description || "Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen.",
+          "description": translatedAuthor?.description || "Erlebe die Geschichte Roms durch die Augen großer Persönlichkeiten: Caesar, Cicero, Augustus und Seneca. Tagebucheinträge, wissenschaftliche Kommentare und interaktive Zeitreisen. Kostenlose OER-Bildungsmaterialien für Latein und römische Geschichte.",
           "url": `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`,
           "potentialAction": {
             "@type": "SearchAction",
@@ -103,8 +103,18 @@ const Index = () => {
               "@type": "Thing",
               "name": "Lateinische Literatur",
               "description": "Werke von Caesar, Cicero, Seneca und Augustus"
+            },
+            {
+              "@type": "Thing",
+              "name": "Latein lernen",
+              "description": "Vokabeltrainer, Grammatik und interaktive Übungen"
             }
-          ]
+          ],
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": ["student", "teacher", "enthusiast"]
+          },
+          "educationalLevel": ["Sekundarstufe I", "Sekundarstufe II", "Studium", "Erwachsenenbildung"]
         }}
       />
       <main className="flex-1">

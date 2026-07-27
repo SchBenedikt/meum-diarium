@@ -170,11 +170,14 @@ export default function VocabularyPage() {
                         <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
                             <div className="w-8 h-[1px] bg-primary/30" />
                             WÖRTERBUCH
+                            <span className="ml-2 inline-flex items-center rounded-md border border-amber-400/40 bg-amber-500/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-amber-400">
+                                Beta
+                            </span>
                         </div>
-                        <h1 className="font-display text-5xl sm:text-7xl font-bold tracking-tight">
+                        <h1 className="font-display text-4xl sm:text-7xl font-bold tracking-tight">
                             Latein-<span className="text-primary italic">Deutsch</span>
                         </h1>
-                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
+                        <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed text-sm sm:text-base">
                             Durchsuche über 36.000 lateinische Vokabeln mit Deklinationen und Konjugationen.
                         </p>
                     </motion.div>
