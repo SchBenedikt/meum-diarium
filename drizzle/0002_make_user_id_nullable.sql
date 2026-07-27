@@ -1,4 +1,5 @@
--- Make user_id nullable in comments table to support anonymous comments
+PRAGMA foreign_keys=OFF;
+
 ALTER TABLE `comments` RENAME TO `comments_old`;
 
 CREATE TABLE `comments` (
@@ -17,7 +18,9 @@ CREATE TABLE `comments` (
 	FOREIGN KEY (`parent_id`) REFERENCES `comments`(`id`) ON UPDATE no action ON DELETE no action
 );
 
-INSERT INTO `comments` SELECT * FROM `comments_old`;
+INSERT INTO `comments` (`id`, `post_id`, `user_id`, `parent_id`, `content`, `is_deleted`, `created_at`, `updated_at`)
+SELECT `id`, `post_id`, `user_id`, `parent_id`, `content`, `is_deleted`, `created_at`, `updated_at`
+FROM `comments_old`;
 
 DROP TABLE `comments_old`;
 
@@ -25,3 +28,5 @@ CREATE INDEX `idx_comments_post_id` ON `comments` (`post_id`);
 CREATE INDEX `idx_comments_user_id` ON `comments` (`user_id`);
 CREATE INDEX `idx_comments_parent_id` ON `comments` (`parent_id`);
 CREATE INDEX `idx_comments_created_at` ON `comments` (`created_at`);
+
+PRAGMA foreign_keys=ON;
