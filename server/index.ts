@@ -1050,6 +1050,67 @@ app.get('/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Dev server running - using local data files' });
 });
 
+// Comments API - Dev server (in-memory storage)
+interface DevComment {
+    id: string;
+    postId: string;
+    authorName?: string;
+    authorEmail?: string;
+    content: string;
+    parentId?: string;
+    isDeleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
+const devComments: DevComment[] = [];
+
+app.get('/api/comments', (req, res) => {
+    const postId = req.query.postId as string;
+    if (!postId) {
+        return res.status(400).json({ error: 'Missing postId parameter' });
+    }
+    const filtered = devComments
+        .filter(c => c.postId === postId && !c.isDeleted)
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .map(({ authorEmail: _, ...rest }) => rest);
+    res.json({ comments: filtered });
+});
+
+app.post('/api/comments', (req, res) => {
+    const { postId, authorName, authorEmail, content, parentId } = req.body;
+    if (!postId) return res.status(400).json({ error: 'Missing postId' });
+    if (!content || content.length < 3 || content.length > 5000)
+        return res.status(400).json({ error: 'Content must be between 3 and 5000 characters' });
+    if (!authorName || authorName.length < 2 || authorName.length > 100)
+        return res.status(400).json({ error: 'Author name must be between 2 and 100 characters' });
+    if (!authorEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(authorEmail))
+        return res.status(400).json({ error: 'Valid email address required' });
+    const comment: DevComment = {
+        id: crypto.randomUUID(),
+        postId,
+        authorName,
+        authorEmail,
+        content,
+        parentId: parentId || undefined,
+        isDeleted: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+    };
+    devComments.push(comment);
+    res.status(201).json({ comment });
+});
+
+app.delete('/api/comments', (req, res) => {
+    const { id, email } = req.body;
+    if (!id || !email) return res.status(400).json({ error: 'Missing commentId or email' });
+    const idx = devComments.findIndex(c => c.id === id);
+    if (idx === -1) return res.status(404).json({ error: 'Comment not found' });
+    if (devComments[idx].authorEmail !== email) return res.status(403).json({ error: 'Unauthorized' });
+    devComments[idx].isDeleted = true;
+    devComments[idx].updatedAt = new Date().toISOString();
+    res.json({ success: true });
+});
+
 // **CRITICAL SPA FALLBACK**: All non-API, non-static routes go to index.html for React Router
 // This must be LAST to catch all deep routes like /caesar/works/:slug
 app.get(/^(?!\/api\/)/, async (_req, res) => {
