@@ -177,7 +177,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
           <MessageSquare className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="font-display text-2xl font-bold text-foreground">Diskussion</h3>
+          <h3 className="font-display text-2xl font-bold text-foreground">Kommentare</h3>
           <p className="text-sm text-muted-foreground">{comments.length} {comments.length === 1 ? 'Kommentar' : 'Kommentare'}</p>
         </div>
       </div>
@@ -269,7 +269,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
         <div className="text-center py-14 text-muted-foreground">
           <MessageSquare className="h-10 w-10 mx-auto mb-3 text-muted-foreground/30" />
           <p className="font-medium">Noch keine Kommentare</p>
-          <p className="text-sm mt-1 text-muted-foreground/70">Sei der Erste und starte die Diskussion!</p>
+          <p className="text-sm mt-1 text-muted-foreground/70">Sei der Erste und schreibe einen Kommentar!</p>
         </div>
       ) : (
         <div className="space-y-4">
