@@ -156,7 +156,8 @@ function PostContent({ post }: { post: BlogPost }) {
   const overlayTextColor = '#ffffff';
   const excerpt = contentToDisplay?.substring(0, 160) || '';
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
-  const finalImage = `${baseUrl}/images/caesar-hero.png`;
+  const authorImage = author?.heroImage || 'caesar-hero.png';
+  const finalImage = `${baseUrl}/images/${authorImage}`;
   const currentUrl = window.location.href;
   const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
 
@@ -177,7 +178,7 @@ function PostContent({ post }: { post: BlogPost }) {
         title={getDisplayTitle()}
         description={contentToDisplay?.substring(0, 160)}
         author={post?.author}
-        image={post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage}
+        image={post?.coverImage ? (post.coverImage.startsWith('/') || post.coverImage.startsWith('http') ? `${baseUrl}${post.coverImage}` : `${baseUrl}/images/${post.coverImage}`) : finalImage}
         type="article"
         publishedTime={post?.date}
         section={post?.historicalYear ? 'ancient-history' : 'roman-literature'}
@@ -189,7 +190,7 @@ function PostContent({ post }: { post: BlogPost }) {
           "description": contentToDisplay?.substring(0, 160),
           "articleBody": contentToDisplay?.substring(0, 5000),
           "wordCount": contentToDisplay?.split(/\s+/).length || 0,
-          "image": post?.coverImage ? `${baseUrl}/images/${post.coverImage}` : finalImage,
+          "image": post?.coverImage ? (post.coverImage.startsWith('/') || post.coverImage.startsWith('http') ? `${baseUrl}${post.coverImage}` : `${baseUrl}/images/${post.coverImage}`) : finalImage,
           "author": {
             "@type": "Person",
             "name": post?.author

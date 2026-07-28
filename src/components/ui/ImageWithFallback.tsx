@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { ImageOff } from 'lucide-react';
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -14,17 +14,19 @@ export function ImageWithFallback({
     ...props
 }: ImageWithFallbackProps) {
     const [error, setError] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const [imgSrc, setImgSrc] = useState(src);
     useEffect(() => {
         setImgSrc(src);
         setError(false);
+        setLoaded(false);
     }, [src]);
-    const handleError = () => {
+    const handleError = useCallback(() => {
         if (!error) {
             setError(true);
             setImgSrc(fallbackSrc);
         }
-    };
+    }, [error, fallbackSrc]);
     if (error && showIconFallback) {
         return (
             <div className={cn("flex items-center justify-center bg-muted text-muted-foreground", className)}>
@@ -33,12 +35,18 @@ export function ImageWithFallback({
         );
     }
     return (
-        <img
-            src={imgSrc || fallbackSrc}
-            alt={alt}
-            className={className}
-            onError={handleError}
-            {...props}
-        />
+        <div className={cn("relative overflow-hidden", className)}>
+            {!loaded && !error && (
+                <div className="absolute inset-0 bg-muted/60 animate-pulse" />
+            )}
+            <img
+                src={imgSrc || fallbackSrc}
+                alt={alt}
+                className={cn("w-full h-full transition-opacity duration-500", loaded ? 'opacity-100' : 'opacity-0')}
+                onError={handleError}
+                onLoad={() => setLoaded(true)}
+                {...props}
+            />
+        </div>
     );
 }
