@@ -35,7 +35,7 @@ export function ImageWithFallback({
         );
     }
     return (
-        <div className="relative">
+        <div className="relative w-full h-full">
             {!loaded && !error && (
                 <div className={cn("absolute inset-0 bg-muted/60 animate-pulse rounded-inherit", className)} />
             )}
