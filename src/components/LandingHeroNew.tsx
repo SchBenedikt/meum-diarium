@@ -399,7 +399,7 @@ export default function LandingHeroNew() {
                                       </p>
                                       <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
                                         <Calendar className="h-3 w-3" />
-                                        <span>{new Date(post.date).toLocaleDateString('de-DE')}</span>
+                                        <span>{post.historicalDate || new Date(post.date).toLocaleDateString('de-DE')}</span>
                                         {post.readingTime && (
                                           <>
                                             <span>•</span>
