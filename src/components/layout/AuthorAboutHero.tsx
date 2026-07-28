@@ -25,18 +25,17 @@ export function AuthorAboutHero({
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5]);
     return (
         <section ref={ref} className="relative min-h-screen flex items-end pb-32 pt-32 overflow-hidden">
-            <div className="absolute inset-0 z-0">
-                <motion.img
+            <motion.div
+                className="absolute inset-0 z-0"
+                style={{ y, opacity }}
+            >
+                <img
                     src={authorPage?.heroImage || authorInfo.heroImage}
                     alt={authorInfo.name}
                     className="w-full h-full object-cover scale-105"
-                    style={{ 
-                        y, 
-                        opacity,
-                        objectPosition: 'top'
-                    }}
+                    style={{ objectPosition: 'top' }}
                 />
-            </div>
+            </motion.div>
             <div className="container mx-auto relative z-20 px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

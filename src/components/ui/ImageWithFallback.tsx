@@ -35,14 +35,14 @@ export function ImageWithFallback({
         );
     }
     return (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full overflow-hidden">
             {!loaded && !error && (
-                <div className={cn("absolute inset-0 bg-muted/60 animate-pulse rounded-inherit", className)} />
+                <div className={cn("absolute inset-0 bg-muted/60 animate-pulse", className)} />
             )}
             <img
                 src={imgSrc || fallbackSrc}
                 alt={alt}
-                className={cn("transition-opacity duration-500", loaded ? 'opacity-100' : 'opacity-0', className)}
+                className={cn("transition-opacity duration-500 w-full h-full", loaded ? 'opacity-100' : 'opacity-0', className)}
                 onError={handleError}
                 onLoad={() => setLoaded(true)}
                 {...props}
