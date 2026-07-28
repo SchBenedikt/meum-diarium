@@ -16,6 +16,7 @@ import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import { SEO } from '@/components/SEO';
 import ciceroPageData from '@/content/pages/author-about-cicero.json';
+import CiceroLifeMap from '@/components/CiceroLifeMap';
 export function CiceroAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
   const { language, t } = useLanguage();
@@ -576,6 +577,19 @@ export function CiceroAboutPage() {
           </div>
         </section>
 
+        {/* Lebensstationen-Karte */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Ciceros Lebensstationen</h2>
+              <p className="text-lg text-muted-foreground">Von der Geburt in Arpinum über das Exil in Griechenland bis zur Ermordung in Formiae.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <CiceroLifeMap mapHeightClass="h-[520px] lg:h-[620px]" />
+            </div>
+          </div>
+        </section>
+
         {/* Legendäre Zitate */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -606,7 +620,7 @@ export function CiceroAboutPage() {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles className="h-3.5 w-3.5" /> Impact
+                      <Sparkles className="h-3.5 w-3.5" /> Wirkung
                     </span>
                     <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                   </div>

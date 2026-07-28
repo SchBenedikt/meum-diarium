@@ -1136,7 +1136,7 @@ export const de = {
                 when: '44 v. Chr., Senat',
                 meaning: 'Legendarischer Verratsmoment; überliefert von Sueton, vermutlich dramatisiert.'
             },
-            impact: 'Impact',
+            impact: 'Wirkung',
         },
         timeline: {
             campaigns: {

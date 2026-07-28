@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
 import { motion } from 'framer-motion';
+import SokratesAthensMap from '@/components/SokratesAthensMap';
 
 import sokratesPageData from '@/content/pages/author-about-sokrates.json';
 import { works as baseWorks } from '@/data/works';
@@ -555,6 +556,19 @@ export function SokratesAboutPage() {
           </div>
         </section>
 
+        {/* Athen-Karte */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Sokrates' Athen</h2>
+              <p className="text-lg text-muted-foreground">Die Schauplätze seines Philosophierens, seines Prozesses und seines Todes.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <SokratesAthensMap mapHeightClass="h-[520px] lg:h-[620px]" />
+            </div>
+          </div>
+        </section>
+
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
@@ -581,7 +595,7 @@ export function SokratesAboutPage() {
                 <div key={item.quote} className="card-modern card-hover-primary card-padding-md">
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles className="h-3.5 w-3.5" /> Impact
+                      <Sparkles className="h-3.5 w-3.5" /> Wirkung
                     </span>
                     <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                   </div>
