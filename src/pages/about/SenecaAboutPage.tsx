@@ -573,7 +573,7 @@ export function SenecaAboutPage() {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles className="h-3.5 w-3.5" /> Wirkung
+                      <Sparkles className="h-3.5 w-3.5" />
                     </span>
                     <span className="text-xs font-semibold text-primary/70">{item.when}</span>
                   </div>
