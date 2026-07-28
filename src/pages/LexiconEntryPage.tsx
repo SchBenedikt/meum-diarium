@@ -178,7 +178,7 @@ export default function LexiconEntryPage() {
                       <Newspaper className="h-5 w-5 text-primary" />
                       <h2 className="font-display text-2xl font-medium">{t('relatedEntries')}</h2>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-1 gap-6 max-w-2xl">
                       {relatedPosts.slice(0,2).map((post) => (
                         <BlogCard post={post} key={post.slug} />
                       ))}
