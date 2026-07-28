@@ -15,6 +15,7 @@ import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import catilinaPageData from '@/content/pages/author-about-catilina.json';
+import CatilinaConspiracyMap from '@/components/CatilinaConspiracyMap';
 
 export function CatilinaAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
@@ -621,6 +622,19 @@ export function CatilinaAboutPage() {
                   <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Karte der Verschwörung */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Catilinas Verschwörung</h2>
+              <p className="text-lg text-muted-foreground">Von Rom über Etrurien bis zur Endschlacht bei Pistoria.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <CatilinaConspiracyMap mapHeightClass="h-[520px] lg:h-[620px]" />
             </div>
           </div>
         </section>

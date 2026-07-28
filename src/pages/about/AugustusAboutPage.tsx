@@ -16,6 +16,7 @@ import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import { SEO } from '@/components/SEO';
 import augustusPageData from '@/content/pages/author-about-augustus.json';
+import AugustusCampaignMap from '@/components/AugustusCampaignMap';
 
 export function AugustusAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
@@ -834,6 +835,19 @@ export function AugustusAboutPage() {
                   <p className="text-sm text-foreground/85 leading-relaxed">{item.meaning}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Feldzüge-Karte */}
+        <section className="py-24 bg-surface-container-low/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Augustus' Feldzüge</h2>
+              <p className="text-lg text-muted-foreground">Vom Erben Caesars über Actium zum ersten römischen Kaiser.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <AugustusCampaignMap mapHeightClass="h-[520px] lg:h-[620px]" />
             </div>
           </div>
         </section>

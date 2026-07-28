@@ -1,0 +1,274 @@
+import { useEffect, useMemo, useState } from 'react';
+import { CircleMarker, MapContainer, Polyline, Popup, ScaleControl, TileLayer, Tooltip, ZoomControl } from 'react-leaflet';
+import L from 'leaflet';
+
+interface MarkerPoint {
+  title: string;
+  note: string;
+  description: string;
+  position: [number, number];
+  tone?: 'core' | 'siege' | 'sea';
+}
+
+interface RouteSegment {
+  id: string;
+  label: string;
+  color: string;
+  points: [number, number][];
+}
+
+interface AugustusCampaignMapProps {
+  className?: string;
+  mapHeightClass?: string;
+}
+
+const allMarkerPoints: MarkerPoint[] = [
+  {
+    title: 'Rom',
+    note: 'Ausgangspunkt • 44 v. Chr.',
+    description: 'Octavian, 19-jährig, erfährt in Apollonia von Caesars Ermordung und eilt nach Rom, um sein Erbe anzutreten.',
+    position: [41.90, 12.48], tone: 'core',
+  },
+  {
+    title: 'Mutina',
+    note: 'Schlacht von Mutina • 43 v. Chr.',
+    description: 'Erster militärischer Erfolg gegen Marcus Antonius. Octavian wird zum Imperator ausgerufen.',
+    position: [44.63, 10.95], tone: 'core',
+  },
+  {
+    title: 'Philippi',
+    note: 'Schlacht bei Philippi • 42 v. Chr.',
+    description: 'Gemeinsam mit Antonius vernichten Octavians Truppen die Caesarmörder Brutus und Cassius.',
+    position: [41.02, 24.33], tone: 'core',
+  },
+  {
+    title: 'Perusia',
+    note: 'Perusinischer Krieg • 41 v. Chr.',
+    description: 'Octavian belagert Lucius Antonius (Bruder des Marcus Antonius) in Perugia.',
+    position: [43.11, 12.38], tone: 'siege',
+  },
+  {
+    title: 'Naulochus',
+    note: 'Seeschlacht bei Naulochus • 36 v. Chr.',
+    description: 'Agrippa besiegt Sextus Pompeius. Sizilien fällt an Octavian.',
+    position: [38.28, 15.65], tone: 'sea',
+  },
+  {
+    title: 'Actium',
+    note: 'Schlacht bei Actium • 31 v. Chr.',
+    description: 'Agrippa besiegt Antonius und Kleopatra zur See. Entscheidungsschlacht um die Alleinherrschaft.',
+    position: [38.93, 20.77], tone: 'core',
+  },
+  {
+    title: 'Alexandria',
+    note: 'Eroberung Ägyptens • 30 v. Chr.',
+    description: 'Antonius und Kleopatra begehen Selbstmord. Ägypten wird römische Provinz. Octavian ist Alleinherrscher.',
+    position: [31.21, 29.9], tone: 'core',
+  },
+  {
+    title: 'Rom (Triumph)',
+    note: 'Triumph & Prinzipat • 29 v. Chr.',
+    description: 'Dreifacher Triumphzug. Octavian wird Augustus. Beginn des Prinzipats und der Pax Romana.',
+    position: [41.90, 12.48], tone: 'core',
+  },
+];
+
+const allRouteSegments: RouteSegment[] = [
+  {
+    id: 'erbfolgekrieg',
+    label: 'Erbfolgekrieg (44–42)',
+    color: '#dc2626',
+    points: [
+      [41.90, 12.48],
+      [44.63, 10.95],
+      [41.02, 24.33],
+    ],
+  },
+  {
+    id: 'sicherung-italiens',
+    label: 'Sicherung Italiens (41–36)',
+    color: '#ea580c',
+    points: [
+      [41.02, 24.33],
+      [43.11, 12.38],
+      [38.28, 15.65],
+    ],
+  },
+  {
+    id: 'entscheidungskampf',
+    label: 'Entscheidungskampf (31–30)',
+    color: '#7c3aed',
+    points: [
+      [38.28, 15.65],
+      [38.93, 20.77],
+      [31.21, 29.9],
+    ],
+  },
+  {
+    id: 'heimkehr-triumph',
+    label: 'Heimkehr & Triumph (29)',
+    color: '#2563eb',
+    points: [
+      [31.21, 29.9],
+      [41.90, 12.48],
+    ],
+  },
+];
+
+export default function AugustusCampaignMap({ className = '', mapHeightClass = 'h-[420px]' }: AugustusCampaignMapProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => { setIsClient(true); }, []);
+
+  const mapBounds = useMemo(() => {
+    const coords: [number, number][] = [];
+    allMarkerPoints.forEach(p => coords.push(p.position));
+    allRouteSegments.forEach(seg => seg.points.forEach(pt => coords.push(pt)));
+    const lats = coords.map(c => c[0]);
+    const lngs = coords.map(c => c[1]);
+    return [
+      [Math.min(...lats) - 2, Math.min(...lngs) - 4],
+      [Math.max(...lats) + 2, Math.max(...lngs) + 4],
+    ] as L.LatLngBoundsExpression;
+  }, []);
+
+  if (!isClient) {
+    return <div className={`${mapHeightClass} w-full rounded-3xl bg-card/60 border border-border/40 animate-pulse`} />;
+  }
+
+  return (
+    <div className={`card-modern overflow-hidden shadow-xl ${className}`}>
+      <div className="bg-gradient-to-br from-primary/5 via-background to-background/50 p-4 border-b border-border/40">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h3 className="font-display text-xl font-bold text-foreground flex items-center gap-2">
+              <span aria-hidden="true" className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-base leading-none">
+                👑
+              </span>
+              Augustus' Feldzüge (44 v. Chr. – 14 n. Chr.)
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              8 Schauplätze • Vom Erben Caesars zum ersten römischen Kaiser
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <MapContainer
+        bounds={mapBounds}
+        maxBounds={mapBounds}
+        maxBoundsViscosity={0.8}
+        minZoom={3}
+        maxZoom={9}
+        scrollWheelZoom
+        zoomControl={false}
+        className={`w-full ${mapHeightClass} antique-map`}
+        preferCanvas
+        worldCopyJump
+      >
+        <ZoomControl position="topright" />
+        <ScaleControl position="bottomleft" imperial={false} />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution="© OpenStreetMap, © Carto"
+        />
+        {allRouteSegments.map(segment => (
+          <Polyline
+            key={segment.id}
+            positions={segment.points}
+            pathOptions={{
+              color: segment.color,
+              weight: 6,
+              opacity: 0.9,
+              lineJoin: 'round',
+              lineCap: 'round',
+            }}
+          >
+            <Tooltip sticky permanent={false} direction="center" opacity={0.97} className="!bg-background/95 !border-2 !border-primary/40 !rounded-lg !shadow-xl">
+              <div className="text-xs font-bold text-foreground px-1">{segment.label}</div>
+            </Tooltip>
+          </Polyline>
+        ))}
+        {allMarkerPoints.map(point => (
+          <CircleMarker
+            key={point.title}
+            center={point.position}
+            radius={9}
+            pathOptions={{
+              color: point.tone === 'siege' ? '#d97706' : point.tone === 'sea' ? '#0284c7' : '#dc2626',
+              fillColor: point.tone === 'siege' ? '#fbbf24' : point.tone === 'sea' ? '#38bdf8' : '#f87171',
+              fillOpacity: 0.9,
+              weight: 3.5,
+              opacity: 1,
+            }}
+          >
+            <Popup maxWidth={320} minWidth={240} className="campaign-popup">
+              <div className="text-sm p-2">
+                <div className="font-bold text-foreground mb-1 text-base border-b-2 border-primary/30 pb-2">{point.title}</div>
+                <div className="text-[13px] text-primary font-semibold mt-2 mb-1.5">{point.note}</div>
+                <div className="text-[13px] text-foreground/80 leading-relaxed">{point.description}</div>
+              </div>
+            </Popup>
+            <Tooltip
+              direction="top"
+              offset={[0, -12]}
+              opacity={0.98}
+              permanent={false}
+              className="!bg-background/98 !border-2 !border-border/70 !rounded-lg !shadow-2xl !px-3 !py-1.5"
+            >
+              <span className="text-xs font-bold text-foreground">{point.title}</span>
+            </Tooltip>
+          </CircleMarker>
+        ))}
+      </MapContainer>
+
+      <div className="p-5 border-t border-border/40 bg-gradient-to-br from-background via-background/90 to-card/30">
+        <div className="flex flex-col gap-5">
+          <div>
+            <div className="text-xs font-bold text-primary/90 mb-3 uppercase tracking-widest flex items-center gap-2">
+              <span className="h-px flex-1 bg-primary/20" />
+              Feldzüge & Kampagnen
+              <span className="h-px flex-1 bg-primary/20" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {allRouteSegments.map(item => (
+                <div key={item.id} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:border-primary/40 hover:bg-card transition-all shadow-sm hover:shadow-md">
+                  <span
+                    className="h-3.5 w-10 rounded-full shadow-inner"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <span className="font-semibold text-foreground text-xs">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="text-xs font-bold text-primary/90 mb-3 uppercase tracking-widest flex items-center gap-2">
+              <span className="h-px flex-1 bg-primary/20" />
+              Ereignistypen
+              <span className="h-px flex-1 bg-primary/20" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-red-400 border-[3px] border-red-600 shadow-md" />
+                <span className="font-semibold text-foreground text-xs">Feldschlachten</span>
+              </div>
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-amber-300 border-[3px] border-amber-600 shadow-md" />
+                <span className="font-semibold text-foreground text-xs">Belagerungen</span>
+              </div>
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-card/80 border border-border/60 hover:bg-card transition-all shadow-sm">
+                <div className="h-4 w-4 rounded-full bg-sky-400 border-[3px] border-sky-600 shadow-md" />
+                <span className="font-semibold text-foreground text-xs">Seeschlachten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-4 pt-3 border-t border-border/20 flex items-center justify-between text-[11px] text-muted-foreground/60">
+          <span>Kartendaten: OpenStreetMap • CartoDB</span>
+          <span>© {new Date().getFullYear()} Meum Diarium</span>
+        </div>
+      </div>
+    </div>
+  );
+}

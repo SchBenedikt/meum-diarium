@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer';
 import { useAuthor } from '@/context/AuthorContext';
-import { Calendar, BookOpen, Award, Users, Scroll, Clock, ArrowRight, Landmark, Sparkles, Shield, Feather, TrendingDown } from 'lucide-react';
+import { Calendar, BookOpen, Award, Users, Scroll, Clock, ArrowRight, Landmark, Sparkles, Shield, Feather, TrendingDown, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { works as baseWorks } from '@/data/works';
 import slugify from 'slugify';
@@ -14,6 +14,7 @@ import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
 import sallustPageData from '@/content/pages/author-about-sallust.json';
+import SallustJourneyMap from '@/components/SallustJourneyMap';
 
 export function SallustAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
@@ -578,6 +579,19 @@ export function SallustAboutPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lebensstationen-Karte */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="font-display text-4xl font-bold mb-4">Sallusts Lebensreise</h2>
+              <p className="text-lg text-muted-foreground">Vom sabinischen Amiternum über Numidien zum römischen Geschichtsschreiber.</p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <SallustJourneyMap mapHeightClass="h-[520px] lg:h-[620px]" />
             </div>
           </div>
         </section>
