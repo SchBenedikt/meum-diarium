@@ -5,7 +5,6 @@ import { ArrowLeft, Newspaper } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
 import { LexiconSidebar } from '@/components/LexiconSidebar';
 import { TableOfContents } from '@/components/TableOfContents';
-import { motion } from 'framer-motion';
 import NotFound from './NotFound';
 import { FormattedContent } from '@/components/FormattedContent';
 import { useLanguage } from '@/context/LanguageContext';
@@ -14,6 +13,7 @@ import { BlogPost, LexiconEntry } from '@/types/blog';
 import { usePosts } from '@/hooks/use-posts';
 import { PageHero } from '@/components/layout/PageHero';
 import { fetchLexiconEntry } from '@/lib/api';
+import { lexicon as localLexicon } from '@/data/lexicon';
 import { SEO } from '@/components/SEO';
 import { usePageTracking } from '@/hooks/usePageTracking';
 export default function LexiconEntryPage() {
@@ -48,7 +48,12 @@ export default function LexiconEntryPage() {
       if (!slug) return;
       try {
         const data = await fetchLexiconEntry(slug);
-        setEntry(data || null);
+        if (data) {
+          setEntry(data);
+        } else {
+          const local = localLexicon.find(e => e.slug === slug);
+          setEntry(local || null);
+        }
       } catch (error) {
         console.error('Failed to load lexicon entry:', error);
         setEntry(null);
@@ -145,11 +150,7 @@ export default function LexiconEntryPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-[1fr_320px] gap-12">
               <article>
-              <motion.div 
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="glass-card space-y-6"
-              >
+              <div className="glass-card space-y-6">
                 <div className="flex flex-wrap items-center gap-2">
                   <Link to={`/search?category=${encodeURIComponent(entry.category)}`} className="group">
                     <span className="inline-flex justify-center items-center px-4 py-1.5 min-h-[28px] rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/15 transition-colors border border-primary/20 leading-tight">
@@ -185,7 +186,7 @@ export default function LexiconEntryPage() {
                     </div>
                   </div>
                 )}
-              </motion.div>
+              </div>
               </article>
               <aside className="hidden lg:block">
                 <div className="sticky top-28">
