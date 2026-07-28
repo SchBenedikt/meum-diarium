@@ -49,6 +49,8 @@ const STATIC_URLS: Array<{ loc: string; changefreq: string; priority: string; la
     { loc: '/augustus/chat', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
     { loc: '/seneca/chat', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
     { loc: '/catilina/chat', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
+    { loc: '/sallust/chat', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
+    { loc: '/sokrates/chat', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
     // Works pages
     { loc: '/caesar/works/de-bello-gallico', changefreq: 'monthly', priority: '0.8', lastmod: TODAY },
     { loc: '/caesar/works/de-bello-civili', changefreq: 'monthly', priority: '0.8', lastmod: TODAY },
@@ -69,11 +71,23 @@ const STATIC_URLS: Array<{ loc: string; changefreq: string; priority: string; la
     { loc: '/augustus/simulation', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
     { loc: '/seneca/simulation', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
     { loc: '/catilina/simulation', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
+    { loc: '/sallust/simulation', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
+    { loc: '/sokrates/simulation', changefreq: 'weekly', priority: '0.8', lastmod: TODAY },
+    // Grammar/Learning sub pages
+    { loc: '/learn/grammar/nouns', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/verbs', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/pronouns', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/adjectives', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/adverbs', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/participles', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
+    { loc: '/learn/grammar/syntax', changefreq: 'monthly', priority: '0.7', lastmod: TODAY },
     // Legal pages
-    { loc: '/privacy', changefreq: 'yearly', priority: '0.3', lastmod: TODAY },
-    { loc: '/legal', changefreq: 'yearly', priority: '0.3', lastmod: TODAY },
-    { loc: '/cookies', changefreq: 'yearly', priority: '0.3', lastmod: TODAY },
-    { loc: '/agb', changefreq: 'yearly', priority: '0.3', lastmod: TODAY },
+    { loc: '/privacy', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
+    { loc: '/legal', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
+    { loc: '/impressum', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
+    { loc: '/datenschutz', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
+    { loc: '/cookies', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
+    { loc: '/agb', changefreq: 'yearly', priority: '0.4', lastmod: TODAY },
 ];
 
 function escapeXml(str: string): string {

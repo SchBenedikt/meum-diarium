@@ -93,7 +93,7 @@ export function SEO({
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": defaults.siteName,
-        "url": baseUrl,
+        "url": finalImage.startsWith('http') ? finalImage : currentUrl,
         "description": finalDescription,
         "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
         "potentialAction": {
@@ -103,6 +103,12 @@ export function SEO({
             "urlTemplate": `${baseUrl}/search?q={search_term_string}`
           },
           "query-input": "required name=search_term_string"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": finalImage,
+          "width": 1200,
+          "height": 630
         },
         "publisher": {
           "@type": "Organization",
@@ -125,12 +131,14 @@ export function SEO({
         "description": finalDescription,
         "sameAs": [
           `${baseUrl}/about`,
-          `${baseUrl}/oer`
+          `${baseUrl}/oer`,
+          `${baseUrl}/projekt`
         ],
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
-          "email": defaults.contact
+          "email": defaults.contact,
+          "availableLanguage": ["German", "English", "Latin"]
         }
       },
       {
@@ -139,11 +147,12 @@ export function SEO({
         "name": defaults.siteName,
         "url": baseUrl,
         "description": finalDescription,
-        "educationalLevel": "Sekundarstufe I & II",
+        "educationalLevel": ["Sekundarstufe I", "Sekundarstufe II", "Studium"],
         "audience": {
           "@type": "EducationalAudience",
-          "educationalRole": ["student", "teacher"]
-        }
+          "educationalRole": ["student", "teacher", "researcher"]
+        },
+        "teaches": ["Latein", "Römische Geschichte", "Antike Literatur", "Philosophie"]
       }
     ];
 
@@ -201,6 +210,13 @@ export function SEO({
     removeMetaTag('mobile-web-app-capable');
     removeMetaTag('apple-mobile-web-app-capable');
     removeMetaTag('apple-mobile-web-app-status-bar-style');
+    removeMetaTag('article:published_time');
+    removeMetaTag('article:modified_time');
+    removeMetaTag('article:section');
+    removeMetaTag('article:tag');
+    removeMetaTag('og:image:width');
+    removeMetaTag('og:image:height');
+    removeMetaTag('og:locale:alternate');
 
     // Add new meta tags
     updateMetaTag('description', finalDescription);
@@ -209,6 +225,7 @@ export function SEO({
     updateMetaTag('keywords', defaults.keywords);
     updateMetaTag('application-name', defaults.siteName);
     updateMetaTag('apple-mobile-web-app-title', defaults.siteName);
+    updateMetaTag('google', 'notranslate');
 
     // Open Graph
     updateMetaTag('og:title', finalTitle, true);
@@ -217,8 +234,21 @@ export function SEO({
     updateMetaTag('og:url', currentUrl, true);
     updateMetaTag('og:image', finalImage, true);
     updateMetaTag('og:image:alt', title || defaults.siteName, true);
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
     updateMetaTag('og:site_name', defaults.siteName, true);
     updateMetaTag('og:locale', language === 'de' ? 'de_DE' : language === 'en' ? 'en_US' : 'la', true);
+    updateMetaTag('og:locale:alternate', 'de_DE', true);
+    updateMetaTag('og:locale:alternate', 'en_US', true);
+    
+    // Article-specific OG tags
+    if (type === 'article') {
+      if (publishedTime) updateMetaTag('article:published_time', publishedTime, true);
+      if (modifiedTime) updateMetaTag('article:modified_time', modifiedTime, true);
+      if (section) updateMetaTag('article:section', section, true);
+      if (author) updateMetaTag('article:author', author, true);
+      tags.forEach(tag => updateMetaTag('article:tag', tag, true));
+    }
     
     // Twitter Card
     updateMetaTag('twitter:card', 'summary_large_image', true);
