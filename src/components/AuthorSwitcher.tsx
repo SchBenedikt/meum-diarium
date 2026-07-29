@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ImageWithFallback } from './ui/ImageWithFallback';
 export function AuthorSwitcher() {
   const { currentAuthor, setCurrentAuthor, authorInfo } = useAuthor();
   const { authors, isLoading } = useAuthors();
@@ -19,7 +18,7 @@ export function AuthorSwitcher() {
         <Button variant="outline" className="gap-2 h-10 px-3 border-border/50">
           {currentAuthor && authorInfo ? (
             <>
-              <ImageWithFallback src={authorInfo.heroImage} alt={authorInfo.name} className="h-6 w-6 rounded-md object-cover" />
+              <img src={authorInfo.heroImage} alt={authorInfo.name} className="h-6 w-6 rounded-md object-cover" />
               <span className="hidden sm:inline text-sm font-medium">
                 {authorInfo.name.split(' ').pop()}
               </span>
@@ -43,7 +42,7 @@ export function AuthorSwitcher() {
             asChild
           >
             <Link to={`/${author.id}`} className="flex items-center gap-3 py-2.5">
-              <ImageWithFallback src={author.heroImage} alt={author.name} className="h-8 w-8 rounded-lg object-cover" />
+              <img src={author.heroImage} alt={author.name} className="h-8 w-8 rounded-lg object-cover" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{author.name}</p>
                 <p className="text-xs text-muted-foreground">{author.title}</p>

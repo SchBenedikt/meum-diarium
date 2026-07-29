@@ -16,6 +16,7 @@ export function ImageWithFallback({
     const [error, setError] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const [imgSrc, setImgSrc] = useState(src);
+    const { style: consumerStyle, ...imgProps } = props;
     useEffect(() => {
         setImgSrc(src);
         setError(false);
@@ -35,17 +36,18 @@ export function ImageWithFallback({
         );
     }
     return (
-        <div className="relative overflow-hidden">
+        <div className={cn("relative overflow-hidden bg-muted/60", className)}>
             {!loaded && !error && (
-                <div className={cn("absolute inset-0 bg-muted/60 animate-pulse", className)} />
+                <div className="absolute inset-0 bg-muted/60 animate-pulse" />
             )}
             <img
                 src={imgSrc || fallbackSrc}
                 alt={alt}
-                className={cn("transition-opacity duration-500 w-full h-full", loaded ? 'opacity-100' : 'opacity-0', className)}
+                className={cn("absolute inset-0 w-full h-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
+                style={{ transition: 'all 0.5s', ...consumerStyle }}
                 onError={handleError}
                 onLoad={() => setLoaded(true)}
-                {...props}
+                {...imgProps}
             />
         </div>
     );

@@ -6,7 +6,7 @@ import { getPostTags } from '@/lib/tag-utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import { usePosts } from '@/hooks/use-posts';
-import { ImageWithFallback } from './ui/ImageWithFallback';
+
 interface BlogSidebarProps {
   post: BlogPost;
 }
@@ -37,7 +37,7 @@ export function BlogSidebar({ post }: BlogSidebarProps) {
         <div className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 lg:p-6 overflow-hidden relative group">
           <Link to={`/${author.id}/about`} className="group block transition-all -m-1 p-1 rounded-xl hover:bg-secondary/70 active:scale-[0.99]">
             <div className="flex items-center gap-3">
-              <ImageWithFallback src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
+              <img src={author.heroImage} alt={author.name} className="h-12 w-12 rounded-lg object-cover ring-2 ring-border/60" />
               <div className="min-w-0">
                 <p className="font-display text-lg font-bold truncate italic group-hover:text-primary transition-colors">{author.name}</p>
                 <p className="text-sm text-muted-foreground truncate">{author.title}</p>
