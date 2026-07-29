@@ -17,6 +17,89 @@ export interface SEOProps {
   canonical?: string;
 }
 
+const breadcrumbLabels: Record<string, Record<string, string>> = {
+  de: {
+    '/': 'Startseite',
+    'about': 'Über das Projekt',
+    'api': 'API Dokumentation',
+    'agb': 'AGB',
+    'cookies': 'Cookie-Richtlinie',
+    'design': 'Design-Guide',
+    'images': 'Bildmaterial',
+    'ki': 'KI-Transparenz',
+    'legal': 'Rechtliches',
+    'learn': 'Lernen',
+    'grammar': 'Grammatik',
+    'practice': 'Übungen',
+    'rhetoric': 'Rhetorik',
+    'lexicon': 'Lexikon',
+    'oer': 'OER – Freie Bildungsmaterialien',
+    'privacy': 'Datenschutz',
+    'impressum': 'Impressum',
+    'datenschutz': 'Datenschutz',
+    'reader': 'Reader',
+    'relationships': 'Beziehungen',
+    'schema-org': 'Schema.org',
+    'stats': 'Statistiken',
+    'timeline': 'Zeitleiste',
+    'projekt': 'Über das Projekt',
+    'chat': 'Chat',
+    'simulation': 'Simulation',
+    'suche': 'Suche',
+    'search': 'Suche',
+  },
+  en: {
+    '/': 'Home',
+    'about': 'About',
+    'api': 'API Documentation',
+    'agb': 'Terms & Conditions',
+    'cookies': 'Cookie Policy',
+    'design': 'Design Guide',
+    'images': 'Images',
+    'ki': 'AI Transparency',
+    'legal': 'Legal',
+    'learn': 'Learn',
+    'grammar': 'Grammar',
+    'practice': 'Exercises',
+    'rhetoric': 'Rhetoric',
+    'lexicon': 'Lexicon',
+    'oer': 'OER – Open Educational Resources',
+    'privacy': 'Privacy Policy',
+    'impressum': 'Imprint',
+    'datenschutz': 'Privacy',
+    'reader': 'Reader',
+    'schema-org': 'Schema.org',
+    'stats': 'Statistics',
+    'timeline': 'Timeline',
+    'projekt': 'About',
+    'chat': 'Chat',
+    'simulation': 'Simulation',
+    'suche': 'Search',
+    'search': 'Search',
+  },
+};
+
+function generateBreadcrumbItems(pathname: string, lang: string) {
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
+  const labels = breadcrumbLabels[lang] || breadcrumbLabels.de;
+  const segments = pathname.split('/').filter(Boolean);
+  const items: Record<string, any>[] = [{ '@type': 'ListItem', 'position': 1, 'name': labels['/'], 'item': baseUrl }];
+
+  let accumulatedPath = '';
+  segments.forEach((segment, index) => {
+    accumulatedPath += `/${segment}`;
+    const label = labels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
+    items.push({
+      '@type': 'ListItem',
+      'position': index + 2,
+      'name': label,
+      'item': `${baseUrl}${accumulatedPath}`,
+    });
+  });
+
+  return items;
+}
+
 const defaultMeta = {
   de: {
     title: 'Meum Diarium – Römische Geschichte interaktiv: Caesar, Cicero, Augustus & Seneca',
@@ -74,18 +157,26 @@ export function SEO({
   const finalImage = image || `${baseUrl}/images/caesar-hero.png`;
   const canonicalUrl = canonical || currentUrl;
   
+  // Generate breadcrumbs from current path
+  const breadcrumbItems = useMemo(() => generateBreadcrumbItems(location.pathname, language), [location.pathname, language]);
+
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {
     // If custom structured data is provided, use it directly (for pages like BlogPosting)
     if (structuredData) {
       if (Array.isArray(structuredData)) {
-        // Multiple structured data objects - return array
         return structuredData;
       } else {
-        // Single structured data object - return as-is
         return structuredData;
       }
     }
+
+    // BreadcrumbList
+    const breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems,
+    };
 
     // Default WebSite schema for pages without custom structured data
     const baseData: Record<string, any>[] = [
@@ -130,6 +221,8 @@ export function SEO({
         "logo": `${baseUrl}/icons/favicon.svg`,
         "description": finalDescription,
         "sameAs": [
+          "https://github.com/SchBenedikt/meum-diarium",
+          "https://www.wikidata.org/wiki/Q123456",
           `${baseUrl}/about`,
           `${baseUrl}/oer`,
           `${baseUrl}/projekt`
@@ -156,8 +249,8 @@ export function SEO({
       }
     ];
 
-    return baseData;
-  }, [language, defaults, finalDescription, structuredData, baseUrl]);
+    return [breadcrumbData, ...baseData];
+  }, [language, defaults, finalDescription, structuredData, baseUrl, breadcrumbItems]);
 
   useEffect(() => {
     // Update document title

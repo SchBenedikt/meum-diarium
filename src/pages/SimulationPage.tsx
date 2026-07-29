@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { SimulationCard } from '@/components/simulation/SimulationCard';
 import { Footer } from '@/components/layout/Footer';
 import { simulateAI } from '@/lib/api';
+import { SEO } from '@/components/SEO';
 export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const { setCurrentAuthor } = useAuthor();
@@ -145,6 +146,11 @@ export default function SimulationPage() {
         };
         return (
             <div className="min-h-screen flex flex-col bg-background">
+                <SEO
+                    title={author ? `Historische Simulation mit ${author.name} – Geschichte interaktiv erleben` : 'Historische Simulation – Römische Geschichte interaktiv'}
+                    description={author ? `Triff Entscheidungen als ${author.name} und erlebe die Folgen in dieser KI-gestützten historischen Simulation.` : 'Werde Teil der römischen Geschichte: Interaktive Simulationen mit Caesar, Cicero, Augustus, Seneca und mehr.'}
+                    image={author ? `${baseUrl}/images/${authorId}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
+                />
                 <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
                     {authorsLoading ? (
                         <div className="flex items-center justify-center min-h-[60vh] text-muted-foreground">

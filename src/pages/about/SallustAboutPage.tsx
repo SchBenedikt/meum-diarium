@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import { SEO } from '@/components/SEO';
 import sallustPageData from '@/content/pages/author-about-sallust.json';
 import SallustJourneyMap from '@/components/SallustJourneyMap';
 
@@ -54,6 +55,7 @@ export function SallustAboutPage() {
       </div>
     );
   }
+  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
 
   const details = authorDetails.sallust || {
     birthPlace: 'Amiternum',
@@ -186,6 +188,12 @@ export function SallustAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
+      <SEO
+        title={`${authorInfo.name} – Römischer Historiker und Politiker`}
+        description={authorInfo.description}
+        author={authorInfo.name}
+        image={`${baseUrl}/images/sallust-hero.png`}
+      />
       <main className="flex-1">
         <AuthorAboutHero
           authorInfo={authorInfo}

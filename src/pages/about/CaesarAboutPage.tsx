@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import { SEO } from '@/components/SEO';
 import caesarPageData from '@/content/pages/author-about-caesar.json';
 export function CaesarAboutPage() {
   const { setCurrentAuthor, authorInfo } = useAuthor();
@@ -55,6 +56,7 @@ export function CaesarAboutPage() {
       </div>
     );
   }
+  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
   const details = authorDetails.caesar;
   const caesarSnapshots = [
     { label: t('caesar.snapshots.lifespan'), value: '100–44 ' + t('common.bc'), hint: '56 ' + t('common.years') },
@@ -199,6 +201,12 @@ export function CaesarAboutPage() {
   ];
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
+      <SEO
+        title={`${authorInfo.name} – Feldherr, Staatsmann und Diktator Roms`}
+        description={authorInfo.description}
+        author={authorInfo.name}
+        image={`${baseUrl}/images/caesar-hero.png`}
+      />
       <main className="flex-1">
         <AuthorAboutHero
           authorInfo={authorInfo}

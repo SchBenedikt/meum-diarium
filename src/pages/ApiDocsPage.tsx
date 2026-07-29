@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { SEO } from '@/components/SEO';
 import { Shield, Code2, Database, Bot, Activity, AlertTriangle, Search, BookOpen, Zap, Beaker, Puzzle, Lightbulb, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -348,10 +349,6 @@ export default function ApiDocsPage() {
     }
   };
 
-  useEffect(() => {
-    document.title = 'Meum Diarium API | Dokumentation';
-  }, []);
-
   const filteredGroups = useMemo(() => {
     const q = query.trim().toLowerCase();
 
@@ -390,6 +387,10 @@ export default function ApiDocsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+      <SEO
+        title="API Dokumentation"
+        description="Vollständige Dokumentation aller Content- und KI-Endpunkte von Meum Diarium. Interaktive API-Tests für Entwickler und Forscher."
+      />
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-14">
         {/* Header */}
         <header className="space-y-6">

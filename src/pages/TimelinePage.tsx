@@ -10,6 +10,7 @@ import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslatedTimeline } from '@/lib/translator';
 import { TimelineEvent } from '@/types/blog';
+import { SEO } from '@/components/SEO';
 export default function TimelinePage() {
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
@@ -18,6 +19,7 @@ export default function TimelinePage() {
   useEffect(() => {
     setCurrentAuthor(null);
   }, [setCurrentAuthor]);
+  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
   useEffect(() => {
     async function translateAndMerge() {
       const translatedStatic = await getTranslatedTimeline(language);
@@ -41,6 +43,11 @@ export default function TimelinePage() {
   }, [timelineEvents, t]);
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+      <SEO
+        title="Römische Geschichte Zeitleiste – Interaktiver Zeitstrahl"
+        description="Erkunde die römische Geschichte auf einer interaktiven Zeitleiste. Von der Gründung Roms bis zum Fall des Weströmischen Reiches – mit Caesar, Cicero, Augustus und Seneca."
+        image={`${baseUrl}/images/caesar-hero.png`}
+      />
       <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">

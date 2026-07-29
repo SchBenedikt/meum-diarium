@@ -15,6 +15,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { VocabularyDetail } from '@/components/vocabulary/VocabularyDetail';
+import { SEO } from '@/components/SEO';
 
 interface VocEntry {
     id: number;
@@ -157,8 +158,14 @@ export default function VocabularyPage() {
         );
     }
 
+    const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
+            <SEO
+                title="Latein Vokabeltrainer – 36.000+ Vokabeln"
+                description="Durchsuche über 36.000 lateinische Vokabeln mit Übersetzungen, Grammatik-Informationen und Kontextbeispielen aus originalen lateinischen Texten."
+                image={`${baseUrl}/images/cicero-hero.png`}
+            />
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 px-2">

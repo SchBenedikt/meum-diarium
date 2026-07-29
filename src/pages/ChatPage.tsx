@@ -12,6 +12,7 @@ import { askAI } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useLanguage } from '@/context/LanguageContext';
+import { SEO } from '@/components/SEO';
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const [searchParams] = useSearchParams();
@@ -27,6 +28,7 @@ export default function ChatPage() {
     const [resources, setResources] = useState<{ title: string; type: 'map' | 'text' | 'lexicon'; description?: string; link: string }[]>([]);
     
     const author = authorId ? authors[authorId as Author] : null;
+    const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
     
     // Set current author when authorId changes
     useEffect(() => {
@@ -106,6 +108,11 @@ export default function ChatPage() {
     };
     return (
         <div className="h-screen flex flex-col bg-background overflow-hidden">
+            <SEO
+                title={author ? `KI-Chat mit ${author.name} – Stelle Fragen zur römischen Geschichte` : 'KI-Chat mit historischen Persönlichkeiten'}
+                description={author ? `Sprich mit ${author.name} – stelle Fragen zu seinen Taten, Gedanken und der römischen Geschichte. KI-gestützter historischer Dialog.` : 'Sprich mit Caesar, Cicero, Augustus und Seneca. Stelle Fragen zur römischen Geschichte und erhalte authentische Antworten per KI.'}
+                image={author ? `${baseUrl}/images/${authorId}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
+            />
             <main className="flex-1 flex flex-col min-h-0 container mx-auto px-4 pt-4 sm:pt-6 max-w-7xl">
                 {/* Minimalist Header */}
                 <div className="flex items-center justify-between mb-4 shrink-0">

@@ -294,6 +294,7 @@ export default function LandingHeroNew() {
                               src={currentAuthorData.image}
                               alt={currentAuthorData.name}
                               className="w-full h-full object-cover"
+                              fetchPriority="high"
                             />
                           </div>
                           <div className="flex-1">

@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { PageContent } from '@/types/page';
 import { useAuthorDetails } from './useAuthorDetails';
 import { AuthorAboutHero } from '@/components/layout/AuthorAboutHero';
+import { SEO } from '@/components/SEO';
 import catilinaPageData from '@/content/pages/author-about-catilina.json';
 import CatilinaConspiracyMap from '@/components/CatilinaConspiracyMap';
 
@@ -55,6 +56,7 @@ export function CatilinaAboutPage() {
       </div>
     );
   }
+  const baseUrl = 'https://meum-diarium.xn--schchner-2za.de';
 
   const details = authorDetails.catilina;
 
@@ -218,6 +220,12 @@ export function CatilinaAboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
+      <SEO
+        title={`${authorInfo.name} – Verschwörer oder Reformer? Die Catilinarische Verschwörung`}
+        description={authorInfo.description}
+        author={authorInfo.name}
+        image={`${baseUrl}/images/catilina-hero.png`}
+      />
       <main className="flex-1">
         <AuthorAboutHero
           authorInfo={authorInfo}
