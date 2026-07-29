@@ -18,6 +18,8 @@ import {
   Coffee,
   ArrowLeft,
   Layers,
+  Award,
+  Flame,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
