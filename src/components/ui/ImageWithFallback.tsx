@@ -35,7 +35,7 @@ export function ImageWithFallback({
         );
     }
     return (
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative overflow-hidden">
             {!loaded && !error && (
                 <div className={cn("absolute inset-0 bg-muted/60 animate-pulse", className)} />
             )}
