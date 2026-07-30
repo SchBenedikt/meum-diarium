@@ -95,7 +95,7 @@ export default function LexiconEntryPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={`${entry.term} - ${t('lexicon')} | Meum Diarium`}
+        title={`${entry.term} – ${entry.category} im ${t('lexicon')}`}
         description={`${entry.term}: ${entry.definition?.substring(0, 160) || 'Lateinischer Begriff aus der antiken Welt'}`}
         image={`${baseUrl}/images/caesar-hero.png`}
         type="article"

@@ -138,7 +138,7 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={`${t('lexicon')} | Meum Diarium`}
+        title={`${t('lexicon')} – 92+ Begriffe zur römischen Antike`}
         description={t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.'}
         keywords="Latein, Lexikon, antike Geschichte, römisches Reich, Begriffe, Definitionen, Etymologie, Caesar, Cicero, Seneca, Augustus"
         image={`${baseUrl}/images/caesar-hero.png`}
