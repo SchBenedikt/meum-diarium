@@ -43,7 +43,7 @@ export function ImageWithFallback({
             <img
                 src={imgSrc || fallbackSrc}
                 alt={alt}
-                className={cn("h-full w-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
+                className={cn("absolute inset-0 w-full h-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
                 style={{ transition: 'all 0.5s', ...consumerStyle }}
                 onError={handleError}
                 onLoad={() => setLoaded(true)}
