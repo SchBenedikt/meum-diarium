@@ -38,12 +38,12 @@ export function ImageWithFallback({
     return (
         <div className={cn("relative overflow-hidden bg-muted/60", className)}>
             {!loaded && !error && (
-                <div className="absolute inset-0 bg-muted/60 animate-pulse" />
+                <div className="absolute inset-0 bg-muted/60 animate-pulse z-10" />
             )}
             <img
                 src={imgSrc || fallbackSrc}
                 alt={alt}
-                className={cn("absolute inset-0 w-full h-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
+                className={cn("h-full w-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
                 style={{ transition: 'all 0.5s', ...consumerStyle }}
                 onError={handleError}
                 onLoad={() => setLoaded(true)}

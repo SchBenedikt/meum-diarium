@@ -61,7 +61,7 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       >
         {/* Bild links – nur anzeigen wenn coverImage vorhanden */}
         {resolvedCoverImage && (
-          <div className="relative h-40 w-full shrink-0 md:h-auto md:w-48 lg:w-56">
+          <div className="relative h-40 w-full shrink-0 md:w-48 lg:w-56 md:aspect-[4/3]">
             <ImageWithFallback
               src={resolvedCoverImage}
               alt={post.title}
