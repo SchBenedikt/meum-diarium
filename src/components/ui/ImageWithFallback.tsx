@@ -4,11 +4,13 @@ import { ImageOff } from 'lucide-react';
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     fallbackSrc?: string;
     showIconFallback?: boolean;
+    imgClassName?: string;
 }
 export function ImageWithFallback({
     src,
     alt,
     className,
+    imgClassName,
     fallbackSrc = '/placeholder.svg',
     showIconFallback = false,
     ...props
@@ -36,15 +38,15 @@ export function ImageWithFallback({
         );
     }
     return (
-        <div className={cn("relative overflow-hidden bg-muted/60", className)}>
+        <div className={cn("relative overflow-hidden", className)}>
             {!loaded && !error && (
                 <div className="absolute inset-0 bg-muted/60 animate-pulse z-10" />
             )}
             <img
                 src={imgSrc || fallbackSrc}
                 alt={alt}
-                className={cn("absolute inset-0 w-full h-full object-cover", loaded ? 'opacity-100' : 'opacity-0', className)}
-                style={{ transition: 'all 0.5s', ...consumerStyle }}
+                className={cn("absolute inset-0 w-full h-full object-cover", loaded ? 'opacity-100' : 'opacity-0', imgClassName)}
+                style={{ transition: 'opacity 0.5s', ...consumerStyle }}
                 onError={handleError}
                 onLoad={() => setLoaded(true)}
                 {...imgProps}

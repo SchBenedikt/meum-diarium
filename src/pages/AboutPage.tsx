@@ -8,6 +8,7 @@ import { AugustusAboutPage } from './about/AugustusAboutPage';
 import { SenecaAboutPage } from './about/SenecaAboutPage';
 import { CatilinaAboutPage } from './about/CatilinaAboutPage';
 import { SokratesAboutPage } from './about/SokratesAboutPage';
+import { SallustAboutPage } from './about/SallustAboutPage';
 
 export default function AboutPage() {
   const { authorId } = useParams<{ authorId: string }>();
@@ -30,6 +31,8 @@ export default function AboutPage() {
       return <CatilinaAboutPage />;
     case 'sokrates':
       return <SokratesAboutPage />;
+    case 'sallust':
+      return <SallustAboutPage />;
     default:
       return <AboutPageNewLayout />;
   }

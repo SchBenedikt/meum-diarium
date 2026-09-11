@@ -174,7 +174,6 @@ const AppContent = () => {
               <Route path="/schema-org" element={<PageTransition><SchemaOrgDocPage /></PageTransition>} />
               <Route path="/seo" element={<PageTransition><SchemaOrgDocPage /></PageTransition>} />
               {/* <Route path="/ai-explanation" element={<PageTransition><AIExplanationPage /></PageTransition>} /> */}
-              <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
               {/* Admin routes - Notion Style */}
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminPage />} />

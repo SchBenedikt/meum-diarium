@@ -55,7 +55,8 @@ export function HeroSection() {
               <ImageWithFallback
                 src={authorInfo.heroImage}
                 alt={authorInfo.name}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                className="w-full h-full"
+                imgClassName="object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
             {/* Decorative accent */}

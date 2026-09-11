@@ -20,7 +20,6 @@ import { ShareButton } from '@/components/ShareButton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
-import { PostTags } from '@/components/PostTags';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { getApiBase } from '@/lib/api';
 import { usePageTracking } from '@/hooks/usePageTracking';
@@ -156,8 +155,8 @@ function PostContent({ post }: { post: BlogPost }) {
   const overlayTextColor = '#ffffff';
   const excerpt = contentToDisplay?.substring(0, 160) || '';
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
-  const authorImage = author?.heroImage || 'caesar-hero.png';
-  const finalImage = `${baseUrl}/images/${authorImage}`;
+  const authorImage = author?.heroImage || '/images/caesar-hero.png';
+  const finalImage = authorImage.startsWith('/') ? `${baseUrl}${authorImage}` : `${baseUrl}/images/${authorImage}`;
   const currentUrl = window.location.href;
   const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
 
@@ -295,7 +294,8 @@ function PostContent({ post }: { post: BlogPost }) {
                             <ImageWithFallback
                               src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
                               alt={post.title}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              className="w-full h-full"
+                              imgClassName="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
 
                           </button>

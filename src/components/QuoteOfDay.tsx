@@ -71,7 +71,8 @@ export function QuoteOfDay() {
               <ImageWithFallback
                 src={authors[quote.author].heroImage}
                 alt={authors[quote.author].name}
-                className="w-full h-full object-cover"
+                className="w-full h-full"
+                imgClassName="object-cover"
               />
             </div>
           </div>

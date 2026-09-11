@@ -22,36 +22,12 @@ const heroImages: HeroImage[] = [
     details: ['Hauptstadt des Römischen Reiches', 'Zentrum von Kultur und Politik', 'Grundlage westlicher Zivilisation']
   },
   { 
-    id: 'landing-hero', 
-    src: '/landing-hero.png', 
-    alt: 'Meum Diarium Hero', 
-    name: 'Meum Diarium',
-    description: 'Dein persönliches Tagebuch der Antike',
-    details: ['KI-gestützte Gespräche', 'Interaktiver Zeitstrahl', 'Umfangreiches Lexikon', 'Lateinische Grammatik']
-  },
-  { 
-    id: 'augustus', 
-    src: '/images/augustus-hero.png', 
-    alt: 'Augustus', 
-    name: 'Augustus',
-    description: 'Erster Kaiser des Römischen Reiches',
-    details: ['63 v.Chr.–14 n.Chr.', 'Großneffe von Julius Caesar', 'Pax Romana - 200 Jahre Frieden']
-  },
-  { 
     id: 'caesar', 
     src: '/images/caesar-hero.png', 
     alt: 'Caesar', 
     name: 'Caesar',
     description: 'Feldherr, Diktator und Schriftsteller',
     details: ['100–44 v.Chr.', 'Eroberer Galliens', 'Berühmte Reden und Schriften']
-  },
-  { 
-    id: 'catilina', 
-    src: '/images/catilina-hero.png', 
-    alt: 'Catilina', 
-    name: 'Catilina',
-    description: 'Verschwörer gegen die Republik',
-    details: ['108–62 v.Chr.', 'Catilinarische Verschwörung', 'Gegner von Cicero']
   },
   { 
     id: 'cicero', 
@@ -62,12 +38,44 @@ const heroImages: HeroImage[] = [
     details: ['106–43 v.Chr.', 'Philosoph und Staatsmann', 'Vater der Rhetorik']
   },
   { 
+    id: 'augustus', 
+    src: '/images/augustus-hero.png', 
+    alt: 'Augustus', 
+    name: 'Augustus',
+    description: 'Erster Kaiser des Römischen Reiches',
+    details: ['63 v.Chr.–14 n.Chr.', 'Großneffe von Julius Caesar', 'Pax Romana - 200 Jahre Frieden']
+  },
+  { 
     id: 'seneca', 
     src: '/images/seneca-hero.png', 
     alt: 'Seneca', 
     name: 'Seneca',
     description: 'Stoischer Philosoph und Dramatiker',
     details: ['4 v.Chr.–65 n.Chr.', 'Lehrer von Nero', 'Einfluss auf christliche Ethik']
+  },
+  { 
+    id: 'catilina', 
+    src: '/images/catilina-hero.png', 
+    alt: 'Catilina', 
+    name: 'Catilina',
+    description: 'Verschwörer gegen die Republik',
+    details: ['108–62 v.Chr.', 'Catilinarische Verschwörung', 'Gegner von Cicero']
+  },
+  { 
+    id: 'sallust', 
+    src: '/images/sallust-hero.png', 
+    alt: 'Sallust', 
+    name: 'Sallust',
+    description: 'Römischer Historiker und Politiker',
+    details: ['86–35 v.Chr.', 'Geschichtsschreiber', 'Catilinarische Verschwörung']
+  },
+  { 
+    id: 'sokrates', 
+    src: '/images/sokrates-hero.png', 
+    alt: 'Sokrates', 
+    name: 'Sokrates',
+    description: 'Begründer der westlichen Philosophie',
+    details: ['470–399 v.Chr.', 'Lehrer Platons', 'Der Tod des Sokrates']
   },
 ];
 

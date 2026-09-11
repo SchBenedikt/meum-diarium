@@ -84,7 +84,8 @@ export function AuthorGrid() {
                         <ImageWithFallback
                           src={author.heroImage}
                           alt={translatedInfo.name}
-                          className="w-full h-full object-cover object-[center_25%] transition-transform duration-700 ease-out"
+                          className="w-full h-full"
+                          imgClassName="object-cover object-[center_25%] transition-transform duration-700 ease-out"
                         />
                       </motion.div>
                       {/* Premium Accent Corner */}

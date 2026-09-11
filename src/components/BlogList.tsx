@@ -30,7 +30,6 @@ export function BlogList() {
     if (!posts) return [];
     const base = posts
       .filter((post) => post.author === currentAuthor)
-      .filter((post) => post.author === currentAuthor)
       .filter((post) => {
         if (!searchQuery.trim()) return true;
         const query = searchQuery.toLowerCase();

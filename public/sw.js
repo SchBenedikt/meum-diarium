@@ -22,6 +22,8 @@ const PRECACHE_ASSETS = [
   '/images/augustus-hero.png',
   '/images/seneca-hero.png',
   '/images/catilina-hero.png',
+  '/images/sallust-hero.png',
+  '/images/sokrates-hero.png',
   // Core learning pages
   '/learn',
   '/learn/grammar',

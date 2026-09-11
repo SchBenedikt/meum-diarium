@@ -53,7 +53,8 @@ export function PageHero({
           <ImageWithFallback
             src={backgroundImage}
             alt="Background"
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full"
+            imgClassName="object-cover opacity-60"
             style={{ transform: `scale(${bgScale})` }}
           />
         </motion.div>

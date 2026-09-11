@@ -61,12 +61,13 @@ export function BlogCard({ post, className, preferredPerspective }: BlogCardProp
       >
         {/* Bild links – nur anzeigen wenn coverImage vorhanden */}
         {resolvedCoverImage && (
-          <div className="relative h-40 w-full shrink-0 md:w-48 lg:w-56 md:aspect-[4/3]">
+          <div className="relative shrink-0 overflow-hidden h-44 w-full md:h-auto md:w-48 md:aspect-[4/3] lg:w-56">
             <ImageWithFallback
               src={resolvedCoverImage}
               alt={post.title}
               loading="lazy"
-              className="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+              className="h-full w-full"
+              imgClassName="object-cover object-center group-hover:scale-110 transition-transform duration-700"
             />
           </div>
         )}

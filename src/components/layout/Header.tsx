@@ -1,4 +1,3 @@
-'use client';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { cn } from '@/lib/utils';

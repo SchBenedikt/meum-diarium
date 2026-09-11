@@ -293,7 +293,8 @@ export default function LandingHeroNew() {
                             <ImageWithFallback
                               src={currentAuthorData.image}
                               alt={currentAuthorData.name}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full"
+                              imgClassName="object-cover"
                               fetchPriority="high"
                             />
                           </div>
@@ -477,7 +478,8 @@ export default function LandingHeroNew() {
                             <ImageWithFallback
                               src={author.image}
                               alt={author.name}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full"
+                              imgClassName="object-cover"
                             />
                           </div>
                           <div className="flex-1">
