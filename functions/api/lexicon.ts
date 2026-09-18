@@ -138,6 +138,15 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 const queryTime = Date.now() - startTime;
 
                 if (!result) {
+                    // Fallback: check static lexicon.json for entries not in D1
+                    const staticEntries = await loadStaticLexicon();
+                    const staticEntry = staticEntries.find((e: any) => e.slug === slugParam);
+                    if (staticEntry) {
+                        console.log(`✅ [Lexicon API] GET found entry "${staticEntry.term}" from static fallback (${queryTime}ms)`);
+                        return new Response(JSON.stringify(staticEntry), {
+                            headers: { ...corsHeaders, 'X-Data-Source': 'static-fallback', 'Cache-Control': 'public, max-age=3600' }
+                        });
+                    }
                     console.warn(`⚠️ [Lexicon API] Entry not found: ${slugParam}`);
                     return new Response(JSON.stringify({ error: 'Not Found' }), {
                         status: 404,
@@ -218,10 +227,18 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                 translations: parseJsonField(entry.translations) || {},
             }));
 
-            const queryTime = Date.now() - startTime;
-            console.log(`✅ [Lexicon API] GET fetched ${results.length} entries (${queryTime}ms)`);
+            // Merge: add entries from static JSON that are not in D1
+            const d1Slugs = new Set(parsedResults.map((e: any) => e.slug));
+            const staticEntries = await loadStaticLexicon();
+            const missingStatic = staticEntries.filter((e: any) => !d1Slugs.has(e.slug));
+            const allResults = missingStatic.length > 0
+                ? [...parsedResults, ...missingStatic]
+                : parsedResults;
 
-            const sanitizedResults = parsedResults.map(sanitizeEntry);
+            const queryTime = Date.now() - startTime;
+            console.log(`✅ [Lexicon API] GET fetched ${allResults.length} entries (${parsedResults.length} D1 + ${missingStatic.length} static) (${queryTime}ms)`);
+
+            const sanitizedResults = allResults.map(sanitizeEntry);
 
             let responseText: string;
             try {
@@ -241,7 +258,7 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
                     ...corsHeaders,
                     'Cache-Control': 'public, max-age=3600',
                     'X-Data-Source': 'cloudflare-d1',
-                    'X-Entry-Count': results.length.toString()
+                    'X-Entry-Count': allResults.length.toString()
                 }
             });
         }
