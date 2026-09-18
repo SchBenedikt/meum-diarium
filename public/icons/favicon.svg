@@ -1,11 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" rx="18" fill="#B8860B"/>
-  <g stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M27 70V30"/>
-    <path d="M73 70V30"/>
-    <path d="M27 30 Q50 18 73 30"/>
-    <path d="M27 70 Q50 82 73 70"/>
-    <line x1="34" y1="44" x2="66" y2="44"/>
-    <line x1="34" y1="57" x2="66" y2="57"/>
+  <g fill="#FFFFFF" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left branch -->
+    <path d="M46 85 C34 76 24 60 26 40 C27 30 32 22 40 16" fill="none" stroke-width="3"/>
+    <!-- Left leaves -->
+    <path d="M28 70 Q18 64 24 56 Q30 62 28 70Z"/>
+    <path d="M24 54 Q14 48 22 40 Q28 46 24 54Z"/>
+    <path d="M26 38 Q18 32 26 24 Q32 30 26 38Z"/>
+    <path d="M34 24 Q28 18 36 14 Q40 20 34 24Z"/>
+    <!-- Right branch -->
+    <path d="M54 85 C66 76 76 60 74 40 C73 30 68 22 60 16" fill="none" stroke-width="3"/>
+    <!-- Right leaves -->
+    <path d="M72 70 Q82 64 76 56 Q70 62 72 70Z"/>
+    <path d="M76 54 Q86 48 78 40 Q72 46 76 54Z"/>
+    <path d="M74 38 Q82 32 74 24 Q68 30 74 38Z"/>
+    <path d="M66 24 Q72 18 64 14 Q60 20 66 24Z"/>
+    <!-- Bottom ribbon -->
+    <path d="M42 83 L50 92 L58 83" fill="none" stroke-width="2.5" stroke-linejoin="round"/>
   </g>
+  <!-- Open book -->
+  <path d="M34 54 L50 46 L50 62 L34 70Z" fill="#FFFFFF"/>
+  <path d="M66 54 L50 46 L50 62 L66 70Z" fill="#FFFFFF"/>
+  <line x1="50" y1="46" x2="50" y2="62" stroke="#B8860B" stroke-width="2.5"/>
+  <line x1="38" y1="58" x2="47" y2="52" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="38" y1="63" x2="47" y2="57" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="53" y1="52" x2="62" y2="58" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="53" y1="57" x2="62" y2="63" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/>
 </svg>

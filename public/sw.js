@@ -13,7 +13,6 @@ const PRECACHE_ASSETS = [
   '/sitemap-pages.xml',
   '/sitemap-authors.xml',
   '/sitemap-content.xml',
-  '/icons/favicon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
   // Hero images for authors
@@ -220,7 +219,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         }).catch(() => {
           // Return placeholder for offline images
-          return caches.match('/icons/favicon.svg');
+          return caches.match('/icons/icon-192x192.png');
         });
       })
     );

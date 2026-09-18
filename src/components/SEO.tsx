@@ -207,7 +207,7 @@ export function SEO({
           "url": baseUrl,
           "logo": {
             "@type": "ImageObject",
-            "url": `${baseUrl}/icons/favicon.svg`,
+            "url": `${baseUrl}/icons/icon-192x192.png`,
             "width": 512,
             "height": 512
           }
@@ -218,7 +218,7 @@ export function SEO({
         "@type": "Organization",
         "name": defaults.siteName,
         "url": baseUrl,
-        "logo": `${baseUrl}/icons/favicon.svg`,
+        "logo": `${baseUrl}/icons/icon-192x192.png`,
         "description": finalDescription,
         "sameAs": [
           "https://github.com/SchBenedikt/meum-diarium",

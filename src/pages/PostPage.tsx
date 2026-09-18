@@ -199,7 +199,7 @@ function PostContent({ post }: { post: BlogPost }) {
             "name": "Meum Diarium",
             "logo": {
               "@type": "ImageObject",
-              "url": `${baseUrl}/icons/favicon.svg`
+              "url": `${baseUrl}/icons/icon-192x192.png`
             }
           },
           "datePublished": post?.date,

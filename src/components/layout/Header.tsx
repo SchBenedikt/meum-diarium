@@ -158,14 +158,9 @@ export function Header() {
             <Link
               to="/"
               onClick={handleLogoClick}
-              className="group flex items-center gap-3 min-w-0 transition-opacity duration-200"
+              className="group flex items-center min-w-0 transition-opacity duration-200"
               aria-label={t('appName')}
             >
-              <img
-                src="/icons/favicon.svg"
-                alt="Meum Diarium"
-                className="h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all duration-300 group-hover:scale-105"
-              />
               <span className="hidden xs:block font-display text-lg sm:text-xl truncate font-extrabold tracking-tighter">
                 {t('appName')}
               </span>
@@ -328,13 +323,8 @@ export function Header() {
                         <Link
                           to="/"
                           onClick={handleNavClick}
-                          className="flex items-center gap-2"
+                          className="flex items-center"
                         >
-                          <img
-                            src="/icons/favicon.svg"
-                            alt="Meum Diarium"
-                            className="h-9 w-9 flex-shrink-0"
-                          />
                           <span className="font-display text-lg font-semibold">
                             {t('appName')}
                           </span>

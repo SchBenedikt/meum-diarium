@@ -767,5 +767,289 @@ Der Stoiker Seneca kritisierte die Jagd nach *gloria* als Verblendung. Wahre *gl
     etymology: 'Lateinisch: gloria, Herkunft unsicher',
     relatedTerms: ['honos', 'dignitas', 'fama', 'virtus', 'triumphus'],
     variants: ['Ruhm', 'Nachruhm', 'Ruhmesglanz']
+  },
+  {
+    term: 'Maieutik',
+    slug: 'maieutik',
+    definition: `Die **Maieutik** (griech. μαιευτική – Hebammenkunst) ist die von Sokrates entwickelte philosophische Gesprächsmethode. Analog zur Geburtshilfe seiner Mutter Phainarete hilft Sokrates seinen Gesprächspartnern, Wissen aus sich selbst heraus zu entwickeln – nicht durch Belehrung, sondern durch gezieltes Fragen. Das Verfahren gliedert sich in den **Elenchos** (Prüfung/Widerlegung bestehender Meinungen) und die anschließende konstruktive Phase, in der der Gesprächspartner durch eigenes Denken zu neuen Erkenntnissen gelangt. Platon beschreibt die Maieutik ausführlich im Dialog *Theaitetos* (148e–151d).
+
+**Bedeutung:**
+Die Maieutik revolutionierte das philosophische Gespräch: Wissen wird nicht von außen eingegeben, sondern im Dialog *erzeugt*. Sokrates vergleicht sich mit einer Hebamme – wie diese bei der Geburt hilft, so hilft er beim "Gebären" von Erkenntnis. Dieses Prinzip der sokratischen Methode wurde zum Vorbild für alle Dialogformen in der Philosophie.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch μαιευτική (maieutikē), von μαῖα (maia) – Hebamme; μαιεύομαι (maieuomai) – als Hebamme wirken',
+    relatedTerms: ['aporie', 'dialektik', 'elenchos', 'sokrates'],
+    variants: ['Sokratische Methode', 'Hebammenkunst', 'Maieutisch']
+  },
+  {
+    term: 'Aporie',
+    slug: 'aporie',
+    definition: `Die **Aporie** (griech. ἀπορία – Ausweglosigkeit, kein Durchgang) bezeichnet in der sokratischen Philosophie den Zustand der Ratlosigkeit, in den Gesprächspartner durch den sokratischen Elenchos geführt werden. Nach längerem Gespräch stellt sich heraus, dass keine befriedigende Definition des gesuchten Begriffs (Gerechtigkeit, Tapferkeit, Frömmigkeit etc.) gefunden werden konnte. Die Aporie gilt nicht als Scheitern, sondern als produktiver Ausgangspunkt: Wer weiß, dass er etwas nicht weiß, beginnt erst wirklich zu denken.
+
+**Die frühen platonischen Dialoge:**
+Die frühen Dialoge Platons enden charakteristisch in der Aporie: *Laches* (Was ist Tapferkeit?), *Charmides* (Was ist Besonnenheit?), *Euthyphron* (Was ist Frömmigkeit?), *Menon* (Was ist Tugend?). In allen Dialogen bleibt die zentrale Frage offen – das Ergebnis ist bewusst die Erkenntnis des Nichtwissens.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch ἀπορία (aporia), von ἄ-πορος (a-poros) – ohne Durchgang; ἀπορέω (aporeo) – ratlos sein, keinen Ausweg finden',
+    relatedTerms: ['maieutik', 'dialektik', 'elenchos', 'sokrates'],
+    variants: ['Aporesis', 'Aporetisch']
+  },
+  {
+    term: 'Elenchos',
+    slug: 'elenchos',
+    definition: `Der **Elenchos** (griech. ἔλεγχος – Prüfung, Widerlegung) ist das Kernverfahren der sokratischen Methode: Sokrates prüft die Aussagen seines Gesprächspartners durch systematisches Befragen auf innere Widersprüche. Er lässt den Gesprächspartner zunächst eine Definition geben, findet dann Gegenbeispiele oder zeigt Widersprüche auf und führt so zur Revision der ursprünglichen Antwort.
+
+**Das Verfahren:**
+1. Der Gesprächspartner gibt eine Definition (z.B. "Tapferkeit ist Standhaftigkeit im Kampf")
+2. Sokrates fragt nach Gegenbeispielen (z.B. "Was ist mitTapferkeit bei einer klugen Rückzug?)
+3. Der Partner erkennt den Widerspruch in seiner Definition
+4. Eine neue, präzisere Definition wird gesucht
+
+Der Elenchos dient der Aufdeckung von Scheinwissen (*doxa*) und ist die erste Phase der Maieutik, bevor – in der zweiten Phase – konstruktives Erkennen entstehen kann.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch ἔλεγχος (elenchos) – Prüfung, Befragung, Widerlegung; von ἐλέγχω (elenchō) – prüfen, widerlegen',
+    relatedTerms: ['maieutik', 'aporie', 'dialektik', 'sokrates'],
+    variants: ['Sokratische Ironie', 'Elenktisch']
+  },
+  {
+    term: 'Dialektik',
+    slug: 'dialektik',
+    definition: `Die **Dialektik** (griech. διαλεκτική – Kunst des Gesprächs) bezeichnet im sokratischen Sinne die Methode, durch das lebendige Gespräch Wissen entstehen zu lassen. Das Besondere daran ist, dass Wissen durch ein fragend-entwickelndes Verfahren gewonnen wird und nicht durch Belehrung. Sokrates selbst hat von den zur Debatte gestellten Begriffen kein Wissen (sokratisches Nichtwissen), sondern er prüft nur die vom Gesprächspartner gegebenen Antworten und Definitionen auf ihren Wahrheitsgehalt.
+
+**Spätere Bedeutung:**
+Platon lies Sokrates diese Kunst auch als Maieutik bezeichnen. In der späteren Philosophiegeschichte erhielt der Begriff durch **Hegel** und **Marx** eine veränderte Bedeutung: These – Antithese – Synthese. Während die sokratische Dialektik auf Wahrheitssuche zielte, wurde die hegelsche Dialektik zum motorischen Prinzip der Geschichte.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch διαλεκτική (dialektikē), von διαλέγομαι (dialegomai) – sich unterhalten, erörtern; διά (dia) – durch + λέγω (lego) – sagen',
+    relatedTerms: ['maieutik', 'aporie', 'elenchos', 'sokrates'],
+    variants: ['Sokratisches Gespräch', 'Dialektische Methode']
+  },
+  {
+    term: 'Daimonion',
+    slug: 'daimonion',
+    definition: `Das **Daimonion** (griech. δαιμόνιον – das Göttliche, die innere Stimme) ist bei Sokrates eine Art innerer Warnstimme oder göttliches Zeichen, das ihn seit Kindheit begleitet. Es äußert sich nicht als Befehl, sondern als Abmahnung: Es hält Sokrates davon ab, etwas Falsches zu tun.
+
+**Historischer Kontext:**
+In der Anklage gegen Sokrates spielte das Daimonion eine zentrale Rolle: Man warf ihm vor, dadurch neue Gottheiten einzuführen (*kainá daimónia*). Sokrates verteidigte sich damit, dass das Daimonion ihn auch von wichtigen politischen Ämtern abgehalten habe – ein Zeichen, dass es nicht ihm, sondern der Stadt gelte.
+
+**Philosophische Deutung:**
+Philosophisch wird das Daimonion als frühes Zeugnis für das Konzept des **Gewissens** gedeutet. Es zeigt, dass Sokrates ein transzendentes Orientierungssystem in sich trug, das über rationales Denken hinausging.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch δαιμόνιον (daimonion), Diminutiv von δαίμων (daimon) – Geist, göttliches Wesen',
+    relatedTerms: ['sokrates', 'apologie'],
+    variants: ['Dämon des Sokrates', 'Sokratisches Daimonion']
+  },
+  {
+    term: 'Sokratische Ironie',
+    slug: 'sokratische-ironie',
+    definition: `Die **Sokratische Ironie** (griech. εἰρωνεία, eirōneia – Verstellung) ist ein Stilmittel des sokratischen Gesprächs: Sokrates gibt vor, selbst unwissend zu sein und von seinem Gesprächspartner belehrt werden zu wollen. Diese gespielte Unwissenheit dient dazu, den Gesprächspartner dazu zu bringen, sein vermeintliches Wissen offenzulegen – woraufhin Sokrates durch Fragen zeigt, dass dieses Wissen tatsächlich nur Scheinwissen ist.
+
+**Funktion:**
+Die sokratische Ironie ist also keine bloße Spötterei, sondern ein methodisches Mittel zur Wahrheitsfindung. Sie hat mehrere Funktionen:
+- **Demütigung**: Der Gesprächspartner erkennt seine Unwissenheit
+- **Ansporn**: Das Erkennen des Nichtwissens motiviert zum weiteren Nachdenken
+- **Schutz**: Sokrates schützt sich vor dem Vorwurf der Belehrung (was verboten war)
+
+Der Begriff wurde von Friedrich Schleiermacher und laterhin von Søren Kierkegaard philosophisch vertieft.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch εἰρωνεία (eirōneia) – Verstellung, Ironie; εἴρων (eirōn) – jemand, der sich verstellt',
+    relatedTerms: ['maieutik', 'elenchos', 'sokrates', 'dialektik'],
+    variants: ['Sokratische Selbstverkleinerung', 'Ironische Distanz']
+  },
+  {
+    term: 'Apologie',
+    slug: 'apologie',
+    definition: `Eine **Apologie** (griech. ἀπολογία, apologia – Verteidigungsrede) ist eine Schutzrede oder Rechtfertigung. Im engeren Sinne bezeichnet die *Apologie des Sokrates* Platons überlieferte Version der Verteidigungsrede, die Sokrates 399 v. Chr. vor dem athenischen Geschworenengericht hielt.
+
+**Der Prozess gegen Sokrates:**
+Sokrates war angeklagt wegen:
+- Einführung neuer Gottheiten (*asebeia*)
+- Verführung der Jugend (*diaphtheirein*)
+
+**Die Verteidigung:**
+In seiner Verteidigung erklärt Sokrates seine philosophische Mission als Dienst an Apollon und formuliert das berühmte Diktum: **„Ein ungeprüftes Leben ist kein lebenswertes Leben"** (*ho de anexetastos bios ou biōtos anthrōpō*). Er weigerte sich, um sein Leben zu bitten, und schlug stattdessen Freikost vor – eine Beleidigung für die Richter.
+
+**Xenophons Parallelbericht:**
+Xenophon verfasste eine zweite Version der Apologie mit abweichenden Details. Während Platon die philosophische Dimension betont, betont Xenophon den pragmatischen Charakter der Verteidigung.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch ἀπολογία (apologia), von ἀπολογέομαι (apologeomai) – sich verteidigen; ἀπό (apo) – weg von + λόγος (logos) – Rede',
+    relatedTerms: ['sokrates', 'daimonion'],
+    variants: ['Apologie des Sokrates', 'Verteidigungsrede']
+  },
+  {
+    term: 'Stoa',
+    slug: 'stoa',
+    definition: `Die **Stoa** (griech. Στοά – Säulenhalle) ist eine der einflussreichsten philosophischen Schulen der Antike. Begründet um 300 v. Chr. von **Zenon von Kition**, der in der bemalten Säulenhalle (*Stoa Poikile*) in Athen lehrte.
+
+**Die drei Bereiche der stoischen Philosophie:**
+1. **Physik**: Die Welt ist von der göttlichen Vernunft, dem *Logos*, durchdrungen. Alles Geschehen istnotwendig und Teil einer kosmischen Ordnung.
+2. **Logik**: Lehre vom richtigen Denken und Erkennen. Die Stoiker entwickelten eine formale Logik, die die stoische Syllogistik umfasst.
+3. **Ethik**: Die Kunst der tugendhaften Lebensführung. Das oberste Prinzip lautet: **„Übereinstimmung mit der Natur"** (*homologia*).
+
+**Römischer Stoizismus:**
+Die Schule erlebte ihre Blüte im römischen Stoizismus bei **Seneca**, **Epiktet** und **Mark Aurel**. Die römischen Stoiker betonten die praktische Anwendung: Selbstbeherrschung, Pflichtbewusstsein und innere Freiheit.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch στοά (stoa) – Säulenhalle, Wandelhalle; bezieht sich auf die Stoa Poikile in Athen',
+    relatedTerms: ['seneca', 'stoizismus', 'virtus', 'fatum'],
+    variants: ['Stoizismus', 'Stoische Schule', 'Stoiker']
+  },
+  {
+    term: 'Prinzipat',
+    slug: 'prinzipat',
+    definition: `Der **Prinzipat** (von lat. *princeps* – der Erste) ist die von Augustus begründete Staatsform des Römischen Reiches (27 v. Chr. – 284 n. Chr.). Augustus behielt die republikanischen Institutionen formal bei, vereinte aber alle entscheidenden Machtbefugnisse in seiner Person:
+
+**Die drei Säulen derMacht:**
+1. **Tribunicia potestas** (Macht eines Volkstribuns) – Gesetze einbringen, Veto einlegen
+2. **Imperium proconsulare maius** – oberster militärischer Befehl über alle Provinzen
+3. **Pontifex maximus** – oberster Priester
+
+**Fiktion der Republik:**
+Nach außen gab sich Augustus als *primus inter pares* (Erster unter Gleichen), während er faktisch allein regierte. Der Begriff *princeps* wurde zum Titel des römischen Kaisers. Die Formel *rem publicam restituit* ("er stellte die Republik wieder her") war ein zentrales Element der augusteischen Propaganda.`,
+    category: 'Politik',
+    etymology: 'Lateinisch principatus, von princeps (primus + capere) – der Erste, der Erste im Rang',
+    relatedTerms: ['augustus', 'imperium', 'auctoritas', 'diktator'],
+    variants: ['Augusteische Verfassung', 'Princeps-System']
+  },
+  {
+    term: 'Naturrecht',
+    slug: 'naturrecht',
+    definition: `Das **Naturrecht** (lat. *ius naturale*) ist die Idee eines überpositiven Rechts, das aus der Natur des Menschen und der Vernunft entspringt und über den positiven Gesetzen des Staates steht.
+
+**Ciceros Grundlagen:**
+Cicero formulierte in *De Re Publica* und *De Legibus* die Grundlagen des abendländischen Naturrechts: Es gibt ein allgemeingültiges, unveränderliches Gesetz, das für alle Völker und Zeiten gilt. Dieses Gesetz ist die *recta ratio* (richtige Vernunft) der Natur.
+
+**Prinzip:**
+Ungerechte Gesetze, die diesem Naturrecht widersprechen, sind keine wahren Gesetze (*non videtur esse lex*). Dieser Gedanke revolutionierte die Rechtsphilosophie: Das Recht wird nicht allein durch staatliche Setzung legitimiert, sondern muss vernunft- und naturgemäß sein.
+
+**Wirkung:**
+Ciceros Naturrechtslehre beeinflusste nachhaltig die christliche Theologie (Augustinus, Thomas von Aquin) und die Aufklärungsphilosophie (Hugo Grotius, John Locke, Immanuel Kant). Die Allgemeine Erklärung der Menschenrechte (1948) basiert auf naturrechtlichen Prinzipien.`,
+    category: 'Recht',
+    etymology: 'Lateinisch ius naturale, von natura – Natur, Geburt; ius – Recht, Gesetz',
+    relatedTerms: ['cicero', 'iustitia', 'res-publica'],
+    variants: ['Ius naturale', 'Lex naturae', 'Überpositives Recht']
+  },
+  {
+    term: 'Alea iacta est',
+    slug: 'alea-iacta-est',
+    definition: `**Alea iacta est** (lat. Der Würfel ist gefallen) ist der legendäre Ausspruch Caesars beim Überschreiten des Rubikons am 10. Januar 49 v. Chr.
+
+**Historischer Kontext:**
+Nach dem Bericht Suetons (*De Vita Caesarum* I.31–33) zögerte Caesar kurz am Ufer des Rubikons, der Grenze zwischen seiner Provinz Gallien und Italien. Dann rief er: *Alea iacta est!* und überquerte mit seiner XIII. Legion den Fluss.
+
+**Politische Bedeutung:**
+Dieser Schritt war illegal – das Überschreiten des Rubikons mit bewaffneten Truppen bedeutete die Kriegserklärung an den Senat und Pompeius. Der Satz symbolisiert den Beginn eines unumkehrbaren Prozesses – Caesars Entscheidung, durch Bürgerkrieg die Macht in Rom zu erringen, die letztlich das Ende der Römischen Republik einleitete.
+
+**Varianten:**
+Der Ausspruch ist in verschiedenen Fassungen überliefert: *iacta alea est* (Plutarch) und *alea iacta esto* (Sueton). Die genaue Formulierung Caesars ist historisch nicht gesichert.`,
+    category: 'Geschichte',
+    etymology: 'Lateinisch alea – Würfel, Risiko; iacta est – ist geworfen/gefallen; von iacere – werfen',
+    relatedTerms: ['caesar', 'rubikon', 'bürgerkrieg', 'diktator'],
+    variants: ['Der Würfel ist gefallen', 'Iacta alea est']
+  },
+  {
+    term: 'Somnium Scipionis',
+    slug: 'somnium-scipionis',
+    definition: `Das **Somnium Scipionis** (lat. Der Traum des Scipio) ist der sechste und abschließende Teil von Ciceros *De Re Publica* (54–51 v. Chr.) und der einzige vollständig erhaltene Abschnitt des Werkes.
+
+**Der Traum:**
+Scipio Aemilianus berichtet von einem Traum, in dem ihm sein Adoptivgroßvater Scipio Africanus erscheint und ihm die kosmische Ordnung, die Unsterblichkeit der Seele und den Lohn für tugendhafte Staatsmänner im Jenseits offenbart.
+
+**Bedeutung:**
+Der Text verbindet platonische und stoische Elemente zu einer Vision des Kosmos, in der gute politische Taten durch Unsterblichkeit belohnt werden. Die Erzählung enthält außerdem eine bedeutende Passage über die Erde als kleinen Punkt im Kosmos – eine bemerkenswerte kosmologische Erkenntnis.
+
+**Rezeption:**
+Der spätantike Philosoph **Macrobius** verfasste einen ausführlichen Kommentar zum *Somnium Scipionis*, der die Überlieferung sicherte und die mittelalterliche Kosmologie nachhaltig beeinflusste. Dante, Petrarca und Chaucer griffen das Motiv auf.`,
+    category: 'Philosophie',
+    etymology: 'Lateinisch somnium – Traum; Scipionis – des Scipio (Genitiv)',
+    relatedTerms: ['cicero', 'de-re-publica', 'makrokosmos'],
+    variants: ['Scipios Traum', 'Traum des Scipio']
+  },
+  {
+    term: 'Senatus consultum ultimum',
+    slug: 'senatus-consultum-ultimum',
+    definition: `Das **senatus consultum ultimum** (lat. der äußerste Senatsbeschluss) war ein Notstandsdekret der späten römischen Republik. Es forderte die Konsuln auf, alle notwendigen Maßnahmen zu ergreifen, um die Republik vor inneren Feinden zu schützen – *videant consules ne quid res publica detrimenti capiat* (die Konsuln mögen sehen, dass der Staat keinen Schaden nehme).
+
+**Geschichte:**
+- Erstmals angewandt **121 v. Chr.** gegen Gaius Gracchus
+- Berühmteste Anwendung **63 v. Chr.**: Cicero aufgrund dieses Beschlusses die Catilinarischen Verschwörer ohne Gerichtsverfahren hinrichten ließ
+
+**Verfassungsrechtliche Probleme:**
+Der Beschluss setzte reguläre Rechtsgarantien außer Kraft. Er war in der Forschung umstritten – ein antiker Vorläufer des modernen Ausnahmezustands. Kritiker wie Levitius sahen darin einen Missbrauch der Amtsgewalt, Befürworter wie Cicero betonten die Notwendigkeit zur Rettung der Republik.`,
+    category: 'Politik',
+    etymology: 'Lateinisch senatus – Senat; consultum – Beschluss; ultimum – der äußerste, letzte',
+    relatedTerms: ['cicero', 'catilina', 'consul', 'in-catilinam'],
+    variants: ['SCU (Abkürzung)', 'Senatus consultum de re publica defendenda', 'Notstandsdekret']
+  },
+  {
+    term: 'Vorsokratiker',
+    slug: 'vorsokratiker',
+    definition: `Die **Vorsokratiker** (griech. προσωκρατικοί – vor Sokrates) sind die griechischen Philosophen des 6. und 5. Jahrhunderts v. Chr., die vor oder zeitgleich mit Sokrates wirkten.
+
+**Wichtige Vorsokratiker:**
+- **Milesier**: Thales, Anaximander, Anaximenes – suchten den Urstoff (*arché*) der Welt
+- **Pythagoreer**: Pythagoras – Zahl und Harmonie als Weltprinzip
+- **Heraklit**: Das Werden als Principium – „Alles fließt" (*panta rhei*)
+- **Parmenides**: Das Sein als unveränderlich – Leugnung der Veränderung
+- **Empedokles**: Vier Elemente als Grundstoffe
+- **Atomisten**: Demokrit, Leukipp – die Welt besteht aus Atomen und Leere
+
+**Bedeutung:**
+Sie suchten als erste nach rationalen Erklärungen der Welt und lösten sich vom mythischen Weltbild. Ihre Fragestellungen – Was ist der Urstoff der Welt? Was ist Sein? Was ist Bewegung? – legten das Fundament der abendländischen Philosophie.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch πρό (pro) – vor + Σωκράτης (Sokrates); deutsch: Vorsokratiker',
+    relatedTerms: ['sokrates', 'maieutik', 'dialektik'],
+    variants: ['Vorsokratische Philosophie', 'Frühgriechische Philosophie']
+  },
+  {
+    term: 'Anamnesis',
+    slug: 'anamnesis',
+    definition: `Die **Anamnesis** (griech. ἀνάμνησις – Wiedererinnerung) ist Platons Lehre, dass alles Lernen ein Wiedererinnern der Seele an ihr vorgeburtliches Wissen ist.
+
+**Das Konzept:**
+Die Seele existierte vor der Geburt im Reich der Ideen und schaute dort die ewigen Wahrheiten (das Gute, das Schöne, das Gerechte) unmittelbar. Bei der Geburt vergisst sie dieses Wissen. Durch philosophische Fragen – wie Sokrates sie stellt – kann die Seele an die verschütteten Erkenntnisse wiederanknüpfen.
+
+**Beweis im Menon:**
+Im Dialog *Menon* beweist Platon die Anamnesis durch ein Gespräch Sokrates' mit einem ungebildeten Sklavenjungen, der ohne Vorkenntnisse geometrische Wahrheiten selbstständig entdeckt. Dies sei ein Wiedererinnern an Wissen, das die Seele bereits besitze.
+
+**Bedeutung:**
+Die Anamnesis ist ein zentrales Argument für die Unsterblichkeit der Seele und wird von Platon im *Phaidon* und *Menon* ausführlich dargestellt.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch ἀνάμνησις (anamnēsis) – Wiedererinnerung, von ἀναμιμνῄσκω (anamimnēskō) – sich erinnern',
+    relatedTerms: ['phaidon', 'platon', 'sokrates', 'maieutik'],
+    variants: ['Wiedererinnerungslehre', 'Platonische Anamnesis']
+  },
+  {
+    term: 'Hebammenkunst',
+    slug: 'hebammenkunst',
+    definition: `Die **Hebammenkunst** ist die deutsche Übersetzung des griechischen Begriffs Maieutik (μαιευτική). Sie bezeichnet die von Sokrates entwickelte Methode des philosophischen Gesprächs.
+
+**Das Prinzip:**
+Analog zur Geburtshilfe seiner Mutter Phainarete hilft Sokrates seinen Gesprächspartnern, eigenes Wissen aus sich selbst heraus zu entwickeln – nicht durch Belehrung, sondern durch gezieltes Fragen. Der Begriff betont den geburtshelferischen Charakter der sokratischen Methode: Der Philosoph ist nicht der Wissende, der sein Wissen weitergibt, sondern der Geburtshelfer, der die Einsicht im Gegenüber zur Entfaltung bringt.
+
+**Gegenüberstellung:**
+| Belehrung | Hebammenkunst |
+|-----------|--------------|
+| Wissen wird übertragen | Wissen wird erzeugt |
+| Lehrer als Quelle | Gesprächspartner als Quelle |
+| Passiv-empfangend | Aktiv-entwickelnd |`,
+    category: 'Philosophie',
+    etymology: 'althochdeutsch hevianna – heben; mittelhochdeutsch hebamme – die Hebende (die das Kind hebt); Kunst – Kenntnis, Fertigkeit; als Lehnübersetzung von griech. μαιευτική (maieutikē)',
+    relatedTerms: ['maieutik', 'sokrates', 'dialektik', 'elenchos', 'aporie'],
+    variants: ['Sokratische Methode', 'Maieutik', 'Geburtshilfe des Geistes']
+  },
+  {
+    term: 'Psychagogie',
+    slug: 'psychagogie',
+    definition: `**Psychagogie** (griech. ψυχαγωγία – Seelenführung) bezeichnet in der antiken Philosophie und Rhetorik die Kunst der Führung oder Lenkung der Seele durch Rede und Überzeugung.
+
+**Bedeutung:**
+Bei Platon und Sokrates meint Psychagogie die philosophische Führung der Seele zur Wahrheit und Tugend durch den Dialog. In der Rhetorik (besonders bei Cicero) bezeichnet sie die Fähigkeit des Redners, die Gefühle und Urteile der Zuhörer zu lenken.
+
+**Ziel der Maieutik:**
+Die Psychagogie ist das Ziel der sokratischen Maieutik: Die Seele wird nicht belehrt, sondern zur Selbsterkenntnis und zur Schau der Ideen geführt. Sie ist somit die praktische Anwendung der sokratischen Methode – der philosophische Dialog als Werkzeug derSeelenveredelung.
+
+**Unterschied zur sophistischen Überredung:**
+Während die Sophisten die Kunst der Überredung (*peithō*) lehrten, zielte die Psychagogie auf wahre Einsicht, nicht auf rhetorische Manipulation.`,
+    category: 'Philosophie',
+    etymology: 'Griechisch ψυχή (psychē) – Seele + ἀγωγή (agōgē) – Führung; wörtlich: Seelenführung',
+    relatedTerms: ['sokrates', 'maieutik', 'dialektik'],
+    variants: ['Seelenführung', 'Philosophische Führung']
   }
 ];

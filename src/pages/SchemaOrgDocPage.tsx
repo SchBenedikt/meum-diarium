@@ -224,7 +224,7 @@ export default function SchemaOrgDocPage() {
   "url": "https://meum-diarium.xn--schchner-2za.de",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://.../icons/favicon.svg",
+    "url": "https://.../icons/icon-192x192.png",
     "width": 512,
     "height": 512
   }
