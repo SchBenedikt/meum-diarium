@@ -7,9 +7,9 @@ export async function clearServiceWorkerCaches(): Promise<void> {
       await Promise.all(
         cacheNames.map(cacheName => caches.delete(cacheName))
       );
-      console.log('✅ [Cache] All service worker caches cleared');
+      if (import.meta.env.DEV) console.log('✅ [Cache] All service worker caches cleared');
     } catch (error) {
-      console.error('❌ [Cache] Failed to clear caches:', error);
+      if (import.meta.env.DEV) console.error('❌ [Cache] Failed to clear caches:', error);
     }
   }
 }
@@ -24,9 +24,9 @@ export async function clearApiCaches(): Promise<void> {
       await Promise.all(
         apiCacheNames.map(cacheName => caches.delete(cacheName))
       );
-      console.log('✅ [Cache] API caches cleared');
+      if (import.meta.env.DEV) console.log('✅ [Cache] API caches cleared');
     } catch (error) {
-      console.error('❌ [Cache] Failed to clear API caches:', error);
+      if (import.meta.env.DEV) console.error('❌ [Cache] Failed to clear API caches:', error);
     }
   }
 }
@@ -38,7 +38,7 @@ export async function unregisterServiceWorker(): Promise<void> {
       await Promise.all(
         registrations.map(registration => registration.unregister())
       );
-      console.log('✅ [SW] Service worker unregistered');
+      if (import.meta.env.DEV) console.log('✅ [SW] Service worker unregistered');
       
       // Also clear caches after unregistering
       await clearServiceWorkerCaches();
@@ -46,7 +46,7 @@ export async function unregisterServiceWorker(): Promise<void> {
       // Force reload to ensure clean state
       window.location.reload();
     } catch (error) {
-      console.error('❌ [SW] Failed to unregister service worker:', error);
+      if (import.meta.env.DEV) console.error('❌ [SW] Failed to unregister service worker:', error);
     }
   }
 }
@@ -69,7 +69,7 @@ export async function getCacheInfo(): Promise<{name: string, size?: number}[]> {
       
       return cacheInfo;
     } catch (error) {
-      console.error('❌ [Cache] Failed to get cache info:', error);
+      if (import.meta.env.DEV) console.error('❌ [Cache] Failed to get cache info:', error);
       return [];
     }
   }

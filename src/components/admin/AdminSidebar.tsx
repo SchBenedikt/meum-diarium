@@ -79,7 +79,7 @@ export function AdminSidebar({ width = 256, onWidthChange, isCollapsed = false, 
         posts: data.filter((p: BlogPost) => p.author === folder.id) || []
       })));
     } catch (error) {
-      console.error('Failed to load posts:', error);
+      if (import.meta.env.DEV) console.error('Failed to load posts:', error);
     } finally {
       setLoading(false);
     }

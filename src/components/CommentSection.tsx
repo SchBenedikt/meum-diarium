@@ -42,17 +42,20 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
   const [deleteInputEmail, setDeleteInputEmail] = useState('');
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchComments = async () => {
       try {
         setIsLoading(true);
         const res = await fetch(`/api/comments?postId=${encodeURIComponent(postId)}`, {
           method: 'GET',
           headers: { 'Accept': 'application/json' },
+          signal: controller.signal,
         });
         if (!res.ok) throw new Error(`Failed to fetch comments: ${res.status}`);
         const data = await res.json();
         setComments(data.comments || []);
       } catch (err: unknown) {
+        if (err instanceof DOMException && err.name === 'AbortError') return;
         const message = err instanceof Error ? err.message : 'Failed to load comments';
         setError(message);
       } finally {
@@ -60,6 +63,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
       }
     };
     fetchComments();
+    return () => controller.abort();
   }, [postId]);
 
   const { topLevel, replies } = useMemo(() => {

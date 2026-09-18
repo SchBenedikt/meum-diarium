@@ -25,7 +25,7 @@ export function usePosts() {
       if (normalizedPosts.length > 0) {
         return normalizedPosts;
       }
-      console.warn('⚠️ [usePosts] No posts received from API');
+      if (import.meta.env.DEV) console.warn('⚠️ [usePosts] No posts received from API');
       return [];
     },
     retry: 2,
@@ -41,7 +41,7 @@ export function usePosts() {
         );
         setTranslatedPosts(translated);
       } catch (error) {
-        console.error("Translation failed", error);
+        if (import.meta.env.DEV) console.error("Translation failed", error);
         // Fallback to original posts if translation fails
         setTranslatedPosts(posts);
       } finally {

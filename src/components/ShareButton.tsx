@@ -91,7 +91,7 @@ export function ShareButton({ title, text, url, variant = 'default' }: ShareButt
         // If user cancelled (AbortError), don't show fallback
         if ((err as Error).name === 'AbortError') return;
         // Otherwise, fall back to custom menu
-        console.error('Sharing failed:', err);
+        if (import.meta.env.DEV) console.error('Sharing failed:', err);
         setIsOpen(true);
       }
     } else if (navigator.share) {

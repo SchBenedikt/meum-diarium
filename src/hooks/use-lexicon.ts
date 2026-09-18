@@ -14,7 +14,7 @@ export function useLexicon() {
                 }
                 return localLexicon;
             } catch (err) {
-                console.warn('Lexicon API failed, using local data:', err);
+                if (import.meta.env.DEV) console.warn('Lexicon API failed, using local data:', err);
                 return localLexicon;
             }
         },

@@ -76,7 +76,7 @@ export default function VocabularyPage() {
             }
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Unknown error');
-            console.error('Error fetching vocabulary:', err);
+            if (import.meta.env.DEV) console.error('Error fetching vocabulary:', err);
         } finally {
             setLoading(false);
         }

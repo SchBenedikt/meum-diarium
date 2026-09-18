@@ -43,7 +43,7 @@ export function useAuthors() {
                     });
                 }
             } catch (err) {
-                console.warn('⚠️ [useAuthors] Could not fetch authors from DB, using fallback data:', err);
+                if (import.meta.env.DEV) console.warn('⚠️ [useAuthors] Could not fetch authors from DB, using fallback data:', err);
             }
 
             return authorsMap;

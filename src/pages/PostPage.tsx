@@ -97,11 +97,13 @@ function PostContent({ post }: { post: BlogPost }) {
   // Safely get related posts, fallback to empty array if allPosts loading
   const relatedPosts = useMemo(() => {
     if (!Array.isArray(allPosts) || !post?.author || !post?.slug) {
-      console.warn('[PostContent] Cannot filter posts:', { 
-        allPostsArray: Array.isArray(allPosts),
-        author: post?.author,
-        slug: post?.slug 
-      });
+      if (import.meta.env.DEV) {
+        console.warn('[PostContent] Cannot filter posts:', { 
+          allPostsArray: Array.isArray(allPosts),
+          author: post?.author,
+          slug: post?.slug 
+        });
+      }
       return [];
     }
     return allPosts
@@ -145,7 +147,7 @@ function PostContent({ post }: { post: BlogPost }) {
   }, [post, searchParams]);
   
   if (!post) {
-    console.error('[PostContent] Post is null/undefined');
+    if (import.meta.env.DEV) console.error('[PostContent] Post is null/undefined');
     return <NotFound />;
   }
   
@@ -489,15 +491,16 @@ export default function PostPage() {
       setIsLoadingPost(false);
       return;
     }
+    const controller = new AbortController();
     const loadPost = async () => {
       try {
         setIsLoadingPost(true);
         setError(null);
         const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, { signal: controller.signal });
         if (!response.ok) {
           const errorMsg = `Post not found (${response.status})`;
-          console.error(`[PostPage] API error: ${errorMsg}`);
+          if (import.meta.env.DEV) console.error(`[PostPage] API error: ${errorMsg}`);
           throw new Error(errorMsg);
         }
         const data = await response.json();
@@ -506,11 +509,12 @@ export default function PostPage() {
         if (loadedPost && loadedPost.id) {
           setPost(loadedPost);
         } else {
-          console.warn(`[PostPage] Invalid post data structure`);
+          if (import.meta.env.DEV) console.warn(`[PostPage] Invalid post data structure`);
           setPost(null);
         }
       } catch (err: unknown) {
-        console.error(`[PostPage] Error loading post:`, err instanceof Error ? err.message : String(err));
+        if (err instanceof DOMException && err.name === 'AbortError') return;
+        if (import.meta.env.DEV) console.error(`[PostPage] Error loading post:`, err instanceof Error ? err.message : String(err));
         setError(err instanceof Error ? err.message : 'Failed to load post');
         setPost(null);
       } finally {
@@ -518,6 +522,7 @@ export default function PostPage() {
       }
     };
     loadPost();
+    return () => controller.abort();
   }, [slug, authorId]);
   // Set current author if authorId is available
   useEffect(() => {
@@ -542,7 +547,7 @@ export default function PostPage() {
   }
   // Show error if post failed to load
   if (error) {
-    console.error(`[PostPage] Final error state:`, error);
+    if (import.meta.env.DEV) console.error(`[PostPage] Final error state:`, error);
     return <NotFound />;
   }
   // Show 404 if no post was found

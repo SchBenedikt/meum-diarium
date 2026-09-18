@@ -94,7 +94,7 @@ export default function ChatPage() {
             }
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : 'Fehler beim Abruf der KI-Antwort.';
-            console.error(`[ChatPage] Error: ${msg}`);
+            if (import.meta.env.DEV) console.error(`[ChatPage] Error: ${msg}`);
             setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
         } finally {
             setIsTyping(false);

@@ -28,7 +28,7 @@ export default function SettingsPage() {
       const loaded = getSettings();
       setSettings({ ...defaultSettings, ...loaded });
     } catch (error) {
-      console.error('Failed to load settings', error);
+      if (import.meta.env.DEV) console.error('Failed to load settings', error);
     }
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
@@ -96,7 +96,7 @@ export default function SettingsPage() {
       // In a real implementation, you would send to API:
       // await fetch('/api/settings', { method: 'POST', ... });
     } catch (error) {
-      console.error(error);
+      if (import.meta.env.DEV) console.error(error);
       toast.error('Fehler beim Speichern');
     } finally {
       setLoading(false);

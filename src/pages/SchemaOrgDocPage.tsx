@@ -42,7 +42,7 @@ export default function SchemaOrgDocPage() {
             foundSchemas.push(data);
           }
         } catch (e) {
-          console.error('Failed to parse schema:', e);
+          if (import.meta.env.DEV) console.error('Failed to parse schema:', e);
         }
       });
 

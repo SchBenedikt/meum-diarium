@@ -17,7 +17,7 @@ export function useWorks() {
         const works = await response.json();
         return Array.isArray(works) ? works : [];
       } catch (error) {
-        console.error('❌ [useWorks] Error loading works:', error);
+        if (import.meta.env.DEV) console.error('❌ [useWorks] Error loading works:', error);
         return [];
       }
     },
@@ -75,7 +75,7 @@ export function useWorkDetails(slug: string | undefined) {
         };
         setDetails(transformedDetails);
       } catch (err) {
-        console.error(`❌ [useWorkDetails] Error loading details for "${slug}":`, err);
+        if (import.meta.env.DEV) console.error(`❌ [useWorkDetails] Error loading details for "${slug}":`, err);
         setError(err instanceof Error ? err : new Error('Unknown error'));
         setDetails(null);
       } finally {

@@ -122,7 +122,7 @@ export default function LexiconEditorPage() {
             toast.success(isEditMode ? 'Eintrag aktualisiert' : 'Eintrag erstellt');
             navigate('/admin');
         } catch (error) {
-            console.error(error);
+            if (import.meta.env.DEV) console.error(error);
             toast.error('Fehler beim Speichern');
         } finally {
             setLoading(false);

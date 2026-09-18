@@ -47,7 +47,7 @@ export default function ProfileEditPage() {
         toast.error(error.message || 'Fehler beim Aktualisieren');
       }
     } catch (error) {
-      console.error('Profile update error:', error);
+      if (import.meta.env.DEV) console.error('Profile update error:', error);
       toast.error('Serverfehler. Bitte versuchen Sie es später.');
     } finally {
       setIsLoading(false);

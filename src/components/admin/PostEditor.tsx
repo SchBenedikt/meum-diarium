@@ -109,7 +109,7 @@ export function PostEditor({ open, onOpenChange, post, onSuccess }: PostEditorPr
                 toast.error(`Beitrag konnte nicht gespeichert werden: ${error.error || 'Unbekannter Fehler'}`);
             }
         } catch (error) {
-            console.error(error);
+            if (import.meta.env.DEV) console.error(error);
             toast.error('Fehler beim Speichern des Beitrags');
         } finally {
             setLoading(false);

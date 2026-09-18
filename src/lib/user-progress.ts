@@ -63,7 +63,7 @@ const STORAGE_KEYS = {
 export function trackProgress(entry: Omit<ProgressEntry, 'id' | 'completedAt'>): void {
   // Validation check for required fields
   if (!entry.userId || !entry.type || !entry.itemId || !entry.title) {
-    console.warn('[trackProgress] Missing required fields:', { userId: entry.userId, type: entry.type, itemId: entry.itemId, title: entry.title });
+    if (import.meta.env.DEV) console.warn('[trackProgress] Missing required fields:', { userId: entry.userId, type: entry.type, itemId: entry.itemId, title: entry.title });
     return;
   }
 

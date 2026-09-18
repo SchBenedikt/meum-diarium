@@ -153,7 +153,7 @@ export function AdminPostEditor() {
         toast.error('Beitrag konnte nicht geladen werden');
       }
     } catch (error) {
-      console.error('Failed to load post:', error);
+      if (import.meta.env.DEV) console.error('Failed to load post:', error);
       toast.error('Beitrag konnte nicht geladen werden');
     } finally {
       setLoading(false);
@@ -199,7 +199,7 @@ export function AdminPostEditor() {
         toast.error(`Speichern fehlgeschlagen: ${error.error || 'Unbekannter Fehler'}`);
       }
     } catch (error) {
-      console.error('Save error:', error);
+      if (import.meta.env.DEV) console.error('Save error:', error);
       toast.error('Speichern fehlgeschlagen');
     } finally {
       setSaving(false);

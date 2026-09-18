@@ -20,29 +20,31 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch dashboard stats
-  const fetchStats = async () => {
-    try {
-      const response = await fetch('/api/dashboard/stats', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setStats(data);
-      }
-    } catch (error) {
-      console.error('Error fetching dashboard stats:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (token) {
-      fetchStats();
-    }
+    if (!token) return;
+    const controller = new AbortController();
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/dashboard/stats', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+          signal: controller.signal,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setStats(data);
+        }
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        if (import.meta.env.DEV) console.error('Error fetching dashboard stats:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStats();
+    return () => controller.abort();
   }, [token]);
 
   if (!user) {

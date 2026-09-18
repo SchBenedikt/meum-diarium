@@ -24,7 +24,7 @@ async function cachedFetch(url: string, options?: RequestInit) {
     try {
         const res = await fetch(url, options);
         if (!res.ok) {
-            console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
+            if (import.meta.env.DEV) console.error(`❌ [API] HTTP ${res.status}: ${res.statusText} for ${url}`);
             throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
         const contentType = res.headers.get('content-type') || '';
@@ -249,7 +249,7 @@ export async function fetchWorks() {
         if (!res.ok) throw new Error('API returned non-200');
         return await res.json();
     } catch (err) {
-        console.error('❌ [API] Failed to fetch works from both sources:', err);
+        if (import.meta.env.DEV) console.error('❌ [API] Failed to fetch works from both sources:', err);
         return [];
     }
 }
@@ -337,7 +337,7 @@ export async function fetchWorkDetails(slug: string) {
         if (!res.ok) throw new Error('Failed to fetch work details');
         return res.json();
     } catch (err) {
-        console.error(`❌ [API] Failed to fetch work details for "${slug}":`, err);
+        if (import.meta.env.DEV) console.error(`❌ [API] Failed to fetch work details for "${slug}":`, err);
         return null;
     }
 }
@@ -411,7 +411,7 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
     }
 
     if (!res.ok) {
-        console.error(`[Frontend] AI request failed: ${res.status} ${res.statusText}`);
+        if (import.meta.env.DEV) console.error(`[Frontend] AI request failed: ${res.status} ${res.statusText}`);
         throw new Error(`AI request failed: ${res.status} ${res.statusText}`);
     }
     

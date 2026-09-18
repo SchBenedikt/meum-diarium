@@ -60,7 +60,7 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
       explainTerm(term)
         .then(text => setSummary(text))
         .catch(err => {
-          console.error('Failed to load summary', err);
+          if (import.meta.env.DEV) console.error('Failed to load summary', err);
           setSummary('Zusammenfassung konnte nicht geladen werden.');
         })
         .finally(() => setLoading(false));
@@ -77,7 +77,7 @@ export function TermPopover({ term, children, type, slug }: TermPopoverProps) {
       const response = await explainTerm(term, question, newMessages);
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
     } catch (err) {
-      console.error('Failed to send question', err);
+      if (import.meta.env.DEV) console.error('Failed to send question', err);
       setMessages(prev => [...prev, { role: 'assistant', content: 'Fehler beim Abrufen der Antwort.' }]);
     } finally {
       setSending(false);

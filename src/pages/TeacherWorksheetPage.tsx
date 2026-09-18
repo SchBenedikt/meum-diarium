@@ -207,7 +207,7 @@ export default function TeacherWorksheetPage() {
 
         // Check if response has a warning (fallback was used)
         if (response.warning) {
-          console.warn('[Worksheet] AI used fallback:', response.warning);
+          if (import.meta.env.DEV) console.warn('[Worksheet] AI used fallback:', response.warning);
         }
 
         const rawWorksheet = response.worksheet;
@@ -261,7 +261,7 @@ export default function TeacherWorksheetPage() {
 
       } catch (err: unknown) {
         lastError = err instanceof Error ? err : new Error('Unbekannter Fehler');
-        console.error(`[Worksheet] Attempt ${attempt}/${maxAttempts} failed:`, lastError.message);
+        if (import.meta.env.DEV) console.error(`[Worksheet] Attempt ${attempt}/${maxAttempts} failed:`, lastError.message);
 
         // If this isn't the last attempt, wait before retrying
         if (attempt < maxAttempts) {

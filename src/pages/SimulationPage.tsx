@@ -82,7 +82,7 @@ export default function SimulationPage() {
             setCurrentOptions(res.options || []);
             setGameEnded(res.ended || false);
         } catch (error) {
-            console.error("Failed to start AI simulation:", error);
+            if (import.meta.env.DEV) console.error("Failed to start AI simulation:", error);
             setHistory([{
                 text: scenario.events[scenario.startEventId]?.description || scenario.description,
                 type: 'narrative'
@@ -114,7 +114,7 @@ export default function SimulationPage() {
             setCurrentOptions(res.options || []);
             setGameEnded(res.ended || false);
         } catch (error) {
-            console.error("AI Choice Error:", error);
+            if (import.meta.env.DEV) console.error("AI Choice Error:", error);
             setHistory(prev => [...prev, { text: "Die Verbindung zu deinen Beratern wurde unterbrochen...", type: 'feedback' as const }]);
         } finally {
             setIsLoading(false);

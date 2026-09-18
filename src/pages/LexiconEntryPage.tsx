@@ -44,10 +44,12 @@ export default function LexiconEntryPage() {
   });
   
   useEffect(() => {
+    let cancelled = false;
     async function loadEntry() {
       if (!slug) return;
       try {
         const data = await fetchLexiconEntry(slug);
+        if (cancelled) return;
         if (data && data.definition) {
           setEntry(data);
         } else {
@@ -55,12 +57,14 @@ export default function LexiconEntryPage() {
           setEntry(local || null);
         }
       } catch (error) {
-        console.warn('API fetch failed, trying local fallback:', error);
+        if (cancelled) return;
+        if (import.meta.env.DEV) console.warn('API fetch failed, trying local fallback:', error);
         const local = localLexicon.find(e => e.slug === slug);
         setEntry(local || null);
       }
     }
     loadEntry();
+    return () => { cancelled = true; };
   }, [slug]);
 
   // Compute related posts: score-based matching against entry metadata

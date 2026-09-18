@@ -15,6 +15,7 @@ import { useAuthors } from "@/hooks/use-authors";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { SWUpdateToast } from "@/components/SWUpdateToast";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 const Index = lazy(() => import("./pages/Index"));
 const PostPage = lazy(() => import("./pages/PostPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
@@ -241,22 +242,24 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
 );
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-          <LanguageProvider>
-            <AuthProvider>
-              <Toaster richColors />
-              <SWUpdateToast />
-              <PWAInstallPrompt />
-              <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                <AppContent />
-              </BrowserRouter>
-            </AuthProvider>
-          </LanguageProvider>
-        </ThemeProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+            <LanguageProvider>
+              <AuthProvider>
+                <Toaster richColors />
+                <SWUpdateToast />
+                <PWAInstallPrompt />
+                <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                  <AppContent />
+                </BrowserRouter>
+              </AuthProvider>
+            </LanguageProvider>
+          </ThemeProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 };
 export default App;

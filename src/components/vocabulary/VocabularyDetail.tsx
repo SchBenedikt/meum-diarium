@@ -45,18 +45,19 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
     const [error, setError] = useState<string | null>(null);
     const [additionalForms, setAdditionalForms] = useState<Array<{form: string, description: string, loading: boolean}>>([]);
 
-    const fetchEntry = useCallback(async () => {
+    const fetchEntry = useCallback(async (signal?: AbortSignal) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`/api/vocab/${encodeURIComponent(vokId)}`);
+            const response = await fetch(`/api/vocab/${encodeURIComponent(vokId)}`, { signal });
             if (!response.ok) {
                 throw new Error('Failed to fetch vocabulary entry');
             }
             const data = await response.json();
             setEntry(data);
         } catch (err) {
-            console.error('❌ [VocabularyDetail] Error fetching entry:', err);
+            if (err instanceof DOMException && err.name === 'AbortError') return;
+            if (import.meta.env.DEV) console.error('❌ [VocabularyDetail] Error fetching entry:', err);
             setError(err instanceof Error ? err.message : 'Unknown error');
         } finally {
             setLoading(false);
@@ -65,7 +66,9 @@ export function VocabularyDetail({ vokId }: VocabularyDetailProps) {
 
     useEffect(() => {
         if (vokId) {
-            fetchEntry();
+            const controller = new AbortController();
+            fetchEntry(controller.signal);
+            return () => controller.abort();
         }
     }, [vokId, fetchEntry]);
 

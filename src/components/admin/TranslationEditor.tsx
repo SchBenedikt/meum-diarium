@@ -28,7 +28,7 @@ export function TranslationEditor() {
                 setTranslations(data);
             } catch (error) {
                 toast.error('Übersetzungen konnten nicht geladen werden');
-                console.error(error);
+                if (import.meta.env.DEV) console.error(error);
             } finally {
                 setLoading(false);
             }

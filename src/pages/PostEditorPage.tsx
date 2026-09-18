@@ -297,7 +297,7 @@ export default function PostEditorPage() {
             toast.success(isEditMode ? 'Beitrag aktualisiert' : 'Beitrag erstellt');
             navigate('/admin');
         } catch (error) {
-            console.error(error);
+            if (import.meta.env.DEV) console.error(error);
             toast.error('Fehler beim Speichern');
         } finally {
             setLoading(false);

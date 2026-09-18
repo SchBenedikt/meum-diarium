@@ -59,13 +59,13 @@ export default function StatisticsPage() {
   const [topCategories, setTopCategories] = useState<CategoryBucket[]>([]);
 
   useEffect(() => {
-    let active = true;
+    const controller = new AbortController();
     const load = async () => {
       try {
         const [statsResponse, worksResponse, lexiconResponse] = await Promise.all([
-          fetch('/api/stats'),
-          fetch('/api/works'),
-          fetch('/api/lexicon?limit=5000'),
+          fetch('/api/stats', { signal: controller.signal }),
+          fetch('/api/works', { signal: controller.signal }),
+          fetch('/api/lexicon?limit=5000', { signal: controller.signal }),
         ]);
 
         if (!statsResponse.ok) throw new Error('Stats API nicht erreichbar');
@@ -91,19 +91,19 @@ export default function StatisticsPage() {
           .sort((a, b) => b.count - a.count)
           .slice(0, 10);
 
-        if (active) setApiStats(data);
-        if (active) setWorksCount(worksData.length);
-        if (active) setLexiconCount(lexiconData.length);
-        if (active) setCategoryCount(categories.size);
-        if (active) setTopCategories(sortedCategories);
+        setApiStats(data);
+        setWorksCount(worksData.length);
+        setLexiconCount(lexiconData.length);
+        setCategoryCount(categories.size);
+        setTopCategories(sortedCategories);
       } catch (error) {
-        if (!active) return;
+        if (error instanceof DOMException && error.name === 'AbortError') return;
         const message = error instanceof Error ? error.message : 'Unbekannter Fehler';
         setApiError(message);
       }
     };
     load();
-    return () => { active = false; };
+    return () => controller.abort();
   }, []);
 
   const topCards = useMemo(

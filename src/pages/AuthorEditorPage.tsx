@@ -128,7 +128,7 @@ export default function AuthorEditorPage() {
             toast.success(isEditMode ? 'Autor aktualisiert' : 'Autor erstellt');
             navigate('/admin');
         } catch (error) {
-            console.error(error);
+            if (import.meta.env.DEV) console.error(error);
             toast.error('Fehler beim Speichern');
         } finally {
             setLoading(false);

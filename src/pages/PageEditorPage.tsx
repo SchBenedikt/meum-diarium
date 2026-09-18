@@ -155,7 +155,7 @@ export default function PageEditorPage() {
         navigate('/admin');
       }
     } catch (error) {
-      console.error(error);
+      if (import.meta.env.DEV) console.error(error);
       toast.error(t('saveError') || 'Fehler beim Speichern');
     } finally {
       setLoading(false);
