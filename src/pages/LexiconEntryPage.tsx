@@ -70,18 +70,26 @@ export default function LexiconEntryPage() {
       return;
     }
     const variantsList = Array.isArray(entry.variants) ? entry.variants : [];
+    const relatedList = Array.isArray(entry.relatedTerms) ? entry.relatedTerms : [];
     const searchTerms = [
       entry.term?.toLowerCase(),
       ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
     ].filter(Boolean);
-    const foundPosts = allPosts.filter(post =>
-      searchTerms.some(term =>
+    const relatedSlugs = relatedList.map((r: any) => typeof r === 'string' ? r.toLowerCase() : '');
+    const foundPosts = allPosts.filter(post => {
+      const postTags = (post.tags || []).map((t: string) => t.toLowerCase());
+      const postSlug = (post.slug || '').toLowerCase();
+      const postAuthor = (post.author || '').toLowerCase();
+      return searchTerms.some(term =>
         post.title.toLowerCase().includes(term) ||
         post.excerpt?.toLowerCase().includes(term) ||
         post.content?.diary?.toLowerCase().includes(term) ||
-        post.content?.scientific?.toLowerCase().includes(term)
-      )
-    );
+        post.content?.scientific?.toLowerCase().includes(term) ||
+        postTags.some(tag => tag.includes(term) || term.includes(tag))
+      ) || relatedSlugs.some(slug =>
+        postSlug.includes(slug) || postAuthor.includes(slug)
+      );
+    });
     setRelatedPosts(foundPosts.slice(0, 5));
   }, [entry, allPosts, postsLoading]);
   const handleBackClick = () => {
