@@ -141,7 +141,7 @@ export default function StatisticsPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
-        title="Statistik - Meum Diarium"
+        title="Statistik"
         description="Kennzahlen zu Inhalten, Bildern, Routen und Codeumfang von Meum Diarium."
         type="website"
       />

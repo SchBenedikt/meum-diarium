@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Datenschutzerklärung - Meum Diarium"
+        title="Datenschutzerklärung"
         description="Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten bei Meum Diarium."
       />
       <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">

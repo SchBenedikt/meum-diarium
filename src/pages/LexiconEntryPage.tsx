@@ -63,34 +63,66 @@ export default function LexiconEntryPage() {
     loadEntry();
   }, [slug]);
 
-  // Compute related posts whenever entry or posts change
+  // Compute related posts: score-based matching against entry metadata
   useEffect(() => {
     if (!entry || postsLoading || allPosts.length === 0) {
       setRelatedPosts([]);
       return;
     }
-    const variantsList = Array.isArray(entry.variants) ? entry.variants : [];
-    const relatedList = Array.isArray(entry.relatedTerms) ? entry.relatedTerms : [];
-    const searchTerms = [
-      entry.term?.toLowerCase(),
-      ...variantsList.map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''))
-    ].filter(Boolean);
-    const relatedSlugs = relatedList.map((r: any) => typeof r === 'string' ? r.toLowerCase() : '');
-    const foundPosts = allPosts.filter(post => {
+    const entryTerm = (entry.term || '').toLowerCase();
+    const entryCategory = (entry.category || '').toLowerCase();
+    const variantsList = (Array.isArray(entry.variants) ? entry.variants : [])
+      .map((v: any) => typeof v === 'string' ? v.toLowerCase() : (v.term?.toLowerCase() || ''));
+    const relatedSlugs = (Array.isArray(entry.relatedTerms) ? entry.relatedTerms : [])
+      .map((r: any) => typeof r === 'string' ? r.toLowerCase() : '');
+
+    const allSearchTerms = [entryTerm, ...variantsList].filter(Boolean);
+
+    type ScoredPost = { post: any; score: number };
+    const scored: ScoredPost[] = [];
+
+    for (const post of allPosts) {
+      let score = 0;
       const postTags = (post.tags || []).map((t: string) => t.toLowerCase());
-      const postSlug = (post.slug || '').toLowerCase();
+      const postTitle = (post.title || '').toLowerCase();
+      const postExcerpt = (post.excerpt || '').toLowerCase();
       const postAuthor = (post.author || '').toLowerCase();
-      return searchTerms.some(term =>
-        post.title.toLowerCase().includes(term) ||
-        post.excerpt?.toLowerCase().includes(term) ||
-        post.content?.diary?.toLowerCase().includes(term) ||
-        post.content?.scientific?.toLowerCase().includes(term) ||
-        postTags.some(tag => tag.includes(term) || term.includes(tag))
-      ) || relatedSlugs.some(slug =>
-        postSlug.includes(slug) || postAuthor.includes(slug)
-      );
-    });
-    setRelatedPosts(foundPosts.slice(0, 5));
+
+      // === TAG MATCHING ===
+      // Exact tag == entry term
+      if (postTags.includes(entryTerm)) score += 100;
+      // Exact tag == any variant
+      if (postTags.some(tag => variantsList.includes(tag))) score += 90;
+      // Tag contains entry term or vice versa
+      if (postTags.some(tag => tag.includes(entryTerm) || entryTerm.includes(tag))) score += 60;
+      // Tag matches any variant (partial)
+      if (postTags.some(tag => variantsList.some(v => tag.includes(v) || v.includes(tag)))) score += 50;
+
+      // === RELATED TERMS MATCHING ===
+      // relatedTerm slug matches a post tag exactly (e.g. "aporie" tag == relatedTerm "aporie")
+      if (relatedSlugs.some(slug => postTags.some(tag => tag === slug))) score += 80;
+      // relatedTerm slug partially matches a post tag
+      if (relatedSlugs.some(slug => postTags.some(tag => tag.includes(slug) || slug.includes(tag)))) score += 55;
+
+      // === AUTHOR MATCHING ===
+      // relatedTerm matches post author (e.g. author="sokrates" matches relatedTerm="sokrates")
+      if (relatedSlugs.some(slug => postAuthor === slug || postAuthor.includes(slug))) score += 70;
+
+      // === TITLE / EXCERPT MATCHING ===
+      if (allSearchTerms.some(term => postTitle.includes(term))) score += 45;
+      if (allSearchTerms.some(term => postExcerpt.includes(term))) score += 25;
+
+      // === CATEGORY MATCHING ===
+      // Boost posts whose tags match the entry's category
+      if (entryCategory && postTags.some(tag => tag === entryCategory)) score += 15;
+
+      if (score > 0) {
+        scored.push({ post, score });
+      }
+    }
+
+    scored.sort((a, b) => b.score - a.score);
+    setRelatedPosts(scored.slice(0, 5).map(s => s.post));
   }, [entry, allPosts, postsLoading]);
   const handleBackClick = () => {
     navigate('/lexicon');

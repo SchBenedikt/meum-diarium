@@ -93,8 +93,8 @@ const OERPage = () => {
 
   const authorsCount = Object.keys(authors).length;
   const stats = [
-    { value: '92+', label: 'Lexikon-Einträge' },
-    { value: '36.140', label: 'Vokabeln' },
+    { value: '90+', label: 'Lexikon-Einträge' },
+    { value: '36.000+', label: 'Vokabeln' },
     { value: String(authorsCount), label: 'Historische Persönlichkeiten' },
     { value: '6', label: 'Lektionen' },
   ];
@@ -104,7 +104,7 @@ const OERPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Open Educational Resources - Meum Diarium"
+        title="Open Educational Resources"
         description="Kostenfreie Bildungsmaterialien zur römischen Antike. Texte, Vokabeln und interaktive Lernwerkzeuge unter offenen Lizenzen."
         type="website"
         image={`${baseUrl}/images/oer-hero.jpg`}

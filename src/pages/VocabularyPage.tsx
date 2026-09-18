@@ -162,8 +162,8 @@ export default function VocabularyPage() {
     return (
         <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
             <SEO
-                title="Latein Vokabeltrainer – 36.000+ Vokabeln"
-                description="Durchsuche über 36.000 lateinische Vokabeln mit Übersetzungen, Grammatik-Informationen und Kontextbeispielen aus originalen lateinischen Texten."
+                title="Latein Vokabeltrainer"
+                description="Durchsuche lateinische Vokabeln mit Übersetzungen, Grammatik-Informationen und Kontextbeispielen aus originalen lateinischen Texten."
                 image={`${baseUrl}/images/cicero-hero.png`}
             />
             <main className="flex-1 container mx-auto px-4 pt-32 pb-24 max-w-7xl">
@@ -185,7 +185,7 @@ export default function VocabularyPage() {
                             Latein-<span className="text-primary italic">Deutsch</span>
                         </h1>
                         <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed text-sm sm:text-base">
-                            Durchsuche über 36.000 lateinische Vokabeln mit Deklinationen und Konjugationen.
+                            Durchsuche lateinische Vokabeln mit Deklinationen und Konjugationen.
                         </p>
                     </motion.div>
                     <Link 

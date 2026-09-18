@@ -76,7 +76,7 @@ export default function AboutPageNew() {
     {
       icon: BookOpen,
       title: t('about.features.lexicon') || 'Lexikon',
-      description: t('about.features.lexiconDesc') || '92+ umfassende Einträge zur römischen Antike',
+      description: t('about.features.lexiconDesc') || 'Umfassende Einträge zur römischen Antike',
       gradient: 'from-red-500/20 to-red-500/5',
       color: 'text-red-500',
       bg: 'bg-red-500/10'
@@ -85,7 +85,7 @@ export default function AboutPageNew() {
 
   const stats = [
     { value: '5', label: t('about.stats.authors') || 'Autoren', icon: Users },
-    { value: '92+', label: t('about.stats.entries') || 'Lexikon-Einträge', icon: BookOpen },
+    { value: '90+', label: t('about.stats.entries') || 'Lexikon-Einträge', icon: BookOpen },
     { value: '2', label: t('about.stats.perspectives') || 'Perspektiven', icon: Globe2 },
     { value: '170+', label: t('about.stats.years') || 'Jahre Geschichte', icon: Clock },
   ];

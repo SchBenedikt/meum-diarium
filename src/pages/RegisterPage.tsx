@@ -62,7 +62,7 @@ export default function RegisterPage() {
   return (
     <>
       <SEO
-        title="Registrieren - Meum Diarium"
+        title="Registrieren"
         description="Erstellen Sie ein neues Meum Diarium Konto"
         noIndex={true}
       />

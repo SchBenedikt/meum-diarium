@@ -36,7 +36,7 @@ export default function LoginPage() {
   return (
     <>
       <SEO
-        title="Login - Meum Diarium"
+        title="Login"
         description="Melden Sie sich bei Ihrem Meum Diarium Konto an"
         noIndex={true}
       />

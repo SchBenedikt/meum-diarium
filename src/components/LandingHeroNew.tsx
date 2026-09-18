@@ -138,7 +138,7 @@ export default function LandingHeroNew() {
     {
       icon: Library,
       title: t('landing.features.lexiconTitle') || 'Lexikon',
-      description: t('landing.features.lexiconDesc') || '92+ Einträge zur römischen Antike',
+      description: t('landing.features.lexiconDesc') || 'Zahlreiche Einträge zur römischen Antike',
       bgColor: 'bg-amber-100 dark:bg-amber-900/20',
       iconColor: 'text-amber-500'
     },
@@ -170,7 +170,7 @@ export default function LandingHeroNew() {
     { value: '7', label: 'Historische Persönlichkeiten', delay: 0 },
     { value: '36000', label: 'Vokabeln', delay: 0.2 },
     { value: '50', label: 'Artikel', delay: 0.4 },
-    { value: '92+', label: 'Lexikon-Einträge', delay: 0.6 },
+    { value: '90+', label: 'Lexikon-Einträge', delay: 0.6 },
   ];
 
   return (

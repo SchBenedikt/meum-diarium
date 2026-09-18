@@ -15,7 +15,7 @@ import {
 
 const highlights = [
   { icon: Users, value: '7', label: 'Historische Persönlichkeiten' },
-  { icon: BookOpen, value: '92+', label: 'Lexikon-Einträge' },
+  { icon: BookOpen, value: '90+', label: 'Lexikon-Einträge' },
   { icon: Globe2, value: '2', label: 'Perspektiven pro Artikel' },
   { icon: Clock, value: '36.000+', label: 'Wörter im Wörterbuch' },
 ];

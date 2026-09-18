@@ -1,13 +1,12 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
-import { BookMarked, Search, ArrowRight, Tags, X, Check, Landmark, Scale, Sword, Brain, BookHeart, Drama, ChevronsRight, Users } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { BookMarked, Search, ArrowRight, Tags, X, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { getTranslatedLexicon } from '@/lib/translator';
 import { useLexicon } from '@/hooks/use-lexicon';
 import { LexiconEntry } from '@/types/blog';
 import { Button } from '@/components/ui/button';
@@ -24,23 +23,11 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
 
-const categoryIcons: Record<string, React.ElementType> = {
-  'Politik': Landmark,
-  'Recht': Scale,
-  'Militär': Sword,
-  'Philosophie': Brain,
-  'Gesellschaft': Users,
-  'Rede': BookHeart,
-  'Drama': Drama,
-  'Bürgerkrieg': ChevronsRight,
-};
-const topCategories = ['Politik', 'Philosophie', 'Militär', 'Bürgerkrieg', 'Gesellschaft'];
 export default function LexiconPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(searchParams.get('category'));
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
-  const navigate = useNavigate();
   const { setCurrentAuthor } = useAuthor();
   const { language, t } = useLanguage();
   const { lexicon = [], isLoading } = useLexicon();
@@ -138,7 +125,7 @@ export default function LexiconPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title={`${t('lexicon')} – 92+ Begriffe zur römischen Antike`}
+        title={`${t('lexicon')} – ${lexicon.length || '92+'} Begriffe zur römischen Antike`}
         description={t('lexiconDescription') || 'Lateinisches Lexikon mit Begriffen aus der antiken römischen Welt. Umfassende Definitionen, Etymologie und historischer Kontext.'}
         keywords="Latein, Lexikon, antike Geschichte, römisches Reich, Begriffe, Definitionen, Etymologie, Caesar, Cicero, Seneca, Augustus"
         image={`${baseUrl}/images/caesar-hero.png`}

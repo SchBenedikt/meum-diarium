@@ -158,7 +158,7 @@ export function SokratesAboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       <SEO
-        title={authorInfo ? `${authorInfo.name} – Sokrates` : 'Sokrates'}
+        title={authorInfo ? `${authorInfo.name}` : 'Sokrates'}
         description={authorInfo?.description || sokratesPageData.introText}
         author={authorInfo?.name}
         image={`${baseUrl}/images/sokrates-hero.png`}

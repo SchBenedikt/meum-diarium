@@ -70,7 +70,7 @@ const ImagesPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Bildmaterial – Meum Diarium"
+        title="Bildmaterial"
         description="Historische Abbildungen und Rekonstruktionen der bedeutendsten Persönlichkeiten der römischen Antike zur freien Nutzung unter CC BY-SA 4.0."
         type="website"
         image={`${baseUrl}/images/caesar-hero.png`}

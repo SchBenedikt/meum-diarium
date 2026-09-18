@@ -103,7 +103,7 @@ function generateBreadcrumbItems(pathname: string, lang: string) {
 const defaultMeta = {
   de: {
     title: 'Meum Diarium – Römische Geschichte interaktiv: Caesar, Cicero, Augustus & Seneca',
-    description: 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader, Vokabeltrainer und ein umfassendes Lexikon mit 92+ Einträgen – für Schule, Studium und alle Geschichtsbegeisterten. Kostenlose OER-Bildungsmaterialien.',
+    description: 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader, Vokabeltrainer und ein umfassendes Lexikon mit zahlreichen Einträgen – für Schule, Studium und alle Geschichtsbegeisterten. Kostenlose OER-Bildungsmaterialien.',
     siteName: 'Meum Diarium',
     keywords: 'Römisches Reich, Latein lernen, Caesar, Cicero, Augustus, Seneca, antike Geschichte, Römische Literatur, antike Philosophie, Tagebücher, interaktive Zeitreise, Latein-Reader, römische Geschichte, OER, Bildungsmaterial, Geschichtsunterricht, Latein Vokabeln, KI Chat, historische Simulation',
     author: 'Meum Diarium Team',
@@ -113,7 +113,7 @@ const defaultMeta = {
   },
   en: {
     title: 'Meum Diarium – Experience Ancient Rome Interactively: Caesar, Cicero, Augustus & Seneca',
-    description: 'Immerse yourself in the world of ancient Rome: experience history through the eyes of Caesar, Cicero, Augustus and Seneca. Authentic diary entries, scholarly analysis, AI chats, interactive simulations, Latin reader with 36,000+ vocabulary entries and a comprehensive lexicon – for school, university and history enthusiasts.',
+    description: 'Immerse yourself in the world of ancient Rome: experience history through the eyes of Caesar, Cicero, Augustus and Seneca. Authentic diary entries, scholarly analysis, AI chats, interactive simulations, Latin reader with extensive vocabulary and a comprehensive lexicon – for school, university and history enthusiasts.',
     siteName: 'Meum Diarium',
     keywords: 'Roman Empire, learn Latin, Caesar, Cicero, Augustus, Seneca, ancient history, Roman literature, ancient philosophy, diaries, interactive time travel, Latin reader, Roman history, OER, educational resources, Latin vocabulary, AI chat',
     author: 'Meum Diarium Team',
@@ -123,7 +123,7 @@ const defaultMeta = {
   },
   la: {
     title: 'Meum Diarium – Historiam Romanam Experire: Caesar, Cicero, Augustus, Seneca',
-    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, analysis erudita, colloquia AI, simulationes interactivae, lector Latinus cum 36,000+ vocabulis et lexicon comprehensivum.',
+    description: 'Experimur historiam Romae per oculos magnorum virorum: Caesar, Cicero, Augustus et Seneca. Commentarii diarii, analysis erudita, colloquia AI, simulationes interactivae, lector Latinus cum vocabulario amplissimo et lexicon comprehensivum.',
     siteName: 'Meum Diarium',
     keywords: 'Imperium Romanum, Lingua Latina, Caesar, Cicero, Augustus, Seneca, historia antiqua, litteratura romana, philosophia antiqua, diarii, peregrinationes temporales, lector Latinus, lexicon, vocabularium',
     author: 'Meum Diarium Team',
@@ -162,13 +162,8 @@ export function SEO({
 
   // Create JSON-LD structured data once
   const jsonLdData = useMemo(() => {
-    // If custom structured data is provided, use it directly (for pages like BlogPosting)
     if (structuredData) {
-      if (Array.isArray(structuredData)) {
-        return structuredData;
-      } else {
-        return structuredData;
-      }
+      return structuredData;
     }
 
     // BreadcrumbList
