@@ -31,7 +31,6 @@ const PRECACHE_ASSETS = [
   '/reader',
   '/lexicon',
   '/ki',
-  '/ai',
   '/ai-explanation'
 ];
 

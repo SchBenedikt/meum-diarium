@@ -179,7 +179,7 @@ export function SEO({
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": defaults.siteName,
-        "url": finalImage.startsWith('http') ? finalImage : currentUrl,
+        "url": currentUrl,
         "description": finalDescription,
         "inLanguage": language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'la',
         "potentialAction": {
@@ -325,9 +325,16 @@ export function SEO({
     updateMetaTag('og:image:width', '1200', true);
     updateMetaTag('og:image:height', '630', true);
     updateMetaTag('og:site_name', defaults.siteName, true);
-    updateMetaTag('og:locale', language === 'de' ? 'de_DE' : language === 'en' ? 'en_US' : 'la', true);
-    updateMetaTag('og:locale:alternate', 'de_DE', true);
-    updateMetaTag('og:locale:alternate', 'en_US', true);
+    updateMetaTag('og:locale', language === 'de' ? 'de_DE' : language === 'en' ? 'en_US' : 'en_US', true);
+    // Remove existing og:locale:alternate tags and add fresh ones
+    document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(el => el.remove());
+    const alternateLocales = language === 'de' ? ['en_US'] : language === 'en' ? ['de_DE'] : ['de_DE', 'en_US'];
+    alternateLocales.forEach(locale => {
+      const meta = document.createElement('meta');
+      meta.setAttribute('property', 'og:locale:alternate');
+      meta.setAttribute('content', locale);
+      document.head.appendChild(meta);
+    });
     
     // Article-specific OG tags
     if (type === 'article') {
@@ -347,8 +354,9 @@ export function SEO({
     updateMetaTag('twitter:site', '@meumdiarium');
     updateMetaTag('twitter:creator', author || defaults.author);
     
-    // Mobile and PWA
-    updateMetaTag('theme-color', '#B8860B');
+    // Mobile and PWA - respect dark mode
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    updateMetaTag('theme-color', prefersDark ? '#1a1a1a' : '#8B1A1A');
     updateMetaTag('mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
@@ -386,11 +394,17 @@ export function SEO({
       if (loc !== language) {
         const linkEl = document.createElement('link');
         linkEl.rel = 'alternate';
-        linkEl.hreflang = loc === 'en' ? 'en' : loc === 'de' ? 'de' : loc === 'la' ? 'la' : 'en';
+        linkEl.hreflang = loc;
         linkEl.href = `${baseUrl}${location.pathname}`;
         document.head.appendChild(linkEl);
       }
     });
+    // Add x-default pointing to the primary language version
+    const xDefault = document.createElement('link');
+    xDefault.rel = 'alternate';
+    xDefault.hreflang = 'x-default';
+    xDefault.href = `${baseUrl}${location.pathname}`;
+    document.head.appendChild(xDefault);
     
     // JSON-LD structured data
     const existingLd = document.querySelectorAll('script[data-managed="seo-ld"]');

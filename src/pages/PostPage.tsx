@@ -157,7 +157,7 @@ function PostContent({ post }: { post: BlogPost }) {
   const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
   const authorImage = author?.heroImage || '/images/caesar-hero.png';
   const finalImage = authorImage.startsWith('/') ? `${baseUrl}${authorImage}` : `${baseUrl}/images/${authorImage}`;
-  const currentUrl = window.location.href;
+  const currentUrl = `${baseUrl}${location.pathname === '/' ? '' : location.pathname}`;
   const chatAuthorName = author?.name?.split(' ')[0] || post?.author || t('index.chatWithDefaultName');
 
   const openAuthorChat = () => {
@@ -192,11 +192,13 @@ function PostContent({ post }: { post: BlogPost }) {
           "image": post?.coverImage ? (post.coverImage.startsWith('/') || post.coverImage.startsWith('http') ? `${baseUrl}${post.coverImage}` : `${baseUrl}/images/${post.coverImage}`) : finalImage,
           "author": {
             "@type": "Person",
-            "name": post?.author
+            "name": author?.name || post?.author,
+            "url": `${baseUrl}/${post?.author}`
           },
           "publisher": {
             "@type": "Organization",
             "name": "Meum Diarium",
+            "url": baseUrl,
             "logo": {
               "@type": "ImageObject",
               "url": `${baseUrl}/icons/icon-192x192.png`

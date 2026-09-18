@@ -153,8 +153,8 @@ export default function LexiconEntryPage() {
             "name": "Meum Diarium",
             "url": baseUrl
           },
-          "datePublished": new Date().toISOString(),
-          "dateModified": new Date().toISOString(),
+          "datePublished": '2024-01-01T00:00:00Z',
+          "dateModified": '2024-01-01T00:00:00Z',
           "url": `${baseUrl}/lexicon/${entry.slug}`,
           "mainEntityOfPage": {
             "@type": "DefinedTerm",

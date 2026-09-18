@@ -162,7 +162,7 @@ export function CiceroAboutPage() {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Meum Diarium",
-          "url": `${baseUrl}/authors/cicero`,
+          "url": `${baseUrl}/cicero/about`,
           "description": authorInfo?.description,
           "potentialAction": {
             "@type": "SearchAction",
