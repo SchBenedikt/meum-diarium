@@ -48,15 +48,16 @@ export default function LexiconEntryPage() {
       if (!slug) return;
       try {
         const data = await fetchLexiconEntry(slug);
-        if (data) {
+        if (data && data.definition) {
           setEntry(data);
         } else {
           const local = localLexicon.find(e => e.slug === slug);
           setEntry(local || null);
         }
       } catch (error) {
-        console.error('Failed to load lexicon entry:', error);
-        setEntry(null);
+        console.warn('API fetch failed, trying local fallback:', error);
+        const local = localLexicon.find(e => e.slug === slug);
+        setEntry(local || null);
       }
     }
     loadEntry();
