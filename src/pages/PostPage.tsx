@@ -21,7 +21,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
-import { getApiBase } from '@/lib/api';
+import { fetchPost } from '@/lib/api';
 import { getAbsolutePostImageUrl, getPostImageSrc } from '@/lib/post-image';
 import { usePageTracking } from '@/hooks/usePageTracking';
 import { Button } from '@/components/ui/button';
@@ -485,7 +485,7 @@ export default function PostPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoadingPost, setIsLoadingPost] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // Load post directly from API by author + slug
+  // Load the checked-in post file by author + slug, just like the overview index.
   useEffect(() => {
     if (!slug || !authorId) {
       setError('Missing route parameters');
@@ -497,15 +497,7 @@ export default function PostPage() {
       try {
         setIsLoadingPost(true);
         setError(null);
-        const apiUrl = `${getApiBase()}/posts/${encodeURIComponent(authorId)}/${encodeURIComponent(slug)}`;
-        const response = await fetch(apiUrl, { signal: controller.signal });
-        if (!response.ok) {
-          const errorMsg = `Post not found (${response.status})`;
-          if (import.meta.env.DEV) console.error(`[PostPage] API error: ${errorMsg}`);
-          throw new Error(errorMsg);
-        }
-        const data = await response.json();
-        const loadedPost = data as BlogPost;
+        const loadedPost = await fetchPost(authorId, slug, { signal: controller.signal }) as BlogPost;
 
         if (loadedPost && loadedPost.id) {
           setPost(loadedPost);

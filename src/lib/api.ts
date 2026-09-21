@@ -58,9 +58,9 @@ export async function fetchPosts() {
     if (Array.isArray(index?.posts)) return index.posts;
     throw new Error('Invalid local posts index: expected a posts array');
 }
-export async function fetchPost(author: string, slug: string) {
+export async function fetchPost(author: string, slug: string, options?: RequestInit) {
     // Keep detail pages on the same checked-in source as the overview index.
-    const post = await cachedFetch(`/posts/${encodeURIComponent(author)}/${encodeURIComponent(slug)}.json`);
+    const post = await cachedFetch(`/posts/${encodeURIComponent(author)}/${encodeURIComponent(slug)}.json`, options);
     return {
         ...post,
         author: post.author || author,
