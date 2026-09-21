@@ -8,7 +8,7 @@
     "debug": "vite --host",
     "server": "tsx watch server/index.ts",
     "generate:sitemaps": "tsx scripts/generate-sitemaps.ts",
-    "build": "npm run generate:sitemaps && vite build && node scripts/build-pages-worker.mjs",
+    "build": "npm run generate:sitemaps && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
