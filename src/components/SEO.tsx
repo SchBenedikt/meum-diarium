@@ -217,7 +217,6 @@ export function SEO({
         "description": finalDescription,
         "sameAs": [
           "https://github.com/SchBenedikt/meum-diarium",
-          "https://www.wikidata.org/wiki/Q123456",
           `${baseUrl}/about`,
           `${baseUrl}/oer`,
           `${baseUrl}/projekt`

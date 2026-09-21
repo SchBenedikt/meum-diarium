@@ -51,11 +51,21 @@ async function cachedFetch(url: string, options?: RequestInit) {
     }
 }
 export async function fetchPosts() {
-    return cachedFetch(`${getApiBase()}/posts`);
+    // Published posts are static, versioned project content. Read the checked-in
+    // index directly so browsing does not depend on a separately deployed API.
+    const index = await cachedFetch('/posts/index.json');
+    if (Array.isArray(index)) return index;
+    if (Array.isArray(index?.posts)) return index.posts;
+    throw new Error('Invalid local posts index: expected a posts array');
 }
 export async function fetchPost(author: string, slug: string) {
-    // Use author/slug route: /api/posts/{author}/{slug}
-    return cachedFetch(`${getApiBase()}/posts/${author}/${slug}`);
+    // Keep detail pages on the same checked-in source as the overview index.
+    const post = await cachedFetch(`/posts/${encodeURIComponent(author)}/${encodeURIComponent(slug)}.json`);
+    return {
+        ...post,
+        author: post.author || author,
+        authorId: post.authorId || post.author || author,
+    };
 }
 export async function createPost(data: any) {
     const res = await fetch(`${getApiBase()}/posts`, {
