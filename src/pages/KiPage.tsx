@@ -90,6 +90,9 @@ const KiPage = () => {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   Sprachmodelle können überzeugend klingende, aber falsche oder erfundene Angaben erzeugen. Historische Dialoge sind keine Originalquellen. Prüfe Fakten anhand verlässlicher Fachliteratur und kontrolliere generierte Unterrichtsmaterialien vor der Weitergabe oder Verwendung.
                 </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Die neu gestalteten Beitragsbilder zu den Figuren außer Caesar sind KI-generierte Illustrationen. Sie veranschaulichen Themen, sind aber weder zeitgenössische Abbildungen noch historische Belege.
+                </p>
               </div>
             </div>
           </div>

@@ -22,6 +22,7 @@ import { BlogCard } from '@/components/BlogCard';
 import { SEO } from '@/components/SEO';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { getApiBase } from '@/lib/api';
+import { getAbsolutePostImageUrl, getPostImageSrc } from '@/lib/post-image';
 import { usePageTracking } from '@/hooks/usePageTracking';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -179,7 +180,7 @@ function PostContent({ post }: { post: BlogPost }) {
         title={getDisplayTitle()}
         description={contentToDisplay?.substring(0, 160)}
         author={post?.author}
-        image={post?.coverImage ? (post.coverImage.startsWith('/') || post.coverImage.startsWith('http') ? `${baseUrl}${post.coverImage}` : `${baseUrl}/images/${post.coverImage}`) : finalImage}
+        image={getAbsolutePostImageUrl(post?.coverImage, baseUrl, finalImage)}
         type="article"
         publishedTime={post?.date}
         section={post?.historicalYear ? 'ancient-history' : 'roman-literature'}
@@ -191,7 +192,7 @@ function PostContent({ post }: { post: BlogPost }) {
           "description": contentToDisplay?.substring(0, 160),
           "articleBody": contentToDisplay?.substring(0, 5000),
           "wordCount": contentToDisplay?.split(/\s+/).length || 0,
-          "image": post?.coverImage ? (post.coverImage.startsWith('/') || post.coverImage.startsWith('http') ? `${baseUrl}${post.coverImage}` : `${baseUrl}/images/${post.coverImage}`) : finalImage,
+          "image": getAbsolutePostImageUrl(post?.coverImage, baseUrl, finalImage),
           "author": {
             "@type": "Person",
             "name": author?.name || post?.author,
@@ -296,7 +297,7 @@ function PostContent({ post }: { post: BlogPost }) {
                             aria-label="Bild vergrößern"
                           >
                             <ImageWithFallback
-                              src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
+                              src={getPostImageSrc(post.coverImage)}
                               alt={post.title}
                               className="w-full h-full"
                               imgClassName="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -467,7 +468,7 @@ function PostContent({ post }: { post: BlogPost }) {
             <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
           </button>
           <img
-            src={post.coverImage.startsWith('/') || post.coverImage.startsWith('http://') || post.coverImage.startsWith('https://') ? post.coverImage : `/images/${post.coverImage}`}
+            src={getPostImageSrc(post.coverImage)}
             alt={post.title}
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}

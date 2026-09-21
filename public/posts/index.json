@@ -17,7 +17,7 @@
         "Regierung"
       ],
       "readingTime": 6,
-      "coverImage": "augustus-posts/militaerreform.png"
+      "coverImage": "generated-posts/augustus-militaerreform.webp"
     },
     {
       "id": "augustus-succession-concerns",
@@ -36,7 +36,7 @@
         "Sterblichkeit"
       ],
       "readingTime": 6,
-      "coverImage": "augustus-posts/nachfolge-sorgen.png"
+      "coverImage": "generated-posts/augustus-nachfolge-sorgen.webp"
     },
     {
       "id": "augustus-pax-romana",
@@ -55,7 +55,7 @@
         "Stabilität"
       ],
       "readingTime": 6,
-      "coverImage": "augustus-posts/pax-romana.png"
+      "coverImage": "generated-posts/augustus-pax-romana.webp"
     },
     {
       "id": "augustus-actium-victory",
@@ -74,7 +74,7 @@
         "Strategie"
       ],
       "readingTime": 6,
-      "coverImage": "augustus-posts/sieg-bei-actium.jpg"
+      "coverImage": "generated-posts/augustus-sieg-bei-actium.webp"
     },
     {
       "id": "augustus-legacy",
@@ -93,7 +93,7 @@
         "Rom"
       ],
       "readingTime": 6,
-      "coverImage": "augustus-posts/vermaechtnis.png"
+      "coverImage": "generated-posts/augustus-vermaechtnis.webp"
     },
     {
       "id": "caesar-caesar-verschluesselung",
@@ -330,7 +330,7 @@
         "Macht"
       ],
       "readingTime": 6,
-      "coverImage": "catilina-posts/ambitionen-verraten.png"
+      "coverImage": "generated-posts/catilina-ambitionen-verraten.webp"
     },
     {
       "id": "catilina-conspiracy-unfolds",
@@ -349,7 +349,7 @@
         "Rom"
       ],
       "readingTime": 6,
-      "coverImage": "catilina-posts/die-verschwoerung-entfaltet-sich.png"
+      "coverImage": "generated-posts/catilina-die-verschwoerung-entfaltet-sich.webp"
     },
     {
       "id": "catilina-exposed-defiant",
@@ -368,7 +368,7 @@
         "Konfrontation"
       ],
       "readingTime": 6,
-      "coverImage": "catilina-posts/enttarnt-und-trotzig.png"
+      "coverImage": "generated-posts/catilina-enttarnt-und-trotzig.webp"
     },
     {
       "id": "catilina-final-stand",
@@ -387,7 +387,7 @@
         "Vermächtnis"
       ],
       "readingTime": 6,
-      "coverImage": "catilina-posts/letzter-widerstand.png"
+      "coverImage": "generated-posts/catilina-letzter-widerstand.webp"
     },
     {
       "id": "catilina-justifying-action",
@@ -406,7 +406,7 @@
         "Ideologie"
       ],
       "readingTime": 6,
-      "coverImage": "catilina-posts/rechtfertigung-des-handelns.png"
+      "coverImage": "generated-posts/catilina-rechtfertigung-des-handelns.webp"
     },
     {
       "id": "cicero-catilinarian-conspiracy",
@@ -425,7 +425,7 @@
         "Sicherheit"
       ],
       "readingTime": 6,
-      "coverImage": "cicero-posts/enthuellung-der-catilinarischen-verschwoerung.png"
+      "coverImage": "generated-posts/cicero-enthuellung-der-catilinarischen-verschwoerung.webp"
     },
     {
       "id": "cicero-friendship-wisdom",
@@ -444,7 +444,7 @@
         "Briefe"
       ],
       "readingTime": 6,
-      "coverImage": "cicero-posts/freundschaft-und-weisheit.png"
+      "coverImage": "generated-posts/cicero-freundschaft-und-weisheit.webp"
     },
     {
       "id": "cicero-gegen-den-neuen-tyrannen",
@@ -463,7 +463,7 @@
         "Freiheit"
       ],
       "readingTime": 4,
-      "coverImage": "cicero-posts/gegen-den-neuen-tyrannen.png"
+      "coverImage": "generated-posts/cicero-gegen-den-neuen-tyrannen.webp"
     },
     {
       "id": "cicero-ich-besiege-den-korrupten-statthalter",
@@ -482,7 +482,7 @@
         "Erfolg"
       ],
       "readingTime": 4,
-      "coverImage": "cicero-posts/ich-besiege-den-korrupten-statthalter.png"
+      "coverImage": "generated-posts/cicero-ich-besiege-den-korrupten-statthalter.webp"
     },
     {
       "id": "cicero-ich-rette-die-republik",
@@ -501,7 +501,7 @@
         "Pater Patriae"
       ],
       "readingTime": 4,
-      "coverImage": "cicero-posts/ich-rette-die-republik.png"
+      "coverImage": "generated-posts/cicero-ich-rette-die-republik.webp"
     },
     {
       "id": "cicero-conflict-antony",
@@ -520,7 +520,7 @@
         "Tod"
       ],
       "readingTime": 6,
-      "coverImage": "cicero-posts/konflikt-mit-antonius.png"
+      "coverImage": "generated-posts/cicero-konflikt-mit-antonius.webp"
     },
     {
       "id": "cicero-mein-bitteres-exil",
@@ -538,7 +538,7 @@
         "Verzweiflung"
       ],
       "readingTime": 3,
-      "coverImage": "cicero-posts/mein-bitteres-exil.png"
+      "coverImage": "generated-posts/cicero-mein-bitteres-exil.webp"
     },
     {
       "id": "cicero-meine-triumphale-rueckkehr",
@@ -556,7 +556,7 @@
         "Senat"
       ],
       "readingTime": 3,
-      "coverImage": "cicero-posts/meine-triumphale-rueckkehr.png"
+      "coverImage": "generated-posts/cicero-meine-triumphale-rueckkehr.webp"
     },
     {
       "id": "cicero-exile-reflections",
@@ -575,7 +575,7 @@
         "Betrachtung"
       ],
       "readingTime": 6,
-      "coverImage": "cicero-posts/reflexionen-im-exil.png"
+      "coverImage": "generated-posts/cicero-reflexionen-im-exil.webp"
     },
     {
       "id": "cicero-defense-of-milo",
@@ -594,7 +594,7 @@
         "Politik"
       ],
       "readingTime": 6,
-      "coverImage": "cicero-posts/verteidigung-des-milo.png"
+      "coverImage": "generated-posts/cicero-verteidigung-des-milo.webp"
     },
     {
       "id": "sallust-catilinarian-analysis",
@@ -613,7 +613,7 @@
         "Rom"
       ],
       "readingTime": 6,
-      "coverImage": "sallust-posts/catilinarische-analyse.png"
+      "coverImage": "generated-posts/sallust-catilinarische-analyse.webp"
     },
     {
       "id": "sallust-historische-methode",
@@ -632,7 +632,7 @@
         "Philosophie"
       ],
       "readingTime": 6,
-      "coverImage": "sallust-posts/historische-methode.png"
+      "coverImage": "generated-posts/sallust-historische-methode.webp"
     },
     {
       "id": "sallust-jugurthine-war",
@@ -651,7 +651,7 @@
         "Politik"
       ],
       "readingTime": 6,
-      "coverImage": "sallust-posts/jugurthinischer-krieg.png"
+      "coverImage": "generated-posts/sallust-jugurthinischer-krieg.webp"
     },
     {
       "id": "sallust-politische-korruption",
@@ -670,7 +670,7 @@
         "Niedergang"
       ],
       "readingTime": 6,
-      "coverImage": "sallust-posts/politische-korruption.png"
+      "coverImage": "generated-posts/sallust-politische-korruption.webp"
     },
     {
       "id": "sallust-tugend-und-macht",
@@ -689,7 +689,7 @@
         "Moralität"
       ],
       "readingTime": 6,
-      "coverImage": "sallust-posts/tugend-und-macht.png"
+      "coverImage": "generated-posts/sallust-tugend-und-macht.webp"
     },
     {
       "id": "seneca-letters-lucilius",
@@ -708,7 +708,7 @@
         "Tugend"
       ],
       "readingTime": 6,
-      "coverImage": "seneca-posts/briefe-an-lucilius.png"
+      "coverImage": "generated-posts/seneca-briefe-an-lucilius.webp"
     },
     {
       "id": "seneca-tutoring-nero",
@@ -727,7 +727,7 @@
         "Macht"
       ],
       "readingTime": 6,
-      "coverImage": "seneca-posts/erziehung-neros.png"
+      "coverImage": "generated-posts/seneca-erziehung-neros.webp"
     },
     {
       "id": "seneca-freedom-slavery",
@@ -746,7 +746,7 @@
         "Stoizismus"
       ],
       "readingTime": 6,
-      "coverImage": "seneca-posts/freiheit-und-sklaverei.png"
+      "coverImage": "generated-posts/seneca-freiheit-und-sklaverei.webp"
     },
     {
       "id": "seneca-natural-philosophy",
@@ -765,7 +765,7 @@
         "Stoizismus"
       ],
       "readingTime": 6,
-      "coverImage": "seneca-posts/naturphilosophie.png"
+      "coverImage": "generated-posts/seneca-naturphilosophie.webp"
     },
     {
       "id": "seneca-wealth-virtue",
@@ -784,7 +784,7 @@
         "Ethik"
       ],
       "readingTime": 6,
-      "coverImage": "seneca-posts/reichtum-und-tugend.png"
+      "coverImage": "generated-posts/seneca-reichtum-und-tugend.webp"
     },
     {
       "id": "sokrates-das-delphische-orakel",
@@ -803,7 +803,7 @@
         "Philosophie"
       ],
       "readingTime": 4,
-      "coverImage": "sokrates-posts/das-delphische-orakel.png"
+      "coverImage": "generated-posts/sokrates-das-delphische-orakel.webp"
     },
     {
       "id": "sokrates-der-tod-des-sokrates",
@@ -823,7 +823,7 @@
         "Schierlingsbecher"
       ],
       "readingTime": 5,
-      "coverImage": "sokrates-posts/der-tod-des-sokrates.png"
+      "coverImage": "generated-posts/sokrates-der-tod-des-sokrates.webp"
     },
     {
       "id": "sokrates-die-aporie",
@@ -842,7 +842,7 @@
         "Gesprächsmethode"
       ],
       "readingTime": 4,
-      "coverImage": "sokrates-posts/die-aporie.png"
+      "coverImage": "generated-posts/sokrates-die-aporie.webp"
     },
     {
       "id": "sokrates-die-kunst-der-maieutik",
@@ -861,7 +861,7 @@
         "Hebammenkunst"
       ],
       "readingTime": 5,
-      "coverImage": "sokrates-posts/die-kunst-der-maieutik.png"
+      "coverImage": "generated-posts/sokrates-die-kunst-der-maieutik.webp"
     },
     {
       "id": "sokrates-meine-verteidigung",
@@ -881,7 +881,7 @@
         "Verteidigung"
       ],
       "readingTime": 5,
-      "coverImage": "sokrates-posts/meine-verteidigung.png"
+      "coverImage": "generated-posts/sokrates-meine-verteidigung.webp"
     }
   ]
 }

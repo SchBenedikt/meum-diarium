@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { cn, generateExcerpt } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { getPostTags } from '@/lib/tag-utils';
+import { getPostImageSrc } from '@/lib/post-image';
 import { fadeUp, quickTransition } from '@/lib/motion';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 const cardVariants = fadeUp(0.05, 20);
@@ -17,12 +18,7 @@ interface BlogCardProps {
 export function BlogCard({ post, className, preferredPerspective }: BlogCardProps) {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-  const normalizedCoverImage = typeof post.coverImage === 'string' ? post.coverImage.trim() : '';
-  const resolvedCoverImage = normalizedCoverImage
-    ? (normalizedCoverImage.startsWith('/') || normalizedCoverImage.startsWith('http://') || normalizedCoverImage.startsWith('https://')
-      ? normalizedCoverImage
-      : `/images/${normalizedCoverImage}`)
-    : '';
+  const resolvedCoverImage = getPostImageSrc(post.coverImage);
   const handleTagClick = (e: React.MouseEvent, tag: string) => {
     e.preventDefault();
     e.stopPropagation();

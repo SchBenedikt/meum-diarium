@@ -14,6 +14,7 @@ async function tryStaticFile(context: PagesContext, author: string, slug: string
         const post = await fileResponse.json() as any;
         post.author = post.author || author;
         post.authorId = post.author;
+        if (!post.coverImage && post.image) post.coverImage = post.image;
 
         return new Response(JSON.stringify(post), {
             headers: {
@@ -24,6 +25,23 @@ async function tryStaticFile(context: PagesContext, author: string, slug: string
         });
     } catch {
         return null;
+    }
+}
+
+async function getIndexedCoverImage(context: PagesContext, author: string, slug: string): Promise<string | undefined> {
+    try {
+        const requestUrl = new URL(context.request.url);
+        const indexUrl = new URL('/posts/index.json', requestUrl.origin);
+        const response = await context.env.ASSETS.fetch(new Request(indexUrl.toString()));
+        if (!response.ok) return undefined;
+
+        const index = await response.json() as { posts?: Array<{ author?: string; slug?: string; coverImage?: unknown }> };
+        const post = index.posts?.find((entry) => entry.author === author && entry.slug === slug);
+        return typeof post?.coverImage === 'string' && post.coverImage.trim()
+            ? post.coverImage.trim()
+            : undefined;
+    } catch {
+        return undefined;
     }
 }
 
@@ -61,6 +79,9 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
 
                     if (result && (result.authorId === author || result.author_id === author)) {
                         const normalizedResult = normalizePostResult(result);
+                        // Keep the detail image aligned with the cover shown by /api/posts.
+                        const indexedCoverImage = await getIndexedCoverImage(context, author, slug);
+                        if (indexedCoverImage) normalizedResult.coverImage = indexedCoverImage;
                         console.log(`✅ [Posts Author/Slug API] GET found post "${normalizedResult.title}" from D1 (${queryTime}ms)`);
 
                         return new Response(JSON.stringify(normalizedResult), {
