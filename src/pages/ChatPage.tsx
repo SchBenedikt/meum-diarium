@@ -13,14 +13,15 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useLanguage } from '@/context/LanguageContext';
 import { SEO } from '@/components/SEO';
+type ChatMessage = { role: 'user' | 'assistant'; content: string };
 export default function ChatPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const { setCurrentAuthor } = useAuthor();
     const { t } = useLanguage();
-    const [messages, setMessages] = useState([
-        { role: 'assistant', content: 'Salve! Ich bin Gaius Julius Caesar. Frage mich etwas über meine Feldzüge in Gallien oder meine Pläne für Rom.' }
+    const [messages, setMessages] = useState<ChatMessage[]>([
+        { role: 'assistant', content: `Salve! Ich bin ${authors[authorId as Author]?.name || 'Caesar'}. Stelle mir Fragen zu meinem Leben und zur römischen Geschichte.` }
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -52,27 +53,16 @@ export default function ChatPage() {
         scrollToBottom();
     }, [messages, isTyping, scrollToBottom]);
     
-    // Handle initial question from URL params
-    useEffect(() => {
-        const q = searchParams.get('q')?.trim();
-        if (q && messages.length === 1 && !isTyping && author) {
-            // Auto-send deep-linked question, but keep input free for the next message.
-            setInput('');
-            setTimeout(() => {
-                sendQuestion(q);
-                navigate(`/${authorId}/chat`, { replace: true });
-            }, 250);
-        }
-    }, [searchParams, messages, isTyping, author, authorId, navigate]);
-    
-    if (!author) return null;
-    const sendQuestion = async (question: string) => {
+    const sendQuestion = useCallback(async (question: string) => {
         if (!question.trim()) return;
         setMessages(prev => [...prev, { role: 'user', content: question }]);
         setIsTyping(true);
         try {
             if (import.meta.env.DEV) console.log(`[ChatPage] Sending question to AI...`);
-            const { text, resources: suggested } = await askAI(authorId || 'caesar', question, { sitemapUrl: `${window.location.origin}/sitemap.xml` });
+            const { text, resources: suggested } = await askAI(authorId || 'caesar', question, {
+                sitemapUrl: `${window.location.origin}/sitemap.xml`,
+                history: messages.slice(-8),
+            });
             if (import.meta.env.DEV) console.log(`[ChatPage] AI response received with ${suggested?.length || 0} resources`);
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
             if (suggested && suggested.length) {
@@ -95,11 +85,26 @@ export default function ChatPage() {
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : 'Fehler beim Abruf der KI-Antwort.';
             if (import.meta.env.DEV) console.error(`[ChatPage] Error: ${msg}`);
-            setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: 'Die Antwort konnte gerade nicht geladen werden. Bitte versuche es später erneut.' }]);
         } finally {
             setIsTyping(false);
         }
-    };
+    }, [authorId, messages]);
+
+    // Handle an initial question from a deep link once the author data is ready.
+    useEffect(() => {
+        const q = searchParams.get('q')?.trim();
+        if (q && messages.length === 1 && !isTyping && author) {
+            setInput('');
+            const timeout = window.setTimeout(() => {
+                void sendQuestion(q);
+                navigate(`/${authorId}/chat`, { replace: true });
+            }, 250);
+            return () => window.clearTimeout(timeout);
+        }
+    }, [searchParams, messages.length, isTyping, author, authorId, navigate, sendQuestion]);
+
+    if (!author) return null;
     const handleSend = async () => {
         const question = input.trim();
         if (!question) return;
@@ -110,7 +115,7 @@ export default function ChatPage() {
         <div className="h-screen flex flex-col bg-background overflow-hidden">
             <SEO
                 title={author ? `KI-Chat mit ${author.name} – Stelle Fragen zur römischen Geschichte` : 'KI-Chat mit historischen Persönlichkeiten'}
-                description={author ? `Sprich mit ${author.name} – stelle Fragen zu seinen Taten, Gedanken und der römischen Geschichte. KI-gestützter historischer Dialog.` : 'Sprich mit Caesar, Cicero, Augustus und Seneca. Stelle Fragen zur römischen Geschichte und erhalte authentische Antworten per KI.'}
+                description={author ? `Stelle der KI Fragen zu ${author.name} und zur römischen Geschichte. Die Antworten sind generierte Rollendialoge und keine historischen Quellen.` : 'Stelle KI-gestützte Fragen an historische Figuren und zur römischen Geschichte. Die Antworten sind generierte Rollendialoge, keine historischen Quellen.'}
                 image={author ? `${baseUrl}/images/${authorId}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
             />
             <main className="flex-1 flex flex-col min-h-0 container mx-auto px-4 pt-4 sm:pt-6 max-w-7xl">
@@ -125,7 +130,7 @@ export default function ChatPage() {
                             Sprich mit <span className="text-primary italic">{author.name.split(' ').slice(1).join(' ')}</span>
                         </h1>
                         <p className="text-xs sm:text-sm text-muted-foreground/60 max-w-md font-light leading-relaxed">
-                            Stelle gezielte Fragen an {author.name.split(' ')[0]} und erhalte kontextreiche, KI-gestützte Antworten.
+                            Stelle Fragen an die KI-Rolle von {author.name.split(' ')[0]}. Sie bezieht die letzten Gesprächsbeiträge in ihre Antwort ein.
                         </p>
                     </motion.div>
                     <motion.div
@@ -150,7 +155,7 @@ export default function ChatPage() {
                             </div>
                         </div>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            Du sprichst mit einer KI, die auf den Werken von <span className="text-foreground font-medium">{author.name}</span> trainiert wurde. Stelle präzise historische Fragen.
+                            Eine KI formuliert Antworten in einer an <span className="text-foreground font-medium">{author.name}</span> angelehnten Rolle. Das ist keine überlieferte Äußerung und keine Garantie für historische Genauigkeit.
                         </p>
                         <div className="space-y-3">
                             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Kontext & Ressourcen</p>
@@ -186,8 +191,8 @@ export default function ChatPage() {
                                 </div>
                                 <div>
                                     <h1 className="font-display font-semibold text-lg leading-tight">{author.name}</h1>
-                                    <span className="flex items-center gap-1.5 text-xs text-primary animate-pulse">
-                                        <span className="block h-1.5 w-1.5 rounded-full bg-primary" /> Online
+                                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                        <span className="block h-1.5 w-1.5 rounded-full bg-primary" /> KI-generiert
                                     </span>
                                 </div>
                             </div>

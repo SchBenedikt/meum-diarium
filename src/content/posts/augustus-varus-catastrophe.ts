@@ -1,12 +1,16 @@
 import { BlogPost } from '@/types/blog';
 
-export const post: Partial<BlogPost> & { image?: string; historicalDate?: string; translations?: any } = {
+export const post: Partial<BlogPost> & {
+  image?: string;
+  historicalDate?: string;
+  translations?: Record<string, { diaryTitle?: string; scientificTitle?: string; excerpt?: string }>;
+} = {
   slug: 'augustus-varus-catastrophe',
   author: 'augustus',
   title: 'Die Varus-Katastrophe',
   diaryTitle: 'Varus, Varus, gib mir meine Legionen wieder',
   scientificTitle: 'Die Varus-Niederlage im Teutoburger Wald (9 n. Chr.)',
-  excerpt: 'Drei Legionen. Vernichtet. In den Sümpfen und Wäldern Germaniens hat Arminius, den ich für einen Freund hielt, mir die Legionen Varus' vernichtet. Seitdem gehe ich nachts umher und starre gegen die Wand.',
+  excerpt: 'Drei Legionen. Vernichtet. In den Sümpfen und Wäldern Germaniens hat Arminius, den ich für einen Freund hielt, die Legionen des Varus vernichtet. Seitdem gehe ich nachts umher und starre gegen die Wand.',
   historicalDate: '9',
   date: '2025-04-20',
   readingTime: 9,
@@ -56,7 +60,7 @@ Die Niederlage hatte tiefgreifende Konsequenzen: Augustus gab die Expansionspoli
     de: {
       diaryTitle: 'Varus, Varus, gib mir meine Legionen wieder',
       scientificTitle: 'Die Varus-Niederlage im Teutoburger Wald (9 n. Chr.)',
-      excerpt: 'Drei Legionen. Vernichtet. Arminius, den ich für einen Freund hielt, hat mir die Legionen Varus' vernichtet.',
+      excerpt: 'Drei Legionen. Vernichtet. Arminius, den ich für einen Freund hielt, hat die Legionen des Varus vernichtet.',
     },
     en: {
       diaryTitle: 'Varus, Varus, Give Me Back My Legions',

@@ -331,6 +331,14 @@ export default function TeacherWorksheetPage() {
       y += 8;
     }
 
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(9);
+    doc.setTextColor(90, 90, 90);
+    writeWrapped('KI-generierter Entwurf: Bitte vor dem Einsatz fachlich und didaktisch prüfen.', 9, 12);
+    y += 8;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(17, 24, 39);
+
     worksheet.tasks.forEach((task, index) => {
       ensureSpace(110);
       
@@ -411,8 +419,9 @@ export default function TeacherWorksheetPage() {
             <div className="space-y-1">
               <p className="text-xs uppercase tracking-[0.22em] text-amber-800 font-semibold">Transparenzhinweis</p>
               <p className="text-sm leading-relaxed text-amber-900">
-                Inhalte sind KI-generiert und können Fehler, Ungenauigkeiten oder didaktische Schwächen enthalten. Es gibt keine Garantie auf
-                fachliche Richtigkeit oder Vollständigkeit. Bitte prüfe alle Ergebnisse vor der Nutzung im Unterricht.
+                Thema und optionale Hinweise werden an einen externen KI-Dienst übermittelt. Gib keine vertraulichen oder personenbezogenen Angaben ein.
+                Die generierten Inhalte können Fehler, Ungenauigkeiten oder didaktische Schwächen enthalten. Prüfe sie vor dem Einsatz im Unterricht.
+                <Link to="/privacy" className="ml-1 underline font-semibold">Datenschutzhinweise</Link>
               </p>
             </div>
           </div>

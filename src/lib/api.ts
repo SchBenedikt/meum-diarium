@@ -381,14 +381,23 @@ export type WorksheetResponse = {
     warning?: string;
 };
 
-export async function askAI(persona: string, question: string, opts?: { sitemapUrl?: string }): Promise<{ text: string; resources?: AiResource[] }> {
+export async function askAI(
+    persona: string,
+    question: string,
+    opts?: { sitemapUrl?: string; history?: Array<{ role: 'user' | 'assistant'; content: string }> }
+): Promise<{ text: string; resources?: AiResource[] }> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    const isDev = import.meta.env.DEV;
     const primaryUrl = isDev
         ? new URL('/', 'https://caesar.schaechner.workers.dev')
         : new URL('/api/ask', origin || 'http://localhost');
     primaryUrl.searchParams.set('persona', persona);
     primaryUrl.searchParams.set('ask', question);
+    const history = (opts?.history || []).slice(-8).map(({ role, content }) => ({
+        role,
+        content: content.slice(0, 1000),
+    }));
+    if (history.length) primaryUrl.searchParams.set('history', JSON.stringify(history));
     const sitemap = opts?.sitemapUrl || (origin ? `${origin}/sitemap.xml` : undefined);
     if (sitemap) primaryUrl.searchParams.set('sitemap', sitemap);
 
@@ -403,6 +412,7 @@ export async function askAI(persona: string, question: string, opts?: { sitemapU
         const fallbackUrl = new URL('/', 'https://caesar.schaechner.workers.dev');
         fallbackUrl.searchParams.set('persona', persona);
         fallbackUrl.searchParams.set('ask', question);
+        if (history.length) fallbackUrl.searchParams.set('history', JSON.stringify(history));
         if (sitemap) fallbackUrl.searchParams.set('sitemap', sitemap);
         res = await fetch(fallbackUrl.toString(), {
             method: 'GET',
@@ -445,7 +455,7 @@ export async function generateWorksheetAI(payload: {
     tasks: WorksheetTaskConfig[];
 }): Promise<WorksheetResponse> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    const isDev = import.meta.env.DEV;
 
     const primaryUrl = isDev
         ? new URL('/worksheet', 'https://caesar.schaechner.workers.dev')
@@ -490,7 +500,7 @@ export async function generateWorksheetAI(payload: {
 
 export async function simulateAI(persona: string, scenario: string, history: any[], choice?: string): Promise<any> {
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    const isDev = import.meta.env.DEV;
     const payload = { persona, scenario, history, choice };
     const primaryUrl = isDev
         ? new URL('/simulate', 'https://caesar.schaechner.workers.dev')

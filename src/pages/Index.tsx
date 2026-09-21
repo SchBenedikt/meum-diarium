@@ -75,7 +75,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
         title={translatedAuthor ? `${translatedAuthor.name} – Tagebücher, Werke & Analysen` : undefined}
-        description={translatedAuthor?.description || 'Tauche ein in die Welt des antiken Roms: Erlebe Geschichte durch die Augen von Caesar, Cicero, Augustus und Seneca. Authentische Tagebucheinträge, wissenschaftliche Analysen, KI-Chats, interaktive Simulationen, Latein-Reader mit über 36.000 Vokabeln und ein umfassendes Lexikon – für Schule, Studium und alle Geschichtsbegeisterten.'}
+        description={translatedAuthor?.description || 'Tauche ein in die Welt des antiken Roms: Entdecke erzählerische Tagebucheinträge, historische Analysen, KI-Dialoge und interaktive Simulationen. Dazu kommen Latein-Reader, Vokabeltrainer, Grammatik und Lexikon – für Schule, Studium und alle Geschichtsinteressierten.'}
         author={translatedAuthor?.name}
         image={translatedAuthor ? `${baseUrl}/images/${currentAuthor}-hero.png` : `${baseUrl}/images/caesar-hero.png`}
         type="website"

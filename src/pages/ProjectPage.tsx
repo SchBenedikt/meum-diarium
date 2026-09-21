@@ -81,7 +81,7 @@ export default function ProjectPage() {
         <section className="mb-20 space-y-10">
           <h2 className="font-display text-3xl font-bold">Erweiterungen</h2>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
-            Das neue Meum Diarium vereint nun mehrere große antike Persönlichkeiten, unter andere Gaius Julius Caesar, Marcus Tullius Cicero und Augustus, in einer eigens dafür von Grund auf neu programmierte Plattform. Diese speziell für Meum Diarium erschaffene Anwendung basierend auf next.js ermöglicht Dank einem zusätzlich integrierten Admin-Portal grenzlose Skalierung der Inhalte und beliebige Erweiterung und Bearbeitung.
+            Meum Diarium verbindet erzählerische Perspektiven auf antike Persönlichkeiten mit historischen Artikeln, einem Lexikon und interaktiven Lernangeboten. Ein integrierter Verwaltungsbereich unterstützt die Pflege der Inhalte.
           </p>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
             Jede Persönlichkeit besitzt mit einer eigenen Farbe seinen eigenen individuellen Touch, um die Übersichtlichkeit der Anwendung gewährleisten zu können.
@@ -94,7 +94,7 @@ export default function ProjectPage() {
 
           <h2 className="font-display text-3xl font-bold pt-6">Eine klare Struktur</h2>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
-            Um dafür komplexe, auf ein Fachgebiet spezialisierte Begriffe schneller verstehen zu können, oder um auch ohne Hintergrundwissen die detaillierten Artikel ohne Verständnisprobleme lesen zu können, werden Fachbegriffe, Namen und Orte automatisch zum eigens dazu erschaffenen Lexikon verlinkt. Mit einem einfachen Hover über die Fachbegriffe, ohne die Website zu verlassen, generiert eine spezielle KI zudem eine kompakte, verständliche Zusammenfassung eines Fachbegriffs, mit der Möglichkeit, Nachfragen zu stellen.
+            In unterstützten Artikeln sind Fachbegriffe, Namen und Orte mit dem Lexikon verknüpft. Beim Öffnen eines solchen Begriffs kann eine KI eine ergänzende Erklärung erzeugen; Rückfragen sind direkt im Popover möglich. Diese Antworten können Fehler enthalten und ersetzen weder den Lexikon-Eintrag noch eine Quelle.
           </p>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
             Um auch eine chronologische Übersicht über die Ereignisse behalten zu können, haben wir zudem ein Zeitstrahl erschaffen, der alle Artikel auf Meum Diarium chronologisch anordnet. Auch hier spielt das Farbschema wieder eine Rolle, denn die Artikel werden farbig unterlegt angezeigt.
@@ -115,10 +115,10 @@ export default function ProjectPage() {
 
           <h2 className="font-display text-3xl font-bold pt-6">Integrationen von KI</h2>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
-            Genau wie bei dem alten „Meum Diarium" gibt es einen integrierte KI-Chat für jede Persönlichkeit. Dieser verlinkt automatisch passend zum Chat-Thema Ressourcen, die auf „Meum Diarium" verfügbar sind, um selbst mehr Hintergrundwissen zu erhalten und spezielle Themen nachlesen zu können. Auch wenn wir versucht haben, den KI-Chat so zu gestalten, damit dieser produktiv mehr Fakten liefert, antwortet die jeweiligen Persönlichkeit auf provokative Fragen genau so witzig wie früher.
+            In den Figuren-Chats kannst du Fragen stellen und den Gesprächsverlauf fortführen. Die KI antwortet in einer an die jeweilige Person angelehnten Rolle; diese Antworten sind moderne generierte Texte und keine überlieferten Aussagen. Wenn der Dienst passende interne Inhalte zurückgibt, erscheinen sie als weiterführende Links. Die Antworten werden nicht automatisch wissenschaftlich geprüft.
           </p>
           <p className="text-muted-foreground/80 leading-relaxed text-lg">
-            Eine neue KI-Funktion ist zudem das neue integrierte textbasierte Spiel. Hierbei handelt man bei auswählbaren Szenarien wie eine der Persönlichkeiten. Ziel ist es hierbei, die eigene Macht zu vergrößern, ohne dass die Beliebtheit des Volkes sinkt und man selbst dennoch möglichst viel Einfluss hat. Hierbei kann man ausprobieren, wie schwierig und komplex die Entscheidungen antiker Persönlichkeiten gewesen sind. Zudem lassen sich andere Ausgänge von Ereignissen testen; was wäre z.B., wenn Caesar sich nicht getraut hätte, den Rubikon zu überschreiten?
+            Die historischen Simulationen verbinden vorgegebene oder selbst beschriebene Szenarien mit KI-generierten Reaktionen und Spielwerten. Sie laden dazu ein, Zielkonflikte zu erkunden, bilden aber keine gesicherten historischen Alternativen ab. Verlauf und Ausgang können frei erfunden sein.
           </p>
 
           <h2 className="font-display text-3xl font-bold pt-6">Nicht nur Sachwissen</h2>

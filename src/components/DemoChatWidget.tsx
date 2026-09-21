@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, MoreVertical, ArrowRight } from 'lucide-react';
+import { Send, Sparkles, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
@@ -31,11 +31,11 @@ export function DemoChatWidget() {
         setInput('');
         setIsTyping(true);
         try {
-            const { text } = await askAI(DEFAULT_PERSONA, userMessage);
+            const { text } = await askAI(DEFAULT_PERSONA, userMessage, { history: messages.slice(-8) });
             setMessages(prev => [...prev, { role: 'assistant', content: text }]);
-        } catch (err: any) {
-            const msg = err?.message || 'Fehler beim Abruf der KI-Antwort.';
-            setMessages(prev => [...prev, { role: 'assistant', content: `Entschuldige, es ist ein Fehler aufgetreten: ${msg}` }]);
+        } catch (err: unknown) {
+            if (import.meta.env.DEV) console.error('Demo chat request failed:', err);
+            setMessages(prev => [...prev, { role: 'assistant', content: 'Die Antwort konnte gerade nicht geladen werden. Bitte versuche es später erneut.' }]);
         } finally {
             setIsTyping(false);
         }
@@ -62,8 +62,8 @@ export function DemoChatWidget() {
                         <div>
                             <h3 className="font-bold text-sm">Gaius Julius Caesar</h3>
                             <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                                Aktiv
+                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+                                KI-generiert
                             </p>
                         </div>
                     </div>
@@ -71,9 +71,6 @@ export function DemoChatWidget() {
                         <span className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-lg">
                             <Sparkles className="h-3 w-3" /> Demo
                         </span>
-                        <button className="p-2 rounded-lg transition-colors">
-                            <MoreVertical className="h-5 w-5 text-muted-foreground" />
-                        </button>
                     </div>
                 </div>
                 {/* Chat Messages */}

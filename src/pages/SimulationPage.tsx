@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { useAuthor } from '@/context/AuthorContext';
 import { useAuthors } from '@/hooks/use-authors';
 import { Author } from '@/types/blog';
@@ -17,10 +17,10 @@ export default function SimulationPage() {
     const { authorId } = useParams<{ authorId: string }>();
     const { setCurrentAuthor } = useAuthor();
     const { authors: dbAuthors, isLoading: authorsLoading } = useAuthors();
-    const navigate = useNavigate();
     const scrollRef = useRef<HTMLDivElement>(null);
     // Get author from D1 database
     const author = authorId && dbAuthors ? dbAuthors[authorId as Author] : null;
+    const baseUrl = import.meta.env.VITE_SITE_URL || 'https://meum-diarium.xn--schchner-2za.de';
     // UI State
     const [searchQuery, setSearchQuery] = useState('');
     const [showCustomForm, setShowCustomForm] = useState(false);
@@ -28,7 +28,6 @@ export default function SimulationPage() {
     const [isLoading, setIsLoading] = useState(false);
     // Game State
     const [activeScenario, setActiveScenario] = useState<SimulationScenario | null>(null);
-    const [currentEventId, setCurrentEventId] = useState<string | null>(null);
     const [stats, setStats] = useState<SimulationStats>({ welfare: 50, influence: 50, power: 50 });
     const [history, setHistory] = useState<{ text: string, type: 'narrative' | 'choice' | 'feedback', role?: 'user' | 'assistant' }[]>([]);
     const [currentOptions, setCurrentOptions] = useState<{ id: string, text: string }[]>([]);
@@ -39,7 +38,7 @@ export default function SimulationPage() {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [history, isLoading]);
-    const allScenarios = authorId && simulations[authorId] ? simulations[authorId] : [];
+    const allScenarios = useMemo(() => (authorId && simulations[authorId] ? simulations[authorId] : []), [authorId]);
     const filteredScenarios = allScenarios.filter(s =>
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         s.date.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -53,21 +52,12 @@ export default function SimulationPage() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const scenarioParam = searchParams.get('scenario');
-    useEffect(() => {
-        if (scenarioParam && authorId && allScenarios.length > 0 && !activeScenario) {
-            const found = allScenarios.find(s => s.id === scenarioParam);
-            if (found) {
-                startGame(found);
-                setSearchParams({}, { replace: true });
-            }
-        }
-    }, [scenarioParam, authorId, allScenarios.length]);
-    const getScenarioContext = (scenario?: SimulationScenario | null) => {
+    const getScenarioContext = useCallback((scenario?: SimulationScenario | null) => {
         if (!scenario) return '';
         const name = author?.name || authorId || 'Unbekannt';
         return `${name}: ${scenario.title} – ${scenario.description}`;
-    };
-    const startGame = async (scenario: SimulationScenario) => {
+    }, [author?.name, authorId]);
+    const startGame = useCallback(async (scenario: SimulationScenario) => {
         setIsLoading(true);
         setActiveScenario(scenario);
         setStats(scenario.initialStats);
@@ -90,7 +80,16 @@ export default function SimulationPage() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [authorId, getScenarioContext]);
+    useEffect(() => {
+        if (scenarioParam && authorId && allScenarios.length > 0 && !activeScenario) {
+            const found = allScenarios.find(s => s.id === scenarioParam);
+            if (found) {
+                void startGame(found);
+                setSearchParams({}, { replace: true });
+            }
+        }
+    }, [scenarioParam, authorId, allScenarios, activeScenario, setSearchParams, startGame]);
     const handleChoice = async (choiceText: string) => {
         if (isLoading || gameEnded) return;
         setIsLoading(true);
@@ -125,7 +124,17 @@ export default function SimulationPage() {
         if (!customInput.trim()) return;
         handleChoice(customInput);
     };
-    if (!author) return null;
+    if (authorsLoading) {
+        return <main className="min-h-screen flex items-center justify-center text-muted-foreground">Lade Autoren …</main>;
+    }
+    if (!author) {
+        return (
+            <main className="min-h-screen flex flex-col items-center justify-center gap-4 text-center px-4">
+                <p className="text-muted-foreground">Diese historische Figur wurde nicht gefunden.</p>
+                <Button asChild variant="outline"><Link to="/">Zur Startseite</Link></Button>
+            </main>
+        );
+    }
     // --- SCENARIO SELECTION VIEW ---
     if (!activeScenario) {
         const handleCustomSubmit = () => {
@@ -179,6 +188,9 @@ export default function SimulationPage() {
                             <p className="text-muted-foreground/60 max-w-md font-light leading-relaxed">
                                 Erlebe die Geschichte aus der Ich-Perspektive. Wähle Szenarien, entscheide und beobachte die Konsequenzen.
                             </p>
+                            <p className="text-xs text-muted-foreground max-w-xl leading-relaxed">
+                                Die Erzählung und Reaktionen werden von KI erzeugt. Sie sind ein Gedankenexperiment und keine belegten historischen Ereignisse oder Quellen.
+                            </p>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
@@ -221,7 +233,7 @@ export default function SimulationPage() {
                                     exit={{ opacity: 0, scale: 0.97 }}
                                     className="card-modern card-padding-md min-h-[240px] flex flex-col"
                                 >
-                                    <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                                         <h3 className="font-display text-lg font-medium">Neues Szenario</h3>
                                         <button onClick={() => setShowCustomForm(false)} className="text-muted-foreground hover:text-foreground">
                                             <X className="h-4 w-4" />
@@ -302,6 +314,9 @@ export default function SimulationPage() {
                         <StatDisplay icon={Sword} label="Macht" value={stats.power} color="text-red-500" />
                     </div>
                 </div>
+                <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
+                    KI-generierte Simulation: Verlauf, Folgen und Spielwerte sind erfunden und stellen keine historische Rekonstruktion dar.
+                </p>
                 {/* Game Content */}
                 <div className="card-modern overflow-hidden mb-6">
                     <div ref={scrollRef} className="max-h-[55vh] sm:max-h-[60vh] overflow-auto scroll-smooth px-4 sm:px-6 py-4 space-y-4">
