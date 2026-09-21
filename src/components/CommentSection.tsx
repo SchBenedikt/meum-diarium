@@ -27,6 +27,19 @@ interface CommentSectionProps {
 
 type SortOrder = 'newest' | 'oldest';
 
+async function readCommentsResponse<T>(response: Response): Promise<T> {
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.toLowerCase().includes('application/json')) {
+    throw new Error('Der Kommentarservice ist gerade nicht erreichbar. Bitte versuche es später erneut.');
+  }
+
+  const data = await response.json() as T & { error?: string };
+  if (!response.ok) {
+    throw new Error(data.error || `Kommentar-Anfrage fehlgeschlagen (${response.status}).`);
+  }
+  return data;
+}
+
 export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,8 +64,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
           headers: { 'Accept': 'application/json' },
           signal: controller.signal,
         });
-        if (!res.ok) throw new Error(`Failed to fetch comments: ${res.status}`);
-        const data = await res.json();
+        const data = await readCommentsResponse<{ comments?: Comment[] }>(res);
         setComments(data.comments || []);
       } catch (err: unknown) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -109,11 +121,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
           parentId: replyTo?.id || undefined,
         }),
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || `Failed to create comment: ${res.status}`);
-      }
-      const data = await res.json();
+      const data = await readCommentsResponse<{ comment: Comment }>(res);
       setComments((prev) => [data.comment, ...prev]);
       setAuthorName('');
       setAuthorEmail('');
@@ -137,10 +145,7 @@ export function CommentSection({ postId, onCommentAdded }: CommentSectionProps) 
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ id: commentId, email }),
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || `Failed to delete: ${res.status}`);
-      }
+      await readCommentsResponse<{ success: boolean }>(res);
       setComments((prev) => prev.filter((c) => c.id !== commentId));
       setDeleteDialogId(null);
       setDeleteInputEmail('');

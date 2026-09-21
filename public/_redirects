@@ -1,3 +1,0 @@
-# Cloudflare Pages redirects for SPA routing
-# All non-file paths redirect to index.html with 200 status (SPA fallback)
-/* /index.html 200

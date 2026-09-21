@@ -8,7 +8,7 @@
     "debug": "vite --host",
     "server": "tsx watch server/index.ts",
     "generate:sitemaps": "tsx scripts/generate-sitemaps.ts",
-    "build": "npm run generate:sitemaps && vite build",
+    "build": "npm run generate:sitemaps && vite build && node scripts/build-pages-worker.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -128,6 +128,7 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^7.2.4",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-plugin-compression": "^0.5.1",
+    "wrangler": "4.136.1"
   }
 }

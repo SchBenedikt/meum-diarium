@@ -2,6 +2,46 @@ import { sql } from 'drizzle-orm';
 import { getDb } from '../db/client';
 import { comments, posts } from '../db/schema';
 
+async function ensurePostReference(db: ReturnType<typeof getDb>, env: any, requestUrl: URL, postId: string): Promise<boolean> {
+  const existing = await db.select({ id: posts.id }).from(posts).where(sql`${posts.id} = ${postId}`).limit(1);
+  if (existing.length > 0) return true;
+
+  // Posts are versioned JSON assets. Create a D1 reference row on first comment
+  // so the comments table's foreign key works even when no CMS copy exists.
+  const indexUrl = new URL('/posts/index.json', requestUrl.origin);
+  const indexResponse = await env.ASSETS.fetch(new Request(indexUrl));
+  if (!indexResponse.ok) return false;
+
+  const index = await indexResponse.json() as { posts?: Array<{ id?: string; author?: string; slug?: string; title?: string; excerpt?: string; date?: string; historicalDate?: string; historicalYear?: number; readingTime?: number; tags?: string[]; coverImage?: string }> };
+  const indexedPost = index.posts?.find((post) => post.id === postId && post.author && post.slug);
+  if (!indexedPost?.author || !indexedPost.slug) return false;
+
+  const postUrl = new URL(`/posts/${encodeURIComponent(indexedPost.author)}/${encodeURIComponent(indexedPost.slug)}.json`, requestUrl.origin);
+  const postResponse = await env.ASSETS.fetch(new Request(postUrl));
+  if (!postResponse.ok) return false;
+  const sourcePost = await postResponse.json() as { id?: string; title?: string; excerpt?: string; date?: string; historicalDate?: string; historicalYear?: number; readingTime?: number; tags?: string[]; coverImage?: string; content?: unknown; translations?: unknown };
+  if (sourcePost.id !== postId || !sourcePost.title || !sourcePost.content) return false;
+
+  await db.insert(posts).values({
+    id: postId,
+    slug: indexedPost.slug,
+    authorId: null,
+    title: sourcePost.title,
+    excerpt: sourcePost.excerpt || indexedPost.excerpt || null,
+    historicalDate: sourcePost.historicalDate || indexedPost.historicalDate || null,
+    historicalYear: sourcePost.historicalYear ?? indexedPost.historicalYear ?? null,
+    date: sourcePost.date || indexedPost.date || null,
+    readingTime: sourcePost.readingTime ?? indexedPost.readingTime ?? null,
+    tags: sourcePost.tags || indexedPost.tags || [],
+    coverImage: sourcePost.coverImage || indexedPost.coverImage || null,
+    content: sourcePost.content,
+    translations: sourcePost.translations ?? null,
+  }).onConflictDoNothing();
+
+  const persisted = await db.select({ id: posts.id }).from(posts).where(sql`${posts.id} = ${postId}`).limit(1);
+  return persisted.length > 0;
+}
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
@@ -121,15 +161,9 @@ export const onRequest = async ({ request, env }: { request: Request; env: any }
       });
     }
 
-    // Verify post exists
+    // Verify the post exists in D1 or seed its reference from the local JSON source.
     try {
-      const post = await db
-        .select()
-        .from(posts)
-        .where(sql`${posts.id} = ${postId}`)
-        .limit(1);
-
-      if (!post || post.length === 0) {
+      if (!await ensurePostReference(db, env, url, postId)) {
         return new Response(JSON.stringify({ error: 'Post not found' }), {
           status: 404,
           headers: jsonHeaders,
